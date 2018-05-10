@@ -21,6 +21,7 @@ import { GlobalVariableService}       from './global-variable.service';
 import { CanvasActivity }             from './models';
 import { CanvasTask }                 from './models';
 import { CanvasUser }                 from './models';
+import { Dashboard }                  from './models';
 import { DatagridInput }              from './models';
 import { DatagridColumn }             from './models';
 
@@ -40,6 +41,7 @@ export class CollaborateTasksComponent implements OnInit {
     @ViewChild('widgetDOM') widgetDOM: ElementRef;
 
     canvasTasks: CanvasTask[] = [];
+    dashboardNames: string[];
     datagridColumns: DatagridColumn[];
     datagridInput: DatagridInput = null;
     datagridData: any;
@@ -58,6 +60,7 @@ export class CollaborateTasksComponent implements OnInit {
     datagridEmptyMessage: string = 'No Activities created so far';
     datagridVisibleFields: string[];
     datagridShowFields: string[];
+    selectedDashboard: string;
     selectedUser: string;
     userNames: string[] = [];
     users: CanvasUser[] = [];
@@ -151,13 +154,12 @@ export class CollaborateTasksComponent implements OnInit {
                 usr.forEach(u => {
                     this.userNames.push(u.userID);
                 });
-                // this.userNames = ['', ...this.userNames];
+                this.userNames = ['', ...this.userNames];
 
-                // this.globalVariableService.getCanvasGroups().then(grp => {
-                //     grp.forEach(g => {
-                //         this.groupNames.push(g.name);
-                //     });
-                // });
+                this.globalVariableService.dashboards.forEach(d => {
+                    this.dashboardNames.push(d.name);
+                });
+                this.dashboardNames = ['', ...this.dashboardNames];
             });
     
         });
@@ -208,6 +210,6 @@ export class CollaborateTasksComponent implements OnInit {
     clickFilter() {
         // Filter results
         this.globalFunctionService.printToConsole(this.constructor.name,'clickFilter', '@Start');
-        console.warn('xx sel', this.selectedUser)
+        console.warn('xx sel', this.selectedUser, this.selectedDashboard)
     }
 }

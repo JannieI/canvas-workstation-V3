@@ -70,17 +70,17 @@
                 <div class="gridDashboardTitle">
                     <b>Linked To:</b>
                 </div>
-                <div class="gridDashboard">
-                    <div class="select">
-                        <select id="selects_3"
-                            [(ngModel)]="linkedDashboardID"
-                            (change)="clickSelectPrecedingTask($event)"
+                <div class="select gridDashboard">
+                    <select
+                        [(ngModel)]="selectedDashboard"
+                        >
+                        <option *ngFor="let row of userNames"
                             >
-                            <option>Economic Overview</option>
-                            <option>EU Indices</option>
-                        </select>
-                    </div>
+                            {{ row }}
+                        </option>
+                    </select>
                 </div>
+                
 
                 <div class="gridButtonFilter">
                     <button
