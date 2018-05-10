@@ -22,8 +22,7 @@
                     </div>
                     <div class="gridActivityType">
                         <div class="select">
-                            <select id="selects_3"
-                                (change)="clickSelectStep($event)"
+                            <select [(ngModel)]="selectedActivityType"
                                 autofocus
                                 >
                                 <option>User defined</option>
@@ -37,25 +36,25 @@
                     <div class="gridAssignedToUserTitle">
                         <b>Assign To:</b>
                     </div>
-                    <div class="gridAssignedToUser">
-                        <div class="select">
-                            <select id="selects_3"
-                                (change)="clickSelectStep($event)"
+                    <div class="select gridAssignedToUser">
+                        <select
+                            [(ngModel)]="selectedUser"
+                            >
+                            <option *ngFor="let row of userNames"
                                 >
-                                <option>KluneG</option>
-                                <option>XavierdG</option>
-                            </select>
-                        </div>
+                                {{ row }}
+                            </option>
+                        </select>
                     </div>
+    
+
 
                     <div class="gridStatusTitle">
                         <b>Status:</b>
                     </div>
                     <div class="gridStatus">
                         <div class="select">
-                            <select id="selects_3"
-                                (change)="clickSelectStep($event)"
-                                >
+                            <select [(ngModel)]="selectedTaskStatus">
                                 <option>Created</option>
                                 <option>Pending</option>
                                 <option>Completed</option>
@@ -67,19 +66,19 @@
                         <b>Description:</b>
                     </div>
                     <div class="gridDescription">
-                        <input [(ngModel)]="taskText"
+                        <input [(ngModel)]="selectedTaskText"
                             type="text"
                             title="Description of Task"
                             size="25"
                             placeholder="Activity text"
                             >
                     </div>
-                    
+
                     <div class="gridTaskCommentsTitle">
                         <b>Comments:</b>
                     </div>
                     <div class="gridTaskComments">
-                        <input [(ngModel)]="taskComments"
+                        <input [(ngModel)]="selectedTaskComments"
                             type="text"
                             title="Task Comments"
                             size="25"
@@ -91,31 +90,31 @@
                         <b>Start Date:</b>
                     </div>
                     <div class="gridStartDate">
-                        <input [(ngModel)]="startDate"
+                        <input [(ngModel)]="selectedStartDate"
                             type="text"
                             title="When Task should start"
                             size="25"
                             placeholder="Date when Task has to start"
                             >
                     </div>
-                    
+
                     <div class="gridDeadlineDateTitle">
                         <b>Deadline:</b>
                     </div>
                     <div class="gridDeadlineDate">
-                        <input [(ngModel)]="deadlineDate"
+                        <input [(ngModel)]="selectedDeadlineDate"
                             type="text"
                             title="When Task should end"
                             size="25"
                             placeholder="Date when task should end"
                             >
                     </div>
-    
+
                     <div class="gridEndDateTitle">
                         <b>End Date:</b>
                     </div>
                     <div class="gridEndDate">
-                        <input [(ngModel)]="endDate"
+                        <input [(ngModel)]="selectedEndDate"
                             type="text"
                             title="When Task actualy ended"
                             size="25"
@@ -127,21 +126,21 @@
                         <b>Duaration:</b>
                     </div>
                     <div class="gridDuarationDays">
-                        <input [(ngModel)]="durationDays"
+                        <input [(ngModel)]="selectedDurationDays"
                             type="text"
                             title="Duration in days"
                             size="25"
                             placeholder="Duration of task, measured in days"
                             >
                     </div>
-                
+
                     <div class="gridPrecedingIDTitle">
                         <b>Preceding Task:</b>
                     </div>
                     <div class="gridPrecedingID">
                         <div class="select">
                             <select id="selects_3"
-                                [(ngModel)]="precedingTaskID"
+                                [(ngModel)]="selectedPrecedingTaskID"
                                 (change)="clickSelectPrecedingTask($event)"
                                 >
                                 <option>QA Dashboard</option>
@@ -150,21 +149,20 @@
                         </div>
                     </div>
 
-                    <div class="gridButtonDashboardTitle">
+                    <div class="gridDashboardTitle">
                         <b>Linked To:</b>
-                    </div> 
-                    <div class="gridButtonDashboard">
-                        <div class="select">
-                            <select id="selects_3"
-                                [(ngModel)]="linkedDashboardID"
-                                (change)="clickSelectPrecedingTask($event)"
-                                >
-                                <option>Economic Overview</option>
-                                <option>EU Indices</option>
-                            </select>
-                        </div>
                     </div>
-        
+                    <div class="select gridDashboard">
+                        <select
+                            [(ngModel)]="selectedDashboard"
+                            >
+                            <option *ngFor="let row of dashboardNames"
+                                >
+                                {{ row }}
+                            </option>
+                        </select>
+                    </div>
+    
                     <div class="gridButtonCancel">
                             <button
                             type="button"

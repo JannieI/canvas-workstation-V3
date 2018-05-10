@@ -85,7 +85,6 @@ import { HelpComponent }              from './help.component';
 
 import { CollaborateAlertsComponent }       from './collaborate.alerts.component';
 import { CollaborateMessagesComponent }     from './collaborate.messages.component';
-import { CollaborateActivityAddComponent }  from './collaborate.activityadd.component';
 import { CollaborateTaskAddComponent }      from './collaborate.taskadd.component';
 import { CollaborateTasksComponent }        from './collaborate.tasks.component';
 import { CollaborateAuditTrailComponent }   from './collaborate.auditTrail.component';
@@ -190,7 +189,6 @@ import { StatusbarComponent }         from './statusbar.component';
 
         CollaborateAlertsComponent,
         CollaborateMessagesComponent,
-        CollaborateActivityAddComponent,
         CollaborateTaskAddComponent,
         CollaborateTasksComponent,
         CollaborateAuditTrailComponent,

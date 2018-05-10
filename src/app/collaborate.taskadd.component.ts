@@ -27,6 +27,18 @@ export class CollaborateTaskAddComponent implements OnInit {
 
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
 
+    selectedTaskText: string = '';
+    selectedActivityType: string = '';
+    selectedTaskStatus: string = '';
+    selectedAssignedToUserID: number;
+    selectedPrecedingTaskID: number;
+    selectedLinkedDashboardID: number;
+    selectedTaskComments: string = '';
+    selectedStartDate: string = '';
+    selectedDeadlineDate: string = '';
+    selectedEndDate: string = '';
+    selectedDurationDays: string = '';
+
     constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
@@ -49,7 +61,25 @@ export class CollaborateTaskAddComponent implements OnInit {
     clickSave(action: string) {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
+        
+        id: null,
+        taskText
+        activityType
+        taskStatus
+        assignedToUserID
+        precedingTaskID
+        linkedDashboardID
+        taskComments
+        startDate
+        deadlineDate
+        endDate
+        durationDays
 
+        editedBy
+        editedOn
+        createdBy
+        createdOn
+        
         this.formCollaborateTaskAddClosed.emit(action);
     }
 
