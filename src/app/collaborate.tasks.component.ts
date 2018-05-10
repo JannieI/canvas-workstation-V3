@@ -80,68 +80,6 @@ export class CollaborateTasksComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        // TODO - remove once working
-            // this.canvasTasks.push(
-            //     {
-            //         id: 1,
-            //         taskText: 'Perform QA of Dashboard XYZ',
-            //         activityType: 'QA Dashboard',
-            //         taskStatus: 'Pending',
-            //         assignedToUserID: 'QuentinI',
-            //         precedingTaskID: null,
-            //         linkedDashboardID: 1,
-            //         taskComments: [],
-            //         startDate: '2017/01/01',
-            //         deadlineDate: '2017/01/01',
-            //         endDate: '',
-            //         durationDays: 1,
-            //         editedBy: 'ChristianN',
-            //         editedOn: '2017/01/01',
-            //         createdBy: 'ChristianN',
-            //         createdOn: '2017/01/01'
-            //     }
-            // );
-            // this.canvasTasks.push(
-            //     {
-            //         id: 1,
-            //         taskText: 'Add outstanding figures',
-            //         activityType: 'Ad hoc',
-            //         taskStatus: 'Pending',
-            //         assignedToUserID: 'QuentinI',
-            //         precedingTaskID: null,
-            //         linkedDashboardID: 2,
-            //         taskComments: [],
-            //         startDate: '2017/01/01',
-            //         deadlineDate: '2017/01/01',
-            //         endDate: '',
-            //         durationDays: 1,
-            //         editedBy: 'ChristianN',
-            //         editedOn: '2017/01/01',
-            //         createdBy: 'ChristianN',
-            //         createdOn: '2017/01/01'
-            //     }
-            // );
-            // this.canvasTasks.push(
-            //     {
-            //         id: 1,
-            //         taskText: 'Visualise marketing campaign',
-            //         activityType: 'QA Dashboard',
-            //         taskStatus: 'Pending',
-            //         assignedToUserID: 'QuentinI',
-            //         precedingTaskID: null,
-            //         linkedDashboardID: null,
-            //         taskComments: [],
-            //         startDate: '2017/01/01',
-            //         deadlineDate: '2017/01/01',
-            //         endDate: '',
-            //         durationDays: 1,
-            //         editedBy: 'ChristianN',
-            //         editedOn: '2017/01/01',
-            //         createdBy: 'ChristianN',
-            //         createdOn: '2017/01/01'
-            //     }
-            // );
-        // End TODO
         this.globalVariableService.getCanvasTasks().then (ca => {
 
             // Set the data for the grid

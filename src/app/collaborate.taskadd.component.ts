@@ -62,23 +62,38 @@ export class CollaborateTaskAddComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
         
-        id: null,
-        taskText
-        activityType
-        taskStatus
-        assignedToUserID
-        precedingTaskID
-        linkedDashboardID
-        taskComments
-        startDate
-        deadlineDate
-        endDate
-        durationDays
+       console.warn('xx sel', 
+        this.selectedTaskText,
+        this.selectedActivityType,
+        this.selectedTaskStatus,
+        this.selectedAssignedToUserID,
+        this.selectedPrecedingTaskID,
+        this.selectedLinkedDashboardID,
+        this.selectedTaskComments,
+        this.selectedStartDate,
+        this.selectedDeadlineDate,
+        this.selectedEndDate,
+        this.selectedDurationDays)
 
-        editedBy
-        editedOn
-        createdBy
-        createdOn
+       
+
+        // id: null,
+        // taskText
+        // activityType
+        // taskStatus
+        // assignedToUserID
+        // precedingTaskID
+        // linkedDashboardID
+        // taskComments
+        // startDate
+        // deadlineDate
+        // endDate
+        // durationDays
+
+        // editedBy
+        // editedOn
+        // createdBy
+        // createdOn
         
         this.formCollaborateTaskAddClosed.emit(action);
     }
