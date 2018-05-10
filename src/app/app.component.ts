@@ -2860,7 +2860,7 @@ console.warn('xx filteredActions', filteredActions)
         this.showWidgetFullScreenX = 'X';
         this.showWidgetFullScreenCopy = 'Copy Image';
 
-        let localWidget = Object.assign({}, this.currentWidgets[widgetIndex]);
+        let localWidget = Object.assign({}, this.selectedWidget);
 
         // Rescale and limit amount of detail on the graph
         localWidget.containerLeft = 50;
