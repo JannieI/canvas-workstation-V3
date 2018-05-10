@@ -240,18 +240,23 @@ export class CollaborateTasksComponent implements OnInit {
         // Filter down
         // TODO - maybe this can be done better.  Also, still todo the detail one ...
         //        but only after feedback on how to make it more useful
-        if (this.selectedStatus != '') {
-            this.canvasTasks = this.canvasTasks.filter(
-                tsk => tsk.taskStatus.toLowerCase() == this.selectedStatus.toLowerCase()
-            );
-        };
         if (this.selectedUser != '') {
             this.canvasTasks = this.canvasTasks.filter(
                 tsk => tsk.assignedToUserID == this.selectedUser
             );
         };
+        if (this.selectedStatus != '') {
+            this.canvasTasks = this.canvasTasks.filter(
+                tsk => tsk.taskStatus.toLowerCase() == this.selectedStatus.toLowerCase()
+            );
+        };
+        if (this.selectedTaskText != '') {
+            this.canvasTasks = this.canvasTasks.filter(
+                tsk => tsk.taskText.toLowerCase().includes(this.selectedTaskText.toLowerCase())
+            );
+        };
         // selectedDashboard: string = '';
     // : string = '';
-    // selectedTaskText
+    // 
     }
 }
