@@ -1,10 +1,5 @@
-
-
-
-
-
-            /*
- * Visualise page, to view / present Dashboards previously created
+/*
+ * Datadictionary of a Datasource
  */
 
 // Angular

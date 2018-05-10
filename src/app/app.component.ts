@@ -2772,6 +2772,38 @@ console.warn('xx filteredActions', filteredActions)
         this.showModalDashboardDataQuality = true;
     }
 
+    clickMenuWidgetDataDictionary(widgetIndex: number = null) {
+        // Show the form of Data Dictionary for selected W
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetDataDictionary', '@Start');
+
+        if (!this.checkForOnlyOneWidget('Graph')) {
+            return
+        };
+
+        this.menuOptionClickPreAction();
+
+        if (widgetIndex == null) {
+
+            // Can only edit one W at a time, so ignore if multiple selected
+            if (!this.checkForOnlyOneWidget()) {
+                return
+            };
+            if (!this.checkForOnlyOneWidget('Graph')) {
+                return
+            };
+
+            this.currentWidgets.forEach(w => {
+                if (w.isSelected  &&  w.widgetType == 'Graph') {
+                    this.selectedWidget = w;
+                };
+            });
+        } else {
+            this.selectedWidget = this.currentWidgets[widgetIndex];
+        };
+
+        this.showModalDataDictionary = true;
+    }
+
     clickMenuWidgetLinks() {
         // Add links to the selected W
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetLinks', '@Start');
@@ -4802,7 +4834,7 @@ console.warn('xx filteredActions', filteredActions)
         this.globalFunctionService.printToConsole(this.constructor.name,'contextmenuWidgetDataDictionary', '@Start');
 
         // Call the function for THIS W
-        this.showModalDataDictionary = true;
+        this.clickMenuWidgetDataDictionary(index);
 
     }
     
