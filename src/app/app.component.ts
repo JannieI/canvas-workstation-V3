@@ -2776,20 +2776,14 @@ console.warn('xx filteredActions', filteredActions)
         // Show the form of Data Dictionary for selected W
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetDataDictionary', '@Start');
 
-        if (!this.checkForOnlyOneWidget('Graph')) {
-            return
-        };
-
-        this.menuOptionClickPreAction();
-
         if (widgetIndex == null) {
 
             // Can only edit one W at a time, so ignore if multiple selected
             if (!this.checkForOnlyOneWidget()) {
-                return
+                return;
             };
             if (!this.checkForOnlyOneWidget('Graph')) {
-                return
+                return;
             };
 
             this.currentWidgets.forEach(w => {
@@ -2801,7 +2795,37 @@ console.warn('xx filteredActions', filteredActions)
             this.selectedWidget = this.currentWidgets[widgetIndex];
         };
 
+        this.menuOptionClickPreAction();
+
         this.showModalDataDictionary = true;
+    }
+
+    clickMenuWidgetDataSummary(widgetIndex: number = null) {
+        // Show the form of Data Summary for selected W
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetDataSummary', '@Start');
+
+        if (widgetIndex == null) {
+
+            // Can only edit one W at a time, so ignore if multiple selected
+            if (!this.checkForOnlyOneWidget()) {
+                return;
+            };
+            if (!this.checkForOnlyOneWidget('Graph')) {
+                return;
+            };
+
+            this.currentWidgets.forEach(w => {
+                if (w.isSelected  &&  w.widgetType == 'Graph') {
+                    this.selectedWidget = w;
+                };
+            });
+        } else {
+            this.selectedWidget = this.currentWidgets[widgetIndex];
+        };
+
+        this.menuOptionClickPreAction();
+
+        this.showModalDataSummary = true;
     }
 
     clickMenuWidgetLinks() {
@@ -2809,7 +2833,7 @@ console.warn('xx filteredActions', filteredActions)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetLinks', '@Start');
 
         if (!this.checkForOnlyOneWidget('Graph')) {
-            return
+            return;
         };
 
         this.menuOptionClickPreAction();
@@ -2915,7 +2939,7 @@ console.warn('xx filteredActions', filteredActions)
         };
 
         if (!this.checkForOnlyOneWidget()) {
-            return
+            return;
         };
 
         this.menuOptionClickPreAction();
@@ -2995,10 +3019,10 @@ console.warn('xx filteredActions', filteredActions)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetExpand', '@Start');
 
         if (!this.checkForOnlyOneWidget()) {
-            return
+            return;
         };
         if (!this.checkForOnlyOneWidget('Graph')) {
-            return
+            return;
         };
 
         this.menuOptionClickPreAction();
@@ -3018,7 +3042,7 @@ console.warn('xx filteredActions', filteredActions)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetExport', '@Start');
 
         if (!this.checkForOnlyOneWidget()) {
-            return
+            return;
         };
 
         this.menuOptionClickPreAction();
@@ -3043,10 +3067,10 @@ console.warn('xx filteredActions', filteredActions)
         };
 
         if (!this.checkForOnlyOneWidget()) {
-            return
+            return;
         };
         if (!this.checkForOnlyOneWidget('Graph')) {
-            return
+            return;
         };
 
         this.menuOptionClickPreAction();
@@ -3119,10 +3143,10 @@ console.warn('xx filteredActions', filteredActions)
         };
 
         if (!this.checkForOnlyOneWidget()) {
-            return
+            return;
         };
         if (!this.checkForOnlyOneWidget('Table')) {
-            return
+            return;
         };
 
         this.menuOptionClickPreAction();
@@ -3143,10 +3167,10 @@ console.warn('xx filteredActions', filteredActions)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuTableComments', '@Start');
 
         if (!this.checkForOnlyOneWidget()) {
-            return
+            return;
         };
         if (!this.checkForOnlyOneWidget('Table')) {
-            return
+            return;
         };
 
         this.menuOptionClickPreAction();
@@ -3167,7 +3191,7 @@ console.warn('xx filteredActions', filteredActions)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuTableDataQuality', '@Start');
 
         if (!this.checkForOnlyOneWidget('Table')) {
-            return
+            return;
         };
 
         this.menuOptionClickPreAction();
@@ -3186,10 +3210,10 @@ console.warn('xx filteredActions', filteredActions)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuTableExpand', '@Start');
 
         if (!this.checkForOnlyOneWidget()) {
-            return
+            return;
         };
         if (!this.checkForOnlyOneWidget('Table')) {
-            return
+            return;
         };
 
         this.menuOptionClickPreAction();
@@ -3209,10 +3233,10 @@ console.warn('xx filteredActions', filteredActions)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuTableExport', '@Start');
 
         if (!this.checkForOnlyOneWidget()) {
-            return
+            return;
         };
         if (!this.checkForOnlyOneWidget('Table')) {
-            return
+            return;
         };
 
         this.menuOptionClickPreAction();
@@ -3238,10 +3262,10 @@ console.warn('xx filteredActions', filteredActions)
 
         // Make sure we have only one, then delete it
         if (!this.checkForOnlyOneWidget()) {
-            return
+            return;
         };
         if (!this.checkForOnlyOneWidget('Table')) {
-            return
+            return;
         };
 
         this.menuOptionClickPreAction();
@@ -3315,10 +3339,10 @@ console.warn('xx filteredActions', filteredActions)
         };
 
         if (!this.checkForOnlyOneWidget()) {
-            return
+            return;
         };
         if (!this.checkForOnlyOneWidget('Slicer')) {
-            return
+            return;
         };
 
         this.menuOptionClickPreAction();
@@ -3380,10 +3404,10 @@ console.warn('xx filteredActions', filteredActions)
 
             // Can only edit one W at a time, so ignore if multiple selected
             if (!this.checkForOnlyOneWidget()) {
-                return
+                return;
             };
             if (!this.checkForOnlyOneWidget('Graph')) {
-                return
+                return;
             };
 
             this.currentWidgets.forEach(w => {
@@ -3403,10 +3427,10 @@ console.warn('xx filteredActions', filteredActions)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerComments', '@Start');
 
         if (!this.checkForOnlyOneWidget()) {
-            return
+            return;
         };
         if (!this.checkForOnlyOneWidget('Slicer')) {
-            return
+            return;
         };
 
         this.menuOptionClickPreAction();
@@ -3427,7 +3451,7 @@ console.warn('xx filteredActions', filteredActions)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerDataQuality', '@Start');
 
         if (!this.checkForOnlyOneWidget('Slicer')) {
-            return
+            return;
         };
 
         this.menuOptionClickPreAction();
@@ -3446,10 +3470,10 @@ console.warn('xx filteredActions', filteredActions)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerExpand', '@Start');
 
         if (!this.checkForOnlyOneWidget()) {
-            return
+            return;
         };
         if (!this.checkForOnlyOneWidget('Slicer')) {
-            return
+            return;
         };
 
         this.menuOptionClickPreAction();
@@ -3469,10 +3493,10 @@ console.warn('xx filteredActions', filteredActions)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerExport', '@Start');
 
         if (!this.checkForOnlyOneWidget()) {
-            return
+            return;
         };
         if (!this.checkForOnlyOneWidget('Slicer')) {
-            return
+            return;
         };
 
         this.menuOptionClickPreAction();
@@ -3498,10 +3522,10 @@ console.warn('xx filteredActions', filteredActions)
 
         // Make sure we have only one, then delete it
         if (!this.checkForOnlyOneWidget()) {
-            return
+            return;
         };
         if (!this.checkForOnlyOneWidget('Slicer')) {
-            return
+            return;
         };
 
         this.menuOptionClickPreAction();
@@ -3563,10 +3587,10 @@ console.warn('xx filteredActions', filteredActions)
 
         // Make sure we have only one, then delete it
         if (!this.checkForOnlyOneWidget()) {
-            return
+            return;
         };
         if (!this.checkForOnlyOneWidget('Shape')) {
-            return
+            return;
         };
 
         this.menuOptionClickPreAction();
@@ -3599,10 +3623,10 @@ console.warn('xx filteredActions', filteredActions)
 
 
         if (!this.checkForOnlyOneWidget()) {
-            return
+            return;
         };
         if (!this.checkForOnlyOneWidget('Shape')) {
-            return
+            return;
         };
 
         this.menuOptionClickPreAction();
@@ -3623,10 +3647,10 @@ console.warn('xx filteredActions', filteredActions)
 
         // Make sure we have only one, then delete it
         if (!this.checkForOnlyOneWidget()) {
-            return
+            return;
         };
         if (!this.checkForOnlyOneWidget('Shape')) {
-            return
+            return;
         };
 
         this.menuOptionClickPreAction();
@@ -3652,10 +3676,10 @@ console.warn('xx filteredActions', filteredActions)
 
         // Make sure we have only one, then delete it
         if (!this.checkForOnlyOneWidget()) {
-            return
+            return;
         };
         if (!this.checkForOnlyOneWidget('Shape')) {
-            return
+            return;
         };
 
         this.menuOptionClickPreAction();
@@ -3893,7 +3917,7 @@ console.warn('xx filteredActions', filteredActions)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeAlignLeft', '@Start');
 
         if (!this.checkForMultipleWidgets()) {
-            return
+            return;
         };
 
         this.menuOptionClickPreAction();
@@ -3921,7 +3945,7 @@ console.warn('xx filteredActions', filteredActions)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeAlignCenter', '@Start');
 
         if (!this.checkForMultipleWidgets()) {
-            return
+            return;
         };
 
         this.menuOptionClickPreAction();
@@ -3951,7 +3975,7 @@ console.warn('xx filteredActions', filteredActions)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeAlignRight', '@Start');
 
         if (!this.checkForMultipleWidgets()) {
-            return
+            return;
         };
 
         this.menuOptionClickPreAction();
@@ -3981,7 +4005,7 @@ console.warn('xx filteredActions', filteredActions)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeAlignTop', '@Start');
 
         if (!this.checkForMultipleWidgets()) {
-            return
+            return;
         };
 
         this.menuOptionClickPreAction();
@@ -4009,7 +4033,7 @@ console.warn('xx filteredActions', filteredActions)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeAlignMiddle', '@Start');
 
         if (!this.checkForMultipleWidgets()) {
-            return
+            return;
         };
 
         this.menuOptionClickPreAction();
@@ -4039,7 +4063,7 @@ console.warn('xx filteredActions', filteredActions)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeAlignBottom', '@Start');
 
         if (!this.checkForMultipleWidgets()) {
-            return
+            return;
         };
 
         this.menuOptionClickPreAction();
@@ -4069,7 +4093,7 @@ console.warn('xx filteredActions', filteredActions)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeAlignCenterHorisontally', '@Start');
 
         if (!this.checkForOnlyOneWidget()) {
-            return
+            return;
         };
 
         this.menuOptionClickPreAction();
@@ -4094,7 +4118,7 @@ console.warn('xx filteredActions', filteredActions)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeAlignCenterVertically', '@Start');
 
         if (!this.checkForOnlyOneWidget()) {
-            return
+            return;
         };
 
         this.menuOptionClickPreAction();
@@ -4119,7 +4143,7 @@ console.warn('xx filteredActions', filteredActions)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeGroup', '@Start');
 
         if (!this.checkForMultipleWidgets()) {
-            return
+            return;
         };
 
         this.menuOptionClickPreAction();
@@ -4343,7 +4367,7 @@ console.warn('xx filteredActions', filteredActions)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeSameSize', '@Start');
 
         if (!this.checkForMultipleWidgets()) {
-            return
+            return;
         };
 
         this.menuOptionClickPreAction();
@@ -4375,7 +4399,7 @@ console.warn('xx filteredActions', filteredActions)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeSameSize', '@Start');
 
         if (!this.checkForMultipleWidgets()) {
-            return
+            return;
         };
 
         this.menuOptionClickPreAction();
@@ -4404,7 +4428,7 @@ console.warn('xx filteredActions', filteredActions)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuArrangeSameSize', '@Start');
 
         if (!this.checkForMultipleWidgets()) {
-            return
+            return;
         };
 
         this.menuOptionClickPreAction();
@@ -4815,7 +4839,7 @@ console.warn('xx filteredActions', filteredActions)
         // Open context / dropdown Menu for Data Summary from the Title Bar
         this.globalFunctionService.printToConsole(this.constructor.name,'contextmenuWidgetDataSummary', '@Start');
 
-        this.showModalDataSummary = true;
+        this.clickMenuWidgetDataSummary(index);
 
     }
     
@@ -5835,10 +5859,10 @@ console.warn('xx this.draggableWidgets', this.draggableWidgets)
         };
 
         if (!this.checkForOnlyOneWidget()) {
-            return
+            return;
         };
         if (!this.checkForOnlyOneWidget(widgetType)) {
-            return
+            return;
         };
 
         this.menuOptionClickPreAction();
@@ -6031,7 +6055,7 @@ console.warn('xx this.draggableWidgets', this.draggableWidgets)
         };
 
         if (!this.checkForOnlyOneWidget()) {
-            return
+            return;
         };
 
         this.menuOptionClickPreAction();
