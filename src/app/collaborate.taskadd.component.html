@@ -135,15 +135,15 @@
                     <div class="gridPrecedingIDTitle">
                         <b>Preceding Task:</b>
                     </div>
-                    <div class="gridPrecedingID">
-                        <div class="select">
-                            <select id="selects_3"
-                                [(ngModel)]="selectedPrecedingTaskID"
+                    <div class="select gridPrecedingID">
+                        <select
+                            [(ngModel)]="selectedUser"
+                            >
+                            <option *ngFor="let row of taskIDs"
                                 >
-                                <option>QA Dashboard</option>
-                                <option>User Defined</option>
-                            </select>
-                        </div>
+                                {{ row }}
+                            </option>
+                        </select>
                     </div>
 
                     <div class="gridDashboardTitle">

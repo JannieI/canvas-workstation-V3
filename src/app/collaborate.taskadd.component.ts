@@ -74,7 +74,8 @@ export class CollaborateTaskAddComponent implements OnInit {
 
                     // Add Task text while we here
                     // TODO - make proper with Text, etc - maybe add a short Task Subject
-                    this.taskIDs.push(tsk.id)
+                    this.taskIDs.push(tsk.id);
+                    
                     isFound = false;
                     if (tsk.assignedToUserID != ''  &&  tsk.assignedToUserID != null) {
                         this.userNames.forEach(usn => {
