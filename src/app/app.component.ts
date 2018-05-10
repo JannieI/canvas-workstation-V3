@@ -1382,15 +1382,6 @@ export class AppComponent implements OnInit {
         this.showModalCollaborateTasks = false;
     }
 
-    handleCloseCollaborateActivityAdd(action: string) {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseCollaborateActivityAdd', '@Start');
-
-        this.menuOptionClickPostAction();
-
-        this.showModalCollaborateTasksNew = false;
-    }
-
     handleCloseSendMessageAdd(action: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseSendMessageAdd', '@Start');
