@@ -41,6 +41,7 @@ export class CollaborateTasksComponent implements OnInit {
     @ViewChild('widgetDOM') widgetDOM: ElementRef;
 
     canvasTasks: CanvasTask[] = [];
+    canvasTasksOrignal: CanvasTask[] = [];
     dashboardNames: string[] = [];
     datagridColumns: DatagridColumn[];
     datagridInput: DatagridInput = null;
@@ -61,6 +62,8 @@ export class CollaborateTasksComponent implements OnInit {
     datagridVisibleFields: string[];
     datagridShowFields: string[];
     selectedDashboard: string = '';
+    selectedStatus: string = '';
+    selectedTaskText: string = '';
     selectedUser: string = '';
     userNames: string[] = [];
     users: CanvasUser[] = [];
@@ -143,6 +146,7 @@ export class CollaborateTasksComponent implements OnInit {
 
             // Set the data for the grid
             this.canvasTasks = ca;
+            this.canvasTasksOrignal = ca;
             this.datagridData = ca;
 
             // Set the column object
@@ -228,11 +232,26 @@ export class CollaborateTasksComponent implements OnInit {
     clickFilter() {
         // Filter results
         this.globalFunctionService.printToConsole(this.constructor.name,'clickFilter', '@Start');
-        console.warn('xx sel', this.selectedUser, this.selectedDashboard)
+        console.warn('xx sel', this.selectedUser, this.selectedDashboard, this.selectedStatus)
+
+        // Reset
+        this.canvasTasks = this.canvasTasksOrignal;
+
+        // Filter down
+        // TODO - maybe this can be done better.  Also, still todo the detail one ...
+        //        but only after feedback on how to make it more useful
+        if (this.selectedStatus != '') {
+            this.canvasTasks = this.canvasTasks.filter(
+                tsk => tsk.taskStatus.toLowerCase() == this.selectedStatus.toLowerCase()
+            );
+        };
         if (this.selectedUser != '') {
             this.canvasTasks = this.canvasTasks.filter(
                 tsk => tsk.assignedToUserID == this.selectedUser
             );
         };
+        // selectedDashboard: string = '';
+    // : string = '';
+    // selectedTaskText
     }
 }

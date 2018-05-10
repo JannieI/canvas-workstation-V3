@@ -35,9 +35,9 @@
                 </div>
                 <div class="gridStatus">
                     <div class="select">
-                        <select id="selects_3"
-                            (change)="clickSelectStep($event)"
+                        <select [(ngModel)]="selectedStatus"
                             >
+                            <option></option>
                             <option>Created</option>
                             <option>Pending</option>
                             <option>Completed</option>
@@ -59,7 +59,7 @@
                     <b>Description:</b>
                 </div>
                 <div class="gridDescription">
-                    <input [(ngModel)]="taskText"
+                    <input [(ngModel)]="selectedTaskText"
                         type="text"
                         title="Description of Task"
                         size="25"
@@ -80,7 +80,6 @@
                         </option>
                     </select>
                 </div>
-                
 
                 <div class="gridButtonFilter">
                     <button
