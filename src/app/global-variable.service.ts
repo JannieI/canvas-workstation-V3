@@ -4340,6 +4340,38 @@ console.warn('xx allS 1', this.currentDatasets.slice())
 
     }
 
+    addCanvasTask(data: CanvasTask): Promise<any> {
+        // Description: Adds a new canvasTask
+        // Returns: Added Data or error message
+        console.log('%c    Global-Variables addCanvasTask ...', 
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", data.id);
+
+        let url: string = 'canvasTasks';
+        this.filePath = './assets/data.CanvasTasks.json';
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+ 
+            this.http.post('http://localhost:3000/' + url, data, {headers})
+            .subscribe(
+                res => {
+
+                    // Update Global vars to make sure they remain in sync
+                    this.canvasTasks.push(JSON.parse(JSON.stringify(res)));
+
+                    console.log('addCanvasTask ADDED', res, this.canvasTasks, this.canvasTasks)
+
+                    resolve(res);
+                },
+                err => {
+                    console.log('Error addCanvasTask FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+        });
+    }
 
     getCanvasAlerts(): Promise<CanvasAlert[]> {
         // Description: Gets all Canvas Alerts
