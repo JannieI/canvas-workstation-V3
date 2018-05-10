@@ -2828,6 +2828,79 @@ console.warn('xx filteredActions', filteredActions)
         this.showModalDataSummary = true;
     }
 
+    clickMenuWidgeFullScreen(widgetIndex: number = null) {
+        // Show the selected W in full screen
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgeFullScreen', '@Start');
+
+        if (widgetIndex == null) {
+
+            // Can only edit one W at a time, so ignore if multiple selected
+            if (!this.checkForOnlyOneWidget()) {
+                return;
+            };
+            if (!this.checkForOnlyOneWidget('Graph')) {
+                return;
+            };
+
+            this.currentWidgets.forEach(w => {
+                if (w.isSelected  &&  w.widgetType == 'Graph') {
+                    this.selectedWidget = w;
+                };
+            });
+        } else {
+            this.selectedWidget = this.currentWidgets[widgetIndex];
+        };
+
+        this.menuOptionClickPreAction();
+
+        this.showWidgetFullScreen = true;
+        this.showWidgetFullScreenWidth = 98;
+        this.showWidgetFullScreenHeight = 98;
+        this.showWidgetFullScreenBorder = '1px solid black';
+        this.showWidgetFullScreenX = 'X';
+        this.showWidgetFullScreenCopy = 'Copy Image';
+
+        let localWidget = Object.assign({}, this.currentWidgets[widgetIndex]);
+
+        // Rescale and limit amount of detail on the graph
+        localWidget.containerLeft = 50;
+        localWidget.containerTop = 50;
+        localWidget.containerHeight = 650;
+        localWidget.graphHeight = 600;
+        localWidget.containerWidth = 850;
+        localWidget.graphWidth = 800;
+        localWidget.containerBoxshadow = 'none';
+        localWidget.containerBorder = 'none';
+        localWidget.isSelected = false;
+        localWidget.graphTitle = '';
+        localWidget.graphXaxisTitle = '';
+        localWidget.graphYaxisTitle = '';
+        localWidget.containerBorder = '';
+        localWidget.containerBackgroundcolor = 'white';
+
+        let definition = this.globalVariableService.createVegaLiteSpec(localWidget);
+        console.warn('xx def', definition)
+        let specification = compile(definition).spec;
+        this.view = new View(parse(specification));
+
+        // KEEP - code to Download a Vega Graph !!!
+        // this.view.toImageURL('png').then(function(url) {
+        //     console.warn('xx Wow!!')
+        //     var link = document.createElement('a');
+        //     link.setAttribute('href', url);
+        //     link.setAttribute('target', '_blank');
+        //     link.setAttribute('download', 'vega-export.png');
+        //     link.dispatchEvent(new MouseEvent('click'));
+        //   }).catch(function(error) { /* error handling */ });
+        //   console.warn('xx after toIm !!')
+
+        this.view.renderer('svg')
+            .initialize(this.widgetFullDOM.nativeElement)
+            .hover()
+            .run()
+            .finalize();
+    }
+
     clickMenuWidgetLinks() {
         // Add links to the selected W
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetLinks', '@Start');
@@ -4894,52 +4967,7 @@ console.warn('xx filteredActions', filteredActions)
         // Opens W full screen)
         this.globalFunctionService.printToConsole(this.constructor.name,'actionmenuWidgetFullScreen', '@Start');
 
-        this.showWidgetFullScreen = true;
-        this.showWidgetFullScreenWidth = 98;
-        this.showWidgetFullScreenHeight = 98;
-        this.showWidgetFullScreenBorder = '1px solid black';
-        this.showWidgetFullScreenX = 'X';
-        this.showWidgetFullScreenCopy = 'Copy Image';
-
-        let localWidget = Object.assign({}, this.currentWidgets[index]);
-
-        // Rescale and limit amount of detail on the graph
-        localWidget.containerLeft = 50;
-        localWidget.containerTop = 50;
-        localWidget.containerHeight = 650;
-        localWidget.graphHeight = 600;
-        localWidget.containerWidth = 850;
-        localWidget.graphWidth = 800;
-        localWidget.containerBoxshadow = 'none';
-        localWidget.containerBorder = 'none';
-        localWidget.isSelected = false;
-        localWidget.graphTitle = '';
-        localWidget.graphXaxisTitle = '';
-        localWidget.graphYaxisTitle = '';
-        localWidget.containerBorder = '';
-        localWidget.containerBackgroundcolor = 'white';
-
-        let definition = this.globalVariableService.createVegaLiteSpec(localWidget);
-        console.warn('xx def', definition)
-        let specification = compile(definition).spec;
-        this.view = new View(parse(specification));
-
-        // KEEP - code to Download a Vega Graph !!!
-        // this.view.toImageURL('png').then(function(url) {
-        //     console.warn('xx Wow!!')
-        //     var link = document.createElement('a');
-        //     link.setAttribute('href', url);
-        //     link.setAttribute('target', '_blank');
-        //     link.setAttribute('download', 'vega-export.png');
-        //     link.dispatchEvent(new MouseEvent('click'));
-        //   }).catch(function(error) { /* error handling */ });
-        //   console.warn('xx after toIm !!')
-
-        this.view.renderer('svg')
-            .initialize(this.widgetFullDOM.nativeElement)
-            .hover()
-            .run()
-            .finalize();
+        this.clickMenuWidgeFullScreen(index);
 
     }
     
