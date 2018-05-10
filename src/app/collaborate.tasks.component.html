@@ -19,17 +19,17 @@
                 <div class="gridAssignedToUserTitle">
                     <b>Assign To:</b>
                 </div>
-                <div class="gridAssignedToUser">
-                    <div class="select">
-                        <select id="selects_3"
-                            (change)="clickSelectStep($event)"
+                <div class="select gridAssignedToUser">
+                    <select
+                        [(ngModel)]="selectedUser"
+                        >
+                        <option *ngFor="let row of userNames"
                             >
-                            <option>KluneG</option>
-                            <option>XavierdG</option>
-                        </select>
-                    </div>
+                            {{ row }}
+                        </option>
+                    </select>
                 </div>
-
+            
                 <div class="gridStatusTitle">
                     <b>Status:</b>
                 </div>

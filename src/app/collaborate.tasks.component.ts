@@ -20,6 +20,7 @@ import { GlobalVariableService}       from './global-variable.service';
 // Models
 import { CanvasActivity }             from './models';
 import { CanvasTask }                 from './models';
+import { CanvasUser }                 from './models';
 import { DatagridInput }              from './models';
 import { DatagridColumn }             from './models';
 
@@ -57,6 +58,10 @@ export class CollaborateTasksComponent implements OnInit {
     datagridEmptyMessage: string = 'No Activities created so far';
     datagridVisibleFields: string[];
     datagridShowFields: string[];
+    selectedUser: string;
+    userNames: string[] = [];
+    users: CanvasUser[] = [];
+    
 
     displayGantt: boolean = true;
 
@@ -141,6 +146,20 @@ export class CollaborateTasksComponent implements OnInit {
             this.datagridColumns = this.globalVariableService.createDatagridColumns(
                 ca[0], this.datagridShowFields, this.datagridVisibleFields);
 
+            this.globalVariableService.getCanvasUsers().then(usr => {
+                this.users = usr;
+                usr.forEach(u => {
+                    this.userNames.push(u.userID);
+                });
+                // this.userNames = ['', ...this.userNames];
+
+                // this.globalVariableService.getCanvasGroups().then(grp => {
+                //     grp.forEach(g => {
+                //         this.groupNames.push(g.name);
+                //     });
+                // });
+            });
+    
         });
 
         this.clickGantt()
@@ -184,5 +203,11 @@ export class CollaborateTasksComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
 		this.formCollaborateTasksClosed.emit(action);
+    }
+
+    clickFilter() {
+        // Filter results
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickFilter', '@Start');
+        console.warn('xx sel', this.selectedUser)
     }
 }
