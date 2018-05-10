@@ -41,7 +41,7 @@ export class CollaborateTasksComponent implements OnInit {
     @ViewChild('widgetDOM') widgetDOM: ElementRef;
 
     canvasTasks: CanvasTask[] = [];
-    dashboardNames: string[];
+    dashboardNames: string[] = [];
     datagridColumns: DatagridColumn[];
     datagridInput: DatagridInput = null;
     datagridData: any;
@@ -60,8 +60,8 @@ export class CollaborateTasksComponent implements OnInit {
     datagridEmptyMessage: string = 'No Activities created so far';
     datagridVisibleFields: string[];
     datagridShowFields: string[];
-    selectedDashboard: string;
-    selectedUser: string;
+    selectedDashboard: string = '';
+    selectedUser: string = '';
     userNames: string[] = [];
     users: CanvasUser[] = [];
     
@@ -149,6 +149,7 @@ export class CollaborateTasksComponent implements OnInit {
             this.datagridColumns = this.globalVariableService.createDatagridColumns(
                 ca[0], this.datagridShowFields, this.datagridVisibleFields);
 
+            // Get User list
             this.globalVariableService.getCanvasUsers().then(usr => {
                 this.users = usr;
                 usr.forEach(u => {
@@ -156,6 +157,23 @@ export class CollaborateTasksComponent implements OnInit {
                 });
                 this.userNames = ['', ...this.userNames];
 
+                // Add 'dead' users from Tasks - in case not in Users any longer
+                let isFound: boolean = false;
+                this.canvasTasks.forEach(tsk => {
+                    isFound = false;
+                    if (tsk.assignedToUserID != ''  &&  tsk.assignedToUserID != null) {
+                        this.userNames.forEach(usn => {
+                            if (usn.toLowerCase() == tsk.assignedToUserID.toLowerCase()) {
+                                isFound = true;
+                            };
+                        });
+                        if (!isFound) {
+                            this.userNames.push(tsk.assignedToUserID);
+                        };
+                    };
+                });
+
+                // Get Dashboard list
                 this.globalVariableService.dashboards.forEach(d => {
                     this.dashboardNames.push(d.name);
                 });
@@ -211,5 +229,10 @@ export class CollaborateTasksComponent implements OnInit {
         // Filter results
         this.globalFunctionService.printToConsole(this.constructor.name,'clickFilter', '@Start');
         console.warn('xx sel', this.selectedUser, this.selectedDashboard)
+        if (this.selectedUser != '') {
+            this.canvasTasks = this.canvasTasks.filter(
+                tsk => tsk.assignedToUserID == this.selectedUser
+            );
+        };
     }
 }
