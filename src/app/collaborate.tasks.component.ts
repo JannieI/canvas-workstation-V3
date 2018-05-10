@@ -134,6 +134,7 @@ export class CollaborateTasksComponent implements OnInit {
         this.globalVariableService.getCanvasTasks().then (ca => {
 
             // Set the data for the grid
+            this.canvasTasks = ca;
             this.datagridData = ca;
 
             // Set the column object
