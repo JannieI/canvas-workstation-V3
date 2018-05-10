@@ -364,7 +364,6 @@ export class AppComponent implements OnInit {
     showModalWidgetEditor: boolean = false;
     showModalCollaborateAlerts: boolean = false;
     showModalCollaborateAuditTrail: boolean = false;
-    showModalCollaborateActivityAdd: boolean = false;
     showModalCollaborateSendMessage: boolean = false;
     showModalCollaborateSendEmail: boolean = false;
     showModalCollaborateMessages: boolean = false;
@@ -1389,7 +1388,6 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPostAction();
 
-        // this.showModalCollaborateActivityAdd = false;
         this.showModalCollaborateTasksNew = false;
     }
 
@@ -4475,13 +4473,12 @@ console.warn('xx filteredActions', filteredActions)
         this.menuOptionClickPostAction();
     }
 
-    clickMenuCollaborateActivityAdd() {
-        // Add a new Activity
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuCollaborateActivityAdd', '@Start');
+    clickMenuCollaborateTaskAdd() {
+        // Add a new Task
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuCollaborateTaskAdd', '@Start');
 
         this.menuOptionClickPreAction();
 
-        // this.showModalCollaborateActivityAdd = true;
         this.showModalCollaborateTasksNew = true;
 
         this.menuOptionClickPostAction();
