@@ -255,8 +255,21 @@ export class CollaborateTasksComponent implements OnInit {
                 tsk => tsk.taskText.toLowerCase().includes(this.selectedTaskText.toLowerCase())
             );
         };
-        // selectedDashboard: string = '';
-    // : string = '';
-    // 
+
+        // TODO - make this better with a DB
+        if (this.selectedDashboard != '') {
+            let dashboardIndex: number = this.globalVariableService.dashboards.findIndex(
+                d => d.name == this.selectedDashboard
+            );
+            if (dashboardIndex >= 0) {
+                let dashboardID: number = this.globalVariableService.dashboards[
+                    dashboardIndex].id;
+                
+                this.canvasTasks = this.canvasTasks.filter(
+                    tsk => tsk.linkedDashboardID == dashboardID
+                );
+            };
+        };
+
     }
 }
