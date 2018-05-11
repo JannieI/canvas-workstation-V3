@@ -2495,28 +2495,29 @@
                 <clr-dropdown-menu class="widgetXTitleMenu"
                     clrPosition="bottom-right" *clrIfOpen
                     >
-                    <button class="dropdown-item"
+                    <button class="dropdown-item" *ngIf="row.widgetType=='Graph'"
                         type="button"
                         clrDropdownItem
                         (click)="actionmenuWidgetEditor($event, i, row.id)"
                         >
                         Graph Editor
                     </button>
-                    <button class="dropdown-item"
+                    <button class="dropdown-item" *ngIf="row.widgetType=='Graph'"
                         type="button"
                         clrDropdownItem
                         (click)="actionmenuWidgetExplore($event, i, row.id)"
                         >
                         Explore 
                     </button>
-                    <button class="dropdown-item"
+                    <button class="dropdown-item" *ngIf="row.widgetType=='Graph'"
                         type="button"
                         clrDropdownItem
                         (click)="actionmenuWidgetFullScreen($event, i, row.id)"
                         >
                         Full screen
                     </button>
-                    <button class="dropdown-item"
+                    <button class="dropdown-item" *ngIf="row.widgetType=='Graph'
+                    || row.widgetType=='Table'"
                         type="button"
                         clrDropdownItem
                         (click)="actionmenuWidgetDescription($event, i, row.id)"
