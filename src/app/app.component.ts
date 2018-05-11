@@ -4548,17 +4548,6 @@ console.warn('xx filteredActions', filteredActions)
 
     // ***********************  CLICK COLLABORATE MENU OPTIONS ************************ //
 
-    clickMenuCollaborateAlerts() {
-        // Show list of Canvas Alerts
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuCollaborateAlerts', '@Start');
-
-        this.menuOptionClickPreAction();
-
-        this.showModalCollaborateAlerts = true;
-
-        this.menuOptionClickPostAction();
-    }
-
     clickMenuCollaborateAuditTrail() {
         // Show list of Canvas AuditTrail
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuCollaborateAuditTrail', '@Start');
