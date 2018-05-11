@@ -20,7 +20,6 @@ import { GlobalVariableService}       from './global-variable.service';
 
 // Models
 import { Dashboard }                  from './models';
-import { CanvasAlert }                from './models';
 import { DatagridInput }              from './models';
 import { DatagridColumn }             from './models';
 

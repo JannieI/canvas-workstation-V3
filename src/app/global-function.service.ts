@@ -23,7 +23,7 @@ export class GlobalFunctionService {
     // Prints a message to the console if in debugging mode GLOBALLY
     printToConsole(componentName: string, functionName: string, message: string) {
 
-        // Clean alerts
+        // Clean logging
         this.sessionDebugging = this.globalVariableService.sessionDebugging;
         this.sessionLogging = this.globalVariableService.sessionLogging;
 

@@ -4373,40 +4373,6 @@ console.warn('xx allS 1', this.currentDatasets.slice())
         });
     }
 
-    getCanvasAlerts(): Promise<CanvasAlert[]> {
-        // Description: Gets all Canvas Alerts
-        // Returns: this.canvasalerts array, unless:
-        //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getCanvasAlerts ...', 
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.canvasAlerts.length);
-
-        let url: string = 'canvasAlerts';
-        this.filePath = './assets/settings.canvasAlerts.json';
-
-        return new Promise<CanvasAlert[]>((resolve, reject) => {
-
-            // Refresh from source at start, or if dirty
-            if ( (this.canvasAlerts.length == 0)  ||  (this.isDirtyCanvasAlerts) ) {
-                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-                this.get(url)
-                    .then(data => {
-                        this.canvasAlerts = data.filter(d => (!d.isTrashed) );
-
-                        this.isDirtyCanvasAlerts = false;
-                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getCanvasAlerts 1', 
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.canvasAlerts)
-                        resolve(this.canvasAlerts);
-                    });
-            } else {
-                console.log('%c    Global-Variables getCanvasAlerts 2', 
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.canvasAlerts)
-                resolve(this.canvasAlerts);
-            }
-        });
-
-    }
-
     getCanvasComments(): Promise<CanvasComment[]> {
         // Description: Gets all Canvas Comments
         // Returns: this.canvasComments array, unless:
