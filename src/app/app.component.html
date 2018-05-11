@@ -514,6 +514,13 @@
                                 </button>
                                 <button type="button"
                                     clrDropdownItem
+                                    (click)="clickMenuWidgetDataSummary()"
+                                    title="Data Summary for Datasource selected Widget"
+                                    >
+                                    Data Summary
+                                </button>
+                                <button type="button"
+                                    clrDropdownItem
                                     (click)="clickMenuWidgetDataQuality()"
                                     title="Data quality issues for selected Widget"
                                     >
@@ -528,10 +535,10 @@
                                 </button>
                                 <button type="button"
                                     clrDropdownItem
-                                    (click)="clickMenuWidgetDataSummary()"
-                                    title="Data Summary for Datasource selected Widget"
+                                    (click)="clickMenuWidgeFullScreen()"
+                                    title="Show the selected Widget in full screen"
                                     >
-                                    Data Summary
+                                    Full Screen
                                 </button>
                                 <button type="button"
                                     clrDropdownItem
@@ -539,13 +546,6 @@
                                     title="Description for the selected Widget"
                                     >
                                     Description
-                                </button>
-                                <button type="button"
-                                    clrDropdownItem
-                                    (click)="clickMenuWidgeFullScreen()"
-                                    title="Show the selected Widget in full screen"
-                                    >
-                                    Full Screen
                                 </button>
                                 <button type="button" clrDropdownItem (click)="clickMenuWidgetLinks()">
                                     Links
@@ -1535,7 +1535,7 @@
         </div>
 
         <!-- W related info menu -->
-        <div class="widgetXRelatdInfoMenu" *ngIf="row.widgetType=='Graph'"
+        <div class="widgetXRelatedInfoMenu" *ngIf="row.widgetType=='Graph'"
             [style.color]="row.titleColor"
             [style.z-index]="row.containerZindex"
             >
@@ -1546,7 +1546,7 @@
                     size="24"
                     >
                 </clr-icon>
-                <clr-dropdown-menu class="titleMenu"
+                <clr-dropdown-menu class="widgetXTitleMenu"
                     *clrIfOpen
                     >
                     <button class="dropdown-item"
@@ -1655,7 +1655,7 @@
                 <b>{{ row.titleText }}</b>
 
                 <!-- Hyperlink -->
-                <div class="widgetContainerXJumpLink" *ngIf="row.hyperlinkDashboardID  
+                <div class="widgetXJumpLink" *ngIf="row.hyperlinkDashboardID  
                      && row.hyperlinkDashboardTabID"
                     >
                     <clr-icon shape="arrow right" *ngIf="bullet.linkedTabID"
@@ -1983,7 +1983,7 @@
             <!-- Shape Arrow Object -->
             <div class="widgetX" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Arrow'">
                 <!-- TODO - Makey this DYNAMIC !!!  -->
-                <svg class="gridShapeArrow" *ngIf="row.shapeSize==1  
+                <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==1  
                         &&  
                         row.shapeRotation==0"
                     height="100"
@@ -1999,7 +1999,7 @@
                         stroke-width:1
                         />
                 </svg>
-                <svg class="gridShapeArrow" *ngIf="row.shapeSize==1  
+                <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==1  
                         &&  
                         row.shapeRotation==45"
                     height="100"
@@ -2016,7 +2016,7 @@
                         stroke-width:1
                         />
                 </svg>
-                <svg class="gridShapeArrow" *ngIf="row.shapeSize==1  
+                <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==1  
                         &&  
                         row.shapeRotation==90"
                     height="100"
@@ -2033,7 +2033,7 @@
                         stroke-width:1
                         />
                 </svg>
-                <svg class="gridShapeArrow" *ngIf="row.shapeSize==1  
+                <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==1  
                         &&  
                         row.shapeRotation==135"
                     height="100"
@@ -2050,7 +2050,7 @@
                         stroke-width:1
                         />
                 </svg>
-                <svg class="gridShapeArrow" *ngIf="row.shapeSize==1  
+                <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==1  
                         &&  
                         row.shapeRotation==180"
                     height="100"
@@ -2067,7 +2067,7 @@
                         stroke-width:1
                         />
                 </svg>
-                <svg class="gridShapeArrow" *ngIf="row.shapeSize==1  
+                <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==1  
                         &&  
                         row.shapeRotation==225"
                     height="100"
@@ -2084,7 +2084,7 @@
                         stroke-width:1
                         />
                 </svg>
-                <svg class="gridShapeArrow" *ngIf="row.shapeSize==1  
+                <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==1  
                         &&  
                         row.shapeRotation==270"
                     height="100"
@@ -2101,7 +2101,7 @@
                         stroke-width:1
                         />
                 </svg>
-                <svg class="gridShapeArrow" *ngIf="row.shapeSize==1  
+                <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==1  
                         &&  
                         row.shapeRotation==315"
                     height="100"
@@ -2119,7 +2119,7 @@
                         />
                 </svg>
 
-                <svg class="gridShapeArrow" *ngIf="row.shapeSize==2  
+                <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==2  
                         &&  
                         row.shapeRotation==0"
                     height="100"
@@ -2136,7 +2136,7 @@
                         stroke-width:1
                         />
                 </svg>
-                <svg class="gridShapeArrow" *ngIf="row.shapeSize==2  
+                <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==2  
                         &&  
                         row.shapeRotation==45"
                     height="100"
@@ -2153,7 +2153,7 @@
                         stroke-width:1
                         />
                 </svg>
-                <svg class="gridShapeArrow" *ngIf="row.shapeSize==2  
+                <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==2  
                         &&  
                         row.shapeRotation==90"
                     height="100"
@@ -2170,7 +2170,7 @@
                         stroke-width:1
                         />
                 </svg>
-                <svg class="gridShapeArrow" *ngIf="row.shapeSize==2  
+                <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==2  
                         &&  
                         row.shapeRotation==135"
                     height="100"
@@ -2187,7 +2187,7 @@
                         stroke-width:1
                         />
                 </svg>
-                <svg class="gridShapeArrow" *ngIf="row.shapeSize==2  
+                <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==2  
                         &&  
                         row.shapeRotation==180"
                     height="100"
@@ -2204,7 +2204,7 @@
                         stroke-width:1
                         />
                 </svg>
-                <svg class="gridShapeArrow" *ngIf="row.shapeSize==2  
+                <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==2  
                         &&  
                         row.shapeRotation==225"
                     height="100"
@@ -2221,7 +2221,7 @@
                         stroke-width:1
                         />
                 </svg>
-                <svg class="gridShapeArrow" *ngIf="row.shapeSize==2  
+                <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==2  
                         &&  
                         row.shapeRotation==270"
                     height="100"
@@ -2238,7 +2238,7 @@
                         stroke-width:1
                         />
                 </svg>
-                <svg class="gridShapeArrow" *ngIf="row.shapeSize==2  
+                <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==2  
                         &&  
                         row.shapeRotation==315"
                     height="100"
@@ -2256,7 +2256,7 @@
                         />
                 </svg>
 
-                <svg class="gridShapeArrow" *ngIf="row.shapeSize==3  
+                <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==3  
                         &&  
                         row.shapeRotation==0"
                     height="100"
@@ -2273,7 +2273,7 @@
                         stroke-width:1
                         />
                 </svg>
-                <svg class="gridShapeArrow" *ngIf="row.shapeSize==3  
+                <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==3  
                         &&  
                         row.shapeRotation==45"
                     height="100"
@@ -2290,7 +2290,7 @@
                         stroke-width:1
                         />
                 </svg>
-                <svg class="gridShapeArrow" *ngIf="row.shapeSize==3  
+                <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==3  
                         &&  
                         row.shapeRotation==90"
                     height="100"
@@ -2307,7 +2307,7 @@
                         stroke-width:1
                         />
                 </svg>
-                <svg class="gridShapeArrow" *ngIf="row.shapeSize==3  
+                <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==3  
                         &&  
                         row.shapeRotation==135"
                     height="100"
@@ -2324,7 +2324,7 @@
                         stroke-width:1
                         />
                 </svg>
-                <svg class="gridShapeArrow" *ngIf="row.shapeSize==3  
+                <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==3  
                         &&  
                         row.shapeRotation==180"
                     height="100"
@@ -2341,7 +2341,7 @@
                         stroke-width:1
                         />
                 </svg>
-                <svg class="gridShapeArrow" *ngIf="row.shapeSize==3  
+                <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==3  
                         &&  
                         row.shapeRotation==225"
                     height="100"
@@ -2358,7 +2358,7 @@
                         stroke-width:1
                         />
                 </svg>
-                <svg class="gridShapeArrow" *ngIf="row.shapeSize==3  
+                <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==3  
                         &&  
                         row.shapeRotation==270"
                     height="100"
@@ -2375,7 +2375,7 @@
                         stroke-width:1
                         />
                 </svg>
-                <svg class="gridShapeArrow" *ngIf="row.shapeSize==3  
+                <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==3  
                         &&  
                         row.shapeRotation==315"
                     height="100"
@@ -2500,7 +2500,7 @@
                     size="24"
                     >
                 </clr-icon>
-                <clr-dropdown-menu class="titleMenu"
+                <clr-dropdown-menu class="widgetXTitleMenu"
                     clrPosition="bottom-right" *clrIfOpen
                     >
                     <button class="dropdown-item"
@@ -2894,7 +2894,7 @@
         <!-- Shape Arrow Object -->
         <div class="widget" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Arrow'">
             <!-- TODO - Makey this DYNAMIC !!!  -->
-            <svg class="gridShapeArrow" *ngIf="row.shapeSize==1  
+            <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==1  
                     &&  
                     row.shapeRotation==0"
                 height="100"
@@ -2910,7 +2910,7 @@
                     stroke-width:1
                     />
             </svg>
-            <svg class="gridShapeArrow" *ngIf="row.shapeSize==1  
+            <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==1  
                     &&  
                     row.shapeRotation==45"
                 height="100"
@@ -2927,7 +2927,7 @@
                     stroke-width:1
                     />
             </svg>
-            <svg class="gridShapeArrow" *ngIf="row.shapeSize==1  
+            <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==1  
                     &&  
                     row.shapeRotation==90"
                 height="100"
@@ -2944,7 +2944,7 @@
                     stroke-width:1
                     />
             </svg>
-            <svg class="gridShapeArrow" *ngIf="row.shapeSize==1  
+            <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==1  
                     &&  
                     row.shapeRotation==135"
                 height="100"
@@ -2961,7 +2961,7 @@
                     stroke-width:1
                     />
             </svg>
-            <svg class="gridShapeArrow" *ngIf="row.shapeSize==1  
+            <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==1  
                     &&  
                     row.shapeRotation==180"
                 height="100"
@@ -2978,7 +2978,7 @@
                     stroke-width:1
                     />
             </svg>
-            <svg class="gridShapeArrow" *ngIf="row.shapeSize==1  
+            <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==1  
                     &&  
                     row.shapeRotation==225"
                 height="100"
@@ -2995,7 +2995,7 @@
                     stroke-width:1
                     />
             </svg>
-            <svg class="gridShapeArrow" *ngIf="row.shapeSize==1  
+            <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==1  
                     &&  
                     row.shapeRotation==270"
                 height="100"
@@ -3012,7 +3012,7 @@
                     stroke-width:1
                     />
             </svg>
-            <svg class="gridShapeArrow" *ngIf="row.shapeSize==1  
+            <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==1  
                     &&  
                     row.shapeRotation==315"
                 height="100"
@@ -3030,7 +3030,7 @@
                     />
             </svg>
 
-            <svg class="gridShapeArrow" *ngIf="row.shapeSize==2  
+            <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==2  
                     &&  
                     row.shapeRotation==0"
                 height="100"
@@ -3047,7 +3047,7 @@
                     stroke-width:1
                     />
             </svg>
-            <svg class="gridShapeArrow" *ngIf="row.shapeSize==2  
+            <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==2  
                     &&  
                     row.shapeRotation==45"
                 height="100"
@@ -3064,7 +3064,7 @@
                     stroke-width:1
                     />
             </svg>
-            <svg class="gridShapeArrow" *ngIf="row.shapeSize==2  
+            <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==2  
                     &&  
                     row.shapeRotation==90"
                 height="100"
@@ -3081,7 +3081,7 @@
                     stroke-width:1
                     />
             </svg>
-            <svg class="gridShapeArrow" *ngIf="row.shapeSize==2  
+            <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==2  
                     &&  
                     row.shapeRotation==135"
                 height="100"
@@ -3098,7 +3098,7 @@
                     stroke-width:1
                     />
             </svg>
-            <svg class="gridShapeArrow" *ngIf="row.shapeSize==2  
+            <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==2  
                     &&  
                     row.shapeRotation==180"
                 height="100"
@@ -3115,7 +3115,7 @@
                     stroke-width:1
                     />
             </svg>
-            <svg class="gridShapeArrow" *ngIf="row.shapeSize==2  
+            <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==2  
                     &&  
                     row.shapeRotation==225"
                 height="100"
@@ -3132,7 +3132,7 @@
                     stroke-width:1
                     />
             </svg>
-            <svg class="gridShapeArrow" *ngIf="row.shapeSize==2  
+            <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==2  
                     &&  
                     row.shapeRotation==270"
                 height="100"
@@ -3149,7 +3149,7 @@
                     stroke-width:1
                     />
             </svg>
-            <svg class="gridShapeArrow" *ngIf="row.shapeSize==2  
+            <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==2  
                     &&  
                     row.shapeRotation==315"
                 height="100"
@@ -3167,7 +3167,7 @@
                     />
             </svg>
 
-            <svg class="gridShapeArrow" *ngIf="row.shapeSize==3  
+            <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==3  
                     &&  
                     row.shapeRotation==0"
                 height="100"
@@ -3184,7 +3184,7 @@
                     stroke-width:1
                     />
             </svg>
-            <svg class="gridShapeArrow" *ngIf="row.shapeSize==3  
+            <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==3  
                     &&  
                     row.shapeRotation==45"
                 height="100"
@@ -3201,7 +3201,7 @@
                     stroke-width:1
                     />
             </svg>
-            <svg class="gridShapeArrow" *ngIf="row.shapeSize==3  
+            <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==3  
                     &&  
                     row.shapeRotation==90"
                 height="100"
@@ -3218,7 +3218,7 @@
                     stroke-width:1
                     />
             </svg>
-            <svg class="gridShapeArrow" *ngIf="row.shapeSize==3  
+            <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==3  
                     &&  
                     row.shapeRotation==135"
                 height="100"
@@ -3235,7 +3235,7 @@
                     stroke-width:1
                     />
             </svg>
-            <svg class="gridShapeArrow" *ngIf="row.shapeSize==3  
+            <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==3  
                     &&  
                     row.shapeRotation==180"
                 height="100"
@@ -3252,7 +3252,7 @@
                     stroke-width:1
                     />
             </svg>
-            <svg class="gridShapeArrow" *ngIf="row.shapeSize==3  
+            <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==3  
                     &&  
                     row.shapeRotation==225"
                 height="100"
@@ -3269,7 +3269,7 @@
                     stroke-width:1
                     />
             </svg>
-            <svg class="gridShapeArrow" *ngIf="row.shapeSize==3  
+            <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==3  
                     &&  
                     row.shapeRotation==270"
                 height="100"
@@ -3286,7 +3286,7 @@
                     stroke-width:1
                     />
             </svg>
-            <svg class="gridShapeArrow" *ngIf="row.shapeSize==3  
+            <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==3  
                     &&  
                     row.shapeRotation==315"
                 height="100"
