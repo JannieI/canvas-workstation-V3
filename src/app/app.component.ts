@@ -1328,15 +1328,6 @@ export class AppComponent implements OnInit {
         this.isFirstTimeUser = false;
     }
 
-    handleCloseCollaborateAlerts(action: string) {
-        // Close Alerts form
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseCollaborateAlerts', '@Start');
-
-        this.menuOptionClickPostAction();
-
-        this.showModalCollaborateAlerts = false;
-    }
-    
     handleCloseCollaborateAuditTrail(action: string) {
         // Close AuditTrail form
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseCollaborateAuditTrail', '@Start');
