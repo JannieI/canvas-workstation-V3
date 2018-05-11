@@ -8,7 +8,6 @@ import { HttpHeaders }                from "@angular/common/http";
 
 // Our Models
 import { CanvasAction }               from './models';
-import { CanvasAlert }                from './models';
 import { CanvasAuditTrail }           from './models';
 import { CanvasComment }              from './models';
 import { CanvasGroup }                from './models';
@@ -556,7 +555,6 @@ export class GlobalVariableService {
     // Permanent data - later to come from http
     backgroundcolors: CSScolor[] = [];
     canvasTasks: CanvasTask[] = [];
-    canvasAlerts: CanvasAlert[] = [];
     canvasComments: CanvasComment[] = [];
     canvasAuditTrails: CanvasAuditTrail[] = [];
     canvasMessages: CanvasMessage[] = [];
@@ -710,7 +708,6 @@ export class GlobalVariableService {
     isDirtyDatasets: boolean = true;
     isDirtyBackgroundColors: boolean = true;
     isDirtyCanvasTasks: boolean = true;
-    isDirtyCanvasAlerts: boolean = true;
     isDirtyCanvasComments: boolean = true;
     isDirtyCanvasMessages: boolean = true;
     isDirtyCanvasSettings: boolean = true;

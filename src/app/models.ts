@@ -243,15 +243,6 @@ export class CanvasMessageSingle {
     read: boolean;              // True if Recipient has read the message.  Can toggle this
 }
 
-export class CanvasAlert {
-    id: number;                 // Unique ID
-    sentOn: string;             // DateTime sent
-    recipient: string;          // UserID
-    read: boolean;              // True if recipient read the alert
-    alertText: string;          // Message
-    alertData?: any;            // Type of data, table name, field names, field values
-}
-
 export class CanvasComment {
     id: number;                             // Unique ID
     dashboardID: number;                    // Dashboard to which comment is linked
