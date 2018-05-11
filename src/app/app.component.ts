@@ -362,7 +362,6 @@ export class AppComponent implements OnInit {
     showModalSlicerDelete: boolean = false;
     showFavouriteDashboard: boolean = false;
     showModalWidgetEditor: boolean = false;
-    showModalCollaborateAlerts: boolean = false;
     showModalCollaborateAuditTrail: boolean = false;
     showModalCollaborateSendMessage: boolean = false;
     showModalCollaborateSendEmail: boolean = false;
