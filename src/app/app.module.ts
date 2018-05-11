@@ -83,7 +83,6 @@ import { DataSummaryComponent }       from './data.summary.component';
 
 import { HelpComponent }              from './help.component';
 
-import { CollaborateAlertsComponent }       from './collaborate.alerts.component';
 import { CollaborateMessagesComponent }     from './collaborate.messages.component';
 import { CollaborateTaskAddComponent }      from './collaborate.taskadd.component';
 import { CollaborateTasksComponent }        from './collaborate.tasks.component';
@@ -187,7 +186,6 @@ import { StatusbarComponent }         from './statusbar.component';
         ShapeEditComponent,
         ShapeDeleteComponent,
 
-        CollaborateAlertsComponent,
         CollaborateMessagesComponent,
         CollaborateTaskAddComponent,
         CollaborateTasksComponent,
