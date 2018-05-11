@@ -1,5 +1,9 @@
 # Installation Guide
 
+# 0. Upgrades done
+2018-05-11 npm update --save clarity-icons
+
+
 # 1. Clone from Git
 
 1. Clone the app:

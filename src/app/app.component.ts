@@ -2818,10 +2818,10 @@ console.warn('xx filteredActions', filteredActions)
         this.showModalDataSummary = true;
     }
 
-    clickMenuWidgeFullScreen(widgetIndex: number = null) {
+    clickMenuWidgetFullScreen(widgetIndex: number = null) {
         // Show the selected W in full screen
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgeFullScreen', '@Start');
-
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetFullScreen', '@Start');
+console.warn('xx index', widgetIndex)
         if (widgetIndex == null) {
 
             // Can only edit one W at a time, so ignore if multiple selected
@@ -4946,7 +4946,7 @@ console.warn('xx filteredActions', filteredActions)
         // Opens W full screen)
         this.globalFunctionService.printToConsole(this.constructor.name,'actionmenuWidgetFullScreen', '@Start');
 
-        this.clickMenuWidgeFullScreen(index);
+        this.clickMenuWidgetFullScreen(index);
 
     }
     

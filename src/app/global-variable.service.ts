@@ -3640,7 +3640,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.put('http://localhost:3000/' + url + '/' + data.id, data, {headers})
+            this.http.put('http://localhost:3001/' + url + '/' + data.id, data, {headers})
             .subscribe(
                 res => {
 
@@ -3713,7 +3713,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.put('http://localhost:3000/' + url + '/' + data.id, data, {headers})
+            this.http.put('http://localhost:3001/' + url + '/' + data.id, data, {headers})
             .subscribe(
                 res => {
 
@@ -3748,7 +3748,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
+            this.http.delete('http://localhost:3001/' + url + '/' + id, {headers})
             .subscribe(
                 res => {
 
@@ -3798,7 +3798,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post('http://localhost:3000/' + url, data, {headers})
+            this.http.post('http://localhost:3001/' + url, data, {headers})
                 .subscribe(
                     res => {
 
@@ -5020,11 +5020,15 @@ console.warn('xx allS 1', this.currentDatasets.slice())
                     finalUrl = 'http://localhost:3000/' + url;
                 } else if (url == 'canvasAuditTrails') {
                     finalUrl = 'http://localhost:3002/' + url;
+                } else if (url == 'paletteButtonBars') {
+                    finalUrl = 'http://localhost:3001/' + url;
+                } else if (url == 'paletteButtonsSelecteds') {
+                    finalUrl = 'http://localhost:3001/' + url;
                 } else {
                     finalUrl = 'http://localhost:3000/' + url;
                 };
-
-
+                
+                
                 this.http.get(finalUrl).subscribe(
                     res =>
                     {
