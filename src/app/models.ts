@@ -164,17 +164,6 @@ export class CSScolor {
 
 
 // Messages / Activities / Alerts / Comments / User
-export class CanvasActivity {
-    id: number;
-    createdBy: string;
-    createdOn: string;
-    activityType: string;
-    activityStatus: string;
-    linkedDashboardList: string[];
-    activityText: string;
-    activityComments: string[];
-}
-
 export class CanvasTask {
     id: number;                             // Unique task ID
     taskText: string;                       // Description of task

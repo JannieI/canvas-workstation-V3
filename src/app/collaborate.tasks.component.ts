@@ -18,7 +18,6 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService}       from './global-variable.service';
 
 // Models
-import { CanvasActivity }             from './models';
 import { CanvasTask }                 from './models';
 import { CanvasUser }                 from './models';
 import { DatagridInput }              from './models';
