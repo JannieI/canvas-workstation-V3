@@ -42,7 +42,7 @@
         grid-column-end: 5;
         grid-row-start: 4;
         grid-row-end: 21;
-        overflow-y: hidden;
+        overflow-y: scroll;
         width: 100%;
     }
 
