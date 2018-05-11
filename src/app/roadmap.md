@@ -206,6 +206,8 @@ This document describes items for later versions of Canvas.
 - Add SORT to DB ... what about add afterwards?
 - Consider Table Checkpoint - not sure if it is that useful, as one can filter, etc on table, or redesign ... And the purpose of a table is to look at data for a while methinks
 - Consider filter on click cell -> not sure how to make this easy in UI, could be quite easy to just call slicerFilter in the background.
+- Consider, carefully, to allow table to grow to a max of x rows.  This means that all affected Ws have to have a relative starting position.  Remember ReportBuilder ...
+- cell highlighter: 1. user-defined way to specify what colour a cell should be, ie red, orange, green for info, warn, error.  2.  Also with ranges, ie 1-10 = light blue, etc.  3. And filter, ie all values over 200K are red.  4. Full on Conditional Formatting
 
 
 **Dashboard**
