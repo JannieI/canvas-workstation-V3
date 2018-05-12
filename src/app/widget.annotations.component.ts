@@ -54,7 +54,10 @@ export class WidgetAnnotationsComponent implements OnInit {
         // Save changes to the last Comment
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
+        let today = new Date();
         this.selectedWidget.annotation = this.annotation;
+        this.selectedWidget.annotation = this.globalVariableService.currentUser.userID;
+        this.selectedWidget.annotation = this.globalVariableService.formatDate(today);
         this.globalVariableService.saveWidget(this.selectedWidget);
         
 		this.formWidgetAnnotationsClosed.emit();
