@@ -148,6 +148,8 @@ const widgetTemplate: Widget =
         "name": "New Widget",
         "description": "New Widget from Template",
         "annotation": '',
+        "annotationLastUserID": "",
+        "annotationLastUpdated": "",
         "visualGrammar": "Vega-Lite",
         "version": 1,
         "isSelected": false,
@@ -5174,6 +5176,8 @@ console.warn('xx allS 1', this.currentDatasets.slice())
                 {key: 'description', 				type: 'string'},
                 {key: 'visualGrammar', 				type: 'string'},
                 {key: 'annotation', 				type: 'string'},
+                {key: 'annotationLastUserID', 		type: 'string'},
+                {key: 'annotationLastUpdated', 		type: 'string'},
                 {key: 'version', 					type: 'int'},
                 {key: 'isLiked', 					type: 'bool'},
                 {key: 'isSelected', 				type: 'bool'},
@@ -5563,6 +5567,8 @@ console.warn('xx allS 1', this.currentDatasets.slice())
                 w.name = changedWidget.name;
                 w.description = changedWidget.description;
                 w.visualGrammar = changedWidget.visualGrammar;
+                w.annotationLastUserID = changedWidget.annotationLastUserID;
+                w.annotationLastUpdated = changedWidget.annotationLastUpdated;
                 w.annotation = changedWidget.annotation;
                 w.version = changedWidget.version;
                 w.isSelected = changedWidget.isSelected;
@@ -5704,6 +5710,8 @@ console.warn('xx allS 1', this.currentDatasets.slice())
                 w.name = changedWidget.name;
                 w.description = changedWidget.description;
                 w.visualGrammar = changedWidget.visualGrammar;
+                w.annotationLastUserID = changedWidget.annotationLastUserID;
+                w.annotationLastUpdated = changedWidget.annotationLastUpdated;
                 w.annotation = changedWidget.annotation;
                 w.version = changedWidget.version;
                 w.isSelected = changedWidget.isSelected;
