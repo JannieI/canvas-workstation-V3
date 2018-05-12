@@ -60,7 +60,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
 
         // Properties for top-level specification (e.g., standalone single view specifications)
         "background": "",
-        "padding": "",
+        "padding": {"left": 5, "top": 5, "right": 5, "bottom": 5},
         "height": "100",
         "width": "100",
         "autosize": "fit",

@@ -207,8 +207,8 @@ const graphWidth: number = 420;
 
         let specification = compile(definition).spec;
         let view = new View(parse(specification));
-        let width: number = 470;
-        let height: number = 300;
+        let width: number = 540;
+        let height: number = 350;
         let reduceX: number = 0;
         let reduceY: number = 0;
         let reduceColor: number = 0;
@@ -302,12 +302,14 @@ const graphWidth: number = 420;
         // .height(height)
 
         view.renderer('svg')
-            .initialize(this.dragWidget.nativeElement)
+        .initialize(this.dragWidget.nativeElement)
+            .width(width)
+            .height(height)
             .hover()
             .run()
             .finalize();
-            this.renderer.setElementStyle(this.dragWidget.nativeElement,
-                'left', "200px");
+            // this.renderer.setElementStyle(this.dragWidget.nativeElement,
+            //     'left', "200px");
     }
 
   	clickClose(action: string) {
