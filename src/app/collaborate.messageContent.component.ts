@@ -85,6 +85,10 @@ export class CollaborateMessageContentComponent implements OnInit {
                 // this.groupNames = ['', ...this.groupNames];
             });
 
+            if (this.existingMessagge != null  &&  this.messageAction == 'reply') {
+                this.selectedUser = this.existingMessagge.sender;
+            };
+
         });
     }
 
@@ -143,7 +147,7 @@ export class CollaborateMessageContentComponent implements OnInit {
                         readOn: ''
                     }
                 ];
-        console.warn('xx 1 rec', this.selectedUser, recipients)
+
         if (this.selectedUser != null
             &&
             this.selectedUser != undefined
@@ -151,7 +155,7 @@ export class CollaborateMessageContentComponent implements OnInit {
             this.selectedUser != '') {
             recipients[0].userID = this.selectedUser;
         };
-        console.warn('xx 2 rec', recipients)
+
         if (this.selectedGroup != null  &&  this.selectedGroup != undefined) {
 
             // Loop on users to find members
@@ -166,7 +170,6 @@ export class CollaborateMessageContentComponent implements OnInit {
                             readOn: ''
                         });
                     };
-                    console.warn('xx 3 rec', recipients)
                 };
             };
         };
@@ -175,7 +178,7 @@ export class CollaborateMessageContentComponent implements OnInit {
         let today = new Date();
         let newMessage: CanvasMessage = {
             id: null,
-            threadID: this.existingMessagge.threadID,
+            threadID: this.existingMessagge==null? null : this.existingMessagge.threadID,
             sender: this.globalVariableService.currentUser.userID,
             sentOn: this.globalVariableService.formatDate(today),
             recipients: recipients,
@@ -185,7 +188,7 @@ export class CollaborateMessageContentComponent implements OnInit {
             dashboardID: dashboardID,
             dashboardTabID: dashboardTabID,
             url: null,
-            replyToMessageID: this.existingMessagge.id,
+            replyToMessageID: this.existingMessagge==null? null : this.existingMessagge.id,
 
             // At runtime
             iHaveReadThis: false,
