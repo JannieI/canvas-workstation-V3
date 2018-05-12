@@ -209,6 +209,9 @@ const graphWidth: number = 420;
         let view = new View(parse(specification));
         let width: number = 470;
         let height: number = 300;
+        let reduceX: number = 0;
+        let reduceY: number = 0;
+        let reduceColor: number = 0;
 
         // Get X max width
         let maxLengthX: number = 0;
@@ -218,7 +221,7 @@ const graphWidth: number = 420;
             const singleColumn = arrayColumn(this.localWidget.graphData, this.localWidget.graphXfield);
             const arrayMaxLength = (arr) => arr.map(x => {
                 if ( (typeof x) != 'string') {
-                    maxLengthX = 12;
+                    maxLengthX = 4;
                 } else {
 
                     if (x.length > maxLengthX) {
@@ -227,7 +230,8 @@ const graphWidth: number = 420;
                 };
             });
             let temp = arrayMaxLength(singleColumn);
-            console.warn('xx X maxLength', maxLengthX)
+            reduceX = maxLengthX * 8;
+            console.warn('xx X maxLength', maxLengthX, reduceX)
         };
 
         // Get Y max width
@@ -238,7 +242,7 @@ const graphWidth: number = 420;
             const singleColumn = arrayColumn(this.localWidget.graphData, this.localWidget.graphYfield);
             const arrayMaxLength = (arr) => arr.map(x => {
                 if ( (typeof x) != 'string') {
-                    maxLengthY = 12;
+                    maxLengthY = 4;
                 } else {
 
                     if (x.length > maxLengthY) {
@@ -247,18 +251,20 @@ const graphWidth: number = 420;
                 };
             });
             let temp = arrayMaxLength(singleColumn);
-            console.warn('xx X maxLength', maxLengthY)
+            reduceY = maxLengthY * 8;
+            console.warn('xx X maxLength', maxLengthY, reduceY)
         };
 
         // Get color max width
         let maxLengthColor: number = 0;
         if (this.localWidget.graphColorField != ''  &&  this.localWidget.graphColorField != null) {
 
+            maxLengthColor = 0;        // Color blokkie
             const arrayColumn = (arr, n) => arr.map(x => x[n]) ;
             const singleColumn = arrayColumn(this.localWidget.graphData, this.localWidget.graphColorField);
             const arrayMaxLength = (arr) => arr.map(x => {
                 if ( (typeof x) != 'string') {
-                    maxLengthColor = 12;
+                    maxLengthColor = 4;
                 } else {
 
                     if (x.length > maxLengthColor) {
@@ -267,34 +273,35 @@ const graphWidth: number = 420;
                 };
             });
             let temp = arrayMaxLength(singleColumn);
-            console.warn('xx X maxLength', maxLengthColor)
+            reduceColor = (maxLengthColor * 8) + 25;
+            console.warn('xx X maxLength', maxLengthColor, reduceColor)
         };
-        // let maxLengthColor: number = 0;
-        // if (this.localWidget.graphColorField != ''  &&  this.localWidget.graphColorField != null) {
-        //     const arrayColumn = (arr, n) => arr.map(x => x[n]) ;
-        //     const singleColumn = arrayColumn(this.localWidget.graphData, this.localWidget.graphColorField);
-        //     const arrayMaxLength = (arr) => arr.map(x => {if (x.length > maxLengthColor) maxLengthColor = x.length})
-        //     let temp = arrayMaxLength(singleColumn);
-        //     console.warn('xx color maxLength', maxLengthColor)
-        // };
 
         // Reduce width of legend by length of selected field
-        if (this.localWidget.graphColorField != ''  &&  this.localWidget.graphColorField != null) {
-            let reduce: number = 30;
+        // if (this.localWidget.graphColorField != ''  &&  this.localWidget.graphColorField != null) {
+        //     let reduce: number = 30;
 
-            // Find the length, then say 8px per character + colour blockie displayed
-            // TODO - do this better !
-            for (var i = 0; i < this.dataFieldNames.length; i++) {
-                if (this.localWidget.graphColorField == this.dataFieldNames[i]) {
-                    reduce = (8 * this.dataFieldLengths[i]) + 35;
-                }
-            };
-            width = width - reduce;
-        }
+        //     // Find the length, then say 8px per character + colour blockie displayed
+        //     // TODO - do this better !
+        //     for (var i = 0; i < this.dataFieldNames.length; i++) {
+        //         if (this.localWidget.graphColorField == this.dataFieldNames[i]) {
+        //             reduce = (8 * this.dataFieldLengths[i]) + 35;
+        //         }
+        //     };
+        //     width = width - reduce;
+        // };
+
+        console.warn('xx w ', width, width - reduceX - reduceColor )
+        console.warn('xx h', height, height - reduceY )
+
+        width =  width - reduceX - reduceColor;
+        height =  height - reduceY;
+
         // Note: trick to set .width and .height explicitly, thus W.graphWidth not used
+        // .width(width)
+        // .height(height)
+
         view.renderer('svg')
-            .width(width)
-            .height(height)
             .initialize(this.dragWidget.nativeElement)
             .hover()
             .run()

@@ -63,6 +63,7 @@ const vlTemplate: dl.spec.TopLevelExtendedSpec =
         "padding": "",
         "height": "100",
         "width": "100",
+        "autosize": "fit",
         // "autosize": "",          NB - add these only if needed, blank causes no graph display
         // "config": "",            NB - add these only if needed, blank causes no graph display
 
