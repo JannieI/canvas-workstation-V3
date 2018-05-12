@@ -213,10 +213,9 @@ const graphWidth: number = 420;
         // Get X max width
         let maxLengthX: number = 0;
         if (this.localWidget.graphXfield != ''  &&  this.localWidget.graphXfield != null) {
-            console.warn('xx X this.localWidget.graphXfield', this.localWidget.graphXfield)
+
             const arrayColumn = (arr, n) => arr.map(x => x[n]) ;
             const singleColumn = arrayColumn(this.localWidget.graphData, this.localWidget.graphXfield);
-            console.warn('xx X singleColumn', singleColumn)
             const arrayMaxLength = (arr) => arr.map(x => {
                 if ( (typeof x) != 'string') {
                     maxLengthX = 12;
@@ -228,17 +227,15 @@ const graphWidth: number = 420;
                 };
             });
             let temp = arrayMaxLength(singleColumn);
-            console.warn('xx X temp', temp)
             console.warn('xx X maxLength', maxLengthX)
         };
 
         // Get Y max width
         let maxLengthY: number = 0;
         if (this.localWidget.graphYfield != ''  &&  this.localWidget.graphYfield != null) {
-            console.warn('xx X this.localWidget.graphYfield', this.localWidget.graphYfield)
+
             const arrayColumn = (arr, n) => arr.map(x => x[n]) ;
             const singleColumn = arrayColumn(this.localWidget.graphData, this.localWidget.graphYfield);
-            console.warn('xx X singleColumn', singleColumn)
             const arrayMaxLength = (arr) => arr.map(x => {
                 if ( (typeof x) != 'string') {
                     maxLengthY = 12;
@@ -250,17 +247,15 @@ const graphWidth: number = 420;
                 };
             });
             let temp = arrayMaxLength(singleColumn);
-            console.warn('xx X temp', temp)
             console.warn('xx X maxLength', maxLengthY)
         };
 
         // Get color max width
         let maxLengthColor: number = 0;
         if (this.localWidget.graphColorField != ''  &&  this.localWidget.graphColorField != null) {
-            console.warn('xx X this.localWidget.graphColorField', this.localWidget.graphColorField)
+
             const arrayColumn = (arr, n) => arr.map(x => x[n]) ;
             const singleColumn = arrayColumn(this.localWidget.graphData, this.localWidget.graphColorField);
-            console.warn('xx X singleColumn', singleColumn)
             const arrayMaxLength = (arr) => arr.map(x => {
                 if ( (typeof x) != 'string') {
                     maxLengthColor = 12;
@@ -272,7 +267,6 @@ const graphWidth: number = 420;
                 };
             });
             let temp = arrayMaxLength(singleColumn);
-            console.warn('xx X temp', temp)
             console.warn('xx X maxLength', maxLengthColor)
         };
         // let maxLengthColor: number = 0;
