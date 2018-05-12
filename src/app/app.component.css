@@ -94,11 +94,7 @@
     padding: 2px;
 }
 
-
-
-
-
-
+/* Widget */
 .widgetContainerX {
     display: inline-block;
     display: grid;
@@ -243,19 +239,7 @@
             padding: 0;
         }
   
-
-
-
-
-
-
-
-
-
-
-
-
-        /* Style for Resize Handles */
+    /* Style for Resize Handles */
     .widgetContainerXTopLeftHandle {
         background-color: #3f4041;
         cursor: nwse-resize;

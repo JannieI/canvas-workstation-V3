@@ -190,7 +190,6 @@ const graphWidth: number = 420;
         if (!this.newWidget) {
             this.renderGraph(definition);
         }
-console.warn('xx canSave', this.canSave)
     }
 
     ngOnDestroy() {
@@ -210,6 +209,37 @@ console.warn('xx canSave', this.canSave)
         let view = new View(parse(specification));
         let width: number = 470;
         let height: number = 300;
+
+        // Get X max width
+        if (this.localWidget.graphXfield != ''  &&  this.localWidget.graphXfield != null) {
+            const arrayColumn = (arr, n) => arr.map(x => x[n]) ;
+            const singleColumn = arrayColumn(this.localWidget.graphData, this.localWidget.graphColorField);
+            let maxLengthX: number = 0;
+            const arrayMaxLength = (arr) => arr.map(x => {if (x.length > maxLengthX) maxLengthX = x.length})
+            maxLengthX = arrayMaxLength(singleColumn);
+            console.warn('xx X maxLength', maxLengthX)
+        };
+
+        // Get color max width
+        if (this.localWidget.graphYfield != ''  &&  this.localWidget.graphYfield != null) {
+            const arrayColumn = (arr, n) => arr.map(x => x[n]) ;
+            const singleColumn = arrayColumn(this.localWidget.graphData, this.localWidget.graphColorField);
+            let maxLengthY: number = 0;
+            const arrayMaxLength = (arr) => arr.map(x => {if (x.length > maxLengthY) maxLengthY = x.length})
+            maxLengthY = arrayMaxLength(singleColumn);
+            console.warn('xx Y maxLength', maxLengthY)
+        };
+
+        // Get color max width
+        if (this.localWidget.graphColorField != ''  &&  this.localWidget.graphColorField != null) {
+            const arrayColumn = (arr, n) => arr.map(x => x[n]) ;
+            const singleColumn = arrayColumn(this.localWidget.graphData, this.localWidget.graphColorField);
+            let maxLengthColor: number = 0;
+            const arrayMaxLength = (arr) => arr.map(x => {if (x.length > maxLengthColor) maxLengthColor = x.length})
+            maxLengthColor = arrayMaxLength(singleColumn);
+            console.warn('xx color maxLength', maxLengthColor)
+        };
+
         // Reduce width of legend by length of selected field
         if (this.localWidget.graphColorField != ''  &&  this.localWidget.graphColorField != null) {
             let reduce: number = 30;
@@ -695,7 +725,8 @@ console.warn('xx canSave', this.canSave)
             // Make proper error handling
             alert('Error: no dataSet in glob vars for DSid = ' + datasourceID)
         };
-console.warn('xx this.globalVariableService.currentDatasets', this.globalVariableService.currentDatasets)
+        console.warn('xx this.globalVariableService.currentDatasets', this.globalVariableService.currentDatasets)
+
         // Load first few rows into preview
         this.currentData = this.globalVariableService.currentDatasets.filter(
             d => d.id == dSetID)[0].data.slice(0,5);
