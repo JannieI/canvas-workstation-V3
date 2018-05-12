@@ -398,32 +398,7 @@
     
 
 
-    .widgetSelectedDrag {
-        background-color: transparent;
-        border: none !important;
-        top: 0;
-        position: absolute;
-        right: 0;
-    }
-    .widgetSelectedDrag:hover {
-        background-color: darkgray;
-        border-right: 2px solid black !important;
-        border-top: 2px solid black !important;
-        color: white;
-    }
-    .widgetSelectedResize {
-        background-color: transparent;
-        border: none !important;
-        bottom: 0;
-        right: 0;
-        position: absolute;
-    }
-    .widgetSelectedResize:hover {
-        background-color: darkgray;
-        border-bottom: 2px solid black !important;
-        border-right: 2px solid black !important;
-        color: white;
-    }
+
 
     .widgetFooter {
         display: inline-block;
