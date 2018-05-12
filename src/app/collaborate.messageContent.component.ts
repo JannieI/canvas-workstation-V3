@@ -171,14 +171,11 @@ export class CollaborateMessageContentComponent implements OnInit {
             };
         };
 
-
-        // this.selectedGroup
-
         // Construct new message
         let today = new Date();
         let newMessage: CanvasMessage = {
             id: null,
-            threadID: null,
+            threadID: this.existingMessagge.threadID,
             sender: this.globalVariableService.currentUser.userID,
             sentOn: this.globalVariableService.formatDate(today),
             recipients: recipients,
@@ -188,7 +185,7 @@ export class CollaborateMessageContentComponent implements OnInit {
             dashboardID: dashboardID,
             dashboardTabID: dashboardTabID,
             url: null,
-            replyToMessageID: null,
+            replyToMessageID: this.existingMessagge.id,
 
             // At runtime
             iHaveReadThis: false,
