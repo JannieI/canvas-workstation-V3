@@ -5730,6 +5730,16 @@ console.warn('xx this.draggableWidgets', this.draggableWidgets)
 
     }
 
+    widgetXCheckpointAnimate(
+        index: number,
+        dashboardID: number,
+        id: number,
+        showCheckpoints) {
+        // Animates Checkpoints
+        this.globalFunctionService.printToConsole(this.constructor.name,'widgetXCheckpointAnimate', '@Start');
+
+    }
+
     clickNavCheckpoint(
         index: number,
         dashboardID: number,
