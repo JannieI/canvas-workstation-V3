@@ -409,59 +409,12 @@
     z-index: 100;
 }
 
-.widgetContainerCheckpointLeft {
-    color: blue;
-    font-size: 0.7rem;
-    grid-column-start: 2;
-    grid-column-end: 3;
-    grid-row-start: 10;
-    grid-row-end: 11;
-    margin: -6px 0 0 0;
-    padding: 0;
-}
-
-.widgetContainerCheckpointCenter {
-    background-color: transparent;
-    font-size: 0.7rem;
-    grid-column-start: 4;
-    grid-column-end: 5;
-    grid-row-start: 10;
-    grid-row-end: 11;
-    margin: -6px 0 0 0;
-    padding: 0;
-}
 
 .widgetContainerJumpLink {
     background-color: transparent;
     font-size: 0.7rem;
     grid-column-start: 8;
     grid-column-end: 9;
-    grid-row-start: 10;
-    grid-row-end: 11;
-    margin: -6px 0 0 0;
-    padding: 0;
-}
-
-.widgetContainerCheckpointShowCheckpoint {
-    background-color: #bbb;
-    border-radius: 50%;
-    display: inline-block;
-    height: 12px;
-    width: 12px;
-}
-.widgetContainerCheckpointShowWidget {
-    background-color: blue;
-    border-radius: 50%;
-    display: inline-block;
-    height: 12px;
-    width: 12px;
-}
-
-.widgetContainerCheckpointRight {
-    color: blue;
-    font-size: 0.7rem;
-    grid-column-start: 10;
-    grid-column-end: 11;
     grid-row-start: 10;
     grid-row-end: 11;
     margin: -6px 0 0 0;
