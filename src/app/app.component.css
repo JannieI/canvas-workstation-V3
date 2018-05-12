@@ -167,7 +167,7 @@
         }
             .widgetXCheckpointLeft {
                 color: blue;
-                font-size: 0.7rem;
+                font-size: 0.5rem;
                 grid-column-start: 2;
                 grid-column-end: 3;
                 grid-row-start: 1;
@@ -211,7 +211,7 @@
             }
             .widgetXCheckpointAnimate {
                 color: gray;
-                font-size: 0.7rem;
+                font-size: 0.5rem;
                 grid-column-start: 4;
                 grid-column-end: 5;
                 grid-row-start: 1;
@@ -221,7 +221,7 @@
             }
             .widgetXCheckpointRight {
                 color: blue;
-                font-size: 0.7rem;
+                font-size: 0.5rem;
                 grid-column-start: 6;
                 grid-column-end: 7;
                 grid-row-start: 1;

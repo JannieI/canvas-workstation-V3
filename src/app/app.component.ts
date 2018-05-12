@@ -5730,14 +5730,46 @@ console.warn('xx this.draggableWidgets', this.draggableWidgets)
 
     }
 
-    widgetXCheckpointAnimate(
+    clickAnimateCheckpoint(
         index: number,
         dashboardID: number,
         id: number,
         showCheckpoints) {
         // Animates Checkpoints
-        this.globalFunctionService.printToConsole(this.constructor.name,'widgetXCheckpointAnimate', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickAnimateCheckpoint', '@Start');
+        
+        let checkpointIDs = this.currentWidgets[index].checkpointIDs;
+        let currentCheckpoint = this.currentWidgets[index].currentCheckpoint;
+        let lastCheckpoint = this.currentWidgets[index].lastCheckpoint;
 
+        var n:number = 10;
+        do { 
+
+            if (this.currentWidgets[index].currentCheckpoint < 
+                this.currentWidgets[index].lastCheckpoint) {
+
+                var start = new Date().getTime();
+                var end = start;
+                while(end < start + 2000) {
+                    end = new Date().getTime();
+                };
+        
+                this.clickNavCheckpoint(
+                    index,
+                    dashboardID,
+                    id,
+                    'Right',
+                    showCheckpoints,
+                    checkpointIDs,
+                    currentCheckpoint,
+                    lastCheckpoint
+                );
+            };
+
+            console.log(n); 
+            n--; 
+
+        } while(n>=0); 
     }
 
     clickNavCheckpoint(
