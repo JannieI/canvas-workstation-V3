@@ -1671,66 +1671,6 @@
                 </widget-single>
             </div>
 
-            <!-- Checkpoint -->
-            <div class="widgetXCheckpoint" *ngIf="!row.showCheckpoints  
-                 &&  (row.currentCheckpoint > 0)"
-                >
-                <div class="widgetXCheckpointLeft"
-                    (click)="clickNavCheckpoint(
-                        i,
-                        row.dashboardID,
-                        row.id,
-                        'Left',
-                        row.showCheckpoints,
-                        row.checkpointIDs,
-                        row.currentCheckpoint,
-                        row.lastCheckpoint
-                        )"
-                    >
-                    <b> < </b>
-                </div>
-
-                <div *ngIf="row.lastCheckpoint >= 0" 
-                    class="widgetXCheckpointCenter"
-                    (click)="clickToggleShowCheckpoint(
-                        i,
-                        row.dashboardID,
-                        row.id,
-                        row.showCheckpoints)"
-                    >
-                    <span class="widgetXCheckpointShowCheckpoint">
-                    </span>
-                </div>
-
-                <div *ngIf="row.lastCheckpoint >= 0"
-                    class="widgetXCheckpointCenter"
-                    (click)="clickToggleShowCheckpoint(
-                        i,
-                        row.dashboardID,
-                        row.id,
-                        row.showCheckpoints)"
-                    >
-                    <span class="widgetXCheckpointShowWidget">
-                    </span>
-                </div>
-                    
-                <div *ngIf="row.currentCheckpoint < row.lastCheckpoint"
-                    class="widgetXCheckpointRight"
-                    (click)="clickNavCheckpoint(
-                        i,
-                        row.dashboardID,
-                        row.id,
-                        'Right',
-                        row.showCheckpoints,
-                        row.checkpointIDs,
-                        row.currentCheckpoint,
-                        row.lastCheckpoint
-                        )"
-                    >
-                    <b> > </b>
-                </div>
-            </div>
-
             <!-- Slicer Object -->
             <div class="widgetX" *ngIf="row.widgetType=='Slicer'"
                 (click)="clickWidgetSlicer($event, i, row.id)"
@@ -1739,17 +1679,6 @@
                     [slicer]="row"
                     >
                 </slicer-single>
-            </div>
-
-            <!-- Graph Checkpoint -->
-            <div class="widgetX" *ngIf="row.widgetType=='Graph'  &&  row.showCheckpoints">
-                <widget-single
-                    #widgetDOM
-                    [widget]="row"
-                    [showDataQuality]="showDataQuality"
-                    [showComments]="showComments"
-                    >
-                </widget-single>
             </div>
         
             <!-- Table Object -->
@@ -2480,6 +2409,78 @@
                     {{ row.shapeText }}
                 </div >
             </div>
+
+            <!-- Graph Checkpoint -->
+            <div class="widgetX" *ngIf="row.widgetType=='Graph'  &&  row.showCheckpoints">
+                <widget-single
+                    #widgetDOM
+                    [widget]="row"
+                    [showDataQuality]="showDataQuality"
+                    [showComments]="showComments"
+                    >
+                </widget-single>
+            </div>
+    
+            <!-- Checkpoint -->
+            <div class="widgetXCheckpoint" *ngIf="!row.showCheckpoints  
+                 &&  (row.currentCheckpoint > 0)"
+                >
+                <div class="widgetXCheckpointLeft"
+                    (click)="clickNavCheckpoint(
+                        i,
+                        row.dashboardID,
+                        row.id,
+                        'Left',
+                        row.showCheckpoints,
+                        row.checkpointIDs,
+                        row.currentCheckpoint,
+                        row.lastCheckpoint
+                        )"
+                    >
+                    <b> < </b>
+                </div>
+
+                <div *ngIf="row.lastCheckpoint >= 0" 
+                    class="widgetXCheckpointCenter"
+                    (click)="clickToggleShowCheckpoint(
+                        i,
+                        row.dashboardID,
+                        row.id,
+                        row.showCheckpoints)"
+                    >
+                    <span class="widgetXCheckpointShowCheckpoint">
+                    </span>
+                </div>
+
+                <div *ngIf="row.lastCheckpoint >= 0"
+                    class="widgetXCheckpointCenter"
+                    (click)="clickToggleShowCheckpoint(
+                        i,
+                        row.dashboardID,
+                        row.id,
+                        row.showCheckpoints)"
+                    >
+                    <span class="widgetXCheckpointShowWidget">
+                    </span>
+                </div>
+                    
+                <div *ngIf="row.currentCheckpoint < row.lastCheckpoint"
+                    class="widgetXCheckpointRight"
+                    (click)="clickNavCheckpoint(
+                        i,
+                        row.dashboardID,
+                        row.id,
+                        'Right',
+                        row.showCheckpoints,
+                        row.checkpointIDs,
+                        row.currentCheckpoint,
+                        row.lastCheckpoint
+                        )"
+                    >
+                    <b> > </b>
+                </div>
+            </div>
+            
         </div>
         
         <!-- W action menu -->
