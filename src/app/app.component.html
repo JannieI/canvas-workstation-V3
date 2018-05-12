@@ -2464,6 +2464,22 @@
                 </div>
                     
                 <div *ngIf="row.currentCheckpoint < row.lastCheckpoint"
+                    class="widgetXCheckpointAnimate"
+                    (click)="clickAnimateCheckpoint(
+                        i,
+                        row.dashboardID,
+                        row.id,
+                        'Right',
+                        row.showCheckpoints,
+                        row.checkpointIDs,
+                        row.currentCheckpoint,
+                        row.lastCheckpoint
+                        )"
+                    >
+                    <b> >> </b>
+                </div>
+                    
+                <div *ngIf="row.currentCheckpoint < row.lastCheckpoint"
                     class="widgetXCheckpointRight"
                     (click)="clickNavCheckpoint(
                         i,

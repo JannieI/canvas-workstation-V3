@@ -157,7 +157,7 @@
         .widgetXCheckpoint {
             display: grid;
         
-            /*                     1   2   3   4   5   6   7   8  */
+            /*                     1   2    3    4    5    6    7    8  */
             grid-template-columns: 1fr 16px 16px 16px 16px 16px 1fr;
             grid-template-rows:    16px;
             margin: 0;
@@ -212,8 +212,8 @@
             .widgetXCheckpointAnimate {
                 color: blue;
                 font-size: 0.7rem;
-                grid-column-start: 5;
-                grid-column-end: 6;
+                grid-column-start: 4;
+                grid-column-end: 5;
                 grid-row-start: 1;
                 grid-row-end: 2;
                 margin: 0;
