@@ -1661,7 +1661,7 @@
             </div>
 
             <!-- Graph Object -->
-            <div class="widgetXGraph" *ngIf="row.widgetType=='Graph'">
+            <div class="widgetXGraph" *ngIf="row.widgetType=='Graph'  &&  !row.showCheckpoints">
                 <widget-single
                     #widgetDOMX
                     [widget]="row"
@@ -2422,8 +2422,7 @@
             </div>
     
             <!-- Checkpoint -->
-            <div class="widgetXCheckpoint" *ngIf="!row.showCheckpoints  
-                 &&  (row.currentCheckpoint > 0)"
+            <div class="widgetXCheckpoint" *ngIf="row.lastCheckpoint > 0"
                 >
                 <div class="widgetXCheckpointLeft"
                     (click)="clickNavCheckpoint(
@@ -2440,7 +2439,7 @@
                     <b> < </b>
                 </div>
 
-                <div *ngIf="row.lastCheckpoint >= 0" 
+                <div *ngIf="!row.showCheckpoints" 
                     class="widgetXCheckpointCenter"
                     (click)="clickToggleShowCheckpoint(
                         i,
@@ -2452,7 +2451,7 @@
                     </span>
                 </div>
 
-                <div *ngIf="row.lastCheckpoint >= 0"
+                <div *ngIf="row.showCheckpoints"
                     class="widgetXCheckpointCenter"
                     (click)="clickToggleShowCheckpoint(
                         i,

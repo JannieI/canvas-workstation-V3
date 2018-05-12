@@ -909,7 +909,7 @@ export class AppComponent implements OnInit {
 
             this.globalVariableService.changedWidget.next(changedWidget);
         };
-        
+
         this.menuOptionClickPostAction();
 
         this.showModalShapeEdit = false;
@@ -3784,7 +3784,7 @@ console.warn('xx index', widgetIndex)
         this.menuOptionClickPreAction();
 
         // Remember editMode setting, and switch to ViewOnly during presentation
-        this. editModePrePresentation = this.editMode;
+        this.editModePrePresentation = this.editMode;
         this.globalVariableService.editMode.next(false);
 
         // Settings, ie Mode
