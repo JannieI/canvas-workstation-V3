@@ -383,19 +383,6 @@
         z-index: 100;
     }
 
-
-
-
-
-
-
-
-
-
-
-/* Widgets */
-
-
 .popupMessage {
     background-color: gray;
     border: 1px solid black;
@@ -409,14 +396,3 @@
     z-index: 100;
 }
 
-
-.widgetContainerJumpLink {
-    background-color: transparent;
-    font-size: 0.7rem;
-    grid-column-start: 8;
-    grid-column-end: 9;
-    grid-row-start: 10;
-    grid-row-end: 11;
-    margin: -6px 0 0 0;
-    padding: 0;
-}
