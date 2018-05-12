@@ -211,34 +211,78 @@ const graphWidth: number = 420;
         let height: number = 300;
 
         // Get X max width
+        let maxLengthX: number = 0;
         if (this.localWidget.graphXfield != ''  &&  this.localWidget.graphXfield != null) {
+            console.warn('xx X this.localWidget.graphXfield', this.localWidget.graphXfield)
             const arrayColumn = (arr, n) => arr.map(x => x[n]) ;
-            const singleColumn = arrayColumn(this.localWidget.graphData, this.localWidget.graphColorField);
-            let maxLengthX: number = 0;
-            const arrayMaxLength = (arr) => arr.map(x => {if (x.length > maxLengthX) maxLengthX = x.length})
-            maxLengthX = arrayMaxLength(singleColumn);
+            const singleColumn = arrayColumn(this.localWidget.graphData, this.localWidget.graphXfield);
+            console.warn('xx X singleColumn', singleColumn)
+            const arrayMaxLength = (arr) => arr.map(x => {
+                if ( (typeof x) != 'string') {
+                    maxLengthX = 12;
+                } else {
+
+                    if (x.length > maxLengthX) {
+                        maxLengthX = x.length
+                    };
+                };
+            });
+            let temp = arrayMaxLength(singleColumn);
+            console.warn('xx X temp', temp)
             console.warn('xx X maxLength', maxLengthX)
         };
 
-        // Get color max width
+        // Get Y max width
+        let maxLengthY: number = 0;
         if (this.localWidget.graphYfield != ''  &&  this.localWidget.graphYfield != null) {
+            console.warn('xx X this.localWidget.graphYfield', this.localWidget.graphYfield)
             const arrayColumn = (arr, n) => arr.map(x => x[n]) ;
-            const singleColumn = arrayColumn(this.localWidget.graphData, this.localWidget.graphColorField);
-            let maxLengthY: number = 0;
-            const arrayMaxLength = (arr) => arr.map(x => {if (x.length > maxLengthY) maxLengthY = x.length})
-            maxLengthY = arrayMaxLength(singleColumn);
-            console.warn('xx Y maxLength', maxLengthY)
+            const singleColumn = arrayColumn(this.localWidget.graphData, this.localWidget.graphYfield);
+            console.warn('xx X singleColumn', singleColumn)
+            const arrayMaxLength = (arr) => arr.map(x => {
+                if ( (typeof x) != 'string') {
+                    maxLengthY = 12;
+                } else {
+
+                    if (x.length > maxLengthY) {
+                        maxLengthY = x.length
+                    };
+                };
+            });
+            let temp = arrayMaxLength(singleColumn);
+            console.warn('xx X temp', temp)
+            console.warn('xx X maxLength', maxLengthY)
         };
 
         // Get color max width
+        let maxLengthColor: number = 0;
         if (this.localWidget.graphColorField != ''  &&  this.localWidget.graphColorField != null) {
+            console.warn('xx X this.localWidget.graphColorField', this.localWidget.graphColorField)
             const arrayColumn = (arr, n) => arr.map(x => x[n]) ;
             const singleColumn = arrayColumn(this.localWidget.graphData, this.localWidget.graphColorField);
-            let maxLengthColor: number = 0;
-            const arrayMaxLength = (arr) => arr.map(x => {if (x.length > maxLengthColor) maxLengthColor = x.length})
-            maxLengthColor = arrayMaxLength(singleColumn);
-            console.warn('xx color maxLength', maxLengthColor)
+            console.warn('xx X singleColumn', singleColumn)
+            const arrayMaxLength = (arr) => arr.map(x => {
+                if ( (typeof x) != 'string') {
+                    maxLengthColor = 12;
+                } else {
+
+                    if (x.length > maxLengthColor) {
+                        maxLengthColor = x.length
+                    };
+                };
+            });
+            let temp = arrayMaxLength(singleColumn);
+            console.warn('xx X temp', temp)
+            console.warn('xx X maxLength', maxLengthColor)
         };
+        // let maxLengthColor: number = 0;
+        // if (this.localWidget.graphColorField != ''  &&  this.localWidget.graphColorField != null) {
+        //     const arrayColumn = (arr, n) => arr.map(x => x[n]) ;
+        //     const singleColumn = arrayColumn(this.localWidget.graphData, this.localWidget.graphColorField);
+        //     const arrayMaxLength = (arr) => arr.map(x => {if (x.length > maxLengthColor) maxLengthColor = x.length})
+        //     let temp = arrayMaxLength(singleColumn);
+        //     console.warn('xx color maxLength', maxLengthColor)
+        // };
 
         // Reduce width of legend by length of selected field
         if (this.localWidget.graphColorField != ''  &&  this.localWidget.graphColorField != null) {
