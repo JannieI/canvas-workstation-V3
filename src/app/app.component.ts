@@ -16,7 +16,9 @@ import { Renderer }                   from '@angular/core';
 import { Router }                     from '@angular/router';
 import { ViewChild }                  from '@angular/core';
 import { ViewChildren }               from '@angular/core';
-import {Observable}                   from 'rxjs/Rx';
+import { Observable }                 from 'rxjs/Rx';
+import { Subscription }               from "rxjs";
+import { TimerObservable }            from "rxjs/observable/TimerObservable";
 
 // Own Services
 import { GlobalVariableService }      from './global-variable.service';
@@ -408,6 +410,7 @@ export class AppComponent implements OnInit {
     zoomFactor: string = 'scale(1)';
 
 
+    private subscription: Subscription;
     view: any;
 
     constructor(
@@ -2818,7 +2821,7 @@ console.warn('xx filteredActions', filteredActions)
     clickMenuWidgetFullScreen(widgetIndex: number = null) {
         // Show the selected W in full screen
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetFullScreen', '@Start');
-console.warn('xx index', widgetIndex)
+
         if (widgetIndex == null) {
 
             // Can only edit one W at a time, so ignore if multiple selected
@@ -5718,36 +5721,11 @@ console.warn('xx this.draggableWidgets', this.draggableWidgets)
         currentCheckpoint = 0;
         var n:number = 0;
         
-        let timer = Observable.timer(3000,3000);
-        timer.subscribe(t=> {
+        // OLD way, no unsubscribe
+        // let timer = Observable.timer(3000,3000);
+        // timer.subscribe(t=> {
 
-            if (n <= lastCheckpoint) {
-                this.clickNavCheckpoint(
-                    index,
-                    dashboardID,
-                    id,
-                    'Right',
-                    showCheckpoints,
-                    checkpointIDs,
-                    currentCheckpoint + n,
-                    lastCheckpoint
-                );
-            };
-            n++;
-        });
-
-        // do { 
-
-        //     if (this.currentWidgets[index].currentCheckpoint < 
-        //         this.currentWidgets[index].lastCheckpoint) {
-
-        //         var start = new Date().getTime();
-        //         var end = start;
-        //         while(end < start + 500) {
-        //             end = new Date().getTime();
-        //         };
-        
-        //         console.warn('xx currentCheckpoint', currentCheckpoint + n)
+        //     if (n <= lastCheckpoint) {
         //         this.clickNavCheckpoint(
         //             index,
         //             dashboardID,
@@ -5759,11 +5737,29 @@ console.warn('xx this.draggableWidgets', this.draggableWidgets)
         //             lastCheckpoint
         //         );
         //     };
+        //     n++;
+        // });
 
-        //     console.log(n); 
-        //     n++; 
-
-        // } while(n <= lastCheckpoint); 
+        let timer = TimerObservable.create(3000, 3000);
+        this.subscription = timer.subscribe(t => {
+            if (n <= lastCheckpoint) {
+                this.clickNavCheckpoint(
+                    index,
+                    dashboardID,
+                    id,
+                    'Right',
+                    showCheckpoints,
+                    checkpointIDs,
+                    currentCheckpoint + n,
+                    lastCheckpoint
+                );
+                n++;
+            } else {
+                console.warn('xx unsubcribe from Observable')
+                this.subscription.unsubscribe();
+            };
+        });
+    
     }
 
     clickNavCheckpoint(
