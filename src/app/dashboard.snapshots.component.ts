@@ -53,6 +53,15 @@ export class DashboardSnapshotsComponent implements OnInit {
             this.globalVariableService.currentDashboardInfo.value.currentDashboardID).then
               (i => this.currentDashboardSnapshots = i.slice());
 
+        let dashboardIndex: number = this.globalVariableService.dashboards.findIndex(
+            d => d.id ==
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardID
+        );
+        if (dashboardIndex >= 0) {
+            let today = new Date();
+            this.snapshotName = this.globalVariableService.dashboards[dashboardIndex]
+                .name + this.globalVariableService.formatDate(today);
+        };
     }
 
     clickClose(action: string) {
@@ -75,7 +84,7 @@ export class DashboardSnapshotsComponent implements OnInit {
         // Save the snapshot
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
-        // Get the currentXXX info from global - these contain all the info relevant to 
+        // Get the currentXXX info from global - these contain all the info relevant to
         // the current D
         let dashboardID: number = this.globalVariableService.currentDashboardInfo.value.
             currentDashboardID;
@@ -123,7 +132,7 @@ export class DashboardSnapshotsComponent implements OnInit {
         snap.dashboards.forEach(s => {
             dsIDs.push(s.id);
         });
-        
+
         this.globalVariableService.dashboards = this.globalVariableService.dashboards.
             filter(d => dsIDs.indexOf(d.id) < 0
         );
