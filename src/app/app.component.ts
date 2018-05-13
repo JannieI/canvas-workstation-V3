@@ -5061,18 +5061,6 @@ console.warn('xx index', widgetIndex)
         // Close Presentation Mode, and return to prior state
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClosePresentation', '@Start');
 
-        // Go back to EditMode if user was there where Presentation started
-        if (this.editModePrePresentation) {
-            this.globalVariableService.editMode.next(true);
-            this.editMode = true;
-        };
-
-        // Reset all the Originals Checkpoint
-        this.currentWidgetsOriginals.forEach(wo => {
-                wo.showCheckpoints = false;
-                this.globalVariableService.changedWidget.next(wo);
-        });
-
         // Reset vars
         this.showMainMenu = true;
     }
