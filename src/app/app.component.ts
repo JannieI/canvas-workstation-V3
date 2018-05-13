@@ -5734,15 +5734,18 @@ console.warn('xx this.draggableWidgets', this.draggableWidgets)
         index: number,
         dashboardID: number,
         id: number,
-        showCheckpoints) {
+        direction: string,
+        showCheckpoints: boolean,
+        checkpointIDs: number[],
+        currentCheckpoint: number,
+        lastCheckpoint: number) {
         // Animates Checkpoints
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAnimateCheckpoint', '@Start');
-        
-        let checkpointIDs = this.currentWidgets[index].checkpointIDs;
-        let currentCheckpoint = this.currentWidgets[index].currentCheckpoint;
-        let lastCheckpoint = this.currentWidgets[index].lastCheckpoint;
 
-        var n:number = 10;
+        // Reset
+        currentCheckpoint = 0;
+        var n:number = 0;
+
         do { 
 
             if (this.currentWidgets[index].currentCheckpoint < 
@@ -5750,10 +5753,11 @@ console.warn('xx this.draggableWidgets', this.draggableWidgets)
 
                 var start = new Date().getTime();
                 var end = start;
-                while(end < start + 2000) {
+                while(end < start + 500) {
                     end = new Date().getTime();
                 };
         
+                console.warn('xx currentCheckpoint', currentCheckpoint + n)
                 this.clickNavCheckpoint(
                     index,
                     dashboardID,
@@ -5761,15 +5765,15 @@ console.warn('xx this.draggableWidgets', this.draggableWidgets)
                     'Right',
                     showCheckpoints,
                     checkpointIDs,
-                    currentCheckpoint,
+                    currentCheckpoint + n,
                     lastCheckpoint
                 );
             };
 
             console.log(n); 
-            n--; 
+            n++; 
 
-        } while(n>=0); 
+        } while(n <= lastCheckpoint); 
     }
 
     clickNavCheckpoint(
