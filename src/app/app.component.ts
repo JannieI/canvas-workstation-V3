@@ -3771,9 +3771,9 @@ console.warn('xx index', widgetIndex)
 
     // ***********************  CLICK VIEW MENU OPTIONS ************************ //
 
-    clickMenuViewPresentation() {
-        // Show the dashboard in Presentation Mode
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewPresentation', '@Start');
+    clickMenuViewHideMenu() {
+        // Hides menu
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewHideMenu', '@Start');
 
         this.menuOptionClickPreAction();
 
@@ -5056,9 +5056,9 @@ console.warn('xx index', widgetIndex)
 
     }
 
-    clickClosePresentation() {
-        // Close Presentation Mode, and return to prior state
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickClosePresentation', '@Start');
+    clickShowMenu() {
+        // Show main menu
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowMenu', '@Start');
 
         // Reset vars
         this.showMainMenu = true;
