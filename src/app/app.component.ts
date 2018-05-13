@@ -268,7 +268,6 @@ export class AppComponent implements OnInit {
     currentWidgetDashboardTabIDs: number[] = [];  // Of current W
     draggableWidgets: number[] = [];
     editMode: boolean;
-    editModePrePresentation: boolean;
     hasDashboard: boolean = false;
     hasDatasources: boolean = false;
     editMenuText: string;
