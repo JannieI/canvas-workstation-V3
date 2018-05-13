@@ -3778,16 +3778,8 @@ console.warn('xx index', widgetIndex)
 
         this.menuOptionClickPreAction();
 
-        // Remember editMode setting, and switch to ViewOnly during presentation
-        this.editModePrePresentation = this.editMode;
-        this.globalVariableService.editMode.next(false);
-
         // Settings, ie Mode
         this.showMainMenu = false;
-
-        // Clean out previously used vars for Checkpoints
-        this.currentWidgetsOriginals = [];
-        this.currentWidgetCheckpoints = [];
 
         this.menuOptionClickPostAction();
     }
