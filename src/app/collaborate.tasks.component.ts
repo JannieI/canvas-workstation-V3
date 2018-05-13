@@ -6,6 +6,7 @@
 import { Component }                  from '@angular/core';
 import { ElementRef }                 from '@angular/core';
 import { EventEmitter }               from '@angular/core';
+import { HostListener }               from '@angular/core';
 import { Input }                      from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
@@ -27,7 +28,7 @@ import { DatagridColumn }             from './models';
 import { compile }                    from 'vega-lite';
 import { parse }                      from 'vega';
 import { View }                       from 'vega';
-
+ 
 @Component({
     selector: 'collaborate-tasks',
     templateUrl: './collaborate.tasks.component.html',
@@ -38,6 +39,19 @@ export class CollaborateTasksComponent implements OnInit {
     @Output() formCollaborateTasksClosed: EventEmitter<string> = new EventEmitter();
     @ViewChild('widgetDOM') widgetDOM: ElementRef;
 
+    @HostListener('window:keyup', ['$event'])
+    keyEvent(event: KeyboardEvent) {
+        console.log(event);
+        event.preventDefault();
+
+        // Known ones
+        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+            this.clickClose('Close');
+            return;
+        };
+
+    }
+    
     canvasTasks: CanvasTask[] = [];
     canvasTasksOrignal: CanvasTask[] = [];
     dashboardNames: string[] = [];
