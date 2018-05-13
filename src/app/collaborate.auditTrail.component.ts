@@ -6,6 +6,7 @@
 import { Component }                  from '@angular/core';
 import { ElementRef }                 from '@angular/core';
 import { EventEmitter }               from '@angular/core';
+import { HostListener }               from '@angular/core';
 import { Input }                      from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
@@ -29,6 +30,19 @@ export class CollaborateAuditTrailComponent implements OnInit {
 
     @Output() formCollaborateAuditTrailClosed: EventEmitter<string> = new EventEmitter();
     @ViewChild('widgetDOM') widgetDOM: ElementRef;
+
+    @HostListener('window:keyup', ['$event'])
+    keyEvent(event: KeyboardEvent) {
+        console.log(event);
+        event.preventDefault();
+
+        // Known ones
+        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+            this.clickClose('Close');
+            return;
+        };
+
+    }
 
     canvasAuditTrail: CanvasAuditTrail[];
     selectedRow: number = 0;

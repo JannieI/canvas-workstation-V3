@@ -421,56 +421,6 @@ export class AppComponent implements OnInit {
 
     ) {
 
-        // TODO - change hard coding & do via login (Server), and Standalone
-        // this.globalVariableService.currentUser = {
-        //     id: 1,
-        //     userID: 'JannieI',
-        //     password: '',
-        //     firstName: '',
-        //     lastName: '',
-        //     nickName: '',
-        //     email: '',
-        //     workNumber: '',
-        //     cellNumber: '',
-        //     groups: ['everyone', 'admin', 'marketing'],
-        //     isSuperuser: false,
-        //     isStaff: false,
-        //     isActive: false,
-        //     dateJoined: '2017/01/01',
-        //     lastLogin: '2017/01/01',
-        //     colorScheme: '',
-        //     startupDashboardID: 6,
-        //     startupDashboardTabID: 0,
-        //     gridSize: 3,
-        //     environment: '',
-        //     profilePicture: '',
-        //     queryRuntimeWarning: 3,
-        //     snapToGrid: false,
-        //     favouriteDashboards: [1],
-        //     isFirstTimeUser: true,
-        //     isAdministrator: true,
-        //     isDashboardCreator: true,
-        //     isDashboardEditor: true,
-        //     isDashboardSaver :true,
-        //     isDashboardQA: false,
-        //     isDashboardDelete: true,
-        //     isDashboardAccess: true,
-        //     preferencePaletteHorisontal: false,
-        //     preferenceAutoSync: true,
-        //     preferenceShowOpenStartupMessage: false,
-        //     preferenceShowOpenDataCombinationMessage: false,
-        //     preferenceShowViewStartupMessage: false,
-        //     preferenceShowDiscardStartupMessage: false,
-        //     preferenceDefaultTemplate: '',
-        //     preferenceDefaultDateformat: 'YYYY/MM/DD',
-        //     preferenceDefaultFolder: '',
-        //     preferenceDefaultPrinter: 'HP 650',
-        //     preferenceDefaultPageSize: 'A4',
-        //     preferenceDefaultPageLayout: 'Portrait'
-
-        // }
-
-        // console.log('Welcome ', this.globalVariableService.currentUser.userID)
     }
 
     ngOnInit() {

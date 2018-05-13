@@ -26,7 +26,7 @@ import { DatagridInput }              from './models';
     styleUrls: ['./collaborate.messages.component.css']
 })
 export class CollaborateMessagesComponent implements OnInit {
-
+ 
     @Output() formCollaborateMessagesClosed: EventEmitter<string> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
