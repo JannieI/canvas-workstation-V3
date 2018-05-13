@@ -46,7 +46,6 @@ import { GlobalVariableService }      from './global-variable.service';
     hasClicked: boolean = false;
     localWidget: Widget;                            // W to modify, copied from selected
     opened: boolean = true;
-    presentationMode: boolean;
     showPropertiesArea: boolean;
     rowField: string = 'Drag a field here ...';
     selectedRow: string[] = [];
@@ -109,9 +108,6 @@ import { GlobalVariableService }      from './global-variable.service';
             this.clickDSrow(this.localWidget.datasourceID)
         }
 
-        this.globalVariableService.presentationMode.subscribe(
-            pres => this.presentationMode = pres
-        );
     }
 
     ngOnDestroy() {
@@ -120,7 +116,6 @@ import { GlobalVariableService }      from './global-variable.service';
         // Called just before Angular destroys the directive/component.
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnDestroy', '@Start');
 
-        // this.globalVariableService.presentationMode.unsubscribe();
     }
     
     ngAfterViewInit() {
