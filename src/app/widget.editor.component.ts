@@ -81,7 +81,6 @@ const graphWidth: number = 420;
     hasClicked: boolean = false;
     localWidget: Widget;                            // W to modify, copied from selected
     opened: boolean = true;
-    presentationMode: boolean;
     rowField: string = 'Drag a field here ...';
     selectedViz: string = 'Graph';
     showColFieldAdvanced: boolean = false;
@@ -174,9 +173,6 @@ const graphWidth: number = 420;
 
         }
 
-        this.globalVariableService.presentationMode.subscribe(
-            pres => this.presentationMode = pres
-        );
     }
 
     ngAfterViewInit() {
@@ -198,7 +194,6 @@ const graphWidth: number = 420;
         // Called just before Angular destroys the directive/component.
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnDestroy', '@Start');
 
-        // this.globalVariableService.presentationMode.unsubscribe();
     }
 
     renderGraph(definition: any) {
