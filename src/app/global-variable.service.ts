@@ -618,7 +618,6 @@ export class GlobalVariableService {
     // ***************************************
     // Modes and Display
     editMode = new BehaviorSubject<boolean>(false);
-    presentationMode = new BehaviorSubject<boolean>(false);
     showGrid = new BehaviorSubject<boolean>(false);
     showPalette = new BehaviorSubject<boolean>(true);
     preferencePaletteHorisontal = new BehaviorSubject<boolean>(true);
