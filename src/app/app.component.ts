@@ -213,11 +213,11 @@ export class AppComponent implements OnInit {
                 );
                 return;
             };
-                
+
             // Set start coordinates
             this.startX = 0;
             this.startY = 0;
-            
+
             // Set end coordinates
             if (event.keyCode === KEY_CODE.RIGHT_ARROW) {
                 this.endX = this.globalVariableService.canvasSettings.gridSize;
@@ -408,7 +408,8 @@ export class AppComponent implements OnInit {
     zoomFactor: string = 'scale(1)';
 
 
-    private subscription: Subscription;
+    subscriptionSnapshot: Subscription;
+    subscriptionAnimation: Subscription;
     view: any;
 
     constructor(
@@ -466,9 +467,9 @@ export class AppComponent implements OnInit {
         //     preferenceDefaultPrinter: 'HP 650',
         //     preferenceDefaultPageSize: 'A4',
         //     preferenceDefaultPageLayout: 'Portrait'
-            
+
         // }
-        
+
         // console.log('Welcome ', this.globalVariableService.currentUser.userID)
     }
 
@@ -478,6 +479,36 @@ export class AppComponent implements OnInit {
 
         // Get Users and Groups, async
         this.globalVariableService.getCanvasGroups();
+
+        // TODO - make this 30 mins user-defined if needed
+        let timer = TimerObservable.create(1800000, 1800000);
+        this.subscriptionSnapshot = timer.subscribe(t => {
+            if (this.editMode) {
+                console.warn('xx subscribe Timer')
+                let dashboardIndex: number = this.globalVariableService.dashboards.findIndex(
+                    d => d.id ==
+                    this.globalVariableService.currentDashboardInfo.value.currentDashboardID
+                );
+                if (dashboardIndex >= 0) {
+                    let today = new Date();
+                    let snapshotName: string = this.globalVariableService.dashboards[
+                        dashboardIndex]
+                        .name + ' ' + this.globalVariableService.formatDate(today);
+                    let snapshotComment: string = 'Automated Snapshot';
+                    this.globalVariableService.newDashboardSnapshot(
+                        snapshotName, snapshotComment).then(res => {
+                            this.showMessage(
+                                'Added automated Snapshot)',
+                                'StatusBar',
+                                'Info',
+                                3000,
+                                ''
+                            );
+
+                    });
+                };
+            };
+        });
 
         // TODO - fix hard coding, must be done via Login
         this.globalVariableService.getCanvasUsers().then(res => {
@@ -496,18 +527,18 @@ export class AppComponent implements OnInit {
                     };
                     return 0;
                 });
-    
+
                 // Synch BehSubj that hold orientation
-                this.globalVariableService.preferencePaletteHorisontal.next( 
+                this.globalVariableService.preferencePaletteHorisontal.next(
                     this.globalVariableService.currentUser.preferencePaletteHorisontal
                 );
-    
+
                 this.globalVariableService.preferencePaletteHorisontal.subscribe(i =>
 
                     // Calc the W and H - store and this.paletteHeight and this.paletteWidth
                     this.setPaletteHeightAndWidth()
                 );
-        
+
             });
         });
 
@@ -693,8 +724,8 @@ export class AppComponent implements OnInit {
         this.showModalDashboardNew = false;
 
         // Show help for first time users
-        if (action == 'Created'  
-            && 
+        if (action == 'Created'
+            &&
             this.globalVariableService.currentUser.isFirstTimeUser) {
             this.isFirstTimeUser = true;
         }
@@ -882,7 +913,7 @@ export class AppComponent implements OnInit {
 
         this.showModalDashboardUsageStats = false;
     }
-    
+
     handleCloseShapeEdit(changedWidget: Widget) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseShapeEdit', '@Start');
@@ -940,7 +971,7 @@ export class AppComponent implements OnInit {
 
         this.showModalShapeDelete = false;
     }
-    
+
     handleCloseWidgetAnnotations(action: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardAnnotations', '@Start');
@@ -1070,7 +1101,7 @@ export class AppComponent implements OnInit {
 
         this.showModalWidgetTablist = false;
     }
-    
+
     handleCloseWidgetDescription(tabIDs: number[]) {
         // Handle close of Description form
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetDescription', '@Start');
@@ -1122,7 +1153,7 @@ export class AppComponent implements OnInit {
 
         this.showModalDataShare = false;
     }
-    
+
     handleCloseDataDictionary(action: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDictionary', '@Start');
@@ -1131,7 +1162,7 @@ export class AppComponent implements OnInit {
 
         this.showModalDataDictionary = false;
     }
-    
+
     handleCloseDataSummary(action: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataSummary', '@Start');
@@ -1140,7 +1171,7 @@ export class AppComponent implements OnInit {
 
         this.showModalDataSummary = false;
     }
-    
+
     handleCloseWidgetContainer(changedWidget: Widget) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetContainer', '@Start');
@@ -1262,7 +1293,7 @@ export class AppComponent implements OnInit {
 
         // Delete if so requested
         if (action == 'Delete') {
-            
+
             // Add to Action log
             this.globalVariableService.actionUpsert(
                 null,
@@ -1292,7 +1323,7 @@ export class AppComponent implements OnInit {
 
         // Delete if so requested
         if (action == 'Delete') {
-            
+
             // Add to Action log
             this.globalVariableService.actionUpsert(
                 null,
@@ -1333,7 +1364,7 @@ export class AppComponent implements OnInit {
 
         this.showModalCollaborateAuditTrail = false;
     }
-    
+
     handleCloseCollaborateMessages(action: string) {
         // Close Messages form
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseCollaborateMessages', '@Start');
@@ -1423,7 +1454,7 @@ export class AppComponent implements OnInit {
 
         this.showModalUserMyPermissions = false;
     }
-    
+
     handleCloseUserdMyProfile(action: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseUserdMyProfile', '@Start');
@@ -1551,8 +1582,8 @@ export class AppComponent implements OnInit {
 
         // Register in recent
         this.globalVariableService.amendDashboardRecent(
-            this.globalVariableService.currentDashboardInfo.value.currentDashboardID, 
-            this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID); 
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID);
 
         this.menuOptionClickPostAction();
     }
@@ -1822,10 +1853,10 @@ console.warn('xx filteredActions', filteredActions)
                                 if (ourActions[i].oldWidget == null) {
                                     this.deleteWidget('Graph',ourActions[i].newWidget.id);
                                 } else {
-                               
+
                                     // Save to DB
                                     this.globalVariableService.saveWidget(ourActions[i].oldWidget);
-     
+
                                     this.globalVariableService.changedWidget.next(
                                         ourActions[i].oldWidget);
                                 };
@@ -2368,7 +2399,7 @@ console.warn('xx filteredActions', filteredActions)
         this.menuOptionClickPreAction();
 
         this.showModalDashboardUsageStats = true;
-    }    
+    }
 
 
 
@@ -2473,7 +2504,7 @@ console.warn('xx filteredActions', filteredActions)
 
         this.showModalDataShare = true;
     }
-    
+
     clickMenuDataDictionary() {
         // Shows Data Dictionary
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDictionary', '@Start');
@@ -2482,7 +2513,7 @@ console.warn('xx filteredActions', filteredActions)
 
         this.showModalDataDictionary = true;
     }
-    
+
     clickMenuDataSummary() {
         // Shows Data Summary
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataSummary', '@Start');
@@ -2491,8 +2522,8 @@ console.warn('xx filteredActions', filteredActions)
 
         this.showModalDataSummary = true;
     }
-    
-    
+
+
 
 
 
@@ -2533,12 +2564,12 @@ console.warn('xx filteredActions', filteredActions)
     }
 
     clickMenuWidgetEdit(
-        widgetID: number = null, 
-        widgetIndex: number = null, 
+        widgetID: number = null,
+        widgetIndex: number = null,
         canSave: boolean = true) {
         // Open W Editor
         //  widgetID - optional W-ID to open, does not depend on what was selected
-        //  widgetIndex - optional [W] index to open, does not depend on what was selected 
+        //  widgetIndex - optional [W] index to open, does not depend on what was selected
         //  canSave - if Saving is allowed in W Editor
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetEdit', '@Start');
 
@@ -2587,7 +2618,7 @@ console.warn('xx filteredActions', filteredActions)
         };
 
         this.menuOptionClickPreAction();
-        
+
         this.newWidget = false;
         this.newWidgetContainerLeft = 0;
         this.newWidgetContainerTop = 0;
@@ -2660,14 +2691,14 @@ console.warn('xx filteredActions', filteredActions)
 
         // Set the selected W
         this.currentWidgets.forEach(w => {
-            if (w.isSelected  &&  (selectedWidgetID == null) 
+            if (w.isSelected  &&  (selectedWidgetID == null)
                 ||
-                (w.id == selectedWidgetID   &&  (selectedWidgetID != null) ) 
+                (w.id == selectedWidgetID   &&  (selectedWidgetID != null) )
                 ) {
                 this.selectedWidget = w;
             };
         })
-        
+
         this.showModalWidgetCheckpoints = true;
     }
 
@@ -2699,14 +2730,14 @@ console.warn('xx filteredActions', filteredActions)
                 );
                 return;
         };
-        
+
         this.menuOptionClickPreAction();
 
         // Set the selected W
         this.currentWidgets.forEach(w => {
-            if (w.isSelected  &&  (selectedWidgetID == null) 
+            if (w.isSelected  &&  (selectedWidgetID == null)
                ||
-               (w.id == selectedWidgetID   &&  (selectedWidgetID != null) ) 
+               (w.id == selectedWidgetID   &&  (selectedWidgetID != null) )
                ) {
                 this.selectedWidget = w;
             };
@@ -2942,8 +2973,8 @@ console.warn('xx filteredActions', filteredActions)
 
         // Check permissions
         let permissions: string[] = this.globalVariableService.dashboardPermissionList(this.globalVariableService.currentDashboardInfo.value.currentDashboardID);
-        if ( (permissions.indexOf('canedit') < 0)  
-              &&  
+        if ( (permissions.indexOf('canedit') < 0)
+              &&
               (permissions.indexOf('candelete)') < 0) ) {
             this.showMessage(
                 'Insufficient permissions',
@@ -2954,7 +2985,7 @@ console.warn('xx filteredActions', filteredActions)
             );
             return;
         };
-        
+
         // Has to be in editMode
         if (!this.editMode) {
             this.showMessage(
@@ -2982,7 +3013,7 @@ console.warn('xx filteredActions', filteredActions)
 
         this.menuOptionClickPostAction;
     }
-    
+
     clickMenuWidgetCopy() {
         // Copy selected Widget to our 'clipboard'
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetCopy', '@Start');
@@ -3452,12 +3483,12 @@ console.warn('xx filteredActions', filteredActions)
     }
 
     clickMenuWidgetDescription(
-        widgetID: number = null, 
+        widgetID: number = null,
         widgetIndex: number = null
         ) {
         // Open the W Description form
         //  widgetID - optional W-ID to open, does not depend on what was selected
-        //  widgetIndex - optional [W] index to open, does not depend on what was selected 
+        //  widgetIndex - optional [W] index to open, does not depend on what was selected
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetDescription', '@Start');
 
         // Indicate edit W and open Editor, which will work with selected W
@@ -3479,7 +3510,7 @@ console.warn('xx filteredActions', filteredActions)
         } else {
             this.selectedWidget = this.currentWidgets[widgetIndex];
         };
-        
+
         this.showModalWidgetDescription = true;
     }
 
@@ -3881,10 +3912,10 @@ console.warn('xx filteredActions', filteredActions)
                     this.globalVariableService.canvasSettings.widgetsMinZindex,
                     this.currentWidgets[i].containerZindex - 1
                 );
-                                              
+
                 // Save to DB
                 this.globalVariableService.saveWidget(this.currentWidgets[i]);
-  
+
                 // Refresh the Dashboard
                 this.globalVariableService.changedWidget.next(this.currentWidgets[i]);
             };
@@ -3905,10 +3936,10 @@ console.warn('xx filteredActions', filteredActions)
                     this.globalVariableService.canvasSettings.widgetsMaxZindex,
                     this.currentWidgets[i].containerZindex + 1
                 );
-                                
+
                 // Save to DB
                 this.globalVariableService.saveWidget(this.currentWidgets[i]);
-  
+
                 // Refresh the Dashboard
                 this.globalVariableService.changedWidget.next(this.currentWidgets[i]);
             };
@@ -3928,10 +3959,10 @@ console.warn('xx filteredActions', filteredActions)
             if (this.currentWidgets[i].isSelected) {
                 this.currentWidgets[i].containerZindex =
                     this.globalVariableService.canvasSettings.widgetsMinZindex;
-                  
+
                 // Save to DB
                 this.globalVariableService.saveWidget(this.currentWidgets[i]);
-  
+
                 // Refresh the Dashboard
                 this.globalVariableService.changedWidget.next(this.currentWidgets[i]);
             };
@@ -3951,10 +3982,10 @@ console.warn('xx filteredActions', filteredActions)
             if (this.currentWidgets[i].isSelected) {
                 this.currentWidgets[i].containerZindex =
                     this.globalVariableService.canvasSettings.widgetsMaxZindex;
-    
+
                 // Save to DB
                 this.globalVariableService.saveWidget(this.currentWidgets[i]);
-                
+
                 // Refresh the Dashboard
                 this.globalVariableService.changedWidget.next(this.currentWidgets[i]);
             };
@@ -4537,7 +4568,7 @@ console.warn('xx filteredActions', filteredActions)
 
         this.menuOptionClickPostAction();
     }
-    
+
     clickMenuCollaborateMessages() {
         // Show list of Canvas Messages
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuCollaborateMessages', '@Start');
@@ -4634,7 +4665,7 @@ console.warn('xx filteredActions', filteredActions)
         this.menuOptionClickPreAction();
 
         this.showModalUserMyPermissions = true;
-    }   
+    }
 
     clickMenuUserPaletteButtonBar() {
         //
@@ -4883,7 +4914,7 @@ console.warn('xx filteredActions', filteredActions)
         this.clickMenuWidgetDataSummary(index);
 
     }
-    
+
     contextmenuWidgetDataQuality(ev: any, index: number, id: number) {
         // Open context / dropdown Menu for Data Quality from the Title Bar
         this.globalFunctionService.printToConsole(this.constructor.name,'contextmenuWidgetDataQuality', '@Start');
@@ -4902,7 +4933,7 @@ console.warn('xx filteredActions', filteredActions)
         this.clickMenuWidgetDataDictionary(index);
 
     }
-    
+
     contextmenuWidgetUsageStats(ev: any, index: number, id: number) {
         // Open context / dropdown Menu for Data Summary from the Title Bar
         this.globalFunctionService.printToConsole(this.constructor.name,'contextmenuWidgetUsageStats', '@Start');
@@ -4912,9 +4943,9 @@ console.warn('xx filteredActions', filteredActions)
     }
 
 
-    
 
-    
+
+
     // ***********************  WIDGET ACTION MENU  ************************ //
 
     actionmenuWidgetEditor(ev: MouseEvent, index: number, id: number) {
@@ -4938,7 +4969,7 @@ console.warn('xx filteredActions', filteredActions)
         this.clickMenuWidgetFullScreen(index);
 
     }
-    
+
     clickCloseFullScreen() {
         // Opens W full screen)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickCloseFullScreen', '@Start');
@@ -5030,11 +5061,11 @@ console.warn('xx filteredActions', filteredActions)
     clickPaletteDragEnd(ev: MouseEvent) {
         // Move the Palette at the end of the drag event
         this.globalFunctionService.printToConsole(this.constructor.name,'clickPaletteDragEnd', '@Start');
-          
+
         // Get final coordinates of cursor after move
         this.endX = ev.x;
-        this.endY = ev.y; 
-        
+        this.endY = ev.y;
+
         // Move the Palette
             this.paletteLeft = this.paletteLeft - this.startX + this.endX;
             this.paletteTop = this.paletteTop - this.startY + this.endY;
@@ -5236,7 +5267,7 @@ console.warn('xx this.draggableWidgets', this.draggableWidgets)
                     // Move the container
                     w.containerLeft = w.containerLeft - this.startX + this.endX;
                     w.containerTop =  w.containerTop - this.startY + this.endY;
-                    
+
                     // Sanitize
                     w.containerLeft = Math.min((window.innerWidth - 5), w.containerLeft);
                     w.containerTop =  Math.min((window.innerHeight - 5), w.containerTop);
@@ -5404,15 +5435,15 @@ console.warn('xx this.draggableWidgets', this.draggableWidgets)
                     this.currentWidgets[index].containerTop;
             };
             this.currentWidgets[index].containerHeight =
-                Math.max(this.minWidgetContainerHeight, 
+                Math.max(this.minWidgetContainerHeight,
                     this.currentWidgets[index].containerHeight - ev.y + this.startY);
             if (gvIndex != -1) {
                 this.globalVariableService.currentWidgets[gvIndex].containerHeight =
-                    Math.max(this.minWidgetContainerHeight, 
+                    Math.max(this.minWidgetContainerHeight,
                         this.currentWidgets[index].containerHeight);
             };
 
-            this.currentWidgets[index].graphHeight = Math.max(this.minGraphHeight, 
+            this.currentWidgets[index].graphHeight = Math.max(this.minGraphHeight,
                 this.currentWidgets[index].graphHeight - ev.y + this.startY);
             if (gvIndex != -1) {
                 this.globalVariableService.currentWidgets[gvIndex].graphHeight =
@@ -5422,16 +5453,16 @@ console.warn('xx this.draggableWidgets', this.draggableWidgets)
 
         // Right moved: adjust the width
         if (resizeRight) {
-            this.currentWidgets[index].containerWidth =  
-                Math.max(this.minWidgetContainerWidth, 
+            this.currentWidgets[index].containerWidth =
+                Math.max(this.minWidgetContainerWidth,
                     this.currentWidgets[index].containerWidth - this.startX + ev.x);
             if (gvIndex != -1) {
                 this.globalVariableService.currentWidgets[gvIndex].containerWidth =
-                    Math.max(this.minWidgetContainerWidth, 
+                    Math.max(this.minWidgetContainerWidth,
                         this.currentWidgets[index].containerWidth);
             };
 
-            this.currentWidgets[index].graphWidth = Math.max(this.minGraphWidth, 
+            this.currentWidgets[index].graphWidth = Math.max(this.minGraphWidth,
                 this.currentWidgets[index].graphWidth - this.startX + ev.x);
             if (gvIndex != -1) {
                 this.globalVariableService.currentWidgets[gvIndex].graphWidth =
@@ -5442,15 +5473,15 @@ console.warn('xx this.draggableWidgets', this.draggableWidgets)
         // Bottom moved: adjust the height
         if (resizeBottom) {
             this.currentWidgets[index].containerHeight =
-                Math.max(this.minWidgetContainerHeight, 
+                Math.max(this.minWidgetContainerHeight,
                     this.currentWidgets[index].containerHeight - this.startY + ev.y);
             if (gvIndex != -1) {
                 this.globalVariableService.currentWidgets[gvIndex].containerHeight =
-                    Math.max(this.minWidgetContainerHeight, 
+                    Math.max(this.minWidgetContainerHeight,
                         this.currentWidgets[index].containerHeight);
             };
 
-            this.currentWidgets[index].graphHeight = Math.max(this.minGraphHeight, 
+            this.currentWidgets[index].graphHeight = Math.max(this.minGraphHeight,
                 this.currentWidgets[index].graphHeight - this.startY + ev.y);
             if (gvIndex != -1) {
                 this.globalVariableService.currentWidgets[gvIndex].graphHeight =
@@ -5468,11 +5499,11 @@ console.warn('xx this.draggableWidgets', this.draggableWidgets)
             };
 
             this.currentWidgets[index].containerWidth =
-                Math.max(this.minWidgetContainerWidth, 
+                Math.max(this.minWidgetContainerWidth,
                     this.currentWidgets[index].containerWidth - ev.x + this.startX);
             if (gvIndex != -1) {
                 this.globalVariableService.currentWidgets[gvIndex].containerWidth =
-                    Math.max(this.minWidgetContainerWidth, 
+                    Math.max(this.minWidgetContainerWidth,
                         this.currentWidgets[index].containerWidth);
             };
 
@@ -5718,7 +5749,7 @@ console.warn('xx this.draggableWidgets', this.draggableWidgets)
         // Reset
         currentCheckpoint = 0;
         var n:number = 0;
-        
+
         // OLD way, no unsubscribe
         // let timer = Observable.timer(3000,3000);
         // timer.subscribe(t=> {
@@ -5739,7 +5770,7 @@ console.warn('xx this.draggableWidgets', this.draggableWidgets)
         // });
 
         let timer = TimerObservable.create(3000, 3000);
-        this.subscription = timer.subscribe(t => {
+        this.subscriptionAnimation = timer.subscribe(t => {
             if (n <= lastCheckpoint) {
                 this.clickNavCheckpoint(
                     index,
@@ -5754,10 +5785,10 @@ console.warn('xx this.draggableWidgets', this.draggableWidgets)
                 n++;
             } else {
                 console.warn('xx unsubcribe from Observable')
-                this.subscription.unsubscribe();
+                this.subscriptionAnimation.unsubscribe();
             };
         });
-    
+
     }
 
     clickNavCheckpoint(
@@ -5819,7 +5850,7 @@ console.warn('xx this.draggableWidgets', this.draggableWidgets)
             // Get given ID, else all selected of the given widgetType
             if (  (widgetID != null  &&  this.currentWidgets[i].id == widgetID)
                    ||
-                   (widgetType != null  
+                   (widgetType != null
                     &&  this.currentWidgets[i].isSelected
                     &&  this.currentWidgets[i].widgetType == widgetType)
                 ) {
@@ -6109,7 +6140,7 @@ console.warn('xx this.draggableWidgets', this.draggableWidgets)
                     width: w.containerWidth,
                     height: w.containerHeight,
                 }
-        
+
                 this.showMessage(
                     'Widget Dimensions copied',
                     'StatusBar',
@@ -6140,7 +6171,7 @@ console.warn('xx this.draggableWidgets', this.draggableWidgets)
         };
 
         // Nothing to do - not copied before
-        if ((this.widgetDimenstions.width = 0) 
+        if ((this.widgetDimenstions.width = 0)
             ||  (this.widgetDimenstions.height = 0) ) {
                 this.showMessage(
                     'No Dimensions copied previously',
@@ -6162,7 +6193,7 @@ console.warn('xx this.draggableWidgets', this.draggableWidgets)
                 // Recall the Dimensions
                 w.containerWidth = this.widgetDimenstions.width;
                 w.containerHeight = this.widgetDimenstions.height;
-        
+
                 this.showMessage(
                     'Widget Dimensions pasted',
                     'StatusBar',
@@ -6175,7 +6206,7 @@ console.warn('xx this.draggableWidgets', this.draggableWidgets)
 
         this.menuOptionClickPostAction();
     }
-    
+
 }
 
 // Naming conventions
