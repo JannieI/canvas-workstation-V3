@@ -626,7 +626,6 @@ export class GlobalVariableService {
     isFirstTimeDashboardOpen = new BehaviorSubject<boolean>(true);
     isFirstTimeDashboardSave = new BehaviorSubject<boolean>(true);
     isFirstTimeDashboardDiscard = new BehaviorSubject<boolean>(true);
-    isFirstTimePresentation = new BehaviorSubject<boolean>(true);
     isFirstTimeWidgetLinked = new BehaviorSubject<boolean>(true);
     isFirstTimeDataCombination = new BehaviorSubject<boolean>(true);
     // Menu-related
