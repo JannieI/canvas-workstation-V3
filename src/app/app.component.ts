@@ -297,7 +297,6 @@ export class AppComponent implements OnInit {
     paletteTop: number = 80;                    // Palette position in px
     paletteHeight = 275;                         // Palette dimensions in px
     paletteWidth = 39;                         // Palette dimensions in px
-    presentationMode: boolean;
 	recentDashboards: DashboardRecent[];
     refreshGraphs: boolean = false;
     selectedDashboard: Dashboard;
@@ -510,10 +509,7 @@ export class AppComponent implements OnInit {
         
             });
         });
-      
-        this.globalVariableService.presentationMode.subscribe(
-            pres => this.presentationMode = pres
-        );
+
         this.globalVariableService.showPalette.subscribe(i => this.showPalette = i);
         this.globalVariableService.showGrid.subscribe(i => this.showGrid = i);
         this.showModalLanding = this.globalVariableService.showModalLanding.value;
@@ -650,7 +646,6 @@ export class AppComponent implements OnInit {
         // Called just before Angular destroys the directive/component.
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnDestroy', '@Start');
 
-        this.globalVariableService.presentationMode.unsubscribe();
         this.globalVariableService.showGrid.unsubscribe();
         this.globalVariableService.showPalette.unsubscribe();
         this.globalVariableService.hasDatasources.unsubscribe();
@@ -3788,7 +3783,6 @@ console.warn('xx index', widgetIndex)
         this.globalVariableService.editMode.next(false);
 
         // Settings, ie Mode
-        this.globalVariableService.presentationMode.next(true);
         this.showMainMenu = false;
 
         // Clean out previously used vars for Checkpoints
@@ -5088,7 +5082,6 @@ console.warn('xx index', widgetIndex)
         });
 
         // Reset vars
-        this.globalVariableService.presentationMode.next(false);
         this.showMainMenu = true;
     }
 
@@ -5558,8 +5551,7 @@ console.warn('xx this.draggableWidgets', this.draggableWidgets)
         );
 
         // In addition, make sure the user is not stuck
-        if (message == this.globalVariableService.canvasSettings.notInEditModeMsg
-            &&  !this.presentationMode) {
+        if (message == this.globalVariableService.canvasSettings.notInEditModeMsg) {
             this.stuckCount = this.stuckCount + 1;
         } else {
             // this.stuckCount = 0;
