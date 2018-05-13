@@ -57,7 +57,7 @@ export class CollaborateSendEmailComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
     }
-
+ 
     clickClose(action: string) {
         // Close the form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');

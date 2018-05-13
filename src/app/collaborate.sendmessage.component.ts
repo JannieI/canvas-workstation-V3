@@ -32,6 +32,19 @@ export class CollaborateSendMessageComponent implements OnInit {
     @Input() messageAction: string;
     @Input() existingMessagge: CanvasMessage;
 
+    @HostListener('window:keyup', ['$event'])
+    keyEvent(event: KeyboardEvent) {
+        console.log(event);
+        event.preventDefault();
+
+        // Known ones
+        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+            this.clickClose('Close');
+            return;
+        };
+
+    }
+
 	constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
