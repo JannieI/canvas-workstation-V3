@@ -2671,30 +2671,33 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
         };
     }
 
-    newDashboardSnapshot(snapshotName: string, snapshotComment: string) {
+    newDashboardSnapshot(snapshotName: string, snapshotComment: string): Promise<any>  {
         // Description: Adds a new DashboardSnapshot
         // Returns: Added Data or error message
         console.log('%c    Global-Variables newDashboardSnapshot ...', 
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
-        // Create new record
-        let newSn: DashboardSnapshot = {
-            id: null,
-            dashboardID: this.currentDashboardInfo.value.
-                currentDashboardID,
-            name: snapshotName,
-            comment: snapshotComment,
-            dashboards: this.currentDashboards.slice(),
-            dashboardTabs: this.currentDashboardTabs.slice(),
-            widgets: this.currentWidgets.slice(),
-            datasets: this.currentDatasets.slice(),
-            datasources: this.currentDatasources.slice(),
-            widgetCheckpoints: this.currentWidgetCheckpoints.slice()
-        };
+        return new Promise<any>((resolve, reject) => {
+            
+            // Create new record
+            let newSn: DashboardSnapshot = {
+                id: null,
+                dashboardID: this.currentDashboardInfo.value.
+                    currentDashboardID,
+                name: snapshotName,
+                comment: snapshotComment,
+                dashboards: this.currentDashboards.slice(),
+                dashboardTabs: this.currentDashboardTabs.slice(),
+                widgets: this.currentWidgets.slice(),
+                datasets: this.currentDatasets.slice(),
+                datasources: this.currentDatasources.slice(),
+                widgetCheckpoints: this.currentWidgetCheckpoints.slice()
+            };
 
-        // Add to DB
-        this.addDashboardSnapshot(newSn).then(res => {
-            this.currentDashboardSnapshots.push(res);
+            // Add to DB
+            this.addDashboardSnapshot(newSn).then(res => {
+                resolve(res);
+            });
         });
     }
 

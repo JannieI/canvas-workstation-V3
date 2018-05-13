@@ -115,8 +115,9 @@ export class DashboardSnapshotsComponent implements OnInit {
         // });
 
         this.globalVariableService.newDashboardSnapshot(
-            this.snapshotName, this.snapshotComment
-        );
+            this.snapshotName, this.snapshotComment).then(res => {
+            this.currentDashboardSnapshots.push(res);
+        });
     }
 
     clickRestore(index: number) {
