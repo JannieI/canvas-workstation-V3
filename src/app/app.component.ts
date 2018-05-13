@@ -481,7 +481,8 @@ export class AppComponent implements OnInit {
         this.globalVariableService.getCanvasGroups();
 
         // TODO - make this 30 mins user-defined if needed
-        let timer = TimerObservable.create(1800000, 1800000);
+        let mins: number = 1800;
+        let timer = TimerObservable.create(mins, mins);
         this.subscriptionSnapshot = timer.subscribe(t => {
             if (this.editMode) {
                 console.warn('xx subscribe Timer')
@@ -494,7 +495,8 @@ export class AppComponent implements OnInit {
                     let snapshotName: string = this.globalVariableService.dashboards[
                         dashboardIndex]
                         .name + ' ' + this.globalVariableService.formatDate(today);
-                    let snapshotComment: string = 'Automated Snapshot';
+                    let snapshotComment: string = 'Automated Snapshot after ' + 
+                        (mins / 60000).toString() + ' mins';
                     this.globalVariableService.newDashboardSnapshot(
                         snapshotName, snapshotComment).then(res => {
                             this.showMessage(

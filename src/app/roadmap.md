@@ -190,6 +190,7 @@ This document describes items for later versions of Canvas.
     - export to csv, Excel, etc
     - grouping of cols under another
     - filter on any col
+    - cell based filter: click a cell, and it 1. filters all records in col with that value (how to show visually that table is filtered, how to unfilter it)  2. cross filter (via Slicer or otherwise) to filter all other tables and graphs using the same DS.  Think first clearly how this will work !
     - sort on all cols
     - conditional formatting
     - tooltips, which give data type, etc
