@@ -49,7 +49,7 @@ This document describes items for later versions of Canvas.
     - Test on different devices, ie Tablet and Phone
     Multi-T display: show nr of Tabs where a W is displayed in header as a badge
     
-    Presentation: 
+    Printing: 
     -------------
     - allow different print layouts and formats, for example one
        Widget per page, Dashboard layout, all Dashboards (linked) or just the current one.
@@ -125,7 +125,6 @@ This document describes items for later versions of Canvas.
     - also used for auto-save: all the steps are saved here, and synced to server at specified  interval (setting on client)
     ButtonBars: Decide on what to do with Widget- and Shape-ButtonBars and 2 forms - AFTER UI and functionality has been decided.  Maybe remove them, or only allow for order ... For now,palette cannot be changed.
     
-    17.Decide what buttons to keep on widget - for now can only think about link button in  presentation mode.
     Should we de-select all Ws when we change Tabs, or load a new D?  If not, may be confusing but handy.  If do, where do we do it - GlobVar functions, or in App component (and update Globals back, which does not make sense)
 
 
@@ -178,7 +177,7 @@ This document describes items for later versions of Canvas.
     For KPI charts, see https://www.zoho.com/reports/help/dashboard/kpi-widgets.html
     - Give hints/advice on W as to type of graph, insights, etc.
     - filter in W, not only via Slicer, using Vega
-    - where to store pictures for presentations - on a server??
+    - where to store pictures for Ws - on a server??
 
 
 **Table (Bradley SmartTable)** 
@@ -303,13 +302,11 @@ Shapes:
 - Consider Shape = Line - easy to do, not sure where and how used (rather use arrow)?
 - Add emojis !?
 - Consider MarkDown / HTML formatting to Text shape - do we really need this?
-- Consider animation in presention mode ...
 - PBI can change type of W after created, ie Table to Matrix
 - How to incorporate fancy W types, ie half circle with needle / doughnut / etc ... 
 - cannot make smaller than W container, which has fixed outside areas (9, 16, etc).  Should we make these dynamic, so that it can be smaller?  It currently looks funny when a Shape only has one line of text, or >> right at bottom to Jump to linked D.
 Consider dataQuality on own menu item, or on W menu
 - look at ITTT - if this then that = rules engine that is dynamic
-- consider animation in presentation mode
 - consider to show pages and tabs as images - making it easy to select
 - consider adding data: ie load new data into a grid / table ala Excel, and save it in Canvas as DS ...
 - do analysis of forces - what will make users switch vs stay away.  Different for different departments: IT = security, deployment, operations,  Finance = ROI, actual investment, cost sensitive  Users = resources to grow,  Management = fit into strategy

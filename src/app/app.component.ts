@@ -16,6 +16,7 @@ import { Renderer }                   from '@angular/core';
 import { Router }                     from '@angular/router';
 import { ViewChild }                  from '@angular/core';
 import { ViewChildren }               from '@angular/core';
+import {Observable}                   from 'rxjs/Rx';
 
 // Own Services
 import { GlobalVariableService }      from './global-variable.service';
@@ -5716,19 +5717,11 @@ console.warn('xx this.draggableWidgets', this.draggableWidgets)
         // Reset
         currentCheckpoint = 0;
         var n:number = 0;
-
-        do { 
-
-            if (this.currentWidgets[index].currentCheckpoint < 
-                this.currentWidgets[index].lastCheckpoint) {
-
-                var start = new Date().getTime();
-                var end = start;
-                while(end < start + 500) {
-                    end = new Date().getTime();
-                };
         
-                console.warn('xx currentCheckpoint', currentCheckpoint + n)
+        let timer = Observable.timer(3000,3000);
+        timer.subscribe(t=> {
+
+            if (n <= lastCheckpoint) {
                 this.clickNavCheckpoint(
                     index,
                     dashboardID,
@@ -5740,11 +5733,37 @@ console.warn('xx this.draggableWidgets', this.draggableWidgets)
                     lastCheckpoint
                 );
             };
+            n++;
+        });
 
-            console.log(n); 
-            n++; 
+        // do { 
 
-        } while(n <= lastCheckpoint); 
+        //     if (this.currentWidgets[index].currentCheckpoint < 
+        //         this.currentWidgets[index].lastCheckpoint) {
+
+        //         var start = new Date().getTime();
+        //         var end = start;
+        //         while(end < start + 500) {
+        //             end = new Date().getTime();
+        //         };
+        
+        //         console.warn('xx currentCheckpoint', currentCheckpoint + n)
+        //         this.clickNavCheckpoint(
+        //             index,
+        //             dashboardID,
+        //             id,
+        //             'Right',
+        //             showCheckpoints,
+        //             checkpointIDs,
+        //             currentCheckpoint + n,
+        //             lastCheckpoint
+        //         );
+        //     };
+
+        //     console.log(n); 
+        //     n++; 
+
+        // } while(n <= lastCheckpoint); 
     }
 
     clickNavCheckpoint(
