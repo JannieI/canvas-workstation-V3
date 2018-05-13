@@ -124,6 +124,22 @@ export class DashboardSnapshotsComponent implements OnInit {
         // Refresh the D to the selected Snapshot, after saving the current D
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRefreshDashboard', '@Start');
 
+        // Make sure user has sufficient permissions
+        if (!this.globalVariableService.dashboardPermissionCheck(
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+            'CanEditOrCanDelete')) {
+            this.globalVariableService.showStatusBarMessage(
+                {
+                    message: 'Insufficient permissions to Restore',
+                    uiArea: 'StatusBar',
+                    classfication: 'Warning',
+                    timeout: 3000,
+                    defaultMessage: ''
+                }
+            );
+            return;
+        };
+
         let dashboardID: number = this.globalVariableService.currentDashboardInfo.
             value.currentDashboardID;
         let snap: DashboardSnapshot = this.currentDashboardSnapshots[index];

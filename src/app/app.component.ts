@@ -485,7 +485,7 @@ export class AppComponent implements OnInit {
         let timer = TimerObservable.create(mins, mins);
         this.subscriptionSnapshot = timer.subscribe(t => {
             if (this.editMode) {
-                console.warn('xx subscribe Timer')
+
                 let dashboardIndex: number = this.globalVariableService.dashboards.findIndex(
                     d => d.id ==
                     this.globalVariableService.currentDashboardInfo.value.currentDashboardID
@@ -1645,7 +1645,7 @@ export class AppComponent implements OnInit {
         // Get last action
         let filteredActions: CanvasAction[] = [];
         filteredActions = ourActions.filter(act => act.id == maxActID);
-console.warn('xx filteredActions', filteredActions)
+
         if (filteredActions[0].undoID == null) {
             // Previous was not an UNDO, so just reverse it
             this.globalVariableService.actionUpsert(
@@ -1741,7 +1741,7 @@ console.warn('xx filteredActions', filteredActions)
                 filteredActions[0].newWidget,
                 filteredActions[0].oldWidget
             );
-console.warn('xx filteredActions', filteredActions)
+
             // Diff Object Types
             if (filteredActions[0].objectType == 'Widget') {
                 if (filteredActions[0].oldWidget == null) {
@@ -2902,7 +2902,7 @@ console.warn('xx filteredActions', filteredActions)
         localWidget.containerBackgroundcolor = 'white';
 
         let definition = this.globalVariableService.createVegaLiteSpec(localWidget);
-        console.warn('xx def', definition)
+
         let specification = compile(definition).spec;
         this.view = new View(parse(specification));
 
@@ -5237,7 +5237,7 @@ console.warn('xx filteredActions', filteredActions)
 
         // Reset current and globalVar values
         this.currentWidgets.forEach(w => {
-console.warn('xx this.draggableWidgets', this.draggableWidgets)
+
             if (this.draggableWidgets.indexOf(w.id) >= 0) {
 
                 // Check if Locked
@@ -5369,7 +5369,7 @@ console.warn('xx this.draggableWidgets', this.draggableWidgets)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickBulletJump', '@Start');
 
         this.menuOptionClickPreAction();
-        console.warn('xx linkedTabID', linkedTabID)
+
         this.globalVariableService.refreshCurrentDashboard(
             'app-clickBulletJump',
             this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
@@ -5788,7 +5788,6 @@ console.warn('xx this.draggableWidgets', this.draggableWidgets)
                 );
                 n++;
             } else {
-                console.warn('xx unsubcribe from Observable')
                 this.subscriptionAnimation.unsubscribe();
             };
         });

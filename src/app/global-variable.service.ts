@@ -1302,8 +1302,8 @@ export class GlobalVariableService {
         console.log('%c    Global-Variables getCurrentDashboardTabs ...', 
             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
             dashboardID);
-console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
-        // Refresh from source at start, or if dirty
+
+            // Refresh from source at start, or if dirty
         if ( (this.dashboardTabs.length == 0)  ||  (this.isDirtyDashboardTabs) ) {
             return new Promise<DashboardTab[]>((resolve, reject) => {
                 this.getDashboardTabs()
@@ -2043,7 +2043,6 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
         this.currentWidgets.forEach(w => {
             console.warn('xx strt graphData', w.graphUrl, w.graphData);
         });
-
 
         // Get all Sl for the given dSet
         // TODO: cater (carefully) for case where sl.datasetID == -1, ie what if DS has
@@ -3789,7 +3788,7 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
                     // routine
                     let dID: number = -1;
                     for (var i = 0; i < this.currentPaletteButtonsSelected.value.length; i++) {
-                        console.warn('xx i ', i, this.currentPaletteButtonsSelected.value.length)
+
                         if (this.currentPaletteButtonsSelected.value[i].id == id) {
                             dID = i;
                             break;
@@ -4234,7 +4233,6 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
 
                         // Remember, AFTER latest was found
                         dsCurrIDs.push(w.datasetID);
-                        console.warn('xx allS 0', this.currentDatasets.slice())
 
                         promiseArray.push(this.getCurrentDataset(w.datasourceID, w.datasetID));
                     };
@@ -4251,13 +4249,12 @@ console.warn('xx currT', this.dashboardTabs, this.currentDashboardTabs)
             // Get all the dataset to local vars
             this.allWithAsync(...promiseArray)
                 .then(resolvedData => {
-console.warn('xx allS 1', this.currentDatasets.slice())
+
                     // Filter currentDatasets by Sl linked to DS
                     this.currentDatasets.forEach(cd => {
                         // TODO - improve
                         // this.filterSlicer(cd);
                     })
-                    console.warn('xx allS 2', this.currentDatasets.slice())
 
                     // Add data to widget
                     // TODO - url = this.filePath for localDB ...
@@ -4459,7 +4456,6 @@ console.warn('xx allS 1', this.currentDatasets.slice())
                         this.widgets.forEach(w => {
                             if (w.id == data.widgetID) {
                                 w.nrComments = w.nrComments + 1;
-                                console.warn('xx nrC', w.id, w.nrComments)
                             };
                         });
                     };
@@ -4502,7 +4498,6 @@ console.warn('xx allS 1', this.currentDatasets.slice())
                         this.widgets.forEach(w => {
                             if (w.id == widgetID) {
                                 w.nrComments = w.nrComments - 1;
-                                console.warn('xx nrC', w.id, w.nrComments)
                             };
                         });
                     };
@@ -5549,7 +5544,7 @@ console.warn('xx allS 1', this.currentDatasets.slice())
             y = currentDashboardTabs[x].id;
         } else {
             y = dashboardTabID;
-            console.warn('xx hier', dashboardTabID, this.currentDashboardTabs,)
+
             if (currentDashboardTabs.length == 0) {
                 x = 0;
             } else {
