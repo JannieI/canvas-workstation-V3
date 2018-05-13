@@ -2609,7 +2609,7 @@
 
 
 <!-- Palette -->
-<div class="palette" *ngIf="editMode  &&  !presentationMode  &&  showPalette"
+<div class="palette" *ngIf="editMode  &&  showPalette"
     [style.left.px]="paletteLeft"
     [style.top.px]="paletteTop"
     [style.height.px]="paletteHeight"
@@ -2625,7 +2625,7 @@
         aria-haspopup="true"
         class="tooltip tooltip-md tooltip-right"
         >
-        <clr-icon *ngIf="!presentationMode"
+        <clr-icon
             [attr.shape]="row.shape"
             [attr.size]="row.size"
             class="buttonBarIcon"
