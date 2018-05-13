@@ -60,7 +60,7 @@ export class DashboardSnapshotsComponent implements OnInit {
         if (dashboardIndex >= 0) {
             let today = new Date();
             this.snapshotName = this.globalVariableService.dashboards[dashboardIndex]
-                .name + this.globalVariableService.formatDate(today);
+                .name + ' ' + this.globalVariableService.formatDate(today);
         };
     }
 
@@ -90,9 +90,6 @@ export class DashboardSnapshotsComponent implements OnInit {
             currentDashboardID;
         let currentD: Dashboard[] = this.globalVariableService.currentDashboards.slice();
         let currentT: DashboardTab[] = this.globalVariableService.currentDashboardTabs.slice();
-        // let currentP: DashboardPermission[] = this.globalVariableService.
-        //     currentDashboardPermissions.slice();
-        // let currentC: CanvasComment[] = this.globalVariableService.canvasComments.slice();
         let currentW: Widget[] = this.globalVariableService.currentWidgets.slice();
         let currentDset: Dataset[] = this.globalVariableService.currentDatasets.slice();
         let currentDS: Datasource[] = this.globalVariableService.currentDatasources.slice();

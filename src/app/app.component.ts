@@ -180,7 +180,6 @@ export class AppComponent implements OnInit {
             return;
         };
         if (event.code == 'PageDown'  &&  (!event.ctrlKey)  &&  (!event.shiftKey) ) {
-            // this.statusbarDOM.clickShowNextTab();
             this.globalVariableService.refreshCurrentDashboard(
                 'app-keyEvent',
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
@@ -190,7 +189,6 @@ export class AppComponent implements OnInit {
             return;
         };
         if (event.code == 'PageUp'  &&  (!event.ctrlKey)  &&  (!event.shiftKey) ) {
-            // this.statusbarDOM.clickShowPreviousTab();
             this.globalVariableService.refreshCurrentDashboard(
                 'app-keyEvent',
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
