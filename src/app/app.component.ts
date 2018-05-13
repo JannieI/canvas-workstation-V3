@@ -481,7 +481,7 @@ export class AppComponent implements OnInit {
         this.globalVariableService.getCanvasGroups();
 
         // TODO - make this 30 mins user-defined if needed
-        let mins: number = 1800;
+        let mins: number = 1800000;
         let timer = TimerObservable.create(mins, mins);
         this.subscriptionSnapshot = timer.subscribe(t => {
             if (this.editMode) {
@@ -500,7 +500,8 @@ export class AppComponent implements OnInit {
                     this.globalVariableService.newDashboardSnapshot(
                         snapshotName, snapshotComment).then(res => {
                             this.showMessage(
-                                'Added automated Snapshot)',
+                                'Added automated Snapshot after ' + 
+                                (mins / 60000).toString() + ' mins',
                                 'StatusBar',
                                 'Info',
                                 3000,
@@ -686,7 +687,8 @@ export class AppComponent implements OnInit {
         this.globalVariableService.editMode.unsubscribe();
         this.globalVariableService.changedWidget.unsubscribe();
         this.globalVariableService.currentDashboardInfo.unsubscribe();
-
+        this.subscriptionSnapshot.unsubscribe();
+        this.subscriptionAnimation.unsubscribe();
     }
 
 
@@ -6076,6 +6078,9 @@ console.warn('xx this.draggableWidgets', this.draggableWidgets)
                     this.showFavouriteDashboard = true;
             };
         };
+
+        // Reset first action flag
+        this.globalVariableService.firstAction = true;
     }
 
     clearDashboard() {

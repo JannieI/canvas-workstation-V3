@@ -637,6 +637,7 @@ export class GlobalVariableService {
     selectedWidgetIDs: number[] = [];
 
     // Session
+    firstAction: boolean = true;               // True if 1st action per D
     actions: CanvasAction[] = [];
     colourPickerClosed = new BehaviorSubject<
         {
@@ -5969,6 +5970,35 @@ console.warn('xx allS 1', this.currentDatasets.slice())
         console.log('%c    Global-Variables actionUpsert ...', 
             "color: black; background: lightgray; font-size: 10px", logToDB, oldWidget,newWidget
         );
+
+        // Make snapshot when start changing
+        if (this.firstAction) {
+            let dashboardIndex: number = this.dashboards.findIndex(
+                d => d.id ==
+                this.currentDashboardInfo.value.currentDashboardID
+            );
+            let today = new Date();
+            let snapshotName: string = this.dashboards[
+                dashboardIndex]
+                .name + ' ' + this.formatDate(today);
+            let snapshotComment: string = 'Added automated Snapshot before first Action';
+            this.newDashboardSnapshot(
+                snapshotName, snapshotComment).then(res => {
+                    this.showStatusBarMessage(
+                        {
+                            message: 'Added automated Snapshot before first Action',
+                            uiArea: 'StatusBar',
+                            classfication: 'Info',
+                            timeout: 3000,
+                            defaultMessage: ''
+                        }
+                    );
+
+            });
+
+            this.firstAction = false;
+        };
+
 
         if (id == null) {
             // Add / Update an action to the ActionLog.  It returns id of new/updated record
