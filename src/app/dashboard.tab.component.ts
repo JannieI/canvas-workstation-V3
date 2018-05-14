@@ -32,7 +32,7 @@ export class DashboardTabComponent {
 
         // Known ones
         if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
-            this.clickClose('Close');
+            this.clickClose();
             return;
         };
 
