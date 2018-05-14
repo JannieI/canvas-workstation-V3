@@ -322,7 +322,6 @@ export class AppComponent implements OnInit {
     showModalDashboardComments: boolean = false;
     showModalDashboardDataQuality: boolean = false;
     showModalDashboardRename: boolean = false;
-    showModalDashboardDetails: boolean = false;
     showModalDashboardDescription: boolean = false;
     showModalDashboardTags
     showModalDashboardSettings: boolean = false;
@@ -748,15 +747,6 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPostAction();
 
         this.showModalDashboardRename = false;
-    }
-
-    handleCloseDashboardDetails(action: string) {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardDetails', '@Start');
-
-        this.menuOptionClickPostAction();
-
-        this.showModalDashboardDetails = false;
     }
 
     handleCloseDashboardDescription(action: string) {
