@@ -30,7 +30,6 @@ import { DashboardRenameComponent }   from './dashboard.rename.component';
 import { DashboardSnapshotsComponent }      from './dashboard.snapshots.component';
 import { DashboardDescriptionComponent }    from './dashboard.description.component';
 import { DashboardShareComponent }    from './dashboard.share.component';
-import { DashboardDetailsComponent }  from './dashboard.details.component';
 import { DashboardTagsComponent }     from './dashboard.tags.component';
 import { DashboardSettingsComponent } from './dashboard.settings.component';
 import { DashboardThemeComponent }    from './dashboard.theme.component';
@@ -133,7 +132,6 @@ import { StatusbarComponent }         from './statusbar.component';
         DashboardRenameComponent,
         DashboardSnapshotsComponent,
         DashboardShareComponent,
-        DashboardDetailsComponent,
         DashboardDescriptionComponent,
         DashboardTagsComponent,
         DashboardSettingsComponent,
