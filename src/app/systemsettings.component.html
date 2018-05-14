@@ -69,6 +69,7 @@
                                 type="text"
                                 name="notInEditModeMsg"
                                 #notInEditModeMsgVar="ngModel"
+                                required 
                                 placeholder="notInEditModeMsg"
                                 size="25"
                                 [style.color]="!notInEditModeMsgVar.valid ? 'red' : 'gray'"
@@ -81,6 +82,7 @@
                                 type="text"
                                 name="noQueryRunningMessage"
                                 #noQueryRunningMessageVar="ngModel"
+                                required 
                                 placeholder="NoQueryRunningMessage"
                                 size="25"
                                 [style.color]="!noQueryRunningMessageVar.valid ? 'red' : 'gray'"
@@ -92,6 +94,7 @@
                             <input [(ngModel)]="queryRunningMessage"
                                 type="text"
                                 name="queryRunningMessage"
+                                required 
                                 #queryRunningMessageVar="ngModel"
                                 placeholder="QueryRunningMessage"
                                 size="25"
@@ -152,6 +155,7 @@
                             type="text"
                             name="maxTableLength"
                             #maxTableLengthVar="ngModel"
+                            max="500"
                             placeholder="Max Table Length (500)"
                             size="5"
                             [style.color]="!maxTableLengthVar.valid ? 'red' : 'gray'"
@@ -178,6 +182,8 @@
                                 name="widgetsMinZindex"
                                 #widgetsMinZindexVar="ngModel"
                                 placeholder="Widgets Min Zindex"
+                                min="50"
+                                max="59"
                                 size="5"
                                 [style.color]="!widgetsMinZindexVar.valid ? 'red' : 'gray'"
                                 >
@@ -191,6 +197,8 @@
                                 #widgetsMaxZindexVar="ngModel"
                                 placeholder="Widgets Max Zindex"
                                 size="5"
+                                min="50"
+                                max="59"
                                 [style.color]="!widgetsMaxZindexVar.valid ? 'red' : 'gray'"
                                 >
                         </div>
@@ -207,6 +215,8 @@
                                 #gridSizeVar="ngModel"
                                 placeholder="Size of the Grid"
                                 size="5"
+                                min="1"
+                                max="30"
                                 [style.color]="!gridSizeVar.valid ? 'red' : 'gray'"
                                 >
                         </div>
