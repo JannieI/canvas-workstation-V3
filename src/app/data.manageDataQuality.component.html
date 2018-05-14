@@ -1,197 +1,81 @@
 <div class="modal modalBox">
-        <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-md" role="dialog" aria-hidden="true">
             <div class="modal-content modalContent">
-
-                <div>
-                    <button type="button" class="closeButton" (click)="clickClose()">
-                        X
-                        <b>Messages</b>
-                    </button>
-
-                    <div class="filterArea">
-                        <b>Sender:</b>
-                        <input [(ngModel)]="sender"
+    
+                <button type="button" class="closeButton" (click)="clickClose()">
+                    X
+                </button> 
+                
+                <div class="gridOverall">
+    
+                    <div class="gridTitle">
+                        <b>Manage Data Quality: </b> 
+                    </div>                
+                    <div class="gridSubTitle">
+                        <i>  
+                            This will open a system email dialogue box with the following info:
+                        </i>
+                    </div>                
+        
+                    <div class="gridToUsersTitle">
+                        <b>To:</b>
+                    </div>
+    
+                    <div class="gridToUsers">
+                        <input [(ngModel)]="toUsers"
                             type="text"
-                            title="Filter on this sender"
-                            size="20"
+                            title="Recipients"
+                            size="25"
                             autofocus
                             >
-                        <button
-                            type="button"
-                            class="btn btn-link btn-sm"
-                            (click)="clickSystem()"
-                            title="Populate SENDER with System (~Alerts)"
-                            >
-                            System
-                        </button>
+                    </div>
+    
+                    <div class="gridSubjectTitle">
                         <b>Subject:</b>
+                    </div>
+        
+                    <div class="gridSubject">
                         <input [(ngModel)]="subject"
                             type="text"
-                            title="Show messages that contains this text in the subject"
-                            size="20"
+                            title="Subject"
+                            size="25"
                             >
+                    </div>
+    
+                    <div class="gridBodyTitle">
                         <b>Body:</b>
+                    </div>
+    
+                    <div class="gridBody">
                         <input [(ngModel)]="body"
                             type="text"
-                            title="Show messages that contains this text in the body"
-                            size="20"
+                            title="Body"
+                            size="25"
                             >
-                        <span
-                            [style.color]="'red'"
-                            >
-                            {{ errorMessage }}
-                        </span>    
                     </div>
-                    <div class="filterArea">
-                        <b>Recipient:</b>
-                        <input [(ngModel)]="recipient"
-                            type="text"
-                            title="Show messages addressed to this userID"
-                            size="20"
+    
+                    <div class="gridButtonCancel">
+                            <button
+                            type="button"
+                            class="btn btn-secondary"
+                            (click)="clickClose('Close')"
                             >
+                            Cancel
+                        </button>
+                    </div>
+                    
+                    <div class="gridButtonSave">
                         <button
                             type="button"
-                            class="btn btn-link btn-sm"
-                            (click)="clickRecipientMe()"
-                            title="Populate recipient with current UserID"
+                            class="btn btn-primary"
+                            (click)="clickSave('Saved')"
                             >
-                            Me
+                            Save
                         </button>
-                        <b>Sent after:</b>
-                        <input [(ngModel)]="sentAfter"
-                            type="text"
-                            title="Show messages sent after this date"
-                            size="15"
-                            >
-                        <button
-                            type="button"
-                            class="btn btn-link btn-sm"
-                            (click)="clickLastLogin()"
-                            title="Populate SENT AFTER with date of Last loggout"
-                            >
-                            Last
-                        </button>
-                        <b>Sent before:</b>
-                        <input [(ngModel)]="sendBefore"
-                            type="text"
-                            title="Show messages sent before this date"
-                            size="15"
-                            >
-                        <b>Unread:</b>
-                        <div class="gridLink">
-                            <input [(ngModel)]="messageUnRead"
-                                type="checkbox"
-                                title="Filter on messages that are unread"
-                                >
-                        </div>
-
-                        <button
-                            type="button"
-                            class="btn btn-link"
-                            (click)="clickFilter()"
-                            title="Filter messages"
-                            >
-                            Filter
-                        </button>
-
-                    </div>
-
-                    <div class="messageBlock" *ngIf="!newMessage"
-                        [style.height.rem]="newMessage? 15 : 15"
-                        >
-                        <div *ngFor="let row of canvasMessages; let i = index"
-                            class="message"
-                            [style.margin-left.px]="i%2==0 ? '0' : '30'"
-                            [style.background-color]="i%2==0 ? 'rgb(235, 235, 235)' : 'rgb(187, 221, 187)'"
-                            >
-                            <div class="replyMessage" *ngIf="row.replySender">
-                                <i>{{ row.replySender }}</i>
-                                <i>{{ row.replyMessageStart }}</i>
-                            </div>
-                            <div>
-                                <clr-icon *ngIf="row.iHaveReadThis"
-                                    shape="check"
-                                    size="12"
-                                    >
-                                </clr-icon>
-                                <span class="sender">
-                                    <b>{{ row.sender }}</b>
-                                    {{ row.subject }}
-                                    <i>{{ row.sentOn }}</i>
-                                </span>
-                            </div>
-                            <div>
-                                {{ row.body }}
-                                <span class="ellipsis">
-                                    <clr-dropdown>
-                                        <button
-                                            type="button"
-                                            class="btn btn-link btn-sm menuButton"
-                                            clrDropdownTrigger
-                                            >
-                                            <clr-icon
-                                                shape="ellipsis-horizontal"
-                                                size="12"
-                                                >
-                                            </clr-icon>
-                                        </button>
-                                        <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
-                                            <button
-                                                type="button"
-                                                clrDropdownItem
-                                                (click)="clickReply(row.id)"
-                                                title="Enable EditMode to make changes"
-                                                >
-                                                Reply
-                                            </button>
-                                            <button type="button"
-                                                clrDropdownItem
-                                                title="Undo previous action"
-                                                (click)="clickForward(row.id)"
-                                                >
-                                                Forward
-                                            </button>
-                                            <button type="button"
-                                                clrDropdownItem
-                                                title="Undo previous action"
-                                                (click)="clickCopyText($event)"
-                                                >
-                                                Copy Text
-                                            </button>
-                                            <button type="button"
-                                                clrDropdownItem
-                                                title="Undo previous action"
-                                                (click)="clickRecall(row.id)"
-                                                >
-                                                Recall
-                                            </button>
-                                        </clr-dropdown-menu>
-                                    </clr-dropdown>
-                                </span>
-                                <span class="dashboardLink" *ngIf="row.dashboardID">
-                                    <i>{{ row.dashboardName }}</i>
-                                    <clr-icon
-                                        shape="arrow right"
-                                        size="12"
-                                        (click)="clickJumpToLinked(row.id)"
-                                        >
-                                    </clr-icon>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="messageBlock" *ngIf="newMessage">
-                            <collaborate-messageContent
-                            (formMessageContentClosed)="handleReplyForward($event)"
-                            [messageAction]="messageAction"
-                            [existingMessagge]="existingMessagge"
-                            >
-                            Send Message ...
-                        </collaborate-messageContent>
-                    </div>
+                    </div>                
                 </div>
-
             </div>
         </div>
     </div>
+    
+    

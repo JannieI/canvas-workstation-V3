@@ -349,7 +349,7 @@ export class AppComponent implements OnInit {
     showModalWidgetTablist: boolean = false;
     showModalWidgetDescription: boolean = false;
     showModalTableEditor: boolean = false;
-    showModalDataDataQuality: boolean = false;
+    showModalManageDataDataQuality: boolean = false;
     showModalDataCombination: boolean = false;
     showModalDataRefresh: boolean = false;
     showModalDataShare: boolean = false;
@@ -445,12 +445,12 @@ export class AppComponent implements OnInit {
                     let snapshotName: string = this.globalVariableService.dashboards[
                         dashboardIndex]
                         .name + ' ' + this.globalVariableService.formatDate(today);
-                    let snapshotComment: string = 'Automated Snapshot after ' + 
+                    let snapshotComment: string = 'Automated Snapshot after ' +
                         (mins / 60000).toString() + ' mins';
                     this.globalVariableService.newDashboardSnapshot(
                         snapshotName, snapshotComment).then(res => {
                             this.showMessage(
-                                'Added automated Snapshot after ' + 
+                                'Added automated Snapshot after ' +
                                 (mins / 60000).toString() + ' mins',
                                 'StatusBar',
                                 'Info',
@@ -1072,13 +1072,13 @@ export class AppComponent implements OnInit {
         this.showModalData = false;
     }
 
-    handleCloseDataDataQuality(action: string) {
+    handleCloseDataManageDataQuality(action: string) {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDataQuality', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataManageDataQuality', '@Start');
 
         this.menuOptionClickPostAction();
 
-        this.showModalDataDataQuality = false;
+        this.showModalManageDataDataQuality = false;
     }
 
     handleCloseDataCombination(action: string) {
@@ -2426,7 +2426,7 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
-        this.showModalDataDataQuality = true;
+        this.showModalManageDataDataQuality = true;
 
     }
 
