@@ -1,238 +1,284 @@
 <div class="modal modalBox">
     <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
         <div class="modal-content modalContent">
+            <form #f="ngForm" role="form" novalidate>
 
-            <button type="button" class="closeButton" (click)="clickClose()">
-                X
-            </button>
+                <button type="button" class="closeButton" (click)="clickClose()">
+                    X
+                </button>
 
-            <div class="gridOverall">
+                <div class="gridOverall">
 
-                <div class="gridTitle">
-                    <b>System Settings: </b> 
-                    <i>  
-                        For networked installatons, these settings are done on the server.
-                    </i>
-                </div>
+                    <div class="gridTitle">
+                        <b>System Settings: </b> 
+                        <i>  
+                            For networked installatons, these settings are done on the server.
+                        </i>
+                    </div>
 
-                <div class="gridCompanyTitle">
-                    <b>Company</b>
-                </div>
+                    <div class="gridCompanyTitle">
+                        <b>Company</b>
+                    </div>
 
-                    <div class="gridCompanyName">
-                        <b>Name:</b>
-                        <input [(ngModel)]="companyName"
+                        <div class="gridCompanyName">
+                            <b>Name:</b>
+                            <input [ngModel]="companyName"
+                                type="text"
+                                name="companyName"
+                                #companyNameVar="ngModel"
+                                required 
+                                minlength="3"
+                                maxlength="40"
+                                placeholder="Company Name"
+                                size="25"
+                                [style.color]="!companyNameVar.valid ? 'red' : 'gray'"
+                                >
+                        </div>
+
+                        <div class="gridCompanyLogo">
+                            <b>Logo:</b>
+                            <input [(ngModel)]="companyLogo"
+                                type="text"
+                                name="companyLogo"
+                                #companyLogoVar="ngModel"
+                                placeholder="Company Logo"
+                                size="25"
+                                [style.color]="!companyLogoVar.valid ? 'red' : 'gray'"
+                                >
+                        </div>
+
+                        <div class="gridCompanyTemplate">
+                            <b>Template:</b>
+                            <input [(ngModel)]="dashboardTemplate"
+                                type="text"
+                                name="dashboardTemplate"
+                                #dashboardTemplateVar="ngModel"
+                                placeholder="Default Template"
+                                size="20"
+                                [style.color]="!dashboardTemplateVar.valid ? 'red' : 'gray'"
+                                >
+                        </div>
+
+                    <div class="gridMessagingTitle">
+                        <b>Messaging:</b>
+                    </div>
+
+                        <div class="gridNotInEditModeMsg">
+                            <b>EditMode:</b>
+                            <input [(ngModel)]="notInEditModeMsg"
+                                type="text"
+                                name="notInEditModeMsg"
+                                #notInEditModeMsgVar="ngModel"
+                                placeholder="notInEditModeMsg"
+                                size="25"
+                                [style.color]="!notInEditModeMsgVar.valid ? 'red' : 'gray'"
+                                >
+                        </div>
+
+                        <div class="gridNoQueryRunningMessage">
+                            <b>No Query:</b>
+                            <input [(ngModel)]="noQueryRunningMessage"
+                                type="text"
+                                name="noQueryRunningMessage"
+                                #noQueryRunningMessageVar="ngModel"
+                                placeholder="NoQueryRunningMessage"
+                                size="25"
+                                [style.color]="!noQueryRunningMessageVar.valid ? 'red' : 'gray'"
+                                >
+                        </div>
+
+                        <div class="gridQueryRunningMessage">
+                            <b>Query:</b>
+                            <input [(ngModel)]="queryRunningMessage"
+                                type="text"
+                                name="queryRunningMessage"
+                                #queryRunningMessageVar="ngModel"
+                                placeholder="QueryRunningMessage"
+                                size="25"
+                                [style.color]="!queryRunningMessageVar.valid ? 'red' : 'gray'"
+                                >
+                        </div>
+
+                    <div class="gridOfflineTitle">
+                        <b>Working Offline:</b>
+                    </div>
+
+                        <div class="gridOfflineDataTitle">
+                            <b>Data:</b>
+                        </div>
+                        <div class="gridOfflineData">
+                            <input [(ngModel)]="offlineData"
+                                type="checkbox"
+                                name="offlineData"
+                                #offlineDataVar="ngModel"
+                                title="Store server data locally (T/F)"
+                                [style.color]="!offlineDataVar.valid ? 'red' : 'gray'"
+                                >
+                        </div>
+
+                        <div class="gridOfflineSchemaTitle">
+                            <b>Schema:</b>
+                        </div>
+                        <div class="gridOfflineSchema">
+                            <input [(ngModel)]="offlineSchema"
+                                type="checkbox"
+                                name="offlineSchema"
+                                #offlineSchemaVar="ngModel"
+                                title="Store server schema locally (T/F)"
+                                [style.color]="!offlineSchemaVar.valid ? 'red' : 'gray'"
+                                >
+                        </div>
+
+                        <div class="gridOfflineLoginTitle">
+                            <b>Login:</b>
+                        </div>
+                        <div class="gridOfflineLogin">
+                            <input [(ngModel)]="offlineLogin"
+                                type="checkbox"
+                                name="offlineLogin"
+                                #offlineLoginVar="ngModel"
+                                title="Can log into a local server (T/F)"
+                                [style.color]="!offlineLoginVar.valid ? 'red' : 'gray'"
+                                >
+                        </div>
+
+                    <div class="gridTableTitle">
+                        <b>Tables</b>
+                    </div>
+
+                    <div class="gridTableLength">
+                        <b>Max length:</b>
+                        <input [(ngModel)]="maxTableLength"
                             type="text"
-                            id="formFields_7"
-                            placeholder="Company Name"
-                            size="25"
-                            >
-                    </div>
-
-                    <div class="gridCompanyLogo">
-                        <b>Logo:</b>
-                        <input [(ngModel)]="companyLogo"
-                            type="text"
-                            id="formFields_7"
-                            placeholder="Company Logo"
-                            size="25"
-                            >
-                    </div>
-
-                    <div class="gridCompanyTemplate">
-                        <b>Template:</b>
-                        <input [(ngModel)]="dashboardTemplate"
-                            type="text"
-                            id="formFields_7"
-                            placeholder="Default Template"
-                            size="20"
-                            >
-                    </div>
-
-                <div class="gridMessagingTitle">
-                    <b>Messaging:</b>
-                </div>
-
-                    <div class="gridNotInEditModeMsg">
-                        <b>EditMode:</b>
-                        <input [(ngModel)]="notInEditModeMsg"
-                            type="text"
-                            id="formFields_7"
-                            placeholder="notInEditModeMsg"
-                            size="25"
-                            >
-                    </div>
-
-                    <div class="gridNoQueryRunningMessage">
-                        <b>No Query:</b>
-                        <input [(ngModel)]="noQueryRunningMessage"
-                            type="text"
-                            id="formFields_7"
-                            placeholder="NoQueryRunningMessage"
-                            size="25"
-                            >
-                    </div>
-
-                    <div class="gridQueryRunningMessage">
-                        <b>Query:</b>
-                        <input [(ngModel)]="queryRunningMessage"
-                            type="text"
-                            id="formFields_7"
-                            placeholder="QueryRunningMessage"
-                            size="25"
-                            >
-                    </div>
-
-                <div class="gridOfflineTitle">
-                    <b>Working Offline:</b>
-                </div>
-
-                    <div class="gridOfflineDataTitle">
-                        <b>Data:</b>
-                    </div>
-                    <div class="gridOfflineData">
-                        <input [(ngModel)]="offlineData"
-                            type="checkbox"
-                            title="Store server data locally (T/F)"
-                            >
-                    </div>
-
-                    <div class="gridOfflineSchemaTitle">
-                        <b>Schema:</b>
-                    </div>
-                    <div class="gridOfflineSchema">
-                        <input [(ngModel)]="offlineSchema"
-                            type="checkbox"
-                            title="Store server schema locally (T/F)"
-                            >
-                    </div>
-
-                    <div class="gridOfflineLoginTitle">
-                        <b>Login:</b>
-                    </div>
-                    <div class="gridOfflineLogin">
-                        <input [(ngModel)]="offlineLogin"
-                            type="checkbox"
-                            title="Can log into a local server (T/F)"
-                            >
-                    </div>
-
-                <div class="gridTableTitle">
-                    <b>Tables</b>
-                </div>
-
-                <div class="gridTableLength">
-                    <b>Max length:</b>
-                    <input [(ngModel)]="maxTableLength"
-                        type="text"
-                        id="formFields_7"
-                        placeholder="Max Table Length (500)"
-                        size="5"
-                        >
-                </div>
-
-                <div class="gridWidgetTitle">
-                    <b>Widgets</b>
-                </div>
-
-                    <div class="gridWidgetTemplate">
-                        <input
-                            type="text"
-                            id="formFields_7"
-                            placeholder="Widget Template (later)"
-                            size="25"
-                            >
-                    </div>
-
-                    <div class="gridWidgetMinZindex">
-                        <b>Min Widget Zindex:</b>
-                        <input [(ngModel)]="widgetsMinZindex"
-                            type="text"
-                            id="formFields_7"
-                            placeholder="Widgets Min Zindex"
+                            name="maxTableLength"
+                            #maxTableLengthVar="ngModel"
+                            placeholder="Max Table Length (500)"
                             size="5"
+                            [style.color]="!maxTableLengthVar.valid ? 'red' : 'gray'"
                             >
                     </div>
 
-                    <div class="gridWidgetMaxZindex">
-                        <b>Max Widget Zindex:</b>
-                        <input [(ngModel)]="widgetsMaxZindex"
-                            type="text"
-                            id="formFields_7"
-                            placeholder="Widgets Max Zindex"
-                            size="5"
-                            >
+                    <div class="gridWidgetTitle">
+                        <b>Widgets</b>
                     </div>
 
-                <div class="gridGridTitle">
-                    <b>Grid:</b>
-                </div>
+                        <div class="gridWidgetTemplate">
+                            <input
+                                type="text"
+                                name="widgetTemplate"
+                                placeholder="Widget Template (later)"
+                                size="25"
+                                >
+                        </div>
 
-                    <div class="gridGridSize">
-                        <b>Size:</b>
-                        <input [(ngModel)]="gridSize"
-                            type="text"
-                            id="formFields_7"
-                            placeholder="Size of the Grid"
-                            size="5"
-                            >
+                        <div class="gridWidgetMinZindex">
+                            <b>Min Widget Zindex:</b>
+                            <input [(ngModel)]="widgetsMinZindex"
+                                type="text"
+                                name="widgetsMinZindex"
+                                #widgetsMinZindexVar="ngModel"
+                                placeholder="Widgets Min Zindex"
+                                size="5"
+                                [style.color]="!widgetsMinZindexVar.valid ? 'red' : 'gray'"
+                                >
+                        </div>
+
+                        <div class="gridWidgetMaxZindex">
+                            <b>Max Widget Zindex:</b>
+                            <input [(ngModel)]="widgetsMaxZindex"
+                                type="text"
+                                name="widgetsMaxZindex"
+                                #widgetsMaxZindexVar="ngModel"
+                                placeholder="Widgets Max Zindex"
+                                size="5"
+                                [style.color]="!widgetsMaxZindexVar.valid ? 'red' : 'gray'"
+                                >
+                        </div>
+
+                    <div class="gridGridTitle">
+                        <b>Grid:</b>
                     </div>
 
-                    <div class="gridGridSnap">
-                        Snap to Grid:
-                        <input [(ngModel)]="snapToGrid"
-                            type="checkbox"
-                            id="formFields_7"
-                            title="Snap to grid (T/F)"
-                            >
+                        <div class="gridGridSize">
+                            <b>Size:</b>
+                            <input [(ngModel)]="gridSize"
+                                type="text"
+                                name="gridSize"
+                                #gridSizeVar="ngModel"
+                                placeholder="Size of the Grid"
+                                size="5"
+                                [style.color]="!gridSizeVar.valid ? 'red' : 'gray'"
+                                >
+                        </div>
+
+                        <div class="gridGridSnap">
+                            Snap to Grid:
+                            <input [(ngModel)]="snapToGrid"
+                                type="checkbox"
+                                name="snapToGrid"
+                                #snapToGridVar="ngModel"
+                                title="Snap to grid (T/F)"
+                                [style.color]="!snapToGridVar.valid ? 'red' : 'gray'"
+                                >
+                        </div>
+
+                    <div class="gridPrintTitle">
+                        <b>Printing:</b>
                     </div>
 
-                <div class="gridPrintTitle">
-                    <b>Printing:</b>
-                </div>
+                        <div class="gridPrintDefault">
+                            <input [(ngModel)]="printDefault" 
+                                type="text"
+                                name="printDefault"
+                                #printDefaultVar="ngModel"
+                                placeholder="Default: Local HP"
+                                size="25"
+                                [style.color]="!printDefaultVar.valid ? 'red' : 'gray'"
+                                >
+                        </div>
+                        <div class="gridPrintSize">
+                            <input [(ngModel)]="printSize" 
+                                type="text"
+                                name="printSize"
+                                #printSizeVar="ngModel"
+                                placeholder="Default Page Size: A4"
+                                size="25"
+                                [style.color]="!printSizeVar.valid ? 'red' : 'gray'"
+                                >
+                        </div>
+                        <div class="gridPrintLayout">
+                            <input [(ngModel)]="printLayout" 
+                                type="text"
+                                name="printLayout"
+                                #printLayoutVar="ngModel"
+                                placeholder="Default Layout: Single page, B and W"
+                                size="25"
+                                [style.color]="!printLayoutVar.valid ? 'red' : 'gray'"
+                                >
+                        </div>
 
-                    <div class="gridPrintDefault">
-                        <input [(ngModel)]="printDefault" type="text"
-                            id="formFields_7"
-                            placeholder="Default: Local HP"
-                            size="25"
+                    <div class="gridButtonCancel">
+                            <button
+                            type="button"
+                            class="btn btn-secondary"
+                            (click)="clickClose('Close')"
                             >
+                            Cancel
+                        </button>
                     </div>
-                    <div class="gridPrintSize">
-                        <input [(ngModel)]="printSize" type="text"
-                            id="formFields_7"
-                            placeholder="Default Page Size: A4"
-                            size="25"
-                            >
-                    </div>
-                    <div class="gridPrintLayout">
-                        <input [(ngModel)]="printLayout" type="text"
-                            id="formFields_7"
-                            placeholder="Default Layout: Single page, B and W"
-                            size="25"
-                            >
-                    </div>
-
-                <div class="gridButtonCancel">
+                    <div class="gridButtonSave">
                         <button
-                        type="button"
-                        class="btn btn-secondary"
-                        (click)="clickClose('Close')"
-                        >
-                        Cancel
-                    </button>
-                </div>
-                <div class="gridButtonSave">
-                    <button
-                        type="button"
-                        class="btn btn-primary"
-                        (click)="clickSave('Saved')"
-                        >
-                        Save
-                    </button>
-                </div>
+                            type="button"
+                            class="btn btn-primary"
+                            [disabled]="!f.valid"
+                            (click)="clickSave('Saved')"
+                            >
+                            Save
+                        </button>
+                    </div>
 
-            </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>
