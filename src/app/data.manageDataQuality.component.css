@@ -1,0 +1,190 @@
+.modalBox {
+	background-color: rgba(0,0,0,0.4);
+	-shadow: 0 2px 2px 0 lightgray;
+}
+
+.closeButton {
+    background-color: transparent;
+    border: none;
+    left: 0;
+    position: relative;
+    top: 0;
+}
+
+.filterArea {
+    margin-left: 30px;
+}
+
+.gridLink {
+    display: inline-block;
+}
+
+.messageBlock {
+    border: 1px solid gray;
+    border-radius: 6px;
+    margin: 2px;
+    padding: 5px;
+    overflow-y: scroll;
+}
+
+.message {
+    border: 1px solid gray;
+    border-radius: 6px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    padding: 2px 5px 2px 5px;
+}
+    .replyMessage{
+        border-left: 3px blue solid;
+        font-size: 0.5rem;
+        padding-left: 15px;
+        margin: 2px 2px 4px 30px;
+    }
+
+    .sender {
+        color: rgb(61, 61, 61);
+    }
+
+    .dashboardLink {
+        color: blue;
+        float: right;
+    }
+
+    .ellipsis {
+        color: black;
+        float: right;
+    }
+
+
+
+
+
+
+.gridOverall {
+    display: grid;
+    grid-template-columns: repeat(14, 1fr);
+    grid-template-rows: repeat(15, 1rem);
+    margin-top: 2px;
+}
+
+    .gridTitle {
+        font-size: 0.75rem;
+        grid-column-start: 1;
+        grid-column-end: 18;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        text-align: left;
+    }
+    .gridSubTitle {
+        grid-column-start: 5;
+        grid-column-end: 18;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        text-align: left;
+    }
+
+    .gridToUsersTitle {
+        font-size: 0.65rem;
+        grid-column-start: 1;
+        grid-column-end: 18;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        text-align: left;
+    }
+
+        .gridToUsers {
+            grid-column-start: 4;
+            grid-column-end: 18;
+            grid-row-start: 3;
+            grid-row-end: 4;
+            margin-left: 20px;
+            text-align: left;
+        }
+
+    .gridToGroupsTitle {
+        font-size: 0.65rem;
+        grid-column-start: 1;
+        grid-column-end: 18;
+        grid-row-start: 5;
+        grid-row-end: 6;
+        text-align: left;
+    }
+
+        .gridToGroups {
+            grid-column-start: 4;
+            grid-column-end: 18;
+            grid-row-start: 5;
+            grid-row-end: 6;
+            margin-left: 20px;
+            text-align: left;
+        }
+        
+    .gridSubjectTitle {
+        font-size: 0.65rem;
+        grid-column-start: 1;
+        grid-column-end: 18;
+        grid-row-start: 7;
+        grid-row-end: 8;
+        text-align: left;
+    }
+
+        .gridSubject {
+            grid-column-start: 4;
+            grid-column-end: 7;
+            grid-row-start: 7;
+            grid-row-end: 8;
+            margin-left: 20px;
+            text-align: left;
+        }
+    
+    .gridBodyTitle {
+        font-size: 0.65rem;
+        grid-column-start: 1;
+        grid-column-end: 18;
+        grid-row-start: 9;
+        grid-row-end: 10;
+        text-align: left;
+    }
+
+        .gridBody {
+            grid-column-start: 4;
+            grid-column-end: 7;
+            grid-row-start: 9;
+            grid-row-end: 10;
+            margin-left: 20px;
+            text-align: left;
+        }
+
+    .gridLinkTitle {
+        font-size: 0.65rem;
+        grid-column-start: 1;
+        grid-column-end: 18;
+        grid-row-start: 11;
+        grid-row-end: 12;
+        text-align: left;
+    }
+
+        .gridLink {
+            grid-column-start: 7;
+            grid-column-end: 8;
+            grid-row-start: 11;
+            grid-row-end: 12;
+            margin-left: 20px;
+            text-align: left;
+        }
+    
+    .gridButtonCancel {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 14;
+        grid-row-end: 15;
+        text-align: left;
+    }
+
+    .gridButtonSave {
+        grid-column-start: 5;
+        grid-column-end: 7;
+        grid-row-start: 14;
+        grid-row-end: 15;
+        text-align: left;
+    }

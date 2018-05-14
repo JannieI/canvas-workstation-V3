@@ -349,6 +349,7 @@ export class AppComponent implements OnInit {
     showModalWidgetTablist: boolean = false;
     showModalWidgetDescription: boolean = false;
     showModalTableEditor: boolean = false;
+    showModalDataDataQuality: boolean = false;
     showModalDataCombination: boolean = false;
     showModalDataRefresh: boolean = false;
     showModalDataShare: boolean = false;
@@ -1069,6 +1070,15 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPostAction();
 
         this.showModalData = false;
+    }
+
+    handleCloseDataDataQuality(action: string) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDataQuality', '@Start');
+
+        this.menuOptionClickPostAction();
+
+        this.showModalDataDataQuality = false;
     }
 
     handleCloseDataCombination(action: string) {

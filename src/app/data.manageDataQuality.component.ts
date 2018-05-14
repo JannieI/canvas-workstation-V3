@@ -21,13 +21,13 @@ import { CanvasMessage }           from './models';
 import { DatagridInput }              from './models';
 
 @Component({
-    selector: 'collaborate-messages',
-    templateUrl: './collaborate.messages.component.html',
-    styleUrls: ['./collaborate.messages.component.css']
+    selector: 'data-manageDataQuality',
+    templateUrl: './data.manageDataQuality.component.html',
+    styleUrls: ['./data.manageDataQuality.component.css']
 })
-export class CollaborateMessagesComponent implements OnInit {
+export class DataManageDataQualityComponent implements OnInit {
  
-    @Output() formCollaborateMessagesClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formDataDataQualityClosed: EventEmitter<string> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
@@ -187,7 +187,7 @@ export class CollaborateMessagesComponent implements OnInit {
             'messages-clickJumpToLinked', dashboardID, dashboardTabID, ''
         );
 
-		this.formCollaborateMessagesClosed.emit('Closed');
+		this.formDataDataQualityClosed.emit('Closed');
         
     }
 
@@ -287,6 +287,6 @@ export class CollaborateMessagesComponent implements OnInit {
         this.globalVariableService.updateCanvasMessagesAsRead(
             this.globalVariableService.currentUser.userID
         );
-		this.formCollaborateMessagesClosed.emit(action);
+		this.formDataDataQualityClosed.emit(action);
     }
 }

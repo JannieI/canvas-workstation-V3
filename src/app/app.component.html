@@ -2879,6 +2879,13 @@
 </data>
 
 
+<!-- Modal: data DataQuality -->
+<data-dataquality
+    *ngIf="showModalDataDataQuality"
+    (formDataDataQualityClosed)="handleCloseDataDataQuality($event)">Load Data DataQuality ...
+</data-dataquality>
+
+
 <!-- Modal: data Combination -->
 <data-combination
     *ngIf="showModalDataCombination"

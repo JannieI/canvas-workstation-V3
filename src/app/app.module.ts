@@ -78,6 +78,7 @@ import { DataRefreshComponent }       from './data.refresh.component';
 import { DatasourceShareComponent }   from './data.share.component';
 import { DataDictionaryComponent }    from './data.dictionary.component';
 import { DataSummaryComponent }       from './data.summary.component';
+import { DataManageDataQualityComponent }   from './data.manageDataQuality.component';
 
 import { HelpComponent }              from './help.component';
 
@@ -157,6 +158,7 @@ import { StatusbarComponent }         from './statusbar.component';
         DatasourceShareComponent,
         DataDictionaryComponent,
         DataSummaryComponent,
+        DataManageDataQualityComponent,
 
         WidgetEditorComponent,
         WidgetCheckpointsComponent,
