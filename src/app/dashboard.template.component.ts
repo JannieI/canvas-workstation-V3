@@ -5,6 +5,7 @@
 // Angular
 import { Component }                  from '@angular/core';
 import { EventEmitter }               from '@angular/core';
+import { HostListener }               from '@angular/core';
 import { Input }                      from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
@@ -27,6 +28,19 @@ import { DashboardTemplate }          from './models';
 export class DashboardTemplateComponent implements OnInit {
 
     @Output() formDashboardTemplateClosed: EventEmitter<string> = new EventEmitter();
+
+    @HostListener('window:keyup', ['$event'])
+    keyEvent(event: KeyboardEvent) {
+        console.log(event);
+        event.preventDefault();
+
+        // Known ones
+        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+            this.clickClose('Close');
+            return;
+        };
+
+    }
 
     showTypeDashboard: boolean = false;
     dashboards: Dashboard[];
