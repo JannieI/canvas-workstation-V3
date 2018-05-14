@@ -2410,6 +2410,16 @@ export class AppComponent implements OnInit {
         // this.globalVariableService.showModalData.next(true);
     }
 
+    clickMenuDataDataQuality(){
+        // Manage combinations of DS
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDataQuality', '@Start');
+
+        this.menuOptionClickPreAction();
+
+        this.showModalDataDataQuality = true;
+
+    }
+
     clickMenuDataCombinations(){
         // Manage combinations of DS
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataCombinations', '@Start');
