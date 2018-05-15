@@ -59,7 +59,17 @@ export class GroupsComponent implements OnInit {
         this.selectedRow = 0;
         this.canvasGroups = this.globalVariableService.canvasGroups.filter(g =>
             g.name != ''
-        );
+        ).sort((n1,n2) => {
+            if (n1.name > n2.name) {
+                return 1;
+            };
+        
+            if (n1.name < n2.name) {
+                return -1;
+            };
+        
+            return 0;
+        });
 
         if (this.canvasGroups.length > 0) {
             this.canvasUsers = this.globalVariableService.canvasUsers.filter(u => 
