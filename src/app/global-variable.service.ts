@@ -920,14 +920,18 @@ export class GlobalVariableService {
 
     }
 
-    getDashboards(): Promise<Dashboard[]> {
+    getDashboards(params: string = ''): Promise<Dashboard[]> {
         // Description: Gets all D
         // Returns: this.dashboards array, unless:
         //   If not cached or if dirty, get from File
         console.log('%c        Global-Variables getDashboards ...', 
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
-        let url: string = 'dashboards';
+        if (params.substring(0 ,1) != '?') {
+            params = '?' + params;
+        };
+        
+        let url: string = 'dashboards' + params;
         this.filePath = './assets/data.dashboards.json';
 
         return new Promise<Dashboard[]>((resolve, reject) => {
