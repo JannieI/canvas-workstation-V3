@@ -5,12 +5,12 @@ This document describes items for later versions of Canvas.
 ## Due in v2 (just not shown on forms)
 
 **UI / ideas**
-    1. Tooltips:
-    ------------
-    - Add Tooltips to all - decide if CSS title is okay, as it looks different to Clarity tooltip   for icons - See where and how to use tooltips on buttons (ie HTML title="" or via Clarity).  Be   consistent!!  
+    Tooltips:
+    ---------
+    Add Tooltips to all - decide if CSS title is okay, as it looks different to Clarity tooltip   for icons - See where and how to use tooltips on buttons (ie HTML title="" or via Clarity).  Be   consistent!!
 
-    2. Overall design and layout 
-    ----------------------------
+     Overall design and layout
+    --------------------------
     - GO BACK TO SIMPLICITY !!!  Review regular on how to make it easier and faster.  If like SPSS where everything sits behinds a menu item, then too difficult.  Simplify (Ivan)
     - Review whether as beautiful as Simplus
     - Relook at ALL forms for consistent layout, look and feel, INcluding the popups like the W     title
@@ -19,26 +19,44 @@ This document describes items for later versions of Canvas.
     Standard unit of measure: maybe save all as rem, and user can select px, rem, etc?
     - Use style.css for standard items, ie class="helpMessage"
     - Standardize date format shown - as selected by the user, stored as settings
-    - Consider highlight of selected row in Snapshots.  If good, apply to all Grids.  Better:   consider a GRID-COMPONENT ...
     -Accelator keys: accesskey="h".  Make consistent approach for all, taking into account that browser has own set.  Try to make it dynamic, ie use can define it!
     - Consider Zoom - can use scale(0.6) from CSS, but then need to properly understand layout of main page.  Also, Google, etc already has a zoom, so what's the point.  Remove from menu if not needed
-    - make Palette button sizes dynamic - small, medium, large, and make this a user setting.  Make sure container is also sized dynamically.\
-    - consider a color picker, see https://alligator.io/angular/using-custom-elements/ and attempt to install fooloomanzoo web component, v2 ...
-    - if BULK DELETE in quick succesion, gets http error: ERR_CONNECTION_REFUSED.  Assume it is because json-server gets flooded, but this has to be tested with real server.
-    - Google Sheets says 'All changes saved' after each change.  Should we do the same, ie after each resize or drag-n-drop?
     - everything must be accessable IN 3 CLICKS
     - every form must load in LESS THAN 3 SECS
+    - Google Sheets says 'All changes saved' after each change.  Should we do the same, ie after each resize or drag-n-drop?
+    - verify that we cater for casual to sophisticated user
+    - go through system and make sure things are done consistently
+    - make all drag-n-drop and similar to Microsoft interface.
+    - test: a new user must be able to build a D in 5 minutes, and a person must be ready with max 1hr training session.  Remember, no one reads the manual!  Final test, give it to highschool kids!!
+
+
+    Palette:
+    --------
+    - make Palette button sizes dynamic - small, medium, large, and make this a user setting.  Make sure div around it is also sized dynamically.
+    - little arrow on Palette that makes it easy to rotate horison / vertical
+    ButtonBars: Decide on what to do with Widget- and Shape-ButtonBars and 2 forms - AFTER UI and functionality has been decided.  Maybe remove them, or only allow for order ... For now,palette cannot be changed.
+    - expand palette / menus: add regularly used tasks, ie add a circle (with one click)
+
+
+    JSON-Server Timeout:
+    --------------------
+    - if BULK DELETE in quick succesion, gets http error: ERR_CONNECTION_REFUSED.  Assume it is because json-server gets flooded, but this has to be tested with real server.
+
+
     - consider if we need SAVE AS functionality
+
+
+    PDF / IMAGE:
+    ------------
     - can save Dashboard as pdf - see https://github.com/MrRio/jsPDF.
     Rather: https://stackoverflow.com/questions/38996376/generate-pdf-file-from-html-using-angular2-typescript,  or  https://stackoverflow.com/questions/42900319/how-to-convert-html-to-pdf-in-angular2  or  https://www.npmjs.com/package/jspdf
     - can send as Email Attachment (in pdf or pic). To do this via Gmail, use its API - see https://www.sitepoint.com/sending-emails-gmail-javascript-api/
     - can copy whole D as image - can paste somewhere, or print and put on wall
-    - verify that we cater for casual to sophisticated user
-    - make sure we can have hybrid DS - cloud and local and server in one D
-    - go through system and make sure things are done consistently
-    - make all drag-n-drop and similar to Microsoft interface.
     - view pdf docs insides forms: see https://www.npmjs.com/package/ng2-pdf-viewer
-    - little arrow on Palette that makes it easy to rotate horison / vertical
+    - make sure we can have hybrid DS - cloud and local and server in one D
+    - view Thumbnails of all T - can selected ala PowerPoint
+    - Have popup thumbnails of D on Landing page
+    - Use thumbnails to select a W from another D - have thumbnails are on/off option for performance perhaps
 
 
 
@@ -48,11 +66,12 @@ This document describes items for later versions of Canvas.
     - Test on different configs: screen resolution, 2 screens
     - Test on different devices, ie Tablet and Phone
     Multi-T display: show nr of Tabs where a W is displayed in header as a badge
-    
-    Printing: 
+
+    Printing:
     -------------
     - allow different print layouts and formats, for example one
        Widget per page, Dashboard layout, all Dashboards (linked) or just the current one.
+
 
     Admin module and Users
     ----------------------
@@ -65,40 +84,59 @@ This document describes items for later versions of Canvas.
     - Add UserID to ALL data and code -> where needed ...
     - It must be impossible to lock out all users - admin keeps access and at least one is kept.  Also, if a W is locked and the owner on leave, someone must be able to unlock it.
 
+
     Refactoring / tech debt / necessary improvements:
     -------------------------------------------------
-    - review and check: it should NEVER be allowed to edit the DB itself - there must be a UI   function for changing things.  And always by the users, with rights if necessary.
+    - review and check: it should NEVER be allowed to edit the DB itself - there must be a UI function for changing things.  And always by the users, with rights if necessary.
     - Change all components to use central (global var) createVegaLiteSpec ...
     - Consider array.spice() instead of current deep copy - is more TS-like ...  Review ALL deep    copies - try JSONify or source.map(Object) - remember that Sl Object. did not deep copy!!
-    - Consider depricating gv.currentWidgets, gv = global.variables.  THINK !  Can 1) make  app.currentWidget = gv.currentWidget, ByRef.  Test that this always updates.  2) always refresh  gv.currentWidget  3) delete gv.currentWidget - check where uses and how.  
+    - Consider depricating gv.currentWidgets, gv = global.variables.  THINK !  Can 1) make  app.currentWidget = gv.currentWidget, ByRef.  Test that this always updates.  2) always refresh  gv.currentWidget  3) delete gv.currentWidget - check where uses and how.
     THEN: consider all currentXXX, where XXX = Objects to follow the same methodology.
     - Add RouteGuard on 'Clarity Analytics', before going to web site ...
     BUG/ISSUE: multi-tab Slicers and Ws only refresh on the first one - when are the others done?  To do them while hidden makes no sence - should we have a dirty flag, and filterSlicer on tab change??
+    - ContainerFontSize - consider dropping it, and have a font size for Title, Shape-Text, etc.      Else it gets confusing ...
+    - Consider not increasing stuckCount in App if an item is selected/deselected. This does mean   to pass event back from slicer.single component.
+    On Duplicate of W: make sure Comments, Links, etc is also duplicated in DB (or not??)
+    Expand: add Refresh button, for when change nr lines to show.  Also, 100 -> 1000
+     + Dont show top if no Dataset - rather appropriate Unexpected Error msg
+    Resize does not snap to grid - is this philosophy correct?  If it does snap, remember to change the graphW & -H as well
 
-    Groups:
-    -------
+
+
+    Widget Groups:
+    --------------
     - have a CLEAR definition of what this is and how it works:
     - only one, or many?
     - if click one in group, select all in group?
     - if move one in group and rest not selected, do they move as well?
     - if resize, one or all in group resizes?  Particularly if none selected.
     - if some W selected, say 1 in group of 4.  If move, does group also move?
-    - better indication that groups are used, and maybe some help when Ws are group - say one- time     help popup.
+    - better indication that groups are used, and maybe some help when Ws are group - say one- time help popup.
 
-    ContainerFontSize - consider dropping it, and have a font size for Title, Shape-Text, etc.      Else it gets confusing ...
-    - Consider not increasing stuckCount in App if an item is selected/deselected. This does mean   to pass event back from slicer.single component.
-    On Duplicate of W: make sure Comments, Links, etc is also duplicated in DB (or not??)
-    Expand: add Refresh button, for when change nr lines to show.  Also, 100 -> 1000
-     + Dont show top if no Dataset - rather appropriate Unexpected Error msg
-    Resize does not snap to grid - is this philosophy correct?  If it does snap, remember to change     the graphW & -H as well
-    Shapes: 
+
+
+
+    Shapes:
+    -------
     - links (to web and other D, T)
-    - Do we need both shapeText and shapeValue?  Maybe delete shapeValue ...
     - write text vertically !
     - have UPPERCASE / Sentence Case options
     - add triangle, or make arrow more sophisticated = no line (! triangle), no arrowhead
     - make rotation of arrow with mouse - drag it around!
     - size with svg markerWidth and -Height
+    - Can / should other Shapes (ie TEXT) also rotate with transform="rotate(30 20,40)"??
+    - Can / should Shapes have radial / linear blur inside??
+    - Consider Shape = Line - easy to do, not sure where and how used (rather use arrow)?
+    - Add emojis !?
+    - Consider MarkDown / HTML formatting to Text shape - do we really need this?
+    - PBI can change type of W after created, ie Table to Matrix
+    - How to incorporate fancy W types, ie half circle with needle / doughnut / etc ...
+    - add video as shape
+    - make it easier to add co logo, ie Add logo menu option.
+    - ArrowThin is not inside the W container => difficult to drag and drop, hangs over others, difficult to place, looks funny.  Also, the Arrow header is not always the same colour as the line.  Make more sophisticated to set tail (line) length -> so line length = 0 makes it s simple arrow head, or Triangle.  Also dimentions for head size - height and width.  Can these be done with a mouse ?
+    - consider triangle as a new shape - not sure it is needed, or if can be done via thin arrows
+    - are thin Arrows just Arrows without the body??
+    - Arrow: make dynamic!  For both size and rotation, taking into account that it has to land inside the W container at all times, and preferably left top corner for easy placements.  Also, consider shrinking W container, ie with *ngIf on title and other grid areas ...
 
 
     Different versions of Vega:
@@ -114,7 +152,7 @@ This document describes items for later versions of Canvas.
     Warning:
     - when a W is rendered and some fields dont exist, error occured, display a warning image +     message inside W.  User can edit this, fix the fields and save
     - before saving a W, Canvas checks that the fields are valid, that it renders, etc and warns if not (but allows to save) - how does this fit in with auto-save policy?
-    
+
     Local DB:
     ---------
     - how to add a table without deleting the IndexDB manually ??
@@ -123,20 +161,19 @@ This document describes items for later versions of Canvas.
     - stores all currentD info, users, etc
     - refreshed via WS from DB
     - also used for auto-save: all the steps are saved here, and synced to server at specified  interval (setting on client)
-    ButtonBars: Decide on what to do with Widget- and Shape-ButtonBars and 2 forms - AFTER UI and functionality has been decided.  Maybe remove them, or only allow for order ... For now,palette cannot be changed.
-    
+
     Should we de-select all Ws when we change Tabs, or load a new D?  If not, may be confusing but handy.  If do, where do we do it - GlobVar functions, or in App component (and update Globals back, which does not make sense)
 
 
-**Data**
-    1. 
-    2. Make sure terminology is consitent: Datasource -> Transform -> Dataset
+    Data:
+    -----
+    1. Make sure terminology is consitent: Datasource -> Transform -> Dataset
     4. I used FieldNames (string) in ie Pivot - is that okay?
     5. Design (technically) how Datasets, pivotRow, pivotCol, pivotResult, pivotAgg, Fields,    FieldsMetaData, Combinations, CombinationDetails will work, given that these can change over   time, has to be fast enough (cannot all live in memory) and has to integrate with Vega ...
     6. Check Definition of DS = source, location, authentication, F, Tr, Pv etc.  Dataset is just   the data, with an ID / url to find it.
     8. When removing a Dataset, it validates that not used in a Widget, Shape or Combination. If so,     then cannot be removed.  If removed, all resultsets stored for it must be removed as well, or  not?
     9. Data Quality issues: add place to add detail values.  An overall statement can say all data  has an issue, but a specific one must identify the column(s) and row(s) affected, thus given     the IDs or key values.
-    10.Similtaneous update of LOCAL and GLOBAL vars!  Ie: app sends [widgets] to widget component,  which is the local widgets.  Who and where are Global widgets synced !!!!????  Maybe use     observables where the local ones just subscribe to the global ones.  Anyway, make this method   standard across app. 
+    10.Similtaneous update of LOCAL and GLOBAL vars!  Ie: app sends [widgets] to widget component,  which is the local widgets.  Who and where are Global widgets synced !!!!????  Maybe use     observables where the local ones just subscribe to the global ones.  Anyway, make this method   standard across app.
     11.Determine which transformations live on server and which on client, and whether some/all
        lives on both.
     12.Remember usage - and can sort by popular ones or show it for all relevant objects
@@ -153,11 +190,8 @@ This document describes items for later versions of Canvas.
 
 
 
-
-
-
-
-**Widget Editor - Adv**
+    Widget Editor - Adv:
+    --------------------
     - DESIGn: Adv form
     - user can change Vega field types on Adv form
     - our field type -> vega types: take a best guess
@@ -178,9 +212,12 @@ This document describes items for later versions of Canvas.
     - Give hints/advice on W as to type of graph, insights, etc.
     - filter in W, not only via Slicer, using Vega
     - where to store pictures for Ws - on a server??
+    1. Easy to drill in and out of dates - year - month - day, etc
 
 
-**Table (Bradley SmartTable)** 
+
+    Table (Bradley SmartTable):
+    ---------------------------
     - add drag fields - to X = Add, Drag away = delete from headers
     - add drag field to Y = Pivot!  Decide local or in backend
     - add functionality = filter, sort, etc.  Decide here OR in app component ... Maybe only here
@@ -203,15 +240,15 @@ This document describes items for later versions of Canvas.
     - cell background and colour and font size
     - resize row and col
     - support 10m rows
-- Add SORT to DB ... what about add afterwards?
-- Consider Table Checkpoint - not sure if it is that useful, as one can filter, etc on table, or redesign ... And the purpose of a table is to look at data for a while methinks
-- Consider filter on click cell -> not sure how to make this easy in UI, could be quite easy to just call slicerFilter in the background.
-- Consider, carefully, to allow table to grow to a max of x rows.  This means that all affected Ws have to have a relative starting position.  Remember ReportBuilder ...
-- cell highlighter: 1. user-defined way to specify what colour a cell should be, ie red, orange, green for info, warn, error.  2.  Also with ranges, ie 1-10 = light blue, etc.  3. And filter, ie all values over 200K are red.  4. Full on Conditional Formatting
+    - Add SORT to DB ... what about add afterwards?
+    - Consider Table Checkpoint - not sure if it is that useful, as one can filter, etc on table, or redesign ... And the purpose of a table is to look at data for a while methinks
+    - Consider filter on click cell -> not sure how to make this easy in UI, could be quite easy to just call slicerFilter in the background.
+    - Consider, carefully, to allow table to grow to a max of x rows.  This means that all affected Ws have to have a relative starting position.  Remember ReportBuilder ...
+    - cell highlighter: 1. user-defined way to specify what colour a cell should be, ie red, orange, green for info, warn, error.  2.  Also with ranges, ie 1-10 = light blue, etc.  3. And filter, ie all values over 200K are red.  4. Full on Conditional Formatting
 
 
-**Dashboard**
-    1. Easy to drill in and out of dates - year - month - day, etc
+    Dashboard:
+    ----------
     2. Open: all Ds using a given Template
     4. Easy way to compare data: graph shows revenue per month for this year.  What was figure
        for March last year, or compare all to last year ... NB
@@ -220,28 +257,35 @@ This document describes items for later versions of Canvas.
     7 .Show Grid - currently a .png -> how to make this dynamic ?
     8 .Save keeps all snapshots and undo actions, forever.  Thus, can see how things looked like at any point in the past.  It must be clearly marked for the user.  Must also be able to search the list, and see a list of undo actions.  Also, do we discard all undo actions when a snapshot is taken, or not.  Think clearly about it.
       Important: NO undo on forms, ie Comments.  Must be done through Add/Edit/Delete
-      buttons and logic on form. 
+      buttons and logic on form.
     9 .Import: check security, particularly for the Datasource.  Also, is the access rights
        stored with the text file (security risk)?  Also, can / should it over-write an
        existing Dashboard - yes, with a warning.  It must create a Draft version in all cases.
-    10.Fix bug: Recent Dashboard refreshes 1 cycle too late
     11.StatusBar must not grow beyond screen width, or to double line
     12.Set editMode per Recent - must be same mode as last saved
     13.Set editMode @startup as user pref ?  How will this work if a D is opened read-only
     14.Consider quick access to EditMode - maybe dblClick 'ViewOnly' on StatusBar
-    15.Decision required on philosophy: do we restore / remove Comments, etc with 
+    15.Decision required on philosophy: do we restore / remove Comments, etc with
        each snapshot !?  If yes, then all in synch.  But, can get confusing if a
        user added a Comment to the latest, then another user restores an earlier
        snapshot and his Comments are GONE! Also, if now add comments to older
-       snapshot, and another user restores to a later snapshot, what happens to 
+       snapshot, and another user restores to a later snapshot, what happens to
        these comments??  Think carefully here.
     16.Consider popup status messages, like VSCode to be more visible - maybe not needed.
     17.Considering opening message per D (might even be per user as well), that will display each time D is opened.  How is it entered, who enters / deletes / edits it, and how is it displayed - modal (another one!), popup and for how long, and how is it closed, and how does it look to fit in?
-    18.D usage stats - make something out of it, using nrTimesOpened, nrTimesChanged.  Do we need to extend this to T, W as well?
-    19.Add speaker notes, that can open in separate Browser Tab.
+    19.Add speaker notes, that can open in separate Browser Tab.  Also, can show speaker notes on different screen!
 
 
-**Templates**
+    Sample Ds:
+    ----------
+    - Sample 1: personal finance, budget, expenses, etc
+    - Sample 2: elaborate to-do list
+    - Sample 3: buying a house: loan projections, to-do list of steps, pictures of house, share with friends, time-line of progress, gannt chart in Vega!
+
+
+
+    Templates:
+    ----------
     1. Loading a template - make sure to respect security / rights + all is read-only
     2. D used as Templates may include templates already!  This is to simplify things, and a string     of dependencies - it is thus restricted to one level.  A T can be used in may D, no issue.
     3. Add Datasources to Dashboard, but flag them as invisible.  Thus, Dashboard can use them
@@ -252,7 +296,9 @@ This document describes items for later versions of Canvas.
     6. When a T is changed, the user is warned which Ds use it - he can see their names and maybe   even open them.
 
 
-**Scheduler**
+
+    Scheduler:
+    ----------
     1. Determine tech and where/how it runs
     2. How does standalone work - does it have a schedule?
     3. How are users notified and also when scheduler is down
@@ -262,23 +308,30 @@ This document describes items for later versions of Canvas.
 
 ## Later versions
 To consider for LATER versions:
-User feedback:
+
+Pilot Installation:
 - Install at user as pilot, may Liaan ...
+
 Tabs:
 - can we hide T - will show in T list with hidden tick, can uncheck?
+
 Widgets:
 - Decide to get a W from another D - only show those where the user has access to the DS
 - Decide if check/tick is shown on related Sl when a W is clicked.  The treeview is good enough methinks
-- Treeview: consider (later more functionality): 1. drag and drop W onto different Tabs,  2. Delete icon to delete here (name ~ title may not be clear), 3. click and goto tab where W lives,  4. add Tabs, to show hierarchy better: Tab -< Ws - DS + Sl, Tab -< Sl -< Ws + DS
+
+Treeview: 
+- drag and drop W onto different Tabs
+- Delete icon to delete here (name ~ title may not be clear)
+- click and goto tab where W lives
+- add Tabs, to show hierarchy better: Tab -< Ws - DS + Sl, Tab -< Sl -< Ws + DS
+
 - consider case-INsensitive testing in filterSlicer, or make it a user-defined setting
 - Give the user a vote - via like?  Create a sense of belonging and community
 - Consider multi-W actions, ie to move ALL selected objects - remember complexity since Sl and W sits in different components ...  Also, the current code is specific to ONE
+
 Performance:
 - try to improve performance - trackedByFn ...
-Thumbnails: 
-- view of all T - can selected ala PowerPoint
-- Have popup thumbnail of D on Landing page
-- Use thumbnails to select a W from another D - have thumbnails are on/off option for performance perhaps
+
 UI:
 - Have verticle and horisontal hairlines when moving W - experiment a bit
 - Make Observable from keystrokes in app component - then debounce to make it less??  See BK mouse wheel scroll ...
@@ -293,20 +346,11 @@ Menu functions:
 External contact:
 - Use cell phone to do things easily - ie ask time off, manager approves and data stored as record - EASY and integrated and No forms
 - Telegram interface with bot ...
+
 Comments:
 - add filter on Sender/Receiver
-- consider adding message Thread
 - In ViewOnly mode: cannot select a W, thus cannot see Comments per selected ...
-Shapes:
-- Can / should other Shapes (ie TEXT) also rotate with transform="rotate(30 20,40)"??
-- Can / should Shapes have radial / linear blur inside??
-- Consider Shape = Line - easy to do, not sure where and how used (rather use arrow)?
-- Add emojis !?
-- Consider MarkDown / HTML formatting to Text shape - do we really need this?
-- PBI can change type of W after created, ie Table to Matrix
-- How to incorporate fancy W types, ie half circle with needle / doughnut / etc ... 
-- cannot make smaller than W container, which has fixed outside areas (9, 16, etc).  Should we make these dynamic, so that it can be smaller?  It currently looks funny when a Shape only has one line of text, or >> right at bottom to Jump to linked D.
-Consider dataQuality on own menu item, or on W menu
+- Consider dataQuality on own menu item, or on W menu
 - look at ITTT - if this then that = rules engine that is dynamic
 - consider to show pages and tabs as images - making it easy to select
 - consider adding data: ie load new data into a grid / table ala Excel, and save it in Canvas as DS ...
@@ -317,24 +361,15 @@ Consider dataQuality on own menu item, or on W menu
 - look for real examples where we can disrupt
 - relook at 'what business are we in' to determine product offering vs target market
 - look at market: do segmentation, non-customers that can use Canvas, think of different market needs.  Also, look at different user profiles: info-worker, project manager, consultants, team members, board.  Review competition, and be clear about differentiators.
-- test: a new user must be able to build a D in 5 minutes, and a person must be ready with max 1hr training session.  Remember, no one reads the manual!  Final test, give it to highschool kids!!
-- add speaker notes on different screen!
-- Sample 1: personal finance, budget, expenses, etc
-- Sample 2: elaborate to-do list
-- Sample 3: buying a house: loan projections, to-do list of steps, pictures of house, share with friends, time-line of progress, gannt chart in Vega!
 - consider RIGHT CLICK menu (Ihsane) - this is a lot of work, so first test if users wants it
-- consider triangle as a new shape - not sure it is needed
-- add video as shape
-- make it easier to add co logo, ie Add logo menu option.
-- expand palette / menus: add regularly used tasks, ie add a circle (with one click)
-- curved lines, bazier curves
-- ArrowThin is not inside the W container => difficult to drag and drop, hangs over others, difficult to place, looks funny.  Also, the Arrow header is not always the same colour as the line.  Make more sophisticated to set tail (line) length -> so line length = 0 makes it s simple arrow head,or Triangle.  Also dimentions for head size - height and width.  Can these be done with a mouse ?
-- Arrow: make dynamic!  For both size and rotation, taking into account that it has to land inside the W container at all times, and preferably left top corner for easy placements.  Also, consider shrinking W container, ie with *ngIf on title and other grid areas ...
 - consider if it is possible to show changes easily and visually, similar to mark-up in a Word doc!
 
-Draw Mode:
-- make the whole canvas interactive once you click DrawMode
-- hand-drawn lines / pics with mouse! => creates a normal W, with sizing and positioning so that it is top left :-)
-- add handles to arrows, lines, etc => use this to position and rotate and make longer / resize !
-- data quality issues: decide in inside or outside Canvas, and complete form
+
+    Draw Mode:
+    ----------
+    - make the whole canvas interactive once you click DrawMode
+    - hand-drawn lines / pics with mouse! => creates a normal W, with sizing and positioning so that it is top left :-)
+    - add handles to arrows, lines, etc => use this to position and rotate and make longer / resize !
+    - data quality issues: decide in inside or outside Canvas, and complete form
+    - curved lines, bazier curves
 
