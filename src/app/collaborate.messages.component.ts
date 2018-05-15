@@ -19,7 +19,7 @@ import { GlobalVariableService}       from './global-variable.service';
 // Models
 import { CanvasMessage }           from './models';
 import { DatagridInput }              from './models';
-
+ 
 @Component({
     selector: 'collaborate-messages',
     templateUrl: './collaborate.messages.component.html',

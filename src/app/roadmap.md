@@ -336,4 +336,5 @@ Draw Mode:
 - make the whole canvas interactive once you click DrawMode
 - hand-drawn lines / pics with mouse! => creates a normal W, with sizing and positioning so that it is top left :-)
 - add handles to arrows, lines, etc => use this to position and rotate and make longer / resize !
+- data quality issues: decide in inside or outside Canvas, and complete form
 

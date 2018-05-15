@@ -27,6 +27,7 @@
         text-align: left;
     }
     .gridSubTitle {
+        color: red;
         grid-column-start: 1;
         grid-column-end: 18;
         grid-row-start: 2;
