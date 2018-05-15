@@ -56,7 +56,17 @@ export class UsersComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
  
         this.globalVariableService.getCanvasUsers().then(u => {
-            this.users = u;
+            this.users = u.sort((n1,n2) => {
+                if (n1.userID > n2.userID) {
+                    return 1;
+                };
+            
+                if (n1.userID < n2.userID) {
+                    return -1;
+                };
+            
+                return 0;
+            });;
             this.selectedRow = 0;
             if (u.length > 0) {
                 this.groups = u[0].groups;
