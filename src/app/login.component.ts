@@ -27,6 +27,8 @@ export class LoginComponent implements OnInit {
 
     @Output() formUserLoginClosed: EventEmitter<string> = new EventEmitter();
 
+
+
     showTypeDashboard: boolean = false;
     dashboards: Dashboard[];
 
