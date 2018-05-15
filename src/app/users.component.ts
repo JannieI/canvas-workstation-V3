@@ -66,7 +66,7 @@ export class UsersComponent implements OnInit {
                 };
             
                 return 0;
-            });;
+            });
             this.selectedRow = 0;
             if (u.length > 0) {
                 this.groups = u[0].groups;

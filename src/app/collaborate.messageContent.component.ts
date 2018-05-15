@@ -71,17 +71,51 @@ export class CollaborateMessageContentComponent implements OnInit {
             this.canvasMessages = msg;
 
             this.globalVariableService.getCanvasUsers().then(usr => {
-                this.users = usr;
+                this.users = usr.sort((n1,n2) => {
+                    if (n1.userID > n2.userID) {
+                        return 1;
+                    };
+                
+                    if (n1.userID < n2.userID) {
+                        return -1;
+                    };
+                
+                    return 0;
+                }); 
                 usr.forEach(u => {
                     this.userNames.push(u.userID);
                 });
                 this.userNames = ['', ...this.userNames];
 
                 this.globalVariableService.getCanvasGroups().then(grp => {
+                    grp = grp.sort((n1,n2) => {
+                        if (n1.name > n2.name) {
+                            return 1;
+                        };
+                    
+                        if (n1.name < n2.name) {
+                            return -1;
+                        };
+                    
+                        return 0;
+                    });
                     grp.forEach(g => {
                         this.groupNames.push(g.name);
                     });
                 });
+
+                this.groupNames = this.groupNames.sort((n1,n2) => {
+                    if (n1 > n2) {
+                        return 1;
+                    };
+                
+                    if (n1 < n2) {
+                        return -1;
+                    };
+                
+                    return 0;
+                });
+
                 // this.groupNames = ['', ...this.groupNames];
             });
 
