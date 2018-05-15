@@ -1,103 +1,118 @@
-<div class="gridOverall">
+<form #f="ngForm" role="form" novalidate>
 
-    <div class="gridTitle">
-        <b>Send Message: </b>
-    </div>
-    <div class="gridSubTitle">
-        <i>
-            Send a message to another Canvas User.
-        </i>
-    </div>
+    <div class="gridOverall">
 
-    <div class="gridToUsersTitle">
-        <b>To Users:</b>
-    </div>
-
-    <div class="select gridToUsers">
-        <select
-            [(ngModel)]="selectedUser"
-            >
-            <option *ngFor="let row of userNames"
-                >
-                {{ row }}
-            </option>
-        </select>
-    </div>
-
-    <div class="gridToGroupsTitle">
-        <b>To Groups:</b>
-    </div>
-
-    <div class="select gridToGroups">
-        <select
-            [(ngModel)]="selectedGroup"
-            >
-            <option *ngFor="let row of groupNames"
-                >
-                {{ row }}
-            </option>
-        </select>
-    </div>
-
-    <div class="gridSubjectTitle">
-        <b>Subject:</b>
-    </div>
-
-    <div class="gridSubject">
-        <input [(ngModel)]="subject"
-            type="text"
-            title="Subject"
-            size="25"
-            >
-    </div>
-
-    <div class="gridBodyTitle">
-        <b>Body:</b>
-    </div>
-
-    <div class="gridBody">
-        <input [(ngModel)]="body"
-            type="text"
-            title="Body"
-            size="25"
-            >
-    </div>
-
-    <div class="gridLinkTitle">
-        <b>Link this Dashboard and Tab:</b>
-    </div>
-
-    <div class="gridLink">
-        <input [(ngModel)]="linked"
-            type="checkbox"
-            title="Link the current Dashboard (T/F)"
-            >
-    </div>
-
-    <div class="gridErrorMessage">
-        <i>
-            {{ errorMessage }}
-        </i>
-    </div>
-
-    <div class="gridButtonCancel">
-            <button
-            type="button"
-            class="btn btn-secondary"
-            (click)="clickClose('Close')"
-            >
-            Cancel
-        </button>
-    </div>
-
-    <div class="gridButtonSend">
-        <button
-            type="button"
-            class="btn btn-primary"
-            (click)="clickSend('Sent')"
-            >
-            Send
-        </button>
-    </div>
-</div>
+        <div class="gridTitle">
+            <b>Send Message: </b>
+        </div>
+        <div class="gridSubTitle">
+            <i>
+                Send a message to another Canvas User.
+            </i>
+        </div>
     
+        <div class="gridToUsersTitle">
+            <b>To Users:</b>
+        </div>
+
+        <div class="select gridToUsers">
+            <select
+                [(ngModel)]="selectedUser"
+                name="selectedUser"
+                >
+                <option *ngFor="let row of userNames"
+                    >
+                    {{ row }}
+                </option>
+            </select>
+        </div>
+
+        <div class="gridToGroupsTitle">
+            <b>To Groups:</b>
+        </div>
+
+        <div class="select gridToGroups">
+            <select
+                [(ngModel)]="selectedGroup"
+                name="selectedGroup"
+                >
+                <option *ngFor="let row of groupNames"
+                    >
+                    {{ row }}
+                </option>
+            </select>
+        </div>
+
+        <div class="gridSubjectTitle">
+            <b>Subject:</b>
+        </div>
+
+        <div class="gridSubject">
+            <input [(ngModel)]="subject"
+                name="subject"
+                type="text"
+                title="Subject"
+                required 
+                minlength="2"
+                #subjectVar="ngModel"
+                [style.color]="!subjectVar.valid ? 'red' : 'gray'"
+                size="25"
+                >
+        </div>
+
+        <div class="gridBodyTitle">
+            <b>Body:</b>
+        </div>
+
+        <div class="gridBody">
+            <input [(ngModel)]="body"
+                name="body"
+                type="text"
+                title="Body"
+                required 
+                minlength="2"
+                #bodyVar="ngModel"
+                [style.color]="!bodyVar.valid ? 'red' : 'gray'"
+                size="25"
+                >
+        </div>
+
+        <div class="gridLinkTitle">
+            <b>Link this Dashboard and Tab:</b>
+        </div>
+
+        <div class="gridLink">
+            <input [(ngModel)]="linked"
+                name="linked"
+                type="checkbox"
+                title="Link the current Dashboard (T/F)"
+                >
+        </div>
+
+        <div class="gridErrorMessage">
+            <i>
+                {{ errorMessage }}
+            </i>
+        </div>
+
+        <div class="gridButtonCancel">
+                <button
+                type="button"
+                class="btn btn-secondary"
+                (click)="clickClose('Close')"
+                >
+                Cancel
+            </button>
+        </div>
+
+        <div class="gridButtonSend">
+            <button
+                type="button"
+                class="btn btn-primary"
+                (click)="clickSend('Sent')"
+                >
+                Send
+            </button>
+        </div>
+    </div>
+</form> 
