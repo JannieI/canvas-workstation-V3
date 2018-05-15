@@ -2,6 +2,7 @@
 import { Component }                  from '@angular/core';
 import { ElementRef }                 from '@angular/core';
 import { EventEmitter }               from '@angular/core';
+import { HostListener }               from '@angular/core';
 import { Input }                      from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
@@ -22,6 +23,19 @@ import { GlobalVariableService }      from './global-variable.service';
 export class WidgetExportComponent implements OnInit {
 
     @Output() formWidgetExportClosed: EventEmitter<string> = new EventEmitter();
+
+    @HostListener('window:keyup', ['$event'])
+    keyEvent(event: KeyboardEvent) {
+        console.log(event);
+        event.preventDefault();
+
+        // Known ones
+        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+            this.clickClose('Close');
+            return;
+        };
+
+    }
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
