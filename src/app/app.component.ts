@@ -958,22 +958,24 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataSlicers', '@Start');
 
         // Add to Action log
-        this.globalVariableService.actionUpsert(
-            null,
-            this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
-            this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
-            changedWidget.id,
-            'Widget',
-            this.newWidget? 'Add' : 'Edit',
-            'App handleCloseDataSlicers',
-            null,
-            null,
-            this.newWidget? null : this.selectedWidget,
-            changedWidget
-        );
+        if (changedWidget != null) {
+            this.globalVariableService.actionUpsert(
+                null,
+                this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                changedWidget.id,
+                'Widget',
+                this.newWidget? 'Add' : 'Edit',
+                'App handleCloseDataSlicers',
+                null,
+                null,
+                this.newWidget? null : this.selectedWidget,
+                changedWidget
+            );
 
-        this.globalVariableService.changedWidget.next(changedWidget);
-
+            this.globalVariableService.changedWidget.next(changedWidget);
+        };
+        
         this.menuOptionClickPostAction();
 
         this.showModalSlicerEditor = false;
