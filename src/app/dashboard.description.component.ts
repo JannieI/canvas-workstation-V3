@@ -64,6 +64,7 @@ export class DashboardDescriptionComponent implements OnInit {
     dashboardEdited: string;
     dashboardRefresher: string;
     dashboardRefreshed: string;
+    errorMessage: string = '';
 
 
 	constructor(
@@ -110,6 +111,14 @@ export class DashboardDescriptionComponent implements OnInit {
     clickSave(action: string) {
         // Save the changes, then close the form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
+
+        // Add permission check
+        if (this.globalVariableService.dashboardPermissionCheck(
+            this.selectedDashboard.id, 
+            'CanEdit')) {
+            this.errorMessage = 'Insufficient Permission (needs CanEdit rights or be Owner';
+            return;
+        };
 
         // Update local D
         this.selectedDashboard.name = this.dashboardName;
