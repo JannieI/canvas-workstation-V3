@@ -2275,18 +2275,6 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        // Has to be in editMode
-        if (!this.editMode) {
-            this.showMessage(
-                this.globalVariableService.canvasSettings.notInEditModeMsg,
-                'StatusBar',
-                'Warning',
-                3000,
-                ''
-            );
-            return;
-        };
-
         // Must have access
         if (!this.globalVariableService.dashboardPermissionCheck(
             this.globalVariableService.currentDashboardInfo.value.currentDashboardID
