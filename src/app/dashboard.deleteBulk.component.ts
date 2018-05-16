@@ -79,7 +79,7 @@ export class DashboardDeleteBulkComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDelete', '@Start');
 
         // Determine access
-        if (!this.globalVariableService.dashboardPermissionCheck(id)) {
+        if (!this.globalVariableService.dashboardPermissionCheck(id, 'CanDelete')) {
             this.errorMessage = 'No access';
             return;
         };

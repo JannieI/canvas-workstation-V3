@@ -148,10 +148,19 @@ export class AppComponent implements OnInit {
         console.log(event);
         event.preventDefault();
 
+        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+
+            if (this.showWidgetFullScreenWidth > 0) {
+                this.clickCloseFullScreen();
+                return;
+            };
+        };
+
         // No key actions while a modal form is open
         if (this.modalFormOpen) {
             return;
         };
+
 
         // Ignore certain ones
         if (event.key == 'Tab'  ||  event.key == 'Control') {

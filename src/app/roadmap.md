@@ -115,7 +115,6 @@ This document describes items for later versions of Canvas.
 
 
 
-
     Shapes:
     -------
     - links (to web and other D, T)
@@ -127,7 +126,7 @@ This document describes items for later versions of Canvas.
     - Can / should other Shapes (ie TEXT) also rotate with transform="rotate(30 20,40)"??
     - Can / should Shapes have radial / linear blur inside??
     - Consider Shape = Line - easy to do, not sure where and how used (rather use arrow)?
-    - Add emojis !?
+    - Add emojis !?  See https://www.w3schools.com/charsets/ref_utf_misc_symbols.asp 
     - Consider MarkDown / HTML formatting to Text shape - do we really need this?
     - PBI can change type of W after created, ie Table to Matrix
     - How to incorporate fancy W types, ie half circle with needle / doughnut / etc ...
