@@ -1943,7 +1943,6 @@ export class AppComponent implements OnInit {
             return;
         };
 
-
         // Has to be in editMode
         if (!this.editMode) {
             this.showMessage(
@@ -2072,6 +2071,20 @@ export class AppComponent implements OnInit {
     clickDashboardRename() {
         // Bulk rename D
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardRename', '@Start');
+
+        // Permissions
+        if (!this.globalVariableService.currentUser.isDashboardEditor
+            &&
+            !this.globalVariableService.currentUser.isAdministrator) {
+            this.showMessage(
+                'You do not have Edit Permissions (role must be added)',
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
 
         this.menuOptionClickPreAction();
 

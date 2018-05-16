@@ -113,7 +113,7 @@ export class DashboardDescriptionComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
         // Add permission check
-        if (this.globalVariableService.dashboardPermissionCheck(
+        if (!this.globalVariableService.dashboardPermissionCheck(
             this.selectedDashboard.id, 
             'CanEdit')) {
             this.errorMessage = 'Insufficient Permission (needs CanEdit rights or be Owner';
