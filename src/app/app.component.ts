@@ -2680,6 +2680,20 @@ export class AppComponent implements OnInit {
             return;
         };
 
+        // Must have access to this D
+        if (!this.globalVariableService.dashboardPermissionCheck(
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+            'CanEdit')) {
+                this.showMessage(
+                    'No Edit access to this Dashboard',
+                    'StatusBar',
+                    'Warning',
+                    3000,
+                    ''
+                );
+                return;
+        };
+
         // Has to be in editMode
         if (!this.editMode) {
             this.showMessage(
@@ -2984,6 +2998,20 @@ export class AppComponent implements OnInit {
                 ''
             );
             return;
+        };
+
+        // Must have access to this D
+        if (!this.globalVariableService.dashboardPermissionCheck(
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+            'CanEdit')) {
+                this.showMessage(
+                    'No Edit access to this Dashboard',
+                    'StatusBar',
+                    'Warning',
+                    3000,
+                    ''
+                );
+                return;
         };
 
         if (!this.checkForOnlyOneWidget('Graph')) {
