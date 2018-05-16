@@ -146,7 +146,8 @@ export class DashboardDeleteComponent implements OnInit {
 
         // Determine access
         if (!this.globalVariableService.dashboardPermissionCheck(
-            this.globalVariableService.currentDashboardInfo.value.currentDashboardID
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+            'CanDelete'
         )) {
             this.errorMessage = 'No access';
             return;
