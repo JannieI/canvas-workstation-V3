@@ -3011,6 +3011,19 @@ export class AppComponent implements OnInit {
         // Duplicate selected Graph
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuGraphDuplicate', '@Start');
 
+        // Permissions
+        if (!this.globalVariableService.currentUser.isDashboardEditor
+            &&
+            !this.globalVariableService.currentUser.isAdministrator) {
+            this.showMessage(
+                'You do not have Edit Permissions (role must be added)',
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
 
         this.clickMenuWidgetDuplicate('Graph')
     }
