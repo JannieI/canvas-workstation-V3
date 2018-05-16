@@ -3121,6 +3121,20 @@ export class AppComponent implements OnInit {
         // Paste Widget previously copied to our 'clipboard'
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetPaste', '@Start');
 
+        // Permissions
+        if (!this.globalVariableService.currentUser.isDashboardEditor
+            &&
+            !this.globalVariableService.currentUser.isAdministrator) {
+            this.showMessage(
+                'You do not have Edit Permissions (role must be added)',
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+
         // Has to be in editMode
         if (!this.editMode) {
             this.showMessage(
