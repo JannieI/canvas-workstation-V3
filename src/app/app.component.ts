@@ -2958,6 +2958,20 @@ export class AppComponent implements OnInit {
         // Add links to the selected W
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetLinks', '@Start');
 
+        // Permissions
+        if (!this.globalVariableService.currentUser.isDashboardEditor
+            &&
+            !this.globalVariableService.currentUser.isAdministrator) {
+            this.showMessage(
+                'You do not have Edit Permissions (role must be added)',
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+
         if (!this.checkForOnlyOneWidget('Graph')) {
             return;
         };
