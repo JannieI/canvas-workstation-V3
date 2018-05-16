@@ -4148,6 +4148,20 @@ export class AppComponent implements OnInit {
         // Manage links for the selected Shape
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuShapeLinks', '@Start');
 
+        // Must have access to this D
+        if (!this.globalVariableService.dashboardPermissionCheck(
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+            'CanEdit')) {
+                this.showMessage(
+                    'No Edit access to this Dashboard',
+                    'StatusBar',
+                    'Warning',
+                    3000,
+                    ''
+                );
+                return;
+        };
+
         // Make sure we have only one, then delete it
         if (!this.checkForOnlyOneWidget()) {
             return;
