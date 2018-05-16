@@ -2499,6 +2499,20 @@ export class AppComponent implements OnInit {
         // Open W Editor
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetNew', '@Start');
 
+        // Permissions
+        if (!this.globalVariableService.currentUser.isDashboardEditor
+            &&
+            !this.globalVariableService.currentUser.isAdministrator) {
+            this.showMessage(
+                'You do not have Edit Permissions (role must be added)',
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+
         // Has to be in editMode
         if (!this.editMode) {
             this.showMessage(
