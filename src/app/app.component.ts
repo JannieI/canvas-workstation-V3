@@ -3804,6 +3804,20 @@ export class AppComponent implements OnInit {
         //  widgetIndex - optional [W] index to open, does not depend on what was selected
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetDescription', '@Start');
 
+        // Must have access to this D
+        if (!this.globalVariableService.dashboardPermissionCheck(
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+            'CanEdit')) {
+                this.showMessage(
+                    'No Edit access to this Dashboard',
+                    'StatusBar',
+                    'Warning',
+                    3000,
+                    ''
+                );
+                return;
+        };
+
         // Indicate edit W and open Editor, which will work with selected W
         if (widgetIndex == null) {
 
