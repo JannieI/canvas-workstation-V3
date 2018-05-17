@@ -158,7 +158,12 @@
                             name="newName"
                             size="25"
                             placeholder="New Name for selected Dashboard"
-                            >
+                            #renameModeVar="ngModel"
+                            required
+                            minlength="3"
+                            maxlength="80"
+                            [style.color]="!renameModeVar.valid ? 'red' : 'gray'"
+                        >
                     </div>
                     <div class="gridCancelButton" *ngIf="renameMode">
                         <button
