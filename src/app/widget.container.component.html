@@ -8,6 +8,14 @@
 
                 <div class="gridOverall">
 
+                    <div class="colourpicker" *ngIf="colourPickerClosed">
+                        <colour-picker
+                            [callingRoutine]="callingRoutine"
+                            [selectedColor]="selectedColour"
+                            >
+                        </colour-picker>
+                    </div>
+
                     <div class="gridHeading">
                         <b>Container settings</b>
                     </div>
@@ -61,7 +69,7 @@
 
                     <div class="gridProperties">
 
-                        <div class="propertyLine">
+                        <div class="propertyLine" disabled>
                             Background Colour:
                             <select
                                 [(ngModel)]="localWidget.containerBackgroundcolor"
@@ -77,6 +85,36 @@
                             </select>
 
                         </div>
+
+
+
+
+
+
+                        <div class="select propertyLine">
+                            <select
+                                [(ngModel)]="localWidget.containerBackgroundcolor"
+                                (change)="clickSelectBgColor($event)"
+                                >
+                                <option *ngFor="let row of backgroundcolors"
+                                    [style.background-color]="row.name"
+                                    >
+                                    {{ row.name }}
+                                </option>
+                            </select>
+                        </div>
+                        <button
+                            type="button"
+                            class="btn btn-link btn-sm gridCircleLineColourPicker"
+                            (click)="clickSelectBgColorPicker()"
+                            >
+                            Picker
+                        </button>
+    
+
+
+
+
 
                         <div class="propertyLine">
                             Border:

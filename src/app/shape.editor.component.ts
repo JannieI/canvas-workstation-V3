@@ -102,7 +102,7 @@ export class ShapeEditComponent implements OnInit {
                         this.colourPickerClosed = false;
                         this.localWidget.shapeTextColour = clp.selectedColor;
                     };
-                    
+
                     if (clp.callingRoutine == 'ShapeEditorBracketColor') {
                         this.colourPickerClosed = false;
                         this.localWidget.shapeStroke = clp.selectedColor;
@@ -172,7 +172,7 @@ export class ShapeEditComponent implements OnInit {
         this.dashboardTabList = ['None'];
         for (var i = 0; i < this.globalVariableService.currentDashboardTabs.length; i++) {
             this.dashboardTabList.push(
-                this.globalVariableService.currentDashboardTabs[i].name 
+                this.globalVariableService.currentDashboardTabs[i].name
                     + ' (' + (i + 1).toString() + ')');
         };
 
@@ -392,7 +392,7 @@ export class ShapeEditComponent implements OnInit {
         if (shapeType == 'Brackets') {
             this.showBrackets = true;
         };
-        
+
     }
 
     clickBulletDelete(index: number, item: string) {
@@ -415,7 +415,7 @@ export class ShapeEditComponent implements OnInit {
 
         // Show text of bullet on form
         this.bulletText = this.localWidget.shapeBullet[index].text;
-        
+
         // Take the id of the selected bullet, and get its position in [gvTabs]
         if (this.localWidget.shapeBullet[index].linkedTabID == null) {
             this.bulletSelectedTab = 'None';
@@ -450,12 +450,12 @@ export class ShapeEditComponent implements OnInit {
             let openBracket: number = this.bulletSelectedTab.indexOf('(');
             let closeBracket: number = this.bulletSelectedTab.indexOf(')');
             let tabSequenceNr = +this.bulletSelectedTab.substring(openBracket + 1, closeBracket);
-        
+
             // Store ID associated with that sequence nr
             if (tabSequenceNr < 0) {
                 this.localWidget.shapeBullet[this.bulletIndex].linkedTabID = null;
             } else {
-                this.localWidget.shapeBullet[this.bulletIndex].linkedTabID = 
+                this.localWidget.shapeBullet[this.bulletIndex].linkedTabID =
                     this.globalVariableService.currentDashboardTabs[tabSequenceNr - 1].id;
             };
 
@@ -490,7 +490,7 @@ export class ShapeEditComponent implements OnInit {
             let openBracket: number = this.bulletSelectedTab.indexOf('(');
             let closeBracket: number = this.bulletSelectedTab.indexOf(')');
             let tabSequenceNr = +this.bulletSelectedTab.substring(openBracket + 1, closeBracket);
-            
+
             // Add to Bullets Array
             if (tabSequenceNr < 0) {
                 selectedTabID = null;
@@ -502,11 +502,11 @@ export class ShapeEditComponent implements OnInit {
 
         // Add to Bullets
         this.localWidget.shapeBullet.push(
-            { 
-                text: this.bulletText, 
-                linkedTabID: selectedTabID, 
-                color: '', 
-                jumpedColor: '' 
+            {
+                text: this.bulletText,
+                linkedTabID: selectedTabID,
+                color: '',
+                jumpedColor: ''
             }
         );
     }
@@ -520,7 +520,7 @@ export class ShapeEditComponent implements OnInit {
         let openBracket: number = selectedTabstring.indexOf('(');
         let closeBracket: number = selectedTabstring.indexOf(')');
         this.selectedTabIndex = +selectedTabstring.substring(openBracket + 1, closeBracket);
-        
+
         let selectedTabIndex: number = this.globalVariableService.currentDashboardTabs
             .findIndex(t => t.id == this.selectedTabIndex);
 
@@ -781,7 +781,7 @@ export class ShapeEditComponent implements OnInit {
         this.callingRoutine = 'ShapeEditorArrowLineColor';
         this.colourPickerClosed = true;
     }
-    
+
     clickSelectBracketSize(ev: any) {
         // Select Arrow Size
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBracketSize', '@Start');

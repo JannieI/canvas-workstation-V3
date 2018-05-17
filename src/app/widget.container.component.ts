@@ -1,5 +1,5 @@
 /*
- * Visualise page, to view / present Dashboards previously created
+ * Specify properties about the W container
  */
 
 // Angular
@@ -11,6 +11,7 @@ import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
 
 // Our Models
+import { CSScolor }                   from './models';
 import { Widget }                     from './models';
 
 // Our Functions
@@ -40,7 +41,11 @@ export class WidgetContainerComponent implements OnInit {
 
     }
 
+    backgroundcolors: CSScolor[];
+    callingRoutine: string = '';
+    colourPickerClosed: boolean = false;
     localWidget: Widget;                            // W to modify, copied from selected
+    selectedColour: string;
 
 
     constructor(
@@ -52,9 +57,44 @@ export class WidgetContainerComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
+        // Manage colour picker
+        this.globalVariableService.colourPickerClosed.subscribe(clp => {
+
+            if (this.localWidget != undefined  &&  clp != null) {
+
+                if (clp.cancelled) {
+                    this.colourPickerClosed = false;
+                } else {
+
+                    this.colourPickerClosed = false;
+                    this.localWidget.shapeTextColour = clp.selectedColor;
+
+                };
+            };
+        });
+
+        // Get setup info
+        this.backgroundcolors = this.globalVariableService.backgroundcolors.slice();
+
         // Deep copy
         this.localWidget = Object.assign({}, this.selectedWidget);
 
+    }
+    
+    clickSelectBgColorPicker(ev: any) {
+        // Open the Colour Picker for Circle Line Colour
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBgColorPicker', '@Start');
+
+        this.selectedColour = this.localWidget.containerBackgroundcolor;
+        this.callingRoutine = '';
+        this.colourPickerClosed = true;
+    }
+
+    clickSelectBgColor(ev: any) {
+        // Select Circle Line Colour
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBgColor', '@Start');
+
+        this.localWidget.containerBackgroundcolor = ev.target.value;
     }
 
     clickClose() {
@@ -71,7 +111,7 @@ export class WidgetContainerComponent implements OnInit {
 
         // Replace the W
         this.globalVariableService.widgetReplace(this.localWidget);
-        
+
         // Tell user
         this.globalVariableService.showStatusBarMessage(
             {
