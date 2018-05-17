@@ -1,107 +1,109 @@
 <div class="modal modalBox">
     <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
         <div class="modal-content modalContent">
+            <form #f="ngForm" role="form" novalidate>
 
-            <button type="button" class="closeButton" (click)="clickClose()">
-                X
-            </button>
+                <button type="button" class="closeButton" (click)="clickClose()">
+                    X
+                </button>
 
-            <div class="gridOverall">
+                <div class="gridOverall">
 
-                <div class="gridTitle">
-                    <b>Widget Checkpoints: </b>
-                </div>
-                <div class="gridSubTitle">
-                    <i>
-                            A Checkpoint is saved at a point in time, and shows how the Widget
-                            looked then (including filters, colours, etc).  This could be usedful
-                            during presentations as the same physical area on the screen can be used
-                            to show different graphs, for example drill down into progressively more
-                            detail.
-                    </i>
-                </div>
-
-                <div class="gridCheckpointTitle">
-                    <b>Name:</b>
-                </div>
-
-                <div class="gridCheckpoint">
-                    <input [(ngModel)]="checkpointName"
-                        type="text"
-                        title="Recipients"
-                        size="25"
-                        placeholder="Checkpoint Name"
-                        autofocus
-                        >
-                </div>
-
-                <div class="gridCheckpointButton">
-                    <button
-                        type="button"
-                        class="btn btn-secondary btn-sm"
-                        (click)="clickAddCheckpoint()"
-                        >
-                        Add
-                    </button>
-                </div>
-
-                    <div class="gridCheckpointTable">
-                        <clr-datagrid>
-
-                            <!-- Empty Message -->
-                            <clr-dg-placeholder>
-                                No Checkpoints created as yet
-                            </clr-dg-placeholder>
-
-                            <!-- Headers -->
-                            <clr-dg-column>
-                                Delete
-                            </clr-dg-column>
-                            <clr-dg-column *ngFor="let col of datagridColumns; let c = index"
-                                [clrDgField]="col.fieldName"
-                                >
-                                {{ col.displayName }}
-                            </clr-dg-column>
- 
-                            <!-- Each Row -->
-                            <clr-dg-row *clrDgItems="let row of currentWidgetCheckpoints;
-                                let i = index"
-                                [style.background-color]="(i == selectedRow)? '#123456' : 'white'"
-                                [style.color]="(i == selectedRow)? 'white' : 'gray'"
-                                (click)="clickRow(i, row.id)">
-                                <clr-dg-cell>
-                                    <clr-icon
-                                        (click)="clickDeleteCheckpoint(row.id)"
-                                        shape="trash">
-                                    </clr-icon>
-                                </clr-dg-cell>
-                                <!-- Each Cell -->
-                                <clr-dg-cell *ngFor="let col of datagridColumns; let c = index">
-                                    {{ row[col.fieldName] }}
-                                </clr-dg-cell>
-                            </clr-dg-row>
-
-                            <!-- Footer -->
-                            <clr-dg-footer>
-                                {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
-                                of {{pagination.totalItems}} records
-                                <clr-dg-pagination
-                                    #pagination
-                                    [clrDgPageSize]="5"
-                                    >
-                                </clr-dg-pagination>
-                            </clr-dg-footer>
-                        </clr-datagrid>
-
+                    <div class="gridTitle">
+                        <b>Widget Checkpoints: </b>
+                    </div>
+                    <div class="gridSubTitle">
+                        <i>
+                                A Checkpoint is saved at a point in time, and shows how the Widget
+                                looked then (including filters, colours, etc).  This could be usedful
+                                during presentations as the same physical area on the screen can be used
+                                to show different graphs, for example drill down into progressively more
+                                detail.
+                        </i>
                     </div>
 
-                <div class="graphArea" #dragWidget
-                    [hidden]="nrCheckpoints > 0? false : true" 
-                    >
+                    <div class="gridCheckpointTitle">
+                        <b>Name:</b>
+                    </div>
+
+                    <div class="gridCheckpoint">
+                        <input [(ngModel)]="checkpointName"
+                            type="text"
+                            name="checkpointName"
+                            title="Recipients"
+                            size="25"
+                            placeholder="Checkpoint Name"
+                            autofocus
+                            >
+                    </div>
+
+                    <div class="gridCheckpointButton">
+                        <button
+                            type="button"
+                            class="btn btn-secondary btn-sm"
+                            (click)="clickAddCheckpoint()"
+                            >
+                            Add
+                        </button>
+                    </div>
+
+                        <div class="gridCheckpointTable">
+                            <clr-datagrid>
+
+                                <!-- Empty Message -->
+                                <clr-dg-placeholder>
+                                    No Checkpoints created as yet
+                                </clr-dg-placeholder>
+
+                                <!-- Headers -->
+                                <clr-dg-column>
+                                    Delete
+                                </clr-dg-column>
+                                <clr-dg-column *ngFor="let col of datagridColumns; let c = index"
+                                    [clrDgField]="col.fieldName"
+                                    >
+                                    {{ col.displayName }}
+                                </clr-dg-column>
+    
+                                <!-- Each Row -->
+                                <clr-dg-row *clrDgItems="let row of currentWidgetCheckpoints;
+                                    let i = index"
+                                    [style.background-color]="(i == selectedRow)? '#123456' : 'white'"
+                                    [style.color]="(i == selectedRow)? 'white' : 'gray'"
+                                    (click)="clickRow(i, row.id)">
+                                    <clr-dg-cell>
+                                        <clr-icon
+                                            (click)="clickDeleteCheckpoint(row.id)"
+                                            shape="trash">
+                                        </clr-icon>
+                                    </clr-dg-cell>
+                                    <!-- Each Cell -->
+                                    <clr-dg-cell *ngFor="let col of datagridColumns; let c = index">
+                                        {{ row[col.fieldName] }}
+                                    </clr-dg-cell>
+                                </clr-dg-row>
+
+                                <!-- Footer -->
+                                <clr-dg-footer>
+                                    {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+                                    of {{pagination.totalItems}} records
+                                    <clr-dg-pagination
+                                        #pagination
+                                        [clrDgPageSize]="5"
+                                        >
+                                    </clr-dg-pagination>
+                                </clr-dg-footer>
+                            </clr-datagrid>
+
+                        </div>
+
+                    <div class="graphArea" #dragWidget
+                        [hidden]="nrCheckpoints > 0? false : true" 
+                        >
+                    </div>
+
                 </div>
-
-            </div>
-
+            </form> 
         </div>
     </div>
 </div>
