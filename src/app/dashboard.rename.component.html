@@ -1,7 +1,8 @@
 <div class="modal modalBox">
     <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
         <div class="modal-content modalContent">
-            <div modalContent>
+            <form #f="ngForm" role="form" novalidate>
+
                 <button type="button" class="closeButton" (click)="clickClose()">
                     X
                 </button>
@@ -19,7 +20,9 @@
 
                     <div class="gridName">
                         <b>Name/Description:</b>
-                        <input type="text" [(ngModel)]="filterName"
+                        <input [(ngModel)]="filterName"
+                            type="text" 
+                            name="filterName"
                             size="25"
                             placeholder="Name/Description contains this text"
                             >
@@ -28,6 +31,7 @@
                         <b>My favourite:</b>
                         <input [(ngModel)]="filterFavourite"
                             type="checkbox"
+                            name="filterFavourite"
                             title="Is one of my Favourites"
                             >
                     </div>
@@ -36,6 +40,7 @@
                         <b>Shared by me:</b>
                         <input [(ngModel)]="filterSharedByMe"
                             type="checkbox"
+                            name="filterSharedByMe"
                             title="Shared by me"
                             >
                     </div>
@@ -43,19 +48,24 @@
                         <b>Shared by to:</b>
                         <input [(ngModel)]="filterSharedToMe"
                             type="checkbox"
+                            name="filterSharedToMe"
                             title="Shared to me directly (as UserID)"
                             >
                     </div>
                     <div class="gridSharedToUser">
                         <b>Shared to User:</b>
-                        <input type="text" [(ngModel)]="filterSharedToUser"
+                        <input [(ngModel)]="filterSharedToUser"
+                            type="text" 
+                            name="filterSharedToUser"
                             size="25"
                             placeholder="Shared to a specific user"
                             >
                     </div>
                     <div class="gridSharedToGroup">
                         <b>Shared to Group:</b>
-                        <input type="text" [(ngModel)]="filterSharedToGroup"
+                        <input [(ngModel)]="filterSharedToGroup"
+                            type="text" 
+                            name="filterSharedToGroup"
                             size="25"
                             placeholder="Shared to a specific Group"
                             >
@@ -63,7 +73,9 @@
 
                     <div class="gridCreatedBy">
                         <b>Created by:</b>
-                        <input type="text" [(ngModel)]="filterCreatedBy"
+                        <input [(ngModel)]="filterCreatedBy"
+                            type="text" 
+                            name="filterCreatedBy"
                             size="25"
                             placeholder="Created by a specific User"
                             >
@@ -76,6 +88,7 @@
                             <select
                                 (change)="clickSelectState($event)"
                                 [(ngModel)]="filteredState"
+                                    name="filteredState"
                                 >
                                 <option></option>
                                 <option>Draft</option>
@@ -87,14 +100,18 @@
 
                     <div class="gridDatasource">
                         <b>Uses Datasource:</b>
-                        <input type="text" [(ngModel)]="filterDatasource"
+                        <input [(ngModel)]="filterDatasource"
+                            type="text" 
+                            name="filterDatasource"
                             size="25"
                             placeholder="Uses data from this DS"
                             >
                     </div>
                     <div class="gridField">
                         <b>Uses Field:</b>
-                        <input type="text" [(ngModel)]="filterField"
+                        <input [(ngModel)]="filterField"
+                            type="text" 
+                            name="filterField"
                             size="25"
                             placeholder="Uses this data field in a Widget"
                             >
@@ -102,7 +119,9 @@
 
                     <div class="gridTag">
                         <b>Tag:</b>
-                        <input type="text" [(ngModel)]="filterTag"
+                        <input [(ngModel)]="filterTag"
+                            type="text" 
+                            name="filterTag"
                             size="25"
                             placeholder="Is tagged with this Tag"
                             >
@@ -134,7 +153,9 @@
 
                     <div class="gridNewName" *ngIf="renameMode">
                         <b>New Name:</b>
-                        <input type="text" [(ngModel)]="newName"
+                        <input [(ngModel)]="newName"
+                            type="text" 
+                            name="newName"
                             size="25"
                             placeholder="New Name for selected Dashboard"
                             >
@@ -206,7 +227,7 @@
                         </clr-datagrid>
                     </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </div>
