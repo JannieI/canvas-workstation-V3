@@ -1,99 +1,106 @@
 <div class="modal modalBox">
     <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
         <div class="modal-content modalContent">
+            <form #f="ngForm" role="form" novalidate>
 
-            <button type="button" class="closeButton" (click)="clickClose()">
-                X
-            </button>
+                <button type="button" class="closeButton" (click)="clickClose()">
+                    X
+                </button>
 
-            <div class="gridOverall">
-                <div class="gridTitle">
-                    <b>Dashboard Snapshots</b>
-                </div>
-                <div class="gridSubTitle">
-                    <i>
-                        Snapshots are saved by the user for the current Dashboard, and are 
-                        bookmarks to which one can roll back at any stage, if necessary.
-                    </i>
-                </div>
+                <div class="gridOverall">
+                    <div class="gridTitle">
+                        <b>Dashboard Snapshots</b>
+                    </div>
+                    <div class="gridSubTitle">
+                        <i>
+                            Snapshots are saved by the user for the current Dashboard, and are 
+                            bookmarks to which one can roll back at any stage, if necessary.
+                        </i>
+                    </div>
 
-                <div class="gridSaveTitle">
-                    Save a Snapshot of the current Dashboard:
-                </div>
+                    <div class="gridSaveTitle">
+                        Save a Snapshot of the current Dashboard:
+                    </div>
 
-                <div class="gridSaveName">
-                    <b>Name:</b>
-                    <input type="text" 
-                        [(ngModel)]="snapshotName" 
-                        placeholder="Snapshot name"
-                        autofocus
-                        >
-                </div>
-                <div class="gridSaveComment">
-                    <b>Comment:</b>
-                    <input type="text" [(ngModel)]="snapshotComment" placeholder="Comment">
-                </div>
-                <div class="gridSaveButton">
-                    <button
-                        type="button"
-                        class="btn btn-secondary"
-                        (click)="clickSave()"
-                        >
-                        Save
-                    </button>
-                </div>
-
-                <div class="gridPreviousTitle">
-                    <b>Snapshots already saved for this Dashboard.  DblClick <i>Roll Back</i> 
-                    to restore:</b>
-                </div>
-    
-                <div class="gridPrevious">
-                    <clr-datagrid>
-                        <clr-dg-column>Delete</clr-dg-column>
-                        <clr-dg-column [clrDgField]="id">ID</clr-dg-column>
-                        <clr-dg-column [clrDgField]="name">Name</clr-dg-column>
-                        <clr-dg-column [clrDgField]="comment">Comment</clr-dg-column>
-                        <clr-dg-column>Roll Back</clr-dg-column>
-
-                        <clr-dg-row *clrDgItems="let row of currentDashboardSnapshots;
-                            let i = index"
-                            (click)="setClickedRow(i)" 
-                            [style.background-color]="(i == selectedRow)? '#123456' : 'white'"
-                            [style.color]="(i == selectedRow)? 'white' : 'gray'"
+                    <div class="gridSaveName">
+                        <b>Name:</b>
+                        <input [(ngModel)]="snapshotName" 
+                            type="text" 
+                            name="snapshotName"
+                            placeholder="Snapshot name"
+                            autofocus
                             >
-                            <clr-dg-cell class="checkCell">
-                                <clr-icon
-                                    shape="trash"
-                                    class="selectIcon1"
-                                    size="12"
-                                    (click)="clickDelete(i, row.id)"
-                                    >
-                                </clr-icon>
-                            </clr-dg-cell>
-                            <clr-dg-cell>{{row.id}}</clr-dg-cell>
-                            <clr-dg-cell>{{row.name}}</clr-dg-cell>
-                            <clr-dg-cell>{{row.comment}}</clr-dg-cell>
-                            <clr-dg-cell class="checkCell">
-                                <clr-icon
-                                    shape="refresh"
-                                    class="selectIcon1"
-                                    size="12"
-                                    (dblclick)="clickRestore(i)"
-                                    >
-                                </clr-icon>
-                            </clr-dg-cell>
-                        </clr-dg-row>
- 
-                        <clr-dg-footer>
-                            {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
-                            of {{pagination.totalItems}} rows
-                            <clr-dg-pagination #pagination [clrDgPageSize]="5"></clr-dg-pagination>
-                        </clr-dg-footer>
+                    </div>
+                    <div class="gridSaveComment">
+                        <b>Comment:</b>
+                        <input [(ngModel)]="snapshotComment" 
+                            type="text" 
+                            name="snapshotComment"
+                            placeholder="Comment"
+                        >
+                    </div>
+                    <div class="gridSaveButton">
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            (click)="clickSave()"
+                            >
+                            Save
+                        </button>
+                    </div>
 
-                    </clr-datagrid>
+                    <div class="gridPreviousTitle">
+                        <b>Snapshots already saved for this Dashboard.  DblClick <i>Roll Back</i> 
+                        to restore:</b>
+                    </div>
+        
+                    <div class="gridPrevious">
+                        <clr-datagrid>
+                            <clr-dg-column>Delete</clr-dg-column>
+                            <clr-dg-column [clrDgField]="id">ID</clr-dg-column>
+                            <clr-dg-column [clrDgField]="name">Name</clr-dg-column>
+                            <clr-dg-column [clrDgField]="comment">Comment</clr-dg-column>
+                            <clr-dg-column>Roll Back</clr-dg-column>
+
+                            <clr-dg-row *clrDgItems="let row of currentDashboardSnapshots;
+                                let i = index"
+                                (click)="setClickedRow(i)" 
+                                [style.background-color]="(i == selectedRow)? '#123456' : 'white'"
+                                [style.color]="(i == selectedRow)? 'white' : 'gray'"
+                                >
+                                <clr-dg-cell class="checkCell">
+                                    <clr-icon
+                                        shape="trash"
+                                        class="selectIcon1"
+                                        size="12"
+                                        (click)="clickDelete(i, row.id)"
+                                        >
+                                    </clr-icon>
+                                </clr-dg-cell>
+                                <clr-dg-cell>{{row.id}}</clr-dg-cell>
+                                <clr-dg-cell>{{row.name}}</clr-dg-cell>
+                                <clr-dg-cell>{{row.comment}}</clr-dg-cell>
+                                <clr-dg-cell class="checkCell">
+                                    <clr-icon
+                                        shape="refresh"
+                                        class="selectIcon1"
+                                        size="12"
+                                        (dblclick)="clickRestore(i)"
+                                        >
+                                    </clr-icon>
+                                </clr-dg-cell>
+                            </clr-dg-row>
+    
+                            <clr-dg-footer>
+                                {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+                                of {{pagination.totalItems}} rows
+                                <clr-dg-pagination #pagination [clrDgPageSize]="5"></clr-dg-pagination>
+                            </clr-dg-footer>
+
+                        </clr-datagrid>
+                    </div>
                 </div>
-            </div>
+            </form> 
         </div>
     </div>
 </div>
