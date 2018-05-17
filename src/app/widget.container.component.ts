@@ -44,6 +44,8 @@ export class WidgetContainerComponent implements OnInit {
     backgroundcolors: CSScolor[];
     callingRoutine: string = '';
     colourPickerClosed: boolean = false;
+    lineColor: string = 'none';
+    lineSize: string = '1px';
     localWidget: Widget;                            // W to modify, copied from selected
     selectedColour: string;
 
@@ -66,9 +68,14 @@ export class WidgetContainerComponent implements OnInit {
                     this.colourPickerClosed = false;
                 } else {
 
-                    this.colourPickerClosed = false;
-                    this.localWidget.containerBackgroundcolor = clp.selectedColor;
-
+                    if (clp.callingRoutine == 'BgColour') {
+                        this.colourPickerClosed = false;
+                        this.localWidget.containerBackgroundcolor = clp.selectedColor;
+                    };
+                    if (clp.callingRoutine == 'LineColour') {
+                        this.colourPickerClosed = false;
+                        this.localWidget.containerBackgroundcolor = clp.selectedColor;
+                    };
                 };
             };
         });
@@ -82,16 +89,16 @@ export class WidgetContainerComponent implements OnInit {
     }
     
     clickSelectBgColorPicker(ev: any) {
-        // Open the Colour Picker for Circle Line Colour
+        // Open the Colour Picker for Background Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBgColorPicker', '@Start');
 
         this.selectedColour = this.localWidget.containerBackgroundcolor;
-        this.callingRoutine = '';
+        this.callingRoutine = 'BgColour';
         this.colourPickerClosed = true;
     }
 
     clickSelectBgColor(ev: any) {
-        // Select Circle Line Colour
+        // Select Background Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBgColor', '@Start');
 
         this.localWidget.containerBackgroundcolor = ev.target.value;

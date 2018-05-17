@@ -70,6 +70,44 @@
                     Picker
                 </button>
 
+                <div class="gridLinecolorTitle">
+                    Line Colour:
+                </div>  
+                <div class="select gridLinecolor">
+                    <select
+                        [(ngModel)]="lineColor"
+                        (change)="clickSelectLineColor($event)"
+                        >
+                        <option *ngFor="let row of backgroundcolors"
+                            [style.background-color]="row.name"
+                            >
+                            {{ row.name }}
+                        </option>
+                    </select>
+                </div>
+                <button
+                    type="button"
+                    class="btn btn-link btn-sm gridLinecolorPicker"
+                    (click)="clickSelectLineColorPicker()"
+                    >
+                    Picker
+                </button>
+
+                <div class="gridLineSizeTitle">
+                    Line Size:
+                </div>  
+                <div class="select gridLineSize">
+                    <select
+                        [(ngModel)]="lineSize"
+                        (change)="clickSelectLineSize($event)"
+                        >
+                        <option>1px</option>
+                        <option>2px</option>
+                        <option>3px</option>
+                        <option>4px</option>
+                    </select>
+                </div>
+
                 <div class="gridBorderTitle">
                     Border:
                 </div>

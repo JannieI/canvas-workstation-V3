@@ -76,7 +76,7 @@
         padding-top: 6px;
     }
 
-    .gridBorderTitle {
+    .gridLinecolorTitle {
         grid-column-start: 1;
         grid-column-end: 4;
         grid-row-start: 6;
@@ -84,11 +84,53 @@
         padding-left: 15px;
         padding-top: 6px;
     }
-    .gridBorder {
+    .gridLinecolor {
         grid-column-start: 4;
         grid-column-end: 8;
         grid-row-start: 6;
         grid-row-end: 7;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+    .gridLinecolorPicker {
+        grid-column-start: 9;
+        grid-column-end: 11;
+        grid-row-start: 6;
+        grid-row-end: 7;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+
+    .gridLineSizeTitle {
+        grid-column-start: 1;
+        grid-column-end: 4;
+        grid-row-start: 8;
+        grid-row-end: 9;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+    .gridLineSize {
+        grid-column-start: 4;
+        grid-column-end: 8;
+        grid-row-start: 8;
+        grid-row-end: 9;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+
+    .gridBorderTitle {
+        grid-column-start: 1;
+        grid-column-end: 4;
+        grid-row-start: 10;
+        grid-row-end: 11;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+    .gridBorder {
+        grid-column-start: 4;
+        grid-column-end: 8;
+        grid-row-start: 10;
+        grid-row-end: 11;
         padding-left: 15px;
         padding-top: 6px;
     }
@@ -96,16 +138,16 @@
     .gridBorderRadiusTitle {
         grid-column-start: 1;
         grid-column-end: 4;
-        grid-row-start: 8;
-        grid-row-end: 9;
+        grid-row-start: 12;
+        grid-row-end: 13;
         padding-left: 15px;
         padding-top: 6px;
     }
     .gridBorderRadius {
         grid-column-start: 4;
         grid-column-end: 8;
-        grid-row-start: 8;
-        grid-row-end: 9;
+        grid-row-start: 12;
+        grid-row-end: 13;
         padding-left: 15px;
         padding-top: 6px;
     }
@@ -113,16 +155,16 @@
     .griBoxShadowTitle {
         grid-column-start: 1;
         grid-column-end: 4;
-        grid-row-start: 10;
-        grid-row-end: 11;
+        grid-row-start: 14;
+        grid-row-end: 15;
         padding-left: 15px;
         padding-top: 6px;
     }
     .griBoxShadow {
         grid-column-start: 4;
         grid-column-end: 8;
-        grid-row-start: 10;
-        grid-row-end: 11;
+        grid-row-start: 14;
+        grid-row-end: 15;
         padding-left: 15px;
         padding-top: 6px;
     }
@@ -130,16 +172,16 @@
     .griFontSizeTitle {
         grid-column-start: 1;
         grid-column-end: 4;
-        grid-row-start: 12;
-        grid-row-end: 13;
+        grid-row-start: 16;
+        grid-row-end: 17;
         padding-left: 15px;
         padding-top: 6px;
     }
     .griFontSize {
         grid-column-start: 4;
         grid-column-end: 8;
-        grid-row-start: 12;
-        grid-row-end: 13;
+        grid-row-start: 16;
+        grid-row-end: 17;
         padding-left: 15px;
         padding-top: 6px;
     }
