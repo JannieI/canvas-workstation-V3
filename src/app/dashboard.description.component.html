@@ -1,203 +1,218 @@
 <div class="modal modalBox">
     <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
         <div class="modal-content modalContent">
+            <form #f="ngForm" role="form" novalidate>
 
-            <button type="button" class="closeButton" (click)="clickClose()">
-                X
-            </button>
+                <button type="button" class="closeButton" (click)="clickClose()">
+                    X
+                </button>
 
-            <div class="gridOverall">
+                <div class="gridOverall">
 
-                <div class="gridTitle">
-                    <b>Dashboard Description</b>
-                </div>
-                <div class="gridSubTitle">
-                    <i>
-                        Descriptive detail for the current Dashboard.
-                    </i>
-                </div>
+                    <div class="gridTitle">
+                        <b>Dashboard Description</b>
+                    </div>
+                    <div class="gridSubTitle">
+                        <i>
+                            Descriptive detail for the current Dashboard.
+                        </i>
+                    </div>
 
-                <div class="gridName">
-                    <b>Name:</b>
-                    <input [(ngModel)]="dashboardName" type="text"
-                        id="formFields_7"
-                        placeholder="Enter Name"
-                        size="25"
-                        >
-                </div>
-                <div class="gridDescription">
-                    <b>Description:</b>
-                    <input [(ngModel)]="dashboardDescription" type="text"
-                        id="formFields_7"
-                        placeholder="Enter Description"
-                        size="25"
-                        >
-                </div>
+                    <div class="gridName">
+                        <b>Name:</b>
+                        <input [(ngModel)]="dashboardName" 
+                            type="text"
+                            name="dashboardName"
+                            placeholder="Enter Name"
+                            size="25"
+                            >
+                    </div>
+                    <div class="gridDescription">
+                        <b>Description:</b>
+                        <input [(ngModel)]="dashboardDescription" 
+                            type="text"
+                            name="dashboardDescription"
+                            placeholder="Enter Description"
+                            size="25"
+                            >
+                    </div>
 
-                <div class="gridQArequired">
-                    <b>QA Required:</b>
-                    <input [(ngModel)]="dashboardQArequired"
-                        type="checkbox"
-                        title="Is QA required for this Dashboard (T/F)"
-                        >
-                </div>
-                <div class="gridIsSample">
-                    <b>Is Sample:</b>
-                    <input [(ngModel)]="dashboardIsSample"
-                        type="checkbox"
-                        title="Is this Dashboard a Canvas Sample (T/F)"
-                        >
-                </div>
+                    <div class="gridQArequired">
+                        <b>QA Required:</b>
+                        <input [(ngModel)]="dashboardQArequired"
+                            type="checkbox"
+                            title="Is QA required for this Dashboard (T/F)"
+                            >
+                    </div>
+                    <div class="gridIsSample">
+                        <b>Is Sample:</b>
+                        <input [(ngModel)]="dashboardIsSample"
+                            type="checkbox"
+                            name="dashboardIsSample"
+                            title="Is this Dashboard a Canvas Sample (T/F)"
+                            >
+                    </div>
 
-                <div class="gridCode">
-                    <b>Code:</b>
-                    <input [(ngModel)]="dashboardCode" type="text"
-                        id="formFields_7"
-                        placeholder="Enter short Code"
-                        size="25"
-                        >
-                </div>
-                <div class="gridDefaultTab">
-                    <b>DefaultTab:</b>
-                    <input [(ngModel)]="dashboardDefaultTab" type="text"
-                        id="formFields_7"
-                        placeholder="Enter Default Tab nr to open"
-                        size="30"
-                        >
-                </div>
+                    <div class="gridCode">
+                        <b>Code:</b>
+                        <input [(ngModel)]="dashboardCode" 
+                            type="text"
+                            name="dashboardCode"
+                            placeholder="Enter short Code"
+                            size="25"
+                            >
+                    </div>
+                    <div class="gridDefaultTab">
+                        <b>DefaultTab:</b>
+                        <input [(ngModel)]="dashboardDefaultTab" 
+                            type="text"
+                            name="dashboardDefaultTab"
+                            placeholder="Enter Default Tab nr to open"
+                            size="30"
+                            >
+                    </div>
 
-                <div class="gridRefreshMode">
-                    <b>RefreshMode:</b>
-                    <input [(ngModel)]="dashboardRefreshMode" type="text"
-                        id="formFields_7"
-                        placeholder="Enter Refresh Mode"
-                        size="25"
-                        >
-                </div>
-                <div class="gridRefreshTimer">
-                    <b>RefreshTimer:</b>
-                    <input [(ngModel)]="dashboardRefreshTimer" type="text"
-                        id="formFields_7"
-                        placeholder="Enter Refresh Timer (period in seconds)"
-                        size="30"
-                        >
-                </div>
+                    <div class="gridRefreshMode">
+                        <b>RefreshMode:</b>
+                        <input [(ngModel)]="dashboardRefreshMode" 
+                            type="text"
+                            name="dashboardRefreshMode"
+                            placeholder="Enter Refresh Mode"
+                            size="25"
+                            >
+                    </div>
+                    <div class="gridRefreshTimer">
+                        <b>RefreshTimer:</b>
+                        <input [(ngModel)]="dashboardRefreshTimer" 
+                            type="text"
+                            name="dashboardRefreshTimer"
+                            placeholder="Enter Refresh Timer (period in seconds)"
+                            size="30"
+                            >
+                    </div>
 
-                <div class="gridExportFileType">
-                    <b>Export File Type:</b>
-                    <input [(ngModel)]="dashboardExportFileType" type="text"
-                        id="formFields_7"
-                        placeholder="Enter Export File Type"
-                        size="25"
-                        >
-                </div>
-                <div class="gridExportUrl">
-                    <b>Export Url:</b>
-                    <input [(ngModel)]="dashboardExportUrl" type="text"
-                        id="formFields_7"
-                        placeholder="Enter ExportUrl"
-                        size="25"
-                        >
-                </div>
-
-                <div class="gridPassword">
-                    <b>Password:</b>
-                    <input [(ngModel)]="dashboardPassword" type="text"
-                        id="formFields_7"
-                        placeholder="Enter Optional Password"
-                        size="25"
-                        >
-                </div>
-                <div class="gridTemplateID">
-                    <b>Template ID:</b>
-                    <input [(ngModel)]="dashboardTemplateID" type="text"
-                        id="formFields_7"
-                        placeholder="Enter Optional Template ID"
-                        size="25"
-                        >
-                </div>
-
-                <div class="gridBackgroundColor">
-                    <b>Bg Color:</b>
-                    <input [(ngModel)]="dashboardBackgroundColor" type="text"
-                        id="formFields_7"
-                        placeholder="Enter BackgroundColor"
-                        size="25"
-                        >
-                </div>
-                <div class="gridBackgroundImage">
-                    <b>Bg Image:</b>
-                    <input [(ngModel)]="dashboardBackgroundImage" type="text"
-                        id="formFields_7"
-                        placeholder="Enter BackgroundImage"
-                        size="25"
-                        >
-                </div>
-
-                <div class="gridStaticTitle">
-                    <b>Static Fields:</b>
-                </div>
-
-                <div class="gridState">
-                    <b>State:</b>
-                    {{ dashboardState }}
-                </div>
-                <div class="gridVersion">
-                    <b>Version:</b>
-                    {{ dashboardVersion }}
-                </div>
-
-                <div class="gridCreator">
-                    <b>Creator:</b>
-                    {{ dashboardCreator }}
-                </div>
-                <div class="gridCreated">
-                    <b>Created:</b>
-                    {{ dashboardCreated }}
-                </div>
-
-                <div class="gridEditor">
-                    <b>Editor:</b>
-                    {{ dashboardEditor }}
-                </div>
-                <div class="gridEdited">
-                    <b>Edited:</b>
-                    {{ dashboardEdited }}
-                </div>
-
-                <div class="gridRefresher">
-                    <b>Refresher:</b>
-                    {{ dashboardRefresher }}
-                </div>
-                <div class="gridRefreshed">
-                    <b>Refreshed:</b>
-                    {{ dashboardRefreshed }}
-                </div>
-                
-                <div class="gridErrorMessage">
-                    {{ errorMessage }}
-                </div>
+                    <div class="gridExportFileType">
+                        <b>Export File Type:</b>
+                        <input [(ngModel)]="dashboardExportFileType" 
+                            type="text"
+                            name="dashboardExportFileType"
+                            placeholder="Enter Export File Type"
+                            size="25"
+                            >
+                    </div>
+                    <div class="gridExportUrl">
+                        <b>Export Url:</b>
+                        <input [(ngModel)]="dashboardExportUrl" 
+                            type="text"
+                            name="dashboardExportUrl"
+                            placeholder="Enter ExportUrl"
+                            size="25"
+                            >
+                    </div>
     
-                <div class="gridButtonCancel">
-                    <button
-                        type="button"
-                        class="btn btn-secondary"
-                        (click)="clickClose('Close')"
-                        >
-                        Cancel
-                    </button>
-                </div>
+                    <div class="gridPassword">
+                        <b>Password:</b>
+                        <input [(ngModel)]="dashboardPassword" 
+                            type="text"
+                            name="dashboardPassword"
+                            placeholder="Enter Optional Password"
+                            size="25"
+                            >
+                    </div>
+                    <div class="gridTemplateID">
+                        <b>Template ID:</b>
+                        <input [(ngModel)]="dashboardTemplateID" 
+                            type="text"
+                            name="dashboardTemplateID"
+                            placeholder="Enter Optional Template ID"
+                            size="25"
+                            >
+                    </div>
 
-                <div class="gridButtonSave">
-                    <button
-                        type="button"
-                        class="btn btn-primary"
-                        (click)="clickSave('Saved')"
-                        >
-                        Save
-                    </button>
+                    <div class="gridBackgroundColor">
+                        <b>Bg Color:</b>
+                        <input [(ngModel)]="dashboardBackgroundColor" 
+                            type="text"
+                            name="dashboardBackgroundColor"
+                            placeholder="Enter BackgroundColor"
+                            size="25"
+                            >
+                    </div>
+                    <div class="gridBackgroundImage">
+                        <b>Bg Image:</b>
+                        <input [(ngModel)]="dashboardBackgroundImage" 
+                            type="text"
+                            name="dashboardBackgroundImage"
+                            placeholder="Enter BackgroundImage"
+                            size="25"
+                            >
+                    </div>
+
+                    <div class="gridStaticTitle">
+                        <b>Static Fields:</b>
+                    </div>
+
+                    <div class="gridState">
+                        <b>State:</b>
+                        {{ dashboardState }}
+                    </div>
+                    <div class="gridVersion">
+                        <b>Version:</b>
+                        {{ dashboardVersion }}
+                    </div>
+
+                    <div class="gridCreator">
+                        <b>Creator:</b>
+                        {{ dashboardCreator }}
+                    </div>
+                    <div class="gridCreated">
+                        <b>Created:</b>
+                        {{ dashboardCreated }}
+                    </div>
+
+                    <div class="gridEditor">
+                        <b>Editor:</b>
+                        {{ dashboardEditor }}
+                    </div>
+                    <div class="gridEdited">
+                        <b>Edited:</b>
+                        {{ dashboardEdited }}
+                    </div>
+
+                    <div class="gridRefresher">
+                        <b>Refresher:</b>
+                        {{ dashboardRefresher }}
+                    </div>
+                    <div class="gridRefreshed">
+                        <b>Refreshed:</b>
+                        {{ dashboardRefreshed }}
+                    </div>
+                    
+                    <div class="gridErrorMessage">
+                        {{ errorMessage }}
+                    </div>
+        
+                    <div class="gridButtonCancel">
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            (click)="clickClose('Close')"
+                            >
+                            Cancel
+                        </button>
+                    </div>
+
+                    <div class="gridButtonSave">
+                        <button
+                            type="button"
+                            class="btn btn-primary"
+                            (click)="clickSave('Saved')"
+                            >
+                            Save
+                        </button>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </div>
