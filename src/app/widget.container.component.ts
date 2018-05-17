@@ -45,7 +45,7 @@ export class WidgetContainerComponent implements OnInit {
     callingRoutine: string = '';
     colourPickerClosed: boolean = false;
     lineColor: string = 'none';
-    lineSize: string = '1px';
+    lineSize: string = 'none';
     localWidget: Widget;                            // W to modify, copied from selected
     selectedColour: string;
 
@@ -74,7 +74,7 @@ export class WidgetContainerComponent implements OnInit {
                     };
                     if (clp.callingRoutine == 'LineColour') {
                         this.colourPickerClosed = false;
-                        this.localWidget.containerBackgroundcolor = clp.selectedColor;
+                        this.lineColor = clp.selectedColor;
                     };
                 };
             };
@@ -108,8 +108,8 @@ export class WidgetContainerComponent implements OnInit {
         // Open the Colour Picker for Line Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectLineColorPicker', '@Start');
 
-        this.selectedColour = this.localWidget.containerBackgroundcolor;
-        this.callingRoutine = 'BgColour';
+        this.selectedColour = this.lineColor;
+        this.callingRoutine = 'LineColour';
         this.colourPickerClosed = true;
     }
 
@@ -117,14 +117,14 @@ export class WidgetContainerComponent implements OnInit {
         // Select Line Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectLineColor', '@Start');
 
-        this.localWidget.containerBackgroundcolor = ev.target.value;
+        this.lineColor = ev.target.value;
     }
 
     clickSelectLineSize(ev: any) {
         // Select Circle Line Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBgColor', '@Start');
 
-        this.localWidget.containerBackgroundcolor = ev.target.value;
+        this.lineSize = ev.target.value;
     }
 
     clickClose() {
@@ -139,6 +139,12 @@ export class WidgetContainerComponent implements OnInit {
         // Close form and save all
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
+        // Construct line size
+        if (this.lineSize != 'none') {
+            this.localWidget.containerBorder = this.lineSize + ' solid ' + this.lineColor;
+        };
+
+        console.warn('xx this.localWidget.containerBorder', this.localWidget.containerBorder)
         // Replace the W
         this.globalVariableService.widgetReplace(this.localWidget);
 
@@ -155,9 +161,5 @@ export class WidgetContainerComponent implements OnInit {
 
 	  	this.formWidgetContainerClosed.emit(this.localWidget);
     }
-
-
-
-
 
 }

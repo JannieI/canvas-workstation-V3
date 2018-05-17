@@ -1433,7 +1433,7 @@
 
     <div class="widgetContainerX" *ngFor="let row of currentWidgets; let i = index"
         [style.background-color]="row.containerBackgroundColor"
-        [style.border]="row.isSelected? '1px solid black' : row.containerBorder"
+        [style.border]="row.containerBorder"
         [style.border-radius]="row.containerBorderRadius"
         [style.box-shadow]="row.containerBoxshadow"
         [style.font-size.px]="row.containerFontsize"
