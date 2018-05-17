@@ -20,7 +20,6 @@
                         <b>Container settings</b>
                     </div>
 
-
                     <div class="gridButtonCancel">
                         <button
                             type="button"
@@ -67,10 +66,10 @@
                         <br>
                     </div>
 
-                    <div class="gridBackgroundcolorTitle" disabled>
-                        Background Colour:
+                    <div class="gridBackgroundcolorTitle">
+                        Bg Colour:
                     </div>  
-                    <div class="gridBackgroundcolorPicker">
+                    <div class="select gridBackgroundcolor">
                         <select
                             [(ngModel)]="localWidget.containerBackgroundcolor"
                             (change)="clickSelectBgColor($event)"
@@ -89,11 +88,6 @@
                         >
                         Picker
                     </button>
-    
-
-
-
-
 
                     <div class="gridBorderTitle">
                         Border:
@@ -106,7 +100,7 @@
                     </div>
 
                     <div class="gridBorderRadiusTitle">
-                        Border Radius:
+                        Bdr Radius:
                     </div>
                     <div class="gridBorderRadius">
                         <input type="text"
@@ -126,7 +120,7 @@
                     </div>
 
                     <div class="griFontSizeTitle">
-                        Font size:
+                        FontSize:
                     </div>
                     <div class="griFontSize">
                         <input type="text"

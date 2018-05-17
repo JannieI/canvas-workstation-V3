@@ -11,10 +11,21 @@
     top: 0;
 }
 
-.propertyLine {
-    margin: 15px;
+.colourpicker {
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 4px;
+    display: inline-block;
+    grid-column-start: 6;
+    grid-column-end: 15;
+    grid-row-start: 6;
+    grid-row-end: 12;
+    height: 260px;
+    margin: 0px;
+    padding: 20px;
+    width: 280px;
+    z-index: 100;
 }
-
 
 .gridOverall {
     display: grid;
@@ -42,93 +53,93 @@
 
     .gridBackgroundcolorTitle {
         grid-column-start: 1;
-        grid-column-end: 3;
-        grid-row-start: 1;
-        grid-row-end: 2;
+        grid-column-end: 4;
+        grid-row-start: 4;
+        grid-row-end: 5;
         padding-left: 15px;
         padding-top: 6px;
     }
     .gridBackgroundcolor {
-        grid-column-start: 3;
+        grid-column-start: 4;
         grid-column-end: 8;
-        grid-row-start: 1;
-        grid-row-end: 2;
+        grid-row-start: 4;
+        grid-row-end: 5;
         padding-left: 15px;
         padding-top: 6px;
     }
     .gridBackgroundcolorPicker {
         grid-column-start: 9;
         grid-column-end: 11;
-        grid-row-start: 1;
-        grid-row-end: 2;
+        grid-row-start: 4;
+        grid-row-end: 5;
         padding-left: 15px;
         padding-top: 6px;
     }
 
     .gridBorderTitle {
         grid-column-start: 1;
-        grid-column-end: 3;
-        grid-row-start: 3;
-        grid-row-end: 4;
+        grid-column-end: 4;
+        grid-row-start: 6;
+        grid-row-end: 7;
         padding-left: 15px;
         padding-top: 6px;
     }
     .gridBorder {
-        grid-column-start: 3;
-        grid-column-end: 3;
-        grid-row-start: 4;
-        grid-row-end: 2;
+        grid-column-start: 4;
+        grid-column-end: 4;
+        grid-row-start: 6;
+        grid-row-end: 7;
         padding-left: 15px;
         padding-top: 6px;
     }
 
     .gridBorderRadiusTitle {
         grid-column-start: 1;
-        grid-column-end: 3;
-        grid-row-start: 5;
-        grid-row-end: 6;
+        grid-column-end: 4;
+        grid-row-start: 8;
+        grid-row-end: 9;
         padding-left: 15px;
         padding-top: 6px;
     }
     .gridBorderRadius {
-        grid-column-start: 3;
+        grid-column-start: 4;
         grid-column-end: 8;
-        grid-row-start: 5;
-        grid-row-end: 6;
+        grid-row-start: 8;
+        grid-row-end: 9;
         padding-left: 15px;
         padding-top: 6px;
     }
 
     .griBoxShadowTitle {
         grid-column-start: 1;
-        grid-column-end: 3;
-        grid-row-start: 7;
-        grid-row-end: 8;
+        grid-column-end: 4;
+        grid-row-start: 10;
+        grid-row-end: 11;
         padding-left: 15px;
         padding-top: 6px;
     }
     .griBoxShadow {
-        grid-column-start: 3;
+        grid-column-start: 4;
         grid-column-end: 8;
-        grid-row-start: 7;
-        grid-row-end: 8;
+        grid-row-start: 10;
+        grid-row-end: 11;
         padding-left: 15px;
         padding-top: 6px;
     }
 
     .griFontSizeTitle {
         grid-column-start: 1;
-        grid-column-end: 3;
-        grid-row-start: 9;
-        grid-row-end: 10;
+        grid-column-end: 4;
+        grid-row-start: 12;
+        grid-row-end: 13;
         padding-left: 15px;
         padding-top: 6px;
     }
     .griFontSize {
-        grid-column-start: 3;
+        grid-column-start: 4;
         grid-column-end: 8;
-        grid-row-start: 9;
-        grid-row-end: 10;
+        grid-row-start: 12;
+        grid-row-end: 13;
         padding-left: 15px;
         padding-top: 6px;
     }
