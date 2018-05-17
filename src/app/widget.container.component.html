@@ -67,88 +67,74 @@
                         <br>
                     </div>
 
-                    <div class="gridProperties">
-
-                        <div class="propertyLine" disabled>
-                            Background Colour:
-                            <select
-                                [(ngModel)]="localWidget.containerBackgroundcolor"
-                                >
-                                <option>none</option>
-                                <option>DarkRed</option>
-                                <option>Black</option>
-                                <option>Gray</option>
-                                <option>LightGray</option>
-                                <option>Green</option>
-                                <option>Blue</option>
-                                <option>Yellow</option>
-                            </select>
-
-                        </div>
-
-
-
-
-
-
-                        <div class="select propertyLine">
-                            <select
-                                [(ngModel)]="localWidget.containerBackgroundcolor"
-                                (change)="clickSelectBgColor($event)"
-                                >
-                                <option *ngFor="let row of backgroundcolors"
-                                    [style.background-color]="row.name"
-                                    >
-                                    {{ row.name }}
-                                </option>
-                            </select>
-                        </div>
-                        <button
-                            type="button"
-                            class="btn btn-link btn-sm gridCircleLineColourPicker"
-                            (click)="clickSelectBgColorPicker()"
+                    <div class="gridBackgroundcolorTitle" disabled>
+                        Background Colour:
+                    </div>  
+                    <div class="gridBackgroundcolorPicker">
+                        <select
+                            [(ngModel)]="localWidget.containerBackgroundcolor"
+                            (change)="clickSelectBgColor($event)"
                             >
-                            Picker
-                        </button>
+                            <option *ngFor="let row of backgroundcolors"
+                                [style.background-color]="row.name"
+                                >
+                                {{ row.name }}
+                            </option>
+                        </select>
+                    </div>
+                    <button
+                        type="button"
+                        class="btn btn-link btn-sm gridBackgroundcolorPicker"
+                        (click)="clickSelectBgColorPicker()"
+                        >
+                        Picker
+                    </button>
     
 
 
 
 
 
-                        <div class="propertyLine">
-                            Border:
-                            <input type="text"
-                                placeholder="Border, ie 1px solid black"
-                                [(ngModel)]="localWidget.containerBorder"
-                                >
-                        </div>
-
-                        <div class="propertyLine">
-                            Border Radius:
-                            <input type="text"
-                                placeholder="Corners, ie 3px"
-                                [(ngModel)]="localWidget.containerBorderRadius"
-                                >
-                        </div>
-
-                        <div class="propertyLine">
-                            Box Shadow:
-                            <input type="text"
-                                placeholder="Red"
-                                [(ngModel)]="localWidget.containerBoxshadow"
-                                >
-                        </div>
-
-                        <div class="propertyLine">
-                            Font size:
-                            <input type="text"
-                                placeholder="12"
-                                [(ngModel)]="localWidget.containerFontsize"
-                                >
-                        </div>
-
+                    <div class="gridBorderTitle">
+                        Border:
                     </div>
+                    <div class="gridBorder">
+                        <input type="text"
+                            placeholder="Border, ie 1px solid black"
+                            [(ngModel)]="localWidget.containerBorder"
+                            >
+                    </div>
+
+                    <div class="gridBorderRadiusTitle">
+                        Border Radius:
+                    </div>
+                    <div class="gridBorderRadius">
+                        <input type="text"
+                            placeholder="Corners, ie 3px"
+                            [(ngModel)]="localWidget.containerBorderRadius"
+                            >
+                    </div>
+
+                    <div class="griBoxShadowTitle">
+                        Box Shadow:
+                    </div>
+                    <div class="griBoxShadow">
+                        <input type="text"
+                            placeholder="Red"
+                            [(ngModel)]="localWidget.containerBoxshadow"
+                            >
+                    </div>
+
+                    <div class="griFontSizeTitle">
+                        Font size:
+                    </div>
+                    <div class="griFontSize">
+                        <input type="text"
+                            placeholder="12"
+                            [(ngModel)]="localWidget.containerFontsize"
+                            >
+                    </div>
+
                 </div>
             </div>
         </div>

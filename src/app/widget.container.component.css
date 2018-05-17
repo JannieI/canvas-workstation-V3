@@ -15,10 +15,11 @@
     margin: 15px;
 }
 
+
 .gridOverall {
     display: grid;
     grid-template-columns: repeat(20, 1fr);
-    grid-template-rows: repeat(20, 0.8rem);
+    grid-template-rows: repeat(21, 0.8rem);
     margin-top: 2px;
 }
 
@@ -39,13 +40,97 @@
         text-align: center;
     }
 
-    .gridProperties {
+    .gridBackgroundcolorTitle {
         grid-column-start: 1;
-        grid-column-end: 12;
+        grid-column-end: 3;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+    .gridBackgroundcolor {
+        grid-column-start: 3;
+        grid-column-end: 8;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+    .gridBackgroundcolorPicker {
+        grid-column-start: 9;
+        grid-column-end: 11;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+
+    .gridBorderTitle {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+    .gridBorder {
+        grid-column-start: 3;
+        grid-column-end: 3;
         grid-row-start: 4;
-        grid-row-end: 18;
-        margin-bottom: 0;
-        text-align: left;
+        grid-row-end: 2;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+
+    .gridBorderRadiusTitle {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 5;
+        grid-row-end: 6;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+    .gridBorderRadius {
+        grid-column-start: 3;
+        grid-column-end: 8;
+        grid-row-start: 5;
+        grid-row-end: 6;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+
+    .griBoxShadowTitle {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 7;
+        grid-row-end: 8;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+    .griBoxShadow {
+        grid-column-start: 3;
+        grid-column-end: 8;
+        grid-row-start: 7;
+        grid-row-end: 8;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+
+    .griFontSizeTitle {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 9;
+        grid-row-end: 10;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+    .griFontSize {
+        grid-column-start: 3;
+        grid-column-end: 8;
+        grid-row-start: 9;
+        grid-row-end: 10;
+        padding-left: 15px;
+        padding-top: 6px;
     }
 
     .gridButtonCancel {
