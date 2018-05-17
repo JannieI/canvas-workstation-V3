@@ -104,6 +104,29 @@ export class WidgetContainerComponent implements OnInit {
         this.localWidget.containerBackgroundcolor = ev.target.value;
     }
 
+    clickSelectLineColorPicker(ev: any) {
+        // Open the Colour Picker for Line Colour
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectLineColorPicker', '@Start');
+
+        this.selectedColour = this.localWidget.containerBackgroundcolor;
+        this.callingRoutine = 'BgColour';
+        this.colourPickerClosed = true;
+    }
+
+    clickSelectLineColor(ev: any) {
+        // Select Line Colour
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectLineColor', '@Start');
+
+        this.localWidget.containerBackgroundcolor = ev.target.value;
+    }
+
+    clickSelectLineSize(ev: any) {
+        // Select Circle Line Colour
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBgColor', '@Start');
+
+        this.localWidget.containerBackgroundcolor = ev.target.value;
+    }
+
     clickClose() {
         // Close the form, nothing saved
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
