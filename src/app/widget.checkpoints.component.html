@@ -31,6 +31,11 @@
                             type="text"
                             name="checkpointName"
                             title="Recipients"
+                            #checkpointNameVar="ngModel"
+                            required
+                            minlength="3"
+                            maxlength="140"
+                            [style.color]="!checkpointNameVar.valid ? 'red' : 'gray'"
                             size="25"
                             placeholder="Checkpoint Name"
                             autofocus
