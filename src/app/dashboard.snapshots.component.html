@@ -27,6 +27,11 @@
                         <input [(ngModel)]="snapshotName" 
                             type="text" 
                             name="snapshotName"
+                            #snapshotNameVar="ngModel"
+                            required
+                            minlength="3"
+                            maxlength="140"
+                            [style.color]="!snapshotNameVar.valid ? 'red' : 'gray'"
                             placeholder="Snapshot name"
                             autofocus
                             >
