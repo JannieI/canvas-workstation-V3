@@ -118,36 +118,19 @@
         padding-top: 6px;
     }
 
-    .gridBorderTitle {
-        grid-column-start: 1;
-        grid-column-end: 4;
-        grid-row-start: 10;
-        grid-row-end: 11;
-        padding-left: 15px;
-        padding-top: 6px;
-    }
-    .gridBorder {
-        grid-column-start: 4;
-        grid-column-end: 8;
-        grid-row-start: 10;
-        grid-row-end: 11;
-        padding-left: 15px;
-        padding-top: 6px;
-    }
-
     .gridBorderRadiusTitle {
         grid-column-start: 1;
         grid-column-end: 4;
-        grid-row-start: 12;
-        grid-row-end: 13;
+        grid-row-start: 10;
+        grid-row-end: 11;
         padding-left: 15px;
         padding-top: 6px;
     }
     .gridBorderRadius {
         grid-column-start: 4;
         grid-column-end: 8;
-        grid-row-start: 12;
-        grid-row-end: 13;
+        grid-row-start: 10;
+        grid-row-end: 11;
         padding-left: 15px;
         padding-top: 6px;
     }
@@ -155,16 +138,16 @@
     .griBoxShadowTitle {
         grid-column-start: 1;
         grid-column-end: 4;
-        grid-row-start: 14;
-        grid-row-end: 15;
+        grid-row-start: 12;
+        grid-row-end: 13;
         padding-left: 15px;
         padding-top: 6px;
     }
     .griBoxShadow {
         grid-column-start: 4;
         grid-column-end: 8;
-        grid-row-start: 14;
-        grid-row-end: 15;
+        grid-row-start: 12;
+        grid-row-end: 13;
         padding-left: 15px;
         padding-top: 6px;
     }
@@ -172,16 +155,16 @@
     .griFontSizeTitle {
         grid-column-start: 1;
         grid-column-end: 4;
-        grid-row-start: 16;
-        grid-row-end: 17;
+        grid-row-start: 14;
+        grid-row-end: 15;
         padding-left: 15px;
         padding-top: 6px;
     }
     .griFontSize {
         grid-column-start: 4;
         grid-column-end: 8;
-        grid-row-start: 16;
-        grid-row-end: 17;
+        grid-row-start: 14;
+        grid-row-end: 15;
         padding-left: 15px;
         padding-top: 6px;
     }

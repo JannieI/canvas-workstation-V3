@@ -75,6 +75,11 @@ export class WidgetContainerComponent implements OnInit {
                     if (clp.callingRoutine == 'LineColour') {
                         this.colourPickerClosed = false;
                         this.lineColor = clp.selectedColor;
+
+                        // Construct line size
+                        if (this.lineSize != 'none') {
+                            this.localWidget.containerBorder = this.lineSize + ' solid ' + this.lineColor;
+                        };
                     };
                 };
             };
@@ -118,6 +123,11 @@ export class WidgetContainerComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectLineColor', '@Start');
 
         this.lineColor = ev.target.value;
+
+        // Construct line size
+        if (this.lineSize != 'none') {
+            this.localWidget.containerBorder = this.lineSize + ' solid ' + this.lineColor;
+        };
     }
 
     clickSelectLineSize(ev: any) {
@@ -125,6 +135,11 @@ export class WidgetContainerComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBgColor', '@Start');
 
         this.lineSize = ev.target.value;
+
+        // Construct line size
+        if (this.lineSize != 'none') {
+            this.localWidget.containerBorder = this.lineSize + ' solid ' + this.lineColor;
+        };
     }
 
     clickClose() {
