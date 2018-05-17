@@ -1,101 +1,104 @@
 <div class="modal modalBox">
     <div class="modal-dialog modal-lg" role="dialog" aria-hidden="true">
         <div class="modal-content modalContent">
+            <form #f="ngForm" role="form" novalidate>
 
-            <button type="button" class="closeButton" (click)="clickClose()">
-                X
-            </button>
+                <button type="button" class="closeButton" (click)="clickClose()">
+                    X
+                </button>
 
-            <div class="gridOverall">
-                <div class="gridTitle">
-                    Dashboard Tags
-                </div>
-                <div class="gridSubTitle">
-                    <i>
-                        Tags help to group different Dashboards.  Any text can be used as a tag.
-                    </i>
-                </div>
+                <div class="gridOverall">
+                    <div class="gridTitle">
+                        Dashboard Tags
+                    </div>
+                    <div class="gridSubTitle">
+                        <i>
+                            Tags help to group different Dashboards.  Any text can be used as a tag.
+                        </i>
+                    </div>
 
-                <div class="gridAdd">
-                    New tag:
-                    <input type="text" 
-                        [(ngModel)]="newTag"
-                        placeholder="Enter new tag name here">
-                    <button  type="button"
-                        class="btn btn-primary"
-                        (click)="clickAddNew()">
-                        Add
-                    </button>
-                </div>
+                    <div class="gridAdd">
+                        New tag:
+                        <input [(ngModel)]="newTag"
+                            type="text" 
+                            name="newTag"
+                            placeholder="Enter new tag name here">
+                        <button  type="button"
+                            class="btn btn-primary"
+                            (click)="clickAddNew()">
+                            Add
+                        </button>
+                    </div>
 
 
-                <div class="gridAvailableTitle">
-                    <b>Tags used before:</b>
-                </div>
-                <div class="gridAvailable">
-                    <nav>
-                        <ul class="nav-list">
-                            <div *ngFor="let row of availableDashboardTags; let i = index"
-                                (click)="clickAvailable(row.id, i)"
-                                [style.background-color]="selectedTagIndex==i? '#123456' : 'transparent'"
-                                >
-                                <span class="tagText">
-                                    {{ row.tag }}
-                                </span>
-                            </div>
-                        </ul>
-                    </nav>
-                </div>
- 
-                <div class="gridSelectedTitle">
-                    <b>Selected Tags:</b>
-                </div>
-                <div class="gridSelected">
-                    <nav>
-                        <ul class="nav-list">
-                            <div *ngFor="let row of selectedDashboardTags; let i = index"
-                                >
-                                <span class="tagText">
-                                    <clr-icon shape="trash" 
-                                        size="12" 
-                                        (click)="clickDelete(row.id, i)"
-                                        >
-                                    </clr-icon>
-                                    {{ row.tag }}
-                                </span>
-                            </div>
-                        </ul>
-                    </nav>
-                </div>
-                <div class="gridArrowAdd">
-                    <button
-                        type="button"
-                        class="btn btn-secondary btn-sm"
-                        (click)="clickAdd()"
-                        >
-                        <clr-icon shape="arrow right" size="20"></clr-icon>
-                    </button>
-                </div>
-
-                <div class="gridButtonCancel">
+                    <div class="gridAvailableTitle">
+                        <b>Tags used before:</b>
+                    </div>
+                    <div class="gridAvailable">
+                        <nav>
+                            <ul class="nav-list">
+                                <div *ngFor="let row of availableDashboardTags; let i = index"
+                                    (click)="clickAvailable(row.id, i)"
+                                    [style.background-color]="selectedTagIndex==i? '#123456' : 'transparent'"
+                                    >
+                                    <span class="tagText">
+                                        {{ row.tag }}
+                                    </span>
+                                </div>
+                            </ul>
+                        </nav>
+                    </div>
+    
+                    <div class="gridSelectedTitle">
+                        <b>Selected Tags:</b>
+                    </div>
+                    <div class="gridSelected">
+                        <nav>
+                            <ul class="nav-list">
+                                <div *ngFor="let row of selectedDashboardTags; let i = index"
+                                    >
+                                    <span class="tagText">
+                                        <clr-icon shape="trash" 
+                                            size="12" 
+                                            (click)="clickDelete(row.id, i)"
+                                            >
+                                        </clr-icon>
+                                        {{ row.tag }}
+                                    </span>
+                                </div>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="gridArrowAdd">
                         <button
-                        type="button"
-                        class="gridButtonCancel btn btn-secondary"
-                        (click)="clickClose('Close')"
-                        >
-                        Cancel
-                    </button> 
+                            type="button"
+                            class="btn btn-secondary btn-sm"
+                            (click)="clickAdd()"
+                            >
+                            <clr-icon shape="arrow right" size="20"></clr-icon>
+                        </button>
+                    </div>
+
+                    <div class="gridButtonCancel">
+                            <button
+                            type="button"
+                            class="gridButtonCancel btn btn-secondary"
+                            (click)="clickClose('Close')"
+                            >
+                            Cancel
+                        </button> 
+                    </div>
+                    <div class="gridButtonSave">
+                        <button
+                            type="button"
+                            class="gridButtonSave btn btn-primary"
+                            (click)="clickSave('Saved')"
+                            >
+                            Save
+                        </button>
+                    </div>
                 </div>
-                <div class="gridButtonSave">
-                    <button
-                        type="button"
-                        class="gridButtonSave btn btn-primary"
-                        (click)="clickSave('Saved')"
-                        >
-                        Save
-                    </button>
-                </div>
-            </div>
+            </form> 
         </div>
     </div>
 </div>
