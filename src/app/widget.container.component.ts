@@ -59,6 +59,22 @@ export class WidgetContainerComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
+        // Deconstruct border
+        if (this.localWidget.containerBorder != '' 
+            && 
+            this.localWidget.containerBorder != 'none') {
+                let space: number = this.localWidget.containerBorder.indexOf(' ');
+                if (space > 0) {
+                    this.lineSize = this.localWidget.containerBorder.substr(0, space);
+                    let rest: string = this.localWidget.containerBorder.substr(space + 1, 999);
+
+                    space = rest.indexOf(' ');
+                    if (space > 0) {
+                        this.lineColor = rest.substr(space + 1, 999);
+                    };
+                };
+        };
+
         // Manage colour picker
         this.globalVariableService.colourPickerClosed.subscribe(clp => {
 
