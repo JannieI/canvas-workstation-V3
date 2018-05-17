@@ -25,7 +25,12 @@
                             name="dashboardName"
                             placeholder="Enter Name"
                             size="25"
-                            >
+                            #dashboardNameVar="ngModel"
+                            required
+                            minlength="3"
+                            maxlength="60"
+                            [style.color]="!dashboardNameVar.valid ? 'red' : 'gray'"
+                        >
                     </div>
                     <div class="gridDescription">
                         <b>Description:</b>
@@ -34,13 +39,19 @@
                             name="dashboardDescription"
                             placeholder="Enter Description"
                             size="25"
-                            >
+                            #dashboardDescriptionVar="ngModel"
+                            required
+                            minlength="3"
+                            maxlength="250"
+                            [style.color]="!dashboardDescriptionVar.valid ? 'red' : 'gray'"
+                        >
                     </div>
 
                     <div class="gridQArequired">
                         <b>QA Required:</b>
                         <input [(ngModel)]="dashboardQArequired"
                             type="checkbox"
+                            name="dashboardQArequired"
                             title="Is QA required for this Dashboard (T/F)"
                             >
                     </div>
@@ -60,7 +71,12 @@
                             name="dashboardCode"
                             placeholder="Enter short Code"
                             size="25"
-                            >
+                            #dashboardCodeVar="ngModel"
+                            required
+                            minlength="3"
+                            maxlength="30"
+                            [style.color]="!dashboardCodeVar.valid ? 'red' : 'gray'"
+                        >
                     </div>
                     <div class="gridDefaultTab">
                         <b>DefaultTab:</b>

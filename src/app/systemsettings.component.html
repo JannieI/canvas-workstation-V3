@@ -10,8 +10,8 @@
                 <div class="gridOverall">
 
                     <div class="gridTitle">
-                        <b>System Settings: </b> 
-                        <i>  
+                        <b>System Settings: </b>
+                        <i>
                             For networked installatons, these settings are done on the server.
                         </i>
                     </div>
@@ -26,12 +26,12 @@
                                 type="text"
                                 name="companyName"
                                 #companyNameVar="ngModel"
-                                required 
+                                required
                                 minlength="3"
                                 maxlength="40"
+                                [style.color]="!companyNameVar.valid ? 'red' : 'gray'"
                                 placeholder="Company Name"
                                 size="25"
-                                [style.color]="!companyNameVar.valid ? 'red' : 'gray'"
                                 >
                         </div>
 
@@ -69,7 +69,7 @@
                                 type="text"
                                 name="notInEditModeMsg"
                                 #notInEditModeMsgVar="ngModel"
-                                required 
+                                required
                                 placeholder="notInEditModeMsg"
                                 size="25"
                                 [style.color]="!notInEditModeMsgVar.valid ? 'red' : 'gray'"
@@ -82,7 +82,7 @@
                                 type="text"
                                 name="noQueryRunningMessage"
                                 #noQueryRunningMessageVar="ngModel"
-                                required 
+                                required
                                 placeholder="NoQueryRunningMessage"
                                 size="25"
                                 [style.color]="!noQueryRunningMessageVar.valid ? 'red' : 'gray'"
@@ -94,7 +94,7 @@
                             <input [(ngModel)]="queryRunningMessage"
                                 type="text"
                                 name="queryRunningMessage"
-                                required 
+                                required
                                 #queryRunningMessageVar="ngModel"
                                 placeholder="QueryRunningMessage"
                                 size="25"
@@ -237,7 +237,7 @@
                     </div>
 
                         <div class="gridPrintDefault">
-                            <input [(ngModel)]="printDefault" 
+                            <input [(ngModel)]="printDefault"
                                 type="text"
                                 name="printDefault"
                                 #printDefaultVar="ngModel"
@@ -247,7 +247,7 @@
                                 >
                         </div>
                         <div class="gridPrintSize">
-                            <input [(ngModel)]="printSize" 
+                            <input [(ngModel)]="printSize"
                                 type="text"
                                 name="printSize"
                                 #printSizeVar="ngModel"
@@ -257,7 +257,7 @@
                                 >
                         </div>
                         <div class="gridPrintLayout">
-                            <input [(ngModel)]="printLayout" 
+                            <input [(ngModel)]="printLayout"
                                 type="text"
                                 name="printLayout"
                                 #printLayoutVar="ngModel"
