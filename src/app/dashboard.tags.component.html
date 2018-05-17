@@ -22,7 +22,13 @@
                         <input [(ngModel)]="newTag"
                             type="text" 
                             name="newTag"
-                            placeholder="Enter new tag name here">
+                            #newTagVar="ngModel"
+                            required
+                            minlength="3"
+                            maxlength="40"
+                            [style.color]="!newTagVar.valid ? 'red' : 'gray'"
+                        placeholder="Enter new tag name here"
+                            >
                         <button  type="button"
                             class="btn btn-primary"
                             (click)="clickAddNew()">
