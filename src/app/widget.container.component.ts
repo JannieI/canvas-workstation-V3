@@ -67,7 +67,7 @@ export class WidgetContainerComponent implements OnInit {
                 } else {
 
                     this.colourPickerClosed = false;
-                    this.localWidget.shapeTextColour = clp.selectedColor;
+                    this.localWidget.containerBackgroundcolor = clp.selectedColor;
 
                 };
             };

@@ -86,7 +86,7 @@
     }
     .gridBorder {
         grid-column-start: 4;
-        grid-column-end: 4;
+        grid-column-end: 8;
         grid-row-start: 6;
         grid-row-end: 7;
         padding-left: 15px;
@@ -154,7 +154,7 @@
 
     .gridButtonSave {
         grid-column-start: 5;
-        grid-column-end: 6;
+        grid-column-end: 7;
         grid-row-start: 19;
         grid-row-end: 20;
         margin-bottom: 15px;
