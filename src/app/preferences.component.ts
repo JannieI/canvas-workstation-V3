@@ -126,7 +126,7 @@ export class PreferencesComponent implements OnInit {
         );
 
         // Inform Subscribers
-        this.globalVariableService.preferencePaletteHorisontal.next( 
+        this.globalVariableService.preferencePaletteHorisontal.next(
             this.preferencePaletteHorisontal
         );
 		this.formDashboardPreferencesClosed.emit(action);

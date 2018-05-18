@@ -6553,6 +6553,7 @@ export class AppComponent implements OnInit {
     setPaletteHeightAndWidth() {
         // Sets the Height and Width of the Palette according to the user pref
         this.globalFunctionService.printToConsole(this.constructor.name,'setPaletteHeightAndWidth', '@Start');
+        console.warn('xx this.globalVariableService.currentUser.preferencePaletteHorisontal', this.globalVariableService.currentUser.preferencePaletteHorisontal)
 
         if (this.globalVariableService.currentUser.preferencePaletteHorisontal){
             // Horisontal
@@ -6669,9 +6670,13 @@ export class AppComponent implements OnInit {
     togglePaletteHorisontal() {
         // Toggles Palette - horisontal / vertical
         this.globalFunctionService.printToConsole(this.constructor.name,'togglePaletteHorisontal', '@Start');
-
+        console.warn('xx this.globalVariableService.currentUser.preferencePaletteHorisontal', this.globalVariableService.currentUser.preferencePaletteHorisontal)
+        
+        // TODO - this must be written to DB for user
+        this.globalVariableService.currentUser.preferencePaletteHorisontal =
+            !this.globalVariableService.currentUser.preferencePaletteHorisontal;
         this.globalVariableService.preferencePaletteHorisontal.next(
-            !this.globalVariableService.currentUser.preferencePaletteHorisontal
+            this.globalVariableService.currentUser.preferencePaletteHorisontal
         );
     }
 }

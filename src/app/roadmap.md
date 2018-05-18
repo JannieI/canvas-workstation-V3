@@ -30,15 +30,6 @@ This document describes items for later versions of Canvas.
     - test: a new user must be able to build a D in 5 minutes, and a person must be ready with max 1hr training session.  Remember, no one reads the manual!  Final test, give it to highschool kids!!
 
 
-    Palette:
-    --------
-    - make Palette button sizes dynamic - small, medium, large, and make this a user setting.  Make sure div around it is also sized dynamically.
-    - little arrow on Palette that makes it easy to rotate horison / vertical
-    ButtonBars: Decide on what to do with Widget- and Shape-ButtonBars and 2 forms - AFTER UI and functionality has been decided.  Maybe remove them, or only allow for order ... For now,palette cannot be changed.
-    - expand palette / menus: add regularly used tasks, ie add a circle (with one click)
-    - make icons draggable - like Ubuntu palette on left !
-
-
     JSON-Server Timeout:
     --------------------
     - if BULK DELETE in quick succesion, gets http error: ERR_CONNECTION_REFUSED.  Assume it is because json-server gets flooded, but this has to be tested with real server.
@@ -89,10 +80,7 @@ This document describes items for later versions of Canvas.
     Refactoring / tech debt / necessary improvements:
     -------------------------------------------------
     - review and check: it should NEVER be allowed to edit the DB itself - there must be a UI function for changing things.  And always by the users, with rights if necessary.
-    - Change all components to use central (global var) createVegaLiteSpec ...
-    - Consider array.spice() instead of current deep copy - is more TS-like ...  Review ALL deep    copies - try JSONify or source.map(Object) - remember that Sl Object. did not deep copy!!
-    - Consider depricating gv.currentWidgets, gv = global.variables.  THINK !  Can 1) make  app.currentWidget = gv.currentWidget, ByRef.  Test that this always updates.  2) always refresh  gv.currentWidget  3) delete gv.currentWidget - check where uses and how.
-    THEN: consider all currentXXX, where XXX = Objects to follow the same methodology.
+    - Consider array.splice() instead of current deep copy - is more TS-like ...  Review ALL deep    copies - try JSONify or source.map(Object) - remember that Sl Object. did not deep copy!!
     - Add RouteGuard on 'Clarity Analytics', before going to web site ...
     BUG/ISSUE: multi-tab Slicers and Ws only refresh on the first one - when are the others done?  To do them while hidden makes no sence - should we have a dirty flag, and filterSlicer on tab change??
     - ContainerFontSize - consider dropping it, and have a font size for Title, Shape-Text, etc.      Else it gets confusing ...
@@ -420,3 +408,17 @@ This document describes items for later versions of Canvas.
     - Notes that can open in separate Browser Tab.  
     - Also, can show speaker notes on different screen!  
     - Add timer.
+
+
+    Palette:
+    --------
+    - make Palette button sizes dynamic - small, medium, large, and make this a user setting.  Make sure div around it is also sized dynamically.
+    ButtonBars: Decide on what to do with Widget- and Shape-ButtonBars and 2 forms - AFTER UI and functionality has been decided.  Maybe remove them, or only allow for order ... For now,palette cannot be changed.
+    - expand palette / menus: add regularly used tasks, ie add a circle (with one click)
+    - make icons draggable - like Ubuntu palette on left !
+
+
+    Global Variables:
+    -----------------
+    - Consider which ones to keep in vars, which to load from DB each time
+    - Consider depricating gv.currentWidgets, gv = global.variables.  THINK !  Can 1) make  app.currentWidget = gv.currentWidget, ByRef.  Test that this always updates.  2) always refresh  gv.currentWidget  3) delete gv.currentWidget - check where uses and how.  THEN: consider all currentXXX, where XXX = Objects to follow the same methodology.
