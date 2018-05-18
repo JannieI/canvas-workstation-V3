@@ -21,7 +21,7 @@
                     <div class="gridName">
                         <b>Name/Description:</b>
                         <input [(ngModel)]="filterName"
-                            type="text" 
+                            type="text"
                             name="filterName"
                             size="25"
                             placeholder="Name/Description contains this text"
@@ -55,7 +55,7 @@
                     <div class="gridSharedToUser">
                         <b>Shared to User:</b>
                         <input [(ngModel)]="filterSharedToUser"
-                            type="text" 
+                            type="text"
                             name="filterSharedToUser"
                             size="25"
                             placeholder="Shared to a specific user"
@@ -64,7 +64,7 @@
                     <div class="gridSharedToGroup">
                         <b>Shared to Group:</b>
                         <input [(ngModel)]="filterSharedToGroup"
-                            type="text" 
+                            type="text"
                             name="filterSharedToGroup"
                             size="25"
                             placeholder="Shared to a specific Group"
@@ -74,7 +74,7 @@
                     <div class="gridCreatedBy">
                         <b>Created by:</b>
                         <input [(ngModel)]="filterCreatedBy"
-                            type="text" 
+                            type="text"
                             name="filterCreatedBy"
                             size="25"
                             placeholder="Created by a specific User"
@@ -101,7 +101,7 @@
                     <div class="gridDatasource">
                         <b>Uses Datasource:</b>
                         <input [(ngModel)]="filterDatasource"
-                            type="text" 
+                            type="text"
                             name="filterDatasource"
                             size="25"
                             placeholder="Uses data from this DS"
@@ -110,7 +110,7 @@
                     <div class="gridField">
                         <b>Uses Field:</b>
                         <input [(ngModel)]="filterField"
-                            type="text" 
+                            type="text"
                             name="filterField"
                             size="25"
                             placeholder="Uses this data field in a Widget"
@@ -120,7 +120,7 @@
                     <div class="gridTag">
                         <b>Tag:</b>
                         <input [(ngModel)]="filterTag"
-                            type="text" 
+                            type="text"
                             name="filterTag"
                             size="25"
                             placeholder="Is tagged with this Tag"
@@ -154,7 +154,7 @@
                     <div class="gridNewName" *ngIf="renameMode">
                         <b>New Name:</b>
                         <input [(ngModel)]="newName"
-                            type="text" 
+                            type="text"
                             name="newName"
                             size="25"
                             placeholder="New Name for selected Dashboard"
@@ -201,7 +201,7 @@
                                 let i = index"
                                 [style.background-color]="(i == selectedRow)? '#123456' : 'white'"
                                 [style.color]="(i == selectedRow)? 'white' : 'gray'"
-                                (click)="clickRow(i, row.id)" 
+                                (click)="clickRow(i, row.id)"
                                 >
                                 <clr-dg-cell>
                                     <clr-icon shape="pencil"

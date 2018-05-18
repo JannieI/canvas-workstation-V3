@@ -5803,11 +5803,15 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        // TODO - fix index..
-        this.currentWidgets[index].isSelected = !this.currentWidgets[index].isSelected;
+        let isSelected: boolean = !this.currentWidgets[index].isSelected;
+        this.currentWidgets.forEach(w => {
+            if ( (w.id == id)  ||  (this.widgetGroup.indexOf(w.id) >= 0) ) {
+                w.isSelected = isSelected;
+            };
+        });
         this.globalVariableService.currentWidgets.forEach(w => {
-            if (w.id == id) {
-                w.isSelected = this.currentWidgets[index].isSelected;
+            if ( (w.id == id)  ||  (this.widgetGroup.indexOf(w.id) >= 0) ) {
+                w.isSelected = isSelected;
             };
         });
 

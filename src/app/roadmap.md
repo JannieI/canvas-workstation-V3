@@ -115,28 +115,6 @@ This document describes items for later versions of Canvas.
 
 
 
-    Shapes:
-    -------
-    - links (to web and other D, T)
-    - write text vertically !
-    - have UPPERCASE / Sentence Case options
-    - add triangle, or make arrow more sophisticated = no line (! triangle), no arrowhead
-    - make rotation of arrow with mouse - drag it around!
-    - size with svg markerWidth and -Height
-    - Can / should other Shapes (ie TEXT) also rotate with transform="rotate(30 20,40)"??
-    - Can / should Shapes have radial / linear blur inside??
-    - Consider Shape = Line - easy to do, not sure where and how used (rather use arrow)?
-    - Add emojis !?  See https://www.w3schools.com/charsets/ref_utf_misc_symbols.asp 
-    - Consider MarkDown / HTML formatting to Text shape - do we really need this?
-    - PBI can change type of W after created, ie Table to Matrix
-    - How to incorporate fancy W types, ie half circle with needle / doughnut / etc ...
-    - add video as shape
-    - make it easier to add co logo, ie Add logo menu option.
-    - ArrowThin is not inside the W container => difficult to drag and drop, hangs over others, difficult to place, looks funny.  Also, the Arrow header is not always the same colour as the line.  Make more sophisticated to set tail (line) length -> so line length = 0 makes it s simple arrow head, or Triangle.  Also dimentions for head size - height and width.  Can these be done with a mouse ?
-    - consider triangle as a new shape - not sure it is needed, or if can be done via thin arrows
-    - are thin Arrows just Arrows without the body??
-    - Arrow: make dynamic!  For both size and rotation, taking into account that it has to land inside the W container at all times, and preferably left top corner for easy placements.  Also, consider shrinking W container, ie with *ngIf on title and other grid areas ...
-
 
     Different versions of Vega:
     ---------------------------
@@ -364,8 +342,31 @@ Comments:
 - consider if it is possible to show changes easily and visually, similar to mark-up in a Word doc!
 
 
-    Draw Mode:
-    ----------
+
+    Shapes:
+    -------
+    - links (to web and other D, T)
+    - write text vertically !
+    - have UPPERCASE / Sentence Case options
+    - add triangle, or make arrow more sophisticated = no line (! triangle), no arrowhead
+    - make rotation of arrow with mouse - drag it around!
+    - size with svg markerWidth and -Height
+    - Can / should other Shapes (ie TEXT) also rotate with transform="rotate(30 20,40)"??
+    - Can / should Shapes have radial / linear blur inside??
+    - Consider Shape = Line - easy to do, not sure where and how used (rather use arrow)?
+    - Add emojis !?  See https://www.w3schools.com/charsets/ref_utf_misc_symbols.asp 
+    - Consider MarkDown / HTML formatting to Text shape - do we really need this?
+    - PBI can change type of W after created, ie Table to Matrix
+    - How to incorporate fancy W types, ie half circle with needle / doughnut / etc ...
+    - add video as shape
+    - make it easier to add co logo, ie Add logo menu option.
+    - ArrowThin is not inside the W container => difficult to drag and drop, hangs over others, difficult to place, looks funny.  Also, the Arrow header is not always the same colour as the line.  Make more sophisticated to set tail (line) length -> so line length = 0 makes it s simple arrow head, or Triangle.  Also dimentions for head size - height and width.  Can these be done with a mouse ?
+    - consider triangle as a new shape - not sure it is needed, or if can be done via thin arrows
+    - are thin Arrows just Arrows without the body??
+    - Arrow: make dynamic!  For both size and rotation, taking into account that it has to land inside the W container at all times, and preferably left top corner for easy placements.  Also, consider shrinking W container, ie with *ngIf on title and other grid areas ...
+
+    Draw Mode (Shapes):
+    -------------------
     - make the whole canvas interactive once you click DrawMode
     - hand-drawn lines / pics with mouse! => creates a normal W, with sizing and positioning so that it is top left :-)
     - add handles to arrows, lines, etc => use this to position and rotate and make longer / resize !

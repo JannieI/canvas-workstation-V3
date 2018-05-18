@@ -38,7 +38,7 @@ export class DashboardRenameComponent implements OnInit {
         };
 
     }
-    
+
     errorMessage: string = '';
     filterCreatedBy: string;
     filterDatasource: string;
@@ -291,7 +291,7 @@ export class DashboardRenameComponent implements OnInit {
     clickRowRename(id: number, name: string) {
         // Click the Rename icon
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRowRename', '@Start');
-        
+
         // Get the index
         for (var i = 0; i < this.filteredDashboards.length; i++) {
             if (this.filteredDashboards[i].id == id) {
