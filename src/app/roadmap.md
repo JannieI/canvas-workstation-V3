@@ -36,6 +36,7 @@ This document describes items for later versions of Canvas.
     - little arrow on Palette that makes it easy to rotate horison / vertical
     ButtonBars: Decide on what to do with Widget- and Shape-ButtonBars and 2 forms - AFTER UI and functionality has been decided.  Maybe remove them, or only allow for order ... For now,palette cannot be changed.
     - expand palette / menus: add regularly used tasks, ie add a circle (with one click)
+    - make icons draggable - like Ubuntu palette on left !
 
 
     JSON-Server Timeout:
@@ -240,7 +241,6 @@ This document describes items for later versions of Canvas.
        these comments??  Think carefully here.
     16.Consider popup status messages, like VSCode to be more visible - maybe not needed.
     17.Considering opening message per D (might even be per user as well), that will display each time D is opened.  How is it entered, who enters / deletes / edits it, and how is it displayed - modal (another one!), popup and for how long, and how is it closed, and how does it look to fit in?
-    19.Add speaker notes, that can open in separate Browser Tab.  Also, can show speaker notes on different screen!
 
 
     Sample Ds:
@@ -273,63 +273,102 @@ This document describes items for later versions of Canvas.
 
 
 
+
+
+
+
+
+
+
+
+
+**********************************************************************************
+**********************************************************************************
+**********************************************************************************
+**********************************************************************************
+**********************************************************************************
+**********************************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Later versions
-To consider for LATER versions:
+    To consider for LATER versions:
 
-Pilot Installation:
-- Install at user as pilot, may Liaan ...
+    Pilot Installation:
+    - Install at user as pilot, may Liaan ...
 
-Tabs:
-- can we hide T - will show in T list with hidden tick, can uncheck?
+    Tabs:
+    - can we hide T - will show in T list with hidden tick, can uncheck?
 
-Widgets:
-- Decide to get a W from another D - only show those where the user has access to the DS
-- Decide if check/tick is shown on related Sl when a W is clicked.  The treeview is good enough methinks
+    Widgets:
+    - Decide to get a W from another D - only show those where the user has access to the DS
+    - Decide if check/tick is shown on related Sl when a W is clicked.  The treeview is good enough methinks
 
-Treeview: 
-- drag and drop W onto different Tabs
-- Delete icon to delete here (name ~ title may not be clear)
-- click and goto tab where W lives
-- add Tabs, to show hierarchy better: Tab -< Ws - DS + Sl, Tab -< Sl -< Ws + DS
+    Treeview: 
+    - drag and drop W onto different Tabs
+    - Delete icon to delete here (name ~ title may not be clear)
+    - click and goto tab where W lives
+    - add Tabs, to show hierarchy better: Tab -< Ws - DS + Sl, Tab -< Sl -< Ws + DS
 
-- consider case-INsensitive testing in filterSlicer, or make it a user-defined setting
-- Give the user a vote - via like?  Create a sense of belonging and community
-- Consider multi-W actions, ie to move ALL selected objects - remember complexity since Sl and W sits in different components ...  Also, the current code is specific to ONE
+    - consider case-INsensitive testing in filterSlicer, or make it a user-defined setting
+    - Give the user a vote - via like?  Create a sense of belonging and community
+    - Consider multi-W actions, ie to move ALL selected objects - remember complexity since Sl and W sits in different components ...  Also, the current code is specific to ONE
 
-Performance:
-- try to improve performance - trackedByFn ...
+    Performance:
+    - try to improve performance - trackedByFn ...
 
-UI:
-- Have verticle and horisontal hairlines when moving W - experiment a bit
-- Make Observable from keystrokes in app component - then debounce to make it less??  See BK mouse wheel scroll ...
-- Consider to Warn user if 2 Sl on the same dataset for the same field - not sure it is needed
-Tooltip:
-- Show a Viz on the tooltip - this could be our explain ... !
-Landing page:
-- Incorporate tasks into Landing page?
-Menu functions:
-- Consider copy + paste for Slicer, Shape and Table.  For now, I think it is okay
-- Consider cut as well, cut = copy + delete ...
-External contact:
-- Use cell phone to do things easily - ie ask time off, manager approves and data stored as record - EASY and integrated and No forms
-- Telegram interface with bot ...
+    UI:
+    - Have verticle and horisontal hairlines when moving W - experiment a bit
+    - Make Observable from keystrokes in app component - then debounce to make it less??  See BK mouse wheel scroll ...
+    - Consider to Warn user if 2 Sl on the same dataset for the same field - not sure it is needed
+    Tooltip:
+    - Show a Viz on the tooltip - this could be our explain ... !
+    Landing page:
+    - Incorporate tasks into Landing page?
+    Menu functions:
+    - Consider copy + paste for Slicer, Shape and Table.  For now, I think it is okay
+    - Consider cut as well, cut = copy + delete ...
+    External contact:
+    - Use cell phone to do things easily - ie ask time off, manager approves and data stored as record - EASY and integrated and No forms
+    - Telegram interface with bot ...
 
-Comments:
-- add filter on Sender/Receiver
-- In ViewOnly mode: cannot select a W, thus cannot see Comments per selected ...
-- Consider dataQuality on own menu item, or on W menu
-- look at ITTT - if this then that = rules engine that is dynamic
-- consider to show pages and tabs as images - making it easy to select
-- consider adding data: ie load new data into a grid / table ala Excel, and save it in Canvas as DS ...
-- do analysis of forces - what will make users switch vs stay away.  Different for different departments: IT = security, deployment, operations,  Finance = ROI, actual investment, cost sensitive  Users = resources to grow,  Management = fit into strategy
-- consider if we need to make special adjustments for batch jobs of the user
-- add ROI examples
-- look at Xero accounting package stats - can or should we duplicate that?
-- look for real examples where we can disrupt
-- relook at 'what business are we in' to determine product offering vs target market
-- look at market: do segmentation, non-customers that can use Canvas, think of different market needs.  Also, look at different user profiles: info-worker, project manager, consultants, team members, board.  Review competition, and be clear about differentiators.
-- consider RIGHT CLICK menu (Ihsane) - this is a lot of work, so first test if users wants it
-- consider if it is possible to show changes easily and visually, similar to mark-up in a Word doc!
+    Comments:
+    - add filter on Sender/Receiver
+    - In ViewOnly mode: cannot select a W, thus cannot see Comments per selected ...
+    - Consider dataQuality on own menu item, or on W menu
+    - look at ITTT - if this then that = rules engine that is dynamic
+    - consider to show pages and tabs as images - making it easy to select
+    - consider adding data: ie load new data into a grid / table ala Excel, and save it in Canvas as DS ...
+    - do analysis of forces - what will make users switch vs stay away.  Different for different departments: IT = security, deployment, operations,  Finance = ROI, actual investment, cost sensitive  Users = resources to grow,  Management = fit into strategy
+    - consider if we need to make special adjustments for batch jobs of the user
+    - add ROI examples
+    - look at Xero accounting package stats - can or should we duplicate that?
+    - look for real examples where we can disrupt
+    - relook at 'what business are we in' to determine product offering vs target market
+    - look at market: do segmentation, non-customers that can use Canvas, think of different market needs.  Also, look at different user profiles: info-worker, project manager, consultants, team members, board.  Review competition, and be clear about differentiators.
+    - consider RIGHT CLICK menu (Ihsane) - this is a lot of work, so first test if users wants it
+    - consider if it is possible to show changes easily and visually, similar to mark-up in a Word doc!
 
 
 
@@ -374,3 +413,10 @@ Comments:
     - if some W selected, say 1 in group of 4.  If move, does group also move?
     - better indication that groups are used, and maybe some help when Ws are group - say one- time help popup.
     - also decide: should Group/ UnGroup save to DB or not?  It could be considered a once off thing, that must not affect other users when they open it.
+
+
+    Speaker notes:
+    --------------
+    - Notes that can open in separate Browser Tab.  
+    - Also, can show speaker notes on different screen!  
+    - Add timer.

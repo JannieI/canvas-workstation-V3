@@ -2642,7 +2642,12 @@
     (dragend)="clickPaletteDragEnd($event)"
     draggable="true"
     >
-
+    <clr-icon class="paletteIcon" 
+        (click)="togglePaletteHorisontal()"
+        shape="angle right" 
+        size="9" 
+        >
+    </clr-icon>
     <span *ngFor="let row of paletteButtons; let i = index"
         role="tooltip"
         aria-haspopup="true"

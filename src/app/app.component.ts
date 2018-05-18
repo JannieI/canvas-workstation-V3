@@ -6556,14 +6556,14 @@ export class AppComponent implements OnInit {
 
         if (this.globalVariableService.currentUser.preferencePaletteHorisontal){
             // Horisontal
-            this. paletteHeight = 35;
-            this. paletteWidth = this.globalVariableService.currentPaletteButtonsSelected
-                .value.length * 23;
+            this.paletteHeight = 35;
+            this.paletteWidth = (this.globalVariableService.currentPaletteButtonsSelected
+                .value.length * 23) + 3;
         } else {
             // Vertical
-            this. paletteHeight = this.globalVariableService.currentPaletteButtonsSelected
-                .value.length * 25;
-            this. paletteWidth = 32;
+            this.paletteHeight = (this.globalVariableService.currentPaletteButtonsSelected
+                .value.length * 25) + 3;
+            this.paletteWidth = 32;
             };
     }
 
@@ -6665,6 +6665,7 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPostAction();
     }
+
 
 }
 
