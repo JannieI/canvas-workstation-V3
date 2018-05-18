@@ -103,16 +103,6 @@ This document describes items for later versions of Canvas.
 
 
 
-    Widget Groups:
-    --------------
-    - have a CLEAR definition of what this is and how it works:
-    - only one, or many?
-    - if click one in group, select all in group?
-    - if move one in group and rest not selected, do they move as well?
-    - if resize, one or all in group resizes?  Particularly if none selected.
-    - if some W selected, say 1 in group of 4.  If move, does group also move?
-    - better indication that groups are used, and maybe some help when Ws are group - say one- time help popup.
-
 
 
 
@@ -373,3 +363,14 @@ Comments:
     - data quality issues: decide in inside or outside Canvas, and complete form
     - curved lines, bazier curves
 
+
+    Widget Groups:
+    --------------
+    - have a CLEAR definition of what this is and how it works:
+    - only one, or many?
+    - if click one in group, select all in group?
+    - if move one in group and rest not selected, do they move as well?
+    - if resize, one or all in group resizes?  Particularly if none selected.
+    - if some W selected, say 1 in group of 4.  If move, does group also move?
+    - better indication that groups are used, and maybe some help when Ws are group - say one- time help popup.
+    - also decide: should Group/ UnGroup save to DB or not?  It could be considered a once off thing, that must not affect other users when they open it.
