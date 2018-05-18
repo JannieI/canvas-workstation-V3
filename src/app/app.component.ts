@@ -6666,7 +6666,14 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPostAction();
     }
 
+    togglePaletteHorisontal() {
+        // Toggles Palette - horisontal / vertical
+        this.globalFunctionService.printToConsole(this.constructor.name,'togglePaletteHorisontal', '@Start');
 
+        this.globalVariableService.preferencePaletteHorisontal.next(
+            !this.globalVariableService.currentUser.preferencePaletteHorisontal
+        );
+    }
 }
 
 // Naming conventions
