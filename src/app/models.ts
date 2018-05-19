@@ -256,12 +256,12 @@ export class CanvasUser {
     isFirstTimeUser: boolean;               // True if not created a D
     isAdministrator: boolean;               // Role can add/delete users to the group,
         // and assign roles).  Must be at least one administrator role at all times.
-    isDashboardCreator: boolean;            // Role can create Dashboards
-    isDashboardEditor: boolean;             // Role can change / edit Dashboards
-    isDashboardSaver : boolean;             // Role can save changes to a Dashboards
+    DashboardCanCreateRole: boolean;            // Role can create Dashboards
+    DashboardCanEditRole: boolean;             // Role can change / edit Dashboards
+    DashboardCanSaveRole : boolean;             // Role can save changes to a Dashboards
     isDashboardQA: boolean;                 // Role can QA a Dashboard
-    isDashboardDelete: boolean;             // Role can delete a Dashboard
-    isDashboardAccess: boolean;             // Role can change access to a Dashboard
+    DashboardCanDeleteRole: boolean;             // Role can delete a Dashboard
+    DashboardCanGrantAccess: boolean;             // Role can change access to a Dashboard
     preferencePaletteHorisontal: boolean;                   // T/F - Palette Horisontal (else Vertial)
     preferenceAutoSync: boolean;                            // T/F - can auto sync
     preferenceShowOpenStartupMessage: boolean;              // T/F - show open startup msg
