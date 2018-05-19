@@ -259,7 +259,6 @@ export class CanvasUser {
     DashboardCanCreateRole: boolean;        // Role can create Dashboards
     DashboardCanEditRole: boolean;          // Role can change / edit Dashboards
     DashboardCanSaveRole : boolean;         // Role can save changes to a Dashboards
-    isDashboardQA: boolean;                 // Role can QA a Dashboard
     DashboardCanDeleteRole: boolean;        // Role can delete a Dashboard
     DashboardCanGrantAccess: boolean;       // Role can change access to a Dashboard
     CanManageGroupRole: boolean;            // Role can add/delete users to Group

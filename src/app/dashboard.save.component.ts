@@ -94,8 +94,6 @@ export class DashboardSaveComponent implements OnInit {
         }
     }
 
-    // TODO - remember to add isDashboardQA role in permissioning
-    
     clickSaveFile() {
     }
 
