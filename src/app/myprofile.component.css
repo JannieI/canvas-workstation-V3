@@ -175,18 +175,18 @@
     }
          
     .gridButtonCancel {
-        grid-column-start: 1;
-        grid-column-end: 3;
-        grid-row-start: 22;
-        grid-row-end: 23;
+        grid-column-start: 8;
+        grid-column-end: 10;
+        grid-row-start: 14;
+        grid-row-end: 15;
         text-align: left;
     }
 
     .gridButtonSave {
-        grid-column-start: 3;
-        grid-column-end: 5;
-        grid-row-start: 22;
-        grid-row-end: 23;
+        grid-column-start: 11;
+        grid-column-end: 15;
+        grid-row-start: 14;
+        grid-row-end: 15;
         text-align: left;
     }
 
