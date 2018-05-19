@@ -2632,6 +2632,18 @@
 
 
 <!-- Palette -->
+<div class="paletteIcon" 
+    [style.left.px]="paletteLeft+2"
+    [style.top.px]="paletteTop+2"
+    >
+    <clr-icon
+        (click)="togglePaletteHorisontal()"
+        shape="angle right" 
+        size="9" 
+        >
+    </clr-icon>
+</div>
+
 <div class="palette" *ngIf="editMode  &&  showPalette"
     [style.left.px]="paletteLeft"
     [style.top.px]="paletteTop"
@@ -2642,12 +2654,7 @@
     (dragend)="clickPaletteDragEnd($event)"
     draggable="true"
     >
-    <clr-icon class="paletteIcon" 
-        (click)="togglePaletteHorisontal()"
-        shape="angle right" 
-        size="9" 
-        >
-    </clr-icon>
+    
     <span *ngFor="let row of paletteButtons; let i = index"
         role="tooltip"
         aria-haspopup="true"
@@ -2662,7 +2669,6 @@
             draggable="true"
             (dragstart)="dragstartPaletteButton($event)"
             (dragend)="dragendPaletteButton($event, row.functionName)"
-
             >
         </clr-icon>
         <span class="tooltip-content">{{ row.tooltipContent }}</span>

@@ -87,12 +87,14 @@
     z-index: 60;
 }
     .paletteIcon {
-        background-color: lightgray;
-        height: 9px !important;
-        margin: -26px 0px 0px -14px;
+        background-color: transparent;
+        color: white;
+        height: 8px !important;
+        margin: -10px 0px 0px -2px;
         padding: 0px;
-        width: 9px !important;
-        z-index: 61;
+        position: absolute;
+        width: 8px !important;
+        z-index: 62;
     }
 
 .buttonBarIcon {
