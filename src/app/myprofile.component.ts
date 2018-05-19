@@ -141,15 +141,18 @@ export class MyProfileComponent implements OnInit {
         // Save data and close form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
+        this.globalVariableService.saveCanvasUser(this.currentUser);
+
         this.globalVariableService.showStatusBarMessage(
-            {
-                message: 'Fix save later ...',
+            {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+                message: 'User info saved ...',
                 uiArea: 'StatusBar',
                 classfication: 'Info',
                 timeout: 3000,
                 defaultMessage: ''
             }
         );
+
 		this.formDashboardMyProfileClosed.emit(action);
     }
 

@@ -56,9 +56,9 @@ export class CanvasSettings {
     companyName: string;                    // Company Name
     companyLogo: string;                    // Optional file name for Company logo
     dashboardTemplate: string;              // Default Dashboard Template (later use)
-    offlineData: boolean;                   // Store server data locally (T/F)
-    offlineSchema: boolean;                 // Store server schema locally (T/F)
-    offlineLogin: boolean;                  // Can log into a local server (T/F)
+    offlineData: boolean;                   // Can store server data locally (T/F) - global setting
+    offlineSchema: boolean;                 // Can store server schema locally (T/F) - global setting
+    offlineLogin: boolean;                  // Can log into a local server (T/F) - global setting
     maxTableLength: number;                 // Max Table Length (say 500 records)
     widgetsMinZindex: number;               // Widgets Min Zindex
     widgetsMaxZindex: number;               // Widgets Max Zindex

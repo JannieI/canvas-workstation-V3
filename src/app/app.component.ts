@@ -984,7 +984,7 @@ export class AppComponent implements OnInit {
 
             this.globalVariableService.changedWidget.next(changedWidget);
         };
-        
+
         this.menuOptionClickPostAction();
 
         this.showModalSlicerEditor = false;
@@ -1248,7 +1248,7 @@ export class AppComponent implements OnInit {
 
             this.globalVariableService.changedWidget.next(changedWidget);
         };
-        
+
         this.menuOptionClickPostAction();
 
         this.showModalTableEditor = false;
@@ -5105,7 +5105,7 @@ export class AppComponent implements OnInit {
                 this.selectedDashboard = d;
             };
         });
-        
+
         this.showModalUserMyProfile = true;
     }
 
@@ -6678,7 +6678,7 @@ export class AppComponent implements OnInit {
         // Toggles Palette - horisontal / vertical
         this.globalFunctionService.printToConsole(this.constructor.name,'togglePaletteHorisontal', '@Start');
         console.warn('xx this.globalVariableService.currentUser.preferencePaletteHorisontal', this.globalVariableService.currentUser.preferencePaletteHorisontal)
-        
+
         // TODO - this must be written to DB for user
         this.globalVariableService.currentUser.preferencePaletteHorisontal =
             !this.globalVariableService.currentUser.preferencePaletteHorisontal;
