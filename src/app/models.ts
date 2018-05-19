@@ -261,9 +261,12 @@ export class CanvasUser {
     dashboardCanEditRole: boolean;          // Role can change / edit Dashboards
     dashboardCanSaveRole : boolean;         // Role can save changes to a Dashboards
     dashboardCanDeleteRole: boolean;        // Role can delete a Dashboard
-    dashboardCanGrantAccessRole: boolean;       // Role can change access to a Dashboard
-    dashboardCanAddDatasourceRole: boolean;     // Role can change add DS to a Dashboard
+    dashboardCanGrantAccessRole: boolean;   // Role can change access to a Dashboard
+    dashboardCanAddDatasourceRole: boolean; // Role can change add DS to a Dashboard
     canManageGroupRole: boolean;            // Role can add/delete users to Group
+    offlineData: boolean;                   // Store server data locally (T/F) - user setting
+    offlineSchema: boolean;                 // Store server schema locally (T/F) - user setting
+    offlineLogin: boolean;                  // Can log into a local server (T/F) - user setting
     preferencePaletteHorisontal: boolean;                   // T/F - Palette Horisontal (else Vertial)
     preferenceAutoSync: boolean;                            // T/F - can auto sync
     preferenceShowOpenStartupMessage: boolean;              // T/F - show open startup msg
