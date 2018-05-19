@@ -257,6 +257,7 @@ export class CanvasUser {
     isAdministrator: boolean;               // Role can add/delete users to the group,
         // and assign roles).  Must be at least one administrator role at all times.
     DashboardCanCreateRole: boolean;        // Role can create Dashboards
+    DashboardCanViewRole: boolean;          // Role can view Dashboards
     DashboardCanEditRole: boolean;          // Role can change / edit Dashboards
     DashboardCanSaveRole : boolean;         // Role can save changes to a Dashboards
     DashboardCanDeleteRole: boolean;        // Role can delete a Dashboard
