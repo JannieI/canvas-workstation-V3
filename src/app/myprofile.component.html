@@ -120,30 +120,18 @@
                         >
                 </div>
 
-                <div class="gridTableTitle" *ngIf="showFavs">
-                    <b>Favourites:</b>
-                </div>
-                <div class="gridTable" *ngIf="showFavs">
+                <!-- KEEP - getting my Fav Ds, and put into fancy table.  Could be useful somewhere -->
+                <!-- <div class="gridTable" *ngIf="showFavs">
                     <clr-datagrid>
                         <clr-dg-column *ngFor="let row of dataFieldNames; let r = index">
                             {{ row }}</clr-dg-column>
                         <clr-dg-row *ngFor="let row of currentData">
-
                             <clr-dg-cell *ngFor="let col of dataFieldNames; let c = index">
-                                <!-- Cant get row here!
-                                <clr-icon
-                                    shape="trash"
-                                    class="selectIcon1"
-                                    size="12"
-                                    (click)="clickDelete($event, r, c)"
-                                    >
-                                </clr-icon> -->
-
                                 {{ row[col] }}
                             </clr-dg-cell>
                         </clr-dg-row>
                     </clr-datagrid>
-                </div>
+                </div> -->
 
                 <div class="gridButtonCancel">
                         <button

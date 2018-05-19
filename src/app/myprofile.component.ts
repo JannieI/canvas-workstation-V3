@@ -57,69 +57,61 @@ export class MyProfileComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         this.currentUser = this.globalVariableService.currentUser;
-        
-        this.favDashboards = this.globalVariableService.dashboards.filter(d => 
-            this.globalVariableService.currentUser.favouriteDashboards.indexOf(d.id) >= 0
-        );
-console.warn('xx this.favDashboards', this.favDashboards, this.globalVariableService.currentUser.favouriteDashboards)
 
-        if (this.favDashboards.length > 0) {
+        // KEEP - getting my Fav Ds, and put into fancy table.  Could be useful somewhere
+        // this.favDashboards = this.globalVariableService.dashboards.filter(d => 
+        //     this.globalVariableService.currentUser.favouriteDashboards.indexOf(d.id) >= 0
+        // );
+        // if (this.favDashboards.length > 0) {
 
-            // Show Table
-            this.showFavs = true;
+        //     // Show Table
+        //     this.showFavs = true;
 
-            // Get nr cols, with set rows
-            let nrRows: number = 2;
-            let nrCols: number = Math.floor(this.favDashboards.length / nrRows);
-            if ((this.favDashboards.length % nrRows) != 0) {
-                nrCols = nrCols + 1;
-            };
+        //     // Get nr cols, with set rows
+        //     let nrRows: number = 2;
+        //     let nrCols: number = Math.floor(this.favDashboards.length / nrRows);
+        //     if ((this.favDashboards.length % nrRows) != 0) {
+        //         nrCols = nrCols + 1;
+        //     };
 
-            // Create the col headers
-            for (var i = 0; i < nrCols; i++) {
-                this.dataFieldNames.push((i));
-            };
-            console.warn('xx dataFieldNames', this.dataFieldNames)
+        //     // Create the col headers
+        //     for (var i = 0; i < nrCols; i++) {
+        //         this.dataFieldNames.push((i));
+        //     };
+        //     console.warn('xx dataFieldNames', this.dataFieldNames)
 
-            // Create the data
-            let c: number = 0;
-            let row0: any[] = [];
-            let row1: any[] = [];
+        //     // Create the data
+        //     let c: number = 0;
+        //     let row0: any[] = [];
+        //     let row1: any[] = [];
 
-            this.favDashboards.forEach( d => {
+        //     this.favDashboards.forEach( d => {
 
-                if (c == 0) {
-                    row0.push(d.name);
-                } else {
-                    row1.push(d.name);
-                };
+        //         if (c == 0) {
+        //             row0.push(d.name);
+        //         } else {
+        //             row1.push(d.name);
+        //         };
 
-                // Increment, mod 2
-                c = c + 1;
-                if (c == 2) {
-                    c = 0
-                };
+        //         // Increment, mod 2
+        //         c = c + 1;
+        //         if (c == 2) {
+        //             c = 0
+        //         };
 
-            })
-            console.warn('xx rows', this.currentData.length, row0, row1)
-            if (row0.length > 0) {
-                this.currentData.push(row0);
-            };
-            if (row1.length > 0) {
-                this.currentData.push(row1);
-            };
-            // this.currentData.push( row0, row1)
-            console.warn('xx cData', this.currentData.length, this.currentData)
-        };
+        //     })
+        //     console.warn('xx rows', this.currentData.length, row0, row1)
+        //     if (row0.length > 0) {
+        //         this.currentData.push(row0);
+        //     };
+        //     if (row1.length > 0) {
+        //         this.currentData.push(row1);
+        //     };
+        //     // this.currentData.push( row0, row1)
+        //     console.warn('xx cData', this.currentData.length, this.currentData)
+        // };
     }
  
-    clickDelete(ev, row, col) {
-        // Close form, no changes
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickDelete', '@Start');
-
-        console.warn('xx', ev, row, 'c', col)
-}
-
     clickClose(action: string) {
         // Close form, no changes
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
