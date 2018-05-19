@@ -73,12 +73,12 @@
                                 </clr-icon>
                             </clr-dg-cell>
                             <clr-dg-cell class="checkCell">
-                                    <clr-icon shape="check" *ngIf="row.canAddDS"
+                                    <clr-icon shape="check" *ngIf="row.canadddatasource"
                                     size="16"
                                     (dblclick)="clickToggleAddDS(row.id, $event)"
                                     >
                                 </clr-icon>
-                                <clr-icon shape="times" *ngIf="!row.canAddDS"
+                                <clr-icon shape="times" *ngIf="!row.canadddatasource"
                                     size="16"
                                     (dblclick)="clickToggleAddDS(row.id, $event)"
                                     >

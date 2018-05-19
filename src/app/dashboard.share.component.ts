@@ -94,9 +94,9 @@ export class DashboardShareComponent implements OnInit {
         this.globalVariableService.dashboardPermissions.forEach(gdP => {
             this.dashboardPermissions.forEach(dP => {
                 if (dP.id == gdP.id) {
-                    gdP.canView = dP.canView;
-                    gdP.canEdit = dP.canEdit;
-                    gdP.canDelete = dP.canDelete;
+                    gdP.canViewRight = dP.canViewRight;
+                    gdP.canEditRight = dP.canEditRight;
+                    gdP.canDeleteRight = dP.canDeleteRight;
                 };
             });
         });
@@ -144,10 +144,10 @@ export class DashboardShareComponent implements OnInit {
             userID: this.userID==''? null : this.userID,
             groupID: this.groupID==null? null : this.groupID,
             groupName: this.groupName==null? null : this.groupName,
-            canView: false,
-            canEdit: false,
-            canDelete: false,
-            canAddDS: false,
+            canViewRight: false,
+            canEditRight: false,
+            canDeleteRight: false,
+            canAddDatasource: false,
             grantor: this.globalVariableService.currentUser.userID,
             grantedOn: this.globalVariableService.formatDate(today)
         };
@@ -167,7 +167,7 @@ export class DashboardShareComponent implements OnInit {
             let index: number = -1;
             for(var i = 0; i < this.dashboardPermissions.length; i++) {
                 if (this.dashboardPermissions[i].id == id) {
-                    this.dashboardPermissions[i].canView = ! this.dashboardPermissions[i].canView;
+                    this.dashboardPermissions[i].canViewRight = ! this.dashboardPermissions[i].canViewRight;
                     index = i;
                 };
             };
@@ -202,7 +202,7 @@ export class DashboardShareComponent implements OnInit {
         let index: number = -1;
         for(var i = 0; i < this.dashboardPermissions.length; i++) {
             if (this.dashboardPermissions[i].id == id) {
-                this.dashboardPermissions[i].canView = ! this.dashboardPermissions[i].canView;
+                this.dashboardPermissions[i].canViewRight = ! this.dashboardPermissions[i].canViewRight;
                 index = i;
             };
         };
@@ -221,7 +221,7 @@ export class DashboardShareComponent implements OnInit {
         let index: number = -1;
         for(var i = 0; i < this.dashboardPermissions.length; i++) {
             if (this.dashboardPermissions[i].id == id) {
-                this.dashboardPermissions[i].canEdit = ! this.dashboardPermissions[i].canEdit;
+                this.dashboardPermissions[i].canEditRight = ! this.dashboardPermissions[i].canEditRight;
                 index = i;
             };
         };
@@ -240,7 +240,7 @@ export class DashboardShareComponent implements OnInit {
         let index: number = -1;
         for(var i = 0; i < this.dashboardPermissions.length; i++) {
             if (this.dashboardPermissions[i].id == id) {
-                this.dashboardPermissions[i].canDelete = ! this.dashboardPermissions[i].canDelete;
+                this.dashboardPermissions[i].canDeleteRight = ! this.dashboardPermissions[i].canDeleteRight;
                 index = i;
             };
         };
@@ -260,7 +260,7 @@ export class DashboardShareComponent implements OnInit {
         let index: number = -1;
         for(var i = 0; i < this.dashboardPermissions.length; i++) {
             if (this.dashboardPermissions[i].id == id) {
-                this.dashboardPermissions[i].canAddDS = ! this.dashboardPermissions[i].canAddDS;
+                this.dashboardPermissions[i].canAddDatasource = ! this.dashboardPermissions[i].canAddDatasource;
                 index = i;
             };
         };

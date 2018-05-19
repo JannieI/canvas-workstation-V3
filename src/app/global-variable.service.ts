@@ -6253,28 +6253,28 @@ export class GlobalVariableService {
                 if (dp.dashboardID == dashboard.id) {
                     if (dp.userID != null) {
                         if (dp.userID.toLowerCase() == userID.toLowerCase()) {
-                            if (accessRequired == 'canview'  &&  dp.canView) {
+                            if (accessRequired == 'canview'  &&  dp.canViewRight) {
                                 hasAccess = true;
                             };
-                            if (accessRequired == 'canedit'  &&  dp.canEdit) {
+                            if (accessRequired == 'canedit'  &&  dp.canEditRight) {
                                 hasAccess = true;
                             };
-                            if (accessRequired == 'candelete'  &&  dp.canDelete) {
+                            if (accessRequired == 'candelete'  &&  dp.canDeleteRight) {
                                 hasAccess = true;
                             };
-                            if (accessRequired == 'canaddds'  &&  dp.canAddDS) {
+                            if (accessRequired == 'canadddatasource'  &&  dp.canAddDatasource) {
                                 hasAccess = true;
                             };
-                            if (accessRequired == 'canvieworcanedit'  &&  (dp.canView  ||  dp.canEdit) ) {
+                            if (accessRequired == 'canvieworcanedit'  &&  (dp.canViewRight  ||  dp.canEditRight) ) {
                                 hasAccess = true;
                             };
-                            if (accessRequired == 'canviewandcanedit'  &&  (dp.canView  &&  dp.canEdit) ) {
+                            if (accessRequired == 'canviewandcanedit'  &&  (dp.canViewRight  &&  dp.canEditRight) ) {
                                 hasAccess = true;
                             };
-                            if (accessRequired == 'caneditorcandelete'  &&  (dp.canEdit  ||  dp.canDelete) ) {
+                            if (accessRequired == 'caneditorcandelete'  &&  (dp.canEditRight  ||  dp.canDeleteRight) ) {
                                 hasAccess = true;
                             };
-                            if (accessRequired == 'caneditandcandelete'  &&  (dp.canEdit  &&  dp.canDelete) ) {
+                            if (accessRequired == 'caneditandcandelete'  &&  (dp.canEditRight  &&  dp.canDeleteRight) ) {
                                 hasAccess = true;
                             };
                         };
@@ -6282,7 +6282,7 @@ export class GlobalVariableService {
                     if (dp.groupName != null) {
                         if (this.currentUser.groups.
                             map(x => x.toLowerCase()).indexOf(dp.groupName.toLowerCase()) >= 0) {
-                                if (dp.canView  ||  dp.canEdit) {
+                                if (dp.canViewRight  ||  dp.canEditRight) {
                                     hasAccess = true;
                                 };
                         };
@@ -6320,48 +6320,48 @@ export class GlobalVariableService {
 
         // Everyone has access to Public Ds
         if (dashboard.accessType.toLowerCase() == 'public') {
-            accessList = ['canview' ,'canedit' ,'candelete' ,'canaddds'];
+            accessList = ['canview' ,'canedit' ,'candelete' ,'canadddatasource'];
         };
 
         // The owner has access to Private ones
         if (dashboard.accessType.toLowerCase() == 'private'
             &&
             dashboard.creator.toLowerCase() == userID.toLowerCase()) {
-                accessList = ['canview' ,'canedit' ,'candelete' ,'canaddds'];
+                accessList = ['canview' ,'canedit' ,'candelete' ,'canadddatasource'];
             };
         if (dashboard.accessType.toLowerCase() == 'accesslist') {
             this.dashboardPermissions.forEach(dp => {
                 if (dp.dashboardID == dashboard.id) {
                     if (dp.userID != null) {
                         if (dp.userID.toLowerCase() == userID.toLowerCase()) {
-                            if (dp.canView) {
+                            if (dp.canViewRight) {
                                 accessList.push('canview');
                             };
-                            if (dp.canEdit) {
+                            if (dp.canEditRight) {
                                 accessList.push('canedit');
                             };
-                            if (dp.canDelete) {
+                            if (dp.canDeleteRight) {
                                 accessList.push('candelete');
                             };
-                            if (dp.canAddDS) {
-                                accessList.push('canaddds');
+                            if (dp.canAddDatasource) {
+                                accessList.push('canadddatasource');
                             };
                         };
                     };
                     if (dp.groupName != null) {
                         if (this.currentUser.groups.
                             map(x => x.toLowerCase()).indexOf(dp.groupName.toLowerCase()) >= 0) {
-                                if (dp.canView) {
+                                if (dp.canViewRight) {
                                     accessList.push('canView');
                                 };
-                                if (dp.canEdit) {
+                                if (dp.canEditRight) {
                                     accessList.push('canEdit');
                                 };
-                                if (dp.canDelete) {
+                                if (dp.canDeleteRight) {
                                     accessList.push('canDelete');
                                 };
-                                if (dp.canAddDS) {
-                                    accessList.push('canAddDS');
+                                if (dp.canAddDatasource) {
+                                    accessList.push('canadddatasource');
                                 };
                             };
                     };
