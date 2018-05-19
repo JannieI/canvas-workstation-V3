@@ -17,7 +17,7 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService}       from './global-variable.service';
 
 // Models
-import { Dashboard }                  from './models';
+import { Dashboard, CanvasUser }                  from './models';
 
 @Component({
     selector: 'myprofile',
@@ -40,8 +40,9 @@ export class MyProfileComponent implements OnInit {
         };
 
     }
-
+ 
     currentData: any[] = [];
+    currentUser: CanvasUser;
     dataFieldNames: number[] = [];
     favDashboards: Dashboard[] = [];
     showFavs: boolean = false;
@@ -55,6 +56,8 @@ export class MyProfileComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
+        this.currentUser = this.globalVariableService.currentUser;
+        
         this.favDashboards = this.globalVariableService.dashboards.filter(d => 
             this.globalVariableService.currentUser.favouriteDashboards.indexOf(d.id) >= 0
         );
@@ -109,7 +112,7 @@ console.warn('xx this.favDashboards', this.favDashboards, this.globalVariableSer
             console.warn('xx cData', this.currentData.length, this.currentData)
         };
     }
-
+ 
     clickDelete(ev, row, col) {
         // Close form, no changes
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDelete', '@Start');

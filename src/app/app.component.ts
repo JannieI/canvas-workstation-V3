@@ -1487,7 +1487,7 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditMode', '@Start');
 
         // Permissions
-        if (!this.globalVariableService.currentUser.DashboardCanEditRole
+        if (!this.globalVariableService.currentUser.dashboardCanEditRole
             &&
             !this.globalVariableService.currentUser.isAdministrator) {
             this.showMessage(
@@ -1895,7 +1895,7 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardNew', '@Start');
 
         // Permissions
-        if (!this.globalVariableService.currentUser.DashboardCanCreateRole
+        if (!this.globalVariableService.currentUser.dashboardCanCreateRole
             &&
             !this.globalVariableService.currentUser.isAdministrator) {
             this.showMessage(
@@ -1930,7 +1930,7 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardDiscard', '@Start');
 
         // Permissions
-        if (!this.globalVariableService.currentUser.DashboardCanEditRole
+        if (!this.globalVariableService.currentUser.dashboardCanEditRole
             &&
             !this.globalVariableService.currentUser.isAdministrator) {
             this.showMessage(
@@ -1965,7 +1965,7 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardShare', '@Start');
 
         // Permissions
-        if (!this.globalVariableService.currentUser.DashboardCanGrantAccess
+        if (!this.globalVariableService.currentUser.dashboardCanGrantAccess
             &&
             !this.globalVariableService.currentUser.isAdministrator) {
             this.showMessage(
@@ -2008,7 +2008,7 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardSave', '@Start');
 
         // Permissions
-        if (!this.globalVariableService.currentUser.DashboardCanSaveRole
+        if (!this.globalVariableService.currentUser.dashboardCanSaveRole
             &&
             !this.globalVariableService.currentUser.isAdministrator) {
             this.showMessage(
@@ -2073,7 +2073,7 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardRename', '@Start');
 
         // Permissions
-        if (!this.globalVariableService.currentUser.DashboardCanEditRole
+        if (!this.globalVariableService.currentUser.dashboardCanEditRole
             &&
             !this.globalVariableService.currentUser.isAdministrator) {
             this.showMessage(
@@ -2096,7 +2096,7 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDetailDescription', '@Start');
 
         // Permissions
-        if (!this.globalVariableService.currentUser.DashboardCanEditRole
+        if (!this.globalVariableService.currentUser.dashboardCanEditRole
             &&
             !this.globalVariableService.currentUser.isAdministrator) {
             this.showMessage(
@@ -2289,7 +2289,7 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDelete', '@Start');
 
         // Permissions
-        if (!this.globalVariableService.currentUser.DashboardCanDeleteRole
+        if (!this.globalVariableService.currentUser.dashboardCanDeleteRole
             &&
             !this.globalVariableService.currentUser.isAdministrator) {
             this.showMessage(
@@ -2326,7 +2326,7 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDeleteBulk', '@Start');
 
         // Permissions
-        if (!this.globalVariableService.currentUser.DashboardCanDeleteRole
+        if (!this.globalVariableService.currentUser.dashboardCanDeleteRole
             &&
             !this.globalVariableService.currentUser.isAdministrator) {
             this.showMessage(
@@ -2527,7 +2527,7 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetNew', '@Start');
 
         // Permissions
-        if (!this.globalVariableService.currentUser.DashboardCanEditRole
+        if (!this.globalVariableService.currentUser.dashboardCanEditRole
             &&
             !this.globalVariableService.currentUser.isAdministrator) {
             this.showMessage(
@@ -2580,7 +2580,7 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetEdit', '@Start');
 
         // Permissions
-        if (!this.globalVariableService.currentUser.DashboardCanEditRole
+        if (!this.globalVariableService.currentUser.dashboardCanEditRole
             &&
             !this.globalVariableService.currentUser.isAdministrator) {
             this.showMessage(
@@ -2667,7 +2667,7 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetContainer', '@Start');
 
         // Permissions
-        if (!this.globalVariableService.currentUser.DashboardCanEditRole
+        if (!this.globalVariableService.currentUser.dashboardCanEditRole
             &&
             !this.globalVariableService.currentUser.isAdministrator) {
             this.showMessage(
@@ -2987,7 +2987,7 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetLinks', '@Start');
 
         // Permissions
-        if (!this.globalVariableService.currentUser.DashboardCanEditRole
+        if (!this.globalVariableService.currentUser.dashboardCanEditRole
             &&
             !this.globalVariableService.currentUser.isAdministrator) {
             this.showMessage(
@@ -3054,7 +3054,7 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuGraphDuplicate', '@Start');
 
         // Permissions
-        if (!this.globalVariableService.currentUser.DashboardCanEditRole
+        if (!this.globalVariableService.currentUser.dashboardCanEditRole
             &&
             !this.globalVariableService.currentUser.isAdministrator) {
             this.showMessage(
@@ -3178,7 +3178,7 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetPaste', '@Start');
 
         // Permissions
-        if (!this.globalVariableService.currentUser.DashboardCanEditRole
+        if (!this.globalVariableService.currentUser.dashboardCanEditRole
             &&
             !this.globalVariableService.currentUser.isAdministrator) {
             this.showMessage(
@@ -3292,7 +3292,7 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetDelete', '@Start');
 
         // Permissions
-        if (!this.globalVariableService.currentUser.DashboardCanEditRole
+        if (!this.globalVariableService.currentUser.dashboardCanEditRole
             &&
             !this.globalVariableService.currentUser.isAdministrator) {
             this.showMessage(
@@ -3371,7 +3371,7 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuTableAdd', '@Start');
 
         // Permissions
-        if (!this.globalVariableService.currentUser.DashboardCanEditRole
+        if (!this.globalVariableService.currentUser.dashboardCanEditRole
             &&
             !this.globalVariableService.currentUser.isAdministrator) {
             this.showMessage(
@@ -3424,7 +3424,7 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuTableEdit', '@Start');
 
         // Permissions
-        if (!this.globalVariableService.currentUser.DashboardCanEditRole
+        if (!this.globalVariableService.currentUser.dashboardCanEditRole
             &&
             !this.globalVariableService.currentUser.isAdministrator) {
             this.showMessage(
@@ -3570,7 +3570,7 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuTableDelete', '@Start');
 
         // Permissions
-        if (!this.globalVariableService.currentUser.DashboardCanEditRole
+        if (!this.globalVariableService.currentUser.dashboardCanEditRole
             &&
             !this.globalVariableService.currentUser.isAdministrator) {
             this.showMessage(
@@ -3652,7 +3652,7 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerAdd', '@Start');
 
         // Permissions
-        if (!this.globalVariableService.currentUser.DashboardCanEditRole
+        if (!this.globalVariableService.currentUser.dashboardCanEditRole
             &&
             !this.globalVariableService.currentUser.isAdministrator) {
             this.showMessage(
@@ -3704,7 +3704,7 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerEdit', '@Start');
 
         // Permissions
-        if (!this.globalVariableService.currentUser.DashboardCanEditRole
+        if (!this.globalVariableService.currentUser.dashboardCanEditRole
             &&
             !this.globalVariableService.currentUser.isAdministrator) {
             this.showMessage(
@@ -3928,7 +3928,7 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerDelete', '@Start');
 
         // Permissions
-        if (!this.globalVariableService.currentUser.DashboardCanEditRole
+        if (!this.globalVariableService.currentUser.dashboardCanEditRole
             &&
             !this.globalVariableService.currentUser.isAdministrator) {
             this.showMessage(
@@ -4011,7 +4011,7 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuShapeNew', '@Start');
 
         // Permissions
-        if (!this.globalVariableService.currentUser.DashboardCanEditRole
+        if (!this.globalVariableService.currentUser.dashboardCanEditRole
             &&
             !this.globalVariableService.currentUser.isAdministrator) {
             this.showMessage(
@@ -4049,7 +4049,7 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuShapeEdit', '@Start');
 
         // Permissions
-        if (!this.globalVariableService.currentUser.DashboardCanEditRole
+        if (!this.globalVariableService.currentUser.dashboardCanEditRole
             &&
             !this.globalVariableService.currentUser.isAdministrator) {
             this.showMessage(
@@ -4180,7 +4180,7 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuShapeDelete', '@Start');
 
         // Permissions
-        if (!this.globalVariableService.currentUser.DashboardCanEditRole
+        if (!this.globalVariableService.currentUser.dashboardCanEditRole
             &&
             !this.globalVariableService.currentUser.isAdministrator) {
             this.showMessage(

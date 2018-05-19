@@ -18,17 +18,24 @@
                 </div>
 
                 <div class="gridDashboardRolesTitle">
-                    <b>Dashboard DashboardRoles:</b>
+                    <b>Dashboard Roles:</b>
                 </div>
 
                 <div class="gridDashboardRolesEditor">
-                    <b>Editor:</b>
-                    <input [(ngModel)]="preferenceAutoSync"
+                    <b>CanCreate:</b>
+                    <input [(ngModel)]="currentUser.dashboardCanCreateRole"
                         type="checkbox"
-                        title="Can Edit the current Dashboard (T/F)"
+                        title="Can Create new Dashboards (T/F)"
                         >
                 </div>
-
+                
+                <!-- dashboardCanViewRole
+                dashboardCanEditRole
+                dashboardCanSaveRole
+                dashboardCanDeleteRole
+                dashboardCanGrantAccess
+                dashboardCanAddDatasource
+                canManageGroupRole -->
                 <div class="gridDashboardRolesQA">
                     <b>QAer:</b>
                     <input [(ngModel)]="preferenceShowOpenStartupMessage"
@@ -85,7 +92,7 @@
                         placeholder="YYYY/MM/DD"
                         >
                 </div>
- 
+                
                 <div class="gridTableTitle" *ngIf="showFavs">
                     <b>Favourites:</b>
                 </div>
