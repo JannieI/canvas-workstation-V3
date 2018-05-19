@@ -32,7 +32,7 @@
                             Note that while editing a Dashboard, changes are never applied to the
                             original. A separate Draft copy is created.  This copy is visible
                             only to the editor, while all other users will see only the original.
-                            The editor can use snapshots (see File -> Snapshots menu item) to
+                            The editor can use snapshots (see Dashboard -> Snapshots menu item) to
                             store interim copies.  The editor may role back to a previously stored
                             snapshot at any time.  When the Draft copy is created, the system
                             automatically creates the first snapshot called 'Original'.  The
@@ -69,13 +69,13 @@
                             size teams.
                         </div>
                         <div class="propertyLine">
-                            The creator can grant two types of rights to others: View and Edit.  View
+                            The creator can grant three types of rights to others: View, Edit and Delete.  View
                             rights allow a user to see a Dashboard, while Edit rights allow
                             changes to a Dashboard.  Rights can be allocated to individual
                             users, or to groups.  Rights are accumulative, and there is no
                             exclusion of rights.  If a user belongs to two groups, and View
                             rights were granted to one of the groups, the user will have this
-                            right.  Users, groups and group membership aremanaged in the Admin
+                            right.  Users, groups and group membership are managed in the Admin
                             module.
                         </div>
                         <div class="propertyLine">
@@ -171,7 +171,7 @@
                             <input type="text" id="formFields_7" placeholder="Add Usr/Grp to notify">
                             <button
                                 type="button"
-                                class="btn btn-secondary"
+                                class="btn btn-primary"
                                 (click)="clickSaveFile()"
                                 >
                                 Save

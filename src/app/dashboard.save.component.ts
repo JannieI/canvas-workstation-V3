@@ -59,7 +59,7 @@ export class DashboardSaveComponent implements OnInit {
             i => this.isFirstTimeDashboardSave = i
         )
     }
-
+ 
     ngOnDestroy() {
         // Cleanup just before Angular destroys the directive/component. 
         // Unsubscribe Observables and detach event handlers to avoid memory leaks.

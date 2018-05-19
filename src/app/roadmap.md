@@ -415,6 +415,7 @@ This document describes items for later versions of Canvas.
     - make Palette button sizes dynamic - small, medium, large, and make this a user setting.  Make sure div around it is also sized dynamically.
     ButtonBars: Decide on what to do with Widget- and Shape-ButtonBars and 2 forms - AFTER UI and functionality has been decided.  Maybe remove them, or only allow for order ... For now,palette cannot be changed.
     - expand palette / menus: add regularly used tasks, ie add a circle (with one click)
+    - generalise this: user can record task!!  For example, add arrow, gray with black border at 45 degrees = recorded and add as a button !!!
     - make icons draggable - like Ubuntu palette on left !
 
 

@@ -168,7 +168,7 @@ export class CanvasTask {
     id: number;                             // Unique task ID
     taskText: string;                       // Description of task
     activityType: string;                   // Type of Task (or Activity)
-    taskStatus: string;                     // Status, ie Pending, Completed
+    taskStatus: string;                     // Status, ie Draft, Completed
     assignedToUserID: string;               // UserID to whom this was assigned
     
     precedingTaskID: number;                // Optional task on which this one depends
