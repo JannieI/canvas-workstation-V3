@@ -84,7 +84,7 @@
 
                 <div class="gridOfflineWork">
                     <b>Work Offline:</b>
-                    <input [(ngModel)]="preferenceShowOpenDataCombinationMessage"
+                    <input [(ngModel)]="currentUser.offlineLogin"
                         type="checkbox"
                         title="Can the user work Offline (T/F)"
                         >
@@ -92,15 +92,15 @@
 
                 <div class="gridOfflineCopyData">
                     <b>Copy Data:</b>
-                    <input [(ngModel)]="preferenceShowViewStartupMessage"
+                    <input [(ngModel)]="currentUser.offlineData"
                         type="checkbox"
-                        title="Can the user copy any data Offline (T/F)"
+                        title="Can the user copy any data (and schemas) Offline (T/F)"
                         >
                 </div>
 
                 <div class="gridOfflineCopySchema">
                     <b>Copy Schema:</b>
-                    <input [(ngModel)]="preferenceShowDiscardStartupMessage"
+                    <input [(ngModel)]="currentUser.offlineSchema"
                         type="checkbox"
                         title="Can the user copy only schemas Offline (T/F)"
                         >
