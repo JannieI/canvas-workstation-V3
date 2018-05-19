@@ -144,10 +144,12 @@ export class DashboardShareComponent implements OnInit {
             userID: this.userID==''? null : this.userID,
             groupID: this.groupID==null? null : this.groupID,
             groupName: this.groupName==null? null : this.groupName,
-            canViewRight: false,
             canEditRight: false,
+            canViewRight: false,
+            canSaveRight: false,
             canDeleteRight: false,
             canAddDatasource: false,
+            canGrantAccess: false,
             grantor: this.globalVariableService.currentUser.userID,
             grantedOn: this.globalVariableService.formatDate(today)
         };
