@@ -3165,6 +3165,7 @@
 <myprofile
     class="formPopupDashboard"
     *ngIf="showModalUserMyProfile"
+    [selectedDashboard]="selectedDashboard"
     (formDashboardMyProfileClosed)="handleCloseUserdMyProfile($event)">Load My Profile ...
 </myprofile>
 

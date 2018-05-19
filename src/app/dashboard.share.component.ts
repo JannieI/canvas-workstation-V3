@@ -68,7 +68,7 @@ export class DashboardShareComponent implements OnInit {
             this.dashboardPermissions = this.globalVariableService.dashboardPermissions.slice();
             this.groups = res;
         });
-
+ 
     }
 
     clickClose(action: string) {

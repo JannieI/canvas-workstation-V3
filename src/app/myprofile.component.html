@@ -18,7 +18,7 @@
                 </div>
 
                 <div class="gridDashboardRolesTitle">
-                    <b>Dashboard Roles:</b>
+                    <b>User Roles:</b>
                 </div>
 
                 <div class="gridDashboardCanCreateRole">
@@ -70,9 +70,16 @@
                         title="Can add a Datasource to a Dashboards (T/F)"
                         >
                 </div>
-
+                <div class="gridDashboardCanManageGroupRole">
+                    <b>CanManage Group:</b>
+                    <input [(ngModel)]="currentUser.canManageGroupRole"
+                        type="checkbox"
+                        title="Can Manage groups (add/delete users) (T/F)"
+                        >
+                </div>
+                    
                 <div class="gridOfflineTitle">
-                    <b>Offline Rights:</b>
+                    <b>User Offline Rights:</b>
                 </div>
 
                 <div class="gridOfflineWork">
@@ -100,26 +107,113 @@
                 </div>
 
                 <div class="gridDashboardRightsTitle">
-                    <b>Dashboard Rights:</b>
+                    <b>Access to THIS Dashboard:</b>
                 </div>
 
-                <div class="gridDashboardRightsCanView">
-                    <b>Can View:</b>
-                    <input [(ngModel)]="preferenceDefaultTemplate"
-                        type="checkbox"
-                        title="Default Template"
+                <div class="gridDashboardCanEditRole">
+                    <b>AccessType:</b>
+                    <input [ngModel]="accessType"
+                        type="text"
+                        title="Type of Access to this Dashboard"
                         >
                 </div>
+    
 
-                <div class="gridDashboardRightsCanEdit">
-                    <b>Can Edit:</b>
-                    <input [(ngModel)]="preferenceDefaultDateformat"
-                        type="checkbox"
-                        title="Default Date format"
-                        placeholder="YYYY/MM/DD"
-                        >
+                <div class="gridTable" *ngIf="accessType == 'AccessList'">
+                    <clr-datagrid>
+                        <clr-dg-column
+                        [style.text-align]="center">Remove</clr-dg-column>
+                        <clr-dg-column [clrDgField]="userID">User ID (single)</clr-dg-column>
+                        <clr-dg-column [clrDgField]="name">Group Name (applies to all its members)</clr-dg-column>
+                        <clr-dg-column [clrDgField]="canView" class="checkCell">View</clr-dg-column>
+                        <clr-dg-column [clrDgField]="canEdit">Edit</clr-dg-column>
+                        <clr-dg-column [clrDgField]="canDelete">Delete</clr-dg-column>
+                        <clr-dg-column [clrDgField]="canDelete">Add DS</clr-dg-column>
+                        <clr-dg-column [clrDgField]="canDelete">Grantor</clr-dg-column>
+                        <clr-dg-column [clrDgField]="canDelete">Granted On</clr-dg-column>
+
+                        <clr-dg-row *clrDgItems="let row of dashboardPermissions;
+                            let i = index"
+                            [style.background-color]="(i == selectedRow)? '#123456' : 'white'"
+                            [style.color]="(i == selectedRow)? 'white' : 'gray'"
+                            (click)="clickRow(i)"
+                            >
+                            <clr-dg-cell>
+                                <clr-icon shape="trash"
+                                    size="16"
+                                    (click)="clickDelete(row.id)"
+                                    >
+                                </clr-icon>
+                            </clr-dg-cell>
+                            <clr-dg-cell>{{row.userID}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.groupName}}</clr-dg-cell>
+                            <clr-dg-cell class="checkCell">
+                                <clr-icon shape="check" *ngIf="row.canView"
+                                    size="16"
+                                    (dblclick)="clickToggleView(row.id, $event)"
+                                    >
+                                </clr-icon>
+                                <clr-icon shape="times" *ngIf="!row.canView"
+                                    size="16"
+                                    (dblclick)="clickToggleView(row.id, $event)"
+                                    >
+                                </clr-icon>
+                            </clr-dg-cell>
+                            <clr-dg-cell class="checkCell">
+                                    <clr-icon shape="check" *ngIf="row.canEdit"
+                                    size="16"
+                                    (dblclick)="clickToggleEdit(row.id, $event)"
+                                    >
+                                </clr-icon>
+                                <clr-icon shape="times" *ngIf="!row.canEdit"
+                                    size="16"
+                                    (dblclick)="clickToggleEdit(row.id, $event)"
+                                    >
+                                </clr-icon>
+                            </clr-dg-cell>
+                            <clr-dg-cell class="checkCell">
+                                    <clr-icon shape="check" *ngIf="row.canDelete"
+                                    size="16"
+                                    (dblclick)="clickToggleDelete(row.id, $event)"
+                                    >
+                                </clr-icon>
+                                <clr-icon shape="times" *ngIf="!row.canDelete"
+                                    size="16"
+                                    (dblclick)="clickToggleDelete(row.id, $event)"
+                                    >
+                                </clr-icon>
+                            </clr-dg-cell>
+                            <clr-dg-cell class="checkCell">
+                                    <clr-icon shape="check" *ngIf="row.canAddDatasource"
+                                    size="16"
+                                    (dblclick)="clickToggleAddDS(row.id, $event)"
+                                    >
+                                </clr-icon>
+                                <clr-icon shape="times" *ngIf="!row.canAddDatasource"
+                                    size="16"
+                                    (dblclick)="clickToggleAddDS(row.id, $event)"
+                                    >
+                                </clr-icon>
+                            </clr-dg-cell>
+
+
+                            <clr-dg-cell>{{row.grantor}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.grantedOn}}</clr-dg-cell>
+                        </clr-dg-row>
+
+                        <clr-dg-footer>
+                            {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+                            of {{pagination.totalItems}} records
+                            <clr-dg-pagination
+                                #pagination
+                                [clrDgPageSize]="4"
+                                >
+                            </clr-dg-pagination>
+                        </clr-dg-footer>
+
+                    </clr-datagrid>
                 </div>
-
+                    
                 <!-- KEEP - getting my Fav Ds, and put into fancy table.  Could be useful somewhere -->
                 <!-- <div class="gridTable" *ngIf="showFavs">
                     <clr-datagrid>

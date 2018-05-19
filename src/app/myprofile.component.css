@@ -102,6 +102,14 @@
             margin-left: 20px;
             text-align: left;
         }
+        .gridDashboardCanManageGroupRole {
+            grid-column-start: 8;
+            grid-column-end: 18;
+            grid-row-start: 7;
+            grid-row-end: 8;
+            margin-left: 20px;
+            text-align: left;
+        }
 
     .gridOfflineTitle {
         font-size: 0.65rem;
@@ -147,43 +155,15 @@
         grid-row-end: 15;
         text-align: left;
     }
-
-        .gridDashboardRightsCanView {
-            grid-column-start: 1;
-            grid-column-end: 7;
-            grid-row-start: 15;
-            grid-row-end: 16;
-            margin-left: 20px;
-            text-align: left;
-        }
-
-        .gridDashboardRightsCanEdit {
-            grid-column-start: 8;
-            grid-column-end: 15;
-            grid-row-start: 15;
-            grid-row-end: 16;
-            margin-left: 20px;
-            text-align: left;
-        }
-        
-        .gridTableTitle {
-            grid-column-start: 1;
-            grid-column-end: 15;
-            grid-row-start: 16;
-            grid-row-end: 17;
-            text-align: left;
-            z-index: 1;
-        }
-        
-        .gridTable {
-            grid-column-start: 1;
-            grid-column-end: 15;
-            grid-row-start: 18;
-            grid-row-end: 21;
-            margin-left: 20px;
-            text-align: left;
-            z-index: 0;
-        }
+       
+    .gridTable {
+        grid-column-start: 1;
+        grid-column-end: 15;
+        grid-row-start: 16;
+        grid-row-end: 21;
+        text-align: left;
+        z-index: 1;
+    }
          
     .gridButtonCancel {
         grid-column-start: 1;

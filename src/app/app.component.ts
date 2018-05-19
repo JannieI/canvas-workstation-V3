@@ -5098,7 +5098,14 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
-        console.log('App clickMenuUserMyProfile')
+        // Set D
+        this.globalVariableService.currentDashboards.forEach(d => {
+            if (d.id == this.globalVariableService.currentDashboardInfo
+                .value.currentDashboardID) {
+                this.selectedDashboard = d;
+            };
+        });
+        
         this.showModalUserMyProfile = true;
     }
 

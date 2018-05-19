@@ -17,7 +17,9 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService}       from './global-variable.service';
 
 // Models
-import { Dashboard, CanvasUser }                  from './models';
+import { CanvasUser }                 from './models';
+import { Dashboard }                  from './models';
+import { DashboardPermission }        from './models';
 
 @Component({
     selector: 'myprofile',
@@ -27,6 +29,7 @@ import { Dashboard, CanvasUser }                  from './models';
 export class MyProfileComponent implements OnInit {
 
     @Output() formDashboardMyProfileClosed: EventEmitter<string> = new EventEmitter();
+    @Input() selectedDashboard: Dashboard;
 
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
@@ -41,8 +44,10 @@ export class MyProfileComponent implements OnInit {
 
     }
  
+    accessType: string = '';
     currentData: any[] = [];
     currentUser: CanvasUser;
+    dashboardPermissions: DashboardPermission[];    
     dataFieldNames: number[] = [];
     favDashboards: Dashboard[] = [];
     showFavs: boolean = false;
@@ -57,6 +62,10 @@ export class MyProfileComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         this.currentUser = this.globalVariableService.currentUser;
+        this.accessType = this.selectedDashboard.accessType;
+
+        this.dashboardPermissions = this.globalVariableService.dashboardPermissions.slice();
+        
 
         // KEEP - getting my Fav Ds, and put into fancy table.  Could be useful somewhere
         // this.favDashboards = this.globalVariableService.dashboards.filter(d => 
