@@ -1,5 +1,5 @@
 <div class="modal modalBox">
-    <div class="modal-dialog modal-lg" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
         <div class="modal-content modalContent">
 
             <button type="button" class="closeButton" (click)="clickClose()">
@@ -106,11 +106,11 @@
                         >
                 </div>
 
-                <div class="gridDashboardRightsTitle">
+                <div class="gridDashboardAccessTypeTitle">
                     <b>Access to THIS Dashboard:</b>
                 </div>
 
-                <div class="gridDashboardCanEditRole">
+                <div class="gridDashboardAccessType">
                     <b>AccessType:</b>
                     <input [ngModel]="accessType"
                         type="text"
@@ -206,7 +206,7 @@
                             of {{pagination.totalItems}} records
                             <clr-dg-pagination
                                 #pagination
-                                [clrDgPageSize]="4"
+                                [clrDgPageSize]="3"
                                 >
                             </clr-dg-pagination>
                         </clr-dg-footer>

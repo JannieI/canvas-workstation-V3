@@ -147,7 +147,7 @@
             text-align: left;
         }
 
-    .gridDashboardRightsTitle {
+    .gridDashboardAccessTypeTitle {
         font-size: 0.65rem;
         grid-column-start: 1;
         grid-column-end: 18;
@@ -155,10 +155,19 @@
         grid-row-end: 15;
         text-align: left;
     }
-       
+
+        .gridDashboardAccessType {
+            grid-column-start: 1;
+            grid-column-end: 18;
+            grid-row-start: 15;
+            grid-row-end: 16;
+            margin-left: 20px;
+            text-align: left;
+        }
+    
     .gridTable {
         grid-column-start: 1;
-        grid-column-end: 15;
+        grid-column-end: 21;
         grid-row-start: 16;
         grid-row-end: 21;
         text-align: left;
