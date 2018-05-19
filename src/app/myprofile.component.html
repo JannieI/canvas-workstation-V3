@@ -21,26 +21,53 @@
                     <b>Dashboard Roles:</b>
                 </div>
 
-                <div class="gridDashboardRolesEditor">
+                <div class="gridDashboardCanCreateRole">
                     <b>CanCreate:</b>
                     <input [(ngModel)]="currentUser.dashboardCanCreateRole"
                         type="checkbox"
                         title="Can Create new Dashboards (T/F)"
                         >
                 </div>
-                
-                <!-- dashboardCanViewRole
-                dashboardCanEditRole
-                dashboardCanSaveRole
-                dashboardCanDeleteRole
-                dashboardCanGrantAccess
-                dashboardCanAddDatasource
-                canManageGroupRole -->
-                <div class="gridDashboardRolesQA">
-                    <b>QAer:</b>
-                    <input [(ngModel)]="preferenceShowOpenStartupMessage"
+                <div class="gridDashboardCanViewRole">
+                    <b>CanView:</b>
+                    <input [(ngModel)]="currentUser.dashboardCanViewRole"
                         type="checkbox"
-                        title="Can QA the current Dashboard (T/F)"
+                        title="Can View Dashboards (T/F)"
+                        >
+                </div>
+                <div class="gridDashboardCanEditRole">
+                    <b>CanEdit:</b>
+                    <input [(ngModel)]="currentUser.dashboardCanEditRole"
+                        type="checkbox"
+                        title="Can Edit Dashboards (T/F)"
+                        >
+                </div>
+                <div class="gridDashboardCanSaveRole">
+                    <b>CanSave:</b>
+                    <input [(ngModel)]="currentUser.dashboardCanSaveRole"
+                        type="checkbox"
+                        title="Can Save Dashboards (T/F)"
+                        >
+                </div>
+                <div class="gridDashboardCanDeleteRole">
+                    <b>CanDelete:</b>
+                    <input [(ngModel)]="currentUser.dashboardCanDeleteRole"
+                        type="checkbox"
+                        title="Can Delete Dashboards (T/F)"
+                        >
+                </div>
+                <div class="gridDashboardCanGrantAccessRole">
+                    <b>GrantAccess:</b>
+                    <input [(ngModel)]="currentUser.dashboardCanGrantAccessRole"
+                        type="checkbox"
+                        title="Can grant access to other users to a Dashboards (T/F)"
+                        >
+                </div>
+                <div class="gridDashboardCanAddDatasourceRole">
+                    <b>CanAdd DS:</b>
+                    <input [(ngModel)]="currentUser.dashboardCanAddDatasourceRole"
+                        type="checkbox"
+                        title="Can add a Datasource to a Dashboards (T/F)"
                         >
                 </div>
 
@@ -92,7 +119,7 @@
                         placeholder="YYYY/MM/DD"
                         >
                 </div>
-                
+
                 <div class="gridTableTitle" *ngIf="showFavs">
                     <b>Favourites:</b>
                 </div>
@@ -101,7 +128,7 @@
                         <clr-dg-column *ngFor="let row of dataFieldNames; let r = index">
                             {{ row }}</clr-dg-column>
                         <clr-dg-row *ngFor="let row of currentData">
-        
+
                             <clr-dg-cell *ngFor="let col of dataFieldNames; let c = index">
                                 <!-- Cant get row here!
                                 <clr-icon

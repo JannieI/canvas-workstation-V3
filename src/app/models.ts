@@ -261,8 +261,8 @@ export class CanvasUser {
     dashboardCanEditRole: boolean;          // Role can change / edit Dashboards
     dashboardCanSaveRole : boolean;         // Role can save changes to a Dashboards
     dashboardCanDeleteRole: boolean;        // Role can delete a Dashboard
-    dashboardCanGrantAccess: boolean;       // Role can change access to a Dashboard
-    dashboardCanAddDatasource: boolean;     // Role can change add DS to a Dashboard
+    dashboardCanGrantAccessRole: boolean;       // Role can change access to a Dashboard
+    dashboardCanAddDatasourceRole: boolean;     // Role can change add DS to a Dashboard
     canManageGroupRole: boolean;            // Role can add/delete users to Group
     preferencePaletteHorisontal: boolean;                   // T/F - Palette Horisontal (else Vertial)
     preferenceAutoSync: boolean;                            // T/F - can auto sync

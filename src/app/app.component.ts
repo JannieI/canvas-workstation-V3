@@ -1965,7 +1965,7 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardShare', '@Start');
 
         // Permissions
-        if (!this.globalVariableService.currentUser.dashboardCanGrantAccess
+        if (!this.globalVariableService.currentUser.dashboardCanGrantAccessRole
             &&
             !this.globalVariableService.currentUser.isAdministrator) {
             this.showMessage(
