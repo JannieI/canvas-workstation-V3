@@ -972,7 +972,12 @@ export class GlobalVariableService {
                 
                 // D
                 let newD = Object.assign({}, this.dashboards[dashboardIndex]);
+                newD.id = null;
                 this.addDashboard(newD).then (res => {
+
+                    // Save original ID
+                    this.dashboards[dashboardIndex].originalID = res.id;
+                    this.saveDashboard(this.dashboards[dashboardIndex])
 
                     // T
                     this.dashboardTabs.forEach(t => {

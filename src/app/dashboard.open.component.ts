@@ -134,12 +134,17 @@ export class DashboardOpenComponent implements OnInit {
 
         this.globalVariableService.editMode.next(true);
 
-        // Save Editor
+        // Update Editor
         if (this.dashboards[index].state != 'Draft') {
             let today = new Date();
             this.dashboards[index].editor = this.globalVariableService.currentUser.userID;
             this.dashboards[index].dateEdited = this.globalVariableService.formatDate(today);
             this.globalVariableService.saveDashboard(this.dashboards[index]);
+        };
+
+        // Save Original
+        if (this.dashboards[index].state == 'Completed') {
+            this.globalVariableService.copyDashboard(this.dashboards[index].id);
         };
 
 		this.globalVariableService.refreshCurrentDashboard(
