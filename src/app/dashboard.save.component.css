@@ -11,18 +11,36 @@
     top: 0;
 }
 
-.helpMessage {
-    border: 1px solid gray;
-    border-radius: 5px;
-    background-color: rgb(204, 204, 245);
-    margin: 5px 15px 5px 35px;
+.gridOverall {
+    display: grid;
+    grid-template-columns: repeat(17, 1fr);
+    grid-template-rows: repeat(26, 0.8rem);
+    margin-top: 2px;
 }
 
-.propertyLine {
-    margin: 5px;
-}
+    .gridTitle {
+        font-size: 0.75rem;
+        grid-column-start: 1;
+        grid-column-end: 18;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        text-align: left;
+    }
 
-p {
-    margin-right: 5px !important;
-    padding: 0;
-}
+    .gridCompanyTitle {
+        font-size: 0.65rem;
+        grid-column-start: 1;
+        grid-column-end: 18;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        text-align: left;
+    }
+
+        .gridCompanyName {
+            grid-column-start: 1;
+            grid-column-end: 6;
+            grid-row-start: 4;
+            grid-row-end: 5;
+            margin-left: 20px;
+            text-align: left;
+        }

@@ -26,6 +26,14 @@
         grid-row-end: 2;
         text-align: left;
     }
+    .gridSubTitle {
+        grid-column-start: 1;
+        grid-column-end: 41;
+        grid-row-start: 2;
+        grid-row-end: 3;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
 
     .gridCompanyTitle {
         font-size: 0.65rem;
