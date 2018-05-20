@@ -50,6 +50,9 @@ export class DashboardSaveComponent implements OnInit {
 	) {}
 
     ngOnInit() {
+        // Initials
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
         this.dashboards = this.globalVariableService.dashboards.slice();
         this.globalVariableService.isFirstTimeDashboardSave.subscribe(
             i => this.isFirstTimeDashboardSave = i
@@ -66,11 +69,29 @@ export class DashboardSaveComponent implements OnInit {
     }
 
     clickClose(action: string) {
-        console.log('clickClose')
+        // Close the form, without saving anything
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
 		this.formDashboardSaveClosed.emit(action);
     }
  
-    clickSaveFile() {
+    clickSave() {
+        // Save the D (replace the original as Completed and delete the Draft)
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
+
+        this.formDashboardSaveClosed.emit('Saved');
+
+        // Change the State to completed
+        let dashboardIndex: number = this.globalVariableService.currentDashboards.findIndex(
+            d => d.id == this.globalVariableService.currentDashboardInfo.value.currentDashboardID
+        );
+        if (dashboardIndex >= 0) {
+            let localDashboard: Dashboard = this.globalVariableService.currentDashboards[
+                dashboardIndex
+            ];
+            localDashboard.state = 'Completed';
+            this.globalVariableService.saveDashboard(localDashboard);
+        };
+
     }
 }

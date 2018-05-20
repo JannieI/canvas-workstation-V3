@@ -1075,11 +1075,11 @@ export class GlobalVariableService {
 
     }
 
-    deleteDashboard(id: number): Promise<string> {
-        // Description: Deletes a Dashboard
-        // Returns: 'Deleted' or error message
-        console.log('%c    Global-Variables deleteDashboard ...', 
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", id);
+    addDashboard(data: Dashboard): Promise<any> {
+        // Description: Adds a new Dashboard
+        // Returns: Added Data or error message
+        console.log('%c    Global-Variables addDashboard ...', 
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", data.id);
 
         let url: string = 'dashboards';
         this.filePath = './assets/data.dashboards.json';
@@ -1089,22 +1089,23 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
+            this.http.post('http://localhost:3000/' + url, data, {headers})
             .subscribe(
                 data => {
 
-                    this.dashboards = this.dashboards.filter(
-                        dsp => dsp.id != id
-                    );
-                    this.currentDashboards = this.currentDashboards.filter(
-                        dsp => dsp.id != id
-                    );
+                    // Clear all related info
+                    this.clearDashboardInfo();
 
-                    console.log('deleteDashboard DELETED id: ', id)
-                    resolve('Deleted');
+                    // Update Global vars to make sure they remain in sync
+                    this.dashboards.push(JSON.parse(JSON.stringify(data)));
+                    this.currentDashboards.push(JSON.parse(JSON.stringify(data)));
+
+                    console.log('addDashboard ADDED', data, this.dashboards)
+
+                    resolve(data);
                 },
                 err => {
-                    console.log('Error deleteDashboard FAILED', err);;
+                    console.log('Error addDashboard FAILED', err);;
                     resolve(err.Message);
                 }
             )
@@ -1140,6 +1141,42 @@ export class GlobalVariableService {
                 },
                 err => {
                     console.log('Error saveDashboard FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+        });
+    }
+
+    deleteDashboard(id: number): Promise<string> {
+        // Description: Deletes a Dashboard
+        // Returns: 'Deleted' or error message
+        console.log('%c    Global-Variables deleteDashboard ...', 
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", id);
+
+        let url: string = 'dashboards';
+        this.filePath = './assets/data.dashboards.json';
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
+            .subscribe(
+                data => {
+
+                    this.dashboards = this.dashboards.filter(
+                        dsp => dsp.id != id
+                    );
+                    this.currentDashboards = this.currentDashboards.filter(
+                        dsp => dsp.id != id
+                    );
+
+                    console.log('deleteDashboard DELETED id: ', id)
+                    resolve('Deleted');
+                },
+                err => {
+                    console.log('Error deleteDashboard FAILED', err);;
                     resolve(err.Message);
                 }
             )
@@ -1225,43 +1262,6 @@ export class GlobalVariableService {
             });
         };
 
-    }
-
-    addDashboard(data: Dashboard): Promise<any> {
-        // Description: Adds a new Dashboard
-        // Returns: Added Data or error message
-        console.log('%c    Global-Variables addDashboard ...', 
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", data.id);
-
-        let url: string = 'dashboards';
-        this.filePath = './assets/data.dashboards.json';
-
-        return new Promise<any>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            this.http.post('http://localhost:3000/' + url, data, {headers})
-            .subscribe(
-                data => {
-
-                    // Clear all related info
-                    this.clearDashboardInfo();
-
-                    // Update Global vars to make sure they remain in sync
-                    this.dashboards.push(JSON.parse(JSON.stringify(data)));
-                    this.currentDashboards.push(JSON.parse(JSON.stringify(data)));
-
-                    console.log('addDashboard ADDED', data, this.dashboards)
-
-                    resolve(data);
-                },
-                err => {
-                    console.log('Error addDashboard FAILED', err);;
-                    resolve(err.Message);
-                }
-            )
-        });
     }
 
     getDashboardTabs(): Promise<DashboardTab[]> {
