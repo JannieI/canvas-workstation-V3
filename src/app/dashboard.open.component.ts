@@ -122,8 +122,9 @@ export class DashboardOpenComponent implements OnInit {
         // Open a Dashboard in EditMode
         this.globalFunctionService.printToConsole(this.constructor.name,'clickOpenEdit', '@Start');
 
-        if (this.dashboards[index].state == 'Draft'  
-            &&  
+        // Only Editor can open his Draft
+        if (this.dashboards[index].state == 'Draft'
+            &&
             this.dashboards[index].editor != this.globalVariableService.currentUser.
             userID) {
                 this.errorMesage = 'Dashboard is editor by ' + this.dashboards[index].editor;
@@ -131,6 +132,15 @@ export class DashboardOpenComponent implements OnInit {
         };
 
         this.globalVariableService.editMode.next(true);
+
+        // Save Editor
+        if (this.dashboards[index].state != 'Draft') {
+            let today = new Date();
+            this.dashboards[index].editor = this.globalVariableService.currentUser.userID;
+            this.dashboards[index].dateEdited = this.globalVariableService.formatDate(today);
+            this.globalVariableService.saveDashboard(this.dashboards[index]);
+        };
+
 		this.globalVariableService.refreshCurrentDashboard(
 			'openDashboard-clickOpenEdit', dashboardID, -1, ''
         );
