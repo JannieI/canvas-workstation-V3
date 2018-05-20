@@ -1,5 +1,5 @@
 /*
- * Visualise page, to view / present Dashboards previously created
+ * Open an existing Dashboard
  */
 
 // Angular
@@ -41,8 +41,9 @@ export class DashboardOpenComponent implements OnInit {
         };
 
     }
-    
+
     dashboards: Dashboard[];
+    errorMesage: string = '';
     isFirstTimeDashboardOpen: boolean;
     records: number = 10;
     selectedRow: number = 0;
@@ -62,11 +63,11 @@ export class DashboardOpenComponent implements OnInit {
             if (n1.name > n2.name) {
                 return 1;
             };
-        
+
             if (n1.name < n2.name) {
                 return -1;
             };
-        
+
             return 0;
         });
         this.isFirstTimeDashboardOpen = this.globalVariableService.currentUser.preferenceShowOpenStartupMessage;
@@ -108,8 +109,6 @@ export class DashboardOpenComponent implements OnInit {
         // Open a Dashboard in ViewOnly Mode
         this.globalFunctionService.printToConsole(this.constructor.name,'clickOpenView', '@Start');
 
-        console.log('DashboardOpen clickOpenView id', dashboardID)
-
         this.globalVariableService.editMode.next(false);
 
 		this.globalVariableService.refreshCurrentDashboard(
@@ -119,11 +118,17 @@ export class DashboardOpenComponent implements OnInit {
         this.formDashboardOpenClosed.emit('View');
     }
 
-    clickOpenEdit(dashboardID: number) {
+    clickOpenEdit(index: number, dashboardID: number) {
         // Open a Dashboard in EditMode
         this.globalFunctionService.printToConsole(this.constructor.name,'clickOpenEdit', '@Start');
 
-        console.log('DashboardOpen clickOpenEdit id', dashboardID)
+        if (this.dashboards[index].state == 'Draft'  
+            &&  
+            this.dashboards[index].editor != this.globalVariableService.currentUser.
+            userID) {
+                this.errorMesage = 'Dashboard is editor by ' + this.dashboards[index].editor;
+                return;
+        };
 
         this.globalVariableService.editMode.next(true);
 		this.globalVariableService.refreshCurrentDashboard(

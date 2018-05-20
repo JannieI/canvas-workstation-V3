@@ -116,7 +116,7 @@
                         <clr-dg-cell (click)="clickOpenView(row.id)">
                             <clr-icon shape="eye" class="selectIcon1" size="12"></clr-icon>
                         </clr-dg-cell>
-                        <clr-dg-cell (click)="clickOpenEdit(row.id)">
+                        <clr-dg-cell (click)="clickOpenEdit(i, row.id)">
                             <clr-icon shape="pencil" class="selectIcon1" size="12"></clr-icon>
                         </clr-dg-cell>
                         <clr-dg-cell [style.width.px]="80">{{row.state}}</clr-dg-cell>
