@@ -2033,9 +2033,26 @@ export class AppComponent implements OnInit {
             return;
         };
 
+        // Check D state
+        let dashboardIndex: number = this.globalVariableService.currentDashboards.findIndex(
+            d => d.id == this.globalVariableService.currentDashboardInfo.value.currentDashboardID
+        );
+        if (dashboardIndex >= 0) {
+            if (this.globalVariableService.currentDashboards[dashboardIndex].state 
+                != 'Draft') {
+                    this.showMessage(
+                        'Can only save a Dashboard with State Draft',
+                        'StatusBar',
+                        'Warning',
+                        3000,
+                        ''
+                    );
+                    return;
+            };
+        };
+
         this.menuOptionClickPreAction();
 
-        console.log('App clickDashboardSave')
         this.showModalDashboardSave = true;
     }
 
