@@ -43,7 +43,7 @@ export class DashboardOpenComponent implements OnInit {
     }
 
     dashboards: Dashboard[];
-    errorMesage: string = '';
+    errorMessage: string = '';
     isFirstTimeDashboardOpen: boolean;
     records: number = 10;
     selectedRow: number = 0;
@@ -121,13 +121,14 @@ export class DashboardOpenComponent implements OnInit {
     clickOpenEdit(index: number, dashboardID: number) {
         // Open a Dashboard in EditMode
         this.globalFunctionService.printToConsole(this.constructor.name,'clickOpenEdit', '@Start');
+        console.warn('xx this.dashboards[index].editor', this.dashboards[index].editor)
 
         // Only Editor can open his Draft
         if (this.dashboards[index].state == 'Draft'
             &&
             this.dashboards[index].editor != this.globalVariableService.currentUser.
             userID) {
-                this.errorMesage = 'Dashboard is editor by ' + this.dashboards[index].editor;
+                this.errorMessage = 'Dashboard is edited by ' + this.dashboards[index].editor;
                 return;
         };
 

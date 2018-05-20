@@ -958,6 +958,56 @@ export class GlobalVariableService {
 
     }
 
+    copyDashboard(dashboardID: number): Promise<boolean> {
+        // Copies a given Dashboard, with all related info
+        console.log('%c    Global-Variables copyDashboard D,T id = ', 
+        "color: black; background: lightgray; font-size: 10px", dashboardID)
+
+        // Duplicate the D and all related info
+        return new Promise<boolean>((resolve, reject) => {
+         
+            // Get D
+            let dashboardIndex: number = this.dashboards.findIndex(d => d.id == dashboardID);
+            if (dashboardIndex >= 0) {
+                
+                // D
+                let newD = Object.assign({}, this.dashboards[dashboardIndex]);
+                this.addDashboard(newD).then (res => {
+
+                    // T
+                    this.dashboardTabs.forEach(t => {
+                        if (t.dashboardID == dashboardID) {
+                            // Deep copy
+                            let newT: DashboardTab = Object.assign({}, t);
+                            newT.dashboardID = res.id;
+                            this.addDashboardTab(newT);
+                        };
+                    });
+
+                    // W
+                    this.widgets.forEach(w => {
+                        if (w.dashboardID == dashboardID) {
+                            // Deep copy
+                            let newW: Widget = Object.assign({}, w);
+                            newW.dashboardID = res.id;
+                            this.addWidget(newW);
+                        };
+                    });
+
+                    // Checkpoints
+                    this.widgetCheckpoints.forEach(chk => {
+                        if (chk.dashboardID == dashboardID) {
+                            // Deep copy
+                            let newChk: WidgetCheckpoint = Object.assign({}, chk);
+                            newChk.dashboardID = res.id;
+                            this.addWidgetCheckpoint(newChk);
+                        };
+                    });
+                });
+            };
+        });
+    }
+
     deleteDashboardInfo(dashboardID: number) {
         // Deletes D with all related Entities
         console.log('%c    Global-Variables deleteDashboardInfo ...', 
