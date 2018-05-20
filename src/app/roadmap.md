@@ -72,7 +72,6 @@ This document describes items for later versions of Canvas.
     - Global var with userLoggedIn
     - What and how is cached locally - and how refreshed?  Ie BackgroundColours should be stored locally and only updated if and when needed.
     - Finalise group membership / roles
-    - Where system settings like Security Model ?
     - Add UserID to ALL data and code -> where needed ...
     - It must be impossible to lock out all users - admin keeps access and at least one is kept.  Also, if a W is locked and the owner on leave, someone must be able to unlock it.
 

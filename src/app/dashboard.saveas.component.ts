@@ -42,6 +42,10 @@ export class DashboardSaveComponent implements OnInit {
     }
 
     isFirstTimeDashboardSave: boolean;
+    showTypeDashboard: boolean = false;
+    showNoSecurity: boolean = true;
+    showTeam: boolean = false;
+    showQArequired: boolean = false;
     dashboards: Dashboard[];
 
 	constructor(
@@ -70,7 +74,30 @@ export class DashboardSaveComponent implements OnInit {
 
 		this.formDashboardSaveClosed.emit(action);
     }
+
+    clickSecurityMode(mode: any) {
+        console.log('mode', mode.srcElement.value)
+        if (mode.srcElement.value == 'No Security') {
+            this.showNoSecurity = true;
+            this.showTeam = false;
+            this.showQArequired = false;
+        }
+        if (mode.srcElement.value == 'Team') {
+            this.showNoSecurity = false;
+            this.showTeam = true;
+            this.showQArequired = false;
+        }
+        if (mode.srcElement.value == 'QA required') {
+            this.showNoSecurity = false;
+            this.showTeam = false;
+            this.showQArequired = true;
+        }
+    }
  
     clickSaveFile() {
+    }
+
+    clickGotIt() {
+        this.globalVariableService.isFirstTimeDashboardSave.next(false);
     }
 }
