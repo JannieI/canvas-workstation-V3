@@ -27,11 +27,11 @@
         text-align: left;
     }
     .gridSubTitle {
-        grid-column-start: 1;
+        grid-column-start: 3;
         grid-column-end: 41;
-        grid-row-start: 2;
-        grid-row-end: 3;
-        margin: 2px 2px 2px 2px;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        margin: 2px 2px 2px 22px;
         text-align: left;
     }
 

@@ -1,49 +1,47 @@
 <div class="modal modalBox">
-    <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="dialog" aria-hidden="true">
         <div class="modal-content modalContent">
 
             <button type="button" class="closeButton" (click)="clickClose()">
                 X
             </button>
-            <div class="gridTitle">
-                <b>Save Dashboard: </b>
-                <i>
-                    Replace original version with the current Draft version.
-                </i>
-            </div>
-
-            
 
             <div class="gridOverall">
+                <div class="gridTitle">
+                    <b>Save Dashboard:</b>
+                </div>
+                <div class="gridSubTitle">
+                    <i>
+                        Replace original version with the current Draft version.
+                    </i>
+                </div>
+            
+                <div class="gridTextMain">
+                    The changes applied to this Dashboard has been saved to the Draft 
+                    version (which is currently open).  The original version has been 
+                    kept unchanged.  These changes (to the Draft version) can now be made
+                    visible to other users with the relevant rights by Saving it.  To see
+                    who has rights to the Dashboard, see the Dashboards -> Share menu
+                    option.
+                </div>
+                <div class="gridTextSub">
+                    When you Save this Dashboard, the Original will be replaced with 
+                    the Draft version, and the Draft will be deleted.  Saving is irreversable,
+                    and cannot be undone.  In order to make more changes, simply start another
+                    edit.  <b>Note: </b> during editing (for example resize a Widget) 
+                    all changes are saved automatically to the Draft version without 
+                    any input from the editor.  
+                </div>
+                <div class="gridQaRequired" *ngIf="qaRequired">
+                    This Dashboard is flagged with QA Required, which means that the
+                    same user who started editing it, may not Save it.
+                </div>
+                <div class="gridQaRequired" *ngIf="!qaRequired">
+                    The QA Required for this Dashboard has not been set, which means that
+                    the same user who started editing it, may also Save it.
+                </div>
 
-                <div class="subTitle">
-                    <i>
-                        The changes applied to this Dashboard has been saved to the Draft 
-                        version (which is currently open).  The original version has been 
-                        kept unchanged.  These changes (to the Draft version) can now be made
-                        visible to other users with the relevant rights by Saving it.  To see
-                        who has rights to the Dashboard, see the Dashboards -> Share menu
-                        option.
-                    </i>
-                </div>
-                <div class="subTitle">
-                    <i>
-                        When you Save this Dashboard, the Original will be replaced with 
-                        the Draft version, and the Draft will be deleted.  Saving is irreversable,
-                        and cannot be undone.  In order to make more changes, simply start another
-                        edit.
-                        Note: during editing (for example resize a Widget) all changes
-                        are saved automatically to the Draft version without any input 
-                        from the editor.  
-                    </i>
-                </div>
-                <div class="qaRequired" *ngIf="qaRequired">
-                    <i>
-                        This Dashboard is flagged with QA Required, which means that the
-                        same user who started editing it, may not Save it.
-                    </i>
-                </div>
-                <div class="propertyLine">
+                <div class="gridButtonCancel">
                     <button
                         type="button"
                         class="btn btn-secondary"
@@ -52,7 +50,7 @@
                         Cancel
                     </button>
                 </div>
-                <div class="propertyLine">
+                <div class="gridButtonSave">
                     <button
                         type="button"
                         class="btn btn-primary"
