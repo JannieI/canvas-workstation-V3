@@ -283,6 +283,7 @@ const widgetTemplate: Widget =
 const dashboardTemplate: Dashboard =
     {
         id: null,
+        originalID: null,
         version: 0,
         state: 'Draft',
         code: '',

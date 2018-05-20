@@ -431,6 +431,7 @@ export class Dashboard {
 
     // Identification and description
     id: number;
+    originalID: number;             // ID of the original (Completed state) for a draft
     version: number;
     state: string;
     code: string;
