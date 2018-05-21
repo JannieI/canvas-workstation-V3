@@ -1500,18 +1500,6 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        // Can only edit if we have DS
-        if (!this.hasDatasources) {
-            this.showMessage(
-                'First Add Datasources from Data menu',
-                'StatusBar',
-                'Warning',
-                3000,
-                ''
-            );
-            return;
-        };
-
         if (!this.hasDashboard) {
             this.showMessage(
                 'First add/open a Dashboard',

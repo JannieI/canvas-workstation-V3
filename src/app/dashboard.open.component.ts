@@ -143,8 +143,8 @@ export class DashboardOpenComponent implements OnInit {
         };
 
         // Save Original
-        if (this.dashboards[index].state == 'Completed') {
-            this.globalVariableService.copyDashboard(this.dashboards[index].id);
+        if (this.dashboards[index].state == 'Complete') {
+            // this.globalVariableService.copyDashboard(this.dashboards[index].id);
         };
 
 		this.globalVariableService.refreshCurrentDashboard(

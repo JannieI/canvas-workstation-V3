@@ -89,7 +89,7 @@ export class DashboardSaveComponent implements OnInit {
             let localDashboard: Dashboard = this.globalVariableService.currentDashboards[
                 dashboardIndex
             ];
-            localDashboard.state = 'Completed';
+            localDashboard.state = 'Complete';
             this.globalVariableService.saveDashboard(localDashboard);
         };
 
