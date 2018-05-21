@@ -284,6 +284,7 @@ const dashboardTemplate: Dashboard =
     {
         id: null,
         originalID: null,
+        draftID: null,
         version: 0,
         state: 'Draft',
         code: '',
@@ -974,7 +975,9 @@ export class GlobalVariableService {
                 let newD = Object.assign({}, this.dashboards[dashboardIndex]);
                 newD.id = null;
                 this.addDashboard(newD).then (res => {
-
+                    
+                    let promiseArray = [];
+        
                     // Save original ID
                     this.dashboards[dashboardIndex].originalID = res.id;
                     this.saveDashboard(this.dashboards[dashboardIndex])
@@ -988,6 +991,13 @@ export class GlobalVariableService {
                             this.addDashboardTab(newT);
                         };
                     });
+
+                    
+                    promiseArray.push(this.getCurrentDataset(w.datasourceID));
+                    this.allWithAsync(...promiseArray)
+            .then(resolvedData => {
+            })
+
 
                     // W
                     this.widgets.forEach(w => {
