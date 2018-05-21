@@ -1143,7 +1143,7 @@ export class GlobalVariableService {
         // Remove where D was used as hyperlink in Com
         this.canvasComments.forEach(com => {
             if (com.dashboardID == dashboardID) {
-                this.saveCanvasComment(com.id);
+                this.saveCanvasComment(com);
             };
         });
 
@@ -1876,12 +1876,10 @@ export class GlobalVariableService {
             .subscribe(
                 res => {
 
-                    let index: number = this.dashboardsRecent.findIndex(dR =>
-                        dR.dashboardID == id
+                    this.dashboardsRecent = this.dashboardsRecent.filter(
+                        rec => rec.id != id
                     );
-                    if (index >= 0) {
-                        this.dashboardsRecent.splice(index, 1);
-                    };
+
                     this.dashboardsRecentBehSubject.next(this.dashboardsRecent);
 
                     console.log('deleteDashboardRecent DELETED id: ', id)
