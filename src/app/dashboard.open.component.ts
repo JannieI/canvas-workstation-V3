@@ -133,7 +133,7 @@ export class DashboardOpenComponent implements OnInit {
         };
 
         // Copy Original to Draft
-        if (this.dashboards[index].state == 'Complete') {
+        if (this.dashboards[index].state == 'CompleteXXXXXXXXXXXX') {
             this.globalVariableService.copyDashboard(
                 this.dashboards[index].id, null, 'Draft'
             ).then(res => {

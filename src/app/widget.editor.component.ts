@@ -40,7 +40,7 @@ const graphWidth: number = 420;
     @Input() selectedWidget: Widget;
     @Input() newWidgetContainerLeft: number;
     @Input() newWidgetContainerTop: number;
-    @Input() canSave: boolean;
+    @Input() canSave: boolean = true;
 
     @Output() formWidgetEditorClosed: EventEmitter<Widget> = new EventEmitter();
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph

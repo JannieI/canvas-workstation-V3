@@ -965,6 +965,7 @@ export class GlobalVariableService {
         state: string = null
         ): Promise<Dashboard> {
         // Copies a given Dashboard, with all related info
+        // - dashboardID = D to copy (= Original)
         // - name, state: optional values for the new copy
         // - To make a draft: originalD.state = Complete, name = null, state = Draft
         console.log('%c    Global-Variables copyDashboard D,T id = ', 
@@ -983,8 +984,8 @@ export class GlobalVariableService {
                 newD.id = null;
                 newD.creator = this.currentUser.userID;
                 newD.dateCreated = this.formatDate(today);
-                newD.editor = this.currentUser.userID;
-                newD.dateEdited = this.formatDate(today);
+                newD.editor = null;
+                newD.dateEdited = null;
                 
                 if (name != null) {
                     newD.name = name;
@@ -992,10 +993,13 @@ export class GlobalVariableService {
                 if (state != null) {
                     newD.state = state;
                 };
+                newD.draftID = null;
                 if (this.dashboards[dashboardIndex].state == 'Complete'  
-                    &&  state == 'Draft'  
+                    && state == 'Draft'  
                     && name == null) {
                     newD.originalID = this.dashboards[dashboardIndex].id;
+                } else {
+                    newD.originalID = null;
                 };
 
                 this.addDashboard(newD).then (addedD => {
@@ -1006,6 +1010,12 @@ export class GlobalVariableService {
                     if (this.dashboards[dashboardIndex].state == 'Complete'  
                         &&  state == 'Draft'  
                         && name == null) {
+                        let currentDashboardIndex: number = this.currentDashboards.
+                            findIndex(d => d.id == dashboardID);
+                        if (currentDashboardIndex >= 0) {
+                            this.currentDashboards[currentDashboardIndex].draftID = 
+                                addedD.id;
+                        };
                         this.dashboards[dashboardIndex].draftID = addedD.id;
                         this.saveDashboard(this.dashboards[dashboardIndex]);
                     };
@@ -1022,32 +1032,32 @@ export class GlobalVariableService {
                     
                     this.allWithAsync(...promiseArray).then(resolvedData => {
 
-                        // W
-                        promiseArray = [];
-                        this.widgets.forEach(w => {
-                            if (w.dashboardID == dashboardID) {
-                                // Deep copy
-                                let newW: Widget = Object.assign({}, w);
-                                newW.dashboardID = addedD.id;
-                                promiseArray.push(this.addWidget(newW));
-                            };
-                        });
-                        this.allWithAsync(...promiseArray).then(resolvedData => {
+                        // // W
+                        // promiseArray = [];
+                        // this.widgets.forEach(w => {
+                        //     if (w.dashboardID == dashboardID) {
+                        //         // Deep copy
+                        //         let newW: Widget = Object.assign({}, w);
+                        //         newW.dashboardID = addedD.id;
+                        //         promiseArray.push(this.addWidget(newW));
+                        //     };
+                        // });
+                        // this.allWithAsync(...promiseArray).then(resolvedData => {
 
-                            // Checkpoints
-                            promiseArray = [];
-                            this.widgetCheckpoints.forEach(chk => {
-                                if (chk.dashboardID == dashboardID) {
-                                    // Deep copy
-                                    let newChk: WidgetCheckpoint = Object.assign({}, chk);
-                                    newChk.dashboardID = addedD.id;
-                                    promiseArray.push(this.addWidgetCheckpoint(newChk));
-                                };
-                            });
-                            this.allWithAsync(...promiseArray).then(resolvedData => {
-                                return addedD;
-                            });
-                        });
+                        //     // Checkpoints
+                        //     promiseArray = [];
+                        //     this.widgetCheckpoints.forEach(chk => {
+                        //         if (chk.dashboardID == dashboardID) {
+                        //             // Deep copy
+                        //             let newChk: WidgetCheckpoint = Object.assign({}, chk);
+                        //             newChk.dashboardID = addedD.id;
+                        //             promiseArray.push(this.addWidgetCheckpoint(newChk));
+                        //         };
+                        //     });
+                        //     this.allWithAsync(...promiseArray).then(resolvedData => {
+                        //         return addedD;
+                        //     });
+                        // });
                     });
                 });
             };
@@ -1231,7 +1241,16 @@ export class GlobalVariableService {
                     let localIndex: number = this.dashboards.findIndex(d =>
                         d.id == data.id
                     );
-                    this.dashboards[localIndex] = data;
+                    if (localIndex >= 0) {
+                        this.dashboards[localIndex] = data;
+                    };
+                    localIndex = this.currentDashboards.findIndex(d =>
+                        d.id == data.id
+                    );
+                    if (localIndex >= 0) {
+                        this.currentDashboards[localIndex] = data;
+                    };
+
 
                     console.log('saveDashboard SAVED', res)
                     resolve('Saved');
