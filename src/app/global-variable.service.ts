@@ -959,8 +959,14 @@ export class GlobalVariableService {
 
     }
 
-    copyDashboard(dashboardID: number): Promise<boolean> {
+    copyDashboard(
+        dashboardID: number,
+        name: string = null,
+        state: string = null
+        ): Promise<boolean> {
         // Copies a given Dashboard, with all related info
+        // - name, state: optional values for the new copy
+        // - To make a draft: originalD.state = Complete, name = null, state = Draft
         console.log('%c    Global-Variables copyDashboard D,T id = ', 
         "color: black; background: lightgray; font-size: 10px", dashboardID)
 
@@ -971,52 +977,69 @@ export class GlobalVariableService {
             let dashboardIndex: number = this.dashboards.findIndex(d => d.id == dashboardID);
             if (dashboardIndex >= 0) {
                 
-                // D
+                // Create new D, and fill in where possible
                 let newD = Object.assign({}, this.dashboards[dashboardIndex]);
                 newD.id = null;
+                if (name != null) {
+                    newD.name = name;
+                };
+                if (state != null) {
+                    newD.state = state;
+                };
+                if (this.dashboards[dashboardIndex].state == 'Complete'  
+                    &&  state == 'Draft'  
+                    && name == null) {
+                    newD.originalID = this.dashboards[dashboardIndex].id;
+                };
+
                 this.addDashboard(newD).then (res => {
                     
                     let promiseArray = [];
         
                     // Save original ID
-                    this.dashboards[dashboardIndex].originalID = res.id;
-                    this.saveDashboard(this.dashboards[dashboardIndex])
-
+                    if (this.dashboards[dashboardIndex].state == 'Complete'  
+                        &&  state == 'Draft'  
+                        && name == null) {
+                        this.dashboards[dashboardIndex].draftID = res.id;
+                        this.saveDashboard(this.dashboards[dashboardIndex]);
+                    };
+                    
                     // T
                     this.dashboardTabs.forEach(t => {
                         if (t.dashboardID == dashboardID) {
                             // Deep copy
                             let newT: DashboardTab = Object.assign({}, t);
                             newT.dashboardID = res.id;
-                            this.addDashboardTab(newT);
+                            promiseArray.push(this.addDashboardTab(newT));
                         };
                     });
-
                     
-                    promiseArray.push(this.getCurrentDataset(w.datasourceID));
-                    this.allWithAsync(...promiseArray)
-            .then(resolvedData => {
-            })
+                    this.allWithAsync(...promiseArray).then(resolvedData => {
 
+                        // W
+                        promiseArray = [];
+                        this.widgets.forEach(w => {
+                            if (w.dashboardID == dashboardID) {
+                                // Deep copy
+                                let newW: Widget = Object.assign({}, w);
+                                newW.dashboardID = res.id;
+                                promiseArray.push(this.addWidget(newW));
+                            };
+                        });
+                        this.allWithAsync(...promiseArray).then(resolvedData => {
 
-                    // W
-                    this.widgets.forEach(w => {
-                        if (w.dashboardID == dashboardID) {
-                            // Deep copy
-                            let newW: Widget = Object.assign({}, w);
-                            newW.dashboardID = res.id;
-                            this.addWidget(newW);
-                        };
-                    });
-
-                    // Checkpoints
-                    this.widgetCheckpoints.forEach(chk => {
-                        if (chk.dashboardID == dashboardID) {
-                            // Deep copy
-                            let newChk: WidgetCheckpoint = Object.assign({}, chk);
-                            newChk.dashboardID = res.id;
-                            this.addWidgetCheckpoint(newChk);
-                        };
+                            // Checkpoints
+                            promiseArray = [];
+                            this.widgetCheckpoints.forEach(chk => {
+                                if (chk.dashboardID == dashboardID) {
+                                    // Deep copy
+                                    let newChk: WidgetCheckpoint = Object.assign({}, chk);
+                                    newChk.dashboardID = res.id;
+                                    promiseArray.push(this.addWidgetCheckpoint(newChk));
+                                };
+                            });
+                            this.allWithAsync(...promiseArray).then(resolvedData => {});
+                        });
                     });
                 });
             };
