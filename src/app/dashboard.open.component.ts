@@ -144,13 +144,14 @@ export class DashboardOpenComponent implements OnInit {
 
         // Save Original
         if (this.dashboards[index].state == 'Complete') {
-            // this.globalVariableService.copyDashboard(this.dashboards[index].id);
+            this.globalVariableService.copyDashboard(this.dashboards[index].id).then(res => {
+                
+                this.globalVariableService.refreshCurrentDashboard(
+                    'openDashboard-clickOpenEdit', res.id, -1, ''
+                );
+                this.formDashboardOpenClosed.emit('View');
+            });
         };
-
-		this.globalVariableService.refreshCurrentDashboard(
-			'openDashboard-clickOpenEdit', dashboardID, -1, ''
-        );
-        this.formDashboardOpenClosed.emit('View');
     }
 
     clickRow(index: number) {
