@@ -202,7 +202,7 @@ export class AppComponent implements OnInit {
                 'app-keyEvent',
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
                 0,
-                'Next'
+                'Previous'
             );
             return;
         };
