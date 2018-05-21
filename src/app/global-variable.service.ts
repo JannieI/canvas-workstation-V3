@@ -4629,6 +4629,41 @@ export class GlobalVariableService {
         });
     }
 
+    saveCanvasComment(data: CanvasComment): Promise<string> {
+        // Description: Saves CanvasComment
+        // Returns: 'Saved' or error Comment
+        console.log('%c    Global-Variables saveCanvasComment ...', 
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+
+        let url: string = 'canvasComments';
+        this.filePath = './assets/data.canvasComments.json';
+
+        return new Promise<string>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.put('http://localhost:3000/' + url + '/' + data.id, data, {headers})
+            .subscribe(
+                res => {
+
+                    // Replace local
+                    let localIndex: number = this.canvasComments.findIndex(msg =>
+                        msg.id == data.id
+                    );
+                    this.canvasComments[localIndex] = data;
+
+                    console.log('saveCanvasComment SAVED', data)
+                    resolve('Saved');
+                },
+                err => {
+                    console.log('Error saveCanvasComment FAILED', err);;
+                    resolve(err.Comment);
+                }
+            )
+        });
+    }
+
     deleteCanvasComment(id: number, widgetID: number = null): Promise<string> {
         // Description: Deletes a canvasComments
         // Returns: 'Deleted' or error message
