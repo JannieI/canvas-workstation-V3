@@ -4738,6 +4738,41 @@ export class GlobalVariableService {
         });
     }
 
+    saveCanvasMessage(data: CanvasMessage): Promise<string> {
+        // Description: Saves CanvasMessage
+        // Returns: 'Saved' or error message
+        console.log('%c    Global-Variables saveCanvasMessage ...', 
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+
+        let url: string = 'canvasMessages';
+        this.filePath = './assets/data.canvasMessages.json';
+
+        return new Promise<string>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.put('http://localhost:3000/' + url + '/' + data.id, data, {headers})
+            .subscribe(
+                res => {
+
+                    // Replace local
+                    let localIndex: number = this.canvasMessages.findIndex(msg =>
+                        msg.id == data.id
+                    );
+                    this.canvasMessages[localIndex] = data;
+
+                    console.log('saveCanvasMessage SAVED', data)
+                    resolve('Saved');
+                },
+                err => {
+                    console.log('Error saveCanvasMessage FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+        });
+    }
+
     updateCanvasMessagesAsRead(userID: string) {
         // Marks all messages for this userID as read - typically done when Messages form
         // is closed, or at logout.
