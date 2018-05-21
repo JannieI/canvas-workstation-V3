@@ -1031,7 +1031,7 @@ export class GlobalVariableService {
                         };
                     });
                     
-                    // this.allWithAsync(...promiseArray).then(resolvedData => {
+                    this.allWithAsync(...promiseArray).then(resolvedData => {
 
                         // // W
                         // promiseArray = [];
@@ -1060,7 +1060,7 @@ export class GlobalVariableService {
                         //     });
                         // });
                         resolve(addedD);
-                    // });
+                    });
                 });
             };
         });
@@ -1072,6 +1072,7 @@ export class GlobalVariableService {
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", dashboardID);
 
         // TODO - update all from DB ?
+        // Remove where D used as template
         this.dashboards.forEach(d => {
             if (d.templateDashboardID == dashboardID) {
                 d.templateDashboardID == 0;
@@ -1083,6 +1084,8 @@ export class GlobalVariableService {
                 d.templateDashboardID == 0;
             };
         });
+
+        // Remove where D was used for hyperlink
         this.widgets.forEach(w => {
             if (w.hyperlinkDashboardID == dashboardID) {
                 w.hyperlinkDashboardID = 0;
@@ -1094,6 +1097,8 @@ export class GlobalVariableService {
                 w.hyperlinkDashboardID = 0;
             };
         });
+
+        // Remove where D was used as fav
         this.canvasUsers.forEach(u => {
             if (u.startupDashboardID == dashboardID) {
                 u.startupDashboardID = 0;
@@ -1103,59 +1108,81 @@ export class GlobalVariableService {
             this.saveCanvasUser(u);
         });
 
-        // Delete from DB
+        // Delete D from DB
         this.deleteDashboard(dashboardID);
 
+        // Delete Ts
         this.dashboardTabs.forEach(t => {
             if (t.dashboardID == dashboardID) {
                 this.deleteDashboardTab(t.id);
             };
         });
+
+        // Remove Ws
         this.widgets.forEach(w => {
             if (w.dashboardID == dashboardID) {
                 this.deleteWidget(w.id);
             };
         });
+
+        // Remove Snapshots
         this.dashboardSnapshots.forEach(snp => {
             if (snp.dashboardID == dashboardID) {
                 this.deleteDashboardSnapshot(snp.id);
             };
         });
+
+        // Remove where D was used as hyperlink in Msg
         this.canvasMessages.forEach(mes => {
             if (mes.dashboardID == dashboardID) {
-                this.deleteCanvasMessage(mes.id);
+                mes.dashboardID = null;
+                this.saveCanvasMessage(mes);
             };
         });
+
+        // Remove where D was used as hyperlink in Com
         this.canvasComments.forEach(com => {
             if (com.dashboardID == dashboardID) {
-                this.deleteCanvasComment(com.id);
+                this.saveCanvasComment(com.id);
             };
         });
+
+        // Delete where D was used as hyperlink in Schedule
         this.dashboardSchedules.forEach(sch => {
             if (sch.dashboardID == dashboardID) {
                 this.deleteDashboardSchedule(sch.id);
             };
         });
+
+        // Delete where D was used as hyperlink in Sub
         this.currentDashboardSubscriptions.forEach(sub =>  {
             if (sub.dashboardID == dashboardID) {
                 this.deleteDashboardSubscription(sub.id);
             };
         });
+
+        // Delete where D was used as hyperlink in Tags
         this.dashboardTags.forEach(t => {
             if (t.dashboardID == dashboardID) {
                 this.deleteDashboardTag(t.id);
             };
         });
+
+        // Delete where D was used as hyperlink in Perm
         this.dashboardPermissions.forEach(t => {
             if (t.dashboardID == dashboardID) {
                 this.deleteDashboardPermission(t.id);
             };
         });
+
+        // Delete where D was used in Chkpnt
         this.widgetCheckpoints.forEach(chk => {
             if (chk.dashboardID == dashboardID) {
                 this.deleteWidgetCheckpoint(chk.id);
             };
         });
+
+        // Delete where D was used as Recent
         this.dashboardsRecent.forEach(dR => {
             if (dR.dashboardID == dashboardID) {
                 this.deleteDashboardRecent(dR.id);
@@ -1308,7 +1335,7 @@ export class GlobalVariableService {
         // Returns: this.currentDashboards array, unless:
         //   If not cached or if dirty, get from File
         console.log('%c    Global-Variables getCurrentDashboards ...', 
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", dashboardID);
 
         // Refresh from source at start, or if dirty
         if ( (this.dashboards.length == 0)  ||  (this.isDirtyDashboards) ) {
