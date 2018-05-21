@@ -1026,11 +1026,12 @@ export class GlobalVariableService {
                             // Deep copy
                             let newT: DashboardTab = Object.assign({}, t);
                             newT.dashboardID = addedD.id;
+                            console.warn('xx newT', newT)
                             promiseArray.push(this.addDashboardTab(newT));
                         };
                     });
                     
-                    this.allWithAsync(...promiseArray).then(resolvedData => {
+                    // this.allWithAsync(...promiseArray).then(resolvedData => {
 
                         // // W
                         // promiseArray = [];
@@ -1058,7 +1059,8 @@ export class GlobalVariableService {
                         //         return addedD;
                         //     });
                         // });
-                    });
+                        resolve(addedD);
+                    // });
                 });
             };
         });
@@ -1355,7 +1357,10 @@ export class GlobalVariableService {
                     i => i.id == dashboardID
                 );
 
-                if (this.currentDashboards[0].templateDashboardID != 0) {
+                if (this.currentDashboards.length == 0) {
+                    alert('xx global var error in getCurrentDashboard - this.currentDashboards.length == 0')
+                }
+                if (this.currentDashboards[0].templateDashboardID != 0  &&  this.currentDashboards[0].templateDashboardID != null) {
                     let templateDashboard: Dashboard[] = null;
 
                     templateDashboard = this.dashboards.filter(
@@ -1371,7 +1376,7 @@ export class GlobalVariableService {
                 } else {
                     this.templateInUse.next(false);
                 };
-                // this.currentDashboards.next(currentDashboards);
+
                 console.log('%c    Global-Variables getCurrentDashboards 2', 
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", dashboardID, this.currentDashboards)
                 resolve(this.currentDashboards);
