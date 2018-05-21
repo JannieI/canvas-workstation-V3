@@ -132,25 +132,26 @@ export class DashboardOpenComponent implements OnInit {
                 return;
         };
 
-        this.globalVariableService.editMode.next(true);
-
-        // Update Editor
-        if (this.dashboards[index].state != 'Draft') {
-            let today = new Date();
-            this.dashboards[index].editor = this.globalVariableService.currentUser.userID;
-            this.dashboards[index].dateEdited = this.globalVariableService.formatDate(today);
-            this.globalVariableService.saveDashboard(this.dashboards[index]);
-        };
-
-        // Save Original
+        // Copy Original to Draft
         if (this.dashboards[index].state == 'Complete') {
-            this.globalVariableService.copyDashboard(this.dashboards[index].id).then(res => {
+            this.globalVariableService.copyDashboard(
+                this.dashboards[index].id, null, 'Draft'
+            ).then(res => {
                 
                 this.globalVariableService.refreshCurrentDashboard(
                     'openDashboard-clickOpenEdit', res.id, -1, ''
                 );
+                this.globalVariableService.editMode.next(true);
                 this.formDashboardOpenClosed.emit('View');
             });
+        } else {
+                
+            this.globalVariableService.refreshCurrentDashboard(
+                'openDashboard-clickOpenEdit', dashboardID, -1, ''
+            );
+            this.globalVariableService.editMode.next(true);
+            this.formDashboardOpenClosed.emit('View');
+
         };
     }
 

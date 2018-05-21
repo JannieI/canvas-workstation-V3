@@ -978,8 +978,14 @@ export class GlobalVariableService {
             if (dashboardIndex >= 0) {
                 
                 // Create new D, and fill in where possible
+                let today = new Date();
                 let newD = Object.assign({}, this.dashboards[dashboardIndex]);
                 newD.id = null;
+                newD.creator = this.currentUser.userID;
+                newD.dateCreated = this.formatDate(today);
+                newD.editor = this.currentUser.userID;
+                newD.dateEdited = this.formatDate(today);
+                
                 if (name != null) {
                     newD.name = name;
                 };
