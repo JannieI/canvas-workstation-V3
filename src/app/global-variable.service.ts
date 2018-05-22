@@ -1026,46 +1026,82 @@ export class GlobalVariableService {
                             newT.id = null;
                             newT.dashboardID = addedD.id;
 
-                            this.addDashboardTab(newT).then(addedT => {
-                                console.warn('xx addedT', addedT)
+                            promiseArray.push(this.addDashboardTab(newT));
+                        };
+                        //     // W
+                        //     this.widgets.forEach(w => {
+                        //         if (w.dashboardID == dashboardID
+                        //             && w.dashboardTabID == t.id) {
+                        //             // Deep copy
+                        //             let newW: Widget = Object.assign({}, w);
+                        //             newW.id = null;
+                        //             newW.dashboardID = addedD.id;
+                        //             newW.dashboardTabID = t.id;
+                        //             console.warn('xx newW', newW)
+                        //             promiseArray.push(this.addWidget(newW));
 
-                                // W
+                        //             this.widgetCheckpoints.forEach(chk => {
+                        //                 if (chk.dashboardID == dashboardID
+                        //                     &&  chk.widgetID == w.id) {
+                        //                     // Deep copy
+                        //                     let newChk: WidgetCheckpoint = Object.assign({}, chk);
+                        //                     newChk.id = null;
+                        //                     newChk.dashboardID = addedD.id;
+                        //                     newChk.widgetID = w.id;
+                        //                     console.warn('xx newChk', newChk)
+                        //                     promiseArray.push(this.addWidgetCheckpoint(newChk));
+                        //                 };
+                        //             });
+    
+                        //         };
+                        //     });
+                        // };
+
+                    });
+                    this.allWithAsync(...promiseArray).then(resolvedData => {
+                        console.warn('xx after allSync T', resolvedData)
+                        // W
+                        promiseArray = [];
+                        this.dashboardTabs.forEach(t => {
+                            if (t.dashboardID == addedD.id) {
                                 this.widgets.forEach(w => {
-                                    if (w.dashboardID == dashboardID
-                                        && w.dashboardTabID == t.id) {
+                                    if (w.dashboardID == addedD.id 
+                                        &&  
+                                        w.dashboardTabIDs.indexOf(t.id) >= 0) {
                                         // Deep copy
                                         let newW: Widget = Object.assign({}, w);
                                         newW.id = null;
                                         newW.dashboardID = addedD.id;
-                                        newW.dashboardTabID = addedT.id;
-                                        // TODO - correct this when multi-tabbed Ws
-                                        newW.dashboardTabIDs = [addedT.id];
-                                        this.addWidget(newW).then(addedW => {
+                                        newW.dashboardTabID = t.id;
+                                        // TODO - fix for multi-Tabbed Ws
+                                        newW.dashboardTabIDs = [t.id];
+                                        console.warn('xx newW', newW)
+                                        promiseArray.push(this.addWidget(newW));
 
-                                            this.widgetCheckpoints.forEach(chk => {
-                                                if (chk.dashboardID == dashboardID
-                                                    &&  chk.widgetID == w.id) {
-                                                    // Deep copy
-                                                    let newChk: WidgetCheckpoint = Object.assign({}, chk);
-                                                    newChk.id = null;
-                                                    newChk.dashboardID = addedD.id;
-                                                    newChk.widgetID = addedW.id;
-
-                                                    promiseArray.push(this.addWidgetCheckpoint(newChk));
-                                                };
-                                            });
-                                        });
                                     };
                                 });
-                            });
-                        };
+                            };
+                        });
+                        this.allWithAsync(...promiseArray).then(resolvedData => {
+                            console.warn('xx after allSync W', resolvedData)
 
-                    });
-                    console.warn('xx len', promiseArray.length)
-
-                    this.allWithAsync(...promiseArray).then(resolvedData => {
-                        console.warn('xx resolvedData', resolvedData)
-                        resolve(addedD);
+                        //     // Checkpoints
+                        //     promiseArray = [];
+                        //     this.widgetCheckpoints.forEach(chk => {
+                        //         if (chk.dashboardID == dashboardID) {
+                        //             // Deep copy
+                        //             let newChk: WidgetCheckpoint = Object.assign({}, chk);
+                        //             newChk.id = null;
+                        //             newChk.dashboardID = addedD.id;
+                        //             console.warn('xx newChk', newChk)
+                        //             promiseArray.push(this.addWidgetCheckpoint(newChk));
+                        //         };
+                        //     });
+                        //     this.allWithAsync(...promiseArray).then(resolvedData => {
+                                // return addedD;
+                                resolve(addedD);
+                            // });
+                        });
                     });
                 });
             };
