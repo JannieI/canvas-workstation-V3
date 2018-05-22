@@ -137,7 +137,7 @@ export class DashboardOpenComponent implements OnInit {
             this.globalVariableService.copyDashboard(
                 this.dashboards[index].id, null, 'Draft'
             ).then(res => {
-                
+                console.warn('xx res', res)
                 this.globalVariableService.refreshCurrentDashboard(
                     'openDashboard-clickOpenEdit', res.id, -1, ''
                 );

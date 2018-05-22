@@ -643,7 +643,7 @@ export class GlobalVariableService {
     actions: CanvasAction[] = [];
     colourPickerClosed = new BehaviorSubject<
         {
-            callingRoutine: string; 
+            callingRoutine: string;
             selectedColor:string;
             cancelled: boolean
         }
@@ -768,7 +768,7 @@ export class GlobalVariableService {
         // Refreshes all info related to current D
         // dashboardTabID = -1 if unknown, so get first T
         // Returns True if all worked, False if something went wrong
-        console.log('%c    Global-Variables refreshCurrentDashboardInfo D,T id = ', 
+        console.log('%c    Global-Variables refreshCurrentDashboardInfo D,T id = ',
         "color: black; background: lightgray; font-size: 10px", dashboardID, dashboardTabID)
 
         // Load the current Dashboard, and Optional template.  The dependants are stakced
@@ -828,7 +828,7 @@ export class GlobalVariableService {
     refreshCurrentDatasourceInfo(datasourceID: number): Promise<boolean> {
         // Refreshes all info related to current DS, but NOT currentDatasources
         // Returns True if all worked, False if something went wrong
-        console.log('%c    Global-Variables refreshCurrentDatasourceInfo D,T id = ', 
+        console.log('%c    Global-Variables refreshCurrentDatasourceInfo D,T id = ',
         "color: black; background: lightgray; font-size: 10px", datasourceID)
 
         // Get lates dSet for give DSid
@@ -868,7 +868,7 @@ export class GlobalVariableService {
 
     refreshAllInfo(dashboardID: number, dashboardTabID: number) {
         // Refreshes all info related to current D
-        console.log('%c    Global-Variables refreshAllInfo D,T id = ', 
+        console.log('%c    Global-Variables refreshAllInfo D,T id = ',
         "color: black; background: lightgray; font-size: 10px", dashboardID, dashboardTabID)
 
         console.log('refreshAllInfo FIX DS ids that are hardcoded ...')
@@ -926,13 +926,13 @@ export class GlobalVariableService {
         // Description: Gets all D
         // Returns: this.dashboards array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c        Global-Variables getDashboards ...', 
+        console.log('%c        Global-Variables getDashboards ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         if (params.substring(0 ,1) != '?') {
             params = '?' + params;
         };
-        
+
         let url: string = 'dashboards' + params;
         this.filePath = './assets/data.dashboards.json';
 
@@ -946,12 +946,12 @@ export class GlobalVariableService {
                         this.dashboards = data;
                         this.isDirtyDashboards = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getDashboards 1', 
+                        console.log('%c    Global-Variables getDashboards 1',
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.dashboards)
                         resolve(this.dashboards);
                     });
             } else {
-                console.log('%c    Global-Variables getDashboards 2', 
+                console.log('%c    Global-Variables getDashboards 2',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
                 resolve(this.dashboards);
             }
@@ -967,17 +967,17 @@ export class GlobalVariableService {
         // Copies a given Dashboard, with all related info
         // - dashboardID = D to copy (= Original)
         // - name, state: optional values for the new copy
-        // - To make a draft: originalD.state = Complete, name = null, state = Draft
-        console.log('%c    Global-Variables copyDashboard D,T id = ', 
+        // - To make a draft: originalD.state = Complete, state = Draft
+        console.log('%c    Global-Variables copyDashboard D,T id = ',
         "color: black; background: lightgray; font-size: 10px", dashboardID)
 
         // Duplicate the D and all related info
         return new Promise<Dashboard>((resolve, reject) => {
-         
+
             // Get D
             let dashboardIndex: number = this.dashboards.findIndex(d => d.id == dashboardID);
             if (dashboardIndex >= 0) {
-                
+
                 // Create new D, and fill in where possible
                 let today = new Date();
                 let newD = Object.assign({}, this.dashboards[dashboardIndex]);
@@ -986,7 +986,7 @@ export class GlobalVariableService {
                 newD.dateCreated = this.formatDate(today);
                 newD.editor = null;
                 newD.dateEdited = null;
-                
+
                 if (name != null) {
                     newD.name = name;
                 };
@@ -994,32 +994,30 @@ export class GlobalVariableService {
                     newD.state = state;
                 };
                 newD.draftID = null;
-                if (this.dashboards[dashboardIndex].state == 'Complete'  
-                    && state == 'Draft'  
-                    && name == null) {
+                if (this.dashboards[dashboardIndex].state == 'Complete'
+                    && state == 'Draft') {
                     newD.originalID = this.dashboards[dashboardIndex].id;
                 } else {
                     newD.originalID = null;
                 };
 
                 this.addDashboard(newD).then (addedD => {
-                    
+
                     let promiseArray = [];
-        
+
                     // Save original ID
-                    if (this.dashboards[dashboardIndex].state == 'Complete'  
-                        &&  state == 'Draft'  
-                        && name == null) {
+                    if (this.dashboards[dashboardIndex].state == 'Complete'
+                        &&  state == 'Draft') {
                         let currentDashboardIndex: number = this.currentDashboards.
                             findIndex(d => d.id == dashboardID);
                         if (currentDashboardIndex >= 0) {
-                            this.currentDashboards[currentDashboardIndex].draftID = 
+                            this.currentDashboards[currentDashboardIndex].draftID =
                                 addedD.id;
                         };
                         this.dashboards[dashboardIndex].draftID = addedD.id;
                         this.saveDashboard(this.dashboards[dashboardIndex]);
                     };
-                    
+
                     // T
                     this.dashboardTabs.forEach(t => {
                         if (t.dashboardID == dashboardID) {
@@ -1030,20 +1028,20 @@ export class GlobalVariableService {
                             promiseArray.push(this.addDashboardTab(newT));
                         };
                     });
-                    
+
                     this.allWithAsync(...promiseArray).then(resolvedData => {
 
-                        // // W
-                        // promiseArray = [];
-                        // this.widgets.forEach(w => {
-                        //     if (w.dashboardID == dashboardID) {
-                        //         // Deep copy
-                        //         let newW: Widget = Object.assign({}, w);
-                        //         newW.dashboardID = addedD.id;
-                        //         promiseArray.push(this.addWidget(newW));
-                        //     };
-                        // });
-                        // this.allWithAsync(...promiseArray).then(resolvedData => {
+                        // W
+                        promiseArray = [];
+                        this.widgets.forEach(w => {
+                            if (w.dashboardID == dashboardID) {
+                                // Deep copy
+                                let newW: Widget = Object.assign({}, w);
+                                newW.dashboardID = addedD.id;
+                                promiseArray.push(this.addWidget(newW));
+                            };
+                        });
+                        this.allWithAsync(...promiseArray).then(resolvedData => {
 
                         //     // Checkpoints
                         //     promiseArray = [];
@@ -1058,7 +1056,7 @@ export class GlobalVariableService {
                         //     this.allWithAsync(...promiseArray).then(resolvedData => {
                         //         return addedD;
                         //     });
-                        // });
+                        });
                         resolve(addedD);
                     });
                 });
@@ -1068,7 +1066,7 @@ export class GlobalVariableService {
 
     deleteDashboardInfo(dashboardID: number) {
         // Deletes D with all related Entities
-        console.log('%c    Global-Variables deleteDashboardInfo ...', 
+        console.log('%c    Global-Variables deleteDashboardInfo ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", dashboardID);
 
         // TODO - update all from DB ?
@@ -1193,7 +1191,7 @@ export class GlobalVariableService {
 
     clearDashboardInfo() {
         // Clears all related Entities of a D
-        console.log('%c    Global-Variables clearDashboardInfo ...', 
+        console.log('%c    Global-Variables clearDashboardInfo ...',
         "color: black; background: lightgray; font-size: 10px");
 
         // TODO - find a better way to keep all related items in sync, and list updated
@@ -1214,7 +1212,7 @@ export class GlobalVariableService {
     addDashboard(data: Dashboard): Promise<any> {
         // Description: Adds a new Dashboard
         // Returns: Added Data or error message
-        console.log('%c    Global-Variables addDashboard ...', 
+        console.log('%c    Global-Variables addDashboard ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", data.id);
 
         let url: string = 'dashboards';
@@ -1251,7 +1249,7 @@ export class GlobalVariableService {
     saveDashboard(data: Dashboard): Promise<string> {
         // Description: Saves Dashboard
         // Returns: 'Saved' or error message
-        console.log('%c    Global-Variables saveDashboard ...', 
+        console.log('%c    Global-Variables saveDashboard ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         let url: string = 'dashboards';
@@ -1295,7 +1293,7 @@ export class GlobalVariableService {
     deleteDashboard(id: number): Promise<string> {
         // Description: Deletes a Dashboard
         // Returns: 'Deleted' or error message
-        console.log('%c    Global-Variables deleteDashboard ...', 
+        console.log('%c    Global-Variables deleteDashboard ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", id);
 
         let url: string = 'dashboards';
@@ -1334,7 +1332,7 @@ export class GlobalVariableService {
         //   dashboardID
         // Returns: this.currentDashboards array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getCurrentDashboards ...', 
+        console.log('%c    Global-Variables getCurrentDashboards ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", dashboardID);
 
         // Refresh from source at start, or if dirty
@@ -1369,7 +1367,7 @@ export class GlobalVariableService {
                         }
                         // this.currentDashboards.next(currentDashboards);
 
-                        console.log('%c    Global-Variables getCurrentDashboards 1', 
+                        console.log('%c    Global-Variables getCurrentDashboards 1',
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", dashboardID, this.currentDashboards)
                         resolve(this.currentDashboards);
 
@@ -1404,7 +1402,7 @@ export class GlobalVariableService {
                     this.templateInUse.next(false);
                 };
 
-                console.log('%c    Global-Variables getCurrentDashboards 2', 
+                console.log('%c    Global-Variables getCurrentDashboards 2',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", dashboardID, this.currentDashboards)
                 resolve(this.currentDashboards);
             });
@@ -1416,7 +1414,7 @@ export class GlobalVariableService {
         // Description: Gets all T
         // Returns: this.dashboardTabs array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getDashboardTabs ...', 
+        console.log('%c    Global-Variables getDashboardTabs ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         let url: string = 'dashboardTabs';
@@ -1432,12 +1430,12 @@ export class GlobalVariableService {
                         this.dashboardTabs = data;
                         this.isDirtyDashboardTabs = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getDashboardTabs 1', 
+                        console.log('%c    Global-Variables getDashboardTabs 1',
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.dashboardTabs)
                         resolve(this.dashboardTabs);
                     });
             } else {
-                console.log('%c    Global-Variables getDashboardTabs 2', 
+                console.log('%c    Global-Variables getDashboardTabs 2',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
                 resolve(this.dashboardTabs);
             }
@@ -1451,8 +1449,8 @@ export class GlobalVariableService {
         //   dashboardID
         // Returns: this.currentDashboardTabs array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getCurrentDashboardTabs ...', 
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+        console.log('%c    Global-Variables getCurrentDashboardTabs ...',
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
             dashboardID);
 
             // Refresh from source at start, or if dirty
@@ -1464,7 +1462,7 @@ export class GlobalVariableService {
                             i => i.dashboardID == dashboardID
                         );
                         this.currentDashboardTabs = data;
-                        console.log('%c    Global-Variables getCurrentDashboardTabs 1', 
+                        console.log('%c    Global-Variables getCurrentDashboardTabs 1',
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", dashboardID, data)
                         resolve(this.currentDashboardTabs);
 
@@ -1477,7 +1475,7 @@ export class GlobalVariableService {
                         i => i.dashboardID == dashboardID
                     )
                 this.currentDashboardTabs = returnData;
-                console.log('%c    Global-Variables getCurrentDashboardTabs 2', 
+                console.log('%c    Global-Variables getCurrentDashboardTabs 2',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", dashboardID, returnData)
                 resolve(this.currentDashboardTabs);
             });
@@ -1488,7 +1486,7 @@ export class GlobalVariableService {
     addDashboardTab(data: DashboardTab): Promise<any> {
         // Description: Adds a new DashboardTab
         // Returns: Added Data or error message
-        console.log('%c    Global-Variables addDashboardTab ...', 
+        console.log('%c    Global-Variables addDashboardTab ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", data.id);
 
         let url: string = 'dashboardTabs';
@@ -1522,7 +1520,7 @@ export class GlobalVariableService {
     saveDashboardTab(data: DashboardTab): Promise<string> {
         // Description: Saves DashboardTab
         // Returns: 'Saved' or error message
-        console.log('%c    Global-Variables saveDashboardTab ...', 
+        console.log('%c    Global-Variables saveDashboardTab ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         let url: string = 'dashboardTabs';
@@ -1557,7 +1555,7 @@ export class GlobalVariableService {
     deleteDashboardTab(id: number): Promise<string> {
         // Description: Deletes a DashboardTab
         // Returns: 'Deleted' or error message
-        console.log('%c    Global-Variables deleteDashboardTab ...', 
+        console.log('%c    Global-Variables deleteDashboardTab ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", id);
 
         let url: string = 'dashboardTabs';
@@ -1594,7 +1592,7 @@ export class GlobalVariableService {
         // Description: Gets all Sample D
         // Returns: an array extracted from [D], unless:
         //   If D not cached or if dirty, get from File
-        console.log('%c    Global-Variables getDashboardSamples ...', 
+        console.log('%c    Global-Variables getDashboardSamples ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         // Refresh from source at start, or if dirty
@@ -1605,7 +1603,7 @@ export class GlobalVariableService {
                         data = data.filter(
                             i => (i.isSample)
                         );
-                        console.log('%c    Global-Variables getDashboardSamples 1', 
+                        console.log('%c    Global-Variables getDashboardSamples 1',
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", data)
                         resolve(data);
 
@@ -1616,7 +1614,7 @@ export class GlobalVariableService {
                 let data: Dashboard[] = this.dashboards.filter(
                     i => (i.isSample)
                 )
-                console.log('%c    Global-Variables getDashboardSamples 2', 
+                console.log('%c    Global-Variables getDashboardSamples 2',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", data)
                 resolve(data);
             });
@@ -1631,7 +1629,7 @@ export class GlobalVariableService {
         // - DB
         // - this.dashboardsRecent (array in Global Vars)
         // - dashboardsRecentBehSubject (.next)
-        console.log('%c    Global-Variables getDashboardsRecent ...', 
+        console.log('%c    Global-Variables getDashboardsRecent ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         let url: string = 'dashboardsRecent';
@@ -1677,7 +1675,7 @@ export class GlobalVariableService {
                 this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
 
                 this.isDirtyDashboardsRecent = false;
-                console.log('%c    Global-Variables dashboardsRecent 1', 
+                console.log('%c    Global-Variables dashboardsRecent 1',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", temp)
                 resolve(temp);
             });
@@ -1686,11 +1684,11 @@ export class GlobalVariableService {
 
     dashboardIndexInRecentList(dashboardID: number): number {
         // Returns index of first D in the Recent list. Else -1
-        console.log('%c    Global-Variables dashboardIndexInRecentList ...', 
+        console.log('%c    Global-Variables dashboardIndexInRecentList ...',
         "color: black; background: lightgray; font-size: 10px");
 
         // Determine index in Recent list
-        let index: number = this.dashboardsRecent.findIndex(dR => 
+        let index: number = this.dashboardsRecent.findIndex(dR =>
             dR.dashboardID == dashboardID
         );
         return index;
@@ -1698,11 +1696,11 @@ export class GlobalVariableService {
 
     dashboardTabIndexInRecentList(dashboardID: number, dashboardTabID: number): number {
         // Returns index of first D, T in the Recent list.  Else -1
-        console.log('%c    Global-Variables dashboardTabIndexInRecentList ...', 
+        console.log('%c    Global-Variables dashboardTabIndexInRecentList ...',
         "color: black; background: lightgray; font-size: 10px");
 
         // Determine index in Recent list
-        let index: number = this.dashboardsRecent.findIndex(dR => 
+        let index: number = this.dashboardsRecent.findIndex(dR =>
             dR.dashboardID == dashboardID
             &&
             dR.dashboardTabID == dashboardTabID
@@ -1716,8 +1714,8 @@ export class GlobalVariableService {
         // Compares given IDs against the Recent list:
         // - if D not there, call ADD
         // - if D there but T change, call SAVE
-        // - if D & T there, do nothing 
-        console.log('%c    Global-Variables amendDashboardRecent ...', 
+        // - if D & T there, do nothing
+        console.log('%c    Global-Variables amendDashboardRecent ...',
         "color: black; background: lightgray; font-size: 10px", dashboardID, dashboardTabID);
 
         // TODO - fix this timing issue, as I have no idea why this is happening here
@@ -1772,7 +1770,7 @@ export class GlobalVariableService {
         // Adds a D to the Recent list, and update:
         // - this.dashboardsRecent
         // - this.dashboardsRecentBehSubject.next()
-        console.log('%c    Global-Variables addDashboardRecent ...', 
+        console.log('%c    Global-Variables addDashboardRecent ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         let url: string = 'dashboardsRecent';
@@ -1817,7 +1815,7 @@ export class GlobalVariableService {
     saveDashboardRecent(data: DashboardRecent): Promise<string> {
         // Description: Saves DashboardRecent
         // Returns: 'Saved' or error message
-        console.log('%c    Global-Variables saveDashboardRecent ...', 
+        console.log('%c    Global-Variables saveDashboardRecent ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         let url: string = 'dashboardsRecent';
@@ -1861,7 +1859,7 @@ export class GlobalVariableService {
         // - this.dashboardsRecent
         // - this.dashboardsRecentBehSubject.next()
         // Returns 'Deleted' or error message
-        console.log('%c    Global-Variables deleteDashboardRecent ...', 
+        console.log('%c    Global-Variables deleteDashboardRecent ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", id);
 
         let url: string = 'dashboardsRecent';
@@ -1896,7 +1894,7 @@ export class GlobalVariableService {
     getDataset(): Promise<Dataset[]> {
         // Description: Gets Datasets, WITHOUT data
         // Returns: this.dataset
-        console.log('%c    Global-Variables getDataset ...', 
+        console.log('%c    Global-Variables getDataset ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         let url: string = 'datasets';
@@ -1912,12 +1910,12 @@ export class GlobalVariableService {
                         this.datasets = data;
                         this.isDirtyDatasets = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getDataset 1', 
+                        console.log('%c    Global-Variables getDataset 1',
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.datasets)
                         resolve(this.datasets);
                     });
             } else {
-                console.log('%c    Global-Variables getDataset 2', 
+                console.log('%c    Global-Variables getDataset 2',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.datasets)
                 resolve(this.datasets);
             }
@@ -1928,7 +1926,7 @@ export class GlobalVariableService {
     getCurrentDataset(datasourceID: number, datasetID: number): Promise<Dataset> {
         // Description: Gets a Dataset, and inserts it once into this.currentDatasets
         // Returns: dataset
-        console.log('%c    Global-Variables getCurrentDataset ...', 
+        console.log('%c    Global-Variables getCurrentDataset ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         let url: string = 'dataset';
@@ -2006,7 +2004,7 @@ export class GlobalVariableService {
                         this.currentDatasets.push(newdSet);
                     };
 
-                    console.log('%c    Global-Variables getCurrentDataset 1 from ', 
+                    console.log('%c    Global-Variables getCurrentDataset 1 from ',
                     "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", dsSourceLocation, datasourceID,
                         datasetID, newdSet, 'currentDatasets', this.currentDatasets)
                     resolve(newdSet);
@@ -2040,7 +2038,7 @@ export class GlobalVariableService {
                             this.currentDatasets.push(newdSet);
                         };
 
-                        console.log('%c    Global-Variables getCurrentDataset 1 from ', 
+                        console.log('%c    Global-Variables getCurrentDataset 1 from ',
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", dsSourceLocation, datasourceID,
                             datasetID, newdSet, 'currentDatasets', this.currentDatasets)
                         resolve(newdSet);
@@ -2074,7 +2072,7 @@ export class GlobalVariableService {
                             this.currentDatasets.push(newdSet);
                         };
 
-                        console.log('%c    Global-Variables getCurrentDataset 1 from ', 
+                        console.log('%c    Global-Variables getCurrentDataset 1 from ',
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", dsSourceLocation, datasourceID,
                             datasetID, newdSet, 'currentDatasets', this.currentDatasets)
                         resolve(newdSet);
@@ -2087,7 +2085,7 @@ export class GlobalVariableService {
     addDataset(data: Dataset): Promise<any> {
         // Description: Adds a new Dataset
         // Returns: Added Data or error message
-        console.log('%c    Global-Variables addDataset ...', 
+        console.log('%c    Global-Variables addDataset ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", data.id);
 
         // let url: string = data.url;
@@ -2123,7 +2121,7 @@ export class GlobalVariableService {
     getData(id: number): Promise<any[]> {
         // Description: Gets Datasets, WITHOUT data
         // Returns: this.dataset
-        console.log('%c    Global-Variables getData ...', 
+        console.log('%c    Global-Variables getData ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", id);
 
         let url: string = 'data/' + id.toString();
@@ -2140,7 +2138,7 @@ export class GlobalVariableService {
                         // this.datasets[xxx from id].rawData & .data = data;
                         // this.isDirtyDatasets = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getData', 
+                        console.log('%c    Global-Variables getData',
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", res)
                         resolve(res.data);
                     });
@@ -2155,7 +2153,7 @@ export class GlobalVariableService {
     addData(data: any): Promise<any> {
         // Description: Adds DATA used in a new Dataset
         // Returns: Added Data or error message
-        console.log('%c    Global-Variables addData  ...', 
+        console.log('%c    Global-Variables addData  ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", data.id);
 
         // let url: string = data.url;
@@ -2189,7 +2187,7 @@ export class GlobalVariableService {
         // into .data
         // Note: Objects and arrays are passed by reference. Primitive values like number,
         // string, boolean are passed by value.  Thus, original object (dSet) is modified here.
-        console.log('%c    Global-Variables filterSlicer ...', 
+        console.log('%c    Global-Variables filterSlicer ...',
         "color: black; background: lightgray; font-size: 10px");
 
         this.currentWidgets.forEach(w => {
@@ -2296,7 +2294,7 @@ export class GlobalVariableService {
         // Description: Gets all Sch
         // Returns: this.dashboardSchedules array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getDashboardSchedules ...', 
+        console.log('%c    Global-Variables getDashboardSchedules ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         let url: string = 'dashboardSchedules';
@@ -2312,12 +2310,12 @@ export class GlobalVariableService {
                         this.dashboardSchedules = data;
                         this.isDirtyDashboardSchedules = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getDashboardSchedules 1', 
+                        console.log('%c    Global-Variables getDashboardSchedules 1',
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
                         resolve(this.dashboardSchedules);
                     });
             } else {
-                console.log('%c    Global-Variables getDashboardSchedules 2', 
+                console.log('%c    Global-Variables getDashboardSchedules 2',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
                 resolve(this.dashboardSchedules);
             }
@@ -2328,7 +2326,7 @@ export class GlobalVariableService {
     deleteDashboardSchedule(id: number): Promise<string> {
         // Description: Deletes a DashboardSchedules
         // Returns: 'Deleted' or error message
-        console.log('%c    Global-Variables deleteDashboardSchedule ...', 
+        console.log('%c    Global-Variables deleteDashboardSchedule ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", id);
 
         let url: string = 'dashboardSchedules';
@@ -2367,7 +2365,7 @@ export class GlobalVariableService {
         //   dashboardID
         // Returns: this.currentDashboardSchedules array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getCurrentDashboardSchedules ...', 
+        console.log('%c    Global-Variables getCurrentDashboardSchedules ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         // Refresh from source at start, or if dirty
@@ -2379,7 +2377,7 @@ export class GlobalVariableService {
                             i => i.dashboardID == dashboardID
                         );
                         this.currentDashboardSchedules = data;
-                        console.log('%c    Global-Variables getCurrentDashboardSchedules 1', 
+                        console.log('%c    Global-Variables getCurrentDashboardSchedules 1',
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                             dashboardID, data)
                         resolve(this.currentDashboardSchedules);
@@ -2392,7 +2390,7 @@ export class GlobalVariableService {
                     i => i.dashboardID == dashboardID
                 );
                 this.currentDashboardSchedules = returnData;
-                console.log('%c    Global-Variables getCurrentDashboardSchedules 2', 
+                console.log('%c    Global-Variables getCurrentDashboardSchedules 2',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                     dashboardID, returnData)
                 resolve(this.currentDashboardSchedules);
@@ -2404,7 +2402,7 @@ export class GlobalVariableService {
         // Description: Gets all Sch
         // Returns: this.dashboardTagsget array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getDashboardTags ...', 
+        console.log('%c    Global-Variables getDashboardTags ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         let url: string = 'dashboardTags';
@@ -2420,12 +2418,12 @@ export class GlobalVariableService {
                         this.dashboardTags = data;
                         this.isDirtyDashboardTags = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getDashboardTags 1', 
+                        console.log('%c    Global-Variables getDashboardTags 1',
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
                         resolve(this.dashboardTags);
                     });
             } else {
-                console.log('%c    Global-Variables getDashboardTags 2', 
+                console.log('%c    Global-Variables getDashboardTags 2',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
                 resolve(this.dashboardTags);
             }
@@ -2439,7 +2437,7 @@ export class GlobalVariableService {
         //   dashboardID
         // Returns: this.currentDashboardTags array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getCurrentDashboardTags ...', 
+        console.log('%c    Global-Variables getCurrentDashboardTags ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         // Refresh frogetm source at start, or if dirty
@@ -2451,7 +2449,7 @@ export class GlobalVariableService {
                             i => i.dashboardID == dashboardID
                         );
                         this.currentDashboardTags = data;
-                        console.log('%c    Global-Variables getCurrentDashboardTags 1', 
+                        console.log('%c    Global-Variables getCurrentDashboardTags 1',
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                             dashboardID, data)
                         resolve(this.currentDashboardTags);
@@ -2464,7 +2462,7 @@ export class GlobalVariableService {
                     i => i.dashboardID == dashboardID
                 );
                 this.currentDashboardTags = returnData;
-                console.log('%c    Global-Variables getCurrentDashboardTags 2', 
+                console.log('%c    Global-Variables getCurrentDashboardTags 2',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", dashboardID)
                 resolve(this.currentDashboardTags);
             });
@@ -2474,7 +2472,7 @@ export class GlobalVariableService {
     addDashboardTag(data: DashboardTag): Promise<any> {
         // Description: Adds a new DashboardTag
         // Returns: Added Data or error message
-        console.log('%c    Global-Variables addDashboardTag ...', 
+        console.log('%c    Global-Variables addDashboardTag ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", data.id);
 
         let url: string = 'dashboardTags';
@@ -2508,7 +2506,7 @@ export class GlobalVariableService {
     deleteDashboardTag(id: number): Promise<string> {
         // Description: Deletes a DashboardTag
         // Returns: 'Deleted' or error message
-        console.log('%c    Global-Variables deleteDashboardTag ...', 
+        console.log('%c    Global-Variables deleteDashboardTag ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", id);
 
         let url: string = 'dashboardTags';
@@ -2545,7 +2543,7 @@ export class GlobalVariableService {
         // Description: Gets all P
         // Returns: this.dashboardPermissions array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getDashboardPermissions ...', 
+        console.log('%c    Global-Variables getDashboardPermissions ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         let url: string = 'dashboardPermissions';
@@ -2561,12 +2559,12 @@ export class GlobalVariableService {
                         this.dashboardPermissions = data;
                         this.isDirtyDashboardPermissions = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getDashboardPermissions 1', 
+                        console.log('%c    Global-Variables getDashboardPermissions 1',
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
                         resolve(this.dashboardPermissions);
                     });
             } else {
-                console.log('%c    Global-Variables getDashboardPermissions 2', 
+                console.log('%c    Global-Variables getDashboardPermissions 2',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
                 resolve(this.dashboardPermissions);
             }
@@ -2580,7 +2578,7 @@ export class GlobalVariableService {
         //   dashboardID
         // Returns: this.currentDashboardPermissions array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getCurrentDashboardPermissions ...', 
+        console.log('%c    Global-Variables getCurrentDashboardPermissions ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         // Refresh from source at start, or if dirty
@@ -2592,7 +2590,7 @@ export class GlobalVariableService {
                             i => i.dashboardID == dashboardID
                         );
                         this.currentDashboardPermissions =data;
-                        console.log('%c    Global-Variables getCurrentDashboardPermissions 1', 
+                        console.log('%c    Global-Variables getCurrentDashboardPermissions 1',
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                             dashboardID, data)
                         resolve(this.currentDashboardPermissions);
@@ -2605,7 +2603,7 @@ export class GlobalVariableService {
                     i => i.dashboardID == dashboardID
                 );
                 this.currentDashboardPermissions =returnData;
-                console.log('%c    Global-Variables getCurrentDashboardPermissions 2', 
+                console.log('%c    Global-Variables getCurrentDashboardPermissions 2',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", dashboardID)
                 resolve(this.currentDashboardPermissions);
             });
@@ -2615,7 +2613,7 @@ export class GlobalVariableService {
     addDashboardPermission(data: DashboardPermission): Promise<any> {
         // Description: Adds a new DashboardPermission
         // Returns: Added Data or error message
-        console.log('%c    Global-Variables addDashboardPermission ...', 
+        console.log('%c    Global-Variables addDashboardPermission ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", data.id);
 
         let url: string = 'dashboardPermissions';
@@ -2650,7 +2648,7 @@ export class GlobalVariableService {
     saveDashboardPermission(data: DashboardPermission): Promise<string> {
         // Description: Saves DashboardPermission
         // Returns: 'Saved' or error message
-        console.log('%c    Global-Variables saveDashboardPermission ...', 
+        console.log('%c    Global-Variables saveDashboardPermission ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         let url: string = 'dashboardPermissions';
@@ -2685,7 +2683,7 @@ export class GlobalVariableService {
     deleteDashboardPermission(id: number): Promise<string> {
         // Description: Deletes a DashboardPermissions
         // Returns: 'Deleted' or error message
-        console.log('%c    Global-Variables deleteDashboardPermission ...', 
+        console.log('%c    Global-Variables deleteDashboardPermission ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", id);
 
         let url: string = 'dashboardPermissions';
@@ -2722,7 +2720,7 @@ export class GlobalVariableService {
         // Description: Gets all G
         // Returns: this.canvasGroups array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getCanvasGroups ...', 
+        console.log('%c    Global-Variables getCanvasGroups ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         let url: string = 'canvasGroups';
@@ -2738,12 +2736,12 @@ export class GlobalVariableService {
                         this.canvasGroups = data;
                         this.isDirtyCanvasGroups = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getCanvasGroups 1', 
+                        console.log('%c    Global-Variables getCanvasGroups 1',
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
                         resolve(this.canvasGroups);
                     });
             } else {
-                console.log('%c    Global-Variables getCanvasGroups 2', 
+                console.log('%c    Global-Variables getCanvasGroups 2',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
                 resolve(this.canvasGroups);
             }
@@ -2755,7 +2753,7 @@ export class GlobalVariableService {
         // Description: Gets all Sn
         // Returns: this.dashboardSnapshots array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getDashboardSnapshots ...', 
+        console.log('%c    Global-Variables getDashboardSnapshots ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         let url: string = 'dashboardSnapshots';
@@ -2772,12 +2770,12 @@ export class GlobalVariableService {
                         this.dashboardSnapshots = data;
                         this.isDirtyDashboardSnapshots = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getDashboardSnapshots 1', 
+                        console.log('%c    Global-Variables getDashboardSnapshots 1',
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.dashboardSnapshots)
                         resolve(this.dashboardSnapshots);
                     });
             } else {
-                console.log('%c    Global-Variables getDashboardSnapshots 2', 
+                console.log('%c    Global-Variables getDashboardSnapshots 2',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
                 resolve(this.dashboardSnapshots);
             }
@@ -2791,7 +2789,7 @@ export class GlobalVariableService {
         //   dashboardID
         // Returns: this.getDashboardSnapshots array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getCurrentDashboardSnapshots ...', 
+        console.log('%c    Global-Variables getCurrentDashboardSnapshots ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         // Refresh from source at start, or if dirty
@@ -2803,7 +2801,7 @@ export class GlobalVariableService {
                             i => i.dashboardID == dashboardID
                         );
                         this.currentDashboardSnapshots = data;
-                        console.log('%c    Global-Variables getCurrentDashboardSnapshots 1', 
+                        console.log('%c    Global-Variables getCurrentDashboardSnapshots 1',
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                             dashboardID, data)
                         resolve(this.currentDashboardSnapshots);
@@ -2816,7 +2814,7 @@ export class GlobalVariableService {
                     i => i.dashboardID == dashboardID
                 );
                 this.currentDashboardSnapshots = returnData;
-                console.log('%c    Global-Variables getCurrentDashboardSnapshots 2', 
+                console.log('%c    Global-Variables getCurrentDashboardSnapshots 2',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", dashboardID)
                 resolve(this.currentDashboardSnapshots);
             });
@@ -2826,11 +2824,11 @@ export class GlobalVariableService {
     newDashboardSnapshot(snapshotName: string, snapshotComment: string): Promise<any>  {
         // Description: Adds a new DashboardSnapshot
         // Returns: Added Data or error message
-        console.log('%c    Global-Variables newDashboardSnapshot ...', 
+        console.log('%c    Global-Variables newDashboardSnapshot ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         return new Promise<any>((resolve, reject) => {
-            
+
             // Create new record
             let newSn: DashboardSnapshot = {
                 id: null,
@@ -2856,7 +2854,7 @@ export class GlobalVariableService {
     addDashboardSnapshot(data: DashboardSnapshot): Promise<any> {
         // Description: Adds a new DashboardSnapshot
         // Returns: Added Data or error message
-        console.log('%c    Global-Variables addDashboardSnapshot ...', 
+        console.log('%c    Global-Variables addDashboardSnapshot ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", data.id);
 
         let url: string = 'dashboardSnapshots';
@@ -2891,7 +2889,7 @@ export class GlobalVariableService {
     deleteDashboardSnapshot(id: number): Promise<string> {
         // Description: Deletes a DashboardSnapshots
         // Returns: 'Deleted' or error message
-        console.log('%c    Global-Variables deleteDashboardSnapshot ...', 
+        console.log('%c    Global-Variables deleteDashboardSnapshot ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", id);
 
         let url: string = 'dashboardSnapshots';
@@ -2928,7 +2926,7 @@ export class GlobalVariableService {
         // Description: Gets all Th
         // Returns: this.dashboardThemes array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getDashboardThemes ...', 
+        console.log('%c    Global-Variables getDashboardThemes ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         let url: string = 'dashboardThemes';
@@ -2944,12 +2942,12 @@ export class GlobalVariableService {
                         this.dashboardThemes = data;
                         this.isDirtyDashboardThemes = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getDashboardThemes 1', 
+                        console.log('%c    Global-Variables getDashboardThemes 1',
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.dashboardThemes)
                         resolve(this.dashboardThemes);
                     });
             } else {
-                console.log('%c    Global-Variables getDashboardThemes 2', 
+                console.log('%c    Global-Variables getDashboardThemes 2',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
                 resolve(this.dashboardThemes);
             }
@@ -2962,7 +2960,7 @@ export class GlobalVariableService {
         // Returns: recent [D] array, unless:
         //   If not cached or if dirty, get from File
         // Refresh from source at start, or if dirty
-        console.log('%c    Global-Variables getDashboardTemplates ...', 
+        console.log('%c    Global-Variables getDashboardTemplates ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         if ( this.dashboards == []  ||  (this.isDirtyDashboards) ) {
@@ -2984,7 +2982,7 @@ export class GlobalVariableService {
                                 }
                             }
                         }
-                        console.log('%c    Global-Variables getDashboardTemplates 1', 
+                        console.log('%c    Global-Variables getDashboardTemplates 1',
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", returnData)
                         resolve(returnData);
                     });
@@ -3006,7 +3004,7 @@ export class GlobalVariableService {
                         }
                     }
                 }
-                console.log('%c    Global-Variables getDashboardTemplates 2', 
+                console.log('%c    Global-Variables getDashboardTemplates 2',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", returnData)
                 resolve(returnData);
 
@@ -3019,7 +3017,7 @@ export class GlobalVariableService {
         // Description: Gets all DS
         // Returns: this.datasources array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getDatasources ...', 
+        console.log('%c    Global-Variables getDatasources ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         let url: string = 'datasources';
@@ -3053,12 +3051,12 @@ export class GlobalVariableService {
                         });
 
 
-                        console.log('%c    Global-Variables getDatasources 1', 
+                        console.log('%c    Global-Variables getDatasources 1',
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.datasources)
                         resolve(this.datasources);
                     });
             } else {
-                console.log('%c    Global-Variables getDatasources 2', 
+                console.log('%c    Global-Variables getDatasources 2',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
                 resolve(this.datasources);
             }
@@ -3072,7 +3070,7 @@ export class GlobalVariableService {
         // Returns: this.datasources array, unless:
         //   If not cached or if dirty, get from File
         // NB: assume this.currentWidgets exists !!
-        console.log('%c    Global-Variables getCurrentDatasources ...', 
+        console.log('%c    Global-Variables getCurrentDatasources ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         let url: string = 'datasources';
@@ -3114,7 +3112,7 @@ export class GlobalVariableService {
                             this.isDirtyDatasources = false;
                             this.currentDatasources = returnData;
                             this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                            console.log('%c    Global-Variables getCurrentDatasources 1', 
+                            console.log('%c    Global-Variables getCurrentDatasources 1',
                             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                                 dashboardID, this.currentDatasources);
                             resolve(this.currentDatasources);
@@ -3146,7 +3144,7 @@ export class GlobalVariableService {
                 this.isDirtyDatasources = false;
                 this.currentDatasources = returnData;
                 this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                console.log('%c    Global-Variables getCurrentDatasources 2', 
+                console.log('%c    Global-Variables getCurrentDatasources 2',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", dashboardID,
                     this.currentDatasources);
                 resolve(this.currentDatasources);
@@ -3157,7 +3155,7 @@ export class GlobalVariableService {
     addDatasource(data: Datasource): Promise<any> {
         // Description: Adds a new Datasource, if it does not exist
         // Returns: Added Data or error message
-        console.log('%c    Global-Variables addDatasource ...', 
+        console.log('%c    Global-Variables addDatasource ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", data.id);
 
         let url: string = 'datasources';
@@ -3199,7 +3197,7 @@ export class GlobalVariableService {
 
     deleteCurrentDatasource(id: number) {
         // Delete current DS
-        console.log('%c    Global-Variables deleteCurrentDatasource', 
+        console.log('%c    Global-Variables deleteCurrentDatasource',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", id, this.currentDatasources)
 
         let index: number = -1;
@@ -3212,7 +3210,7 @@ export class GlobalVariableService {
             this.currentDatasources.splice(index,1)
         };
 
-        console.log('%c    Global-Variables deleteCurrentDatasource end', 
+        console.log('%c    Global-Variables deleteCurrentDatasource end',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.currentDatasources)
 
     }
@@ -3221,7 +3219,7 @@ export class GlobalVariableService {
         // Description: Gets all Tr
         // Returns: this.transformations array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getTransformations ...', 
+        console.log('%c    Global-Variables getTransformations ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         let url: string = 'transformations';
@@ -3237,12 +3235,12 @@ export class GlobalVariableService {
                         this.transformations = data;
                         this.isDirtyTransformations = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getTransformations 1', 
+                        console.log('%c    Global-Variables getTransformations 1',
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",  data)
                         resolve(this.transformations);
                     });
             } else {
-                console.log('%c    Global-Variables getTransformations 2', 
+                console.log('%c    Global-Variables getTransformations 2',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
                 resolve(this.transformations);
             }
@@ -3254,7 +3252,7 @@ export class GlobalVariableService {
         // Description: Gets Tr for current DS
         // Returns: this.currentTransformations.value array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getCurrentTransformations ...', 
+        console.log('%c    Global-Variables getCurrentTransformations ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         let url: string = 'transformations';
@@ -3268,7 +3266,7 @@ export class GlobalVariableService {
                             i => i.datasourceID == datasourceID
                         );
                         this.currentTransformations = data;
-                        console.log('%c    Global-Variables getTransformations 1', 
+                        console.log('%c    Global-Variables getTransformations 1',
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", datasourceID, data)
                         resolve(this.currentTransformations);
                 })
@@ -3280,7 +3278,7 @@ export class GlobalVariableService {
                     i => i.datasourceID == datasourceID
                 );
                 this.currentTransformations = returnData;
-                console.log('%c    Global-Variables getTransformations 2', 
+                console.log('%c    Global-Variables getTransformations 2',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", datasourceID, returnData)
                 resolve(this.currentTransformations);
             });
@@ -3291,7 +3289,7 @@ export class GlobalVariableService {
         // Description: Gets all dQual
         // Returns: this.dataQualityIssues array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getDataQualityIssues ...', 
+        console.log('%c    Global-Variables getDataQualityIssues ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         let url: string = 'dataQualityIssues';
@@ -3307,12 +3305,12 @@ export class GlobalVariableService {
                         this.dataQualityIssues = data;
                         this.isDirtyDataQualityIssues = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getDataQualityIssues 1', 
+                        console.log('%c    Global-Variables getDataQualityIssues 1',
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.dataQualityIssues)
                         resolve(this.dataQualityIssues);
                     });
             } else {
-                console.log('%c    Global-Variables getDataQualityIssues 2', 
+                console.log('%c    Global-Variables getDataQualityIssues 2',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.dataQualityIssues)
                 resolve(this.dataQualityIssues);
             }
@@ -3323,7 +3321,7 @@ export class GlobalVariableService {
         // Description: Gets dQual for current DS
         // Returns: this.dataQualityIssues.value array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getCurrentDataQualityIssues ...', 
+        console.log('%c    Global-Variables getCurrentDataQualityIssues ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         let url: string = 'dataQualityIssues';
@@ -3337,7 +3335,7 @@ export class GlobalVariableService {
                             i => i.datasourceID == datasourceID
                         );
                         this.currentDataQualityIssues = data;
-                        console.log('%c    Global-Variables getDataQualityIssuess 1', 
+                        console.log('%c    Global-Variables getDataQualityIssuess 1',
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                             datasourceID, data)
                         resolve(this.currentDataQualityIssues);
@@ -3350,7 +3348,7 @@ export class GlobalVariableService {
                     i => i.datasourceID == datasourceID
                 );
                 this.currentDataQualityIssues = returnData;
-                console.log('%c    Global-Variables getDataQualityIssuess 2', 
+                console.log('%c    Global-Variables getDataQualityIssuess 2',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", datasourceID, returnData)
                 resolve(this.currentDataQualityIssues);
             });
@@ -3361,7 +3359,7 @@ export class GlobalVariableService {
         // Description: Gets all DS-P
         // Returns: this.datasourcePermissions array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getDatasourcePermissions ...', 
+        console.log('%c    Global-Variables getDatasourcePermissions ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         let url: string = 'datasourcePermissions';
@@ -3377,12 +3375,12 @@ export class GlobalVariableService {
                         this.datasourcePermissions = data;
                         this.isDirtyDatasourcePermissions = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getDatasourcePermissions 1', 
+                        console.log('%c    Global-Variables getDatasourcePermissions 1',
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.datasourcePermissions)
                         resolve(this.datasourcePermissions);
                     });
             } else {
-                console.log('%c    Global-Variables getDatasourcePermissions 2', 
+                console.log('%c    Global-Variables getDatasourcePermissions 2',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.datasourcePermissions)
                 resolve(this.datasourcePermissions);
             }
@@ -3393,7 +3391,7 @@ export class GlobalVariableService {
         // Description: Gets DS-P for current DS
         // Returns: this.datasourcePermissions.value array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getCurrentDatasourcePermissions ...', 
+        console.log('%c    Global-Variables getCurrentDatasourcePermissions ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         let url: string = 'datasourcePermissions';
@@ -3407,7 +3405,7 @@ export class GlobalVariableService {
                             i => i.datasourceID == datasourceID
                         );
                         this.currentDatasourcePermissions = data;
-                        console.log('%c    Global-Variables getDatasourcePermissions 1', 
+                        console.log('%c    Global-Variables getDatasourcePermissions 1',
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", datasourceID, data)
                         resolve(this.currentDatasourcePermissions);
                 })
@@ -3419,7 +3417,7 @@ export class GlobalVariableService {
                     i => i.datasourceID == datasourceID
                 );
                 this.currentDatasourcePermissions = returnData;
-                console.log('%c    Global-Variables getDatasourcePermissions 2', 
+                console.log('%c    Global-Variables getDatasourcePermissions 2',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", datasourceID)
                 resolve(this.currentDatasourcePermissions);
             });
@@ -3429,7 +3427,7 @@ export class GlobalVariableService {
 
     deleteDatasourcePermission(id: number) {
         // Remove a record from the global and current DatasourcePermissions
-        console.log('%c    Global-Variables deleteDatasourcePermission ...', 
+        console.log('%c    Global-Variables deleteDatasourcePermission ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", id);
 
         console.warn('xx GV Perms pre', this.datasourcePermissions, this.currentDatasourcePermissions)
@@ -3448,7 +3446,7 @@ export class GlobalVariableService {
         // Description: Gets all DS-P
         // Returns: this.datasourcePivots array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getDatasourcePivots ...', 
+        console.log('%c    Global-Variables getDatasourcePivots ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         let url: string = 'datasourcePivots';
@@ -3464,12 +3462,12 @@ export class GlobalVariableService {
                         this.datasourcePivots = data;
                         this.isDirtyDatasourcePivots = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getDatasourcePivots 1', 
+                        console.log('%c    Global-Variables getDatasourcePivots 1',
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.datasourcePivots)
                         resolve(this.datasourcePivots);
                     });
             } else {
-                console.log('%c    Global-Variables getDatasourcePivots 2', 
+                console.log('%c    Global-Variables getDatasourcePivots 2',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.datasourcePivots)
                 resolve(this.datasourcePivots);
             }
@@ -3480,7 +3478,7 @@ export class GlobalVariableService {
         // Description: Gets DS-P for current DS
         // Returns: this.datasourcePivots.value array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getCurrentDatasourcePivots ...', 
+        console.log('%c    Global-Variables getCurrentDatasourcePivots ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         let url: string = 'datasourcePivots';
@@ -3494,7 +3492,7 @@ export class GlobalVariableService {
                             i => i.datasourceID == datasourceID
                         );
                         this.currentDatasourcePivots = data;
-                        console.log('%c    Global-Variables getDatasourcePivots 1', 
+                        console.log('%c    Global-Variables getDatasourcePivots 1',
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", datasourceID, data)
                         resolve(this.currentDatasourcePivots);
                 })
@@ -3506,7 +3504,7 @@ export class GlobalVariableService {
                     i => i.datasourceID == datasourceID
                 );
                 this.currentDatasourcePivots = returnData;
-                console.log('%c    Global-Variables getDatasourcePivots 2', 
+                console.log('%c    Global-Variables getDatasourcePivots 2',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", datasourceID, returnData)
                 resolve(this.currentDatasourcePivots);
             });
@@ -3518,7 +3516,7 @@ export class GlobalVariableService {
         // Description: Gets system settings
         // Returns: this.canvasSettings object, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getSystemSettings ...', 
+        console.log('%c    Global-Variables getSystemSettings ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         let url: string = 'canvasSettings';
@@ -3554,20 +3552,20 @@ export class GlobalVariableService {
                         this.canvasSettings.queryRunningMessage = data.queryRunningMessage;
 
                         // Sanitize
-                        if (this.canvasSettings.gridSize > 100  
-                            || this.canvasSettings.gridSize == null  
+                        if (this.canvasSettings.gridSize > 100
+                            || this.canvasSettings.gridSize == null
                             || this.canvasSettings.gridSize == undefined) {
                             this.canvasSettings.gridSize = 100;
                         };
 
                         this.isDirtyCanvasSettings = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getSystemSettings 1', 
+                        console.log('%c    Global-Variables getSystemSettings 1',
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.canvasSettings)
                         resolve(this.canvasSettings);
                     });
             } else {
-                console.log('%c    Global-Variables getSystemSettings 2', 
+                console.log('%c    Global-Variables getSystemSettings 2',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.canvasSettings)
                 resolve(this.canvasSettings);
             }
@@ -3578,7 +3576,7 @@ export class GlobalVariableService {
     saveSystemSettings(data: CanvasSettings): Promise<string> {
         // Description: Saves system settings
         // Returns: 'Saved' or error message
-        console.log('%c    Global-Variables saveSystemSettings ...', 
+        console.log('%c    Global-Variables saveSystemSettings ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         let url: string = 'canvasSettings';
@@ -3609,7 +3607,7 @@ export class GlobalVariableService {
         // Description: Gets dashboardSubscriptions
         // Returns: this.dashboardSubscriptions object, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getDashboardSubscription ...', 
+        console.log('%c    Global-Variables getDashboardSubscription ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         let url: string = 'dashboardSubscriptions';
@@ -3626,12 +3624,12 @@ export class GlobalVariableService {
 
                         this.isDirtyDashboardSubscription = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getDashboardSubscription 1', 
+                        console.log('%c    Global-Variables getDashboardSubscription 1',
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.dashboardSubscriptions)
                         resolve(this.dashboardSubscriptions);
                     });
             } else {
-                console.log('%c    Global-Variables getDashboardSubscription 2', 
+                console.log('%c    Global-Variables getDashboardSubscription 2',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.dashboardSubscriptions)
                 resolve(this.dashboardSubscriptions);
             }
@@ -3643,7 +3641,7 @@ export class GlobalVariableService {
         // Description: Gets currentDashboardSubscription
         // Returns: this.currentDashboardSubscription object, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getDashboardSubscription ...', 
+        console.log('%c    Global-Variables getDashboardSubscription ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         let url: string = 'dashboardSubscriptions';
@@ -3664,12 +3662,12 @@ export class GlobalVariableService {
 
                         this.isDirtyDashboardSubscription = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getDashboardSubscription 1', 
+                        console.log('%c    Global-Variables getDashboardSubscription 1',
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.currentDashboardSubscriptions)
                         resolve(this.currentDashboardSubscriptions);
                     });
             } else {
-                console.log('%c    Global-Variables getDashboardSubscription 2', 
+                console.log('%c    Global-Variables getDashboardSubscription 2',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.currentDashboardSubscriptions)
                 resolve(this.currentDashboardSubscriptions);
             }
@@ -3680,7 +3678,7 @@ export class GlobalVariableService {
     saveDashboardSubscription(data: DashboardSubscription): Promise<string> {
         // Description: Saves DashboardSubscription
         // Returns: 'Saved' or error message
-        console.log('%c    Global-Variables saveDashboardSubscription ...', 
+        console.log('%c    Global-Variables saveDashboardSubscription ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         let url: string = 'dashboardSubscriptions';
@@ -3715,7 +3713,7 @@ export class GlobalVariableService {
     addDashboardSubscription(data: DashboardSubscription): Promise<any> {
         // Description: Adds a new DashboardSubscription
         // Returns: Added Data or error message
-        console.log('%c    Global-Variables addDashboardSubscription ...', 
+        console.log('%c    Global-Variables addDashboardSubscription ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", data.id);
 
         let url: string = 'dashboardSubscriptions';
@@ -3745,7 +3743,7 @@ export class GlobalVariableService {
     deleteDashboardSubscription(id: number): Promise<string> {
         // Description: Deletes a DashboardSubscription
         // Returns: 'Deleted' or error message
-        console.log('%c    Global-Variables deleteDashboardSubscription ...', 
+        console.log('%c    Global-Variables deleteDashboardSubscription ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", id);
 
         let url: string = 'dashboardSubscriptions';
@@ -3779,7 +3777,7 @@ export class GlobalVariableService {
         // Description: Gets currentgetPaletteButtonBar
         // Returns: this.currentgetPaletteButtonBar object, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getPaletteButtonBar ...', 
+        console.log('%c    Global-Variables getPaletteButtonBar ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         let url: string = 'paletteButtonBars';
@@ -3796,12 +3794,12 @@ export class GlobalVariableService {
 
                         this.isDirtyPaletteButtonBar = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getPaletteButtonBar 1', 
+                        console.log('%c    Global-Variables getPaletteButtonBar 1',
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.currentPaletteButtonBar)
                         resolve(this.currentPaletteButtonBar);
                     });
             } else {
-                console.log('%c    Global-Variables getPaletteButtonBar 2', 
+                console.log('%c    Global-Variables getPaletteButtonBar 2',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.currentPaletteButtonBar)
                 resolve(this.currentPaletteButtonBar);
             }
@@ -3812,7 +3810,7 @@ export class GlobalVariableService {
     savePaletteButtonBar(data: PaletteButtonBar): Promise<string> {
         // Description: Saves PaletteButtonBar
         // Returns: 'Saved' or error message
-        console.log('%c    Global-Variables savePaletteButtonBar ...', 
+        console.log('%c    Global-Variables savePaletteButtonBar ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         let url: string = 'paletteButtonBars';
@@ -3848,7 +3846,7 @@ export class GlobalVariableService {
         // Description: Gets currentgetPaletteButtonsSelected
         // Returns: this.currentgetPaletteButtonsSelected object, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getPaletteButtonsSelected ...', 
+        console.log('%c    Global-Variables getPaletteButtonsSelected ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         let url: string = 'paletteButtonsSelecteds';
@@ -3866,13 +3864,13 @@ export class GlobalVariableService {
                         this.isDirtyPaletteButtonsSelected = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
 
-                        console.log('%c    Global-Variables getPaletteButtonsSelected 1', 
+                        console.log('%c    Global-Variables getPaletteButtonsSelected 1',
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                             this.currentPaletteButtonsSelected.value);
                         resolve(this.currentPaletteButtonsSelected.value);
                     });
             } else {
-                console.log('%c    Global-Variables getPaletteButtonsSelected 2', 
+                console.log('%c    Global-Variables getPaletteButtonsSelected 2',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                     this.currentPaletteButtonsSelected.value);
 
@@ -3885,7 +3883,7 @@ export class GlobalVariableService {
     savePaletteButtonsSelected(data: PaletteButtonsSelected): Promise<string> {
         // Description: Saves PaletteButtonsSelected
         // Returns: 'Saved' or error message
-        console.log('%c    Global-Variables savePaletteButtonsSelected ...', 
+        console.log('%c    Global-Variables savePaletteButtonsSelected ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         let url: string = 'paletteButtonsSelecteds';
@@ -3920,7 +3918,7 @@ export class GlobalVariableService {
     deletePaletteButtonsSelected(id: number): Promise<string> {
         // Description: Deletes a PaletteButtonsSelected
         // Returns: 'Deleted' or error message
-        console.log('%c    Global-Variables deletePaletteButtonsSelected ...', 
+        console.log('%c    Global-Variables deletePaletteButtonsSelected ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", id);
 
         let url: string = 'paletteButtonsSelecteds';
@@ -3969,7 +3967,7 @@ export class GlobalVariableService {
     addPaletteButtonsSelected(data: PaletteButtonsSelected): Promise<any> {
         // Description: Adds a new PaletteButtonsSelected
         // Returns: Added Data or error message
-        console.log('%c    Global-Variables addPaletteButtonsSelected ...', 
+        console.log('%c    Global-Variables addPaletteButtonsSelected ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", data.id);
 
         let url: string = 'paletteButtonsSelecteds';
@@ -4012,7 +4010,7 @@ export class GlobalVariableService {
         // NOTE: this gets ALL W from DB (irrespective of isTrashed), so it includes soft deletes
         // and must be treated as such arrays
 
-        console.log('%c    Global-Variables getWidgets ...', 
+        console.log('%c    Global-Variables getWidgets ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.widgets.length);
 
         let url: string = 'widgets';
@@ -4144,13 +4142,13 @@ export class GlobalVariableService {
 
                         this.isDirtyWidgets = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getWidgets 1', 
+                        console.log('%c    Global-Variables getWidgets 1',
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.widgets)
                         resolve(this.widgets);
                     });
             } else {
                 // NOTE: includes soft deletes, isTrashed = true
-                console.log('%c    Global-Variables getWidgets 2', 
+                console.log('%c    Global-Variables getWidgets 2',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.widgets)
                 resolve(this.widgets);
             }
@@ -4167,7 +4165,7 @@ export class GlobalVariableService {
         //   If not cached or if dirty, get from File
         // Usage: getWidgets(1, -1)  =>  Returns W for DashboardID = 1
         // NOTE: only get isTrashed = false, as those guys are soft deleted
-        console.log('%c    Global-Variables getCurrentWidgets ...', 
+        console.log('%c    Global-Variables getCurrentWidgets ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         // Refresh from source at start, or if dirty
@@ -4188,7 +4186,7 @@ export class GlobalVariableService {
                         );
                         this.currentWidgets = data;
 
-                        console.log('%c    Global-Variables getCurrentWidgets 1', 
+                        console.log('%c    Global-Variables getCurrentWidgets 1',
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.currentWidgets)
                         resolve(this.currentWidgets);
                 })
@@ -4207,7 +4205,7 @@ export class GlobalVariableService {
                 )
 
                 this.currentWidgets = data;
-                console.log('%c    Global-Variables getCurrentWidgets 2', 
+                console.log('%c    Global-Variables getCurrentWidgets 2',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", dashboardID,
                     dashboardTabID,  this.currentWidgets, this.widgets)
                 resolve(this.currentWidgets);
@@ -4220,7 +4218,7 @@ export class GlobalVariableService {
     addWidget(data: Widget): Promise<any> {
         // Description: Adds a new Widget
         // Returns: Added Data or error message
-        console.log('%c    Global-Variables addWidget ...', 
+        console.log('%c    Global-Variables addWidget ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", data.id);
 
         let url: string = 'widgets';
@@ -4257,7 +4255,7 @@ export class GlobalVariableService {
         // NOTE: this permananently deletes a W, from arrays and DB.  This must NOT be used for
         // a simplete W delete, in which case it stays in DB (with isTrashed = true), and is
         // only removed from the arrays
-        console.log('%c    Global-Variables deleteWidget ...', 
+        console.log('%c    Global-Variables deleteWidget ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", id);
 
         let url: string = 'widgets';
@@ -4293,7 +4291,7 @@ export class GlobalVariableService {
     saveWidget(data: Widget): Promise<string> {
         // Description: Saves Widget
         // Returns: 'Saved' or error message
-        console.log('%c    Global-Variables saveWidget ...', 
+        console.log('%c    Global-Variables saveWidget ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         let url: string = 'widgets';
@@ -4346,7 +4344,7 @@ export class GlobalVariableService {
         // Description: Gets data and other info for [W]
         // Returns: this.datasets, currentDataset array
         // NB: this assumes [W] and [datasets] are available !!
-        console.log('%c    Global-Variables getWidgetsInfo ...', 
+        console.log('%c    Global-Variables getWidgetsInfo ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         // Empty the necessary
@@ -4423,7 +4421,7 @@ export class GlobalVariableService {
 
                     // });
 
-                    console.log('%c    Global-Variables getWidgetsInfo 1 True', 
+                    console.log('%c    Global-Variables getWidgetsInfo 1 True',
                     "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
                     resolve(true);
                 },
@@ -4434,7 +4432,7 @@ export class GlobalVariableService {
 
     allWithAsync = (...listOfPromises) => {
         // Resolve all promises in array
-        console.log('%c    Global-Variables allWithAsync ...', 
+        console.log('%c    Global-Variables allWithAsync ...',
         "color: black; background: lightgray; font-size: 10px");
 
         return new Promise(async (resolve, reject) => {
@@ -4454,7 +4452,7 @@ export class GlobalVariableService {
         // Description: Gets all Background colors
         // Returns: this.backgroundcolors array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getBackgroundColors ...', 
+        console.log('%c    Global-Variables getBackgroundColors ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         let url: string = 'canvasBackgroundcolors';
@@ -4471,12 +4469,12 @@ export class GlobalVariableService {
 
                         this.isDirtyBackgroundColors = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getBackgroundColors 1', 
+                        console.log('%c    Global-Variables getBackgroundColors 1',
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.backgroundcolors)
                         resolve(this.backgroundcolors);
                     });
             } else {
-                console.log('%c    Global-Variables getBackgroundColors 2', 
+                console.log('%c    Global-Variables getBackgroundColors 2',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.backgroundcolors)
                 resolve(this.backgroundcolors);
             }
@@ -4488,7 +4486,7 @@ export class GlobalVariableService {
         // Description: Gets all Canvas Activities
         // Returns: this.canvasTasks array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getCanvasTasks ...', 
+        console.log('%c    Global-Variables getCanvasTasks ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.canvasTasks.length);
 
         let url: string = 'canvasTasks';
@@ -4505,12 +4503,12 @@ export class GlobalVariableService {
 
                         this.isDirtyCanvasTasks = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getCanvasTasks 1', 
+                        console.log('%c    Global-Variables getCanvasTasks 1',
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.canvasTasks)
                         resolve(this.canvasTasks);
                     });
             } else {
-                console.log('%c    Global-Variables getCanvasTasks 2', 
+                console.log('%c    Global-Variables getCanvasTasks 2',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.canvasTasks)
                 resolve(this.canvasTasks);
             }
@@ -4521,7 +4519,7 @@ export class GlobalVariableService {
     addCanvasTask(data: CanvasTask): Promise<any> {
         // Description: Adds a new canvasTask
         // Returns: Added Data or error message
-        console.log('%c    Global-Variables addCanvasTask ...', 
+        console.log('%c    Global-Variables addCanvasTask ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", data.id);
 
         let url: string = 'canvasTasks';
@@ -4531,7 +4529,7 @@ export class GlobalVariableService {
 
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
- 
+
             this.http.post('http://localhost:3000/' + url, data, {headers})
             .subscribe(
                 res => {
@@ -4555,7 +4553,7 @@ export class GlobalVariableService {
         // Description: Gets all Canvas Comments
         // Returns: this.canvasComments array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getCanvasComments ...', 
+        console.log('%c    Global-Variables getCanvasComments ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.canvasComments.length);
 
         let url: string = 'canvasComments';
@@ -4572,12 +4570,12 @@ export class GlobalVariableService {
 
                         this.isDirtyCanvasComments = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getCanvasComments 1', 
+                        console.log('%c    Global-Variables getCanvasComments 1',
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.canvasComments)
                         resolve(this.canvasComments);
                     });
             } else {
-                console.log('%c    Global-Variables getCanvasComments 2', 
+                console.log('%c    Global-Variables getCanvasComments 2',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.canvasComments)
                 resolve(this.canvasComments);
             }
@@ -4588,7 +4586,7 @@ export class GlobalVariableService {
     addCanvasComment(data: CanvasComment): Promise<any> {
         // Description: Adds a new canvasComment
         // Returns: Added Data or error message
-        console.log('%c    Global-Variables addCanvasComment ...', 
+        console.log('%c    Global-Variables addCanvasComment ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", data.id);
 
         let url: string = 'canvasComments';
@@ -4598,7 +4596,7 @@ export class GlobalVariableService {
 
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
- 
+
             this.http.post('http://localhost:3000/' + url, data, {headers})
             .subscribe(
                 res => {
@@ -4630,7 +4628,7 @@ export class GlobalVariableService {
     saveCanvasComment(data: CanvasComment): Promise<string> {
         // Description: Saves CanvasComment
         // Returns: 'Saved' or error Comment
-        console.log('%c    Global-Variables saveCanvasComment ...', 
+        console.log('%c    Global-Variables saveCanvasComment ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         let url: string = 'canvasComments';
@@ -4665,7 +4663,7 @@ export class GlobalVariableService {
     deleteCanvasComment(id: number, widgetID: number = null): Promise<string> {
         // Description: Deletes a canvasComments
         // Returns: 'Deleted' or error message
-        console.log('%c    Global-Variables deleteCanvasComment ...', 
+        console.log('%c    Global-Variables deleteCanvasComment ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", id);
 
         let url: string = 'canvasComments';
@@ -4708,7 +4706,7 @@ export class GlobalVariableService {
         // Description: Gets all Canvas Messages
         // Returns: this.canvasMessages array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getCanvasMessages ...', 
+        console.log('%c    Global-Variables getCanvasMessages ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.canvasMessages.length);
 
         let url: string = 'canvasMessages';
@@ -4725,12 +4723,12 @@ export class GlobalVariableService {
 
                         this.isDirtyCanvasMessages = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getCanvasMessages 1', 
+                        console.log('%c    Global-Variables getCanvasMessages 1',
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.canvasMessages)
                         resolve(this.canvasMessages);
                     });
             } else {
-                console.log('%c    Global-Variables getCanvasMessages 2', 
+                console.log('%c    Global-Variables getCanvasMessages 2',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.canvasMessages)
                 resolve(this.canvasMessages);
             }
@@ -4741,7 +4739,7 @@ export class GlobalVariableService {
     addCanvasMessage(data: CanvasMessage): Promise<any> {
         // Description: Adds a new CanvasMessage
         // Returns: Added Data or error message
-        console.log('%c    Global-Variables addCanvasMessage ...', 
+        console.log('%c    Global-Variables addCanvasMessage ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         let url: string = 'canvasMessages';
@@ -4774,7 +4772,7 @@ export class GlobalVariableService {
     saveCanvasMessage(data: CanvasMessage): Promise<string> {
         // Description: Saves CanvasMessage
         // Returns: 'Saved' or error message
-        console.log('%c    Global-Variables saveCanvasMessage ...', 
+        console.log('%c    Global-Variables saveCanvasMessage ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         let url: string = 'canvasMessages';
@@ -4809,7 +4807,7 @@ export class GlobalVariableService {
     updateCanvasMessagesAsRead(userID: string) {
         // Marks all messages for this userID as read - typically done when Messages form
         // is closed, or at logout.
-        console.log('%c    Global-Variables addCanvasMessage ...', 
+        console.log('%c    Global-Variables addCanvasMessage ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         // TODO - this must be done via the DB: for now, only glob-var array
@@ -4822,11 +4820,11 @@ export class GlobalVariableService {
             });
         });
     }
-    
+
     deleteCanvasMessage(id: number): Promise<string> {
         // Description: Deletes a canvasMessages
         // Returns: 'Deleted' or error message
-        console.log('%c    Global-Variables deleteCanvasMessage ...', 
+        console.log('%c    Global-Variables deleteCanvasMessage ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", id);
 
         let url: string = 'canvasMessages';
@@ -4860,7 +4858,7 @@ export class GlobalVariableService {
         // Description: Gets all Canvas Messages
         // Returns: this.widgetCheckpoints array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getWidgetCheckpoints ...', 
+        console.log('%c    Global-Variables getWidgetCheckpoints ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.widgetCheckpoints.length);
 
         let url: string = 'widgetCheckpoints';
@@ -4877,12 +4875,12 @@ export class GlobalVariableService {
 
                         this.isDirtyWidgetCheckpoints = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getWidgetCheckpoints 1', 
+                        console.log('%c    Global-Variables getWidgetCheckpoints 1',
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.widgetCheckpoints)
                         resolve(this.widgetCheckpoints);
                     });
             } else {
-                console.log('%c    Global-Variables getWidgetCheckpoints 2', 
+                console.log('%c    Global-Variables getWidgetCheckpoints 2',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.widgetCheckpoints)
                 resolve(this.widgetCheckpoints);
             }
@@ -4894,7 +4892,7 @@ export class GlobalVariableService {
         // Description: Gets all Checkpoints for current D
         // Returns: this.currentWidgetCheckpoints array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getCurrentWidgetCheckpoints ...', 
+        console.log('%c    Global-Variables getCurrentWidgetCheckpoints ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         // Refresh from source at start, or if dirty
@@ -4906,7 +4904,7 @@ export class GlobalVariableService {
                             i => i.dashboardID == dashboardID
                         );
                         this.currentWidgetCheckpoints = data;
-                        console.log('%c    Global-Variables getCurrentWidgetCheckpoints 1', 
+                        console.log('%c    Global-Variables getCurrentWidgetCheckpoints 1',
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", dashboardID, data)
                         resolve(this.currentWidgetCheckpoints);
 
@@ -4919,7 +4917,7 @@ export class GlobalVariableService {
                     i => i.dashboardID == dashboardID
                 );
                 this.currentWidgetCheckpoints = returnData;
-                console.log('%c    Global-Variables getCurrentWidgetCheckpoints 2', 
+                console.log('%c    Global-Variables getCurrentWidgetCheckpoints 2',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", dashboardID, returnData)
                 resolve(this.currentWidgetCheckpoints);
             });
@@ -4930,7 +4928,7 @@ export class GlobalVariableService {
     addWidgetCheckpoint(data: WidgetCheckpoint): Promise<any> {
         // Description: Adds a new WidgetCheckpoint
         // Returns: Added Data or error message
-        console.log('%c    Global-Variables addWidgetCheckpoint ...', 
+        console.log('%c    Global-Variables addWidgetCheckpoint ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", data.id);
 
         let url: string = 'widgetCheckpoints';
@@ -4964,7 +4962,7 @@ export class GlobalVariableService {
     deleteWidgetCheckpoint(id: number): Promise<string> {
         // Description: Deletes a WidgetCheckpoints
         // Returns: 'Deleted' or error message
-        console.log('%c    Global-Variables deleteWidgetCheckpoint ...', 
+        console.log('%c    Global-Variables deleteWidgetCheckpoint ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", id);
 
         let url: string = 'widgetCheckpoints';
@@ -5001,7 +4999,7 @@ export class GlobalVariableService {
     saveWidgetCheckpoint(data: WidgetCheckpoint): Promise<string> {
         // Description: Saves Widget Checkpoint
         // Returns: 'Saved' or error message
-        console.log('%c    Global-Variables saveWidgetCheckpoint ...', 
+        console.log('%c    Global-Variables saveWidgetCheckpoint ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", data);
 
         let url: string = 'widgetCheckpoints';
@@ -5035,7 +5033,7 @@ export class GlobalVariableService {
 
     getTree<T>(url: string, options?: any, dashboardID?: number, datasourceID?: number): Promise<any> {
         // Generic GET data, later to be replaced with http
-        console.log('%c    Global-Variables get ...', 
+        console.log('%c    Global-Variables get ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         return new Promise((resolve, reject) => {
@@ -5052,7 +5050,7 @@ export class GlobalVariableService {
         // Description: Gets all Canvas Users
         // Returns: this.users array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getCanvasUsers ...', 
+        console.log('%c    Global-Variables getCanvasUsers ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         let url: string = 'canvasUsers';
@@ -5068,12 +5066,12 @@ export class GlobalVariableService {
                         this.canvasUsers = data;
                         this.isDirtyUsers = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getCanvasUsers 1', 
+                        console.log('%c    Global-Variables getCanvasUsers 1',
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.canvasUsers)
                         resolve(this.canvasUsers);
                     });
             } else {
-                console.log('%c    Global-Variables getCanvasUsers 2', 
+                console.log('%c    Global-Variables getCanvasUsers 2',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.canvasUsers)
                 resolve(this.canvasUsers);
             }
@@ -5084,7 +5082,7 @@ export class GlobalVariableService {
     saveCanvasUser(data: CanvasUser): Promise<string> {
         // Description: Saves CanvasUser
         // Returns: 'Saved' or error message
-        console.log('%c    Global-Variables saveCanvasUser ...', 
+        console.log('%c    Global-Variables saveCanvasUser ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         let url: string = 'canvasUsers';
@@ -5120,7 +5118,7 @@ export class GlobalVariableService {
         // Description: Gets all Canvas AuditTrails
         // Returns: this.canvasAuditTrails array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getCanvasAuditTrails ...', 
+        console.log('%c    Global-Variables getCanvasAuditTrails ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.canvasAuditTrails.length);
 
         let url: string = 'canvasAuditTrails';
@@ -5137,12 +5135,12 @@ export class GlobalVariableService {
 
                         this.isDirtyCanvasAuditTrails = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getCanvasAuditTrails 1', 
+                        console.log('%c    Global-Variables getCanvasAuditTrails 1',
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.canvasAuditTrails)
                         resolve(this.canvasAuditTrails);
                     });
             } else {
-                console.log('%c    Global-Variables getCanvasAuditTrails 2', 
+                console.log('%c    Global-Variables getCanvasAuditTrails 2',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.canvasAuditTrails)
                 resolve(this.canvasAuditTrails);
             }
@@ -5153,7 +5151,7 @@ export class GlobalVariableService {
     addCanvasAuditTrail(data: CanvasAuditTrail): Promise<any> {
         // Description: Adds a new canvasAuditTrail
         // Returns: Added Data or error message
-        console.log('%c    Global-Variables addCanvasAuditTrail ...', 
+        console.log('%c    Global-Variables addCanvasAuditTrail ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", data.id);
 
         let url: string = 'canvasAuditTrails';
@@ -5163,7 +5161,7 @@ export class GlobalVariableService {
 
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
- 
+
             this.http.post('http://localhost:3002/' + url, data, {headers})
             .subscribe(
                 res => {
@@ -5182,10 +5180,10 @@ export class GlobalVariableService {
             )
         });
     }
-    
+
     get<T>(url: string, options?: any, dashboardID?: number, datasourceID?: number): Promise<any> {
         // Generic GET data, later to be replaced with http
-        console.log('%c    Global-Variables get (url, filePath) ...', 
+        console.log('%c    Global-Variables get (url, filePath) ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", url, this.filePath);
 
         // TODO - cleaner switch to http?
@@ -5276,8 +5274,8 @@ export class GlobalVariableService {
                 } else {
                     finalUrl = 'http://localhost:3000/' + url;
                 };
-                
-                
+
+
                 this.http.get(finalUrl).subscribe(
                     res =>
                     {
@@ -5317,7 +5315,7 @@ export class GlobalVariableService {
 
     connectLocalDB<T>(): Promise<string | Object> {
         // Connect to the local DB, ie nanaSQL
-        console.log('%c    Global-Variables connectLocalDB', 
+        console.log('%c    Global-Variables connectLocalDB',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         return new Promise((resolve, reject) => {
@@ -5571,7 +5569,7 @@ export class GlobalVariableService {
             ])
             .connect()
             .then(db => {
-                console.log('%c    Global-Variables connectLocalDB', 
+                console.log('%c    Global-Variables connectLocalDB',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", db)
                 resolve(db)
 
@@ -5581,14 +5579,14 @@ export class GlobalVariableService {
 
     getLocal<T>(table: string, params?: any): Promise<any> {
         // Generic retrieval of data from localDB
-        console.log('%c    Global-Variables getLocal for table, params...', 
+        console.log('%c    Global-Variables getLocal for table, params...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", table, params);
 
         return new Promise((resolve, reject) => {
 
             nSQL(table).query('select').exec()
             .then( result => {
-                console.log('%c    Global-Variables getLocal result', 
+                console.log('%c    Global-Variables getLocal result',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", result) // <= arrayid:1, name:"bill", age: 20}]
                 resolve(result)
             })
@@ -5608,7 +5606,7 @@ export class GlobalVariableService {
 
     saveLocal<T>(table: string, row: any): Promise<any> {
         // Generic saving of row to a table in the localDB
-        console.log('%c    Global-Variables saveLocal for table...', 
+        console.log('%c    Global-Variables saveLocal for table...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", table);
         return new Promise((resolve, reject) => {
 
@@ -5720,7 +5718,7 @@ export class GlobalVariableService {
         // Info has already been collected - to allow for the first time this is called.
         // It does assume that we have a currentDashboardInfo object if Previous/Next are
         // parameters.
-        console.log('%c    Global-Variables refreshCurrentDashboard ...', 
+        console.log('%c    Global-Variables refreshCurrentDashboard ...',
         "color: black; background: lightgray; font-size: 10px");
 
         // TODO - add Permissions, either here or automatically in DB !!!
@@ -5795,7 +5793,7 @@ export class GlobalVariableService {
 
     widgetReplace(changedWidget: Widget) {
         // Replaces (ByVal) the global W and currentW
-        console.log('%c    Global-Variables ... widgetReplace', 
+        console.log('%c    Global-Variables ... widgetReplace',
         "color: black; background: lightgray; font-size: 10px", changedWidget.id);
 
         // TODO - this is not DRY - there must be a better way!!
@@ -6089,7 +6087,7 @@ export class GlobalVariableService {
 
     sleep(milliseconds: number) {
         // Sleep for a while
-        console.log('%c    Global-Variables sleep ...', 
+        console.log('%c    Global-Variables sleep ...',
         "color: black; background: lightgray; font-size: 10px", milliseconds);
         var start: number = new Date().getTime();
         console.log('  start', start, new Date().getTime())
@@ -6117,7 +6115,7 @@ export class GlobalVariableService {
         //   required detail
         // - height, width are optional dimensions.  If provided, it will overrule
         //   those values in spec
-        console.log('%c    Global-Variables createVegaLiteSpec ...', 
+        console.log('%c    Global-Variables createVegaLiteSpec ...',
         "color: black; background: lightgray; font-size: 10px");
 
         let vlSpecsNew: dl.spec.TopLevelExtendedSpec = this.vlTemplate;
@@ -6184,7 +6182,7 @@ export class GlobalVariableService {
         logToDB: boolean = true
      ): number {
         let actID: number = 1;
-        console.log('%c    Global-Variables actionUpsert ...', 
+        console.log('%c    Global-Variables actionUpsert ...',
             "color: black; background: lightgray; font-size: 10px", logToDB, oldWidget,newWidget
         );
 
@@ -6306,7 +6304,7 @@ export class GlobalVariableService {
                             this.addCanvasAuditTrail(newAuditTrail);
 
                             // Show to Dev
-                            result.push(key + ' changed from ' + actOldWidget[key] 
+                            result.push(key + ' changed from ' + actOldWidget[key]
                                 + ' to ' + actNewWidget[key]);
                         };
                     };
@@ -6314,7 +6312,7 @@ export class GlobalVariableService {
             };
 
         };
-        
+
         // Return
         return actID;
 
@@ -6322,7 +6320,7 @@ export class GlobalVariableService {
 
     alignToGripPoint(inputValue: number) {
         // This routine recalcs a value to a gridpoint IF snapping is enabled
-        console.log('%c    Global-Variables alignToGripPoint ...', 
+        console.log('%c    Global-Variables alignToGripPoint ...',
         "color: black; background: lightgray; font-size: 10px", inputValue);
 
         if (this.canvasSettings.snapToGrid) {
@@ -6340,7 +6338,7 @@ export class GlobalVariableService {
     showStatusBarMessage(statusBarMessage: StatusBarMessage
         ): void {
         // Shows a message in the right area, ie StatusBar
-        console.log('%c    Global-Variables showStatusBarMessage ...', 
+        console.log('%c    Global-Variables showStatusBarMessage ...',
         "color: black; background: lightgray; font-size: 10px");
 
         // Pop message in right area
@@ -6356,7 +6354,7 @@ export class GlobalVariableService {
         ): DatagridColumn[] {
         // It will return an array of datagridColumns to use in the ca-datagrid
         // for a given array of data and a set of columns to show,
-        console.log('%c    Global-Variables createDatagridColumns ...', 
+        console.log('%c    Global-Variables createDatagridColumns ...',
         "color: black; background: lightgray; font-size: 10px");
 
         // No data provided
@@ -6431,7 +6429,7 @@ export class GlobalVariableService {
         //   CanEditOrCanDelete, CanEditAndCanDelete.  These are Hard-Coded
         //   It is NOT case sensitive, and only applicable to accessType = 'AccessList'
 
-        console.log('%c    Global-Variables dashboardPermissionCheck ...', 
+        console.log('%c    Global-Variables dashboardPermissionCheck ...',
         "color: black; background: lightgray; font-size: 10px", id);
 
         // Assume no access
@@ -6513,7 +6511,7 @@ export class GlobalVariableService {
 
     dashboardPermissionList(id: number): string[] {
         // Returns Array of Permissions for the current user to the given D.
-        console.log('%c    Global-Variables dashboardPermissionCheck ...', 
+        console.log('%c    Global-Variables dashboardPermissionCheck ...',
         "color: black; background: lightgray; font-size: 10px", id);
 
         // Assume no access
@@ -6591,7 +6589,7 @@ export class GlobalVariableService {
 
     formatDate(date) {
          // Formats a given date into YYYY/MM/DD HH:MM:SS
-         console.log('%c    Global-Variables formatDate ...', 
+         console.log('%c    Global-Variables formatDate ...',
          "color: black; background: lightgray; font-size: 10px", date);
 
          let d = new Date(date);
@@ -6601,10 +6599,10 @@ export class GlobalVariableService {
          let hour = d.getHours();
          let minute = d.getMinutes();
          let second = d.getSeconds();
-    
+
         if (month.length < 2) month = '0' + month;
         if (day.length < 2) day = '0' + day;
-    
+
         return [year, month, day].join('/') + ' ' + hour + ':' + minute + ':' + second;
     }
 }

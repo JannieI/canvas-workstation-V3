@@ -53,6 +53,7 @@ export class PreferencesComponent implements OnInit {
     preferenceDefaultPrinter: string;
     preferenceDefaultPageSize: string;
     preferenceDefaultPageLayout: string;
+    preferenceDefaultSnapshotMins: string;
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
