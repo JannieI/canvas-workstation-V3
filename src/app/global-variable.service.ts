@@ -1026,7 +1026,7 @@ export class GlobalVariableService {
                             let newT: DashboardTab = Object.assign({}, t);
                             newT.id = null;
                             newT.dashboardID = addedD.id;
-
+                            newT.originalID = t.id;
                             promiseArrayT.push(this.addDashboardTab(newT));
                         };
 
@@ -1037,10 +1037,11 @@ export class GlobalVariableService {
                         let promiseArrayW = [];
                         this.dashboardTabs.forEach(t => {
                             if (t.dashboardID == addedD.id) {
+                                console.warn('xx originalID', t.originalID)
                                 this.widgets.forEach(w => {
-                                    if (w.dashboardID == addedD.id 
+                                    if (w.dashboardID == dashboardID 
                                         &&  
-                                        w.dashboardTabIDs.indexOf(t.id) >= 0) {
+                                        w.dashboardTabIDs.indexOf(t.originalID) >= 0) {
                                         // Deep copy
                                         let newW: Widget = Object.assign({}, w);
                                         newW.id = null;
