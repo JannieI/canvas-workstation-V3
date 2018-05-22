@@ -16,7 +16,6 @@ import { GlobalFunctionService }      from './global-function.service';
 import { Dashboard }                  from './models'
 import { DashboardTab }               from './models'
 import { Datasource }                 from './models'
-
 import { Subscription }               from 'rxjs/Subscription';
 
 
