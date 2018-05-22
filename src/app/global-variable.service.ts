@@ -1021,8 +1021,10 @@ export class GlobalVariableService {
 
                     // T
                     this.dashboardTabs.forEach(t => {
+                        console.warn('xx T forEach', t)
                         if (t.dashboardID == dashboardID) {
                             // Deep copy
+                            console.warn('xx T forEach dashboardID', t.id, dashboardID)
                             let newT: DashboardTab = Object.assign({}, t);
                             newT.id = null;
                             newT.dashboardID = addedD.id;
@@ -1032,7 +1034,7 @@ export class GlobalVariableService {
 
                     });
                     this.allWithAsync(...promiseArrayT).then(resolvedData => {
-                        console.warn('xx after allSync T', resolvedData)
+                        console.warn('xx after allSync T', resolvedData, this.dashboardTabs)
                         // W
                         let promiseArrayW = [];
                         this.dashboardTabs.forEach(t => {
@@ -1050,6 +1052,7 @@ export class GlobalVariableService {
                                         // TODO - fix for multi-Tabbed Ws
                                         newW.dashboardTabIDs = [t.id];
                                         console.warn('xx newW', newW)
+                                        this.addWidget(newW);
                                         promiseArrayW.push(this.addWidget(newW));
 
                                     };

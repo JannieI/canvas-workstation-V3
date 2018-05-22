@@ -103,6 +103,7 @@ export class DashboardTabComponent {
         if (this.newTab) {
             let newTab: DashboardTab = {
                 id: null,
+                originalID: null,
                 dashboardID: this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
                 name: this.name,
                 description: this.description,
@@ -128,6 +129,7 @@ export class DashboardTabComponent {
             let tab: DashboardTab = {
                 id: this.globalVariableService.currentDashboardInfo.value
                     .currentDashboardTabID,
+                originalID: null,
                 dashboardID: this.globalVariableService.currentDashboardInfo.value
                     .currentDashboardID,
                 name: this.name,
