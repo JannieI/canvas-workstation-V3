@@ -76,6 +76,7 @@ export class PreferencesComponent implements OnInit {
         this.preferenceDefaultPrinter = this.globalVariableService.currentUser.preferenceDefaultPrinter;
         this.preferenceDefaultPageSize = this.globalVariableService.currentUser.preferenceDefaultPageSize;
         this.preferenceDefaultPageLayout = this.globalVariableService.currentUser.preferenceDefaultPageLayout;
+        this.preferenceDefaultSnapshotMins = this.globalVariableService.currentUser.preferenceDefaultSnapshotMins;
     }
 
     clickClose(action: string) {
@@ -109,6 +110,7 @@ export class PreferencesComponent implements OnInit {
         this.globalVariableService.currentUser.preferenceDefaultPrinter = this.preferenceDefaultPrinter,
         this.globalVariableService.currentUser.preferenceDefaultPageSize = this.preferenceDefaultPageSize,
         this.globalVariableService.currentUser.preferenceDefaultPageLayout = this.preferenceDefaultPageLayout,
+        this.globalVariableService.currentUser.preferenceDefaultSnapshotMins = this.preferenceDefaultSnapshotMins;
 
         // Save globally, and in DB
         this.globalVariableService.saveCanvasUser(this.globalVariableService.currentUser).then(

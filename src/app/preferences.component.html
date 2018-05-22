@@ -36,7 +36,7 @@
                         title="Display Palette Horisontally (T/F)"
                         >
                 </div>
-
+ 
                 <div class="gridMessagesTitle">
                     <b>Show messages:</b>
                 </div>
@@ -99,9 +99,16 @@
                 <div class="gridDefaultFolder">
                     <b>Folder:</b>
                     <input [(ngModel)]="preferenceDefaultFolder" type="text"
-                        id="formFields_7"
                         placeholder="Default Folder"
                         size="25"
+                        >
+                </div>
+
+                <div class="gridDefaultFolder">
+                    <b>Snapshot:</b>
+                    <input [(ngModel)]="preferenceDefaultSnapshotMins" type="text"
+                        placeholder="Mins between snapshots (0 = none)"
+                        size="20"
                         >
                 </div>
 
