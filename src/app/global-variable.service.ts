@@ -320,6 +320,7 @@ const dashboardTemplate: Dashboard =
 const dashboardTabTemplate: DashboardTab =
     {
         id: null,
+        originalID: null,
         dashboardID: 0,
         name: 'First',
         description: '',
@@ -1003,7 +1004,7 @@ export class GlobalVariableService {
 
                 this.addDashboard(newD).then (addedD => {
 
-                    let promiseArray = [];
+                    let promiseArrayT = [];
 
                     // Save original ID
                     if (this.dashboards[dashboardIndex].state == 'Complete'
@@ -1026,42 +1027,14 @@ export class GlobalVariableService {
                             newT.id = null;
                             newT.dashboardID = addedD.id;
 
-                            promiseArray.push(this.addDashboardTab(newT));
+                            promiseArrayT.push(this.addDashboardTab(newT));
                         };
-                        //     // W
-                        //     this.widgets.forEach(w => {
-                        //         if (w.dashboardID == dashboardID
-                        //             && w.dashboardTabID == t.id) {
-                        //             // Deep copy
-                        //             let newW: Widget = Object.assign({}, w);
-                        //             newW.id = null;
-                        //             newW.dashboardID = addedD.id;
-                        //             newW.dashboardTabID = t.id;
-                        //             console.warn('xx newW', newW)
-                        //             promiseArray.push(this.addWidget(newW));
-
-                        //             this.widgetCheckpoints.forEach(chk => {
-                        //                 if (chk.dashboardID == dashboardID
-                        //                     &&  chk.widgetID == w.id) {
-                        //                     // Deep copy
-                        //                     let newChk: WidgetCheckpoint = Object.assign({}, chk);
-                        //                     newChk.id = null;
-                        //                     newChk.dashboardID = addedD.id;
-                        //                     newChk.widgetID = w.id;
-                        //                     console.warn('xx newChk', newChk)
-                        //                     promiseArray.push(this.addWidgetCheckpoint(newChk));
-                        //                 };
-                        //             });
-    
-                        //         };
-                        //     });
-                        // };
 
                     });
-                    this.allWithAsync(...promiseArray).then(resolvedData => {
+                    this.allWithAsync(...promiseArrayT).then(resolvedData => {
                         console.warn('xx after allSync T', resolvedData)
                         // W
-                        promiseArray = [];
+                        let promiseArrayW = [];
                         this.dashboardTabs.forEach(t => {
                             if (t.dashboardID == addedD.id) {
                                 this.widgets.forEach(w => {
@@ -1076,13 +1049,13 @@ export class GlobalVariableService {
                                         // TODO - fix for multi-Tabbed Ws
                                         newW.dashboardTabIDs = [t.id];
                                         console.warn('xx newW', newW)
-                                        promiseArray.push(this.addWidget(newW));
+                                        promiseArrayW.push(this.addWidget(newW));
 
                                     };
                                 });
                             };
                         });
-                        this.allWithAsync(...promiseArray).then(resolvedData => {
+                        this.allWithAsync(...promiseArrayW).then(resolvedData => {
                             console.warn('xx after allSync W', resolvedData)
 
                         //     // Checkpoints
