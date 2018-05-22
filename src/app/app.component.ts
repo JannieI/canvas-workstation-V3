@@ -439,38 +439,41 @@ export class AppComponent implements OnInit {
         // Get Users and Groups, async
         this.globalVariableService.getCanvasGroups();
 
-        // TODO - make this 30 mins user-defined if needed
-        let mins: number = 1800000;
-        let timer = TimerObservable.create(mins, mins);
-        this.subscriptionSnapshot = timer.subscribe(t => {
-            if (this.editMode) {
+        // Snapshot at user defined interval: preferenceDefaultSnapshotMins = 0 => none
+        let userMins: number = this.globalVariableService.currentUser.preferenceDefaultSnapshotMins;
+        if (userMins > 0) {
+            let mins: number = userMins * 60 * 1000;
+            let timer = TimerObservable.create(mins, mins);
+            this.subscriptionSnapshot = timer.subscribe(t => {
+                if (this.editMode) {
 
-                let dashboardIndex: number = this.globalVariableService.dashboards.findIndex(
-                    d => d.id ==
-                    this.globalVariableService.currentDashboardInfo.value.currentDashboardID
-                );
-                if (dashboardIndex >= 0) {
-                    let today = new Date();
-                    let snapshotName: string = this.globalVariableService.dashboards[
-                        dashboardIndex]
-                        .name + ' ' + this.globalVariableService.formatDate(today);
-                    let snapshotComment: string = 'Automated Snapshot after ' +
-                        (mins / 60000).toString() + ' mins';
-                    this.globalVariableService.newDashboardSnapshot(
-                        snapshotName, snapshotComment).then(res => {
-                            this.showMessage(
-                                'Added automated Snapshot after ' +
-                                (mins / 60000).toString() + ' mins',
-                                'StatusBar',
-                                'Info',
-                                3000,
-                                ''
-                            );
+                    let dashboardIndex: number = this.globalVariableService.dashboards.findIndex(
+                        d => d.id ==
+                        this.globalVariableService.currentDashboardInfo.value.currentDashboardID
+                    );
+                    if (dashboardIndex >= 0) {
+                        let today = new Date();
+                        let snapshotName: string = this.globalVariableService.dashboards[
+                            dashboardIndex]
+                            .name + ' ' + this.globalVariableService.formatDate(today);
+                        let snapshotComment: string = 'Automated Snapshot after ' +
+                            (mins / 60000).toString() + ' mins';
+                        this.globalVariableService.newDashboardSnapshot(
+                            snapshotName, snapshotComment).then(res => {
+                                this.showMessage(
+                                    'Added automated Snapshot after ' +
+                                    (mins / 60000).toString() + ' mins',
+                                    'StatusBar',
+                                    'Info',
+                                    3000,
+                                    ''
+                                );
 
-                    });
+                        });
+                    };
                 };
-            };
-        });
+            });
+        };
 
         // TODO - fix hard coding, must be done via Login
         this.globalVariableService.getCanvasUsers().then(res => {

@@ -279,7 +279,7 @@ export class CanvasUser {
     preferenceDefaultPrinter: string;                       // Default Printer
     preferenceDefaultPageSize: string;                      // Default Page Size
     preferenceDefaultPageLayout: string;                    // Default Page Layout
-    preferenceDefaultSnapshotMins: string;                  // Mins after which a Snapshot must be taken (0 = none)
+    preferenceDefaultSnapshotMins: number;                  // Mins after which a Snapshot must be taken (0 = none)
 }
 
 export class CanvasGroup {
