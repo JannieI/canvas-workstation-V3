@@ -17,16 +17,26 @@
                     </i>
                 </div>
 
+                canEditRight
+                
+                
+                
+                
+                
+
+
                 <div class="gridTable">
                     <clr-datagrid>
                         <clr-dg-column [clrDgField]="userID">Dasbhoard</clr-dg-column>
                         <clr-dg-column [clrDgField]="name">Via Group Name</clr-dg-column>
-                        <clr-dg-column [clrDgField]="canView" class="checkCell">View</clr-dg-column>
-                        <clr-dg-column [clrDgField]="canEdit">Edit</clr-dg-column>
-                        <clr-dg-column [clrDgField]="canDelete">Delete</clr-dg-column>
-                        <clr-dg-column [clrDgField]="canDelete">Add DS</clr-dg-column>
-                        <clr-dg-column [clrDgField]="canDelete">Grantor</clr-dg-column>
-                        <clr-dg-column [clrDgField]="canDelete">Granted On</clr-dg-column>
+                        <clr-dg-column [clrDgField]="canEditRight" class="checkCell">Edit</clr-dg-column>
+                        <clr-dg-column [clrDgField]="canViewRight" class="checkCell">View</clr-dg-column>
+                        <clr-dg-column [clrDgField]="canSaveRight" class="checkCell">Save</clr-dg-column>
+                        <clr-dg-column [clrDgField]="canDeleteRight" class="checkCell">Delete</clr-dg-column>
+                        <clr-dg-column [clrDgField]="canAddDatasource" class="checkCell">Add DS</clr-dg-column>
+                        <clr-dg-column [clrDgField]="canGrantAccess" class="checkCell">Grant</clr-dg-column>
+                        <clr-dg-column [clrDgField]="grantor">Grantor</clr-dg-column>
+                        <clr-dg-column [clrDgField]="grantedOn">Granted On</clr-dg-column>
 
                         <clr-dg-row *clrDgItems="let row of dashboardPermissions;
                             let i = index"
@@ -36,30 +46,46 @@
                             >
                             <clr-dg-cell>{{row.dashboardName}}</clr-dg-cell>
                             <clr-dg-cell>{{row.groupName}}</clr-dg-cell>
+
                             <clr-dg-cell class="checkCell">
-                                <clr-icon shape="check" *ngIf="row.canView"
-                                    size="16"
-                                    (dblclick)="clickToggleView(row.id, $event)"
-                                    >
-                                </clr-icon>
-                                <clr-icon shape="times" *ngIf="!row.canView"
-                                    size="16"
-                                    (dblclick)="clickToggleView(row.id, $event)"
-                                    >
-                                </clr-icon>
-                            </clr-dg-cell>
-                            <clr-dg-cell class="checkCell">
-                                    <clr-icon shape="check" *ngIf="row.canEdit"
+                                <clr-icon shape="check" *ngIf="row.canEditRight"
                                     size="16"
                                     (dblclick)="clickToggleEdit(row.id, $event)"
                                     >
                                 </clr-icon>
-                                <clr-icon shape="times" *ngIf="!row.canEdit"
+                                <clr-icon shape="times" *ngIf="!row.canEditRight"
                                     size="16"
                                     (dblclick)="clickToggleEdit(row.id, $event)"
                                     >
                                 </clr-icon>
                             </clr-dg-cell>
+
+                            <clr-dg-cell class="checkCell">
+                                <clr-icon shape="check" *ngIf="row.canViewRight"
+                                    size="16"
+                                    (dblclick)="clickToggleView(row.id, $event)"
+                                    >
+                                </clr-icon>
+                                <clr-icon shape="times" *ngIf="!row.canViewRight"
+                                    size="16"
+                                    (dblclick)="clickToggleView(row.id, $event)"
+                                    >
+                                </clr-icon>
+                            </clr-dg-cell>
+
+                            <clr-dg-cell class="checkCell">
+                                <clr-icon shape="check" *ngIf="row.canSaveRight"
+                                    size="16"
+                                    (dblclick)="clickToggleSave(row.id, $event)"
+                                    >
+                                </clr-icon>
+                                <clr-icon shape="times" *ngIf="!row.canSaveRight"
+                                    size="16"
+                                    (dblclick)="clickToggleSave(row.id, $event)"
+                                    >
+                                </clr-icon>
+                            </clr-dg-cell>
+
                             <clr-dg-cell class="checkCell">
                                     <clr-icon shape="check" *ngIf="row.canDelete"
                                     size="16"
@@ -72,19 +98,32 @@
                                     >
                                 </clr-icon>
                             </clr-dg-cell>
+
                             <clr-dg-cell class="checkCell">
-                                    <clr-icon shape="check" *ngIf="row.canadddatasource"
+                                    <clr-icon shape="check" *ngIf="row.canAddDatasource"
                                     size="16"
                                     (dblclick)="clickToggleAddDS(row.id, $event)"
                                     >
                                 </clr-icon>
-                                <clr-icon shape="times" *ngIf="!row.canadddatasource"
+                                <clr-icon shape="times" *ngIf="!row.canAddDatasource"
                                     size="16"
                                     (dblclick)="clickToggleAddDS(row.id, $event)"
                                     >
                                 </clr-icon>
                             </clr-dg-cell>
 
+                            <clr-dg-cell class="checkCell">
+                                    <clr-icon shape="check" *ngIf="row.canGrantAccess"
+                                    size="16"
+                                    (dblclick)="clickToggleGrantAccess(row.id, $event)"
+                                    >
+                                </clr-icon>
+                                <clr-icon shape="times" *ngIf="!row.canGrantAccess"
+                                    size="16"
+                                    (dblclick)="clickToggleGrantAccess(row.id, $event)"
+                                    >
+                                </clr-icon>
+                            </clr-dg-cell>
 
                             <clr-dg-cell>{{row.grantor}}</clr-dg-cell>
                             <clr-dg-cell>{{row.grantedOn}}</clr-dg-cell>

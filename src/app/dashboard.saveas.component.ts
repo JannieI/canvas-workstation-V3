@@ -73,8 +73,4 @@ export class DashboardSaveAsComponent implements OnInit {
 
         this.formDashboardSaveAsClosed.emit('Saved');
     }
-
-    clickGotIt() {
-        this.globalVariableService.isFirstTimeDashboardSave.next(false);
-    }
 }
