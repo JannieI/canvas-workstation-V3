@@ -112,4 +112,29 @@ export class MyPermissionsComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
         this.selectedRow = index;
     }
+
+    // clickToggleEdit
+    // clickToggleView
+    // clickToggleSave
+    // clickToggleDelete
+    // clickToggleAddDS
+    // clickToggleGrantAccess
+    //         // User dblclicked View - so toggle it
+    //         this.globalFunctionService.printToConsole(this.constructor.name,'clickToggleView', '@Start');
+
+    //         let index: number = -1;
+    //         for(var i = 0; i < this.dashboardPermissions.length; i++) {
+    //             if (this.dashboardPermissions[i].id == id) {
+    //                 this.dashboardPermissions[i].canViewRight = ! this.dashboardPermissions[i].canViewRight;
+    //                 index = i;
+    //             };
+    //         };
+    
+    //         if (index != -1) {
+    //             this.globalVariableService.saveDashboardPermission(
+    //                 this.dashboardPermissions[index])
+    //                 ;
+    //         };
+    
+
 }
