@@ -20,9 +20,9 @@ import { GlobalVariableService}       from './global-variable.service';
 import { Dashboard }                  from './models';
 
 @Component({
-    selector: 'dashboard-save',
-    templateUrl: './dashboard.save.component.html',
-    styleUrls: ['./dashboard.save.component.css']
+    selector: 'dashboard-save-as',
+    templateUrl: './dashboard.saveas.component.html',
+    styleUrls: ['./dashboard.saveas.component.css']
 })
 export class DashboardSaveComponent implements OnInit {
 
