@@ -26,7 +26,7 @@ import { Dashboard }                  from './models';
 })
 export class DashboardSaveComponent implements OnInit {
 
-    @Output() formDashboardSaveClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formDashboardSaveAsClosed: EventEmitter<string> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
@@ -72,7 +72,7 @@ export class DashboardSaveComponent implements OnInit {
     clickClose(action: string) {
         console.log('clickClose')
 
-		this.formDashboardSaveClosed.emit(action);
+		this.formDashboardSaveAsClosed.emit(action);
     }
 
     clickSecurityMode(mode: any) {

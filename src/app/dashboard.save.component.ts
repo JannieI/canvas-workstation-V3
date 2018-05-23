@@ -79,8 +79,6 @@ export class DashboardSaveComponent implements OnInit {
         // Save the D (replace the original as Completed and delete the Draft)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
-        this.formDashboardSaveClosed.emit('Saved');
-
         // Change the State to completed
         let dashboardIndex: number = this.globalVariableService.currentDashboards.findIndex(
             d => d.id == this.globalVariableService.currentDashboardInfo.value.currentDashboardID
@@ -92,6 +90,8 @@ export class DashboardSaveComponent implements OnInit {
             localDashboard.state = 'Complete';
             this.globalVariableService.saveDashboard(localDashboard);
         };
+
+        this.formDashboardSaveClosed.emit('Saved');
 
     }
 }

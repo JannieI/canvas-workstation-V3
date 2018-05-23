@@ -2733,6 +2733,14 @@
 </dashboard-save>
 
 
+<!-- Modal: saveAs Dashboard -->
+<dashboard-save-as
+    class="formPopupDashboard"
+    *ngIf="showModalDashboardSaveAs"
+    (formDashboardSaveAsClosed)="handleCloseDashboardSave($event)">Load Save As Dashboard ...
+</dashboard-save-as>
+
+
 <!-- Modal: discard Dashboard -->
 <dashboard-discard
     class="formPopupDashboard"
