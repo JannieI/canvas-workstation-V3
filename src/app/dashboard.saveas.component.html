@@ -18,7 +18,7 @@
             
                 <div class="gridTextMain">
                     The current Dashboard will be saved as, under a new name.  This
-                    will make a copy of the Dashboard, while keeping the Dashboard
+                    will make a copy of the Dashboard, while keeping the current Dashboard
                     open.
                 </div>
 
@@ -28,12 +28,12 @@
                         type="text"
                         name="newName"
                         size="25"
-                        placeholder="New Name for selected Dashboard"
-                        #renameModeVar="ngModel"
+                        placeholder="New Dashboard name"
+                        #newNameVar="ngModel"
                         required
                         minlength="3"
                         maxlength="80"
-                        [style.color]="!renameModeVar.valid ? 'red' : 'gray'"
+                        [style.color]="!newNameVar.valid ? 'red' : 'gray'"
                     >
                 </div>
 

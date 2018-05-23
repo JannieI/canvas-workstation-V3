@@ -24,7 +24,7 @@ import { Dashboard }                  from './models';
     templateUrl: './dashboard.saveas.component.html',
     styleUrls: ['./dashboard.saveas.component.css']
 })
-export class DashboardSaveComponent implements OnInit {
+export class DashboardSaveAsComponent implements OnInit {
 
     @Output() formDashboardSaveAsClosed: EventEmitter<string> = new EventEmitter();
 
@@ -41,12 +41,7 @@ export class DashboardSaveComponent implements OnInit {
 
     }
 
-    isFirstTimeDashboardSave: boolean;
-    showTypeDashboard: boolean = false;
-    showNoSecurity: boolean = true;
-    showTeam: boolean = false;
-    showQArequired: boolean = false;
-    dashboards: Dashboard[];
+    newName: string = '';
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -54,61 +49,27 @@ export class DashboardSaveComponent implements OnInit {
 	) {}
 
     ngOnInit() {
-        this.dashboards = this.globalVariableService.dashboards.slice();
-        this.globalVariableService.isFirstTimeDashboardSave.subscribe(
-            i => this.isFirstTimeDashboardSave = i
-        )
+        // Initial
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
     }
  
-    ngOnDestroy() {
-        // Cleanup just before Angular destroys the directive/component. 
-        // Unsubscribe Observables and detach event handlers to avoid memory leaks.
-        // Called just before Angular destroys the directive/component.
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnDestroy', '@Start');
-
-        // this.globalVariableService.isFirstTimeDashboardSave.unsubscribe();
-    }
-
     clickClose(action: string) {
-        console.log('clickClose')
+        // Close form, nothing saved or copied
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
 		this.formDashboardSaveAsClosed.emit(action);
     }
 
-    clickSecurityMode(mode: any) {
-        console.log('mode', mode.srcElement.value)
-        if (mode.srcElement.value == 'No Security') {
-            this.showNoSecurity = true;
-            this.showTeam = false;
-            this.showQArequired = false;
-        }
-        if (mode.srcElement.value == 'Team') {
-            this.showNoSecurity = false;
-            this.showTeam = true;
-            this.showQArequired = false;
-        }
-        if (mode.srcElement.value == 'QA required') {
-            this.showNoSecurity = false;
-            this.showTeam = false;
-            this.showQArequired = true;
-        }
-    }
- 
     clickSaveAs() {
         // Save As to an new D
         this.globalFunctionService.printToConsole(this.constructor.name,'clickclickSaveAsSave', '@Start');
 
-        // Change the State to completed
-        let dashboardIndex: number = this.globalVariableService.currentDashboards.findIndex(
-            d => d.id == this.globalVariableService.currentDashboardInfo.value.currentDashboardID
+        // Copy D
+        this.globalVariableService.copyDashboard(
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+            this.newName
         );
-        if (dashboardIndex >= 0) {
-            let localDashboard: Dashboard = this.globalVariableService.currentDashboards[
-                dashboardIndex
-            ];
-            localDashboard.state = 'Complete';
-            this.globalVariableService.saveDashboard(localDashboard);
-        };
 
         this.formDashboardSaveAsClosed.emit('Saved');
     }

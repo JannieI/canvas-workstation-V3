@@ -25,6 +25,7 @@ import { LandingComponent }           from './landing.component';
 import { DashboardNewComponent }      from './dashboard.new.component';
 import { DashboardOpenComponent }     from './dashboard.open.component';
 import { DashboardSaveComponent }     from './dashboard.save.component';
+import { DashboardSaveAsComponent }   from './dashboard.saveas.component';
 import { DashboardDiscardComponent }  from './dashboard.discard.component';
 import { DashboardRenameComponent }   from './dashboard.rename.component';
 import { DashboardSnapshotsComponent }      from './dashboard.snapshots.component';
@@ -129,6 +130,7 @@ import { StatusbarComponent }         from './statusbar.component';
         DashboardNewComponent,
         DashboardOpenComponent,
         DashboardSaveComponent,
+        DashboardSaveAsComponent,
         DashboardDiscardComponent,
         DashboardRenameComponent,
         DashboardSnapshotsComponent,
