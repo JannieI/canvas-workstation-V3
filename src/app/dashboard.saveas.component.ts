@@ -94,7 +94,23 @@ export class DashboardSaveComponent implements OnInit {
         }
     }
  
-    clickSaveFile() {
+    clickSaveAs() {
+        // Save As to an new D
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickclickSaveAsSave', '@Start');
+
+        // Change the State to completed
+        let dashboardIndex: number = this.globalVariableService.currentDashboards.findIndex(
+            d => d.id == this.globalVariableService.currentDashboardInfo.value.currentDashboardID
+        );
+        if (dashboardIndex >= 0) {
+            let localDashboard: Dashboard = this.globalVariableService.currentDashboards[
+                dashboardIndex
+            ];
+            localDashboard.state = 'Complete';
+            this.globalVariableService.saveDashboard(localDashboard);
+        };
+
+        this.formDashboardSaveAsClosed.emit('Saved');
     }
 
     clickGotIt() {
