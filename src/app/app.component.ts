@@ -322,6 +322,7 @@ export class AppComponent implements OnInit {
     showModalDashboardNew: boolean = false;
     showModalDashboardOpen: boolean = false;
     showModalDashboardSave: boolean = false;
+    showModalDashboardSaveAs: boolean = false;
     showModalDashboardSnapshots: boolean = false;
     showModalDashboardShare: boolean = false;
     showModalDashboardImport: boolean = false;
@@ -708,12 +709,21 @@ export class AppComponent implements OnInit {
     }
 
     handleCloseDashboardSave(action: string) {
-        //
+        // Handle close form for Save a D - from Draft -> Complete
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardSave', '@Start');
 
         this.menuOptionClickPostAction();
 
         this.showModalDashboardSave = false;
+    }
+
+    handleCloseDashboardSaveAs(action: string) {
+        // Handle close form for Save AS a Complete D under a new name
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardSaveAs', '@Start');
+
+        this.menuOptionClickPostAction();
+
+        this.showModalDashboardSaveAs = false;
     }
 
     handleCloseDashboardSnapshots(action: string) {
@@ -2044,6 +2054,59 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPreAction();
 
         this.showModalDashboardSave = true;
+    }
+
+    clickDashboardSaveAs() {
+        // Save D AS 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardSaveAs', '@Start');
+
+        // Permissions
+        if (!this.globalVariableService.currentUser.dashboardCanSaveRole
+            &&
+            !this.globalVariableService.currentUser.isAdministrator) {
+            this.showMessage(
+                'You do not have Save Permissions (role must be added)',
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+
+        // Has to be in editMode
+        if (!this.editMode) {
+            this.showMessage(
+                this.globalVariableService.canvasSettings.notInEditModeMsg,
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+
+        // Check D state
+        let dashboardIndex: number = this.globalVariableService.currentDashboards.findIndex(
+            d => d.id == this.globalVariableService.currentDashboardInfo.value.currentDashboardID
+        );
+        if (dashboardIndex >= 0) {
+            if (this.globalVariableService.currentDashboards[dashboardIndex].state 
+                != 'Complete') {
+                    this.showMessage(
+                        'Can only save a Dashboard with Complete Draft',
+                        'StatusBar',
+                        'Warning',
+                        3000,
+                        ''
+                    );
+                    return;
+            };
+        };
+
+        this.menuOptionClickPreAction();
+
+        this.showModalDashboardSaveAs = true;
     }
 
     clickDashboardSnapshots() {
