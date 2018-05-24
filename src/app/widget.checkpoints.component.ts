@@ -130,6 +130,7 @@ export class WidgetCheckpointsComponent implements OnInit {
         var today = new Date();
         let newCheckpoint: WidgetCheckpoint = {
             id: null,
+            originalID: null,
             parentWidgetIsDeleted: false,
             active: false,
             dashboardID: this.selectedWidget.dashboardID,
