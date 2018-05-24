@@ -524,7 +524,7 @@ export class AppComponent implements OnInit {
         );
 
         this.globalVariableService.dashboardsRecentBehSubject.subscribe(i => {
-            this.recentDashboards = i.slice(0, 2)
+            this.recentDashboards = i.slice(0, 5)
         });
 
         // This refreshes one W
