@@ -138,9 +138,9 @@ export class DashboardOpenComponent implements OnInit {
                 this.dashboards[index].id, null, 'Draft'
             ).then(res => {
                 console.warn('xx res', res)
-                // this.globalVariableService.refreshCurrentDashboard(
-                //     'openDashboard-clickOpenEdit', res.id, -1, ''
-                // );
+                this.globalVariableService.refreshCurrentDashboard(
+                    'openDashboard-clickOpenEdit', res.id, -1, ''
+                );
                 this.globalVariableService.editMode.next(true);
                 this.formDashboardOpenClosed.emit('View');
             });
