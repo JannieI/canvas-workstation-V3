@@ -145,6 +145,7 @@ const widgetTemplate: Widget =
         "dashboardTabID": null,
         "dashboardTabIDs": [],
         "id": null,
+        "originalID": null,
         "name": "New Widget",
         "description": "New Widget from Template",
         "annotation": '',
@@ -1036,7 +1037,6 @@ export class GlobalVariableService {
                         let promiseArrayW = [];
                         this.dashboardTabs.forEach(t => {
                             if (t.dashboardID == addedD.id) {
-                                console.warn('xx originalID', t.originalID)
                                 this.widgets.forEach(w => {
                                     if (w.dashboardID == dashboardID 
                                         &&  
@@ -5435,6 +5435,7 @@ export class GlobalVariableService {
                 {key: 'dashboardTabIDs', 			type: 'array'},
                 {key: 'isLocked', 			        type: 'bool'},
                 {key: 'id', 						type: 'int',		props:['pk','ai']},
+                {key: 'originalID', 				type: 'int',		props:['pk','ai']},
                 {key: 'name', 						type: 'string'},
                 {key: 'description', 				type: 'string'},
                 {key: 'visualGrammar', 				type: 'string'},
@@ -5827,6 +5828,7 @@ export class GlobalVariableService {
                 w.dashboardTabIDs = changedWidget.dashboardTabIDs;
                 w.isLocked = changedWidget.isLocked;
                 w.id = changedWidget.id;
+                w.originalID = changedWidget.originalID;
                 w.name = changedWidget.name;
                 w.description = changedWidget.description;
                 w.visualGrammar = changedWidget.visualGrammar;
@@ -5970,6 +5972,7 @@ export class GlobalVariableService {
                 w.dashboardTabIDs = changedWidget.dashboardTabIDs;
                 w.isLocked = changedWidget.isLocked;
                 w.id = changedWidget.id;
+                w.originalID = changedWidget.originalID;
                 w.name = changedWidget.name;
                 w.description = changedWidget.description;
                 w.visualGrammar = changedWidget.visualGrammar;

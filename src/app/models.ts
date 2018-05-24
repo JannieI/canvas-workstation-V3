@@ -594,6 +594,7 @@ export class Widget {
 
     // Identification and Description
     id: number;
+    originalID: number;                 // Original ID from which W was copied
     name: string;
     description: string;
     annotation: string;                 // Optional annotation per W, deeper info about W
