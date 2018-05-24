@@ -1576,10 +1576,10 @@ export class AppComponent implements OnInit {
             };
         };
 
-        // Register in recent
-        this.globalVariableService.amendDashboardRecent(
-            this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
-            this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID);
+        // // Register in recent
+        // this.globalVariableService.amendDashboardRecent(
+        //     this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+        //     this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID);
 
         this.menuOptionClickPostAction();
     }
