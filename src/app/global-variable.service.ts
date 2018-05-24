@@ -6490,13 +6490,13 @@ export class GlobalVariableService {
                 if (dp.dashboardID == dashboard.id) {
                     if (dp.userID != null) {
                         if (dp.userID.toLowerCase() == userID.toLowerCase()) {
-                            if (accessRequired == 'canview'  &&  dp.canViewRight) {
+                            if (accessRequired == 'canviewright'  &&  dp.canViewRight) {
                                 hasAccess = true;
                             };
-                            if (accessRequired == 'canedit'  &&  dp.canEditRight) {
+                            if (accessRequired == 'caneditright'  &&  dp.canEditRight) {
                                 hasAccess = true;
                             };
-                            if (accessRequired == 'candelete'  &&  dp.canDeleteRight) {
+                            if (accessRequired == 'candeleteright'  &&  dp.canDeleteRight) {
                                 hasAccess = true;
                             };
                             if (accessRequired == 'canadddatasource'  &&  dp.canAddDatasource) {
@@ -6557,14 +6557,16 @@ export class GlobalVariableService {
 
         // Everyone has access to Public Ds
         if (dashboard.accessType.toLowerCase() == 'public') {
-            accessList = ['canview' ,'canedit' ,'candelete' ,'canadddatasource'];
+            accessList = ['canviewright' ,'caneditright' ,
+            'cansaveright', 'candeleteright', 'canadddatasource', 'cangrantaccess'];
         };
 
         // The owner has access to Private ones
         if (dashboard.accessType.toLowerCase() == 'private'
             &&
             dashboard.creator.toLowerCase() == userID.toLowerCase()) {
-                accessList = ['canview' ,'canedit' ,'candelete' ,'canadddatasource'];
+                accessList = ['canviewright' ,'caneditright' ,
+                'cansaveright', 'candeleteright', 'canadddatasource', 'cangrantaccess'];
             };
         if (dashboard.accessType.toLowerCase() == 'accesslist') {
             this.dashboardPermissions.forEach(dp => {
@@ -6572,16 +6574,22 @@ export class GlobalVariableService {
                     if (dp.userID != null) {
                         if (dp.userID.toLowerCase() == userID.toLowerCase()) {
                             if (dp.canViewRight) {
-                                accessList.push('canview');
+                                accessList.push('canviewright');
                             };
                             if (dp.canEditRight) {
-                                accessList.push('canedit');
+                                accessList.push('caneditright');
+                            };
+                            if (dp.canSaveRight) {
+                                accessList.push('candsaveright');
                             };
                             if (dp.canDeleteRight) {
-                                accessList.push('candelete');
+                                accessList.push('candeleteright');
                             };
                             if (dp.canAddDatasource) {
                                 accessList.push('canadddatasource');
+                            };
+                            if (dp.canGrantAccess) {
+                                accessList.push('cangrantaccess');
                             };
                         };
                     };
@@ -6589,18 +6597,24 @@ export class GlobalVariableService {
                         if (this.currentUser.groups.
                             map(x => x.toLowerCase()).indexOf(dp.groupName.toLowerCase()) >= 0) {
                                 if (dp.canViewRight) {
-                                    accessList.push('canView');
+                                    accessList.push('canViewright');
                                 };
                                 if (dp.canEditRight) {
-                                    accessList.push('canEdit');
+                                    accessList.push('canEditright');
+                                };
+                                if (dp.canSaveRight) {
+                                    accessList.push('candsaveright');
                                 };
                                 if (dp.canDeleteRight) {
-                                    accessList.push('canDelete');
+                                    accessList.push('canDeleteright');
                                 };
                                 if (dp.canAddDatasource) {
                                     accessList.push('canadddatasource');
                                 };
-                            };
+                                if (dp.canGrantAccess) {
+                                    accessList.push('cangrantaccess');
+                                };
+                        };
                     };
                 };
             });
