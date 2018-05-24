@@ -121,7 +121,6 @@ export class DashboardOpenComponent implements OnInit {
     clickOpenEdit(index: number, dashboardID: number) {
         // Open a Dashboard in EditMode
         this.globalFunctionService.printToConsole(this.constructor.name,'clickOpenEdit', '@Start');
-        console.warn('xx this.dashboards[index].editor', this.dashboards[index].editor)
 
         // Only Editor can open his Draft
         if (this.dashboards[index].state == 'Draft'
