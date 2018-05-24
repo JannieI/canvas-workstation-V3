@@ -1058,22 +1058,30 @@ export class GlobalVariableService {
                         this.allWithAsync(...promiseArrayW).then(resolvedData => {
                             console.warn('xx after allSync W', resolvedData)
 
-                        //     // Checkpoints
-                        //     promiseArray = [];
-                        //     this.widgetCheckpoints.forEach(chk => {
-                        //         if (chk.dashboardID == dashboardID) {
-                        //             // Deep copy
-                        //             let newChk: WidgetCheckpoint = Object.assign({}, chk);
-                        //             newChk.id = null;
-                        //             newChk.dashboardID = addedD.id;
-                        //             console.warn('xx newChk', newChk)
-                        //             promiseArray.push(this.addWidgetCheckpoint(newChk));
-                        //         };
-                        //     });
-                        //     this.allWithAsync(...promiseArray).then(resolvedData => {
-                                // return addedD;
+                            // Checkpoints
+                            let promiseArrayChk = [];
+                            this.widgets.forEach(w => {
+                                if (w.dashboardID == addedD.id) {
+
+                                    this.widgetCheckpoints.forEach(chk => {
+                                        if (chk.dashboardID == dashboardID
+                                            && chk.widgetID == w.originalID) {
+                                            // Deep copy
+                                            let newChk: WidgetCheckpoint = Object.assign({}, chk);
+                                            newChk.id = null;
+                                            newChk.dashboardID = addedD.id;
+                                            newChk.widgetID = w.id;
+                                            console.warn('xx newChk', newChk)
+                                            promiseArrayChk.push(this.addWidgetCheckpoint(newChk));
+                                        };
+                                    });
+                                };
+                            });
+                            
+                            // return addedD;
+                            this.allWithAsync(...promiseArrayChk).then(resolvedData => {
                                 resolve(addedD);
-                            // });
+                            });
                         });
                     });
                 });
