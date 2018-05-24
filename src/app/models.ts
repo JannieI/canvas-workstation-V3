@@ -86,6 +86,8 @@ export class CanvasAction {
     redoID: number;                         // Optonal id of item in REDO
     oldWidget: any;                         // Full W before action
     newWidget: any;                         // Full W after action
+    createor: string;                       // UserID who created action
+    created: string;                        // DateTime action was created
 }
 
 export class CanvasAuditTrail {

@@ -1730,7 +1730,7 @@ export class GlobalVariableService {
 
                 // Remove Deleted ones
                 temp = temp.filter(t => t.stateAtRunTime != 'Deleted');
-                
+
                 this.dashboardsRecent = temp;
                 this.dashboardsRecentBehSubject.next(temp);
                 this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
@@ -6296,6 +6296,7 @@ export class GlobalVariableService {
                 actID = Math.max(...act) + 1;
             };
 
+            let today = new Date();
             this.actions.push({
                 id: actID,
                 dashboardID: dashboardID,
@@ -6306,7 +6307,9 @@ export class GlobalVariableService {
                 undoID: undoID,
                 redoID: redoID,
                 oldWidget: oldWidget == null? null : Object.assign({}, oldWidget),
-                newWidget: newWidget == null? null : Object.assign({}, newWidget)
+                newWidget: newWidget == null? null : Object.assign({}, newWidget),
+                createor: this.currentUser.userID,
+                created: this.formatDate(today)
             });
         } else {
             this.actions.forEach(ac => {
