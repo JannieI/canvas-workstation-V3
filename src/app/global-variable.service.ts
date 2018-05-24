@@ -6496,10 +6496,16 @@ export class GlobalVariableService {
                             if (accessRequired == 'caneditright'  &&  dp.canEditRight) {
                                 hasAccess = true;
                             };
+                            if (accessRequired == 'candsaveright'  &&  dp.canSaveRight) {
+                                hasAccess = true;
+                            };
                             if (accessRequired == 'candeleteright'  &&  dp.canDeleteRight) {
                                 hasAccess = true;
                             };
                             if (accessRequired == 'canadddatasource'  &&  dp.canAddDatasource) {
+                                hasAccess = true;
+                            };
+                            if (accessRequired == 'cangrantaccess'  &&  dp.canGrantAccess) {
                                 hasAccess = true;
                             };
                             if (accessRequired == 'canvieworcanedit'  &&  (dp.canViewRight  ||  dp.canEditRight) ) {
@@ -6567,7 +6573,8 @@ export class GlobalVariableService {
             dashboard.creator.toLowerCase() == userID.toLowerCase()) {
                 accessList = ['canviewright' ,'caneditright' ,
                 'cansaveright', 'candeleteright', 'canadddatasource', 'cangrantaccess'];
-            };
+        };
+
         if (dashboard.accessType.toLowerCase() == 'accesslist') {
             this.dashboardPermissions.forEach(dp => {
                 if (dp.dashboardID == dashboard.id) {
