@@ -1557,18 +1557,27 @@ export class AppComponent implements OnInit {
                     .dashboards[dashboardIndex];
 
                 if (localDashboard.state == 'Complete') {
-                    this.globalVariableService.copyDashboard(
-                        localDashboard.id, null, 'Draft'
-                    ).then(res => {
-                        console.warn('xx res', res)
+                    if (localDashboard.draftID != null) {
+
+                        // Simply open Draft
                         this.globalVariableService.refreshCurrentDashboard(
-                            'app-clickMenuEditMode', res.id, -1, ''
+                            'app-clickMenuEditMode', localDashboard.draftID, -1, ''
                         );
 
-                        // Toggle mode
-                        this.globalVariableService.editMode.next(!this.editMode);
+                    } else {
+                        this.globalVariableService.copyDashboard(
+                            localDashboard.id, null, 'Draft'
+                        ).then(res => {
+                            console.warn('xx res', res)
+                            this.globalVariableService.refreshCurrentDashboard(
+                                'app-clickMenuEditMode', res.id, -1, ''
+                            );
 
-                    });
+                            // Toggle mode
+                            this.globalVariableService.editMode.next(!this.editMode);
+
+                        });
+                    };
                 } else {
                     this.globalVariableService.editMode.next(true);
                 };
