@@ -33,7 +33,7 @@
         grid-column-start: 1;
         grid-column-end: 41;
         grid-row-start: 2;
-        grid-row-end: 3;
+        grid-row-end: 5;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
@@ -41,7 +41,7 @@
     .gridTable {
         grid-column-start: 1;
         grid-column-end: 19;
-        grid-row-start: 3;
+        grid-row-start: 6;
         grid-row-end: 22;
         margin: 6px 2px 2px 2px;
         text-align: left;
