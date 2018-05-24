@@ -58,9 +58,9 @@ export class DashboardSaveComponent implements OnInit {
             i => this.isFirstTimeDashboardSave = i
         )
     }
- 
+
     ngOnDestroy() {
-        // Cleanup just before Angular destroys the directive/component. 
+        // Cleanup just before Angular destroys the directive/component.
         // Unsubscribe Observables and detach event handlers to avoid memory leaks.
         // Called just before Angular destroys the directive/component.
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnDestroy', '@Start');
@@ -74,7 +74,7 @@ export class DashboardSaveComponent implements OnInit {
 
 		this.formDashboardSaveClosed.emit(action);
     }
- 
+
     clickSave() {
         // Save the D (replace the original as Completed and delete the Draft)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
@@ -87,6 +87,14 @@ export class DashboardSaveComponent implements OnInit {
             let localDashboard: Dashboard = this.globalVariableService.currentDashboards[
                 dashboardIndex
             ];
+
+            // Delete the original D, and reset
+            if (localDashboard.originalID != null) {
+                this.globalVariableService.deleteDashboard(localDashboard.originalID);
+                localDashboard.originalID = null;
+            };
+
+            localDashboard.draftID = null;
             localDashboard.state = 'Complete';
             this.globalVariableService.saveDashboard(localDashboard);
         };
