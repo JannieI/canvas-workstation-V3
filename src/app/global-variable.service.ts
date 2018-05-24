@@ -1072,6 +1072,7 @@ export class GlobalVariableService {
                                             newChk.id = null;
                                             newChk.dashboardID = addedD.id;
                                             newChk.widgetID = w.id;
+                                            newChk.originalID = chk.id;
 
                                             newChk.widgetSpec.dashboardID = addedD.id;
                                             newChk.widgetSpec.dashboardTabID = w.dashboardTabID;
@@ -1084,11 +1085,35 @@ export class GlobalVariableService {
                                         };
                                     });
                                 };
+
                             });
                             
-                            // return addedD;
                             this.allWithAsync(...promiseArrayChk).then(resolvedData => {
-                                resolve(addedD);
+
+                                // Rebuild [checkpointIDs]
+                                let promiseArrayWS = [];
+                                let newCheckpointIDs: number[] = [];
+                                let chkpntIndex: number;
+                                let wID: number;
+                                this.widgets.forEach(w => {
+                                    if (w.dashboardID == addedD.id) {
+                                        w.checkpointIDs.forEach(cids => {
+                                            chkpntIndex = this.widgetCheckpoints.findIndex(
+                                                wc => wc.originalID == cids
+                                            );
+                                            if (chkpntIndex >= 0) {
+                                                newCheckpointIDs.push(
+                                                    this.widgetCheckpoints[chkpntIndex].id
+                                                );
+                                            };
+                                        });
+                                        w.checkpointIDs = newCheckpointIDs;
+                                        promiseArrayWS.push(this.saveWidget(w))
+                                    };
+                                });
+                                this.allWithAsync(...promiseArrayWS).then(resolvedData => {
+                                    resolve(addedD);
+                                });
                             });
                         });
                     });
