@@ -1536,16 +1536,45 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
-        // Switch off all selections if going to View Mode
-        if (this.editMode) {
-            this.clickMenuEditSelectAllNone('None');
-        }
-
         // Exceed 4 ...
         this.stuckCount = 5;
 
-        // Toggle mode
-        this.globalVariableService.editMode.next(!this.editMode);
+        // Switch off all selections if going to View Mode
+        if (this.editMode) {
+            this.clickMenuEditSelectAllNone('None');
+            
+            // Toggle mode
+            this.globalVariableService.editMode.next(!this.editMode);
+        } else {
+        
+            let dashboardIndex: number = this.globalVariableService.dashboards.findIndex(
+                d => d.id == this.globalVariableService.currentDashboardInfo.value
+                    .currentDashboardID
+            );
+
+            if (dashboardIndex >= 0) {
+                let localDashboard: Dashboard = this.globalVariableService
+                    .dashboards[dashboardIndex];
+
+                if (localDashboard.state == 'Complete') {
+                    this.globalVariableService.copyDashboard(
+                        localDashboard.id, null, 'Draft'
+                    ).then(res => {
+                        console.warn('xx res', res)
+                        this.globalVariableService.refreshCurrentDashboard(
+                            'app-clickMenuEditMode', res.id, -1, ''
+                        );
+
+                        // Toggle mode
+                        this.globalVariableService.editMode.next(!this.editMode);
+
+                    });
+                } else {
+                    this.globalVariableService.editMode.next(true);
+                };
+                
+            };
+        };
 
         // Register in recent
         this.globalVariableService.amendDashboardRecent(
@@ -6161,8 +6190,8 @@ export class AppComponent implements OnInit {
 
         // Restore the Original (when moving out of showCheckpoint mode)
         if (showCheckpoints) {
-
             this.currentWidgetsOriginals.forEach(wo => {
+                console.warn('xx wo.showCheckpoints', wo.showCheckpoints)
                 if (wo.dashboardID == dashboardID  &&  wo.id == id) {
                     wo.showCheckpoints = false;
                     this.globalVariableService.changedWidget.next(wo);

@@ -150,7 +150,6 @@ export class DashboardOpenComponent implements OnInit {
             );
             this.globalVariableService.editMode.next(true);
             this.formDashboardOpenClosed.emit('View');
-
         };
     }
 
