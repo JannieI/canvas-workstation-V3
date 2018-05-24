@@ -1046,6 +1046,7 @@ export class GlobalVariableService {
                                         newW.id = null;
                                         newW.dashboardID = addedD.id;
                                         newW.dashboardTabID = t.id;
+                                        newW.originalID = w.id;
                                         // TODO - fix for multi-Tabbed Ws
                                         newW.dashboardTabIDs = [t.id];
                                         console.warn('xx newW', newW)
@@ -1071,6 +1072,13 @@ export class GlobalVariableService {
                                             newChk.id = null;
                                             newChk.dashboardID = addedD.id;
                                             newChk.widgetID = w.id;
+
+                                            newChk.widgetSpec.dashboardID = addedD.id;
+                                            newChk.widgetSpec.dashboardTabID = w.dashboardTabID;
+                                            newChk.widgetSpec.widgetID = w.id;
+                                            // TODO - fix for multi-Tabbed Ws
+                                            newChk.widgetSpec.dashboardTabIDs = w.dashboardTabIDs;
+
                                             console.warn('xx newChk', newChk)
                                             promiseArrayChk.push(this.addWidgetCheckpoint(newChk));
                                         };
