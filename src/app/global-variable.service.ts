@@ -1728,6 +1728,9 @@ export class GlobalVariableService {
                     return 0;
                 });
 
+                // Remove Deleted ones
+                temp = temp.filter(t => t.stateAtRunTime != 'Deleted');
+                
                 this.dashboardsRecent = temp;
                 this.dashboardsRecentBehSubject.next(temp);
                 this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
