@@ -456,30 +456,41 @@ export class AppComponent implements OnInit {
                 this.subscriptionSnapshot = timer.subscribe(t => {
                     if (this.editMode) {
 
-                        let dashboardIndex: number = this.globalVariableService.dashboards.findIndex(
-                            d => d.id ==
-                            this.globalVariableService.currentDashboardInfo.value.currentDashboardID
+                        // Determine if any actions since session login
+                        let temp: CanvasAction[] = this.globalVariableService.actions.filter(act =>
+                            act.created > this.globalVariableService.sessionDateTimeLoggedin
+                            &&
+                            act.createor == this.globalVariableService.currentUser.userID
                         );
-                        if (dashboardIndex >= 0) {
-                            let today = new Date();
-                            let snapshotName: string = this.globalVariableService.dashboards[
-                                dashboardIndex]
-                                .name + ' ' + this.globalVariableService.formatDate(today);
-                            let snapshotComment: string = 'Automated Snapshot after ' +
-                                (mins / 60000).toString() + ' mins';
-                            this.globalVariableService.newDashboardSnapshot(
-                                snapshotName, snapshotComment).then(res => {
-                                    this.showMessage(
-                                        'Added automated Snapshot after ' +
-                                        (mins / 60000).toString() + ' mins',
-                                        'StatusBar',
-                                        'Info',
-                                        3000,
-                                        ''
-                                    );
 
-                            });
-                        };
+                        // Only snap if there were activities
+                        if (temp.length > 0) {
+
+                            let dashboardIndex: number = this.globalVariableService.dashboards.findIndex(
+                                d => d.id ==
+                                this.globalVariableService.currentDashboardInfo.value.currentDashboardID
+                            );
+                            if (dashboardIndex >= 0) {
+                                let today = new Date();
+                                let snapshotName: string = this.globalVariableService.dashboards[
+                                    dashboardIndex]
+                                    .name + ' ' + this.globalVariableService.formatDate(today);
+                                let snapshotComment: string = 'Automated Snapshot after ' +
+                                    (mins / 60000).toString() + ' mins';
+                                this.globalVariableService.newDashboardSnapshot(
+                                    snapshotName, snapshotComment).then(res => {
+                                        this.showMessage(
+                                            'Added automated Snapshot after ' +
+                                            (mins / 60000).toString() + ' mins',
+                                            'StatusBar',
+                                            'Info',
+                                            3000,
+                                            ''
+                                        );
+
+                                });
+                            };
+                        };                        
                     };
                 });
             };
@@ -5902,18 +5913,6 @@ export class AppComponent implements OnInit {
         // Click W object
         this.globalFunctionService.printToConsole(this.constructor.name,'clickWidget', '@Start');
 
-        let temp1: string = '2017/01/01 10:11'
-        let newTemp1 = new Date(temp1);
-        let hours = newTemp1.getHours;
-        let mins ..= newTemp1.getMinutes;
-        console.log('xx typeof', typeof hours)
-        let temp2: string = temp1;
-        // if (hours == 0  &&  mins < 30) {
-
-        // }
-        let newTemp2 = new Date(temp2);
-        console.log('xx temp, ', temp1, temp2, '||||', newTemp1, newTemp2, '|||', temp1 < temp2,
-        temp1 > temp2, '|||||', newTemp1 < newTemp2, newTemp1 > newTemp2)
         // Sl item was clicked, so nothing further to do on the W container
         if (this.clickedSlicerItem) {
             this.clickedSlicerItem = false;
