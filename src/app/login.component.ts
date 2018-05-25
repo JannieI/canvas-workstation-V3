@@ -73,9 +73,14 @@ export class LoginComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickLocalServer', '@Start');
 
+        // Register session start time
+        let today = new Date();
+        this.globalVariableService.sessionDateTimeLoggedin = 
+            this.globalVariableService.formatDate(today);
+
         // TODO - fix when values read from form
         this.globalVariableService.loggedIntoServer.next(
             !this.globalVariableService.loggedIntoServer.value
-        )
+        );
     }
 }

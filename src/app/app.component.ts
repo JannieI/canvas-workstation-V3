@@ -445,7 +445,9 @@ export class AppComponent implements OnInit {
             this.globalVariableService.currentUser = this.globalVariableService.canvasUsers
                 .filter(u => u.userID == 'JannieI')[0];
             console.log('Welcome ' + this.globalVariableService.currentUser.userID)
-
+            let today = new Date();
+            this.globalVariableService.sessionDateTimeLoggedin = 
+                this.globalVariableService.formatDate(today);
             // Snapshot at user defined interval: preferenceDefaultSnapshotMins = 0 => none
             let userMins: number = this.globalVariableService.currentUser.preferenceDefaultSnapshotMins;
             if (userMins > 0) {
@@ -5900,6 +5902,18 @@ export class AppComponent implements OnInit {
         // Click W object
         this.globalFunctionService.printToConsole(this.constructor.name,'clickWidget', '@Start');
 
+        let temp1: string = '2017/01/01 10:11'
+        let newTemp1 = new Date(temp1);
+        let hours = newTemp1.getHours;
+        let mins ..= newTemp1.getMinutes;
+        console.log('xx typeof', typeof hours)
+        let temp2: string = temp1;
+        // if (hours == 0  &&  mins < 30) {
+
+        // }
+        let newTemp2 = new Date(temp2);
+        console.log('xx temp, ', temp1, temp2, '||||', newTemp1, newTemp2, '|||', temp1 < temp2,
+        temp1 > temp2, '|||||', newTemp1 < newTemp2, newTemp1 > newTemp2)
         // Sl item was clicked, so nothing further to do on the W container
         if (this.clickedSlicerItem) {
             this.clickedSlicerItem = false;
