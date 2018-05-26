@@ -4162,7 +4162,7 @@ console.warn('xx d', this.dashboards)
                             //             oFld = s;
                             //             i = 0;
                             //             let o: {isSelected: boolean; fieldValue: string} =
-                            isTrashed        //                 {isSelected: oSel, fieldValue: oFld};
+                            //                 {isSelected: oSel, fieldValue: oFld};
                             //             w.slicerSelection.push(o);
                             //         }
                             //     })
@@ -4228,7 +4228,6 @@ console.warn('xx d', this.dashboards)
         // Returns: arrays of current W, Sl, Sh, Tbl; unless:
         //   If not cached or if dirty, get from File
         // Usage: getWidgets(1, -1)  =>  Returns W for DashboardID = 1
-        // NOTE: only get isTrashed = false, as those guys are soft deleted
         console.log('%c    Global-Variables getCurrentWidgets ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
@@ -4245,8 +4244,6 @@ console.warn('xx d', this.dashboards)
                             i => (i.dashboardID == dashboardID)
                                  &&
                                  (i.dashboardTabIDs.indexOf(dashboardTabID) >= 0)
-                                 &&
-                                 (!i.isTrashed)
                         );
                         this.currentWidgets = data;
 
@@ -4264,8 +4261,6 @@ console.warn('xx d', this.dashboards)
                     i => (i.dashboardID == dashboardID)
                     &&
                     (i.dashboardTabIDs.indexOf(dashboardTabID) >= 0)
-                    &&
-                    (!i.isTrashed)
                 )
 
                 this.currentWidgets = data;
