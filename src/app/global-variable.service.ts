@@ -4076,8 +4076,6 @@ console.warn('xx d', this.dashboards)
         // Description: Gets all W
         // Returns: this.widgets array, unless:
         //   If not cached or if dirty, get from File
-        // NOTE: this gets ALL W from DB (irrespective of isTrashed), so it includes soft deletes
-        // and must be treated as such arrays
 
         console.log('%c    Global-Variables getWidgets ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.widgets.length);
@@ -4093,8 +4091,6 @@ console.warn('xx d', this.dashboards)
                 this.get(url)
                     .then(data => {
 
-                        // TODO - delete this once good
-                        // this.widgets = data.filter(d => (!d.isTrashed) );
                         this.widgets = data;
 
                         // TODO - fix hardcoding, issue with datalib jsonTree
@@ -4166,7 +4162,7 @@ console.warn('xx d', this.dashboards)
                             //             oFld = s;
                             //             i = 0;
                             //             let o: {isSelected: boolean; fieldValue: string} =
-                            //                 {isSelected: oSel, fieldValue: oFld};
+                            isTrashed        //                 {isSelected: oSel, fieldValue: oFld};
                             //             w.slicerSelection.push(o);
                             //         }
                             //     })
@@ -4216,7 +4212,6 @@ console.warn('xx d', this.dashboards)
                         resolve(this.widgets);
                     });
             } else {
-                // NOTE: includes soft deletes, isTrashed = true
                 console.log('%c    Global-Variables getWidgets 2',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.widgets)
                 resolve(this.widgets);
