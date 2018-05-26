@@ -87,14 +87,20 @@ export class DashboardDiscardComponent implements OnInit {
             let dashboard: Dashboard = this.globalVariableService.dashboards[dashboardIndex];
             let originalID: number = dashboard.originalID;
 
-            // Delete the current
-            this.globalVariableService.deleteDashboard(
-                this.globalVariableService.currentDashboardInfo.value.currentDashboardID
-            ).then(resDraft => {
+            // Delete the current Draft
+            this.globalVariableService.deleteDashboard(dashboard.id).then(resDraft => {
+
                 // Change the original
-                let dashboardOrignal: Dashboard = this.globalVariableService
-                    .dashboards[originalID];
+                let dashboardOrignalIndex: number = this.globalVariableService.dashboards
+                    .findIndex(d => d.id ==originalID);
+                if (dashboardOrignalIndex < 0) {
+                    alert('Serious error in dashboard.discard-clickDiscard: cannot find original ID in gv.dashboards')
+                    return;
+                };
+                let dashboardOrignal: Dashboard = this.globalVariableService.dashboards[
+                    dashboardOrignalIndex];
                 dashboardOrignal.draftID = null;
+
                 this.globalVariableService.saveDashboard(dashboardOrignal).then(resOriginal =>
                 {
                     // Navigate to original
@@ -108,7 +114,8 @@ export class DashboardDiscardComponent implements OnInit {
 
             });
         } else {
-
+            alert('Serious error in dashboard.discard-clickDiscard: cannot find gv D-id in gv.dashboards')
+            return;
         };
 
     }
