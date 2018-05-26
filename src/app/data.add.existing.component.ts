@@ -242,7 +242,6 @@ export class DataAddExistingComponent implements OnInit {
                 w.datasourceID == this.datasources[index].id    
                 &&
                 w.dashboardID == this.globalVariableService.currentDashboardInfo.value.currentDashboardID
-                && !w.isTrashed
             ).length;
 
 
