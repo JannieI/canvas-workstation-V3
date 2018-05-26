@@ -2015,6 +2015,19 @@ export class AppComponent implements OnInit {
         // Share a D - set the Access Type (ie Private) and Access List
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardShare', '@Start');
 
+        // Not for Draft
+        if (this.globalVariableService.currentDashboardInfo.value.currentDashboardState ==
+            'Draft') {
+            this.showMessage(
+                'Draft Dashboards cannot be shared',
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+
         // Permissions
         if (!this.globalVariableService.currentUser.dashboardCanGrantAccessRole
             &&
@@ -2413,7 +2426,7 @@ export class AppComponent implements OnInit {
         if (this.globalVariableService.currentDashboardInfo.value.currentDashboardState ==
             'Draft') {
             this.showMessage(
-                'Draft Dashboards cannot be deleted',
+                'Draft Dashboards cannot be deleted (use Discard menu option)',
                 'StatusBar',
                 'Warning',
                 3000,
