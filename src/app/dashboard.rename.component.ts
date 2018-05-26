@@ -137,7 +137,7 @@ export class DashboardRenameComponent implements OnInit {
             // List of W that contains above DS ids -> [Dids]
             let dIDs: number[] = [];
             this.globalVariableService.widgets.forEach(w => {
-                if (dsIDs.indexOf(w.datasourceID) >=0   &&  !w.isTrashed) {
+                if (dsIDs.indexOf(w.datasourceID) >=0) {
                     dIDs.push(w.dashboardID);
                 };
             });
@@ -169,7 +169,7 @@ export class DashboardRenameComponent implements OnInit {
             // List of W that contains above DS ids -> [Dids]
             let dIDs: number[] = [];
             this.globalVariableService.widgets.forEach(w => {
-                if (dsIDs.indexOf(w.datasourceID) >= 0  &&  !w.isTrashed) {
+                if (dsIDs.indexOf(w.datasourceID) >= 0) {
                     dIDs.push(w.dashboardID);
                 };
             });
