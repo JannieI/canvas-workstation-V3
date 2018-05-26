@@ -4372,26 +4372,45 @@ console.warn('xx d', this.dashboards)
                     // Update widgets and currentWidgets
                     this.widgetReplace(data);
 
-                    // Mark Checkpoints to indicate parentW is dead
-                    if (data.isTrashed) {
+                    //     // TODO - do this better in a DB
+                    //     if (this.currentWidgetCheckpoints.length > 0) {
+                    //         this.currentWidgetCheckpoints.forEach(chk => {
+                    //             if (chk.widgetID == data.id) {
+                    //                 chk.parentWidgetIsDeleted = true;
+                    //             };
+                    //         });
+                    //     };
+                    //     if (this.widgetCheckpoints.length > 0) {
+                    //         this.widgetCheckpoints.forEach(chk => {
+                    //             if (chk.widgetID == data.id) {
+                    //                 chk.parentWidgetIsDeleted = true;
+                    //                 this.saveWidgetCheckpoint(chk);
+                    //             };
+                    //         });
+                    //     };
+                    // };
 
-                        // TODO - do this better in a DB
-                        if (this.currentWidgetCheckpoints.length > 0) {
-                            this.currentWidgetCheckpoints.forEach(chk => {
-                                if (chk.widgetID == data.id) {
-                                    chk.parentWidgetIsDeleted = true;
-                                };
-                            });
-                        };
-                        if (this.widgetCheckpoints.length > 0) {
-                            this.widgetCheckpoints.forEach(chk => {
-                                if (chk.widgetID == data.id) {
-                                    chk.parentWidgetIsDeleted = true;
-                                    this.saveWidgetCheckpoint(chk);
-                                };
-                            });
-                        };
-                    };
+                    // TODO - remove the commented code once all good
+                    // Mark Checkpoints to indicate parentW is dead
+                    // if (data.isTrashed) {
+
+                    //     // TODO - do this better in a DB
+                    //     if (this.currentWidgetCheckpoints.length > 0) {
+                    //         this.currentWidgetCheckpoints.forEach(chk => {
+                    //             if (chk.widgetID == data.id) {
+                    //                 chk.parentWidgetIsDeleted = true;
+                    //             };
+                    //         });
+                    //     };
+                    //     if (this.widgetCheckpoints.length > 0) {
+                    //         this.widgetCheckpoints.forEach(chk => {
+                    //             if (chk.widgetID == data.id) {
+                    //                 chk.parentWidgetIsDeleted = true;
+                    //                 this.saveWidgetCheckpoint(chk);
+                    //             };
+                    //         });
+                    //     };
+                    // };
 
                     console.log('saveWidget SAVED', res)
                     resolve('Saved');
