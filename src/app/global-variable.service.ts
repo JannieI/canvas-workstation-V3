@@ -4783,7 +4783,7 @@ console.warn('xx d', this.dashboards)
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
                     .then(res => {
-                        this.canvasMessages = res.filter(d => (!d.isTrashed) );
+                        this.canvasMessages = res;
 
                         this.isDirtyCanvasMessages = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
