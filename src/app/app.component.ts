@@ -2409,6 +2409,19 @@ export class AppComponent implements OnInit {
         // Delete the current D
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDelete', '@Start');
 
+        // Not for Draft
+        if (this.globalVariableService.currentDashboardInfo.value.currentDashboardState ==
+            'Draft') {
+            this.showMessage(
+                'Draft Dashboards cannot be deleted',
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+
         // Permissions
         if (!this.globalVariableService.currentUser.dashboardCanDeleteRole
             &&
