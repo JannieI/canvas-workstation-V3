@@ -14,9 +14,11 @@ import { Output }                     from '@angular/core';
 import { GlobalFunctionService } 	  from './global-function.service';
 
 // Our Services
-import { GlobalVariableService}       from './global-variable.service';
+import { GlobalVariableService }      from './global-variable.service';
 
 // Models
+import { Dashboard }                  from './models';
+
 
 @Component({
     selector: 'dashboard-discard',
@@ -76,8 +78,39 @@ export class DashboardDiscardComponent implements OnInit {
         // Delete the current D
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDiscard', '@Start');
 
-        this.globalVariableService.editMode.next(false);
-		this.formDashboardDiscardClosed.emit(action); 
+        // Get info on D
+        let dashboardIndex: number = this.globalVariableService.dashboards.findIndex(
+            d => d.id ==
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardID
+        );
+        if (dashboardIndex >= 0) {
+            let dashboard: Dashboard = this.globalVariableService.dashboards[dashboardIndex];
+            let originalID: number = dashboard.originalID;
+
+            // Delete the current
+            this.globalVariableService.deleteDashboard(
+                this.globalVariableService.currentDashboardInfo.value.currentDashboardID
+            ).then(resDraft => {
+                // Change the original
+                let dashboardOrignal: Dashboard = this.globalVariableService
+                    .dashboards[originalID];
+                dashboardOrignal.draftID = null;
+                this.globalVariableService.saveDashboard(dashboardOrignal).then(resOriginal =>
+                {
+                    // Navigate to original
+                    this.globalVariableService.refreshCurrentDashboard(
+                        'discardDashboard-clickDiscard', dashboardOrignal.id, -1, ''
+                    );
+                    this.globalVariableService.editMode.next(false);
+                    this.formDashboardDiscardClosed.emit(action); 
+
+                });
+
+            });
+        } else {
+
+        };
+
     }
 
     clickGotIt() {
