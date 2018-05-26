@@ -6485,8 +6485,7 @@ export class AppComponent implements OnInit {
             };
         };
 
-        // Delete from the DB and global ones - only marked as isTrashed in DB
-        deleteWidget.isTrashed = true;
+        // Delete W + Chkpnts from the DB and global ones
         this.globalVariableService.deleteWidget(deleteWidget.id);
 
         for (var i = 0; i < this.globalVariableService.widgets.length; i++) {
