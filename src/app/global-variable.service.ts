@@ -3192,11 +3192,8 @@ console.warn('xx d', this.dashboards)
                     )
             } else {
                 let datasourceIDs: number[] = [];
-                // TODO - isTrashed added
                 let dashboardWidgets: Widget[] = this.widgets.filter(w =>
                     w.dashboardID == dashboardID
-                    &&
-                    !w.isTrashed
                 );
 
                 for (var i = 0; i < dashboardWidgets.length; i++) {
