@@ -4352,6 +4352,13 @@ console.warn('xx d', this.dashboards)
                         w => w.id != id
                     );
 
+                    // Delete where D was used in Chkpnt
+                    this.widgetCheckpoints.forEach(chk => {
+                        if (chk.widgetID == w.id) {
+                            this.deleteWidgetCheckpoint(chk.id);
+                        };
+                    });
+
                     console.log('deleteWidget DELETED id: ', id, this.widgetCheckpoints, this.currentWidgetCheckpoints)
                     resolve('Deleted');
                 },
