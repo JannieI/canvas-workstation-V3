@@ -1510,7 +1510,8 @@ export class AppComponent implements OnInit {
     clickMenuEditMode() {
         // Toggle Edit Mode
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditMode', '@Start');
-
+console.warn('xx this.globalVariableService.currentDashboardInfo', this.globalVariableService.currentDashboardInfo.value)
+console.warn('xx this.globalVariableService.currentDashboard', this.globalVariableService.currentDashboards)
         // Permissions
         if (!this.globalVariableService.currentUser.dashboardCanEditRole
             &&
@@ -3251,7 +3252,7 @@ export class AppComponent implements OnInit {
         // Check permissions
         let permissions: string[] = this.globalVariableService.dashboardPermissionList(this.globalVariableService.currentDashboardInfo.value.currentDashboardID);
         if ( (permissions.indexOf('canedit') < 0)
-              &&
+              ||
               (permissions.indexOf('candelete)') < 0) ) {
             this.showMessage(
                 'Insufficient permissions',

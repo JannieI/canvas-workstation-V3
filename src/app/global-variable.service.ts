@@ -1392,7 +1392,7 @@ export class GlobalVariableService {
         //   If not cached or if dirty, get from File
         console.log('%c    Global-Variables getCurrentDashboards ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", dashboardID);
-
+console.warn('xx d', this.dashboards)
         // Refresh from source at start, or if dirty
         if ( 
             (this.currentDashboards.length == 0  
