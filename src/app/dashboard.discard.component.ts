@@ -48,6 +48,9 @@ export class DashboardDiscardComponent implements OnInit {
 	) {}
 
     ngOnInit() {
+        // Delete the current D
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
         this.globalVariableService.isFirstTimeDashboardDiscard.subscribe(
             i => this.isFirstTimeDashboardDiscard = i
         )
@@ -63,14 +66,18 @@ export class DashboardDiscardComponent implements OnInit {
     }
     
     clickClose(action: string) {
-        console.log('clickClose')
+        // Delete the current D
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
 		this.formDashboardDiscardClosed.emit(action);
     }
 
     clickDiscard(action: string) {
+        // Delete the current D
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDiscard', '@Start');
+
         this.globalVariableService.editMode.next(false);
-		this.formDashboardDiscardClosed.emit(action);
+		this.formDashboardDiscardClosed.emit(action); 
     }
 
     clickGotIt() {
