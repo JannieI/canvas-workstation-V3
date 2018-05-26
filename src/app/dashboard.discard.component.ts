@@ -88,31 +88,29 @@ export class DashboardDiscardComponent implements OnInit {
             let originalID: number = dashboard.originalID;
 
             // Delete the current Draft
-            this.globalVariableService.deleteDashboard(dashboard.id).then(resDraft => {
+            this.globalVariableService.deleteDashboardInfo(dashboard.id);
+            // Change the original
+            let dashboardOrignalIndex: number = this.globalVariableService.dashboards
+                .findIndex(d => d.id ==originalID);
+            if (dashboardOrignalIndex < 0) {
+                alert('Serious error in dashboard.discard-clickDiscard: cannot find original ID in gv.dashboards')
+                return;
+            };
+            let dashboardOrignal: Dashboard = this.globalVariableService.dashboards[
+                dashboardOrignalIndex];
+            dashboardOrignal.draftID = null;
 
-                // Change the original
-                let dashboardOrignalIndex: number = this.globalVariableService.dashboards
-                    .findIndex(d => d.id ==originalID);
-                if (dashboardOrignalIndex < 0) {
-                    alert('Serious error in dashboard.discard-clickDiscard: cannot find original ID in gv.dashboards')
-                    return;
-                };
-                let dashboardOrignal: Dashboard = this.globalVariableService.dashboards[
-                    dashboardOrignalIndex];
-                dashboardOrignal.draftID = null;
-
-                this.globalVariableService.saveDashboard(dashboardOrignal).then(resOriginal =>
-                {
-                    // Navigate to original
-                    this.globalVariableService.refreshCurrentDashboard(
-                        'discardDashboard-clickDiscard', dashboardOrignal.id, -1, ''
-                    );
-                    this.globalVariableService.editMode.next(false);
-                    this.formDashboardDiscardClosed.emit(action); 
-
-                });
+            this.globalVariableService.saveDashboard(dashboardOrignal).then(resOriginal =>
+            {
+                // Navigate to original
+                this.globalVariableService.refreshCurrentDashboard(
+                    'discardDashboard-clickDiscard', dashboardOrignal.id, -1, ''
+                );
+                this.globalVariableService.editMode.next(false);
+                this.formDashboardDiscardClosed.emit(action); 
 
             });
+
         } else {
             alert('Serious error in dashboard.discard-clickDiscard: cannot find gv D-id in gv.dashboards')
             return;
