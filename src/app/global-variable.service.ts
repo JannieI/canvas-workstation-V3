@@ -4563,7 +4563,7 @@ console.warn('xx d', this.dashboards)
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
                     .then(data => {
-                        this.canvasTasks = data.filter(d => (!d.isTrashed) );
+                        this.canvasTasks = data;
 
                         this.isDirtyCanvasTasks = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
