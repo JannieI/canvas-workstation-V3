@@ -4311,9 +4311,7 @@ console.warn('xx d', this.dashboards)
     deleteWidget(id: number): Promise<string> {
         // Description: Deletes a Widgets
         // Returns: 'Deleted' or error message
-        // NOTE: this permananently deletes a W, from arrays and DB.  This must NOT be used for
-        // a simplete W delete, in which case it stays in DB (with isTrashed = true), and is
-        // only removed from the arrays
+        // NOTE: this permananently deletes a W, from arrays and DB. 
         console.log('%c    Global-Variables deleteWidget ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", id);
 
@@ -4531,7 +4529,7 @@ console.warn('xx d', this.dashboards)
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
                     .then(data => {
-                        this.backgroundcolors = data.filter(d => (!d.isTrashed) );
+                        this.backgroundcolors = data;
 
                         this.isDirtyBackgroundColors = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
