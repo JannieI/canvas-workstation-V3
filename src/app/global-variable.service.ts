@@ -5877,7 +5877,6 @@ console.warn('xx d', this.dashboards)
                 // TODO - Make a deep copy / error free, less work copy
                 w.widgetType = changedWidget.widgetType;
                 w.widgetSubType = changedWidget.widgetSubType;
-                w.isTrashed = changedWidget.isTrashed;
                 w.dashboardID = changedWidget.dashboardID;
                 w.dashboardTabID = changedWidget.dashboardTabID;
                 w.dashboardTabIDs = changedWidget.dashboardTabIDs;
@@ -6021,7 +6020,6 @@ console.warn('xx d', this.dashboards)
                 // TODO - Make a deep copy / error free, less work copy
                 w.widgetType = changedWidget.widgetType;
                 w.widgetSubType = changedWidget.widgetSubType;
-                w.isTrashed = changedWidget.isTrashed;
                 w.dashboardID = changedWidget.dashboardID;
                 w.dashboardTabID = changedWidget.dashboardTabID;
                 w.dashboardTabIDs = changedWidget.dashboardTabIDs;
