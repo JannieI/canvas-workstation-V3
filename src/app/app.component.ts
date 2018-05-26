@@ -1980,6 +1980,19 @@ export class AppComponent implements OnInit {
         // Discard changes made since the previous Save
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardDiscard', '@Start');
 
+        // Only for Draft
+        if (this.globalVariableService.currentDashboardInfo.value.currentDashboardState !=
+            'Draft') {
+            this.showMessage(
+                'Only Draft Dashboards can be Discarded',
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+
         // Permissions
         if (!this.globalVariableService.currentUser.dashboardCanEditRole
             &&
