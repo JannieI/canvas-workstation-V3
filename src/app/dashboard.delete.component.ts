@@ -152,7 +152,7 @@ export class DashboardDeleteComponent implements OnInit {
             this.errorMessage = 'No access';
             return;
         };
- 
+  
         // Delete D, as all related Entities
         this.globalVariableService.deleteDashboardInfo(
             this.globalVariableService.currentDashboardInfo.value.currentDashboardID

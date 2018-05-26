@@ -5841,7 +5841,7 @@ export class GlobalVariableService {
         };
 
         // Register in Recent
-        this.amendDashboardRecent(dashboardID, y);
+        // this.amendDashboardRecent(dashboardID, y);
 
         // Inform subscribers of the change
         this.currentDashboardInfo.next({
