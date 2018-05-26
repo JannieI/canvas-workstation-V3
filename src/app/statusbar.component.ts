@@ -48,6 +48,7 @@ export class StatusbarComponent {
     showDashboardTabDescription: boolean = false;
     showNewTab: boolean = false;
     showTabList: boolean = false;
+    state: string = '';
     statusBarMessageText: string = '';
     statusBarMessageColour: string = 'rgb(197, 194, 194)';
     widgetGroupText: string;
@@ -111,6 +112,10 @@ export class StatusbarComponent {
                 this.showDashboardTabDescription = false;
                 this.showNewTab = false;
                 this.showTabList = false;
+                if (i != null) {
+                    this.state = i.currentDashboardState;
+                };
+
             }
         );
         this.globalVariableService.statusBarMessage.subscribe(i =>
