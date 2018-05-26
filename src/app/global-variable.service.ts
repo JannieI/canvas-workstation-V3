@@ -4354,7 +4354,7 @@ console.warn('xx d', this.dashboards)
 
                     // Delete where D was used in Chkpnt
                     this.widgetCheckpoints.forEach(chk => {
-                        if (chk.widgetID == w.id) {
+                        if (chk.widgetID == id) {
                             this.deleteWidgetCheckpoint(chk.id);
                         };
                     });
