@@ -1394,7 +1394,11 @@ export class GlobalVariableService {
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", dashboardID);
 
         // Refresh from source at start, or if dirty
-        if ( (this.dashboards.length == 0)  ||  (this.isDirtyDashboards) ) {
+        if ( 
+            (this.currentDashboards.length == 0  
+            ||  this.dashboards.length == 0)  
+            ||  (this.isDirtyDashboards) 
+            ) {
             return new Promise<Dashboard[]>((resolve, reject) => {
                 this.getDashboards()
                     .then(data => {
