@@ -140,7 +140,6 @@ const widgetTemplate: Widget =
         "widgetType": "",
         "widgetSubType": "",
         "isLocked": false,
-        "isTrashed": false,
         "dashboardID": null,
         "dashboardTabID": null,
         "dashboardTabIDs": [],

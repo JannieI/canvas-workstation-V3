@@ -584,9 +584,6 @@ export class Widget {
     widgetSubType: string;              // Type of shape, ie Circle.  NB spelling is case-
                                         // sensitive, and used in Code !!
 
-    // Trashed
-    isTrashed: boolean;
-
     // Where W lives
     dashboardID: number;                // FK to DashboardID to which widget belongs
     dashboardTabID: number;             // FKs to Tabs where the widget lives
