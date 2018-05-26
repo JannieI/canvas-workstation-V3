@@ -341,8 +341,6 @@ export class StatusbarComponent {
             if (w.dashboardID == this.globalVariableService.currentDashboardInfo.value.
                 currentDashboardID
                 &&
-                !w.isTrashed
-                &&
                 w.dashboardTabIDs.indexOf(this.globalVariableService.currentDashboardInfo.
                     value.currentDashboardTabID) >= 0) {
                     return w;

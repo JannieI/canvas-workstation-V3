@@ -5478,7 +5478,6 @@ console.warn('xx d', this.dashboards)
             .model([
                 {key: 'widgetType', 				type: 'string'},
                 {key: 'widgetSubType', 				type: 'string'},
-                {key: 'isTrashed', 					type: 'bool'},
                 {key: 'dashboardID', 				type: 'int'},
                 {key: 'dashboardTabID', 			type: 'int'},
                 {key: 'dashboardTabIDs', 			type: 'array'},
