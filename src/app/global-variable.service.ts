@@ -5844,8 +5844,14 @@ export class GlobalVariableService {
         // this.amendDashboardRecent(dashboardID, y);
 
         // Inform subscribers of the change
+        let dashboardIndex: number = this.dashboards.findIndex(d => d.id == dashboardID)
+        let state: string = 'Draft';
+        if (dashboardIndex >= 0) {
+            state = this.dashboards[dashboardIndex].state;
+        };
         this.currentDashboardInfo.next({
             currentDashboardID: dashboardID,
+            currentDashboardState: state,
             currentDashboardTabID: y,
             currentDashboardTabIndex: x,
             refreshingRoutine: refreshingRoutine,
