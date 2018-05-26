@@ -103,7 +103,6 @@ export class DashboardDeleteComponent implements OnInit {
                                 ).length;
                                 this.dashboardWidgets = this.globalVariableService.widgets.
                                     filter(w => w.dashboardID == dashboardID
-                                        &&  !w.isTrashed
                                 ).length;
                                 this.dashboardPermissions = this.globalVariableService.dashboardPermissions.filter(
                                     p => p.dashboardID == dashboardID
@@ -113,7 +112,6 @@ export class DashboardDeleteComponent implements OnInit {
                                 ).length;
                                 this.dashboardHyperLinks = this.globalVariableService.widgets.filter(
                                     w => w.hyperlinkDashboardID == dashboardID
-                                        &&  !w.isTrashed
                                 ).length;
                                 this.dashboardTemplates = this.globalVariableService.dashboards.filter(
                                     d => d.templateDashboardID == dashboardID
