@@ -995,6 +995,12 @@ export class GlobalVariableService {
                 if (state != null) {
                     newD.state = state;
                 };
+
+                // Draft can only be edited by its creator
+                if (state == 'Draft') {
+                    newD.accessType = 'Private';
+                };
+
                 newD.draftID = null;
                 if (this.dashboards[dashboardIndex].state == 'Complete'
                     && state == 'Draft') {
@@ -1035,8 +1041,11 @@ export class GlobalVariableService {
                     this.allWithAsync(...promiseArrayT).then(resolvedData => {
                         // W
                         let promiseArrayW = [];
-                        this.dashboardTabs.forEach(t => {
+                        let dashboardTabsResult = JSON.parse(JSON.stringify(resolvedData));
+
+                        dashboardTabsResult.forEach(t => {
                             if (t.dashboardID == addedD.id) {
+                                console.warn('xx loop tabs', t, dashboardTabsResult)
                                 this.widgets.forEach(w => {
                                     if (w.dashboardID == dashboardID 
                                         &&  
@@ -1061,7 +1070,8 @@ export class GlobalVariableService {
 
                             // Checkpoints
                             let promiseArrayChk = [];
-                            this.widgets.forEach(w => {
+                            let widgetResults = JSON.parse(JSON.stringify(resolvedData));
+                            widgetResults.forEach(w => {
                                 if (w.dashboardID == addedD.id) {
 
                                     this.widgetCheckpoints.forEach(chk => {
