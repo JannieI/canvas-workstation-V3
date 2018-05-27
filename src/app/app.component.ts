@@ -2027,6 +2027,20 @@ export class AppComponent implements OnInit {
     clickDashboardShare() {
         // Share a D - set the Access Type (ie Private) and Access List
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardShare', '@Start');
+        
+        // TODO - remove once happy not needed
+        // Can only be done for state = Complete
+        // if (this.globalVariableService.currentDashboardInfo.value.currentDashboardState
+        //     != 'Complete') {
+        //     this.showMessage(
+        //         'Only possible for Dashboards with state = Complete',
+        //         'StatusBar',
+        //         'Info',
+        //         3000,
+        //         ''
+        //     );
+        //     return;
+        // }
 
         // Not for Draft
         if (this.globalVariableService.currentDashboardInfo.value.currentDashboardState ==
@@ -2329,19 +2343,6 @@ export class AppComponent implements OnInit {
     clickMenuDashboardDetailTags() {
         // Manage Tags for the current D
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDetailTags', '@Start');
-        
-        // Can only be done for state = Complete
-        if (this.globalVariableService.currentDashboardInfo.value.currentDashboardState
-            != 'Complete') {
-            this.showMessage(
-                'Only possible for Dashboards with state = Complete',
-                'StatusBar',
-                'Info',
-                3000,
-                ''
-            );
-            return;
-        }
 
         this.menuOptionClickPreAction();
 
