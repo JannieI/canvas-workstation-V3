@@ -4683,14 +4683,15 @@ console.warn('xx d', this.dashboards)
             .subscribe(
                 res => {
 
+                    // TODO - delete once 100% sure we dont need this
                     // Update NrComments field if a W is linked
-                    if (data.widgetID != null) {
-                        this.widgets.forEach(w => {
-                            if (w.id == data.widgetID) {
-                                w.nrComments = w.nrComments + 1;
-                            };
-                        });
-                    };
+                    // if (data.widgetID != null) {
+                    //     this.widgets.forEach(w => {
+                    //         if (w.id == data.widgetID) {
+                    //             w.nrComments = w.nrComments + 1;
+                    //         };
+                    //     });
+                    // };
 
                     // Update Global vars to make sure they remain in sync
                     this.canvasComments.push(JSON.parse(JSON.stringify(res)));

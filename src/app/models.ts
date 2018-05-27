@@ -225,7 +225,6 @@ export class CanvasMessageSingle {
 export class CanvasComment {
     id: number;                             // Unique ID
     dashboardID: number;                    // Dashboard to which comment is linked
-    widgetID: number;                       // Optional Widget linked
     comment: string;                        // Comment Text
     creator: string;                        // UserID
     createdOn: string;                      // DateTime
