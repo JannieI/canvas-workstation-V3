@@ -5000,6 +5000,7 @@ export class AppComponent implements OnInit {
                 });
             }
         };
+
         // Ensure we have selected > 2, else we may have divid 0 ...
         if (selectedOnes.length < 3) {
             this.showMessage(
@@ -5189,6 +5190,19 @@ export class AppComponent implements OnInit {
     clickMenuCollaborateMessages() {
         // Show list of Canvas Messages
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuCollaborateMessages', '@Start');
+        
+        // Can only be done for state = Complete
+        if (this.globalVariableService.currentDashboardInfo.value.currentDashboardState
+            != 'Complete') {
+            this.showMessage(
+                'Only possible for Dashboards with state = Complete',
+                'StatusBar',
+                'Info',
+                3000,
+                ''
+            );
+            return;
+        }
 
         this.menuOptionClickPreAction();
 
