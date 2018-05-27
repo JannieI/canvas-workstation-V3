@@ -2779,18 +2779,6 @@ export class AppComponent implements OnInit {
                 );
                 return;
             };
-
-            // Check if Locked
-            if (this.selectedWidget.isLocked) {
-                this.showMessage(
-                    'Widget is locked (unlock using menu option)',
-                    'StatusBar',
-                    'Warning',
-                    3000,
-                    ''
-                );
-                return;
-            };
         };
 
         // Indicate edit W and open Editor, which will work with selected W
@@ -2811,6 +2799,20 @@ export class AppComponent implements OnInit {
             });
         } else {
             this.selectedWidget = this.currentWidgets[widgetIndex];
+        };
+
+        // Check if Locked - after id is obtained
+        if (canSave) {
+            if (this.selectedWidget.isLocked) {
+                this.showMessage(
+                    'Widget is locked (unlock using menu option)',
+                    'StatusBar',
+                    'Warning',
+                    3000,
+                    ''
+                );
+                return;
+            };
         };
 
         this.menuOptionClickPreAction();
