@@ -2740,43 +2740,45 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetEdit', '@Start');
 
         // Permissions
-        if (!this.globalVariableService.currentUser.dashboardCanEditRole
-            &&
-            !this.globalVariableService.currentUser.isAdministrator) {
-            this.showMessage(
-                'You do not have Edit Permissions (role must be added)',
-                'StatusBar',
-                'Warning',
-                3000,
-                ''
-            );
-            return;
-        };
-
-        // Must have access to this D
-        if (!this.globalVariableService.dashboardPermissionCheck(
-            this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
-            'CanEdit')) {
+        if (canSave) {
+            if (!this.globalVariableService.currentUser.dashboardCanEditRole
+                &&
+                !this.globalVariableService.currentUser.isAdministrator) {
                 this.showMessage(
-                    'No Edit access to this Dashboard',
+                    'You do not have Edit Permissions (role must be added)',
                     'StatusBar',
                     'Warning',
                     3000,
                     ''
                 );
                 return;
-        };
+            };
 
-        // Has to be in editMode
-        if (!this.editMode) {
-            this.showMessage(
-                this.globalVariableService.canvasSettings.notInEditModeMsg,
-                'StatusBar',
-                'Warning',
-                3000,
-                ''
-            );
-            return;
+            // Must have access to this D
+            if (!this.globalVariableService.dashboardPermissionCheck(
+                this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                'CanEdit')) {
+                    this.showMessage(
+                        'No Edit access to this Dashboard',
+                        'StatusBar',
+                        'Warning',
+                        3000,
+                        ''
+                    );
+                    return;
+            };
+
+            // Has to be in editMode
+            if (!this.editMode) {
+                this.showMessage(
+                    this.globalVariableService.canvasSettings.notInEditModeMsg,
+                    'StatusBar',
+                    'Warning',
+                    3000,
+                    ''
+                );
+                return;
+            };
         };
 
         // Indicate edit W and open Editor, which will work with selected W
