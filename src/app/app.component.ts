@@ -2329,6 +2329,19 @@ export class AppComponent implements OnInit {
     clickMenuDashboardDetailTags() {
         // Manage Tags for the current D
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDetailTags', '@Start');
+        
+        // Can only be done for state = Complete
+        if (this.globalVariableService.currentDashboardInfo.value.currentDashboardState
+            != 'Complete') {
+            this.showMessage(
+                'Only possible for Dashboards with state = Complete',
+                'StatusBar',
+                'Info',
+                3000,
+                ''
+            );
+            return;
+        }
 
         this.menuOptionClickPreAction();
 
@@ -5224,19 +5237,6 @@ export class AppComponent implements OnInit {
     clickMenuCollaborateSendMessageAdd() {
         // Send a Canvas Message
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuCollaborateSendMessage', '@Start');
-        
-        // Can only be done for state = Complete
-        if (this.globalVariableService.currentDashboardInfo.value.currentDashboardState
-            != 'Complete') {
-            this.showMessage(
-                'Only possible for Dashboards with state = Complete',
-                'StatusBar',
-                'Info',
-                3000,
-                ''
-            );
-            return;
-        }
 
         this.menuOptionClickPreAction();
 
