@@ -1325,7 +1325,11 @@ export class GlobalVariableService {
         this.deleteDashboard(draftID);
 
         // - Tabs
-        
+        this.dashboardTabs.forEach(t => {
+            if (t.dashboardID == draftID) {
+                this.deleteDashboardTab(t.id);
+            };
+        });
         
         // - Widgets, Checkpoints, Permissions) 
         // created as part of the Draft version are all deleted.  
