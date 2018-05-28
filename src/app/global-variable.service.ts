@@ -1251,8 +1251,8 @@ export class GlobalVariableService {
         this.canvasTasks.forEach(tsk => {
             if (tsk.linkedDashboardID == draftID) {
                 tsk.linkedDashboardID = originalID;
+                this.saveCanvasTask(tsk);
             };
-            this.saveCanvasTask(tsk);
         });
         // - Messages
         // - Comments (link to Dashboard and Widget)
