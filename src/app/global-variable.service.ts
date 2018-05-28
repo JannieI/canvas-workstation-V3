@@ -1354,6 +1354,180 @@ export class GlobalVariableService {
 
     }
 
+    saveDraftDashboard() {
+        // saves Draft Dashboard back to the original, keeping all changes
+        // - dashboardID = Draft ID
+        
+        // The following are unmodified:
+        // - the AuditTrails are kept against the Draft
+
+        console.log('%c    Global-Variables saveDraftDashboard ...',
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+
+        // Set to current
+        let draftID = this.currentDashboardInfo.value.currentDashboardID;
+        let dashboard = this.letDashboard(draftID);
+        let originalID = dashboard.originalID;
+        let draftTabs: DashboardTab[] = this.dashboardTabs.filter(
+            t => t.dashboardID == draftID
+        );
+        console.warn('xx ids', draftID, originalID)
+        
+        // The following are moved (added to the original version), removing any links 
+        // to the Draft version:
+        // - Actions
+        this.actions.forEach(act => {
+            draftTabs.forEach(t => {
+                if (act.dashboardID == t.dashboardID
+                    && 
+                    act.dashboardTabID == t.id) {
+                        act.dashboardID = originalID;
+                        act.dashboardTabID = t.originalID;
+                        this.actionUpsert(
+                            act.id,
+                            act.dashboardID,
+                            act.dashboardTabID,
+                            null,
+                            act.objectType,
+                            act.action,
+                            act.description,
+                            act.undoID,
+                            act.redoID,
+                            act.oldWidget,
+                            act.newWidget
+                        );
+                };
+            });
+        });
+
+        // - Tasks
+        this.canvasTasks.forEach(tsk => {
+            if (tsk.linkedDashboardID == draftID) {
+                tsk.linkedDashboardID = originalID;
+                this.saveCanvasTask(tsk);
+            };
+        });
+
+        // - Messages
+        this.canvasMessages.forEach(msg => {
+            draftTabs.forEach(t => {
+                if (msg.dashboardID == t.dashboardID
+                    &&
+                    msg.dashboardTabID == t.id) {
+                        msg.dashboardID = originalID;
+                        msg.dashboardTabID = t.originalID;
+                        this.saveCanvasMessage(msg);
+                };
+            });
+        });
+
+        // - Comments (link to Dashboard and Widget)
+        this.canvasComments.forEach(com => {
+            if (com.dashboardID == draftID) {
+                com.dashboardID = originalID;
+                this.saveCanvasComment(com);
+            };
+        });
+
+        // The following are simply deleted (and those applicable to the original remains 
+        // unchanged):
+        // - Subscriptions
+        this.dashboardSubscriptions.forEach(sub => {
+            if (sub.dashboardID == draftID) {
+                this.deleteDashboardSubscription(sub.id);
+            };
+        });
+
+        // - Schedules
+        this.dashboardSchedules.forEach(sch => {
+            if (sch.dashboardID == draftID) {
+                this.deleteDashboardSchedule(sch.id);
+            };
+        });
+
+        // - entry in recent Dashboards for the Draft
+        this.dashboardsRecent.forEach(rec => {
+            if (rec.dashboardID == draftID) {
+                this.deleteDashboardRecent(rec.id);
+            };
+        });
+
+        // - flag for Favourite Dashboard
+        // - flag for Startup Dashboard
+        this.canvasUsers.forEach(u => {
+            if (u.startupDashboardID == draftID) {
+                u.startupDashboardID = 0;
+            };
+            u.favouriteDashboards.filter(f => f != draftID)
+            // TODO - improve this to not update ALL users
+            this.saveCanvasUser(u);
+        });
+
+        // - permissions
+        this.dashboardPermissions.forEach(per => {
+            if (per.dashboardID == draftID) {
+                this.deleteDashboardPermission(per.id);
+            };
+        });
+
+        // - Tags
+        this.dashboardTags.forEach(tag => {
+            if (tag.dashboardID == draftID) {
+                this.deleteDashboardTag(tag.id);
+            };
+        });
+
+        // - all snapshots (for the Draft) are deleted
+        // - template Dashboard
+        this.dashboards.forEach(d => {
+            if (d.templateDashboardID == draftID) {
+                d.templateDashboardID == 0;
+                this.saveDashboard(d);
+            };
+        });
+
+        // - hyperlinked Dashboard
+        this.widgets.forEach(w => {
+            if (w.hyperlinkDashboardID == draftID) {
+                w.hyperlinkDashboardID = 0;
+                this.saveWidget(w);
+            };
+        });
+    
+        // Delete the Draft D content created as part of the Draft version:
+        // Dashboard
+        this.deleteDashboard(draftID);
+
+        // - Tabs
+        this.dashboardTabs.forEach(t => {
+            if (t.dashboardID == draftID) {
+                this.deleteDashboardTab(t.id);
+            };
+        });
+        
+        // - Widgets
+        this.widgets.forEach(w => {
+            if (w.dashboardID == draftID) {
+                this.deleteWidget(w.id);
+            };
+        });
+
+        // - Checkpoints
+        this.widgetCheckpoints.forEach(chk => {
+            if (chk.dashboardID == draftID) {
+                this.deleteWidgetCheckpoint(chk.id);
+            };
+        });
+
+        // Permissions
+        this.dashboardPermissions.forEach(per => {
+            if (per.dashboardID == draftID) {
+                this.deleteDatasourcePermission(per.id);
+            };
+        });
+
+    }
+
     deleteDashboardInfo(dashboardID: number) {
         // Deletes D with all related Entities
         console.log('%c    Global-Variables deleteDashboardInfo ...',
