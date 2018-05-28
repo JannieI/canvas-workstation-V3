@@ -1313,6 +1313,13 @@ export class GlobalVariableService {
 
         // - all snapshots (for the Draft) are deleted
         // - template Dashboard
+        this.dashboards.forEach(d => {
+            if (d.templateDashboardID == draftID) {
+                d.templateDashboardID == 0;
+                this.saveDashboard(d);
+            };
+        });
+
         // - hyperlinked Dashboard
         this.widgets.forEach(w => {
             if (w.hyperlinkDashboardID == draftID) {
@@ -1355,7 +1362,7 @@ export class GlobalVariableService {
             };
         });
 
-        // Remove where D was used as fav
+        // Remove where D was used as fav, startup
         this.canvasUsers.forEach(u => {
             if (u.startupDashboardID == dashboardID) {
                 u.startupDashboardID = 0;
