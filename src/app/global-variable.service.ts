@@ -1281,8 +1281,14 @@ export class GlobalVariableService {
                 this.deleteDashboardPermission(sub.id);
             };
         });
-        
+
         // - Tags
+        this.dashboardTags.forEach(sub => {
+            if (sub.dashboardID == draftID) {
+                this.deleteDashboardTag(sub.id);
+            };
+        });
+
         // - all snapshots (for the Draft) are deleted
         // - template Dashboard
         // - hyperlinked Dashboard
