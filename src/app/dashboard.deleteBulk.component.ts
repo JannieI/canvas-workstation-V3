@@ -54,17 +54,19 @@ export class DashboardDeleteBulkComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.dashboards = this.globalVariableService.dashboards.slice().sort((n1,n2) => {
-            if (n1.name > n2.name) {
-                return 1;
-            };
-        
-            if (n1.name < n2.name) {
-                return -1;
-            };
-        
-            return 0;
-        });
+        this.dashboards = this.globalVariableService.dashboards
+            .filter(d => d.state != 'Draft')
+            .slice().sort((n1,n2) => {
+                if (n1.name > n2.name) {
+                    return 1;
+                };
+            
+                if (n1.name < n2.name) {
+                    return -1;
+                };
+            
+                return 0;
+            });
     }
 
     clickClose(action: string) {
