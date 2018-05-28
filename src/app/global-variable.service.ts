@@ -1241,6 +1241,7 @@ export class GlobalVariableService {
                 this.saveCanvasTask(tsk);
             };
         });
+
         // - Messages
         this.canvasMessages.forEach(msg => {
             draftTabs.forEach(t => {
@@ -1253,6 +1254,7 @@ export class GlobalVariableService {
                 };
             });
         });
+
         // - Comments (link to Dashboard and Widget)
         this.canvasComments.forEach(com => {
             if (com.dashboardID == draftID) {
@@ -1286,6 +1288,14 @@ export class GlobalVariableService {
 
         // - flag for Favourite Dashboard
         // - flag for Startup Dashboard
+        this.canvasUsers.forEach(u => {
+            if (u.startupDashboardID == draftID) {
+                u.startupDashboardID = 0;
+            };
+            u.favouriteDashboards.filter(f => f != draftID)
+            // TODO - improve this to not update ALL users
+            this.saveCanvasUser(u);
+        });
 
         // - permissions
         this.dashboardPermissions.forEach(per => {
