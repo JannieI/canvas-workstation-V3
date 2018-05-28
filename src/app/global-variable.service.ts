@@ -1499,7 +1499,7 @@ export class GlobalVariableService {
             };
         });
     
-        // Delete the Draft D content created as part of the Draft version:
+        // Move properties and entities from Draft to Original version:
         // Dashboard
         this.deleteDashboard(draftID);
 
@@ -6316,6 +6316,92 @@ console.warn('xx d', this.dashboards)
             widgetsToRefresh
         });
 
+    }
+
+    dashboardReplace(dashboardID: number, changedDashboard: Dashboard) {
+        // Replaces (ByVal) the global W and currentW
+        // - dashboardID = original D
+        // - changedDashboard = new D, with changed properties
+        console.log('%c    Global-Variables ... dashboardReplace',
+        "color: black; background: lightgray; font-size: 10px", dashboardID);
+
+        // TODO - this is not DRY - there must be a better way!!
+        this.dashboards.forEach(d => {
+            if (d.id == dashboardID) {
+                // TODO - Make a deep copy / error free, less work copy
+                d.originalID = changedDashboard.originalID;
+                d.draftID = changedDashboard.draftID;
+                d.version = changedDashboard.version;
+                d.state = changedDashboard.state;
+                d.code = changedDashboard.code;
+                d.name = changedDashboard.name;
+                d.description = changedDashboard.description;
+                d.accessType = changedDashboard.accessType;
+                d.password = changedDashboard.password;
+                d.refreshMode = changedDashboard.refreshMode;
+                d.refreshTimer = changedDashboard.refreshTimer;
+                d.defaultTabID = changedDashboard.defaultTabID;
+                d.defaultExportFileType = changedDashboard.defaultExportFileType;
+                d.url = changedDashboard.url;
+                d.qaRequired = changedDashboard.qaRequired;
+                d.isSample = changedDashboard.isSample;
+                d.backgroundColor = changedDashboard.backgroundColor;
+                d.backgroundImage = changedDashboard.backgroundImage;
+                d.templateDashboardID = changedDashboard.templateDashboardID;
+                d.creator = changedDashboard.creator;
+                d.dateCreated = changedDashboard.dateCreated;
+                d.editor = changedDashboard.editor;
+                d.dateEdited = changedDashboard.dateEdited;
+                d.refresher = changedDashboard.refresher;
+                d.dateRefreshed = changedDashboard.dateRefreshed;
+                d.nrWidgets = changedDashboard.nrWidgets;
+                d.nrShapes = changedDashboard.nrShapes;
+                d.nrRecords = changedDashboard.nrRecords;
+                d.nrTimesOpened = changedDashboard.nrTimesOpened;
+                d.nrTimesChanged = changedDashboard.nrTimesChanged;
+                d.tabs = changedDashboard.tabs;
+                d.permissions = changedDashboard.permissions;
+
+            };
+        });
+        this.currentDashboards.forEach(d => {
+            if (d.id == dashboardID) {
+                // TODO - Make a deep copy / error free, less work copy
+                d.originalID = changedDashboard.originalID;
+                d.draftID = changedDashboard.draftID;
+                d.version = changedDashboard.version;
+                d.state = changedDashboard.state;
+                d.code = changedDashboard.code;
+                d.name = changedDashboard.name;
+                d.description = changedDashboard.description;
+                d.accessType = changedDashboard.accessType;
+                d.password = changedDashboard.password;
+                d.refreshMode = changedDashboard.refreshMode;
+                d.refreshTimer = changedDashboard.refreshTimer;
+                d.defaultTabID = changedDashboard.defaultTabID;
+                d.defaultExportFileType = changedDashboard.defaultExportFileType;
+                d.url = changedDashboard.url;
+                d.qaRequired = changedDashboard.qaRequired;
+                d.isSample = changedDashboard.isSample;
+                d.backgroundColor = changedDashboard.backgroundColor;
+                d.backgroundImage = changedDashboard.backgroundImage;
+                d.templateDashboardID = changedDashboard.templateDashboardID;
+                d.creator = changedDashboard.creator;
+                d.dateCreated = changedDashboard.dateCreated;
+                d.editor = changedDashboard.editor;
+                d.dateEdited = changedDashboard.dateEdited;
+                d.refresher = changedDashboard.refresher;
+                d.dateRefreshed = changedDashboard.dateRefreshed;
+                d.nrWidgets = changedDashboard.nrWidgets;
+                d.nrShapes = changedDashboard.nrShapes;
+                d.nrRecords = changedDashboard.nrRecords;
+                d.nrTimesOpened = changedDashboard.nrTimesOpened;
+                d.nrTimesChanged = changedDashboard.nrTimesChanged;
+                d.tabs = changedDashboard.tabs;
+                d.permissions = changedDashboard.permissions;
+
+            };
+        });
     }
 
     widgetReplace(changedWidget: Widget) {
