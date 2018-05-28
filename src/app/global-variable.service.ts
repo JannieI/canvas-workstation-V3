@@ -1274,7 +1274,14 @@ export class GlobalVariableService {
         // - entry in recent Dashboards for the Draft
         // - flag for Favourite Dashboard
         // - flag for Startup Dashboard
+
         // - permissions
+        this.dashboardPermissions.forEach(sub => {
+            if (sub.dashboardID == draftID) {
+                this.deleteDashboardPermission(sub.id);
+            };
+        });
+        
         // - Tags
         // - all snapshots (for the Draft) are deleted
         // - template Dashboard
