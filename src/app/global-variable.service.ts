@@ -1271,6 +1271,12 @@ export class GlobalVariableService {
         });
 
         // - Schedules
+        this.dashboardSchedules.forEach(sub => {
+            if (sub.dashboardID == draftID) {
+                this.deleteDashboardSchedule(sub.id);
+            };
+        });
+
         // - entry in recent Dashboards for the Draft
         // - flag for Favourite Dashboard
         // - flag for Startup Dashboard
