@@ -1121,7 +1121,54 @@ export class GlobalVariableService {
                                     };
                                 });
                                 this.allWithAsync(...promiseArrayWS).then(resolvedData => {
-                                    resolve(addedD);
+
+
+
+
+
+
+
+
+                                    // SOME Permissions, with these changes:
+                                    // - canEdit ONLY for the creator
+                                    // - canAddDatasource ONLY for the creator
+                                    // - remove canDelete for all (cannot do this to a Draft)
+                                    // - remove canGrantAccess for all
+                                    let promiseArrayP = [];
+                                    this.dashboardPermissions.forEach(p => {
+                                        if (p.dashboardID == dashboardID) {
+
+                                            // Deep copy
+                                            let newP: DashboardPermission = Object.assign({}, p);
+                                            newP.id = null;
+                                            newP.dashboardID = addedD.id;
+                                            if (newP.userID != this.currentUser.userID) {
+                                                newP.canEditRight = false;
+                                                newP.canAddDatasource = false;
+                                            };
+                                            newP.canDeleteRight = false;
+                                            newP.canGrantAccess = false;
+
+                                            console.warn('xx newP', newP)
+                                            promiseArrayP.push(this.addDashboardPermission(newP));
+                                        };
+
+                                    });
+                                    
+                                    this.allWithAsync(...promiseArrayChk).then(resolvedData => {
+
+
+
+
+
+
+
+
+
+
+
+                                        resolve(addedD);
+                                    });
                                 });
                             });
                         });
