@@ -104,11 +104,11 @@ export class CollaborateTaskAddComponent implements OnInit {
 
                 // Get Dashboard list
                 this.globalVariableService.dashboards.forEach(d => {
-                    this.dashboardNames.push(d.name);
+                    this.dashboardNames.push(d.name + ' (' + d.state + ')');
                 });
                 this.dashboardNames = ['', ...this.dashboardNames];
             });
-    
+
         });
 
     }
@@ -123,20 +123,32 @@ export class CollaborateTaskAddComponent implements OnInit {
     clickSave(action: string) {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
-   
+
+
+        let index: number = this.selectedLinkedDashboard.indexOf(' (');
+        let dashboardName: string = '';
+        let dashboardState: string = '';
+        if (index >= 0) {
+            dashboardName = this.selectedLinkedDashboard.substring(0, index);
+            dashboardState = this.selectedLinkedDashboard.substring(
+                index + 2, this.selectedLinkedDashboard.length - 1
+            );
+        };
+
         let today = new Date();
         let dashboardID: number = null;
-        if (this.selectedLinkedDashboard != '') {
+        if (dashboardName != '') {
             let dashboardIndex: number = this.globalVariableService.dashboards.findIndex(
-                d => d.name == this.selectedLinkedDashboard
+                d => d.name == dashboardName
             );
             if (dashboardIndex >= 0) {
                 dashboardID = this.globalVariableService.dashboards[
                     dashboardIndex].id;
             };
+            console.warn('xx id', dashboardID)
         };
 
-        // TODO - ad place to add Comments - as this is an array, maybe with initials and date
+        // TODO - add place to add Comments - as this is an array, maybe with initials and date
         let newTask: CanvasTask = {
 
             id: null,
@@ -156,7 +168,7 @@ export class CollaborateTaskAddComponent implements OnInit {
             createdBy: this.globalVariableService.currentUser.userID,
             createdOn: this.globalVariableService.formatDate(today),
         };
-        
+
         this.globalVariableService.addCanvasTask(newTask);
 
         this.formCollaborateTaskAddClosed.emit(action);
