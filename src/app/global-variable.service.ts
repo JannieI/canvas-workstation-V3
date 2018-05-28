@@ -1180,9 +1180,9 @@ export class GlobalVariableService {
         };
     }
 
-    discardDashboard() {
+    discardDashboard(): number {
         // Discards a Draft Dashboard, which means all changes are deleted
-        // - dashboardID = Draft ID
+        // Returns originalID (from which Draft D was copied)
         
         // The following are unmodified:
         // - the AuditTrails are kept against the Draft
@@ -1351,6 +1351,9 @@ export class GlobalVariableService {
                 this.deleteDatasourcePermission(per.id);
             };
         });
+
+        // Return
+        return originalID;
 
     }
 

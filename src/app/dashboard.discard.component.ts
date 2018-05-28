@@ -78,49 +78,19 @@ export class DashboardDiscardComponent implements OnInit {
         // Delete the current D
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDiscard', '@Start');
 
-        // Get info on D
-        // let dashboardIndex: number = this.globalVariableService.dashboards.findIndex(
-        //     d => d.id ==
-        //     this.globalVariableService.currentDashboardInfo.value.currentDashboardID
-        // );
-        // if (dashboardIndex >= 0) {
-        //     let dashboard: Dashboard = this.globalVariableService.dashboards[dashboardIndex];
-        //     let originalID: number = dashboard.originalID;
+        let dashboardOrignal: number = this.globalVariableService.discardDashboard();
 
-            this.globalVariableService.discardDashboard()
-
-
-
-
-
-
-
-
-            // Delete the current Draft
-            // this.globalVariableService.deleteDashboardInfo(dashboard.id);
-            // // Change the original
-            // let dashboardOrignalIndex: number = this.globalVariableService.dashboards
-            //     .findIndex(d => d.id ==originalID);
-            // if (dashboardOrignalIndex < 0) {
-            //     alert('Serious error in dashboard.discard-clickDiscard: cannot find original ID in gv.dashboards')
-            //     return;
-            // };
-            // let dashboardOrignal: Dashboard = this.globalVariableService.dashboards[
-            //     dashboardOrignalIndex];
-            // dashboardOrignal.draftID = null;
-
-            // this.globalVariableService.saveDashboard(dashboardOrignal).then(resOriginal =>
-            // {
-            //     // Navigate to original
-            //     this.globalVariableService.refreshCurrentDashboard(
-            //         'discardDashboard-clickDiscard', dashboardOrignal.id, -1, ''
-            //     );
-            //     this.globalVariableService.editMode.next(false);
-            //     this.formDashboardDiscardClosed.emit(action); 
-
-            // });
-
-
+        // Navigate to original
+        if (dashboardOrignal != null) {
+            this.globalVariableService.refreshCurrentDashboard(
+                'discardDashboard-clickDiscard', dashboardOrignal, -1, ''
+            );
+            this.globalVariableService.editMode.next(false);
+            this.formDashboardDiscardClosed.emit(action); 
+    
+        } else {
+            alert ('Error encountered with delete in discardDashboard');
+        }
     }
 
     clickGotIt() {
