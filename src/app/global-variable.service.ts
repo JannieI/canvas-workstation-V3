@@ -1271,27 +1271,33 @@ export class GlobalVariableService {
         });
 
         // - Schedules
-        this.dashboardSchedules.forEach(sub => {
-            if (sub.dashboardID == draftID) {
-                this.deleteDashboardSchedule(sub.id);
+        this.dashboardSchedules.forEach(sch => {
+            if (sch.dashboardID == draftID) {
+                this.deleteDashboardSchedule(sch.id);
             };
         });
 
         // - entry in recent Dashboards for the Draft
+        this.dashboardsRecent.forEach(rec => {
+            if (rec.dashboardID == draftID) {
+                this.deleteDashboardRecent(rec.id);
+            };
+        });
+
         // - flag for Favourite Dashboard
         // - flag for Startup Dashboard
 
         // - permissions
-        this.dashboardPermissions.forEach(sub => {
-            if (sub.dashboardID == draftID) {
-                this.deleteDashboardPermission(sub.id);
+        this.dashboardPermissions.forEach(per => {
+            if (per.dashboardID == draftID) {
+                this.deleteDashboardPermission(per.id);
             };
         });
 
         // - Tags
-        this.dashboardTags.forEach(sub => {
-            if (sub.dashboardID == draftID) {
-                this.deleteDashboardTag(sub.id);
+        this.dashboardTags.forEach(tag => {
+            if (tag.dashboardID == draftID) {
+                this.deleteDashboardTag(tag.id);
             };
         });
 
