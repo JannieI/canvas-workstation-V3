@@ -1245,8 +1245,16 @@ export class GlobalVariableService {
                 };
             });
         });
+        console.warn('xx actions end', this.actions)
 
         // - Tasks
+        this.canvasTasks.forEach(tsk => {
+            if (tsk.linkedDashboardID == t.dashboardID) {
+                tsk.linkedDashboardID = originalID;
+            };
+            this.savecanvast
+        });
+        console.warn('xx tasks end', this.canvasTasks)
         // - Messages
         // - Comments (link to Dashboard and Widget)
     
@@ -4747,6 +4755,41 @@ console.warn('xx d', this.dashboards)
                 err => {
                     console.log('Error addCanvasTask FAILED', err);;
                     resolve(err.Message);
+                }
+            )
+        });
+    }
+
+    saveCanvasTask(data: CanvasTask): Promise<string> {
+        // Description: Saves CanvasTask
+        // Returns: 'Saved' or error Task
+        console.log('%c    Global-Variables saveCanvasTask ...',
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+
+        let url: string = 'canvasTasks';
+        this.filePath = './assets/data.canvasTasks.json';
+
+        return new Promise<string>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.put('http://localhost:3000/' + url + '/' + data.id, data, {headers})
+            .subscribe(
+                res => {
+
+                    // Replace local
+                    let localIndex: number = this.canvasTasks.findIndex(msg =>
+                        msg.id == data.id
+                    );
+                    this.canvasTasks[localIndex] = data;
+
+                    console.log('saveCanvasTask SAVED', data)
+                    resolve('Saved');
+                },
+                err => {
+                    console.log('Error saveCanvasTask FAILED', err);;
+                    resolve(err.Task);
                 }
             )
         });
