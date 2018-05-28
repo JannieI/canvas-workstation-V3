@@ -1320,7 +1320,7 @@ export class GlobalVariableService {
             };
         });
     
-        // Delete the Draft D content:
+        // Delete the Draft D content created as part of the Draft version:
         // Dashboard
         this.deleteDashboard(draftID);
 
@@ -1346,7 +1346,11 @@ export class GlobalVariableService {
         });
 
         // Permissions
-        // created as part of the Draft version are all deleted.  
+        this.dashboardPermissions.forEach(per => {
+            if (per.dashboardID == draftID) {
+                this.deleteDatasourcePermission(per.id);
+            };
+        });
 
     }
 
