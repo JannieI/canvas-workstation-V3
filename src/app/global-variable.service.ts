@@ -1479,6 +1479,12 @@ export class GlobalVariableService {
             };
         });
 
+        // Permissions
+        this.dashboardPermissions.forEach(per => {
+            if (per.dashboardID == draftID) {
+                this.deleteDatasourcePermission(per.id);
+            };
+        });
 
         // - all snapshots (for the Draft) are deleted
 
@@ -1506,113 +1512,46 @@ export class GlobalVariableService {
         this.saveDashboard(originalDashboard).then(res => {
 
         })
-        
-        // - Tabs
-        // - Widgets
-        // - Checkpoints
 
-        // T
-        this.dashboardTabs.forEach(t => {
-            if (t.dashboardID == dashboardID) {
-                // Deep copy
-                let newT: DashboardTab = Object.assign({}, t);
-                newT.id = null;
-                newT.dashboardID = addedD.id;
-                newT.originalID = t.id;
-                promiseArrayT.push(this.addDashboardTab(newT));
-            };
+        // - Tabs, Widgets, Checkpoints
+        return new Promise<boolean>((resolve, reject) => {
+            let promiseArray = [];
+            this.dashboardTabs.forEach(t => {
+                if (t.dashboardID == draftID) {
+                    t.dashboardID = originalID;
+                    t.originalID = null;
 
-        });
-        this.allWithAsync(...promiseArrayT).then(resolvedData => {
-            // W
-            let promiseArrayW = [];
-            let dashboardTabsResult = JSON.parse(JSON.stringify(resolvedData));
-
-            dashboardTabsResult.forEach(t => {
-                if (t.dashboardID == addedD.id) {
-                    console.warn('xx loop tabs', t, dashboardTabsResult)
                     this.widgets.forEach(w => {
-                        if (w.dashboardID == dashboardID 
+                        if (w.dashboardID == draftID 
                             &&  
-                            w.dashboardTabIDs.indexOf(t.originalID) >= 0) {
-                            // Deep copy
-                            let newW: Widget = Object.assign({}, w);
-                            newW.id = null;
-                            newW.dashboardID = addedD.id;
-                            newW.dashboardTabID = t.id;
-                            newW.originalID = w.id;
-                            // TODO - fix for multi-Tabbed Ws
-                            newW.dashboardTabIDs = [t.id];
-                            console.warn('xx newW', newW)
-                            promiseArrayW.push(this.addWidget(newW));
-
+                            w.dashboardTabIDs.indexOf(t.id) >= 0) {
+                            w.dashboardID = originalID;
+                            // TODO - fix for multi-tab
+                            w.dashboardTabID = t.originalID;
+                            w.dashboardTabIDs = [t.originalID];
+                            let checkpointIDs: number[] = [];
+                            this.widgetCheckpoints.forEach(chk => {
+                                if (chk.dashboardID == draftID
+                                    && chk.widgetID == w.id) {
+                                    chk.dashboardID = originalID;
+                                    chk.widgetID = w.id;
+                                    chk.originalID = null;
+                                    checkpointIDs.push(chk.id)
+                                    promiseArray.push(this.saveWidgetCheckpoint(chk));
+                                };
+                            });
+                            w.checkpointIDs = checkpointIDs;
+                            promiseArray.push(this.saveWidget(w));
                         };
+                        promiseArray.push(this.saveDashboardTab(t));
+
                     });
                 };
             });
-            this.allWithAsync(...promiseArrayW).then(resolvedData => {
-                console.warn('xx after allSync W', resolvedData)
-
-                // Checkpoints
-                let promiseArrayChk = [];
-                let widgetResults = JSON.parse(JSON.stringify(resolvedData));
-                widgetResults.forEach(w => {
-                    if (w.dashboardID == addedD.id) {
-
-                        this.widgetCheckpoints.forEach(chk => {
-                            if (chk.dashboardID == dashboardID
-                                && chk.widgetID == w.originalID) {
-                                // Deep copy
-                                let newChk: WidgetCheckpoint = Object.assign({}, chk);
-                                newChk.id = null;
-                                newChk.dashboardID = addedD.id;
-                                newChk.widgetID = w.id;
-                                newChk.originalID = chk.id;
-
-                                newChk.widgetSpec.dashboardID = addedD.id;
-                                newChk.widgetSpec.dashboardTabID = w.dashboardTabID;
-                                newChk.widgetSpec.widgetID = w.id;
-                                // TODO - fix for multi-Tabbed Ws
-                                newChk.widgetSpec.dashboardTabIDs = w.dashboardTabIDs;
-
-                                console.warn('xx newChk', newChk)
-                                promiseArrayChk.push(this.addWidgetCheckpoint(newChk));
-                            };
-                        });
-                    };
-
-                });
-                
-                this.allWithAsync(...promiseArrayChk).then(resolvedData => {
-
-                    // Rebuild [checkpointIDs]
-                    let promiseArrayWS = [];
-                    let newCheckpointIDs: number[] = [];
-                    let chkpntIndex: number;
-                    let wID: number;
-                    this.widgets.forEach(w => {
-                        if (w.dashboardID == addedD.id) {
-                            w.checkpointIDs.forEach(cids => {
-                                chkpntIndex = this.widgetCheckpoints.findIndex(
-                                    wc => wc.originalID == cids
-                                );
-                                if (chkpntIndex >= 0) {
-                                    newCheckpointIDs.push(
-                                        this.widgetCheckpoints[chkpntIndex].id
-                                    );
-                                };
-                            });
-                            w.checkpointIDs = newCheckpointIDs;
-                            promiseArrayWS.push(this.saveWidget(w))
-                        };
-                    });
-                    this.allWithAsync(...promiseArrayWS).then(resolvedData => {
-
-        // Permissions
-        this.dashboardPermissions.forEach(per => {
-            if (per.dashboardID == draftID) {
-                this.deleteDatasourcePermission(per.id);
-            };
+                    
+            this.allWithAsync(...promiseArray).then(resolvedData => {
+            resolve(true);
+            });
         });
 
     }
