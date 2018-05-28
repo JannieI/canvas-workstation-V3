@@ -99,8 +99,13 @@ export class DashboardSaveComponent implements OnInit {
         //     this.globalVariableService.saveDashboard(localDashboard);
         // };
 
-        this.globalVariableService.saveDraftDashboard();
-        this.formDashboardSaveClosed.emit('Saved');
+        this.globalVariableService.saveDraftDashboard().then(res => {
+            this.globalVariableService.refreshCurrentDashboard(
+                'discardDashboard-clickDiscard', res, -1, ''
+            );
+            this.globalVariableService.editMode.next(false);
+            this.formDashboardSaveClosed.emit('Saved');
+        });
 
     }
 }

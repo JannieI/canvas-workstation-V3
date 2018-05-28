@@ -1362,9 +1362,9 @@ export class GlobalVariableService {
 
     }
 
-    saveDraftDashboard() {
+    saveDraftDashboard(): Promise<number> {
         // saves Draft Dashboard back to the original, keeping all changes
-        // - dashboardID = Draft ID
+        // Returns original dashboardID (for the current Draft D)
         
         // The following are unmodified:
         // - the AuditTrails are kept against the Draft
@@ -1522,7 +1522,7 @@ export class GlobalVariableService {
         })
 
         // - Tabs, Widgets, Checkpoints
-        return new Promise<boolean>((resolve, reject) => {
+        return new Promise<number>((resolve, reject) => {
             let promiseArray = [];
             this.dashboardTabs.forEach(t => {
                 if (t.dashboardID == draftID) {
@@ -1558,7 +1558,7 @@ export class GlobalVariableService {
             });
                     
             this.allWithAsync(...promiseArray).then(resolvedData => {
-            resolve(true);
+            resolve(originalID);
             });
         });
 
