@@ -1429,6 +1429,14 @@ export class GlobalVariableService {
             };
         });
 
+        // The following are added (if there are any records) to the original:
+        // - Tags
+        this.dashboardTags.forEach(tag => {
+            if (tag.dashboardID == draftID) {
+                this.deleteDashboardTag(tag.id);
+            };
+        });
+        
         // The following are simply deleted (and those applicable to the original remains 
         // unchanged):
         // - Subscriptions
@@ -1470,18 +1478,15 @@ export class GlobalVariableService {
             };
         });
 
-        // - Tags
-        this.dashboardTags.forEach(tag => {
-            if (tag.dashboardID == draftID) {
-                this.deleteDashboardTag(tag.id);
-            };
-        });
 
         // - all snapshots (for the Draft) are deleted
+
+        // The following are converted seamlessly, and pointers to Draft become pointers 
+        // to the original:
         // - template Dashboard
         this.dashboards.forEach(d => {
             if (d.templateDashboardID == draftID) {
-                d.templateDashboardID == 0;
+                d.templateDashboardID == originalID;
                 this.saveDashboard(d);
             };
         });
@@ -1489,7 +1494,7 @@ export class GlobalVariableService {
         // - hyperlinked Dashboard
         this.widgets.forEach(w => {
             if (w.hyperlinkDashboardID == draftID) {
-                w.hyperlinkDashboardID = 0;
+                w.hyperlinkDashboardID = originalID;
                 this.saveWidget(w);
             };
         });
