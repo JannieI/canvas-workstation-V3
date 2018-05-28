@@ -1165,16 +1165,7 @@ export class GlobalVariableService {
         // - dashboardID = Draft ID
 
         // When a Draft version is Discarded, it means that all changes to it is deleted.  
-        // In fact, the Draft version and associated entities 
-        // (Dashboard, Tabs, Widgets, Checkpoints, Permissions) 
-        // created as part of the Draft version are all deleted.  
 
-        // The following are moved (added to the original version), removing any links 
-        // to the Draft version:
-        // - Actions
-        // - Tasks
-        // - Messages
-        // - Comments (link to Dashboard and Widget)
         
         // The following are simply deleted (and those applicable to the original remains 
         // unchanged):
@@ -1191,9 +1182,22 @@ export class GlobalVariableService {
         
         // The following are modified:
         // - the AuditTrails are kept against the Draft
+
+        // Delete the Draft D content:
+        // (Dashboard, Tabs, Widgets, Checkpoints, Permissions) 
+        // created as part of the Draft version are all deleted.  
+
         console.log('%c    Global-Variables discardDashboard ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", dashboardID);
-            
+
+        this.x
+        
+        // The following are moved (added to the original version), removing any links 
+        // to the Draft version:
+        // - Actions
+        // - Tasks
+        // - Messages
+        // - Comments (link to Dashboard and Widget)
     
     }
 
@@ -6784,5 +6788,20 @@ console.warn('xx d', this.dashboards)
         if (day.length < 2) day = '0' + day;
 
         return [year, month, day].join('/') + ' ' + hour + ':' + minute + ':' + second;
+    }
+
+    letDashboard(dashboardID): Dashboard {
+        // Returns the given D from the internal arrays
+        console.log('%c    Global-Variables letDashboard ...',
+        "color: black; background: lightgray; font-size: 10px", dashboardID);
+
+        // Get D
+        let dashboardIndex: number = this.dashboards.findIndex(d => d.id == dashboardID);
+        if (dashboardIndex >= 0) {
+            return this.dashboards[dashboardIndex];
+        } else {
+            alert ('Dashboard ID ' + dashboardID.toString() + ' does not exist in the dashboards array - should be impossible');
+            return null;
+        };
     }
 }
