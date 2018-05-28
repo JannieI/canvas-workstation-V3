@@ -1181,19 +1181,11 @@ export class GlobalVariableService {
     }
 
     discardDashboard() {
-        // Discards a Draft Dashboard
+        // Discards a Draft Dashboard, which means all changes are deleted
         // - dashboardID = Draft ID
-
-        // When a Draft version is Discarded, it means that all changes to it is deleted.  
-
         
-        
-        // The following are modified:
+        // The following are unmodified:
         // - the AuditTrails are kept against the Draft
-
-        // Delete the Draft D content:
-        // (Dashboard, Tabs, Widgets, Checkpoints, Permissions) 
-        // created as part of the Draft version are all deleted.  
 
         console.log('%c    Global-Variables discardDashboard ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
@@ -1328,6 +1320,16 @@ export class GlobalVariableService {
             };
         });
     
+        // Delete the Draft D content:
+        // Dashboard
+        this.deleteDashboard(draftID);
+
+        // - Tabs
+        
+        
+        // - Widgets, Checkpoints, Permissions) 
+        // created as part of the Draft version are all deleted.  
+
     }
 
     deleteDashboardInfo(dashboardID: number) {
