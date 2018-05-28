@@ -1266,6 +1266,12 @@ export class GlobalVariableService {
             });
         });
         // - Comments (link to Dashboard and Widget)
+        this.canvasComments.forEach(com => {
+            if (com.dashboardID == draftID) {
+                com.dashboardID = originalID;
+                this.saveCanvasComment(com);
+            };
+        });
     
     }
 
