@@ -1180,7 +1180,7 @@ export class GlobalVariableService {
         };
     }
 
-    discardDashboard(dashboardID: number) {
+    discardDashboard() {
         // Discards a Draft Dashboard
         // - dashboardID = Draft ID
 
@@ -1208,8 +1208,10 @@ export class GlobalVariableService {
         // created as part of the Draft version are all deleted.  
 
         console.log('%c    Global-Variables discardDashboard ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", dashboardID);
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
+        // Set to current
+        let dashboardID = this.currentDashboardInfo.value.currentDashboardID;
         let dashboard = this.letDashboard(dashboardID);
         console.warn('xx ids', dashboard.id, dashboard.originalID)
         
