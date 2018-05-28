@@ -1211,13 +1211,41 @@ export class GlobalVariableService {
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         // Set to current
-        let dashboardID = this.currentDashboardInfo.value.currentDashboardID;
-        let dashboard = this.letDashboard(dashboardID);
-        console.warn('xx ids', dashboard.id, dashboard.originalID)
+        let draftID = this.currentDashboardInfo.value.currentDashboardID;
+        let dashboard = this.letDashboard(draftID);
+        let originalID = dashboard.originalID;
+        let draftTabs: DashboardTab[] = this.dashboardTabs.filter(
+            t => t.dashboardID == draftID
+        );
+        console.warn('xx ids', draftID, originalID)
         
         // The following are moved (added to the original version), removing any links 
         // to the Draft version:
         // - Actions
+        this.actions.forEach(act => {
+            draftTabs.forEach(t => {
+                if (act.dashboardID == t.dashboardID
+                    && 
+                    act.dashboardTabID == t.id) {
+                        act.dashboardID = originalID;
+                        act.dashboardTabID = t.originalID;
+                        this.actionUpsert(
+                            act.id,
+                            act.dashboardID,
+                            act.dashboardTabID,
+                            null,
+                            act.objectType,
+                            act.action,
+                            act.description,
+                            act.undoID,
+                            act.redoID,
+                            act.oldWidget,
+                            act.newWidget
+                        );
+                };
+            });
+        });
+
         // - Tasks
         // - Messages
         // - Comments (link to Dashboard and Widget)
