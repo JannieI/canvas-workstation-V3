@@ -1201,6 +1201,7 @@ export class GlobalVariableService {
         
         // Reset the draft ID
         originalDashboard.originalID = null;
+        originalDashboard.draftID = null;
         this.saveDashboard(originalDashboard);
 
         // The following are moved (added to the original version), removing any links 
