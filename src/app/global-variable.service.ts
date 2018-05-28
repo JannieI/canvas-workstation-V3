@@ -1249,12 +1249,11 @@ export class GlobalVariableService {
 
         // - Tasks
         this.canvasTasks.forEach(tsk => {
-            if (tsk.linkedDashboardID == t.dashboardID) {
+            if (tsk.linkedDashboardID == draftID) {
                 tsk.linkedDashboardID = originalID;
             };
-            this.savecanvast
+            this.saveCanvasTask(tsk);
         });
-        console.warn('xx tasks end', this.canvasTasks)
         // - Messages
         // - Comments (link to Dashboard and Widget)
     
