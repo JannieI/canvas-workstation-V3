@@ -1160,6 +1160,26 @@ export class GlobalVariableService {
         });
     }
 
+    letDashboard(dashboardID: number = null): Dashboard {
+        // Returns the given D from the internal arrays
+        console.log('%c    Global-Variables letDashboard ...',
+        "color: black; background: lightgray; font-size: 10px", dashboardID);
+
+        // Set to current if none provided
+        if (dashboardID == null) {
+            dashboardID = this.currentDashboardInfo.value.currentDashboardID;
+        };
+
+        // Get D
+        let dashboardIndex: number = this.dashboards.findIndex(d => d.id == dashboardID);
+        if (dashboardIndex >= 0) {
+            return this.dashboards[dashboardIndex];
+        } else {
+            alert ('Dashboard ID ' + dashboardID.toString() + ' does not exist in the dashboards array - should be impossible');
+            return null;
+        };
+    }
+
     discardDashboard(dashboardID: number) {
         // Discards a Draft Dashboard
         // - dashboardID = Draft ID
@@ -1190,7 +1210,8 @@ export class GlobalVariableService {
         console.log('%c    Global-Variables discardDashboard ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", dashboardID);
 
-        this.x
+        let dashboard = this.letDashboard(dashboardID);
+        console.warn('xx ids', dashboard.id, dashboard.originalID)
         
         // The following are moved (added to the original version), removing any links 
         // to the Draft version:
@@ -6790,18 +6811,4 @@ console.warn('xx d', this.dashboards)
         return [year, month, day].join('/') + ' ' + hour + ':' + minute + ':' + second;
     }
 
-    letDashboard(dashboardID): Dashboard {
-        // Returns the given D from the internal arrays
-        console.log('%c    Global-Variables letDashboard ...',
-        "color: black; background: lightgray; font-size: 10px", dashboardID);
-
-        // Get D
-        let dashboardIndex: number = this.dashboards.findIndex(d => d.id == dashboardID);
-        if (dashboardIndex >= 0) {
-            return this.dashboards[dashboardIndex];
-        } else {
-            alert ('Dashboard ID ' + dashboardID.toString() + ' does not exist in the dashboards array - should be impossible');
-            return null;
-        };
-    }
 }
