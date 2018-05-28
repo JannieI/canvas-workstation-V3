@@ -1245,7 +1245,6 @@ export class GlobalVariableService {
                 };
             });
         });
-        console.warn('xx actions end', this.actions)
 
         // - Tasks
         this.canvasTasks.forEach(tsk => {
@@ -1255,6 +1254,17 @@ export class GlobalVariableService {
             };
         });
         // - Messages
+        this.canvasMessages.forEach(msg => {
+            draftTabs.forEach(t => {
+                if (msg.dashboardID == t.dashboardID
+                    &&
+                    msg.dashboardTabID == t.id) {
+                        msg.dashboardID = originalID;
+                        msg.dashboardTabID = t.originalID;
+                        this.saveCanvasMessage(msg);
+                };
+            });
+        });
         // - Comments (link to Dashboard and Widget)
     
     }
