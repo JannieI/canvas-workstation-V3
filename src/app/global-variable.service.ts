@@ -1191,14 +1191,18 @@ export class GlobalVariableService {
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         // Set to current
-        let draftID = this.currentDashboardInfo.value.currentDashboardID;
-        let dashboard = this.letDashboard(draftID);
-        let originalID = dashboard.originalID;
+        let draftID: number = this.currentDashboardInfo.value.currentDashboardID;
+        let dashboard: Dashboard = this.letDashboard(draftID);
+        let originalID: number = dashboard.originalID;
+        let originalDashboard: Dashboard = this.letDashboard(originalID);
         let draftTabs: DashboardTab[] = this.dashboardTabs.filter(
             t => t.dashboardID == draftID
         );
-        console.warn('xx ids', draftID, originalID)
         
+        // Reset the draft ID
+        originalDashboard.originalID = null;
+        this.saveDashboard(originalDashboard);
+
         // The following are moved (added to the original version), removing any links 
         // to the Draft version:
         // - Actions
