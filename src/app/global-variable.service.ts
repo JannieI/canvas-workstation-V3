@@ -1366,8 +1366,9 @@ export class GlobalVariableService {
 
         // Set to current
         let draftID = this.currentDashboardInfo.value.currentDashboardID;
-        let dashboard = this.letDashboard(draftID);
-        let originalID = dashboard.originalID;
+        let draftDashboard = this.letDashboard(draftID);
+        let originalID = draftDashboard.originalID;
+        let originalDashboard = this.letDashboard(originalID);
         let draftTabs: DashboardTab[] = this.dashboardTabs.filter(
             t => t.dashboardID == draftID
         );
@@ -1501,7 +1502,10 @@ export class GlobalVariableService {
     
         // Move properties and entities from Draft to Original version:
         // Dashboard
-        this.deleteDashboard(draftID);
+        this.dashboardReplace(originalID, draftDashboard);
+        this.saveDashboard(originalDashboard).then(res => {
+
+        })
 
         // - Tabs
         this.dashboardTabs.forEach(t => {
