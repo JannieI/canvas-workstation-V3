@@ -87,6 +87,15 @@ export class DashboardDiscardComponent implements OnInit {
             let dashboard: Dashboard = this.globalVariableService.dashboards[dashboardIndex];
             let originalID: number = dashboard.originalID;
 
+
+
+
+
+
+
+
+
+
             // Delete the current Draft
             this.globalVariableService.deleteDashboardInfo(dashboard.id);
             // Change the original

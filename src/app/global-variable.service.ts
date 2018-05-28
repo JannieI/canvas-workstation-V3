@@ -1122,13 +1122,6 @@ export class GlobalVariableService {
                                 });
                                 this.allWithAsync(...promiseArrayWS).then(resolvedData => {
 
-
-
-
-
-
-
-
                                     // SOME Permissions, with these changes:
                                     // - canEdit ONLY for the creator
                                     // - canAddDatasource ONLY for the creator
@@ -1156,17 +1149,6 @@ export class GlobalVariableService {
                                     });
                                     
                                     this.allWithAsync(...promiseArrayChk).then(resolvedData => {
-
-
-
-
-
-
-
-
-
-
-
                                         resolve(addedD);
                                     });
                                 });
@@ -1176,6 +1158,43 @@ export class GlobalVariableService {
                 });
             };
         });
+    }
+
+    discardDashboard(dashboardID: number) {
+        // Discards a Draft Dashboard
+        // - dashboardID = Draft ID
+
+        // When a Draft version is Discarded, it means that all changes to it is deleted.  
+        // In fact, the Draft version and associated entities 
+        // (Dashboard, Tabs, Widgets, Checkpoints, Permissions) 
+        // created as part of the Draft version are all deleted.  
+
+        // The following are moved (added to the original version), removing any links 
+        // to the Draft version:
+        // - Actions
+        // - Tasks
+        // - Messages
+        // - Comments (link to Dashboard and Widget)
+        
+        // The following are simply deleted (and those applicable to the original remains 
+        // unchanged):
+        // - Subscriptions
+        // - Schedules
+        // - entry in recent Dashboards for the Draft
+        // - flag for Favourite Dashboard
+        // - flag for Startup Dashboard
+        // - permissions
+        // - Tags
+        // - all snapshots (for the Draft) are deleted
+        // - template Dashboard
+        // - hyperlinked Dashboard
+        
+        // The following are modified:
+        // - the AuditTrails are kept against the Draft
+        console.log('%c    Global-Variables discardDashboard ...',
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", dashboardID);
+            
+    
     }
 
     deleteDashboardInfo(dashboardID: number) {
