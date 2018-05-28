@@ -107,6 +107,15 @@ export class CollaborateTaskAddComponent implements OnInit {
                     this.dashboardNames.push(d.name + ' (' + d.state + ')');
                 });
                 this.dashboardNames = ['', ...this.dashboardNames];
+                this.dashboardNames = this.dashboardNames.sort( (obj1,obj2) => {
+                    if (obj1 > obj2) {
+                        return 1;
+                    };
+                    if (obj1 < obj2) {
+                        return -1;
+                    };
+                    return 0;
+                });
             });
 
         });
@@ -124,7 +133,7 @@ export class CollaborateTaskAddComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
-
+        // Get D name and state from dropdown
         let index: number = this.selectedLinkedDashboard.indexOf(' (');
         let dashboardName: string = '';
         let dashboardState: string = '';
@@ -139,7 +148,9 @@ export class CollaborateTaskAddComponent implements OnInit {
         let dashboardID: number = null;
         if (dashboardName != '') {
             let dashboardIndex: number = this.globalVariableService.dashboards.findIndex(
-                d => d.name == dashboardName
+                d => d.name == dashboardName  
+                     &&
+                     d.state == dashboardState
             );
             if (dashboardIndex >= 0) {
                 dashboardID = this.globalVariableService.dashboards[
