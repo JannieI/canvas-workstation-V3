@@ -1314,7 +1314,12 @@ export class GlobalVariableService {
         // - all snapshots (for the Draft) are deleted
         // - template Dashboard
         // - hyperlinked Dashboard
-
+        this.widgets.forEach(w => {
+            if (w.hyperlinkDashboardID == draftID) {
+                w.hyperlinkDashboardID = 0;
+                this.saveWidget(w);
+            };
+        });
     
     }
 
