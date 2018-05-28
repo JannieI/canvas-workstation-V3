@@ -1338,7 +1338,14 @@ export class GlobalVariableService {
             };
         });
 
-        , Checkpoints, Permissions) 
+        // - Checkpoints
+        this.widgetCheckpoints.forEach(chk => {
+            if (chk.dashboardID == draftID) {
+                this.deleteWidgetCheckpoint(chk.id);
+            };
+        });
+
+        // Permissions
         // created as part of the Draft version are all deleted.  
 
     }
