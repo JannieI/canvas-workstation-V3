@@ -1187,18 +1187,6 @@ export class GlobalVariableService {
         // When a Draft version is Discarded, it means that all changes to it is deleted.  
 
         
-        // The following are simply deleted (and those applicable to the original remains 
-        // unchanged):
-        // - Subscriptions
-        // - Schedules
-        // - entry in recent Dashboards for the Draft
-        // - flag for Favourite Dashboard
-        // - flag for Startup Dashboard
-        // - permissions
-        // - Tags
-        // - all snapshots (for the Draft) are deleted
-        // - template Dashboard
-        // - hyperlinked Dashboard
         
         // The following are modified:
         // - the AuditTrails are kept against the Draft
@@ -1272,6 +1260,26 @@ export class GlobalVariableService {
                 this.saveCanvasComment(com);
             };
         });
+
+        // The following are simply deleted (and those applicable to the original remains 
+        // unchanged):
+        // - Subscriptions
+        this.dashboardSubscriptions.forEach(sub => {
+            if (sub.dashboardID == draftID) {
+                this.deleteDashboardSubscription(sub.id);
+            };
+        });
+
+        // - Schedules
+        // - entry in recent Dashboards for the Draft
+        // - flag for Favourite Dashboard
+        // - flag for Startup Dashboard
+        // - permissions
+        // - Tags
+        // - all snapshots (for the Draft) are deleted
+        // - template Dashboard
+        // - hyperlinked Dashboard
+
     
     }
 
