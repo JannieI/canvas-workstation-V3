@@ -1565,7 +1565,7 @@ export class GlobalVariableService {
             // Perform all the promises                    
             this.allWithAsync(...promiseArray).then(resolvedData => {
                 // Dashboard
-                this.dashboardReplace(originalID, draftDashboard);
+                this.dashboardMoveInfo(originalID, draftDashboard);
                 this.saveDashboard(originalDashboard).then(res => {
                     resolve(originalID);
                 })
@@ -6360,90 +6360,52 @@ console.warn('xx d', this.dashboards)
 
     }
 
-    dashboardReplace(dashboardID: number, changedDashboard: Dashboard) {
-        // Replaces (ByVal) the global W and currentW
-        // - dashboardID = original D
+    dashboardMoveInfo(newDashboardID: number, oldDashboard: Dashboard): Dashboard {
+        // Creates a new Dashboard with ID = newDashboardID, but all properties from 
+        // oldDashboard
         // - changedDashboard = new D, with changed properties
-        console.log('%c    Global-Variables ... dashboardReplace',
-        "color: black; background: lightgray; font-size: 10px", dashboardID);
+        console.log('%c    Global-Variables ... dashboardMoveInfo',
+        "color: black; background: lightgray; font-size: 10px", newDashboardID);
 
-        // TODO - this is not DRY - there must be a better way!!
-        this.dashboards.forEach(d => {
-            if (d.id == dashboardID) {
-                // TODO - Make a deep copy / error free, less work copy
-                d.originalID = changedDashboard.originalID;
-                d.draftID = changedDashboard.draftID;
-                d.version = changedDashboard.version;
-                d.state = changedDashboard.state;
-                d.code = changedDashboard.code;
-                d.name = changedDashboard.name;
-                d.description = changedDashboard.description;
-                d.accessType = changedDashboard.accessType;
-                d.password = changedDashboard.password;
-                d.refreshMode = changedDashboard.refreshMode;
-                d.refreshTimer = changedDashboard.refreshTimer;
-                d.defaultTabID = changedDashboard.defaultTabID;
-                d.defaultExportFileType = changedDashboard.defaultExportFileType;
-                d.url = changedDashboard.url;
-                d.qaRequired = changedDashboard.qaRequired;
-                d.isSample = changedDashboard.isSample;
-                d.backgroundColor = changedDashboard.backgroundColor;
-                d.backgroundImage = changedDashboard.backgroundImage;
-                d.templateDashboardID = changedDashboard.templateDashboardID;
-                d.creator = changedDashboard.creator;
-                d.dateCreated = changedDashboard.dateCreated;
-                d.editor = changedDashboard.editor;
-                d.dateEdited = changedDashboard.dateEdited;
-                d.refresher = changedDashboard.refresher;
-                d.dateRefreshed = changedDashboard.dateRefreshed;
-                d.nrWidgets = changedDashboard.nrWidgets;
-                d.nrShapes = changedDashboard.nrShapes;
-                d.nrRecords = changedDashboard.nrRecords;
-                d.nrTimesOpened = changedDashboard.nrTimesOpened;
-                d.nrTimesChanged = changedDashboard.nrTimesChanged;
-                d.tabs = changedDashboard.tabs;
-                d.permissions = changedDashboard.permissions;
+        let returnDashboard: Dashboard = {
+            id:  newDashboardID,
+            originalID: oldDashboard.originalID,
+            draftID: oldDashboard.draftID,
+            version: oldDashboard.version,
+            state: oldDashboard.state,
+            code: oldDashboard.code,
+            name: oldDashboard.name,
+            description: oldDashboard.description,
+            accessType: oldDashboard.accessType,
+            password: oldDashboard.password,
+            refreshMode: oldDashboard.refreshMode,
+            refreshTimer: oldDashboard.refreshTimer,
+            defaultTabID: oldDashboard.defaultTabID,
+            defaultExportFileType: oldDashboard.defaultExportFileType,
+            url: oldDashboard.url,
+            qaRequired: oldDashboard.qaRequired,
+            isSample: oldDashboard.isSample,
+            backgroundColor: oldDashboard.backgroundColor,
+            backgroundImage: oldDashboard.backgroundImage,
+            templateDashboardID: oldDashboard.templateDashboardID,
+            creator: oldDashboard.creator,
+            dateCreated: oldDashboard.dateCreated,
+            editor: oldDashboard.editor,
+            dateEdited: oldDashboard.dateEdited,
+            refresher: oldDashboard.refresher,
+            dateRefreshed: oldDashboard.dateRefreshed,
+            nrWidgets: oldDashboard.nrWidgets,
+            nrShapes: oldDashboard.nrShapes,
+            nrRecords: oldDashboard.nrRecords,
+            nrTimesOpened: oldDashboard.nrTimesOpened,
+            nrTimesChanged: oldDashboard.nrTimesChanged,
+            tabs: oldDashboard.tabs,
+            permissions: oldDashboard.permissions
 
-            };
-        });
-        this.currentDashboards.forEach(d => {
-            if (d.id == dashboardID) {
-                // TODO - Make a deep copy / error free, less work copy
-                d.originalID = changedDashboard.originalID;
-                d.draftID = changedDashboard.draftID;
-                d.version = changedDashboard.version;
-                d.state = changedDashboard.state;
-                d.code = changedDashboard.code;
-                d.name = changedDashboard.name;
-                d.description = changedDashboard.description;
-                d.accessType = changedDashboard.accessType;
-                d.password = changedDashboard.password;
-                d.refreshMode = changedDashboard.refreshMode;
-                d.refreshTimer = changedDashboard.refreshTimer;
-                d.defaultTabID = changedDashboard.defaultTabID;
-                d.defaultExportFileType = changedDashboard.defaultExportFileType;
-                d.url = changedDashboard.url;
-                d.qaRequired = changedDashboard.qaRequired;
-                d.isSample = changedDashboard.isSample;
-                d.backgroundColor = changedDashboard.backgroundColor;
-                d.backgroundImage = changedDashboard.backgroundImage;
-                d.templateDashboardID = changedDashboard.templateDashboardID;
-                d.creator = changedDashboard.creator;
-                d.dateCreated = changedDashboard.dateCreated;
-                d.editor = changedDashboard.editor;
-                d.dateEdited = changedDashboard.dateEdited;
-                d.refresher = changedDashboard.refresher;
-                d.dateRefreshed = changedDashboard.dateRefreshed;
-                d.nrWidgets = changedDashboard.nrWidgets;
-                d.nrShapes = changedDashboard.nrShapes;
-                d.nrRecords = changedDashboard.nrRecords;
-                d.nrTimesOpened = changedDashboard.nrTimesOpened;
-                d.nrTimesChanged = changedDashboard.nrTimesChanged;
-                d.tabs = changedDashboard.tabs;
-                d.permissions = changedDashboard.permissions;
+        };
 
-            };
-        });
+        // Return
+        return returnDashboard;
     }
 
     widgetReplace(changedWidget: Widget) {
