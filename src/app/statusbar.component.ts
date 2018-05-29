@@ -361,22 +361,26 @@ export class StatusbarComponent {
 
         // Get the index, Delete, and refresh
         // TODO - improve when working with a DB
-        for (var x = 0; x < this.globalVariableService.dashboardTabs.length; x++) {
-            if (this.globalVariableService.dashboardTabs[x].id ==
-                this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID) {
-                    break;
-            };
-        };
+        // for (var x = 0; x < this.globalVariableService.dashboardTabs.length; x++) {
+        //     if (this.globalVariableService.dashboardTabs[x].id ==
+        //         this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID) {
+        //             break;
+        //     };
+        // };
 
-        this.globalVariableService.dashboardTabs.splice(x, 1);
+        // this.globalVariableService.dashboardTabs.splice(x, 1);
+       this.globalVariableService.deleteDashboardTab(
+           this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID
+        ).then(res => {
 
-        this.globalVariableService.refreshCurrentDashboard(
-            'statusbar-clickTabDelete',
-            this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
-            0,
-            'Previous'
-        );
-
+            this.globalVariableService.refreshCurrentDashboard(
+                'statusbar-clickTabDelete',
+                this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                0,
+                'Previous'
+            );
+        })
+            
         // Close popup form
         this.showDashboardTabDescription = false;
     }
