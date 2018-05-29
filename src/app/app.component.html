@@ -2467,7 +2467,7 @@
             </div>
 
             <!-- Checkpoint -->
-            <div class="widgetXCheckpoint" *ngIf="row.lastCheckpoint > 0"
+            <div class="widgetXCheckpoint" *ngIf="row.lastCheckpoint >= 0"
                 >
                 <div class="widgetXCheckpointLeft" *ngIf="row.showCheckpoints"
                     (click)="clickNavCheckpoint(
