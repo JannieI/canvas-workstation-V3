@@ -77,7 +77,7 @@
         width: 100%;
     }
 
-    .titleBorder {
+    .titlePadding {
         grid-column-start: 1;
         grid-column-end: 9;
         grid-row-start: 6;
@@ -85,7 +85,7 @@
         margin: 2px 2px 2px 20px;
         width: 100%;
     }
-
+    
     .titleColourTitle {
         grid-column-start: 10;
         grid-column-end: 13;
@@ -111,8 +111,17 @@
         width: 100%;
     }
 
-    .titleLeft {
+    .titleBorderSizeTitle {
         grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 8;
+        grid-row-end: 9;
+        margin: 2px 2px 2px 20px;
+        width: 100%;
+    }
+
+    .titleBorderSize {
+        grid-column-start: 3;
         grid-column-end: 9;
         grid-row-start: 8;
         grid-row-end: 9;
@@ -120,38 +129,70 @@
         width: 100%;
     }
 
-    .titleMargin {
+    .titleBorderColorTitle {
         grid-column-start: 10;
-        grid-column-end: 21;
+        grid-column-end: 13;
         grid-row-start: 8;
         grid-row-end: 9;
         margin: 2px 2px 2px 20px;
         width: 100%;
     }
-
-    .titlePadding {
-        grid-column-start: 1;
-        grid-column-end: 9;
-        grid-row-start: 10;
-        grid-row-end: 11;
-        margin: 2px 2px 2px 20px;
+    .titleBorderColor {
+        grid-column-start: 13;
+        grid-column-end: 17;
+        grid-row-start: 8;
+        grid-row-end: 9;
+        margin: 2px 2px 2px 2px;
         width: 100%;
     }
-
-    .titlePosition {
-        grid-column-start: 10;
+    .titleBorderColorPicker {
+        grid-column-start: 17;
         grid-column-end: 21;
-        grid-row-start: 10;
-        grid-row-end: 11;
-        margin: 2px 2px 2px 20px;
+        grid-row-start: 8;
+        grid-row-end: 9;
+        margin: 2px 2px 2px 12px;
         width: 100%;
     }
 
+    .titleTextAlignTitle {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 12;
+        grid-row-end: 13;
+        margin: 2px 2px 2px 20px;
+        width: 100%;
+    }
     .titleTextAlign {
-        grid-column-start: 1;
+        grid-column-start: 3;
         grid-column-end: 9;
         grid-row-start: 12;
         grid-row-end: 13;
+        margin: 2px 2px 2px 20px;
+        width: 100%;
+    }
+
+    .titlePositionTitle {
+        grid-column-start: 10;
+        grid-column-end: 13;
+        grid-row-start: 12;
+        grid-row-end: 13;
+        margin: 2px 2px 2px 20px;
+        width: 100%;
+    }
+    .titlePosition {
+        grid-column-start: 13;
+        grid-column-end: 21;
+        grid-row-start: 12;
+        grid-row-end: 13;
+        margin: 2px 2px 2px 20px;
+        width: 100%;
+    }
+
+    .titleLeft {
+        grid-column-start: 1;
+        grid-column-end: 9;
+        grid-row-start: 14;
+        grid-row-end: 15;
         margin: 2px 2px 2px 20px;
         width: 100%;
     }
@@ -159,8 +200,17 @@
     .titleTop {
         grid-column-start: 10;
         grid-column-end: 21;
-        grid-row-start: 12;
-        grid-row-end: 13;
+        grid-row-start: 14;
+        grid-row-end: 15;
+        margin: 2px 2px 2px 20px;
+        width: 100%;
+    }
+
+    .titleMargin {
+        grid-column-start: 10;
+        grid-column-end: 21;
+        grid-row-start: 16;
+        grid-row-end: 17;
         margin: 2px 2px 2px 20px;
         width: 100%;
     }
@@ -168,8 +218,8 @@
     .titleWidth {
         grid-column-start: 1;
         grid-column-end: 9;
-        grid-row-start: 14;
-        grid-row-end: 15;
+        grid-row-start: 16;
+        grid-row-end: 17;
         margin: 2px 2px 2px 20px;
         width: 100%;
     }
