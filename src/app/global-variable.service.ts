@@ -1309,6 +1309,12 @@ export class GlobalVariableService {
         });
 
         // - all snapshots (for the Draft) are deleted
+        this.dashboardSnapshots.forEach(snp => {
+            if (snp.dashboardID == draftID) {
+                this.deleteDatasourcePermission(snp.id);
+            };
+        });
+
         // - template Dashboard
         this.dashboards.forEach(d => {
             if (d.templateDashboardID == draftID) {
