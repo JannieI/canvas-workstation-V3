@@ -79,26 +79,6 @@ export class DashboardSaveComponent implements OnInit {
         // Save the D (replace the original as Completed and delete the Draft)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
-        // Change the State to completed
-        // let dashboardIndex: number = this.globalVariableService.currentDashboards.findIndex(
-        //     d => d.id == this.globalVariableService.currentDashboardInfo.value.currentDashboardID
-        // );
-        // if (dashboardIndex >= 0) {
-        //     let localDashboard: Dashboard = this.globalVariableService.currentDashboards[
-        //         dashboardIndex
-        //     ];
-
-        //     // Delete the original D, and reset
-        //     if (localDashboard.originalID != null) {
-        //         this.globalVariableService.deleteDashboard(localDashboard.originalID);
-        //         localDashboard.originalID = null;
-        //     };
-
-        //     localDashboard.draftID = null;
-        //     localDashboard.state = 'Complete';
-        //     this.globalVariableService.saveDashboard(localDashboard);
-        // };
-
         this.globalVariableService.saveDraftDashboard().then(res => {
             this.globalVariableService.refreshCurrentDashboard(
                 'discardDashboard-clickDiscard', res, -1, ''
