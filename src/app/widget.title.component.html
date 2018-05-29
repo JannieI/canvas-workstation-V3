@@ -130,6 +130,51 @@
 
 
 
+                <!-- <div class="titleTextAlign">
+                    TextAlign:
+                    <input type="text" [(ngModel)]="localWidget.titleTextAlign"
+                        placeholder="left, center or right"
+                        >
+                </div> -->
+
+                <div class="titleTextAlignTitle">
+                    TextAlign:
+                </div>  
+                <div class="select titleTextAlign">
+                    <select [(ngModel)]="lineSize"
+                        name="lineSize"
+                        (change)="clickSelectLineSize($event)"
+                        >
+                        <option>Left</option>
+                        <option>Center</option>
+                        <option>Right</option>
+                    </select>
+                </div>
+
+
+                <!-- <div class="titlePosition">
+                    Position:
+                    <input type="text" [(ngModel)]="localWidget.titlePosition"
+                        placeholder="relative or absolute"
+                        >
+                </div> -->
+
+                <div class="titlePositionTitle">
+                    Position:
+                </div>  
+                <div class="select titlePosition">
+                    <select [(ngModel)]="lineSize"
+                        name="lineSize"
+                        (change)="clickSelectLineSize($event)"
+                        >
+                        <option>Absolute</option>
+                        <option>Relative</option>
+                    </select>
+                </div>
+
+
+
+
                 <div class="titleLeft">
                     Left:
                     <input type="text" [(ngModel)]="localWidget.titleLeft"
@@ -148,18 +193,11 @@
                         placeholder="ie 0 0 0 5px"
                         >
                 </div>
-                <div class="titlePosition">
-                    Position:
-                    <input type="text" [(ngModel)]="localWidget.titlePosition"
-                        placeholder="relative or absolute"
-                        >
-                </div>
-                <div class="titleTextAlign">
-                    TextAlign:
-                    <input type="text" [(ngModel)]="localWidget.titleTextAlign"
-                        placeholder="left, center or right"
-                        >
-                </div>
+
+
+
+
+
                 <div class="titleTop">
                     Top:
                     <input type="text" [(ngModel)]="localWidget.titleTop"
