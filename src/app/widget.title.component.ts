@@ -62,17 +62,17 @@ export class WidgetTitleComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
         
         // Deconstruct border
-        if (this.selectedWidget.containerBorder != '' 
+        if (this.selectedWidget.titleBorder != '' 
             && 
-            this.selectedWidget.containerBorder != 'none') {
-                let space: number = this.selectedWidget.containerBorder.indexOf(' ');
+            this.selectedWidget.titleBorder != 'none') {
+                let space: number = this.selectedWidget.titleBorder.indexOf(' ');
                 if (space > 0) {
-                    this.lineSize = this.selectedWidget.containerBorder.substr(0, space);
-                    let rest: string = this.selectedWidget.containerBorder.substr(space + 1, 999);
+                    this.lineSize = this.selectedWidget.titleBorder.substr(0, space);
+                    let rest: string = this.selectedWidget.titleBorder.substr(space + 1, 999);
 
                     space = rest.indexOf(' ');
                     if (space > 0) {
-                        let rest: string = this.selectedWidget.containerBorder.substr(space + 1, 999);
+                        let rest: string = this.selectedWidget.titleBorder.substr(space + 1, 999);
 
                         space = rest.indexOf(' ');
                         if (space > 0) {
@@ -169,6 +169,18 @@ export class WidgetTitleComponent implements OnInit {
         this.selectedColour = this.lineColor;
         this.callingRoutine = 'BorderColour';
         this.colourPickerClosed = true;
+    }
+
+    clickSelectLineSize(ev: any) {
+        // Select Circle Line Colour
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBgColor', '@Start');
+
+        this.lineSize = ev.target.value;
+
+        // Construct line size
+        if (this.lineSize != 'none') {
+            this.localWidget.titleBorder = this.lineSize + ' solid ' + this.lineColor;
+        };
     }
 
   	clickClose() {
