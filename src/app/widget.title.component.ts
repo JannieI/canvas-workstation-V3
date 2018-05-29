@@ -61,6 +61,28 @@ export class WidgetTitleComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
         
+        // Deconstruct border
+        if (this.selectedWidget.containerBorder != '' 
+            && 
+            this.selectedWidget.containerBorder != 'none') {
+                let space: number = this.selectedWidget.containerBorder.indexOf(' ');
+                if (space > 0) {
+                    this.lineSize = this.selectedWidget.containerBorder.substr(0, space);
+                    let rest: string = this.selectedWidget.containerBorder.substr(space + 1, 999);
+
+                    space = rest.indexOf(' ');
+                    if (space > 0) {
+                        let rest: string = this.selectedWidget.containerBorder.substr(space + 1, 999);
+
+                        space = rest.indexOf(' ');
+                        if (space > 0) {
+                            this.lineColor = rest.substr(space + 1, 999);
+                        };
+                    };
+                };
+        };
+        console.warn('xx ls', this.lineSize, this.lineColor)
+
         // Manage colour picker
         this.globalVariableService.colourPickerClosed.subscribe(clp => {
 
@@ -77,12 +99,17 @@ export class WidgetTitleComponent implements OnInit {
                     if (clp.callingRoutine == 'Colour') {
                         this.colourPickerClosed = false;
                         this.localWidget.titleColor = clp.selectedColor;
+                    };
+                    if (clp.callingRoutine == 'BorderColour') {
+                        this.colourPickerClosed = false;
+                        this.lineColor = clp.selectedColor;
 
                         // Construct line size
                         if (this.lineSize != 'none') {
                             this.localWidget.titleBorder = this.lineSize + ' solid ' + this.lineColor;
                         };
                     };
+
                 };
             };
         });
@@ -125,6 +152,22 @@ export class WidgetTitleComponent implements OnInit {
 
         this.selectedColour = this.localWidget.titleColor;
         this.callingRoutine = 'Colour';
+        this.colourPickerClosed = true;
+    }
+
+    clickSelectBorderColor(ev: any) {
+        // Select text Colour
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectColor', '@Start');
+
+        this.lineColor = ev.target.value;
+    }
+
+    clickSelectBorderColorPicker(ev: any) {
+        // Open the Colour Picker for text Colour
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectColorPicker', '@Start');
+
+        this.selectedColour = this.lineColor;
+        this.callingRoutine = 'BorderColour';
         this.colourPickerClosed = true;
     }
 
