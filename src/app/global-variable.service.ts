@@ -1448,6 +1448,7 @@ export class GlobalVariableService {
         // - Tags
         let newTag: string = '';
         this.dashboardTags.forEach(tag => {
+            console.warn('xx ids', draftID, originalID)
             if (tag.dashboardID == draftID) {
                 newTag = tag.tag;
                 this.dashboardTags.forEach(ot =>{
@@ -1455,7 +1456,7 @@ export class GlobalVariableService {
                         newTag = '';
                     };
                 })
-                if (newTag != '') {
+                if (newTag == '') {
                     this.deleteDashboardTag(tag.id);
                 } else {
                     let newDashboardTag: DashboardTag = {
