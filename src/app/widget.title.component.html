@@ -52,13 +52,36 @@
 
 
 
-                <div class="titleBorder">
+                <!-- <div class="titleBorder">
                     Border:
                     <input type="text" [(ngModel)]="localWidget.titleBorder"
                         placeholder="ie 1px solid black"
                         >
+                </div> -->
+
+                <div class="titleBorderColorTitle">
+                    Border:
+                </div>  
+                <div class="select titleBorderColor">
+                    <select [(ngModel)]="localWidget.titleBorder"
+                        (change)="clickSelectBorderColor($event)"
+                        name="lineColor"
+                        >
+                        <option *ngFor="let row of backgroundcolors"
+                            [style.background-color]="row.name"
+                            >
+                            {{ row.name }}
+                        </option>
+                    </select>
                 </div>
-                <hr>
+                <button
+                    type="button"
+                    class="btn btn-link btn-sm titleBorderColorPicker"
+                    (click)="clickSelectBorderColorPicker()"
+                    >
+                    Picker
+                </button>
+                
                 <!-- <div class="titleColour">
                     Color:
                     <input type="text" [(ngModel)]="localWidget.titleColor"
