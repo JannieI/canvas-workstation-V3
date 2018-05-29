@@ -17,8 +17,6 @@ import { Widget }                     from './models'
 import { GlobalFunctionService } 		  from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
-// Functions
-
 
 @Component({
     selector: 'widget-title',

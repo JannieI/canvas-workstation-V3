@@ -6255,12 +6255,11 @@ export class AppComponent implements OnInit {
         // Toggle to show Checkpoints or not
         this.globalFunctionService.printToConsole(this.constructor.name,'clickToggleShowCheckpoint', '@Start');
 
-        // How it works:
-        // At Runtime, each W.checkpointIDs[] is set to the IDs of all its previously stored
-        // Checkpoints.  It also stores currentCheckpoint = 0, which is the index
-        // in checkpointIDs while browsing, and lastCheckpoint which is the
-        // index in checkpointIDs of the last one.  This is a hack to simplify
-        // moving between checkpoint (0 -> lastCheckpoint in checkpointIDs).
+        // How it works:  when loading a W at RunTime, each W.checkpointIDs[] is set to the 
+        // IDs of all its previously stored Checkpoints.  It also stores 
+        // currentCheckpoint = 0, which is the index in checkpointIDs while browsing, and 
+        // lastCheckpoint which is the index in checkpointIDs of the last ID.  This is a 
+        // hack to simplify moving between checkpoint (0 -> lastCheckpoint in checkpointIDs).
         // It is important to note these are indices, not ids.  There is a fourth field,
         // showCheckpoints, which is set to True when while browsing Checkpoints.
         // When checkpointIDs.length > 0, there is a gray dot to indicate that the W have
@@ -6281,7 +6280,7 @@ export class AppComponent implements OnInit {
         // Restore the Original (when moving out of showCheckpoint mode)
         if (showCheckpoints) {
             this.currentWidgetsOriginals.forEach(wo => {
-                console.warn('xx wo.showCheckpoints', wo.showCheckpoints)
+                console.warn('xx wo.showCheckpoints', wo.showCheckpoints, this.currentWidgetsOriginals)
                 if (wo.dashboardID == dashboardID  &&  wo.id == id) {
                     wo.showCheckpoints = false;
                     this.globalVariableService.changedWidget.next(wo);

@@ -36,15 +36,30 @@
         width: 100%;
     }
 
-    .titleBackgroundColour {
+    .titleBackgroundColourTitle {
         grid-column-start: 10;
+        grid-column-end: 13;
+        grid-row-start: 4;
+        grid-row-end: 5;
+        margin: 2px 2px 2px 20px;
+        width: 100%;
+    }
+    .titleBackgroundColour {
+        grid-column-start: 13;
+        grid-column-end: 18;
+        grid-row-start: 4;
+        grid-row-end: 5;
+        margin: 2px 2px 2px 20px;
+        width: 100%;
+    }
+    .titleBackgroundColourPicker {
+        grid-column-start: 19;
         grid-column-end: 21;
         grid-row-start: 4;
         grid-row-end: 5;
         margin: 2px 2px 2px 20px;
         width: 100%;
     }
-
 
     .titleBorder {
         grid-column-start: 1;
