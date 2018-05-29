@@ -72,7 +72,7 @@ export class WidgetTitleComponent implements OnInit {
 
                     if (clp.callingRoutine == 'BgColour') {
                         this.colourPickerClosed = false;
-                        this.localWidget.containerBackgroundcolor = clp.selectedColor;
+                        this.localWidget.titleBackgroundColor = clp.selectedColor;
                     };
                     if (clp.callingRoutine == 'LineColour') {
                         this.colourPickerClosed = false;
@@ -80,7 +80,7 @@ export class WidgetTitleComponent implements OnInit {
 
                         // Construct line size
                         if (this.lineSize != 'none') {
-                            this.localWidget.containerBorder = this.lineSize + ' solid ' + this.lineColor;
+                            this.localWidget.titleBorder = this.lineSize + ' solid ' + this.lineColor;
                         };
                     };
                 };
@@ -100,14 +100,14 @@ export class WidgetTitleComponent implements OnInit {
         // Select Background Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBgColor', '@Start');
 
-        this.localWidget.containerBackgroundcolor = ev.target.value;
+        this.localWidget.titleBackgroundColor = ev.target.value;
     }
-      
+
     clickSelectBgColorPicker(ev: any) {
         // Open the Colour Picker for Background Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBgColorPicker', '@Start');
 
-        this.selectedColour = this.localWidget.containerBackgroundcolor;
+        this.selectedColour = this.localWidget.titleBackgroundColor;
         this.callingRoutine = 'BgColour';
         this.colourPickerClosed = true;
     }
