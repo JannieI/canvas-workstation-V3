@@ -1495,6 +1495,11 @@ export class GlobalVariableService {
         });
 
         // - all snapshots (for the Draft) are deleted
+        this.dashboardPermissions.forEach(per => {
+            if (per.dashboardID == draftID) {
+                this.deleteDatasourcePermission(per.id);
+            };
+        });
 
         // The following are converted seamlessly, and pointers to Draft become pointers
         // to the original:
@@ -1564,7 +1569,7 @@ export class GlobalVariableService {
 
             // Remove Draft D
             this.deleteDashboard(draftID);
-            
+
             // Perform all the promises
             this.allWithAsync(...promiseArray).then(resolvedData => {
                 // Dashboard
@@ -3343,7 +3348,10 @@ console.warn('xx d', this.dashboards)
         };
     }
 
-    newDashboardSnapshot(snapshotName: string, snapshotComment: string): Promise<any>  {
+    newDashboardSnapshot(
+        snapshotName: string, 
+        snapshotComment: string, 
+        snapshotType: string): Promise<any>  {
         // Description: Adds a new DashboardSnapshot
         // Returns: Added Data or error message
         console.log('%c    Global-Variables newDashboardSnapshot ...',
@@ -3355,8 +3363,9 @@ console.warn('xx d', this.dashboards)
             let newSn: DashboardSnapshot = {
                 id: null,
                 dashboardID: this.currentDashboardInfo.value.
-                    currentDashboardID,
+                currentDashboardID,
                 name: snapshotName,
+                snapshotType: snapshotType,
                 comment: snapshotComment,
                 dashboards: this.currentDashboards.slice(),
                 dashboardTabs: this.currentDashboardTabs.slice(),
@@ -6818,8 +6827,8 @@ console.warn('xx d', this.dashboards)
                 dashboardIndex]
                 .name + ' ' + this.formatDate(today);
             let snapshotComment: string = 'Added automated Snapshot before first Action';
-            this.newDashboardSnapshot(
-                snapshotName, snapshotComment).then(res => {
+            this.newDashboardSnapshot(snapshotName, snapshotComment,'BeforeFirstEdit'
+                ).then(res => {
                     this.showStatusBarMessage(
                         {
                             message: 'Added automated Snapshot before first Action',

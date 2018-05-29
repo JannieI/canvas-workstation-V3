@@ -524,6 +524,7 @@ export class DashboardSnapshot {
     id: number;                                     // Unique ID
     dashboardID: number;                            // D for which the Snapshot is stored
     name: string;                                   // Name of Snapshot
+    snapshotType: string;                           // StartEditMode, BeforeFirstEdit, AutoFrequency, UserDefined
     comment: string;                                // Optional Comment
     dashboards: Dashboard[];                        // Array of D used (can include a Template)
     dashboardTabs: DashboardTab[];                  // Ts of D

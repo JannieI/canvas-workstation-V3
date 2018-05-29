@@ -478,7 +478,9 @@ export class AppComponent implements OnInit {
                                 let snapshotComment: string = 'Automated Snapshot after ' +
                                     (mins / 60000).toString() + ' mins';
                                 this.globalVariableService.newDashboardSnapshot(
-                                    snapshotName, snapshotComment).then(res => {
+                                    snapshotName, 
+                                    snapshotComment,
+                                    'AutoFrequency').then(res => {
                                         this.showMessage(
                                             'Added automated Snapshot after ' +
                                             (mins / 60000).toString() + ' mins',
