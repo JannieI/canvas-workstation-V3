@@ -1513,53 +1513,64 @@ export class GlobalVariableService {
                 this.saveWidget(w);
             };
         });
-    
-        // Move properties and entities from Draft to Original version:
-        // Dashboard
-        this.dashboardReplace(originalID, draftDashboard);
-        this.saveDashboard(originalDashboard).then(res => {
 
-        })
-
-        // - Tabs, Widgets, Checkpoints
+        // Change the D
         return new Promise<number>((resolve, reject) => {
+
             let promiseArray = [];
+            
+            // Remove existing entities from Original Version:
+            // - Tabs, Widgets, Checkpoints
+            this.dashboardTabs.forEach(t => {
+                if (t.dashboardID == originalID) {
+                    promiseArray.push(this.deleteDashboardTab(t.id));
+                };
+            });            
+            this.widgets.forEach(w => {
+                if (w.dashboardID == originalID) {
+                    promiseArray.push(this.deleteWidget(w.id));
+                };
+            });            
+            this.widgetCheckpoints.forEach(chk => {
+                if (chk.dashboardID == originalID) {
+                    promiseArray.push(this.deleteWidgetCheckpoint(chk.id));
+                };
+            });            
+
+            // Move properties and entities from Draft to Original version:
+            // - Tabs, Widgets, Checkpoints
             this.dashboardTabs.forEach(t => {
                 if (t.dashboardID == draftID) {
                     t.dashboardID = originalID;
                     t.originalID = null;
-
-                    this.widgets.forEach(w => {
-                        if (w.dashboardID == draftID 
-                            &&  
-                            w.dashboardTabIDs.indexOf(t.id) >= 0) {
-                            w.dashboardID = originalID;
-                            // TODO - fix for multi-tab
-                            w.dashboardTabID = t.originalID;
-                            w.dashboardTabIDs = [t.originalID];
-                            let checkpointIDs: number[] = [];
-                            this.widgetCheckpoints.forEach(chk => {
-                                if (chk.dashboardID == draftID
-                                    && chk.widgetID == w.id) {
-                                    chk.dashboardID = originalID;
-                                    chk.widgetID = w.id;
-                                    chk.originalID = null;
-                                    checkpointIDs.push(chk.id)
-                                    promiseArray.push(this.saveWidgetCheckpoint(chk));
-                                };
-                            });
-                            w.checkpointIDs = checkpointIDs;
-                            promiseArray.push(this.saveWidget(w));
-                        };
-                        promiseArray.push(this.saveDashboardTab(t));
-
-                    });
+                    promiseArray.push(this.saveDashboardTab(t));
                 };
             });
-                    
-            this.allWithAsync(...promiseArray).then(resolvedData => {
-            resolve(originalID);
+
+            this.widgets.forEach(w => {
+                if (w.dashboardID == draftID) {
+                    w.dashboardID = originalID;
+                    w.originalID = null;
+                    promiseArray.push(this.saveWidget(w));
+                };
             });
+            this.widgetCheckpoints.forEach(chk => {
+                if (chk.dashboardID == draftID) {
+                    chk.dashboardID = originalID;
+                    chk.originalID = null;
+                    promiseArray.push(this.saveWidgetCheckpoint(chk));
+                };
+            });
+
+            // Perform all the promises                    
+            this.allWithAsync(...promiseArray).then(resolvedData => {
+                // Dashboard
+                this.dashboardReplace(originalID, draftDashboard);
+                this.saveDashboard(originalDashboard).then(res => {
+                    resolve(originalID);
+                })
+            });
+
         });
 
     }
