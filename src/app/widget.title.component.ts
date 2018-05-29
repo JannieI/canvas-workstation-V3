@@ -60,6 +60,32 @@ export class WidgetTitleComponent implements OnInit {
     ngOnInit() {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        
+        // Manage colour picker
+        this.globalVariableService.colourPickerClosed.subscribe(clp => {
+
+            if (this.localWidget != undefined  &&  clp != null) {
+
+                if (clp.cancelled) {
+                    this.colourPickerClosed = false;
+                } else {
+
+                    if (clp.callingRoutine == 'BgColour') {
+                        this.colourPickerClosed = false;
+                        this.localWidget.containerBackgroundcolor = clp.selectedColor;
+                    };
+                    if (clp.callingRoutine == 'LineColour') {
+                        this.colourPickerClosed = false;
+                        this.lineColor = clp.selectedColor;
+
+                        // Construct line size
+                        if (this.lineSize != 'none') {
+                            this.localWidget.containerBorder = this.lineSize + ' solid ' + this.lineColor;
+                        };
+                    };
+                };
+            };
+        });
 
         // Deep copy
         this.localWidget = Object.assign({}, this.selectedWidget);
@@ -69,7 +95,14 @@ export class WidgetTitleComponent implements OnInit {
         this.backgroundcolors = this.globalVariableService.backgroundcolors.slice();
         
     }
-        
+      
+    clickSelectBgColor(ev: any) {
+        // Select Background Colour
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBgColor', '@Start');
+
+        this.localWidget.containerBackgroundcolor = ev.target.value;
+    }
+      
     clickSelectBgColorPicker(ev: any) {
         // Open the Colour Picker for Background Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBgColorPicker', '@Start');
