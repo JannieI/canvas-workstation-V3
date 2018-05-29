@@ -51,6 +51,21 @@
                 </button>
 
 
+                <div class="titleBorderSizeTitle">
+                    Border Size:
+                </div>  
+                <div class="select titleBorderSize">
+                    <select [(ngModel)]="lineSize"
+                        name="lineSize"
+                        (change)="clickSelectLineSize($event)"
+                        >
+                        <option>none</option>
+                        <option>1px</option>
+                        <option>2px</option>
+                        <option>3px</option>
+                        <option>4px</option>
+                    </select>
+                </div>
 
                 <!-- <div class="titleBorder">
                     Border:
