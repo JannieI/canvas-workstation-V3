@@ -1046,8 +1046,8 @@ export class GlobalVariableService {
                             if (t.dashboardID == addedD.id) {
                                 console.warn('xx loop tabs', t, dashboardTabsResult)
                                 this.widgets.forEach(w => {
-                                    if (w.dashboardID == dashboardID 
-                                        &&  
+                                    if (w.dashboardID == dashboardID
+                                        &&
                                         w.dashboardTabIDs.indexOf(t.originalID) >= 0) {
                                         // Deep copy
                                         let newW: Widget = Object.assign({}, w);
@@ -1096,7 +1096,7 @@ export class GlobalVariableService {
                                 };
 
                             });
-                            
+
                             this.allWithAsync(...promiseArrayChk).then(resolvedData => {
 
                                 // Rebuild [checkpointIDs]
@@ -1147,7 +1147,7 @@ export class GlobalVariableService {
                                         };
 
                                     });
-                                    
+
                                     this.allWithAsync(...promiseArrayChk).then(resolvedData => {
                                         resolve(addedD);
                                     });
@@ -1183,7 +1183,7 @@ export class GlobalVariableService {
     discardDashboard(): number {
         // Discards a Draft Dashboard, which means all changes are deleted
         // Returns originalID (from which Draft D was copied)
-        
+
         // The following are unmodified:
         // - the AuditTrails are kept against the Draft
 
@@ -1198,19 +1198,19 @@ export class GlobalVariableService {
         let draftTabs: DashboardTab[] = this.dashboardTabs.filter(
             t => t.dashboardID == draftID
         );
-        
+
         // Reset the draft ID
         originalDashboard.originalID = null;
         originalDashboard.draftID = null;
         this.saveDashboard(originalDashboard);
 
-        // The following are moved (added to the original version), removing any links 
+        // The following are moved (added to the original version), removing any links
         // to the Draft version:
         // - Actions
         this.actions.forEach(act => {
             draftTabs.forEach(t => {
                 if (act.dashboardID == t.dashboardID
-                    && 
+                    &&
                     act.dashboardTabID == t.id) {
                         act.dashboardID = originalID;
                         act.dashboardTabID = t.originalID;
@@ -1260,7 +1260,7 @@ export class GlobalVariableService {
             };
         });
 
-        // The following are simply deleted (and those applicable to the original remains 
+        // The following are simply deleted (and those applicable to the original remains
         // unchanged):
         // - Subscriptions
         this.dashboardSubscriptions.forEach(sub => {
@@ -1324,7 +1324,7 @@ export class GlobalVariableService {
                 this.saveWidget(w);
             };
         });
-    
+
         // Delete the Draft D content created as part of the Draft version:
         // Dashboard
         this.deleteDashboard(draftID);
@@ -1335,7 +1335,7 @@ export class GlobalVariableService {
                 this.deleteDashboardTab(t.id);
             };
         });
-        
+
         // - Widgets
         this.widgets.forEach(w => {
             if (w.dashboardID == draftID) {
@@ -1365,7 +1365,7 @@ export class GlobalVariableService {
     saveDraftDashboard(): Promise<number> {
         // saves Draft Dashboard back to the original, keeping all changes
         // Returns original dashboardID (for the current Draft D)
-        
+
         // The following are unmodified:
         // - the AuditTrails are kept against the Draft
 
@@ -1381,14 +1381,14 @@ export class GlobalVariableService {
             t => t.dashboardID == draftID
         );
         console.warn('xx ids', draftID, originalID)
-        
-        // The following are moved (added to the original version), removing any links 
+
+        // The following are moved (added to the original version), removing any links
         // to the Draft version:
         // - Actions
         this.actions.forEach(act => {
             draftTabs.forEach(t => {
                 if (act.dashboardID == t.dashboardID
-                    && 
+                    &&
                     act.dashboardTabID == t.id) {
                         act.dashboardID = originalID;
                         act.dashboardTabID = t.originalID;
@@ -1445,8 +1445,8 @@ export class GlobalVariableService {
                 this.deleteDashboardTag(tag.id);
             };
         });
-        
-        // The following are simply deleted (and those applicable to the original remains 
+
+        // The following are simply deleted (and those applicable to the original remains
         // unchanged):
         // - Subscriptions
         this.dashboardSubscriptions.forEach(sub => {
@@ -1496,7 +1496,7 @@ export class GlobalVariableService {
 
         // - all snapshots (for the Draft) are deleted
 
-        // The following are converted seamlessly, and pointers to Draft become pointers 
+        // The following are converted seamlessly, and pointers to Draft become pointers
         // to the original:
         // - template Dashboard
         this.dashboards.forEach(d => {
@@ -1518,24 +1518,24 @@ export class GlobalVariableService {
         return new Promise<number>((resolve, reject) => {
 
             let promiseArray = [];
-            
+
             // Remove existing entities from Original Version:
             // - Tabs, Widgets, Checkpoints
             this.dashboardTabs.forEach(t => {
                 if (t.dashboardID == originalID) {
                     promiseArray.push(this.deleteDashboardTab(t.id));
                 };
-            });            
+            });
             this.widgets.forEach(w => {
                 if (w.dashboardID == originalID) {
                     promiseArray.push(this.deleteWidget(w.id));
                 };
-            });            
+            });
             this.widgetCheckpoints.forEach(chk => {
                 if (chk.dashboardID == originalID) {
                     promiseArray.push(this.deleteWidgetCheckpoint(chk.id));
                 };
-            });            
+            });
 
             // Move properties and entities from Draft to Original version:
             // - Tabs, Widgets, Checkpoints
@@ -1562,10 +1562,14 @@ export class GlobalVariableService {
                 };
             });
 
-            // Perform all the promises                    
+            // Remove Draft D
+            this.deleteDashboard(draftID);
+            
+            // Perform all the promises
             this.allWithAsync(...promiseArray).then(resolvedData => {
                 // Dashboard
                 originalDashboard = this.dashboardMoveInfo(originalID, draftDashboard);
+                originalDashboard.state = 'Complete';
                 this.saveDashboard(originalDashboard).then(res => {
                     resolve(originalID);
                 })
@@ -1847,10 +1851,10 @@ export class GlobalVariableService {
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", dashboardID);
 console.warn('xx d', this.dashboards)
         // Refresh from source at start, or if dirty
-        if ( 
-            (this.currentDashboards.length == 0  
-            ||  this.dashboards.length == 0)  
-            ||  (this.isDirtyDashboards) 
+        if (
+            (this.currentDashboards.length == 0
+            ||  this.dashboards.length == 0)
+            ||  (this.isDirtyDashboards)
             ) {
             return new Promise<Dashboard[]>((resolve, reject) => {
                 this.getDashboards()
@@ -4754,7 +4758,7 @@ console.warn('xx d', this.dashboards)
     deleteWidget(id: number): Promise<string> {
         // Description: Deletes a Widgets
         // Returns: 'Deleted' or error message
-        // NOTE: this permananently deletes a W, from arrays and DB. 
+        // NOTE: this permananently deletes a W, from arrays and DB.
         console.log('%c    Global-Variables deleteWidget ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", id);
 
@@ -6361,7 +6365,7 @@ console.warn('xx d', this.dashboards)
     }
 
     dashboardMoveInfo(newDashboardID: number, oldDashboard: Dashboard): Dashboard {
-        // Creates a new Dashboard with ID = newDashboardID, but all properties from 
+        // Creates a new Dashboard with ID = newDashboardID, but all properties from
         // oldDashboard
         // - changedDashboard = new D, with changed properties
         console.log('%c    Global-Variables ... dashboardMoveInfo',
