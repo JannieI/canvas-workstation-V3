@@ -18,9 +18,18 @@
     margin-top: 2px;
     }
 
+    .colourpicker {
+        grid-column-start: 10;
+        grid-column-end: 21;
+        grid-row-start: 2;
+        grid-row-end: 3;
+        margin: 2px 2px 2px 20px;
+        width: 100%;
+    }
+
     .titleHeader {
         grid-column-start: 1;
-        grid-column-end: 40;
+        grid-column-end: 21;
         grid-row-start: 2;
         grid-row-end: 3;
         margin: 2px 2px 2px 20px;
@@ -150,7 +159,6 @@
         margin: 2px 2px 2px 20px;
         width: 100%;
     }
-
 
     .titleButtonSave {
         grid-column-start: 14;

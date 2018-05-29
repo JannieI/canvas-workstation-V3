@@ -9,6 +9,14 @@
                     </button>
                 </div>
 
+                <div class="colourpicker" *ngIf="colourPickerClosed">
+                    <colour-picker
+                        [callingRoutine]="callingRoutine"
+                        [selectedColor]="selectedColour"
+                        >
+                    </colour-picker>
+                </div>
+
                 <div class="titleHeader">
                     <b>Title properties</b>
                 </div>
