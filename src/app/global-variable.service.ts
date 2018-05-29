@@ -1494,10 +1494,10 @@ export class GlobalVariableService {
             };
         });
 
-        // - all snapshots (for the Draft) are deleted
-        this.dashboardPermissions.forEach(per => {
-            if (per.dashboardID == draftID) {
-                this.deleteDatasourcePermission(per.id);
+        // - all snapshots (for the Draft) are deleted, EXCEPT the initial one
+        this.dashboardSnapshots.forEach(snp => {
+            if (snp.dashboardID == draftID  &&  snp.snapshotType != 'StartEditMode') {
+                this.deleteDatasourcePermission(snp.id);
             };
         });
 
