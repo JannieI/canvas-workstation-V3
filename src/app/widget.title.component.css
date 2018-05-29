@@ -86,12 +86,28 @@
         width: 100%;
     }
 
-    .titleColour {
+    .titleColourTitle {
         grid-column-start: 10;
-        grid-column-end: 21;
+        grid-column-end: 13;
         grid-row-start: 6;
         grid-row-end: 7;
         margin: 2px 2px 2px 20px;
+        width: 100%;
+    }
+    .titleColour {
+        grid-column-start: 13;
+        grid-column-end: 17;
+        grid-row-start: 6;
+        grid-row-end: 7;
+        margin: 2px 2px 2px 2px;
+        width: 100%;
+    }
+    .titleColourPicker {
+        grid-column-start: 17;
+        grid-column-end: 21;
+        grid-row-start: 6;
+        grid-row-end: 7;
+        margin: 2px 2px 2px 12px;
         width: 100%;
     }
 

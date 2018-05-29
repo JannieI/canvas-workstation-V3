@@ -65,6 +65,33 @@
                         placeholder="CSS or rgb() color"
                         >
                 </div>
+
+                <div class="titleColourTitle">
+                    Border Colour:
+                </div>  
+                <div class="select titleColour">
+                    <select [(ngModel)]="lineColor"
+                        (change)="clickSelectLineColor($event)"
+                        name="lineColor"
+                        >
+                        <option *ngFor="let row of backgroundcolors"
+                            [style.background-color]="row.name"
+                            >
+                            {{ row.name }}
+                        </option>
+                    </select>
+                </div>
+                <button
+                    type="button"
+                    class="btn btn-link btn-sm titleColourPicker"
+                    (click)="clickSelectLineColorPicker()"
+                    >
+                    Picker
+                </button>
+
+
+
+
                 <div class="titleLeft">
                     Left:
                     <input type="text" [(ngModel)]="localWidget.titleLeft"
