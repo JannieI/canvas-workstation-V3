@@ -59,19 +59,19 @@
                         >
                 </div>
                 <hr>
-                <div class="titleColour">
+                <!-- <div class="titleColour">
                     Color:
                     <input type="text" [(ngModel)]="localWidget.titleColor"
                         placeholder="CSS or rgb() color"
                         >
-                </div>
+                </div> -->
 
                 <div class="titleColourTitle">
-                    Border Colour:
+                    Colour:
                 </div>  
                 <div class="select titleColour">
-                    <select [(ngModel)]="lineColor"
-                        (change)="clickSelectLineColor($event)"
+                    <select [(ngModel)]="localWidget.titleColor"
+                        (change)="clickSelectColor($event)"
                         name="lineColor"
                         >
                         <option *ngFor="let row of backgroundcolors"
@@ -84,7 +84,7 @@
                 <button
                     type="button"
                     class="btn btn-link btn-sm titleColourPicker"
-                    (click)="clickSelectLineColorPicker()"
+                    (click)="clickSelectColorPicker()"
                     >
                     Picker
                 </button>

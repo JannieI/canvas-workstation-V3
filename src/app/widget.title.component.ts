@@ -74,9 +74,9 @@ export class WidgetTitleComponent implements OnInit {
                         this.colourPickerClosed = false;
                         this.localWidget.titleBackgroundColor = clp.selectedColor;
                     };
-                    if (clp.callingRoutine == 'LineColour') {
+                    if (clp.callingRoutine == 'Colour') {
                         this.colourPickerClosed = false;
-                        this.lineColor = clp.selectedColor;
+                        this.localWidget.titleColor = clp.selectedColor;
 
                         // Construct line size
                         if (this.lineSize != 'none') {
@@ -109,6 +109,22 @@ export class WidgetTitleComponent implements OnInit {
 
         this.selectedColour = this.localWidget.titleBackgroundColor;
         this.callingRoutine = 'BgColour';
+        this.colourPickerClosed = true;
+    }
+      
+    clickSelectColor(ev: any) {
+        // Select text Colour
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectColor', '@Start');
+
+        this.localWidget.titleColor = ev.target.value;
+    }
+
+    clickSelectColorPicker(ev: any) {
+        // Open the Colour Picker for text Colour
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectColorPicker', '@Start');
+
+        this.selectedColour = this.localWidget.titleColor;
+        this.callingRoutine = 'Colour';
         this.colourPickerClosed = true;
     }
 
