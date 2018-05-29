@@ -10,6 +10,7 @@ import { Renderer }                   from '@angular/core';
 import { ViewChild }                  from '@angular/core';
 
 // Our models
+import { CSScolor }                   from './models';
 import { Datasource }                 from './models';
 import { Widget }                     from './models'
 
@@ -41,7 +42,14 @@ export class WidgetTitleComponent implements OnInit {
 
     }
 
+    backgroundcolors: CSScolor[];
+    callingRoutine: string = '';
+    colourPickerClosed: boolean = false;
+    lineColor: string = 'none';
+    lineSize: string = 'none';
     localWidget: Widget;                            // W to modify, copied from selected
+    selectedColour: string;
+
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -53,10 +61,24 @@ export class WidgetTitleComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
+        // Deep copy
         this.localWidget = Object.assign({}, this.selectedWidget);
         console.warn('xx localW', this.localWidget)
+
+        // Get setup info
+        this.backgroundcolors = this.globalVariableService.backgroundcolors.slice();
+        
     }
- 
+        
+    clickSelectBgColorPicker(ev: any) {
+        // Open the Colour Picker for Background Colour
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBgColorPicker', '@Start');
+
+        this.selectedColour = this.localWidget.containerBackgroundcolor;
+        this.callingRoutine = 'BgColour';
+        this.colourPickerClosed = true;
+    }
+
   	clickClose() {
         // Close the form, no action
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');

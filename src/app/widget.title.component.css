@@ -46,18 +46,18 @@
     }
     .titleBackgroundColour {
         grid-column-start: 13;
-        grid-column-end: 18;
+        grid-column-end: 17;
         grid-row-start: 4;
         grid-row-end: 5;
-        margin: 2px 2px 2px 20px;
+        margin: 2px 2px 2px 2px;
         width: 100%;
     }
     .titleBackgroundColourPicker {
-        grid-column-start: 19;
+        grid-column-start: 17;
         grid-column-end: 21;
         grid-row-start: 4;
         grid-row-end: 5;
-        margin: 2px 2px 2px 20px;
+        margin: 2px 2px 2px 12px;
         width: 100%;
     }
 
@@ -154,7 +154,7 @@
 
     .titleButtonSave {
         grid-column-start: 14;
-        grid-column-end: 15;
+        grid-column-end: 17;
         grid-row-start: 18;
         grid-row-end: 20;
         margin: 2px 2px 2px 20px;
