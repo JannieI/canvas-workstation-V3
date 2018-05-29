@@ -1588,6 +1588,14 @@ export class AppComponent implements OnInit {
                                 'app-clickMenuEditMode', res.id, -1, ''
                             );
 
+                            let today = new Date();
+                            let snapshotName: string = this.globalVariableService.dashboards[
+                                dashboardIndex].name + ' ' 
+                                + this.globalVariableService.formatDate(today);
+                            this.globalVariableService.newDashboardSnapshot(
+                                snapshotName, 'Starting Edit Mode','StartEditMode'
+                            );
+
                             // Toggle mode
                             this.globalVariableService.editMode.next(!this.editMode);
 
