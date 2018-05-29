@@ -97,36 +97,6 @@ export class DashboardSnapshotsComponent implements OnInit {
         // Save the snapshot
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
-        // // Get the currentXXX info from global - these contain all the info relevant to
-        // // the current D
-        // let dashboardID: number = this.globalVariableService.currentDashboardInfo.value.
-        //     currentDashboardID;
-        // let currentD: Dashboard[] = this.globalVariableService.currentDashboards.slice();
-        // let currentT: DashboardTab[] = this.globalVariableService.currentDashboardTabs.slice();
-        // let currentW: Widget[] = this.globalVariableService.currentWidgets.slice();
-        // let currentDset: Dataset[] = this.globalVariableService.currentDatasets.slice();
-        // let currentDS: Datasource[] = this.globalVariableService.currentDatasources.slice();
-        // let currentChk: WidgetCheckpoint[] = this.globalVariableService.
-        //     currentWidgetCheckpoints.slice();
-
-        // let newSn: DashboardSnapshot = {
-        //     id: null,
-        //     dashboardID: dashboardID,
-        //     name: this.snapshotName,
-        //     comment: this.snapshotComment,
-        //     dashboards: currentD,
-        //     dashboardTabs: currentT,
-        //     widgets: currentW,
-        //     datasets: currentDset,
-        //     datasources: currentDS,
-        //     widgetCheckpoints: currentChk
-        // };
-
-        // // Save and Close the form
-        // this.globalVariableService.addDashboardSnapshot(newSn).then(res => {
-        //     this.currentDashboardSnapshots.push(res);
-        // });
-
         this.globalVariableService.newDashboardSnapshot(
             this.snapshotName, this.snapshotComment,'UserDefined').then(res => {
             this.currentDashboardSnapshots.push(res);
