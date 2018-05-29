@@ -23,6 +23,7 @@
         border-right: 2px solid rgb(75, 74, 74);
         border-bottom: 2px solid rgb(75, 74, 74);
         color: white;
+        cursor: pointer;
     }
 
     .statusBarText {
