@@ -43,12 +43,22 @@ import { WidgetSingleComponent }      from './widget.single.component';
 import { compile }                    from 'vega-lite';
 import { parse }                      from 'vega';
 import { View }                       from 'vega';
-import * as dl from 'datalib';
-import { load } from 'datalib';
-import { BoxPlotStyle } from 'vega-lite/build/src/compositemark/boxplot';
-import { Action } from 'rxjs/scheduler/Action';
-import { StatusbarComponent } from './statusbar.component';
+import * as dl                        from 'datalib';
+import { load }                       from 'datalib';
+import { BoxPlotStyle }               from 'vega-lite/build/src/compositemark/boxplot';
+import { Action }                     from 'rxjs/scheduler/Action';
+import { StatusbarComponent }         from './statusbar.component';
 
+// WS
+import { WebSocketSubject }           from 'rxjs/observable/dom/WebSocketSubject';
+
+export class Message {
+    constructor(
+        public sender: string,
+        public content: string,
+        public isBroadcast = false,
+    ) { }
+}
 
 // Constants
 const vlTemplate: dl.spec.TopLevelExtendedSpec =
@@ -419,6 +429,15 @@ export class AppComponent implements OnInit {
     zoomFactor: string = 'scale(1)';
 
 
+ 
+    public serverMessages = new Array<Message>();
+
+    public sender: string = '';
+    public content: string;
+    public isBroadcast = false;
+    public clientMessage = '';
+    private socket$: WebSocketSubject<Message>;
+
     subscriptionSnapshot: Subscription;
     subscriptionAnimation: Subscription;
     view: any;
@@ -429,9 +448,18 @@ export class AppComponent implements OnInit {
         @Inject(DOCUMENT) private document: Document,
         private renderer: Renderer,
         private router: Router,
-
     ) {
+        this.socket$ = WebSocketSubject.create('ws://localhost:8999');
 
+        // Subscribe to WS
+        this.socket$.subscribe(
+            (message) => {
+                this.serverMessages.push(message);
+                console.warn('xx message', message, this.serverMessages);
+                },
+            (err) => console.error(err),
+            () => console.warn('Completed!')
+        );
     }
 
     ngOnInit() {
