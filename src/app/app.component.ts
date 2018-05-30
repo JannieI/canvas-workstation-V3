@@ -444,6 +444,7 @@ export class AppComponent implements OnInit {
         // Current user
         this.globalVariableService.currentUserID.subscribe(usr => {
             this.currentUserID = usr;
+            console.warn('xx currentUserID', this.currentUserID)
         })
 
         // TODO - fix hard coding, must be done via Login

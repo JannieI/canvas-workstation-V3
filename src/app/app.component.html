@@ -1360,10 +1360,18 @@
 
             <clr-dropdown class="dropdown">
                 <button class="nav-icon" clrDropdownTrigger>
-                <clr-icon shape="user" class="is-solid has-alert"></clr-icon>
-                <clr-icon shape="caret down"></clr-icon>
+                    <clr-icon shape="user" class="is-solid has-alert"></clr-icon>
+                    <clr-icon shape="caret down"></clr-icon>
                 </button>
                 <clr-dropdown-menu clrPosition="bottom-right" *clrIfOpen>
+                    <button
+                        type="button"
+                        clrDropdownItem
+                        (click)="clickMenuEditMode()"
+                        title="Enable EditMode to make changes"
+                        >
+                        {{ currentUserID? currentUserID : 'Not logged in' }}
+                    </button>
                     <a clrDropdownItem (click)="clickMenuUserLogin()">Login</a>
                     <a clrDropdownItem (click)="clickMenuUserMyProfile()">My Profile</a>
                     <a clrDropdownItem (click)="clickMenuUserPreferences()">Preferences</a>
