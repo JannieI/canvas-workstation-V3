@@ -26,6 +26,7 @@
                         type="button"
                         class="btn btn-link btn-sm menuButton"
                         clrDropdownTrigger
+                        [disabled] = "!currentUserID"
                         >
                         Edit
                     </button>
@@ -1314,11 +1315,12 @@
         <!-- Header Actions on right hand side -->
         <div class="header-actions">
             <clr-dropdown class="dropdown"
-                [disabled] = "!currentUserID"
-                >
-                <button class="nav-icon" clrDropdownTrigger>
-                <clr-icon shape="share"></clr-icon>
-                <clr-icon shape="caret down"></clr-icon>
+            >
+                <button class="nav-icon" clrDropdownTrigger
+                    [disabled] = "!currentUserID"
+                    >
+                    <clr-icon shape="share"></clr-icon>
+                    <clr-icon shape="caret down"></clr-icon>
                 </button>
                 <clr-dropdown-menu clrPosition="bottom-right" *clrIfOpen>
                     <button type="button"
@@ -1382,46 +1384,26 @@
                         {{ currentUserID? currentUserID : 'Not logged in' }}
                     </button>
                     <a clrDropdownItem (click)="clickMenuUserLogin()">Login</a>
-                    <a clrDropdownItem (click)="clickMenuUserMyProfile()"
+
+                    <button type="button"
+                        clrDropdownItem
+                        (click)="clickMenuUserMyProfile()"
+                        title="Show my profile"
+                        [style.color]="!currentUserID? 'lightgray' : '#565656'"
                         [disabled] = "!currentUserID"
-                        >My Profile
-                    </a>
-                    <a clrDropdownItem (click)="clickMenuUserPreferences()"
-                        [disabled] = "!currentUserID"
-                        >Preferences
-                    </a>
-                    <a clrDropdownItem (click)="clickMenuUserMyPermissions()"
-                        [disabled] = "!currentUserID"
-                        >My Permissions
-                    </a>
-                    <a clrDropdownItem (click)="clickMenuDashboardSubscribe()"
-                        [disabled] = "!currentUserID"
-                        >Subscribe
-                    </a>
-                    <a clrDropdownItem (click)="clickMenuUserPaletteButtonBar()"
-                        [disabled] = "!currentUserID"
-                        >Palette ButtonBar
-                    </a>
-                    <a clrDropdownItem (click)="clickMenuUsers()"
-                        [disabled] = "!currentUserID"
-                        >Users
-                    </a>
-                    <a clrDropdownItem (click)="clickMenuGroups()"
-                        [disabled] = "!currentUserID"
-                        >Groups
-                    </a>
-                    <a clrDropdownItem (click)="clickMenuUserSystemSettings()"
-                        [disabled] = "!currentUserID"
-                        >System Settings
-                    </a>
-                    <a clrDropdownItem (click)="clickMenuUserOffline()"
-                        [disabled] = "!currentUserID"
-                        >Work Offline
-                    </a>
-                    <a clrDropdownItem (click)="clickMenuUserLogout()"
-                        [disabled] = "!currentUserID"
-                        >Log out
-                    </a>
+                        >
+                        My Profile
+                    </button>
+                    
+                    <a clrDropdownItem (click)="clickMenuUserPreferences()">Preferences</a>
+                    <a clrDropdownItem (click)="clickMenuUserMyPermissions()">My Permissions</a>
+                    <a clrDropdownItem (click)="clickMenuDashboardSubscribe()">Subscribe</a>
+                    <a clrDropdownItem (click)="clickMenuUserPaletteButtonBar()">Palette ButtonBar</a>
+                    <a clrDropdownItem (click)="clickMenuUsers()">Users</a>
+                    <a clrDropdownItem (click)="clickMenuGroups()">Groups</a>
+                    <a clrDropdownItem (click)="clickMenuUserSystemSettings()">System Settings</a>
+                    <a clrDropdownItem (click)="clickMenuUserOffline()">Work Offline</a>
+                    <a clrDropdownItem (click)="clickMenuUserLogout()">Log out</a>
                 </clr-dropdown-menu>
             </clr-dropdown>
 
