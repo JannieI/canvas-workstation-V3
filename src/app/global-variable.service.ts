@@ -195,7 +195,6 @@ const widgetTemplate: Widget =
         "titleMargin": "0",
         "titlePadding": "0 0 0 5px",
         "titleTextAlign": "center",
-        "titleTop": 1,
         "titleWidth": 100,
         "graphType": "",
         "graphHeight": 240,
@@ -6060,7 +6059,6 @@ console.warn('xx d', this.dashboards)
                 {key: 'titleMargin', 				type: 'string'},
                 {key: 'titlePadding', 				type: 'string'},
                 {key: 'titleTextAlign', 			type: 'string'},
-                {key: 'titleTop', 					type: 'int'},
                 {key: 'titleWidth', 				type: 'int'},
                 {key: 'graphType', 					type: 'string'},
                 {key: 'graphHeight', 				type: 'int'},
@@ -6508,7 +6506,6 @@ console.warn('xx d', this.dashboards)
                 w.titleMargin = changedWidget.titleMargin;
                 w.titlePadding = changedWidget.titlePadding;
                 w.titleTextAlign = changedWidget.titleTextAlign;
-                w.titleTop = changedWidget.titleTop;
                 w.titleWidth = changedWidget.titleWidth;
                 w.graphType = changedWidget.graphType;
                 w.graphHeight = changedWidget.graphHeight;
@@ -6649,7 +6646,6 @@ console.warn('xx d', this.dashboards)
                 w.titleMargin = changedWidget.titleMargin;
                 w.titlePadding = changedWidget.titlePadding;
                 w.titleTextAlign = changedWidget.titleTextAlign;
-                w.titleTop = changedWidget.titleTop;
                 w.titleWidth = changedWidget.titleWidth;
                 w.graphType = changedWidget.graphType;
                 w.graphHeight = changedWidget.graphHeight;

@@ -663,7 +663,6 @@ export class Widget {
     titleMargin: string;                // css spec, ie 2px 1px 0px 0px
     titlePadding: string;               // css spec, ie 2px 1px 0px 0px
     titleTextAlign: string;             // left, right, center
-    titleTop: number;                   // in px (for later use)
     titleWidth: number;                 // in %: 0 means it adapts to container
 
     // Graph
