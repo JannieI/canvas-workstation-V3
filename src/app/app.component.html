@@ -1657,20 +1657,26 @@
 
             <!-- Title Container -->
             <div class="widgetXTitle" *ngIf="row.containerHasTitle"
-                [style.background-color]="row.containerBackgroundcolor"
                 [style.background-color]="row.titleBackgroundColor"
                 [style.border]="row.titleBorder"
                 [style.border-top-left-radius]="row.containerBorderRadius"
                 [style.border-top-right-radius]="row.containerBorderRadius"
                 [style.color]="showWidgetForSlicer(row.id, row.datasourceID, row.datasetID)? 'red' : row.titleColor"
-                [style.left.px]="row.titleLeft"
                 [style.margin]="row.titleMargin"
                 [style.padding]="row.titlePadding"
-                [style.position]="row.titlePosition"
                 [style.text-align]="row.titleTextAlign"
                 [style.width.%]="row.titleWidth"
                 [style.z-index]="row.containerZindex+1"
                 (contextmenu)="contextMenuOpen()"
+                
+                titleFontsize
+                titleFontWeight
+                titleHeight
+           
+                [style.background-color]="row.containerBackgroundcolor"
+                [style.left.px]="row.titleLeft"
+                [style.position]="row.titlePosition"
+                titleTop
                 >
 
                 <!-- Annotation -->

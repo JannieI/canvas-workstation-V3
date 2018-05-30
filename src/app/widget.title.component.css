@@ -44,7 +44,6 @@
         width: 100%;
     }
     .titleSubHeader {
-        font-size: 0.75rem;
         grid-column-start: 1;
         grid-column-end: 21;
         grid-row-start: 2;
