@@ -14,7 +14,7 @@
 .gridOverall {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: repeat(9, 1rem);
+    grid-template-rows: repeat(11, 1rem);
     margin-top: 2px;
     }
 
@@ -38,36 +38,51 @@
 
     .gridServer {
         grid-column-start: 1;
-        grid-column-end: 12;
+        grid-column-end: 7;
         grid-row-start: 4;
         grid-row-end: 5;
         margin: 2px 2px 2px 20px;
         width: 100%;
     }
 
+    .gridUserNameTitle {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 6;
+        grid-row-end: 7;
+        margin: 2px 2px 2px 20px;
+        width: 100%;
+    }
     .gridUserName {
-        grid-column-start: 1;
-        grid-column-end: 12;
-        grid-row-start: 5;
-        grid-row-end: 6;
+        grid-column-start: 3;
+        grid-column-end: 9;
+        grid-row-start: 6;
+        grid-row-end: 7;
         margin: 2px 2px 2px 20px;
         width: 100%;
     }
 
+    .gridPasswordTitle {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 8;
+        grid-row-end: 9;
+        margin: 2px 2px 2px 20px;
+        width: 100%;
+    }
     .gridPassword {
-        grid-column-start: 1;
-        grid-column-end: 12;
-        grid-row-start: 5;
-        grid-row-end: 6;
+        grid-column-start: 3;
+        grid-column-end: 9;
+        grid-row-start: 8;
+        grid-row-end: 9;
         margin: 2px 2px 2px 20px;
         width: 100%;
     }
-
     .gridButtonCancel {
         grid-column-start: 3;
         grid-column-end: 5;
-        grid-row-start: 7;
-        grid-row-end: 8;
+        grid-row-start: 10;
+        grid-row-end: 11;
         margin: 2px 2px 2px 20px;
         width: 100%;
     }
@@ -75,8 +90,8 @@
     .gridButtonLogout {
         grid-column-start: 8;
         grid-column-end: 10;
-        grid-row-start: 7;
-        grid-row-end: 8;
+        grid-row-start: 10;
+        grid-row-end: 11;
         margin: 2px 2px 2px 20px;
         width: 100%;
     }
