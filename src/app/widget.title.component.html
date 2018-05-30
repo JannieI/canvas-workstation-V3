@@ -1,184 +1,196 @@
 <div class="modal modalBox">
 	<div class="modal-dialog modal-lg" role="dialog" aria-hidden="true">
 		<div class="modal-content modalContent">
+            <form #f="ngForm" role="form" novalidate>
 
-            <div class="gridOverall">
-                <div class="closeButton">
-                    <button type="button" class="closeButton" (click)="clickClose()">
-                        X
+                <button type="button" class="closeButton" (click)="clickClose()">
+                    X
+                </button>
+
+                <div class="gridOverall">
+
+                    <div class="colourpicker" *ngIf="colourPickerClosed">
+                        <colour-picker
+                            [callingRoutine]="callingRoutine"
+                            [selectedColor]="selectedColour"
+                            >
+                        </colour-picker>
+                    </div>
+
+                    <div class="titleHeader">
+                        <b>Title properties</b>
+                    </div>
+
+                    <div class="titleText">
+                        Text:
+                        <input [(ngModel)]="localWidget.titleText" 
+                            type="text"
+                            name="titleText"
+                            placeholder="Title Text"
+                            >
+                    </div>
+
+                    <div class="titleBackgroundColourTitle">
+                        Bg Colour:
+                    </div>  
+                    <div class="select titleBackgroundColour">
+                        <select [(ngModel)]="localWidget.titleBackgroundColor"
+                            name="titleBackgroundColor"
+                            (change)="clickSelectBgColor($event)"
+                            >
+                            <option *ngFor="let row of backgroundcolors"
+                                [style.background-color]="row.name"
+                                >
+                                {{ row.name }}
+                            </option>
+                        </select>
+                    </div>
+                    <button
+                        type="button"
+                        class="btn btn-link btn-sm titleBackgroundColourPicker"
+                        (click)="clickSelectBgColorPicker()"
+                        >
+                        Picker
                     </button>
-                </div>
 
-                <div class="colourpicker" *ngIf="colourPickerClosed">
-                    <colour-picker
-                        [callingRoutine]="callingRoutine"
-                        [selectedColor]="selectedColour"
-                        >
-                    </colour-picker>
-                </div>
-
-                <div class="titleHeader">
-                    <b>Title properties</b>
-                </div>
-
-                <div class="titleText">
-                    Text:
-                    <input type="text" [(ngModel)]="localWidget.titleText" 
-                        placeholder="Title Text"
-                        >
-                </div>
-
-                <div class="titleBackgroundColourTitle">
-                    Bg Colour:
-                </div>  
-                <div class="select titleBackgroundColour">
-                    <select [(ngModel)]="localWidget.titleBackgroundColor"
-                        name="titleBackgroundColor"
-                        (change)="clickSelectBgColor($event)"
-                        >
-                        <option *ngFor="let row of backgroundcolors"
-                            [style.background-color]="row.name"
+                    <div class="titlePadding">
+                        Padding:
+                        <input [(ngModel)]="localWidget.titlePadding"
+                            type="text"
+                            name="titlePadding"
+                            placeholder="ie 0 0 0 5px"
                             >
-                            {{ row.name }}
-                        </option>
-                    </select>
-                </div>
-                <button
-                    type="button"
-                    class="btn btn-link btn-sm titleBackgroundColourPicker"
-                    (click)="clickSelectBgColorPicker()"
-                    >
-                    Picker
-                </button>
+                    </div>
 
-                <div class="titlePadding">
-                    Padding:
-                    <input type="text" [(ngModel)]="localWidget.titlePadding"
-                        placeholder="ie 0 0 0 5px"
-                        >
-                </div>
-
-                <div class="titleColourTitle">
-                    Colour:
-                </div>  
-                <div class="select titleColour">
-                    <select [(ngModel)]="localWidget.titleColor"
-                        (change)="clickSelectColor($event)"
-                        name="lineColor"
-                        >
-                        <option *ngFor="let row of backgroundcolors"
-                            [style.background-color]="row.name"
+                    <div class="titleColourTitle">
+                        Colour:
+                    </div>  
+                    <div class="select titleColour">
+                        <select [(ngModel)]="localWidget.titleColor"
+                            (change)="clickSelectColor($event)"
+                            name="lineColor"
                             >
-                            {{ row.name }}
-                        </option>
-                    </select>
-                </div>
-                <button
-                    type="button"
-                    class="btn btn-link btn-sm titleColourPicker"
-                    (click)="clickSelectColorPicker()"
-                    >
-                    Picker
-                </button>
-
-                <div class="titleBorderSizeTitle">
-                    Border Size:
-                </div>  
-                <div class="select titleBorderSize">
-                    <select [(ngModel)]="lineSize"
-                        name="lineSize"
-                        (change)="clickSelectLineSize($event)"
+                            <option *ngFor="let row of backgroundcolors"
+                                [style.background-color]="row.name"
+                                >
+                                {{ row.name }}
+                            </option>
+                        </select>
+                    </div>
+                    <button
+                        type="button"
+                        class="btn btn-link btn-sm titleColourPicker"
+                        (click)="clickSelectColorPicker()"
                         >
-                        <option>none</option>
-                        <option>1px</option>
-                        <option>2px</option>
-                        <option>3px</option>
-                        <option>4px</option>
-                    </select>
-                </div>
+                        Picker
+                    </button>
 
-                <div class="titleBorderColorTitle">
-                    Border:
-                </div>  
-                <div class="select titleBorderColor">
-                    <select [(ngModel)]="localWidget.titleBorder"
-                        (change)="clickSelectBorderColor($event)"
-                        name="lineColor"
-                        >
-                        <option *ngFor="let row of backgroundcolors"
-                            [style.background-color]="row.name"
+                    <div class="titleBorderSizeTitle">
+                        Border Size:
+                    </div>  
+                    <div class="select titleBorderSize">
+                        <select [(ngModel)]="lineSize"
+                            name="lineSize"
+                            (change)="clickSelectLineSize($event)"
                             >
-                            {{ row.name }}
-                        </option>
-                    </select>
-                </div>
-                <button
-                    type="button"
-                    class="btn btn-link btn-sm titleBorderColorPicker"
-                    (click)="clickSelectBorderColorPicker()"
-                    >
-                    Picker
-                </button>
+                            <option>none</option>
+                            <option>1px</option>
+                            <option>2px</option>
+                            <option>3px</option>
+                            <option>4px</option>
+                        </select>
+                    </div>
+
+                    <div class="titleBorderColorTitle">
+                        Border:
+                    </div>  
+                    <div class="select titleBorderColor">
+                        <select [(ngModel)]="localWidget.titleBorder"
+                            (change)="clickSelectBorderColor($event)"
+                            name="lineColor"
+                            >
+                            <option *ngFor="let row of backgroundcolors"
+                                [style.background-color]="row.name"
+                                >
+                                {{ row.name }}
+                            </option>
+                        </select>
+                    </div>
+                    <button
+                        type="button"
+                        class="btn btn-link btn-sm titleBorderColorPicker"
+                        (click)="clickSelectBorderColorPicker()"
+                        >
+                        Picker
+                    </button>
+                    
+                    <div class="titleTextAlignTitle">
+                        TextAlign:
+                    </div>  
+                    <div class="select titleTextAlign">
+                        <select [(ngModel)]="localWidget.titleTextAlign"
+                            name="lineSize"
+                            >
+                            <option>Left</option>
+                            <option>Center</option>
+                            <option>Right</option>
+                        </select>
+                    </div>
+
+                    <div class="titleMarginTitle">
+                        Margin:
+                    </div>
+                    <div class="titleMargin">
+                        <input [(ngModel)]="localWidget.titleMargin"
+                            type="text" 
+                            name="titleMargin"
+                            placeholder="ie 0 0 0 5px"
+                            >
+                    </div>
+
+                    <div class="titleLeft">
+                        Left:
+                        <input [(ngModel)]="localWidget.titleLeft"
+                            type="text" 
+                            name="titleLeft"
+                            placeholder="Space at left in px"
+                            >
+                    </div>
+                    <div class="titleTop">
+                        Top:
+                        <input [(ngModel)]="localWidget.titleTop"
+                            type="text" 
+                            name="titleTop"
+                            placeholder="ie 0 0 0 5px"
+                            >
+                    </div>
+
+                    <div class="titleWidth">
+                        Width:
+                        <input [(ngModel)]="localWidget.titleWidth"
+                            type="text" 
+                            name="titleWidth"
+                            placeholder="Width as % (0-100)"
+                            >
+                    </div>
                 
-                <div class="titleTextAlignTitle">
-                    TextAlign:
-                </div>  
-                <div class="select titleTextAlign">
-                    <select [(ngModel)]="localWidget.titleTextAlign"
-                        name="lineSize"
+                    <button 
+                        type="button"
+                        class="btn btn-secondary titleButtonCancel"
+                        (click)="clickClose()"
                         >
-                        <option>Left</option>
-                        <option>Center</option>
-                        <option>Right</option>
-                    </select>
-                </div>
-
-                <div class="titleMarginTitle">
-                    Margin:
-                </div>
-                <div class="titleMargin">
-                    <input type="text" [(ngModel)]="localWidget.titleMargin"
-                        placeholder="ie 0 0 0 5px"
+                        Cancel
+                    </button>
+                    <button
+                        type="button"
+                        class="btn btn-primary titleButtonSave"
+                        (click)="clickSave()"
                         >
+                        Save
+                    </button>
+                
                 </div>
-
-                <div class="titleLeft">
-                    Left:
-                    <input type="text" [(ngModel)]="localWidget.titleLeft"
-                        placeholder="Space at left in px"
-                        >
-                </div>
-                <div class="titleTop">
-                    Top:
-                    <input type="text" [(ngModel)]="localWidget.titleTop"
-                        placeholder="ie 0 0 0 5px"
-                        >
-                </div>
-
-                <div class="titleWidth">
-                    Width:
-                    <input type="text" [(ngModel)]="localWidget.titleWidth"
-                        placeholder="Width as % (0-100)"
-                        >
-                </div>
-            
-                <button 
-                    type="button"
-                    class="btn btn-secondary titleButtonCancel"
-                    (click)="clickClose()"
-                    >
-                    Cancel
-                </button>
-                <button
-                    type="button"
-                    class="btn btn-primary titleButtonSave"
-                    (click)="clickSave()"
-                    >
-                    Save
-                </button>
-            
-            
-            </div>
+            </form>
         </div>
     </div>
 </div>
