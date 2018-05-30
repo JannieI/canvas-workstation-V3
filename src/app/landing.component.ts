@@ -141,7 +141,7 @@ export class LandingComponent implements OnInit {
 	}
 
 	ngOnInit() {
-        //
+        // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
 		// Get setup info
@@ -150,7 +150,7 @@ export class LandingComponent implements OnInit {
 	}
 
 	ngAfterViewInit() {
-        //
+        // After
         this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewInit', '@Start');
 	}
 

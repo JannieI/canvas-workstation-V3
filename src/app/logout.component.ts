@@ -50,14 +50,26 @@ export class LogoutComponent implements OnInit {
 	) {}
 
     ngOnInit() {
+        // Initial
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
         this.dashboards = this.globalVariableService.dashboards.slice();
     }
 
     clickClose(action: string) {
+        // Close, stay logged in
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
+
         console.log('clickClose')
 
 		this.formUserLogoutClosed.emit(action);
     }
 
+    clickLogout() {
+        // Log out - only further valid action is to log in
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@clickLogout');
 
+        // Clear all related info
+        this.globalVariableService.clearDashboardInfo();
+    }
 }
