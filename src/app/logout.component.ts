@@ -35,7 +35,7 @@ export class LogoutComponent implements OnInit {
 
         // Known ones
         if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
-            this.clickClose('Close');
+            this.clickClose();
             return;
         };
 
@@ -56,13 +56,13 @@ export class LogoutComponent implements OnInit {
         this.dashboards = this.globalVariableService.dashboards.slice();
     }
 
-    clickClose(action: string) {
+    clickClose() {
         // Close, stay logged in
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
         console.log('clickClose')
 
-		this.formUserLogoutClosed.emit(action);
+		this.formUserLogoutClosed.emit('Cancel');
     }
 
     clickLogout() {
@@ -71,5 +71,8 @@ export class LogoutComponent implements OnInit {
 
         // Clear all related info
         this.globalVariableService.clearDashboardInfo();
+
+		this.formUserLogoutClosed.emit('LoggedOut');
+        
     }
 }

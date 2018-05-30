@@ -1429,6 +1429,10 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPostAction();
 
         this.showModalDashboardLogout = false;
+
+        if (action == 'LoggedOut') {
+            this.showModalDashboardLogin = true;
+        };
     }
 
     handleCloseUserPreferences(action: string) {
