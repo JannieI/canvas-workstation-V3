@@ -1668,7 +1668,7 @@
                 [style.margin]="row.titleMargin"
                 [style.padding]="row.titlePadding"
                 [style.text-align]="row.titleTextAlign"
-                [style.width.%]="row.titleWidth"
+                [style.width.%]="row.titleWidth? row.titleWidth : '100'"
                 [style.z-index]="row.containerZindex+1"
                 (contextmenu)="contextMenuOpen()"
                 >

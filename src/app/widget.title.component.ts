@@ -194,6 +194,8 @@ export class WidgetTitleComponent implements OnInit {
         if (this.lineSize != 'none') {
             this.localWidget.titleBorder = this.lineSize + ' solid ' + this.lineColor;
             console.warn('xx b col 2', this.localWidget.titleBorder)
+        } else {
+            this.localWidget.titleBorder = this.lineSize
         };
 
         this.globalVariableService.saveWidget(this.localWidget).then(res => {
