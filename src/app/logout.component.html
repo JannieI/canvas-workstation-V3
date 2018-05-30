@@ -1,33 +1,46 @@
 <div class="modal modalBox">
     <div class="modal-dialog modal-sm" role="dialog" aria-hidden="true">
         <div class="modal-content modalContent">
+            <form #f="ngForm" role="form" novalidate>
 
-            <div>
                 <button type="button" class="closeButton" (click)="clickClose()">
                     X
                 </button>
 
-                Logout
+                <div class="gridOverall">
+
+                    <div class="gridHeader">
+                        <b>Logout:</b>
+                    </div>
+                    <div class="gridSubHeader">
+                        <i>Log out as the current user.  The only valid future action will be to log in.</i>
+                    </div>
  
-                <div>
-                    <br>
-                    <p>Are you sure?</p>
-                    <button
-                        type="button"
-                        class="btn btn-link btn-sm"
-                        (click)="clickClose()"
-                        >
-                        Cancel
-                    </button>
-                    <button
-                        type="button"
-                        class="btn btn-link btn-sm"
-                        (click)="clickLogout()"
-                        >
-                        Logout
-                    </button>
+                    <div class="gridQuestion">
+                        Are you sure?
+                    </div>
+
+                    <div class="gridButtonCancel">
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            (click)="clickClose()"
+                            >
+                            Cancel
+                        </button>
+                    </div>
+
+                    <div class="gridButtonLogout">
+                        <button
+                            type="button"
+                            class="btn btn-primary"
+                            (click)="clickLogout()"
+                            >
+                            Logout
+                        </button>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </div>
