@@ -1984,6 +1984,18 @@ export class AppComponent implements OnInit {
         // Open or Import an existing D
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardOpen', '@Start');
 
+        // Only for Draft
+        if (this.globalVariableService.currentUser.userID == '') {
+            this.showMessage(
+                'Log in first',
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+
         this.menuOptionClickPreAction();
 
         console.log('App clickDashboardOpen')
@@ -5733,7 +5745,7 @@ export class AppComponent implements OnInit {
 
         // Open it
 		this.globalVariableService.refreshCurrentDashboard(
-            'openDashboard-showRecentDashboard',
+            'app-showRecentDashboard',
             this.recentDashboards[index].dashboardID,
             this.recentDashboards[index].dashboardTabID,
             ''
