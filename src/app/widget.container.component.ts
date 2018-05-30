@@ -148,6 +148,8 @@ export class WidgetContainerComponent implements OnInit {
         // Construct line size
         if (this.lineSize != 'none') {
             this.localWidget.containerBorder = this.lineSize + ' solid ' + this.lineColor;
+        } else {
+            this.localWidget.containerBorder = this.lineSize
         };
     }
 
@@ -160,6 +162,8 @@ export class WidgetContainerComponent implements OnInit {
         // Construct line size
         if (this.lineSize != 'none') {
             this.localWidget.containerBorder = this.lineSize + ' solid ' + this.lineColor;
+        } else {
+            this.localWidget.containerBorder = this.lineSize
         };
     }
 
@@ -178,9 +182,10 @@ export class WidgetContainerComponent implements OnInit {
         // Construct line size
         if (this.lineSize != 'none') {
             this.localWidget.containerBorder = this.lineSize + ' solid ' + this.lineColor;
+        } else {
+            this.localWidget.containerBorder = this.lineSize
         };
 
-        console.warn('xx this.localWidget.containerBorder', this.localWidget.containerBorder)
         // Replace the W
         this.globalVariableService.widgetReplace(this.localWidget);
 
