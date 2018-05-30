@@ -74,6 +74,8 @@ export class LogoutComponent implements OnInit {
 
         // Reset / Logout user
         // TODO - do this in better way
+        this.globalVariableService.currentUserID.next('');
+        
         this.globalVariableService.currentUser.userID = '';
         this.globalVariableService.currentUser.isSuperuser = false;
         this.globalVariableService.currentUser.isStaff = false;
