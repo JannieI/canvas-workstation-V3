@@ -72,6 +72,21 @@ export class LogoutComponent implements OnInit {
         // Clear all related info
         this.globalVariableService.clearDashboardInfo();
 
+        // Reset / Logout user
+        // TODO - do this in better way
+        this.globalVariableService.currentUser.userID = '';
+        this.globalVariableService.currentUser.isSuperuser = false;
+        this.globalVariableService.currentUser.isStaff = false;
+        this.globalVariableService.currentUser.groups = [];
+        this.globalVariableService.currentUser.dashboardCanViewRole = false;
+        this.globalVariableService.currentUser.dashboardCanSaveRole = false;
+        this.globalVariableService.currentUser.dashboardCanGrantAccessRole = false;
+        this.globalVariableService.currentUser.dashboardCanEditRole = false;
+        this.globalVariableService.currentUser.dashboardCanDeleteRole = false;
+        this.globalVariableService.currentUser.dashboardCanCreateRole = false;
+        this.globalVariableService.currentUser.dashboardCanAddDatasourceRole = false;
+        this.globalVariableService.currentUser.canManageGroupRole = false;
+
 		this.formUserLogoutClosed.emit('LoggedOut');
         
     }
