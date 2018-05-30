@@ -662,7 +662,6 @@ export class Widget {
     titleHeight: number;                // in px (for later use)
     titleMargin: string;                // css spec, ie 2px 1px 0px 0px
     titlePadding: string;               // css spec, ie 2px 1px 0px 0px
-    titlePosition: string;              // absolute (needed for left to work) or relative
     titleTextAlign: string;             // left, right, center
     titleTop: number;                   // in px (for later use)
     titleWidth: number;                 // in %: 0 means it adapts to container
