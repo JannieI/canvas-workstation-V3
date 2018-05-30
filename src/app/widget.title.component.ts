@@ -103,11 +103,6 @@ export class WidgetTitleComponent implements OnInit {
                     if (clp.callingRoutine == 'BorderColour') {
                         this.colourPickerClosed = false;
                         this.lineColor = clp.selectedColor;
-
-                        // Construct line size
-                        if (this.lineSize != 'none') {
-                            this.localWidget.titleBorder = this.lineSize + ' solid ' + this.lineColor;
-                        };
                     };
 
                 };
@@ -193,6 +188,13 @@ export class WidgetTitleComponent implements OnInit {
     clickSave() {
         // Save and close the form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
+        console.warn('xx b col', this.lineColor, this.lineSize, this.localWidget.titleBorder)
+
+        // Construct title Border
+        if (this.lineSize != 'none') {
+            this.localWidget.titleBorder = this.lineSize + ' solid ' + this.lineColor;
+            console.warn('xx b col 2', this.localWidget.titleBorder)
+        };
 
         this.globalVariableService.saveWidget(this.localWidget).then(res => {
             // Tell user
