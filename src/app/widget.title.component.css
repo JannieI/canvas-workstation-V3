@@ -206,7 +206,7 @@
         width: 100%;
     }
 
-    .titleTop {
+    .titleFontWeight {
         grid-column-start: 10;
         grid-column-end: 21;
         grid-row-start: 12;
@@ -215,9 +215,18 @@
         width: 100%;
     }
 
-    .titleWidth {
+    .titleHeight {
         grid-column-start: 1;
         grid-column-end: 9;
+        grid-row-start: 14;
+        grid-row-end: 15;
+        margin: 2px 2px 2px 20px;
+        width: 100%;
+    }
+
+    .titleWidth {
+        grid-column-start: 10;
+        grid-column-end: 21;
         grid-row-start: 14;
         grid-row-end: 15;
         margin: 2px 2px 2px 20px;

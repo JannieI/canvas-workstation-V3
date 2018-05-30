@@ -159,12 +159,21 @@
                             placeholder="Size of font in px"
                             >
                     </div>
-                    <div class="titleTop">
-                        Top:
-                        <input [(ngModel)]="localWidget.titleTop"
+                    <div class="titleFontWeight">
+                        Font Weight:
+                        <input [(ngModel)]="localWidget.titleFontWeight"
                             type="text" 
-                            name="titleTop"
-                            placeholder="ie 0 0 0 5px"
+                            name="titleFontWeight"
+                            placeholder="Bold or Normal"
+                            >
+                    </div>
+
+                    <div class="titleHeight">
+                        titleHeight:
+                        <input [(ngModel)]="localWidget.titleHeight"
+                            type="text" 
+                            name="titleHeight"
+                            placeholder="Height in px (ie 24)"
                             >
                     </div>
 
