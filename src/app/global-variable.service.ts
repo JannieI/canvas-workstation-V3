@@ -192,7 +192,6 @@ const widgetTemplate: Widget =
         "titleFontsize": 1,
         "titleFontWeight": "",
         "titleHeight": 1,
-        "titleLeft": 1,
         "titleMargin": "0",
         "titlePadding": "0 0 0 5px",
         "titlePosition": "",
@@ -6059,7 +6058,6 @@ console.warn('xx d', this.dashboards)
                 {key: 'titleFontsize', 				type: 'int'},
                 {key: 'titleFontWeight', 			type: 'string'},
                 {key: 'titleHeight', 				type: 'int'},
-                {key: 'titleLeft', 					type: 'int'},
                 {key: 'titleMargin', 				type: 'string'},
                 {key: 'titlePadding', 				type: 'string'},
                 {key: 'titlePosition', 				type: 'string'},
@@ -6509,7 +6507,6 @@ console.warn('xx d', this.dashboards)
                 w.titleFontsize = changedWidget.titleFontsize;
                 w.titleFontWeight = changedWidget.titleFontWeight;
                 w.titleHeight = changedWidget.titleHeight;
-                w.titleLeft = changedWidget.titleLeft;
                 w.titleMargin = changedWidget.titleMargin;
                 w.titlePadding = changedWidget.titlePadding;
                 w.titlePosition = changedWidget.titlePosition;
@@ -6652,7 +6649,6 @@ console.warn('xx d', this.dashboards)
                 w.titleFontsize = changedWidget.titleFontsize;
                 w.titleFontWeight = changedWidget.titleFontWeight;
                 w.titleHeight = changedWidget.titleHeight;
-                w.titleLeft = changedWidget.titleLeft;
                 w.titleMargin = changedWidget.titleMargin;
                 w.titlePadding = changedWidget.titlePadding;
                 w.titlePosition = changedWidget.titlePosition;

@@ -197,7 +197,7 @@
         width: 100%;
     }
 
-    .titleLeft {
+    .titleFontsize {
         grid-column-start: 1;
         grid-column-end: 9;
         grid-row-start: 12;

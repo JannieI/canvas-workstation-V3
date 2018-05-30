@@ -660,7 +660,6 @@ export class Widget {
     titleFontsize: number;              // in px (for later use)
     titleFontWeight: string;            //   (for later use)
     titleHeight: number;                // in px (for later use)
-    titleLeft: number;                  // in px
     titleMargin: string;                // css spec, ie 2px 1px 0px 0px
     titlePadding: string;               // css spec, ie 2px 1px 0px 0px
     titlePosition: string;              // absolute (needed for left to work) or relative
