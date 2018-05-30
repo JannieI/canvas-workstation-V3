@@ -648,6 +648,7 @@ export class GlobalVariableService {
     >(null);
     currentPaletteButtonsSelected= new BehaviorSubject<PaletteButtonsSelected[]>([]);
     currentUser: CanvasUser;
+    currentUserID = new BehaviorSubject<string>('');
     dashboardsRecent: DashboardRecent[] = [];
     dashboardsRecentBehSubject = new BehaviorSubject<DashboardRecent[]>([]);  // Recently used Dashboards
     datasourceToEditID = new BehaviorSubject<number>(null);

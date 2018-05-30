@@ -272,6 +272,7 @@ export class AppComponent implements OnInit {
     currentDashboardTabIndex: number = 0;
     currentTabBackgroundColor: string = '';
     currentTabColor: string = '';
+    currentUserID: string = '';
     currentWidgetCheckpoints: WidgetCheckpoint[] = [];
     currentWidgets: Widget[] = [];
     currentWidgetsOriginals: Widget[] = [];
@@ -440,11 +441,18 @@ export class AppComponent implements OnInit {
         // Get Users and Groups, async
         this.globalVariableService.getCanvasGroups();
 
+        // Current user
+        this.globalVariableService.currentUserID.subscribe(usr => {
+            this.currentUserID = usr;
+        })
+
         // TODO - fix hard coding, must be done via Login
         this.globalVariableService.getCanvasUsers().then(res => {
+            this.globalVariableService.currentUserID.next('JannieI');
             this.globalVariableService.currentUser = this.globalVariableService.canvasUsers
                 .filter(u => u.userID == 'JannieI')[0];
-            console.log('Welcome ' + this.globalVariableService.currentUser.userID)
+            console.log('Welcome ' + this.globalVariableService.currentUser.userID);
+
             let today = new Date();
             this.globalVariableService.sessionDateTimeLoggedin = 
                 this.globalVariableService.formatDate(today);
