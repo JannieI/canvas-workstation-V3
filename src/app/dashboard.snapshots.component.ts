@@ -39,6 +39,16 @@ export class DashboardSnapshotsComponent implements OnInit {
             this.clickClose('Close');
             return;
         };
+        if (
+            (event.code == 'Enter'  ||  event.code == 'NumpadEnter')
+            &&
+            (!event.ctrlKey)
+            &&
+            (!event.shiftKey)
+           ) {
+            this.clickSave();
+            return;
+        };
 
     }
     currentDashboardSnapshots: DashboardSnapshot[];
