@@ -53,6 +53,9 @@ export class DashboardScheduleComponent implements OnInit {
 	) {}
 
     ngOnInit() {
+        // Initial
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
         this.dashboards = this.globalVariableService.dashboards.slice();
         this.globalVariableService.getCurrentDashboardSchedules(
             this.globalVariableService.currentDashboardInfo.value.currentDashboardID).then
@@ -60,13 +63,16 @@ export class DashboardScheduleComponent implements OnInit {
     }
 
     clickClose(action: string) {
+        // Close form
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
+
         console.log('clickClose')
 
 		this.formDashboardScheduleClosed.emit(action);
     }
  
     clickRow(index: number) {
-        // Show groups
+        // Click Row
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
         this.selectedRow = index;
     }    

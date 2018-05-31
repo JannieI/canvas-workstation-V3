@@ -39,6 +39,16 @@ export class DashboardScheduleEditComponent implements OnInit {
             this.clickClose('Close');
             return;
         };
+        if (
+            (event.code == 'Enter'  ||  event.code == 'NumpadEnter')
+            &&
+            (!event.ctrlKey)
+            &&
+            (!event.shiftKey)
+           ) {
+            this.clickAdd('Added');
+            return;
+        };
 
     }
 
@@ -53,21 +63,34 @@ export class DashboardScheduleEditComponent implements OnInit {
 	) {}
 
     ngOnInit() {
+        // Initial
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
         this.dashboards = this.globalVariableService.dashboards.slice();
         this.globalVariableService.getCurrentDashboardSchedules(
             this.globalVariableService.currentDashboardInfo.value.currentDashboardID).then
               (i => this.currentDashboardSchedules = i);
     }
 
+    clickRow(index: number) {
+        // Click Row
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
+        this.selectedRow = index;
+    }
+
     clickClose(action: string) {
+        // Close form
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
+
         console.log('clickClose')
 
 		this.formDashboardScheduleEditClosed.emit(action);
     }
- 
-    clickRow(index: number) {
-        // Show groups
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
-        this.selectedRow = index;
-    }    
+    
+    clickAdd(action: string) {
+        // Add a new Schedule
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
+
+		this.formDashboardScheduleEditClosed.emit(action);
+    }
 }
