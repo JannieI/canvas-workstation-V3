@@ -349,6 +349,7 @@ export class AppComponent implements OnInit {
     showModalDashboardTheme: boolean = false;
     showModalDashboardTemplate: boolean = false;
     showModalDashboardSchedule: boolean = false;
+    showModalDashboardScheduleEdit: boolean = false;
     showModalDashboardDelete: boolean = false;
     showModalDashboardDeleteBulk: boolean = false;
     showModalDashboardTreeview: boolean = false;
@@ -882,6 +883,15 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPostAction();
 
         this.showModalDashboardSchedule = false;
+    }
+    
+    handleCloseDashboardScheduleEdit(action: string) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardScheduleEdit', '@Start');
+
+        this.menuOptionClickPostAction();
+
+        this.showModalDashboardScheduleEdit = false;
     }
 
     handleCloseDashboardDelete(action: string) {
@@ -2490,13 +2500,22 @@ export class AppComponent implements OnInit {
         this.showModalDashboardTemplate = true;
     }
 
-    clickMenuDashboardDetailSchedule() {
+    clickMenuDashboardSchedule() {
         // Manage Schedules for the current D
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDetailSchedule', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardSchedule', '@Start');
 
         this.menuOptionClickPreAction();
 
         this.showModalDashboardSchedule = true;
+    }
+
+    clickMenuDashboardScheduleEdit() {
+        // Manage Schedules for the current D
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardScheduleEdit', '@Start');
+
+        this.menuOptionClickPreAction();
+
+        this.showModalDashboardScheduleEdit = true;
     }
 
     clickMenuDashboardPrint() {
