@@ -8,7 +8,7 @@
      
                 <div class="gridOverall">
                     <div class="gridTitle">
-                        Dashboard Schedules
+                        Dashboard Schedules: {{ dashboardName }} ( {{ dashboardStatus }})
                     </div>
                     <div class="gridSubTitle">
                         <i>
@@ -18,11 +18,148 @@
                             will also be refreshed.
                         </i>
                     </div>
-                    <div class="gridAdd">
+
+                    <div class="gridRepeatsTitle">
+                        <b>UserName:</b>
+                    </div>
+                    <div class="select gridRepeats"
+                        name="localServer"
+                        >
+                        <select [(ngModel)]="localServer"
+                            name="localServer"
+                            (change)="clickLocalServer($event)"
+                            >
+                            <option>Daily</option>
+                            <option>Weekday</option>
+                            <option>Weekly</option>
+                            <option>Monthly</option>
+                            <option>Yearly</option>
+                        </select>
+                    </div>
+
+                    <div class="gridRepeatsEveryTitle">
+                        <b>Repeats Every:</b>
+                    </div>
+                    <div class="gridRepeatsEvery">
+                        <input [(ngModel)]="currentUserID"
+                            type="number" 
+                            name="repeatsEvery"
+                            placeholder="Repeats every so many units"
+                            #repeatsEveryVar="ngModel"
+                            required
+                            [style.color]="!repeatsEveryVar.valid ? 'red' : 'gray'"
+                            >
+                    </div>
+
+                    <div class="gridRepeatsOnTitle">
+                        <b>Repeats On:</b>
+                    </div>
+                    <div class="gridRepeatsOn">
+                        <input [(ngModel)]="currentUserID"
+                            type="text" 
+                            name="currentUserID"
+                            placeholder="For Weekly: enter M, T, W, ... S"
+                            #repeatsOnVar="ngModel"
+                            [style.color]="!repeatsOnVar.valid ? 'red' : 'gray'"
+                            >
+                    </div>
+
+                    <div class="gridRepeatsForTitle">
+                        <b>Repeats For:</b>
+                    </div>
+                    <div class="select gridRepeatsFor"
+                        name="localServer"
+                        >
+                        <select [(ngModel)]="localServer"
+                            name="localServer"
+                            (change)="clickLocalServer($event)"
+                            >
+                            <option>DayOfWeek</option>
+                            <option>DayOfMonth</option>
+                        </select>
+                    </div>
+
+                    startsOn: string // Date
+                    <div class="gridStartsOnTitle">
+                        <b>Starts On:</b>
+                    </div>
+                    <div class="gridStartsOn">
+                        <input [(ngModel)]="currentUserID"
+                            type="text" 
+                            name="currentUserID"
+                            placeholder="Starting Date"
+                            #startsOnVar="ngModel"
+                            required
+                            [style.color]="!startsOnVar.valid ? 'red' : 'gray'"
+                            >
+                    </div>
+
+                    <div class="gridNeverEndsTitle">
+                        <b>EndsNever:</b>
+                    </div>
+                    <div class="gridNeverEnds">
+                        <input [(ngModel)]="currentUser.offlineLogin"
+                            type="checkbox"
+                            title="Schedule does not have an end date (T/F)"
+                            >
+                    </div>
     
-                        <br>
-                        Add a schedule to the current Dashboard:
-                        <input type="text" id="formFields_7" placeholder="Schedule name">
+                    <div class="gridEndsAfterTitle">
+                        <b>Ends After:</b>
+                    </div>
+                    <div class="gridEndsAfter">
+                        <input [(ngModel)]="currentUserID"
+                            type="number" 
+                            name="currentUserID"
+                            placeholder="UserName"
+                            #endsAfterVar="ngModel"
+                            [style.color]="!endsAfterVar.valid ? 'red' : 'gray'"
+                            >
+                    </div>
+
+                    EndsOn: string // Date
+                    <div class="gridEndsOnTitle">
+                        <b>Ends On:</b>
+                    </div>
+                    <div class="gridEndsOn">
+                        <input [(ngModel)]="currentUserID"
+                            type="text" 
+                            name="currentUserID"
+                            placeholder="Date when the Schedule ends"
+                            #endsOnVar="ngModel"
+                            required
+                            minlength="2"
+                            maxlength="250"
+                            [style.color]="!endsOnVar.valid ? 'red' : 'gray'"
+                            >
+                    </div>
+    
+                    <div class="gridScheduleNameTitle">
+                        <b>Name:</b>
+                    </div>  
+                    <div class="gridScheduleName">
+                            <input [(ngModel)]="currentUserID"
+                            type="text" 
+                            name="currentUserID"
+                            placeholder="Date when the Schedule ends"
+                            #endsOnVar="ngModel"
+                            required
+                            minlength="2"
+                            maxlength="250"
+                            [style.color]="!endsOnVar.valid ? 'red' : 'gray'"
+                            >
+                    </div>
+
+                    <div class="gridButtonCancel">
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            (click)="clickClose('Close')"
+                            >
+                            Cancel
+                        </button>
+                    </div>
+                    <div class="gridButtonAdd">
                         <button
                             type="button"
                             class="btn btn-secondary"
@@ -31,6 +168,7 @@
                             Save
                         </button>
                     </div>
+    
                     <div class="gridSchedules">
     
                         <clr-datagrid>

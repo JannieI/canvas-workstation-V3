@@ -17,8 +17,8 @@
 
 .gridOverall {
     display: grid;
-    grid-template-columns: repeat(15, 1fr);
-    grid-template-rows: repeat(16, 1rem);
+    grid-template-columns: repeat(21, 1fr);
+    grid-template-rows: repeat(21, 1rem);
 }
 
     .gridTitle {
@@ -39,11 +39,172 @@
         text-align: left;
     }
 
-    .gridAdd {
+    .gridRepeatsTitle {
         grid-column-start: 1;
-        grid-column-end: 41;
-        grid-row-start: 4;
+        grid-column-end: 3;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridRepeats {
+        grid-column-start: 3;
+        grid-column-end: 9;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+
+    .gridRepeatsEveryTitle {
+        grid-column-start: 10;
+        grid-column-end: 13;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridRepeatsEvery {
+        grid-column-start: 13;
+        grid-column-end: 19;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+
+    .gridRepeatsOnTitle {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 5;
         grid-row-end: 6;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridRepeatsOn {
+        grid-column-start: 3;
+        grid-column-end: 9;
+        grid-row-start: 5;
+        grid-row-end: 6;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+
+    .gridRepeatsForTitle {
+        grid-column-start: 10;
+        grid-column-end: 13;
+        grid-row-start: 5;
+        grid-row-end: 6;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridRepeatsFor {
+        grid-column-start: 13;
+        grid-column-end: 19;
+        grid-row-start: 5;
+        grid-row-end: 6;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+
+    .gridStartsOnTitle {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 7;
+        grid-row-end: 8;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridStartsOnT {
+        grid-column-start: 3;
+        grid-column-end: 9;
+        grid-row-start: 7;
+        grid-row-end: 8;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+
+    .gridNeverEndsTitle {
+        grid-column-start: 10;
+        grid-column-end: 13;
+        grid-row-start: 7;
+        grid-row-end: 8;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridNeverEnds {
+        grid-column-start: 13;
+        grid-column-end: 19;
+        grid-row-start: 7;
+        grid-row-end: 8;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+
+    .gridEndsAfterOnTitle {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 9;
+        grid-row-end: 10;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridEndsAfterOnT {
+        grid-column-start: 3;
+        grid-column-end: 9;
+        grid-row-start: 9;
+        grid-row-end: 10;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+
+    .gridEndsOnTitle {
+        grid-column-start: 10;
+        grid-column-end: 13;
+        grid-row-start: 9;
+        grid-row-end: 10;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridEndsOn {
+        grid-column-start: 13;
+        grid-column-end: 19;
+        grid-row-start: 9;
+        grid-row-end: 10;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+
+    .gridScheduleNameTitle {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 11;
+        grid-row-end: 12;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridScheduleNameT {
+        grid-column-start: 3;
+        grid-column-end: 9;
+        grid-row-start: 11;
+        grid-row-end: 12;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+
+    .gridButtonCancel {
+        grid-column-start: 10;
+        grid-column-end: 13;
+        grid-row-start: 11;
+        grid-row-end: 12;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridButtonAdd {
+        grid-column-start: 15;
+        grid-column-end: 17;
+        grid-row-start: 11;
+        grid-row-end: 12;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
@@ -51,7 +212,7 @@
     .gridSchedules {
         grid-column-start: 1;
         grid-column-end: 41;
-        grid-row-start: 6;
+        grid-row-start: 13;
         grid-row-end: 19;
         margin: 2px 2px 2px 2px;
         text-align: left;
