@@ -5675,6 +5675,25 @@ console.warn('xx d', this.dashboards)
 
     }
 
+    validateUser(userID: string): Promise<boolean> {
+        // Checks if userID exists.  If not, return false.  
+        // If so, set currentUser object and return true
+        console.log('%c    Global-Variables validateUser ...',
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+
+        // TODO - do in more safe way with DB, Auth0, etc
+        return new Promise<boolean>((resolve, reject) => {
+            this.getCanvasUsers().then(usr => {
+                let foundIndex: number = this.canvasUsers.findIndex(u => u.userID == userID);
+                if (foundIndex < 0) {
+                    resolve(false);
+                } else {
+                    resolve(true);
+                }                
+            });
+        });
+    }
+
     saveCanvasUser(data: CanvasUser): Promise<string> {
         // Description: Saves CanvasUser
         // Returns: 'Saved' or error message
