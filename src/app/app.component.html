@@ -219,14 +219,6 @@
                                 <button
                                     type="button"
                                     clrDropdownItem
-                                    title="Manage scheduled runs for this Dashboard"
-                                    (click)="clickMenuDashboardDetailSchedule()"
-                                    >
-                                    Schedule
-                                </button>
-                                <button
-                                    type="button"
-                                    clrDropdownItem
                                     title="Show usage stats for this Dashboard"
                                     (click)="clickMenuDashboardUsageStats()"
                                     >
@@ -293,6 +285,35 @@
                             >
                             Snapshots
                         </button>
+
+                        <clr-dropdown>
+                            <button
+                                type="button"
+                                class="btn btn-link btn-sm"
+                                clrDropdownTrigger
+                                title="Submenu with more options"
+                                >
+                                Schedules
+                            </button>
+                            <clr-dropdown-menu clrPosition="right-top" *clrIfOpen>
+
+                                <button type="button"
+                                    clrDropdownItem
+                                    title="Rename an existing Dashboard"
+                                    (click)="clickDashboardRename()"
+                                    >
+                                    Manage
+                                </button>
+                                <button
+                                    type="button"
+                                    clrDropdownItem
+                                    title="Manage scheduled runs for this Dashboard"
+                                    (click)="clickMenuDashboardDetailSchedule()"
+                                    >
+                                    Show All
+                                </button>
+                            </clr-dropdown-menu>
+                        </clr-dropdown>
 
                         <button type="button"
                             clrDropdownItem
