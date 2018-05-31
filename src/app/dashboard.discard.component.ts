@@ -39,6 +39,16 @@ export class DashboardDiscardComponent implements OnInit {
             this.clickClose('Close');
             return;
         };
+        if  ( 
+            (event.code == 'Enter'  ||  event.code == 'NumpadEnter')
+            &&  
+            (!event.ctrlKey)  
+            &&  
+            (!event.shiftKey) 
+           ) {
+            this.clickDiscard('Discard');
+            return;
+        };
 
     }
 
