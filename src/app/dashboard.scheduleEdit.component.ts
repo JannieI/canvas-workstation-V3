@@ -1,5 +1,5 @@
 /*
- * Visualise page, to view / present Dashboards previously created
+ * Manages Schedules for the current D
  */
 
 // Angular
@@ -21,9 +21,9 @@ import { Dashboard }                  from './models';
 import { DashboardSchedule }          from './models';
 
 @Component({
-    selector: 'dashboard-schedule',
-    templateUrl: './dashboard.schedule.component.html',
-    styleUrls: ['./dashboard.schedule.component.css']
+    selector: 'dashboard-scheduleEdit',
+    templateUrl: './dashboard.scheduleEdit.component.html',
+    styleUrls: ['./dashboard.scheduleEdit.component.css']
 })
 export class DashboardScheduleEditComponent implements OnInit {
 
