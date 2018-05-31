@@ -38,7 +38,13 @@ export class CollaborateSendEmailComponent implements OnInit {
             this.clickClose('Close');
             return;
         };
-        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+        if ( 
+            (event.code == 'Enter'  ||  event.code == 'NumpadEnter')
+            &&  
+            (!event.ctrlKey)  
+            &&  
+            (!event.shiftKey) 
+           ) {
             this.clickSave('Saved');
             return;
         };
@@ -83,8 +89,5 @@ export class CollaborateSendEmailComponent implements OnInit {
 
 		this.formDashboardSendEmailClosed.emit(action);
     }
-
-    //TODO
-    //1. Set global var isFirstTimeDashboard = T/F depending on user input
 
 }
