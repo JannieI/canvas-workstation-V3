@@ -38,6 +38,10 @@ export class CollaborateSendEmailComponent implements OnInit {
             this.clickClose('Close');
             return;
         };
+        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+            this.clickSave('Saved');
+            return;
+        };
 
     }
 
