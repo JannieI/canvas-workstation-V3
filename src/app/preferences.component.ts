@@ -38,6 +38,16 @@ export class PreferencesComponent implements OnInit {
             this.clickClose('Close');
             return;
         };
+        if (
+            (event.code == 'Enter'  ||  event.code == 'NumpadEnter')
+            &&
+            (!event.ctrlKey)
+            &&
+            (!event.shiftKey)
+           ) {
+            this.clickSave('Saved');
+            return;
+        };
 
     }
 
