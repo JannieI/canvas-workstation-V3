@@ -1,5 +1,5 @@
 /*
- * Visualise page, to view / present Dashboards previously created
+ * Login form
  */
 
 // Angular
@@ -38,11 +38,24 @@ export class LoginComponent implements OnInit {
             this.clickClose('Close');
             return;
         };
+        if ( 
+            (event.code == 'Enter'  ||  event.code == 'NumpadEnter')
+            &&  
+            (!event.ctrlKey)  
+            &&  
+            (!event.shiftKey) 
+           ) {
+            this.clickLogin();
+            return;
+        };
 
     }
 
+    currentUserID: string = '';
+    errorMessage: string = '';
+    localServer: string = 'Local';
+    password: string = '';
     showTypeDashboard: boolean = false;
-    dashboards: Dashboard[];
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -50,10 +63,8 @@ export class LoginComponent implements OnInit {
 	) {}
 
     ngOnInit() {
-        //
+        // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
-
-        this.dashboards = this.globalVariableService.dashboards.slice();
 
     }
 
@@ -70,17 +81,48 @@ export class LoginComponent implements OnInit {
     }
 
     clickLocalServer() {
-        //
+        // User clicked Local / Server
         this.globalFunctionService.printToConsole(this.constructor.name,'clickLocalServer', '@Start');
+
+        // TODO - verify that server exists, and list multiple if so allowed
+    }
+
+    clickLogin() {
+        // Log in
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickLocalServer', '@Start');
+
+        // Validate user
+        if (!this.globalVariableService.validateUser(this.currentUserID)) {
+            this.errorMessage = 'Invalid user';
+            return;
+        };
 
         // Register session start time
         let today = new Date();
-        this.globalVariableService.sessionDateTimeLoggedin = 
+        this.globalVariableService.sessionDateTimeLoggedin =
             this.globalVariableService.formatDate(today);
 
         // TODO - fix when values read from form
         this.globalVariableService.loggedIntoServer.next(
-            !this.globalVariableService.loggedIntoServer.value
+            this.localServer=='Local'? false : true
         );
+
+        // Set userID
+        this.globalVariableService.currentUserID.next(this.currentUserID);
+
+        // Optional start D
+        if (this.globalVariableService.currentUser.startupDashboardID != null) {
+            let startTabID: number = -1;
+            if (this.globalVariableService.currentUser.startupDashboardTabID != null) {
+                startTabID = this.globalVariableService.currentUser.startupDashboardTabID;
+            };
+
+            this.globalVariableService.refreshCurrentDashboard(
+                'statusbar-clickTabDelete',
+                this.globalVariableService.currentUser.startupDashboardID,
+                startTabID,
+                ''
+            );
+        }
     }
 }

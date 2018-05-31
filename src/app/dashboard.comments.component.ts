@@ -42,18 +42,18 @@ export class DashboardCommentsComponent implements OnInit {
             this.clickClose('Close');
             return;
         };
-        if  ( 
+        if (
             (event.code == 'Enter'  ||  event.code == 'NumpadEnter')
-            &&  
-            (!event.ctrlKey)  
-            &&  
-            (!event.shiftKey) 
+            &&
+            (!event.ctrlKey)
+            &&
+            (!event.shiftKey)
            ) {
             this.clickAdd();
             return;
         };
     }
-    
+
     canvasComments: CanvasComment[] = [];
     datagridColumns: string[] =["id"]
     commentText: string;

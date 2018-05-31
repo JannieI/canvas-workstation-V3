@@ -40,19 +40,19 @@ export class DashboardNewComponent implements OnInit {
             this.clickClose();
             return;
         };
-        if  ( 
+        if (
             (event.code == 'Enter'  ||  event.code == 'NumpadEnter')
-            &&  
-            (!event.ctrlKey)  
-            &&  
-            (!event.shiftKey) 
+            &&
+            (!event.ctrlKey)
+            &&
+            (!event.shiftKey)
            ) {
             this.clickCreate();
             return;
         };
 
     }
-    
+
     dashboards: Dashboard[];
     dashboardCode: string = '';
     dashboardName: string = '';

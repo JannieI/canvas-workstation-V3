@@ -38,12 +38,12 @@ export class DashboardSaveAsComponent implements OnInit {
             this.clickClose('Close');
             return;
         };
-        if  ( 
+        if (
             (event.code == 'Enter'  ||  event.code == 'NumpadEnter')
-            &&  
-            (!event.ctrlKey)  
-            &&  
-            (!event.shiftKey) 
+            &&
+            (!event.ctrlKey)
+            &&
+            (!event.shiftKey)
            ) {
             this.clickSaveAs();
             return;
@@ -63,7 +63,7 @@ export class DashboardSaveAsComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
     }
- 
+
     clickClose(action: string) {
         // Close form, nothing saved or copied
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');

@@ -17,7 +17,7 @@
                     </div>
  
                     <div class="select gridServer">
-                        <select id="selects_3"
+                        <select [(ngModel)]="localServer"
                             (change)="clickLocalServer($event)"
                             >
                             <option>Local</option>
@@ -29,14 +29,24 @@
                         <b>UserName:</b>
                     </div>
                     <div class="gridUserName">
-                        <input type="text" id="formFields_7" placeholder="UserName">
+                        <input [(ngModel)]="currentUserID"
+                            type="text" 
+                            placeholder="UserName"
+                            >
                     </div>
 
                     <div class="gridPasswordTitle">
                         <b>Password:</b>
                     </div>
                     <div class="gridPassword">
-                        <input type="text" id="formFields_7" placeholder="Password">
+                        <input [(ngModel)]="password"
+                            type="text"    
+                            placeholder="Password"
+                            >
+                    </div>
+                    
+                    <div class="gridErrorMessage">
+                        {{ errorMessage }}
                     </div>
 
                     <div class="gridButtonCancel">
@@ -53,9 +63,9 @@
                         <button
                             type="button"
                             class="btn btn-primary"
-                            (click)="clickLogout()"
+                            (click)="clickLogin()"
                             >
-                            Logout
+                            Login
                         </button>
                     </div>
                 </div>
