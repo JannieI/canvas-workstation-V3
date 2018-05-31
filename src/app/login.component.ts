@@ -92,37 +92,44 @@ export class LoginComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickLocalServer', '@Start');
 
         // Validate user
-        if (!this.globalVariableService.validateUser(this.currentUserID)) {
-            this.errorMessage = 'Invalid user';
-            return;
-        };
+        this.globalVariableService.validateUser(this.currentUserID).then(res => {
+            if (!res) {
 
-        // Register session start time
-        let today = new Date();
-        this.globalVariableService.sessionDateTimeLoggedin =
-            this.globalVariableService.formatDate(today);
+                this.errorMessage = 'Invalid user';
+                return;
+            } else {
+                // Register session start time
+                let today = new Date();
+                this.globalVariableService.sessionDateTimeLoggedin =
+                    this.globalVariableService.formatDate(today);
 
-        // TODO - fix when values read from form
-        this.globalVariableService.loggedIntoServer.next(
-            this.localServer=='Local'? false : true
-        );
+                // TODO - fix when values read from form
+                this.globalVariableService.loggedIntoServer.next(
+                    this.localServer=='Local'? false : true
+                );
 
-        // Set userID
-        this.globalVariableService.currentUserID.next(this.currentUserID);
+                // Set userID
+                this.globalVariableService.currentUserID.next(this.currentUserID);
 
-        // Optional start D
-        if (this.globalVariableService.currentUser.startupDashboardID != null) {
-            let startTabID: number = -1;
-            if (this.globalVariableService.currentUser.startupDashboardTabID != null) {
-                startTabID = this.globalVariableService.currentUser.startupDashboardTabID;
+                // Optional start D
+                if (this.globalVariableService.currentUser.startupDashboardID != null) {
+                    let startTabID: number = -1;
+                    if (this.globalVariableService.currentUser.startupDashboardTabID != null) {
+                        startTabID = this.globalVariableService.currentUser.startupDashboardTabID;
+                    };
+
+                    this.globalVariableService.refreshCurrentDashboard(
+                        'statusbar-clickTabDelete',
+                        this.globalVariableService.currentUser.startupDashboardID,
+                        startTabID,
+                        ''
+                    );
+                };
+
+        		this.formUserLoginClosed.emit('LoggedIn');
+
             };
+        });
 
-            this.globalVariableService.refreshCurrentDashboard(
-                'statusbar-clickTabDelete',
-                this.globalVariableService.currentUser.startupDashboardID,
-                startTabID,
-                ''
-            );
-        }
     }
 }

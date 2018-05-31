@@ -1468,7 +1468,7 @@ export class GlobalVariableService {
             };
         });
 
-        // The following entities are simply deleted (and those entities applicable to 
+        // The following entities are simply deleted (and those entities applicable to
         // the original remains unchanged):
         // - Subscriptions
         this.dashboardSubscriptions.forEach(sub => {
@@ -3371,8 +3371,8 @@ console.warn('xx d', this.dashboards)
     }
 
     newDashboardSnapshot(
-        snapshotName: string, 
-        snapshotComment: string, 
+        snapshotName: string,
+        snapshotComment: string,
         snapshotType: string): Promise<any>  {
         // Description: Adds a new DashboardSnapshot
         // Returns: Added Data or error message
@@ -5676,7 +5676,7 @@ console.warn('xx d', this.dashboards)
     }
 
     validateUser(userID: string): Promise<boolean> {
-        // Checks if userID exists.  If not, return false.  
+        // Checks if userID exists.  If not, return false.
         // If so, set currentUser object and return true
         console.log('%c    Global-Variables validateUser ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
@@ -5686,10 +5686,12 @@ console.warn('xx d', this.dashboards)
             this.getCanvasUsers().then(usr => {
                 let foundIndex: number = this.canvasUsers.findIndex(u => u.userID == userID);
                 if (foundIndex < 0) {
+                    console.warn('xx Invalid userid', userID)
                     resolve(false);
                 } else {
                     resolve(true);
-                }                
+                    console.warn('xx Valid userid', userID)
+                };
             });
         });
     }
