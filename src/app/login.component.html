@@ -16,8 +16,11 @@
                         <i>Log into a server (if available), or as a local user.</i>
                     </div>
  
-                    <div class="select gridServer">
+                    <div class="select gridServer"
+                        name="localServer"
+                        >
                         <select [(ngModel)]="localServer"
+                            name="localServer"
                             (change)="clickLocalServer($event)"
                             >
                             <option>Local</option>
@@ -31,7 +34,13 @@
                     <div class="gridUserName">
                         <input [(ngModel)]="currentUserID"
                             type="text" 
+                            name="currentUserID"
                             placeholder="UserName"
+                            #dashboardDescriptionVar="ngModel"
+                            required
+                            minlength="2"
+                            maxlength="250"
+                            [style.color]="!dashboardDescriptionVar.valid ? 'red' : 'gray'"
                             >
                     </div>
 
@@ -41,6 +50,7 @@
                     <div class="gridPassword">
                         <input [(ngModel)]="password"
                             type="text"    
+                            name="password"
                             placeholder="Password"
                             >
                     </div>
