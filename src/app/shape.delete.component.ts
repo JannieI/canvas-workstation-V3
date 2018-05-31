@@ -39,6 +39,16 @@ export class ShapeDeleteComponent implements OnInit {
             this.clickClose();
             return;
         };
+        if (
+            (event.code == 'Enter'  ||  event.code == 'NumpadEnter')
+            &&
+            (!event.ctrlKey)
+            &&
+            (!event.shiftKey)
+           ) {
+            this.clickDelete();
+            return;
+        };
 
     }
 
