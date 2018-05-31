@@ -74,5 +74,6 @@ export class DashboardPrintComponent implements OnInit {
         // Save the settings, then close the form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
+        this.formDashboardPrintClosed.emit('Saved');
     }
 }
