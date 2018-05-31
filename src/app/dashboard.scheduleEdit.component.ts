@@ -53,7 +53,8 @@ export class DashboardScheduleEditComponent implements OnInit {
     }
 
     currentDashboardSchedules: DashboardSchedule[];
-    dashboards: Dashboard[];
+    dashboardName: string = 'Test Db';
+    dashboardStatus: string = 'AlmostCompleted';
     selectedRow: number = 0;
 
 
@@ -66,7 +67,6 @@ export class DashboardScheduleEditComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.dashboards = this.globalVariableService.dashboards.slice();
         this.globalVariableService.getCurrentDashboardSchedules(
             this.globalVariableService.currentDashboardInfo.value.currentDashboardID).then
               (i => this.currentDashboardSchedules = i);

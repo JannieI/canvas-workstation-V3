@@ -20,14 +20,12 @@
                     </div>
 
                     <div class="gridRepeatsTitle">
-                        <b>UserName:</b>
+                        <b>Repeats:</b>
                     </div>
                     <div class="select gridRepeats"
-                        name="localServer"
                         >
-                        <select [(ngModel)]="localServer"
-                            name="localServer"
-                            (change)="clickLocalServer($event)"
+                        <select [(ngModel)]="repeats"
+                            name="repeats"
                             >
                             <option>Daily</option>
                             <option>Weekday</option>
@@ -41,7 +39,7 @@
                         <b>Repeats Every:</b>
                     </div>
                     <div class="gridRepeatsEvery">
-                        <input [(ngModel)]="currentUserID"
+                        <input [(ngModel)]="repeatsEvery"
                             type="number" 
                             name="repeatsEvery"
                             placeholder="Repeats every so many units"
@@ -55,9 +53,9 @@
                         <b>Repeats On:</b>
                     </div>
                     <div class="gridRepeatsOn">
-                        <input [(ngModel)]="currentUserID"
+                        <input [(ngModel)]="repeatsOn"
                             type="text" 
-                            name="currentUserID"
+                            name="repeatsOn"
                             placeholder="For Weekly: enter M, T, W, ... S"
                             #repeatsOnVar="ngModel"
                             [style.color]="!repeatsOnVar.valid ? 'red' : 'gray'"
@@ -68,10 +66,9 @@
                         <b>Repeats For:</b>
                     </div>
                     <div class="select gridRepeatsFor"
-                        name="localServer"
                         >
-                        <select [(ngModel)]="localServer"
-                            name="localServer"
+                        <select [(ngModel)]="repeatsFor"
+                            name="repeatsFor"
                             (change)="clickLocalServer($event)"
                             >
                             <option>DayOfWeek</option>
@@ -79,14 +76,13 @@
                         </select>
                     </div>
 
-                    startsOn: string // Date
                     <div class="gridStartsOnTitle">
                         <b>Starts On:</b>
                     </div>
                     <div class="gridStartsOn">
-                        <input [(ngModel)]="currentUserID"
+                        <input [(ngModel)]="startsOn"
                             type="text" 
-                            name="currentUserID"
+                            name="startsOn"
                             placeholder="Starting Date"
                             #startsOnVar="ngModel"
                             required
@@ -98,7 +94,8 @@
                         <b>EndsNever:</b>
                     </div>
                     <div class="gridNeverEnds">
-                        <input [(ngModel)]="currentUser.offlineLogin"
+                        <input [(ngModel)]="neverEnds"
+                            name="neverEnds"
                             type="checkbox"
                             title="Schedule does not have an end date (T/F)"
                             >
@@ -108,23 +105,22 @@
                         <b>Ends After:</b>
                     </div>
                     <div class="gridEndsAfter">
-                        <input [(ngModel)]="currentUserID"
+                        <input [(ngModel)]="endsAfter"
                             type="number" 
-                            name="currentUserID"
+                            name="endsAfter"
                             placeholder="UserName"
                             #endsAfterVar="ngModel"
                             [style.color]="!endsAfterVar.valid ? 'red' : 'gray'"
                             >
                     </div>
 
-                    EndsOn: string // Date
                     <div class="gridEndsOnTitle">
                         <b>Ends On:</b>
                     </div>
                     <div class="gridEndsOn">
-                        <input [(ngModel)]="currentUserID"
+                        <input [(ngModel)]="endsOn"
                             type="text" 
-                            name="currentUserID"
+                            name="endsOn"
                             placeholder="Date when the Schedule ends"
                             #endsOnVar="ngModel"
                             required
@@ -138,15 +134,15 @@
                         <b>Name:</b>
                     </div>  
                     <div class="gridScheduleName">
-                            <input [(ngModel)]="currentUserID"
+                            <input [(ngModel)]="name"
                             type="text" 
-                            name="currentUserID"
-                            placeholder="Date when the Schedule ends"
-                            #endsOnVar="ngModel"
+                            name="name"
+                            placeholder="Name of the Schedule"
+                            #nameVar="ngModel"
                             required
                             minlength="2"
                             maxlength="250"
-                            [style.color]="!endsOnVar.valid ? 'red' : 'gray'"
+                            [style.color]="!nameVar.valid ? 'red' : 'gray'"
                             >
                     </div>
 
