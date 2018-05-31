@@ -5,32 +5,20 @@
             <button type="button" class="closeButton" (click)="clickClose()">
                 X
             </button>
- 
+    
             <div class="gridOverall">
                 <div class="gridTitle">
                     Dashboard Schedules
                 </div>
                 <div class="gridSubTitle">
                     <i>
-                        Will be done at a later stage.  Each schedule will be executed on
-                        the given date and time, and a message with the Dashboard attached
-                        will be send to the relevant user(s).  The data in the Dashboard
-                        will also be refreshed.
+                        Shows a list of all Schedules in the system.  Each schedule will be
+                        executed on the specified date and time: the Dashboard will be prepared,
+                        and a message with the Dashboard attached will be send to the relevant 
+                        user(s).  The data contained in the Dashboard will also be refreshed.
                     </i>
                 </div>
-                <div class="gridAdd">
 
-                    <br>
-                    Add a schedule to the current Dashboard:
-                    <input type="text" id="formFields_7" placeholder="Schedule name">
-                    <button
-                        type="button"
-                        class="btn btn-secondary"
-                        (click)="clickClose('Close')"
-                        >
-                        Save
-                    </button>
-                </div>
                 <div class="gridSchedules">
 
                     <clr-datagrid>
@@ -76,3 +64,5 @@
         </div>
     </div>
 </div>
+
+
