@@ -42,7 +42,10 @@ export class DashboardCommentsComponent implements OnInit {
             this.clickClose('Close');
             return;
         };
-
+        if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+            this.clickAdd();
+            return;
+        };
     }
     
     canvasComments: CanvasComment[] = [];
