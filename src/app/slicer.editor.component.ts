@@ -38,6 +38,16 @@ import { GlobalVariableService }      from './global-variable.service';
             this.clickClose('Close');
             return;
         };
+        if (
+            (event.code == 'Enter'  ||  event.code == 'NumpadEnter')
+            &&
+            (!event.ctrlKey)
+            &&
+            (!event.shiftKey)
+           ) {
+            this.clickSave();
+            return;
+        };
 
     }
 
