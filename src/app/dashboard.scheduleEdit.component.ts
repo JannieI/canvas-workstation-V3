@@ -46,7 +46,11 @@ export class DashboardScheduleEditComponent implements OnInit {
             &&
             (!event.shiftKey)
            ) {
-            this.clickAdd('Added');
+               if (this.editing) {
+                   this.clickSave();
+               } else {
+                   this.clickAdd();
+               };
             return;
         };
 
@@ -56,6 +60,7 @@ export class DashboardScheduleEditComponent implements OnInit {
     dashboardName: string = 'Test Db';
     dashboardStatus: string = 'AlmostCompleted';
     editing: boolean = false;
+    scheduleID: number = null;
     selectedRow: number = null;
 
 
@@ -73,39 +78,55 @@ export class DashboardScheduleEditComponent implements OnInit {
               (i => this.currentDashboardSchedules = i);
     }
 
-    clickRow(index: number) {
+    clickRow(index: number, id: number) {
         // Click Row
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
+
+        // Set the row index
         this.selectedRow = index;
+        this.editing = false;
+        this.scheduleID = id;
+        
+        // Fill the form
+        
+        
     }
 
     clickClose(action: string) {
         // Close form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-        console.log('clickClose')
-
 		this.formDashboardScheduleEditClosed.emit(action);
     }
 
     clickCancel() {
-        // Add a new Schedule
+        // Cancel Editing
         this.globalFunctionService.printToConsole(this.constructor.name,'clickCancel', '@Start');
+
+        this.editing = false;
     }
 
     clickSave() {
-        // Add a new Schedule
+        // Save changes to a Schedule
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
+
+        this.editing = false;
+        
     }
 
     clickEdit() {
-        // Add a new Schedule
+        // Start editing selected Schedule
         this.globalFunctionService.printToConsole(this.constructor.name,'clickEdit', '@Start');
+
+        this.editing = true;
+        
     }
     
     clickAdd() {
         // Add a new Schedule
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
+
+        this.editing = false;
 
     }
 }
