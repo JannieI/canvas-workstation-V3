@@ -56,9 +56,9 @@ export class DashboardScheduleEditComponent implements OnInit {
 
     }
 
-    currentDashboardSchedules: DashboardSchedule[];
-    dashboardName: string = 'Test Db';
-    dashboardStatus: string = 'AlmostCompleted';
+    currentDashboardSchedules: DashboardSchedule[] = [];
+    dashboardName: string = '';
+    dashboardState: string = '';
     editing: boolean = false;
     errorMessage: string = '';
     scheduleID: number = null;
@@ -106,6 +106,12 @@ export class DashboardScheduleEditComponent implements OnInit {
     ngOnInit() {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
+        let dashboard: Dashboard = this.globalVariableService.letDashboard(
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardID
+        );
+        this.dashboardName = dashboard.name;
+        this.dashboardState = dashboard.state;
 
         this.globalVariableService.getCurrentDashboardSchedules(
             this.globalVariableService.currentDashboardInfo.value.currentDashboardID).then
@@ -248,8 +254,6 @@ export class DashboardScheduleEditComponent implements OnInit {
                 return;
         };
 
-        console.log('xx this.selectedD', this.selectedDashboardSchedules.endsNever
-        ,this.selectedDashboardSchedules.endsAfter, this.selectedDashboardSchedules.endsOn)
         if (!this.selectedDashboardSchedules.endsNever)
             if (
                     (this.selectedDashboardSchedules.endsAfter == null
@@ -273,7 +277,16 @@ export class DashboardScheduleEditComponent implements OnInit {
 
         console.warn('xx done validation')
         // Add to local and DB
-        this.currentDashboardSchedules.push(this.selectedDashboardSchedules);
-        this.globalVariableService.addDashboardSchedule(this.selectedDashboardSchedules)
+        // this.currentDashboardSchedules.push(this.selectedDashboardSchedules);
+        this.globalVariableService.addDashboardSchedule(this.selectedDashboardSchedules).then(
+            res => {
+                if (this.selectedRow == null) {
+                    this.selectedRow = 0;
+                    this.scheduleID = this.selectedDashboardSchedules.id;
+                    console.warn('xx hier')
+                };
+                        
+            }
+        );
     }
 }

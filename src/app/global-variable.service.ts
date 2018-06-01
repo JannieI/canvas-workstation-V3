@@ -2872,42 +2872,6 @@ console.warn('xx d', this.dashboards)
 
     }
 
-    deleteDashboardSchedule(id: number): Promise<string> {
-        // Description: Deletes a DashboardSchedules
-        // Returns: 'Deleted' or error message
-        console.log('%c    Global-Variables deleteDashboardSchedule ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", id);
-
-        let url: string = 'dashboardSchedules';
-        this.filePath = './assets/data.dashboardSchedules.json';
-
-        return new Promise<any>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
-            .subscribe(
-                data => {
-
-                    this.dashboardSchedules = this.dashboardSchedules.filter(
-                        dsp => dsp.id != id
-                    );
-                    this.currentDashboardSchedules = this.currentDashboardSchedules.filter(
-                        dsp => dsp.id != id
-                    );
-
-                    console.log('deleteDashboardSchedule DELETED id: ', id)
-                    resolve('Deleted');
-                },
-                err => {
-                    console.log('Error deleteDashboardSchedule FAILED', err);;
-                    resolve(err.Message);
-                }
-            )
-        });
-    }
-
     getCurrentDashboardSchedules(dashboardID: number): Promise<DashboardSchedule[]> {
         // Description: Gets all Sch for current D
         // Params:
@@ -2945,6 +2909,77 @@ console.warn('xx d', this.dashboards)
                 resolve(this.currentDashboardSchedules);
             });
         };
+    }
+
+    addDashboardSchedule(data: DashboardSchedule): Promise<any> {
+        // Description: Adds a new DashboardSchedule
+        // Returns: Added Data or error message
+        console.log('%c    Global-Variables addDashboardSchedule ...',
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", data.id);
+
+        let url: string = 'dashboardSchedules';
+        this.filePath = './assets/data.dashboardSchedules.json';
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.post('http://localhost:3000/' + url, data, {headers})
+            .subscribe(
+                data => {
+
+                    // Update Global vars to make sure they remain in sync
+                    this.dashboardSchedules.push(JSON.parse(JSON.stringify(data)));
+                    this.currentDashboardSchedules.push(JSON.parse(JSON.stringify(data)));
+
+                    console.log('addDashboardSchedule ADDED', data,
+                        this.currentDashboardSchedules, this.dashboardSchedules)
+
+                    resolve(data);
+                },
+                err => {
+                    console.log('Error addDashboardSchedule FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+        });
+    }
+
+    deleteDashboardSchedule(id: number): Promise<string> {
+        // Description: Deletes a DashboardSchedules
+        // Returns: 'Deleted' or error message
+        console.log('%c    Global-Variables deleteDashboardSchedule ...',
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", id);
+
+        let url: string = 'dashboardSchedules';
+        this.filePath = './assets/data.dashboardSchedules.json';
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
+            .subscribe(
+                data => {
+
+                    this.dashboardSchedules = this.dashboardSchedules.filter(
+                        dsp => dsp.id != id
+                    );
+                    this.currentDashboardSchedules = this.currentDashboardSchedules.filter(
+                        dsp => dsp.id != id
+                    );
+
+                    console.log('deleteDashboardSchedule DELETED id: ', id)
+                    resolve('Deleted');
+                },
+                err => {
+                    console.log('Error deleteDashboardSchedule FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+        });
     }
 
     getDashboardTags(): Promise<DashboardTag[]> {
@@ -3119,41 +3154,6 @@ console.warn('xx d', this.dashboards)
             }
         });
 
-    }
-
-    addDashboardSchedule(data: DashboardSchedule): Promise<any> {
-        // Description: Adds a new DashboardSchedule
-        // Returns: Added Data or error message
-        console.log('%c    Global-Variables addDashboardSchedule ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", data.id);
-
-        let url: string = 'dashboardSchedules';
-        this.filePath = './assets/data.dashboardSchedules.json';
-
-        return new Promise<any>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
-
-            this.http.post('http://localhost:3000/' + url, data, {headers})
-            .subscribe(
-                data => {
-
-                    // Update Global vars to make sure they remain in sync
-                    this.dashboardSchedules.push(JSON.parse(JSON.stringify(data)));
-                    this.currentDashboardSchedules.push(JSON.parse(JSON.stringify(data)));
-
-                    console.log('addDashboardSchedule ADDED', data,
-                        this.currentDashboardSchedules, this.dashboardSchedules)
-
-                    resolve(data);
-                },
-                err => {
-                    console.log('Error addDashboardSchedule FAILED', err);;
-                    resolve(err.Message);
-                }
-            )
-        });
     }
 
     getCurrentDashboardPermissions(dashboardID: number): Promise<DashboardPermission[]> {

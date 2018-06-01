@@ -103,7 +103,7 @@
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
-    .gridWeeklyTueday {
+    .gridWeeklyTuesday {
         grid-column-start: 5;
         grid-column-end: 6;
         grid-row-start: 6;

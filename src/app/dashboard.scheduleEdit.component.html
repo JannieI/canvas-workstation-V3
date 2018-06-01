@@ -8,7 +8,7 @@
      
                 <div class="gridOverall">
                     <div class="gridTitle">
-                        Dashboard Schedules: {{ dashboardName }} ( {{ dashboardStatus }})
+                        Dashboard Schedules: {{ dashboardName }} ( {{ dashboardState }})
                     </div>
                     <div class="gridSubTitle">
                         <i>
@@ -62,7 +62,7 @@
                             placeholder="For Weekly occurs on Monday"
                             >
                     </div>
-                    <div class="gridWeeklyTuedayTitle" 
+                    <div class="gridWeeklyTuesdayTitle" 
                         *ngIf="selectedDashboardSchedules.repeatFrequency=='Weekly'">
                         <b>Tueday:</b>
                     </div>
@@ -449,9 +449,9 @@
                                 <clr-dg-cell>{{row.repeatFrequency}}</clr-dg-cell>
                                 <clr-dg-cell>{{row.repeatsEvery}}</clr-dg-cell>
                                 <clr-dg-cell>{{row.startsOn}}</clr-dg-cell>
-                                <clr-dg-cell>{{row.EndsNever}}</clr-dg-cell>
-                                <clr-dg-cell>{{row.EndsAfter}}</clr-dg-cell>
-                                <clr-dg-cell>{{row.EndsOn}}</clr-dg-cell>
+                                <clr-dg-cell>{{row.endsNever}}</clr-dg-cell>
+                                <clr-dg-cell>{{row.endsAfter}}</clr-dg-cell>
+                                <clr-dg-cell>{{row.endsOn}}</clr-dg-cell>
                             </clr-dg-row>
     
                         </clr-datagrid>
