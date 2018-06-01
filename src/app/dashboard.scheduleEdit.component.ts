@@ -129,7 +129,12 @@ export class DashboardScheduleEditComponent implements OnInit {
         this.errorMessage = '';
 
         // Fill the form
-
+        let dashboardScheduleIndex: number = this.globalVariableService.dashboardSchedules
+            .findIndex(sch => sch.id == id);
+        if (dashboardScheduleIndex >= 0) {
+            this.selectedDashboardSchedules = this.globalVariableService
+                .dashboardSchedules[dashboardScheduleIndex]
+        };
 
     }
 
