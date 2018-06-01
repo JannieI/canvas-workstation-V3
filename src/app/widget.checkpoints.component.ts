@@ -50,6 +50,16 @@ export class WidgetCheckpointsComponent implements OnInit {
             this.clickClose('Close');
             return;
         };
+        if (
+            (event.code == 'Enter'  ||  event.code == 'NumpadEnter')
+            &&
+            (!event.ctrlKey)
+            &&
+            (!event.shiftKey)
+           ) {
+            this.clickAddCheckpoint();
+            return;
+        };
 
     }
 
@@ -124,7 +134,7 @@ export class WidgetCheckpointsComponent implements OnInit {
     }
 
     clickAddCheckpoint() {
-        // Delete selected Checkpoint
+        // Add a new Checkpoint
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAddCheckpoint', '@Start');
 
         var today = new Date();
@@ -198,7 +208,7 @@ export class WidgetCheckpointsComponent implements OnInit {
             };
             this.selectedWidget.currentCheckpoint = 0;
             this.selectedWidget.lastCheckpoint = this.currentWidgetCheckpoints.length - 1;
-    console.warn('xx selW', this.selectedWidget.checkpointIDs, this.selectedWidget.currentCheckpoint, this.selectedWidget.lastCheckpoint)
+
             // Save to DB
             this.globalVariableService.saveWidget(this.selectedWidget);
 
