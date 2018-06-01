@@ -540,13 +540,31 @@ export class DashboardSchedule {
     datasourceID: number;
     name: string;
     description: string;
-    repeats: string;                    // Daily, Weekday (M-F), Weekly, Monthly, Yearly
-    repeatsEvery: number;               //   X                     X        X        X
-    repeatsOn: string[];                // Weekly:  (M, T, W, ... S)
-    repeatsFor: string;                 // Monthly: DayOfWeek, DayOfMonth
+    repeatFrequency: string;            // Occurs: Daily, Weekly, Monthly, Yearly
+    repeatsEvery: number;               // Repeats every x of Frequency, ie 2 = every 2nd Month
+    weeklyMonday: boolean;              // For Weekly: occurs on this weekday
+    weeklyTuesday: boolean;             // For Weekly: occurs on this weekday
+    weeklyWednesday: boolean;           // For Weekly: occurs on this weekday
+    weeklyThursday: boolean;            // For Weekly: occurs on this weekday
+    weeklyFriday: boolean;              // For Weekly: occurs on this weekday
+    weeklySaturday: boolean;            // For Weekly: occurs on this weekday
+    weeklySunday: boolean;              // For Weekly: occurs on this weekday
+    monthlyOn: number;                  // For Monthly: Occurs on this Day of month, ie 13th
+    yearlyJanuary: string;              // For Yearly: Occurs in this month
+    yearlyFebruary: string;             // For Yearly: Occurs in this month
+    yearlyMarch: string;                // For Yearly: Occurs in this month
+    yearlyApril: string;                // For Yearly: Occurs in this month
+    yearlyMay: string;                  // For Yearly: Occurs in this month
+    yearlyJune: string;                 // For Yearly: Occurs in this month
+    yearlyJuly: string;                 // For Yearly: Occurs in this month
+    yearlyAugust: string;               // For Yearly: Occurs in this month
+    yearlySeptember: string;            // For Yearly: Occurs in this month
+    yearlyOctober: string;              // For Yearly: Occurs in this month
+    yearlyNovember: string;             // For Yearly: Occurs in this month
+    yearlyDecember: string;             // For Yearly: Occurs in this month
     startsOn: string;                   // Date
-    EndsNever: boolean;
-    EndsAfter: number;                  // n times
+    EndsNever: boolean;                 // True means never ends
+    EndsAfter: number;                  // n times, ie 2 means it will run twice
     EndsOn: string;                     // Date
 }
 

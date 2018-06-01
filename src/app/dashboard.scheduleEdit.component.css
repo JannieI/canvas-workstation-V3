@@ -42,7 +42,7 @@
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
-    .gridRepeats {
+    .gridRepeatFrequency {
         grid-column-start: 3;
         grid-column-end: 9;
         grid-row-start: 4;

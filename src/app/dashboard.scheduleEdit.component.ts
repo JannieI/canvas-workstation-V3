@@ -62,6 +62,7 @@ export class DashboardScheduleEditComponent implements OnInit {
     editing: boolean = false;
     scheduleID: number = null;
     selectedRow: number = null;
+    selectedDashboardSchedules: DashboardSchedule = null;
 
 
 	constructor(
@@ -88,7 +89,7 @@ export class DashboardScheduleEditComponent implements OnInit {
         this.scheduleID = id;
         
         // Fill the form
-        
+
         
     }
 

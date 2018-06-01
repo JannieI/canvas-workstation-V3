@@ -19,13 +19,13 @@
                         </i>
                     </div>
 
-                    <div class="gridRepeatsTitle">
-                        <b>Repeats:</b>
+                    <div class="gridRepeatFrequencyTitle">
+                        <b>repeatFrequency:</b>
                     </div>
-                    <div class="select gridRepeats"
+                    <div class="select gridRepeatFrequency"
                         >
-                        <select [(ngModel)]="repeats"
-                            name="repeats"
+                        <select [(ngModel)]="selectedDashboardSchedules.repeatFrequency"
+                            name="repeatFrequency"
                             >
                             <option>Daily</option>
                             <option>Weekday</option>
@@ -39,7 +39,7 @@
                         <b>Repeats Every:</b>
                     </div>
                     <div class="gridRepeatsEvery">
-                        <input [(ngModel)]="repeatsEvery"
+                        <input [(ngModel)]="selectedDashboardSchedules.repeatsEvery"
                             type="number" 
                             name="repeatsEvery"
                             placeholder="Repeats every so many units"
