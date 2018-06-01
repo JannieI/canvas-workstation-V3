@@ -2947,6 +2947,40 @@ console.warn('xx d', this.dashboards)
         });
     }
 
+    saveDashboardSchedule(data: DashboardSchedule): Promise<string> {
+        // Description: Saves DashboardSchedule
+        // Returns: 'Saved' or error message
+        console.log('%c    Global-Variables saveDashboardSchedule ...',
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+
+        let url: string = 'dashboardSchedules';
+        this.filePath = './assets/data.dashboardSchedules.json';
+
+        return new Promise<string>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.put('http://localhost:3000/' + url + '/' + data.id, data, {headers})
+            .subscribe(
+                res => {
+
+                    // Replace local
+                    let localIndex: number = this.dashboardSchedules.findIndex(d =>
+                        d.id == data.id
+                    );
+                    this.dashboardSchedules[localIndex] = data;
+
+                    console.log('saveDashboardSchedule SAVED', res)
+                    resolve('Saved');
+                },
+                err => {
+                    console.log('Error saveDashboardSchedule FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+        });
+    }
 
     deleteDashboardSchedule(id: number): Promise<string> {
         // Description: Deletes a DashboardSchedules
