@@ -86,7 +86,7 @@ export class UsersComponent implements OnInit {
     clickRow(index: number, userID: string) {
         // Show groups
         this.globalFunctionService.printToConsole(this.constructor.name,'setClickedRow', '@Start');
-console.warn('xx userID', userID)
+
         this.selectedRow = index;
         this.users.forEach(u => {
             if (u.userID == userID) {
