@@ -1456,8 +1456,18 @@
                         Palette ButtonBar
                     </button>
 
+                    <button type="button"
+                        clrDropdownItem
+                        (click)="clickMenuUsers()"
+                        title="Show Users with its groups"
+                        [style.color]="!currentUserID? 'lightgray' : '#565656'"
+                        [disabled] = "!currentUserID"
+                        >
+                        Users
+                    </button>
 
-                    <a clrDropdownItem (click)="clickMenuUsers()">Users</a>
+
+
                     <a clrDropdownItem (click)="clickMenuGroups()">Groups</a>
                     <a clrDropdownItem (click)="clickMenuUserSystemSettings()">System Settings</a>
                     <a clrDropdownItem (click)="clickMenuUserOffline()">Work Offline</a>
