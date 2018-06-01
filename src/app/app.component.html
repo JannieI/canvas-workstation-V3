@@ -1417,7 +1417,16 @@
                     </button>
                     
                     <a clrDropdownItem (click)="clickMenuUserPreferences()">Preferences</a>
-                    <a clrDropdownItem (click)="clickMenuUserMyPermissions()">My Permissions</a>
+                    <button type="button"
+                        clrDropdownItem
+                        (click)="clickMenuUserMyPermissions()"
+                        title="Show my Permissions"
+                        [style.color]="!currentUserID? 'lightgray' : '#565656'"
+                        [disabled] = "!currentUserID"
+                        >
+                        My Permissions
+                    </button>
+
                     <a clrDropdownItem (click)="clickMenuDashboardSubscribe()">Subscribe</a>
                     <a clrDropdownItem (click)="clickMenuUserPaletteButtonBar()">Palette ButtonBar</a>
                     <a clrDropdownItem (click)="clickMenuUsers()">Users</a>
