@@ -25,6 +25,7 @@
                         >
                         <select [(ngModel)]="selectedDashboardSchedules.repeatFrequency"
                             name="repeatFrequency"
+                            [disabled]="!editing"
                             >
                             <option>Daily</option>
                             <option>Weekly</option>
@@ -48,6 +49,7 @@
                             #repeatsEveryVar="ngModel"
                             required
                             [style.color]="!repeatsEveryVar.valid ? 'red' : 'gray'"
+                            [disabled]="!editing"
                             >
                     </div>
 
@@ -60,6 +62,7 @@
                             type="checkbox" 
                             name="weeklyMonday"
                             placeholder="For Weekly occurs on Monday"
+                            [disabled]="!editing"
                             >
                     </div>
                     <div class="gridWeeklyTuesdayTitle" 
@@ -71,6 +74,7 @@
                             type="checkbox" 
                             name="weeklyTuesday"
                             placeholder="For Weekly occurs on Tueday"
+                            [disabled]="!editing"
                             >
                     </div>
                     <div class="gridWeeklyWednesdayTitle" 
@@ -82,6 +86,7 @@
                             type="checkbox" 
                             name="weeklyWednesday"
                             placeholder="For Weekly occurs on Wednesday"
+                            [disabled]="!editing"
                             >
                     </div>
                     <div class="gridWeeklyThursdayTitle" 
@@ -93,6 +98,7 @@
                             type="checkbox" 
                             name="weeklyThursday"
                             placeholder="For Weekly occurs on Thursday"
+                            [disabled]="!editing"
                             >
                     </div>
                     <div class="gridWeeklyFridayTitle" 
@@ -104,6 +110,7 @@
                             type="checkbox" 
                             name="weeklyFriday"
                             placeholder="For Weekly occurs on Friday"
+                            [disabled]="!editing"
                             >
                     </div>
                     <div class="gridWeeklySaturdayTitle" 
@@ -115,6 +122,7 @@
                             type="checkbox" 
                             name="weeklySaturday"
                             placeholder="For Weekly occurs on Saturday"
+                            [disabled]="!editing"
                             >
                     </div>
                     <div class="gridWeeklySundayTitle" 
@@ -126,6 +134,7 @@
                             type="checkbox" 
                             name="weeklySunday"
                             placeholder="For Weekly occurs on Sunday"
+                            [disabled]="!editing"
                             >
                     </div>
 
@@ -143,6 +152,7 @@
                             placeholder="Occurs Monthly on this day, ie 12th"
                             #monthlyOnVar="ngModel"
                             [style.color]="!monthlyOnVar.valid ? 'red' : 'gray'"
+                            [disabled]="!editing"
                             >
                     </div>
 
@@ -158,6 +168,7 @@
                             type="checkbox" 
                             name="repeatsOn"
                             placeholder="For Monthly that occurs in January"
+                            [disabled]="!editing"
                             >
                     </div>
                     <div class="gridYearlyFebruaryTitle" 
@@ -172,6 +183,7 @@
                             type="checkbox" 
                             name="repeatsOn"
                             placeholder="For Monthly that occurs in February"
+                            [disabled]="!editing"
                             >
                     </div>
                     <div class="gridYearlyMarchTitle" 
@@ -186,6 +198,7 @@
                             type="checkbox" 
                             name="repeatsOn"
                             placeholder="For Monthly that occurs in March"
+                            [disabled]="!editing"
                             >
                     </div>
                     <div class="gridYearlyAprilTitle" 
@@ -200,6 +213,7 @@
                             type="checkbox" 
                             name="repeatsOn"
                             placeholder="For Monthly that occurs in April"
+                            [disabled]="!editing"
                             >
                     </div>
                     <div class="gridYearlyMayTitle" 
@@ -214,6 +228,7 @@
                             type="checkbox" 
                             name="repeatsOn"
                             placeholder="For Monthly that occurs in May"
+                            [disabled]="!editing"
                             >
                     </div>
                     <div class="gridYearlyJuneTitle" 
@@ -228,6 +243,7 @@
                             type="checkbox" 
                             name="repeatsOn"
                             placeholder="For Monthly that occurs in June"
+                            [disabled]="!editing"
                             >
                     </div>
                     <div class="gridYearlyJulyTitle" 
@@ -242,6 +258,7 @@
                             type="checkbox" 
                             name="repeatsOn"
                             placeholder="For Monthly that occurs in July"
+                            [disabled]="!editing"
                             >
                     </div>
                     <div class="gridYearlyAugustTitle" 
@@ -256,6 +273,7 @@
                             type="checkbox" 
                             name="repeatsOn"
                             placeholder="For Monthly that occurs in August"
+                            [disabled]="!editing"
                             >
                     </div>
                     <div class="gridYearlySeptemberTitle" 
@@ -270,6 +288,7 @@
                             type="checkbox" 
                             name="repeatsOn"
                             placeholder="For Monthly that occurs in September"
+                            [disabled]="!editing"
                             >
                     </div>
                     <div class="gridYearlyOctoberTitle" 
@@ -284,6 +303,7 @@
                             type="checkbox" 
                             name="repeatsOn"
                             placeholder="For Monthly that occurs in October"
+                            [disabled]="!editing"
                             >
                     </div>
                     <div class="gridYearlyNovemberTitle" 
@@ -298,6 +318,7 @@
                             type="checkbox" 
                             name="repeatsOn"
                             placeholder="For Monthly that occurs in November"
+                            [disabled]="!editing"
                             >
                     </div>
                     <div class="gridYearlyDecemberTitle" 
@@ -312,6 +333,7 @@
                             type="checkbox" 
                             name="repeatsOn"
                             placeholder="For Monthly that occurs in December"
+                            [disabled]="!editing"
                             >
                     </div>
 
@@ -326,6 +348,7 @@
                             #startsOnVar="ngModel"
                             required
                             [style.color]="!startsOnVar.valid ? 'red' : 'gray'"
+                            [disabled]="!editing"
                             >
                     </div>
 
@@ -337,6 +360,7 @@
                             name="neverEnds"
                             type="checkbox"
                             title="Schedule does not have an end date (T/F)"
+                            [disabled]="!editing"
                             >
                     </div>
     
@@ -350,6 +374,7 @@
                             placeholder="Ends after n attempts"
                             #endsAfterVar="ngModel"
                             [style.color]="!endsAfterVar.valid ? 'red' : 'gray'"
+                            [disabled]="!editing"
                             >
                     </div>
 
@@ -363,6 +388,7 @@
                             placeholder="Date when the Schedule ends"
                             #endsOnVar="ngModel"
                             [style.color]="!endsOnVar.valid ? 'red' : 'gray'"
+                            [disabled]="!editing"
                             >
                     </div>
     
@@ -379,6 +405,7 @@
                             minlength="2"
                             maxlength="250"
                             [style.color]="!nameVar.valid ? 'red' : 'gray'"
+                            [disabled]="!editing"
                             >
                     </div>
 

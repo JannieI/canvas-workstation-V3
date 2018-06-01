@@ -56,6 +56,7 @@ export class DashboardScheduleEditComponent implements OnInit {
 
     }
 
+    addding: boolean = false;
     currentDashboardSchedules: DashboardSchedule[] = [];
     dashboardName: string = '';
     dashboardState: string = '';
@@ -63,39 +64,7 @@ export class DashboardScheduleEditComponent implements OnInit {
     errorMessage: string = '';
     scheduleID: number = null;
     selectedRow: number = null;
-    selectedDashboardSchedules: DashboardSchedule = {
-        id: null,
-        dashboardID: null,
-        datasourceID: null,
-        name: null,
-        description: null,
-        repeatFrequency: null,
-        repeatsEvery: null,
-        weeklyMonday: false,
-        weeklyTuesday: false,
-        weeklyWednesday: false,
-        weeklyThursday: false,
-        weeklyFriday: false,
-        weeklySaturday: false,
-        weeklySunday: false,
-        monthlyOn: 0,
-        yearlyJanuary: false,
-        yearlyFebruary: false,
-        yearlyMarch: false,
-        yearlyApril: false,
-        yearlyMay: false,
-        yearlyJune: false,
-        yearlyJuly: false,
-        yearlyAugust: false,
-        yearlySeptember: false,
-        yearlyOctober: false,
-        yearlyNovember: false,
-        yearlyDecember: false,
-        startsOn: null,
-        endsNever: false,
-        endsAfter: 0,
-        endsOn: null
-    };
+    selectedDashboardSchedules: DashboardSchedule;
 
 
 	constructor(
@@ -112,15 +81,14 @@ export class DashboardScheduleEditComponent implements OnInit {
         );
         this.dashboardName = dashboard.name;
         this.dashboardState = dashboard.state;
+        this.clearRecord();
 
         this.globalVariableService.getCurrentDashboardSchedules(
             this.globalVariableService.currentDashboardInfo.value.currentDashboardID).then
               (i => {
                   this.currentDashboardSchedules = i;
                   if (this.currentDashboardSchedules.length > 0) {
-                    this.selectedRow = 0;
-                    this.scheduleID = this.currentDashboardSchedules[0].id;
-                    this.selectedDashboardSchedules = this.currentDashboardSchedules[0];
+                    this.clickRow(0, this.currentDashboardSchedules[0].id);
                   };
               });
     }
@@ -131,6 +99,7 @@ export class DashboardScheduleEditComponent implements OnInit {
 
         // Set the row index
         this.selectedRow = index;
+        this.addding = false;
         this.editing = false;
         this.scheduleID = id;
         this.errorMessage = '';
@@ -195,6 +164,7 @@ export class DashboardScheduleEditComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickCancel', '@Start');
 
         this.editing = false;
+        this.addding = false;
         this.errorMessage = '';
     }
 
@@ -202,25 +172,6 @@ export class DashboardScheduleEditComponent implements OnInit {
         // Save changes to a Schedule
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
-        this.editing = false;
-        this.errorMessage = '';
-
-    }
-
-    clickEdit() {
-        // Start editing selected Schedule
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickEdit', '@Start');
-
-        this.editing = true;
-        this.errorMessage = '';
-
-    }
-
-    clickAdd() {
-        // Add a new Schedule
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
-
-        this.editing = false;
         this.errorMessage = '';
 
         // Validation
@@ -326,19 +277,48 @@ export class DashboardScheduleEditComponent implements OnInit {
         };
 
         console.warn('xx done validation')
+
         // Add to local and DB
-        // this.currentDashboardSchedules.push(this.selectedDashboardSchedules);
-        this.selectedDashboardSchedules.dashboardID = 
-            this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
-        this.globalVariableService.addDashboardSchedule(this.selectedDashboardSchedules).then(
-            res => {
-                if (this.selectedRow == null) {
-                    this.selectedRow = 0;
-                    this.scheduleID = this.selectedDashboardSchedules.id;
-                    console.warn('xx hier')
-                };
-                        
-            }
-        );
+        if (this.addding) {
+            // this.currentDashboardSchedules.push(this.selectedDashboardSchedules);
+            this.selectedDashboardSchedules.dashboardID = 
+                this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
+            this.globalVariableService.addDashboardSchedule(this.selectedDashboardSchedules).then(
+                res => {
+                    if (this.selectedRow == null) {
+                        this.selectedRow = 0;
+                        this.scheduleID = this.selectedDashboardSchedules.id;
+                        console.warn('xx hier')
+                    };
+                            
+                }
+            );
+        };
+
+        if (this.editing) {
+            this.globalVariableService.saveDashboardSchedule(this.selectedDashboardSchedules)
+        }
+        // Reset
+        this.editing = false;
+        this.addding = false;
+
+    }
+
+    clickEdit() {
+        // Start editing selected Schedule
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickEdit', '@Start');
+
+        this.editing = true;
+        this.errorMessage = '';
+
+    }
+
+    clickAdd() {
+        // Add a new Schedule
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
+
+        this.addding = true;
+        this.errorMessage = '';
+
     }
 }
