@@ -550,22 +550,22 @@ export class DashboardSchedule {
     weeklySaturday: boolean;            // For Weekly: occurs on this weekday
     weeklySunday: boolean;              // For Weekly: occurs on this weekday
     monthlyOn: number;                  // For Monthly: Occurs on this Day of month, ie 13th
-    yearlyJanuary: string;              // For Yearly: Occurs in this month
-    yearlyFebruary: string;             // For Yearly: Occurs in this month
-    yearlyMarch: string;                // For Yearly: Occurs in this month
-    yearlyApril: string;                // For Yearly: Occurs in this month
-    yearlyMay: string;                  // For Yearly: Occurs in this month
-    yearlyJune: string;                 // For Yearly: Occurs in this month
-    yearlyJuly: string;                 // For Yearly: Occurs in this month
-    yearlyAugust: string;               // For Yearly: Occurs in this month
-    yearlySeptember: string;            // For Yearly: Occurs in this month
-    yearlyOctober: string;              // For Yearly: Occurs in this month
-    yearlyNovember: string;             // For Yearly: Occurs in this month
-    yearlyDecember: string;             // For Yearly: Occurs in this month
+    yearlyJanuary: boolean;             // For Yearly: Occurs in this month
+    yearlyFebruary: boolean;            // For Yearly: Occurs in this month
+    yearlyMarch: boolean;               // For Yearly: Occurs in this month
+    yearlyApril: boolean;               // For Yearly: Occurs in this month
+    yearlyMay: boolean;                 // For Yearly: Occurs in this month
+    yearlyJune: boolean;                // For Yearly: Occurs in this month
+    yearlyJuly: boolean;                // For Yearly: Occurs in this month
+    yearlyAugust: boolean;              // For Yearly: Occurs in this month
+    yearlySeptember: boolean;           // For Yearly: Occurs in this month
+    yearlyOctober: boolean;             // For Yearly: Occurs in this month
+    yearlyNovember: boolean;            // For Yearly: Occurs in this month
+    yearlyDecember: boolean;            // For Yearly: Occurs in this month
     startsOn: string;                   // Date
-    EndsNever: boolean;                 // True means never ends
-    EndsAfter: number;                  // n times, ie 2 means it will run twice
-    EndsOn: string;                     // Date
+    endsNever: boolean;                 // True means never ends
+    endsAfter: number;                  // n times, ie 2 means it will run twice
+    endsOn: string;                     // Date
 }
 
 export class DashboardPermission {

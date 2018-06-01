@@ -12,10 +12,9 @@
                     </div>
                     <div class="gridSubTitle">
                         <i>
-                            Will be done at a later stage.  Each schedule will be executed on
-                            the given date and time, and a message with the Dashboard attached
-                            will be send to the relevant user(s).  The data in the Dashboard
-                            will also be refreshed.
+                            Each schedule will be executed on the given date and time, and a 
+                            message with the Dashboard attached will be send to the relevant 
+                            user(s).  The data in the Dashboard will also be refreshed.
                         </i>
                     </div>
 
@@ -320,7 +319,7 @@
                         <b>Starts On:</b>
                     </div>
                     <div class="gridStartsOn">
-                        <input [(ngModel)]="startsOn"
+                        <input [(ngModel)]="selectedDashboardSchedules.startsOn"
                             type="text" 
                             name="startsOn"
                             placeholder="Starting Date"
@@ -334,7 +333,7 @@
                         <b>EndsNever:</b>
                     </div>
                     <div class="gridNeverEnds">
-                        <input [(ngModel)]="neverEnds"
+                        <input [(ngModel)]="selectedDashboardSchedules.endsNever"
                             name="neverEnds"
                             type="checkbox"
                             title="Schedule does not have an end date (T/F)"
@@ -345,10 +344,10 @@
                         <b>Ends After:</b>
                     </div>
                     <div class="gridEndsAfter">
-                        <input [(ngModel)]="endsAfter"
+                        <input [(ngModel)]="selectedDashboardSchedules.endsAfter"
                             type="number" 
                             name="endsAfter"
-                            placeholder="UserName"
+                            placeholder="Ends after n attempts"
                             #endsAfterVar="ngModel"
                             [style.color]="!endsAfterVar.valid ? 'red' : 'gray'"
                             >
@@ -358,14 +357,11 @@
                         <b>Ends On:</b>
                     </div>
                     <div class="gridEndsOn">
-                        <input [(ngModel)]="endsOn"
+                        <input [(ngModel)]="selectedDashboardSchedules.endsOn"
                             type="text" 
                             name="endsOn"
                             placeholder="Date when the Schedule ends"
                             #endsOnVar="ngModel"
-                            required
-                            minlength="2"
-                            maxlength="250"
                             [style.color]="!endsOnVar.valid ? 'red' : 'gray'"
                             >
                     </div>
@@ -374,7 +370,7 @@
                         <b>Name:</b>
                     </div>  
                     <div class="gridScheduleName">
-                            <input [(ngModel)]="name"
+                            <input [(ngModel)]="selectedDashboardSchedules.name"
                             type="text" 
                             name="name"
                             placeholder="Name of the Schedule"

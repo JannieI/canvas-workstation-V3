@@ -71,30 +71,30 @@ export class DashboardScheduleEditComponent implements OnInit {
         description: null,
         repeatFrequency: null,
         repeatsEvery: null,
-        weeklyMonday: null,
-        weeklyTuesday: null,
-        weeklyWednesday: null,
-        weeklyThursday: null,
-        weeklyFriday: null,
-        weeklySaturday: null,
-        weeklySunday: null,
-        monthlyOn: null,
-        yearlyJanuary: null,
-        yearlyFebruary: null,
-        yearlyMarch: null,
-        yearlyApril: null,
-        yearlyMay: null,
-        yearlyJune: null,
-        yearlyJuly: null,
-        yearlyAugust: null,
-        yearlySeptember: null,
-        yearlyOctober: null,
-        yearlyNovember: null,
-        yearlyDecember: null,
+        weeklyMonday: false,
+        weeklyTuesday: false,
+        weeklyWednesday: false,
+        weeklyThursday: false,
+        weeklyFriday: false,
+        weeklySaturday: false,
+        weeklySunday: false,
+        monthlyOn: 0,
+        yearlyJanuary: false,
+        yearlyFebruary: false,
+        yearlyMarch: false,
+        yearlyApril: false,
+        yearlyMay: false,
+        yearlyJune: false,
+        yearlyJuly: false,
+        yearlyAugust: false,
+        yearlySeptember: false,
+        yearlyOctober: false,
+        yearlyNovember: false,
+        yearlyDecember: false,
         startsOn: null,
-        EndsNever: null,
-        EndsAfter: null,
-        EndsOn: null
+        endsNever: false,
+        endsAfter: 0,
+        endsOn: null
     };
 
 
@@ -166,13 +166,21 @@ export class DashboardScheduleEditComponent implements OnInit {
 
         this.editing = false;
         this.errorMessage = '';
-        console.warn('xx this.selectedDashboardSchedules.repeatFrequency', this.selectedDashboardSchedules.repeatFrequency)
+
         // Validation
+        this.errorMessage = '';
+
         if (this.selectedDashboardSchedules.repeatFrequency == null
             ||
             this.selectedDashboardSchedules.repeatFrequency == '') {
                 this.errorMessage = 'Select a Frequency';
-                console.warn('xx hier');
+                return;
+        };
+
+        if (this.selectedDashboardSchedules.repeatsEvery == null
+            ||
+            this.selectedDashboardSchedules.repeatsEvery == 0) {
+                this.errorMessage = 'Fill in Every ';
                 return;
         };
 
@@ -191,7 +199,7 @@ export class DashboardScheduleEditComponent implements OnInit {
                 &&
                 !this.selectedDashboardSchedules.weeklySunday) {
                     this.errorMessage = 'Chose at least one weekday';
-                    return
+                    return;
             };
         };
 
@@ -200,7 +208,7 @@ export class DashboardScheduleEditComponent implements OnInit {
             ||
             this.selectedDashboardSchedules.monthlyOn == null) {
                 this.errorMessage = 'Fill in day of month';
-                return
+                return;
             };
         };
 
@@ -229,7 +237,7 @@ export class DashboardScheduleEditComponent implements OnInit {
                 &&
                 !this.selectedDashboardSchedules.yearlyDecember) {
                     this.errorMessage = 'Fill in day of month';
-                    return
+                    return;
             };
         };
 
@@ -237,23 +245,32 @@ export class DashboardScheduleEditComponent implements OnInit {
             ||
             this.selectedDashboardSchedules.startsOn == '') {
                 this.errorMessage = 'Enter start date';
-                return
+                return;
         };
 
-        if (!this.selectedDashboardSchedules.EndsNever)
+        console.log('xx this.selectedD', this.selectedDashboardSchedules.endsNever
+        ,this.selectedDashboardSchedules.endsAfter, this.selectedDashboardSchedules.endsOn)
+        if (!this.selectedDashboardSchedules.endsNever)
             if (
-                    (this.selectedDashboardSchedules.EndsAfter == null
+                    (this.selectedDashboardSchedules.endsAfter == null
                     ||
-                    this.selectedDashboardSchedules.EndsAfter == 0)
+                    this.selectedDashboardSchedules.endsAfter == 0)
                 &&
-                    (this.selectedDashboardSchedules.EndsOn == null
+                    (this.selectedDashboardSchedules.endsOn == null
                     ||
-                    this.selectedDashboardSchedules.EndsOn == '')
+                    this.selectedDashboardSchedules.endsOn == '')
                 ) {
                 this.errorMessage = 'Must end Never, On or After';
-                return
+                return;
         };
-        
+
+        if (this.selectedDashboardSchedules.name == null
+            ||
+            this.selectedDashboardSchedules.name == '') {
+                this.errorMessage = 'Enter a Schedule name';
+                return;
+        };
+
         console.warn('xx done validation')
     }
 }
