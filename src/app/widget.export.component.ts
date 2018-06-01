@@ -34,6 +34,16 @@ export class WidgetExportComponent implements OnInit {
             this.clickClose('Close');
             return;
         };
+        if (
+            (event.code == 'Enter'  ||  event.code == 'NumpadEnter')
+            &&
+            (!event.ctrlKey)
+            &&
+            (!event.shiftKey)
+           ) {
+            this.clickExport();
+            return;
+        };
 
     }
 
