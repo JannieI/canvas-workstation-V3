@@ -1416,7 +1416,16 @@
                         My Profile
                     </button>
                     
-                    <a clrDropdownItem (click)="clickMenuUserPreferences()">Preferences</a>
+                    <button type="button"
+                        clrDropdownItem
+                        (click)="clickMenuUserPreferences()"
+                        title="Show my Preferences"
+                        [style.color]="!currentUserID? 'lightgray' : '#565656'"
+                        [disabled] = "!currentUserID"
+                        >
+                        Preferences
+                    </button>
+
                     <button type="button"
                         clrDropdownItem
                         (click)="clickMenuUserMyPermissions()"
