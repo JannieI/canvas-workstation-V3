@@ -1436,8 +1436,27 @@
                         My Permissions
                     </button>
 
-                    <a clrDropdownItem (click)="clickMenuDashboardSubscribe()">Subscribe</a>
-                    <a clrDropdownItem (click)="clickMenuUserPaletteButtonBar()">Palette ButtonBar</a>
+                    <button type="button"
+                        clrDropdownItem
+                        (click)="clickMenuDashboardSubscribe()"
+                        title="Manage Subscriptions"
+                        [style.color]="!currentUserID? 'lightgray' : '#565656'"
+                        [disabled] = "!currentUserID"
+                        >
+                        Subscribe
+                    </button>
+
+                    <button type="button"
+                        clrDropdownItem
+                        (click)="clickMenuUserPaletteButtonBar()"
+                        title="Manage Palette ButtonBar"
+                        [style.color]="!currentUserID? 'lightgray' : '#565656'"
+                        [disabled] = "!currentUserID"
+                        >
+                        Palette ButtonBar
+                    </button>
+
+
                     <a clrDropdownItem (click)="clickMenuUsers()">Users</a>
                     <a clrDropdownItem (click)="clickMenuGroups()">Groups</a>
                     <a clrDropdownItem (click)="clickMenuUserSystemSettings()">System Settings</a>
