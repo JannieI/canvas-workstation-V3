@@ -66,10 +66,10 @@
                         *ngIf="selectedDashboardSchedules.repeatFrequency=='Weekly'">
                         <b>Tueday:</b>
                     </div>
-                    <div class="gridWeeklyTueday" *ngIf="selectedDashboardSchedules.repeatFrequency=='Weekly'">
-                        <input [(ngModel)]="selectedDashboardSchedules.weeklyTueday"
+                    <div class="gridWeeklyTuesday" *ngIf="selectedDashboardSchedules.repeatFrequency=='Weekly'">
+                        <input [(ngModel)]="selectedDashboardSchedules.weeklyTuesday"
                             type="checkbox" 
-                            name="weeklyTueday"
+                            name="weeklyTuesday"
                             placeholder="For Weekly occurs on Tueday"
                             >
                     </div>
@@ -141,8 +141,8 @@
                             type="number" 
                             name="repeatsOn"
                             placeholder="Occurs Monthly on this day, ie 12th"
-                            #weeklyMondayOnVar="ngModel"
-                            [style.color]="!weeklyMondayOnVar.valid ? 'red' : 'gray'"
+                            #monthlyOnVar="ngModel"
+                            [style.color]="!monthlyOnVar.valid ? 'red' : 'gray'"
                             >
                     </div>
 

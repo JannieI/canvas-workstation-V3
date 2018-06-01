@@ -54,7 +54,7 @@
     .gridErrorMessage {
         color: red;
         grid-column-start: 18;
-        grid-column-end: 22;
+        grid-column-end: 23;
         grid-row-start: 4;
         grid-row-end: 5;
         margin: 2px 2px 2px 2px;
@@ -95,7 +95,7 @@
         text-align: left;
     }
 
-    .gridWeeklyTuedayTitle {
+    .gridWeeklyTuesdayTitle {
         grid-column-start: 4;
         grid-column-end: 5;
         grid-row-start: 6;

@@ -236,7 +236,7 @@ export class DashboardScheduleEditComponent implements OnInit {
                 !this.selectedDashboardSchedules.yearlyNovember
                 &&
                 !this.selectedDashboardSchedules.yearlyDecember) {
-                    this.errorMessage = 'Fill in day of month';
+                    this.errorMessage = 'Check a month';
                     return;
             };
         };
@@ -272,5 +272,8 @@ export class DashboardScheduleEditComponent implements OnInit {
         };
 
         console.warn('xx done validation')
+        // Add to local and DB
+        this.currentDashboardSchedules.push(this.selectedDashboardSchedules);
+        this.globalVariableService.addDashboardSchedule(this.selectedDashboardSchedules)
     }
 }
