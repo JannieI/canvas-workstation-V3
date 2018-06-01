@@ -1486,8 +1486,17 @@
                         System Settings
                     </button>
 
+                    <button type="button"
+                        clrDropdownItem
+                        (click)="clickMenuUserOffline()"
+                        title="Working Offline"
+                        [style.color]="!currentUserID? 'lightgray' : '#565656'"
+                        [disabled] = "!currentUserID"
+                        >
+                        Work Offline
+                    </button>
 
-                    <a clrDropdownItem (click)="clickMenuUserOffline()">Work Offline</a>
+
                     <a clrDropdownItem (click)="clickMenuUserLogout()">Log out</a>
                 </clr-dropdown-menu>
             </clr-dropdown>
