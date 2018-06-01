@@ -2856,6 +2856,7 @@ console.warn('xx d', this.dashboards)
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
                     .then(data => {
+                        console.log('getDashboardSchedules data', data)
                         this.dashboardSchedules = data;
                         this.isDirtyDashboardSchedules = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);

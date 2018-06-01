@@ -115,7 +115,12 @@ export class DashboardScheduleEditComponent implements OnInit {
 
         this.globalVariableService.getCurrentDashboardSchedules(
             this.globalVariableService.currentDashboardInfo.value.currentDashboardID).then
-              (i => this.currentDashboardSchedules = i);
+              (i => {
+                  this.currentDashboardSchedules = i;
+                  if (this.currentDashboardSchedules.length > 0) {
+                      this.selectedRow = 0;
+                  };
+              });
     }
 
     clickRow(index: number, id: number) {
@@ -283,6 +288,8 @@ export class DashboardScheduleEditComponent implements OnInit {
         console.warn('xx done validation')
         // Add to local and DB
         // this.currentDashboardSchedules.push(this.selectedDashboardSchedules);
+        this.selectedDashboardSchedules.dashboardID = 
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
         this.globalVariableService.addDashboardSchedule(this.selectedDashboardSchedules).then(
             res => {
                 if (this.selectedRow == null) {
