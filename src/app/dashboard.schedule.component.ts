@@ -70,7 +70,7 @@ export class DashboardScheduleComponent implements OnInit {
 
 		this.formDashboardScheduleClosed.emit(action);
     }
- 
+  
     clickRow(index: number) {
         // Click Row
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');

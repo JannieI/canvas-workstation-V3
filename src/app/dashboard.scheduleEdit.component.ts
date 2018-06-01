@@ -55,7 +55,8 @@ export class DashboardScheduleEditComponent implements OnInit {
     currentDashboardSchedules: DashboardSchedule[];
     dashboardName: string = 'Test Db';
     dashboardStatus: string = 'AlmostCompleted';
-    selectedRow: number = 0;
+    editing: boolean = false;
+    selectedRow: number = null;
 
 
 	constructor(
@@ -86,11 +87,25 @@ export class DashboardScheduleEditComponent implements OnInit {
 
 		this.formDashboardScheduleEditClosed.emit(action);
     }
+
+    clickCancel() {
+        // Add a new Schedule
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickCancel', '@Start');
+    }
+
+    clickSave() {
+        // Add a new Schedule
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
+    }
+
+    clickEdit() {
+        // Add a new Schedule
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickEdit', '@Start');
+    }
     
-    clickAdd(action: string) {
+    clickAdd() {
         // Add a new Schedule
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
 
-		this.formDashboardScheduleEditClosed.emit(action);
     }
 }
