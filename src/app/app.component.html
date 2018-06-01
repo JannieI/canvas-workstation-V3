@@ -1466,9 +1466,18 @@
                         Users
                     </button>
 
+                    <button type="button"
+                        clrDropdownItem
+                        (click)="clickMenuGroups()"
+                        title="Show Groups with its users"
+                        [style.color]="!currentUserID? 'lightgray' : '#565656'"
+                        [disabled] = "!currentUserID"
+                        >
+                        Groups
+                    </button>
 
 
-                    <a clrDropdownItem (click)="clickMenuGroups()">Groups</a>
+
                     <a clrDropdownItem (click)="clickMenuUserSystemSettings()">System Settings</a>
                     <a clrDropdownItem (click)="clickMenuUserOffline()">Work Offline</a>
                     <a clrDropdownItem (click)="clickMenuUserLogout()">Log out</a>
