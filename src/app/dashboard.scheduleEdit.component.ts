@@ -118,7 +118,9 @@ export class DashboardScheduleEditComponent implements OnInit {
               (i => {
                   this.currentDashboardSchedules = i;
                   if (this.currentDashboardSchedules.length > 0) {
-                      this.selectedRow = 0;
+                    this.selectedRow = 0;
+                    this.scheduleID = this.currentDashboardSchedules[0].id;
+                    this.selectedDashboardSchedules = this.currentDashboardSchedules[0];
                   };
               });
     }
@@ -143,6 +145,44 @@ export class DashboardScheduleEditComponent implements OnInit {
 
     }
 
+    clearRecord() {
+        // Clear single record
+        this.globalFunctionService.printToConsole(this.constructor.name,'clearRecord', '@Start');
+
+        this.selectedDashboardSchedules = {
+        id: null,
+        dashboardID: null,
+        datasourceID: null,
+        name: null,
+        description: null,
+        repeatFrequency: null,
+        repeatsEvery: null,
+        weeklyMonday: false,
+        weeklyTuesday: false,
+        weeklyWednesday: false,
+        weeklyThursday: false,
+        weeklyFriday: false,
+        weeklySaturday: false,
+        weeklySunday: false,
+        monthlyOn: 0,
+        yearlyJanuary: false,
+        yearlyFebruary: false,
+        yearlyMarch: false,
+        yearlyApril: false,
+        yearlyMay: false,
+        yearlyJune: false,
+        yearlyJuly: false,
+        yearlyAugust: false,
+        yearlySeptember: false,
+        yearlyOctober: false,
+        yearlyNovember: false,
+        yearlyDecember: false,
+        startsOn: null,
+        endsNever: false,
+        endsAfter: 0,
+        endsOn: null
+    };
+}
     clickClose(action: string) {
         // Close form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
