@@ -34,7 +34,7 @@
         text-align: left;
     }
 
-    .gridRepeatsTitle {
+    .gridRepeatFrequencyTitle {
         grid-column-start: 1;
         grid-column-end: 3;
         grid-row-start: 4;
@@ -68,7 +68,7 @@
         text-align: left;
     }
 
-    .gridRepeatsOnTitle {
+    .gridWeeklyMondayTitle {
         grid-column-start: 1;
         grid-column-end: 3;
         grid-row-start: 6;
@@ -76,7 +76,7 @@
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
-    .gridRepeatsOn {
+    .gridWeeklyMonday {
         grid-column-start: 3;
         grid-column-end: 9;
         grid-row-start: 6;
@@ -84,6 +84,44 @@
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
+
+    .gridMonthlyOnTitle {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 6;
+        grid-row-end: 7;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridMonthlyOn {
+        grid-column-start: 3;
+        grid-column-end: 9;
+        grid-row-start: 6;
+        grid-row-end: 7;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+
+    .gridYearlyJanuaryTitle {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 6;
+        grid-row-end: 7;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridYearlyJanuary {
+        grid-column-start: 3;
+        grid-column-end: 9;
+        grid-row-start: 6;
+        grid-row-end: 7;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+
+
+
+
 
     .gridRepeatsForTitle {
         grid-column-start: 10;

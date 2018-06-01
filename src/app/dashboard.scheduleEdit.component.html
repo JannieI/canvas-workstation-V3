@@ -20,7 +20,7 @@
                     </div>
 
                     <div class="gridRepeatFrequencyTitle">
-                        <b>repeatFrequency:</b>
+                        <b>Frequency:</b>
                     </div>
                     <div class="select gridRepeatFrequency"
                         >
@@ -28,7 +28,6 @@
                             name="repeatFrequency"
                             >
                             <option>Daily</option>
-                            <option>Weekday</option>
                             <option>Weekly</option>
                             <option>Monthly</option>
                             <option>Yearly</option>
@@ -49,32 +48,55 @@
                             >
                     </div>
 
-                    <div class="gridRepeatsOnTitle">
-                        <b>Repeats On:</b>
+
+
+
+                    <div class="gridWeeklyMondayTitle" 
+                        *ngIf="selectedDashboardSchedules.repeatFrequency=='Weekly'">
+                        <b>Monday:</b>
                     </div>
-                    <div class="gridRepeatsOn">
-                        <input [(ngModel)]="repeatsOn"
-                            type="text" 
-                            name="repeatsOn"
-                            placeholder="For Weekly: enter M, T, W, ... S"
-                            #repeatsOnVar="ngModel"
-                            [style.color]="!repeatsOnVar.valid ? 'red' : 'gray'"
+                    <div class="gridWeeklyMonday" *ngIf="selectedDashboardSchedules.repeatFrequency=='Weekly'">
+                        <input [(ngModel)]="selectedDashboardSchedules.weeklyMonday"
+                            type="checkbox" 
+                            name="weeklyMonday"
+                            placeholder="For Weekly occurs on Monday"
                             >
                     </div>
 
-                    <div class="gridRepeatsForTitle">
-                        <b>Repeats For:</b>
-                    </div>
-                    <div class="select gridRepeatsFor"
+                    <div class="gridMonthlyOnTitle" 
+                        *ngIf="selectedDashboardSchedules.repeatFrequency=='Monthly'"
                         >
-                        <select [(ngModel)]="repeatsFor"
-                            name="repeatsFor"
-                            (change)="clickLocalServer($event)"
-                            >
-                            <option>DayOfWeek</option>
-                            <option>DayOfMonth</option>
-                        </select>
+                        <b>Repeats On:</b>
                     </div>
+                    <div class="select gridMonthlyOn"  
+                        *ngIf="selectedDashboardSchedules.repeatFrequency=='Monthly'"
+                        >
+                        <input [(ngModel)]="selectedDashboardSchedules.monthlyOn"
+                            type="number" 
+                            name="repeatsOn"
+                            placeholder="Occurs Monthly on this day, ie 12th"
+                            #weeklyMondayOnVar="ngModel"
+                            [style.color]="!weeklyMondayOnVar.valid ? 'red' : 'gray'"
+                            >
+                    </div>
+
+                    <div class="gridYearlyJanuaryTitle" 
+                        *ngIf="selectedDashboardSchedules.repeatFrequency=='Yearly'"
+                        >
+                        <b>January:</b>
+                    </div>
+                    <div class="gridYearlyJanuary" 
+                        *ngIf="selectedDashboardSchedules.repeatFrequency=='Yearly'"
+                        >
+                        <input [(ngModel)]="selectedDashboardSchedules.yearlyJanuary"
+                            type="checkbox" 
+                            name="repeatsOn"
+                            placeholder="For Weekly occurs on Monday"
+                            >
+                    </div>
+    
+
+
 
                     <div class="gridStartsOnTitle">
                         <b>Starts On:</b>
@@ -191,10 +213,8 @@
                             <clr-dg-column>ID</clr-dg-column>
                             <clr-dg-column>Name</clr-dg-column>
                             <clr-dg-column>description</clr-dg-column>
-                            <clr-dg-column>repeats</clr-dg-column>
+                            <clr-dg-column>repeatFrequency</clr-dg-column>
                             <clr-dg-column>repeatsEvery</clr-dg-column>
-                            <clr-dg-column>repeatsOn</clr-dg-column>
-                            <clr-dg-column>repeatsFor</clr-dg-column>
                             <clr-dg-column>startsOn</clr-dg-column>
                             <clr-dg-column>EndsNever</clr-dg-column>
                             <clr-dg-column>EndsAfter</clr-dg-column>
@@ -212,10 +232,8 @@
                                 <clr-dg-cell>{{row.id}}</clr-dg-cell>
                                 <clr-dg-cell>{{row.name}}</clr-dg-cell>
                                 <clr-dg-cell>{{row.description}}</clr-dg-cell>
-                                <clr-dg-cell>{{row.repeats}}</clr-dg-cell>
+                                <clr-dg-cell>{{row.repeatFrequency}}</clr-dg-cell>
                                 <clr-dg-cell>{{row.repeatsEvery}}</clr-dg-cell>
-                                <clr-dg-cell>{{row.repeatsOn}}</clr-dg-cell>
-                                <clr-dg-cell>{{row.repeatsFor}}</clr-dg-cell>
                                 <clr-dg-cell>{{row.startsOn}}</clr-dg-cell>
                                 <clr-dg-cell>{{row.EndsNever}}</clr-dg-cell>
                                 <clr-dg-cell>{{row.EndsAfter}}</clr-dg-cell>

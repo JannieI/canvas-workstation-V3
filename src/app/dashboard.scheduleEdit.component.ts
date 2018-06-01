@@ -62,7 +62,39 @@ export class DashboardScheduleEditComponent implements OnInit {
     editing: boolean = false;
     scheduleID: number = null;
     selectedRow: number = null;
-    selectedDashboardSchedules: DashboardSchedule = null;
+    selectedDashboardSchedules: DashboardSchedule = {
+        id: null,
+        dashboardID: null,
+        datasourceID: null,
+        name: null,
+        description: null,
+        repeatFrequency: null,
+        repeatsEvery: null,
+        weeklyMonday: null,
+        weeklyTuesday: null,
+        weeklyWednesday: null,
+        weeklyThursday: null,
+        weeklyFriday: null,
+        weeklySaturday: null,
+        weeklySunday: null,
+        monthlyOn: null,
+        yearlyJanuary: null,
+        yearlyFebruary: null,
+        yearlyMarch: null,
+        yearlyApril: null,
+        yearlyMay: null,
+        yearlyJune: null,
+        yearlyJuly: null,
+        yearlyAugust: null,
+        yearlySeptember: null,
+        yearlyOctober: null,
+        yearlyNovember: null,
+        yearlyDecember: null,
+        startsOn: null,
+        EndsNever: null,
+        EndsAfter: null,
+        EndsOn: null
+    };
 
 
 	constructor(
