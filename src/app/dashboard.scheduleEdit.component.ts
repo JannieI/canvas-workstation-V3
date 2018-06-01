@@ -60,6 +60,7 @@ export class DashboardScheduleEditComponent implements OnInit {
     dashboardName: string = 'Test Db';
     dashboardStatus: string = 'AlmostCompleted';
     editing: boolean = false;
+    errorMessage: string = '';
     scheduleID: number = null;
     selectedRow: number = null;
     selectedDashboardSchedules: DashboardSchedule = {
@@ -119,10 +120,11 @@ export class DashboardScheduleEditComponent implements OnInit {
         this.selectedRow = index;
         this.editing = false;
         this.scheduleID = id;
-        
+        this.errorMessage = '';
+
         // Fill the form
 
-        
+
     }
 
     clickClose(action: string) {
@@ -137,6 +139,7 @@ export class DashboardScheduleEditComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickCancel', '@Start');
 
         this.editing = false;
+        this.errorMessage = '';
     }
 
     clickSave() {
@@ -144,7 +147,8 @@ export class DashboardScheduleEditComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
         this.editing = false;
-        
+        this.errorMessage = '';
+
     }
 
     clickEdit() {
@@ -152,14 +156,104 @@ export class DashboardScheduleEditComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickEdit', '@Start');
 
         this.editing = true;
-        
+        this.errorMessage = '';
+
     }
-    
+
     clickAdd() {
         // Add a new Schedule
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
 
         this.editing = false;
+        this.errorMessage = '';
+        console.warn('xx this.selectedDashboardSchedules.repeatFrequency', this.selectedDashboardSchedules.repeatFrequency)
+        // Validation
+        if (this.selectedDashboardSchedules.repeatFrequency == null
+            ||
+            this.selectedDashboardSchedules.repeatFrequency == '') {
+                this.errorMessage = 'Select a Frequency';
+                console.warn('xx hier');
+                return;
+        };
 
+        if (this.selectedDashboardSchedules.repeatFrequency == 'Weekly') {
+            if (!this.selectedDashboardSchedules.weeklyMonday
+                &&
+                !this.selectedDashboardSchedules.weeklyTuesday
+                &&
+                !this.selectedDashboardSchedules.weeklyWednesday
+                &&
+                !this.selectedDashboardSchedules.weeklyThursday
+                &&
+                !this.selectedDashboardSchedules.weeklyFriday
+                &&
+                !this.selectedDashboardSchedules.weeklySaturday
+                &&
+                !this.selectedDashboardSchedules.weeklySunday) {
+                    this.errorMessage = 'Chose at least one weekday';
+                    return
+            };
+        };
+
+        if (this.selectedDashboardSchedules.repeatFrequency == 'Monthly') {
+            if (this.selectedDashboardSchedules.monthlyOn == 0
+            ||
+            this.selectedDashboardSchedules.monthlyOn == null) {
+                this.errorMessage = 'Fill in day of month';
+                return
+            };
+        };
+
+        if (this.selectedDashboardSchedules.repeatFrequency == 'Yearly') {
+            if (!this.selectedDashboardSchedules.yearlyJanuary
+                &&
+                !this.selectedDashboardSchedules.yearlyFebruary
+                &&
+                !this.selectedDashboardSchedules.yearlyMarch
+                &&
+                !this.selectedDashboardSchedules.yearlyApril
+                &&
+                !this.selectedDashboardSchedules.yearlyMay
+                &&
+                !this.selectedDashboardSchedules.yearlyJune
+                &&
+                !this.selectedDashboardSchedules.yearlyJuly
+                &&
+                !this.selectedDashboardSchedules.yearlyAugust
+                &&
+                !this.selectedDashboardSchedules.yearlySeptember
+                &&
+                !this.selectedDashboardSchedules.yearlyOctober
+                &&
+                !this.selectedDashboardSchedules.yearlyNovember
+                &&
+                !this.selectedDashboardSchedules.yearlyDecember) {
+                    this.errorMessage = 'Fill in day of month';
+                    return
+            };
+        };
+
+        if (this.selectedDashboardSchedules.startsOn == null
+            ||
+            this.selectedDashboardSchedules.startsOn == '') {
+                this.errorMessage = 'Enter start date';
+                return
+        };
+
+        if (!this.selectedDashboardSchedules.EndsNever)
+            if (
+                    (this.selectedDashboardSchedules.EndsAfter == null
+                    ||
+                    this.selectedDashboardSchedules.EndsAfter == 0)
+                &&
+                    (this.selectedDashboardSchedules.EndsOn == null
+                    ||
+                    this.selectedDashboardSchedules.EndsOn == '')
+                ) {
+                this.errorMessage = 'Must end Never, On or After';
+                return
+        };
+        
+        console.warn('xx done validation')
     }
 }

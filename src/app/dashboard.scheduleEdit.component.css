@@ -51,6 +51,16 @@
         text-align: left;
     }
 
+    .gridErrorMessage {
+        color: red;
+        grid-column-start: 18;
+        grid-column-end: 22;
+        grid-row-start: 4;
+        grid-row-end: 5;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+
     .gridRepeatsEveryTitle {
         grid-column-start: 10;
         grid-column-end: 13;
