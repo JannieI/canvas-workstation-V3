@@ -1496,8 +1496,15 @@
                         Work Offline
                     </button>
 
-
-                    <a clrDropdownItem (click)="clickMenuUserLogout()">Log out</a>
+                    <button type="button"
+                        clrDropdownItem
+                        (click)="clickMenuUserLogout()"
+                        title="Log out of Canvas"
+                        [style.color]="!currentUserID? 'lightgray' : '#565656'"
+                        [disabled] = "!currentUserID"
+                        >
+                        Log out
+                    </button>
                 </clr-dropdown-menu>
             </clr-dropdown>
 
