@@ -2727,7 +2727,7 @@
 
     <!-- Routed area -->
     <div class="content-container"
-        [style.background-image]="showGrid? 'url(../images/gridBlock.png)' : ''"
+        [style.background-image]="showGrid? 'url(../images/gridBlock.png)' : (currentDashboardBackgroundImage? 'url(../images/' + currentDashboardBackgroundImage + ')' : '')"
         [style.background-color]="currentDashboardBackgroundColor"
         >
         <div  class="content-area" >
