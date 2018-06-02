@@ -155,32 +155,7 @@ export class DashboardDescriptionComponent implements OnInit {
         this.selectedDashboard.dateRefreshed = this.dashboardRefreshed;
 
         // Update global D
-        this.globalVariableService.currentDashboards.forEach(d => {
-            if (d.id == this.selectedDashboard.id) {
-                d.name = this.dashboardName;
-                d.description = this.dashboardDescription;
-                d.qaRequired = this.dashboardQArequired;
-                d.isSample = this.dashboardIsSample;
-                d.code = this.dashboardCode;
-                d.defaultTabID = this.dashboardDefaultTab;
-                d.refreshMode = this.dashboardRefreshMode;
-                d.refreshTimer = this.dashboardRefreshTimer;
-                d.defaultExportFileType = this.dashboardExportFileType;
-                d.url = this.dashboardExportUrl;
-                d.password = this.dashboardPassword;
-                d.templateDashboardID = this.dashboardTemplateID;
-                d.backgroundColor = this.dashboardBackgroundColor;
-                d.backgroundImage = this.dashboardBackgroundImage;
-                d.state = this.dashboardState;
-                d.version = this.dashboardVersion;
-                d.creator = this.dashboardCreator;
-                d.dateCreated = this.dashboardCreated;
-                d.editor = this.dashboardEditor;
-                d.dateEdited = this.dashboardEdited;
-                d.refresher = this.dashboardRefresher;
-                d.dateRefreshed = this.dashboardRefreshed;
-            };
-        });
+        this.globalVariableService.saveDashboard(this.selectedDashboard);
 
         // Tell user
         this.globalVariableService.showStatusBarMessage(

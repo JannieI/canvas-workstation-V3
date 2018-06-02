@@ -1,7 +1,7 @@
 <div class="modal modalBox">
     <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
         <div class="modal-content modalContent">
-            <form #f="ngForm" role="form" novalidate> 
+            <form #f="ngForm" role="form" novalidate>
 
                 <button type="button" class="closeButton" (click)="clickClose()">
                     X
@@ -20,7 +20,7 @@
 
                     <div class="gridName">
                         <b>Name:</b>
-                        <input [(ngModel)]="dashboardName" 
+                        <input [(ngModel)]="dashboardName"
                             type="text"
                             name="dashboardName"
                             placeholder="Enter Name"
@@ -34,7 +34,7 @@
                     </div>
                     <div class="gridDescription">
                         <b>Description:</b>
-                        <input [(ngModel)]="dashboardDescription" 
+                        <input [(ngModel)]="dashboardDescription"
                             type="text"
                             name="dashboardDescription"
                             placeholder="Enter Description"
@@ -66,7 +66,7 @@
 
                     <div class="gridCode">
                         <b>Code:</b>
-                        <input [(ngModel)]="dashboardCode" 
+                        <input [(ngModel)]="dashboardCode"
                             type="text"
                             name="dashboardCode"
                             placeholder="Enter short Code"
@@ -80,7 +80,7 @@
                     </div>
                     <div class="gridDefaultTab">
                         <b>DefaultTab:</b>
-                        <input [(ngModel)]="dashboardDefaultTab" 
+                        <input [(ngModel)]="dashboardDefaultTab"
                             type="text"
                             name="dashboardDefaultTab"
                             placeholder="Enter Default Tab nr to open"
@@ -90,7 +90,7 @@
 
                     <div class="gridRefreshMode">
                         <b>RefreshMode:</b>
-                        <input [(ngModel)]="dashboardRefreshMode" 
+                        <input [(ngModel)]="dashboardRefreshMode"
                             type="text"
                             name="dashboardRefreshMode"
                             placeholder="Enter Refresh Mode"
@@ -99,7 +99,7 @@
                     </div>
                     <div class="gridRefreshTimer">
                         <b>RefreshTimer:</b>
-                        <input [(ngModel)]="dashboardRefreshTimer" 
+                        <input [(ngModel)]="dashboardRefreshTimer"
                             type="text"
                             name="dashboardRefreshTimer"
                             placeholder="Enter Refresh Timer (period in seconds)"
@@ -109,7 +109,7 @@
 
                     <div class="gridExportFileType">
                         <b>Export File Type:</b>
-                        <input [(ngModel)]="dashboardExportFileType" 
+                        <input [(ngModel)]="dashboardExportFileType"
                             type="text"
                             name="dashboardExportFileType"
                             placeholder="Enter Export File Type"
@@ -118,17 +118,17 @@
                     </div>
                     <div class="gridExportUrl">
                         <b>Export Url:</b>
-                        <input [(ngModel)]="dashboardExportUrl" 
+                        <input [(ngModel)]="dashboardExportUrl"
                             type="text"
                             name="dashboardExportUrl"
                             placeholder="Enter ExportUrl"
                             size="25"
                             >
                     </div>
-    
+
                     <div class="gridPassword">
                         <b>Password:</b>
-                        <input [(ngModel)]="dashboardPassword" 
+                        <input [(ngModel)]="dashboardPassword"
                             type="text"
                             name="dashboardPassword"
                             placeholder="Enter Optional Password"
@@ -137,7 +137,7 @@
                     </div>
                     <div class="gridTemplateID">
                         <b>Template ID:</b>
-                        <input [(ngModel)]="dashboardTemplateID" 
+                        <input [(ngModel)]="dashboardTemplateID"
                             type="text"
                             name="dashboardTemplateID"
                             placeholder="Enter Optional Template ID"
@@ -147,7 +147,7 @@
 
                     <div class="gridBackgroundColor">
                         <b>Bg Color:</b>
-                        <input [(ngModel)]="dashboardBackgroundColor" 
+                        <input [(ngModel)]="dashboardBackgroundColor"
                             type="text"
                             name="dashboardBackgroundColor"
                             placeholder="Enter BackgroundColor"
@@ -156,7 +156,7 @@
                     </div>
                     <div class="gridBackgroundImage">
                         <b>Bg Image:</b>
-                        <input [(ngModel)]="dashboardBackgroundImage" 
+                        <input [(ngModel)]="dashboardBackgroundImage"
                             type="text"
                             name="dashboardBackgroundImage"
                             placeholder="Enter BackgroundImage"
@@ -203,11 +203,11 @@
                         <b>Refreshed:</b>
                         {{ dashboardRefreshed }}
                     </div>
-                    
+
                     <div class="gridErrorMessage">
                         {{ errorMessage }}
                     </div>
-        
+
                     <div class="gridButtonCancel">
                         <button
                             type="button"
