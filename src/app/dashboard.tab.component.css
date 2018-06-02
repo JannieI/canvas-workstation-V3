@@ -18,14 +18,24 @@
     margin-top: 2px;
 }
 
-    .gridTitle {
-        grid-column-start: 2;
-        grid-column-end: 14;
+    .titleHeader {
+        font-size: 0.75rem;
+        grid-column-start: 1;
+        grid-column-end: 21;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        margin: 2px 2px 2px 20px;
+        width: 100%;
+    }
+    .titleSubHeader {
+        grid-column-start: 1;
+        grid-column-end: 21;
         grid-row-start: 2;
         grid-row-end: 3;
-        text-align: left;
+        margin: 2px 2px 2px 20px;
+        width: 100%;
     }
- 
+
     .gridName {
         grid-column-start: 2;
         grid-column-end: 14;
@@ -66,11 +76,27 @@
         text-align: left;
     }
 
-    .gridColor {
+    .gridColorTitle {
         grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: 10;
+        grid-row-end: 11;
+        text-align: left;
+    }
+    .gridColor {
+        grid-column-start: 3;
+        grid-column-end: 6;
+        grid-row-start: 10;
+        grid-row-end: 11;
+        margin-left: 20px;
+        text-align: left;
+    }
+    .gridColorPicker {
+        grid-column-start: 6;
         grid-column-end: 8;
         grid-row-start: 10;
         grid-row-end: 11;
+        margin-left: 20px;
         text-align: left;
     }
 
