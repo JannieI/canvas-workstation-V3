@@ -108,8 +108,9 @@ export class DashboardScheduleEditComponent implements OnInit {
         let dashboardScheduleIndex: number = this.globalVariableService.dashboardSchedules
             .findIndex(sch => sch.id == id);
         if (dashboardScheduleIndex >= 0) {
-            this.selectedDashboardSchedules = this.globalVariableService
-                .dashboardSchedules[dashboardScheduleIndex]
+            this.selectedDashboardSchedules = Object.assign({}, 
+                this.globalVariableService.dashboardSchedules[dashboardScheduleIndex]
+            );
         };
 
     }
@@ -119,39 +120,40 @@ export class DashboardScheduleEditComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clearRecord', '@Start');
 
         this.selectedDashboardSchedules = {
-        id: null,
-        dashboardID: null,
-        datasourceID: null,
-        name: null,
-        description: null,
-        repeatFrequency: null,
-        repeatsEvery: null,
-        weeklyMonday: false,
-        weeklyTuesday: false,
-        weeklyWednesday: false,
-        weeklyThursday: false,
-        weeklyFriday: false,
-        weeklySaturday: false,
-        weeklySunday: false,
-        monthlyOn: 0,
-        yearlyJanuary: false,
-        yearlyFebruary: false,
-        yearlyMarch: false,
-        yearlyApril: false,
-        yearlyMay: false,
-        yearlyJune: false,
-        yearlyJuly: false,
-        yearlyAugust: false,
-        yearlySeptember: false,
-        yearlyOctober: false,
-        yearlyNovember: false,
-        yearlyDecember: false,
-        startsOn: null,
-        endsNever: false,
-        endsAfter: 0,
-        endsOn: null
-    };
-}
+            id: null,
+            dashboardID: null,
+            datasourceID: null,
+            name: null,
+            description: null,
+            repeatFrequency: null,
+            repeatsEvery: null,
+            weeklyMonday: false,
+            weeklyTuesday: false,
+            weeklyWednesday: false,
+            weeklyThursday: false,
+            weeklyFriday: false,
+            weeklySaturday: false,
+            weeklySunday: false,
+            monthlyOn: 0,
+            yearlyJanuary: false,
+            yearlyFebruary: false,
+            yearlyMarch: false,
+            yearlyApril: false,
+            yearlyMay: false,
+            yearlyJune: false,
+            yearlyJuly: false,
+            yearlyAugust: false,
+            yearlySeptember: false,
+            yearlyOctober: false,
+            yearlyNovember: false,
+            yearlyDecember: false,
+            startsOn: null,
+            endsNever: false,
+            endsAfter: 0,
+            endsOn: null
+        };
+    }
+    
     clickClose(action: string) {
         // Close form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
@@ -166,6 +168,7 @@ export class DashboardScheduleEditComponent implements OnInit {
         this.editing = false;
         this.addding = false;
         this.errorMessage = '';
+        this.clickRow(this.selectedRow, this.scheduleID);
     }
 
     clickSave() {
