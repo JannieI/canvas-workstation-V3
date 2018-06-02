@@ -90,7 +90,7 @@ export class DashboardScheduleEditComponent implements OnInit {
                   if (this.currentDashboardSchedules.length > 0) {
                     this.clickRow(0, this.currentDashboardSchedules[0].id);
                   };
-              });
+        });
     }
 
     clickRow(index: number, id: number) {
@@ -348,17 +348,10 @@ export class DashboardScheduleEditComponent implements OnInit {
         // Delete a Schedule
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDelete', '@Start');
 
-        this.globalVariableService.deleteDashboardSchedule(id);
-        let dashboardScheduleIndex: number = this.currentDashboardSchedules
-            .findIndex(sch => sch.id == id);
-        if (dashboardScheduleIndex >= 0) {
-            this.currentDashboardSchedules = this.currentDashboardSchedules
-                .splice(dashboardScheduleIndex, 1);
-        };
-
-        if (this.currentDashboardSchedules.length > 0) {
-            this.clickRow(0, this.currentDashboardSchedules[0].id);
-        };
+        this.globalVariableService.deleteDashboardSchedule(id).then(res => {
+            this.currentDashboardSchedules = this.globalVariableService.currentDashboardSchedules
+            this.clearRecord;
+        });
 
     }
 }
