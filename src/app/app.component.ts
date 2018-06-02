@@ -429,7 +429,7 @@ export class AppComponent implements OnInit {
         };
     widgetGroup: number[] = [];
     zoomFactor: string = 'scale(1)';
-
+    templateWidgets: Widget[] = [];
 
  
     public serverMessages = new Array<Message>();
@@ -612,6 +612,7 @@ export class AppComponent implements OnInit {
         this.globalVariableService.currentDashboardInfo.subscribe(
             i => {
                 if (i) {
+
                     this.companyName = this.globalVariableService.canvasSettings.companyName;
                     this.hasDashboard = true;
 
@@ -619,6 +620,32 @@ export class AppComponent implements OnInit {
                         this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
                         this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID)
                             .then(j => {
+
+
+
+
+
+
+
+                                
+                                // Load Template
+                                this.templateWidgets = this.globalVariableService.widgets.filter(w => 
+                                    w.dashboardID == 4
+                                );
+
+                                console.warn('xx templateWidgets', this.templateWidgets)
+
+
+
+
+
+
+
+
+
+
+
+
 
                                 let dashboardIndex: number = this.globalVariableService.dashboards.findIndex(d => d.id == this.globalVariableService.currentDashboardInfo.value.currentDashboardID);
                                 if (dashboardIndex >= 0) {

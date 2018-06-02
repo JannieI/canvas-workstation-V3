@@ -2725,6 +2725,952 @@
 
     </div>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="widgetContainerX" *ngFor="let row of templateWidgets; let i = index"
+        [style.background-color]="row.containerBackgroundColor"
+        [style.border]="row.containerBorder"
+        [style.border-radius]="row.containerBorderRadius"
+        [style.box-shadow]="row.containerBoxshadow"
+        [style.font-size.px]="row.containerFontsize"
+        [style.height.px]="row.containerHeight"
+        [style.left.px]="row.containerLeft"
+        [style.top.px]="row.containerTop"
+        [style.width.px]="row.containerWidth"
+        [style.z-index]="row.containerZindex"
+        (click)="clickWidget($event, i, row.id)"
+        (dragstart)="clickWidgetContainerDragStart($event, i)"
+        (dragend)="clickWidgetContainerDragEnd($event, row.id)"
+        draggable="true"
+        >
+
+        <!-- Widget Content -->
+        <div class="widgetX">
+
+            <!-- Title Container -->
+            <div class="widgetXTitle" *ngIf="row.containerHasTitle"
+                [style.background-color]="row.titleBackgroundColor"
+                [style.border]="row.titleBorder"
+                [style.border-top-left-radius]="row.containerBorderRadius"
+                [style.border-top-right-radius]="row.containerBorderRadius"
+                [style.color]="showWidgetForSlicer(row.id, row.datasourceID, row.datasetID)? 'red' : row.titleColor"
+                [style.font-weight]="row.titleFontWeight"
+                [style.font-size.px]="row.titleFontsize"
+                [style.height.px]="row.titleHeight==0 ? '24' : row.titleHeight"
+                [style.margin]="row.titleMargin"
+                [style.padding]="row.titlePadding"
+                [style.text-align]="row.titleTextAlign"
+                [style.width.%]="row.titleWidth? row.titleWidth : '100'"
+                [style.z-index]="row.containerZindex+1"
+                (contextmenu)="contextMenuOpen()"
+                >
+
+                <!-- Title Text -->
+                <b>{{ row.titleText }}</b>
+
+                <!-- Hyperlink -->
+                <div class="widgetXJumpLink" *ngIf="row.hyperlinkDashboardID
+                     && row.hyperlinkDashboardTabID"
+                    >
+                    <clr-icon shape="arrow right" *ngIf="bullet.linkedTabID"
+                        (click)="actionmenuJumpToLinked(row.hyperlinkDashboardID, row.hyperlinkDashboardTabID)"
+                        >
+                    </clr-icon>
+                </div>
+
+            </div>
+
+            <!-- Graph Object -->
+            <div class="widgetXGraph" *ngIf="row.widgetType=='Graph'">
+                <widget-single
+                    #widgetDOMX
+                    [widget]="row"
+                    [showDataQuality]="showDataQuality"
+                    [showComments]="showComments"
+                    >
+                </widget-single>
+            </div>
+
+            <!-- Slicer Object -->
+            <div class="widgetX" *ngIf="row.widgetType=='Slicer'"
+                (click)="clickWidgetSlicer($event, i, row.id)"
+                >
+                <slicer-single
+                    [slicer]="row"
+                    >
+                </slicer-single>
+            </div>
+
+            <!-- Table Object -->
+            <div class="widgetX" *ngIf="row.widgetType=='Table'">
+                <table-single
+                    [table]="row"
+                    >
+                </table-single>
+            </div>
+
+            <!-- Shape Circle Object -->
+            <div class="widgetX" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Circle'">
+                <svg [style.height]="row.containerHeight-2"
+                    [style.width]="row.containerWidth-2"
+                    [style.margin.px]="2"
+                    >
+                    <circle
+                        [style.cx]="row.containerWidth/2"
+                        [style.cy]="row.containerHeight/2"
+                        [style.r]="(row.containerWidth-26)/2"
+                        [style.stroke]="row.shapeStroke"
+                        [style.stroke-width.px]="row.shapeStrokeWidth"
+                        [style.fill]="row.shapeFill"
+                        />
+                </svg>
+            </div>
+
+            <!-- Shape Ellipse Object -->
+            <div class="widgetX" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Ellipse'">
+                <svg [style.height]="row.containerHeight-2"
+                    [style.width]="row.containerWidth-2"
+                    [style.margin.px]="0"
+                    >
+                    <ellipse
+                        [style.cx]="row.containerWidth/2"
+                        [style.cy]="row.containerHeight/2"
+                        [style.rx]="(row.containerWidth-26)/2"
+                        [style.ry]="(row.containerHeight-26)/2"
+                        [style.stroke]="row.shapeStroke"
+                        [style.stroke-width.px]="row.shapeStrokeWidth"
+                        [style.fill]="row.shapeFill"
+                        />
+                </svg>
+            </div>
+
+            <!-- Shape Rectangle Object -->
+            <div class="widgetX" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Rectangle'">
+                <svg
+                [style.height.px]="row.containerHeight-2"
+                    [style.width.px]="row.containerWidth-2"
+                    [style.margin.px]="4"
+                    >
+                    <rect
+                        [style.height.px]="row.containerHeight-10"
+                        [style.width.px]="row.containerWidth-10"
+                        [style.stroke]="row.shapeStroke"
+                        [style.stroke-width.px]="row.shapeStrokeWidth"
+                        [style.fill]="row.shapeFill"
+                        [style.opacity]="row.shapeOpacity"
+                        [style.rx]="row.shapeCorner"
+                        [style.ry]="row.shapeCorner"
+                        />
+                </svg>
+            </div>
+
+            <!-- Shape Text Object -->
+            <div class="widgetX" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Text'"
+
+                [style.height.px]="1"
+                [style.color]="row.shapeTextColour"
+                [style.font-style]="row.shapeIsItalic? 'italic' : 'normal'"
+                [style.font-weight]="row.shapeIsBold? 'bold' : 'normal'"
+                [style.font-family]="row.shapeFontFamily"
+                [style.font-size.px]="row.shapeFontSize"
+                [style.width.px]="row.containerWidth"
+                [style.text-align]="row.shapeTextAlign"
+                style="margin: 0; padding: 0; white-space: normal;"
+                >
+                {{ row.shapeText }}
+                <!-- <svg width="300" height="300">
+                    <text
+                        x="20"
+                        y="150"
+                        [style.fill]="row.shapeTextColour"
+                        [style.color]="row.shapeTextColour"
+                        >
+                        {{ row.shapeText }}
+                    </text>
+                </svg> -->
+
+            </div>
+
+            <!-- Shape Brackets Object -->
+            <!-- Note:        0                   90                  180                 270  -->
+            <!-- x increase   ?                   up + right-top      right               down+right -->
+            <!-- y increase   ?                   down + right        down                left -->
+
+            <div class="widgetX" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Brackets'">
+                <svg height="150" width="150" *ngIf="row.shapeSize==1
+                    &&
+                    row.shapeRotation==0"
+                    >
+                    <text x="2" y="14"
+                        transform="rotate(0, 50, 40) scale(1,2)"
+                        [style.stroke]="row.shapeStroke"
+                        >}
+                    </text>
+                </svg>
+                <svg height="150" width="150" *ngIf="row.shapeSize==1
+                    &&
+                    row.shapeRotation==90"
+                    >
+                    <text x="2" y="14"
+                        transform="rotate(90, 20, 20) scale(1,2)"
+                        [style.stroke]="row.shapeStroke"
+
+                        >}
+                    </text>
+                </svg>
+                <svg height="150" width="150" *ngIf="row.shapeSize==1
+                    &&
+                    row.shapeRotation==180"
+                    >
+                    <text x="2" y="14"
+                        transform="rotate(180, 5, 20) scale(1,2)"
+                        [style.stroke]="row.shapeStroke"
+                        >}
+                    </text>
+                </svg>
+                <svg height="150" width="150" *ngIf="row.shapeSize==1
+                    &&
+                    row.shapeRotation==270"
+                    >
+                    <text x="2" y="14"
+                        transform="rotate(270, 5, 10) scale(1,2)"
+                        [style.stroke]="row.shapeStroke"
+                        >}
+                    </text>
+                </svg>
+
+                <svg height="150" width="150" *ngIf="row.shapeSize==3
+                    &&
+                    row.shapeRotation==0"
+                    >
+                    <text x="2" y="14"
+                        transform="rotate(0, 10, 5) scale(1,3)"
+                        [style.stroke]="row.shapeStroke"
+                        >}
+                    </text>
+                </svg>
+                <svg height="150" width="150" *ngIf="row.shapeSize==3
+                    &&
+                    row.shapeRotation==90"
+                    >
+                    <text x="2" y="14"
+                        transform="rotate(90, 25, 25) scale(1,3)"
+                        [style.stroke]="row.shapeStroke"
+                        >}
+                    </text>
+                </svg>
+                <svg height="150" width="150" *ngIf="row.shapeSize==3
+                    &&
+                    row.shapeRotation==180"
+                    >
+                    <text x="2" y="14"
+                        transform="rotate(180, 10, 25) scale(1,3)"
+                        [style.stroke]="row.shapeStroke"
+                        >}
+                    </text>
+                </svg>
+                <svg height="150" width="150" *ngIf="row.shapeSize==3
+                    &&
+                    row.shapeRotation==270"
+                    >
+                    <text x="2" y="14"
+                        transform="rotate(270, 5, 10) scale(1,3)"
+                        [style.stroke]="row.shapeStroke"
+                        >}
+                    </text>
+                </svg>
+
+                <svg height="150" width="150" *ngIf="row.shapeSize==5
+                    &&
+                    row.shapeRotation==0"
+                    >
+                    <text x="2" y="14"
+                        transform="rotate(0, 10, 5) scale(1,5)"
+                        [style.stroke]="row.shapeStroke"
+                        >}
+                    </text>
+                </svg>
+                <svg height="150" width="150" *ngIf="row.shapeSize==5
+                    &&
+                    row.shapeRotation==90"
+                    >
+                    <text x="2" y="14"
+                        transform="rotate(90, 40, 40) scale(1,5)"
+                        [style.stroke]="row.shapeStroke"
+                        >}
+                    </text>
+                </svg>
+                <svg height="150" width="150" *ngIf="row.shapeSize==5
+                    &&
+                    row.shapeRotation==180"
+                    >
+                    <text x="2" y="14"
+                        transform="rotate(180, 10, 40) scale(1,5)"
+                        [style.stroke]="row.shapeStroke"
+                        >}
+                    </text>
+                </svg>
+                <svg height="150" width="150" *ngIf="row.shapeSize==5
+                    &&
+                    row.shapeRotation==270"
+                    >
+                    <text x="2" y="14"
+                        transform="rotate(270, 0, 15) scale(1,5)"
+                        [style.stroke]="row.shapeStroke"
+                        >}
+                    </text>
+                </svg>
+
+            </div>
+
+            <!-- Shape Arrow Object -->
+            <div class="widgetX" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Arrow'">
+                <!-- TODO - Makey this DYNAMIC !!!  -->
+                <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==1
+                        &&
+                        row.shapeRotation==0"
+                    height="100"
+                    width="100"
+                    viewBox="5 5 95 95"
+                    style="display: block;"
+                    >
+                    <polygon
+                        points="0, 10 10, 0 10, 5 20, 5 20, 15 10, 15 10, 20 0, 10"
+                        [style.fill]="row.shapeFill"
+                        [style.stroke]="row.shapeStroke"
+                        viewBox="0 0 20 20"
+                        stroke-width:1
+                        />
+                </svg>
+                <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==1
+                        &&
+                        row.shapeRotation==45"
+                    height="100"
+                    width="100"
+                    viewBox="5 5 95 95"
+                    style="display: block;"
+                    >
+                    <polygon
+                        points="0, 10 10, 0 10, 5 20, 5 20, 15 10, 15 10, 20 0, 10"
+                        [style.fill]="row.shapeFill"
+                        [style.stroke]="row.shapeStroke"
+                        viewBox="0 0 20 20"
+                        transform="rotate(45 11 11) scale(1 1)"
+                        stroke-width:1
+                        />
+                </svg>
+                <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==1
+                        &&
+                        row.shapeRotation==90"
+                    height="100"
+                    width="100"
+                    viewBox="5 5 95 95"
+                    style="display: block;"
+                    >
+                    <polygon
+                        points="0, 10 10, 0 10, 5 20, 5 20, 15 10, 15 10, 20 0, 10"
+                        [style.fill]="row.shapeFill"
+                        [style.stroke]="row.shapeStroke"
+                        viewBox="0 0 20 20"
+                        transform="rotate(90 11 15) scale(1 1)"
+                        stroke-width:1
+                        />
+                </svg>
+                <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==1
+                        &&
+                        row.shapeRotation==135"
+                    height="100"
+                    width="100"
+                    viewBox="5 5 95 95"
+                    style="display: block;"
+                    >
+                    <polygon
+                        points="0, 10 10, 0 10, 5 20, 5 20, 15 10, 15 10, 20 0, 10"
+                        [style.fill]="row.shapeFill"
+                        [style.stroke]="row.shapeStroke"
+                        viewBox="0 0 20 20"
+                        transform="rotate(135 11 11) scale(1 1)"
+                        stroke-width:1
+                        />
+                </svg>
+                <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==1
+                        &&
+                        row.shapeRotation==180"
+                    height="100"
+                    width="100"
+                    viewBox="5 5 95 95"
+                    style="display: block;"
+                    >
+                    <polygon
+                        points="0, 10 10, 0 10, 5 20, 5 20, 15 10, 15 10, 20 0, 10"
+                        [style.fill]="row.shapeFill"
+                        [style.stroke]="row.shapeStroke"
+                        viewBox="0 0 20 20"
+                        transform="rotate(180 11 11) scale(1 1)"
+                        stroke-width:1
+                        />
+                </svg>
+                <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==1
+                        &&
+                        row.shapeRotation==225"
+                    height="100"
+                    width="100"
+                    viewBox="5 5 95 95"
+                    style="display: block;"
+                    >
+                    <polygon
+                        points="0, 10 10, 0 10, 5 20, 5 20, 15 10, 15 10, 20 0, 10"
+                        [style.fill]="row.shapeFill"
+                        [style.stroke]="row.shapeStroke"
+                        viewBox="0 0 20 20"
+                        transform="rotate(225 15 10) scale(1 1)"
+                        stroke-width:1
+                        />
+                </svg>
+                <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==1
+                        &&
+                        row.shapeRotation==270"
+                    height="100"
+                    width="100"
+                    viewBox="5 5 95 95"
+                    style="display: block;"
+                    >
+                    <polygon
+                        points="0, 10 10, 0 10, 5 20, 5 20, 15 10, 15 10, 20 0, 10"
+                        [style.fill]="row.shapeFill"
+                        [style.stroke]="row.shapeStroke"
+                        viewBox="0 0 20 20"
+                        transform="rotate(270 15 15) scale(1 1)"
+                        stroke-width:1
+                        />
+                </svg>
+                <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==1
+                        &&
+                        row.shapeRotation==315"
+                    height="100"
+                    width="100"
+                    viewBox="5 5 95 95"
+                    style="display: block;"
+                    >
+                    <polygon
+                        points="0, 10 10, 0 10, 5 20, 5 20, 15 10, 15 10, 20 0, 10"
+                        [style.fill]="row.shapeFill"
+                        [style.stroke]="row.shapeStroke"
+                        viewBox="0 0 20 20"
+                        transform="rotate(315 11 15) scale(1 1)"
+                        stroke-width:1
+                        />
+                </svg>
+
+                <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==2
+                        &&
+                        row.shapeRotation==0"
+                    height="100"
+                    width="100"
+                    viewBox="5 5 95 95"
+                    style="display: block;"
+                    >
+                    <polygon
+                        points="0, 10 10, 0 10, 5 20, 5 20, 15 10, 15 10, 20 0, 10"
+                        [style.fill]="row.shapeFill"
+                        [style.stroke]="row.shapeStroke"
+                        viewBox="0 0 20 20"
+                        transform="scale(2 2)"
+                        stroke-width:1
+                        />
+                </svg>
+                <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==2
+                        &&
+                        row.shapeRotation==45"
+                    height="100"
+                    width="100"
+                    viewBox="5 5 95 95"
+                    style="display: block;"
+                    >
+                    <polygon
+                        points="0, 10 10, 0 10, 5 20, 5 20, 15 10, 15 10, 20 0, 10"
+                        [style.fill]="row.shapeFill"
+                        [style.stroke]="row.shapeStroke"
+                        viewBox="0 0 20 20"
+                        transform="rotate(45 16 21) scale(2 2)"
+                        stroke-width:1
+                        />
+                </svg>
+                <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==2
+                        &&
+                        row.shapeRotation==90"
+                    height="100"
+                    width="100"
+                    viewBox="5 5 95 95"
+                    style="display: block;"
+                    >
+                    <polygon
+                        points="0, 10 10, 0 10, 5 20, 5 20, 15 10, 15 10, 20 0, 10"
+                        [style.fill]="row.shapeFill"
+                        [style.stroke]="row.shapeStroke"
+                        viewBox="0 0 20 20"
+                        transform="rotate(90 16 26) scale(2 2)"
+                        stroke-width:1
+                        />
+                </svg>
+                <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==2
+                        &&
+                        row.shapeRotation==135"
+                    height="100"
+                    width="100"
+                    viewBox="5 5 95 95"
+                    style="display: block;"
+                    >
+                    <polygon
+                        points="0, 10 10, 0 10, 5 20, 5 20, 15 10, 15 10, 20 0, 10"
+                        [style.fill]="row.shapeFill"
+                        [style.stroke]="row.shapeStroke"
+                        viewBox="0 0 20 20"
+                        transform="rotate(135 25 21) scale(2 2)"
+                        stroke-width:1
+                        />
+                </svg>
+                <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==2
+                        &&
+                        row.shapeRotation==180"
+                    height="100"
+                    width="100"
+                    viewBox="5 5 95 95"
+                    style="display: block;"
+                    >
+                    <polygon
+                        points="0, 10 10, 0 10, 5 20, 5 20, 15 10, 15 10, 20 0, 10"
+                        [style.fill]="row.shapeFill"
+                        [style.stroke]="row.shapeStroke"
+                        viewBox="0 0 20 20"
+                        transform="rotate(180 21 21) scale(2 2)"
+                        stroke-width:1
+                        />
+                </svg>
+                <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==2
+                        &&
+                        row.shapeRotation==225"
+                    height="100"
+                    width="100"
+                    viewBox="5 5 95 95"
+                    style="display: block;"
+                    >
+                    <polygon
+                        points="0, 10 10, 0 10, 5 20, 5 20, 15 10, 15 10, 20 0, 10"
+                        [style.fill]="row.shapeFill"
+                        [style.stroke]="row.shapeStroke"
+                        viewBox="0 0 20 20"
+                        transform="rotate(225 25 23) scale(2 2)"
+                        stroke-width:1
+                        />
+                </svg>
+                <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==2
+                        &&
+                        row.shapeRotation==270"
+                    height="100"
+                    width="100"
+                    viewBox="5 5 95 95"
+                    style="display: block;"
+                    >
+                    <polygon
+                        points="0, 10 10, 0 10, 5 20, 5 20, 15 10, 15 10, 20 0, 10"
+                        [style.fill]="row.shapeFill"
+                        [style.stroke]="row.shapeStroke"
+                        viewBox="0 0 20 20"
+                        transform="rotate(270 29 21) scale(2 2)"
+                        stroke-width:1
+                        />
+                </svg>
+                <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==2
+                        &&
+                        row.shapeRotation==315"
+                    height="100"
+                    width="100"
+                    viewBox="5 5 95 95"
+                    style="display: block;"
+                    >
+                    <polygon
+                        points="0, 10 10, 0 10, 5 20, 5 20, 15 10, 15 10, 20 0, 10"
+                        [style.fill]="row.shapeFill"
+                        [style.stroke]="row.shapeStroke"
+                        viewBox="0 0 20 20"
+                        transform="rotate(315 26 26) scale(2 2)"
+                        stroke-width:1
+                        />
+                </svg>
+
+                <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==3
+                        &&
+                        row.shapeRotation==0"
+                    height="100"
+                    width="100"
+                    viewBox="5 5 95 95"
+                    style="display: block;"
+                    >
+                    <polygon
+                        points="0, 10 10, 0 10, 5 20, 5 20, 15 10, 15 10, 20 0, 10"
+                        [style.fill]="row.shapeFill"
+                        [style.stroke]="row.shapeStroke"
+                        viewBox="0 0 20 20"
+                        transform="scale(3 3)"
+                        stroke-width:1
+                        />
+                </svg>
+                <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==3
+                        &&
+                        row.shapeRotation==45"
+                    height="100"
+                    width="100"
+                    viewBox="5 5 95 95"
+                    style="display: block;"
+                    >
+                    <polygon
+                        points="0, 10 10, 0 10, 5 20, 5 20, 15 10, 15 10, 20 0, 10"
+                        [style.fill]="row.shapeFill"
+                        [style.stroke]="row.shapeStroke"
+                        viewBox="0 0 20 20"
+                        transform="rotate(45 21 31) scale(3 3)"
+                        stroke-width:1
+                        />
+                </svg>
+                <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==3
+                        &&
+                        row.shapeRotation==90"
+                    height="100"
+                    width="100"
+                    viewBox="5 5 95 95"
+                    style="display: block;"
+                    >
+                    <polygon
+                        points="0, 10 10, 0 10, 5 20, 5 20, 15 10, 15 10, 20 0, 10"
+                        [style.fill]="row.shapeFill"
+                        [style.stroke]="row.shapeStroke"
+                        viewBox="0 0 20 20"
+                        transform="rotate(90 26 36) scale(3 3)"
+                        stroke-width:1
+                        />
+                </svg>
+                <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==3
+                        &&
+                        row.shapeRotation==135"
+                    height="100"
+                    width="100"
+                    viewBox="5 5 95 95"
+                    style="display: block;"
+                    >
+                    <polygon
+                        points="0, 10 10, 0 10, 5 20, 5 20, 15 10, 15 10, 20 0, 10"
+                        [style.fill]="row.shapeFill"
+                        [style.stroke]="row.shapeStroke"
+                        viewBox="0 0 20 20"
+                        transform="rotate(135 33 31) scale(3 3)"
+                        stroke-width:1
+                        />
+                </svg>
+                <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==3
+                        &&
+                        row.shapeRotation==180"
+                    height="100"
+                    width="100"
+                    viewBox="5 5 95 95"
+                    style="display: block;"
+                    >
+                    <polygon
+                        points="0, 10 10, 0 10, 5 20, 5 20, 15 10, 15 10, 20 0, 10"
+                        [style.fill]="row.shapeFill"
+                        [style.stroke]="row.shapeStroke"
+                        viewBox="0 0 20 20"
+                        transform="rotate(180 33 36) scale(3 3)"
+                        stroke-width:1
+                        />
+                </svg>
+                <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==3
+                        &&
+                        row.shapeRotation==225"
+                    height="100"
+                    width="100"
+                    viewBox="5 5 95 95"
+                    style="display: block;"
+                    >
+                    <polygon
+                        points="0, 10 10, 0 10, 5 20, 5 20, 15 10, 15 10, 20 0, 10"
+                        [style.fill]="row.shapeFill"
+                        [style.stroke]="row.shapeStroke"
+                        viewBox="0 0 20 20"
+                        transform="rotate(225 36 31) scale(3 3)"
+                        stroke-width:1
+                        />
+                </svg>
+                <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==3
+                        &&
+                        row.shapeRotation==270"
+                    height="100"
+                    width="100"
+                    viewBox="5 5 95 95"
+                    style="display: block;"
+                    >
+                    <polygon
+                        points="0, 10 10, 0 10, 5 20, 5 20, 15 10, 15 10, 20 0, 10"
+                        [style.fill]="row.shapeFill"
+                        [style.stroke]="row.shapeStroke"
+                        viewBox="0 0 20 20"
+                        transform="rotate(270 41 29) scale(3 3)"
+                        stroke-width:1
+                        />
+                </svg>
+                <svg class="widgetXShapeArrow" *ngIf="row.shapeSize==3
+                        &&
+                        row.shapeRotation==315"
+                    height="100"
+                    width="100"
+                    viewBox="5 5 95 95"
+                    style="display: block;"
+                    >
+                    <polygon
+                        points="0, 10 10, 0 10, 5 20, 5 20, 15 10, 15 10, 20 0, 10"
+                        [style.fill]="row.shapeFill"
+                        [style.stroke]="row.shapeStroke"
+                        viewBox="0 0 20 20"
+                        transform="rotate(315 45 38) scale(3 3)"
+                        stroke-width:1
+                        />
+                </svg>
+
+
+            </div>
+
+            <!-- Shape ArrowThin Object -->
+            <div class="widgetX" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='ArrowThin'">
+                <svg [style.height.px]="row.containerHeight"
+                    [style.width.px]="row.containerWidth"
+                    [style.marginTop.px]="-25"
+                    [style.marginLeft.px]="-9"
+                    [style.transform]="'rotate(' + row.shapeRotation + 'deg)'"
+                    >
+                    <defs>
+                        <marker id="arrowThin" markerWidth="10" markerHeight="10" refX="0" refY="3" orient="auto" markerUnits="strokeWidth">
+                        <path
+                            d="M0,0 L0,6 L9,3 z"
+                            [style.fill]="row.shapeStroke"
+                            />
+                        </marker>
+                    </defs>
+
+                    <line
+                        x1="1"
+                        y1="1"
+                        x2="55"
+                        y2="55"
+                        [style.stroke]="row.shapeStroke"
+                        stroke-width="5"
+                        marker-end="url(#arrowThin)"
+                        />
+                </svg>
+            </div>
+
+            <!-- Shape Image Object -->
+            <div class="widgetX" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Image'">
+                <img [style.height.px]="row.containerHeight-10"
+                    [style.width.px]="row.containerWidth-10"
+                    [style.marginTop.px]="-25"
+                    [style.marginLeft.px]="-9"
+                    [src]="row.shapeImageUrl"
+                    >
+                    <!-- <iframe width="420" height="345" src="https://www.youtube.com/embed/tgbNymZ7vqY">
+                    </iframe> -->
+            </div>
+
+            <!-- Shape Bullets Object -->
+            <div class="widgetX" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Bullets'">
+                <ul  *ngIf="!row.shapeBulletsOrdered"
+                    [style.list-style-type]="row.shapeBulletStyleType"
+                    >
+                    <li *ngFor="let bullet of row.shapeBullet"
+                        [style.color]="row.shapeTextColour"
+                        [style.font-family]="row.shapeFontFamily"
+                        [style.font-size.px]="row.shapeFontSize"
+                        [style.margin-bottom.px]="row.shapeBulletMarginBottom"
+                        >
+                        {{ bullet.text }}
+                        <clr-icon shape="arrow right" *ngIf="bullet.linkedTabID"
+                            (click)="clickBulletJump(bullet.linkedTabID)">
+                        </clr-icon>
+                    </li>
+                </ul>
+                <ol  *ngIf="row.shapeBulletsOrdered"
+                    >
+                    <li *ngFor="let bullet of row.shapeBullet"
+                        [style.color]="row.shapeTextColour"
+                        [style.font-family]="row.shapeFontFamily"
+                        [style.font-size.px]="row.shapeFontSize"
+                        [style.margin-bottom.px]="row.shapeBulletMarginBottom"
+                        >
+                        {{ bullet.text }}
+                        <clr-icon shape="arrow right" *ngIf="bullet.linkedTabID"
+                            (click)="clickBulletDelete(i, row)">
+                        </clr-icon>
+                    </li>
+                </ol>
+            </div>
+
+            <!-- Shape Value Object -->
+            <div class="widgetX" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Value'">
+                <div
+                    [style.width.px]="row.containerWidth"
+                    [style.background-color]="row.containerBackgroundColor"
+                    [style.font-size.px]="row.shapeFontSize"
+                    [style.font-style]="'italic'"
+                    [style.font-weight]="'bold'"
+                    [style.font-family]="row.shapeFontFamily"
+                    [style.color]="row.shapeStroke"
+                    [style.text-align]="center"
+                    [style.margin.px]="4"
+                    >
+                    {{ row.shapeText }}
+                </div >
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <!-- Routed area -->
     <div class="content-container"
         [style.background-image]="showGrid? 'url(../images/gridBlock.png)' : (currentDashboardBackgroundImage? 'url(../images/' + currentDashboardBackgroundImage + ')' : '')"
