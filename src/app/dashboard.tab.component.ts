@@ -118,18 +118,34 @@ export class DashboardTabComponent {
                 
     }
    
+    clickSelectBgColor(ev: any) {
+        // Select Background Colour
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBgColor', '@Start');
+
+        this.backgroundColor = ev.target.value;
+    }
+
+    clickSelectBgColorPicker(ev: any) {
+        // Open the Colour Picker for Background Colour
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBgColorPicker', '@Start');
+
+        this.selectedColour = this.backgroundColor;
+        this.callingRoutine = 'BgColour';
+        this.colourPickerClosed = true;
+    }
+      
     clickSelectColor(ev: any) {
         // Select text Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectColor', '@Start');
 
-        this.localWidget.titleColor = ev.target.value;
+        this.color = ev.target.value;
     }
 
     clickSelectColorPicker(ev: any) {
         // Open the Colour Picker for text Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectColorPicker', '@Start');
 
-        this.selectedColour = this.localWidget.titleColor;
+        this.selectedColour = this.color;
         this.callingRoutine = 'Colour';
         this.colourPickerClosed = true;
     }
