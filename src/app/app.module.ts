@@ -32,7 +32,6 @@ import { DashboardSnapshotsComponent }      from './dashboard.snapshots.componen
 import { DashboardDescriptionComponent }    from './dashboard.description.component';
 import { DashboardShareComponent }    from './dashboard.share.component';
 import { DashboardTagsComponent }     from './dashboard.tags.component';
-import { DashboardSettingsComponent } from './dashboard.settings.component';
 import { DashboardThemeComponent }    from './dashboard.theme.component';
 import { DashboardTemplateComponent } from './dashboard.template.component';
 import { DashboardScheduleComponent } from './dashboard.schedule.component';
@@ -138,7 +137,6 @@ import { StatusbarComponent }         from './statusbar.component';
         DashboardShareComponent,
         DashboardDescriptionComponent,
         DashboardTagsComponent,
-        DashboardSettingsComponent,
         DashboardThemeComponent,
         DashboardTemplateComponent,
         DashboardScheduleComponent,

@@ -726,7 +726,7 @@ export class Widget {
     tableHeight: number;                // in px, cuts of rest if bigger than this
     tableHideHeader: boolean;           // False to hide the column header row
     tableLeft: number;                  // in px (for later use)
-    tableLineHeight: number;            // Background color (for later use)
+    tableLineHeight: number;            // Table Line height (for later use)
     tableRows: number;                  // Nr of rows in the data, excluding header: 0 means all
     tableTop: number;                   // in px (for later use)
     tableWidth: number;                 // in px, cuts of rest if bigger than this (for later use)
