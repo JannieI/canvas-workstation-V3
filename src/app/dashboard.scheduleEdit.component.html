@@ -48,7 +48,7 @@
                             placeholder="Repeats every so many units"
                             #repeatsEveryVar="ngModel"
                             required
-                            [style.color]="!repeatsEveryVar.valid ? 'red' : 'gray'"
+                            [style.color]="!repeatsEveryVar.valid  &&  editing ? 'red' : 'gray'"
                             [disabled]="!editing"
                             >
                     </div>
@@ -151,7 +151,7 @@
                             name="repeatsOn"
                             placeholder="Occurs Monthly on this day, ie 12th"
                             #monthlyOnVar="ngModel"
-                            [style.color]="!monthlyOnVar.valid ? 'red' : 'gray'"
+                            [style.color]="!monthlyOnVar.valid  &&  editing ? 'red' : 'gray'"
                             [disabled]="!editing"
                             >
                     </div>
@@ -347,7 +347,7 @@
                             placeholder="Starting Date"
                             #startsOnVar="ngModel"
                             required
-                            [style.color]="!startsOnVar.valid ? 'red' : 'gray'"
+                            [style.color]="!startsOnVar.valid  &&  editing ? 'red' : 'gray'"
                             [disabled]="!editing"
                             >
                     </div>
@@ -373,7 +373,7 @@
                             name="endsAfter"
                             placeholder="Ends after n attempts"
                             #endsAfterVar="ngModel"
-                            [style.color]="!endsAfterVar.valid ? 'red' : 'gray'"
+                            [style.color]="!endsAfterVar.valid  &&  editing ? 'red' : 'gray'"
                             [disabled]="!editing"
                             >
                     </div>
@@ -387,7 +387,7 @@
                             name="endsOn"
                             placeholder="Date when the Schedule ends"
                             #endsOnVar="ngModel"
-                            [style.color]="!endsOnVar.valid ? 'red' : 'gray'"
+                            [style.color]="!endsOnVar.valid  &&  editing ? 'red' : 'gray'"
                             [disabled]="!editing"
                             >
                     </div>
@@ -404,7 +404,7 @@
                             required
                             minlength="2"
                             maxlength="250"
-                            [style.color]="!nameVar.valid ? 'red' : 'gray'"
+                            [style.color]="!nameVar.valid  &&  editing ? 'red' : 'gray'"
                             [disabled]="!editing"
                             >
                     </div>
