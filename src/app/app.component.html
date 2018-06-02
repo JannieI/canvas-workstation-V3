@@ -2725,65 +2725,7 @@
 
     </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <!-- Template Widgets -->
     <div class="widgetContainerX" *ngFor="let row of templateWidgets; let i = index"
         [style.background-color]="row.containerBackgroundColor"
         [style.border]="row.containerBorder"
@@ -2795,10 +2737,7 @@
         [style.top.px]="row.containerTop"
         [style.width.px]="row.containerWidth"
         [style.z-index]="row.containerZindex"
-        (click)="clickWidget($event, i, row.id)"
-        (dragstart)="clickWidgetContainerDragStart($event, i)"
-        (dragend)="clickWidgetContainerDragEnd($event, row.id)"
-        draggable="true"
+        (click)="clickTemplateWidget()"
         >
 
         <!-- Widget Content -->
@@ -2819,7 +2758,6 @@
                 [style.text-align]="row.titleTextAlign"
                 [style.width.%]="row.titleWidth? row.titleWidth : '100'"
                 [style.z-index]="row.containerZindex+1"
-                (contextmenu)="contextMenuOpen()"
                 >
 
                 <!-- Title Text -->
@@ -3591,85 +3529,6 @@
         </div>
 
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     <!-- Routed area -->
     <div class="content-container"

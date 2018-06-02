@@ -621,35 +621,23 @@ export class AppComponent implements OnInit {
                         this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID)
                             .then(j => {
 
-
-
-
-
-
-
-                                
-                                // Load Template
-                                this.templateWidgets = this.globalVariableService.widgets.filter(w => 
-                                    w.dashboardID == 4
-                                );
-
-                                console.warn('xx templateWidgets', this.templateWidgets)
-
-
-
-
-
-
-
-
-
-
-
-
-
                                 let dashboardIndex: number = this.globalVariableService.dashboards.findIndex(d => d.id == this.globalVariableService.currentDashboardInfo.value.currentDashboardID);
+                                console.warn('xx dashboardIndex', dashboardIndex, this.globalVariableService.dashboards)
                                 if (dashboardIndex >= 0) {
                                     this.currentDashboardBackgroundColor = this.globalVariableService.dashboards[dashboardIndex].backgroundColor;
+                                    let templateDashboardID: number = this.globalVariableService.dashboards[dashboardIndex].templateDashboardID; 
+                                    console.warn('xx templateDashboardID', templateDashboardID)
+                                    if (templateDashboardID != null  &&  templateDashboardID > 0) {
+                                        // Load Template
+                                        this.templateWidgets = this.globalVariableService.widgets.filter(w => 
+                                            w.dashboardID == templateDashboardID
+                                        );
+
+                                        console.warn('xx templateWidgets', this.templateWidgets)
+                                    } else {
+                                        this.templateWidgets = [];
+                                    };
+
                                 };
 
                                 console.warn('xx this.globalVariableService.currentDashboardInfo.value', this.globalVariableService.currentDashboardInfo.value)
@@ -6063,6 +6051,21 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickWidgetSlicerev', '@Start');
 
         this.clickedSlicerItem = true;
+    }
+
+    clickTemplateWidget() {
+        // Click Template W object
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTemplateWidget', '@Start');
+
+        // Has to be in editMode
+        this.showMessage(
+            'This Widget belongs to the Template (no changes here)',
+            'StatusBar',
+            'Warning',
+            3000,
+            ''
+        );
+        return;
     }
 
     clickWidget(ev: MouseEvent, index: number, id: number) {
