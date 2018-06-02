@@ -23,7 +23,7 @@
                     </div>
                     <div class="select gridRepeatFrequency"
                         >
-                        <select [(ngModel)]="selectedDashboardSchedules.repeatFrequency"
+                        <select [(ngModel)]="selectedDashboardSchedule.repeatFrequency"
                             name="repeatFrequency"
                             [disabled]="!editing  &&  !adding"
                             >
@@ -42,7 +42,7 @@
                         <b>Repeats Every:</b>
                     </div>
                     <div class="gridRepeatsEvery">
-                        <input [(ngModel)]="selectedDashboardSchedules.repeatsEvery"
+                        <input [(ngModel)]="selectedDashboardSchedule.repeatsEvery"
                             type="number" 
                             name="repeatsEvery"
                             placeholder="Repeats every so many units"
@@ -54,11 +54,11 @@
                     </div>
 
                     <div class="gridWeeklyMondayTitle" 
-                        *ngIf="selectedDashboardSchedules.repeatFrequency=='Weekly'">
+                        *ngIf="selectedDashboardSchedule.repeatFrequency=='Weekly'">
                         <b>Monday:</b>
                     </div>
-                    <div class="gridWeeklyMonday" *ngIf="selectedDashboardSchedules.repeatFrequency=='Weekly'">
-                        <input [(ngModel)]="selectedDashboardSchedules.weeklyMonday"
+                    <div class="gridWeeklyMonday" *ngIf="selectedDashboardSchedule.repeatFrequency=='Weekly'">
+                        <input [(ngModel)]="selectedDashboardSchedule.weeklyMonday"
                             type="checkbox" 
                             name="weeklyMonday"
                             placeholder="For Weekly occurs on Monday"
@@ -66,11 +66,11 @@
                             >
                     </div>
                     <div class="gridWeeklyTuesdayTitle" 
-                        *ngIf="selectedDashboardSchedules.repeatFrequency=='Weekly'">
+                        *ngIf="selectedDashboardSchedule.repeatFrequency=='Weekly'">
                         <b>Tueday:</b>
                     </div>
-                    <div class="gridWeeklyTuesday" *ngIf="selectedDashboardSchedules.repeatFrequency=='Weekly'">
-                        <input [(ngModel)]="selectedDashboardSchedules.weeklyTuesday"
+                    <div class="gridWeeklyTuesday" *ngIf="selectedDashboardSchedule.repeatFrequency=='Weekly'">
+                        <input [(ngModel)]="selectedDashboardSchedule.weeklyTuesday"
                             type="checkbox" 
                             name="weeklyTuesday"
                             placeholder="For Weekly occurs on Tueday"
@@ -78,11 +78,11 @@
                             >
                     </div>
                     <div class="gridWeeklyWednesdayTitle" 
-                        *ngIf="selectedDashboardSchedules.repeatFrequency=='Weekly'">
+                        *ngIf="selectedDashboardSchedule.repeatFrequency=='Weekly'">
                         <b>Wednesday:</b>
                     </div>
-                    <div class="gridWeeklyWednesday" *ngIf="selectedDashboardSchedules.repeatFrequency=='Weekly'">
-                        <input [(ngModel)]="selectedDashboardSchedules.weeklyWednesday"
+                    <div class="gridWeeklyWednesday" *ngIf="selectedDashboardSchedule.repeatFrequency=='Weekly'">
+                        <input [(ngModel)]="selectedDashboardSchedule.weeklyWednesday"
                             type="checkbox" 
                             name="weeklyWednesday"
                             placeholder="For Weekly occurs on Wednesday"
@@ -90,11 +90,11 @@
                             >
                     </div>
                     <div class="gridWeeklyThursdayTitle" 
-                        *ngIf="selectedDashboardSchedules.repeatFrequency=='Weekly'">
+                        *ngIf="selectedDashboardSchedule.repeatFrequency=='Weekly'">
                         <b>Thursday:</b>
                     </div>
-                    <div class="gridWeeklyThursday" *ngIf="selectedDashboardSchedules.repeatFrequency=='Weekly'">
-                        <input [(ngModel)]="selectedDashboardSchedules.weeklyThursday"
+                    <div class="gridWeeklyThursday" *ngIf="selectedDashboardSchedule.repeatFrequency=='Weekly'">
+                        <input [(ngModel)]="selectedDashboardSchedule.weeklyThursday"
                             type="checkbox" 
                             name="weeklyThursday"
                             placeholder="For Weekly occurs on Thursday"
@@ -102,11 +102,11 @@
                             >
                     </div>
                     <div class="gridWeeklyFridayTitle" 
-                        *ngIf="selectedDashboardSchedules.repeatFrequency=='Weekly'">
+                        *ngIf="selectedDashboardSchedule.repeatFrequency=='Weekly'">
                         <b>Friday:</b>
                     </div>
-                    <div class="gridWeeklyFriday" *ngIf="selectedDashboardSchedules.repeatFrequency=='Weekly'">
-                        <input [(ngModel)]="selectedDashboardSchedules.weeklyFriday"
+                    <div class="gridWeeklyFriday" *ngIf="selectedDashboardSchedule.repeatFrequency=='Weekly'">
+                        <input [(ngModel)]="selectedDashboardSchedule.weeklyFriday"
                             type="checkbox" 
                             name="weeklyFriday"
                             placeholder="For Weekly occurs on Friday"
@@ -114,11 +114,11 @@
                             >
                     </div>
                     <div class="gridWeeklySaturdayTitle" 
-                        *ngIf="selectedDashboardSchedules.repeatFrequency=='Weekly'">
+                        *ngIf="selectedDashboardSchedule.repeatFrequency=='Weekly'">
                         <b>Saturday:</b>
                     </div>
-                    <div class="gridWeeklySaturday" *ngIf="selectedDashboardSchedules.repeatFrequency=='Weekly'">
-                        <input [(ngModel)]="selectedDashboardSchedules.weeklySaturday"
+                    <div class="gridWeeklySaturday" *ngIf="selectedDashboardSchedule.repeatFrequency=='Weekly'">
+                        <input [(ngModel)]="selectedDashboardSchedule.weeklySaturday"
                             type="checkbox" 
                             name="weeklySaturday"
                             placeholder="For Weekly occurs on Saturday"
@@ -126,11 +126,11 @@
                             >
                     </div>
                     <div class="gridWeeklySundayTitle" 
-                        *ngIf="selectedDashboardSchedules.repeatFrequency=='Weekly'">
+                        *ngIf="selectedDashboardSchedule.repeatFrequency=='Weekly'">
                         <b>Sunday:</b>
                     </div>
-                    <div class="gridWeeklySunday" *ngIf="selectedDashboardSchedules.repeatFrequency=='Weekly'">
-                        <input [(ngModel)]="selectedDashboardSchedules.weeklySunday"
+                    <div class="gridWeeklySunday" *ngIf="selectedDashboardSchedule.repeatFrequency=='Weekly'">
+                        <input [(ngModel)]="selectedDashboardSchedule.weeklySunday"
                             type="checkbox" 
                             name="weeklySunday"
                             placeholder="For Weekly occurs on Sunday"
@@ -139,14 +139,14 @@
                     </div>
 
                     <div class="gridMonthlyOnTitle" 
-                        *ngIf="selectedDashboardSchedules.repeatFrequency=='Monthly'"
+                        *ngIf="selectedDashboardSchedule.repeatFrequency=='Monthly'"
                         >
                         <b>Repeats On:</b>
                     </div>
                     <div class="select gridMonthlyOn"  
-                        *ngIf="selectedDashboardSchedules.repeatFrequency=='Monthly'"
+                        *ngIf="selectedDashboardSchedule.repeatFrequency=='Monthly'"
                         >
-                        <input [(ngModel)]="selectedDashboardSchedules.monthlyOn"
+                        <input [(ngModel)]="selectedDashboardSchedule.monthlyOn"
                             type="number" 
                             name="repeatsOn"
                             placeholder="Occurs Monthly on this day, ie 12th"
@@ -157,14 +157,14 @@
                     </div>
 
                     <div class="gridYearlyJanuaryTitle" 
-                        *ngIf="selectedDashboardSchedules.repeatFrequency=='Yearly'"
+                        *ngIf="selectedDashboardSchedule.repeatFrequency=='Yearly'"
                         >
                         <b>January:</b>
                     </div>
                     <div class="gridYearlyJanuary" 
-                        *ngIf="selectedDashboardSchedules.repeatFrequency=='Yearly'"
+                        *ngIf="selectedDashboardSchedule.repeatFrequency=='Yearly'"
                         >
-                        <input [(ngModel)]="selectedDashboardSchedules.yearlyJanuary"
+                        <input [(ngModel)]="selectedDashboardSchedule.yearlyJanuary"
                             type="checkbox" 
                             name="repeatsOn"
                             placeholder="For Monthly that occurs in January"
@@ -172,14 +172,14 @@
                             >
                     </div>
                     <div class="gridYearlyFebruaryTitle" 
-                        *ngIf="selectedDashboardSchedules.repeatFrequency=='Yearly'"
+                        *ngIf="selectedDashboardSchedule.repeatFrequency=='Yearly'"
                         >
                         <b>February:</b>
                     </div>
                     <div class="gridYearlyFebruary" 
-                        *ngIf="selectedDashboardSchedules.repeatFrequency=='Yearly'"
+                        *ngIf="selectedDashboardSchedule.repeatFrequency=='Yearly'"
                         >
-                        <input [(ngModel)]="selectedDashboardSchedules.yearlyFebruary"
+                        <input [(ngModel)]="selectedDashboardSchedule.yearlyFebruary"
                             type="checkbox" 
                             name="repeatsOn"
                             placeholder="For Monthly that occurs in February"
@@ -187,14 +187,14 @@
                             >
                     </div>
                     <div class="gridYearlyMarchTitle" 
-                        *ngIf="selectedDashboardSchedules.repeatFrequency=='Yearly'"
+                        *ngIf="selectedDashboardSchedule.repeatFrequency=='Yearly'"
                         >
                         <b>March:</b>
                     </div>
                     <div class="gridYearlyMarch" 
-                        *ngIf="selectedDashboardSchedules.repeatFrequency=='Yearly'"
+                        *ngIf="selectedDashboardSchedule.repeatFrequency=='Yearly'"
                         >
-                        <input [(ngModel)]="selectedDashboardSchedules.yearlyMarch"
+                        <input [(ngModel)]="selectedDashboardSchedule.yearlyMarch"
                             type="checkbox" 
                             name="repeatsOn"
                             placeholder="For Monthly that occurs in March"
@@ -202,14 +202,14 @@
                             >
                     </div>
                     <div class="gridYearlyAprilTitle" 
-                        *ngIf="selectedDashboardSchedules.repeatFrequency=='Yearly'"
+                        *ngIf="selectedDashboardSchedule.repeatFrequency=='Yearly'"
                         >
                         <b>April:</b>
                     </div>
                     <div class="gridYearlyApril" 
-                        *ngIf="selectedDashboardSchedules.repeatFrequency=='Yearly'"
+                        *ngIf="selectedDashboardSchedule.repeatFrequency=='Yearly'"
                         >
-                        <input [(ngModel)]="selectedDashboardSchedules.yearlyApril"
+                        <input [(ngModel)]="selectedDashboardSchedule.yearlyApril"
                             type="checkbox" 
                             name="repeatsOn"
                             placeholder="For Monthly that occurs in April"
@@ -217,14 +217,14 @@
                             >
                     </div>
                     <div class="gridYearlyMayTitle" 
-                        *ngIf="selectedDashboardSchedules.repeatFrequency=='Yearly'"
+                        *ngIf="selectedDashboardSchedule.repeatFrequency=='Yearly'"
                         >
                         <b>May:</b>
                     </div>
                     <div class="gridYearlyMay" 
-                        *ngIf="selectedDashboardSchedules.repeatFrequency=='Yearly'"
+                        *ngIf="selectedDashboardSchedule.repeatFrequency=='Yearly'"
                         >
-                        <input [(ngModel)]="selectedDashboardSchedules.yearlyMay"
+                        <input [(ngModel)]="selectedDashboardSchedule.yearlyMay"
                             type="checkbox" 
                             name="repeatsOn"
                             placeholder="For Monthly that occurs in May"
@@ -232,14 +232,14 @@
                             >
                     </div>
                     <div class="gridYearlyJuneTitle" 
-                        *ngIf="selectedDashboardSchedules.repeatFrequency=='Yearly'"
+                        *ngIf="selectedDashboardSchedule.repeatFrequency=='Yearly'"
                         >
                         <b>June:</b>
                     </div>
                     <div class="gridYearlyJune" 
-                        *ngIf="selectedDashboardSchedules.repeatFrequency=='Yearly'"
+                        *ngIf="selectedDashboardSchedule.repeatFrequency=='Yearly'"
                         >
-                        <input [(ngModel)]="selectedDashboardSchedules.yearlyJune"
+                        <input [(ngModel)]="selectedDashboardSchedule.yearlyJune"
                             type="checkbox" 
                             name="repeatsOn"
                             placeholder="For Monthly that occurs in June"
@@ -247,14 +247,14 @@
                             >
                     </div>
                     <div class="gridYearlyJulyTitle" 
-                        *ngIf="selectedDashboardSchedules.repeatFrequency=='Yearly'"
+                        *ngIf="selectedDashboardSchedule.repeatFrequency=='Yearly'"
                         >
                         <b>July:</b>
                     </div>
                     <div class="gridYearlyJuly" 
-                        *ngIf="selectedDashboardSchedules.repeatFrequency=='Yearly'"
+                        *ngIf="selectedDashboardSchedule.repeatFrequency=='Yearly'"
                         >
-                        <input [(ngModel)]="selectedDashboardSchedules.yearlyJuly"
+                        <input [(ngModel)]="selectedDashboardSchedule.yearlyJuly"
                             type="checkbox" 
                             name="repeatsOn"
                             placeholder="For Monthly that occurs in July"
@@ -262,14 +262,14 @@
                             >
                     </div>
                     <div class="gridYearlyAugustTitle" 
-                        *ngIf="selectedDashboardSchedules.repeatFrequency=='Yearly'"
+                        *ngIf="selectedDashboardSchedule.repeatFrequency=='Yearly'"
                         >
                         <b>August:</b>
                     </div>
                     <div class="gridYearlyAugust" 
-                        *ngIf="selectedDashboardSchedules.repeatFrequency=='Yearly'"
+                        *ngIf="selectedDashboardSchedule.repeatFrequency=='Yearly'"
                         >
-                        <input [(ngModel)]="selectedDashboardSchedules.yearlyAugust"
+                        <input [(ngModel)]="selectedDashboardSchedule.yearlyAugust"
                             type="checkbox" 
                             name="repeatsOn"
                             placeholder="For Monthly that occurs in August"
@@ -277,14 +277,14 @@
                             >
                     </div>
                     <div class="gridYearlySeptemberTitle" 
-                        *ngIf="selectedDashboardSchedules.repeatFrequency=='Yearly'"
+                        *ngIf="selectedDashboardSchedule.repeatFrequency=='Yearly'"
                         >
                         <b>September:</b>
                     </div>
                     <div class="gridYearlySeptember" 
-                        *ngIf="selectedDashboardSchedules.repeatFrequency=='Yearly'"
+                        *ngIf="selectedDashboardSchedule.repeatFrequency=='Yearly'"
                         >
-                        <input [(ngModel)]="selectedDashboardSchedules.yearlySeptember"
+                        <input [(ngModel)]="selectedDashboardSchedule.yearlySeptember"
                             type="checkbox" 
                             name="repeatsOn"
                             placeholder="For Monthly that occurs in September"
@@ -292,14 +292,14 @@
                             >
                     </div>
                     <div class="gridYearlyOctoberTitle" 
-                        *ngIf="selectedDashboardSchedules.repeatFrequency=='Yearly'"
+                        *ngIf="selectedDashboardSchedule.repeatFrequency=='Yearly'"
                         >
                         <b>October:</b>
                     </div>
                     <div class="gridYearlyOctober" 
-                        *ngIf="selectedDashboardSchedules.repeatFrequency=='Yearly'"
+                        *ngIf="selectedDashboardSchedule.repeatFrequency=='Yearly'"
                         >
-                        <input [(ngModel)]="selectedDashboardSchedules.yearlyOctober"
+                        <input [(ngModel)]="selectedDashboardSchedule.yearlyOctober"
                             type="checkbox" 
                             name="repeatsOn"
                             placeholder="For Monthly that occurs in October"
@@ -307,14 +307,14 @@
                             >
                     </div>
                     <div class="gridYearlyNovemberTitle" 
-                        *ngIf="selectedDashboardSchedules.repeatFrequency=='Yearly'"
+                        *ngIf="selectedDashboardSchedule.repeatFrequency=='Yearly'"
                         >
                         <b>November:</b>
                     </div>
                     <div class="gridYearlyNovember" 
-                        *ngIf="selectedDashboardSchedules.repeatFrequency=='Yearly'"
+                        *ngIf="selectedDashboardSchedule.repeatFrequency=='Yearly'"
                         >
-                        <input [(ngModel)]="selectedDashboardSchedules.yearlyNovember"
+                        <input [(ngModel)]="selectedDashboardSchedule.yearlyNovember"
                             type="checkbox" 
                             name="repeatsOn"
                             placeholder="For Monthly that occurs in November"
@@ -322,14 +322,14 @@
                             >
                     </div>
                     <div class="gridYearlyDecemberTitle" 
-                        *ngIf="selectedDashboardSchedules.repeatFrequency=='Yearly'"
+                        *ngIf="selectedDashboardSchedule.repeatFrequency=='Yearly'"
                         >
                         <b>December:</b>
                     </div>
                     <div class="gridYearlyDecember" 
-                        *ngIf="selectedDashboardSchedules.repeatFrequency=='Yearly'"
+                        *ngIf="selectedDashboardSchedule.repeatFrequency=='Yearly'"
                         >
-                        <input [(ngModel)]="selectedDashboardSchedules.yearlyDecember"
+                        <input [(ngModel)]="selectedDashboardSchedule.yearlyDecember"
                             type="checkbox" 
                             name="repeatsOn"
                             placeholder="For Monthly that occurs in December"
@@ -341,7 +341,7 @@
                         <b>Starts On:</b>
                     </div>
                     <div class="gridStartsOn">
-                        <input [(ngModel)]="selectedDashboardSchedules.startsOn"
+                        <input [(ngModel)]="selectedDashboardSchedule.startsOn"
                             type="text" 
                             name="startsOn"
                             placeholder="Starting Date"
@@ -356,7 +356,7 @@
                         <b>EndsNever:</b>
                     </div>
                     <div class="gridNeverEnds">
-                        <input [(ngModel)]="selectedDashboardSchedules.endsNever"
+                        <input [(ngModel)]="selectedDashboardSchedule.endsNever"
                             name="neverEnds"
                             type="checkbox"
                             title="Schedule does not have an end date (T/F)"
@@ -368,7 +368,7 @@
                         <b>Ends After:</b>
                     </div>
                     <div class="gridEndsAfter">
-                        <input [(ngModel)]="selectedDashboardSchedules.endsAfter"
+                        <input [(ngModel)]="selectedDashboardSchedule.endsAfter"
                             type="number" 
                             name="endsAfter"
                             placeholder="Ends after n attempts"
@@ -382,7 +382,7 @@
                         <b>Ends On:</b>
                     </div>
                     <div class="gridEndsOn">
-                        <input [(ngModel)]="selectedDashboardSchedules.endsOn"
+                        <input [(ngModel)]="selectedDashboardSchedule.endsOn"
                             type="text" 
                             name="endsOn"
                             placeholder="Date when the Schedule ends"
@@ -396,7 +396,7 @@
                         <b>Name:</b>
                     </div>  
                     <div class="gridScheduleName">
-                            <input [(ngModel)]="selectedDashboardSchedules.name"
+                            <input [(ngModel)]="selectedDashboardSchedule.name"
                             type="text" 
                             name="name"
                             placeholder="Name of the Schedule"
@@ -449,7 +449,7 @@
     
                     <div class="gridSchedules">
     
-                        <clr-datagrid>
+                        <clr-datagrid [(clrDgSingleSelected)]="selectedDashboardSchedule" [clDgRowSelection]="true">
                             <clr-dg-column>Delete</clr-dg-column>
                             <clr-dg-column>ID</clr-dg-column>
                             <clr-dg-column>Name</clr-dg-column>
@@ -463,6 +463,7 @@
     
                             <clr-dg-row *clrDgItems="let row of currentDashboardSchedules
                                 let i = index"
+                                [clrDgItem]="row"
                                 [style.background-color]="(i == selectedRow)? '#123456' : 'white'"
                                 [style.color]="(i == selectedRow)? 'white' : 'gray'"
                                 (click)="clickRow(i, row.id)" 
@@ -489,7 +490,7 @@
                             <clr-dg-footer>
                                 {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
                                 of {{pagination.totalItems}} records
-                                <clr-dg-pagination #pagination [clrDgPageSize]="4">
+                                <clr-dg-pagination #pagination [clrDgPageSize]="3">
                                 </clr-dg-pagination>
                             </clr-dg-footer>
                         </clr-datagrid>
