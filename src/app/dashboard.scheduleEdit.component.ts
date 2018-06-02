@@ -169,6 +169,15 @@ export class DashboardScheduleEditComponent implements OnInit {
         this.addding = false;
         this.errorMessage = '';
         this.clickRow(this.selectedRow, this.scheduleID);
+        
+        // Re Fill the form
+        let dashboardScheduleIndex: number = this.currentDashboardSchedules
+            .findIndex(sch => sch.id == this.selectedDashboardSchedules.id);
+        if (dashboardScheduleIndex >= 0) {
+            this.selectedDashboardSchedules = Object.assign({}, 
+                this.currentDashboardSchedules[dashboardScheduleIndex]
+            );
+        };
     }
 
     clickSave() {
@@ -298,9 +307,17 @@ export class DashboardScheduleEditComponent implements OnInit {
             );
         };
 
+        // Save the changes
         if (this.editing) {
+            let dashboardScheduleIndex: number = this.currentDashboardSchedules
+                .findIndex(sch => sch.id == this.selectedDashboardSchedules.id);
+            if (dashboardScheduleIndex >= 0) {
+                this.currentDashboardSchedules[dashboardScheduleIndex] = 
+                    Object.assign({}, this.selectedDashboardSchedules);
+            };
             this.globalVariableService.saveDashboardSchedule(this.selectedDashboardSchedules)
-        }
+        };
+
         // Reset
         this.editing = false;
         this.addding = false;
