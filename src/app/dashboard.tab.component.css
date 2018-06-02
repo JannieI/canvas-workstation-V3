@@ -11,6 +11,22 @@
     top: 0;
 }
  
+.colourpicker {
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 4px;
+    display: inline-block;
+    grid-column-start: 3;
+    grid-column-end: 9;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    height: 260px;
+    margin: 0px;
+    padding: 20px;
+    width: 280px;
+    z-index: 100;
+}
+
 .gridOverall {
     display: grid;
     grid-template-columns: repeat(11, 1fr);
