@@ -17,6 +17,7 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService}       from './global-variable.service';
 
 // Models
+import { CSScolor }                   from './models';
 import { Dashboard }                  from './models';
 
 @Component({
@@ -75,6 +76,12 @@ export class DashboardDescriptionComponent implements OnInit {
     dashboardRefresher: string;
     dashboardRefreshed: string;
     errorMessage: string = '';
+    selectedColour: string;
+    callingRoutine: string = '';
+    colourPickerClosed: boolean = false;
+    backgroundcolors: CSScolor[];
+    
+    
 
 
 	constructor(
@@ -109,6 +116,26 @@ export class DashboardDescriptionComponent implements OnInit {
         this.dashboardEdited = this.selectedDashboard.dateEdited;
         this.dashboardRefresher = this.selectedDashboard.refresher;
         this.dashboardRefreshed = this.selectedDashboard.dateRefreshed;
+
+
+        // Manage colour picker
+        this.globalVariableService.colourPickerClosed.subscribe(clp => {
+
+            if (clp.cancelled) {
+                this.colourPickerClosed = false;
+            } else {
+
+                if (clp.callingRoutine == 'BgColour') {
+                    this.colourPickerClosed = false;
+                    this.dashboardBackgroundColor = clp.selectedColor;
+                };
+
+            };
+        });
+
+        // Get setup info
+        this.backgroundcolors = this.globalVariableService.backgroundcolors.slice();
+        
     }
 
     clickClose(action: string) {
@@ -174,14 +201,14 @@ export class DashboardDescriptionComponent implements OnInit {
         // Select Background Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBgColor', '@Start');
 
-        this.localWidget.titleBackgroundColor = ev.target.value;
+        this.dashboardBackgroundColor = ev.target.value;
     }
 
     clickSelectBgColorPicker(ev: any) {
         // Open the Colour Picker for Background Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBgColorPicker', '@Start');
 
-        this.selectedColour = this.localWidget.titleBackgroundColor;
+        this.selectedColour = this.dashboardBackgroundColor;
         this.callingRoutine = 'BgColour';
         this.colourPickerClosed = true;
     }

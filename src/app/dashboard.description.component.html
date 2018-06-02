@@ -9,6 +9,14 @@
 
                 <div class="gridOverall">
 
+                    <div class="colourpicker" *ngIf="colourPickerClosed">
+                        <colour-picker
+                            [callingRoutine]="callingRoutine"
+                            [selectedColor]="selectedColour"
+                            >
+                        </colour-picker>
+                    </div> 
+        
                     <div class="gridTitle">
                         <b>Dashboard Description</b>
                     </div>
@@ -158,7 +166,7 @@
                         Bg Colour:
                     </div>  
                     <div class="select gridBackgroundColor">
-                        <select [(ngModel)]="localWidget.titleBackgroundColor"
+                        <select [(ngModel)]="dashboardBackgroundColor"
                             name="titleBackgroundColor"
                             (change)="clickSelectBgColor($event)"
                             >

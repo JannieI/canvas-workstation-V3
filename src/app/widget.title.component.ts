@@ -91,7 +91,6 @@ export class WidgetTitleComponent implements OnInit {
                     };
                 };
         };
-        console.warn('xx ls', this.lineSize, this.lineColor)
 
         // Manage colour picker
         this.globalVariableService.colourPickerClosed.subscribe(clp => {

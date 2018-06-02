@@ -11,6 +11,21 @@
     top: 0;
 }
 
+.colourpicker {
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 4px;
+    display: inline-block;
+    grid-column-start: 4;
+    grid-column-end: 8;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    height: 260px;
+    margin: 0px;
+    padding: 20px;
+    width: 280px;
+    z-index: 100;
+}
 
 .gridOverall {
     display: grid;
