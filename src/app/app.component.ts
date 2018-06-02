@@ -345,7 +345,6 @@ export class AppComponent implements OnInit {
     showModalDashboardRename: boolean = false;
     showModalDashboardDescription: boolean = false;
     showModalDashboardTags
-    showModalDashboardSettings: boolean = false;
     showModalDashboardTheme: boolean = false;
     showModalDashboardTemplate: boolean = false;
     showModalDashboardSchedule: boolean = false;
@@ -847,15 +846,6 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPostAction();
 
         this.showModalDashboardTags = false;
-    }
-
-    handleCloseDashboardSettings(action: string) {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardSettings', '@Start');
-
-        this.menuOptionClickPostAction();
-
-        this.showModalDashboardSettings = false;
     }
 
     handleCloseDashboardTheme(action: string) {
@@ -2428,15 +2418,6 @@ export class AppComponent implements OnInit {
         });
 
         this.showModalDashboardTags = true;
-    }
-
-    clickMenuDashboardDetailSettings() {
-        // Manage settings for the current D
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDashboardDetailSettings', '@Start');
-
-        this.menuOptionClickPreAction();
-
-        this.showModalDashboardSettings = true;
     }
 
     clickMenuDashboardDetailComments() {

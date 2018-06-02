@@ -179,14 +179,6 @@
                                 <button
                                     type="button"
                                     clrDropdownItem
-                                    title="Amend settings for this Dashboard"
-                                    (click)="clickMenuDashboardDetailSettings()"
-                                    >
-                                    Settings
-                                </button>
-                                <button
-                                    type="button"
-                                    clrDropdownItem
                                     title="See and add Comments for this Dashboard"
                                     (click)="clickMenuDashboardDetailComments()"
                                     >
@@ -2928,14 +2920,6 @@
     [selectedDashboard]="selectedDashboard"
     (formDashboardTagsClosed)="handleCloseDashboardTags($event)">Load Dashboard Tags ...
 </dashboard-tags>
-
-
-<!-- Modal: Dashboard Settings -->
-<dashboard-settings
-    class="formPopupDashboard"
-    *ngIf="showModalDashboardSettings"
-    (formDashboardSettingsClosed)="handleCloseDashboardSettings($event)">Load Dashboard Settings ...
-</dashboard-settings>
 
 
 <!-- Modal: Dashboard Theme -->
