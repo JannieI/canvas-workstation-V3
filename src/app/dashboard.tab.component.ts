@@ -45,7 +45,7 @@ export class DashboardTabComponent {
             this.clickSave();
             return;
         };
-
+ 
     }
 
     dashboardID: number;                  // FK to DashboardID to which widget belongs
