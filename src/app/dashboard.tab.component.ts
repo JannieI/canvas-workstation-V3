@@ -7,6 +7,7 @@ import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
 
 // Our models
+import { CSScolor }                   from './models';
 import { DashboardTab }               from './models';
 import { Datasource }                 from './models';
 
@@ -56,6 +57,13 @@ export class DashboardTabComponent {
     showErrorMessage: boolean = false;
     errorMessageText: string = '';
 
+    backgroundcolors: CSScolor[];
+    callingRoutine: string = '';
+    colourPickerClosed: boolean = false;
+    lineColor: string = 'none';
+    selectedColour: string;
+
+
     constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
@@ -77,7 +85,37 @@ export class DashboardTabComponent {
                     .backgroundColor;
                 this.color = this.globalVariableService.currentDashboardTabs[tabIndex].color;
             };
-        }
+        };
+
+        // Manage colour picker
+        this.globalVariableService.colourPickerClosed.subscribe(clp => {
+
+            if (clp != null) {
+
+                if (clp.cancelled) {
+                    this.colourPickerClosed = false;
+                } else {
+ 
+                    if (clp.callingRoutine == 'BgColour') {
+                        this.colourPickerClosed = false;
+                        this.backgroundColor = clp.selectedColor;
+                    };
+                    if (clp.callingRoutine == 'Colour') {
+                        this.colourPickerClosed = false;
+                        this.color = clp.selectedColor;
+                    };
+                    if (clp.callingRoutine == 'BorderColour') {
+                        this.colourPickerClosed = false;
+                        this.lineColor = clp.selectedColor;
+                    };
+
+                };
+            };
+        });
+
+        // Get setup info
+        this.backgroundcolors = this.globalVariableService.backgroundcolors.slice();
+                
     }
 
   	clickClose() {
