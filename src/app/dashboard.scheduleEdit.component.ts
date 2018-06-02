@@ -343,4 +343,22 @@ export class DashboardScheduleEditComponent implements OnInit {
         this.errorMessage = '';
 
     }
+
+    clickDelete(index: number, id: number) {
+        // Delete a Schedule
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDelete', '@Start');
+
+        this.globalVariableService.deleteDashboardSchedule(id);
+        let dashboardScheduleIndex: number = this.currentDashboardSchedules
+            .findIndex(sch => sch.id == id);
+        if (dashboardScheduleIndex >= 0) {
+            this.currentDashboardSchedules = this.currentDashboardSchedules
+                .splice(dashboardScheduleIndex, 1);
+        };
+
+        if (this.currentDashboardSchedules.length > 0) {
+            this.clickRow(0, this.currentDashboardSchedules[0].id);
+        };
+
+    }
 }

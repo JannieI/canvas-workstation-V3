@@ -468,7 +468,12 @@
                                 (click)="clickRow(i, row.id)" 
                                 >
                                 <clr-dg-cell>
-                                    <clr-icon shape="times" class="selectIcon1" size="12"></clr-icon>
+                                    <clr-icon shape="times" 
+                                        class="selectIcon1" 
+                                        size="12"
+                                        (dblclick)="clickDelete(i, row.id)"
+                                        >
+                                    </clr-icon>
                                 </clr-dg-cell>
                                 <clr-dg-cell>{{row.id}}</clr-dg-cell>
                                 <clr-dg-cell>{{row.name}}</clr-dg-cell>
