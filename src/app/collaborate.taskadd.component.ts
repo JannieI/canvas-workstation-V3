@@ -160,14 +160,16 @@ export class CollaborateTaskAddComponent implements OnInit {
         };
 
         // Get D name and state from dropdown
-        let index: number = this.selectedLinkedDashboard.indexOf(' (');
         let dashboardName: string = '';
         let dashboardState: string = '';
-        if (index >= 0) {
-            dashboardName = this.selectedLinkedDashboard.substring(0, index);
-            dashboardState = this.selectedLinkedDashboard.substring(
-                index + 2, this.selectedLinkedDashboard.length - 1
-            );
+        if (this.selectedLinkedDashboard != null  &&  this.selectedLinkedDashboard != '') {
+            let index: number = this.selectedLinkedDashboard.indexOf(' (');
+            if (index >= 0) {
+                dashboardName = this.selectedLinkedDashboard.substring(0, index);
+                dashboardState = this.selectedLinkedDashboard.substring(
+                    index + 2, this.selectedLinkedDashboard.length - 1
+                );
+            };
         };
 
         let today = new Date();
@@ -182,7 +184,6 @@ export class CollaborateTaskAddComponent implements OnInit {
                 dashboardID = this.globalVariableService.dashboards[
                     dashboardIndex].id;
             };
-            console.warn('xx id', dashboardID)
         };
 
         // TODO - add place to add Comments - as this is an array, maybe with initials and date
