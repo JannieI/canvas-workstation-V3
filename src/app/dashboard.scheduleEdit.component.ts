@@ -56,7 +56,7 @@ export class DashboardScheduleEditComponent implements OnInit {
 
     }
 
-    addding: boolean = false;
+    adding: boolean = false;
     currentDashboardSchedules: DashboardSchedule[] = [];
     dashboardName: string = '';
     dashboardState: string = '';
@@ -99,7 +99,7 @@ export class DashboardScheduleEditComponent implements OnInit {
 
         // Set the row index
         this.selectedRow = index;
-        this.addding = false;
+        this.adding = false;
         this.editing = false;
         this.scheduleID = id;
         this.errorMessage = '';
@@ -166,7 +166,7 @@ export class DashboardScheduleEditComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickCancel', '@Start');
 
         this.editing = false;
-        this.addding = false;
+        this.adding = false;
         this.errorMessage = '';
         this.clickRow(this.selectedRow, this.scheduleID);
         
@@ -291,7 +291,7 @@ export class DashboardScheduleEditComponent implements OnInit {
         console.warn('xx done validation')
 
         // Add to local and DB
-        if (this.addding) {
+        if (this.adding) {
             // this.currentDashboardSchedules.push(this.selectedDashboardSchedules);
             this.selectedDashboardSchedules.dashboardID = 
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
@@ -320,7 +320,7 @@ export class DashboardScheduleEditComponent implements OnInit {
 
         // Reset
         this.editing = false;
-        this.addding = false;
+        this.adding = false;
 
     }
 
@@ -339,7 +339,8 @@ export class DashboardScheduleEditComponent implements OnInit {
         // Add a new Schedule
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
 
-        this.addding = true;
+        this.adding = true;
+        this.editing = false;
         this.errorMessage = '';
 
     }
