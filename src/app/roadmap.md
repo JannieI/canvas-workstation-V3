@@ -247,6 +247,9 @@ This document describes items for later versions of Canvas.
     4. If this gets too complicated, only use Shapes on Templates.
     5. Ensure Templates are on different layers / z-index
     6. When a T is changed, the user is warned which Ds use it - he can see their names and maybe   even open them.
+    7. When and where is DS & data loaded?  
+    8. Is it same per Tab?  The D will have many tabs, which tabs of Template is used where, or just first one on all D tabs?
+    9. A lot more thought and testing needs to go into this.
 
 
 

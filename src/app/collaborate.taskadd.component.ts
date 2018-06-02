@@ -38,12 +38,12 @@ export class CollaborateTaskAddComponent implements OnInit {
             this.clickClose('Close');
             return;
         };
-        if ( 
+        if (
             (event.code == 'Enter'  ||  event.code == 'NumpadEnter')
-            &&  
-            (!event.ctrlKey)  
-            &&  
-            (!event.shiftKey) 
+            &&
+            (!event.ctrlKey)
+            &&
+            (!event.shiftKey)
            ) {
             this.clickSave('Saved');
             return;
@@ -157,7 +157,7 @@ export class CollaborateTaskAddComponent implements OnInit {
         let dashboardID: number = null;
         if (dashboardName != '') {
             let dashboardIndex: number = this.globalVariableService.dashboards.findIndex(
-                d => d.name == dashboardName  
+                d => d.name == dashboardName
                      &&
                      d.state == dashboardState
             );

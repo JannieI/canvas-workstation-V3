@@ -53,6 +53,9 @@ export class DashboardDescriptionComponent implements OnInit {
 
     }
 
+    backgroundcolors: CSScolor[];
+    callingRoutine: string = '';
+    colourPickerClosed: boolean = false;
     dashboardName: string;
     dashboardDescription: string;
     dashboardQArequired: boolean;
@@ -77,11 +80,6 @@ export class DashboardDescriptionComponent implements OnInit {
     dashboardRefreshed: string;
     errorMessage: string = '';
     selectedColour: string;
-    callingRoutine: string = '';
-    colourPickerClosed: boolean = false;
-    backgroundcolors: CSScolor[];
-    
-    
 
 
 	constructor(
