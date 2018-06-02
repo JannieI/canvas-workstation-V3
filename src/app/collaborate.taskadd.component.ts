@@ -52,6 +52,7 @@ export class CollaborateTaskAddComponent implements OnInit {
 
     canvasTasks: CanvasTask[] = [];
     dashboardNames: string[] = [];
+    errorMessage: string = '....';
     selectedTaskText: string = '';
     selectedActivityType: string = '';
     selectedTaskStatus: string = '';
@@ -141,6 +142,22 @@ export class CollaborateTaskAddComponent implements OnInit {
     clickSave(action: string) {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
+
+        // Validation
+        if (this.selectedActivityType == null  ||  this.selectedActivityType == '') {
+            this.errorMessage = 'Please select Activity Type';
+            return;
+        };
+        
+        if (this.selectedTaskStatus == null  ||  this.selectedTaskStatus == '') {
+            this.errorMessage = 'Please select Activity Status';
+            return;
+        };
+        
+        if (this.selectedTaskText == null  ||  this.selectedTaskText == '') {
+            this.errorMessage = 'Please enter a Description';
+            return;
+        };
 
         // Get D name and state from dropdown
         let index: number = this.selectedLinkedDashboard.indexOf(' (');
