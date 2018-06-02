@@ -120,16 +120,19 @@ export class DashboardDescriptionComponent implements OnInit {
 
         // Manage colour picker
         this.globalVariableService.colourPickerClosed.subscribe(clp => {
+console.warn('xx clp', clp)
+            if (clp != null) {
 
-            if (clp.cancelled) {
-                this.colourPickerClosed = false;
-            } else {
-
-                if (clp.callingRoutine == 'BgColour') {
+                if (clp.cancelled) {
                     this.colourPickerClosed = false;
-                    this.dashboardBackgroundColor = clp.selectedColor;
-                };
+                } else {
 
+                    if (clp.callingRoutine == 'BgColour') {
+                        this.colourPickerClosed = false;
+                        this.dashboardBackgroundColor = clp.selectedColor;
+                    };
+
+                };
             };
         });
 

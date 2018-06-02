@@ -281,6 +281,7 @@ export class AppComponent implements OnInit {
     currentTabName: string = '';
     currentDashboardTabIndex: number = 0;
     currentDashboardBackgroundColor: string = 'white';
+    currentDashboardBackgroundImage: string = '';
     currentTabBackgroundColor: string = '';
     currentTabColor: string = '';
     currentUserID: string = '';
@@ -839,8 +840,8 @@ export class AppComponent implements OnInit {
         // Refresh any changes to the current D
         if (action == 'Saved') {
             this.currentDashboardName = this.selectedDashboard.name;
-            this.currentTabBackgroundColor = this.selectedDashboard.backgroundColor;
-            this.currentTabColor = this.selectedDashboard.backgroundImage;
+            this.currentDashboardBackgroundColor = this.selectedDashboard.backgroundColor;
+            this.currentDashboardBackgroundImage = this.selectedDashboard.backgroundImage;
         };
 
         this.showModalDashboardDescription = false;
