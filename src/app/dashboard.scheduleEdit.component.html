@@ -461,7 +461,7 @@
                             <clr-dg-column>EndsAfter</clr-dg-column>
                             <clr-dg-column>EndsOn</clr-dg-column>
     
-                            <clr-dg-row *ngFor="let row of currentDashboardSchedules
+                            <clr-dg-row *clrDgItems="let row of currentDashboardSchedules
                                 let i = index"
                                 [style.background-color]="(i == selectedRow)? '#123456' : 'white'"
                                 [style.color]="(i == selectedRow)? 'white' : 'gray'"
@@ -480,7 +480,13 @@
                                 <clr-dg-cell>{{row.endsAfter}}</clr-dg-cell>
                                 <clr-dg-cell>{{row.endsOn}}</clr-dg-cell>
                             </clr-dg-row>
-    
+
+                            <clr-dg-footer>
+                                {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+                                of {{pagination.totalItems}} records
+                                <clr-dg-pagination #pagination [clrDgPageSize]="4">
+                                </clr-dg-pagination>
+                            </clr-dg-footer>
                         </clr-datagrid>
                     </div>
     

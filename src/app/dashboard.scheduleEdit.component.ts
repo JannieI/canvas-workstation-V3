@@ -288,11 +288,10 @@ export class DashboardScheduleEditComponent implements OnInit {
                 return;
         };
 
-        console.warn('xx done validation')
-
         // Add to local and DB
         if (this.adding) {
             // this.currentDashboardSchedules.push(this.selectedDashboardSchedules);
+            this.selectedDashboardSchedules.id = null;
             this.selectedDashboardSchedules.dashboardID = 
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
             this.globalVariableService.addDashboardSchedule(this.selectedDashboardSchedules).then(
