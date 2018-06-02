@@ -153,7 +153,7 @@ export class DashboardScheduleEditComponent implements OnInit {
             endsOn: null
         };
     }
-    
+
     clickClose(action: string) {
         // Close form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
@@ -311,7 +311,9 @@ export class DashboardScheduleEditComponent implements OnInit {
         // Start editing selected Schedule
         this.globalFunctionService.printToConsole(this.constructor.name,'clickEdit', '@Start');
 
-        this.editing = true;
+        if (this.currentDashboardSchedules.length > 0) {
+            this.editing = true;
+        };
         this.errorMessage = '';
 
     }
