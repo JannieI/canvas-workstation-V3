@@ -280,6 +280,7 @@ export class AppComponent implements OnInit {
     currentShapeSpec: any;          // TODO - fill this var !!  not working at moment
     currentTabName: string = '';
     currentDashboardTabIndex: number = 0;
+    currentDashboardBackgroundColor: string = 'white';
     currentTabBackgroundColor: string = '';
     currentTabColor: string = '';
     currentUserID: string = '';
@@ -617,6 +618,12 @@ export class AppComponent implements OnInit {
                         this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
                         this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID)
                             .then(j => {
+
+                                let dashboardIndex: number = this.globalVariableService.dashboards.findIndex(d => d.id == this.globalVariableService.currentDashboardInfo.value.currentDashboardID);
+                                if (dashboardIndex >= 0) {
+                                    this.currentDashboardBackgroundColor = this.globalVariableService.dashboards[dashboardIndex].backgroundColor;
+                                };
+
                                 console.warn('xx this.globalVariableService.currentDashboardInfo.value', this.globalVariableService.currentDashboardInfo.value)
                                 this.refreshGraphs = false;
 
