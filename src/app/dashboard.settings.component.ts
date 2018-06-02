@@ -43,7 +43,7 @@ export class DashboardSettingsComponent implements OnInit {
 
     showTypeDashboard: boolean = false;
     dashboards: Dashboard[];
-
+ 
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -51,11 +51,24 @@ export class DashboardSettingsComponent implements OnInit {
 	) {}
 
     ngOnInit() {
+        // Initial
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
         this.dashboards = this.globalVariableService.dashboards.slice();
     }
 
     clickClose(action: string) {
-        console.log('clickClose')
+        // Close form, nothing saved
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
+
+
+		this.formDashboardSettingsClosed.emit(action);
+    }
+
+    clickSave(action: string) {
+        // Save settings, and close form
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
+
 
 		this.formDashboardSettingsClosed.emit(action);
     }

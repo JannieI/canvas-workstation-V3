@@ -75,7 +75,7 @@ export class MyProfileComponent implements OnInit {
         this.accessType = this.selectedDashboard.accessType;
 
         this.dashboardPermissions = this.globalVariableService.dashboardPermissions.slice();
-        
+         
 
         // KEEP - getting my Fav Ds, and put into fancy table.  Could be useful somewhere
         // this.favDashboards = this.globalVariableService.dashboards.filter(d => 

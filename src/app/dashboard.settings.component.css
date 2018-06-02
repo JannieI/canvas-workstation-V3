@@ -30,7 +30,6 @@
         text-align: left;
     }
     .gridSubTitle {
-        color: red;
         grid-column-start: 1;
         grid-column-end: 41;
         grid-row-start: 2;
