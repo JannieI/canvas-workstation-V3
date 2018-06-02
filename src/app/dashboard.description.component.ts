@@ -169,4 +169,21 @@ export class DashboardDescriptionComponent implements OnInit {
         );
 		this.formDashboardDescriptionClosed.emit(action);
     }
+          
+    clickSelectBgColor(ev: any) {
+        // Select Background Colour
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBgColor', '@Start');
+
+        this.localWidget.titleBackgroundColor = ev.target.value;
+    }
+
+    clickSelectBgColorPicker(ev: any) {
+        // Open the Colour Picker for Background Colour
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBgColorPicker', '@Start');
+
+        this.selectedColour = this.localWidget.titleBackgroundColor;
+        this.callingRoutine = 'BgColour';
+        this.colourPickerClosed = true;
+    }
+      
 }

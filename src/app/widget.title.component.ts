@@ -178,7 +178,7 @@ export class WidgetTitleComponent implements OnInit {
 
     clickSelectLineSize(ev: any) {
         // Select Circle Line Colour
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBgColor', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectLineSize', '@Start');
 
         this.lineSize = ev.target.value;
 
