@@ -46,7 +46,7 @@ export class WidgetTitleComponent implements OnInit {
             &&
             (!event.shiftKey)
            ) {
-            this.clickSave();
+            this.clickSave(); 
             return;
         };
 

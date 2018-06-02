@@ -39,19 +39,19 @@ export class DashboardDescriptionComponent implements OnInit {
             this.clickClose('Close');
             return;
         };
-        if ( 
+        if (
             (event.code == 'Enter'  ||  event.code == 'NumpadEnter')
-            &&  
-            (!event.ctrlKey)  
-            &&  
-            (!event.shiftKey) 
+            &&
+            (!event.ctrlKey)
+            &&
+            (!event.shiftKey)
            ) {
             this.clickSave('Saved');
             return;
         };
 
     }
-    
+
     dashboardName: string;
     dashboardDescription: string;
     dashboardQArequired: boolean;
@@ -124,7 +124,7 @@ export class DashboardDescriptionComponent implements OnInit {
 
         // Add permission check
         if (!this.globalVariableService.dashboardPermissionCheck(
-            this.selectedDashboard.id, 
+            this.selectedDashboard.id,
             'CanEdit')) {
             this.errorMessage = 'Insufficient Permission (needs CanEdit rights or be Owner';
             return;

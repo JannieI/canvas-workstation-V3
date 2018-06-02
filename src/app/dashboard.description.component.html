@@ -31,7 +31,7 @@
                             maxlength="60"
                             [style.color]="!dashboardNameVar.valid ? 'red' : 'gray'"
                         >
-                    </div>
+                    </div> 
                     <div class="gridDescription">
                         <b>Description:</b>
                         <input [(ngModel)]="dashboardDescription"
@@ -145,7 +145,7 @@
                             >
                     </div>
 
-                    <div class="gridBackgroundColor">
+                    <!-- <div class="gridBackgroundColor">
                         <b>Bg Color:</b>
                         <input [(ngModel)]="dashboardBackgroundColor"
                             type="text"
@@ -153,7 +153,35 @@
                             placeholder="Enter BackgroundColor"
                             size="25"
                             >
+                    </div> -->
+                    <div class="gridBackgroundColorTitle">
+                        Bg Colour:
+                    </div>  
+                    <div class="select gridBackgroundColor">
+                        <select [(ngModel)]="localWidget.titleBackgroundColor"
+                            name="titleBackgroundColor"
+                            (change)="clickSelectBgColor($event)"
+                            >
+                            <option *ngFor="let row of backgroundcolors"
+                                [style.background-color]="row.name"
+                                >
+                                {{ row.name }}
+                            </option>
+                        </select>
                     </div>
+                    <button
+                        type="button"
+                        class="btn btn-link btn-sm gridBackgroundColorPicker"
+                        (click)="clickSelectBgColorPicker()"
+                        >
+                        Picker
+                    </button>
+
+
+
+
+
+
                     <div class="gridBackgroundImage">
                         <b>Bg Image:</b>
                         <input [(ngModel)]="dashboardBackgroundImage"
