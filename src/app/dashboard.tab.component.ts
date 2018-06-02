@@ -117,6 +117,22 @@ export class DashboardTabComponent {
         this.backgroundcolors = this.globalVariableService.backgroundcolors.slice();
                 
     }
+   
+    clickSelectColor(ev: any) {
+        // Select text Colour
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectColor', '@Start');
+
+        this.localWidget.titleColor = ev.target.value;
+    }
+
+    clickSelectColorPicker(ev: any) {
+        // Open the Colour Picker for text Colour
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectColorPicker', '@Start');
+
+        this.selectedColour = this.localWidget.titleColor;
+        this.callingRoutine = 'Colour';
+        this.colourPickerClosed = true;
+    }
 
   	clickClose() {
         // Close form, no save
