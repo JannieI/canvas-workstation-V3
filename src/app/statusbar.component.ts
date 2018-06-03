@@ -239,9 +239,45 @@ export class StatusbarComponent {
 
         this.tabOrdering = true;
 
+        // Current order
+        let currentTabDisplayOrder: number = this.currentDashboardTabs[index].displayOrder;
+        console.warn('xx Before currentTabDisplayOrder',  currentTabDisplayOrder)
+
+        // If first, move to end.  Else, Swap with prior one
         this.currentDashboardTabs.forEach(t => {
-            console.warn('xx unchg', t.name, t.displayOrder)
+            if (currentTabDisplayOrder == this.currentDashboardTabs.length) {
+                if (t.displayOrder == this.currentDashboardTabs.length) {
+                    t.displayOrder = 1;
+                    console.warn('xx 1 after t.displayOrder',  t.displayOrder)
+                } else {
+                    t.displayOrder = t.displayOrder + 1;
+                    console.warn('xx 2 after t.displayOrder',  t.displayOrder)
+                };
+            } else {
+                if (t.displayOrder == (currentTabDisplayOrder + 1) ) {
+                    t.displayOrder = t. displayOrder - 1;
+                } else {
+                    if (t.displayOrder == currentTabDisplayOrder) {
+                        t.displayOrder = t. displayOrder + 1;
+                    };
+                };
+            };
+
+            // Save to DB
+            this.globalVariableService.saveDashboardTab(t);
         });
+
+        // Sort
+        this.currentDashboardTabs = this.currentDashboardTabs.sort( (obj1,obj2) => {
+            if (obj1.displayOrder > obj2.displayOrder) {
+                return 1;
+            };
+            if (obj1.displayOrder < obj2.displayOrder) {
+                return -1;
+            };
+            return 0;
+        });
+
 
     }
 
