@@ -184,14 +184,37 @@ export class StatusbarComponent {
         this.showDashboardTabDescription = false;
     }
 
-    clickTabUp() {
+    clickTabUp(index: number) {
         // Reorder Tabs - move this one up in order
         this.globalFunctionService.printToConsole(this.constructor.name,'clickTabUp', '@Start');
 
+        // Switch off T selection
         this.tabOrdering = true;
+
+        // Current order
+        let currentTabDisplayOrder: number = this.currentDashboardTabs[index].displayOrder;
+
+
+        this.currentDashboardTabs.forEach(t => {
+            if (currentTabDisplayOrder == 1) {
+                if (t.displayOrder == 1) {
+                    t.displayOrder == this.currentDashboardTabs.length;
+                } else {
+                    t.displayOrder = t.displayOrder - 1;
+                };
+            } else {
+                if (t.displayOrder == (currentTabDisplayOrder - 1) ) {
+                    t.displayOrder = t. displayOrder + 1;
+                };
+                if (t.displayOrder == currentTabDisplayOrder) {
+                    t.displayOrder = t. displayOrder - 1;
+                };
+            };
+            console.warn('xx ', t.name, t.displayOrder)
+        })
     }
 
-    clickMoveTabDown() {
+    clickMoveTabDown(index: number) {
         // Reorder Tabs - move this one down in order
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMoveTabDown', '@Start');
 
