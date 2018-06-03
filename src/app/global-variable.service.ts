@@ -321,6 +321,7 @@ const dashboardTabTemplate: DashboardTab =
         dashboardID: 0,
         name: 'First',
         description: '',
+        displayOrder: 0,
         backgroundColor: '',
         color: ''
 

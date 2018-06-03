@@ -484,10 +484,11 @@ export class DashboardTab {
     id: number;
     originalID: number;                 // Optional T-id from which this T was copied
     dashboardID: number;                // FK to DashboardID to which widget belongs
-    name: string;
-    description: string;
-    backgroundColor: string;
-    color: string;
+    name: string;                       // Short Name
+    description: string;                // Description
+    displayOrder: number;               // Sort on this to order tabs on D
+    backgroundColor: string;            // Bg Color of T on Status Bar
+    color: string;                      // Color of T name on Status Bar
 }
 
 // List of Recently opened D
