@@ -2153,8 +2153,33 @@ console.warn('xx d', this.dashboards)
                         t => t.id != id
                     );
 
-                    console.log('deleteDashboardTab DELETED id: ', id)
-                    resolve('Deleted');
+                    // Reset the displayOrder of the Rest
+                    let dashboardTabIndex: number = this.dashboardTabs.findIndex(t =>
+                        t.id == id
+                    );
+                    let dashboardTabDisplayOrder: number = this.dashboardTabs.length + 1;
+                    if (dashboardTabIndex >= 0) {
+                        dashboardTabDisplayOrder = this.dashboardTabs[dashboardTabIndex]
+                            .displayOrder;
+                    };
+                    console.warn('xx dashboardTabDisplayOrder', dashboardTabDisplayOrder)
+
+                    // Update displayOrder for the rest
+                    let promiseArray = [];
+                    
+                    this.dashboardTabs.forEach(t => {
+                        if (t.displayOrder > dashboardTabDisplayOrder) {
+                            t.displayOrder = t.displayOrder - 1;
+                        };
+                        promiseArray.push(this.saveDashboardTab(t));
+                    });
+
+                    this.allWithAsync(...promiseArray)
+                        .then(resolvedData => {
+
+                        console.log('deleteDashboardTab DELETED id: ', id)
+                        resolve('Deleted');
+                    });
                 },
                 err => {
                     console.log('Error deleteDashboardTab FAILED', err);;

@@ -463,17 +463,7 @@ export class StatusbarComponent {
             return;
         };
 
-        // Get the index, Delete, and refresh
-        // TODO - improve when working with a DB
-        // for (var x = 0; x < this.globalVariableService.dashboardTabs.length; x++) {
-        //     if (this.globalVariableService.dashboardTabs[x].id ==
-        //         this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID) {
-        //             break;
-        //     };
-        // };
-
-        // this.globalVariableService.dashboardTabs.splice(x, 1);
-       this.globalVariableService.deleteDashboardTab(
+        this.globalVariableService.deleteDashboardTab(
            this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID
         ).then(res => {
 
