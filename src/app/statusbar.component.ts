@@ -200,7 +200,7 @@ export class StatusbarComponent {
         this.currentDashboardTabs.forEach(t => {
             if (currentTabDisplayOrder == 1) {
                 if (t.displayOrder == 1) {
-                    t.displayOrder == this.currentDashboardTabs.length;
+                    t.displayOrder = this.currentDashboardTabs.length;
                     console.warn('xx 1 after t.displayOrder',  t.displayOrder)
                 } else {
                     t.displayOrder = t.displayOrder - 1;
@@ -209,14 +209,15 @@ export class StatusbarComponent {
             } else {
                 if (t.displayOrder == (currentTabDisplayOrder - 1) ) {
                     t.displayOrder = t. displayOrder + 1;
-                    console.warn('xx 3 after t.displayOrder',  t.displayOrder)
                 } else {
                     if (t.displayOrder == currentTabDisplayOrder) {
                         t.displayOrder = t. displayOrder - 1;
-                        console.warn('xx 4 after t.displayOrder',  t.displayOrder)
                     };
                 };
             };
+
+            // Save to DB
+            this.globalVariableService.saveDashboardTab(t);
         });
 
         // Sort
