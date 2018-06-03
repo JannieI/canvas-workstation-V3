@@ -2146,13 +2146,6 @@ console.warn('xx d', this.dashboards)
             .subscribe(
                 data => {
 
-                    this.dashboardTabs = this.dashboardTabs.filter(
-                        t => t.id != id
-                    );
-                    this.currentDashboardTabs = this.currentDashboardTabs.filter(
-                        t => t.id != id
-                    );
-
                     // Reset the displayOrder of the Rest
                     let dashboardTabIndex: number = this.dashboardTabs.findIndex(t =>
                         t.id == id
@@ -2162,12 +2155,20 @@ console.warn('xx d', this.dashboards)
                         dashboardTabDisplayOrder = this.dashboardTabs[dashboardTabIndex]
                             .displayOrder;
                     };
-                    console.warn('xx dashboardTabDisplayOrder', dashboardTabDisplayOrder)
+
+                    // Update local Arrays
+                    this.dashboardTabs = this.dashboardTabs.filter(
+                        t => t.id != id
+                    );
+                    this.currentDashboardTabs = this.currentDashboardTabs.filter(
+                        t => t.id != id
+                    );
 
                     // Update displayOrder for the rest
                     let promiseArray = [];
                     
-                    this.dashboardTabs.forEach(t => {
+                    this.currentDashboardTabs.forEach(t => {
+                        console.warn('xx del t', dashboardTabDisplayOrder, t)
                         if (t.displayOrder > dashboardTabDisplayOrder) {
                             t.displayOrder = t.displayOrder - 1;
                         };
@@ -2175,7 +2176,7 @@ console.warn('xx d', this.dashboards)
                     });
 
                     this.allWithAsync(...promiseArray)
-                        .then(resolvedData => {
+                        .then(res => {
 
                         console.log('deleteDashboardTab DELETED id: ', id)
                         resolve('Deleted');
