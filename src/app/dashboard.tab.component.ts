@@ -187,6 +187,7 @@ export class DashboardTabComponent {
                 dashboardID: this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
                 name: this.name,
                 description: this.description,
+                displayOrder: 0,
                 backgroundColor: this.backgroundColor,
                 color: this.color
             }
@@ -214,6 +215,7 @@ export class DashboardTabComponent {
                     .currentDashboardID,
                 name: this.name,
                 description: this.description,
+                displayOrder: 0,
                 backgroundColor: this.backgroundColor,
                 color: this.color
             };

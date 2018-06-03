@@ -2009,6 +2009,16 @@ console.warn('xx d', this.dashboards)
                             i => i.dashboardID == dashboardID
                         );
                         this.currentDashboardTabs = data;
+                        this.currentDashboardTabs = this.currentDashboardTabs.sort( (obj1,obj2) => {
+                            if (obj1.displayOrder > obj2.displayOrder) {
+                                return -1;
+                            };
+                            if (obj1.displayOrder < obj2.displayOrder) {
+                                return 1;
+                            };
+                            return 0;
+                        });
+
                         console.log('%c    Global-Variables getCurrentDashboardTabs 1',
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", dashboardID, data)
                         resolve(this.currentDashboardTabs);
@@ -2020,7 +2030,17 @@ console.warn('xx d', this.dashboards)
                 let returnData: DashboardTab[];
                 returnData = this.dashboardTabs.filter(
                         i => i.dashboardID == dashboardID
-                    )
+                );
+                this.currentDashboardTabs = this.currentDashboardTabs.sort( (obj1,obj2) => {
+                    if (obj1.displayOrder > obj2.displayOrder) {
+                        return -1;
+                    };
+                    if (obj1.displayOrder < obj2.displayOrder) {
+                        return 1;
+                    };
+                    return 0;
+                });
+
                 this.currentDashboardTabs = returnData;
                 console.log('%c    Global-Variables getCurrentDashboardTabs 2',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", dashboardID, returnData)
