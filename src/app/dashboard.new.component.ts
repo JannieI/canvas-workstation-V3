@@ -107,24 +107,32 @@ export class DashboardNewComponent implements OnInit {
         newDashboard.description = this.dashboardDescription;
         newDashboard.creator = this.globalVariableService.currentUser.userID;
 
-        // Add new to DB, and open
-        this.globalVariableService.addDashboard(newDashboard).then(d => {
+        // Add new (Complete + Draft) to DB, and open Draft
+        newDashboard.state = 'Complete';
+        this.globalVariableService.addDashboard(newDashboard).then(newD => {
+            newDashboard.state = 'Draft';
+            newDashboard.originalID = newD.id;
+            this.globalVariableService.addDashboard(newDashboard).then(draftD => {
+                newD.draftID = draftD.id;
+                this.globalVariableService.saveDashboard(newD).then(originalD => {
 
-            let newDashboardTab: DashboardTab = this.globalVariableService.dashboardTabTemplate;
-            newDashboardTab.dashboardID = d.id;
+                    let newDashboardTab: DashboardTab = this.globalVariableService.dashboardTabTemplate;
+                    newDashboardTab.dashboardID = draftD.id;
 
-            // Add Tab to DB
-            this.globalVariableService.addDashboardTab(newDashboardTab).then(t => {
+                    // Add Tab to DB
+                    this.globalVariableService.addDashboardTab(newDashboardTab).then(t => {
 
-                this.globalVariableService.amendDashboardRecent(d.id, t.id).then(dR => {
+                        this.globalVariableService.amendDashboardRecent(draftD.id, t.id).then(dR => {
+console.log('xx after add,', originalD, draftD)
+                            this.globalVariableService.refreshCurrentDashboard(
+                                'addDashboard-clickCreate', draftD.id, t.id, ''
+                            );
 
-                    this.globalVariableService.refreshCurrentDashboard(
-                        'addDashboard-clickCreate', d.id, t.id, ''
-                    );
-
-                    this.formDashboardNewClosed.emit('Created');
+                            this.formDashboardNewClosed.emit('Created');
+                        });
+                    })
                 });
-            })
+            });
         });
 
     }
