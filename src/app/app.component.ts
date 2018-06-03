@@ -2251,18 +2251,6 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        // Has to be in editMode
-        if (!this.editMode) {
-            this.showMessage(
-                this.globalVariableService.canvasSettings.notInEditModeMsg,
-                'StatusBar',
-                'Warning',
-                3000,
-                ''
-            );
-            return;
-        };
-
         // Check D state
         let dashboardIndex: number = this.globalVariableService.currentDashboards.findIndex(
             d => d.id == this.globalVariableService.currentDashboardInfo.value.currentDashboardID

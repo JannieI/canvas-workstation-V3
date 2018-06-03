@@ -123,7 +123,7 @@ export class DashboardNewComponent implements OnInit {
                     this.globalVariableService.addDashboardTab(newDashboardTab).then(t => {
 
                         this.globalVariableService.amendDashboardRecent(draftD.id, t.id).then(dR => {
-console.log('xx after add,', originalD, draftD)
+
                             this.globalVariableService.refreshCurrentDashboard(
                                 'addDashboard-clickCreate', draftD.id, t.id, ''
                             );
