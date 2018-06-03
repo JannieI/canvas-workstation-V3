@@ -6443,6 +6443,15 @@ console.warn('xx d', this.dashboards)
         // Make sure the currT are indeed for the requested D
         let currentDashboardTabs: DashboardTab[];
         currentDashboardTabs = this.dashboardTabs.filter(t => t.dashboardID == dashboardID);
+        currentDashboardTabs = currentDashboardTabs.sort( (obj1,obj2) => {
+            if (obj1.displayOrder > obj2.displayOrder) {
+                return 1;
+            };
+            if (obj1.displayOrder < obj2.displayOrder) {
+                return -1;
+            };
+            return 0;
+        });
 
         // Assume we have all currentD info
         if ( ( (tabToShow == 'Previous')  ||  (tabToShow == 'Next') )  &&
