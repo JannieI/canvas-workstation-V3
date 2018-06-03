@@ -182,36 +182,54 @@ export class StatusbarComponent {
         this.showTabList = true;
         this.showDashboardDescription = false;
         this.showDashboardTabDescription = false;
+        console.warn('tabs',  this.currentDashboardTabs)
     }
 
-    clickTabUp(index: number) {
+    clickMoveTabUp(index: number) {
         // Reorder Tabs - move this one up in order
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickTabUp', '@Start');
-
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMoveTabUp', '@Start');
+        
         // Switch off T selection
         this.tabOrdering = true;
-
+        
         // Current order
         let currentTabDisplayOrder: number = this.currentDashboardTabs[index].displayOrder;
+        console.warn('xx Before currentTabDisplayOrder',  currentTabDisplayOrder)
 
-
+        // If first, move to end.  Else, Swap with prior one
         this.currentDashboardTabs.forEach(t => {
             if (currentTabDisplayOrder == 1) {
                 if (t.displayOrder == 1) {
                     t.displayOrder == this.currentDashboardTabs.length;
+                    console.warn('xx 1 after t.displayOrder',  t.displayOrder)
                 } else {
                     t.displayOrder = t.displayOrder - 1;
+                    console.warn('xx 2 after t.displayOrder',  t.displayOrder)
                 };
             } else {
                 if (t.displayOrder == (currentTabDisplayOrder - 1) ) {
                     t.displayOrder = t. displayOrder + 1;
-                };
-                if (t.displayOrder == currentTabDisplayOrder) {
-                    t.displayOrder = t. displayOrder - 1;
+                    console.warn('xx 3 after t.displayOrder',  t.displayOrder)
+                } else {
+                    if (t.displayOrder == currentTabDisplayOrder) {
+                        t.displayOrder = t. displayOrder - 1;
+                        console.warn('xx 4 after t.displayOrder',  t.displayOrder)
+                    };
                 };
             };
-            console.warn('xx ', t.name, t.displayOrder)
-        })
+        });
+
+        // Sort
+        this.currentDashboardTabs = this.currentDashboardTabs.sort( (obj1,obj2) => {
+            if (obj1.displayOrder > obj2.displayOrder) {
+                return 1;
+            };
+            if (obj1.displayOrder < obj2.displayOrder) {
+                return -1;
+            };
+            return 0;
+        });
+
     }
 
     clickMoveTabDown(index: number) {
@@ -219,6 +237,10 @@ export class StatusbarComponent {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMoveTabDown', '@Start');
 
         this.tabOrdering = true;
+
+        this.currentDashboardTabs.forEach(t => {
+            console.warn('xx unchg', t.name, t.displayOrder)
+        });
 
     }
 

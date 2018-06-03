@@ -2020,7 +2020,7 @@ console.warn('xx d', this.dashboards)
                         });
 
                         console.log('%c    Global-Variables getCurrentDashboardTabs 1',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", dashboardID, data)
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", dashboardID, this.currentDashboardTabs)
                         resolve(this.currentDashboardTabs);
 
                 })
@@ -2043,7 +2043,7 @@ console.warn('xx d', this.dashboards)
 
                 this.currentDashboardTabs = returnData;
                 console.log('%c    Global-Variables getCurrentDashboardTabs 2',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", dashboardID, returnData)
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", dashboardID, this.currentDashboardTabs)
                 resolve(this.currentDashboardTabs);
             });
         };
