@@ -46,7 +46,7 @@ export class WidgetTitleComponent implements OnInit {
             &&
             (!event.shiftKey)
            ) {
-            this.clickSave(); 
+            this.clickSave();
             return;
         };
 
@@ -70,10 +70,10 @@ export class WidgetTitleComponent implements OnInit {
     ngOnInit() {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
-        
+
         // Deconstruct border
-        if (this.selectedWidget.titleBorder != '' 
-            && 
+        if (this.selectedWidget.titleBorder != ''
+            &&
             this.selectedWidget.titleBorder != 'none') {
                 let space: number = this.selectedWidget.titleBorder.indexOf(' ');
                 if (space > 0) {
@@ -100,7 +100,7 @@ export class WidgetTitleComponent implements OnInit {
                 if (clp.cancelled) {
                     this.colourPickerClosed = false;
                 } else {
- 
+
                     if (clp.callingRoutine == 'BgColour') {
                         this.colourPickerClosed = false;
                         this.localWidget.titleBackgroundColor = clp.selectedColor;
@@ -120,13 +120,13 @@ export class WidgetTitleComponent implements OnInit {
 
         // Deep copy
         this.localWidget = Object.assign({}, this.selectedWidget);
-        console.warn('xx localW', this.localWidget)
+        console.warn('xx col', this.localWidget.titleBackgroundColor, this.localWidget.titleColor )
 
         // Get setup info
         this.backgroundcolors = this.globalVariableService.backgroundcolors.slice();
-        
+
     }
-      
+
     clickSelectBgColor(ev: any) {
         // Select Background Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBgColor', '@Start');
@@ -142,7 +142,7 @@ export class WidgetTitleComponent implements OnInit {
         this.callingRoutine = 'BgColour';
         this.colourPickerClosed = true;
     }
-      
+
     clickSelectColor(ev: any) {
         // Select text Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectColor', '@Start');

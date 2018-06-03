@@ -15,18 +15,18 @@
                             [selectedColor]="selectedColour"
                             >
                         </colour-picker>
-                    </div> 
- 
+                    </div>
+
                     <div class="titleHeader">
                         <b>Title:</b>
                     </div>
                     <div class="titleSubHeader">
                         <i>Set properties of the Title box at the top of the Widget.</i>
                     </div>
-                    
+
                     <div class="titleText">
                         Text:
-                        <input [(ngModel)]="localWidget.titleText" 
+                        <input [(ngModel)]="localWidget.titleText"
                             type="text"
                             name="titleText"
                             placeholder="Title Text"
@@ -35,7 +35,7 @@
 
                     <div class="titleBackgroundColourTitle">
                         Bg Colour:
-                    </div>  
+                    </div>
                     <div class="select titleBackgroundColour">
                         <select [(ngModel)]="localWidget.titleBackgroundColor"
                             name="titleBackgroundColor"
@@ -67,11 +67,11 @@
 
                     <div class="titleColourTitle">
                         Colour:
-                    </div>  
+                    </div>
                     <div class="select titleColour">
                         <select [(ngModel)]="localWidget.titleColor"
+                            name="titleColor"
                             (change)="clickSelectColor($event)"
-                            name="lineColor"
                             >
                             <option *ngFor="let row of backgroundcolors"
                                 [style.background-color]="row.name"
@@ -90,7 +90,7 @@
 
                     <div class="titleBorderSizeTitle">
                         Border Size:
-                    </div>  
+                    </div>
                     <div class="select titleBorderSize">
                         <select [(ngModel)]="lineSize"
                             name="lineSize"
@@ -106,7 +106,7 @@
 
                     <div class="titleBorderColorTitle">
                         Border:
-                    </div>  
+                    </div>
                     <div class="select titleBorderColor">
                         <select [(ngModel)]="localWidget.titleBorder"
                             (change)="clickSelectBorderColor($event)"
@@ -126,10 +126,10 @@
                         >
                         Picker
                     </button>
-                    
+
                     <div class="titleTextAlignTitle">
                         TextAlign:
-                    </div>  
+                    </div>
                     <div class="select titleTextAlign">
                         <select [(ngModel)]="localWidget.titleTextAlign"
                             name="lineSize"
@@ -145,7 +145,7 @@
                     </div>
                     <div class="titleMargin">
                         <input [(ngModel)]="localWidget.titleMargin"
-                            type="text" 
+                            type="text"
                             name="titleMargin"
                             placeholder="Around box, ie 0 0 0 5px"
                             >
@@ -154,7 +154,7 @@
                     <div class="titleFontsize">
                         Font Size:
                         <input [(ngModel)]="localWidget.titleFontsize"
-                            type="text" 
+                            type="text"
                             name="titleFontsize"
                             placeholder="Size of font in px"
                             >
@@ -162,7 +162,7 @@
                     <div class="titleFontWeight">
                         Font Weight:
                         <input [(ngModel)]="localWidget.titleFontWeight"
-                            type="text" 
+                            type="text"
                             name="titleFontWeight"
                             placeholder="Number 1 to 900"
                             >
@@ -171,7 +171,7 @@
                     <div class="titleHeight">
                         Height:
                         <input [(ngModel)]="localWidget.titleHeight"
-                            type="text" 
+                            type="text"
                             name="titleHeight"
                             placeholder="Height in px (ie 24)"
                             >
@@ -180,13 +180,13 @@
                     <div class="titleWidth">
                         Width:
                         <input [(ngModel)]="localWidget.titleWidth"
-                            type="text" 
+                            type="text"
                             name="titleWidth"
                             placeholder="Width as % (0-100)"
                             >
                     </div>
-                
-                    <button 
+
+                    <button
                         type="button"
                         class="btn btn-secondary titleButtonCancel"
                         (click)="clickClose()"
@@ -200,7 +200,7 @@
                         >
                         Save
                     </button>
-                
+
                 </div>
             </form>
         </div>
