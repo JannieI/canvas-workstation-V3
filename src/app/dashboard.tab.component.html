@@ -14,7 +14,7 @@
                         [selectedColor]="selectedColour"
                         >
                     </colour-picker>
-                </div> 
+                </div>
 
                 <div class="titleHeader">
                     <b>Dashboard Tab:</b>
@@ -34,10 +34,10 @@
                     <input type="text" id="dashboardName" placeholder="Enter Tab description"
                         class="popupInput" [(ngModel)]="description">
                 </div>
- 
+
                 <div class="gridBgColorTitle">
                     Bg Colour:
-                </div>  
+                </div>
                 <div class="select gridBgColor">
                     <select [(ngModel)]="backgroundColor"
                         name="backgroundColor"
@@ -60,7 +60,7 @@
 
                 <div class="gridColorTitle">
                     Colour:
-                </div>  
+                </div>
                 <div class="select gridColor">
                     <select [(ngModel)]="color"
                         (change)="clickSelectColor($event)"
@@ -80,7 +80,7 @@
                     >
                     Picker
                 </button>
-                
+
 
                 <div class="gridErrorMessage" *ngIf="showErrorMessage">
                     {{ errorMessageText}}

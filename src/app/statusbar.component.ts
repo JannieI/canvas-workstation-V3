@@ -183,6 +183,16 @@ export class StatusbarComponent {
         this.showDashboardTabDescription = false;
     }
 
+    clickTabUp() {
+        // Reorder Tabs - move this one up in order
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTabUp', '@Start');
+    }
+
+    clickMoveTabDown() {
+        // Reorder Tabs - move this one down in order
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMoveTabDown', '@Start');
+    }
+
     selectDashboardTab(index: number) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'selectDashboardTab', '@Start');
@@ -294,7 +304,7 @@ export class StatusbarComponent {
         this.newTab = true;
         this.showNewTab = true;
     }
- 
+
     clickTabEdit() {
         // Edit a Tab
         this.globalFunctionService.printToConsole(this.constructor.name,'clickTabEdit', '@Start');
@@ -380,7 +390,7 @@ export class StatusbarComponent {
                 'Previous'
             );
         })
-            
+
         // Close popup form
         this.showDashboardTabDescription = false;
     }

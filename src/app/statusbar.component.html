@@ -5,7 +5,7 @@
         title="Current Dashboard"
         (click)="clickDashboardDescription()">
         {{ currentDashboardName }}
-    </span> 
+    </span>
 
     <span class="statusBarText statusBarTextBorder"
         title="Click to show Tab List"
@@ -40,7 +40,7 @@
         [style.color]="currentTabColor"
         (click)="clickShowTabDescription()"
         >
-        <b>{{ currentTabName }}</b> 
+        <b>{{ currentTabName }}</b>
     </span>
     <span class="statusBarText statusBarTextBorder"
         title="Click to show next Tab "
@@ -139,7 +139,7 @@
         >
       {{ statusBarMessageText }}
     </span>
-    
+
 </div>
 
 
@@ -150,6 +150,15 @@
         (click)="selectDashboardTab(i)"
         >
         {{row.name}}
+        <clr-icon shape="arrow"
+            size="12"
+            (click)="clickTabUp()">
+        </clr-icon>
+        <clr-icon shape="arrow down"
+            size="12"
+            (click)="clickMoveTabDown()">
+        </clr-icon>
+
     </div>
     <button
         type="button"
