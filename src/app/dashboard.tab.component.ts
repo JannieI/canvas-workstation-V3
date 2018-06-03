@@ -14,7 +14,7 @@ import { Datasource }                 from './models';
 // Our Services
 import { GlobalFunctionService }      from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
-
+ 
 
 @Component({
     selector: 'dashboard-tab',
@@ -187,7 +187,7 @@ export class DashboardTabComponent {
                 dashboardID: this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
                 name: this.name,
                 description: this.description,
-                displayOrder: 0,
+                displayOrder: this.globalVariableService.currentDashboardTabs.length + 1,
                 backgroundColor: this.backgroundColor,
                 color: this.color
             }
