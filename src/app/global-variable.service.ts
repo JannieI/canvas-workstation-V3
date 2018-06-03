@@ -2011,10 +2011,10 @@ console.warn('xx d', this.dashboards)
                         this.currentDashboardTabs = data;
                         this.currentDashboardTabs = this.currentDashboardTabs.sort( (obj1,obj2) => {
                             if (obj1.displayOrder > obj2.displayOrder) {
-                                return -1;
+                                return 1;
                             };
                             if (obj1.displayOrder < obj2.displayOrder) {
-                                return 1;
+                                return -1;
                             };
                             return 0;
                         });
@@ -2033,10 +2033,10 @@ console.warn('xx d', this.dashboards)
                 );
                 this.currentDashboardTabs = this.currentDashboardTabs.sort( (obj1,obj2) => {
                     if (obj1.displayOrder > obj2.displayOrder) {
-                        return -1;
+                        return 1;
                     };
                     if (obj1.displayOrder < obj2.displayOrder) {
-                        return 1;
+                        return -1;
                     };
                     return 0;
                 });
@@ -2103,10 +2103,19 @@ console.warn('xx d', this.dashboards)
                 res => {
 
                     // Replace local
-                    let localIndex: number = this.dashboardTabs.findIndex(d =>
+                    let localIndex: number = this.currentDashboardTabs.findIndex(d =>
                         d.id == data.id
                     );
-                    this.dashboardTabs[localIndex] = data;
+                    if (localIndex >= 0) {
+                        this.currentDashboardTabs[localIndex] = data;
+                    };
+                    localIndex = this.dashboardTabs.findIndex(d =>
+                        d.id == data.id
+                    );
+                    if (localIndex >= 0) {
+                        this.dashboardTabs[localIndex] = data;
+                    };
+
 
                     console.log('saveDashboardTab SAVED', res)
                     resolve('Saved');
