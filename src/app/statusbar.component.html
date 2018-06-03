@@ -149,7 +149,6 @@
     <div class="tabListItem" *ngFor="let row of currentDashboardTabs; let i = index"
         (click)="selectDashboardTab(i)"
         >
-        {{row.name}}
         <clr-icon shape="arrow"
             size="12"
             (click)="clickTabUp()">
@@ -158,6 +157,7 @@
             size="12"
             (click)="clickMoveTabDown()">
         </clr-icon>
+        {{row.name}}
 
     </div>
     <button

@@ -51,6 +51,7 @@ export class StatusbarComponent {
     state: string = '';
     statusBarMessageText: string = '';
     statusBarMessageColour: string = 'rgb(197, 194, 194)';
+    tabOrdering: boolean = false;
     widgetGroupText: string;
 
 
@@ -186,16 +187,27 @@ export class StatusbarComponent {
     clickTabUp() {
         // Reorder Tabs - move this one up in order
         this.globalFunctionService.printToConsole(this.constructor.name,'clickTabUp', '@Start');
+
+        this.tabOrdering = true;
     }
 
     clickMoveTabDown() {
         // Reorder Tabs - move this one down in order
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMoveTabDown', '@Start');
+
+        this.tabOrdering = true;
+
     }
 
     selectDashboardTab(index: number) {
-        //
+        // Show the T selected by the user
         this.globalFunctionService.printToConsole(this.constructor.name,'selectDashboardTab', '@Start');
+
+        // Reordering busy, so dont select
+        if (this.tabOrdering) {
+            this.tabOrdering = false;
+            return;
+        };
 
         this.globalVariableService.refreshCurrentDashboard(
             'statusbar-selectDashboardTab',
