@@ -69,6 +69,7 @@ import { GlobalVariableService }      from './global-variable.service';
     showSlicerType: boolean = false;
     showSortFields: boolean = false;
     showSortFieldOrder: boolean = false;
+    slicerColor: string = 'gray';
     slicerNumberToShow: string = 'All';
     slicerSortField: string = '';
     slicerSortFieldOrder: string = 'Ascending';
@@ -146,6 +147,7 @@ import { GlobalVariableService }      from './global-variable.service';
             this.selectedDatasourceID = this.localWidget.datasourceID;
             this.selectedDatasetID = this.localWidget.datasetID;
             this.selectedField = this.localWidget.slicerFieldName;
+            this.slicerColor = this.localWidget.slicerColor;
             this.slicerType = this.localWidget.slicerType,
             this.slicerNumberToShow = this.localWidget.slicerNumberToShow;
             this.slicerSortField = this.localWidget.slicerSortField;

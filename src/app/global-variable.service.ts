@@ -235,15 +235,16 @@ const widgetTemplate: Widget =
         "tableRows": 1,
         "tableTop": 1,
         "tableWidth": 1,
-        "slicerType": "",
-        "slicerNumberToShow": '',
-        "slicerSortField": '',
-        "slicerSortFieldOrder": '',
-        "slicerFieldName": "",
-        "slicerSelection": null,
-        "slicerBins": null,
         "slicerAddRest": false,
         "slicerAddRestValue": false,
+        "slicerBins": null,
+        "slicerColor": "gray",
+        "slicerFieldName": "",
+        "slicerNumberToShow": '',
+        "slicerSelection": null,
+        "slicerSortField": '',
+        "slicerSortFieldOrder": '',
+        "slicerType": "",
         "shapeBullet": [],
         "shapeBulletStyleType": "",
         "shapeBulletsOrdered": false,
@@ -6250,15 +6251,16 @@ console.warn('xx d', this.dashboards)
                 {key: 'tableRows', 					type: 'int'},
                 {key: 'tableTop', 					type: 'int'},
                 {key: 'tableWidth', 				type: 'int'},
-                {key: 'slicerType', 				type: 'string'},
                 {key: 'slicerAddRest', 				type: 'bool'},
                 {key: 'slicerAddRestValue', 		type: 'bool'},
+                {key: 'slicerBins', 			    type: 'array'},
+                {key: 'slicerColor', 		        type: 'string'},
+                {key: 'slicerFieldName', 			type: 'string'},
                 {key: 'slicerNumberToShow', 		type: 'string'},
+                {key: 'slicerSelection', 			type: 'array'},
                 {key: 'slicerSortField', 			type: 'string'},
                 {key: 'slicerSortFieldOrder', 		type: 'string'},
-                {key: 'slicerFieldName', 			type: 'string'},
-                {key: 'slicerSelection', 			type: 'array'},
-                {key: 'slicerBins', 			    type: 'array'},
+                {key: 'slicerType', 				type: 'string'},
                 {key: 'shapeStroke', 				type: 'string'},
                 {key: 'shapeStrokeWidth', 			type: 'string'},
                 {key: 'shapeSvgHeight', 			type: 'int'},
@@ -6706,15 +6708,16 @@ console.warn('xx d', this.dashboards)
                 w.tableRows = changedWidget.tableRows;
                 w.tableTop = changedWidget.tableTop;
                 w.tableWidth = changedWidget.tableWidth;
-                w.slicerType = changedWidget.slicerType,
+                w.slicerAddRest = changedWidget.slicerAddRest;
+                w.slicerAddRestValue = changedWidget.slicerAddRestValue;
+                w.slicerBins = changedWidget.slicerBins;
+                w.slicerColor = changedWidget.slicerColor;
+                w.slicerFieldName = changedWidget.slicerFieldName;
+                w.slicerSelection = changedWidget.slicerSelection;
                 w.slicerNumberToShow = changedWidget.slicerNumberToShow;
                 w.slicerSortField = changedWidget.slicerSortField;
                 w.slicerSortFieldOrder = changedWidget.slicerSortFieldOrder;
-                w.slicerFieldName = changedWidget.slicerFieldName;
-                w.slicerSelection = changedWidget.slicerSelection;
-                w.slicerBins = changedWidget.slicerBins;
-                w.slicerAddRest = changedWidget.slicerAddRest;
-                w.slicerAddRestValue = changedWidget.slicerAddRestValue;
+                w.slicerType = changedWidget.slicerType,
                 w.shapeStroke = changedWidget.shapeStroke;
                 w.shapeStrokeWidth = changedWidget.shapeStrokeWidth;
                 w.shapeSvgHeight = changedWidget.shapeSvgHeight;
@@ -6846,15 +6849,16 @@ console.warn('xx d', this.dashboards)
                 w.tableRows = changedWidget.tableRows;
                 w.tableTop = changedWidget.tableTop;
                 w.tableWidth = changedWidget.tableWidth;
-                w.slicerType = changedWidget.slicerType,
+                w.slicerAddRest = changedWidget.slicerAddRest;
+                w.slicerAddRestValue = changedWidget.slicerAddRestValue;
+                w.slicerBins = changedWidget.slicerBins;
+                w.slicerColor = changedWidget.slicerColor;
+                w.slicerFieldName = changedWidget.slicerFieldName;
+                w.slicerSelection = changedWidget.slicerSelection;
                 w.slicerNumberToShow = changedWidget.slicerNumberToShow;
                 w.slicerSortField = changedWidget.slicerSortField;
                 w.slicerSortFieldOrder = changedWidget.slicerSortFieldOrder;
-                w.slicerFieldName = changedWidget.slicerFieldName;
-                w.slicerSelection = changedWidget.slicerSelection;
-                w.slicerBins = changedWidget.slicerBins;
-                w.slicerAddRest = changedWidget.slicerAddRest;
-                w.slicerAddRestValue = changedWidget.slicerAddRestValue;
+                w.slicerType = changedWidget.slicerType,
                 w.shapeStroke = changedWidget.shapeStroke;
                 w.shapeStrokeWidth = changedWidget.shapeStrokeWidth;
                 w.shapeSvgHeight = changedWidget.shapeSvgHeight;

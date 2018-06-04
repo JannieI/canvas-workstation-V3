@@ -2,7 +2,8 @@
     [style.z-index]="100"
     (click)="clickSlicer(i)"
     [style.background-color]="slicer.containerBackgroundcolor"
-    [style.border-radius]="slicer.containerBorderRadius"
+    [style.border-bottom-left-radius]="slicer.containerBorderRadius"
+    [style.border-bottom-right-radius]="slicer.containerBorderRadius"
     [style.height.px]="slicer.containerHasTitle ? slicer.containerHeight-slicer.titleHeight-2 : slicer.containerHeight-2"
     [style.width.px]="slicer.containerWidth-2"
     >
