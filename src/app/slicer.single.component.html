@@ -1,7 +1,8 @@
 <div #slicerDOM class="slicer"
     [style.z-index]="100"
     (click)="clickSlicer(i)"
-    [style.height.px]="slicer.containerHeight-2"
+    [style.background-color]="transparent"
+    [style.height.px]="slicer.containerHasTitle ? slicer.containerHeight-slicer.titleHeight : slicer.containerHeight"
     [style.width.px]="slicer.containerWidth-2"
     >
     <div class="slicerFooter" *ngIf="slicer.slicerAddRest"
@@ -23,6 +24,7 @@
         <div *ngFor="let d of slicer.slicerSelection; let i = index" class="slicerItem"
             [style.background-color]="d.isSelected ? slicer.containerBackgroundcolor : 'white'"
             [style.width.px]="slicer.containerWidth-18"
+            [style.background-color]="slicer.containerBackgroundcolor"
             >
             <input type="checkbox"
                 id="checkbox"
@@ -39,8 +41,8 @@
             <label for="checkbox"
                 [style.background-color]="d.isSelected ? slicer.containerBackgroundcolor : 'white'"
                 >
-                {{ d.fieldValue }}
-            </label>
+                {{ d.fieldValue }} ..
+            </label> 
         </div>
     </div>
 
@@ -55,6 +57,7 @@
             <input type="checkbox"
                 id="checkbox"
                 [checked]="d.isSelected"
+                [style.color]="'red'"
                 (click)="clickSlicerItem(
                     slicer.slicerType,
                     i,

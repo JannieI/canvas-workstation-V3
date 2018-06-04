@@ -1,9 +1,13 @@
 .slicer {
+    margin: 0px;
     overflow: hidden;
+    padding: 0px;
 }
 
 .slicerHolder {
+    margin: 0px;
     overflow: hidden;
+    padding: 0px;
 }
 .slicerItem {
     margin: 0;
