@@ -9,6 +9,13 @@ This document describes items for later versions of Canvas.
     ---------
     Add Tooltips to all - decide if CSS title is okay, as it looks different to Clarity tooltip   for icons - See where and how to use tooltips on buttons (ie HTML title="" or via Clarity).  Be   consistent!!
 
+    Outstanding:
+    ------------
+    - Usage Stats form
+    - Data Qual form
+
+
+    
      Overall design and layout
     --------------------------
     - GO BACK TO SIMPLICITY !!!  Review regular on how to make it easier and faster.  If like SPSS where everything sits behinds a menu item, then too difficult.  Simplify (Ivan)
@@ -199,6 +206,9 @@ This document describes items for later versions of Canvas.
     - Consider filter on click cell -> not sure how to make this easy in UI, could be quite easy to just call slicerFilter in the background.
     - Consider, carefully, to allow table to grow to a max of x rows.  This means that all affected Ws have to have a relative starting position.  Remember ReportBuilder ...
     - cell highlighter: 1. user-defined way to specify what colour a cell should be, ie red, orange, green for info, warn, error.  2.  Also with ranges, ie 1-10 = light blue, etc.  3. And filter, ie all values over 200K are red.  4. Full on Conditional Formatting
+    - hierarchical Grid
+    - pivot functionality
+    - group headers and rows
 
 
     Dashboard:

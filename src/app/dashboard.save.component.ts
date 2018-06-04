@@ -37,7 +37,7 @@ export class DashboardSaveComponent implements OnInit {
         if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
             this.clickClose('Close');
             return;
-        };
+        }; 
         if (
             (event.code == 'Enter'  ||  event.code == 'NumpadEnter')
             &&
@@ -51,6 +51,7 @@ export class DashboardSaveComponent implements OnInit {
 
     }
 
+    deleteSnapshots: boolean = true;
     isFirstTimeDashboardSave: boolean;
     dashboards: Dashboard[];
 
@@ -89,7 +90,7 @@ export class DashboardSaveComponent implements OnInit {
         // Save the D (replace the original as Completed and delete the Draft)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
-        this.globalVariableService.saveDraftDashboard().then(res => {
+        this.globalVariableService.saveDraftDashboard(this.deleteSnapshots).then(res => {
             this.globalVariableService.refreshCurrentDashboard(
                 'discardDashboard-clickDiscard', res, -1, ''
             );
