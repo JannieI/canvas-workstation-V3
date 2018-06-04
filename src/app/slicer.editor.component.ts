@@ -384,14 +384,15 @@ import { GlobalVariableService }      from './global-variable.service';
         // Set Slicer related data
         this.localWidget.containerHasTitle = this.containerHasTitle;
         this.localWidget.slicerAddRest = this.containerslicerAddRest;
+        this.localWidget.slicerBins = [];
+        this.localWidget.slicerColor = this.selectedColor;
+        this.localWidget.slicerFieldName = this.selectedField;
         this.localWidget.slicerNumberToShow = this.slicerNumberToShow;
+        this.localWidget.slicerSelection = [];
         this.localWidget.slicerSortField = this.slicerSortField;
         this.localWidget.slicerSortFieldOrder = this.slicerSortFieldOrder;
         this.localWidget.titleText = this.selectedField;
-        this.localWidget.slicerFieldName = this.selectedField;
         this.localWidget.slicerType = this.slicerType;
-        this.localWidget.slicerSelection = [];
-        this.localWidget.slicerBins = [];
 
         // Store selected items
         this.dataValues.forEach(df => {
