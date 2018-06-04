@@ -47,6 +47,12 @@
                             name="description" 
                             placeholder="Enter Tab description"
                             class="popupInput" 
+                            minlength="3"
+                            maxlength="100"
+                            #descriptionVar="ngModel"
+                            required
+                            [style.color]="!descriptionVar.valid ? 'red' : 'gray'"
+                            size="45"
                             >
                     </div>
 
