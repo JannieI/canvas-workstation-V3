@@ -10,6 +10,7 @@ import { Renderer }                   from '@angular/core';
 import { ViewChild }                  from '@angular/core';
 
 // Our models
+import { CSScolor }                   from './models';
 import { Datasource }                 from './models';
 import { Widget }                     from './models';
 
@@ -51,6 +52,7 @@ import { GlobalVariableService }      from './global-variable.service';
 
     }
 
+    colors: CSScolor[];
     currentDatasources: Datasource[] = [];
     dataFields: string[] = [];
     dataFieldTypes: string[] = [];
@@ -59,6 +61,7 @@ import { GlobalVariableService }      from './global-variable.service';
     containerHasTitle: boolean = true;
     containerslicerAddRest: boolean = false;
     localWidget: Widget;                            // W to modify, copied from selected
+    selectedColor: string = 'Gray';
     selectedDatasourceID: number = -1;
     selectedDatasetID: number = -1;
     selectedField: string = '';
@@ -92,6 +95,9 @@ import { GlobalVariableService }      from './global-variable.service';
         this.dataBins = [];
         this.slicerType = 'List';
 
+        // Get setup info
+        this.colors = this.globalVariableService.backgroundcolors.slice();
+                
         // TODO - fix hardcoding
         // Get Bin values
 

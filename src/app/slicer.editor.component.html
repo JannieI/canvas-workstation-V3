@@ -192,14 +192,37 @@
 
                     <div class="hasTitle">
                         <div class="checkbox">
-                            <input type="checkbox" id="checkTitle" [(ngModel)]="containerHasTitle">
+                                <input type="checkbox" 
+                                    id="checkTitle" 
+                                    [(ngModel)]="containerHasTitle"
+                                    >
                             <label for="checkTitle">Has Title</label>
                         </div>
                     </div>
 
+                    <div class="gridBgColorTitle">
+                        Bg Colour:
+                    </div>
+                    <div class="select gridBgColor">
+                        <select [(ngModel)]="selectedColor"
+                            name="backgroundColor"
+                            >
+                            <option *ngFor="let row of colors"
+                                [style.background-color]="row.name"
+                                size="25"
+                                >
+                                {{ row.name }}
+                            </option>
+                        </select>
+                    </div>
+                            
                     <div class="slicerAddRest" *ngIf="showContainerslicerAddRest">
                         <div class="checkbox">
-                            <input type="checkbox" id="checkSlicerAddRest" [(ngModel)]="containerslicerAddRest">
+                                <input type="checkbox" 
+                                    id="checkSlicerAddRest" 
+                                    [(ngModel)]="containerslicerAddRest"
+                                    >
+                            
                             <label for="checkSlicerAddRest">Add Rest</label>
                         </div>
                         <div>
@@ -213,7 +236,7 @@
                 <div class="slicerButton">
                     <button
                         type="button"
-                        class="btn btn-secondary"
+                        class="btn btn-primary"
                         (click)="clickSave()"
                         >
                         Save
