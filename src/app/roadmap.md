@@ -15,7 +15,7 @@ This document describes items for later versions of Canvas.
     - Data Qual form
 
 
-    
+
      Overall design and layout
     --------------------------
     - GO BACK TO SIMPLICITY !!!  Review regular on how to make it easier and faster.  If like SPSS where everything sits behinds a menu item, then too difficult.  Simplify (Ivan)
@@ -95,6 +95,8 @@ This document describes items for later versions of Canvas.
     Expand: add Refresh button, for when change nr lines to show.  Also, 100 -> 1000
      + Dont show top if no Dataset - rather appropriate Unexpected Error msg
     Resize does not snap to grid - is this philosophy correct?  If it does snap, remember to change the graphW & -H as well
+    - FIX nrDataQualityIssues at DB level: join and fill the value, so that Canvas dont need to do any manipulation
+    
 
 
 
@@ -313,6 +315,12 @@ This document describes items for later versions of Canvas.
 
 ## Later versions
     To consider for LATER versions:
+
+    Widget Action Menu:
+    - decide what other menu options to add here
+    - decide if all these must be on Main menu and Palette, ie Edit Title (currently not on)
+    - decide if different actions per W Type, ie Slicer has some that Shape does not have
+    - consider recorded actions: make title bg color = xxx, color = yyy (company default)
 
     Pilot Installation:
     - Install at user as pilot, may Liaan ...
