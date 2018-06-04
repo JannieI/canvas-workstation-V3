@@ -1521,7 +1521,7 @@ export class GlobalVariableService {
         if (deleteSnapshots) {
             this.dashboardSnapshots.forEach(snp => {
                 if (snp.dashboardID == draftID  &&  snp.snapshotType != 'StartEditMode') {
-                    this.deleteDatasourcePermission(snp.id);
+                    this.deleteDashboardSnapshot(snp.id);
                 };
             });
         };
