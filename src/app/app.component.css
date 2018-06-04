@@ -11,6 +11,10 @@
     top: 0;
 }
 
+.dgIcon {
+   cursor:pointer;
+}
+
 .header-6 {
     margin: 0;
     padding: 0;

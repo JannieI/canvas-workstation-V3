@@ -1815,6 +1815,7 @@
                 <!-- Data Quality Issues -->
                 <span style="display: inline-block" *ngIf="row.nrDataQualityIssues>0">
                     <clr-icon shape="exclamation-triangle"
+                        class="dqIcon"
                         (click)="contextmenuWidgetDataQuality($event, i, row.id)"
                         >
                     </clr-icon>
