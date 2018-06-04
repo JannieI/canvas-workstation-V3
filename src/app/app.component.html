@@ -2668,6 +2668,7 @@
         <!-- W action menu -->
         <div class="widgetXActionMenu" *ngIf="row.widgetType=='Graph'
             || row.widgetType=='Table'
+            || (row.widgetType=='Slicer'  && row.containerHasTitle)
             || (row.widgetType=='Shape'  &&  row.widgetSubType=='Value')"
             [style.color]="row.titleColor"
             [style.z-index]="row.containerZindex"
