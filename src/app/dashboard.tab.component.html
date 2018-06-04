@@ -28,9 +28,15 @@
                         <label for="dashboardName" class="popupLabel">Name (20 char):</label>
                         <input type="text" 
                             [(ngModel)]="name"
+                            class="popupInput" 
                             name="name" 
                             placeholder="Enter short name here"
-                            class="popupInput" 
+                            minlength="3"
+                            maxlength="20"
+                            #nameVar="ngModel"
+                            required
+                            [style.color]="!nameVar.valid ? 'red' : 'gray'"
+                            size="25"
                             >
                     </div>
 
