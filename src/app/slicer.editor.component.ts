@@ -150,6 +150,7 @@ import { GlobalVariableService }      from './global-variable.service';
             );
 
             // Set the selected items
+            this.selectedColor = this.localWidget.slicerColor;
             this.selectedDatasourceID = this.localWidget.datasourceID;
             this.selectedDatasetID = this.localWidget.datasetID;
             this.selectedField = this.localWidget.slicerFieldName;
