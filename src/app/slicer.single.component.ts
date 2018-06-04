@@ -27,20 +27,32 @@ export class SlicerSingleComponent {
 
     @ViewChild('slicerDOM')  slicerDOM: ElementRef;
 
+    slicerBorderWidth: number = 1;          // In px, to subtract from inner element Width
     slicerItemClicked: boolean = false;     // True if Item was clicked -> dont click others
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
 
-    ) {
-        // Initialise
-        this.globalFunctionService.printToConsole(this.constructor.name,'constructor', '@Start');
+    ) {}
 
-    }
     ngOnInit() {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
+        // Extract BorderWidth - to subtract from inner elements Width
+        let px: number = this.slicer.containerBorder.indexOf('px');
+        if (px > 0) {
+            let space: number = 0;
+            if (px > 5) {
+                space = this.slicer.containerBorder.indexOf(' ');
+            };
+            if (space >= 0  &&  space < px) {
+                this.slicerBorderWidth = +this.slicer.containerBorder.substring(space, px); 
+                console.warn('xx hier', this.slicerBorderWidth)
+            };
+        };
+        this.slicerBorderWidth = this.slicerBorderWidth * 2;
     }
 
     clickSlicer(index: number, id: number) {
@@ -51,7 +63,7 @@ export class SlicerSingleComponent {
         if (this.slicerItemClicked) {
             this.slicerItemClicked = false;
             return;
-        }
+        };
     }
 
     clickSlicerItem(
@@ -74,14 +86,14 @@ export class SlicerSingleComponent {
             this.slicer.slicerBins.forEach(sel => {
                 if (sel.name == fieldValue) {
                     sel.isSelected = !sel.isSelected;
-                }
+                };
             });
         };
         if (slicerType == 'List') {
             this.slicer.slicerSelection.forEach(sel => {
                 if (sel.fieldValue == fieldValue) {
                     sel.isSelected = !sel.isSelected;
-                }
+                };
             });
         };
 
@@ -102,10 +114,10 @@ export class SlicerSingleComponent {
                 w.slicerSelection.forEach(sel => {
                     if (sel.fieldValue == fieldValue) {
                         sel.isSelected = ev.target.checked;
-                    }
-                })
+                    };
+                });
 
-            }
+            };
         });
 
         // Adjust the current Slicer
