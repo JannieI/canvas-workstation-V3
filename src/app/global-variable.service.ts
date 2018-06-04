@@ -1367,7 +1367,7 @@ export class GlobalVariableService {
 
     }
 
-    saveDraftDashboard(): Promise<number> {
+    saveDraftDashboard(deleteSnapshots: boolean): Promise<number> {
         // saves Draft Dashboard back to the original, keeping all changes
         // Returns original dashboardID (for the current Draft D)
 
@@ -1518,11 +1518,13 @@ export class GlobalVariableService {
         });
 
         // - all snapshots (for the Draft) are deleted, EXCEPT the initial one
-        this.dashboardSnapshots.forEach(snp => {
-            if (snp.dashboardID == draftID  &&  snp.snapshotType != 'StartEditMode') {
-                this.deleteDatasourcePermission(snp.id);
-            };
-        });
+        if (deleteSnapshots) {
+            this.dashboardSnapshots.forEach(snp => {
+                if (snp.dashboardID == draftID  &&  snp.snapshotType != 'StartEditMode') {
+                    this.deleteDatasourcePermission(snp.id);
+                };
+            });
+        };
 
         // The following are converted seamlessly, and pointers to Draft become pointers
         // to the original:
