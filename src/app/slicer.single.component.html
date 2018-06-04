@@ -5,7 +5,7 @@
     [style.color]="slicer.slicerColor"
     [style.border-bottom-left-radius]="slicer.containerBorderRadius"
     [style.border-bottom-right-radius]="slicer.containerBorderRadius"
-    [style.height.px]="slicer.containerHasTitle ? slicer.containerHeight-slicer.titleHeight-3 : slicer.containerHeight-3"
+    [style.height.px]="slicer.containerHasTitle ? slicer.containerHeight-slicer.titleHeight-slicerBorderWidth : slicer.containerHeight-slicerBorderWidth"
     [style.width.px]="slicer.containerWidth-slicerBorderWidth"
     >
     <div class="slicerFooter" *ngIf="slicer.slicerAddRest"
