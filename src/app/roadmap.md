@@ -363,6 +363,8 @@ This document describes items for later versions of Canvas.
     - Telegram interface with bot ...
 
     Comments:
+    - given DataQuality, etc, decide if we keep Comments !  What is use case?
+    - only per D, or per W as well?
     - add filter on Sender/Receiver
     - In ViewOnly mode: cannot select a W, thus cannot see Comments per selected ...
     - Consider dataQuality on own menu item, or on W menu
