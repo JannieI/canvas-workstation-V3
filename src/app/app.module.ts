@@ -99,7 +99,6 @@ import { MyPermissionsComponent }     from './mypermissions.component';
 import { UsersComponent }             from './users.component';
 import { GroupsComponent }            from './groups.component';
 import { SystemSettingsComponent }    from './systemsettings.component';
-import { UserOfflineComponent}        from './user.offline.component';
 import { LogoutComponent}             from './logout.component';
 
 import { WidgetTablistComponent }     from './widget.tablist.component';
@@ -201,7 +200,6 @@ import { StatusbarComponent }         from './statusbar.component';
         UsersComponent,
         GroupsComponent,
         SystemSettingsComponent,
-        UserOfflineComponent,
         LoginComponent,
         LogoutComponent,
 
