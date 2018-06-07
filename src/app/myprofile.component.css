@@ -111,7 +111,7 @@
             text-align: left;
         }
 
-    .gridOfflineTitle {
+    .gridDashboardAccessTypeTitle {
         font-size: 0.65rem;
         grid-column-start: 1;
         grid-column-end: 18;
@@ -120,47 +120,11 @@
         text-align: left;
     }
 
-        .gridOfflineWork {
-            grid-column-start: 1;
-            grid-column-end: 7;
-            grid-row-start: 10;
-            grid-row-end: 11;
-            margin-left: 20px;
-            text-align: left;
-        }
-
-        .gridOfflineCopyData {
-            grid-column-start: 8;
-            grid-column-end: 15;
-            grid-row-start: 10;
-            grid-row-end: 11;
-            margin-left: 20px;
-            text-align: left;
-        }
-
-        .gridOfflineCopySchema {
-            grid-column-start: 1;
-            grid-column-end: 7;
-            grid-row-start: 11;
-            grid-row-end: 12;
-            margin-left: 20px;
-            text-align: left;
-        }
-
-    .gridDashboardAccessTypeTitle {
-        font-size: 0.65rem;
-        grid-column-start: 1;
-        grid-column-end: 18;
-        grid-row-start: 14;
-        grid-row-end: 15;
-        text-align: left;
-    }
-
         .gridDashboardAccessType {
             grid-column-start: 1;
             grid-column-end: 18;
-            grid-row-start: 15;
-            grid-row-end: 16;
+            grid-row-start: 10;
+            grid-row-end: 11;
             margin-left: 20px;
             text-align: left;
         }
@@ -168,25 +132,25 @@
     .gridTable {
         grid-column-start: 1;
         grid-column-end: 21;
-        grid-row-start: 16;
+        grid-row-start: 13;
         grid-row-end: 21;
         text-align: left;
         z-index: 1;
     }
          
     .gridButtonCancel {
-        grid-column-start: 8;
-        grid-column-end: 10;
-        grid-row-start: 14;
-        grid-row-end: 15;
+        grid-column-start: 2;
+        grid-column-end: 5;
+        grid-row-start: 12;
+        grid-row-end: 13;
         text-align: left;
     }
 
     .gridButtonSave {
-        grid-column-start: 11;
-        grid-column-end: 15;
-        grid-row-start: 14;
-        grid-row-end: 15;
+        grid-column-start: 5;
+        grid-column-end: 8;
+        grid-row-start: 12;
+        grid-row-end: 13;
         text-align: left;
     }
 
