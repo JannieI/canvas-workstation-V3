@@ -55,9 +55,6 @@ export class SystemSettingsComponent implements OnInit {
     companyName: string;
     companyLogo: string;
     dashboardTemplate: string;
-    offlineData: boolean;
-    offlineSchema: boolean;
-    offlineLogin: boolean;
     maxTableLength: number;
     widgetsMinZindex: number;
     widgetsMaxZindex: number;
@@ -82,9 +79,6 @@ export class SystemSettingsComponent implements OnInit {
         this.companyName = this.globalVariableService.canvasSettings.companyName;
         this.companyLogo = this.globalVariableService.canvasSettings.companyLogo;
         this.dashboardTemplate = this.globalVariableService.canvasSettings.dashboardTemplate;
-        this.offlineData = this.globalVariableService.canvasSettings.offlineData;
-        this.offlineSchema = this.globalVariableService.canvasSettings.offlineSchema;
-        this.offlineLogin = this.globalVariableService.canvasSettings.offlineLogin;
         this.maxTableLength = this.globalVariableService.canvasSettings.maxTableLength;
         this.widgetsMinZindex = this.globalVariableService.canvasSettings.widgetsMinZindex;
         this.widgetsMaxZindex = this.globalVariableService.canvasSettings.widgetsMaxZindex;

@@ -519,9 +519,6 @@ export class GlobalVariableService {
         companyName: '',
         companyLogo: '',
         dashboardTemplate: '',
-        offlineData: false,
-        offlineSchema: false,
-        offlineLogin: false,
         maxTableLength: 500,
         widgetsMinZindex: 50,
         widgetsMaxZindex: 59,
@@ -4213,9 +4210,6 @@ console.warn('xx d', this.dashboards)
                         this.canvasSettings.companyName = data.companyName;
                         this.canvasSettings.companyLogo = data.companyLogo;
                         this.canvasSettings.dashboardTemplate = data.dashboardTemplate;
-                        this.canvasSettings.offlineData = data.offlineData;
-                        this.canvasSettings.offlineSchema = data.offlineSchema;
-                        this.canvasSettings.offlineLogin = data.offlineLogin;
                         this.canvasSettings.maxTableLength = +data.maxTableLength;
                         this.canvasSettings.widgetsMinZindex = +data.widgetsMinZindex;
                         this.canvasSettings.widgetsMaxZindex = +data.widgetsMaxZindex;
