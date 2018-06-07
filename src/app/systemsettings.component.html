@@ -104,49 +104,6 @@
                                 >
                         </div>
 
-                    <div class="gridOfflineTitle">
-                        <b>Working Offline:</b>
-                    </div>
-
-                        <div class="gridOfflineDataTitle">
-                            <b>Data:</b>
-                        </div>
-                        <div class="gridOfflineData">
-                            <input [(ngModel)]="offlineData"
-                                type="checkbox"
-                                name="offlineData"
-                                #offlineDataVar="ngModel"
-                                title="Store server data locally (T/F)"
-                                [style.color]="!offlineDataVar.valid ? 'red' : 'gray'"
-                                >
-                        </div>
-
-                        <div class="gridOfflineSchemaTitle">
-                            <b>Schema:</b>
-                        </div>
-                        <div class="gridOfflineSchema">
-                            <input [(ngModel)]="offlineSchema"
-                                type="checkbox"
-                                name="offlineSchema"
-                                #offlineSchemaVar="ngModel"
-                                title="Store server schema locally (T/F)"
-                                [style.color]="!offlineSchemaVar.valid ? 'red' : 'gray'"
-                                >
-                        </div>
-
-                        <div class="gridOfflineLoginTitle">
-                            <b>Login:</b>
-                        </div>
-                        <div class="gridOfflineLogin">
-                            <input [(ngModel)]="offlineLogin"
-                                type="checkbox"
-                                name="offlineLogin"
-                                #offlineLoginVar="ngModel"
-                                title="Can log into a local server (T/F)"
-                                [style.color]="!offlineLoginVar.valid ? 'red' : 'gray'"
-                                >
-                        </div>
-
                     <div class="gridTableTitle">
                         <b>Tables</b>
                     </div>
