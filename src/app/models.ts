@@ -56,9 +56,6 @@ export class CanvasSettings {
     companyName: string;                    // Company Name
     companyLogo: string;                    // Optional file name for Company logo
     dashboardTemplate: string;              // Default Dashboard Template (later use)
-    offlineData: boolean;                   // Can store server data locally (T/F) - global setting
-    offlineSchema: boolean;                 // Can store server schema locally (T/F) - global setting
-    offlineLogin: boolean;                  // Can log into a local server (T/F) - global setting
     maxTableLength: number;                 // Max Table Length (say 500 records)
     widgetsMinZindex: number;               // Widgets Min Zindex
     widgetsMaxZindex: number;               // Widgets Max Zindex
@@ -267,9 +264,6 @@ export class CanvasUser {
     dashboardCanGrantAccessRole: boolean;   // Role can change access to a Dashboard
     dashboardCanAddDatasourceRole: boolean; // Role can change add DS to a Dashboard
     canManageGroupRole: boolean;            // Role can add/delete users to Group
-    offlineLogin: boolean;                  // Can log into a local server (T/F) - user setting
-    offlineSchema: boolean;                 // Store server schema locally (T/F) - user setting
-    offlineData: boolean;                   // Store server data locally (T/F) - user setting
     preferencePaletteHorisontal: boolean;                   // T/F - Palette Horisontal (else Vertial)
     preferenceAutoSync: boolean;                            // T/F - can auto sync
     preferenceShowOpenStartupMessage: boolean;              // T/F - show open startup msg
