@@ -399,7 +399,6 @@ export class AppComponent implements OnInit {
     showModalUsers: boolean = false;
     showModalGroups: boolean = false;
     showModalUserSystemSettings: boolean = false;
-    showModalUserOffline: boolean = false;
     showPalette: boolean = true;
     showPopupMessage: boolean = false;
     showTitleForm: boolean = false;
@@ -1558,14 +1557,6 @@ export class AppComponent implements OnInit {
         this.showModalUserSystemSettings = false;
     }
 
-    handleCloseUserOffline(action: string) {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseUserOffline', '@Start');
-
-        this.menuOptionClickPostAction();
-
-        this.showModalUserOffline = false;
-    }
 
 
 
@@ -5414,15 +5405,6 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPreAction();
 
         this.showModalUserSystemSettings = true;
-    }
-
-    clickMenuUserOffline() {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuUserOffline', '@Start');
-
-        this.menuOptionClickPreAction();
-
-        this.showModalUserOffline = true;
     }
 
     clickMenuUserLogout() {

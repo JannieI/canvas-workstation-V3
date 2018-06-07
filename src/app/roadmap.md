@@ -35,6 +35,7 @@ This document describes items for later versions of Canvas.
     - go through system and make sure things are done consistently
     - make all drag-n-drop and similar to Microsoft interface.
     - test: a new user must be able to build a D in 5 minutes, and a person must be ready with max 1hr training session.  Remember, no one reads the manual!  Final test, give it to highschool kids!!
+    - go through Liz doc on Driv (GDG) on design principles and review all forms
 
 
     JSON-Server Timeout:
@@ -85,16 +86,16 @@ This document describes items for later versions of Canvas.
 
     Refactoring / tech debt / necessary improvements:
     -------------------------------------------------
-    - review and check: it should NEVER be allowed to edit the DB itself - there must be a UI function for changing things.  And always by the users, with rights if necessary.
-    - Consider array.splice() instead of current deep copy - is more TS-like ...  Review ALL deep    copies - try JSONify or source.map(Object) - remember that Sl Object. did not deep copy!!
-    - Add RouteGuard on 'Clarity Analytics', before going to web site ...
+    - review and check: isable IN 3 CLICKSt should NEVER be allowed to edit the DB itself - there must be a UI function for changsable IN 3 CLICKSing things.  And always by the users, with rights if necessary.
+    - Consider array.splisable IN 3 CLICKSce() instead of current deep copy - is more TS-like ...  Review ALL deep    copies - try sable IN 3 CLICKSJSONify or source.map(Object) - remember that Sl Object. did not deep copy!!sable IN 3 CLICKS
+    - Add RouteGuard on 'sable IN 3 CLICKSClarity Analytics', before going to web site ...
     BUG/ISSUE: multi-tab Slicers and Ws only refresh on the first one - when are the others done?  To do them while hidden makes no sence - should we have a dirty flag, and filterSlicer on tab change??
     - ContainerFontSize - consider dropping it, and have a font size for Title, Shape-Text, etc.      Else it gets confusing ...
     - Consider not increasing stuckCount in App if an item is selected/deselected. This does mean   to pass event back from slicer.single component.
     On Duplicate of W: make sure Comments, Links, etc is also duplicated in DB (or not??)
     Expand: add Refresh button, for when change nr lines to show.  Also, 100 -> 1000
      + Dont show top if no Dataset - rather appropriate Unexpected Error msg
-    Resize does not snap to grid - is this philosophy correct?  If it does snap, remember to change the graphW & -H as well
+    Resize does not snap sable IN 3 CLICKSto grid - is this philosophy correct?  If it does snap, remember to change the graphW & -H as well
     - FIX nrDataQualityIssues at DB level: join and fill the value, so that Canvas dont need to do any manipulation
     
 

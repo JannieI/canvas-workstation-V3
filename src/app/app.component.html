@@ -1480,16 +1480,6 @@
 
                     <button type="button"
                         clrDropdownItem
-                        (click)="clickMenuUserOffline()"
-                        title="Working Offline"
-                        [style.color]="!currentUserID? 'lightgray' : '#565656'"
-                        [disabled] = "!currentUserID"
-                        >
-                        Work Offline
-                    </button>
-
-                    <button type="button"
-                        clrDropdownItem
                         (click)="clickMenuUserLogout()"
                         title="Log out of Canvas"
                         [style.color]="!currentUserID? 'lightgray' : '#565656'"
@@ -4111,15 +4101,6 @@
     (formDashboardSystemSettingsClosed)="handleCloseUserSystemSettings($event)">
     Load System Settings ...
 </systemsettings>
-
-
-<!-- Modal: Offline Mode -->
-<user-offline
-    class="formPopupDashboard"
-    *ngIf="showModalUserOffline"
-    (formUserOfflineClosed)="handleCloseUserOffline($event)">
-    Load Offline Mode ...
-</user-offline>
 
 
 <!-- Modal: Logout -->
