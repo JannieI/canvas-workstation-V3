@@ -362,6 +362,7 @@ This document describes items for later versions of Canvas.
     External contact:
     - Use cell phone to do things easily - ie ask time off, manager approves and data stored as record - EASY and integrated and No forms
     - Telegram interface with bot ...
+    - consider custom (big) cursor for presentations - see https://alligator.io/css/cursor-property/  2018/06/07: just could not get it going...
 
     Comments:
     - given DataQuality, etc, decide if we keep Comments !  What is use case?

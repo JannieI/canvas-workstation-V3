@@ -56,6 +56,7 @@ export class DashboardDescriptionComponent implements OnInit {
     backgroundcolors: CSScolor[];
     callingRoutine: string = '';
     colourPickerClosed: boolean = false;
+    dashboards: Dashboard[] = [];
     dashboardName: string;
     dashboardDescription: string;
     dashboardQArequired: boolean;
@@ -91,6 +92,21 @@ export class DashboardDescriptionComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
+        // Get list of D for dropdown
+        this.globalVariableService.getDashboards().then(d => {
+            this.dashboards = d.sort((n1,n2) => {
+                if (n1.name > n2.name) {
+                    return 1;
+                };
+    
+                if (n1.name < n2.name) {
+                    return -1;
+                };
+    
+                return 0;
+            });
+        });
+
         // Update local properties
         this.dashboardName = this.selectedDashboard.name;
         this.dashboardDescription = this.selectedDashboard.description;
@@ -118,7 +134,7 @@ export class DashboardDescriptionComponent implements OnInit {
 
         // Manage colour picker
         this.globalVariableService.colourPickerClosed.subscribe(clp => {
-console.warn('xx clp', clp)
+
             if (clp != null) {
 
                 if (clp.cancelled) {
@@ -137,6 +153,13 @@ console.warn('xx clp', clp)
         // Get setup info
         this.backgroundcolors = this.globalVariableService.backgroundcolors.slice();
         
+    }
+
+    clickTemplateDashboard(id: number) {
+        // Close the form, nothing saved
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTemplateDashboard', '@Start');
+
+        console.warn('xx id', id)
     }
 
     clickClose(action: string) {

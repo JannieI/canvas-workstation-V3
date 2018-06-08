@@ -143,15 +143,23 @@
                             size="25"
                             >
                     </div>
-                    <div class="gridTemplateID">
-                        <b>Template ID:</b>
-                        <input [(ngModel)]="dashboardTemplateID"
-                            type="text"
-                            name="dashboardTemplateID"
-                            placeholder="Enter Optional Template ID"
-                            size="25"
-                            >
+                    <div class="gridTemplateTitle">
+                        <b>Template:</b>
                     </div>
+                    <div class="select gridTemplate">
+                        <select
+                            [(ngModel)]="bulletSelectedTab"
+                            (change)="clickSelectBulletsTab($event)"
+                            >
+                            <option *ngFor="let row of dashboards"
+                                (click)="clickTemplateDashboard()"
+                                >
+                                {{ row.name }}
+                            </option>
+                        </select>
+                    </div>
+    
+                        
 
                     <!-- <div class="gridBackgroundColor">
                         <b>Bg Color:</b>
