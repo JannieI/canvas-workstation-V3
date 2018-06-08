@@ -121,6 +121,25 @@ export class PreferencesComponent implements OnInit {
         this.preferenceDefaultSnapshotMins = this.globalVariableService.currentUser.preferenceDefaultSnapshotMins;
     }
 
+    clickTemplateDashboard(ev:any, id: number) {
+        // Close the form, nothing saved
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTemplateDashboard', '@Start');
+
+        let selectedDashboardString: string = ev.target.value;
+
+        if (selectedDashboardString != 'None') {
+
+            // Get D info
+            let openBracket: number = selectedDashboardString.indexOf('(');
+            let closeBracket: number = selectedDashboardString.indexOf(')');
+            this.selectedDashboardId = +selectedDashboardString.substring(openBracket + 1, closeBracket);
+            
+            this.dashboardTemplateID = this.selectedDashboardId;
+        } else {
+            this.dashboardTemplateID = null;
+        };
+    }
+    
     clickClose(action: string) {
         // Close the form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
