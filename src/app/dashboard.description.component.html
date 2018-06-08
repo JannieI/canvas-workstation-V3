@@ -152,13 +152,22 @@
                             name="dashboardTemplate"
                             (change)="clickTemplateDashboard($event)"
                             >
-                            <option *ngFor="let row of dashboards"
-                            >
-                                {{ row.name }}
+                            <option *ngFor="let row of dashboardList">
+                                {{ row }}
                             </option>
                         </select>
                     </div>
-
+                    <div class="select gridTemplateTab">
+                        <select
+                            [(ngModel)]="bulletSelectedTab"
+                            (change)="clickTemplateDashboardTab($event)"
+                            name="bulletSelectedTab"
+                            >
+                            <option *ngFor="let row of dashboardTabList">
+                                {{ row }}
+                            </option>
+                        </select>
+                    </div>
     
                         
 

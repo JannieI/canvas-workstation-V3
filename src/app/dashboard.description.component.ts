@@ -54,9 +54,10 @@ export class DashboardDescriptionComponent implements OnInit {
     }
 
     backgroundcolors: CSScolor[];
+    bulletSelectedTab: string;                  // Clicked on Bullets -> Tabname (sequence nr)    
     callingRoutine: string = '';
     colourPickerClosed: boolean = false;
-    dashboardList: { id: number, name: string }[] = [{id: 0, name: ''}];
+    dashboardList: string[] = ['None'];
     dashboards: Dashboard[];
     dashboardName: string;
     dashboardDescription: string;
@@ -83,6 +84,8 @@ export class DashboardDescriptionComponent implements OnInit {
     dashboardTabList: string[];
     errorMessage: string = '';
     selectedColour: string;
+    selectedDashboardId: number;
+    selectedTabIndex: number;
     selectedTemplateDashboard: Dashboard;
 
 
@@ -110,11 +113,7 @@ export class DashboardDescriptionComponent implements OnInit {
                 return 0;
             });
             dashboards.forEach(d => {
-                this.dashboardList.push( 
-                    {
-                        id: d.id,
-                        name: d.name
-                    });
+                this.dashboardList.push(d.name + ' (' + d.id.toString() + ')');
             });
         });
 
@@ -151,7 +150,6 @@ export class DashboardDescriptionComponent implements OnInit {
         this.dashboardRefresher = this.selectedDashboard.refresher;
         this.dashboardRefreshed = this.selectedDashboard.dateRefreshed;
 
-
         // Manage colour picker
         this.globalVariableService.colourPickerClosed.subscribe(clp => {
 
@@ -179,11 +177,20 @@ export class DashboardDescriptionComponent implements OnInit {
         // Close the form, nothing saved
         this.globalFunctionService.printToConsole(this.constructor.name,'clickTemplateDashboard', '@Start');
 
-        console.warn('xx id', ev, id, this.selectedTemplateDashboard)
+        // Get D info
+        let selectedDashboardtring: string = ev.target.value;
+        let openBracket: number = selectedDashboardtring.indexOf('(');
+        let closeBracket: number = selectedDashboardtring.indexOf(')');
+        this.selectedDashboardId = +selectedDashboardtring.substring(openBracket + 1, closeBracket);
+
+        let selectedDashboardIndex: number = this.globalVariableService.currentDashboardTabs
+            .findIndex(t => t.id == this.selectedDashboardId);
+        console.warn('xx selectedDashboardId', selectedDashboardIndex, this.selectedDashboardId)
+
     }
-    clickSelectBulletsTab(ev: any) {
+    clickTemplateDashboardTab(ev: any) {
         // Add the TabID to the Bullets
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBulletsTab', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTemplateDashboardTab', '@Start');
 
         // Get T info
         let selectedTabstring: string = ev.target.value;
@@ -193,6 +200,7 @@ export class DashboardDescriptionComponent implements OnInit {
 
         let selectedTabIndex: number = this.globalVariableService.currentDashboardTabs
             .findIndex(t => t.id == this.selectedTabIndex);
+        console.warn('xx selectedTabIndex', selectedTabIndex, this.selectedTabIndex)
 
     }
     clickClose(action: string) {
