@@ -150,10 +150,9 @@
                         <select
                             [(ngModel)]="bulletSelectedTab"
                             name="dashboardTemplate"
-                            (change)="clickSelectBulletsTab($event)"
                             >
-                            <option *ngFor="let row of dashboards"
-                                (click)="clickTemplateDashboard()"
+                            <option *ngFor="let row of dashboardList"
+                                (click)="clickTemplateDashboard(row.id)"
                                 >
                                 {{ row.name }}
                             </option>
