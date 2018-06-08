@@ -149,6 +149,7 @@
                     <div class="select gridTemplate">
                         <select
                             [(ngModel)]="bulletSelectedTab"
+                            name="dashboardTemplate"
                             (change)="clickSelectBulletsTab($event)"
                             >
                             <option *ngFor="let row of dashboards"

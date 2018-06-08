@@ -56,7 +56,7 @@ export class DashboardDescriptionComponent implements OnInit {
     backgroundcolors: CSScolor[];
     callingRoutine: string = '';
     colourPickerClosed: boolean = false;
-    dashboards: Dashboard[] = [];
+    dashboardList: { id: number, name: string }[] = [{id: 0, name: ''}];
     dashboardName: string;
     dashboardDescription: string;
     dashboardQArequired: boolean;
@@ -94,7 +94,7 @@ export class DashboardDescriptionComponent implements OnInit {
 
         // Get list of D for dropdown
         this.globalVariableService.getDashboards().then(d => {
-            this.dashboards = d.sort((n1,n2) => {
+            let dashboards = d.sort((n1,n2) => {
                 if (n1.name > n2.name) {
                     return 1;
                 };
@@ -104,6 +104,13 @@ export class DashboardDescriptionComponent implements OnInit {
                 };
     
                 return 0;
+            });
+            dashboards.forEach(d => {
+                this.dashboardList.push( 
+                    {
+                        id: d.id,
+                        name: d.name
+                    });
             });
         });
 

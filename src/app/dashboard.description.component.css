@@ -148,23 +148,23 @@
 
     .gridTemplateTitle {
         grid-column-start: 8;
-        grid-column-end: 10;
+        grid-column-end: 9;
         grid-row-start: 8;
         grid-row-end: 9;
         margin-left: 20px;
         text-align: left;
     }
     .gridTemplate {
-        grid-column-start: 10;
-        grid-column-end: 14;
+        grid-column-start: 9;
+        grid-column-end: 13;
         grid-row-start: 8;
         grid-row-end: 9;
         margin-left: 20px;
         text-align: left;
     }
     .gridTemplateTab {
-        grid-column-start: 14;
-        grid-column-end: 18;
+        grid-column-start: 13;
+        grid-column-end: 15;
         grid-row-start: 8;
         grid-row-end: 9;
         margin-left: 20px;
