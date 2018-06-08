@@ -57,6 +57,7 @@ export class DashboardDescriptionComponent implements OnInit {
     callingRoutine: string = '';
     colourPickerClosed: boolean = false;
     dashboardList: { id: number, name: string }[] = [{id: 0, name: ''}];
+    dashboards: Dashboard[];
     dashboardName: string;
     dashboardDescription: string;
     dashboardQArequired: boolean;
@@ -79,8 +80,10 @@ export class DashboardDescriptionComponent implements OnInit {
     dashboardEdited: string;
     dashboardRefresher: string;
     dashboardRefreshed: string;
+    dashboardTabList: string[];
     errorMessage: string = '';
     selectedColour: string;
+    selectedTemplateDashboard: Dashboard;
 
 
 	constructor(
@@ -94,6 +97,7 @@ export class DashboardDescriptionComponent implements OnInit {
 
         // Get list of D for dropdown
         this.globalVariableService.getDashboards().then(d => {
+            this.dashboards = d;
             let dashboards = d.sort((n1,n2) => {
                 if (n1.name > n2.name) {
                     return 1;
@@ -113,6 +117,15 @@ export class DashboardDescriptionComponent implements OnInit {
                     });
             });
         });
+
+        // Create list of Tabs to show: first is 'None', rest is name (sequence nr),
+        //   where sequence nr = index + 1 - to look easier for user, 1 = 1st tab, etc
+        this.dashboardTabList = ['None'];
+        for (var i = 0; i < this.globalVariableService.currentDashboardTabs.length; i++) {
+            this.dashboardTabList.push(
+                this.globalVariableService.currentDashboardTabs[i].name
+                    + ' (' + (i + 1).toString() + ')');
+        };
 
         // Update local properties
         this.dashboardName = this.selectedDashboard.name;
@@ -162,13 +175,26 @@ export class DashboardDescriptionComponent implements OnInit {
         
     }
 
-    clickTemplateDashboard(id: number) {
+    clickTemplateDashboard(ev:any, id: number) {
         // Close the form, nothing saved
         this.globalFunctionService.printToConsole(this.constructor.name,'clickTemplateDashboard', '@Start');
 
-        console.warn('xx id', id)
+        console.warn('xx id', ev, id, this.selectedTemplateDashboard)
     }
+    clickSelectBulletsTab(ev: any) {
+        // Add the TabID to the Bullets
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBulletsTab', '@Start');
 
+        // Get T info
+        let selectedTabstring: string = ev.target.value;
+        let openBracket: number = selectedTabstring.indexOf('(');
+        let closeBracket: number = selectedTabstring.indexOf(')');
+        this.selectedTabIndex = +selectedTabstring.substring(openBracket + 1, closeBracket);
+
+        let selectedTabIndex: number = this.globalVariableService.currentDashboardTabs
+            .findIndex(t => t.id == this.selectedTabIndex);
+
+    }
     clickClose(action: string) {
         // Close the form, nothing saved
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');

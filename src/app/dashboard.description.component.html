@@ -148,16 +148,17 @@
                     </div>
                     <div class="select gridTemplate">
                         <select
-                            [(ngModel)]="bulletSelectedTab"
+                            [(ngModel)]="selectedTemplateDashboard"
                             name="dashboardTemplate"
+                            (change)="clickTemplateDashboard($event)"
                             >
-                            <option *ngFor="let row of dashboardList"
-                                (click)="clickTemplateDashboard(row.id)"
-                                >
+                            <option *ngFor="let row of dashboards"
+                            >
                                 {{ row.name }}
                             </option>
                         </select>
                     </div>
+
     
                         
 
@@ -176,12 +177,15 @@
                     <div class="select gridBackgroundColor">
                         <select [(ngModel)]="dashboardBackgroundColor"
                             name="titleBackgroundColor"
-                            (change)="clickSelectBgColor($event)"
                             >
                             <option *ngFor="let row of backgroundcolors"
                                 [style.background-color]="row.name"
                                 >
-                                {{ row.name }}
+                                <span
+                                    (change)="clickSelectBgColor($event, row.id)"
+                                    >
+                                    {{ row.name }}
+                                </span>
                             </option>
                         </select>
                     </div>
