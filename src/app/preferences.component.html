@@ -77,13 +77,28 @@
                     <b>Defaults:</b>
                 </div>
 
-                <div class="gridDefaultTemplate">
+                <!-- <div class="gridDefaultTemplate">
                     <b>Template:</b>
                     <input [(ngModel)]="preferenceDefaultTemplate"
                         type="text"
                         title="Default Template"
                         size="25"
                         >
+                </div> -->
+                <div class="gridDefaultTemplateTitle">
+                    <b>Template:</b>
+                </div>
+                <div class="select gridDefaultTemplate">
+                    <select
+                        [(ngModel)]="selectedTemplateDashboard"
+                        name="dashboardTemplate"
+                        (change)="clickTemplateDashboard($event)"
+                        placeholder="Select Tab 1 of completed D"
+                        >
+                        <option *ngFor="let row of dashboardList">
+                            {{ row }}
+                        </option>
+                    </select>
                 </div>
 
                 <div class="gridDefaultDateFormat">

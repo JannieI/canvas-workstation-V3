@@ -51,19 +51,22 @@ export class PreferencesComponent implements OnInit {
 
     }
 
+    dashboardList: string[] = ['None'];
+    dashboards: Dashboard[];
     preferenceAutoSync: boolean;
     preferencePaletteHorisontal: boolean;
     preferenceShowOpenStartupMessage: boolean;
     preferenceShowOpenDataCombinationMessage: boolean;
     preferenceShowViewStartupMessage: boolean;
     preferenceShowDiscardStartupMessage: boolean;
-    preferenceDefaultTemplate: string;
+    preferenceDefaultTemplate: number;
     preferenceDefaultDateformat: string;
     preferenceDefaultFolder: string;
     preferenceDefaultPrinter: string;
     preferenceDefaultPageSize: string;
     preferenceDefaultPageLayout: string;
     preferenceDefaultSnapshotMins: number;
+    selectedTemplateDashboard: string;
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -73,6 +76,35 @@ export class PreferencesComponent implements OnInit {
     ngOnInit() {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
+        // Get list of D for dropdown
+        this.globalVariableService.getDashboards().then(d => {
+            this.dashboards = d;
+            let dashboards = d.sort((n1,n2) => {
+                if (n1.name > n2.name) {
+                    return 1;
+                };
+    
+                if (n1.name < n2.name) {
+                    return -1;
+                };
+    
+                return 0;
+            });
+            dashboards.forEach(d => {
+                if (d.state = 'Complete') {
+                    this.dashboardList.push(d.name + ' (' + d.id.toString() + ')');
+                };
+                
+                // Fill Initial
+                if (this.preferenceDefaultTemplate != null  
+                    &&
+                    this.preferenceDefaultTemplate == d.id) {
+                    this.selectedTemplateDashboard = d.name + ' (' + d.id.toString() + ')';
+                };
+            });
+
+        });
 
         this.preferenceAutoSync = this.globalVariableService.currentUser.preferenceAutoSync;
         this.preferencePaletteHorisontal = this.globalVariableService.currentUser.preferencePaletteHorisontal;
