@@ -83,7 +83,7 @@ export class DashboardDescriptionComponent implements OnInit {
     errorMessage: string = '';
     selectedColour: string;
     selectedDashboardId: number;
-    selectedTemplateDashboard: Dashboard;
+    selectedTemplateDashboard: string;
 
 
 	constructor(
@@ -113,7 +113,15 @@ export class DashboardDescriptionComponent implements OnInit {
                 if (d.state = 'Complete') {
                     this.dashboardList.push(d.name + ' (' + d.id.toString() + ')');
                 };
+                
+                // Fill Initial
+                if (this.selectedDashboard.templateDashboardID != null  
+                    &&
+                    this.selectedDashboard.templateDashboardID == d.id) {
+                    this.selectedTemplateDashboard = d.name + ' (' + d.id.toString() + ')';
+                };
             });
+
         });
 
         // Update local properties
@@ -168,7 +176,7 @@ export class DashboardDescriptionComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickTemplateDashboard', '@Start');
 
         let selectedDashboardString: string = ev.target.value;
-        console.warn('xx selectedDashboardString', selectedDashboardString)
+
         if (selectedDashboardString != 'None') {
 
             // Get D info
@@ -180,7 +188,6 @@ export class DashboardDescriptionComponent implements OnInit {
         } else {
             this.dashboardTemplateID = null;
         };
-        console.warn('xx',this.dashboardTemplateID)
     }
 
     clickClose(action: string) {
