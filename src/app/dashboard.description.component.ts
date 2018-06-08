@@ -70,6 +70,7 @@ export class DashboardDescriptionComponent implements OnInit {
     dashboardExportUrl: string;
     dashboardPassword: string;
     dashboardTemplateID: number;
+    dashboardTemplateIDoriginal: number;
     dashboardBackgroundColor: string;
     dashboardBackgroundImage: string;
     dashboardState: string;
@@ -94,6 +95,9 @@ export class DashboardDescriptionComponent implements OnInit {
     ngOnInit() {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
+        // Store Original - need to refresh if changed
+        this.dashboardTemplateIDoriginal = this.selectedDashboard.templateDashboardID;
 
         // Get list of D for dropdown
         this.globalVariableService.getDashboards().then(d => {
@@ -235,6 +239,16 @@ export class DashboardDescriptionComponent implements OnInit {
 
         // Update global D
         this.globalVariableService.saveDashboard(this.selectedDashboard);
+
+        // Refresh if Template changes to show changes on screen
+        if (this.dashboardTemplateIDoriginal != this.selectedDashboard.templateDashboardID) {
+            this.globalVariableService.refreshCurrentDashboard(
+                'dashboardDescription-save',
+                this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                ''
+            );
+        };
 
         // Tell user
         this.globalVariableService.showStatusBarMessage(
