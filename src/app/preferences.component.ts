@@ -59,7 +59,7 @@ export class PreferencesComponent implements OnInit {
     preferenceShowOpenDataCombinationMessage: boolean;
     preferenceShowViewStartupMessage: boolean;
     preferenceShowDiscardStartupMessage: boolean;
-    preferenceDefaultTemplate: number;
+    preferenceDefaultTemplateID: number;
     preferenceDefaultDateformat: string;
     preferenceDefaultFolder: string;
     preferenceDefaultPrinter: string;
@@ -98,9 +98,9 @@ export class PreferencesComponent implements OnInit {
                 };
                 
                 // Fill Initial
-                if (this.preferenceDefaultTemplate != null  
+                if (this.preferenceDefaultTemplateID != null  
                     &&
-                    this.preferenceDefaultTemplate == d.id) {
+                    this.preferenceDefaultTemplateID == d.id) {
                     this.selectedTemplateDashboard = d.name + ' (' + d.id.toString() + ')';
                 };
             });
@@ -113,7 +113,7 @@ export class PreferencesComponent implements OnInit {
         this.preferenceShowOpenDataCombinationMessage = this.globalVariableService.currentUser.preferenceShowOpenDataCombinationMessage;
         this.preferenceShowViewStartupMessage = this.globalVariableService.currentUser.preferenceShowViewStartupMessage;
         this.preferenceShowDiscardStartupMessage = this.globalVariableService.currentUser.preferenceShowDiscardStartupMessage;
-        this.preferenceDefaultTemplate = this.globalVariableService.currentUser.preferenceDefaultTemplate;
+        this.preferenceDefaultTemplateID = this.globalVariableService.currentUser.preferenceDefaultTemplateID;
         this.preferenceDefaultDateformat = this.globalVariableService.currentUser.preferenceDefaultDateformat;
         this.preferenceDefaultFolder = this.globalVariableService.currentUser.preferenceDefaultFolder;
         this.preferenceDefaultPrinter = this.globalVariableService.currentUser.preferenceDefaultPrinter;
@@ -135,9 +135,9 @@ export class PreferencesComponent implements OnInit {
             let closeBracket: number = selectedDashboardString.indexOf(')');
             this.selectedDashboardId = +selectedDashboardString.substring(openBracket + 1, closeBracket);
             
-            this.preferenceDefaultTemplate = this.selectedDashboardId;
+            this.preferenceDefaultTemplateID = this.selectedDashboardId;
         } else {
-            this.preferenceDefaultTemplate = null;
+            this.preferenceDefaultTemplateID = null;
         };
     }
 
@@ -166,7 +166,7 @@ export class PreferencesComponent implements OnInit {
         this.globalVariableService.currentUser.preferenceShowOpenDataCombinationMessage = this.preferenceShowOpenDataCombinationMessage,
         this.globalVariableService.currentUser.preferenceShowViewStartupMessage = this.preferenceShowViewStartupMessage,
         this.globalVariableService.currentUser.preferenceShowDiscardStartupMessage = this.preferenceShowDiscardStartupMessage,
-        this.globalVariableService.currentUser.preferenceDefaultTemplate = this.preferenceDefaultTemplate,
+        this.globalVariableService.currentUser.preferenceDefaultTemplateID = this.preferenceDefaultTemplateID,
         this.globalVariableService.currentUser.preferenceDefaultDateformat = this.preferenceDefaultDateformat,
         this.globalVariableService.currentUser.preferenceDefaultFolder = this.preferenceDefaultFolder,
         this.globalVariableService.currentUser.preferenceDefaultPrinter = this.preferenceDefaultPrinter,

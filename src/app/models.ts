@@ -270,7 +270,7 @@ export class CanvasUser {
     preferenceShowOpenDataCombinationMessage: boolean;      // T/F - show msg on open combination form
     preferenceShowViewStartupMessage: boolean;              // T/F - show msg on open view form
     preferenceShowDiscardStartupMessage: boolean;           // T/F - show msg on discard form
-    preferenceDefaultTemplate: number;                      // Default Template ID
+    preferenceDefaultTemplateID: number;                    // Default Template ID
     preferenceDefaultDateformat: string;                    // Default Date Format, ie YYYY/MM/DD
     preferenceDefaultFolder: string;                        // Default Folder
     preferenceDefaultPrinter: string;                       // Default Printer
