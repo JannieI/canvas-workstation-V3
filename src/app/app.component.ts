@@ -2351,6 +2351,7 @@ export class AppComponent implements OnInit {
 
         // Set D
         this.globalVariableService.currentDashboards.forEach(d => {
+            console.warn('oi', d, this.globalVariableService.currentDashboardInfo.value.currentDashboardID)
             if (d.id == this.globalVariableService.currentDashboardInfo
                 .value.currentDashboardID) {
                 this.selectedDashboard = d;
