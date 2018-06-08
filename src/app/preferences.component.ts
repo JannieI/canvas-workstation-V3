@@ -66,6 +66,7 @@ export class PreferencesComponent implements OnInit {
     preferenceDefaultPageSize: string;
     preferenceDefaultPageLayout: string;
     preferenceDefaultSnapshotMins: number;
+    selectedDashboardId: number;
     selectedTemplateDashboard: string;
 
 	constructor(
@@ -134,12 +135,12 @@ export class PreferencesComponent implements OnInit {
             let closeBracket: number = selectedDashboardString.indexOf(')');
             this.selectedDashboardId = +selectedDashboardString.substring(openBracket + 1, closeBracket);
             
-            this.dashboardTemplateID = this.selectedDashboardId;
+            this.preferenceDefaultTemplate = this.selectedDashboardId;
         } else {
-            this.dashboardTemplateID = null;
+            this.preferenceDefaultTemplate = null;
         };
     }
-    
+
     clickClose(action: string) {
         // Close the form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
