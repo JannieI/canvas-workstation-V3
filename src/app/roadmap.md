@@ -383,6 +383,18 @@ This document describes items for later versions of Canvas.
     - consider RIGHT CLICK menu (Ihsane) - this is a lot of work, so first test if users wants it
     - consider if it is possible to show changes easily and visually, similar to mark-up in a Word doc!
 
+    Styles:
+    -------
+    - ala Ivan
+    - valid tags corresponds to html, ie H1, H2, etc normal, small, etc
+    - have an optional style-tag to all text boxes: either specify the font-size, color, etc on the element, OR specify the style-tag.
+    - have a global setting AND a Dashboard setting for 
+    1. style sheet (has full list of style tags and how it looks)
+    2. style tag (has font-size, etc per tag)
+    Note: 2 is stronger than 1, Dashboard is strong than general
+    - when an element has a style tag, it will get the propagate to all text with that tag.  This way:
+    1. can have all D look similar
+    2. easily change styles
 
 
     Shapes:

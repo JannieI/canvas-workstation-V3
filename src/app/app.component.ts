@@ -6065,11 +6065,14 @@ export class AppComponent implements OnInit {
         this.currentWidgets.forEach(w => {
             if ( (w.id == id)  ||  (this.widgetGroup.indexOf(w.id) >= 0) ) {
                 w.isSelected = isSelected;
+                console.warn('hier 3')
             };
         });
+        console.warn('hier 3')
         this.globalVariableService.currentWidgets.forEach(w => {
             if ( (w.id == id)  ||  (this.widgetGroup.indexOf(w.id) >= 0) ) {
                 w.isSelected = isSelected;
+                console.warn('hier 4')
             };
         });
 
