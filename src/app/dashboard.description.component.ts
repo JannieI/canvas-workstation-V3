@@ -167,16 +167,20 @@ export class DashboardDescriptionComponent implements OnInit {
         // Close the form, nothing saved
         this.globalFunctionService.printToConsole(this.constructor.name,'clickTemplateDashboard', '@Start');
 
-        // Get D info
-        let selectedDashboardtring: string = ev.target.value;
-        let openBracket: number = selectedDashboardtring.indexOf('(');
-        let closeBracket: number = selectedDashboardtring.indexOf(')');
-        this.selectedDashboardId = +selectedDashboardtring.substring(openBracket + 1, closeBracket);
+        let selectedDashboardString: string = ev.target.value;
+        console.warn('xx selectedDashboardString', selectedDashboardString)
+        if (selectedDashboardString != 'None') {
 
-        let selectedDashboardIndex: number = this.globalVariableService.dashboards
-            .findIndex(t => t.id == this.selectedDashboardId);
-        console.warn('xx selectedDashboardId', selectedDashboardIndex, this.selectedDashboardId)
-
+            // Get D info
+            let openBracket: number = selectedDashboardString.indexOf('(');
+            let closeBracket: number = selectedDashboardString.indexOf(')');
+            this.selectedDashboardId = +selectedDashboardString.substring(openBracket + 1, closeBracket);
+            
+            this.dashboardTemplateID = this.selectedDashboardId;
+        } else {
+            this.dashboardTemplateID = null;
+        };
+        console.warn('xx',this.dashboardTemplateID)
     }
 
     clickClose(action: string) {
