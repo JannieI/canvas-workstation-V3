@@ -366,7 +366,7 @@ export class AppComponent implements OnInit {
     showModalWidgetExport: boolean = false;
     showModalWidgetDelete: boolean = false;
     showModalDashboardPrint: boolean = false;
-    showModalDataAddExisting: boolean = false;
+    showModalDataOverview: boolean = false;
     showModalData: boolean = false;
     showModalSlicerEditor: boolean = false;
     showModalWidgetTablist: boolean = false;
@@ -1157,7 +1157,7 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPostAction();
 
-        this.showModalDataAddExisting = false;
+        this.showModalDataOverview = false;
     }
 
     handleCloseData(action: string) {
@@ -2636,7 +2636,7 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
-        this.showModalDataAddExisting = true;
+        this.showModalDataOverview = true;
     }
 
     clickMenuDataFromFile(id: number) {

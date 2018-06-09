@@ -498,7 +498,7 @@
                             class="btn btn-link btn-sm"
                             clrDropdownItem
                             title="Datasources currently available to this Dashboard"
-                            (click)="clickMenuDatasourceOverview"
+                            (click)="clickMenuDatasourceOverview()"
                             >
                             Overview
                         </button>
@@ -4077,7 +4077,7 @@
 
 <!-- Modal: Data Add Existing -->
 <data-add-existing
-    *ngIf="showModalDataAddExisting"
+    *ngIf="showModalDataOverview"
     (formDataAddExistingClosed)="handleCloseDataAddExisting($event)">Load Data Add Existing ...
 </data-add-existing>
 
