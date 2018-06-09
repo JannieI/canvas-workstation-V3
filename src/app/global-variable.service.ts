@@ -2498,6 +2498,38 @@ export class GlobalVariableService {
         });
     }
 
+    getDataField(): Promise<DataField[]> {
+        // Description: Gets DataFields, WITHOUT data
+        // Returns: this.dataField
+        console.log('%c    Global-Variables getDataField ...',
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+
+        let url: string = 'dataFields';
+        this.filePath = './asFields/data.dataFields.json';
+
+        return new Promise<DataField[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if ( (this.dataFields.length == 0)  ||  (this.isDirtyDataFields) ) {
+                this.statusBarRunning.next(this.canvasFieldtings.queryRunningMessage);
+                this.get(url)
+                    .then(data => {
+                        this.dataFields = data;
+                        this.isDirtyDataFields = false;
+                        this.statusBarRunning.next(this.canvasFieldtings.noQueryRunningMessage);
+                        console.log('%c    Global-Variables getDataField 1',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.dataFields)
+                        resolve(this.dataFields);
+                    });
+            } else {
+                console.log('%c    Global-Variables getDataField 2',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.dataFields)
+                resolve(this.dataFields);
+            }
+        });
+
+    }
+
     getDataset(): Promise<Dataset[]> {
         // Description: Gets Datasets, WITHOUT data
         // Returns: this.dataset
