@@ -366,14 +366,72 @@
                                     clrDropdownItem
                                     (click)="clickMenuDataFromFile(row.id)"
                                     >
-                                    File
+                                    From File
                                 </button>
                                 <button
                                     type="button"
                                     clrDropdownItem
                                     (click)="clickMenuDataFromFile(row.id)"
                                     >
-                                    SQL
+                                    From SQL Database
+                                </button>
+                                <button
+                                    type="button"
+                                    clrDropdownItem
+                                    (click)="clickMenuDataFromFile(row.id)"
+                                    >
+                                    From NoSQL Database
+                                </button>
+                                <button
+                                    type="button"
+                                    clrDropdownItem
+                                    (click)="clickMenuDataFromFile(row.id)"
+                                    >
+                                    From Service
+                                </button>
+                                <button
+                                    type="button"
+                                    clrDropdownItem
+                                    (click)="clickMenuDataFromFile(row.id)"
+                                    >
+                                    From Web
+                                </button>
+                                <button
+                                    type="button"
+                                    clrDropdownItem
+                                    (click)="clickMenuDataFromFile(row.id)"
+                                    >
+                                    Import
+                                </button>
+                            </clr-dropdown-menu>
+                        </clr-dropdown>
+        
+                        <clr-dropdown>
+                            <button
+                                type="button"
+                                class="btn btn-link btn-sm"
+                                clrDropdownTrigger
+                                title="Datasources currently available to this Dashboard"
+                                >
+                                Edit
+                            </button>
+                            <clr-dropdown-menu
+                                clrPosition="right-top"
+                                *clrIfOpen
+                                >
+                                <button
+                                    type="button"
+                                    clrDropdownItem
+                                    (click)="clickMenuDataFromFile(row.id)"
+                                    >
+                                    Definition
+                                </button>
+                                <button
+                                    type="button"
+                                    clrDropdownItem
+                                    (click)="clickMenuDataFromFile(row.id)"
+                                    >
+                                    Transformations
                                 </button>
                             </clr-dropdown-menu>
                         </clr-dropdown>
@@ -382,6 +440,7 @@
 
 
 
+                        <div class="dropdown-divider"></div>
 
 
 
