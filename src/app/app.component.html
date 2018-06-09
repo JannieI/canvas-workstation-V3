@@ -341,7 +341,7 @@
                         type="button"
                         class="btn btn-link btn-sm menuButton"
                         clrDropdownTrigger
-                        title="Manage Data available in this Dashboard"
+                        title="Manage Datasources"
                         [disabled]="!currentUserID"
                         >
                         Data
@@ -353,7 +353,7 @@
                                 type="button"
                                 class="btn btn-link btn-sm"
                                 clrDropdownTrigger
-                                title="Datasources currently available to this Dashboard"
+                                title="Create a new Datasources"
                                 >
                                 Create
                             </button>
@@ -364,6 +364,7 @@
                                 <button
                                     type="button"
                                     clrDropdownItem
+                                    title="Create a new Datasources from a File"
                                     (click)="clickMenuDataFromFile()"
                                     >
                                     From File
@@ -373,6 +374,7 @@
                                     <button
                                         type="button"
                                         clrDropdownTrigger
+                                        title="Create a new Datasources from a SQL Database"
                                         >
                                         From SQL Database
                                     </button>
@@ -384,6 +386,7 @@
                                             type="button"
                                             clrDropdownItem
                                             (click)="clickMenuDataFromFile(1)"
+                                            title="Create a new Datasources using Query Builder"
                                             >
                                             Query Builder
                                         </button>
@@ -391,6 +394,7 @@
                                             type="button"
                                             clrDropdownItem
                                             (click)="clickMenuDataFromFile(1)"
+                                            title="Create a new Datasources using the SQL Editor"
                                             >
                                             SQL Editor
                                         </button>
@@ -398,6 +402,7 @@
                                             type="button"
                                             clrDropdownItem
                                             (click)="clickMenuDataFromFile(1)"
+                                            title="Create a new Datasources using the Overlay Editor"
                                             >
                                             Overlay Editor
                                         </button>
@@ -408,6 +413,7 @@
                                     <button
                                         type="button"
                                         clrDropdownTrigger
+                                        title="Create a new Datasources from a No SQL DB (ie Mongo)"
                                         >
                                         From NoSQL Database
                                     </button>
@@ -418,6 +424,7 @@
                                         <button
                                             type="button"
                                             clrDropdownItem
+                                            title="Create a new Datasources using Query Builder"
                                             >
                                             Query Builder?
                                         </button>
@@ -425,12 +432,14 @@
                                             type="button"
                                             clrDropdownItem
                                             (click)="clickMenuDataFromFile(1)"
+                                            title="Create a new Datasources using the NoSQL query Editor"
                                             >
                                             NoSQL Editor
                                         </button>
                                         <button
                                             type="button"
                                             clrDropdownItem
+                                            title="Create a new Datasources using the Overlay Editor"
                                             >
                                             Overlay Editor?
                                         </button>
@@ -441,6 +450,7 @@
                                     type="button"
                                     clrDropdownItem
                                     (click)="clickMenuDataFromFile(1)"
+                                    title="Create a new Datasources from a Service"
                                     >
                                     From Service
                                 </button>
@@ -448,6 +458,7 @@
                                     type="button"
                                     clrDropdownItem
                                     (click)="clickMenuDataFromFile(1)"
+                                    title="Create a new Datasources from a web page"
                                     >
                                     From Web
                                 </button>
@@ -455,18 +466,21 @@
                                     type="button"
                                     clrDropdownItem
                                     (click)="clickMenuDataFromFile(1)"
+                                    title="Import a new Datasources from an external file"
                                     >
                                     Import
                                 </button>
                             </clr-dropdown-menu>
                         </clr-dropdown>
         
+                        <div class="dropdown-divider"></div>
+                        
                         <clr-dropdown>
                             <button
                                 type="button"
                                 class="btn btn-link btn-sm"
                                 clrDropdownTrigger
-                                title="Datasources currently available to this Dashboard"
+                                title="Edit Datasources"
                                 >
                                 Edit
                             </button>
@@ -478,6 +492,7 @@
                                     type="button"
                                     clrDropdownItem
                                     (click)="clickMenuDataFromFile(1)"
+                                    title="Edit a Datasource Definition"
                                     >
                                     Definition
                                 </button>
@@ -485,6 +500,7 @@
                                     type="button"
                                     clrDropdownItem
                                     (click)="clickMenuDataFromFile(1)"
+                                    title="Edit Transformations for a Datasource"
                                     >
                                     Transformations
                                 </button>
@@ -495,7 +511,7 @@
                             type="button"
                             class="btn btn-link btn-sm"
                             clrDropdownItem
-                            title="Datasources currently available to this Dashboard"
+                            title="Show an overview of Datasources"
                             (click)="clickMenuDatasourceOverview()"
                             >
                             Overview
@@ -505,18 +521,20 @@
                             type="button"
                             class="btn btn-link btn-sm"
                             clrDropdownItem
-                            title="Datasources currently available to this Dashboard"
+                            title="Share permissions to Datasources"
                             (click)="clickMenuDataShare()"
                             >
                             Share
                         </button>
 
+                        <div class="dropdown-divider"></div>
+                        
                         <clr-dropdown>
                             <button
                                 type="button"
                                 class="btn btn-link btn-sm"
                                 clrDropdownTrigger
-                                title="Datasources currently available to this Dashboard"
+                                title="Manage MetaData (ie business glossary) for Datasources"
                                 >
                                 Manage MetaData
                             </button>
@@ -528,6 +546,7 @@
                                     type="button"
                                     clrDropdownItem
                                     (click)="clickMenuDataDataQuality()"
+                                    title="Manage Data Quality for Datasources"
                                     >
                                     Data Quality
                                 </button>
@@ -535,6 +554,7 @@
                                     type="button"
                                     clrDropdownItem
                                     (click)="clickMenuDataFromFile(1)"
+                                    title="Manage Business Glossary for Datasources"
                                     >
                                     Business Glossary
                                 </button>
@@ -542,6 +562,7 @@
                                     type="button"
                                     clrDropdownItem
                                     (click)="clickMenuDataFromFile(1)"
+                                    title="Manage Data Dictionary for Datasources"
                                     >
                                     Data Dictionary
                                 </button>
@@ -549,6 +570,7 @@
                                     type="button"
                                     clrDropdownItem
                                     (click)="clickMenuDataFromFile(1)"
+                                    title="Manage Data Ownership for Datasources"
                                     >
                                     Data Ownership
                                 </button>
@@ -559,7 +581,7 @@
                             type="button"
                             class="btn btn-link btn-sm"
                             clrDropdownItem
-                            title="Datasources currently available to this Dashboard"
+                            title="Manage Combinations from Datasources"
                             (click)="clickMenuDataCombinations()"
                             >
                             Combinations
@@ -569,17 +591,19 @@
                             type="button"
                             class="btn btn-link btn-sm"
                             clrDropdownItem
-                            title="Datasources currently available to this Dashboard"
+                            title="Show a summary of Data Usage Datasources (ie Dashboard where used)"
                             >
                             Usage
                         </button>
+
+                        <div class="dropdown-divider"></div>
 
                         <clr-dropdown>
                             <button
                                 type="button"
                                 class="btn btn-link btn-sm"
                                 clrDropdownTrigger
-                                title="Datasources currently available to this Dashboard"
+                                title="Refresh Datasources"
                                 (click)="clickMenuDataRefreshAll()"
                                 >
                                 Refresh
@@ -592,6 +616,7 @@
                                     type="button"
                                     clrDropdownItem
                                     (click)="clickMenuDataFromFile(1)"
+                                    title="Refresh all or some Datasources once off"
                                     >
                                     Once
                                 </button>
@@ -599,31 +624,12 @@
                                     type="button"
                                     clrDropdownItem
                                     (click)="clickMenuDataFromFile(1)"
+                                    title="Refresh Datasources for this Dashboard repeatedly"
                                     >
                                     Repeat
                                 </button>
                             </clr-dropdown-menu>
                         </clr-dropdown> 
-                        
-
-
-
-
-                        <div class="dropdown-divider"></div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                     </clr-dropdown-menu>
                 </clr-dropdown>
