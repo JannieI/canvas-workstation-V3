@@ -580,6 +580,7 @@
                                 class="btn btn-link btn-sm"
                                 clrDropdownTrigger
                                 title="Datasources currently available to this Dashboard"
+                                (click)="clickMenuDataRefreshAll()"
                                 >
                                 Refresh
                             </button>
@@ -624,13 +625,6 @@
 
 
 
-                        <button type="button"
-                            clrDropdownItem
-                            title="Refresh all the Datasources in this Dashboard"
-                            (click)="clickMenuDataRefreshAll()"
-                            >
-                            Refresh All
-                        </button>
                     </clr-dropdown-menu>
                 </clr-dropdown>
 
