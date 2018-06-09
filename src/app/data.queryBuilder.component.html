@@ -149,10 +149,10 @@
                         </clr-dg-placeholder>
 
                         <clr-dg-row
-                            *ngFor="let row of datasources; let i = index"
+                            *ngFor="let row of getDataField; let i = index"
                             [style.background-color]="(i == selectedRowIndex)? '#123456' : 'white'"
                             [style.color]="(i == selectedRowIndex)? 'white' : 'gray'"
-                            (click)="clickSelectedDatasource(i, row.id)"
+                            (click)="clickSelectedDatafield(i, row.id)"
                             >
                             <clr-dg-cell>
                                 <input type="checkbox" class="dsCheckbox"

@@ -20,6 +20,7 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
 // Our Models
+import { DataField }                  from './models';
 import { Datasource }                 from './models';
 import { Dataset }                    from './models';
 import { Transformation }             from './models';
@@ -64,6 +65,7 @@ export class DataQueryBuilderComponent implements OnInit {
     dataFieldLengths: number[] = [];
     dataFieldNames: string[];
     dataFieldTypes: string[] = [];
+    dataFields: DataField[] = [];
     datasources: localDatasources[];
     errorMessage: string = "";
 
@@ -78,6 +80,9 @@ export class DataQueryBuilderComponent implements OnInit {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
+        this.globalVariableService.getDataField().then(df => {
+            this.dataFields = df.slice();
+        });
     }
 
     clickViewFields(area: string) {
@@ -86,6 +91,15 @@ export class DataQueryBuilderComponent implements OnInit {
 
 
         
+    }
+
+    clickSelectedDatafield(index: number, id: number) {
+        // Clicked a DS -> Show related info and preview its data
+        // index = Index / position on CURRENT page, when using pagination
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectedDatasource', '@Start');
+
+        // Set seletected index - used for highlighting row
+        this.selectedTableRowIndex = index;
     }
 
     clickClose(action: string) {
