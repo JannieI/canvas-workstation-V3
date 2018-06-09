@@ -6035,6 +6035,8 @@ export class GlobalVariableService {
                 let finalUrl: string = '';
                 if (url == 'dashboardsRecent') {
                     finalUrl = 'http://localhost:3001/' + url;
+                } else if (url == 'dataFields') {
+                    finalUrl = 'http://localhost:3001/' + url;
                 } else if (url == 'dashboardSnapshots') {
                     finalUrl = 'http://localhost:3000/' + url;
                 } else if (url == 'widgetCheckpoints') {
