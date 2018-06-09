@@ -50,8 +50,9 @@
     .gridConnectionSelectButton {
         grid-column-start: 7;
         grid-column-end: 9;
-        grid-row-start: 5;
+        grid-row-start: 4;
         grid-row-end: 6;
+        margin-top: 6px;
     }
 
     .gridConnectionTitle {
@@ -69,80 +70,86 @@
     .gridConnectionButton {
         grid-column-start: 17;
         grid-column-end: 19;
-        grid-row-start: 5;
+        grid-row-start: 4;
         grid-row-end: 6;
+        margin-top: 6px;
     }
 
     .gridServerTitle {
         grid-column-start: 1;
         grid-column-end: 2;
-        grid-row-start: 6;
-        grid-row-end: 7;
+        grid-row-start: 7;
+        grid-row-end: 8;
+        margin-top: 5px;
     }
     .gridServer {
         grid-column-start: 2;
         grid-column-end: 7;
-        grid-row-start: 6;
-        grid-row-end: 7;
+        grid-row-start: 7;
+        grid-row-end: 8;
     }
 
     .gridUsernameTitle {
         grid-column-start: 7;
         grid-column-end: 9;
-        grid-row-start: 6;
-        grid-row-end: 7;
+        grid-row-start: 7;
+        grid-row-end: 8;
+        margin-top: 5px;
     }
     .gridUsername {
         grid-column-start: 9;
         grid-column-end: 14;
-        grid-row-start: 6;
-        grid-row-end: 7;
+        grid-row-start: 7;
+        grid-row-end: 8;
     }
 
     .gridPasswordTitle {
         grid-column-start: 14;
         grid-column-end: 16;
-        grid-row-start: 6;
-        grid-row-end: 7;
+        grid-row-start: 7;
+        grid-row-end: 8;
+        margin-top: 5px;
     }
     .gridPassword {
         grid-column-start: 16;
         grid-column-end: 20;
-        grid-row-start: 6;
-        grid-row-end: 7;
+        grid-row-start: 7;
+        grid-row-end: 8;
     }
 
     .gridAuthenticationTitle {
         grid-column-start: 1;
         grid-column-end: 2;
-        grid-row-start: 7;
-        grid-row-end: 8;
+        grid-row-start: 8;
+        grid-row-end: 9;
+        margin-top: 5px;
     }
     .gridAuthentication {
         grid-column-start: 2;
         grid-column-end: 7;
-        grid-row-start: 7;
-        grid-row-end: 8;
+        grid-row-start: 8;
+        grid-row-end: 9;
     }
 
     .gridDescriptionTitle {
         grid-column-start: 7;
         grid-column-end: 9;
-        grid-row-start: 7;
-        grid-row-end: 8;
+        grid-row-start: 8;
+        grid-row-end: 9;
+        margin-top: 5px;
     }
     .gridDescription {
         grid-column-start: 9;
         grid-column-end: 20;
-        grid-row-start: 7;
-        grid-row-end: 8;
+        grid-row-start: 8;
+        grid-row-end: 9;
     }
 
     .gridErrorMessage {
         grid-column-start: 2;
         grid-column-end: 20;
-        grid-row-start: 8;
-        grid-row-end: 9;
+        grid-row-start: 9;
+        grid-row-end: 10;
     }
     
     .gridTables {
@@ -150,7 +157,7 @@
         border-radius: 4px;
         grid-column-start: 1;
         grid-column-end: 6;
-        grid-row-start: 9;
+        grid-row-start: 10;
         grid-row-end: 21;
         overflow-y: scroll;
         width: 100%;
@@ -182,12 +189,12 @@
             padding: 0 0 5px 0 !important;    
         }
 
-    gridFields {
+    .gridFields {
         border: 1px solid gray;
         border-radius: 4px;
-        grid-column-start: 10;
+        grid-column-start: 7;
         grid-column-end: 21;
-        grid-row-start: 9;
+        grid-row-start: 10;
         grid-row-end: 21;
         overflow-y: scroll;
         width: 100%;

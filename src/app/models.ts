@@ -391,6 +391,26 @@ export class Transformation {
     parameters: string;
 }
 
+export class DataField {
+    id: number;                 // Unique ID
+    datasourceID: number;       // DS to which the Field belongs
+    nameDB: string;             // Field Name (in DB)
+    nameLocal: string;          // Optional Local Field Name (shown in D)
+    type: string;               // String, Number, Boolean
+    format: string;             // Optional, ie YYYY/MM/DD
+    filterOperand: string;      // Optional filter operand, ie '>='
+    filterValue: string;        // Optional filter value, ie '1'
+    calculation: string;        // Optional Calculation, ie 'OtherFieldName / 2'
+    orderSequence: number;      // Optional order sequence
+    orderDirection: string;     // Optional order direction, Asc / Desc
+    description: string;        // Detailed description of field (technical terms)
+    businessGlossary: string;   // Detailed business oriented description of field (non-technical)
+    keyField: boolean;          // True if a key field - used for explanedBy (later use)
+    explainedBy: string;        // Graph (bar chart of ...) that explains field if key field is true (later use)
+    // At Runtime
+    hidden: boolean;            // True if hidden at runtime
+}
+
 export class Field {
     id: number;
     datasourceID: number;
