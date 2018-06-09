@@ -373,7 +373,6 @@
                                     <button
                                         type="button"
                                         clrDropdownTrigger
-                                        (click)="clickMenuDataFromFile(1)"
                                         >
                                         From SQL Database
                                     </button>
@@ -409,7 +408,6 @@
                                     <button
                                         type="button"
                                         clrDropdownTrigger
-                                        (click)="clickMenuDataFromFile(1)"
                                         >
                                         From NoSQL Database
                                     </button>
@@ -498,7 +496,7 @@
                         <button
                             type="button"
                             class="btn btn-link btn-sm"
-                            clrDropdownTrigger
+                            clrDropdownItem
                             title="Datasources currently available to this Dashboard"
                             >
                             Overview
@@ -507,7 +505,7 @@
                         <button
                             type="button"
                             class="btn btn-link btn-sm"
-                            clrDropdownTrigger
+                            clrDropdownItem
                             title="Datasources currently available to this Dashboard"
                             >
                             Share
@@ -560,7 +558,7 @@
                         <button
                             type="button"
                             class="btn btn-link btn-sm"
-                            clrDropdownTrigger
+                            clrDropdownItem
                             title="Datasources currently available to this Dashboard"
                             >
                             Combinations
@@ -569,7 +567,7 @@
                         <button
                             type="button"
                             class="btn btn-link btn-sm"
-                            clrDropdownTrigger
+                            clrDropdownItem
                             title="Datasources currently available to this Dashboard"
                             >
                             Usage
@@ -616,28 +614,6 @@
 
 
 
-                        <clr-dropdown>
-                            <button
-                                type="button"
-                                class="btn btn-link btn-sm"
-                                clrDropdownTrigger
-                                title="Datasources currently available to this Dashboard"
-                                >
-                                Current
-                            </button>
-                            <clr-dropdown-menu
-                                clrPosition="right-top"
-                                *clrIfOpen
-                                >
-                                    <button  *ngFor="let row of currentDatasources"
-                                        type="button"
-                                        clrDropdownItem
-                                        (click)="clickMenuDataFromFile(row.id)"
-                                        >
-                                        {{ row.name }}
-                                    </button>
-                            </clr-dropdown-menu>
-                        </clr-dropdown>
                         <button type="button"
                             clrDropdownItem
                             title="Add an existing Datasource to this Dashboard"
