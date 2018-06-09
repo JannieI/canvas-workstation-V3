@@ -123,9 +123,9 @@
 
                         <clr-dg-row
                             *ngFor="let row of datasources; let i = index"
-                            [style.background-color]="(i == selectedRowIndex)? '#123456' : 'white'"
-                            [style.color]="(i == selectedRowIndex)? 'white' : 'gray'"
-                            (click)="clickSelectedDatasource(i, row.id)"
+                            [style.background-color]="(i == selectedTableRowIndex)? '#123456' : 'white'"
+                            [style.color]="(i == selectedTableRowIndex)? 'white' : 'gray'"
+                            (click)="clickSelectedDataTable(i, row.id)"
                             >
                             <clr-dg-cell>
                                 <input type="checkbox" class="dsCheckbox"
@@ -150,8 +150,8 @@
 
                         <clr-dg-row
                             *ngFor="let row of getDataField; let i = index"
-                            [style.background-color]="(i == selectedRowIndex)? '#123456' : 'white'"
-                            [style.color]="(i == selectedRowIndex)? 'white' : 'gray'"
+                            [style.background-color]="(i == selectedFieldRowIndex)? '#123456' : 'white'"
+                            [style.color]="(i == selectedFieldRowIndex)? 'white' : 'gray'"
                             (click)="clickSelectedDatafield(i, row.id)"
                             >
                             <clr-dg-cell>

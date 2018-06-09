@@ -68,6 +68,8 @@ export class DataQueryBuilderComponent implements OnInit {
     dataFields: DataField[] = [];
     datasources: localDatasources[];
     errorMessage: string = "";
+    selectedFieldRowIndex: number = 0;
+    selectedTableRowIndex: number = 0;
 
 
 	constructor(
@@ -89,17 +91,23 @@ export class DataQueryBuilderComponent implements OnInit {
         // Show fields area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickViewFields', '@Start');
 
-
         
     }
 
-    clickSelectedDatafield(index: number, id: number) {
-        // Clicked a DS -> Show related info and preview its data
-        // index = Index / position on CURRENT page, when using pagination
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectedDatasource', '@Start');
+    clickSelectedDataTable(index: number, id: number) {
+        // Clicked a Table
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectedDataTable', '@Start');
 
         // Set seletected index - used for highlighting row
         this.selectedTableRowIndex = index;
+    }
+
+    clickSelectedDatafield(index: number, id: number) {
+        // Clicked a Field
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectedDatafield', '@Start');
+
+        // Set seletected index - used for highlighting row
+        this.selectedFieldRowIndex = index;
     }
 
     clickClose(action: string) {
