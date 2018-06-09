@@ -2630,9 +2630,9 @@ export class AppComponent implements OnInit {
 
     // ***********************  CLICK DATA MENU OPTIONS ************************ //
 
-    clickMenuDataAddExisting() {
-        // Open DATA form for a DS that comes from a file.  The id is -1 for a new one
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataFromFile', '@Start');
+    clickMenuDatasourceOverview() {
+        // Show an overview of a DS, ie data quality, fields, etc
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDatasourceOverview', '@Start');
 
         this.menuOptionClickPreAction();
 
