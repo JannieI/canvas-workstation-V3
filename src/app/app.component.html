@@ -435,7 +435,125 @@
                                 </button>
                             </clr-dropdown-menu>
                         </clr-dropdown>
-        
+
+                        <clr-dropdown>
+                            <button
+                                type="button"
+                                class="btn btn-link btn-sm"
+                                clrDropdownTrigger
+                                title="Datasources currently available to this Dashboard"
+                                >
+                                Overview
+                            </button>
+                        </clr-dropdown>
+
+                        <clr-dropdown>
+                            <button
+                                type="button"
+                                class="btn btn-link btn-sm"
+                                clrDropdownTrigger
+                                title="Datasources currently available to this Dashboard"
+                                >
+                                Share
+                            </button>
+                        </clr-dropdown>
+
+                        <clr-dropdown>
+                            <button
+                                type="button"
+                                class="btn btn-link btn-sm"
+                                clrDropdownTrigger
+                                title="Datasources currently available to this Dashboard"
+                                >
+                                Manage MetaData
+                            </button>
+                            <clr-dropdown-menu
+                                clrPosition="right-top"
+                                *clrIfOpen
+                                >
+                                <button
+                                    type="button"
+                                    clrDropdownItem
+                                    (click)="clickMenuDataFromFile(row.id)"
+                                    >
+                                    Data Quality
+                                </button>
+                                <button
+                                    type="button"
+                                    clrDropdownItem
+                                    (click)="clickMenuDataFromFile(row.id)"
+                                    >
+                                    Business Glossary
+                                </button>
+                                <button
+                                    type="button"
+                                    clrDropdownItem
+                                    (click)="clickMenuDataFromFile(row.id)"
+                                    >
+                                    Data Dictionary
+                                </button>
+                                <button
+                                    type="button"
+                                    clrDropdownItem
+                                    (click)="clickMenuDataFromFile(row.id)"
+                                    >
+                                    Data Ownership
+                                </button>
+                            </clr-dropdown-menu>
+                        </clr-dropdown> 
+                        
+                        <clr-dropdown>
+                            <button
+                                type="button"
+                                class="btn btn-link btn-sm"
+                                clrDropdownTrigger
+                                title="Datasources currently available to this Dashboard"
+                                >
+                                Combinations
+                            </button>
+                        </clr-dropdown>
+
+                        <clr-dropdown>
+                            <button
+                                type="button"
+                                class="btn btn-link btn-sm"
+                                clrDropdownTrigger
+                                title="Datasources currently available to this Dashboard"
+                                >
+                                Usage
+                            </button>
+                        </clr-dropdown>
+
+                        <clr-dropdown>
+                            <button
+                                type="button"
+                                class="btn btn-link btn-sm"
+                                clrDropdownTrigger
+                                title="Datasources currently available to this Dashboard"
+                                >
+                                Refresh
+                            </button>
+                            <clr-dropdown-menu
+                                clrPosition="right-top"
+                                *clrIfOpen
+                                >
+                                <button
+                                    type="button"
+                                    clrDropdownItem
+                                    (click)="clickMenuDataFromFile(row.id)"
+                                    >
+                                    Once
+                                </button>
+                                <button
+                                    type="button"
+                                    clrDropdownItem
+                                    (click)="clickMenuDataFromFile(row.id)"
+                                    >
+                                    Repeat
+                                </button>
+                            </clr-dropdown-menu>
+                        </clr-dropdown> 
+                        
 
 
 
