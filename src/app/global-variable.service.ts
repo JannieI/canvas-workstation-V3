@@ -29,6 +29,7 @@ import { DashboardTab }               from './models';
 import { DashboardTag }               from './models';
 import { DashboardTemplate }          from './models';
 import { DashboardTheme }             from './models';
+import { DataField }                  from './models';
 import { DatagridInput }              from './models';
 import { DatagridColumn }             from './models';
 import { Dataset }                    from './models';
@@ -586,6 +587,7 @@ export class GlobalVariableService {
     fields: Field[] = fields;
     fieldsMetadata: FieldMetadata[] = fieldsMetadata;
     datasets: any = [];                                 // List of dSets, NO data
+    dataFields: DataField[] = [];
     finalFields: any = finalFields;
 
 
@@ -720,6 +722,7 @@ export class GlobalVariableService {
     isDirtyCanvasGroups: boolean = true;
     isDirtyUsers: boolean = true;
     isDirtyCanvasAuditTrails: boolean = true;
+    isDirtyDataFields: boolean = true;
 
     // Settings that can be set via UI for next time, from then on it will change
     // as the user uses them, and used the next time (a Widget is created)
@@ -2511,12 +2514,12 @@ export class GlobalVariableService {
 
             // Refresh from source at start, or if dirty
             if ( (this.dataFields.length == 0)  ||  (this.isDirtyDataFields) ) {
-                this.statusBarRunning.next(this.canvasFieldtings.queryRunningMessage);
+                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
                     .then(data => {
                         this.dataFields = data;
                         this.isDirtyDataFields = false;
-                        this.statusBarRunning.next(this.canvasFieldtings.noQueryRunningMessage);
+                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getDataField 1',
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.dataFields)
                         resolve(this.dataFields);
