@@ -2664,30 +2664,6 @@ export class AppComponent implements OnInit {
         // this.router.navigate(['/data']);
     }
 
-    clickMenuDataFromServer() {
-        // Add a DS from a Server
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataFromServer', '@Start');
-
-        // Has to be in editMode
-        if (!this.editMode) {
-            this.showMessage(
-                this.globalVariableService.canvasSettings.notInEditModeMsg,
-                'StatusBar',
-                'Warning',
-                3000,
-                ''
-            );
-            return;
-        };
-
-        this.menuOptionClickPreAction();
-
-        console.log('App clickMenuDataFromServer')
-        this.globalVariableService.dataGetFromSwitch.next('Server');
-        // this.router.navigate(['/data']);
-        // this.globalVariableService.showModalData.next(true);
-    }
-
     clickMenuDataDataQuality(){
         // Manage combinations of DS
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDataQuality', '@Start');
