@@ -506,6 +506,7 @@
                             class="btn btn-link btn-sm"
                             clrDropdownItem
                             title="Datasources currently available to this Dashboard"
+                            (click)="clickMenuDataShare()"
                             >
                             Share
                         </button>
@@ -622,14 +623,7 @@
 
 
 
-                        <div class="dropdown-divider"></div>
-                        <button type="button"
-                            clrDropdownItem
-                            title="User and Group access to Datasources"
-                            (click)="clickMenuDataShare()"
-                            >
-                            Share
-                        </button>
+
                         <button type="button"
                             clrDropdownItem
                             title="Refresh all the Datasources in this Dashboard"
