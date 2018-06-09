@@ -367,6 +367,7 @@ export class AppComponent implements OnInit {
     showModalWidgetDelete: boolean = false;
     showModalDashboardPrint: boolean = false;
     showModalDataOverview: boolean = false;
+    showModalDataQueryBuilder: boolean = false;
     showModalData: boolean = false;
     showModalSlicerEditor: boolean = false;
     showModalWidgetTablist: boolean = false;
@@ -1152,12 +1153,22 @@ export class AppComponent implements OnInit {
     }
 
     handleCloseDataAddExisting(action: string) {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseData', '@Start');
+        // Handle close of Add Existing DS form
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataAddExisting', '@Start');
 
         this.menuOptionClickPostAction();
 
         this.showModalDataOverview = false;
+    }
+    
+
+    handleCloseDataQueryBuilder(action: string) {
+        // Handle Close of SQL Query Builder
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataQueryBuilder', '@Start');
+
+        this.menuOptionClickPostAction();
+
+        this.showModalDataQueryBuilder = false;
     }
 
     handleCloseData(action: string) {
@@ -2629,6 +2640,15 @@ export class AppComponent implements OnInit {
 
 
     // ***********************  CLICK DATA MENU OPTIONS ************************ //
+   
+    clickMenuDataQueryBuilder() {
+        // SQL Query Builder, constructed by selecting Table and Fields
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataQueryBuilder', '@Start');
+
+        this.menuOptionClickPreAction();
+
+        this.showModalDataQueryBuilder = true;
+    }
 
     clickMenuDatasourceOverview() {
         // Show an overview of a DS, ie data quality, fields, etc

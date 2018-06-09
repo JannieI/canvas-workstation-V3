@@ -385,7 +385,7 @@
                                         <button
                                             type="button"
                                             clrDropdownItem
-                                            (click)="clickMenuDataFromFile(1)"
+                                            (click)="clickMenuDataQueryBuilder()"
                                             title="Create a new Datasources using Query Builder"
                                             >
                                             Query Builder
@@ -604,7 +604,6 @@
                                 class="btn btn-link btn-sm"
                                 clrDropdownTrigger
                                 title="Refresh Datasources"
-                                (click)="clickMenuDataRefreshAll()"
                                 >
                                 Refresh
                             </button>
@@ -3966,6 +3965,13 @@
     *ngIf="showModalDashboardPrint"
     (formDashboardPrintClosed)="handleCloseDashboardPrint($event)">Load Dashboard Print ...
 </dashboard-print>
+
+
+<!-- Modal: Data Query Builder -->
+<data-queryBuilder
+    *ngIf="showModalDataQueryBuilder"
+    (formDataAddExistingClosed)="handleCloseDataAddExisting($event)">Load Data Add Existing ...
+</data-queryBuilder>
 
 
 <!-- Modal: Data Add Existing -->
