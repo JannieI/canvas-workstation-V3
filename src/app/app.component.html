@@ -364,7 +364,7 @@
                                 <button
                                     type="button"
                                     clrDropdownItem
-                                    (click)="clickMenuDataFromFile(1)"
+                                    (click)="clickMenuDataFromFile()"
                                     >
                                     From File
                                 </button>
@@ -399,7 +399,7 @@
                                             clrDropdownItem
                                             (click)="clickMenuDataFromFile(1)"
                                             >
-                                            SQL Editor
+                                            Overlay Editor
                                         </button>
                                     </clr-dropdown-menu>
                                 </clr-dropdown>
@@ -418,23 +418,21 @@
                                         <button
                                             type="button"
                                             clrDropdownItem
-                                            (click)="clickMenuDataFromFile(1)"
                                             >
-                                            Query Builder
+                                            Query Builder?
                                         </button>
                                         <button
                                             type="button"
                                             clrDropdownItem
                                             (click)="clickMenuDataFromFile(1)"
                                             >
-                                            SQL Editor
+                                            NoSQL Editor
                                         </button>
                                         <button
                                             type="button"
                                             clrDropdownItem
-                                            (click)="clickMenuDataFromFile(1)"
                                             >
-                                            SQL Editor
+                                            Overlay Editor?
                                         </button>
                                     </clr-dropdown-menu>
                                 </clr-dropdown>
@@ -616,14 +614,6 @@
 
 
 
-                        <div class="dropdown-divider"></div>
-                        <button type="button"
-                            clrDropdownItem
-                            title="Add a Datasource to this Dashboard from a file"
-                            (click)="clickMenuDataFromFile(-1)"
-                            >
-                            From File
-                        </button>
                         <button type="button"
                             clrDropdownItem
                             title="Add a Datasource to this Dashboard from a server"
