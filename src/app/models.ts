@@ -407,6 +407,13 @@ export class DataField {
     businessGlossary: string;   // Detailed business oriented description of field (non-technical)
     keyField: boolean;          // True if a key field - used for explanedBy (later use)
     explainedBy: string;        // Graph (bar chart of ...) that explains field if key field is true (later use)
+
+    // Creation, update and refresh
+    creator: string;            // Created By
+    dateCreated: string;        // Created On
+    editor: string;             // Last Edited By
+    dateEdited: string;         // Last Edited On
+
     // At Runtime
     hidden: boolean;            // True if hidden at runtime
 }
