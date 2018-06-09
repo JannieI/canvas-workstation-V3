@@ -498,6 +498,7 @@
                             class="btn btn-link btn-sm"
                             clrDropdownItem
                             title="Datasources currently available to this Dashboard"
+                            (click)="clickMenuDatasourceOverview"
                             >
                             Overview
                         </button>
@@ -614,13 +615,7 @@
 
 
 
-                        <button type="button"
-                            clrDropdownItem
-                            title="Add an existing Datasource to this Dashboard"
-                            (click)="clickMenuDataAddExisting()"
-                            >
-                            Add Existing
-                        </button>
+
                         <div class="dropdown-divider"></div>
                         <button type="button"
                             clrDropdownItem
