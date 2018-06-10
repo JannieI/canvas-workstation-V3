@@ -34,7 +34,7 @@ import { DataQualityIssue }           from './models';
 import * as dl from 'datalib';
 import { load } from 'datalib';
 
-interface localDatasources extends Datasource 
+interface localDatasources extends Datasource
     {
         isSelected?: boolean;
         hasWidget?: boolean;
@@ -90,25 +90,37 @@ export class DataQueryBuilderComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         this.globalVariableService.getDataConnection().then(dc => {
-            this.dataConnections = dc.slice();
-            if (this.dataConnections.length > 0) {
-                this.filterTables(this.dataConnections[0].connectionName);
-            } else {
-                this.filterTables('');
-            };
+            this.globalVariableService.getDataTable().then(dt => {
+                this.globalVariableService.getDataField().then(df => {
 
+                    // Get local Vars
+                    this.dataConnections = dc.slice();
+                    this.dataTables = dt.slice();
+                    this.dataFields = df.slice();
+
+                    // Fill list of Tables for first Connection
+                    if (this.dataConnections.length > 0) {
+                        this.filterTables(this.dataConnections[0].connectionName);
+                    } else {
+                        this.filterTables('');
+                    };
+
+                    // Fill list of Fields for first Table
+                    if (this.dataTables.length > 0) {
+                        this.filterTables(this.dataTables[0].nameDB);
+                    } else {
+                        this.filterTables('');
+                    };
+                });
+            });
         });
-        this.globalVariableService.getDataTable().then(dt => {
-            this.dataTables = dt.slice();
-        });
-        this.globalVariableService.getDataField().then(df => {
-            this.dataFields = df.slice();
-        });    }
+
+    }
 
     clickViewFields(area: string) {
         // Show fields area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickViewFields', '@Start');
-        
+
     }
 
     clickConnectionSelect(ev: any) {
@@ -118,14 +130,14 @@ export class DataQueryBuilderComponent implements OnInit {
         // Refresh the Tables for the selected Connection
         console.warn('xx ev', ev, this.connectionName)
         this.filterTables(this.connectionName);
-        
+
     }
 
     filterTables(connectNameToFilter: string) {
         // Filter Tables on Selected Connection
         this.globalFunctionService.printToConsole(this.constructor.name,'filterTables', '@Start');
 
-        let connectionIndex: number = this.dataConnections.findIndex(dt => 
+        let connectionIndex: number = this.dataConnections.findIndex(dt =>
             dt.connectionName == connectNameToFilter
         );
         let connectionID: number = -1;
@@ -139,8 +151,21 @@ export class DataQueryBuilderComponent implements OnInit {
                 return dt;
             };
         });
-        
+
     }
+    
+    filterFields(tableID: number) {
+        // Filter Fields on Selected Connection
+        this.globalFunctionService.printToConsole(this.constructor.name,'filterFields', '@Start');
+
+        this.dataFieldsFiltered = this.dataFields.filter(df => {
+            if (df.tableID == tableID) {
+                return df;
+            };
+        });
+
+    }
+    
     clickSelectedDataTable(index: number, id: number) {
         // Clicked a Table
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectedDataTable', '@Start');

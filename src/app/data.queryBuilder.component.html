@@ -117,6 +117,7 @@
                             <clr-dg-column class="widthTn" [clrDgField]="nameDB">Name</clr-dg-column>
                             <clr-dg-column class="widthTn" [clrDgField]="nameLocal">Local Name</clr-dg-column>
                             <clr-dg-column class="widthTd" [clrDgField]="businessGlossary">Business Glossary</clr-dg-column>
+                            <clr-dg-column class="widthTd" [clrDgField]="id">ID</clr-dg-column>
 
                             <clr-dg-row
                                 *ngFor="let row of dataTablesFiltered; let i = index"
@@ -127,6 +128,7 @@
                                 <clr-dg-cell>{{ row.nameDB }}</clr-dg-cell>
                                 <clr-dg-cell>{{ row.nameLocal }}</clr-dg-cell>
                                 <clr-dg-cell>{{ row.businessGlossary }}</clr-dg-cell>
+                                <clr-dg-cell>{{ row.id }}</clr-dg-cell>
 
                             </clr-dg-row>
                         </clr-datagrid>
