@@ -112,9 +112,19 @@
                             <clr-dg-placeholder>
                                 No records ...
                             </clr-dg-placeholder>
-
+                            
+                            
+                            
+                            
+                            
+                            <clr-dg-column [clrDgField]="nameDB">nameDB</clr-dg-column>
+                            <clr-dg-column [clrDgField]="nameLocal">nameLocal</clr-dg-column>
+                            <clr-dg-column [clrDgField]="type">type</clr-dg-column>
+                            <clr-dg-column [clrDgField]="description">description</clr-dg-column>
+                            <clr-dg-column [clrDgField]="businessGlossary">businessGlossary</clr-dg-column>
+                            
                             <clr-dg-row
-                                *ngFor="let row of datasources; let i = index"
+                                *ngFor="let row of dataTables; let i = index"
                                 [style.background-color]="(i == selectedTableRowIndex)? '#123456' : 'white'"
                                 [style.color]="(i == selectedTableRowIndex)? 'white' : 'gray'"
                                 (click)="clickSelectedDataTable(i, row.id)"
@@ -126,10 +136,15 @@
                                         (click)="clickDSCheckbox(i, row.id, row.isSelected, $event)"
                                         >
                                     <div class="dsName">
-                                        {{ row.fieldValue }}                                        {{row.name}}
+                                        {{ row.nameDB }}                                        {{row.name}}
                                     </div>
 
                                 </clr-dg-cell>
+                                <clr-dg-cell>{{ row.nameLocal }}</clr-dg-cell>
+                                <clr-dg-cell>{{ row.type }}</clr-dg-cell>
+                                <clr-dg-cell>{{ row.description }}</clr-dg-cell>
+                                <clr-dg-cell>{{ row.businessGlossary }}</clr-dg-cell>
+                                
                             </clr-dg-row>
                         </clr-datagrid>
                     </div>
