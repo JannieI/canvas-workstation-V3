@@ -1162,7 +1162,15 @@ export class AppComponent implements OnInit {
         this.showModalDataOverview = false;
     }
     
-    showModalDataConnector
+    handleCloseDataConnector(action: string) {
+        // Handle Close of SQL Query Builder
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataConnector', '@Start');
+
+        this.menuOptionClickPostAction();
+
+        this.showModalDataConnector = false;
+    }
+
     handleCloseDataQueryBuilder(action: string) {
         // Handle Close of SQL Query Builder
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataQueryBuilder', '@Start');
