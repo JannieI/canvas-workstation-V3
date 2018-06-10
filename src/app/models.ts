@@ -404,12 +404,23 @@ export class DataConnction {
 
 export class DataTable {
     id: number;                 // Unique ID
-    datasourceID: number;       // DS to which the Field belongs
+    connectionID: number;       // Connection to which the Field belongs
+    nameDB: string;             // Field Name (in DB)
+    nameLocal: string;          // Optional Local Field Name (shown in D)
+    type: string;               // Table / View
+    description: string;        // Detailed description of the table
+    businessGlossary: string;   // Detailed business oriented description of table (non-technical)
+
+    // Creation, update and refresh
+    creator: string;            // Created By
+    dateCreated: string;        // Created On
+    editor: string;             // Last Edited By
+    dateEdited: string;         // Last Edited On
 }
 
 export class DataField {
     id: number;                 // Unique ID
-    datasourceID: number;       // DS to which the Field belongs
+    tableID: number;            // DataTable to which the Field belongs
     nameDB: string;             // Field Name (in DB)
     nameLocal: string;          // Optional Local Field Name (shown in D)
     type: string;               // String, Number, Boolean
