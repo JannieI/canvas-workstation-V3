@@ -65,6 +65,7 @@ export class DataQueryBuilderComponent implements OnInit {
     authentication: string = 'UsrPsw';
     connectionName: string = '';
     connectionType: string = 'MySQL';
+    datasourceName: string = '';
     description: string = 'Post Trade Data Vault';
     dataConnections: DataConnection[] = [];
     dataTables: DataTable[] = [];
@@ -74,6 +75,7 @@ export class DataQueryBuilderComponent implements OnInit {
     datasources: localDatasources[];
     errorMessage: string = "";
     selectedFieldRowIndex: number = 0;
+    selectedFields: DataField[] = [];
     selectedTableRowIndex: number = 0;
     serverName: string = 'MSSQL54: 8000';
 

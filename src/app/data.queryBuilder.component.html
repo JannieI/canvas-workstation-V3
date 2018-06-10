@@ -17,11 +17,11 @@
                         </i>
                     </div>
 
-                    <div class="gridConnectionNameTitle">
+                    <div class="gridDatasourceNameTitle">
                         <b>Name:</b>
                     </div>
-                    <div class="gridConnectionName">
-                        <input [(ngModel)]="connectionName"
+                    <div class="gridDatasourceName">
+                        <input [(ngModel)]="datasourceName"
                             type="text"
                             name="connectionName"
                             title="Name of the Datasource"
@@ -135,7 +135,7 @@
                     </div>
 
                     <div class="gridFields">
-                        <clr-datagrid>
+                        <clr-datagrid [(clrDgSelected)]="selectedFields">
                             <clr-dg-placeholder>
                                 No records ...
                             </clr-dg-placeholder>
@@ -147,21 +147,12 @@
                             <clr-dg-column [clrDgField]="businessGlossary">businessGlossary</clr-dg-column>
 
                             <clr-dg-row
-                                *clrDgItems="let row of dataFieldsFiltered; let i = index"
+                                *clrDgItems="let row of dataFieldsFiltered; let i = index" [clrDgItem]="row"
                                 [style.background-color]="(i == selectedFieldRowIndex)? '#123456' : 'white'"
                                 [style.color]="(i == selectedFieldRowIndex)? 'white' : 'gray'"
                                 (click)="clickSelectedDatafield(i, row.id)"
                                 >
-                                <clr-dg-cell>
-                                    <input type="checkbox" class="dsCheckbox"
-                                        [checked]="row.isSelected"
-                                        [disabled]="row.hasWidget"
-                                        (click)="clickDSCheckbox(i, row.id, row.isSelected, $event)"
-                                        >
-                                    <div class="dsName">
-                                        {{ row.nameDB }}
-                                    </div>
-                                </clr-dg-cell>
+                                <clr-dg-cell>{{ row.nameDB }}</clr-dg-cell>
                                 <clr-dg-cell>{{ row.nameLocal }}</clr-dg-cell>
                                 <clr-dg-cell>{{ row.type }}</clr-dg-cell>
                                 <clr-dg-cell>{{ row.format }}</clr-dg-cell>
