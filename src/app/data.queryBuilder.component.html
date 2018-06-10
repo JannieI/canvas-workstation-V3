@@ -12,7 +12,7 @@
                     </div> 
                     <div class="gridSubTitle">
                         <i>
-                            Add a Datasource from a SQL Database.  Identify the Datasource,
+                            Add a Datasource from a SQL Database.  Identify the Connection,
                             select a Table and required fields in this table.  Continue with
                             Transformations if the data must be massaged into a different 
                             format.
@@ -96,6 +96,7 @@
                         <input [(ngModel)]="description"
                             type="text"
                             name="description"
+                            size="45"
                             title="Description of the connection"
                             >
                     </div>
@@ -197,6 +198,27 @@
                             </clr-dg-row>
                         </clr-datagrid>
                     </div>
+
+                    <div class="gridButtonCancel">
+                            <button
+                            type="button"
+                            class="btn btn-secondary"
+                            (click)="clickClose('Close')"
+                            >
+                            Cancel
+                        </button>
+                    </div>
+    
+                    <div class="gridButtonSave">
+                        <button
+                            type="button"
+                            class="btn btn-primary"
+                            (click)="clickSave('Saved')"
+                            >
+                            Save
+                        </button>
+                    </div>
+                        
                 </div>
             </form>
         </div>
