@@ -16,57 +16,45 @@
                             Table and required fields.  Transformations are optional.
                         </i>
                     </div>
-
-                    <div class="gridConnectionTitle">
-                        <b>Connection:</b>
+    
+                    <div class="gridConnectionNameTitle">
+                        <b>Name:</b>
                     </div>
-                    <div class="gridConnection">
+                    <div class="gridConnectionName">
                         <input [(ngModel)]="connectionName"
                             type="text"
                             name="connectionName"
-                            title="Name of the connection"
+                            title="Name of the Datasource"
                             >
                     </div>
-
-                    <div class="gridConnectionTypeTitle">
-                        <b>Type:</b>
-                    </div>
-                    <div class="select gridConnectionType">
-                        <select [(ngModel)]="connectionType"
-                            name="connectionType"
-                            (change)="clickConnectionType($event)"
-                            placeholder="Select type of Connection, ie PostreSQL"
-                            >
-                            <option>My SQL</option>
-                            <option>Microsft SQL</option>
-                            <option>MySQL</option>
-                        </select>
-                    </div>
-    
+        
                     <div class="gridConnectionSelectTitle">
-                        <b>Copy:</b>
+                        <b>Connection:</b>
                     </div>
                     <div class="select gridConnectionSelect">
                         <select
                             name="connectionSelect"
                             (change)="clickConnectionSelect($event)"
-                            placeholder="Select previous Connection to copy from"
+                            placeholder="Select previously stored Connection"
                             >
                             <option *ngFor="let row of connections">
                                 {{ row }}
                             </option>
                         </select>
                     </div>
+
+                    <div class="gridConnectionTypeTitle">
+                        <b>Type:</b>
+                    </div>
+                    <div class="select gridConnectionType">
+                        {{ connectionType }}
+                    </div>
     
-                    <div class="gridServerTitle">
+                    <div class="gridServerNameTitle">
                         <b>Server:</b>
                     </div>
-                    <div class="gridServer">
-                        <input [(ngModel)]="serverTitle"
-                            type="text"
-                            name="serverTitle"
-                            title="Name of the Server/IP Address and :Port"
-                            >
+                    <div class="gridServerName">
+                        {{ serverName }}
                     </div>
 
                     <div class="gridUsernameTitle">
@@ -95,23 +83,14 @@
                         <b>Authentication:</b>
                     </div>
                     <div class="gridAuthentication">
-                        <input [(ngModel)]="authentication"
-                            type="text"
-                            name="authentication"
-                            title="Current User or log in"
-                            >
+                        {{ authentication }}
                     </div>
 
                     <div class="gridDescriptionTitle">
                         <b>Description:</b>
                     </div>
                     <div class="gridDescription">
-                        <input [(ngModel)]="description"
-                            type="text"
-                            name="description"
-                            size="45"
-                            title="Description of the connection"
-                            >
+                        {{ description }}
                     </div>
 
                     <div class="gridButtonTransformation">

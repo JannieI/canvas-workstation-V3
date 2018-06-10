@@ -155,6 +155,7 @@ import { StatusbarComponent }         from './statusbar.component';
         DashboardUsagestatsComponent,
 
         DataPopupComponent,
+        DataConnectorComponent,
         DataQueryBuilderComponent,
         DataAddExistingComponent,
         DataCombinationComponent,

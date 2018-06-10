@@ -60,6 +60,10 @@ export class DataQueryBuilderComponent implements OnInit {
 
     }
 
+    authentication: string = 'UsrPsw';
+    connectionType: string = 'MySQL';
+    description: string = 'Post Trade Data Vault';
+    serverName: string = 'MSSQL54: 8000';
     currentData: any = [];
     currentDSids: number[] = [];                    // List of DS-IDs in use
     dataFieldLengths: number[] = [];

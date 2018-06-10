@@ -426,6 +426,8 @@ export class DataPopupComponent implements OnInit {
         let newData: Datasource =  {
             id: newDSID,
             name: this.fileName,
+            username: '',
+            password: '',
             type: 'File',
             subType: 'CSV',
             typeVersion: 'Comma-Separated',

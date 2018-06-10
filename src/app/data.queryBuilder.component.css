@@ -35,53 +35,53 @@
         text-align: left;
     }
 
-    .gridConnectionTitle {
+    .gridConnectionNameTitle {
         grid-column-start: 1;
         grid-column-end: 2;
         grid-row-start: 4;
         grid-row-end: 5;
     }
-    .gridConnection {
+    .gridConnectionName {
         grid-column-start: 2;
         grid-column-end: 7;
         grid-row-start: 4;
         grid-row-end: 5;
     }
     
-    .gridConnectionTypeTitle {
+    .gridConnectionSelectTitle {
         grid-column-start: 7;
         grid-column-end: 9;
         grid-row-start: 4;
         grid-row-end: 5;
     }
-    .gridConnectionType {
+    .gridConnectionSelect {
         grid-column-start: 9;
         grid-column-end: 13;
         grid-row-start: 4;
         grid-row-end: 5;
     }
     
-    .gridConnectionSelectTitle {
+    .gridConnectionTypeTitle {
         grid-column-start: 14;
         grid-column-end: 15;
         grid-row-start: 4;
         grid-row-end: 5;
     }
-    .gridConnectionSelect {
+    .gridConnectionType {
         grid-column-start: 15;
         grid-column-end: 20;
         grid-row-start: 4;
         grid-row-end: 5;
     }
 
-    .gridServerTitle {
+    .gridServerNameTitle {
         grid-column-start: 1;
         grid-column-end: 2;
         grid-row-start: 6;
         grid-row-end: 7;
         margin-top: 5px;
     }
-    .gridServer {
+    .gridServerName {
         grid-column-start: 2;
         grid-column-end: 7;
         grid-row-start: 6;
@@ -145,7 +145,7 @@
     }
 
     .gridButtonTransformation {
-        grid-column-start: 18;
+        grid-column-start: 17;
         grid-column-end: 21;
         grid-row-start: 7;
         grid-row-end: 8;
