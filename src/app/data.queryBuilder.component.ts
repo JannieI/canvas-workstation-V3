@@ -91,7 +91,12 @@ export class DataQueryBuilderComponent implements OnInit {
 
         this.globalVariableService.getDataConnection().then(dc => {
             this.dataConnections = dc.slice();
-            this.filterTables('');
+            if (this.dataConnections.length > 0) {
+                this.filterTables(this.dataConnections[0].connectionName);
+            } else {
+                this.filterTables('');
+            };
+
         });
         this.globalVariableService.getDataTable().then(dt => {
             this.dataTables = dt.slice();
