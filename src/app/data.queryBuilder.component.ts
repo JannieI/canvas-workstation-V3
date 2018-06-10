@@ -98,18 +98,12 @@ export class DataQueryBuilderComponent implements OnInit {
                     this.dataTables = dt.slice();
                     this.dataFields = df.slice();
 
-                    // Fill list of Tables for first Connection
+                    // Select the Tables, Fields
                     if (this.dataConnections.length > 0) {
-                        this.filterTables(this.dataConnections[0].connectionName);
-                    } else {
-                        this.filterTables('');
-                    };
+                        this.clickConnectionSelect(this.dataConnections[0].connectionName);
 
-                    // Fill list of Fields for first Table
-                    if (this.dataTables.length > 0) {
-                        this.filterTables(this.dataTables[0].nameDB);
                     } else {
-                        this.filterTables('');
+                        this.clickConnectionSelect('');
                     };
                 });
             });
@@ -124,12 +118,24 @@ export class DataQueryBuilderComponent implements OnInit {
     }
 
     clickConnectionSelect(ev: any) {
-        // Clicked a Connection
+        // Refresh the Tables and Fields for the selected Connection
         this.globalFunctionService.printToConsole(this.constructor.name,'clickConnectionSelect', '@Start');
 
-        // Refresh the Tables for the selected Connection
         console.warn('xx ev', ev, this.connectionName)
-        this.filterTables(this.connectionName);
+
+        // Fill list of Tables for first Connection
+        if (this.connectionName != '') {
+            this.filterTables(this.connectionName);
+        } else {
+            this.filterTables('');
+        };
+
+        // Fill list of Fields for first Table
+        if (this.dataTablesFiltered.length > 0) {
+            this.filterFields(this.dataTablesFiltered[0].id);
+        } else {
+            this.filterFields(-1);
+        };
 
     }
 
@@ -172,6 +178,9 @@ export class DataQueryBuilderComponent implements OnInit {
 
         // Set seletected index - used for highlighting row
         this.selectedTableRowIndex = index;
+
+        // Select Fields in the table
+        this.filterFields(id);
     }
 
     clickSelectedDatafield(index: number, id: number) {
