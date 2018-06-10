@@ -45,7 +45,7 @@ interface localDatasources extends Datasource
 })
 export class DataConnectorComponent implements OnInit {
 
-    @Output() formDataAddQueryBuilderClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formDataConnectorClosed: EventEmitter<string> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
@@ -115,7 +115,7 @@ export class DataConnectorComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-        this.formDataAddQueryBuilderClosed.emit(action);
+        this.formDataConnectorClosed.emit(action);
 
     }
 

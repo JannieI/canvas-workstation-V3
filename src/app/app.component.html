@@ -348,6 +348,16 @@
                     </button>
                     <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
 
+                        <button
+                            type="button"
+                            class="btn btn-link btn-sm"
+                            clrDropdownItem
+                            title="Manage Data Connectors (to Databases, used in Datasources)"
+                            (click)="clickMenuDataConnector()"
+                            >
+                            Connectors
+                        </button>
+
                         <clr-dropdown>
                             <button
                                 type="button"
@@ -3977,7 +3987,7 @@
 <!-- Modal: Data Connector -->
 <data-connector
     *ngIf="showModalDataConnector"
-    (formDataAddConnectorClosed)="handleCloseDataConnector($event)">Load Data Connector ...
+    (formDataConnectorClosed)="handleCloseDataConnector($event)">Load Data Connector ...
 </data-connector>
 
 
