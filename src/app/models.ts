@@ -391,6 +391,22 @@ export class Transformation {
     parameters: string;
 }
 
+export class DataConnction {
+    id: number;                 // Unique ID
+    connectionName: string;     // Name of the Connection, ie XIS MS SQL Server
+    serverType: string;         // Type of server, ie PostgreSQL, MySQL, etc
+    serverName: string;         // DNS Server Name or IP address, ending with optional :port
+    username: string;           // Username to log into server
+    password: string;           // Password to log into server
+    authentication: string;     // Type of authentication: usr & psw, OR login as me (ie using AD)
+    description: string;        // Description of Connection
+}
+
+export class DataTable {
+    id: number;                 // Unique ID
+    datasourceID: number;       // DS to which the Field belongs
+}
+
 export class DataField {
     id: number;                 // Unique ID
     datasourceID: number;       // DS to which the Field belongs

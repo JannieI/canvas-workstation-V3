@@ -56,7 +56,7 @@
     }
     .gridConnectionType {
         grid-column-start: 9;
-        grid-column-end: 14;
+        grid-column-end: 13;
         grid-row-start: 4;
         grid-row-end: 5;
     }
@@ -69,7 +69,7 @@
     }
     .gridConnectionSelect {
         grid-column-start: 15;
-        grid-column-end: 21;
+        grid-column-end: 20;
         grid-row-start: 4;
         grid-row-end: 5;
     }
