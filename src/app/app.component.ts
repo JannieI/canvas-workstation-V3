@@ -2641,7 +2641,15 @@ export class AppComponent implements OnInit {
 
 
     // ***********************  CLICK DATA MENU OPTIONS ************************ //
+   
+    clickMenuDataConnector() {
+        // SQL Query Builder, constructed by selecting Table and Fields
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataConnector', '@Start');
 
+        this.menuOptionClickPreAction();
+
+        this.showModalDataConnector = true;
+    }
 
     clickMenuDataQueryBuilder() {
         // SQL Query Builder, constructed by selecting Table and Fields
