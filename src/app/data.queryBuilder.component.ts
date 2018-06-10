@@ -120,11 +120,15 @@ export class DataQueryBuilderComponent implements OnInit {
         // Filter Tables on Selected Connection
         this.globalFunctionService.printToConsole(this.constructor.name,'filterTables', '@Start');
 
-        let connectionIndex: number = this.dataTables.findIndex(dt => dt.nameDB == connectNameToFilter);
+        let connectionIndex: number = this.dataConnections.findIndex(dt => 
+            dt.connectionName == connectNameToFilter
+        );
         let connectionID: number = -1;
         if (connectionIndex >= 0) {
-            connectionID = this.dataTables[connectionIndex].id;
+            connectionID = this.dataConnections[connectionIndex].id;
         };
+
+        console.warn('xx conn', connectionID, connectNameToFilter, connectionIndex)
         this.dataTablesFiltered = this.dataTables.filter(dt => {
             if (dt.connectionID == connectionID) {
                 return dt;
