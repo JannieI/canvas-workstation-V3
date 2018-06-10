@@ -2,36 +2,19 @@
     <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <form #f="ngForm" role="form" novalidate>
-                
+
                 <button type="button" class="closeButton" (click)="clickClose()">
                     X
                 </button>
                 <div class="gridOverall">
                     <div class="gridTitle">
                         SQL Query Builder:
-                    </div> 
+                    </div>
                     <div class="gridSubTitle">
                         <i>
                             Add a Datasource from a SQL Database.  Identify the Connection,
-                            select a Table and required fields in this table.  Continue with
-                            Transformations if the data must be massaged into a different 
-                            format.
+                            Table and required fields.  Transformations are optional.
                         </i>
-                    </div>
-    
-                    <div class="gridConnectionSelectTitle">
-                        <b>Connection:</b>
-                    </div>
-                    <div class="select gridConnectionSelect">
-                        <select
-                            name="connectionSelect"
-                            (change)="clickConnectionSelect($event)"
-                            placeholder="Select previous Connection to use"
-                            >
-                            <option *ngFor="let row of connections">
-                                {{ row }}
-                            </option>
-                        </select>
                     </div>
 
                     <div class="gridConnectionTitle">
@@ -45,6 +28,21 @@
                             >
                     </div>
 
+                    <div class="gridConnectionSelectTitle">
+                        <b>Copy from:</b>
+                    </div>
+                    <div class="select gridConnectionSelect">
+                        <select
+                            name="connectionSelect"
+                            (change)="clickConnectionSelect($event)"
+                            placeholder="Select previous Connection to copy from"
+                            >
+                            <option *ngFor="let row of connections">
+                                {{ row }}
+                            </option>
+                        </select>
+                    </div>
+    
                     <div class="gridServerTitle">
                         <b>Server:</b>
                     </div>
@@ -96,17 +94,26 @@
                         <input [(ngModel)]="description"
                             type="text"
                             name="description"
-                            size="45"
                             title="Description of the connection"
                             >
+                    </div>
+
+                    <div class="gridButtonTransformation">
+                        <button
+                            type="button"
+                            class="btn btn-link"
+                            (click)="clickTransformation()"
+                            >
+                            Transformations
+                        </button>
                     </div>
 
                     <div *ngIf="errorMessage!=''" class="gridErrorMessage">
                         {{ errorMessage }}
                     </div>
-        
+
                     <div class="gridTables">
-                        <clr-datagrid> 
+                        <clr-datagrid>
                             <clr-dg-placeholder>
                                 No records ...
                             </clr-dg-placeholder>
@@ -131,9 +138,9 @@
                             </clr-dg-row>
                         </clr-datagrid>
                     </div>
-        
+
                     <div class="gridFields">
-                        <clr-datagrid> 
+                        <clr-datagrid>
                             <clr-dg-placeholder>
                                 No records ...
                             </clr-dg-placeholder>
@@ -158,7 +165,7 @@
                             <clr-dg-column [clrDgField]="editor">editor</clr-dg-column>
                             <clr-dg-column [clrDgField]="dateEdited">dateEdited</clr-dg-column>
                             <clr-dg-column [clrDgField]="hidden">hidden</clr-dg-column>
-                            
+
                             <clr-dg-row
                                 *clrDgItems="let row of dataFields; let i = index"
                                 [style.background-color]="(i == selectedFieldRowIndex)? '#123456' : 'white'"
@@ -208,7 +215,7 @@
                             Cancel
                         </button>
                     </div>
-    
+
                     <div class="gridButtonSave">
                         <button
                             type="button"
@@ -218,7 +225,7 @@
                             Save
                         </button>
                     </div>
-                        
+
                 </div>
             </form>
         </div>
