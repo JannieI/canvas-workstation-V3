@@ -113,9 +113,9 @@
                                 No records ...
                             </clr-dg-placeholder>
 
-                            <clr-dg-column class="widthTn" [clrDgField]="nameDB">nameDB</clr-dg-column>
-                            <clr-dg-column class="widthTn" [clrDgField]="nameLocal">nameLocal</clr-dg-column>
-                            <clr-dg-column class="widthTd" [clrDgField]="businessGlossary">businessGlossary</clr-dg-column>
+                            <clr-dg-column class="widthTn" [clrDgField]="nameDB">Name</clr-dg-column>
+                            <clr-dg-column class="widthTn" [clrDgField]="nameLocal">Local Name</clr-dg-column>
+                            <clr-dg-column class="widthTd" [clrDgField]="businessGlossary">Business Glossary</clr-dg-column>
 
                             <clr-dg-row
                                 *ngFor="let row of dataTables; let i = index"
@@ -123,17 +123,7 @@
                                 [style.color]="(i == selectedTableRowIndex)? 'white' : 'gray'"
                                 (click)="clickSelectedDataTable(i, row.id)"
                                 >
-                                <clr-dg-cell>
-                                    <input type="checkbox" class="dsCheckbox"
-                                        [checked]="row.isSelected"
-                                        [disabled]="row.hasWidget"
-                                        (click)="clickDSCheckbox(i, row.id, row.isSelected, $event)"
-                                        >
-                                    <div class="dsName">
-                                        {{ row.nameDB }}                                        {{row.name}}
-                                    </div>
-
-                                </clr-dg-cell>
+                                <clr-dg-cell>{{ row.nameDB }}</clr-dg-cell>
                                 <clr-dg-cell>{{ row.nameLocal }}</clr-dg-cell>
                                 <clr-dg-cell>{{ row.businessGlossary }}</clr-dg-cell>
 

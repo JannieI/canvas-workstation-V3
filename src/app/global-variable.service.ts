@@ -2503,6 +2503,38 @@ export class GlobalVariableService {
             )
         });
     }
+    
+    getDataConnection(): Promise<DataConnection[]> {
+        // Description: Gets DataConnections, WITHOUT data
+        // Returns: this.dataConnection
+        console.log('%c    Global-Variables getDataConnection ...',
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+
+        let url: string = 'dataConnections';
+        this.filePath = './asConnections/data.dataConnections.json';
+
+        return new Promise<DataConnection[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if ( (this.dataConnections.length == 0)  ||  (this.isDirtyDataConnections) ) {
+                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
+                this.get(url)
+                    .then(data => {
+                        this.dataConnections = data;
+                        this.isDirtyDataConnections = false;
+                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
+                        console.log('%c    Global-Variables getDataConnection 1',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.dataConnections)
+                        resolve(this.dataConnections);
+                    });
+            } else {
+                console.log('%c    Global-Variables getDataConnection 2',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.dataConnections)
+                resolve(this.dataConnections);
+            }
+        });
+
+    }
 
     getDataTable(): Promise<DataTable[]> {
         // Description: Gets DataTables, WITHOUT data
