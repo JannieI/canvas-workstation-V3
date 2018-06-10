@@ -21,6 +21,7 @@ import { GlobalVariableService }      from './global-variable.service';
 
 // Our Models
 import { DataField }                  from './models';
+import { DataTable }                  from './models';
 import { Datasource }                 from './models';
 import { Dataset }                    from './models';
 import { Transformation }             from './models';
@@ -69,6 +70,7 @@ export class DataQueryBuilderComponent implements OnInit {
     dataFieldLengths: number[] = [];
     dataFieldNames: string[];
     dataFieldTypes: string[] = [];
+    dataTables: DataTable[] = [];
     dataFields: DataField[] = [];
     datasources: localDatasources[];
     errorMessage: string = "";
@@ -87,10 +89,12 @@ export class DataQueryBuilderComponent implements OnInit {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
+        this.globalVariableService.getDataTable().then(dt => {
+            this.dataTables = dt.slice();
+        });
         this.globalVariableService.getDataField().then(df => {
             this.dataFields = df.slice();
-        });
-    }
+        });    }
 
     clickViewFields(area: string) {
         // Show fields area
