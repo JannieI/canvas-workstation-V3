@@ -71,6 +71,7 @@ export class DataQueryBuilderComponent implements OnInit {
     selectedFieldRowIndex: number = 0;
     selectedTableRowIndex: number = 0;
 
+    // connections ->
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
