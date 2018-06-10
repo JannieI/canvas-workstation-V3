@@ -20,8 +20,9 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
 // Our Models
-import { DataField }                  from './models';
+import { DataConnection }             from './models';
 import { DataTable }                  from './models';
+import { DataField }                  from './models';
 import { Datasource }                 from './models';
 import { Dataset }                    from './models';
 import { Transformation }             from './models';
@@ -62,20 +63,19 @@ export class DataQueryBuilderComponent implements OnInit {
     }
 
     authentication: string = 'UsrPsw';
+    connectionName: string = '';
     connectionType: string = 'MySQL';
     description: string = 'Post Trade Data Vault';
-    serverName: string = 'MSSQL54: 8000';
-    currentData: any = [];
-    currentDSids: number[] = [];                    // List of DS-IDs in use
-    dataFieldLengths: number[] = [];
-    dataFieldNames: string[];
-    dataFieldTypes: string[] = [];
+    dataConnections: DataConnection[] = [];
     dataTables: DataTable[] = [];
+    dataTablesFiltered: DataTable[] = [];
     dataFields: DataField[] = [];
+    dataFieldsFiltered: DataField[] = [];
     datasources: localDatasources[];
     errorMessage: string = "";
     selectedFieldRowIndex: number = 0;
     selectedTableRowIndex: number = 0;
+    serverName: string = 'MSSQL54: 8000';
 
     // connections ->
 
@@ -89,6 +89,10 @@ export class DataQueryBuilderComponent implements OnInit {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
+        this.globalVariableService.getDataConnection().then(dc => {
+            this.dataConnections = dc.slice();
+            this.filterTables('');
+        });
         this.globalVariableService.getDataTable().then(dt => {
             this.dataTables = dt.slice();
         });
@@ -99,10 +103,35 @@ export class DataQueryBuilderComponent implements OnInit {
     clickViewFields(area: string) {
         // Show fields area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickViewFields', '@Start');
-
         
     }
 
+    clickConnectionSelect(ev: any) {
+        // Clicked a Connection
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickConnectionSelect', '@Start');
+
+        // Refresh the Tables for the selected Connection
+        console.warn('xx ev', ev, this.connectionName)
+        this.filterTables(this.connectionName);
+        
+    }
+
+    filterTables(connectNameToFilter: string) {
+        // Filter Tables on Selected Connection
+        this.globalFunctionService.printToConsole(this.constructor.name,'filterTables', '@Start');
+
+        let connectionIndex: number = this.dataTables.findIndex(dt => dt.nameDB == connectNameToFilter);
+        let connectionID: number = -1;
+        if (connectionIndex >= 0) {
+            connectionID = this.dataTables[connectionIndex].id;
+        };
+        this.dataTablesFiltered = this.dataTables.filter(dt => {
+            if (dt.connectionID == connectionID) {
+                return dt;
+            };
+        });
+        
+    }
     clickSelectedDataTable(index: number, id: number) {
         // Clicked a Table
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectedDataTable', '@Start');

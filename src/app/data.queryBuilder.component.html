@@ -33,12 +33,13 @@
                     </div>
                     <div class="select gridConnectionSelect">
                         <select
+                            [(ngModel)]="connectionName"
                             name="connectionSelect"
                             (change)="clickConnectionSelect($event)"
                             placeholder="Select previously stored Connection"
                             >
-                            <option *ngFor="let row of connections">
-                                {{ row }}
+                            <option *ngFor="let row of dataConnections">
+                                {{ row.connectionName }}
                             </option>
                         </select>
                     </div>
@@ -118,7 +119,7 @@
                             <clr-dg-column class="widthTd" [clrDgField]="businessGlossary">Business Glossary</clr-dg-column>
 
                             <clr-dg-row
-                                *ngFor="let row of dataTables; let i = index"
+                                *ngFor="let row of dataTablesFiltered; let i = index"
                                 [style.background-color]="(i == selectedTableRowIndex)? '#123456' : 'white'"
                                 [style.color]="(i == selectedTableRowIndex)? 'white' : 'gray'"
                                 (click)="clickSelectedDataTable(i, row.id)"
@@ -144,7 +145,7 @@
                             <clr-dg-column [clrDgField]="businessGlossary">businessGlossary</clr-dg-column>
 
                             <clr-dg-row
-                                *clrDgItems="let row of dataFields; let i = index"
+                                *clrDgItems="let row of dataFieldsFiltered; let i = index"
                                 [style.background-color]="(i == selectedFieldRowIndex)? '#123456' : 'white'"
                                 [style.color]="(i == selectedFieldRowIndex)? 'white' : 'gray'"
                                 (click)="clickSelectedDatafield(i, row.id)"
