@@ -16,7 +16,7 @@
                             Table and required fields.  Transformations are optional.
                         </i>
                     </div>
-    
+
                     <div class="gridConnectionNameTitle">
                         <b>Name:</b>
                     </div>
@@ -27,7 +27,7 @@
                             title="Name of the Datasource"
                             >
                     </div>
-        
+
                     <div class="gridConnectionSelectTitle">
                         <b>Connection:</b>
                     </div>
@@ -49,7 +49,7 @@
                     <div class="gridConnectionType">
                         {{ connectionType }}
                     </div>
-    
+
                     <div class="gridServerNameTitle">
                         <b>Server:</b>
                     </div>
@@ -112,17 +112,11 @@
                             <clr-dg-placeholder>
                                 No records ...
                             </clr-dg-placeholder>
-                            
-                            
-                            
-                            
-                            
-                            <clr-dg-column [clrDgField]="nameDB">nameDB</clr-dg-column>
-                            <clr-dg-column [clrDgField]="nameLocal">nameLocal</clr-dg-column>
-                            <clr-dg-column [clrDgField]="type">type</clr-dg-column>
-                            <clr-dg-column [clrDgField]="description">description</clr-dg-column>
-                            <clr-dg-column [clrDgField]="businessGlossary">businessGlossary</clr-dg-column>
-                            
+
+                            <clr-dg-column class="widthTn" [clrDgField]="nameDB">nameDB</clr-dg-column>
+                            <clr-dg-column class="widthTn" [clrDgField]="nameLocal">nameLocal</clr-dg-column>
+                            <clr-dg-column class="widthTd" [clrDgField]="businessGlossary">businessGlossary</clr-dg-column>
+
                             <clr-dg-row
                                 *ngFor="let row of dataTables; let i = index"
                                 [style.background-color]="(i == selectedTableRowIndex)? '#123456' : 'white'"
@@ -141,10 +135,8 @@
 
                                 </clr-dg-cell>
                                 <clr-dg-cell>{{ row.nameLocal }}</clr-dg-cell>
-                                <clr-dg-cell>{{ row.type }}</clr-dg-cell>
-                                <clr-dg-cell>{{ row.description }}</clr-dg-cell>
                                 <clr-dg-cell>{{ row.businessGlossary }}</clr-dg-cell>
-                                
+
                             </clr-dg-row>
                         </clr-datagrid>
                     </div>
