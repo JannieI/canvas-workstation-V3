@@ -368,6 +368,7 @@ export class AppComponent implements OnInit {
     showModalDashboardPrint: boolean = false;
     showModalDataOverview: boolean = false;
     showModalDataQueryBuilder: boolean = false;
+    showModalDataConnector: boolean = false;
     showModalData: boolean = false;
     showModalSlicerEditor: boolean = false;
     showModalWidgetTablist: boolean = false;
@@ -1161,7 +1162,7 @@ export class AppComponent implements OnInit {
         this.showModalDataOverview = false;
     }
     
-
+    showModalDataConnector
     handleCloseDataQueryBuilder(action: string) {
         // Handle Close of SQL Query Builder
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataQueryBuilder', '@Start');
@@ -2640,7 +2641,8 @@ export class AppComponent implements OnInit {
 
 
     // ***********************  CLICK DATA MENU OPTIONS ************************ //
-   
+
+
     clickMenuDataQueryBuilder() {
         // SQL Query Builder, constructed by selecting Table and Fields
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataQueryBuilder', '@Start');

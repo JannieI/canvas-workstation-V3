@@ -341,6 +341,8 @@ export class Datasource {
     subType: string;
     typeVersion: string;
     name: string;
+    username: string;           // Username to log into server
+    password: string;           // Password to log into server
     description: string;
     createdBy: string;
     createdOn: string;
@@ -396,8 +398,6 @@ export class DataConnction {
     connectionName: string;     // Name of the Connection, ie XIS MS SQL Server
     serverType: string;         // Type of server, ie PostgreSQL, MySQL, etc
     serverName: string;         // DNS Server Name or IP address, ending with optional :port
-    username: string;           // Username to log into server
-    password: string;           // Password to log into server
     authentication: string;     // Type of authentication: usr & psw, OR login as me (ie using AD)
     description: string;        // Description of Connection
 }

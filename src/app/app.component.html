@@ -3974,6 +3974,13 @@
 </data-queryBuilder>
 
 
+<!-- Modal: Data Connector -->
+<data-connector
+    *ngIf="showModalDataConnector"
+    (formDataAddConnectorClosed)="handleCloseDataConnector($event)">Load Data Connector ...
+</data-connector>
+
+
 <!-- Modal: Data Add Existing -->
 <data-add-existing
     *ngIf="showModalDataOverview"

@@ -1,0 +1,224 @@
+.modalBox {
+	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+	-shadow: 0 2px 2px 0 lightgray;
+}
+
+.closeButton {
+    background-color: transparent;
+    border: none;
+    left: 0;
+    position: relative;
+    top: 0;
+}
+
+.gridOverall {
+    display: grid;
+    grid-template-columns: repeat(20, 1fr);
+    grid-template-rows: repeat(27, 0.8rem);
+    margin-top: 2px;
+}
+
+    .gridTitle {
+        font-size: 0.75rem;
+        grid-column-start: 1;
+        grid-column-end: 21;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        text-align: left;
+    }
+    .gridSubTitle {
+        grid-column-start: 1;
+        grid-column-end: 21;
+        grid-row-start: 2;
+        grid-row-end: 4;
+        margin-left: 20px;
+        text-align: left;
+    }
+
+    .gridConnectionTitle {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 4;
+        grid-row-end: 5;
+    }
+    .gridConnection {
+        grid-column-start: 2;
+        grid-column-end: 7;
+        grid-row-start: 4;
+        grid-row-end: 5;
+    }
+    
+    .gridConnectionTypeTitle {
+        grid-column-start: 7;
+        grid-column-end: 9;
+        grid-row-start: 4;
+        grid-row-end: 5;
+    }
+    .gridConnectionType {
+        grid-column-start: 9;
+        grid-column-end: 13;
+        grid-row-start: 4;
+        grid-row-end: 5;
+    }
+    
+    .gridConnectionSelectTitle {
+        grid-column-start: 14;
+        grid-column-end: 15;
+        grid-row-start: 4;
+        grid-row-end: 5;
+    }
+    .gridConnectionSelect {
+        grid-column-start: 15;
+        grid-column-end: 20;
+        grid-row-start: 4;
+        grid-row-end: 5;
+    }
+
+    .gridServerTitle {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 6;
+        grid-row-end: 7;
+        margin-top: 5px;
+    }
+    .gridServer {
+        grid-column-start: 2;
+        grid-column-end: 7;
+        grid-row-start: 6;
+        grid-row-end: 7;
+    }
+
+    .gridUsernameTitle {
+        grid-column-start: 7;
+        grid-column-end: 9;
+        grid-row-start: 6;
+        grid-row-end: 7;
+        margin-top: 5px;
+    }
+    .gridUsername {
+        grid-column-start: 9;
+        grid-column-end: 14;
+        grid-row-start: 6;
+        grid-row-end: 7;
+    }
+
+    .gridPasswordTitle {
+        grid-column-start: 14;
+        grid-column-end: 15;
+        grid-row-start: 6;
+        grid-row-end: 7;
+        margin-top: 5px;
+    }
+    .gridPassword {
+        grid-column-start: 15;
+        grid-column-end: 21;
+        grid-row-start: 6;
+        grid-row-end: 7;
+    }
+
+    .gridAuthenticationTitle {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 8;
+        grid-row-end: 9;
+        margin-top: 5px;
+    }
+    .gridAuthentication {
+        grid-column-start: 2;
+        grid-column-end: 7;
+        grid-row-start: 8;
+        grid-row-end: 9;
+    }
+
+    .gridDescriptionTitle {
+        grid-column-start: 7;
+        grid-column-end: 9;
+        grid-row-start: 8;
+        grid-row-end: 9;
+        margin-top: 5px;
+    }
+    .gridDescription {
+        grid-column-start: 9;
+        grid-column-end: 18;
+        grid-row-start: 8;
+        grid-row-end: 9;
+    }
+
+    .gridButtonTransformation {
+        grid-column-start: 18;
+        grid-column-end: 21;
+        grid-row-start: 7;
+        grid-row-end: 8;
+        margin-top: 12px;
+    }
+
+    .gridErrorMessage {
+        grid-column-start: 2;
+        grid-column-end: 20;
+        grid-row-start: 9;
+        grid-row-end: 10;
+    }
+    
+    .gridTables {
+        border: 1px solid gray;
+        border-radius: 4px;
+        grid-column-start: 1;
+        grid-column-end: 6;
+        grid-row-start: 10;
+        grid-row-end: 25;
+        overflow-y: scroll;
+        width: 100%;
+    }
+
+        .datagrid {
+            margin: 0px !important;
+            margin-top: 0px !important;
+            padding: 0 !important;
+        }
+
+        .datagrid-cell {
+            font-size: 0.45rem !important;
+            height: 0.8rem !important;
+            margin: 2px !important;
+            overflow: hidden;
+            padding: 0 0 0 6px !important;
+            text-align: left;
+            text-overflow: ellipsis;
+        }
+
+        .dsCheckbox {
+            margin: 4px 0 0 0 !important;    
+        }
+
+        .dsName {
+            display: inline-block;
+            margin: -3px 0 0 0 !important;    
+            padding: 0 0 5px 0 !important;    
+        }
+
+    .gridFields {
+        border: 1px solid gray;
+        border-radius: 4px;
+        grid-column-start: 7;
+        grid-column-end: 21;
+        grid-row-start: 10;
+        grid-row-end: 25;
+        overflow-y: scroll;
+        width: 100%;
+    }
+ 
+    .gridButtonCancel {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 26;
+        grid-row-end: 27;
+        text-align: left;
+    }
+    
+    .gridButtonSave {
+        grid-column-start: 3;
+        grid-column-end: 5;
+        grid-row-start: 26;
+        grid-row-end: 27;
+        text-align: left;
+    }
