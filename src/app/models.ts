@@ -393,7 +393,7 @@ export class Transformation {
     parameters: string;
 }
 
-export class DataConnction {
+export class DataConnection {
     id: number;                 // Unique ID
     connectionName: string;     // Name of the Connection, ie XIS MS SQL Server
     serverType: string;         // Type of server, ie PostgreSQL, MySQL, etc

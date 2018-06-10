@@ -29,6 +29,7 @@ import { DashboardTab }               from './models';
 import { DashboardTag }               from './models';
 import { DashboardTemplate }          from './models';
 import { DashboardTheme }             from './models';
+import { DataConnection }             from './models';
 import { DataTable }                  from './models';
 import { DataField }                  from './models';
 import { DatagridInput }              from './models';
@@ -588,8 +589,9 @@ export class GlobalVariableService {
     fields: Field[] = fields;
     fieldsMetadata: FieldMetadata[] = fieldsMetadata;
     datasets: any = [];                                 // List of dSets, NO data
-    dataFields: DataField[] = [];
+    dataConnections: DataConnection[] = [];
     dataTables: DataTable[] = [];
+    dataFields: DataField[] = [];
     finalFields: any = finalFields;
 
 
@@ -726,6 +728,7 @@ export class GlobalVariableService {
     isDirtyCanvasAuditTrails: boolean = true;
     isDirtyDataFields: boolean = true;
     isDirtyDataTables: boolean = true;
+    isDirtyDataConnections: boolean = true;
 
     // Settings that can be set via UI for next time, from then on it will change
     // as the user uses them, and used the next time (a Widget is created)
@@ -2503,7 +2506,7 @@ export class GlobalVariableService {
             )
         });
     }
-    
+
     getDataConnection(): Promise<DataConnection[]> {
         // Description: Gets DataConnections, WITHOUT data
         // Returns: this.dataConnection
@@ -6101,6 +6104,8 @@ export class GlobalVariableService {
                 // Cater for different Servers
                 let finalUrl: string = '';
                 if (url == 'dashboardsRecent') {
+                    finalUrl = 'http://localhost:3001/' + url;
+                } else if (url == 'dataConnections') {
                     finalUrl = 'http://localhost:3001/' + url;
                 } else if (url == 'dataTables') {
                     finalUrl = 'http://localhost:3001/' + url;
