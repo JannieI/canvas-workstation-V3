@@ -2501,6 +2501,38 @@ export class GlobalVariableService {
         });
     }
 
+    getDataTable(): Promise<DataTable[]> {
+        // Description: Gets DataTables, WITHOUT data
+        // Returns: this.dataTable
+        console.log('%c    Global-Variables getDataTable ...',
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+
+        let url: string = 'dataTables';
+        this.filePath = './asTables/data.dataTables.json';
+
+        return new Promise<DataTable[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if ( (this.dataTables.length == 0)  ||  (this.isDirtyDataTables) ) {
+                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
+                this.get(url)
+                    .then(data => {
+                        this.dataTables = data;
+                        this.isDirtyDataTables = false;
+                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
+                        console.log('%c    Global-Variables getDataTable 1',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.dataTables)
+                        resolve(this.dataTables);
+                    });
+            } else {
+                console.log('%c    Global-Variables getDataTable 2',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.dataTables)
+                resolve(this.dataTables);
+            }
+        });
+
+    }
+
     getDataField(): Promise<DataField[]> {
         // Description: Gets DataFields, WITHOUT data
         // Returns: this.dataField
@@ -6034,6 +6066,8 @@ export class GlobalVariableService {
                 // Cater for different Servers
                 let finalUrl: string = '';
                 if (url == 'dashboardsRecent') {
+                    finalUrl = 'http://localhost:3001/' + url;
+                } else if (url == 'dataTables') {
                     finalUrl = 'http://localhost:3001/' + url;
                 } else if (url == 'dataFields') {
                     finalUrl = 'http://localhost:3001/' + url;
