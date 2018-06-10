@@ -48,15 +48,28 @@
         grid-row-end: 5;
     }
     
-    .gridConnectionSelectTitle {
+    .gridConnectionTypeTitle {
         grid-column-start: 7;
         grid-column-end: 9;
         grid-row-start: 4;
         grid-row-end: 5;
     }
-    .gridConnectionSelect {
+    .gridConnectionType {
         grid-column-start: 9;
         grid-column-end: 14;
+        grid-row-start: 4;
+        grid-row-end: 5;
+    }
+    
+    .gridConnectionSelectTitle {
+        grid-column-start: 14;
+        grid-column-end: 15;
+        grid-row-start: 4;
+        grid-row-end: 5;
+    }
+    .gridConnectionSelect {
+        grid-column-start: 15;
+        grid-column-end: 21;
         grid-row-start: 4;
         grid-row-end: 5;
     }
@@ -91,14 +104,14 @@
 
     .gridPasswordTitle {
         grid-column-start: 14;
-        grid-column-end: 16;
+        grid-column-end: 15;
         grid-row-start: 6;
         grid-row-end: 7;
         margin-top: 5px;
     }
     .gridPassword {
-        grid-column-start: 16;
-        grid-column-end: 20;
+        grid-column-start: 15;
+        grid-column-end: 21;
         grid-row-start: 6;
         grid-row-end: 7;
     }
@@ -132,11 +145,11 @@
     }
 
     .gridButtonTransformation {
-        grid-column-start: 19;
-        grid-column-end: 20;
+        grid-column-start: 18;
+        grid-column-end: 21;
         grid-row-start: 7;
         grid-row-end: 8;
-        margin-top: 8px;
+        margin-top: 12px;
     }
 
     .gridErrorMessage {

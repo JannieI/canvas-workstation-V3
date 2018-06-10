@@ -28,6 +28,21 @@
                             >
                     </div>
 
+                    <div class="gridConnectionTypeTitle">
+                        <b>Type:</b>
+                    </div>
+                    <div class="select gridConnectionType">
+                        <select [(ngModel)]="connectionType"
+                            name="connectionType"
+                            (change)="clickConnectionType($event)"
+                            placeholder="Select type of Connection, ie PostreSQL"
+                            >
+                            <option>My SQL</option>
+                            <option>Microsft SQL</option>
+                            <option>MySQL</option>
+                        </select>
+                    </div>
+    
                     <div class="gridConnectionSelectTitle">
                         <b>Copy from:</b>
                     </div>
@@ -94,6 +109,7 @@
                         <input [(ngModel)]="description"
                             type="text"
                             name="description"
+                            size="45"
                             title="Description of the connection"
                             >
                     </div>
