@@ -29,6 +29,7 @@ import { DashboardTab }               from './models';
 import { DashboardTag }               from './models';
 import { DashboardTemplate }          from './models';
 import { DashboardTheme }             from './models';
+import { DataTable }                  from './models';
 import { DataField }                  from './models';
 import { DatagridInput }              from './models';
 import { DatagridColumn }             from './models';
@@ -588,6 +589,7 @@ export class GlobalVariableService {
     fieldsMetadata: FieldMetadata[] = fieldsMetadata;
     datasets: any = [];                                 // List of dSets, NO data
     dataFields: DataField[] = [];
+    dataTables: DataTable[] = [];
     finalFields: any = finalFields;
 
 
@@ -723,6 +725,7 @@ export class GlobalVariableService {
     isDirtyUsers: boolean = true;
     isDirtyCanvasAuditTrails: boolean = true;
     isDirtyDataFields: boolean = true;
+    isDirtyDataTables: boolean = true;
 
     // Settings that can be set via UI for next time, from then on it will change
     // as the user uses them, and used the next time (a Widget is created)
