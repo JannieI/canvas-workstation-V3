@@ -8,12 +8,12 @@
                     </button>
                     <div class="gridOverall">
                         <div class="gridTitle">
-                            SQL Editor:
+                            Overlay Editor:
                         </div>
                         <div class="gridSubTitle">
                             <i>
                                 Add a Datasource from a SQL Database: identify the Connection,
-                                type the SQL string, and see the results with GO.
+                                type the Overlay specification, and see the results with GO.
                             </i>
                         </div>
     
@@ -110,7 +110,9 @@
                             </button>
                         </div>
     
-                        <textarea class="gridSQLText">SELECT * FROM [table]</textarea>
+                        <textarea class="gridOverlayText">
+                            { ... }
+                        </textarea>
 
                         <clr-tabs class="gridData">
                             <clr-tab>
