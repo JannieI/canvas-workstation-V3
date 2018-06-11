@@ -369,7 +369,7 @@ export class AppComponent implements OnInit {
     showModalDataOverview: boolean = false;
     showModalDataQueryBuilder: boolean = false;
     showModalDataSQLEditor: boolean = false;
-    showModalDataOverlayEditor nn
+    showModalDataOverlayEditor: boolean = false;
     showModalDataConnector: boolean = false;
     showModalData: boolean = false;
     showModalSlicerEditor: boolean = false;
@@ -2696,7 +2696,16 @@ export class AppComponent implements OnInit {
 
         this.showModalDataSQLEditor = true;
     }
-    showModalDataOverlayEditor nn
+    
+    clickMenuDataOverlayEditor() {
+        // Overlay Editor
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataOverlayEditor', '@Start');
+
+        this.menuOptionClickPreAction();
+
+        this.showModalDataOverlayEditor = true;
+    }
+
     clickMenuDatasourceOverview() {
         // Show an overview of a DS, ie data quality, fields, etc
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDatasourceOverview', '@Start');
