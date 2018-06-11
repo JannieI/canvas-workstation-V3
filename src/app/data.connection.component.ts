@@ -24,13 +24,13 @@ import { DataConnection }             from './models';
 
 
 @Component({ 
-    selector: 'data-connector',
-    templateUrl: './data.connector.component.html',
-    styleUrls:  ['./data.connector.component.css']
+    selector: 'data-connection',
+    templateUrl: './data.connection.component.html',
+    styleUrls:  ['./data.connection.component.css']
 })
-export class DataConnectorComponent implements OnInit {
+export class DataConnectionComponent implements OnInit {
 
-    @Output() formDataConnectorClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formDataConnectionClosed: EventEmitter<string> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
@@ -78,7 +78,7 @@ export class DataConnectorComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-        this.formDataConnectorClosed.emit(action);
+        this.formDataConnectionClosed.emit(action);
 
     }
 

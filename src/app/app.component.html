@@ -352,10 +352,10 @@
                             type="button"
                             class="btn btn-link btn-sm"
                             clrDropdownItem
-                            title="Manage Data Connectors (to Databases, used in Datasources)"
-                            (click)="clickMenuDataConnector()"
+                            title="Manage Data Connections (to Databases, used in Datasources)"
+                            (click)="clickMenuDataConnection()"
                             >
-                            Connectors
+                            Connections
                         </button>
 
                         <clr-dropdown>
@@ -4016,11 +4016,11 @@
 </data-editDatasource>
 
 
-<!-- Modal: Data Connector -->
-<data-connector
-    *ngIf="showModalDataConnector"
-    (formDataConnectorClosed)="handleCloseDataConnector($event)">Load Data Connector ...
-</data-connector>
+<!-- Modal: Data Connection -->
+<data-connection
+    *ngIf="showModalDataConnection"
+    (formDataConnectionClosed)="handleCloseDataConnection($event)">Load Data Connection ...
+</data-connection>
 
 
 <!-- Modal: Data Add Existing -->

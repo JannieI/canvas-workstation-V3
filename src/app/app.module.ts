@@ -72,7 +72,7 @@ import { SlicerDeleteComponent }      from './slicer.delete.component';
 import { ShapeEditComponent }         from './shape.editor.component';
 import { ShapeDeleteComponent }       from './shape.delete.component';
 
-import { DataConnectorComponent }     from './data.connector.component';
+import { DataConnectionComponent }    from './data.connection.component';
 import { DataSQLEditorComponent }     from './data.sqlEditor.component';
 import { DataOverlayEditorComponent } from './data.overlayEditor.component';
 import { DataTransformationComponent }      from './data.transformation.component';
@@ -159,7 +159,7 @@ import { StatusbarComponent }         from './statusbar.component';
         DashboardUsagestatsComponent,
 
         DataPopupComponent,
-        DataConnectorComponent,
+        DataConnectionComponent,
         DataSQLEditorComponent,
         DataOverlayEditorComponent,
         DataTransformationComponent,
