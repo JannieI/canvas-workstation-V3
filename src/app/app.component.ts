@@ -2722,6 +2722,9 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
+        // let dataConnection: = ...
+        // let dataTableID: = ...
+        // let dataFields: = ...
         this.showModalDataTransformation = true;
     }
 

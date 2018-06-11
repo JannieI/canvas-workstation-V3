@@ -481,7 +481,6 @@ const transformationsFormat: Transformation[] =
 [
     {
         id: 1,
-        datasourceID: 12,
         category: 'Column-level',
         name: 'FormatDate',
         description: '(columnName, new-date-format, old-date-format): if the columnName is blank, Tributary will try to convert all date fields.  The format can be YYYYMMDD, MMMMM, M/D/Y, etc.',
@@ -491,7 +490,6 @@ const transformationsFormat: Transformation[] =
     },
     {
         id: 16,
-        datasourceID: 12,
         category: 'Column-level',
         name: 'DatePart',
         description: '(columnName, DatePart) extracts a portion from the date.  For example, DatePart can be Day, Month, Year, Hour, Minute, Second',
@@ -501,7 +499,6 @@ const transformationsFormat: Transformation[] =
     },
     {
         id: 20,
-        datasourceID: 12,
         category: 'Column-level',
         name: 'FormatNumber',
         description: '(columnName, formatString) where formatString is a valid string in Excel (VBA) format.  For example, ‘#0.00’, R#0,00’, ‘0000’',
@@ -4043,9 +4040,9 @@ export class GlobalVariableService {
             return new Promise<Transformation[]>((resolve, reject) => {
                 this.getTransformations()
                     .then(data => {
-                        data = data.filter(
-                            i => i.datasourceID == datasourceID
-                        );
+                        // data = data.filter(
+                        //     i => i.datasourceID == datasourceID
+                        // );
                         this.currentTransformations = data;
                         console.log('%c    Global-Variables getTransformations 1',
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", datasourceID, data)
@@ -4055,9 +4052,10 @@ export class GlobalVariableService {
         } else {
             return new Promise<Transformation[]>((resolve, reject) => {
                 let returnData: Transformation[];
-                returnData = this.transformations.filter(
-                    i => i.datasourceID == datasourceID
-                );
+                returnData = this.transformations;
+                // returnData = this.transformations.filter(
+                //     i => i.datasourceID == datasourceID
+                // );
                 this.currentTransformations = returnData;
                 console.log('%c    Global-Variables getTransformations 2',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", datasourceID, returnData)

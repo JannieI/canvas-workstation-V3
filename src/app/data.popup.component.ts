@@ -665,12 +665,11 @@ export class DataPopupComponent implements OnInit {
 
         let newTransformation: Transformation = {
             id: 2,
-            datasourceID: 12,
             category: 'Format',
             name: 'Format Date',
             description: 'bla-bla-bla',
             fieldName: 'Trader',
-            parameters: "param1=a"
+            parameters: [{paramName: '', paramValue: ''}]
         };
         this.currentTransformations.push(newTransformation);
     }

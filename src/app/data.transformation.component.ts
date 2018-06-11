@@ -37,6 +37,24 @@ import { DataQualityIssue }           from './models';
 })
 export class DataTransformationComponent implements OnInit {
 
+    datasourceName: string = 'Trades per Month (Stats)';
+    dataConnectionName: string = 'Trades History';
+    dataTable: DataTable = 
+    {
+        id: 1,
+        connectionID: 1,
+        nameDB: 'TradStaMnt',
+        nameLocal: 'TradesPerMonth',
+        type: 'Table',
+        description: 'Trade summary per month',
+        businessGlossary: 'Trade summary per month',
+        creator: 'EthanR',
+        dateCreated: '2017/01/01',
+        editor: '',
+        dateEdited: ''
+    };
+    dataFields: DataField[];
+
     @Output() formDataTransformationClosed: EventEmitter<string> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
@@ -52,16 +70,10 @@ export class DataTransformationComponent implements OnInit {
 
     }
 
-    authentication: string = 'UsrPsw';
     connectionName: string = '';
     connectionType: string = 'MySQL';
-    datasourceName: string = '';
     description: string = 'Post Trade Data Vault';
-    dataConnections: DataConnection[] = [];
     dataTables: DataTable[] = [];
-    dataTablesFiltered: DataTable[] = [];
-    dataFields: DataField[] = [];
-    dataFieldsFiltered: DataField[] = [];
     datasources: Datasource[];
     errorMessage: string = "";
     selectedTableRowIndex: number = 0;
@@ -81,88 +93,19 @@ export class DataTransformationComponent implements OnInit {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.globalVariableService.getDataConnection().then(dc => {
-            this.globalVariableService.getDataTable().then(dt => {
-                this.globalVariableService.getDataField().then(df => {
-
-                    // Get local Vars
-                    this.dataConnections = dc.slice();
-                    this.dataTables = dt.slice();
-                    this.dataFields = df.slice();
-
-                    // Select the Tables, Fields
-                    if (this.dataConnections.length > 0) {
-                        this.clickConnectionSelect(this.dataConnections[0].connectionName);
-
-                    } else {
-                        this.clickConnectionSelect('');
-                    };
-                });
+        this.transformationDS = this.globalVariableService.transformationsFormat;
+        this.globalVariableService.getTransformations().then(tr => {
+            this.globalVariableService.getDataField().then(df => {
+                
+                // Set local Vars
+                this.transformations = tr.slice();
+                this.dataFields = df.slice();
             });
         });
 
     }
 
-    clickConnectionSelect(ev: any) {
-        // Refresh the Tables and Fields for the selected Connection
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickConnectionSelect', '@Start');
 
-        console.warn('xx ev', ev, this.connectionName)
-
-        // Fill list of Tables for first Connection
-        if (this.connectionName != '') {
-            this.filterTables(this.connectionName);
-        } else {
-            this.filterTables('');
-        };
-
-        // Fill list of Fields for first Table
-        if (this.dataTablesFiltered.length > 0) {
-            this.filterFields(this.dataTablesFiltered[0].id);
-        } else {
-            this.filterFields(-1);
-        };
-
-    }
-
-    filterTables(connectNameToFilter: string) {
-        // Filter Tables on Selected Connection
-        this.globalFunctionService.printToConsole(this.constructor.name,'filterTables', '@Start');
-
-        let connectionIndex: number = this.dataConnections.findIndex(dt =>
-            dt.connectionName == connectNameToFilter
-        );
-        let connectionID: number = -1;
-        if (connectionIndex >= 0) {
-            connectionID = this.dataConnections[connectionIndex].id;
-        };
-
-        console.warn('xx conn', connectionID, connectNameToFilter, connectionIndex)
-        this.dataTablesFiltered = this.dataTables.filter(dt => {
-            if (dt.connectionID == connectionID) {
-                return dt;
-            };
-        });
-
-    }
-    
-    filterFields(tableID: number) {
-        // Filter Fields on Selected Connection
-        this.globalFunctionService.printToConsole(this.constructor.name,'filterFields', '@Start');
-
-        this.dataFieldsFiltered = this.dataFields.filter(df => {
-            if (df.tableID == tableID) {
-                return df;
-            };
-        });
-
-    }
-    
-    clickGo() {
-        // Clicked Go: execute SQL typed in, and return results and errors
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickGo', '@Start');
-
-    }
 
     clickClose(action: string) {
         //
