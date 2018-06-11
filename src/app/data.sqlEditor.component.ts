@@ -30,15 +30,6 @@ import { Field }                      from './models';
 import { FieldMetadata }              from './models';
 import { DataQualityIssue }           from './models';
 
-// Vega
-import * as dl from 'datalib';
-import { load } from 'datalib';
-
-interface localDatasources extends Datasource
-    {
-        isSelected?: boolean;
-        hasWidget?: boolean;
-    }
 
 @Component({
     selector: 'data-sqlEditor',
@@ -72,7 +63,6 @@ export class DataSQLEditorComponent implements OnInit {
     dataTablesFiltered: DataTable[] = [];
     dataFields: DataField[] = [];
     dataFieldsFiltered: DataField[] = [];
-    datasources: localDatasources[];
     errorMessage: string = "";
     selectedFieldRowIndex: number = 0;
     selectedFields: DataField[] = [];
