@@ -370,6 +370,7 @@ export class AppComponent implements OnInit {
     showModalDataQueryBuilder: boolean = false;
     showModalDataSQLEditor: boolean = false;
     showModalDataOverlayEditor: boolean = false;
+    showModalDataTransformation: boolean = false;
     showModalDataConnector: boolean = false;
     showModalData: boolean = false;
     showModalSlicerEditor: boolean = false;
@@ -1199,7 +1200,16 @@ export class AppComponent implements OnInit {
 
         this.showModalDataOverlayEditor = false;
     }
-    
+        
+    handleCloseDataTransformation(action: string) {
+        // Handle Close of Overlay Editor
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataTransformation', '@Start');
+
+        this.menuOptionClickPostAction();
+
+        this.showModalDataTransformation = false;
+    }
+
     handleCloseData(action: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseData', '@Start');
@@ -2704,6 +2714,15 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPreAction();
 
         this.showModalDataOverlayEditor = true;
+    }
+    
+    clickMenuDataTransformation() {
+        // Overlay Editor
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataTransformation', '@Start');
+
+        this.menuOptionClickPreAction();
+
+        this.showModalDataTransformation = true;
     }
 
     clickMenuDatasourceOverview() {
