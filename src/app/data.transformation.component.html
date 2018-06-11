@@ -34,39 +34,24 @@
                         </div>
     
                         <div class="gridConnectionTypeTitle">
-                            <b>Type:</b>
+                            <b>Left:</b>
                         </div>
                         <div class="gridConnectionType">
-                            {{ connectionType }}
+                            12 Characters
                         </div>
     
                         <div class="gridUsernameTitle">
-                            <b>Username:</b>
+                            <b>Right:</b>
                         </div>
                         <div class="gridUsername">
-                            <input [(ngModel)]="usernameTitle"
-                                type="text"
-                                name="usernameTitle"
-                                title="Name of the connection"
-                                >
-                        </div>
-    
-                        <div class="gridPasswordTitle">
-                            <b>Password:</b>
-                        </div>
-                        <div class="gridPassword">
-                            <input [(ngModel)]="password"
-                                type="password"
-                                name="password"
-                                title="User Password"
-                                >
+                            1 Character
                         </div>
     
                         <div class="gridDescriptionTitle">
                             <b>Description:</b>
                         </div>
                         <div class="gridDescription">
-                            {{ description }}
+                            Do the ... when ...
                         </div>
     
                         <div *ngIf="errorMessage!=''" class="gridErrorMessage">
@@ -83,22 +68,23 @@
 
                                 <clr-dg-row
                                     *clrDgItems="let row of transformationDS; let i = index"
-                                    [style.background-color]="(i == selectedFieldRowIndex)? '#123456' : 'white'"
-                                    [style.color]="(i == selectedFieldRowIndex)? 'white' : 'gray'"
+                                    [style.background-color]="(i == selectedTransoformationRowIndex)? '#123456' : 'white'"
+                                    [style.color]="(i == selectedTransoformationRowIndex)? 'white' : 'gray'"
+                                    (click)="clickSelectedTransformation(i, row.id)"
                                     >
                                     <clr-dg-cell>
                                             <clr-icon shape="arrow"
                                             size="12"
-                                            (click)="clickMoveTabUp(i)">
+                                            (click)="clickMoveTransformationUp()">
                                         </clr-icon>
                                         <clr-icon shape="arrow down"
                                             size="12"
-                                            (click)="clickMoveTabDown(i)">
+                                            (click)="clickMoveTransformationDown()">
                                         </clr-icon>
                                         {{ row.name }}
                                         <clr-icon shape="times"
                                             size="12"
-                                            (click)="clickMoveTabDown(i)">
+                                            (click)="clickDeleteTransformation()">
                                         </clr-icon>
                                     </clr-dg-cell>
                                     

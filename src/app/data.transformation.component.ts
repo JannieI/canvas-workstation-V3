@@ -72,12 +72,10 @@ export class DataTransformationComponent implements OnInit {
 
     connectionName: string = '';
     connectionType: string = 'MySQL';
-    description: string = 'Post Trade Data Vault';
     dataTables: DataTable[] = [];
     datasources: Datasource[];
     errorMessage: string = "";
-    selectedTableRowIndex: number = 0;
-    serverName: string = 'MSSQL54: 8000';
+    selectedTransoformationRowIndex: number = 0;
     transformationDS: Transformation[] = [];
     transformations: Transformation[] = [];
 
@@ -105,7 +103,31 @@ export class DataTransformationComponent implements OnInit {
 
     }
 
+    clickSelectedTransformation(index: number, id: number) {
+        // Click on Transformation row
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectedTransformation', '@Start');
 
+        // Set seletected index - used for highlighting row
+        this.selectedTransoformationRowIndex = index;
+    }
+
+    clickMoveTransformationUp(index: number, id: number) {
+        // Move Transformation Up
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMoveTransformationUp', '@Start');
+
+    }
+    
+    clickMoveTransformationDown(index: number, id: number) {
+        // Move Transformation Down
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMoveTransformationDown', '@Start');
+
+    }
+    
+    clickDeleteTransformation(index: number, id: number) {
+        // Delete Transformation 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDeleteTransformation', '@Start');
+
+    }
 
     clickClose(action: string) {
         //
