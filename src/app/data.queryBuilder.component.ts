@@ -47,7 +47,6 @@ interface localDatasources extends Datasource
 })
 export class DataQueryBuilderComponent implements OnInit {
 
-    @Input() showModalDataTransformation: boolean;
     @Output() formDataAddQueryBuilderClosed: EventEmitter<string> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
@@ -206,7 +205,6 @@ export class DataQueryBuilderComponent implements OnInit {
         // Close the form, and open Transformations form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickTransformation', '@Start');
 
-        this.showModalDataTransformation = true;
         this.formDataAddQueryBuilderClosed.emit('Transformation');
 
     }

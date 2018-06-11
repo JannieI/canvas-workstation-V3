@@ -1182,6 +1182,11 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPostAction();
 
         this.showModalDataQueryBuilder = false;
+
+        // Open Transformations if so requested
+        if (action == 'Transformation') {
+            this.showModalDataTransformation = true;
+        };
     }
 
     handleCloseDataSQLEditor(action: string) {
@@ -2705,7 +2710,6 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
-        this.showModalDataTransformation = false;
         this.showModalDataQueryBuilder = true;
     }
 
