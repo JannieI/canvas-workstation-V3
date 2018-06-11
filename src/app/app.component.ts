@@ -2677,7 +2677,16 @@ export class AppComponent implements OnInit {
 
         this.showModalDataQueryBuilder = true;
     }
-    showModalDataSQLEditor
+
+    clickMenuDataSQLEditor() {
+        // SQL Editor
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataSQLEditor', '@Start');
+
+        this.menuOptionClickPreAction();
+
+        this.showModalDataSQLEditor = true;
+    }
+
     clickMenuDatasourceOverview() {
         // Show an overview of a DS, ie data quality, fields, etc
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDatasourceOverview', '@Start');
