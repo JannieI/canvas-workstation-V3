@@ -2705,6 +2705,7 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
+        this.showModalDataTransformation = false;
         this.showModalDataQueryBuilder = true;
     }
 
