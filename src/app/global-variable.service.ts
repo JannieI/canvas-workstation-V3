@@ -2550,7 +2550,7 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post('http://localhost:3000/' + url, data, {headers})
+            this.http.post('http://localhost:3001/' + url, data, {headers})
             .subscribe(
                 data => {
 
@@ -2563,6 +2563,41 @@ export class GlobalVariableService {
                 },
                 err => {
                     console.log('Error addDataConnection FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+        });
+    }
+
+    saveDataConnection(data: DataConnection): Promise<string> {
+        // Description: Saves DataConnection
+        // Returns: 'Saved' or error message
+        console.log('%c    Global-Variables saveDataConnection ...',
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+
+        let url: string = 'DataConnections';
+        this.filePath = './assets/data.DataConnections.json';
+
+        return new Promise<string>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.put('http://localhost:3001/' + url + '/' + data.id, data, {headers})
+            .subscribe(
+                res => {
+
+                    // Replace local
+                    let localIndex: number = this.dataConnections.findIndex(d =>
+                        d.id == data.id
+                    );
+                    this.dataConnections[localIndex] = data;
+
+                    console.log('saveDataConnection SAVED', res)
+                    resolve('Saved');
+                },
+                err => {
+                    console.log('Error saveDataConnection FAILED', err);;
                     resolve(err.Message);
                 }
             )
