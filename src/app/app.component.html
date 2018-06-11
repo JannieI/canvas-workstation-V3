@@ -501,7 +501,7 @@
                                 <button
                                     type="button"
                                     clrDropdownItem
-                                    (click)="clickMenuDataFromFile(1)"
+                                    (click)="clickMenuDataEditDatasource()"
                                     title="Edit a Datasource Definition"
                                     >
                                     Definition
@@ -4007,6 +4007,13 @@
     *ngIf="showModalDataTransformation"
     (formDataTransformationClosed)="handleCloseDataTransformation($event)">Load Transformation ...
 </data-transformation>
+
+
+<!-- Modal: Data Edit Datasource -->
+<data-editDatasource
+    *ngIf="showModalDataEditDatasource"
+    (formDataEditDatasourceClosed)="handleCloseDataEditDatasource($event)">Load Data Edit Datasource ...
+</data-editDatasource>
 
 
 <!-- Modal: Data Connector -->
