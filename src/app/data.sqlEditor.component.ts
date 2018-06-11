@@ -41,13 +41,13 @@ interface localDatasources extends Datasource
     }
 
 @Component({
-    selector: 'data-queryBuilder',
-    templateUrl: './data.queryBuilder.component.html',
-    styleUrls:  ['./data.queryBuilder.component.css']
+    selector: 'data-sqlEditor',
+    templateUrl: './data.sqlEditor.component.html',
+    styleUrls:  ['./data.sqlEditor.component.css']
 })
-export class DataQueryBuilderComponent implements OnInit {
+export class DataSQLEditorComponent implements OnInit {
 
-    @Output() formDataAddQueryBuilderClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formDataAddSQLEditorClosed: EventEmitter<string> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
@@ -197,7 +197,7 @@ export class DataQueryBuilderComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-        this.formDataAddQueryBuilderClosed.emit(action);
+        this.formDataAddSQLEditorClosed.emit(action);
 
     }
 

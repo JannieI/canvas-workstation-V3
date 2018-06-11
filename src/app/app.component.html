@@ -3984,6 +3984,13 @@
 </data-queryBuilder>
 
 
+<!-- Modal: Data SQL Editor -->
+<data-sqlEditor
+    *ngIf="showModalDataSQLEditor"
+    (formDataAddSQLEditorClosed)="handleCloseDataSQLEditor($event)">Load SQL SQL Editor ...
+</data-sqlEditor>
+
+
 <!-- Modal: Data Connector -->
 <data-connector
     *ngIf="showModalDataConnector"
