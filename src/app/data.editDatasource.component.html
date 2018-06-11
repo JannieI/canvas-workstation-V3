@@ -20,6 +20,9 @@
                                 <clr-dg-placeholder>
                                     No records ...
                                 </clr-dg-placeholder>
+                                <clr-dg-column [clrDgField]="">Used</clr-dg-column>
+                                <clr-dg-column [clrDgField]="">Name</clr-dg-column>
+                                <clr-dg-column [clrDgField]="">Description</clr-dg-column>
     
                                 <clr-dg-row
                                     *ngFor="let row of datasources; let i = index"
@@ -30,14 +33,12 @@
                                     <clr-dg-cell>
                                         <input type="checkbox" class="dsCheckbox"
                                             [checked]="row.isSelected"
-                                            [disabled]="row.hasWidget"
-                                            (click)="clickDSCheckbox(i, row.id, row.isSelected, $event)"
+                                            disabled
                                             >
-                                        <div class="dsName">
-                                            {{ row.fieldValue }}                                        {{row.name}}
-                                        </div>
-    
                                     </clr-dg-cell>
+                                    <clr-dg-cell>{{ row.fieldValue }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.description }}</clr-dg-cell>
+                                    
                                 </clr-dg-row>
                             </clr-datagrid>
                         </div>
