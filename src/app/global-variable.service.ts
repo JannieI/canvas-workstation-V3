@@ -486,7 +486,7 @@ const transformationsFormat: Transformation[] =
         name: 'FormatDate',
         description: '(columnName, new-date-format, old-date-format): if the columnName is blank, Tributary will try to convert all date fields.  The format can be YYYYMMDD, MMMMM, M/D/Y, etc.',
         fieldName: 'Date',
-        parameters: ''
+        parameters: [{paramName: '', paramValue: ''}]
 
     },
     {
@@ -496,7 +496,7 @@ const transformationsFormat: Transformation[] =
         name: 'DatePart',
         description: '(columnName, DatePart) extracts a portion from the date.  For example, DatePart can be Day, Month, Year, Hour, Minute, Second',
         fieldName: 'Date',
-        parameters: ''
+        parameters: [{paramName: '', paramValue: ''}]
 
     },
     {
@@ -506,7 +506,7 @@ const transformationsFormat: Transformation[] =
         name: 'FormatNumber',
         description: '(columnName, formatString) where formatString is a valid string in Excel (VBA) format.  For example, ‘#0.00’, R#0,00’, ‘0000’',
         fieldName: 'Date',
-        parameters: ''
+        parameters: [{paramName: '', paramValue: ''}]
 
     }
 ];

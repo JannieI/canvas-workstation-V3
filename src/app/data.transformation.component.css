@@ -71,6 +71,7 @@
         grid-row-start: 6;
         grid-row-end: 7;
         margin-top: 5px;
+        margin-left: 12px;
     }
     .gridUsername {
         grid-column-start: 9;
@@ -137,10 +138,11 @@
     .gridResult {
         border: 1px solid gray;
         border-radius: 4px;
-        grid-column-start: 9;
+        grid-column-start: 7;
         grid-column-end: 21;
         grid-row-start: 10;
         grid-row-end: 25;
+        margin-left: 12px;
         width: 100%;
     }
  

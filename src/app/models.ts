@@ -390,7 +390,7 @@ export class Transformation {
     name: string;
     description: string;
     fieldName: string;
-    parameters: string;
+    parameters: {paramName: string; paramValue: string}[];
 }
 
 export class DataConnection {

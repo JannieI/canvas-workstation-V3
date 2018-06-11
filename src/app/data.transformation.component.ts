@@ -1,7 +1,6 @@
 /*
- * Data page: to get new datasources, and add to the current list of datasources for this
- * Dashboard.  Can also do transformations to the data, and crteate new datasets, ie via
- * pivot.
+ * List of Transformations that forms part of the Datasource definition.
+ * 
  */
 
 // Angular
@@ -30,15 +29,6 @@ import { Field }                      from './models';
 import { FieldMetadata }              from './models';
 import { DataQualityIssue }           from './models';
 
-// Vega
-import * as dl from 'datalib';
-import { load } from 'datalib';
-
-interface localDatasources extends Datasource
-    {
-        isSelected?: boolean;
-        hasWidget?: boolean;
-    }
 
 @Component({
     selector: 'data-transformation',
@@ -72,12 +62,12 @@ export class DataTransformationComponent implements OnInit {
     dataTablesFiltered: DataTable[] = [];
     dataFields: DataField[] = [];
     dataFieldsFiltered: DataField[] = [];
-    datasources: localDatasources[];
+    datasources: Datasource[];
     errorMessage: string = "";
-    selectedFieldRowIndex: number = 0;
-    selectedFields: DataField[] = [];
     selectedTableRowIndex: number = 0;
     serverName: string = 'MSSQL54: 8000';
+    transformationDS: Transformation[] = [];
+    transformations: Transformation[] = [];
 
     // connections ->
 
