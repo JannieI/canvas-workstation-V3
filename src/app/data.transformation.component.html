@@ -8,28 +8,17 @@
                     </button>
                     <div class="gridOverall">
                         <div class="gridTitle">
-                            Overlay Editor:
+                            Transformations:
                         </div>
                         <div class="gridSubTitle">
                             <i>
-                                Add a Datasource from a SQL Database: identify the Connection,
-                                type the Overlay specification, and see the results with GO.
+                                Add transformations to the Datasource: TradesPerMonth (for table 
+                                tradestatprmnt).  
                             </i>
                         </div>
     
-                        <div class="gridDatasourceNameTitle">
-                            <b>Name:</b>
-                        </div>
-                        <div class="gridDatasourceName">
-                            <input [(ngModel)]="datasourceName"
-                                type="text"
-                                name="connectionName"
-                                title="Name of the Datasource"
-                                >
-                        </div>
-    
                         <div class="gridConnectionSelectTitle">
-                            <b>Connection:</b>
+                            <b>Transformation:</b>
                         </div>
                         <div class="select gridConnectionSelect">
                             <select
@@ -49,13 +38,6 @@
                         </div>
                         <div class="gridConnectionType">
                             {{ connectionType }}
-                        </div>
-    
-                        <div class="gridServerNameTitle">
-                            <b>Server:</b>
-                        </div>
-                        <div class="gridServerName">
-                            {{ serverName }}
                         </div>
     
                         <div class="gridUsernameTitle">
@@ -80,13 +62,6 @@
                                 >
                         </div>
     
-                        <div class="gridAuthenticationTitle">
-                            <b>Authentication:</b>
-                        </div>
-                        <div class="gridAuthentication">
-                            {{ authentication }}
-                        </div>
-    
                         <div class="gridDescriptionTitle">
                             <b>Description:</b>
                         </div>
@@ -98,73 +73,60 @@
                             {{ errorMessage }}
                         </div>
     
-                        
-                        <div class="gridGoButton">
-                            <button
-                                type="button"
-                                class="btn btn-link"
-                                (click)="clickGo()"
-                                >
-                                Go
-                                <clr-icon shape="arrow right" size="12"></clr-icon>
-                            </button>
-                        </div>
+                        <div class="gridTransformations">
+                            <clr-datagrid [(clrDgSelected)]="selectedFields">
+                                <clr-dg-placeholder>
+                                    Show Data here ...
+                                </clr-dg-placeholder>
+
+                                <clr-dg-column [clrDgField]="nameDB">name (DB)</clr-dg-column>
+                                <clr-dg-column [clrDgField]="nameLocal">name (Local)</clr-dg-column>
+                                <clr-dg-column [clrDgField]="type">type</clr-dg-column>
+                                <clr-dg-column [clrDgField]="format">format</clr-dg-column>
+                                <clr-dg-column [clrDgField]="businessGlossary">businessGlossary</clr-dg-column>
+
+                                <clr-dg-row
+                                    *clrDgItems="let row of dataFieldsFiltered; let i = index" [clrDgItem]="row"
+                                    [style.background-color]="(i == selectedFieldRowIndex)? '#123456' : 'white'"
+                                    [style.color]="(i == selectedFieldRowIndex)? 'white' : 'gray'"
+                                    >
+                                    <clr-dg-cell>{{ row.nameDB }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.nameLocal }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.type }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.format }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.businessGlossary }}</clr-dg-cell>
+
+                                </clr-dg-row>
+                            </clr-datagrid>
+                        </div>  
     
-                        <textarea class="gridOverlayText">{ ... }</textarea>
+                        <div class="gridResult">
+                            <clr-datagrid [(clrDgSelected)]="selectedFields">
+                                <clr-dg-placeholder>
+                                    Show Data here ...
+                                </clr-dg-placeholder>
 
-                        <clr-tabs class="gridData">
-                            <clr-tab>
-                                <button clrTabLink>Data</button>
-                                <ng-template [(clrIfActive)]="data">
-                                    <clr-tab-content>
+                                <clr-dg-column [clrDgField]="nameDB">name (DB)</clr-dg-column>
+                                <clr-dg-column [clrDgField]="nameLocal">name (Local)</clr-dg-column>
+                                <clr-dg-column [clrDgField]="type">type</clr-dg-column>
+                                <clr-dg-column [clrDgField]="format">format</clr-dg-column>
+                                <clr-dg-column [clrDgField]="businessGlossary">businessGlossary</clr-dg-column>
 
-                                        <clr-datagrid [(clrDgSelected)]="selectedFields">
-                                            <clr-dg-placeholder>
-                                                Show Data here ...
-                                            </clr-dg-placeholder>
-                
-                                            <clr-dg-column [clrDgField]="nameDB">name (DB)</clr-dg-column>
-                                            <clr-dg-column [clrDgField]="nameLocal">name (Local)</clr-dg-column>
-                                            <clr-dg-column [clrDgField]="type">type</clr-dg-column>
-                                            <clr-dg-column [clrDgField]="format">format</clr-dg-column>
-                                            <clr-dg-column [clrDgField]="businessGlossary">businessGlossary</clr-dg-column>
-                
-                                            <clr-dg-row
-                                                *clrDgItems="let row of dataFieldsFiltered; let i = index" [clrDgItem]="row"
-                                                [style.background-color]="(i == selectedFieldRowIndex)? '#123456' : 'white'"
-                                                [style.color]="(i == selectedFieldRowIndex)? 'white' : 'gray'"
-                                                >
-                                                <clr-dg-cell>{{ row.nameDB }}</clr-dg-cell>
-                                                <clr-dg-cell>{{ row.nameLocal }}</clr-dg-cell>
-                                                <clr-dg-cell>{{ row.type }}</clr-dg-cell>
-                                                <clr-dg-cell>{{ row.format }}</clr-dg-cell>
-                                                <clr-dg-cell>{{ row.businessGlossary }}</clr-dg-cell>
-                
-                                            </clr-dg-row>
-                                        </clr-datagrid>
-                                    </clr-tab-content>
-                                </ng-template>
-                            </clr-tab>
+                                <clr-dg-row
+                                    *clrDgItems="let row of dataFieldsFiltered; let i = index" [clrDgItem]="row"
+                                    [style.background-color]="(i == selectedFieldRowIndex)? '#123456' : 'white'"
+                                    [style.color]="(i == selectedFieldRowIndex)? 'white' : 'gray'"
+                                    >
+                                    <clr-dg-cell>{{ row.nameDB }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.nameLocal }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.type }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.format }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.businessGlossary }}</clr-dg-cell>
 
-                            <clr-tab>
-                                <button clrTabLink>SQL</button>
-                                <ng-template [(clrIfActive)]="sql">
-                                    <clr-tab-content>
-                                        <textarea rows="5">SELECT Date, SUM() ...</textarea>
-                                    </clr-tab-content>
-                                </ng-template>
-                            </clr-tab>
-                    
-                            <clr-tab>
-                                <button clrTabLink>Errors</button>
-                                <ng-template [(clrIfActive)]="errors">
-                                    <clr-tab-content>
-                                        <textarea rows="5">No errors so far ...</textarea>
-                                    </clr-tab-content>
-                                </ng-template>
-                            </clr-tab>
-                        </clr-tabs>
-                    
+                                </clr-dg-row>
+                            </clr-datagrid>
+                        </div>  
+
                         <div class="gridButtonCancel">
                                 <button
                                 type="button"
