@@ -1,0 +1,190 @@
+<div class="modal modalBox">
+        <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
+            <div class="modal-content">
+                <form #f="ngForm" role="form" novalidate>
+    
+                    <button type="button" class="closeButton" (click)="clickClose()">
+                        X
+                    </button>
+                    <div class="gridOverall">
+                        <div class="gridTitle">
+                            SQL Query Builder:
+                        </div>
+                        <div class="gridSubTitle">
+                            <i>
+                                Add a Datasource from a SQL Database.  Identify the Connection,
+                                Table and required fields.  Transformations are optional.
+                            </i>
+                        </div>
+    
+                        <div class="gridDatasourceNameTitle">
+                            <b>Name:</b>
+                        </div>
+                        <div class="gridDatasourceName">
+                            <input [(ngModel)]="datasourceName"
+                                type="text"
+                                name="connectionName"
+                                title="Name of the Datasource"
+                                >
+                        </div>
+    
+                        <div class="gridConnectionSelectTitle">
+                            <b>Connection:</b>
+                        </div>
+                        <div class="select gridConnectionSelect">
+                            <select
+                                [(ngModel)]="connectionName"
+                                name="connectionSelect"
+                                (change)="clickConnectionSelect($event)"
+                                placeholder="Select previously stored Connection"
+                                >
+                                <option *ngFor="let row of dataConnections">
+                                    {{ row.connectionName }}
+                                </option>
+                            </select>
+                        </div>
+    
+                        <div class="gridConnectionTypeTitle">
+                            <b>Type:</b>
+                        </div>
+                        <div class="gridConnectionType">
+                            {{ connectionType }}
+                        </div>
+    
+                        <div class="gridServerNameTitle">
+                            <b>Server:</b>
+                        </div>
+                        <div class="gridServerName">
+                            {{ serverName }}
+                        </div>
+    
+                        <div class="gridUsernameTitle">
+                            <b>Username:</b>
+                        </div>
+                        <div class="gridUsername">
+                            <input [(ngModel)]="usernameTitle"
+                                type="text"
+                                name="usernameTitle"
+                                title="Name of the connection"
+                                >
+                        </div>
+    
+                        <div class="gridPasswordTitle">
+                            <b>Password:</b>
+                        </div>
+                        <div class="gridPassword">
+                            <input [(ngModel)]="password"
+                                type="password"
+                                name="password"
+                                title="User Password"
+                                >
+                        </div>
+    
+                        <div class="gridAuthenticationTitle">
+                            <b>Authentication:</b>
+                        </div>
+                        <div class="gridAuthentication">
+                            {{ authentication }}
+                        </div>
+    
+                        <div class="gridDescriptionTitle">
+                            <b>Description:</b>
+                        </div>
+                        <div class="gridDescription">
+                            {{ description }}
+                        </div>
+    
+                        <div class="gridButtonTransformation">
+                            <button
+                                type="button"
+                                class="btn btn-link"
+                                (click)="clickTransformation()"
+                                >
+                                Transformations
+                            </button>
+                        </div>
+    
+                        <div *ngIf="errorMessage!=''" class="gridErrorMessage">
+                            {{ errorMessage }}
+                        </div>
+    
+                        <div class="gridTables">
+                            <clr-datagrid>
+                                <clr-dg-placeholder>
+                                    No records ...
+                                </clr-dg-placeholder>
+    
+                                <clr-dg-column class="widthTn" [clrDgField]="nameDB">Name</clr-dg-column>
+                                <clr-dg-column class="widthTn" [clrDgField]="nameLocal">Local Name</clr-dg-column>
+                                <clr-dg-column class="widthTd" [clrDgField]="businessGlossary">Business Glossary</clr-dg-column>
+                                <clr-dg-column class="widthTd" [clrDgField]="id">ID</clr-dg-column>
+    
+                                <clr-dg-row
+                                    *ngFor="let row of dataTablesFiltered; let i = index"
+                                    [style.background-color]="(i == selectedTableRowIndex)? '#123456' : 'white'"
+                                    [style.color]="(i == selectedTableRowIndex)? 'white' : 'gray'"
+                                    (click)="clickSelectedDataTable(i, row.id)"
+                                    >
+                                    <clr-dg-cell>{{ row.nameDB }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.nameLocal }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.businessGlossary }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.id }}</clr-dg-cell>
+    
+                                </clr-dg-row>
+                            </clr-datagrid>
+                        </div>
+    
+                        <div class="gridFields">
+                            <clr-datagrid [(clrDgSelected)]="selectedFields">
+                                <clr-dg-placeholder>
+                                    No records ...
+                                </clr-dg-placeholder>
+    
+                                <clr-dg-column [clrDgField]="nameDB">name (DB)</clr-dg-column>
+                                <clr-dg-column [clrDgField]="nameLocal">name (Local)</clr-dg-column>
+                                <clr-dg-column [clrDgField]="type">type</clr-dg-column>
+                                <clr-dg-column [clrDgField]="format">format</clr-dg-column>
+                                <clr-dg-column [clrDgField]="businessGlossary">businessGlossary</clr-dg-column>
+    
+                                <clr-dg-row
+                                    *clrDgItems="let row of dataFieldsFiltered; let i = index" [clrDgItem]="row"
+                                    [style.background-color]="(i == selectedFieldRowIndex)? '#123456' : 'white'"
+                                    [style.color]="(i == selectedFieldRowIndex)? 'white' : 'gray'"
+                                    (click)="clickSelectedDatafield(i, row.id)"
+                                    >
+                                    <clr-dg-cell>{{ row.nameDB }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.nameLocal }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.type }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.format }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.businessGlossary }}</clr-dg-cell>
+    
+                                </clr-dg-row>
+                            </clr-datagrid>
+                        </div>
+    
+                        <div class="gridButtonCancel">
+                                <button
+                                type="button"
+                                class="btn btn-secondary"
+                                (click)="clickClose('Close')"
+                                >
+                                Cancel
+                            </button>
+                        </div>
+    
+                        <div class="gridButtonSave">
+                            <button
+                                type="button"
+                                class="btn btn-primary"
+                                (click)="clickSave('Saved')"
+                                >
+                                Save
+                            </button>
+                        </div>
+    
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
