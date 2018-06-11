@@ -41,13 +41,13 @@ interface localDatasources extends Datasource
     }
 
 @Component({
-    selector: 'data-sqlEditor',
-    templateUrl: './data.sqlEditor.component.html',
-    styleUrls:  ['./data.sqlEditor.component.css']
+    selector: 'data-overlayEditor',
+    templateUrl: './data.overlayEditor.component.html',
+    styleUrls:  ['./data.overlayEditor.component.css']
 })
-export class DataSQLEditorComponent implements OnInit {
+export class DataOverlayEditorComponent implements OnInit {
 
-    @Output() formDataAddSQLEditorClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formDataOverlayEditorClosed: EventEmitter<string> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
@@ -178,7 +178,7 @@ export class DataSQLEditorComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-        this.formDataAddSQLEditorClosed.emit(action);
+        this.formDataOverlayEditorClosed.emit(action);
 
     }
 

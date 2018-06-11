@@ -369,6 +369,7 @@ export class AppComponent implements OnInit {
     showModalDataOverview: boolean = false;
     showModalDataQueryBuilder: boolean = false;
     showModalDataSQLEditor: boolean = false;
+    showModalDataOverlayEditor nn
     showModalDataConnector: boolean = false;
     showModalData: boolean = false;
     showModalSlicerEditor: boolean = false;
@@ -1188,6 +1189,15 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPostAction();
 
         this.showModalDataSQLEditor = false;
+    }
+    
+    handleCloseDataOverlayEditor(action: string) {
+        // Handle Close of Overlay Editor
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataOverlayEditor', '@Start');
+
+        this.menuOptionClickPostAction();
+
+        this.showModalDataOverlayEditor = false;
     }
     
     handleCloseData(action: string) {
@@ -2686,7 +2696,7 @@ export class AppComponent implements OnInit {
 
         this.showModalDataSQLEditor = true;
     }
-
+    showModalDataOverlayEditor nn
     clickMenuDatasourceOverview() {
         // Show an overview of a DS, ie data quality, fields, etc
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDatasourceOverview', '@Start');

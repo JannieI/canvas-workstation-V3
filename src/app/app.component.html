@@ -3987,8 +3987,15 @@
 <!-- Modal: Data SQL Editor -->
 <data-sqlEditor
     *ngIf="showModalDataSQLEditor"
-    (formDataAddSQLEditorClosed)="handleCloseDataSQLEditor($event)">Load SQL SQL Editor ...
+    (formDataSQLEditorClosed)="handleCloseDataSQLEditor($event)">Load SQL Editor ...
 </data-sqlEditor>
+
+
+<!-- Modal: Data Overlay Editor -->
+<data-overlayEditor
+    *ngIf="showModalDataOverlayEditor"
+    (formDataOverlayEditorClosed)="handleCloseDataOverlayEditor($event)">Load Overlay Editor ...
+</data-overlayEditor>
 
 
 <!-- Modal: Data Connector -->

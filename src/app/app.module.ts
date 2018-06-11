@@ -74,6 +74,7 @@ import { ShapeDeleteComponent }       from './shape.delete.component';
 
 import { DataConnectorComponent }     from './data.connector.component';
 import { DataSQLEditorComponent }     from './data.sqlEditor.component';
+import { DataOverlayEditorComponent } from './data.overlayEditor.component';
 import { DataQueryBuilderComponent }  from './data.queryBuilder.component';
 import { DataPopupComponent }         from './data.popup.component';
 import { DataAddExistingComponent }   from './data.add.existing.component';
@@ -158,6 +159,7 @@ import { StatusbarComponent }         from './statusbar.component';
         DataPopupComponent,
         DataConnectorComponent,
         DataSQLEditorComponent,
+        DataOverlayEditorComponent,
         DataQueryBuilderComponent,
         DataAddExistingComponent,
         DataCombinationComponent,

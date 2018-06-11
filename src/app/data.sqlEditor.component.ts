@@ -47,7 +47,7 @@ interface localDatasources extends Datasource
 })
 export class DataSQLEditorComponent implements OnInit {
 
-    @Output() formDataAddSQLEditorClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formDataSQLEditorClosed: EventEmitter<string> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
@@ -178,7 +178,7 @@ export class DataSQLEditorComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-        this.formDataAddSQLEditorClosed.emit(action);
+        this.formDataSQLEditorClosed.emit(action);
 
     }
 
