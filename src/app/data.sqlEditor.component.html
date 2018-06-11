@@ -8,12 +8,12 @@
                     </button>
                     <div class="gridOverall">
                         <div class="gridTitle">
-                            SQL Query Builder:
+                            SQL Editor:
                         </div>
                         <div class="gridSubTitle">
                             <i>
-                                Add a Datasource from a SQL Database.  Identify the Connection,
-                                Table and required fields.  Transformations are optional.
+                                Add a Datasource from a SQL Database: identify the Connection,
+                                type the SQL string, and see the results with GO.
                             </i>
                         </div>
     
@@ -98,7 +98,19 @@
                             {{ errorMessage }}
                         </div>
     
-                            <textarea class="gridSQLText">SELECT * FROM [table]</textarea>
+                        
+                        <div class="gridGoButton">
+                            <button
+                                type="button"
+                                class="btn btn-link"
+                                (click)="clickGo()"
+                                >
+                                Go
+                                <clr-icon shape="arrow right" size="12"></clr-icon>
+                            </button>
+                        </div>
+    
+                        <textarea class="gridSQLText">SELECT * FROM [table]</textarea>
 
                         <clr-tabs class="gridData">
                             <clr-tab>
@@ -108,7 +120,7 @@
 
                                         <clr-datagrid [(clrDgSelected)]="selectedFields">
                                             <clr-dg-placeholder>
-                                                No records ...
+                                                Show Data here ...
                                             </clr-dg-placeholder>
                 
                                             <clr-dg-column [clrDgField]="nameDB">name (DB)</clr-dg-column>
@@ -121,7 +133,6 @@
                                                 *clrDgItems="let row of dataFieldsFiltered; let i = index" [clrDgItem]="row"
                                                 [style.background-color]="(i == selectedFieldRowIndex)? '#123456' : 'white'"
                                                 [style.color]="(i == selectedFieldRowIndex)? 'white' : 'gray'"
-                                                (click)="clickSelectedDatafield(i, row.id)"
                                                 >
                                                 <clr-dg-cell>{{ row.nameDB }}</clr-dg-cell>
                                                 <clr-dg-cell>{{ row.nameLocal }}</clr-dg-cell>

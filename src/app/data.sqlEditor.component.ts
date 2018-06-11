@@ -113,12 +113,6 @@ export class DataSQLEditorComponent implements OnInit {
 
     }
 
-    clickViewFields(area: string) {
-        // Show fields area
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickViewFields', '@Start');
-
-    }
-
     clickConnectionSelect(ev: any) {
         // Refresh the Tables and Fields for the selected Connection
         this.globalFunctionService.printToConsole(this.constructor.name,'clickConnectionSelect', '@Start');
@@ -174,23 +168,10 @@ export class DataSQLEditorComponent implements OnInit {
 
     }
     
-    clickSelectedDataTable(index: number, id: number) {
-        // Clicked a Table
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectedDataTable', '@Start');
+    clickGo() {
+        // Clicked Go: execute SQL typed in, and return results and errors
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickGo', '@Start');
 
-        // Set seletected index - used for highlighting row
-        this.selectedTableRowIndex = index;
-
-        // Select Fields in the table
-        this.filterFields(id);
-    }
-
-    clickSelectedDatafield(index: number, id: number) {
-        // Clicked a Field
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectedDatafield', '@Start');
-
-        // Set seletected index - used for highlighting row
-        this.selectedFieldRowIndex = index;
     }
 
     clickClose(action: string) {
