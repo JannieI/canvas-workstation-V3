@@ -46,6 +46,7 @@ export class DataConnectionComponent implements OnInit {
     }
 
     adding: boolean = false;
+    connectionID: number = null;
     dataConnections: DataConnection[];
     editing: boolean = false;
     errorMessage: string = "";
@@ -85,7 +86,7 @@ export class DataConnectionComponent implements OnInit {
         this.selectedConnectionRowIndex = index;
         this.adding = false;
         this.editing = false;
-        this.scheduleID = id;
+        this.connectionID = id;
         this.errorMessage = '';
 
         // Fill the form
@@ -128,20 +129,20 @@ export class DataConnectionComponent implements OnInit {
         this.editing = false;
         this.adding = false;
         this.errorMessage = '';
-        this.clickRow(this.selectedRow, this.scheduleID);
+        this.clickRow(this.selectedConnectionRowIndex, this.connectionID);
         
         // Re Fill the form
-        let dashboardScheduleIndex: number = this.currentDashboardSchedules
-            .findIndex(sch => sch.id == this.selectedDashboardSchedule.id);
+        let dashboardScheduleIndex: number = this.dataConnections
+            .findIndex(sch => sch.id == this.selectedConnection.id);
         if (dashboardScheduleIndex >= 0) {
-            this.selectedDashboardSchedule = Object.assign({}, 
-                this.currentDashboardSchedules[dashboardScheduleIndex]
+            this.selectedConnection = Object.assign({}, 
+                this.dataConnections[dashboardScheduleIndex]
             );
         };
 
         // Reset
-        this.selectedRow = null;
-        this.scheduleID = null;
+        this.selectedConnectionRowIndex = null;
+        this.connectionID = null;
 
     }
 
@@ -154,116 +155,25 @@ export class DataConnectionComponent implements OnInit {
         // Validation
         this.errorMessage = '';
 
-        if (this.selectedDashboardSchedule.repeatFrequency == null
+        if (this.selectedConnection.connectionName == null
             ||
-            this.selectedDashboardSchedule.repeatFrequency == '') {
-                this.errorMessage = 'Select a Frequency';
+            this.selectedConnection.connectionName == '') {
+                this.errorMessage = 'Enter a Connection Name';
                 return;
         };
 
-        if (this.selectedDashboardSchedule.repeatsEvery == null
-            ||
-            this.selectedDashboardSchedule.repeatsEvery == 0) {
-                this.errorMessage = 'Fill in Every ';
-                return;
-        };
-
-        if (this.selectedDashboardSchedule.repeatFrequency == 'Weekly') {
-            if (!this.selectedDashboardSchedule.weeklyMonday
-                &&
-                !this.selectedDashboardSchedule.weeklyTuesday
-                &&
-                !this.selectedDashboardSchedule.weeklyWednesday
-                &&
-                !this.selectedDashboardSchedule.weeklyThursday
-                &&
-                !this.selectedDashboardSchedule.weeklyFriday
-                &&
-                !this.selectedDashboardSchedule.weeklySaturday
-                &&
-                !this.selectedDashboardSchedule.weeklySunday) {
-                    this.errorMessage = 'Chose at least one weekday';
-                    return;
-            };
-        };
-
-        if (this.selectedDashboardSchedule.repeatFrequency == 'Monthly') {
-            if (this.selectedDashboardSchedule.monthlyOn == 0
-            ||
-            this.selectedDashboardSchedule.monthlyOn == null) {
-                this.errorMessage = 'Fill in day of month';
-                return;
-            };
-        };
-
-        if (this.selectedDashboardSchedule.repeatFrequency == 'Yearly') {
-            if (!this.selectedDashboardSchedule.yearlyJanuary
-                &&
-                !this.selectedDashboardSchedule.yearlyFebruary
-                &&
-                !this.selectedDashboardSchedule.yearlyMarch
-                &&
-                !this.selectedDashboardSchedule.yearlyApril
-                &&
-                !this.selectedDashboardSchedule.yearlyMay
-                &&
-                !this.selectedDashboardSchedule.yearlyJune
-                &&
-                !this.selectedDashboardSchedule.yearlyJuly
-                &&
-                !this.selectedDashboardSchedule.yearlyAugust
-                &&
-                !this.selectedDashboardSchedule.yearlySeptember
-                &&
-                !this.selectedDashboardSchedule.yearlyOctober
-                &&
-                !this.selectedDashboardSchedule.yearlyNovember
-                &&
-                !this.selectedDashboardSchedule.yearlyDecember) {
-                    this.errorMessage = 'Check a month';
-                    return;
-            };
-        };
-
-        if (this.selectedDashboardSchedule.startsOn == null
-            ||
-            this.selectedDashboardSchedule.startsOn == '') {
-                this.errorMessage = 'Enter start date';
-                return;
-        };
-
-        if (!this.selectedDashboardSchedule.endsNever)
-            if (
-                    (this.selectedDashboardSchedule.endsAfter == null
-                    ||
-                    this.selectedDashboardSchedule.endsAfter == 0)
-                &&
-                    (this.selectedDashboardSchedule.endsOn == null
-                    ||
-                    this.selectedDashboardSchedule.endsOn == '')
-                ) {
-                this.errorMessage = 'Must end Never, On or After';
-                return;
-        };
-
-        if (this.selectedDashboardSchedule.name == null
-            ||
-            this.selectedDashboardSchedule.name == '') {
-                this.errorMessage = 'Enter a Schedule name';
-                return;
-        };
 
         // Add to local and DB
         if (this.adding) {
             // this.currentDashboardSchedules.push(this.selectedDashboardSchedules);
-            this.selectedDashboardSchedule.id = null;
-            this.selectedDashboardSchedule.dashboardID = 
+            this.selectedConnection.id = null;
+            this.selectedConnection.dashboardID = 
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
-            this.globalVariableService.addDashboardSchedule(this.selectedDashboardSchedule).then(
+            this.globalVariableService.addDashboardSchedule(this.selectedConnection).then(
                 res => {
-                    if (this.selectedRow == null) {
-                        this.selectedRow = 0;
-                        this.scheduleID = this.selectedDashboardSchedule.id;
+                    if (this.selectedConnectionRowIndex == null) {
+                        this.selectedConnectionRowIndex = 0;
+                        this.connectionID = this.selectedConnection.id;
                         console.warn('xx hier')
                     };
                             
@@ -273,20 +183,20 @@ export class DataConnectionComponent implements OnInit {
 
         // Save the changes
         if (this.editing) {
-            let dashboardScheduleIndex: number = this.currentDashboardSchedules
-                .findIndex(sch => sch.id == this.selectedDashboardSchedule.id);
+            let dashboardScheduleIndex: number = this.dataConnections
+                .findIndex(sch => sch.id == this.selectedConnection.id);
             if (dashboardScheduleIndex >= 0) {
-                this.currentDashboardSchedules[dashboardScheduleIndex] = 
-                    Object.assign({}, this.selectedDashboardSchedule);
+                this.dataConnections[dashboardScheduleIndex] = 
+                    Object.assign({}, this.selectedConnection);
             };
-            this.globalVariableService.saveDashboardSchedule(this.selectedDashboardSchedule)
+            this.globalVariableService.saveDashboardSchedule(this.selectedConnection)
         };
 
         // Reset
         this.editing = false;
         this.adding = false;
-        this.selectedRow = null;
-        this.scheduleID = null;
+        this.selectedConnectionRowIndex = null;
+        this.connectionID = null;
 
     }
 
@@ -294,7 +204,7 @@ export class DataConnectionComponent implements OnInit {
         // Start editing selected Schedule
         this.globalFunctionService.printToConsole(this.constructor.name,'clickEdit', '@Start');
 
-        if (this.currentDashboardSchedules.length > 0) {
+        if (this.dataConnections.length > 0) {
             this.editing = true;
         };
         this.errorMessage = '';
@@ -317,11 +227,11 @@ export class DataConnectionComponent implements OnInit {
 
         this.clearRecord();
         this.globalVariableService.deleteDashboardSchedule(id).then(res => {
-            this.currentDashboardSchedules = this.globalVariableService.currentDashboardSchedules
+            this.dataConnections = this.globalVariableService.currentDashboardSchedules
         });
 
-        this.selectedRow = null;
-        this.scheduleID = null;
+        this.selectedConnectionRowIndex = null;
+        this.connectionID = null;
     }
 }
 
