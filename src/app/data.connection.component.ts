@@ -45,7 +45,9 @@ export class DataConnectionComponent implements OnInit {
 
     }
 
+    adding: boolean = false;
     dataConnections: DataConnection[];
+    editing: boolean = false;
     errorMessage: string = "";
     selectedConnectionRowIndex: number = 0;
 
@@ -72,6 +74,29 @@ export class DataConnectionComponent implements OnInit {
 
         // Set seletected index - used for highlighting row
         this.selectedConnectionRowIndex = index;
+    }
+    
+    clickRow(index: number, id: number) {
+        // Click Row
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
+
+        console.warn('xx selD Sch', this.selectedDashboardSchedule)
+        // Set the row index
+        this.selectedRow = index;
+        this.adding = false;
+        this.editing = false;
+        this.scheduleID = id;
+        this.errorMessage = '';
+
+        // Fill the form
+        let dashboardScheduleIndex: number = this.globalVariableService.dashboardSchedules
+            .findIndex(sch => sch.id == id);
+        if (dashboardScheduleIndex >= 0) {
+            this.selectedDashboardSchedule = Object.assign({}, 
+                this.globalVariableService.dashboardSchedules[dashboardScheduleIndex]
+            );
+        };
+
     }
 
     clickClose(action: string) {
