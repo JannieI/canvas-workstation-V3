@@ -162,53 +162,18 @@
         grid-row-end: 10;
     }
     
-    .gridTables {
+    .gridSQLText {
         border: 1px solid gray;
         border-radius: 4px;
         grid-column-start: 1;
-        grid-column-end: 6;
+        grid-column-end: 8;
         grid-row-start: 10;
         grid-row-end: 25;
         overflow-y: scroll;
         width: 100%;
     }
 
-        .datagrid {
-            margin: 0px !important;
-            margin-top: 0px !important;
-            padding: 0 !important;
-        }
-
-        .datagrid-cell {
-            font-size: 0.45rem !important;
-            height: 0.8rem !important;
-            margin: 2px !important;
-            overflow: hidden;
-            padding: 0 0 0 6px !important;
-            text-align: left;
-            text-overflow: ellipsis;
-        }
-
-        .dsCheckbox {
-            margin: 4px 0 0 0 !important;    
-        }
-
-        .dsName {
-            display: inline-block;
-            margin: -3px 0 0 0 !important;    
-            padding: 0 0 5px 0 !important;    
-        }
-
-        .widthTn {
-            width: 150px;
-            min-width: 30%;
-        }
-        .widthTd {
-            width: 200px;
-            min-width: 30%;
-        }
-
-    .gridFields {
+    .gridData {
         border: 1px solid gray;
         border-radius: 4px;
         grid-column-start: 7;
