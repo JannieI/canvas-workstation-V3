@@ -2604,6 +2604,39 @@ export class GlobalVariableService {
         });
     }
 
+    deleteDataConnection(id: number): Promise<string> {
+        // Description: Deletes a DataConnections
+        // Returns: 'Deleted' or error message
+        console.log('%c    Global-Variables deleteDataConnection ...',
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", id);
+
+        let url: string = 'DataConnections';
+        this.filePath = './assets/data.DataConnections.json';
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.delete('http://localhost:3001/' + url + '/' + id, {headers})
+            .subscribe(
+                data => {
+
+                    this.dataConnections = this.dataConnections.filter(
+                        dsp => dsp.id != id
+                    );
+
+                    console.log('deleteDataConnection DELETED id: ', id)
+                    resolve('Deleted');
+                },
+                err => {
+                    console.log('Error deleteDataConnection FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+        });
+    }
+
     getDataTable(): Promise<DataTable[]> {
         // Description: Gets DataTables, WITHOUT data
         // Returns: this.dataTable
