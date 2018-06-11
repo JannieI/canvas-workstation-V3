@@ -171,7 +171,7 @@ export class DataSQLEditorComponent implements OnInit {
         this.formDataSQLEditorClosed.emit(action);
 
     }
-
+ 
 }
 
 

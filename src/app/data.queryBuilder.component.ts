@@ -208,8 +208,6 @@ export class DataQueryBuilderComponent implements OnInit {
         this.formDataAddQueryBuilderClosed.emit('Transformation');
 
     }
-
-
     
 }
 

@@ -144,14 +144,6 @@
         grid-row-end: 9;
     }
 
-    .gridButtonTransformation {
-        grid-column-start: 18;
-        grid-column-end: 21;
-        grid-row-start: 7;
-        grid-row-end: 8;
-        margin-top: 12px;
-    }
-
     .gridErrorMessage {
         grid-column-start: 2;
         grid-column-end: 20;
@@ -208,17 +200,18 @@
     }
  
     .gridButtonCancel {
-        grid-column-start: 1;
-        grid-column-end: 3;
-        grid-row-start: 26;
-        grid-row-end: 27;
+        grid-column-start: 10;
+        grid-column-end: 13;
+        grid-row-start: 12;
+        grid-row-end: 13;
+        margin: 2px 2px 2px 2px;
         text-align: left;
     }
-    
-    .gridButtonSave {
-        grid-column-start: 3;
-        grid-column-end: 5;
-        grid-row-start: 26;
-        grid-row-end: 27;
+    .gridButtonAdd {
+        grid-column-start: 14;
+        grid-column-end: 16;
+        grid-row-start: 12;
+        grid-row-end: 13;
+        margin: 2px 2px 2px 2px;
         text-align: left;
     }

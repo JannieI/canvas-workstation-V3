@@ -8,12 +8,12 @@
                     </button>
                     <div class="gridOverall">
                         <div class="gridTitle">
-                            SQL Query Builder:
+                            Manage Connections:
                         </div>
                         <div class="gridSubTitle">
                             <i>
-                                Add a Datasource from a SQL Database.  Identify the Connection,
-                                Table and required fields.  Transformations are optional.
+                                Manage Connections (links to DB Servers) that are used to 
+                                define a Datasource.
                             </i>
                         </div>
     
@@ -24,7 +24,10 @@
                             <input [(ngModel)]="connectionName"
                                 type="text"
                                 name="connectionName"
+                                required
                                 title="Name of the connection"
+                                placeholder="Name of Connection"
+                                [disabled]="!editing  &&  !adding"                                
                                 >
                         </div>
     
@@ -36,6 +39,7 @@
                                 name="connectionType"
                                 (change)="clickConnectionType($event)"
                                 placeholder="Select type of Connection, ie PostreSQL"
+                                [disabled]="!editing  &&  !adding"
                                 >
                                 <option>My SQL</option>
                                 <option>Microsft SQL</option>
@@ -51,6 +55,7 @@
                                 name="connectionSelect"
                                 (change)="clickConnectionSelect($event)"
                                 placeholder="Select previous Connection to copy from"
+                                [disabled]="!editing  &&  !adding"
                                 >
                                 <option *ngFor="let row of connections">
                                     {{ row }}
@@ -66,6 +71,8 @@
                                 type="text"
                                 name="serverTitle"
                                 title="Name of the Server/IP Address and :Port"
+                                placeholder="Name of DB Server/IP Address and :Port"
+                                [disabled]="!editing  &&  !adding"
                                 >
                         </div>
     
@@ -76,7 +83,9 @@
                             <input [(ngModel)]="usernameTitle"
                                 type="text"
                                 name="usernameTitle"
-                                title="Name of the connection"
+                                title="Username to log into DB Server"
+                                placeholder="Username to log into DB Server"
+                                [disabled]="!editing  &&  !adding"
                                 >
                         </div>
     
@@ -88,6 +97,8 @@
                                 type="password"
                                 name="password"
                                 title="User Password"
+                                placeholder="User Password"
+                                [disabled]="!editing  &&  !adding"
                                 >
                         </div>
     
@@ -99,6 +110,8 @@
                                 type="text"
                                 name="authentication"
                                 title="Current User or log in"
+                                placeholder="Current User or log in"
+                                [disabled]="!editing  &&  !adding"
                                 >
                         </div>
     
@@ -111,18 +124,52 @@
                                 name="description"
                                 size="45"
                                 title="Description of the connection"
+                                required
+                                placeholder="Description of the connection"
+                                [disabled]="!editing  &&  !adding"
                                 >
                         </div>
     
-                        <div class="gridButtonTransformation">
+
+                        <div class="gridButtonCancel" *ngIf="editing  ||  adding">
                             <button
                                 type="button"
-                                class="btn btn-link"
-                                (click)="clickTransformation()"
+                                class="btn btn-secondary"
+                                (click)="clickCancel()"
                                 >
-                                Transformations
+                                Cancel
                             </button>
                         </div>
+                        <div class="gridButtonAdd" *ngIf="editing  ||  adding">
+                            <button
+                                type="button"
+                                class="btn btn-primary"
+                                (click)="clickSave()"
+                                >
+                                Save
+                            </button>
+                        </div>
+    
+                        <div class="gridButtonCancel" *ngIf="!editing  &&  !adding">
+                            <button
+                                type="button"
+                                class="btn btn-secondary"
+                                (click)="clickEdit()"
+                                >
+                                Edit
+                            </button>
+                        </div> 
+                        <div class="gridButtonAdd" *ngIf="!editing  &&  !adding">
+                            <button
+                                type="button"
+                                class="btn btn-primary"
+                                (click)="clickAdd()"
+                                >
+                                Add
+                            </button>
+                        </div>
+        
+
     
                         <div *ngIf="errorMessage!=''" class="gridErrorMessage">
                             {{ errorMessage }}
@@ -136,9 +183,9 @@
     
                                 <clr-dg-row
                                     *ngFor="let row of datasources; let i = index"
-                                    [style.background-color]="(i == selectedTableRowIndex)? '#123456' : 'white'"
-                                    [style.color]="(i == selectedTableRowIndex)? 'white' : 'gray'"
-                                    (click)="clickSelectedDataTable(i, row.id)"
+                                    [style.background-color]="(i == selectedConnectionRowIndex)? '#123456' : 'white'"
+                                    [style.color]="(i == selectedConnectionRowIndex)? 'white' : 'gray'"
+                                    (click)="clickSelectedDataConnection(i, row.id)"
                                     >
                                     <clr-dg-cell>
                                         <input type="checkbox" class="dsCheckbox"
@@ -153,93 +200,6 @@
                                     </clr-dg-cell>
                                 </clr-dg-row>
                             </clr-datagrid>
-                        </div>
-    
-                        <div class="gridFields">
-                            <clr-datagrid>
-                                <clr-dg-placeholder>
-                                    No records ...
-                                </clr-dg-placeholder>
-    
-                                <clr-dg-column [clrDgField]="id">id</clr-dg-column>
-                                <clr-dg-column [clrDgField]="datasourceID">datasourceID</clr-dg-column>
-                                <clr-dg-column [clrDgField]="nameDB">nameDB</clr-dg-column>
-                                <clr-dg-column [clrDgField]="nameLocal">nameLocal</clr-dg-column>
-                                <clr-dg-column [clrDgField]="type">type</clr-dg-column>
-                                <clr-dg-column [clrDgField]="format">format</clr-dg-column>
-                                <clr-dg-column [clrDgField]="filterOperand">filterOperand</clr-dg-column>
-                                <clr-dg-column [clrDgField]="filterValue">filterValue</clr-dg-column>
-                                <clr-dg-column [clrDgField]="calculation">calculation</clr-dg-column>
-                                <clr-dg-column [clrDgField]="orderSequence">orderSequence</clr-dg-column>
-                                <clr-dg-column [clrDgField]="orderDirection">orderDirection</clr-dg-column>
-                                <clr-dg-column [clrDgField]="description">description</clr-dg-column>
-                                <clr-dg-column [clrDgField]="businessGlossary">businessGlossary</clr-dg-column>
-                                <clr-dg-column [clrDgField]="keyField">keyField</clr-dg-column>
-                                <clr-dg-column [clrDgField]="explainedBy">explainedBy</clr-dg-column>
-                                <clr-dg-column [clrDgField]="creator">creator</clr-dg-column>
-                                <clr-dg-column [clrDgField]="dateCreated">dateCreated</clr-dg-column>
-                                <clr-dg-column [clrDgField]="editor">editor</clr-dg-column>
-                                <clr-dg-column [clrDgField]="dateEdited">dateEdited</clr-dg-column>
-                                <clr-dg-column [clrDgField]="hidden">hidden</clr-dg-column>
-    
-                                <clr-dg-row
-                                    *clrDgItems="let row of dataFields; let i = index"
-                                    [style.background-color]="(i == selectedFieldRowIndex)? '#123456' : 'white'"
-                                    [style.color]="(i == selectedFieldRowIndex)? 'white' : 'gray'"
-                                    (click)="clickSelectedDatafield(i, row.id)"
-                                    >
-                                    <clr-dg-cell>
-                                        <input type="checkbox" class="dsCheckbox"
-                                            [checked]="row.isSelected"
-                                            [disabled]="row.hasWidget"
-                                            (click)="clickDSCheckbox(i, row.id, row.isSelected, $event)"
-                                            >
-                                        <div class="dsName">
-                                            {{ row.id }}
-                                        </div>
-                                    </clr-dg-cell>
-                                    <clr-dg-cell>{{ row.datasourceID }}</clr-dg-cell>
-                                    <clr-dg-cell>{{ row.nameDB }}</clr-dg-cell>
-                                    <clr-dg-cell>{{ row.nameLocal }}</clr-dg-cell>
-                                    <clr-dg-cell>{{ row.type }}</clr-dg-cell>
-                                    <clr-dg-cell>{{ row.format }}</clr-dg-cell>
-                                    <clr-dg-cell>{{ row.filterOperand }}</clr-dg-cell>
-                                    <clr-dg-cell>{{ row.filterValue }}</clr-dg-cell>
-                                    <clr-dg-cell>{{ row.calculation }}</clr-dg-cell>
-                                    <clr-dg-cell>{{ row.orderSequence }}</clr-dg-cell>
-                                    <clr-dg-cell>{{ row.orderDirection }}</clr-dg-cell>
-                                    <clr-dg-cell>{{ row.description }}</clr-dg-cell>
-                                    <clr-dg-cell>{{ row.businessGlossary }}</clr-dg-cell>
-                                    <clr-dg-cell>{{ row.keyField }}</clr-dg-cell>
-                                    <clr-dg-cell>{{ row.explainedBy }}</clr-dg-cell>
-                                    <clr-dg-cell>{{ row.creator }}</clr-dg-cell>
-                                    <clr-dg-cell>{{ row.dateCreated }}</clr-dg-cell>
-                                    <clr-dg-cell>{{ row.editor }}</clr-dg-cell>
-                                    <clr-dg-cell>{{ row.dateEdited }}</clr-dg-cell>
-                                    <clr-dg-cell>{{ row.hidden }}</clr-dg-cell>
-    
-                                </clr-dg-row>
-                            </clr-datagrid>
-                        </div>
-    
-                        <div class="gridButtonCancel">
-                                <button
-                                type="button"
-                                class="btn btn-secondary"
-                                (click)="clickClose('Close')"
-                                >
-                                Cancel
-                            </button>
-                        </div>
-    
-                        <div class="gridButtonSave">
-                            <button
-                                type="button"
-                                class="btn btn-primary"
-                                (click)="clickSave('Saved')"
-                                >
-                                Save
-                            </button>
                         </div>
     
                     </div>

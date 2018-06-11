@@ -20,25 +20,10 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
 // Our Models
-import { DataField }                  from './models';
-import { Datasource }                 from './models';
-import { Dataset }                    from './models';
-import { Transformation }             from './models';
-import { Field }                      from './models';
-import { FieldMetadata }              from './models';
-import { DataQualityIssue }           from './models';
+import { DataConnection }             from './models';
 
-// Vega
-import * as dl from 'datalib';
-import { load } from 'datalib';
 
-interface localDatasources extends Datasource 
-    {
-        isSelected?: boolean;
-        hasWidget?: boolean;
-    }
-
-@Component({
+@Component({ 
     selector: 'data-connector',
     templateUrl: './data.connector.component.html',
     styleUrls:  ['./data.connector.component.css']
@@ -60,16 +45,9 @@ export class DataConnectorComponent implements OnInit {
 
     }
 
-    currentData: any = [];
-    currentDSids: number[] = [];                    // List of DS-IDs in use
-    dataFieldLengths: number[] = [];
-    dataFieldNames: string[];
-    dataFieldTypes: string[] = [];
-    dataFields: DataField[] = [];
-    datasources: localDatasources[];
+    dataConnections: DataConnection[];
     errorMessage: string = "";
-    selectedFieldRowIndex: number = 0;
-    selectedTableRowIndex: number = 0;
+    selectedConnectionRowIndex: number = 0;
 
     // connections ->
 
@@ -83,32 +61,17 @@ export class DataConnectorComponent implements OnInit {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.globalVariableService.getDataField().then(df => {
-            this.dataFields = df.slice();
+        this.globalVariableService.getDataConnection().then(dc => {
+            this.dataConnections = dc.slice();
         });
     }
 
-    clickViewFields(area: string) {
-        // Show fields area
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickViewFields', '@Start');
-
-        
-    }
-
-    clickSelectedDataTable(index: number, id: number) {
-        // Clicked a Table
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectedDataTable', '@Start');
+    clickSelectedDataConnection(index: number, id: number) {
+        // Clicked a Connection
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectedDataConnection', '@Start');
 
         // Set seletected index - used for highlighting row
-        this.selectedTableRowIndex = index;
-    }
-
-    clickSelectedDatafield(index: number, id: number) {
-        // Clicked a Field
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectedDatafield', '@Start');
-
-        // Set seletected index - used for highlighting row
-        this.selectedFieldRowIndex = index;
+        this.selectedConnectionRowIndex = index;
     }
 
     clickClose(action: string) {
