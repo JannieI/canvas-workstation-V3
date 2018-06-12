@@ -24,13 +24,6 @@ import { Datasource }                 from './models';
 import { Dashboard }                  from './models';
 import { Widget }                     from './models';
 
-interface DashboardList {
-    code: string;
-    name: string;
-    state: string;
-    accessType: string;
-    description: string;
-}
 
 @Component({
     selector: 'data-datasourceUsage',
@@ -55,7 +48,7 @@ export class DataDatasourceUsageComponent implements OnInit {
     }
 
     datasources: Datasource[];
-    dashboardList: DashboardList[] = [];
+    dashboards: Dashboard[] = [];
     errorMessage: string = "";
     selectedRowIndex: number = 0;
     widgets: Widget[] = [];
@@ -102,32 +95,16 @@ export class DataDatasourceUsageComponent implements OnInit {
         });
 
         // Build list to display
-        this.dashboardList = [];
-        dashboardIDs.forEach(d => {
-            dashboardList
+        this.dashboards = [];
+        let dashboardIndex: number;
+        dashboardIDs.forEach(did => {
+            dashboardIndex = this.globalVariableService.dashboards.findIndex(d =>
+                d.id == did);
+            if (dashboardIndex >= 0) {
+                this.dashboards.push(this.globalVariableService.dashboards[dashboardIndex]);
+            }
         })
-        this.dashboards = this.globalVariableService.dashboards.filter(d => 
-            d.dat            
-        )
-        let dsIndex: number = -1;
-        dsIndex = this.datasources.findIndex(ds => ds.id == id);
-        if (dsIndex != -1) {
-            this.selectedDatasource = this.datasources[dsIndex];
-            this.dataFieldNames = this.selectedDatasource.dataFields;
-            this.selectedRowID = this.datasources[dsIndex].id;
-            this.selectedRowName = this.datasources[dsIndex].name;
-            this.selectedRowDescription = this.datasources[dsIndex].description;
 
-            this.selectedRowNrWidgetsInUse = this.globalVariableService.widgets.filter(w =>
-                w.datasourceID == this.datasources[index].id    
-                &&
-                w.dashboardID == this.globalVariableService.currentDashboardInfo.value.currentDashboardID
-            ).length;
-
-
-            // Show first tab
-            this.clickDSDescription('gridViewDescription');
-        };
         this.errorMessage = '';
     }
    
