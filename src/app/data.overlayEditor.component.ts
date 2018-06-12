@@ -81,7 +81,7 @@ export class DataOverlayEditorComponent implements OnInit {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.globalVariableService.getDataConnection().then(dc => {
+        this.globalVariableService.getDataConnections().then(dc => {
             this.globalVariableService.getDataTable().then(dt => {
                 this.globalVariableService.getDataField().then(df => {
 

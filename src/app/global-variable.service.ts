@@ -2504,10 +2504,10 @@ export class GlobalVariableService {
         });
     }
 
-    getDataConnection(): Promise<DataConnection[]> {
+    getDataConnections(): Promise<DataConnection[]> {
         // Description: Gets DataConnections, WITHOUT data
         // Returns: this.dataConnection
-        console.log('%c    Global-Variables getDataConnection ...',
+        console.log('%c    Global-Variables getDataConnections ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         let url: string = 'dataConnections';
@@ -2557,7 +2557,7 @@ export class GlobalVariableService {
                     // Update Global vars to make sure they remain in sync
                     this.dataConnections.push(JSON.parse(JSON.stringify(data)));
 
-                    console.log('addDataConnection ADDED', data, this.DataConnections)
+                    console.log('addDataConnection ADDED', data, this.dataConnections)
 
                     resolve(data);
                 },

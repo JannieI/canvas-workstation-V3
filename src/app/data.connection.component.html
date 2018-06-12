@@ -37,7 +37,6 @@
                         <div class="select gridConnectionType">
                             <select [(ngModel)]="connectionType"
                                 name="connectionType"
-                                (change)="clickConnectionType($event)"
                                 placeholder="Select type of Connection, ie PostreSQL"
                                 [disabled]="!editing  &&  !adding"
                                 >
@@ -57,7 +56,7 @@
                                 placeholder="Select previous Connection to copy from"
                                 [disabled]="!editing  &&  !adding"
                                 >
-                                <option *ngFor="let row of connections">
+                                <option *ngFor="let row of dataConnections">
                                     {{ row }}
                                 </option>
                             </select>
@@ -129,7 +128,6 @@
                                 [disabled]="!editing  &&  !adding"
                                 >
                         </div>
-    
 
                         <div class="gridButtonCancel" *ngIf="editing  ||  adding">
                             <button
@@ -168,21 +166,24 @@
                                 Add
                             </button>
                         </div>
-        
-
-    
+            
                         <div *ngIf="errorMessage!=''" class="gridErrorMessage">
                             {{ errorMessage }}
                         </div>
     
-                        <div class="gridTables">
+                        <div class="gridConnections">
                             <clr-datagrid>
                                 <clr-dg-placeholder>
                                     No records ...
                                 </clr-dg-placeholder>
-    
+                                <clr-dg-column>Delete</clr-dg-column>
+                                <clr-dg-column>Name</clr-dg-column>
+                                <clr-dg-column>Type</clr-dg-column>
+                                <clr-dg-column>Server</clr-dg-column>
+                                <clr-dg-column>Auth</clr-dg-column>
+                                <clr-dg-column>Description</clr-dg-column>
                                 <clr-dg-row
-                                    *ngFor="let row of datasources; let i = index"
+                                    *ngFor="let row of dataConnections; let i = index"
                                     [style.background-color]="(i == selectedConnectionRowIndex)? '#123456' : 'white'"
                                     [style.color]="(i == selectedConnectionRowIndex)? 'white' : 'gray'"
                                     (click)="clickSelectedDataConnection(i, row.id)"
@@ -193,11 +194,12 @@
                                             [disabled]="row.hasWidget"
                                             (click)="clickDSCheckbox(i, row.id, row.isSelected, $event)"
                                             >
-                                        <div class="dsName">
-                                            {{ row.fieldValue }}                                        {{row.name}}
-                                        </div>
-    
                                     </clr-dg-cell>
+                                    <clr-dg-cell>{{ row.connectionName }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.serverType }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.serverName }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.authentication }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.description }}</clr-dg-cell>
                                 </clr-dg-row>
                             </clr-datagrid>
                         </div>

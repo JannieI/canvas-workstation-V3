@@ -65,9 +65,13 @@ export class DataConnectionComponent implements OnInit {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.globalVariableService.getDataConnection().then(dc => {
+        this.globalVariableService.getDataConnections().then(dc => {
             this.dataConnections = dc.slice();
+            if (this.dataConnections.length > 0) {
+                this.clickRow(0, this.dataConnections[0].id);
+            };
         });
+
     }
 
     clickSelectedDataConnection(index: number, id: number) {
@@ -77,6 +81,7 @@ export class DataConnectionComponent implements OnInit {
         // Set seletected index - used for highlighting row
         this.selectedConnectionRowIndex = index;
     }
+
     clickRow(index: number, id: number) {
         // Click Row
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
@@ -90,13 +95,17 @@ export class DataConnectionComponent implements OnInit {
         this.errorMessage = '';
 
         // Fill the form
-        let connectionIndex: number = this.globalVariableService.dataConnections
-            .findIndex(sch => sch.id == id);
-        if (connectionIndex >= 0) {
-            this.selectedConnection = Object.assign({}, 
-                this.globalVariableService.dataConnections[connectionIndex]
-            );
-        };
+        this.globalVariableService.getDataConnections().then(dc => {
+            this.dataConnections = dc.slice();
+            
+            let connectionIndex: number = this.dataConnections
+                .findIndex(dc => dc.id == id);
+            if (connectionIndex >= 0) {
+                this.selectedConnection = Object.assign({}, 
+                    this.globalVariableService.dataConnections[connectionIndex]
+                );
+            };
+        });
 
     }
 
@@ -132,11 +141,11 @@ export class DataConnectionComponent implements OnInit {
         this.clickRow(this.selectedConnectionRowIndex, this.connectionID);
         
         // Re Fill the form
-        let dashboardScheduleIndex: number = this.dataConnections
+        let dataconnectionIndex: number = this.dataConnections
             .findIndex(sch => sch.id == this.selectedConnection.id);
-        if (dashboardScheduleIndex >= 0) {
+        if (dataconnectionIndex >= 0) {
             this.selectedConnection = Object.assign({}, 
-                this.dataConnections[dashboardScheduleIndex]
+                this.dataConnections[dataconnectionIndex]
             );
         };
 
@@ -147,7 +156,7 @@ export class DataConnectionComponent implements OnInit {
     }
 
     clickSave() {
-        // Save changes to a Schedule
+        // Save changes to a Data Connection
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
         this.errorMessage = '';
@@ -162,14 +171,11 @@ export class DataConnectionComponent implements OnInit {
                 return;
         };
 
-
         // Add to local and DB
         if (this.adding) {
-            // this.currentDashboardSchedules.push(this.selectedDashboardSchedules);
             this.selectedConnection.id = null;
-            this.selectedConnection.dashboardID = 
-                this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
-            this.globalVariableService.addDashboardSchedule(this.selectedConnection).then(
+
+            this.globalVariableService.addDataConnection(this.selectedConnection).then(
                 res => {
                     if (this.selectedConnectionRowIndex == null) {
                         this.selectedConnectionRowIndex = 0;
@@ -183,13 +189,13 @@ export class DataConnectionComponent implements OnInit {
 
         // Save the changes
         if (this.editing) {
-            let dashboardScheduleIndex: number = this.dataConnections
+            let dataconnectionIndex: number = this.dataConnections
                 .findIndex(sch => sch.id == this.selectedConnection.id);
-            if (dashboardScheduleIndex >= 0) {
-                this.dataConnections[dashboardScheduleIndex] = 
+            if (dataconnectionIndex >= 0) {
+                this.dataConnections[dataconnectionIndex] = 
                     Object.assign({}, this.selectedConnection);
             };
-            this.globalVariableService.saveDashboardSchedule(this.selectedConnection)
+            this.globalVariableService.saveDataConnection(this.selectedConnection)
         };
 
         // Reset
@@ -201,7 +207,7 @@ export class DataConnectionComponent implements OnInit {
     }
 
     clickEdit() {
-        // Start editing selected Schedule
+        // Start editing selected Data Connection
         this.globalFunctionService.printToConsole(this.constructor.name,'clickEdit', '@Start');
 
         if (this.dataConnections.length > 0) {
@@ -212,7 +218,7 @@ export class DataConnectionComponent implements OnInit {
     }
 
     clickAdd() {
-        // Add a new Schedule
+        // Add a new Data Connection
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
 
         this.adding = true;
@@ -222,12 +228,12 @@ export class DataConnectionComponent implements OnInit {
     }
 
     clickDelete(index: number, id: number) {
-        // Delete a Schedule
+        // Delete a Data Connection
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDelete', '@Start');
 
         this.clearRecord();
-        this.globalVariableService.deleteDashboardSchedule(id).then(res => {
-            this.dataConnections = this.globalVariableService.currentDashboardSchedules
+        this.globalVariableService.deleteDataConnection(id).then(res => {
+            this.dataConnections = this.globalVariableService.dataConnections
         });
 
         this.selectedConnectionRowIndex = null;

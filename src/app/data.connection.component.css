@@ -151,11 +151,11 @@
         grid-row-end: 10;
     }
     
-    .gridTables {
+    .gridConnections {
         border: 1px solid gray;
         border-radius: 4px;
         grid-column-start: 1;
-        grid-column-end: 6;
+        grid-column-end: 21;
         grid-row-start: 10;
         grid-row-end: 25;
         overflow-y: scroll;
@@ -182,36 +182,19 @@
             margin: 4px 0 0 0 !important;    
         }
 
-        .dsName {
-            display: inline-block;
-            margin: -3px 0 0 0 !important;    
-            padding: 0 0 5px 0 !important;    
-        }
-
-    .gridFields {
-        border: 1px solid gray;
-        border-radius: 4px;
-        grid-column-start: 7;
-        grid-column-end: 21;
-        grid-row-start: 10;
-        grid-row-end: 25;
-        overflow-y: scroll;
-        width: 100%;
-    }
- 
     .gridButtonCancel {
-        grid-column-start: 10;
-        grid-column-end: 13;
-        grid-row-start: 12;
-        grid-row-end: 13;
-        margin: 2px 2px 2px 2px;
+        grid-column-start: 17;
+        grid-column-end: 19;
+        grid-row-start: 7;
+        grid-row-end: 8;
+        margin: 8px 2px 2px 2px;
         text-align: left;
     }
     .gridButtonAdd {
-        grid-column-start: 14;
-        grid-column-end: 16;
-        grid-row-start: 12;
-        grid-row-end: 13;
-        margin: 2px 2px 2px 2px;
+        grid-column-start: 19;
+        grid-column-end: 20;
+        grid-row-start: 7;
+        grid-row-end: 8;
+        margin: 8px 2px 2px 2px;
         text-align: left;
     }
