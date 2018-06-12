@@ -1228,14 +1228,19 @@ export class AppComponent implements OnInit {
         this.showModalDataTransformation = false;
     }
         
-    handleCloseDataEditDatasource(action: string) {
+    handleCloseDataEditDatasource(selectedDatasource: Datasource) {
         // Handle Close of Edit Datasource
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataEditDatasource', '@Start');
 
         this.menuOptionClickPostAction();
 
+        // Close the Edit Selection form
         this.showModalDataEditDatasource = false;
-        console.warn('xx this.selectedDatasource', this.selectedDatasource, action)
+        
+        // Open relevant form
+        if (this.selectedDatasource != null) {
+            this.showModalDataQueryBuilder = true;
+        };
     }
     
     handleCloseData(action: string) {

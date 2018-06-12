@@ -28,8 +28,6 @@ import { Widget }                     from './models';
 })
 export class DataEditDatasourceComponent implements OnInit {
 
-    @Input() selectedDatasource: Datasource;
-    
     @Output() formDataEditDatasourceClosed: EventEmitter<Datasource> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
@@ -48,6 +46,7 @@ export class DataEditDatasourceComponent implements OnInit {
     datasources: Datasource[];
     errorMessage: string = "";
     selectedRowIndex: number = 0;
+    selectedDatasource: Datasource;
 
 
 	constructor(
@@ -97,12 +96,8 @@ export class DataEditDatasourceComponent implements OnInit {
 
         if (this.selectedRowIndex >= 0) {
             this.selectedDatasource = this.datasources[this.selectedRowIndex];
-        console.warn('xx EDIT this.selectedDatasource', this.selectedDatasource)
-            
             this.formDataEditDatasourceClosed.emit(this.selectedDatasource);
         } else {
-            this.selectedDatasource = null;
-            console.warn('xx NULL this.selectedDatasource', this.selectedDatasource)
             this.formDataEditDatasourceClosed.emit(null);
         };
 
