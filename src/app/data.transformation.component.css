@@ -142,6 +142,8 @@
         grid-column-end: 21;
         grid-row-start: 10;
         grid-row-end: 25;
+        height: 100%;
+        overflow-y: scroll;
         margin-left: 12px;
         width: 100%;
     }
