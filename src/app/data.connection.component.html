@@ -46,22 +46,6 @@
                             </select>
                         </div>
         
-                        <div class="gridConnectionSelectTitle">
-                            <b>Copy:</b>
-                        </div>
-                        <div class="select gridConnectionSelect">
-                            <select
-                                name="connectionSelect"
-                                (change)="clickConnectionSelect($event)"
-                                placeholder="Select previous Connection to copy from"
-                                [disabled]="!editing  &&  !adding"
-                                >
-                                <option *ngFor="let row of dataConnections">
-                                    {{ row }}
-                                </option>
-                            </select>
-                        </div>
-        
                         <div class="gridServerTitle">
                             <b>Server:</b>
                         </div>
