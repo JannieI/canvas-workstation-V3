@@ -21,17 +21,16 @@ import { GlobalVariableService }      from './global-variable.service';
 
 // Our Models
 import { Datasource }                 from './models';
-import { Dataset }                    from './models';
-import { Transformation }             from './models';
-import { Field }                      from './models';
-import { FieldMetadata }              from './models';
-import { DataQualityIssue }           from './models';
+import { Dashboard }                  from './models';
+import { Widget }                     from './models';
 
-interface localDatasources extends Datasource 
-    {
-        isSelected?: boolean;
-        hasWidget?: boolean;
-    }
+interface DashboardList {
+    code: string;
+    name: string;
+    state: string;
+    accessType: string;
+    description: string;
+}
 
 @Component({
     selector: 'data-datasourceUsage',
@@ -55,32 +54,11 @@ export class DataDatasourceUsageComponent implements OnInit {
 
     }
 
-    // datasources: Datasource[];
-    clickedDeleteDS: boolean = false;
-    clickedViewDescription: boolean = false;
-    clickedViewPreview: boolean = false;
-    clickedViewOverview: boolean = false;
-    clickedViewFields: boolean = false;
-    clickedViewFieldProperties: boolean = false;
-    clickedViewFieldProfile: boolean = false;
-    clickedViewDataQuality: boolean = false;
-    currentData: any = [];
-    currentDSids: number[] = [];                    // List of DS-IDs in use
-    dataFieldLengths: number[] = [];
-    dataFieldNames: string[];
-    dataFieldTypes: string[] = [];
-    dataQualityIssues: DataQualityIssue[];
-    datasources: localDatasources[];
+    datasources: Datasource[];
+    dashboardList: DashboardList[] = [];
     errorMessage: string = "";
-    fileName: string = '';
-    folderName: string = '';
-    finalFields: any = [];
-    selectedDatasource: Datasource;
-    selectedRowID: number = 0;
     selectedRowIndex: number = 0;
-    selectedRowName: string = '';
-    selectedRowDescription: string = '';
-    selectedRowNrWidgetsInUse: number = 0;
+    widgets: Widget[] = [];
 
 
 	constructor(
@@ -93,45 +71,14 @@ export class DataDatasourceUsageComponent implements OnInit {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        let widgetIDs: number[] = [];
-        this.globalVariableService.currentWidgets.forEach(w => {
-            widgetIDs.push(w.datasourceID);
-        });
-        this.globalVariableService.currentDatasources.forEach(cds => {
-            this.currentDSids.push(cds.id);
-        });
-
         // Load from global variables
         this.datasources = this.globalVariableService.datasources.slice();
-        this.datasources.forEach(ds => {
-            if (widgetIDs.indexOf(ds.id) >= 0) {
-                ds.hasWidget = true;
-            } else {
-                ds.hasWidget = false;
-            };
-            if (this.currentDSids.indexOf(ds.id) >= 0) {
-                ds.isSelected = true;
-            } else {
-                ds.isSelected = false;
-            };
-        });
 
-        // Reset
-        this.selectedRowID = -1;
-        this.selectedRowIndex = -1;
-        this.selectedRowName = '';
-        this.selectedRowNrWidgetsInUse = 0;
-
-        // Select first row if exists
+        // Show D for DS
         if (this.datasources.length > 0) {
             this.clickSelectedDatasource(0, this.datasources[0].id);
         };
-        console.warn('xx DS, dSet', this.globalVariableService.datasources, this.globalVariableService.currentDatasources, this.globalVariableService.datasets, this.globalVariableService.currentDatasets)
-        // TODO - fix!!
-        this.finalFields = this.globalVariableService.finalFields;
 
-        // Show first tab
-        this.clickDSDescription('gridViewDescription');
     }
 
     clickSelectedDatasource(index: number, id: number) {
@@ -142,6 +89,26 @@ export class DataDatasourceUsageComponent implements OnInit {
         // Set seletected index - used for highlighting row
         this.selectedRowIndex = index;
 
+        this.widgets = this.globalVariableService.widgets.filter(w => {
+            w.datasourceID == id;
+        })
+
+        // Build a list of unique D
+        let dashboardIDs: number[] = [];
+        this.widgets.forEach(w => {
+            if (dashboardIDs.indexOf(w.dashboardID) < 0) {
+                dashboardIDs.push(w.dashboardID);
+            };
+        });
+
+        // Build list to display
+        this.dashboardList = [];
+        dashboardIDs.forEach(d => {
+            dashboardList
+        })
+        this.dashboards = this.globalVariableService.dashboards.filter(d => 
+            d.dat            
+        )
         let dsIndex: number = -1;
         dsIndex = this.datasources.findIndex(ds => ds.id == id);
         if (dsIndex != -1) {
