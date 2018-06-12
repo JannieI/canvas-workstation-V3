@@ -31,13 +31,13 @@
                                 >
                         </div>
     
-                        <div class="gridConnectionTypeTitle">
+                        <div class="gridServerTypeTitle">
                             <b>Type:</b>
                         </div>
-                        <div class="select gridConnectionType">
-                            <select [(ngModel)]="selectedConnection.connectionType"
-                                name="connectionType"
-                                placeholder="Select type of Connection, ie PostreSQL"
+                        <div class="select gridServerType">
+                            <select [(ngModel)]="selectedConnection.serverType"
+                                name="ServerType"
+                                placeholder="Select type of Server, ie PostreSQL"
                                 [disabled]="!editing  &&  !adding"
                                 >
                                 <option>My SQL</option>

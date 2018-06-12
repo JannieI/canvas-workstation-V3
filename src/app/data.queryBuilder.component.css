@@ -61,13 +61,13 @@
         grid-row-end: 5;
     }
     
-    .gridConnectionTypeTitle {
+    .gridServerTypeTitle {
         grid-column-start: 14;
         grid-column-end: 15;
         grid-row-start: 4;
         grid-row-end: 5;
     }
-    .gridConnectionType {
+    .gridServerType {
         grid-column-start: 15;
         grid-column-end: 20;
         grid-row-start: 4;

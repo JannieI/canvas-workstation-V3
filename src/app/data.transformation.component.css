@@ -50,14 +50,14 @@
         margin-left: 12px;
     }
     
-    .gridConnectionTypeTitle {
+    .gridServerTypeTitle {
         grid-column-start: 14;
         grid-column-end: 15;
         grid-row-start: 4;
         grid-row-end: 5;
         margin-left: 12px;
     }
-    .gridConnectionType {
+    .gridServerType {
         grid-column-start: 15;
         grid-column-end: 20;
         grid-row-start: 4;

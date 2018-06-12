@@ -55,7 +55,7 @@ export class DataSQLEditorComponent implements OnInit {
 
     authentication: string = 'UsrPsw';
     connectionName: string = '';
-    connectionType: string = 'MySQL';
+    serverType: string = 'MySQL';
     datasourceName: string = '';
     description: string = 'Post Trade Data Vault';
     dataConnections: DataConnection[] = [];

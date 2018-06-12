@@ -71,7 +71,7 @@ export class DataTransformationComponent implements OnInit {
     }
 
     connectionName: string = '';
-    connectionType: string = 'MySQL';
+    serverType: string = 'MySQL';
     dataTables: DataTable[] = [];
     datasources: Datasource[];
     errorMessage: string = "";
