@@ -11,7 +11,7 @@
                     </div> 
                     <div class="gridSubTitle">
                         <i>
-                            Click a Datasource to see in which Dashboards it is used.
+                            Click a Datasource on the left to see in which Dashboards it is used.
                         </i>
                     </div>
                 
@@ -20,6 +20,8 @@
                             <clr-dg-placeholder>
                                 No records ...
                             </clr-dg-placeholder>
+                            <clr-dg-column>Name</clr-dg-column>
+                            <clr-dg-column>Description</clr-dg-column>
 
                             <clr-dg-row
                                 *ngFor="let row of datasources; let i = index"
@@ -27,17 +29,9 @@
                                 [style.color]="(i == selectedRowIndex)? 'white' : 'gray'"
                                 (click)="clickSelectedDatasource(i, row.id)"
                                 >
-                                <clr-dg-cell>
-                                    <input type="checkbox" class="dsCheckbox"
-                                        [checked]="row.isSelected"
-                                        [disabled]="row.hasWidget"
-                                        (click)="clickDSCheckbox(i, row.id, row.isSelected, $event)"
-                                        >
-                                    <div class="dsName">
-                                        {{ row.fieldValue }}                                        {{row.name}}
-                                    </div>
+                                <clr-dg-cell>{{ row.name }}</clr-dg-cell>
+                                <clr-dg-cell>{{ row.description }}</clr-dg-cell>
 
-                                </clr-dg-cell>
                             </clr-dg-row>
                         </clr-datagrid>
                     </div>
@@ -49,17 +43,17 @@
                     <div class="gridDashboards">
 
                         <clr-datagrid>
-                            <clr-dg-column>FieldName</clr-dg-column>
-                            <clr-dg-column>DataType</clr-dg-column>
-                            <clr-dg-column>LocalName</clr-dg-column>
-                            <clr-dg-column>Filtered</clr-dg-column>
-                            <clr-dg-column>Transformed</clr-dg-column>
-                            <clr-dg-row *clrDgItems="let row of finalFields">
-                                <clr-dg-cell>{{ row.fieldName }}</clr-dg-cell>
-                                <clr-dg-cell>{{ row.dataType }}</clr-dg-cell>
-                                <clr-dg-cell>{{ row.localName }}</clr-dg-cell>
-                                <clr-dg-cell>{{ row.filtered }}</clr-dg-cell>
-                                <clr-dg-cell>{{ row.transformed }}</clr-dg-cell>
+                            <clr-dg-column>Code</clr-dg-column>
+                            <clr-dg-column>Name</clr-dg-column>
+                            <clr-dg-column>State</clr-dg-column>
+                            <clr-dg-column>Access Type</clr-dg-column>
+                            <clr-dg-column>Description</clr-dg-column>
+                            <clr-dg-row *clrDgItems="let row of dashboards">
+                                <clr-dg-cell>{{ row.code }}</clr-dg-cell>
+                                <clr-dg-cell>{{ row.name }}</clr-dg-cell>
+                                <clr-dg-cell>{{ row.state }}</clr-dg-cell>
+                                <clr-dg-cell>{{ row.accessType }}</clr-dg-cell>
+                                <clr-dg-cell>{{ row.description }}</clr-dg-cell>
                             </clr-dg-row>
 
                             <clr-dg-footer>
