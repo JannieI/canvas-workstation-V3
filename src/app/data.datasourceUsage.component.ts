@@ -34,9 +34,9 @@ interface localDatasources extends Datasource
     }
 
 @Component({
-    selector: 'data-datasourceOverview',
-    templateUrl: './data.datasourceOverview.component.html',
-    styleUrls:  ['./data.datasourceOverview.component.css']
+    selector: 'data-datasourceUsage',
+    templateUrl: './data.datasourceUsage.component.html',
+    styleUrls:  ['./data.datasourceUsage.component.css']
 })
 export class DataDatasourceUsageComponent implements OnInit {
 

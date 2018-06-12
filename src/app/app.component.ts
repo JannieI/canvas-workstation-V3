@@ -1158,6 +1158,15 @@ export class AppComponent implements OnInit {
         this.showModalWidgetDescription = false;
     }
 
+    handleCloseDataDatasourceUsage(action: string) {
+        // Handle close of Datasource Usage
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDatasourceUsage', '@Start');
+
+        this.menuOptionClickPostAction();
+
+        this.showModalDataUsage = false;
+    }
+    
     handleCloseDataDatasourceOverview(action: string) {
         // Handle close of Datasource Overview
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDatasourceOverview', '@Start');

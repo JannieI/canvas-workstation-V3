@@ -4041,6 +4041,13 @@
 </data-datasourceOverview>
 
 
+<!-- Modal: Datasource Usage -->
+<data-datasourceUsage
+    *ngIf="showModalDataUsage"
+    (formDataDatasourceUsageClosed)="handleCloseDataDatasourceUsage($event)">Load Datasource Usage ...
+</data-datasourceUsage>
+
+
 <!-- Modal: data  -->
 <data
     *ngIf="showModalData"
