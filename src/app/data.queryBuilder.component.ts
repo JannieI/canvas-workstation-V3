@@ -1,7 +1,5 @@
 /*
- * Data page: to get new datasources, and add to the current list of datasources for this
- * Dashboard.  Can also do transformations to the data, and crteate new datasets, ie via
- * pivot.
+ * Create / Edit a SQL database query, using the Query Builder.
  */
 
 // Angular
@@ -23,22 +21,10 @@ import { GlobalVariableService }      from './global-variable.service';
 import { DataConnection }             from './models';
 import { DataTable }                  from './models';
 import { DataField }                  from './models';
-import { Datasource }                 from './models';
 import { Dataset }                    from './models';
 import { Transformation }             from './models';
 import { Field }                      from './models';
-import { FieldMetadata }              from './models';
-import { DataQualityIssue }           from './models';
 
-// Vega
-import * as dl from 'datalib';
-import { load } from 'datalib';
-
-interface localDatasources extends Datasource
-    {
-        isSelected?: boolean;
-        hasWidget?: boolean;
-    }
 
 @Component({
     selector: 'data-queryBuilder',
@@ -72,14 +58,12 @@ export class DataQueryBuilderComponent implements OnInit {
     dataTablesFiltered: DataTable[] = [];
     dataFields: DataField[] = [];
     dataFieldsFiltered: DataField[] = [];
-    datasources: localDatasources[];
     errorMessage: string = "";
     selectedFieldRowIndex: number = 0;
     selectedFields: DataField[] = [];
     selectedTableRowIndex: number = 0;
     serverName: string = 'MSSQL54: 8000';
 
-    // connections ->
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,

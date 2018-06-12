@@ -83,7 +83,7 @@ export class DataDatasourceUsageComponent implements OnInit {
         this.selectedRowIndex = index;
 
         this.widgets = this.globalVariableService.widgets.filter(w => w.datasourceID == id);
-console.warn('xx id', id, this.widgets.length, this.globalVariableService.widgets)
+
         // Build a list of unique D
         let dashboardIDs: number[] = [];
         this.widgets.forEach(w => {
@@ -91,7 +91,7 @@ console.warn('xx id', id, this.widgets.length, this.globalVariableService.widget
                 dashboardIDs.push(w.dashboardID);
             };
         });
-console.warn('xx ids', dashboardIDs)
+
         // Build list to display
         this.dashboards = [];
         let dashboardIndex: number;
