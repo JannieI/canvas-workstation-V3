@@ -13,7 +13,7 @@
                         <div class="gridSubTitle">
                             <i>
                                 Manage Connections (links to DB Servers) that are used to 
-                                define a Datasource.
+                                define a Datasource.  DblClick x to delete a row.
                             </i>
                         </div>
     
@@ -173,11 +173,12 @@
                                     (click)="clickRow(i, row.id)"
                                     >
                                     <clr-dg-cell>
-                                        <input type="checkbox" class="dsCheckbox"
-                                            [checked]="row.isSelected"
-                                            [disabled]="row.hasWidget"
-                                            (click)="clickDSCheckbox(i, row.id, row.isSelected, $event)"
+                                        <clr-icon shape="times"
+                                            class="selectIcon1"
+                                            size="18"
+                                            (dblclick)="clickDelete(i, row.id)"
                                             >
+                                        </clr-icon>
                                     </clr-dg-cell>
                                     <clr-dg-cell>{{ row.connectionName }}</clr-dg-cell>
                                     <clr-dg-cell>{{ row.serverType }}</clr-dg-cell>

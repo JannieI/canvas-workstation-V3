@@ -351,7 +351,7 @@ export class DashboardScheduleEditComponent implements OnInit {
         this.errorMessage = '';
 
     }
-
+ 
     clickDelete(index: number, id: number) {
         // Delete a Schedule
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDelete', '@Start');
