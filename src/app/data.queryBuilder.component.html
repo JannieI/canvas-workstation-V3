@@ -21,7 +21,7 @@
                         <b>Name:</b>
                     </div>
                     <div class="gridDatasourceName">
-                        <input [(ngModel)]="datasourceName"
+                        <input [(ngModel)]="selectedDatasource.name"
                             type="text"
                             name="connectionName"
                             title="Name of the Datasource"
@@ -62,7 +62,7 @@
                         <b>Username:</b>
                     </div>
                     <div class="gridUsername">
-                        <input [(ngModel)]="usernameTitle"
+                        <input [(ngModel)]="selectedDatasource.username"
                             type="text"
                             name="usernameTitle"
                             title="Name of the connection"
@@ -73,7 +73,7 @@
                         <b>Password:</b>
                     </div>
                     <div class="gridPassword">
-                        <input [(ngModel)]="password"
+                        <input [(ngModel)]="selectedDatasource.password"
                             type="password"
                             name="password"
                             title="User Password"
@@ -91,7 +91,7 @@
                         <b>Description:</b>
                     </div>
                     <div class="gridDescription">
-                        {{ description }}
+                        {{ selectedDatasource.description }}
                     </div>
 
                     <div class="gridButtonTransformation">

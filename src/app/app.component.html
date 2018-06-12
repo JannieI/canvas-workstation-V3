@@ -3992,6 +3992,7 @@
 <!-- Modal: Data Query Builder -->
 <data-queryBuilder
     *ngIf="showModalDataQueryBuilder"
+    [selectedDatasource]="selectedDatasource"
     (formDataAddQueryBuilderClosed)="handleCloseDataQueryBuilder($event)">Load SQL Query Builder ...
 </data-queryBuilder>
 

@@ -317,10 +317,11 @@ export class AppComponent implements OnInit {
     paletteDrag: boolean;
     paletteLeft: number = 10;                   // Palette position in px
     paletteTop: number = 80;                    // Palette position in px
-    paletteHeight = 275;                         // Palette dimensions in px
-    paletteWidth = 39;                         // Palette dimensions in px
+    paletteHeight = 275;                        // Palette dimensions in px
+    paletteWidth = 39;                          // Palette dimensions in px
 	recentDashboards: DashboardRecent[];
     refreshGraphs: boolean = false;
+    selectedDatasource: Datasource;
     selectedDashboard: Dashboard;
     selectDatasetID: number;
     selectDatasourceID: number;
@@ -2729,7 +2730,7 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataQueryBuilder', '@Start');
 
         this.menuOptionClickPreAction();
-
+        this.selectedDatasource = null;
         this.showModalDataQueryBuilder = true;
     }
 

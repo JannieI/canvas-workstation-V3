@@ -19,10 +19,10 @@ import { GlobalVariableService }      from './global-variable.service';
 
 // Our Models
 import { DataConnection }             from './models';
+import { Datasource }                 from './models';
 import { DataTable }                  from './models';
 import { DataField }                  from './models';
 import { Dataset }                    from './models';
-import { Transformation }             from './models';
 import { Field }                      from './models';
 
 
@@ -33,6 +33,8 @@ import { Field }                      from './models';
 })
 export class DataQueryBuilderComponent implements OnInit {
 
+    @Input() selectedDatasource: Datasource;
+ 
     @Output() formDataAddQueryBuilderClosed: EventEmitter<string> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
@@ -75,6 +77,41 @@ export class DataQueryBuilderComponent implements OnInit {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
+        if (this.selectedDatasource == null) {
+            this.selectedDatasource = {
+                id: 0,
+                type: '',
+                subType: '',
+                typeVersion: '',
+                name: '',
+                username: '',
+                password: '',
+                description: '...',
+                createdBy: '',
+                createdOn: '',
+                refreshedBy: '',
+                refreshedOn: '',
+                dataFields: [''],
+                dataFieldTypes: [''],
+                dataFieldLengths: [0],
+                parameters: '',
+                folder: '',
+                fileName: '',
+                excelWorksheet: '',
+                transposeOnLoad: false,
+                startLineNr: 0,
+                resourceUserName: '',
+                resourcePassword: '',
+                serverName: '',
+                serverIP: '',
+                serverPort: '',
+                database: '',
+                logFoler: '',
+                logfileName: '',
+                language: '',
+                serverOptions: ''
+            };
+        }
         this.globalVariableService.getDataConnections().then(dc => {
             this.globalVariableService.getDataTable().then(dt => {
                 this.globalVariableService.getDataField().then(df => {

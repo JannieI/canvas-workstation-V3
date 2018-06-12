@@ -348,10 +348,11 @@ export class Datasource {
     createdOn: string;
     refreshedBy: string;
     refreshedOn: string;
-    dataFields: string[];
-    dataFieldTypes: string[];
-    dataFieldLengths: number[];
-    parameters: string;
+    dataFieldIDs: number[];             // IDs of fields in DB table
+    dataFields: string[];               // FieldNames, in order to display
+    dataFieldTypes: string[];           // Field Types, same order as dataFields
+    dataFieldLengths: number[];         // Max field lengths, same order as dataFields
+    parameters: string;                 // Parameters to pass into SQL query
 
     // Location and authentication
     folder: string;
@@ -359,16 +360,10 @@ export class Datasource {
     excelWorksheet: string;
     transposeOnLoad: boolean;
     startLineNr: number;                // 1 = first = default
-    resourceUserName: string;
-    resourcePassword: string;
-    serverName: string;
-    serverIP: string;
-    serverPort: string;
-    database: string;
-    logFoler: string;
-    logfileName: string;
-    language: string;
-    serverOptions: string;
+    csvSeparationCharacter: string;     // CSV file column separator: comma or ;
+    csvQuotCharacter: string;           // CSV values in "", in '' or without quotes
+    connectionID: number;               // Connection to DB
+    dataTableID: string;                // ID of table linked in DB
 }
 
 export class DatasourcePermission {
@@ -399,6 +394,15 @@ export class DataConnection {
     serverName: string;         // DNS Server Name or IP address, ending with optional :port
     authentication: string;     // Type of authentication: usr & psw, OR login as me (ie using AD)
     description: string;        // Description of Connection
+
+    // For later use
+    defaultDatabase: string;
+    logFolder: string;
+    logfileName: string;
+    characterSet: string;
+    language: string;
+    serverOptions: string;
+
 }
 
 export class DataTable {
