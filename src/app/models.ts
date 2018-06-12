@@ -363,7 +363,7 @@ export class Datasource {
     csvSeparationCharacter: string;     // CSV file column separator: comma or ;
     csvQuotCharacter: string;           // CSV values in "", in '' or without quotes
     connectionID: number;               // Connection to DB
-    dataTableID: string;                // ID of table linked in DB
+    dataTableID: number;                // ID of table linked in DB
 }
 
 export class DatasourcePermission {

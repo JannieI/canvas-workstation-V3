@@ -91,6 +91,7 @@ export class DataQueryBuilderComponent implements OnInit {
                 createdOn: '',
                 refreshedBy: '',
                 refreshedOn: '',
+                dataFieldIDs: [0],
                 dataFields: [''],
                 dataFieldTypes: [''],
                 dataFieldLengths: [0],
@@ -100,16 +101,10 @@ export class DataQueryBuilderComponent implements OnInit {
                 excelWorksheet: '',
                 transposeOnLoad: false,
                 startLineNr: 0,
-                resourceUserName: '',
-                resourcePassword: '',
-                serverName: '',
-                serverIP: '',
-                serverPort: '',
-                database: '',
-                logFoler: '',
-                logfileName: '',
-                language: '',
-                serverOptions: ''
+                csvSeparationCharacter: '',
+                csvQuotCharacter: '',
+                connectionID: 0,
+                dataTableID: 0
             };
         }
         this.globalVariableService.getDataConnections().then(dc => {
