@@ -21,7 +21,7 @@
                             <b>Connection:</b>
                         </div>
                         <div class="gridConnection">
-                            <input [(ngModel)]="connectionName"
+                            <input [(ngModel)]="selectedConnection.connectionName"
                                 type="text"
                                 name="connectionName"
                                 required
@@ -35,7 +35,7 @@
                             <b>Type:</b>
                         </div>
                         <div class="select gridConnectionType">
-                            <select [(ngModel)]="connectionType"
+                            <select [(ngModel)]="selectedConnection.connectionType"
                                 name="connectionType"
                                 placeholder="Select type of Connection, ie PostreSQL"
                                 [disabled]="!editing  &&  !adding"
@@ -66,7 +66,7 @@
                             <b>Server:</b>
                         </div>
                         <div class="gridServer">
-                            <input [(ngModel)]="serverTitle"
+                            <input [(ngModel)]="selectedConnection.serverTitle"
                                 type="text"
                                 name="serverTitle"
                                 title="Name of the Server/IP Address and :Port"
@@ -79,7 +79,7 @@
                             <b>Username:</b>
                         </div>
                         <div class="gridUsername">
-                            <input [(ngModel)]="usernameTitle"
+                            <input [(ngModel)]="selectedConnection.usernameTitle"
                                 type="text"
                                 name="usernameTitle"
                                 title="Username to log into DB Server"
@@ -92,7 +92,7 @@
                             <b>Password:</b>
                         </div>
                         <div class="gridPassword">
-                            <input [(ngModel)]="password"
+                            <input [(ngModel)]="selectedConnection.password"
                                 type="password"
                                 name="password"
                                 title="User Password"
@@ -105,7 +105,7 @@
                             <b>Authentication:</b>
                         </div>
                         <div class="gridAuthentication">
-                            <input [(ngModel)]="authentication"
+                            <input [(ngModel)]="selectedConnection.authentication"
                                 type="text"
                                 name="authentication"
                                 title="Current User or log in"
@@ -118,7 +118,7 @@
                             <b>Description:</b>
                         </div>
                         <div class="gridDescription">
-                            <input [(ngModel)]="description"
+                            <input [(ngModel)]="selectedConnection.description"
                                 type="text"
                                 name="description"
                                 size="45"
@@ -186,7 +186,7 @@
                                     *ngFor="let row of dataConnections; let i = index"
                                     [style.background-color]="(i == selectedConnectionRowIndex)? '#123456' : 'white'"
                                     [style.color]="(i == selectedConnectionRowIndex)? 'white' : 'gray'"
-                                    (click)="clickSelectedDataConnection(i, row.id)"
+                                    (click)="clickRow(i, row.id)"
                                     >
                                     <clr-dg-cell>
                                         <input type="checkbox" class="dsCheckbox"

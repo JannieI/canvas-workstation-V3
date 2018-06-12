@@ -65,6 +65,8 @@ export class DataConnectionComponent implements OnInit {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
+        this.clearRecord();
+        
         this.globalVariableService.getDataConnections().then(dc => {
             this.dataConnections = dc.slice();
             if (this.dataConnections.length > 0) {
