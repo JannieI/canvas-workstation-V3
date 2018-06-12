@@ -79,7 +79,7 @@ import { DataTransformationComponent }      from './data.transformation.componen
 import { DataQueryBuilderComponent }  from './data.queryBuilder.component';
 import { DataEditDatasourceComponent }      from './data.editDatasource.component';
 import { DataPopupComponent }         from './data.popup.component';
-import { DataAddExistingComponent }   from './data.add.existing.component';
+import { DataDatasourceOverviewComponent }  from './data.datasourceOverview.component';
 import { DataCombinationComponent }   from './data.combination.component';
 import { DataRefreshComponent }       from './data.refresh.component';
 import { DatasourceShareComponent }   from './data.share.component';
@@ -166,7 +166,7 @@ import { StatusbarComponent }         from './statusbar.component';
         DataTransformationComponent,
         DataQueryBuilderComponent,
         DataEditDatasourceComponent,
-        DataAddExistingComponent,
+        DataDatasourceOverviewComponent,
         DataCombinationComponent,
         DataRefreshComponent,
         DatasourceShareComponent,

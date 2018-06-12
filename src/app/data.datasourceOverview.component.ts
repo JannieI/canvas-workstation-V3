@@ -38,11 +38,11 @@ interface localDatasources extends Datasource
     }
 
 @Component({
-    selector: 'data-add-existing',
-    templateUrl: './data.add.existing.component.html',
-    styleUrls:  ['./data.add.existing.component.css']
+    selector: 'data-datasourceOverview',
+    templateUrl: './data.datasourceOverview.component.html',
+    styleUrls:  ['./data.datasourceOverview.component.css']
 })
-export class DataAddExistingComponent implements OnInit {
+export class DataDatasourceOverviewComponent implements OnInit {
 
     @Output() formDataAddExistingClosed: EventEmitter<string> = new EventEmitter();
 
