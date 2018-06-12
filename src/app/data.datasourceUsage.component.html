@@ -1,0 +1,79 @@
+<div class="modal modalBox">
+    <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div modalContent>
+                <button type="button" class="closeButton" (click)="clickClose()">
+                    X
+                </button>
+                <div class="gridOverall">
+                    <div class="gridTitle">
+                        Datasource Usage
+                    </div> 
+                    <div class="gridSubTitle">
+                        <i>
+                            Click a Datasource to see in which Dashboards it is used.
+                        </i>
+                    </div>
+                
+                    <div class="gridDatasources">
+                        <clr-datagrid> 
+                            <clr-dg-placeholder>
+                                No records ...
+                            </clr-dg-placeholder>
+
+                            <clr-dg-row
+                                *ngFor="let row of datasources; let i = index"
+                                [style.background-color]="(i == selectedRowIndex)? '#123456' : 'white'"
+                                [style.color]="(i == selectedRowIndex)? 'white' : 'gray'"
+                                (click)="clickSelectedDatasource(i, row.id)"
+                                >
+                                <clr-dg-cell>
+                                    <input type="checkbox" class="dsCheckbox"
+                                        [checked]="row.isSelected"
+                                        [disabled]="row.hasWidget"
+                                        (click)="clickDSCheckbox(i, row.id, row.isSelected, $event)"
+                                        >
+                                    <div class="dsName">
+                                        {{ row.fieldValue }}                                        {{row.name}}
+                                    </div>
+
+                                </clr-dg-cell>
+                            </clr-dg-row>
+                        </clr-datagrid>
+                    </div>
+
+                    <div *ngIf="errorMessage!=''" class="gridErrorMessage">
+                        {{ errorMessage }}
+                    </div>
+
+                    <div class="gridDashboards">
+
+                        <clr-datagrid>
+                            <clr-dg-column>FieldName</clr-dg-column>
+                            <clr-dg-column>DataType</clr-dg-column>
+                            <clr-dg-column>LocalName</clr-dg-column>
+                            <clr-dg-column>Filtered</clr-dg-column>
+                            <clr-dg-column>Transformed</clr-dg-column>
+                            <clr-dg-row *clrDgItems="let row of finalFields">
+                                <clr-dg-cell>{{ row.fieldName }}</clr-dg-cell>
+                                <clr-dg-cell>{{ row.dataType }}</clr-dg-cell>
+                                <clr-dg-cell>{{ row.localName }}</clr-dg-cell>
+                                <clr-dg-cell>{{ row.filtered }}</clr-dg-cell>
+                                <clr-dg-cell>{{ row.transformed }}</clr-dg-cell>
+                            </clr-dg-row>
+
+                            <clr-dg-footer>
+                                {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+                                of {{pagination.totalItems}} rows
+                                <clr-dg-pagination #pagination [clrDgPageSize]="8"></clr-dg-pagination>
+                            </clr-dg-footer>
+                        </clr-datagrid>
+    
+                    </div>
+
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
