@@ -86,7 +86,7 @@ export class DataConnectionComponent implements OnInit {
         // Click Row
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
 
-        console.warn('xx selD Sch', this.selectedConnection)
+        console.warn('xx clickRow STRT', this.selectedConnection, this.dataConnections)
         // Set the row index
         this.selectedConnectionRowIndex = index;
         this.adding = false;
@@ -95,17 +95,14 @@ export class DataConnectionComponent implements OnInit {
         this.errorMessage = '';
 
         // Fill the form
-        this.globalVariableService.getDataConnections().then(dc => {
-            this.dataConnections = dc.slice();
-            
-            let connectionIndex: number = this.dataConnections
-                .findIndex(dc => dc.id == id);
-            if (connectionIndex >= 0) {
-                this.selectedConnection = Object.assign({}, 
-                    this.globalVariableService.dataConnections[connectionIndex]
-                );
-            };
-        });
+        let connectionIndex: number = this.dataConnections
+            .findIndex(dc => dc.id == id);
+        if (connectionIndex >= 0) {
+            this.selectedConnection = Object.assign({}, 
+                this.dataConnections[connectionIndex]
+            );
+        };
+        console.warn('xx END selectedConnection', this.selectedConnection)
 
     }
 
