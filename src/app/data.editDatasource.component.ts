@@ -20,10 +20,6 @@ import { GlobalVariableService }      from './global-variable.service';
 import { Datasource }                 from './models';
 import { Widget }                     from './models';
 
-interface localDatasources extends Datasource 
-    {
-        nrWidgets?: number;
-    }
 
 @Component({
     selector: 'data-editDatasource',
@@ -34,7 +30,7 @@ export class DataEditDatasourceComponent implements OnInit {
 
     @Input() selectedDatasource: Datasource;
     
-    @Output() formDataEditDatasourceClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formDataEditDatasourceClosed: EventEmitter<Datasource> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
@@ -49,7 +45,7 @@ export class DataEditDatasourceComponent implements OnInit {
 
     }
 
-    datasources: localDatasources[];
+    datasources: Datasource[];
     errorMessage: string = "";
     selectedRowIndex: number = 0;
 
@@ -91,7 +87,7 @@ export class DataEditDatasourceComponent implements OnInit {
         // Close the form, no further action
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-        this.formDataEditDatasourceClosed.emit('Close');
+        this.formDataEditDatasourceClosed.emit(null);
 
     }
 
@@ -103,11 +99,11 @@ export class DataEditDatasourceComponent implements OnInit {
             this.selectedDatasource = this.datasources[this.selectedRowIndex];
         console.warn('xx EDIT this.selectedDatasource', this.selectedDatasource)
             
-            this.formDataEditDatasourceClosed.emit('Continue');
+            this.formDataEditDatasourceClosed.emit(this.selectedDatasource);
         } else {
             this.selectedDatasource = null;
             console.warn('xx NULL this.selectedDatasource', this.selectedDatasource)
-            this.formDataEditDatasourceClosed.emit('Close');
+            this.formDataEditDatasourceClosed.emit(null);
         };
 
 
