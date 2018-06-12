@@ -1228,7 +1228,7 @@ export class AppComponent implements OnInit {
         this.showModalDataTransformation = false;
     }
         
-    handleCloseDataEditDatasource(selectedDatasource: Datasource) {
+    handleCloseDataEditDatasource(returnedDatasource: Datasource) {
         // Handle Close of Edit Datasource
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataEditDatasource', '@Start');
 
@@ -1238,7 +1238,8 @@ export class AppComponent implements OnInit {
         this.showModalDataEditDatasource = false;
         
         // Open relevant form
-        if (this.selectedDatasource != null) {
+        if (returnedDatasource != null) {
+            this.selectedDatasource = returnedDatasource;
             this.showModalDataQueryBuilder = true;
         };
     }

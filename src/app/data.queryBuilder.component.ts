@@ -104,7 +104,8 @@ export class DataQueryBuilderComponent implements OnInit {
                 csvSeparationCharacter: '',
                 csvQuotCharacter: '',
                 connectionID: 0,
-                dataTableID: 0
+                dataTableID: 0,
+                nrWidgets: 0
             };
         }
         this.globalVariableService.getDataConnections().then(dc => {
