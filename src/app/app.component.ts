@@ -367,6 +367,7 @@ export class AppComponent implements OnInit {
     showModalWidgetDelete: boolean = false;
     showModalDashboardPrint: boolean = false;
     showModalDataOverview: boolean = false;
+    showModalDataUsage: boolean = false;
     showModalDataQueryBuilder: boolean = false;
     showModalDataSQLEditor: boolean = false;
     showModalDataOverlayEditor: boolean = false;
@@ -1158,15 +1159,6 @@ export class AppComponent implements OnInit {
         this.showModalWidgetDescription = false;
     }
 
-    handleCloseDataDatasourceUsage(action: string) {
-        // Handle close of Datasource Usage
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDatasourceUsage', '@Start');
-
-        this.menuOptionClickPostAction();
-
-        this.showModalDataUsage = false;
-    }
-    
     handleCloseDataDatasourceOverview(action: string) {
         // Handle close of Datasource Overview
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDatasourceOverview', '@Start');
@@ -1175,7 +1167,16 @@ export class AppComponent implements OnInit {
 
         this.showModalDataOverview = false;
     }
-    
+
+    handleCloseDataDatasourceUsage(action: string) {
+        // Handle close of Datasource Usage
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDatasourceUsage', '@Start');
+
+        this.menuOptionClickPostAction();
+
+        this.showModalDataUsage = false;
+    }
+        
     handleCloseDataConnection(action: string) {
         // Handle Close of SQL Query Builder
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataConnection', '@Start');
@@ -2781,6 +2782,15 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPreAction();
 
         this.showModalDataOverview = true;
+    }
+
+    clickMenuDatasourceUsage() {
+        // Show an Usage of a DS, ie data quality, fields, etc
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDatasourceUsage', '@Start');
+
+        this.menuOptionClickPreAction();
+
+        this.showModalDataUsage = true;
     }
 
     clickMenuDataFromFile(id: number) {
