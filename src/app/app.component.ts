@@ -1158,9 +1158,9 @@ export class AppComponent implements OnInit {
         this.showModalWidgetDescription = false;
     }
 
-    handleCloseDataAddExisting(action: string) {
-        // Handle close of Add Existing DS form
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataAddExisting', '@Start');
+    handleCloseDataDatasourceOverview(action: string) {
+        // Handle close of Datasource Overview
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDatasourceOverview', '@Start');
 
         this.menuOptionClickPostAction();
 

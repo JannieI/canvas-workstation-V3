@@ -44,7 +44,7 @@ interface localDatasources extends Datasource
 })
 export class DataDatasourceOverviewComponent implements OnInit {
 
-    @Output() formDataAddExistingClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formDataDatasourceOverviewClosed: EventEmitter<string> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
@@ -328,7 +328,7 @@ export class DataDatasourceOverviewComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-        this.formDataAddExistingClosed.emit(action);
+        this.formDataDatasourceOverviewClosed.emit(action);
 
     }
 
