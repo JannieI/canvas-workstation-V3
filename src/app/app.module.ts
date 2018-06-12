@@ -86,6 +86,7 @@ import { DatasourceShareComponent }   from './data.share.component';
 import { DataDictionaryComponent }    from './data.dictionary.component';
 import { DataSummaryComponent }       from './data.summary.component';
 import { DataManageDataQualityComponent }   from './data.manageDataQuality.component';
+import { DataDeleteDatasourceComponent }    from './data.deleteDatasource.component';
 
 import { HelpComponent }              from './help.component';
 
@@ -172,6 +173,7 @@ import { StatusbarComponent }         from './statusbar.component';
         DataDictionaryComponent,
         DataSummaryComponent,
         DataManageDataQualityComponent,
+        DataDeleteDatasourceComponent,
 
         WidgetEditorComponent,
         WidgetCheckpointsComponent,

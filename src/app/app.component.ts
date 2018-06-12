@@ -384,6 +384,7 @@ export class AppComponent implements OnInit {
     showModalDataShare: boolean = false;
     showModalDataDictionary: boolean = false;
     showModalDataSummary: boolean = false;
+    showModalDataDeleteDatasource: boolean = false;
     showModalShapeEdit: boolean = false;
     showModalShapeDelete: boolean = false;
     showModalTableDelete: boolean = false;
@@ -2856,7 +2857,14 @@ export class AppComponent implements OnInit {
         this.showModalDataSummary = true;
     }
 
+    clickMenuDataDeleteDatasource() {
+        // Shows form to Delete Datasources
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDeleteDatasource', '@Start');
 
+        this.menuOptionClickPreAction();
+
+        this.showModalDataDeleteDatasource = true;
+    }
 
 
 

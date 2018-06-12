@@ -93,7 +93,7 @@ export class DataDeleteDatasourceComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-        this.formDataEditDatasourceClosed.emit(action);
+        this.formDataDeleteDatasourceClosed.emit(action);
 
     }
 

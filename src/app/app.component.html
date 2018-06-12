@@ -4079,6 +4079,14 @@
 </data-summary>
 
 
+<!-- Modal: Data Delete Datasource -->
+<data-deleteDatasource
+    *ngIf="showModalDataDeleteDatasource"
+    (formDataDeleteDatasourceClosed)="handleCloseDataDeleteDatasource($event)">Load Data Delete Datasource ...
+</data-deleteDatasource>
+
+
+
 <!-- Modal: Widget Expand -->
 <widget-expand
     class="formPopupDashboard"
