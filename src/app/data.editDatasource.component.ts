@@ -43,7 +43,7 @@ export class DataEditDatasourceComponent implements OnInit {
 
         // Known ones
         if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
-            this.clickClose('Close');
+            this.clickClose();
             return;
         };
 
@@ -72,6 +72,7 @@ export class DataEditDatasourceComponent implements OnInit {
             widgets = this.globalVariableService.widgets.filter(w => w.datasourceID == ds.id);
             ds.nrWidgets = widgets.length;
         });
+        console.warn('xx INIT this.selectedDatasource', this.selectedDatasource)
 
     }
 
@@ -100,9 +101,12 @@ export class DataEditDatasourceComponent implements OnInit {
 
         if (this.selectedRowIndex >= 0) {
             this.selectedDatasource = this.datasources[this.selectedRowIndex];
+        console.warn('xx EDIT this.selectedDatasource', this.selectedDatasource)
+            
             this.formDataEditDatasourceClosed.emit('Continue');
         } else {
             this.selectedDatasource = null;
+            console.warn('xx NULL this.selectedDatasource', this.selectedDatasource)
             this.formDataEditDatasourceClosed.emit('Close');
         };
 

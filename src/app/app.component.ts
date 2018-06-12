@@ -1235,6 +1235,7 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPostAction();
 
         this.showModalDataEditDatasource = false;
+        console.warn('xx this.selectedDatasource', this.selectedDatasource, action)
     }
     
     handleCloseData(action: string) {
@@ -2770,9 +2771,7 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
-        // let dataConnection: = ...
-        // let dataTableID: = ...
-        // let dataFields: = ...
+        this.selectedDatasource = null;
         this.showModalDataEditDatasource = true;
     }
 

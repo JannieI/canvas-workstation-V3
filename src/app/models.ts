@@ -364,6 +364,9 @@ export class Datasource {
     csvQuotCharacter: string;           // CSV values in "", in '' or without quotes
     connectionID: number;               // Connection to DB
     dataTableID: number;                // ID of table linked in DB
+
+    // Updated at runtime
+    nrWidgets: number;                  // Nr of Ws linked to this DS (at the moment)
 }
 
 export class DatasourcePermission {
