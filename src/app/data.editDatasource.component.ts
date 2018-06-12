@@ -21,20 +21,11 @@ import { GlobalVariableService }      from './global-variable.service';
 
 // Our Models
 import { Datasource }                 from './models';
-import { Dataset }                    from './models';
-import { Transformation }             from './models';
-import { Field }                      from './models';
-import { FieldMetadata }              from './models';
-import { DataQualityIssue }           from './models';
-
-// Vega
-import * as dl from 'datalib';
-import { load } from 'datalib';
+import { Widget }                     from './models';
 
 interface localDatasources extends Datasource 
     {
-        isSelected?: boolean;
-        hasWidget?: boolean;
+        nrWidgets?: number;
     }
 
 @Component({
@@ -74,9 +65,15 @@ export class DataEditDatasourceComponent implements OnInit {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-
         // Load from global variables
         this.datasources = this.globalVariableService.datasources.slice();
+
+        // Count the Ws
+        let widgets: Widget[];
+        this.datasources.forEach(ds => {
+            widgets = this.globalVariableService.widgets.filter(w => w.datasourceID == ds.id);
+            ds.nrWidgets = widgets.length;
+        });
 
     }
 

@@ -20,7 +20,7 @@
                                 <clr-dg-placeholder>
                                     No records ...
                                 </clr-dg-placeholder>
-                                <clr-dg-column [clrDgField]="">Used</clr-dg-column>
+                                <clr-dg-column [clrDgField]="">#Widgets</clr-dg-column>
                                 <clr-dg-column [clrDgField]="">Name</clr-dg-column>
                                 <clr-dg-column [clrDgField]="">Description</clr-dg-column>
     
@@ -29,14 +29,9 @@
                                     [style.background-color]="(i == selectedRowIndex)? '#123456' : 'white'"
                                     [style.color]="(i == selectedRowIndex)? 'white' : 'gray'"
                                     (click)="clickSelectedDatasource(i, row.id)"
-                                    >
-                                    <clr-dg-cell>
-                                        <input type="checkbox" class="dsCheckbox"
-                                            [checked]="row.isSelected"
-                                            disabled
-                                            >
-                                    </clr-dg-cell>
-                                    <clr-dg-cell>{{ row.fieldValue }}</clr-dg-cell>
+                                    > 
+                                    <clr-dg-cell>{{ row.nrWidgets }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.name }}</clr-dg-cell>
                                     <clr-dg-cell>{{ row.description }}</clr-dg-cell>
                                     
                                 </clr-dg-row>
