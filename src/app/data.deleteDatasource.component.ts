@@ -88,6 +88,12 @@ export class DataDeleteDatasourceComponent implements OnInit {
         this.errorMessage = '';
     }
 
+    clickDelete(index: number, id: number) {
+        // Delete a DS
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDelete', '@Start');
+
+        this.globalVariableService.deleteCurrentDatasource(id);
+    }
 
     clickClose(action: string) {
         //

@@ -1289,6 +1289,15 @@ export class AppComponent implements OnInit {
         this.showModalDataSummary = false;
     }
 
+    handleCloseDataDeleteDatasource(action: string) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDeleteDatasource', '@Start');
+
+        this.menuOptionClickPostAction();
+
+        this.showModalDataDeleteDatasource = false;
+    }
+
     handleCloseWidgetContainer(changedWidget: Widget) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetContainer', '@Start');
