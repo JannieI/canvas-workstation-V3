@@ -6,14 +6,11 @@
 
 // Angular
 import { Component }                  from '@angular/core';
-import { ElementRef }                 from '@angular/core';
 import { EventEmitter }               from '@angular/core';
 import { HostListener }               from '@angular/core';
 import { Input }                     from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
-import { Router }                     from '@angular/router';
-import { ViewChild }                  from '@angular/core';
 
 // Our Functions
 import { GlobalFunctionService } 	  from './global-function.service';
@@ -35,6 +32,8 @@ interface localDatasources extends Datasource
 })
 export class DataEditDatasourceComponent implements OnInit {
 
+    @Input() selectedDatasource: Datasource;
+    
     @Output() formDataEditDatasourceClosed: EventEmitter<string> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
@@ -58,7 +57,6 @@ export class DataEditDatasourceComponent implements OnInit {
 	constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
-        private router: Router,
 	) {}
 
 	ngOnInit() {
@@ -88,12 +86,26 @@ export class DataEditDatasourceComponent implements OnInit {
         this.errorMessage = '';
     }
 
-
-    clickClose(action: string) {
-        //
+    clickClose() {
+        // Close the form, no further action
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-        this.formDataEditDatasourceClosed.emit(action);
+        this.formDataEditDatasourceClosed.emit('Close');
+
+    }
+
+    clickContinue() {
+        // Close the form, and proceed to the relevant Edit DS form
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickContinue', '@Start');
+
+        if (this.selectedRowIndex >= 0) {
+            this.selectedDatasource = this.datasources[this.selectedRowIndex];
+            this.formDataEditDatasourceClosed.emit('Continue');
+        } else {
+            this.selectedDatasource = null;
+            this.formDataEditDatasourceClosed.emit('Close');
+        };
+
 
     }
 

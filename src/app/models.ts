@@ -396,12 +396,12 @@ export class DataConnection {
     description: string;        // Description of Connection
 
     // For later use
-    defaultDatabase: string;
-    logFolder: string;
-    logfileName: string;
-    characterSet: string;
-    language: string;
-    serverOptions: string;
+    defaultDatabase?: string;
+    logFolder?: string;
+    logfileName?: string;
+    characterSet?: string;
+    language?: string;
+    serverOptions?: string;
 
 }
 

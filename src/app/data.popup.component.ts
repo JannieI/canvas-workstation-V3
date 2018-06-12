@@ -436,6 +436,7 @@ export class DataPopupComponent implements OnInit {
             createdOn: '2017/01/01',
             refreshedBy: 'JohnM',
             refreshedOn: '2017/01/01',
+            dataFieldIDs: [0],
             dataFields: this.dataFieldNames,
             dataFieldTypes: this.dataFieldTypes,
             dataFieldLengths: this.dataFieldLengths,
@@ -445,16 +446,10 @@ export class DataPopupComponent implements OnInit {
             excelWorksheet: '',
             transposeOnLoad: false,
             startLineNr: 1,
-            resourceUserName: '',
-            resourcePassword: '',
-            serverName: '',
-            serverIP: '',
-            serverPort: '',
-            database: '',
-            logFoler: '',
-            logfileName: '',
-            language: '',
-            serverOptions: ''
+            csvSeparationCharacter: '',
+            csvQuotCharacter: '',
+            connectionID: 0,
+            dataTableID: 0
         };
 
         // General var with name - used in *ngIF, etc
