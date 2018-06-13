@@ -471,6 +471,39 @@
                                         >
                                         New NoSQL Editor
                                     </button>
+                                    <button
+                                        type="button"
+                                        clrDropdownItem
+                                        (click)="clickMenuDataDataQuality()"
+                                        title="Manage Data Quality for Datasources"
+                                        >
+                                        Manage Data Quality
+                                    </button>
+                                    <button
+                                        type="button"
+                                        clrDropdownItem
+                                        (click)="clickMenuDataFromFile(1)"
+                                        title="Manage Business Glossary for Datasources"
+                                        >
+                                        Manage Business Glossary
+                                    </button>
+                                    <button
+                                        type="button"
+                                        clrDropdownItem
+                                        (click)="clickMenuDataFromFile(1)"
+                                        title="Manage Data Dictionary for Datasources"
+                                        >
+                                        Manage Data Dictionary
+                                    </button>
+                                    <button
+                                        type="button"
+                                        clrDropdownItem
+                                        (click)="clickMenuDataFromFile(1)"
+                                        title="Manage Data Ownership for Datasources"
+                                        >
+                                        Manage Data Ownership
+                                    </button>
+
                                 </clr-dropdown>
                             </clr-dropdown-menu>
                         </clr-dropdown>
@@ -511,54 +544,6 @@
                         </button>
 
                         <div class="dropdown-divider"></div>
-                        
-                        <clr-dropdown>
-                            <button
-                                type="button"
-                                class="btn btn-link btn-sm"
-                                clrDropdownTrigger
-                                title="Manage MetaData (ie business glossary) for Datasources"
-                                >
-                                Manage MetaData
-                            </button>
-                            <clr-dropdown-menu
-                                clrPosition="right-top"
-                                *clrIfOpen
-                                >
-                                <button
-                                    type="button"
-                                    clrDropdownItem
-                                    (click)="clickMenuDataDataQuality()"
-                                    title="Manage Data Quality for Datasources"
-                                    >
-                                    Data Quality
-                                </button>
-                                <button
-                                    type="button"
-                                    clrDropdownItem
-                                    (click)="clickMenuDataFromFile(1)"
-                                    title="Manage Business Glossary for Datasources"
-                                    >
-                                    Business Glossary
-                                </button>
-                                <button
-                                    type="button"
-                                    clrDropdownItem
-                                    (click)="clickMenuDataFromFile(1)"
-                                    title="Manage Data Dictionary for Datasources"
-                                    >
-                                    Data Dictionary
-                                </button>
-                                <button
-                                    type="button"
-                                    clrDropdownItem
-                                    (click)="clickMenuDataFromFile(1)"
-                                    title="Manage Data Ownership for Datasources"
-                                    >
-                                    Data Ownership
-                                </button>
-                            </clr-dropdown-menu>
-                        </clr-dropdown> 
                         
                         <button
                             type="button"
