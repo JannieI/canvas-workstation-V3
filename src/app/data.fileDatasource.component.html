@@ -74,7 +74,7 @@
                         <input type="text" id="formFields_7" placeholder="Start on line nr">
                     </div>
                     <div class="gridDatasourceNameTitle">
-                        Name of Datasource:
+                        Name:
                     </div>
                     <div class="gridDatasourceName">
                         <input type="text" 
@@ -83,6 +83,15 @@
                             {{ existingDSName }}
                     </div>
 
+                    <div class="gridDatasourceNameTitle">
+                        Description:
+                    </div>
+                    <div class="gridDatasourceDescription">
+                        <input type="text" 
+                            id="formFields_7"
+                            > 
+                    </div>
+    
                     <div class="gridButtonPreview">
                         <button
                             type="button"
@@ -102,8 +111,8 @@
                         </button>
                     </div>
 
-                    <div class="gridIdentifyDataPreview">
-                        <clr-datagrid class="gridIdentifyDataPreviewGrid">
+                    <div class="gridPreviewTable">
+                        <clr-datagrid>
 
                             <clr-dg-column *ngFor="let row of dataFieldNames">{{row}}</clr-dg-column>
                             <clr-dg-row *ngFor="let row of currentData">
