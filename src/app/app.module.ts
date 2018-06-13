@@ -73,6 +73,7 @@ import { ShapeEditComponent }         from './shape.editor.component';
 import { ShapeDeleteComponent }       from './shape.delete.component';
 
 import { DataFileDatasourceComponent }      from './data.fileDatasource.component';
+import { DataSQLDatasourceComponent } from './data.sqlDatasource.component';
 import { DataConnectionComponent }    from './data.connection.component';
 import { DataSQLEditorComponent }     from './data.sqlEditor.component';
 import { DataOverlayEditorComponent } from './data.overlayEditor.component';
@@ -162,6 +163,7 @@ import { StatusbarComponent }         from './statusbar.component';
         DashboardUsagestatsComponent,
 
         DataFileDatasourceComponent,
+        DataSQLDatasourceComponent,
         DataPopupComponent,
         DataConnectionComponent,
         DataSQLEditorComponent,
