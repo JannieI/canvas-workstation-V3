@@ -1,0 +1,141 @@
+<div class="modal modalBox">
+        <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
+            <div class="modal-content">
+                <div modalContent>
+                    <button type="button" class="closeButton" (click)="clickClose()">
+                        X
+                    </button>
+                    <div class="gridOverall">
+                        <div class="gridTitle">
+                            Data from File:
+                        </div>
+                        <div class="gridSubTitle">
+                            Select file from which to create a new Datasource.
+                        </div>
+    
+                        <div class="gridFolderTitle">
+                            Folder:
+                        </div>
+                        <div class="gridFolder">
+                            <input type="text" [(ngModel)]="folderName"
+                                placeholder="./assets/vega-datasets/"
+                                class="selectFile"
+                                >
+                        </div>
+    
+                        <div class="gridFileNameTitle">
+                            Filename:
+                        </div>
+                        <div class="gridFileName">
+                            <input type="text" [(ngModel)]="fileName"
+                                placeholder="stocks.csv"
+                                class="selectFile"
+                                >
+                        </div>
+    
+                        <div class="gridButtonBrowse">
+                            <button
+                                type="button"
+                                class="btn btn-secondary"
+                                (click)="clickFileBrowse()"
+                                >
+                                Browse
+                            </button>
+                        </div>
+    
+                        <div class="gridExcelTitle">
+                            Excel Worksheet:
+                        </div>
+                        <div class="gridExcel">
+                            <div class="select">
+                                <select id="selects_3" class="selectBox">
+                                    <option>New York</option>
+                                    <option>San Francisco</option>
+                                    <option>Austin</option>
+                                    <option>Paris</option>
+                                    <option>Seattle</option>
+                                </select>
+                            </div>
+                        </div>
+    
+                        <div class="gridTransposeTitle">
+                            Transpose:
+                        </div>
+                        <div class="gridTranspose">
+                            <span class="checkbox-inline">
+                                <input type="checkbox" id="checkrads_5">
+                            </span>
+                        </div>
+    
+                        <div class="gridStartatTitle">
+                            Start at:
+                        </div>
+                        <div class="gridStartat">
+                            <input type="text" id="formFields_7" placeholder="Start on line nr">
+                        </div>
+                        <div class="gridDatasourceNameTitle">
+                            Name:
+                        </div>
+                        <div class="gridDatasourceName">
+                            <input type="text" 
+                                id="formFields_7"
+                                > 
+                                {{ existingDSName }}
+                        </div>
+    
+                        <div class="gridDatasourceDescriptionTitle">
+                            Description:
+                        </div>
+                        <div class="gridDatasourceDescription">
+                            <input type="text" 
+                                id="formFields_7"
+                                > 
+                        </div>
+        
+                        <div class="gridButtonPreview">
+                            <button
+                                type="button"
+                                class="btn btn-secondary selectButton"
+                                (click)="clickDSPreview()"
+                                >
+                                Preview
+                            </button>
+                        </div>
+                        <div class="gridButtonAdd">
+                            <button
+                                type="button"
+                                class="btn btn-primary"
+                                (click)="clickDSAdd('Add')"
+                                >
+                                Add
+                            </button>
+                        </div>
+    
+                        <div class="gridPreviewTable">
+                            <clr-datagrid>
+    
+                                <clr-dg-column *ngFor="let row of dataFieldNames">{{row}}</clr-dg-column>
+                                <clr-dg-row *ngFor="let row of currentData">
+    
+                                    <clr-dg-cell *ngFor="let col of dataFieldNames; let i = index">
+                                            {{ row[col] }}
+                                    </clr-dg-cell>
+                                </clr-dg-row>
+    
+                                <clr-dg-footer>
+                                    {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+                                    of {{pagination.totalItems}} rows
+                                    <clr-dg-pagination #pagination [clrDgPageSize]="10"></clr-dg-pagination>
+                                </clr-dg-footer>
+    
+                            </clr-datagrid>
+                        </div>
+                        <div class="errorMessage">
+                            {{ errorMessage }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        
