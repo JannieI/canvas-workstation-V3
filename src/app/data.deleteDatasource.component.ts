@@ -23,10 +23,6 @@ import { GlobalVariableService }      from './global-variable.service';
 import { Datasource }                 from './models';
 import { Widget }                     from './models';
 
-interface localDatasources extends Datasource 
-    {
-        nrWidgets?: number;
-    }
 
 @Component({
     selector: 'data-deleteDatasource',
@@ -50,7 +46,7 @@ export class DataDeleteDatasourceComponent implements OnInit {
 
     }
 
-    datasources: localDatasources[];
+    datasources: Datasource[];
     errorMessage: string = "";
     selectedRowIndex: number = 0;
 

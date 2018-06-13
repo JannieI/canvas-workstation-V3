@@ -449,7 +449,8 @@ export class DataPopupComponent implements OnInit {
             csvSeparationCharacter: '',
             csvQuotCharacter: '',
             connectionID: 0,
-            dataTableID: 0
+            dataTableID: 0,
+            nrWidgets: 0
         };
 
         // General var with name - used in *ngIF, etc
