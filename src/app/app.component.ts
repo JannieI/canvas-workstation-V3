@@ -367,6 +367,7 @@ export class AppComponent implements OnInit {
     showModalWidgetExport: boolean = false;
     showModalWidgetDelete: boolean = false;
     showModalDashboardPrint: boolean = false;
+    showModalDataFileDatasource: boolean = false;
     showModalDataOverview: boolean = false;
     showModalDataUsage: boolean = false;
     showModalDataQueryBuilder: boolean = false;

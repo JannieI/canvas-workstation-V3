@@ -17,6 +17,11 @@ import { GlobalVariableService }      from './global-variable.service';
 // Our Models
 import { Datasource }                 from './models';
 
+// Vega
+import * as dl from 'datalib';
+import { load } from 'datalib';
+
+
 @Component({
     selector: 'data-fileDatasource',
     templateUrl: './data.fileDatasource.component.html',
@@ -51,6 +56,8 @@ export class DataFileDatasourceComponent implements OnInit {
     folderName: string = '';
     finalFields: any = [];
     selectedFile: boolean = true;
+    currentDatasetName: string;
+
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -79,7 +86,6 @@ export class DataFileDatasourceComponent implements OnInit {
 
         // Reset
         this.errorMessage = '';
-        this.showDataPreview = false;
 
         // // Get the folder and file, setting some defaults
         // if (this.folderName == ''  ||  this.folderName == undefined) {
@@ -90,7 +96,7 @@ export class DataFileDatasourceComponent implements OnInit {
         // };
 
         // Load synchronously
-        // var csv_data = dl.load({url: folderName + this.fileName});
+        var csv_data = dl.load({url: this.folderName + this.fileName});
         console.log('DataPopup clickDSPreview LOAD data start:', this.folderName, this.fileName)
         // let fileFolder: string = './assets/vega-datasets/';
         let filePath: string = this.folderName + this.fileName;
@@ -101,12 +107,10 @@ export class DataFileDatasourceComponent implements OnInit {
             dl.json({url: filePath}, {}, (err, currentData) => {
                 if (err) {
                     this.errorMessage = err.status + ':' + err.statusText;
-                    this.showDataPreview = false;
 
                     console.log('DataPopup clickDSPreview error on load', err)
                 } else {
                     // Callback
-                    this.showDataPreview = true;
                     this.fileLoadedCallback(fileSuffix, currentData);
                 }
             });
@@ -118,7 +122,6 @@ export class DataFileDatasourceComponent implements OnInit {
                     console.log('DataPopup clickDSPreview error on load', err)
                 } else {
                     // Callback
-                    this.showDataPreview = true;
                     this.fileLoadedCallback(fileSuffix, currentData);
                 }
             });
@@ -127,7 +130,6 @@ export class DataFileDatasourceComponent implements OnInit {
         // Message when file type unknown
         if (fileSuffix != 'json'  &&  fileSuffix != 'csv') {
             this.errorMessage = 'Unknown file type';
-            this.showDataPreview = false;
         };
     }
 
@@ -240,12 +242,6 @@ export class DataFileDatasourceComponent implements OnInit {
 
         // No DS currently selected
         this.currentDatasetName = '';
-
-        // Show the Preview button
-        this.showDataPreview = true;
-
-        // Show Add button
-        this.showAddButton = true;
 
     }
  
