@@ -353,7 +353,7 @@
                                 type="button"
                                 class="btn btn-link btn-sm"
                                 clrDropdownTrigger
-                                title="Create a new Datasources"
+                                title="Create a new Datasources (direct method)"
                                 >
                                 Create
                             </button>
@@ -414,23 +414,14 @@
 
 
                         <clr-dropdown>
-                            <button
-                                type="button"
-                                class="btn btn-link btn-sm"
-                                clrDropdownItem
-                                title="Manage Data Connections (to Databases, used in Datasources)"
-                                (click)="clickMenuDataConnection()"
-                                >
-                                Connections
-                            </button>
     
                             <button
                                 type="button"
                                 class="btn btn-link btn-sm"
                                 clrDropdownTrigger
-                                title="Create a new Datasources"
+                                title="Create a new Managed Datasources"
                                 >
-                                Create
+                                Managed
                             </button>
                             <clr-dropdown-menu
                                 clrPosition="right-top"
@@ -438,6 +429,15 @@
                                 >
 
                                 <clr-dropdown>
+                                    <button
+                                        type="button"
+                                        class="btn btn-link btn-sm"
+                                        clrDropdownItem
+                                        title="Manage Data Connections (to Databases, used in Datasources)"
+                                        (click)="clickMenuDataConnection()"
+                                        >
+                                        Connections
+                                    </button>
                                     <button
                                         type="button"
                                         clrDropdownTrigger
@@ -507,32 +507,13 @@
                             <button
                                 type="button"
                                 class="btn btn-link btn-sm"
-                                clrDropdownTrigger
+                                clrDropdownItem
                                 title="Edit Datasources"
+                                (click)="clickMenuDataEditDatasource()"
                                 >
                                 Edit
                             </button>
-                            <clr-dropdown-menu
-                                clrPosition="right-top"
-                                *clrIfOpen
-                                >
-                                <button
-                                    type="button"
-                                    clrDropdownItem
-                                    (click)="clickMenuDataEditDatasource()"
-                                    title="Edit a Datasource Definition"
-                                    >
-                                    Definition
-                                </button>
-                                <button
-                                    type="button"
-                                    clrDropdownItem
-                                    (click)="clickMenuDataTransformation()"
-                                    title="Edit Transformations for a Datasource"
-                                    >
-                                    Transformations
-                                </button>
-                            </clr-dropdown-menu>
+ 
                         </clr-dropdown>
 
                         <button
