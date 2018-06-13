@@ -348,16 +348,6 @@
                     </button>
                     <clr-dropdown-menu clrPosition="bottom-left" *clrIfOpen>
 
-                        <button
-                            type="button"
-                            class="btn btn-link btn-sm"
-                            clrDropdownItem
-                            title="Manage Data Connections (to Databases, used in Datasources)"
-                            (click)="clickMenuDataConnection()"
-                            >
-                            Connections
-                        </button>
-
                         <clr-dropdown>
                             <button
                                 type="button"
@@ -379,6 +369,73 @@
                                     >
                                     From File
                                 </button>
+                                <button
+                                    type="button"
+                                    clrDropdownItem
+                                    title="Create a new Datasources from a File"
+                                    (click)="clickMenuDataFromFile()"
+                                    >
+                                    From SQL Database
+                                </button>
+                                <button
+                                    type="button"
+                                    clrDropdownItem
+                                    title="Create a new Datasources from a File"
+                                    (click)="clickMenuDataFromFile()"
+                                    >
+                                    From NoSQL Database
+                                </button>
+                                <button
+                                    type="button"
+                                    clrDropdownItem
+                                    (click)="clickMenuDataFromFile(1)"
+                                    title="Create a new Datasources from a Service"
+                                    >
+                                    From Service
+                                </button>
+                                <button
+                                    type="button"
+                                    clrDropdownItem
+                                    (click)="clickMenuDataFromFile(1)"
+                                    title="Create a new Datasources from a web page"
+                                    >
+                                    From Web
+                                </button>
+                                <button
+                                    type="button"
+                                    clrDropdownItem
+                                    (click)="clickMenuDataFromFile(1)"
+                                    title="Import a new Datasources from an external file"
+                                    >
+                                    Import
+                                </button>
+                            </clr-dropdown-menu>
+                        </clr-dropdown>
+
+
+                        <clr-dropdown>
+                            <button
+                                type="button"
+                                class="btn btn-link btn-sm"
+                                clrDropdownItem
+                                title="Manage Data Connections (to Databases, used in Datasources)"
+                                (click)="clickMenuDataConnection()"
+                                >
+                                Connections
+                            </button>
+    
+                            <button
+                                type="button"
+                                class="btn btn-link btn-sm"
+                                clrDropdownTrigger
+                                title="Create a new Datasources"
+                                >
+                                Create
+                            </button>
+                            <clr-dropdown-menu
+                                clrPosition="right-top"
+                                *clrIfOpen
+                                >
 
                                 <clr-dropdown>
                                     <button
@@ -434,52 +491,13 @@
                                         <button
                                             type="button"
                                             clrDropdownItem
-                                            title="Create a new Datasources using Query Builder"
-                                            >
-                                            Query Builder?
-                                        </button>
-                                        <button
-                                            type="button"
-                                            clrDropdownItem
                                             (click)="clickMenuDataFromFile(1)"
                                             title="Create a new Datasources using the NoSQL query Editor"
                                             >
                                             NoSQL Editor
                                         </button>
-                                        <button
-                                            type="button"
-                                            clrDropdownItem
-                                            title="Create a new Datasources using the Overlay Editor"
-                                            >
-                                            Overlay Editor?
-                                        </button>
                                     </clr-dropdown-menu>
                                 </clr-dropdown>
-
-                                <button
-                                    type="button"
-                                    clrDropdownItem
-                                    (click)="clickMenuDataFromFile(1)"
-                                    title="Create a new Datasources from a Service"
-                                    >
-                                    From Service
-                                </button>
-                                <button
-                                    type="button"
-                                    clrDropdownItem
-                                    (click)="clickMenuDataFromFile(1)"
-                                    title="Create a new Datasources from a web page"
-                                    >
-                                    From Web
-                                </button>
-                                <button
-                                    type="button"
-                                    clrDropdownItem
-                                    (click)="clickMenuDataFromFile(1)"
-                                    title="Import a new Datasources from an external file"
-                                    >
-                                    Import
-                                </button>
                             </clr-dropdown-menu>
                         </clr-dropdown>
         
