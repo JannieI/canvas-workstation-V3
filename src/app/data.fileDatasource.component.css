@@ -41,7 +41,16 @@
         text-align: left;
     }
 
-    gridFolderTitle {
+    .errorMessage {
+        grid-column-start: 1;
+        grid-column-end: 21;
+        grid-row-start: 2;
+        grid-row-end: 3;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+
+    .gridFolderTitle {
         grid-column-start: 1;
         grid-column-end: 2;
         grid-row-start: 3;
@@ -49,7 +58,7 @@
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
-    gridFolder {
+    .gridFolder {
         grid-column-start: 2;
         grid-column-end: 7;
         grid-row-start: 3;
@@ -58,7 +67,7 @@
         text-align: left;
     }
 
-    gridFileNameTitle {
+    .gridFileNameTitle {
         grid-column-start: 7;
         grid-column-end: 9;
         grid-row-start: 3;
@@ -66,8 +75,7 @@
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
-
-    gridFileName {
+    .gridFileName {
         grid-column-start: 9;
         grid-column-end: 14;
         grid-row-start: 3;
@@ -76,26 +84,25 @@
         text-align: left;
     }
 
-    gridButtonBrowse {
+    .gridButtonBrowse {
         grid-column-start: 14;
         grid-column-end: 16;
-        grid-row-start: 3;
-        grid-row-end: 4;
+        grid-row-start: 2;
+        grid-row-end: 3;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
 
-    gridExcelTitle {
+    .gridExcelTitle {
         grid-column-start: 1;
-        grid-column-end: 2;
+        grid-column-end: 3;
         grid-row-start: 5;
         grid-row-end: 6;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
-
-    gridExcel {
-        grid-column-start: 2;
+    .gridExcel {
+        grid-column-start: 3;
         grid-column-end: 7;
         grid-row-start: 5;
         grid-row-end: 6;
@@ -103,7 +110,7 @@
         text-align: left;
     }
 
-    gridTransposeTitle {
+    .gridTransposeTitle {
         grid-column-start: 7;
         grid-column-end: 8;
         grid-row-start: 5;
@@ -111,8 +118,7 @@
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
-
-    gridTranspose {
+    .gridTranspose {
         grid-column-start: 8;
         grid-column-end: 14;
         grid-row-start: 5;
@@ -121,25 +127,24 @@
         text-align: left;
     }
 
-    gridStartatTitle {
-        grid-column-start: 15;
-        grid-column-end: 15;
+    .gridStartatTitle {
+        grid-column-start: 14;
+        grid-column-end: 16;
         grid-row-start: 5;
         grid-row-end: 6;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
-
-    gridStartatTitle {
+    .gridStartat {
         grid-column-start: 15;
         grid-column-end: 21;
         grid-row-start: 5;
         grid-row-end: 6;
-        margin: 2px 2px 2px 2px;
+        margin: 2px 2px 2px 6px;
         text-align: left;
     }
 
-    gridDatasourceNameTitle {
+    .gridDatasourceNameTitle {
         grid-column-start: 1;
         grid-column-end: 2;
         grid-row-start: 7;
@@ -147,8 +152,7 @@
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
-
-    gridDatasourceName {
+    .gridDatasourceName {
         grid-column-start: 2;
         grid-column-end: 7;
         grid-row-start: 7;
@@ -157,7 +161,7 @@
         text-align: left;
     }
 
-    gridDatasourceDescriptionTitle {
+    .gridDatasourceDescriptionTitle {
         grid-column-start: 7;
         grid-column-end: 8;
         grid-row-start: 7;
@@ -165,8 +169,7 @@
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
-
-    gridDatasourceDescription {
+    .gridDatasourceDescription {
         grid-column-start: 8;
         grid-column-end: 21;
         grid-row-start: 7;
@@ -174,39 +177,26 @@
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
-
-    gridButtonPreview {
+    .gridButtonPreview {
         grid-column-start: 2;
         grid-column-end: 4;
         grid-row-start: 9;
         grid-row-end: 10;
-        margin: 2px 2px 2px 2px;
         text-align: left;
     }
 
-    gridButtonAdd {
+    .gridButtonAdd {
         grid-column-start: 5;
         grid-column-end: 7;
         grid-row-start: 9;
         grid-row-end: 10;
-        margin: 2px 2px 2px 2px;
         text-align: left;
     }
-
-    gridPreviewTable {
+    .gridPreviewTable {
         grid-column-start: 1;
         grid-column-end: 21;
         grid-row-start: 10;
         grid-row-end: 21;
-        margin: 2px 2px 2px 2px;
-        text-align: left;
-    }
-
-    errorMessage {
-        grid-column-start: 1;
-        grid-column-end: 41;
-        grid-row-start: 2;
-        grid-row-end: 3;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
