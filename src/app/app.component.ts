@@ -2870,6 +2870,27 @@ export class AppComponent implements OnInit {
         this.showModalDataSQLDatasource = true;
     }
 
+    clickMenuDataNoSQLDatasource() {
+        // Open DATA form for a DS that comes from a NoSQL.
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataNoSQLDatasource', '@Start');
+
+        // Has to be in editMode
+        // if (!this.editMode) {
+        //     this.showMessage(
+        //         this.globalVariableService.canvasSettings.notInEditModeMsg,
+        //         'StatusBar',
+        //         'Warning',
+        //         3000,
+        //         ''
+        //     );
+        //     return;
+        // };
+
+        this.menuOptionClickPreAction();
+
+        this.showModalDataNoSQLDatasource = true;
+    }
+
     clickMenuDataFromFile(id: number) {
         // Open DATA form for a DS that comes from a file.  The id is -1 for a new one
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataFromFile', '@Start');
