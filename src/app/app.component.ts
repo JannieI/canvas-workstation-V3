@@ -2840,6 +2840,27 @@ export class AppComponent implements OnInit {
         this.showModalDataFileDatasource = true;
     }
 
+    clickMenuDataSQLDatasource() {
+        // Open DATA form for a DS that comes from a SQL.
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataSQLDatasource', '@Start');
+
+        // Has to be in editMode
+        // if (!this.editMode) {
+        //     this.showMessage(
+        //         this.globalVariableService.canvasSettings.notInEditModeMsg,
+        //         'StatusBar',
+        //         'Warning',
+        //         3000,
+        //         ''
+        //     );
+        //     return;
+        // };
+
+        this.menuOptionClickPreAction();
+
+        this.showModalDataSQLDatasource = true;
+    }
+
     clickMenuDataFromFile(id: number) {
         // Open DATA form for a DS that comes from a file.  The id is -1 for a new one
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataFromFile', '@Start');
