@@ -438,65 +438,39 @@
                                         >
                                         Connections
                                     </button>
+
                                     <button
                                         type="button"
-                                        clrDropdownTrigger
-                                        title="Create a new Datasources from a SQL Database"
+                                        clrDropdownItem
+                                        (click)="clickMenuDataQueryBuilder()"
+                                        title="Create a new Datasources using Query Builder"
                                         >
-                                        From SQL Database
+                                        New Query Builder
                                     </button>
-                                    <clr-dropdown-menu
-                                        clrPosition="right-top"
-                                        *clrIfOpen
-                                        >
-                                        <button
-                                            type="button"
-                                            clrDropdownItem
-                                            (click)="clickMenuDataQueryBuilder()"
-                                            title="Create a new Datasources using Query Builder"
-                                            >
-                                            Query Builder
-                                        </button>
-                                        <button
-                                            type="button"
-                                            clrDropdownItem
-                                            (click)="clickMenuDataSQLEditor()"
-                                            title="Create a new Datasources using the SQL Editor"
-                                            >
-                                            SQL Editor
-                                        </button>
-                                        <button
-                                            type="button"
-                                            clrDropdownItem
-                                            (click)="clickMenuDataOverlayEditor()"
-                                            title="Create a new Datasources using the Overlay Editor"
-                                            >
-                                            Overlay Editor
-                                        </button>
-                                    </clr-dropdown-menu>
-                                </clr-dropdown>
-    
-                                <clr-dropdown>
                                     <button
                                         type="button"
-                                        clrDropdownTrigger
-                                        title="Create a new Datasources from a No SQL DB (ie Mongo)"
+                                        clrDropdownItem
+                                        (click)="clickMenuDataSQLEditor()"
+                                        title="Create a new Datasources using the SQL Editor"
                                         >
-                                        From NoSQL Database
+                                        New SQL Editor
                                     </button>
-                                    <clr-dropdown-menu
-                                        clrPosition="right-top"
-                                        *clrIfOpen
+                                    <button
+                                        type="button"
+                                        clrDropdownItem
+                                        (click)="clickMenuDataOverlayEditor()"
+                                        title="Create a new Datasources using the Overlay Editor"
                                         >
-                                        <button
-                                            type="button"
-                                            clrDropdownItem
-                                            (click)="clickMenuDataFromFile(1)"
-                                            title="Create a new Datasources using the NoSQL query Editor"
-                                            >
-                                            NoSQL Editor
-                                        </button>
-                                    </clr-dropdown-menu>
+                                        New Overlay Editor
+                                    </button>
+                                    <button
+                                        type="button"
+                                        clrDropdownItem
+                                        (click)="clickMenuDataFromFile(1)"
+                                        title="Create a new Datasources using the NoSQL query Editor"
+                                        >
+                                        New NoSQL Editor
+                                    </button>
                                 </clr-dropdown>
                             </clr-dropdown-menu>
                         </clr-dropdown>
