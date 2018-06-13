@@ -368,6 +368,7 @@ export class AppComponent implements OnInit {
     showModalWidgetDelete: boolean = false;
     showModalDashboardPrint: boolean = false;
     showModalDataFileDatasource: boolean = false;
+    showModalDataSQLDatasource: boolean = false;
     showModalDataOverview: boolean = false;
     showModalDataUsage: boolean = false;
     showModalDataQueryBuilder: boolean = false;
@@ -1163,11 +1164,20 @@ export class AppComponent implements OnInit {
 
     handleCloseDataFileDatasource(action: string) {
         // Handle close of Datasource Overview
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDatasourceOverview', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataFileDatasource', '@Start');
 
         this.menuOptionClickPostAction();
 
         this.showModalDataFileDatasource = false;
+    }
+
+    handleCloseDataSQLDatasource(action: string) {
+        // Handle close of Datasource Overview
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataSQLDatasource', '@Start');
+
+        this.menuOptionClickPostAction();
+
+        this.showModalDataSQLDatasource = false;
     }
 
     handleCloseDataDatasourceOverview(action: string) {

@@ -3958,6 +3958,14 @@
 </data-fileDatasource>
 
 
+<!-- Modal: Data From SQL -->
+<data-sqlDatasource
+    class="formPopupDashboard"
+    *ngIf="showModalDataSQLDatasource"
+    (formDataSQLDatasourceClosed)="handleCloseDataSQLDatasource($event)">Load Data From SQL ...
+</data-sqlDatasource>
+
+
 <!-- Modal: Data Query Builder -->
 <data-queryBuilder
     *ngIf="showModalDataQueryBuilder"

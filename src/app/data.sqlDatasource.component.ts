@@ -23,9 +23,9 @@ import { load } from 'datalib';
 
 
 @Component({
-    selector: 'data-fileDatasource',
-    templateUrl: './data.fileDatasource.component.html',
-    styleUrls:  ['./data.fileDatasource.component.css']
+    selector: 'data-sqlDatasource',
+    templateUrl: './data.sqlDatasource.component.html',
+    styleUrls:  ['./data.sqlDatasource.component.css']
 })
 export class DataSQLDatasourceComponent implements OnInit {
 
