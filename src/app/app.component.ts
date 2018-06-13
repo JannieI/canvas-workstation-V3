@@ -369,6 +369,7 @@ export class AppComponent implements OnInit {
     showModalDashboardPrint: boolean = false;
     showModalDataFileDatasource: boolean = false;
     showModalDataSQLDatasource: boolean = false;
+    showModalDataNoSQLDatasource: boolean = false;
     showModalDataOverview: boolean = false;
     showModalDataUsage: boolean = false;
     showModalDataQueryBuilder: boolean = false;
