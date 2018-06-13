@@ -365,7 +365,7 @@
                                     type="button"
                                     clrDropdownItem
                                     title="Create a new Datasources from a File"
-                                    (click)="clickMenuDataFromFile()"
+                                    (click)="clickMenuDataFileDatasource()"
                                     >
                                     From File
                                 </button>
@@ -411,7 +411,6 @@
                                 </button>
                             </clr-dropdown-menu>
                         </clr-dropdown>
-
 
                         <clr-dropdown>
     
@@ -3949,6 +3948,14 @@
     *ngIf="showModalDashboardPrint"
     (formDashboardPrintClosed)="handleCloseDashboardPrint($event)">Load Dashboard Print ...
 </dashboard-print>
+
+
+<!-- Modal: Data From File -->
+<dashboard-fileDatasource
+    class="formPopupDashboard"
+    *ngIf="showModalDataFileDatasource"
+    (formDataFileDatasourceClosed)="handleCloseDataFileDatasource($event)">Load Data From File ...
+</dashboard-fileDatasource>
 
 
 <!-- Modal: Data Query Builder -->

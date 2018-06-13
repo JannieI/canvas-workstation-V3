@@ -1160,6 +1160,15 @@ export class AppComponent implements OnInit {
         this.showModalWidgetDescription = false;
     }
 
+    handleCloseDataFileDatasource(action: string) {
+        // Handle close of Datasource Overview
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDatasourceOverview', '@Start');
+
+        this.menuOptionClickPostAction();
+
+        this.showModalDataFileDatasource = false;
+    }
+
     handleCloseDataDatasourceOverview(action: string) {
         // Handle close of Datasource Overview
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDatasourceOverview', '@Start');
@@ -2797,6 +2806,27 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPreAction();
 
         this.showModalDataUsage = true;
+    }
+
+    clickMenuDataFileDatasource() {
+        // Open DATA form for a DS that comes from a file.
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataFileDatasource', '@Start');
+
+        // Has to be in editMode
+        // if (!this.editMode) {
+        //     this.showMessage(
+        //         this.globalVariableService.canvasSettings.notInEditModeMsg,
+        //         'StatusBar',
+        //         'Warning',
+        //         3000,
+        //         ''
+        //     );
+        //     return;
+        // };
+
+        this.menuOptionClickPreAction();
+
+        this.showModalDataFileDatasource = true;
     }
 
     clickMenuDataFromFile(id: number) {
