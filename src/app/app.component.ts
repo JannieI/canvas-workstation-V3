@@ -1180,6 +1180,15 @@ export class AppComponent implements OnInit {
         this.showModalDataSQLDatasource = false;
     }
 
+    handleCloseDataNoSQLDatasource(action: string) {
+        // Handle close of Datasource Overview
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataNoSQLDatasource', '@Start');
+
+        this.menuOptionClickPostAction();
+
+        this.showModalDataNoSQLDatasource = false;
+    }
+
     handleCloseDataDatasourceOverview(action: string) {
         // Handle close of Datasource Overview
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDatasourceOverview', '@Start');

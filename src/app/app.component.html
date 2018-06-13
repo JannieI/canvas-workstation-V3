@@ -3966,6 +3966,14 @@
 </data-sqlDatasource>
 
 
+<!-- Modal: Data From NoSQL -->
+<data-NosqlDatasource
+    class="formPopupDashboard"
+    *ngIf="showModalDataNoSQLDatasource"
+    (formDataNoSQLDatasourceClosed)="handleCloseDataNoSQLDatasource($event)">Load Data From NoSQL ...
+</data-NosqlDatasource>
+
+
 <!-- Modal: Data Query Builder -->
 <data-queryBuilder
     *ngIf="showModalDataQueryBuilder"
