@@ -193,11 +193,15 @@
                         <div class="gridPreviewData" *ngIf="showPreview">
                             <clr-datagrid class="gridPreviewData">
     
-                                <clr-dg-column *ngFor="let row of dataFieldNames">{{row}}</clr-dg-column>
+                                <clr-dg-column *ngFor="let row of dataFieldsFiltered"
+                                    >
+                                    {{row.nameDB}}
+                                </clr-dg-column>
+                                
                                 <clr-dg-row *clrDgItems="let row of currentData">
     
-                                    <clr-dg-cell *ngFor="let col of dataFieldNames; let i = index">
-                                            {{ row[col] }}
+                                    <clr-dg-cell *ngFor="let col of dataFieldsFiltered; let i = index">
+                                            {{ row[col.nameDB] }}
                                     </clr-dg-cell>
                                 </clr-dg-row>
     

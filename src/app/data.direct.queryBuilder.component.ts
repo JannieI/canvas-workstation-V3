@@ -191,6 +191,85 @@ const constDataFields: DataField[] =
 
 ];
 
+const constDataInvoices: any = 
+[
+    {
+        id: 0,
+        InvoiceDate: '2017/01/01',
+        Total: 20
+    },
+    {
+        id: 1,
+        InvoiceDate: '2017/01/01',
+        Total: 40
+    },
+    {
+        id: 2,
+        InvoiceDate: '2017/01/01',
+        Total: 50
+    },
+    {
+        id: 3,
+        InvoiceDate: '2017/01/01',
+        Total: 60
+    },
+    {
+        id: 4,
+        InvoiceDate: '2017/01/01',
+        Total: 80
+    },
+    {
+        id: 5,
+        InvoiceDate: '2017/01/01',
+        Total: 100
+    },
+    {
+        id: 6,
+        InvoiceDate: '2017/01/01',
+        Total: 120
+    }
+
+]
+const constDataAcounts: any = 
+[
+    {
+        id: 1,
+        TransactDate: '2017/01/01',
+        Amount: 1
+    },
+    {
+        id: 2,
+        TransactDate: '2017/01/01',
+        Amount: 2
+    },
+    {
+        id: 3,
+        TransactDate: '2017/01/01',
+        Amount: 3
+    },
+    {
+        id: 4,
+        TransactDate: '2017/01/01',
+        Amount: 4
+    },
+    {
+        id: 5,
+        TransactDate: '2017/01/01',
+        Amount: 5
+    },
+    {
+        id: 6,
+        TransactDate: '2017/01/01',
+        Amount: 6
+    },
+    {
+        id: 7,
+        TransactDate: '2017/01/01',
+        Amount: 7
+    }
+]
+
+
 @Component({
     selector: 'data-directQueryBuilder',
     templateUrl: './data.direct.queryBuilder.component.html',
@@ -216,200 +295,18 @@ export class DataDirectQueryBuilderComponent implements OnInit {
     }
 
 
-    dataConnections: DataConnection[] = [];
+    connectionName: string = 'tributary.connectors.sql:SqlConnector';
+    currentData: any = [];
     dataTables: DataTable[] = [];
     dataFields: DataField[] = [];
     dataFieldsFiltered: DataField[] = [];
     errorMessage: string = "";
+    selectedTableID: number;
     selectedFieldRowIndex: number = 0;
     selectedFields: DataField[] = [];
-    showPreview: boolean = false;
-    dataFieldNames: string[] =
-    [
-        'Name', 
-        'Miles_per_Gallon', 
-        'Cylinders', 
-        'Displacement', 
-        'Horsepower', 
-        'Weight_in_lbs', 
-        'Acceleration', 
-        'Year', 
-        'Origin', 
-    ];
     selectedTableRowIndex: number = 0;
-    connectionName: string = 'tributary.connectors.sql:SqlConnector';
-    currentData: any = 
-    [
-        {
-            "Name": "fiat strada custom",
-            "Miles_per_Gallon": 37.3,
-            "Cylinders": 4,
-            "Displacement": 91,
-            "Horsepower": 69,
-            "Weight_in_lbs": 2130,
-            "Acceleration": 14.7,
-            "Year": "1979-01-01",
-            "Origin": "Europe",
-            "_id": 4740
-        },
-        {
-            "Name": "buick skylark limited",
-            "Miles_per_Gallon": 28.4,
-            "Cylinders": 4,
-            "Displacement": 151,
-            "Horsepower": 90,
-            "Weight_in_lbs": 2670,
-            "Acceleration": 16,
-            "Year": "1979-01-01",
-            "Origin": "USA",
-            "_id": 4741
-        },
-        {
-            "Name": "chevrolet citation",
-            "Miles_per_Gallon": 28.8,
-            "Cylinders": 6,
-            "Displacement": 173,
-            "Horsepower": 115,
-            "Weight_in_lbs": 2595,
-            "Acceleration": 11.3,
-            "Year": "1979-01-01",
-            "Origin": "USA",
-            "_id": 4742
-        },
-        {
-            "Name": "oldsmobile omega brougham",
-            "Miles_per_Gallon": 26.8,
-            "Cylinders": 6,
-            "Displacement": 173,
-            "Horsepower": 115,
-            "Weight_in_lbs": 2700,
-            "Acceleration": 12.9,
-            "Year": "1979-01-01",
-            "Origin": "USA",
-            "_id": 4743
-        },
-        {
-            "Name": "pontiac phoenix",
-            "Miles_per_Gallon": 33.5,
-            "Cylinders": 4,
-            "Displacement": 151,
-            "Horsepower": 90,
-            "Weight_in_lbs": 2556,
-            "Acceleration": 13.2,
-            "Year": "1979-01-01",
-            "Origin": "USA",
-            "_id": 4744
-        },
-        {
-            "Name": "vw rabbit",
-            "Miles_per_Gallon": 41.5,
-            "Cylinders": 4,
-            "Displacement": 98,
-            "Horsepower": 76,
-            "Weight_in_lbs": 2144,
-            "Acceleration": 14.7,
-            "Year": "1980-01-01",
-            "Origin": "Europe",
-            "_id": 4745
-        },
-        {
-            "Name": "toyota corolla tercel",
-            "Miles_per_Gallon": 38.1,
-            "Cylinders": 4,
-            "Displacement": 89,
-            "Horsepower": 60,
-            "Weight_in_lbs": 1968,
-            "Acceleration": 18.8,
-            "Year": "1980-01-01",
-            "Origin": "Japan",
-            "_id": 4746
-        },
-        {
-            "Name": "chevrolet chevette",
-            "Miles_per_Gallon": 32.1,
-            "Cylinders": 4,
-            "Displacement": 98,
-            "Horsepower": 70,
-            "Weight_in_lbs": 2120,
-            "Acceleration": 15.5,
-            "Year": "1980-01-01",
-            "Origin": "USA",
-            "_id": 4747
-        },
-        {
-            "Name": "datsun 310",
-            "Miles_per_Gallon": 37.2,
-            "Cylinders": 4,
-            "Displacement": 86,
-            "Horsepower": 65,
-            "Weight_in_lbs": 2019,
-            "Acceleration": 16.4,
-            "Year": "1980-01-01",
-            "Origin": "Japan",
-            "_id": 4748
-        },
-        {
-            "Name": "chevrolet citation",
-            "Miles_per_Gallon": 28,
-            "Cylinders": 4,
-            "Displacement": 151,
-            "Horsepower": 90,
-            "Weight_in_lbs": 2678,
-            "Acceleration": 16.5,
-            "Year": "1980-01-01",
-            "Origin": "USA",
-            "_id": 4749
-        },
-        {
-            "Name": "ford fairmont",
-            "Miles_per_Gallon": 26.4,
-            "Cylinders": 4,
-            "Displacement": 140,
-            "Horsepower": 88,
-            "Weight_in_lbs": 2870,
-            "Acceleration": 18.1,
-            "Year": "1980-01-01",
-            "Origin": "USA",
-            "_id": 4750
-        },
-        {
-            "Name": "amc concord",
-            "Miles_per_Gallon": 24.3,
-            "Cylinders": 4,
-            "Displacement": 151,
-            "Horsepower": 90,
-            "Weight_in_lbs": 3003,
-            "Acceleration": 20.1,
-            "Year": "1980-01-01",
-            "Origin": "USA",
-            "_id": 4751
-        },
-        {
-            "Name": "dodge aspen",
-            "Miles_per_Gallon": 19.1,
-            "Cylinders": 6,
-            "Displacement": 225,
-            "Horsepower": 90,
-            "Weight_in_lbs": 3381,
-            "Acceleration": 18.7,
-            "Year": "1980-01-01",
-            "Origin": "USA",
-            "_id": 4752
-        },
-        {
-            "Name": "audi 4000",
-            "Miles_per_Gallon": 34.3,
-            "Cylinders": 4,
-            "Displacement": 97,
-            "Horsepower": 78,
-            "Weight_in_lbs": 2188,
-            "Acceleration": 15.8,
-            "Year": "1980-01-01",
-            "Origin": "Europe",
-            "_id": 4753
-        }
-    ]
     serverTypes: { serverType: string; driverName: string}[]
+    showPreview: boolean = false;
     
     // driverName
 	constructor(
@@ -486,9 +383,15 @@ export class DataDirectQueryBuilderComponent implements OnInit {
 
         // Set seletected index - used for highlighting row
         this.selectedTableRowIndex = index;
+        this.selectedTableID = id;
 
         // Select Fields in the table
         this.filterFields(id);
+
+        // Refresh data if already Preview-ed before
+        if (this.showPreview) {
+            this.clickGetData();
+        };
     }
 
     clickSelectedDatafield(index: number, id: number) {
@@ -497,10 +400,12 @@ export class DataDirectQueryBuilderComponent implements OnInit {
 
         // Set seletected index - used for highlighting row
         this.selectedFieldRowIndex = index;
+
+        console.warn('xx selectedFields', this.selectedFields)
     }
 
     clickClose(action: string) {
-        //
+        // Close form, nothing saved
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
         this.formDataDirectQueryBuilderClosed.emit(action);
@@ -536,6 +441,13 @@ export class DataDirectQueryBuilderComponent implements OnInit {
             console.warn('xx res', res, this.selectedDatasource)
         });
 
+        if (this.selectedTableID == 1) {
+            this.currentData = constDataInvoices;
+        } else {
+            this.currentData = constDataAcounts;
+        };
+        
+        console.warn('xx this.currentData', this.currentData)
         this.showPreview = true;
     }
 
