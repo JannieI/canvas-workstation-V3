@@ -23,7 +23,7 @@
                         <div class="gridDatasourceName">
                             <input [(ngModel)]="selectedDatasource.name"
                                 type="text"
-                                name="connectionName"
+                                name="name"
                                 title="Name of the Datasource"
                                 >
                         </div>
@@ -31,29 +31,47 @@
                         <div class="gridServerTypeTitle">
                             <b>Type:</b>
                         </div>
-                        <div class="gridServerType">
-                            {{ serverType }}
+                        <div class="select gridServerType">
+                            <select
+                                [(ngModel)]="selectedDatasource.serverType"
+                                name="serverType"
+                                (change)="clickTemplateDashboard($event)"
+                                placeholder="Select a Dashboard as Template"
+                                >
+                                <option *ngFor="let row of serverTypes">
+                                    {{ row }}
+                                </option>
+                            </select>
                         </div>
-    
-                        <div class="gridServerNameTitle">
-                            <b>Server:</b>
-                        </div>
+                        
                         <div class="gridServerName">
-                            {{ serverName }}
+                            <input [(ngModel)]="selectedDatasource.serverName"
+                                type="text"
+                                name="serverName"
+                                title="Name of the Server / Host"
+                                >
                         </div>
     
                         <div class="gridServerPortTitle">
                             <b>Port:</b>
                         </div>
                         <div class="gridServerPort">
-                            {{ serverPort }}
+                                <input [(ngModel)]="selectedDatasource.port"
+                                type="text"
+                                name="port"
+                                title="Name of the port on the DB Server"
+                                >
                         </div>
     
                         <div class="gridDatabaseTitle">
                             <b>Database:</b>
                         </div>
                         <div class="gridDatabase">
-                            {{ database }}
+                                <input [(ngModel)]="selectedDatasource.databaseName"
+                                type="text"
+                                name="databaseName"
+                                title="Name of the Database or Host"
+                                >
                         </div>
     
                         <div class="gridUsernameTitle">
@@ -82,7 +100,11 @@
                             <b>Description:</b>
                         </div>
                         <div class="gridDescription">
-                            {{ selectedDatasource.description }}
+                                <input [(ngModel)]="selectedDatasource.description"
+                                type="text"
+                                name="description"
+                                title="Name of the Datasource"
+                                >
                         </div>
     
                         <div class="gridButtonTransformation">

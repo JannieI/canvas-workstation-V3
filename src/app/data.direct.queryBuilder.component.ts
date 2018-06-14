@@ -60,9 +60,9 @@ export class DataDirectQueryBuilderComponent implements OnInit {
     selectedFieldRowIndex: number = 0;
     selectedFields: DataField[] = [];
     selectedTableRowIndex: number = 0;
-    connectionName:'tributary.connectors.sql:SqlConnector',
+    connectionName: string = 'tributary.connectors.sql:SqlConnector';
 
-
+    serverTypes: string[];
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -103,10 +103,13 @@ export class DataDirectQueryBuilderComponent implements OnInit {
                 connectionID: 0,
                 dataTableID: 0,
                 nrWidgets: 0,
-                database:'ftfhgfzh',
+                databaseName:'ftfhgfzh',
                 port:'5432',
                 serverType:'postgres',
-                serverName:'pellefant.db.elephantsql.com'
+                serverName:'pellefant.db.elephantsql.com',
+                dataTableName: 'ftfhgfzh',
+                dataSQLStatement: '',
+                dataNoSQLStatement: ''
                             
             };
         }

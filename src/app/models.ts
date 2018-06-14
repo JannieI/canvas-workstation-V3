@@ -368,7 +368,7 @@ export class Datasource {
     dataTableID: number;                // ID of table linked in DB
 
     // Direct Connection, all info provided here and once off
-    database: string;                   // DB to connect to
+    databaseName: string;                   // DB to connect to
     port: string;                       // Port on the DB Server
     serverType: string;                 // Server or Host type, ie MySQL, PostgreSQL, etc
     serverName: string;                 // Server or Host name
