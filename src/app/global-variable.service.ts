@@ -946,7 +946,7 @@ export class GlobalVariableService {
         console.log('%c    Global-Variables getTriburaryData ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", data.id);
 
-        let url: string = 'dashboards';
+        let url: string = 'https://eazl-rest.xyz/eazl/canvas/enqueue/';
         this.filePath = './assets/data.dashboards.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -954,23 +954,16 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post('http://localhost:3000/' + url, data, {headers})
+            this.http.post(url, data, {headers})
             .subscribe(
-                data => {
+                res => {
 
-                    // Clear all related info
-                    this.clearDashboardInfo();
+                    console.log('Tributary Data', res)
 
-                    // Update Global vars to make sure they remain in sync
-                    this.dashboards.push(JSON.parse(JSON.stringify(data)));
-                    this.currentDashboards.push(JSON.parse(JSON.stringify(data)));
-
-                    console.log('addDashboard ADDED', data, this.dashboards)
-
-                    resolve(data);
+                    resolve(res);
                 },
                 err => {
-                    console.log('Error addDashboard FAILED', err);;
+                    console.log('Error Get Tributary Data FAILED', err);;
                     resolve(err.Message);
                 }
             )

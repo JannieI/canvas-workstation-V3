@@ -44,6 +44,9 @@
                             </select>
                         </div>
                         
+                        <div class="gridServerNameTitle">
+                            <b>Type:</b>
+                        </div>
                         <div class="gridServerName">
                             <input [(ngModel)]="selectedDatasource.serverName"
                                 type="text"
@@ -106,7 +109,16 @@
                                 title="Name of the Datasource"
                                 >
                         </div>
-    
+                        <div class="gridButtonPreview">
+                            <button
+                                type="button"
+                                class="btn btn-link"
+                                (click)="clickGetData()"
+                                >
+                                Preview
+                            </button>
+                        </div>
+        
                         <div class="gridButtonTransformation">
                             <button
                                 type="button"
@@ -160,7 +172,7 @@
                                 <clr-dg-column [clrDgField]="businessGlossary">businessGlossary</clr-dg-column>
     
                                 <clr-dg-row
-                                    *clrDgItems="let row of dataFieldsFiltered; let i = index" [clrDgItem]="row"
+                                    *clrDgItems="let row of dataFields; let i = index" [clrDgItem]="row"
                                     [style.background-color]="(i == selectedFieldRowIndex)? '#123456' : 'white'"
                                     [style.color]="(i == selectedFieldRowIndex)? 'white' : 'gray'"
                                     (click)="clickSelectedDatafield(i, row.id)"
@@ -174,7 +186,27 @@
                                 </clr-dg-row>
                             </clr-datagrid>
                         </div>
+
+                        <div class="gridPreviewData">
+                            <clr-datagrid class="gridPreviewData">
     
+                                <clr-dg-column *ngFor="let row of dataFieldNames">{{row}}</clr-dg-column>
+                                <clr-dg-row *clrDgItems="let row of currentData">
+    
+                                    <clr-dg-cell *ngFor="let col of dataFieldNames; let i = index">
+                                            {{ row[col] }}
+                                    </clr-dg-cell>
+                                </clr-dg-row>
+    
+                                <clr-dg-footer>
+                                    {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+                                    of {{pagination.totalItems}} rows
+                                    <clr-dg-pagination #pagination [clrDgPageSize]="8"></clr-dg-pagination>
+                                </clr-dg-footer>
+    
+                            </clr-datagrid>
+                        </div>
+        
                         <div class="gridButtonCancel">
                                 <button
                                 type="button"
