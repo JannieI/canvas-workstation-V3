@@ -362,8 +362,19 @@ export class Datasource {
     startLineNr: number;                // 1 = first = default
     csvSeparationCharacter: string;     // CSV file column separator: comma or ;
     csvQuotCharacter: string;           // CSV values in "", in '' or without quotes
+
+    // Managed Connection, Connection created and managed outside of this form
     connectionID: number;               // Connection to DB
     dataTableID: number;                // ID of table linked in DB
+
+    // Direct Connection, all info provided here and once off
+    database: string;                   // DB to connect to
+    port: string;                       // Port on the DB Server
+    serverType: string;                 // Server or Host type, ie MySQL, PostgreSQL, etc
+    serverName: string;                 // Server or Host name
+    dataTableName: string;              // Table inside Server with the data
+    dataSQLStatement: string;           // SQL Statement to extract data with
+    dataNoSQLStatement: string;         // NoSQL Statement to extract data with
 
     // Updated at runtime
     nrWidgets: number;                  // Nr of Ws linked to this DS (at the moment)

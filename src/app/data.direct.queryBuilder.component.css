@@ -91,14 +91,14 @@
 
     .gridDatabaseTitle {
         grid-column-start: 7;
-        grid-column-end: 8;
-        grid-row-start: 9;
-        grid-row-end: 14;
+        grid-column-end: 9;
+        grid-row-start: 6;
+        grid-row-end: 7;
         margin-top: 5px;
     }
     .gridDatabase {
-        grid-column-start: 3;
-        grid-column-end: 7;
+        grid-column-start: 9;
+        grid-column-end: 14;
         grid-row-start: 6;
         grid-row-end: 7;
         margin-top: 5px;

@@ -50,11 +50,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
 
     }
 
-    authentication: string = 'UsrPsw';
-    connectionName: string = '';
-    serverType: string = 'MySQL';
-    datasourceName: string = '';
-    description: string = 'Post Trade Data Vault';
+
     dataConnections: DataConnection[] = [];
     dataTables: DataTable[] = [];
     dataTablesFiltered: DataTable[] = [];
@@ -64,7 +60,8 @@ export class DataDirectQueryBuilderComponent implements OnInit {
     selectedFieldRowIndex: number = 0;
     selectedFields: DataField[] = [];
     selectedTableRowIndex: number = 0;
-    serverName: string = 'MSSQL54: 8000';
+    connectionName:'tributary.connectors.sql:SqlConnector',
+
 
 
 	constructor(
@@ -83,10 +80,10 @@ export class DataDirectQueryBuilderComponent implements OnInit {
                 type: '',
                 subType: '',
                 typeVersion: '',
-                name: '',
-                username: '',
-                password: '',
-                description: '...',
+                name: 'New DS',
+                username: 'ftfhgfzh',
+                password: 'L0Eph9ftbx0yh45aeDtgzsGKBa2ZNhfl',
+                description: 'Post Trade Data Vault',
                 createdBy: '',
                 createdOn: '',
                 refreshedBy: '',
@@ -105,7 +102,12 @@ export class DataDirectQueryBuilderComponent implements OnInit {
                 csvQuotCharacter: '',
                 connectionID: 0,
                 dataTableID: 0,
-                nrWidgets: 0
+                nrWidgets: 0,
+                database:'ftfhgfzh',
+                port:'5432',
+                serverType:'postgres',
+                serverName:'pellefant.db.elephantsql.com'
+                            
             };
         }
         this.globalVariableService.getDataConnections().then(dc => {
