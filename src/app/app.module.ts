@@ -79,7 +79,7 @@ import { DataConnectionComponent }    from './data.connection.component';
 import { DataManagedSQLEditorComponent }    from './data.managed.sqlEditor.component';
 import { DataOverlayEditorComponent } from './data.overlayEditor.component';
 import { DataTransformationComponent }      from './data.transformation.component';
-import { DataQueryBuilderComponent }  from './data.queryBuilder.component';
+import { DataManagedQueryBuilderComponent }  from './data.managed.queryBuilder.component';
 import { DataEditDatasourceComponent }      from './data.editDatasource.component';
 import { DataPopupComponent }         from './data.popup.component';
 import { DataDatasourceOverviewComponent }  from './data.datasourceOverview.component';
@@ -171,7 +171,7 @@ import { StatusbarComponent }         from './statusbar.component';
         DataManagedSQLEditorComponent,
         DataOverlayEditorComponent,
         DataTransformationComponent,
-        DataQueryBuilderComponent,
+        DataManagedQueryBuilderComponent,
         DataEditDatasourceComponent,
         DataDatasourceOverviewComponent,
         DataDatasourceUsageComponent,

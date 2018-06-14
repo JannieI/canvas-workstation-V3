@@ -27,15 +27,15 @@ import { Field }                      from './models';
 
 
 @Component({
-    selector: 'data-queryBuilder',
-    templateUrl: './data.queryBuilder.component.html',
-    styleUrls:  ['./data.queryBuilder.component.css']
+    selector: 'data-managedQueryBuilder',
+    templateUrl: './data.managed.queryBuilder.component.html',
+    styleUrls:  ['./data.managed.queryBuilder.component.css']
 })
-export class DataQueryBuilderComponent implements OnInit {
+export class DataManagedQueryBuilderComponent implements OnInit {
 
     @Input() selectedDatasource: Datasource;
  
-    @Output() formDataAddQueryBuilderClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formDataManagedQueryBuilderClosed: EventEmitter<string> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
@@ -214,7 +214,7 @@ export class DataQueryBuilderComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-        this.formDataAddQueryBuilderClosed.emit(action);
+        this.formDataManagedQueryBuilderClosed.emit(action);
 
     }
 
@@ -222,7 +222,7 @@ export class DataQueryBuilderComponent implements OnInit {
         // Close the form, and open Transformations form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickTransformation', '@Start');
 
-        this.formDataAddQueryBuilderClosed.emit('Transformation');
+        this.formDataManagedQueryBuilderClosed.emit('Transformation');
 
     }
     

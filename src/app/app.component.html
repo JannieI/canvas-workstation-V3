@@ -441,7 +441,7 @@
                                     <button
                                         type="button"
                                         clrDropdownItem
-                                        (click)="clickMenuDataQueryBuilder()"
+                                        (click)="clickMenuDataManagedQueryBuilder()"
                                         title="Create a new Datasources using Query Builder"
                                         >
                                         New Query Builder
@@ -3974,18 +3974,18 @@
 </data-NosqlDatasource>
 
 
-<!-- Modal: Data Query Builder -->
-<data-queryBuilder
-    *ngIf="showModalDataQueryBuilder"
+<!-- Modal: Data Manged Query Builder -->
+<data-managedQueryBuilder
+    *ngIf="showModalDataManagedQueryBuilder"
     [selectedDatasource]="selectedDatasource"
-    (formDataAddQueryBuilderClosed)="handleCloseDataQueryBuilder($event)">Load SQL Query Builder ...
-</data-queryBuilder>
+    (formDataManagedQueryBuilderClosed)="handleCloseDataManagedQueryBuilder($event)">Load Manged SQL Query Builder ...
+</data-managedQueryBuilder>
 
 
-<!-- Modal: Data SQL Editor -->
+<!-- Modal: Data Managed SQL Editor -->
 <data-managedSqlEditor
     *ngIf="showModalDataManagedSQLEditor"
-    (formDataManagedSQLEditorClosed)="handleCloseDataManagedSQLEditor($event)">Load SQL Editor ...
+    (formDataManagedSQLEditorClosed)="handleCloseDataManagedSQLEditor($event)">Load Managed SQL Editor ...
 </data-managedSqlEditor>
 
 

@@ -372,7 +372,7 @@ export class AppComponent implements OnInit {
     showModalDataNoSQLDatasource: boolean = false;
     showModalDataOverview: boolean = false;
     showModalDataUsage: boolean = false;
-    showModalDataQueryBuilder: boolean = false;
+    showModalDataManagedQueryBuilder: boolean = false;
     showModalDataManagedSQLEditor: boolean = false;
     showModalDataOverlayEditor: boolean = false;
     showModalDataTransformation: boolean = false;
@@ -1217,13 +1217,13 @@ export class AppComponent implements OnInit {
         this.showModalDataConnection = false;
     }
 
-    handleCloseDataQueryBuilder(action: string) {
+    handleCloseDataManagedQueryBuilder(action: string) {
         // Handle Close of SQL Query Builder
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataQueryBuilder', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataManagedQueryBuilder', '@Start');
 
         this.menuOptionClickPostAction();
 
-        this.showModalDataQueryBuilder = false;
+        this.showModalDataManagedQueryBuilder = false;
 
         // Open Transformations if so requested
         if (action == 'Transformation') {
@@ -1270,7 +1270,7 @@ export class AppComponent implements OnInit {
         // Open relevant form
         if (returnedDatasource != null) {
             this.selectedDatasource = returnedDatasource;
-            this.showModalDataQueryBuilder = true;
+            this.showModalDataManagedQueryBuilder = true;
         };
     }
     
@@ -2762,13 +2762,13 @@ export class AppComponent implements OnInit {
         this.showModalDataConnection = true;
     }
 
-    clickMenuDataQueryBuilder() {
+    clickMenuDataManagedQueryBuilder() {
         // SQL Query Builder, constructed by selecting Table and Fields
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataQueryBuilder', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataManagedQueryBuilder', '@Start');
 
         this.menuOptionClickPreAction();
         this.selectedDatasource = null;
-        this.showModalDataQueryBuilder = true;
+        this.showModalDataManagedQueryBuilder = true;
     }
 
     clickMenuDataManagedSQLEditor() {
