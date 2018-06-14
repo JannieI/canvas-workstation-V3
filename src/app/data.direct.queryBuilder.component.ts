@@ -229,7 +229,7 @@ const constDataInvoices: any =
         Total: 120
     }
 
-]
+];
 const constDataAcounts: any = 
 [
     {
@@ -267,7 +267,7 @@ const constDataAcounts: any =
         TransactDate: '2017/01/01',
         Amount: 7
     }
-]
+];
 
 
 @Component({

@@ -31,6 +31,251 @@ import { FieldMetadata }              from './models';
 import { DataQualityIssue }           from './models';
 
 
+const constDataTables: DataTable[] = 
+[
+    {
+        id: 1,
+        connectionID: null,
+        nameDB: 'Invoices',
+        nameLocal: '',
+        type: 'Table',
+        description: '',
+        businessGlossary: '',
+        creator: '',
+        dateCreated: '',
+        editor: '',
+        dateEdited: '',
+    },
+    {
+        id: 2,
+        connectionID: null,
+        nameDB: 'Accounts',
+        nameLocal: '',
+        type: 'Table',
+        description: '',
+        businessGlossary: '',
+        creator: '',
+        dateCreated: '',
+        editor: '',
+        dateEdited: '',
+    }
+];
+const constDataFields: DataField[] = 
+[
+    {
+        id: 0,
+        tableID: 1,
+        nameDB: 'id',
+        nameLocal: '',
+        type: '',
+        format: '',
+        filterOperand: '',
+        filterValue: '',
+        calculation: '',
+        orderSequence: 0,
+        orderDirection: '',
+        description: '',
+        businessGlossary: '',
+        keyField: false,
+        explainedBy: '',
+        creator: '',
+        dateCreated: '',
+        editor: '',
+        dateEdited: '',
+        hidden: false
+    },
+    {
+        id: 2,
+        tableID: 1,
+        nameDB: 'InvoiceDate',
+        nameLocal: '',
+        type: '',
+        format: '',
+        filterOperand: '',
+        filterValue: '',
+        calculation: '',
+        orderSequence: 0,
+        orderDirection: '',
+        description: '',
+        businessGlossary: '',
+        keyField: false,
+        explainedBy: '',
+        creator: '',
+        dateCreated: '',
+        editor: '',
+        dateEdited: '',
+        hidden: false
+    },
+    {
+        id: 3,
+        tableID: 1,
+        nameDB: 'Total',
+        nameLocal: '',
+        type: '',
+        format: '',
+        filterOperand: '',
+        filterValue: '',
+        calculation: '',
+        orderSequence: 0,
+        orderDirection: '',
+        description: '',
+        businessGlossary: '',
+        keyField: false,
+        explainedBy: '',
+        creator: '',
+        dateCreated: '',
+        editor: '',
+        dateEdited: '',
+        hidden: false
+    },
+    {
+        id: 0,
+        tableID: 2,
+        nameDB: 'id',
+        nameLocal: '',
+        type: '',
+        format: '',
+        filterOperand: '',
+        filterValue: '',
+        calculation: '',
+        orderSequence: 0,
+        orderDirection: '',
+        description: '',
+        businessGlossary: '',
+        keyField: false,
+        explainedBy: '',
+        creator: '',
+        dateCreated: '',
+        editor: '',
+        dateEdited: '',
+        hidden: false
+    },
+    {
+        id: 2,
+        tableID: 2,
+        nameDB: 'TransactDate',
+        nameLocal: '',
+        type: '',
+        format: '',
+        filterOperand: '',
+        filterValue: '',
+        calculation: '',
+        orderSequence: 0,
+        orderDirection: '',
+        description: '',
+        businessGlossary: '',
+        keyField: false,
+        explainedBy: '',
+        creator: '',
+        dateCreated: '',
+        editor: '',
+        dateEdited: '',
+        hidden: false
+    },
+    {
+        id: 3,
+        tableID: 2,
+        nameDB: 'Amount',
+        nameLocal: '',
+        type: '',
+        format: '',
+        filterOperand: '',
+        filterValue: '',
+        calculation: '',
+        orderSequence: 0,
+        orderDirection: '',
+        description: '',
+        businessGlossary: '',
+        keyField: false,
+        explainedBy: '',
+        creator: '',
+        dateCreated: '',
+        editor: '',
+        dateEdited: '',
+        hidden: false
+    }
+
+];
+
+const constDataInvoices: any = 
+[
+    {
+        id: 0,
+        InvoiceDate: '2017/01/01',
+        Total: 20
+    },
+    {
+        id: 1,
+        InvoiceDate: '2017/01/01',
+        Total: 40
+    },
+    {
+        id: 2,
+        InvoiceDate: '2017/01/01',
+        Total: 50
+    },
+    {
+        id: 3,
+        InvoiceDate: '2017/01/01',
+        Total: 60
+    },
+    {
+        id: 4,
+        InvoiceDate: '2017/01/01',
+        Total: 80
+    },
+    {
+        id: 5,
+        InvoiceDate: '2017/01/01',
+        Total: 100
+    },
+    {
+        id: 6,
+        InvoiceDate: '2017/01/01',
+        Total: 120
+    }
+
+];
+const constDataAcounts: any = 
+[
+    {
+        id: 1,
+        TransactDate: '2017/01/01',
+        Amount: 1
+    },
+    {
+        id: 2,
+        TransactDate: '2017/01/01',
+        Amount: 2
+    },
+    {
+        id: 3,
+        TransactDate: '2017/01/01',
+        Amount: 3
+    },
+    {
+        id: 4,
+        TransactDate: '2017/01/01',
+        Amount: 4
+    },
+    {
+        id: 5,
+        TransactDate: '2017/01/01',
+        Amount: 5
+    },
+    {
+        id: 6,
+        TransactDate: '2017/01/01',
+        Amount: 6
+    },
+    {
+        id: 7,
+        TransactDate: '2017/01/01',
+        Amount: 7
+    }
+];
+
+
 @Component({
     selector: 'data-direct-Nosql', 
     templateUrl: './data.direct.Nosql.component.html',
@@ -136,7 +381,76 @@ export class DataDirectNoSQLComponent implements OnInit {
         this.formDataDirectNoSQLEditorClosed.emit(action);
 
     }
- 
+         
+    filterFields(tableID: number) {
+        // Filter Fields on Selected Connection
+        this.globalFunctionService.printToConsole(this.constructor.name,'filterFields', '@Start');
+
+        console.warn('xx id', tableID)
+        this.dataFieldsFiltered = this.dataFields.filter(df => {
+            if (df.tableID == tableID) {
+                return df;
+            };
+        });
+
+    }
+
+    clickTransformation() {
+        // Close the form, and open Transformations form
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTransformation', '@Start');
+
+        this.formDataDirectNoSQLEditorClosed.emit('Transformation');
+
+    }
+    
+    clickGetData() {
+        // Get the data
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickGetData', '@Start');
+        let data = 
+        {
+            "source": {
+                "connector": "tributary.connectors.sql:SqlConnector",
+                "drivername": "postgres",
+                "username": "ftfhgfzh",
+                "password": "L0Eph9ftbx0yh45aeDtgzsGKBa2ZNhfl",
+                "database": "ftfhgfzh",
+                "host": "pellefant.db.elephantsql.com",
+                "port": 5432,
+                "query": "select I.\"InvoiceDate\" as \"Date\", sum(I.\"Total\") as \"Amount\" from invoices I group by I.\"InvoiceDate\""
+            }
+        }
+
+        this.globalVariableService.getTriburaryData(data).then(res => {
+            console.warn('xx res', res, this.selectedDatasource)
+        });
+
+        if (this.selectedTableID == 1) {
+            this.currentData = constDataInvoices;
+        } else {
+            this.currentData = constDataAcounts;
+        };
+        
+        console.warn('xx this.currentData', this.currentData)
+        this.showPreview = true;
+    }
+
+    clickRefresh() {
+        // Get the tables and fields from the DB
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickRefresh', '@Start');
+    
+        // Fill Table and Field Names
+        // TODO - remove hardcoding once received from DB
+        this.dataTables = constDataTables;
+        this.dataFields = constDataFields;
+
+        // Select the Tables, Fields
+        if (this.dataTables.length > 0) {
+            this.filterFields(this.dataTables[0].id);
+
+        } else {
+            this.filterFields(-1);
+        };
+    }
 }
 
 
