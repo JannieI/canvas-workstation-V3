@@ -73,27 +73,27 @@ import { ShapeEditComponent }         from './shape.editor.component';
 import { ShapeDeleteComponent }       from './shape.delete.component';
 
 import { DataDirectFileComponent }    from './data.direct.file.component';
-import { DataNoSQLDatasourceComponent }     from './data.NosqlDatasource.component';
+import { DataNoSQLDatasourceComponent }      from './data.NosqlDatasource.component';
 import { DataSQLDatasourceComponent } from './data.sqlDatasource.component';
 
 import { DataManagedConnectionComponent }    from './data.managed.connection.component';
 import { DataManagedQueryBuilderComponent }  from './data.managed.queryBuilder.component';
-import { DataManagedSQLEditorComponent }    from './data.managed.sqlEditor.component';
+import { DataManagedSQLEditorComponent }     from './data.managed.sqlEditor.component';
 import { DataManagedOverlayEditorComponent } from './data.managed.overlayEditor.component';
-import { DataManagedNoSQLEditorComponent }    from './data.managed.noSqlEditor.component';
+import { DataManagedNoSQLEditorComponent }   from './data.managed.noSqlEditor.component';
 
-import { DataTransformationComponent }      from './data.transformation.component';
-import { DataEditDatasourceComponent }      from './data.editDatasource.component';
+import { DataTransformationComponent }       from './data.transformation.component';
+import { DataEditDatasourceComponent }       from './data.editDatasource.component';
 import { DataPopupComponent }         from './data.popup.component';
-import { DataDatasourceOverviewComponent }  from './data.datasourceOverview.component';
-import { DataDatasourceUsageComponent }     from './data.datasourceUsage.component';
+import { DataDatasourceOverviewComponent }   from './data.datasourceOverview.component';
+import { DataDatasourceUsageComponent }      from './data.datasourceUsage.component';
 import { DataCombinationComponent }   from './data.combination.component';
 import { DataRefreshComponent }       from './data.refresh.component';
 import { DatasourceShareComponent }   from './data.share.component';
 import { DataDictionaryComponent }    from './data.dictionary.component';
 import { DataSummaryComponent }       from './data.summary.component';
-import { DataManageDataQualityComponent }   from './data.manageDataQuality.component';
-import { DataDeleteDatasourceComponent }    from './data.deleteDatasource.component';
+import { DataManageDataQualityComponent }    from './data.manageDataQuality.component';
+import { DataDeleteDatasourceComponent }     from './data.deleteDatasource.component';
 
 import { HelpComponent }              from './help.component';
 

@@ -467,7 +467,7 @@
                                     <button
                                         type="button"
                                         clrDropdownItem
-                                        (click)="clickMenuDataManagedNoSQLEditor(1)"
+                                        (click)="clickMenuDataManagedNoSQLEditor()"
                                         title="Create a new Datasources using the NoSQL query Editor"
                                         >
                                         New NoSQL Editor
@@ -3992,7 +3992,7 @@
 <!-- Modal: Data Managed NoSQL Editor -->
 <data-managedNoSqlEditor
     *ngIf="showModalDataManagedNoSQLEditor"
-    (formDataManagedNoSQLEditorClosed)="handleCloseDataManagedSQLEditor($event)">Load Managed NoSQL Editor ...
+    (formDataManagedNoSQLEditorClosed)="handleCloseDataManagedNoSQLEditor($event)">Load Managed NoSQL Editor ...
 </data-managedNoSqlEditor>
 
 

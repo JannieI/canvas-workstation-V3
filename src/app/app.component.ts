@@ -1242,7 +1242,7 @@ export class AppComponent implements OnInit {
     }
     
     handleCloseDataManagedNoSQLEditor(action: string) {
-        // Handle Close of SQL Editor
+        // Handle Close of NoSQL Editor
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataManagedNoSQLEditor', '@Start');
 
         this.menuOptionClickPostAction();
@@ -2790,6 +2790,15 @@ export class AppComponent implements OnInit {
         this.showModalDataManagedSQLEditor = true;
     }
     
+    clickMenuDataManagedNoSQLEditor() {
+        // No SQL Editor
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataManagedNoSQLEditor', '@Start');
+
+        this.menuOptionClickPreAction();
+
+        this.showModalDataManagedNoSQLEditor = true;
+    }
+
     clickMenuDataManagedOverlayEditor() {
         // Overlay Editor
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataManagedOverlayEditor', '@Start');

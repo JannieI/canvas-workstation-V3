@@ -168,7 +168,7 @@ export class DataManagedNoSQLEditorComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-        this.formDataManagedSQLEditorClosed.emit(action);
+        this.formDataManagedNoSQLEditorClosed.emit(action);
 
     }
  
