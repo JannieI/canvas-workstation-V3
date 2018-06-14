@@ -11,16 +11,10 @@
     top: 0;
 }
 
-.datagrid {
-    margin: 0px !important;
-    margin-top: 0px !important;
-    padding: 0 !important;
-}
-
 .gridOverall {
     display: grid;
     grid-template-columns: repeat(20, 1fr);
-    grid-template-rows: repeat(20, 0.8rem);
+    grid-template-rows: repeat(27, 0.8rem);
     margin-top: 2px;
 }
 
@@ -36,17 +30,8 @@
         grid-column-start: 1;
         grid-column-end: 21;
         grid-row-start: 2;
-        grid-row-end: 3;
-        margin: 2px 2px 2px 2px;
-        text-align: left;
-    }
-
-    .errorMessage {
-        grid-column-start: 1;
-        grid-column-end: 21;
-        grid-row-start: 2;
-        grid-row-end: 3;
-        margin: 2px 2px 2px 2px;
+        grid-row-end: 4;
+        margin-left: 20px;
         text-align: left;
     }
 
@@ -63,40 +48,40 @@
         grid-row-end: 5;
     }
     
-    .gridServerTypeTitle {
+    .gridConnectionSelectTitle {
         grid-column-start: 7;
         grid-column-end: 9;
         grid-row-start: 4;
         grid-row-end: 5;
     }
-    .gridServerType {
+    .gridConnectionSelect {
         grid-column-start: 9;
         grid-column-end: 13;
         grid-row-start: 4;
         grid-row-end: 5;
     }
      
-    .gridServerNameTitle {
+    .gridServerTypeTitle {
         grid-column-start: 14;
         grid-column-end: 15;
         grid-row-start: 4;
         grid-row-end: 5;
     }
-    .gridServerName {
+    .gridServerType {
         grid-column-start: 15;
         grid-column-end: 20;
         grid-row-start: 4;
         grid-row-end: 5;
     }
 
-    .gridServerPortTitle {
+    .gridServerNameTitle {
         grid-column-start: 1;
         grid-column-end: 2;
         grid-row-start: 6;
         grid-row-end: 7;
         margin-top: 5px;
     }
-    .gridServerPort {
+    .gridServerName {
         grid-column-start: 2;
         grid-column-end: 7;
         grid-row-start: 6;
@@ -162,61 +147,39 @@
         margin-top: 5px;
     }
 
+    .gridErrorMessage {
+        grid-column-start: 2;
+        grid-column-end: 20;
+        grid-row-start: 9;
+        grid-row-end: 10;
+    }
+    
+    .gridGoButton {
+        grid-column-start: 8;
+        grid-column-end: 9;
+        grid-row-start: 16;
+        grid-row-end: 17;
+    }
  
-    .gridTables {
+    .gridSQLText {
         border: 1px solid gray;
         border-radius: 4px;
         grid-column-start: 1;
-        grid-column-end: 6;
+        grid-column-end: 8;
         grid-row-start: 10;
         grid-row-end: 25;
+        height: 100%;
         overflow-y: scroll;
         width: 100%;
     }
 
-        .datagrid {
-            margin: 0px !important;
-            margin-top: 0px !important;
-            padding: 0 !important;
-        }
-
-        .datagrid-cell {
-            font-size: 0.45rem !important;
-            height: 0.8rem !important;
-            margin: 2px !important;
-            overflow: hidden;
-            padding: 0 0 0 6px !important;
-            text-align: left;
-            text-overflow: ellipsis;
-        }
-
-        .dsCheckbox {
-            margin: 4px 0 0 0 !important;    
-        }
-
-        .dsName {
-            display: inline-block;
-            margin: -3px 0 0 0 !important;    
-            padding: 0 0 5px 0 !important;    
-        }
-
-        .widthTn {
-            width: 150px;
-            min-width: 30%;
-        }
-        .widthTd {
-            width: 200px;
-            min-width: 30%;
-        }
-
-    .gridFields {
+    .gridData {
         border: 1px solid gray;
         border-radius: 4px;
-        grid-column-start: 7;
+        grid-column-start: 9;
         grid-column-end: 21;
         grid-row-start: 10;
         grid-row-end: 25;
-        overflow-y: scroll;
         width: 100%;
     }
  

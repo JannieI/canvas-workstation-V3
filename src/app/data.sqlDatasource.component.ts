@@ -1,35 +1,44 @@
 /*
- * Create a new datasources from a File.
+ * Data page: to get new datasources, and add to the current list of datasources for this
+ * Dashboard.  Can also do transformations to the data, and crteate new datasets, ie via
+ * pivot.
  */
 
 // Angular
 import { Component }                  from '@angular/core';
+import { ElementRef }                 from '@angular/core';
 import { EventEmitter }               from '@angular/core';
 import { HostListener }               from '@angular/core';
 import { Input }                     from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
+import { Router }                     from '@angular/router';
+import { ViewChild }                  from '@angular/core';
 
 // Our Functions
 import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
 // Our Models
+import { DataConnection }             from './models';
+import { DataTable }                  from './models';
+import { DataField }                  from './models';
 import { Datasource }                 from './models';
+import { Dataset }                    from './models';
+import { Transformation }             from './models';
+import { Field }                      from './models';
+import { FieldMetadata }              from './models';
+import { DataQualityIssue }           from './models';
 
-// Vega
-import * as dl from 'datalib';
-import { load } from 'datalib';
-
-
+ 
 @Component({
-    selector: 'data-sqlDatasource',
-    templateUrl: './data.sqlDatasource.component.html',
-    styleUrls:  ['./data.sqlDatasource.component.css']
+    selector: 'data-managedSqlEditor',
+    templateUrl: './data.managed.sqlEditor.component.html',
+    styleUrls:  ['./data.managed.sqlEditor.component.css']
 })
-export class DataSQLDatasourceComponent implements OnInit {
+export class DataDirectSQLEditorComponent implements OnInit {
 
-    @Output() formDataSQLDatasourceClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formDataManagedSQLEditorClosed: EventEmitter<string> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
@@ -44,222 +53,125 @@ export class DataSQLDatasourceComponent implements OnInit {
 
     }
 
-    datasources: Datasource[];
-    currentDatasources: Datasource[] = [];
-    currentData: any = [];
-    dataArray: any;
-    dataFieldLengths: number[] = [];
-    dataFieldNames: string[];
-    dataFieldTypes: string[] = [];
+    authentication: string = 'UsrPsw';
+    connectionName: string = '';
+    serverType: string = 'MySQL';
+    datasourceName: string = '';
+    description: string = 'Post Trade Data Vault';
+    dataConnections: DataConnection[] = [];
+    dataTables: DataTable[] = [];
+    dataTablesFiltered: DataTable[] = [];
+    dataFields: DataField[] = [];
+    dataFieldsFiltered: DataField[] = [];
     errorMessage: string = "";
-    fileName: string = '';
-    folderName: string = '';
-    finalFields: any = [];
-    selectedFile: boolean = true;
-    currentDatasetName: string;
+    selectedFieldRowIndex: number = 0;
+    selectedFields: DataField[] = [];
+    selectedTableRowIndex: number = 0;
+    serverName: string = 'MSSQL54: 8000';
 
+    // connections ->
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
+        private router: Router,
 	) {}
 
 	ngOnInit() {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        // Load from global variables
-        this.currentDatasources = this.globalVariableService.currentDatasources.slice();
-        this.datasources = this.globalVariableService.datasources.slice();
-    }
- 
-    clickFileBrowse() {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickFileBrowse', '@Start');
+        this.globalVariableService.getDataConnections().then(dc => {
+            this.globalVariableService.getDataTable().then(dt => {
+                this.globalVariableService.getDataField().then(df => {
 
-        // TODO alert('Later: File component to browse ...')
-    }
+                    // Get local Vars
+                    this.dataConnections = dc.slice();
+                    this.dataTables = dt.slice();
+                    this.dataFields = df.slice();
 
-    clickDSPreview() {
-        // Load the new DS in the ID section, and show in Preview area
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickDSPreview',           '@Start');
+                    // Select the Tables, Fields
+                    if (this.dataConnections.length > 0) {
+                        this.clickConnectionSelect(this.dataConnections[0].connectionName);
 
-        // Reset
-        this.errorMessage = '';
-
-        // // Get the folder and file, setting some defaults
-        // if (this.folderName == ''  ||  this.folderName == undefined) {
-        //     this.folderName = './assets/vega-datasets/';
-        // }
-        // if (this.fileName ==''  ||  this.fileName == undefined) {
-        //     this.fileName = 'stocks.csv';
-        // };
-
-        // Load synchronously
-        var csv_data = dl.load({url: this.folderName + this.fileName});
-        console.log('DataPopup clickDSPreview LOAD data start:', this.folderName, this.fileName)
-        // let fileFolder: string = './assets/vega-datasets/';
-        let filePath: string = this.folderName + this.fileName;
-
-        let fileSuffix = this.fileName.substr(this.fileName.lastIndexOf('.')+1,this.fileName.length-this.fileName.indexOf('.'));
-
-        if (fileSuffix == 'json') {
-            dl.json({url: filePath}, {}, (err, currentData) => {
-                if (err) {
-                    this.errorMessage = err.status + ':' + err.statusText;
-
-                    console.log('DataPopup clickDSPreview error on load', err)
-                } else {
-                    // Callback
-                    this.fileLoadedCallback(fileSuffix, currentData);
-                }
+                    } else {
+                        this.clickConnectionSelect('');
+                    };
+                });
             });
-        };
-        if (fileSuffix == 'csv') {
-            dl.csv({url: filePath}, {}, (err, currentData) => {
-                if (err) {
-                    this.errorMessage = err.status + ':' + err.statusText;
-                    console.log('DataPopup clickDSPreview error on load', err)
-                } else {
-                    // Callback
-                    this.fileLoadedCallback(fileSuffix, currentData);
-                }
-            });
-        };
-
-        // Message when file type unknown
-        if (fileSuffix != 'json'  &&  fileSuffix != 'csv') {
-            this.errorMessage = 'Unknown file type';
-        };
-    }
-
-    fileLoadedCallback(fileSuffix: string, currentData: any) {
-        // Handles callback from async datalib load
-        this.globalFunctionService.printToConsole(this.constructor.name,'fileLoadedCallback', '@Start');
-
-        let startNow: number;
-        startNow = Date.now()
-
-        // Load
-        console.log('')
-        console.log('DataPopup clickDSPreview LOAD start:')
-        this.currentData = currentData;
-        // this.globalVariableService.datasets.push(
-        //     {
-        //         datasourceID : 3,
-        //         data: currentData
-        //     }
-        // );
-        currentData = [];
-        console.log('DataPopup clickDSPreview      data rows', this.currentData.length)
-        console.log('DataPopup clickDSPreview      END load: ', (Date.now() - startNow) / 1000)
-
-        // Fields
-        console.log('')
-        console.log('DataPopup clickDSPreview FIELDS start:')
-        startNow = Date.now()
-        var dataTypes = dl.type.all(this.currentData)
-        this.dataFieldNames = Object.keys(dataTypes);
-        console.log('DataPopup clickDSPreview      fields', this.dataFieldNames)
-        for (var i = 0; i < this.dataFieldNames.length; i++) {
-            console.log('     ', i, this.dataFieldNames[i])
-        }
-        console.log('DataPopup clickDSPreview      END fields: ', (Date.now() - startNow) / 1000)
-
-        // Types
-        console.log('')
-        console.log('DataPopup clickDSPreview TYPES start:')
-        startNow = Date.now()
-        this.dataFieldTypes = [];
-        console.log('DataPopup clickDSPreview      types');
-        for (var i = 0; i < this.dataFieldNames.length; i++) {
-            this.dataFieldTypes.push(dataTypes[ this.dataFieldNames[i] ] );
-            console.log('DataPopup clickDSPreview      ', i, this.dataFieldTypes[i])
-        }
-        console.log('DataPopup clickDSPreview      END types: ', (Date.now() - startNow) / 1000)
-
-        // Lengths
-        console.log('')
-        console.log('DataPopup clickDSPreview LENGTHS start:')
-        startNow = Date.now()
-        this.dataFieldLengths = [];
-        console.log('DataPopup clickDSPreview      lengths');
-        for (var i = 0; i < this.dataFieldTypes.length; i++) {
-            if (this.dataFieldTypes[i] == 'string'  ||  this.dataFieldTypes[i] == 'date') {
-                this.dataFieldLengths.push(25);
-            } else {
-                this.dataFieldLengths.push(12);
-            }
-            console.log('DataPopup clickDSPreview      ', i, this.dataFieldLengths[i])
-        }
-        console.log('DataPopup clickDSPreview      END lengths: ', (Date.now() - startNow) / 1000)
-
-        // Sort
-        console.log('')
-        console.log('DataPopup clickDSPreview SORT start:')
-        startNow = Date.now()
-        this.currentData.sort(dl.comparator(['+symbol', '-price']));
-        console.log('DataPopup clickDSPreview      END sort: ', (Date.now() - startNow) / 1000)
-
-        // Group By
-        console.log('')
-        console.log('DataPopup clickDSPreview GROUPBY start:')
-        startNow = Date.now()
-        this.dataArray = dl.groupby('symbol')
-            .summarize( [
-                {name: 'symbol', ops: ['valid']},
-                {name: 'price',  ops: ['sum', 'median'], as: ['s', 'm']}
-                ] )
-            .execute(this.currentData);
-        console.log('DataPopup clickDSPreview      groupby', this.dataArray)
-        console.log('DataPopup clickDSPreview      END groupby: ', (Date.now() - startNow) / 1000)
-
-        // Get Unique Symbols
-        console.log('')
-        console.log('DataPopup clickDSPreview UNIQUE start:')
-        startNow = Date.now()
-        var dataUniqueInColumn = dl.unique(this.currentData);
-        console.log('DataPopup clickDSPreview      unique', dataUniqueInColumn)
-        console.log('DataPopup clickDSPreview      END unique: ', (Date.now() - startNow) / 1000)
-
-        // Get Unique Symbols 2
-        console.log('')
-        console.log('DataPopup clickDSPreview UNIQUE 2 start:')
-        startNow = Date.now()
-        dataUniqueInColumn = dl.groupby('symbol')
-            .summarize( [
-                {name: 'symbol', ops: ['values']}
-                ] )
-            .execute(this.currentData);
-        console.log('DataPopup clickDSPreview      unique', dataUniqueInColumn)
-        console.log('DataPopup clickDSPreview      END unique: ', (Date.now() - startNow) / 1000)
-
-        // Preview
-        console.log('')
-        console.log('DataPopup clickDSPreview PREVIEW start:')
-        startNow = Date.now()
-        console.log('DataPopup clickDSPreview         END preview: ', (Date.now() - startNow) / 1000)
-
-        // No DS currently selected
-        this.currentDatasetName = '';
+        });
 
     }
- 
-    clickFileSaveTransformation() {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickFileSaveTransformation', '@Start');
 
-        // TODO - add code to Save the name for next time ...
+    clickConnectionSelect(ev: any) {
+        // Refresh the Tables and Fields for the selected Connection
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickConnectionSelect', '@Start');
+
+        console.warn('xx ev', ev, this.connectionName)
+
+        // Fill list of Tables for first Connection
+        if (this.connectionName != '') {
+            this.filterTables(this.connectionName);
+        } else {
+            this.filterTables('');
+        };
+
+        // Fill list of Fields for first Table
+        if (this.dataTablesFiltered.length > 0) {
+            this.filterFields(this.dataTablesFiltered[0].id);
+        } else {
+            this.filterFields(-1);
+        };
+
+    }
+
+    filterTables(connectNameToFilter: string) {
+        // Filter Tables on Selected Connection
+        this.globalFunctionService.printToConsole(this.constructor.name,'filterTables', '@Start');
+
+        let connectionIndex: number = this.dataConnections.findIndex(dt =>
+            dt.connectionName == connectNameToFilter
+        );
+        let connectionID: number = -1;
+        if (connectionIndex >= 0) {
+            connectionID = this.dataConnections[connectionIndex].id;
+        };
+
+        console.warn('xx conn', connectionID, connectNameToFilter, connectionIndex)
+        this.dataTablesFiltered = this.dataTables.filter(dt => {
+            if (dt.connectionID == connectionID) {
+                return dt;
+            };
+        });
+
+    }
+    
+    filterFields(tableID: number) {
+        // Filter Fields on Selected Connection
+        this.globalFunctionService.printToConsole(this.constructor.name,'filterFields', '@Start');
+
+        this.dataFieldsFiltered = this.dataFields.filter(df => {
+            if (df.tableID == tableID) {
+                return df;
+            };
+        });
+
+    }
+    
+    clickGo() {
+        // Clicked Go: execute SQL typed in, and return results and errors
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickGo', '@Start');
+
     }
 
     clickClose(action: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-        this.formDataSQLDatasourceClosed.emit(action);
+        this.formDataManagedSQLEditorClosed.emit(action);
 
     }
-
+ 
 }
 
 
