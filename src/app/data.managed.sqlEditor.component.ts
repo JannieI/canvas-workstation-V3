@@ -32,13 +32,13 @@ import { DataQualityIssue }           from './models';
 
 
 @Component({
-    selector: 'data-sqlEditor',
-    templateUrl: './data.sqlEditor.component.html',
-    styleUrls:  ['./data.sqlEditor.component.css']
+    selector: 'data-managedSqlEditor',
+    templateUrl: './data.managed.sqlEditor.component.html',
+    styleUrls:  ['./data.managed.sqlEditor.component.css']
 })
-export class DataSQLEditorComponent implements OnInit {
+export class DataManagedSQLEditorComponent implements OnInit {
 
-    @Output() formDataSQLEditorClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formDataManagedSQLEditorClosed: EventEmitter<string> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
@@ -168,7 +168,7 @@ export class DataSQLEditorComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-        this.formDataSQLEditorClosed.emit(action);
+        this.formDataManagedSQLEditorClosed.emit(action);
 
     }
  

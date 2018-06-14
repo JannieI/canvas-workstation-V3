@@ -451,7 +451,7 @@
                                     <button
                                         type="button"
                                         clrDropdownItem
-                                        (click)="clickMenuDataSQLEditor()"
+                                        (click)="clickMenuDataManagedSQLEditor()"
                                         title="Create a new Datasources using the SQL Editor"
                                         >
                                         New SQL Editor
@@ -3983,10 +3983,10 @@
 
 
 <!-- Modal: Data SQL Editor -->
-<data-sqlEditor
-    *ngIf="showModalDataSQLEditor"
-    (formDataSQLEditorClosed)="handleCloseDataSQLEditor($event)">Load SQL Editor ...
-</data-sqlEditor>
+<data-managedSqlEditor
+    *ngIf="showModalDataManagedSQLEditor"
+    (formDataManagedSQLEditorClosed)="handleCloseDataManagedSQLEditor($event)">Load SQL Editor ...
+</data-managedSqlEditor>
 
 
 <!-- Modal: Data Overlay Editor -->

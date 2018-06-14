@@ -373,7 +373,7 @@ export class AppComponent implements OnInit {
     showModalDataOverview: boolean = false;
     showModalDataUsage: boolean = false;
     showModalDataQueryBuilder: boolean = false;
-    showModalDataSQLEditor: boolean = false;
+    showModalDataManagedSQLEditor: boolean = false;
     showModalDataOverlayEditor: boolean = false;
     showModalDataTransformation: boolean = false;
     showModalDataEditDatasource: boolean = false;
@@ -1231,13 +1231,13 @@ export class AppComponent implements OnInit {
         };
     }
 
-    handleCloseDataSQLEditor(action: string) {
+    handleCloseDataManagedSQLEditor(action: string) {
         // Handle Close of SQL Editor
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataSQLEditor', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataManagedSQLEditor', '@Start');
 
         this.menuOptionClickPostAction();
 
-        this.showModalDataSQLEditor = false;
+        this.showModalDataManagedSQLEditor = false;
     }
     
     handleCloseDataOverlayEditor(action: string) {
@@ -2771,13 +2771,13 @@ export class AppComponent implements OnInit {
         this.showModalDataQueryBuilder = true;
     }
 
-    clickMenuDataSQLEditor() {
+    clickMenuDataManagedSQLEditor() {
         // SQL Editor
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataSQLEditor', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataManagedSQLEditor', '@Start');
 
         this.menuOptionClickPreAction();
 
-        this.showModalDataSQLEditor = true;
+        this.showModalDataManagedSQLEditor = true;
     }
     
     clickMenuDataOverlayEditor() {

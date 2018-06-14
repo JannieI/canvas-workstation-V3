@@ -76,7 +76,7 @@ import { DataFileDatasourceComponent }      from './data.fileDatasource.componen
 import { DataSQLDatasourceComponent } from './data.sqlDatasource.component';
 import { DataNoSQLDatasourceComponent }     from './data.NosqlDatasource.component';
 import { DataConnectionComponent }    from './data.connection.component';
-import { DataSQLEditorComponent }     from './data.sqlEditor.component';
+import { DataManagedSQLEditorComponent }    from './data.managed.sqlEditor.component';
 import { DataOverlayEditorComponent } from './data.overlayEditor.component';
 import { DataTransformationComponent }      from './data.transformation.component';
 import { DataQueryBuilderComponent }  from './data.queryBuilder.component';
@@ -168,7 +168,7 @@ import { StatusbarComponent }         from './statusbar.component';
         DataNoSQLDatasourceComponent,
         DataPopupComponent,
         DataConnectionComponent,
-        DataSQLEditorComponent,
+        DataManagedSQLEditorComponent,
         DataOverlayEditorComponent,
         DataTransformationComponent,
         DataQueryBuilderComponent,
