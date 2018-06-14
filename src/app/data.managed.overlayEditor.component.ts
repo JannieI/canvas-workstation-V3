@@ -32,13 +32,13 @@ import { DataQualityIssue }           from './models';
 
 
 @Component({
-    selector: 'data-overlayEditor',
-    templateUrl: './data.overlayEditor.component.html',
-    styleUrls:  ['./data.overlayEditor.component.css']
+    selector: 'data-managedOverlayEditor',
+    templateUrl: './data.managed.overlayEditor.component.html',
+    styleUrls:  ['./data.managed.overlayEditor.component.css']
 })
-export class DataOverlayEditorComponent implements OnInit {
+export class DataManagedOverlayEditorComponent implements OnInit {
 
-    @Output() formDataOverlayEditorClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formDataManagedOverlayEditorClosed: EventEmitter<string> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
@@ -168,7 +168,7 @@ export class DataOverlayEditorComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-        this.formDataOverlayEditorClosed.emit(action);
+        this.formDataManagedOverlayEditorClosed.emit(action);
 
     }
 

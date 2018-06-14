@@ -374,7 +374,7 @@ export class AppComponent implements OnInit {
     showModalDataUsage: boolean = false;
     showModalDataManagedQueryBuilder: boolean = false;
     showModalDataManagedSQLEditor: boolean = false;
-    showModalDataOverlayEditor: boolean = false;
+    showModalDataManagedOverlayEditor: boolean = false;
     showModalDataTransformation: boolean = false;
     showModalDataEditDatasource: boolean = false;
     showModalDataConnection: boolean = false;
@@ -1240,13 +1240,13 @@ export class AppComponent implements OnInit {
         this.showModalDataManagedSQLEditor = false;
     }
     
-    handleCloseDataOverlayEditor(action: string) {
+    handleCloseDataManagedOverlayEditor(action: string) {
         // Handle Close of Overlay Editor
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataOverlayEditor', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataManagedOverlayEditor', '@Start');
 
         this.menuOptionClickPostAction();
 
-        this.showModalDataOverlayEditor = false;
+        this.showModalDataManagedOverlayEditor = false;
     }
         
     handleCloseDataTransformation(action: string) {
@@ -2780,13 +2780,13 @@ export class AppComponent implements OnInit {
         this.showModalDataManagedSQLEditor = true;
     }
     
-    clickMenuDataOverlayEditor() {
+    clickMenuDataManagedOverlayEditor() {
         // Overlay Editor
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataOverlayEditor', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataManagedOverlayEditor', '@Start');
 
         this.menuOptionClickPreAction();
 
-        this.showModalDataOverlayEditor = true;
+        this.showModalDataManagedOverlayEditor = true;
     }
     
     clickMenuDataTransformation() {

@@ -459,7 +459,7 @@
                                     <button
                                         type="button"
                                         clrDropdownItem
-                                        (click)="clickMenuDataOverlayEditor()"
+                                        (click)="clickMenuDataManagedOverlayEditor()"
                                         title="Create a new Datasources using the Overlay Editor"
                                         >
                                         New Overlay Editor
@@ -467,7 +467,7 @@
                                     <button
                                         type="button"
                                         clrDropdownItem
-                                        (click)="clickMenuDataFromFile(1)"
+                                        (click)="clickMenuDataManagedNoSQLEditor(1)"
                                         title="Create a new Datasources using the NoSQL query Editor"
                                         >
                                         New NoSQL Editor
@@ -3989,11 +3989,11 @@
 </data-managedSqlEditor>
 
 
-<!-- Modal: Data Overlay Editor -->
-<data-overlayEditor
-    *ngIf="showModalDataOverlayEditor"
-    (formDataOverlayEditorClosed)="handleCloseDataOverlayEditor($event)">Load Overlay Editor ...
-</data-overlayEditor>
+<!-- Modal: Data Managed Overlay Editor -->
+<data-managedOverlayEditor
+    *ngIf="showModalDataManagedOverlayEditor"
+    (formDataManagedOverlayEditorClosed)="handleCloseDataManagedOverlayEditor($event)">Load Managed Overlay Editor ...
+</data-managedOverlayEditor>
 
 
 <!-- Modal: Data Transformation -->
