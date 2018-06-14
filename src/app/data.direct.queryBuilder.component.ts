@@ -466,20 +466,12 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         }
 
     }
-
-    clickViewFields(area: string) {
-        // Show fields area
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickViewFields', '@Start');
-
-    }
-
-
-
     
     filterFields(tableID: number) {
         // Filter Fields on Selected Connection
         this.globalFunctionService.printToConsole(this.constructor.name,'filterFields', '@Start');
 
+        console.warn('xx id', tableID)
         this.dataFieldsFiltered = this.dataFields.filter(df => {
             if (df.tableID == tableID) {
                 return df;
@@ -540,8 +532,6 @@ export class DataDirectQueryBuilderComponent implements OnInit {
             }
         }
 
-    
-
         this.globalVariableService.getTriburaryData(data).then(res => {
             console.warn('xx res', res, this.selectedDatasource)
         });
@@ -560,10 +550,10 @@ export class DataDirectQueryBuilderComponent implements OnInit {
 
         // Select the Tables, Fields
         if (this.dataTables.length > 0) {
-            this.clickConnectionSelect(this.dataConnections[0].connectionName);
+            this.filterFields(this.dataTables[0].id);
 
         } else {
-            this.clickConnectionSelect('');
+            this.filterFields(-1);
         };
     }
 }
