@@ -72,7 +72,7 @@ import { SlicerDeleteComponent }      from './slicer.delete.component';
 import { ShapeEditComponent }         from './shape.editor.component';
 import { ShapeDeleteComponent }       from './shape.delete.component';
 
-import { DataFileDatasourceComponent }      from './data.fileDatasource.component';
+import { DataDirectFileComponent }    from './data.direct.file.component';
 import { DataSQLDatasourceComponent } from './data.sqlDatasource.component';
 import { DataNoSQLDatasourceComponent }     from './data.NosqlDatasource.component';
 import { DataConnectionComponent }    from './data.connection.component';
@@ -163,7 +163,7 @@ import { StatusbarComponent }         from './statusbar.component';
         DashboardDataQualityComponent,
         DashboardUsagestatsComponent,
 
-        DataFileDatasourceComponent,
+        DataDirectFileComponent,
         DataSQLDatasourceComponent,
         DataNoSQLDatasourceComponent,
         DataPopupComponent,

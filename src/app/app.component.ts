@@ -367,7 +367,7 @@ export class AppComponent implements OnInit {
     showModalWidgetExport: boolean = false;
     showModalWidgetDelete: boolean = false;
     showModalDashboardPrint: boolean = false;
-    showModalDataFileDatasource: boolean = false;
+    showModalDataDirectFile: boolean = false;
     showModalDataSQLDatasource: boolean = false;
     showModalDataNoSQLDatasource: boolean = false;
     showModalDataOverview: boolean = false;
@@ -1163,13 +1163,13 @@ export class AppComponent implements OnInit {
         this.showModalWidgetDescription = false;
     }
 
-    handleCloseDataFileDatasource(action: string) {
+    handleCloseDataDirectFile(action: string) {
         // Handle close of Datasource Overview
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataFileDatasource', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDirectFile', '@Start');
 
         this.menuOptionClickPostAction();
 
-        this.showModalDataFileDatasource = false;
+        this.showModalDataDirectFile = false;
     }
 
     handleCloseDataSQLDatasource(action: string) {
@@ -2829,9 +2829,9 @@ export class AppComponent implements OnInit {
         this.showModalDataUsage = true;
     }
 
-    clickMenuDataFileDatasource() {
+    clickMenuDataDirectFile() {
         // Open DATA form for a DS that comes from a file.
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataFileDatasource', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDirectFile', '@Start');
 
         // Has to be in editMode
         // if (!this.editMode) {
@@ -2847,7 +2847,7 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
-        this.showModalDataFileDatasource = true;
+        this.showModalDataDirectFile = true;
     }
 
     clickMenuDataSQLDatasource() {

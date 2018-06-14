@@ -23,13 +23,13 @@ import { load } from 'datalib';
 
 
 @Component({
-    selector: 'data-fileDatasource',
-    templateUrl: './data.fileDatasource.component.html',
-    styleUrls:  ['./data.fileDatasource.component.css']
+    selector: 'data-direct-file',
+    templateUrl: './data.direct.file.component.html',
+    styleUrls:  ['./data.direct.file.component.css']
 })
-export class DataFileDatasourceComponent implements OnInit {
+export class DataDirectFileComponent implements OnInit {
 
-    @Output() formDataFileDatasourceClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formDataDirectFileClosed: EventEmitter<string> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
@@ -256,7 +256,7 @@ export class DataFileDatasourceComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-        this.formDataFileDatasourceClosed.emit(action);
+        this.formDataDirectFileClosed.emit(action);
 
     }
 
