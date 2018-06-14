@@ -368,7 +368,7 @@ export class AppComponent implements OnInit {
     showModalWidgetDelete: boolean = false;
     showModalDashboardPrint: boolean = false;
     showModalDataDirectFile: boolean = false;
-    showModalDataSQLDatasource: boolean = false;
+    showModalDataDirectSQLEditor: boolean = false;
     showModalDataDirectNoSQL: boolean = false;
     showModalDataOverview: boolean = false;
     showModalDataUsage: boolean = false;
@@ -1165,7 +1165,7 @@ export class AppComponent implements OnInit {
     }
 
     handleCloseDataDirectFile(action: string) {
-        // Handle close of Datasource Overview
+        // Handle close of Direct File load
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDirectFile', '@Start');
 
         this.menuOptionClickPostAction();
@@ -1173,17 +1173,17 @@ export class AppComponent implements OnInit {
         this.showModalDataDirectFile = false;
     }
 
-    handleCloseDataSQLDatasource(action: string) {
-        // Handle close of Datasource Overview
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataSQLDatasource', '@Start');
+    handleCloseDataDirectSQLEditor(action: string) {
+        // Handle close of Direct SQL Editor
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDirectSQLEditor', '@Start');
 
         this.menuOptionClickPostAction();
 
-        this.showModalDataSQLDatasource = false;
+        this.showModalDataDirectSQLEditor = false;
     }
 
     handleCloseDataDirectNoSQL(action: string) {
-        // Handle close of Datasource Overview
+        // Handle close of Direct NoSQL Editor
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDirectNoSQL', '@Start');
 
         this.menuOptionClickPostAction();
@@ -2887,7 +2887,7 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
-        this.showModalDataSQLDatasource = true;
+        this.showModalDataDirectSQLEditor = true;
     }
 
     clickMenuDataDirectNoSQL() {
