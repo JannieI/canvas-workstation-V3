@@ -465,25 +465,6 @@ export class DataDirectQueryBuilderComponent implements OnInit {
                             
             };
         }
-        this.globalVariableService.getDataConnections().then(dc => {
-            this.globalVariableService.getDataTable().then(dt => {
-                this.globalVariableService.getDataField().then(df => {
-
-                    // Get local Vars
-                    this.dataConnections = dc.slice();
-                    this.dataTables = dt.slice();
-                    this.dataFields = df.slice();
-
-                    // Select the Tables, Fields
-                    if (this.dataConnections.length > 0) {
-                        this.clickConnectionSelect(this.dataConnections[0].connectionName);
-
-                    } else {
-                        this.clickConnectionSelect('');
-                    };
-                });
-            });
-        });
 
     }
 
@@ -493,27 +474,6 @@ export class DataDirectQueryBuilderComponent implements OnInit {
 
     }
 
-    clickConnectionSelect(ev: any) {
-        // Refresh the Tables and Fields for the selected Connection
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickConnectionSelect', '@Start');
-
-        console.warn('xx ev', ev, this.connectionName)
-
-        // Fill list of Tables for first Connection
-        if (this.connectionName != '') {
-            this.filterTables(this.connectionName);
-        } else {
-            this.filterTables('');
-        };
-
-        // Fill list of Fields for first Table
-        if (this.dataTablesFiltered.length > 0) {
-            this.filterFields(this.dataTablesFiltered[0].id);
-        } else {
-            this.filterFields(-1);
-        };
-
-    }
 
     filterTables(connectNameToFilter: string) {
         // Filter Tables on Selected Connection
@@ -617,6 +577,14 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         // TODO - remove hardcoding once received from DB
         this.dataTables = constDataTables;
         this.dataFields = constDataFields;
+
+        // Select the Tables, Fields
+        if (this.dataTables.length > 0) {
+            this.clickConnectionSelect(this.dataConnections[0].connectionName);
+
+        } else {
+            this.clickConnectionSelect('');
+        };
     }
 }
 
