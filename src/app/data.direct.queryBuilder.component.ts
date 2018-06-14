@@ -218,7 +218,6 @@ export class DataDirectQueryBuilderComponent implements OnInit {
 
     dataConnections: DataConnection[] = [];
     dataTables: DataTable[] = [];
-    dataTablesFiltered: DataTable[] = [];
     dataFields: DataField[] = [];
     dataFieldsFiltered: DataField[] = [];
     errorMessage: string = "";
@@ -475,26 +474,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
     }
 
 
-    filterTables(connectNameToFilter: string) {
-        // Filter Tables on Selected Connection
-        this.globalFunctionService.printToConsole(this.constructor.name,'filterTables', '@Start');
 
-        let connectionIndex: number = this.dataConnections.findIndex(dt =>
-            dt.connectionName == connectNameToFilter
-        );
-        let connectionID: number = -1;
-        if (connectionIndex >= 0) {
-            connectionID = this.dataConnections[connectionIndex].id;
-        };
-
-        console.warn('xx conn', connectionID, connectNameToFilter, connectionIndex)
-        this.dataTablesFiltered = this.dataTables.filter(dt => {
-            if (dt.connectionID == connectionID) {
-                return dt;
-            };
-        });
-
-    }
     
     filterFields(tableID: number) {
         // Filter Fields on Selected Connection
