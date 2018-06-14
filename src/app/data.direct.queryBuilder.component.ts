@@ -235,6 +235,46 @@ export class DataDirectQueryBuilderComponent implements OnInit {
 
     }
     
+    clickGetData() {
+        // Get the data
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTransformation', '@Start');
+        let data = 
+        {
+            "source": {
+                "connector": "tributary.connectors.sql:SqlConnector",
+                "drivername": "postgres",
+                "username": "ftfhgfzh",
+                "password": "L0Eph9ftbx0yh45aeDtgzsGKBa2ZNhfl",
+                "database": "ftfhgfzh",
+                "host": "pellefant.db.elephantsql.com",
+                "port": 5432,
+                "query": "select I.\"InvoiceDate\" as \"Date\", sum(I.\"Total\") as \"Amount\" from invoices I group by I.\"InvoiceDate\""
+            }
+        }
+
+        let url: string = 'https://eazl-rest.xyz/eazl/canvas/enqueue/';
+
+        this.globalVariableService.http.post('http://localhost:3000/' + url, data, {headers})
+            .subscribe(
+                data => {
+
+                    // Clear all related info
+                    this.clearDashboardInfo();
+
+                    // Update Global vars to make sure they remain in sync
+                    this.dashboards.push(JSON.parse(JSON.stringify(data)));
+                    this.currentDashboards.push(JSON.parse(JSON.stringify(data)));
+
+                    console.log('addDashboard ADDED', data, this.dashboards)
+
+                    resolve(data);
+                },
+                err => {
+                    console.log('Error addDashboard FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+    }
 }
 
 

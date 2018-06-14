@@ -940,6 +940,43 @@ export class GlobalVariableService {
 
     }
 
+    getTriburaryData(data: any): Promise<any> {
+        // Description: Gets data from the Tributary Server
+        // Returns: Added Data or error message
+        console.log('%c    Global-Variables getTriburaryData ...',
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", data.id);
+
+        let url: string = 'dashboards';
+        this.filePath = './assets/data.dashboards.json';
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.post('http://localhost:3000/' + url, data, {headers})
+            .subscribe(
+                data => {
+
+                    // Clear all related info
+                    this.clearDashboardInfo();
+
+                    // Update Global vars to make sure they remain in sync
+                    this.dashboards.push(JSON.parse(JSON.stringify(data)));
+                    this.currentDashboards.push(JSON.parse(JSON.stringify(data)));
+
+                    console.log('addDashboard ADDED', data, this.dashboards)
+
+                    resolve(data);
+                },
+                err => {
+                    console.log('Error addDashboard FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+        });
+    }
+
     getDashboards(params: string = ''): Promise<Dashboard[]> {
         // Description: Gets all D
         // Returns: this.dashboards array, unless:
