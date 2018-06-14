@@ -32,9 +32,9 @@ import { DataQualityIssue }           from './models';
 
 
 @Component({
-    selector: 'data-managedNoSqlEditor',
-    templateUrl: './data.managed.noSqlEditor.component.html',
-    styleUrls:  ['./data.managed.noSqlEditor.component.css']
+    selector: 'data-direct-Nosql', 
+    templateUrl: './data.direct.Nosql.component.html',
+    styleUrls:  ['./data.direct.Nosql.component.css']
 })
 export class DataDirectNoSQLComponent implements OnInit {
 

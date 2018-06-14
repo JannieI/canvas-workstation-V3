@@ -32,11 +32,11 @@ import { DataQualityIssue }           from './models';
 
  
 @Component({
-    selector: 'data-direct-Nosql',
+    selector: 'data-direct-sqlEditor',
     templateUrl: './data.direct.sqlEditor.component.html',
     styleUrls:  ['./data.direct.sqlEditor.component.css']
 })
-export class DataDirectSQLEditorComponent implements OnInit {
+export class DataDirectSQLEditorComponent implements OnInit { 
 
     @Output() formDataDirectSQLEditorClosed: EventEmitter<string> = new EventEmitter();
 

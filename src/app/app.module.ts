@@ -73,6 +73,7 @@ import { ShapeEditComponent }         from './shape.editor.component';
 import { ShapeDeleteComponent }       from './shape.delete.component';
 
 import { DataDirectFileComponent }    from './data.direct.file.component';
+import { DataDirectQueryBuilderComponent }  from './data.direct.queryBuilder.component';
 import { DataDirectNoSQLComponent }   from './data.direct.Nosql.component';
 import { DataDirectSQLEditorComponent }      from './data.direct.sqlEditor.component';
 
@@ -167,6 +168,7 @@ import { StatusbarComponent }         from './statusbar.component';
         DashboardUsagestatsComponent,
 
         DataDirectFileComponent,
+        DataDirectQueryBuilderComponent,
         DataDirectSQLEditorComponent,
         DataDirectNoSQLComponent,
         DataPopupComponent,
