@@ -433,7 +433,7 @@
                                         class="btn btn-link btn-sm"
                                         clrDropdownItem
                                         title="Manage Data Connections (to Databases, used in Datasources)"
-                                        (click)="clickMenuDataConnection()"
+                                        (click)="clickMenuDataManagedConnection()"
                                         >
                                         Connections
                                     </button>
@@ -4016,8 +4016,8 @@
 
 <!-- Modal: Data Connection -->
 <data-connection
-    *ngIf="showModalDataConnection"
-    (formDataConnectionClosed)="handleCloseDataConnection($event)">Load Data Connection ...
+    *ngIf="showModalDataManagedConnection"
+    (formDataManagedConnectionClosed)="handleCloseDataManagedConnection($event)">Load Data Connection ...
 </data-connection>
 
 

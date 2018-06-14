@@ -75,7 +75,7 @@ import { ShapeDeleteComponent }       from './shape.delete.component';
 import { DataDirectFileComponent }    from './data.direct.file.component';
 import { DataSQLDatasourceComponent } from './data.sqlDatasource.component';
 import { DataNoSQLDatasourceComponent }     from './data.NosqlDatasource.component';
-import { DataConnectionComponent }    from './data.connection.component';
+import { DataManagedConnectionComponent }    from './data.managed.connection.component';
 import { DataManagedSQLEditorComponent }    from './data.managed.sqlEditor.component';
 import { DataManagedOverlayEditorComponent } from './data.managed.overlayEditor.component';
 import { DataTransformationComponent }      from './data.transformation.component';
@@ -167,7 +167,7 @@ import { StatusbarComponent }         from './statusbar.component';
         DataSQLDatasourceComponent,
         DataNoSQLDatasourceComponent,
         DataPopupComponent,
-        DataConnectionComponent,
+        DataManagedConnectionComponent,
         DataManagedSQLEditorComponent,
         DataManagedOverlayEditorComponent,
         DataTransformationComponent,

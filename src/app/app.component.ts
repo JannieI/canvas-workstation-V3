@@ -377,7 +377,7 @@ export class AppComponent implements OnInit {
     showModalDataManagedOverlayEditor: boolean = false;
     showModalDataTransformation: boolean = false;
     showModalDataEditDatasource: boolean = false;
-    showModalDataConnection: boolean = false;
+    showModalDataManagedConnection: boolean = false;
     showModalData: boolean = false;
     showModalSlicerEditor: boolean = false;
     showModalWidgetTablist: boolean = false;
@@ -1208,13 +1208,13 @@ export class AppComponent implements OnInit {
         this.showModalDataUsage = false;
     }
         
-    handleCloseDataConnection(action: string) {
+    handleCloseDataManagedConnection(action: string) {
         // Handle Close of SQL Query Builder
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataConnection', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataManagedConnection', '@Start');
 
         this.menuOptionClickPostAction();
 
-        this.showModalDataConnection = false;
+        this.showModalDataManagedConnection = false;
     }
 
     handleCloseDataManagedQueryBuilder(action: string) {
@@ -2753,13 +2753,13 @@ export class AppComponent implements OnInit {
 
     // ***********************  CLICK DATA MENU OPTIONS ************************ //
    
-    clickMenuDataConnection() {
+    clickMenuDataManagedConnection() {
         // SQL Query Builder, constructed by selecting Table and Fields
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataConnection', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataManagedConnection', '@Start');
 
         this.menuOptionClickPreAction();
 
-        this.showModalDataConnection = true;
+        this.showModalDataManagedConnection = true;
     }
 
     clickMenuDataManagedQueryBuilder() {
