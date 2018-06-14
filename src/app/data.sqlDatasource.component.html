@@ -7,129 +7,155 @@
                     </button>
                     <div class="gridOverall">
                         <div class="gridTitle">
-                            Data from File:
+                            Data from SQL Database:
                         </div>
                         <div class="gridSubTitle">
                             Select file from which to create a new Datasource.
                         </div>
     
-                        <div class="gridFolderTitle">
-                            Folder:
-                        </div>
-                        <div class="gridFolder">
-                            <input type="text" [(ngModel)]="folderName"
-                                placeholder="./assets/vega-datasets/"
-                                class="selectFile"
-                                >
-                        </div>
-    
-                        <div class="gridFileNameTitle">
-                            Filename:
-                        </div>
-                        <div class="gridFileName">
-                            <input type="text" [(ngModel)]="fileName"
-                                placeholder="stocks.csv"
-                                class="selectFile"
-                                >
-                        </div>
-    
-                        <div class="gridButtonBrowse">
-                            <button
-                                type="button"
-                                class="btn btn-secondary"
-                                (click)="clickFileBrowse()"
-                                >
-                                Browse
-                            </button>
-                        </div>
-    
-                        <div class="gridExcelTitle">
-                            Excel Worksheet:
-                        </div>
-                        <div class="gridExcel">
-                            <div class="select">
-                                <select id="selects_3" class="selectBox">
-                                    <option>New York</option>
-                                    <option>San Francisco</option>
-                                    <option>Austin</option>
-                                    <option>Paris</option>
-                                    <option>Seattle</option>
-                                </select>
-                            </div>
-                        </div>
-    
-                        <div class="gridTransposeTitle">
-                            Transpose:
-                        </div>
-                        <div class="gridTranspose">
-                            <span class="checkbox-inline">
-                                <input type="checkbox" id="checkrads_5">
-                            </span>
-                        </div>
-    
-                        <div class="gridStartatTitle">
-                            Start at:
-                        </div>
-                        <div class="gridStartat">
-                            <input type="text" id="formFields_7" placeholder="Start on line nr">
-                        </div>
                         <div class="gridDatasourceNameTitle">
-                            Name:
+                            <b>Name:</b>
                         </div>
                         <div class="gridDatasourceName">
-                            <input type="text" 
-                                id="formFields_7"
-                                > 
-                                {{ existingDSName }}
+                            <input [(ngModel)]="datasourceName"
+                                type="text"
+                                name="connectionName"
+                                title="Name of the Datasource"
+                                >
                         </div>
     
-                        <div class="gridDatasourceDescriptionTitle">
-                            Description:
+                        <div class="gridServerTypeTitle">
+                            <b>Type:</b>
                         </div>
-                        <div class="gridDatasourceDescription">
-                            <input type="text" 
-                                id="formFields_7"
-                                > 
+                        <div class="gridServerType">
+                            {{ serverType }} 
                         </div>
-        
-                        <div class="gridButtonPreview">
-                            <button
-                                type="button"
-                                class="btn btn-secondary selectButton"
-                                (click)="clickDSPreview()"
+    
+                        <div class="gridServerNameTitle">
+                            <b>Server:</b>
+                        </div>
+                        <div class="gridServerName">
+                            {{ serverName }}
+                        </div>
+    
+                        <div class="gridServerPortTitle">
+                            <b>Port:</b>
+                        </div>
+                        <div class="gridServerPort">
+                            {{ serverPort }}
+                        </div>
+    
+                        <div class="gridUsernameTitle">
+                            <b>Username:</b>
+                        </div>
+                        <div class="gridUsername">
+                            <input [(ngModel)]="usernameTitle"
+                                type="text"
+                                name="usernameTitle"
+                                title="Name of the connection"
                                 >
-                                Preview
+                        </div>
+    
+                        <div class="gridPasswordTitle">
+                            <b>Password:</b>
+                        </div>
+                        <div class="gridPassword">
+                            <input [(ngModel)]="password"
+                                type="password"
+                                name="password"
+                                title="User Password"
+                                >
+                        </div>
+    
+                        <div class="gridAuthenticationTitle">
+                            <b>Authentication:</b>
+                        </div>
+                        <div class="gridAuthentication">
+                            {{ authentication }}
+                        </div>
+    
+                        <div class="gridDescriptionTitle">
+                            <b>Description:</b>
+                        </div>
+                        <div class="gridDescription">
+                            {{ description }}
+                        </div>
+    
+
+                        <div class="gridTables">
+                            <clr-datagrid>
+                                <clr-dg-placeholder>
+                                    No records ...
+                                </clr-dg-placeholder>
+    
+                                <clr-dg-column class="widthTn" [clrDgField]="nameDB">Name</clr-dg-column>
+                                <clr-dg-column class="widthTn" [clrDgField]="nameLocal">Local Name</clr-dg-column>
+                                <clr-dg-column class="widthTd" [clrDgField]="businessGlossary">Business Glossary</clr-dg-column>
+                                <clr-dg-column class="widthTd" [clrDgField]="id">ID</clr-dg-column>
+    
+                                <clr-dg-row
+                                    *ngFor="let row of dataTablesFiltered; let i = index"
+                                    [style.background-color]="(i == selectedTableRowIndex)? '#123456' : 'white'"
+                                    [style.color]="(i == selectedTableRowIndex)? 'white' : 'gray'"
+                                    (click)="clickSelectedDataTable(i, row.id)"
+                                    >
+                                    <clr-dg-cell>{{ row.nameDB }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.nameLocal }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.businessGlossary }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.id }}</clr-dg-cell>
+    
+                                </clr-dg-row>
+                            </clr-datagrid>
+                        </div>
+    
+                        <div class="gridFields">
+                            <clr-datagrid [(clrDgSelected)]="selectedFields">
+                                <clr-dg-placeholder>
+                                    No records ...
+                                </clr-dg-placeholder>
+    
+                                <clr-dg-column [clrDgField]="nameDB">name (DB)</clr-dg-column>
+                                <clr-dg-column [clrDgField]="nameLocal">name (Local)</clr-dg-column>
+                                <clr-dg-column [clrDgField]="type">type</clr-dg-column>
+                                <clr-dg-column [clrDgField]="format">format</clr-dg-column>
+                                <clr-dg-column [clrDgField]="businessGlossary">businessGlossary</clr-dg-column>
+    
+                                <clr-dg-row
+                                    *clrDgItems="let row of dataFieldsFiltered; let i = index" [clrDgItem]="row"
+                                    [style.background-color]="(i == selectedFieldRowIndex)? '#123456' : 'white'"
+                                    [style.color]="(i == selectedFieldRowIndex)? 'white' : 'gray'"
+                                    (click)="clickSelectedDatafield(i, row.id)"
+                                    >
+                                    <clr-dg-cell>{{ row.nameDB }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.nameLocal }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.type }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.format }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.businessGlossary }}</clr-dg-cell>
+    
+                                </clr-dg-row>
+                            </clr-datagrid>
+                        </div>
+    
+                        <div class="gridButtonCancel">
+                                <button
+                                type="button"
+                                class="btn btn-secondary"
+                                (click)="clickClose('Close')"
+                                >
+                                Cancel
                             </button>
                         </div>
-                        <div class="gridButtonAdd">
+    
+                        <div class="gridButtonSave">
                             <button
                                 type="button"
                                 class="btn btn-primary"
-                                (click)="clickDSAdd('Add')"
+                                (click)="clickSave('Saved')"
                                 >
-                                Add
+                                Save
                             </button>
                         </div>
-    
-                        <div class="gridPreviewTable">
-                            <clr-datagrid>
-    
-                                <clr-dg-column *ngFor="let row of dataFieldNames">{{row}}</clr-dg-column>
-                                <clr-dg-row *ngFor="let row of currentData">
-    
-                                    <clr-dg-cell *ngFor="let col of dataFieldNames; let i = index">
-                                            {{ row[col] }}
-                                    </clr-dg-cell>
-                                </clr-dg-row>
-    
-                                <clr-dg-footer>
-                                    {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
-                                    of {{pagination.totalItems}} rows
-                                    <clr-dg-pagination #pagination [clrDgPageSize]="10"></clr-dg-pagination>
-                                </clr-dg-footer>
-    
-                            </clr-datagrid>
-                        </div>
+        
                         <div class="errorMessage">
                             {{ errorMessage }}
                         </div>

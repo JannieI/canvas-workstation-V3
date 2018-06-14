@@ -50,154 +50,188 @@
         text-align: left;
     }
 
-    .gridFolderTitle {
-        grid-column-start: 1;
-        grid-column-end: 2;
-        grid-row-start: 3;
-        grid-row-end: 4;
-        margin: 2px 2px 2px 2px;
-        text-align: left;
-    }
-    .gridFolder {
-        grid-column-start: 2;
-        grid-column-end: 7;
-        grid-row-start: 3;
-        grid-row-end: 4;
-        margin: 2px 2px 2px 2px;
-        text-align: left;
-    }
-
-    .gridFileNameTitle {
-        grid-column-start: 7;
-        grid-column-end: 9;
-        grid-row-start: 3;
-        grid-row-end: 4;
-        margin: 2px 2px 2px 2px;
-        text-align: left;
-    }
-    .gridFileName {
-        grid-column-start: 9;
-        grid-column-end: 14;
-        grid-row-start: 3;
-        grid-row-end: 4;
-        margin: 2px 2px 2px 2px;
-        text-align: left;
-    }
-
-    .gridButtonBrowse {
-        grid-column-start: 14;
-        grid-column-end: 16;
-        grid-row-start: 2;
-        grid-row-end: 3;
-        margin: 2px 2px 2px 2px;
-        text-align: left;
-    }
-
-    .gridExcelTitle {
-        grid-column-start: 1;
-        grid-column-end: 3;
-        grid-row-start: 5;
-        grid-row-end: 6;
-        margin: 2px 2px 2px 2px;
-        text-align: left;
-    }
-    .gridExcel {
-        grid-column-start: 3;
-        grid-column-end: 7;
-        grid-row-start: 5;
-        grid-row-end: 6;
-        margin: 2px 2px 2px 2px;
-        text-align: left;
-    }
-
-    .gridTransposeTitle {
-        grid-column-start: 7;
-        grid-column-end: 8;
-        grid-row-start: 5;
-        grid-row-end: 6;
-        margin: 2px 2px 2px 2px;
-        text-align: left;
-    }
-    .gridTranspose {
-        grid-column-start: 8;
-        grid-column-end: 14;
-        grid-row-start: 5;
-        grid-row-end: 6;
-        margin: 2px 2px 2px 2px;
-        text-align: left;
-    }
-
-    .gridStartatTitle {
-        grid-column-start: 14;
-        grid-column-end: 16;
-        grid-row-start: 5;
-        grid-row-end: 6;
-        margin: 2px 2px 2px 2px;
-        text-align: left;
-    }
-    .gridStartat {
-        grid-column-start: 15;
-        grid-column-end: 21;
-        grid-row-start: 5;
-        grid-row-end: 6;
-        margin: 2px 2px 2px 6px;
-        text-align: left;
-    }
-
     .gridDatasourceNameTitle {
         grid-column-start: 1;
         grid-column-end: 2;
-        grid-row-start: 7;
-        grid-row-end: 8;
-        margin: 2px 2px 2px 2px;
-        text-align: left;
+        grid-row-start: 4;
+        grid-row-end: 5;
     }
     .gridDatasourceName {
         grid-column-start: 2;
         grid-column-end: 7;
-        grid-row-start: 7;
-        grid-row-end: 8;
-        margin: 2px 2px 2px 2px;
-        text-align: left;
+        grid-row-start: 4;
+        grid-row-end: 5;
     }
-
-    .gridDatasourceDescriptionTitle {
+    
+    .gridServerTypeTitle {
         grid-column-start: 7;
-        grid-column-end: 8;
-        grid-row-start: 7;
-        grid-row-end: 8;
-        margin: 2px 2px 2px 2px;
-        text-align: left;
+        grid-column-end: 9;
+        grid-row-start: 4;
+        grid-row-end: 5;
     }
-    .gridDatasourceDescription {
-        grid-column-start: 8;
-        grid-column-end: 21;
-        grid-row-start: 7;
-        grid-row-end: 8;
-        margin: 2px 2px 2px 2px;
-        text-align: left;
+    .gridServerType {
+        grid-column-start: 9;
+        grid-column-end: 13;
+        grid-row-start: 4;
+        grid-row-end: 5;
     }
-
-    .gridButtonPreview {
-        grid-column-start: 2;
-        grid-column-end: 4;
-        grid-row-start: 9;
-        grid-row-end: 10;
-        text-align: left;
+     
+    .gridServerNameTitle {
+        grid-column-start: 14;
+        grid-column-end: 15;
+        grid-row-start: 4;
+        grid-row-end: 5;
     }
-    .gridButtonAdd {
-        grid-column-start: 5;
-        grid-column-end: 7;
-        grid-row-start: 9;
-        grid-row-end: 10;
-        text-align: left;
+    .gridServerName {
+        grid-column-start: 15;
+        grid-column-end: 20;
+        grid-row-start: 4;
+        grid-row-end: 5;
     }
 
-    .gridPreviewTable {
+    .gridServerPortTitle {
         grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 6;
+        grid-row-end: 7;
+        margin-top: 5px;
+    }
+    .gridServerPort {
+        grid-column-start: 2;
+        grid-column-end: 7;
+        grid-row-start: 6;
+        grid-row-end: 7;
+        margin-top: 5px;
+    }
+
+    .gridUsernameTitle {
+        grid-column-start: 7;
+        grid-column-end: 9;
+        grid-row-start: 6;
+        grid-row-end: 7;
+        margin-top: 5px;
+    }
+    .gridUsername {
+        grid-column-start: 9;
+        grid-column-end: 14;
+        grid-row-start: 6;
+        grid-row-end: 7;
+    }
+
+    .gridPasswordTitle {
+        grid-column-start: 14;
+        grid-column-end: 15;
+        grid-row-start: 6;
+        grid-row-end: 7;
+        margin-top: 5px;
+    }
+    .gridPassword {
+        grid-column-start: 15;
         grid-column-end: 21;
-        grid-row-start: 11;
-        grid-row-end: 21;
-        margin: 2px 2px 2px 2px;
+        grid-row-start: 6;
+        grid-row-end: 7;
+    }
+
+    .gridAuthenticationTitle {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 8;
+        grid-row-end: 9;
+        margin-top: 5px;
+    }
+    .gridAuthentication {
+        grid-column-start: 3;
+        grid-column-end: 7;
+        grid-row-start: 8;
+        grid-row-end: 9;
+        margin: 5px 0 0 12px;
+    }
+
+    .gridDescriptionTitle {
+        grid-column-start: 7;
+        grid-column-end: 9;
+        grid-row-start: 8;
+        grid-row-end: 9;
+        margin-top: 5px;
+    }
+    .gridDescription {
+        grid-column-start: 9;
+        grid-column-end: 18;
+        grid-row-start: 8;
+        grid-row-end: 9;
+        margin-top: 5px;
+    }
+
+ 
+    .gridTables {
+        border: 1px solid gray;
+        border-radius: 4px;
+        grid-column-start: 1;
+        grid-column-end: 6;
+        grid-row-start: 10;
+        grid-row-end: 25;
+        overflow-y: scroll;
+        width: 100%;
+    }
+
+        .datagrid {
+            margin: 0px !important;
+            margin-top: 0px !important;
+            padding: 0 !important;
+        }
+
+        .datagrid-cell {
+            font-size: 0.45rem !important;
+            height: 0.8rem !important;
+            margin: 2px !important;
+            overflow: hidden;
+            padding: 0 0 0 6px !important;
+            text-align: left;
+            text-overflow: ellipsis;
+        }
+
+        .dsCheckbox {
+            margin: 4px 0 0 0 !important;    
+        }
+
+        .dsName {
+            display: inline-block;
+            margin: -3px 0 0 0 !important;    
+            padding: 0 0 5px 0 !important;    
+        }
+
+        .widthTn {
+            width: 150px;
+            min-width: 30%;
+        }
+        .widthTd {
+            width: 200px;
+            min-width: 30%;
+        }
+
+    .gridFields {
+        border: 1px solid gray;
+        border-radius: 4px;
+        grid-column-start: 7;
+        grid-column-end: 21;
+        grid-row-start: 10;
+        grid-row-end: 25;
+        overflow-y: scroll;
+        width: 100%;
+    }
+ 
+    .gridButtonCancel {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 26;
+        grid-row-end: 27;
+        text-align: left;
+    }
+    
+    .gridButtonSave {
+        grid-column-start: 3;
+        grid-column-end: 5;
+        grid-row-start: 26;
+        grid-row-end: 27;
         text-align: left;
     }
