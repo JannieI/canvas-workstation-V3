@@ -300,6 +300,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
     dataTables: DataTable[] = [];
     dataFields: DataField[] = [];
     dataFieldsFiltered: DataField[] = [];
+    dataFieldsSelected: string[];
     errorMessage: string = "";
     selectedTableID: number;
     selectedFieldRowIndex: number = 0;
@@ -401,7 +402,8 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         // Set seletected index - used for highlighting row
         this.selectedFieldRowIndex = index;
 
-        console.warn('xx selectedFields', this.selectedFields)
+        this.dataFieldsSelected = this.selectedFields.map(f => f.nameDB);
+        console.warn('xx selectedFields', this.selectedFields, this.dataFieldsSelected)
     }
 
     clickClose(action: string) {
