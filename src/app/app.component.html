@@ -3989,6 +3989,13 @@
 </data-managedSqlEditor>
 
 
+<!-- Modal: Data Managed NoSQL Editor -->
+<data-managedNoSqlEditor
+    *ngIf="showModalDataManagedSQLEditor"
+    (formDataManagedNoSQLEditorClosed)="handleCloseDataManagedSQLEditor($event)">Load Managed NoSQL Editor ...
+</data-managedNoSqlEditor>
+
+
 <!-- Modal: Data Managed Overlay Editor -->
 <data-managedOverlayEditor
     *ngIf="showModalDataManagedOverlayEditor"
@@ -4014,11 +4021,11 @@
 </data-editDatasource>
 
 
-<!-- Modal: Data Connection -->
-<data-connection
+<!-- Modal: Data Managed Connection -->
+<data-managed-connection
     *ngIf="showModalDataManagedConnection"
-    (formDataManagedConnectionClosed)="handleCloseDataManagedConnection($event)">Load Data Connection ...
-</data-connection>
+    (formDataManagedConnectionClosed)="handleCloseDataManagedConnection($event)">Load Data Managed Connection ...
+</data-managed-connection>
 
 
 <!-- Modal: Datasource Overview -->

@@ -24,9 +24,9 @@ import { DataConnection }             from './models';
 
 
 @Component({ 
-    selector: 'data-connection',
-    templateUrl: './data.connection.component.html',
-    styleUrls:  ['./data.connection.component.css']
+    selector: 'data-managed-connection',
+    templateUrl: './data.managed.connection.component.html',
+    styleUrls:  ['./data.managed.connection.component.css']
 })
 export class DataManagedConnectionComponent implements OnInit {
 

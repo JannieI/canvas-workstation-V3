@@ -73,13 +73,16 @@ import { ShapeEditComponent }         from './shape.editor.component';
 import { ShapeDeleteComponent }       from './shape.delete.component';
 
 import { DataDirectFileComponent }    from './data.direct.file.component';
-import { DataSQLDatasourceComponent } from './data.sqlDatasource.component';
 import { DataNoSQLDatasourceComponent }     from './data.NosqlDatasource.component';
+import { DataSQLDatasourceComponent } from './data.sqlDatasource.component';
+
 import { DataManagedConnectionComponent }    from './data.managed.connection.component';
+import { DataManagedQueryBuilderComponent }  from './data.managed.queryBuilder.component';
 import { DataManagedSQLEditorComponent }    from './data.managed.sqlEditor.component';
 import { DataManagedOverlayEditorComponent } from './data.managed.overlayEditor.component';
+import { DataManagedNoSQLEditorComponent }    from './data.managed.noSqlEditor.component';
+
 import { DataTransformationComponent }      from './data.transformation.component';
-import { DataManagedQueryBuilderComponent }  from './data.managed.queryBuilder.component';
 import { DataEditDatasourceComponent }      from './data.editDatasource.component';
 import { DataPopupComponent }         from './data.popup.component';
 import { DataDatasourceOverviewComponent }  from './data.datasourceOverview.component';
@@ -168,10 +171,12 @@ import { StatusbarComponent }         from './statusbar.component';
         DataNoSQLDatasourceComponent,
         DataPopupComponent,
         DataManagedConnectionComponent,
+        DataManagedQueryBuilderComponent,
         DataManagedSQLEditorComponent,
         DataManagedOverlayEditorComponent,
+        DataManagedNoSQLEditorComponent,
+
         DataTransformationComponent,
-        DataManagedQueryBuilderComponent,
         DataEditDatasourceComponent,
         DataDatasourceOverviewComponent,
         DataDatasourceUsageComponent,
