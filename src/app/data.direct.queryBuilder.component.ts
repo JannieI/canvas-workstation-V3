@@ -62,8 +62,9 @@ export class DataDirectQueryBuilderComponent implements OnInit {
     selectedTableRowIndex: number = 0;
     connectionName: string = 'tributary.connectors.sql:SqlConnector';
 
-    serverTypes: string[];
-
+    serverTypes: { serverType: string; driverName: string}[]
+    
+    // driverName
 	constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
@@ -73,6 +74,9 @@ export class DataDirectQueryBuilderComponent implements OnInit {
 	ngOnInit() {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
+        // Set base info
+        this.serverTypes = this.globalVariableService.serverTypes;
 
         if (this.selectedDatasource == null) {
             this.selectedDatasource = {
@@ -103,10 +107,10 @@ export class DataDirectQueryBuilderComponent implements OnInit {
                 connectionID: 0,
                 dataTableID: 0,
                 nrWidgets: 0,
-                databaseName:'ftfhgfzh',
-                port:'5432',
-                serverType:'postgres',
-                serverName:'pellefant.db.elephantsql.com',
+                databaseName: 'ftfhgfzh',
+                port: '5432',
+                serverType: 'PostgresSQL',
+                serverName: 'pellefant.db.elephantsql.com',
                 dataTableName: 'ftfhgfzh',
                 dataSQLStatement: '',
                 dataNoSQLStatement: ''

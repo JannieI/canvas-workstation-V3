@@ -536,7 +536,21 @@ export class GlobalVariableService {
     widgetTemplate: Widget = widgetTemplate;
     dashboardTemplate: Dashboard = dashboardTemplate;
     dashboardTabTemplate: DashboardTab = dashboardTabTemplate;
-
+    serverTypes: { serverType: string; driverName: string}[] = 
+    [
+        {
+            serverType: 'MySQL', 
+            driverName: 'mysql'
+        },
+        {
+            serverType: 'PostgresSQL', 
+            driverName: 'postgres'
+        },
+        {
+            serverType:'Microsoft SQL',
+            driverName: 'mssql'
+        }
+    ];
 
     // System-wide related variables, set at Installation - for later use
     // systemConfigurationID: number = -1;
