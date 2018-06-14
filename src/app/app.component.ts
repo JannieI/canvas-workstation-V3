@@ -368,6 +368,7 @@ export class AppComponent implements OnInit {
     showModalWidgetDelete: boolean = false;
     showModalDashboardPrint: boolean = false;
     showModalDataDirectFile: boolean = false;
+    showModalDataDirectQueryBuilder: boolean = false;
     showModalDataDirectSQLEditor: boolean = false;
     showModalDataDirectNoSQL: boolean = false;
     showModalDataOverview: boolean = false;
@@ -1174,12 +1175,12 @@ export class AppComponent implements OnInit {
     }
 
     handleCloseDataDirectQueryBuilder(action: string) {
-        // Handle Close of SQL Query Builder
+        // Handle Close of Direct SQL Query Builder
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDirectQueryBuilder', '@Start');
 
         this.menuOptionClickPostAction();
 
-        this.showModalDataManagedQueryBuilder = false;
+        this.showModalDataDirectQueryBuilder = false;
 
         // Open Transformations if so requested
         if (action == 'Transformation') {
@@ -2866,38 +2867,24 @@ export class AppComponent implements OnInit {
         // Open DATA form for a DS that comes from a file.
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDirectFile', '@Start');
 
-        // Has to be in editMode
-        // if (!this.editMode) {
-        //     this.showMessage(
-        //         this.globalVariableService.canvasSettings.notInEditModeMsg,
-        //         'StatusBar',
-        //         'Warning',
-        //         3000,
-        //         ''
-        //     );
-        //     return;
-        // };
-
         this.menuOptionClickPreAction();
 
         this.showModalDataDirectFile = true;
     }
 
-    clickMenuDataSQLDatasource() {
-        // Open DATA form for a DS that comes from a SQL.
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataSQLDatasource', '@Start');
+    clickMenuDataDirectQueryBuilder() {
+        // Open DATA form for a DS that comes from a QueryBuilder.
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDirectQueryBuilder', '@Start');
 
-        // Has to be in editMode
-        // if (!this.editMode) {
-        //     this.showMessage(
-        //         this.globalVariableService.canvasSettings.notInEditModeMsg,
-        //         'StatusBar',
-        //         'Warning',
-        //         3000,
-        //         ''
-        //     );
-        //     return;
-        // };
+        this.menuOptionClickPreAction();
+
+        this.showModalDataDirectQueryBuilder = true;
+    }
+
+    clickMenuDataDirectSQLEditor() {
+        // Open DATA form for a DS that comes from a SQL using SQL statements.
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDirectSQLEditor', '@Start');
+
 
         this.menuOptionClickPreAction();
 

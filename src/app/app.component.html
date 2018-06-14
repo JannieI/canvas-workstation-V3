@@ -372,10 +372,18 @@
                                 <button
                                     type="button"
                                     clrDropdownItem
-                                    title="Create a new Datasources from a File"
-                                    (click)="clickMenuDataSQLDatasource()"
+                                    title="Create a new Datasources from a SQL Database"
+                                    (click)="clickMenuDataDirectQueryBuilder()"
                                     >
                                     From SQL Database
+                                </button>
+                                <button
+                                    type="button"
+                                    clrDropdownItem
+                                    title="Create a new Datasources from a SQL Database using SQL statements"
+                                    (click)="clickMenuDataDirectSQLEditor()"
+                                    >
+                                    Using SQL
                                 </button>
                                 <button
                                     type="button"
@@ -3959,9 +3967,9 @@
 
 <!-- Modal: Data Direct Query Builder -->
 <data-directQueryBuilder
-    *ngIf="showModalDataManagedQueryBuilder"
+    *ngIf="showModalDataDirectQueryBuilder"
     [selectedDatasource]="selectedDatasource"
-    (DataDirectQueryBuilderComponent)="handleCloseDataDirectQueryBuilder($event)">Load Direct SQL Query Builder ...
+    (formDataDirectQueryBuilderClosed)="handleCloseDataDirectQueryBuilder($event)">Load Direct SQL Query Builder ...
 </data-directQueryBuilder>
 
 

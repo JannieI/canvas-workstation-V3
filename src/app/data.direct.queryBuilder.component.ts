@@ -35,7 +35,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
 
     @Input() selectedDatasource: Datasource;
  
-    @Output() formDataManagedQueryBuilderClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formDataDirectQueryBuilderClosed: EventEmitter<string> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
@@ -214,7 +214,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-        this.formDataManagedQueryBuilderClosed.emit(action);
+        this.formDataDirectQueryBuilderClosed.emit(action);
 
     } 
 
@@ -222,7 +222,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         // Close the form, and open Transformations form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickTransformation', '@Start');
 
-        this.formDataManagedQueryBuilderClosed.emit('Transformation');
+        this.formDataDirectQueryBuilderClosed.emit('Transformation');
 
     }
     
