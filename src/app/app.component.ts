@@ -374,6 +374,7 @@ export class AppComponent implements OnInit {
     showModalDataUsage: boolean = false;
     showModalDataManagedQueryBuilder: boolean = false;
     showModalDataManagedSQLEditor: boolean = false;
+    showModalDataManagedNoSQLEditor: boolean = false;
     showModalDataManagedOverlayEditor: boolean = false;
     showModalDataTransformation: boolean = false;
     showModalDataEditDatasource: boolean = false;
@@ -1240,6 +1241,15 @@ export class AppComponent implements OnInit {
         this.showModalDataManagedSQLEditor = false;
     }
     
+    handleCloseDataManagedNoSQLEditor(action: string) {
+        // Handle Close of SQL Editor
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataManagedNoSQLEditor', '@Start');
+
+        this.menuOptionClickPostAction();
+
+        this.showModalDataManagedNoSQLEditor = false;
+    }
+
     handleCloseDataManagedOverlayEditor(action: string) {
         // Handle Close of Overlay Editor
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataManagedOverlayEditor', '@Start');
