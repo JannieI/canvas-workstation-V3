@@ -147,6 +147,30 @@
         margin-top: 5px;
     }
 
+    .gridButtonRefresh {
+        grid-column-start: 14;
+        grid-column-end: 16;
+        grid-row-start: 7;
+        grid-row-end: 8;
+        margin-top: 12px;
+    }
+
+    .gridButtonPreview {
+        grid-column-start: 16;
+        grid-column-end: 18;
+        grid-row-start: 7;
+        grid-row-end: 8;
+        margin-top: 12px;
+    }
+
+    .gridButtonTransformation {
+        grid-column-start: 18;
+        grid-column-end: 21;
+        grid-row-start: 7;
+        grid-row-end: 8;
+        margin-top: 12px;
+    }
+
     .gridErrorMessage {
         grid-column-start: 2;
         grid-column-end: 20;

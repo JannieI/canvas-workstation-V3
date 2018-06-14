@@ -110,6 +110,36 @@
                                 >
                         </div>
     
+                        <div class="gridButtonRefresh">
+                            <button
+                                type="button"
+                                class="btn btn-link"
+                                (click)="clickRefresh()"
+                                >
+                                Refresh
+                            </button>
+                        </div>
+        
+                        <div class="gridButtonPreview">
+                            <button
+                                type="button"
+                                class="btn btn-link"
+                                (click)="clickGetData()"
+                                >
+                                Preview
+                            </button>
+                        </div>
+        
+                        <div class="gridButtonTransformation">
+                            <button
+                                type="button"
+                                class="btn btn-link"
+                                (click)="clickTransformation()"
+                                >
+                                Transformations
+                            </button>
+                        </div>
+    
                         <div *ngIf="errorMessage!=''" class="gridErrorMessage">
                             {{ errorMessage }}
                         </div>
