@@ -72,7 +72,7 @@ export class DataSQLDatasourceComponent implements OnInit {
         this.currentDatasources = this.globalVariableService.currentDatasources.slice();
         this.datasources = this.globalVariableService.datasources.slice();
     }
-
+ 
     clickFileBrowse() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickFileBrowse', '@Start');

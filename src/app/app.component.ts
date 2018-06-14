@@ -369,7 +369,7 @@ export class AppComponent implements OnInit {
     showModalDashboardPrint: boolean = false;
     showModalDataDirectFile: boolean = false;
     showModalDataSQLDatasource: boolean = false;
-    showModalDataNoSQLDatasource: boolean = false;
+    showModalDataDirectNoSQL: boolean = false;
     showModalDataOverview: boolean = false;
     showModalDataUsage: boolean = false;
     showModalDataManagedQueryBuilder: boolean = false;
@@ -1182,13 +1182,13 @@ export class AppComponent implements OnInit {
         this.showModalDataSQLDatasource = false;
     }
 
-    handleCloseDataNoSQLDatasource(action: string) {
+    handleCloseDataDirectNoSQL(action: string) {
         // Handle close of Datasource Overview
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataNoSQLDatasource', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDirectNoSQL', '@Start');
 
         this.menuOptionClickPostAction();
 
-        this.showModalDataNoSQLDatasource = false;
+        this.showModalDataDirectNoSQL = false;
     }
 
     handleCloseDataDatasourceOverview(action: string) {
@@ -2890,9 +2890,9 @@ export class AppComponent implements OnInit {
         this.showModalDataSQLDatasource = true;
     }
 
-    clickMenuDataNoSQLDatasource() {
+    clickMenuDataDirectNoSQL() {
         // Open DATA form for a DS that comes from a NoSQL.
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataNoSQLDatasource', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDirectNoSQL', '@Start');
 
         // Has to be in editMode
         // if (!this.editMode) {
@@ -2908,7 +2908,7 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
-        this.showModalDataNoSQLDatasource = true;
+        this.showModalDataDirectNoSQL = true;
     }
 
     clickMenuDataFromFile(id: number) {

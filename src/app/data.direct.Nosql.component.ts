@@ -30,15 +30,15 @@ import { Field }                      from './models';
 import { FieldMetadata }              from './models';
 import { DataQualityIssue }           from './models';
 
- 
-@Component({
-    selector: 'data-managedSqlEditor',
-    templateUrl: './data.managed.sqlEditor.component.html',
-    styleUrls:  ['./data.managed.sqlEditor.component.css']
-})
-export class DataManagedSQLEditorComponent implements OnInit {
 
-    @Output() formDataManagedSQLEditorClosed: EventEmitter<string> = new EventEmitter();
+@Component({
+    selector: 'data-managedNoSqlEditor',
+    templateUrl: './data.managed.noSqlEditor.component.html',
+    styleUrls:  ['./data.managed.noSqlEditor.component.css']
+})
+export class DataDirectNoSQLComponent implements OnInit {
+
+    @Output() formDataDirectNoSQLEditorClosed: EventEmitter<string> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
@@ -168,7 +168,7 @@ export class DataManagedSQLEditorComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-        this.formDataManagedSQLEditorClosed.emit(action);
+        this.formDataDirectNoSQLEditorClosed.emit(action);
 
     }
  

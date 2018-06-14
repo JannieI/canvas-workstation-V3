@@ -381,7 +381,7 @@
                                     type="button"
                                     clrDropdownItem
                                     title="Create a new Datasources from a File"
-                                    (click)="clickMenuDataNoSQLDatasource()"
+                                    (click)="clickMenuDataDirectNoSQL()"
                                     >
                                     From NoSQL Database
                                 </button>
@@ -438,6 +438,7 @@
                                         Connections
                                     </button>
 
+                                    <div class="dropdown-divider"></div>
                                     <button
                                         type="button"
                                         clrDropdownItem
@@ -446,8 +447,6 @@
                                         >
                                         New Query Builder
                                     </button>
-            
-                                    <div class="dropdown-divider"></div>
                                     <button
                                         type="button"
                                         clrDropdownItem
@@ -3950,28 +3949,35 @@
 </dashboard-print>
 
 
-<!-- Modal: Data From File -->
+<!-- Modal: Data Direct From File -->
 <data-direct-file
     class="formPopupDashboard"
     *ngIf="showModalDataDirectFile"
-    (formDataDirectFileClosed)="handleCloseDataDirectFile($event)">Load Data From File ...
+    (formDataDirectFileClosed)="handleCloseDataDirectFile($event)">Load Data Direct From File ...
 </data-direct-file>
 
 
-<!-- Modal: Data From SQL -->
+<!-- Modal: Data Direct From SQL -->
 <data-sqlDatasource
     class="formPopupDashboard"
     *ngIf="showModalDataSQLDatasource"
-    (formDataSQLDatasourceClosed)="handleCloseDataSQLDatasource($event)">Load Data From SQL ...
+    (formDataSQLDatasourceClosed)="handleCloseDataSQLDatasource($event)">Load Data Direct From SQL ...
 </data-sqlDatasource>
 
 
-<!-- Modal: Data From NoSQL -->
-<data-NosqlDatasource
+<!-- Modal: Data Direct From NoSQL -->
+<data-direct-Nosql
     class="formPopupDashboard"
-    *ngIf="showModalDataNoSQLDatasource"
-    (formDataNoSQLDatasourceClosed)="handleCloseDataNoSQLDatasource($event)">Load Data From NoSQL ...
-</data-NosqlDatasource>
+    *ngIf="showModalDataDirectNoSQL"
+    (formDataDirectNoSQLEditorClosed)="handleCloseDataDirectNoSQL($event)">Load Data Direct From NoSQL ...
+</data-direct-Nosql>
+
+
+<!-- Modal: Data Managed Connection -->
+<data-managed-connection
+    *ngIf="showModalDataManagedConnection"
+    (formDataManagedConnectionClosed)="handleCloseDataManagedConnection($event)">Load Data Managed Connection ...
+</data-managed-connection>
 
 
 <!-- Modal: Data Manged Query Builder -->
@@ -4003,11 +4009,6 @@
 </data-managedOverlayEditor>
 
 
-<!-- Modal: Data Transformation -->
-<!-- [dataConnection]="dataConnection"
-[dataTableID]="dataTableID"
-[dataFields]="dataFields" -->
-
 <data-transformation
     *ngIf="showModalDataTransformation"
     (formDataTransformationClosed)="handleCloseDataTransformation($event)">Load Transformation ...
@@ -4019,13 +4020,6 @@
     *ngIf="showModalDataEditDatasource"
     (formDataEditDatasourceClosed)="handleCloseDataEditDatasource($event)">Load Data Edit Datasource ...
 </data-editDatasource>
-
-
-<!-- Modal: Data Managed Connection -->
-<data-managed-connection
-    *ngIf="showModalDataManagedConnection"
-    (formDataManagedConnectionClosed)="handleCloseDataManagedConnection($event)">Load Data Managed Connection ...
-</data-managed-connection>
 
 
 <!-- Modal: Datasource Overview -->
