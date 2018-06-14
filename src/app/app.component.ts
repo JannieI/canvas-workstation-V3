@@ -1204,6 +1204,11 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPostAction();
 
         this.showModalDataDirectNoSQL = false;
+
+        // Open Transformations if so requested
+        if (action == 'Transformation') {
+            this.showModalDataTransformation = true;
+        };
     }
 
     handleCloseDataDatasourceOverview(action: string) {
