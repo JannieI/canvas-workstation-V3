@@ -361,7 +361,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
                 dataNoSQLStatement: ''
                             
             };
-        }
+        };
 
     }
     

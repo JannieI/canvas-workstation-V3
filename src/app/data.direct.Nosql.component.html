@@ -16,55 +16,74 @@
                                 type the query string, and see the results with GO.
                             </i>
                         </div>
-    
+   
                         <div class="gridDatasourceNameTitle">
                             <b>Name:</b>
                         </div>
                         <div class="gridDatasourceName">
-                            <input [(ngModel)]="datasourceName"
+                            <input [(ngModel)]="selectedDatasource.name"
                                 type="text"
-                                name="connectionName"
+                                name="name"
                                 title="Name of the Datasource"
                                 >
-                        </div>
-    
-                        <div class="gridConnectionSelectTitle">
-                            <b>Connection:</b>
-                        </div>
-                        <div class="select gridConnectionSelect">
-                            <select
-                                [(ngModel)]="connectionName"
-                                name="connectionSelect"
-                                (change)="clickConnectionSelect($event)"
-                                placeholder="Select previously stored Connection"
-                                >
-                                <option *ngFor="let row of dataConnections">
-                                    {{ row.connectionName }}
-                                </option>
-                            </select>
                         </div>
     
                         <div class="gridServerTypeTitle">
                             <b>Type:</b>
                         </div>
-                        <div class="gridServerType">
-                            {{ serverType }} 
+                        <div class="select gridServerType">
+                            <select
+                                [(ngModel)]="selectedDatasource.serverType"
+                                name="serverType"
+                                (change)="clickTemplateDashboard($event)"
+                                placeholder="Select a Dashboard as Template"
+                                >
+                                <option *ngFor="let row of serverTypes">
+                                    {{ row.serverType }}
+                                </option>
+                            </select>
                         </div>
-    
+                        
                         <div class="gridServerNameTitle">
-                            <b>Server:</b>
+                            <b>Type:</b>
                         </div>
                         <div class="gridServerName">
-                            {{ serverName }}
+                            <input [(ngModel)]="selectedDatasource.serverName"
+                                type="text"
+                                name="serverName"
+                                title="Name of the Server / Host"
+                                >
+                        </div>
+    
+                        <div class="gridServerPortTitle">
+                            <b>Port:</b>
+                        </div>
+                        <div class="gridServerPort">
+                                <input [(ngModel)]="selectedDatasource.port"
+                                type="text"
+                                name="port"
+                                title="Name of the port on the DB Server"
+                                >
+                        </div>
+    
+                        <div class="gridDatabaseTitle">
+                            <b>Database:</b>
+                        </div>
+                        <div class="gridDatabase">
+                                <input [(ngModel)]="selectedDatasource.databaseName"
+                                type="text"
+                                name="databaseName"
+                                title="Name of the Database or Host"
+                                >
                         </div>
     
                         <div class="gridUsernameTitle">
                             <b>Username:</b>
                         </div>
                         <div class="gridUsername">
-                            <input [(ngModel)]="usernameTitle"
+                            <input [(ngModel)]="selectedDatasource.username"
                                 type="text"
-                                name="usernameTitle"
+                                name="username"
                                 title="Name of the connection"
                                 >
                         </div>
@@ -73,25 +92,22 @@
                             <b>Password:</b>
                         </div>
                         <div class="gridPassword">
-                            <input [(ngModel)]="password"
+                            <input [(ngModel)]="selectedDatasource.password"
                                 type="password"
                                 name="password"
                                 title="User Password"
                                 >
                         </div>
     
-                        <div class="gridAuthenticationTitle">
-                            <b>Authentication:</b>
-                        </div>
-                        <div class="gridAuthentication">
-                            {{ authentication }}
-                        </div>
-    
                         <div class="gridDescriptionTitle">
                             <b>Description:</b>
                         </div>
                         <div class="gridDescription">
-                            {{ description }}
+                                <input [(ngModel)]="selectedDatasource.description"
+                                type="text"
+                                name="description"
+                                title="Name of the Datasource"
+                                >
                         </div>
     
                         <div *ngIf="errorMessage!=''" class="gridErrorMessage">
