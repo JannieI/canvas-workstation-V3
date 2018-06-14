@@ -27,11 +27,11 @@ import { Field }                      from './models';
 
 
 @Component({
-    selector: 'data-managedQueryBuilder',
-    templateUrl: './data.managed.queryBuilder.component.html',
-    styleUrls:  ['./data.managed.queryBuilder.component.css']
+    selector: 'data-directQueryBuilder',
+    templateUrl: './data.direct.queryBuilder.component.html',
+    styleUrls:  ['./data.direct.queryBuilder.component.css']
 })
-export class DataManagedQueryBuilderComponent implements OnInit {
+export class DataDirectQueryBuilderComponent implements OnInit {
 
     @Input() selectedDatasource: Datasource;
  

@@ -3957,6 +3957,14 @@
 </data-direct-file>
 
 
+<!-- Modal: Data Direct Query Builder -->
+<data-directQueryBuilder
+    *ngIf="showModalDataManagedQueryBuilder"
+    [selectedDatasource]="selectedDatasource"
+    (DataDirectQueryBuilderComponent)="handleCloseDataDirectQueryBuilder($event)">Load Direct SQL Query Builder ...
+</data-directQueryBuilder>
+
+
 <!-- Modal: Data Direct From SQL -->
 <data-direct-sqlEditor
     class="formPopupDashboard"

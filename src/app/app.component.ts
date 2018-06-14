@@ -1173,6 +1173,20 @@ export class AppComponent implements OnInit {
         this.showModalDataDirectFile = false;
     }
 
+    handleCloseDataDirectQueryBuilder(action: string) {
+        // Handle Close of SQL Query Builder
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDirectQueryBuilder', '@Start');
+
+        this.menuOptionClickPostAction();
+
+        this.showModalDataManagedQueryBuilder = false;
+
+        // Open Transformations if so requested
+        if (action == 'Transformation') {
+            this.showModalDataTransformation = true;
+        };
+    }
+
     handleCloseDataDirectSQLEditor(action: string) {
         // Handle close of Direct SQL Editor
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDirectSQLEditor', '@Start');
