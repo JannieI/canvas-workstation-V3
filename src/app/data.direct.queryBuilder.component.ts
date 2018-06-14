@@ -25,6 +25,171 @@ import { DataField }                  from './models';
 import { Dataset }                    from './models';
 import { Field }                      from './models';
 
+const constDataTables: DataTable[] = 
+[
+    {
+        id: 1,
+        connectionID: null,
+        nameDB: 'Invoices',
+        nameLocal: '',
+        type: 'Table',
+        description: '',
+        businessGlossary: '',
+        creator: '',
+        dateCreated: '',
+        editor: '',
+        dateEdited: '',
+    },
+    {
+        id: 2,
+        connectionID: null,
+        nameDB: 'Accounts',
+        nameLocal: '',
+        type: 'Table',
+        description: '',
+        businessGlossary: '',
+        creator: '',
+        dateCreated: '',
+        editor: '',
+        dateEdited: '',
+    }
+];
+const constDataFields: DataField[] = 
+[
+    {
+        id: 0,
+        tableID: 1,
+        nameDB: 'id',
+        nameLocal: '',
+        type: '',
+        format: '',
+        filterOperand: '',
+        filterValue: '',
+        calculation: '',
+        orderSequence: 0,
+        orderDirection: '',
+        description: '',
+        businessGlossary: '',
+        keyField: false,
+        explainedBy: '',
+        creator: '',
+        dateCreated: '',
+        editor: '',
+        dateEdited: '',
+        hidden: false
+    },
+    {
+        id: 2,
+        tableID: 1,
+        nameDB: 'InvoiceDate',
+        nameLocal: '',
+        type: '',
+        format: '',
+        filterOperand: '',
+        filterValue: '',
+        calculation: '',
+        orderSequence: 0,
+        orderDirection: '',
+        description: '',
+        businessGlossary: '',
+        keyField: false,
+        explainedBy: '',
+        creator: '',
+        dateCreated: '',
+        editor: '',
+        dateEdited: '',
+        hidden: false
+    },
+    {
+        id: 3,
+        tableID: 1,
+        nameDB: 'Total',
+        nameLocal: '',
+        type: '',
+        format: '',
+        filterOperand: '',
+        filterValue: '',
+        calculation: '',
+        orderSequence: 0,
+        orderDirection: '',
+        description: '',
+        businessGlossary: '',
+        keyField: false,
+        explainedBy: '',
+        creator: '',
+        dateCreated: '',
+        editor: '',
+        dateEdited: '',
+        hidden: false
+    },
+    {
+        id: 0,
+        tableID: 2,
+        nameDB: 'id',
+        nameLocal: '',
+        type: '',
+        format: '',
+        filterOperand: '',
+        filterValue: '',
+        calculation: '',
+        orderSequence: 0,
+        orderDirection: '',
+        description: '',
+        businessGlossary: '',
+        keyField: false,
+        explainedBy: '',
+        creator: '',
+        dateCreated: '',
+        editor: '',
+        dateEdited: '',
+        hidden: false
+    },
+    {
+        id: 2,
+        tableID: 2,
+        nameDB: 'TransactDate',
+        nameLocal: '',
+        type: '',
+        format: '',
+        filterOperand: '',
+        filterValue: '',
+        calculation: '',
+        orderSequence: 0,
+        orderDirection: '',
+        description: '',
+        businessGlossary: '',
+        keyField: false,
+        explainedBy: '',
+        creator: '',
+        dateCreated: '',
+        editor: '',
+        dateEdited: '',
+        hidden: false
+    },
+    {
+        id: 3,
+        tableID: 2,
+        nameDB: 'Amount',
+        nameLocal: '',
+        type: '',
+        format: '',
+        filterOperand: '',
+        filterValue: '',
+        calculation: '',
+        orderSequence: 0,
+        orderDirection: '',
+        description: '',
+        businessGlossary: '',
+        keyField: false,
+        explainedBy: '',
+        creator: '',
+        dateCreated: '',
+        editor: '',
+        dateEdited: '',
+        hidden: false
+    }
+
+];
 
 @Component({
     selector: 'data-directQueryBuilder',
@@ -53,89 +218,8 @@ export class DataDirectQueryBuilderComponent implements OnInit {
 
     dataConnections: DataConnection[] = [];
     dataTables: DataTable[] = [];
-    dataTablesFiltered: DataTable[] = [
-        {
-            id: 1,
-            connectionID: null,
-            nameDB: 'Trades',
-            nameLocal: '',
-            type: 'Table',
-            description: '',
-            businessGlossary: '',
-            creator: '',
-            dateCreated: '',
-            editor: '',
-            dateEdited: '',
-        }
-    ];
-    dataFields: DataField[] = [
-        {
-            id: 0,
-            tableID: 1,
-            nameDB: 'id',
-            nameLocal: '',
-            type: '',
-            format: '',
-            filterOperand: '',
-            filterValue: '',
-            calculation: '',
-            orderSequence: 0,
-            orderDirection: '',
-            description: '',
-            businessGlossary: '',
-            keyField: false,
-            explainedBy: '',
-            creator: '',
-            dateCreated: '',
-            editor: '',
-            dateEdited: '',
-            hidden: false
-        },
-        {
-            id: 2,
-            tableID: 1,
-            nameDB: 'runDate',
-            nameLocal: '',
-            type: '',
-            format: '',
-            filterOperand: '',
-            filterValue: '',
-            calculation: '',
-            orderSequence: 0,
-            orderDirection: '',
-            description: '',
-            businessGlossary: '',
-            keyField: false,
-            explainedBy: '',
-            creator: '',
-            dateCreated: '',
-            editor: '',
-            dateEdited: '',
-            hidden: false
-        },
-        {
-            id: 3,
-            tableID: 1,
-            nameDB: 'Value',
-            nameLocal: '',
-            type: '',
-            format: '',
-            filterOperand: '',
-            filterValue: '',
-            calculation: '',
-            orderSequence: 0,
-            orderDirection: '',
-            description: '',
-            businessGlossary: '',
-            keyField: false,
-            explainedBy: '',
-            creator: '',
-            dateCreated: '',
-            editor: '',
-            dateEdited: '',
-            hidden: false
-        },
-    ];
+    dataTablesFiltered: DataTable[] = [];
+    dataFields: DataField[] = [];
     dataFieldsFiltered: DataField[] = [];
     errorMessage: string = "";
     selectedFieldRowIndex: number = 0;
@@ -501,7 +585,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
     
     clickGetData() {
         // Get the data
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickTransformation', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickGetData', '@Start');
         let data = 
         {
             "source": {
@@ -519,10 +603,20 @@ export class DataDirectQueryBuilderComponent implements OnInit {
     
 
         this.globalVariableService.getTriburaryData(data).then(res => {
-            console.warn('xx res', res)
+            console.warn('xx res', res, this.selectedDatasource)
         });
 
         this.showPreview = true;
+    }
+
+    clickRefresh() {
+        // Get the tables and fields from the DB
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickRefresh', '@Start');
+    
+        // Fill Table and Field Names
+        // TODO - remove hardcoding once received from DB
+        this.dataTables = constDataTables;
+        this.dataFields = constDataFields;
     }
 }
 

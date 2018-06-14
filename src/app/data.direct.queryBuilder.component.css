@@ -147,16 +147,24 @@
         margin-top: 5px;
     }
 
+    .gridButtonRefresh {
+        grid-column-start: 14;
+        grid-column-end: 16;
+        grid-row-start: 7;
+        grid-row-end: 8;
+        margin-top: 12px;
+    }
+
     .gridButtonPreview {
-        grid-column-start: 15;
-        grid-column-end: 17;
+        grid-column-start: 16;
+        grid-column-end: 18;
         grid-row-start: 7;
         grid-row-end: 8;
         margin-top: 12px;
     }
 
     .gridButtonTransformation {
-        grid-column-start: 17;
+        grid-column-start: 18;
         grid-column-end: 21;
         grid-row-start: 7;
         grid-row-end: 8;
@@ -219,7 +227,7 @@
     .gridFields {
         border: 1px solid gray;
         border-radius: 4px;
-        grid-column-start: 6;
+        grid-column-start: 7;
         grid-column-end: 12;
         grid-row-start: 10;
         grid-row-end: 25;
@@ -231,7 +239,7 @@
     .gridPreviewData {
         border: 1px solid gray;
         border-radius: 4px;
-        grid-column-start: 12;
+        grid-column-start: 13;
         grid-column-end: 21;
         grid-row-start: 10;
         grid-row-end: 25;
