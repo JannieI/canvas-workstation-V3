@@ -223,7 +223,7 @@
         grid-column-end: 12;
         grid-row-start: 10;
         grid-row-end: 25;
-        margin-left: 12x;
+        margin-left: 22x;
         overflow-y: scroll;
         width: 100%;
     }
@@ -235,7 +235,7 @@
         grid-column-end: 21;
         grid-row-start: 10;
         grid-row-end: 25;
-        margin-left: 12x;
+        margin-left: 32x;
         overflow-y: scroll;
         width: 100%;
     }

@@ -53,12 +53,106 @@ export class DataDirectQueryBuilderComponent implements OnInit {
 
     dataConnections: DataConnection[] = [];
     dataTables: DataTable[] = [];
-    dataTablesFiltered: DataTable[] = [];
-    dataFields: DataField[] = [];
+    dataTablesFiltered: DataTable[] = [
+        {
+            id: 1,
+            connectionID: null,
+            nameDB: 'Trades',
+            nameLocal: '',
+            type: 'Table',
+            description: '',
+            businessGlossary: '',
+            creator: '',
+            dateCreated: '',
+            editor: '',
+            dateEdited: '',
+        }
+    ];
+    dataFields: DataField[] = [
+        {
+            id: 0,
+            tableID: 1,
+            nameDB: 'id',
+            nameLocal: '',
+            type: '',
+            format: '',
+            filterOperand: '',
+            filterValue: '',
+            calculation: '',
+            orderSequence: 0,
+            orderDirection: '',
+            description: '',
+            businessGlossary: '',
+            keyField: false,
+            explainedBy: '',
+            creator: '',
+            dateCreated: '',
+            editor: '',
+            dateEdited: '',
+            hidden: false
+        },
+        {
+            id: 2,
+            tableID: 1,
+            nameDB: 'runDate',
+            nameLocal: '',
+            type: '',
+            format: '',
+            filterOperand: '',
+            filterValue: '',
+            calculation: '',
+            orderSequence: 0,
+            orderDirection: '',
+            description: '',
+            businessGlossary: '',
+            keyField: false,
+            explainedBy: '',
+            creator: '',
+            dateCreated: '',
+            editor: '',
+            dateEdited: '',
+            hidden: false
+        },
+        {
+            id: 3,
+            tableID: 1,
+            nameDB: 'Value',
+            nameLocal: '',
+            type: '',
+            format: '',
+            filterOperand: '',
+            filterValue: '',
+            calculation: '',
+            orderSequence: 0,
+            orderDirection: '',
+            description: '',
+            businessGlossary: '',
+            keyField: false,
+            explainedBy: '',
+            creator: '',
+            dateCreated: '',
+            editor: '',
+            dateEdited: '',
+            hidden: false
+        },
+    ];
     dataFieldsFiltered: DataField[] = [];
     errorMessage: string = "";
     selectedFieldRowIndex: number = 0;
     selectedFields: DataField[] = [];
+    showPreview: boolean = false;
+    dataFieldNames: string[] =
+    [
+        'Name', 
+        'Miles_per_Gallon', 
+        'Cylinders', 
+        'Displacement', 
+        'Horsepower', 
+        'Weight_in_lbs', 
+        'Acceleration', 
+        'Year', 
+        'Origin', 
+    ];
     selectedTableRowIndex: number = 0;
     connectionName: string = 'tributary.connectors.sql:SqlConnector';
     currentData: any = 
@@ -426,7 +520,9 @@ export class DataDirectQueryBuilderComponent implements OnInit {
 
         this.globalVariableService.getTriburaryData(data).then(res => {
             console.warn('xx res', res)
-        })
+        });
+
+        this.showPreview = true;
     }
 }
 

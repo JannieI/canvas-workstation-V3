@@ -145,7 +145,7 @@
                                 <clr-dg-column class="widthTd" [clrDgField]="id">ID</clr-dg-column>
     
                                 <clr-dg-row
-                                    *ngFor="let row of dataTablesFiltered; let i = index"
+                                    *ngFor="let row of dataTables; let i = index"
                                     [style.background-color]="(i == selectedTableRowIndex)? '#123456' : 'white'"
                                     [style.color]="(i == selectedTableRowIndex)? 'white' : 'gray'"
                                     (click)="clickSelectedDataTable(i, row.id)"
@@ -187,7 +187,7 @@
                             </clr-datagrid>
                         </div>
 
-                        <div class="gridPreviewData">
+                        <div class="gridPreviewData" *ngIf="showPreview">
                             <clr-datagrid class="gridPreviewData">
     
                                 <clr-dg-column *ngFor="let row of dataFieldNames">{{row}}</clr-dg-column>
