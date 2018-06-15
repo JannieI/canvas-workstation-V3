@@ -183,6 +183,9 @@ export class DataManagedConnectionComponent implements OnInit {
                         this.connectionID = this.selectedConnection.id;
                         console.warn('xx hier')
                     };
+
+                    // Add locally
+                    this.dataConnections.push(this.selectedConnection);
                             
                 }
             );
