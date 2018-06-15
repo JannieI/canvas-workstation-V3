@@ -154,23 +154,14 @@ export class DataManagedQueryBuilderComponent implements OnInit {
         );
 
         this.connectionString = 'Unknown';
-            this.connectionString = ' Type: ' + this.dataConnections[dataConnectionIndex].serverType
 
-            this.connectionString = ' Type: ' + this.dataConnections[dataConnectionIndex].serverType
         if (dataConnectionIndex >= 0) {
-            this.connectionString = ' Type: ' + this.dataConnections[dataConnectionIndex].serverType
-            console.warn('xx stuff'
-            this.connectionString = ' Type: ' + this.dataConnections[dataConnectionIndex].serverType
-            ,' Type: ',  this.dataConnections[dataConnectionIndex].serverType
-            ,', Server: ', this.dataConnections[dataConnectionIndex].serverName
-            ,', Port: ', this.dataConnections[dataConnectionIndex].port
-            ,', Database: ', this.dataConnections[dataConnectionIndex].database
-            ,', Auth: ', this.dataConnections[dataConnectionIndex].authentication)
-            this.connectionString = ' Type: ' + this.dataConnections[dataConnectionIndex].serverType
-                + ', Server: ' + this.dataConnections[dataConnectionIndex].serverName
-                + ', Port: ' + this.dataConnections[dataConnectionIndex].port
-                + ', Database: ' + this.dataConnections[dataConnectionIndex].database
-                + ', Auth: ' + this.dataConnections[dataConnectionIndex].authentication;
+            this.connectionString = '   Type: ' + this.dataConnections[dataConnectionIndex].serverType
+                + ',   Server: ' + this.dataConnections[dataConnectionIndex].serverName
+                + ',   Port: ' + this.dataConnections[dataConnectionIndex].port
+                + ',   Database: ' + this.dataConnections[dataConnectionIndex].database
+                + ',   Auth: ' + this.dataConnections[dataConnectionIndex].authentication
+                + ',   Description: ' + this.dataConnections[dataConnectionIndex].description;
             };
 
         console.warn('xx ev', this.connectionName, this.connectionString)

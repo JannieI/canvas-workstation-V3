@@ -74,8 +74,6 @@
         grid-row-end: 5;
     }
 
-
-
     .connectionString {
         grid-column-start: 1;
         grid-column-end: 21;
@@ -84,77 +82,32 @@
         margin-top: 5px;
     }
 
-    .gridServerNameTitle {
-        grid-column-start: 1;
-        grid-column-end: 2;
-        grid-row-start: 6;
-        grid-row-end: 7;
-        margin-top: 5px;
-    }
-    .gridServerName {
-        grid-column-start: 2;
-        grid-column-end: 7;
-        grid-row-start: 6;
-        grid-row-end: 7;
-        margin-top: 5px;
-    }
-
     .gridUsernameTitle {
         grid-column-start: 7;
         grid-column-end: 9;
-        grid-row-start: 6;
-        grid-row-end: 7;
+        grid-row-start: 8;
+        grid-row-end: 9;
         margin-top: 5px;
     }
     .gridUsername {
         grid-column-start: 9;
         grid-column-end: 14;
-        grid-row-start: 6;
-        grid-row-end: 7;
+        grid-row-start: 8;
+        grid-row-end: 9;
     }
 
     .gridPasswordTitle {
         grid-column-start: 14;
         grid-column-end: 15;
-        grid-row-start: 6;
-        grid-row-end: 7;
+        grid-row-start: 8;
+        grid-row-end: 9;
         margin-top: 5px;
     }
     .gridPassword {
         grid-column-start: 15;
         grid-column-end: 21;
-        grid-row-start: 6;
-        grid-row-end: 7;
-    }
-
-    .gridAuthenticationTitle {
-        grid-column-start: 1;
-        grid-column-end: 3;
         grid-row-start: 8;
         grid-row-end: 9;
-        margin-top: 5px;
-    }
-    .gridAuthentication {
-        grid-column-start: 3;
-        grid-column-end: 7;
-        grid-row-start: 8;
-        grid-row-end: 9;
-        margin-top: 5px;
-    }
-
-    .gridDescriptionTitle {
-        grid-column-start: 7;
-        grid-column-end: 9;
-        grid-row-start: 8;
-        grid-row-end: 9;
-        margin-top: 5px;
-    }
-    .gridDescription {
-        grid-column-start: 9;
-        grid-column-end: 18;
-        grid-row-start: 8;
-        grid-row-end: 9;
-        margin-top: 5px;
     }
 
     .gridButtonTransformation {
