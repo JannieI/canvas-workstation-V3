@@ -80,13 +80,27 @@ export class DataDirectExportComponent implements OnInit {
         // TODO alert('Later: File component to browse ...')
     }
 
+    saveText(text, filename){
+        var a = document.createElement('a');
+        a.setAttribute('href', 'data:text/plain;charset=utf-u,'+encodeURIComponent(text));
+        a.setAttribute('download', filename);
+        a.click()
+      }
+      
+
+
     clickDSPreview() {
         // Load the new DS in the ID section, and show in Preview area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDSPreview',           '@Start');
 
+        var obj = {a: "Hello", b: "World"};
+        this.saveText( JSON.stringify(obj), "filename.json" );
+
+        
         // Reset
         this.errorMessage = '';
 
+        if (this.errorMessage == '') {return}
         // // Get the folder and file, setting some defaults
         // if (this.folderName == ''  ||  this.folderName == undefined) {
         //     this.folderName = './assets/vega-datasets/';
@@ -244,13 +258,7 @@ export class DataDirectExportComponent implements OnInit {
         this.currentDatasetName = '';
 
     }
- 
-    clickFileSaveTransformation() {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickFileSaveTransformation', '@Start');
 
-        // TODO - add code to Save the name for next time ...
-    }
 
     clickClose(action: string) {
         //

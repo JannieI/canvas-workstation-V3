@@ -58,6 +58,25 @@ This document describes items for later versions of Canvas.
     - Have popup thumbnails of D on Landing page
     - Use thumbnails to select a W from another D - have thumbnails are on/off option for performance perhaps
 
+    https://stackoverflow.com/questions/35138424/how-do-i-download-a-file-with-angular2
+    To download and show PDF files, a very similar code snipped is like below:
+        private downloadFile(data: Response): void {
+            let blob = new Blob([data.blob()], { type: "application/pdf" });
+            let url = window.URL.createObjectURL(blob);
+            window.open(url);
+        }
+
+        public showFile(fileEndpointPath: string): void {
+            let reqOpt: RequestOptions = this.getAcmOptions();  //  getAcmOptions is our helper method. Change this line according to request headers you need.
+            reqOpt.responseType = ResponseContentType.Blob;
+            this.http
+            .get(fileEndpointPath, reqOpt)
+            .subscribe(
+                data => this.downloadFile(data),
+                error => alert("Error downloading file!"),
+                () => console.log("OK!")
+            );
+        }
 
 
     Testing:
