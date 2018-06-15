@@ -7,10 +7,10 @@
                     </button>
                     <div class="gridOverall">
                         <div class="gridTitle">
-                            Data from File:
+                            Export Datasource:
                         </div>
                         <div class="gridSubTitle">
-                            Select file from which to create a new Datasource.
+                            Enter filename to which the selected Datasource must be exported.
                         </div>
     
                         <div class="gridFileNameTitle">
@@ -22,7 +22,11 @@
                                 class="selectFile"
                                 >
                         </div>
-    
+
+                        <div class="gridErrorMessage">
+                            {{ errorMessage }}
+                        </div>
+
                         <div class="gridButtonExport">
                             <button
                                 type="button"

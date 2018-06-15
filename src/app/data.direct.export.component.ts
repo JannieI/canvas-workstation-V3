@@ -41,8 +41,9 @@ export class DataDirectExportComponent implements OnInit {
     }
 
     datasources: Datasource[];
+    errorMessage: string = '';
     fileName: string = '';
-    selectedDatasource: Datasource;
+    selectedDatasource: Datasource = null;
 
 
 	constructor(
@@ -80,7 +81,21 @@ export class DataDirectExportComponent implements OnInit {
         // Export selected DS
         this.globalFunctionService.printToConsole(this.constructor.name,'clickExport',           '@Start');
 
-        var obj = {a: "Hello", b: "World"};
+        // Reset
+        this.errorMessage = '';
+
+        // Validate
+        if (this.selectedDatasource == null) {
+            this.errorMessage = "Select a Datasource";
+            return;
+        };
+        if (this.fileName == null  ||  this.fileName == '') {
+            this.errorMessage = "Select a Datasource";
+            return;
+        };
+        
+        // Export
+        var obj = JSON.stringify(this.selectedDatasource);  
         this.saveText( JSON.stringify(obj), "filename.json" );
 
     }
