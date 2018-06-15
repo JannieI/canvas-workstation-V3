@@ -1,14 +1,12 @@
 /*
- * Data page: to get new datasources, and add to the current list of datasources for this
- * Dashboard.  Can also do transformations to the data, and crteate new datasets, ie via
- * pivot.
+ * Select Datasource to be editied in next form.
  */
 
 // Angular
 import { Component }                  from '@angular/core';
 import { EventEmitter }               from '@angular/core';
 import { HostListener }               from '@angular/core';
-import { Input }                     from '@angular/core';
+import { Input }                      from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
 
