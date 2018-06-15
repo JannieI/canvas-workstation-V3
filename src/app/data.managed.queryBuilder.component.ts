@@ -153,15 +153,27 @@ export class DataManagedQueryBuilderComponent implements OnInit {
             dc.connectionName == this.connectionName
         );
 
+        this.connectionString = 'Unknown';
+            this.connectionString = ' Type: ' + this.dataConnections[dataConnectionIndex].serverType
+
+            this.connectionString = ' Type: ' + this.dataConnections[dataConnectionIndex].serverType
         if (dataConnectionIndex >= 0) {
             this.connectionString = ' Type: ' + this.dataConnections[dataConnectionIndex].serverType
-                + this.dataConnections[dataConnectionIndex].serverOptions? this.dataConnections[dataConnectionIndex].serverOptions : ''
+            console.warn('xx stuff'
+            this.connectionString = ' Type: ' + this.dataConnections[dataConnectionIndex].serverType
+            ,' Type: ',  this.dataConnections[dataConnectionIndex].serverType
+            ,', Server: ', this.dataConnections[dataConnectionIndex].serverName
+            ,', Port: ', this.dataConnections[dataConnectionIndex].port
+            ,', Database: ', this.dataConnections[dataConnectionIndex].database
+            ,', Auth: ', this.dataConnections[dataConnectionIndex].authentication)
+            this.connectionString = ' Type: ' + this.dataConnections[dataConnectionIndex].serverType
                 + ', Server: ' + this.dataConnections[dataConnectionIndex].serverName
                 + ', Port: ' + this.dataConnections[dataConnectionIndex].port
                 + ', Database: ' + this.dataConnections[dataConnectionIndex].database
-        };
+                + ', Auth: ' + this.dataConnections[dataConnectionIndex].authentication;
+            };
 
-        console.warn('xx ev', ev, this.connectionName)
+        console.warn('xx ev', this.connectionName, this.connectionString)
 
         // TODO - correct this to work with the ID
         // Fill list of Tables for first Connection

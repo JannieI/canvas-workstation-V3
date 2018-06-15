@@ -55,9 +55,9 @@
                                 placeholder="Select type of Server, ie PostreSQL"
                                 [disabled]="!editing  &&  !adding"
                                 >
-                                <option>My SQL</option>
                                 <option>Microsft SQL</option>
-                                <option>MySQL</option>
+                                <option>My SQL</option>
+                                <option>Postgres</option>
                             </select>
                         </div>
         
@@ -101,14 +101,14 @@
                         </div>
         
                         <div class="gridAuthenticationTitle">
-                            <b>Authentication:</b>
+                            <b>Auth:</b>
                         </div>
                         <div class="gridAuthentication">
                             <input [(ngModel)]="selectedConnection.authentication"
                                 type="text"
                                 name="authentication"
-                                title="Current User or log in"
-                                placeholder="Current User or log in"
+                                title="Type of Authentication: current User or user/psw to log in"
+                                placeholder="Type of Authentication: current User or user/psw to log in"
                                 [disabled]="!editing  &&  !adding"
                                 >
                         </div>
