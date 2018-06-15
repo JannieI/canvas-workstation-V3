@@ -1222,7 +1222,17 @@ export class AppComponent implements OnInit {
         this.showModalDataDirectImport = false;
 
     }
-    
+
+    handleCloseDataDirectExport(action: string) {
+        // Handle close of Direct NoSQL Editor
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDirectExport', '@Start');
+
+        this.menuOptionClickPostAction();
+
+        this.showModalDataDirectExport = false;
+
+    }
+
     handleCloseDataDatasourceOverview(action: string) {
         // Handle close of Datasource Overview
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDatasourceOverview', '@Start');
