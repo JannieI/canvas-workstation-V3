@@ -369,6 +369,8 @@
                                     >
                                     From File
                                 </button>
+
+                                <div class="dropdown-divider"></div>
                                 <button
                                     type="button"
                                     clrDropdownItem
@@ -409,13 +411,23 @@
                                     >
                                     From Web
                                 </button>
+
+                                <div class="dropdown-divider"></div>
                                 <button
                                     type="button"
                                     clrDropdownItem
-                                    (click)="clickMenuDataFromFile(1)"
+                                    (click)="clickMenuDataDirectImport()"
                                     title="Import a new Datasources from an external file"
                                     >
                                     Import
+                                </button>
+                                <button
+                                    type="button"
+                                    clrDropdownItem
+                                    (click)="clickMenuDataDirectExport()"
+                                    title="Export a Datasources to an external file"
+                                    >
+                                    Export
                                 </button>
                             </clr-dropdown-menu>
                         </clr-dropdown>

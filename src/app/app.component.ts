@@ -2900,21 +2900,19 @@ export class AppComponent implements OnInit {
         // Open DATA form for a DS that comes from a NoSQL.
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDirectNoSQL', '@Start');
 
-        // Has to be in editMode
-        // if (!this.editMode) {
-        //     this.showMessage(
-        //         this.globalVariableService.canvasSettings.notInEditModeMsg,
-        //         'StatusBar',
-        //         'Warning',
-        //         3000,
-        //         ''
-        //     );
-        //     return;
-        // };
-
         this.menuOptionClickPreAction();
 
         this.showModalDataDirectNoSQL = true;
+    }
+
+    clickMenuDataDirectImport() {
+        // Import a DS from an external file (json format)
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDirectImport', '@Start');
+    }
+
+    clickMenuDataDirectExport() {
+        // Export a DS to an external file (json format)
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDirectExport', '@Start');
     }
 
     clickMenuDataFromFile(id: number) {
