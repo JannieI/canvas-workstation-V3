@@ -406,6 +406,8 @@ export class DataConnection {
     connectionName: string;     // Name of the Connection, ie XIS MS SQL Server
     serverType: string;         // Type of server, ie PostgreSQL, MySQL, etc
     serverName: string;         // DNS Server Name or IP address, ending with optional :port
+    port: string;               // Port on the Server, maybe blank
+    database: string;           // Database to connect to
     authentication: string;     // Type of authentication: usr & psw, OR login as me (ie using AD)
     description: string;        // Description of Connection
 
