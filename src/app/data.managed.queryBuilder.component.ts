@@ -216,6 +216,18 @@ export class DataManagedQueryBuilderComponent implements OnInit {
 
     }
     
+    constructConnectionString(index: number) {
+        // Construct single text of connection properties
+        this.globalFunctionService.printToConsole(this.constructor.name,'constructConnectionString', '@Start');
+
+        this.connectionString = '   Type: ' + this.dataConnections[index].serverType
+        + ',   Server: ' + this.dataConnections[index].serverName
+        + ',   Port: ' + this.dataConnections[index].port
+        + ',   Database: ' + this.dataConnections[index].database
+        + ',   Auth: ' + this.dataConnections[index].authentication
+        + ',   Description: ' + this.dataConnections[index].description;
+
+    }
     clickSelectedDataTable(index: number, id: number) {
         // Clicked a Table
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectedDataTable', '@Start');
