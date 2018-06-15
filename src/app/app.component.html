@@ -4007,7 +4007,6 @@
 <data-direct-import
     class="formPopupDashboard"
     *ngIf="showModalDataDirectImport"
-    [selectedDatasource]="selectedDatasource"
     (formDataDirectImportClosed)="handleCloseDataDirectImport($event)">Load Data Direct Import DS ...
 </data-direct-import>
 
@@ -4016,7 +4015,6 @@
 <data-direct-export
     class="formPopupDashboard"
     *ngIf="showModalDataDirectExport"
-    [selectedDatasource]="selectedDatasource"
     (formDataDirectExportClosed)="handleCloseDataDirectExport($event)">Load Data Direct Export DS ...
 </data-direct-export>
 

@@ -256,7 +256,7 @@ export class DataDirectExportComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-        this.formDataDirectImportClosed.emit(action);
+        this.formDataDirectExportClosed.emit(action);
 
     }
 

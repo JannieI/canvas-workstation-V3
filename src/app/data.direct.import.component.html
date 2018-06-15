@@ -7,12 +7,16 @@
                     </button>
                     <div class="gridOverall">
                         <div class="gridTitle">
-                            Data from File:
+                            Import Datasource from File:
                         </div>
                         <div class="gridSubTitle">
-                            Select file from which to create a new Datasource.
+                            Select file from which to import a new Datasource.
                         </div>
-    
+
+                        <div class="errorMessage">
+                            {{ errorMessage }}
+                        </div>
+        
                         <div class="gridFolderTitle">
                             Folder:
                         </div>
@@ -32,47 +36,7 @@
                                 class="selectFile"
                                 >
                         </div>
-    
-                        <div class="gridButtonBrowse">
-                            <button
-                                type="button"
-                                class="btn btn-secondary"
-                                (click)="clickFileBrowse()"
-                                >
-                                Browse
-                            </button>
-                        </div>
-    
-                        <div class="gridExcelTitle">
-                            Excel Worksheet:
-                        </div>
-                        <div class="gridExcel">
-                            <div class="select">
-                                <select id="selects_3" class="selectBox">
-                                    <option>New York</option>
-                                    <option>San Francisco</option>
-                                    <option>Austin</option>
-                                    <option>Paris</option>
-                                    <option>Seattle</option>
-                                </select>
-                            </div>
-                        </div>
-    
-                        <div class="gridTransposeTitle">
-                            Transpose:
-                        </div>
-                        <div class="gridTranspose">
-                            <span class="checkbox-inline">
-                                <input type="checkbox" id="checkrads_5">
-                            </span>
-                        </div>
-    
-                        <div class="gridStartatTitle">
-                            Start at:
-                        </div>
-                        <div class="gridStartat">
-                            <input type="text" id="formFields_7" placeholder="Start on line nr">
-                        </div>
+
                         <div class="gridDatasourceNameTitle">
                             Name:
                         </div>
@@ -110,28 +74,9 @@
                                 Add
                             </button>
                         </div>
-    
-                        <div class="gridPreviewTable">
-                            <clr-datagrid>
-    
-                                <clr-dg-column *ngFor="let row of dataFieldNames">{{row}}</clr-dg-column>
-                                <clr-dg-row *ngFor="let row of currentData">
-    
-                                    <clr-dg-cell *ngFor="let col of dataFieldNames; let i = index">
-                                            {{ row[col] }}
-                                    </clr-dg-cell>
-                                </clr-dg-row>
-    
-                                <clr-dg-footer>
-                                    {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
-                                    of {{pagination.totalItems}} rows
-                                    <clr-dg-pagination #pagination [clrDgPageSize]="10"></clr-dg-pagination>
-                                </clr-dg-footer>
-    
-                            </clr-datagrid>
-                        </div>
-                        <div class="errorMessage">
-                            {{ errorMessage }}
+        
+                        <div class="gridPreviewFile">
+                            <textarea cols="30" rows="7">{ name: "exy"}</textarea>
                         </div>
                     </div>
                 </div>
