@@ -48,40 +48,40 @@
         grid-row-end: 5;
     }
     
-    .gridConnectionSelectTitle {
+    .gridServerTypeTitle {
         grid-column-start: 7;
         grid-column-end: 9;
         grid-row-start: 4;
         grid-row-end: 5;
     }
-    .gridConnectionSelect {
+    .gridServerType {
         grid-column-start: 9;
         grid-column-end: 13;
         grid-row-start: 4;
         grid-row-end: 5;
     }
-     
-    .gridServerTypeTitle {
+    
+    .gridServerNameTitle {
         grid-column-start: 14;
         grid-column-end: 15;
         grid-row-start: 4;
         grid-row-end: 5;
     }
-    .gridServerType {
+    .gridServerName {
         grid-column-start: 15;
         grid-column-end: 20;
         grid-row-start: 4;
         grid-row-end: 5;
     }
 
-    .gridServerNameTitle {
+    .gridServerPortTitle {
         grid-column-start: 1;
         grid-column-end: 2;
         grid-row-start: 6;
         grid-row-end: 7;
         margin-top: 5px;
     }
-    .gridServerName {
+    .gridServerPort {
         grid-column-start: 2;
         grid-column-end: 7;
         grid-row-start: 6;
@@ -89,47 +89,47 @@
         margin-top: 5px;
     }
 
-    .gridUsernameTitle {
+    .gridDatabaseTitle {
         grid-column-start: 7;
         grid-column-end: 9;
         grid-row-start: 6;
         grid-row-end: 7;
         margin-top: 5px;
     }
-    .gridUsername {
+    .gridDatabase {
         grid-column-start: 9;
         grid-column-end: 14;
         grid-row-start: 6;
         grid-row-end: 7;
+        margin-top: 5px;
     }
 
-    .gridPasswordTitle {
+    .gridUsernameTitle {
         grid-column-start: 14;
         grid-column-end: 15;
         grid-row-start: 6;
         grid-row-end: 7;
         margin-top: 5px;
     }
-    .gridPassword {
+    .gridUsername {
         grid-column-start: 15;
         grid-column-end: 21;
         grid-row-start: 6;
         grid-row-end: 7;
     }
 
-    .gridAuthenticationTitle {
+    .gridPasswordTitle {
         grid-column-start: 1;
-        grid-column-end: 3;
+        grid-column-end: 2;
         grid-row-start: 8;
         grid-row-end: 9;
         margin-top: 5px;
     }
-    .gridAuthentication {
-        grid-column-start: 3;
+    .gridPassword {
+        grid-column-start: 2;
         grid-column-end: 7;
         grid-row-start: 8;
         grid-row-end: 9;
-        margin: 5px 0 0 12px;
     }
 
     .gridDescriptionTitle {
