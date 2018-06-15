@@ -66,7 +66,7 @@ export class DataManagedQueryBuilderComponent implements OnInit {
     selectedTableRowIndex: number = 0;
     serverName: string = 'MSSQL54: 8000';
 
-    connectionString: string;
+    connectionString: string = '';
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -128,6 +128,7 @@ export class DataManagedQueryBuilderComponent implements OnInit {
                     // Select the Tables, Fields
                     if (this.dataConnections.length > 0) {
                         this.clickConnectionSelect(this.dataConnections[0].connectionName);
+                        this.constructConnectionString(0);
 
                     } else {
                         this.clickConnectionSelect('');
@@ -156,13 +157,8 @@ export class DataManagedQueryBuilderComponent implements OnInit {
         this.connectionString = 'Unknown';
 
         if (dataConnectionIndex >= 0) {
-            this.connectionString = '   Type: ' + this.dataConnections[dataConnectionIndex].serverType
-                + ',   Server: ' + this.dataConnections[dataConnectionIndex].serverName
-                + ',   Port: ' + this.dataConnections[dataConnectionIndex].port
-                + ',   Database: ' + this.dataConnections[dataConnectionIndex].database
-                + ',   Auth: ' + this.dataConnections[dataConnectionIndex].authentication
-                + ',   Description: ' + this.dataConnections[dataConnectionIndex].description;
-            };
+            this.constructConnectionString(dataConnectionIndex);
+        };
 
         console.warn('xx ev', this.connectionName, this.connectionString)
 
