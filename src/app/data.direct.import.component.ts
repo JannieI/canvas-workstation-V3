@@ -44,20 +44,12 @@ export class DataDirectImportComponent implements OnInit {
 
     }
 
-    datasources: Datasource[];
-    currentDatasources: Datasource[] = [];
     currentData: any = [];
-    dataArray: any;
-    dataFieldLengths: number[] = [];
-    dataFieldNames: string[];
-    dataFieldTypes: string[] = [];
+    datasourceName: string = '';
+    datasourceDescription: string = '';
     errorMessage: string = "";
     fileName: string = 'datasource.sharePrices.json';
     folderName: string = './assets/';
-    finalFields: any = [];
-    selectedFile: boolean = true;
-    currentDatasetName: string;
-
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -68,9 +60,6 @@ export class DataDirectImportComponent implements OnInit {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        // Load from global variables
-        this.currentDatasources = this.globalVariableService.currentDatasources.slice();
-        this.datasources = this.globalVariableService.datasources.slice();
     }
 
     clickDSPreview() {
@@ -106,24 +95,45 @@ export class DataDirectImportComponent implements OnInit {
         // Handles callback from async datalib load
         this.globalFunctionService.printToConsole(this.constructor.name,'fileLoadedCallback', '@Start');
 
-        let startNow: number;
-        startNow = Date.now()
-
         // Load
-        console.log('')
         console.log('DataPopup clickDSPreview LOAD start:', currentData)
-        this.currentData = currentData;
+        this.currentData = JSON.stringify(currentData);
+        let obj = JSON.parse(this.currentData);
+        console.warn('xx obj', obj.dataFieldTypes)
+        // JSON.parse(JSON.stringify(resolvedData));
 
     }
  
     clickClose(action: string) {
-        //
+        // Close form, nothing imported
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
         this.formDataDirectImportClosed.emit(action);
 
     }
 
+    clickDSAdd() {
+        // Close form, add imported DS
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDSAdd', '@Start');
+
+        // Reset
+        this.errorMessage = '';
+
+        // Validation
+        if (this.datasourceName == '') {
+            this.errorMessage = 'Name of the Datasource is compulsory';
+        };
+        if (this.datasourceDescription == '') {
+            this.errorMessage = 'Description of the Datasource is compulsory';
+        };
+
+        let datasource: Datasource = JSON.parse(this.currentData);
+        datasource.id = null;
+        datasource.name = this.datasourceName;
+        datasource.description = this.datasourceDescription;
+
+        this.globalVariableService.addDatasource(datasource);
+    }
 }
 
 

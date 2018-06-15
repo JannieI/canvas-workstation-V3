@@ -42,9 +42,8 @@
                         </div>
                         <div class="gridDatasourceName">
                             <input type="text" 
-                                id="formFields_7"
+                                [(ngModel)]="datasourceName"
                                 > 
-                                {{ existingDSName }}
                         </div>
     
                         <div class="gridDatasourceDescriptionTitle">
@@ -52,7 +51,7 @@
                         </div>
                         <div class="gridDatasourceDescription">
                             <input type="text" 
-                                id="formFields_7"
+                                [(ngModel)]="datasourceDescription"
                                 > 
                         </div>
         
@@ -69,14 +68,14 @@
                             <button
                                 type="button"
                                 class="btn btn-primary"
-                                (click)="clickDSAdd('Add')"
+                                (click)="clickDSAdd()"
                                 >
                                 Add
                             </button>
                         </div>
         
                         <div class="gridPreviewFile">
-                            <textarea cols="30" rows="7">{ name: "exy"}</textarea>
+                            <textarea cols="30" rows="7">{{ currentData }}</textarea>
                         </div>
                     </div>
                 </div>
