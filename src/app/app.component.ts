@@ -371,6 +371,8 @@ export class AppComponent implements OnInit {
     showModalDataDirectQueryBuilder: boolean = false;
     showModalDataDirectSQLEditor: boolean = false;
     showModalDataDirectNoSQL: boolean = false;
+    showModalDataDirectImport: boolean = false;
+    showModalDataDirectExport: boolean = false;
     showModalDataOverview: boolean = false;
     showModalDataUsage: boolean = false;
     showModalDataManagedQueryBuilder: boolean = false;
@@ -1211,6 +1213,16 @@ export class AppComponent implements OnInit {
         };
     }
 
+    handleCloseDataDirectImport(action: string) {
+        // Handle close of Direct NoSQL Editor
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDirectImport', '@Start');
+
+        this.menuOptionClickPostAction();
+
+        this.showModalDataDirectImport = false;
+
+    }
+    
     handleCloseDataDatasourceOverview(action: string) {
         // Handle close of Datasource Overview
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDatasourceOverview', '@Start');
@@ -2908,11 +2920,15 @@ export class AppComponent implements OnInit {
     clickMenuDataDirectImport() {
         // Import a DS from an external file (json format)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDirectImport', '@Start');
+
+        this.showModalDataDirectImport = true;
     }
 
     clickMenuDataDirectExport() {
         // Export a DS to an external file (json format)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDirectExport', '@Start');
+
+        this.showModalDataDirectExport = true;
     }
 
     clickMenuDataFromFile(id: number) {
