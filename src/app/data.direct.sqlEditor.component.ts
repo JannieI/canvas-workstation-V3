@@ -128,20 +128,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
         };
 
     }
-
-    
-    filterFields(tableID: number) {
-        // Filter Fields on Selected Connection
-        this.globalFunctionService.printToConsole(this.constructor.name,'filterFields', '@Start');
-
-        this.dataFieldsFiltered = this.dataFields.filter(df => {
-            if (df.tableID == tableID) {
-                return df;
-            };
-        });
-
-    }
-    
+  
     clickGo() {
         // Clicked Go: execute SQL typed in, and return results and errors
         this.globalFunctionService.printToConsole(this.constructor.name,'clickGo', '@Start');
