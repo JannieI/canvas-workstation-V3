@@ -18,7 +18,7 @@
                         </div>
     
                         <div class="gridConnectionTitle">
-                            <b>Connection:</b>
+                            <b>Name:</b>
                         </div>
                         <div class="gridConnection">
                             <input [(ngModel)]="selectedConnection.connectionName"
@@ -26,8 +26,23 @@
                                 name="connectionName"
                                 required
                                 title="Name of the connection"
-                                placeholder="Name of Connection"
+                                placeholder="Name of the Connection"
                                 [disabled]="!editing  &&  !adding"                                
+                                >
+                        </div>
+    
+                        <div class="gridDescriptionTitle">
+                            <b>Description:</b>
+                        </div>
+                        <div class="gridDescription">
+                            <input [(ngModel)]="selectedConnection.description"
+                                type="text"
+                                name="description"
+                                size="45"
+                                title="Description of the connection"
+                                required
+                                placeholder="Description of the connection"
+                                [disabled]="!editing  &&  !adding"
                                 >
                         </div>
     
@@ -59,6 +74,45 @@
                                 >
                         </div>
     
+                        <div class="gridPortTitle">
+                            <b>Port:</b>
+                        </div>
+                        <div class="gridPort">
+                            <input [(ngModel)]="selectedConnection.port"
+                                type="text"
+                                name="port"
+                                title="Optional port on DB Server"
+                                placeholder="Optional port on DB Server"
+                                [disabled]="!editing  &&  !adding"
+                                >
+                        </div>
+    
+                        <div class="gridDatabaseTitle">
+                            <b>Database:</b>
+                        </div>
+                        <div class="gridDatabase">
+                            <input [(ngModel)]="selectedConnection.database"
+                                type="text"
+                                name="database"
+                                title="Database to connect to"
+                                placeholder="Database to connect to"
+                                [disabled]="!editing  &&  !adding"
+                                >
+                        </div>
+        
+                        <div class="gridAuthenticationTitle">
+                            <b>Authentication:</b>
+                        </div>
+                        <div class="gridAuthentication">
+                            <input [(ngModel)]="selectedConnection.authentication"
+                                type="text"
+                                name="authentication"
+                                title="Current User or log in"
+                                placeholder="Current User or log in"
+                                [disabled]="!editing  &&  !adding"
+                                >
+                        </div>
+    
                         <div class="gridUsernameTitle">
                             <b>Username:</b>
                         </div>
@@ -85,34 +139,6 @@
                                 >
                         </div>
     
-                        <div class="gridAuthenticationTitle">
-                            <b>Authentication:</b>
-                        </div>
-                        <div class="gridAuthentication">
-                            <input [(ngModel)]="selectedConnection.authentication"
-                                type="text"
-                                name="authentication"
-                                title="Current User or log in"
-                                placeholder="Current User or log in"
-                                [disabled]="!editing  &&  !adding"
-                                >
-                        </div>
-    
-                        <div class="gridDescriptionTitle">
-                            <b>Description:</b>
-                        </div>
-                        <div class="gridDescription">
-                            <input [(ngModel)]="selectedConnection.description"
-                                type="text"
-                                name="description"
-                                size="45"
-                                title="Description of the connection"
-                                required
-                                placeholder="Description of the connection"
-                                [disabled]="!editing  &&  !adding"
-                                >
-                        </div>
-
                         <div class="gridButtonCancel" *ngIf="editing  ||  adding">
                             <button
                                 type="button"

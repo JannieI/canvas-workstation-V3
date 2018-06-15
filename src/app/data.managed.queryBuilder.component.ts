@@ -149,14 +149,18 @@ export class DataManagedQueryBuilderComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickConnectionSelect', '@Start');
 
         
-        let dataConnection: DataConnection = this.dataConnections.findIndex(dc =>
-            dc.connectionName = this.connectionName
-        )
-        this.connectionString = ' Type: ' + dataConnection.serverType
-            + dataConnection.serverOptions? dataConnection.serverOptions : ''
-            + ', Server: ' + dataConnection.serverName
-            + ', Port: ' + dataConnection.port
-        this.connectionName
+        let dataConnectionIndex: number = this.dataConnections.findIndex(dc =>
+            dc.connectionName == this.connectionName
+        );
+
+        if (dataConnectionIndex >= 0) {
+            this.connectionString = ' Type: ' + this.dataConnections[dataConnectionIndex].serverType
+                + this.dataConnections[dataConnectionIndex].serverOptions? this.dataConnections[dataConnectionIndex].serverOptions : ''
+                + ', Server: ' + this.dataConnections[dataConnectionIndex].serverName
+                + ', Port: ' + this.dataConnections[dataConnectionIndex].port
+                + ', Database: ' + this.dataConnections[dataConnectionIndex].database
+        };
+
         console.warn('xx ev', ev, this.connectionName)
 
         // TODO - correct this to work with the ID
