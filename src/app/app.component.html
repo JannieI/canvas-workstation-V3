@@ -3977,6 +3977,7 @@
 <data-direct-sqlEditor
     class="formPopupDashboard"
     *ngIf="showModalDataDirectSQLEditor"
+    [selectedDatasource]="selectedDatasource"
     (formDataDirectSQLEditorClosed)="handleCloseDataDirectSQLEditor($event)">Load Data Direct From SQL ...
 </data-direct-sqlEditor>
 

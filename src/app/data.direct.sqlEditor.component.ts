@@ -38,6 +38,8 @@ import { DataQualityIssue }           from './models';
 })
 export class DataDirectSQLEditorComponent implements OnInit { 
 
+    @Input() selectedDatasource: Datasource;
+    
     @Output() formDataDirectSQLEditorClosed: EventEmitter<string> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
@@ -68,6 +70,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
     selectedFields: DataField[] = [];
     selectedTableRowIndex: number = 0;
     serverName: string = 'MSSQL54: 8000';
+    serverTypes: { serverType: string; driverName: string}[]
 
     // connections ->
 
@@ -81,49 +84,51 @@ export class DataDirectSQLEditorComponent implements OnInit {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.globalVariableService.getDataConnections().then(dc => {
-            this.globalVariableService.getDataTable().then(dt => {
-                this.globalVariableService.getDataField().then(df => {
+        // Set base info
+        this.serverTypes = this.globalVariableService.serverTypes;
 
-                    // Get local Vars
-                    this.dataConnections = dc.slice();
-                    this.dataTables = dt.slice();
-                    this.dataFields = df.slice();
-
-                    // Select the Tables, Fields
-                    if (this.dataConnections.length > 0) {
-                        this.clickConnectionSelect(this.dataConnections[0].connectionName);
-
-                    } else {
-                        this.clickConnectionSelect('');
-                    };
-                });
-            });
-        });
+        if (this.selectedDatasource == null) {
+            this.selectedDatasource = {
+                id: 0,
+                type: '',
+                subType: '',
+                typeVersion: '',
+                name: 'New DS',
+                username: 'ftfhgfzh',
+                password: 'L0Eph9ftbx0yh45aeDtgzsGKBa2ZNhfl',
+                description: 'Post Trade Data Vault',
+                createdBy: '',
+                createdOn: '',
+                refreshedBy: '',
+                refreshedOn: '',
+                dataFieldIDs: [0],
+                dataFields: [''],
+                dataFieldTypes: [''],
+                dataFieldLengths: [0],
+                parameters: '',
+                folder: '',
+                fileName: '',
+                excelWorksheet: '',
+                transposeOnLoad: false,
+                startLineNr: 0,
+                csvSeparationCharacter: '',
+                csvQuotCharacter: '',
+                connectionID: 0,
+                dataTableID: 0,
+                nrWidgets: 0,
+                databaseName: 'ftfhgfzh',
+                port: '5432',
+                serverType: 'PostgresSQL',
+                serverName: 'pellefant.db.elephantsql.com',
+                dataTableName: 'ftfhgfzh',
+                dataSQLStatement: '',
+                dataNoSQLStatement: ''
+                            
+            };
+        };
 
     }
 
-    clickConnectionSelect(ev: any) {
-        // Refresh the Tables and Fields for the selected Connection
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickConnectionSelect', '@Start');
-
-        console.warn('xx ev', ev, this.connectionName)
-
-        // Fill list of Tables for first Connection
-        if (this.connectionName != '') {
-            this.filterTables(this.connectionName);
-        } else {
-            this.filterTables('');
-        };
-
-        // Fill list of Fields for first Table
-        if (this.dataTablesFiltered.length > 0) {
-            this.filterFields(this.dataTablesFiltered[0].id);
-        } else {
-            this.filterFields(-1);
-        };
-
-    }
 
     filterTables(connectNameToFilter: string) {
         // Filter Tables on Selected Connection
