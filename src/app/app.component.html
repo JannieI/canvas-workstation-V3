@@ -4003,6 +4003,24 @@
 </data-direct-Nosql>
 
 
+<!-- Modal: Data Direct Import DS -->
+<data-direct-import
+    class="formPopupDashboard"
+    *ngIf="showModalDataDirectImport"
+    [selectedDatasource]="selectedDatasource"
+    (formDataDirectImportlosed)="handleCloseDataDirectImport($event)">Load Data Direct Import DS ...
+</data-direct-import>
+
+
+<!-- Modal: Data Direct Export DS -->
+<data-direct-export
+    class="formPopupDashboard"
+    *ngIf="showModalDataDirectExport"
+    [selectedDatasource]="selectedDatasource"
+    (formDataDirectExportlosed)="handleCloseDataDirectExport($event)">Load Data Direct Export DS ...
+</data-direct-export>
+
+
 <!-- Modal: Data Managed Connection -->
 <data-managed-connection
     *ngIf="showModalDataManagedConnection"
