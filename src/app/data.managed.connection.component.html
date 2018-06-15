@@ -12,15 +12,15 @@
                         </div>
                         <div class="gridSubTitle">
                             <i>
-                                Manage Connections (links to DB Servers) that are used to 
+                                Manage Connections (links to SQL DB Servers) that are used to 
                                 define a Datasource.  DblClick x to delete a row.
                             </i>
                         </div>
     
-                        <div class="gridConnectionTitle">
+                        <div class="gridConnectionNameTitle">
                             <b>Name:</b>
                         </div>
-                        <div class="gridConnection">
+                        <div class="gridConnectionName">
                             <input [(ngModel)]="selectedConnection.connectionName"
                                 type="text"
                                 name="connectionName"
@@ -38,7 +38,7 @@
                             <input [(ngModel)]="selectedConnection.description"
                                 type="text"
                                 name="description"
-                                size="45"
+                                size="30"
                                 title="Description of the connection"
                                 required
                                 placeholder="Description of the connection"
@@ -181,7 +181,7 @@
                             {{ errorMessage }}
                         </div>
     
-                        <div class="gridConnections">
+                        <div class="gridConnectionsTable">
                             <clr-datagrid>
                                 <clr-dg-placeholder>
                                     No records ...
