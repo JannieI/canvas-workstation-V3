@@ -66,6 +66,7 @@ export class DataManagedQueryBuilderComponent implements OnInit {
     selectedTableRowIndex: number = 0;
     serverName: string = 'MSSQL54: 8000';
 
+    connectionString: string;
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -147,8 +148,18 @@ export class DataManagedQueryBuilderComponent implements OnInit {
         // Refresh the Tables and Fields for the selected Connection
         this.globalFunctionService.printToConsole(this.constructor.name,'clickConnectionSelect', '@Start');
 
+        
+        let dataConnection: DataConnection = this.dataConnections.findIndex(dc =>
+            dc.connectionName = this.connectionName
+        )
+        this.connectionString = ' Type: ' + dataConnection.serverType
+            + dataConnection.serverOptions? dataConnection.serverOptions : ''
+            + ', Server: ' + dataConnection.serverName
+            + ', Port: ' + dataConnection.port
+        this.connectionName
         console.warn('xx ev', ev, this.connectionName)
 
+        // TODO - correct this to work with the ID
         // Fill list of Tables for first Connection
         if (this.connectionName != '') {
             this.filterTables(this.connectionName);

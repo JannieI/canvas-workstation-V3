@@ -74,6 +74,16 @@
         grid-row-end: 5;
     }
 
+
+
+    .connectionString {
+        grid-column-start: 1;
+        grid-column-end: 21;
+        grid-row-start: 6;
+        grid-row-end: 7;
+        margin-top: 5px;
+    }
+
     .gridServerNameTitle {
         grid-column-start: 1;
         grid-column-end: 2;
