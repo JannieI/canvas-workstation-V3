@@ -1214,7 +1214,7 @@ export class AppComponent implements OnInit {
     }
 
     handleCloseDataDirectImport(action: string) {
-        // Handle close of Direct NoSQL Editor
+        // Handle close of Direct Import of DS
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDirectImport', '@Start');
 
         this.menuOptionClickPostAction();

@@ -77,6 +77,7 @@ import { DataDirectQueryBuilderComponent }  from './data.direct.queryBuilder.com
 import { DataDirectSQLEditorComponent }      from './data.direct.sqlEditor.component';
 import { DataDirectNoSQLComponent }   from './data.direct.Nosql.component';
 import { DataDirectImportComponent }  from './data.direct.import.component';
+import { DataDirectExportComponent }  from './data.direct.export.component';
 
 import { DataManagedConnectionComponent }    from './data.managed.connection.component';
 import { DataManagedQueryBuilderComponent }  from './data.managed.queryBuilder.component';
@@ -173,6 +174,7 @@ import { StatusbarComponent }         from './statusbar.component';
         DataDirectSQLEditorComponent,
         DataDirectNoSQLComponent,
         DataDirectImportComponent,
+        DataDirectExportComponent,
         DataPopupComponent,
         DataManagedConnectionComponent,
         DataManagedQueryBuilderComponent,

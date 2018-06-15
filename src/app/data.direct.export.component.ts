@@ -27,7 +27,7 @@ import { load } from 'datalib';
     templateUrl: './data.direct.export.component.html',
     styleUrls:  ['./data.direct.export.component.css']
 })
-export class DataDirectExortComponent implements OnInit {
+export class DataDirectExportComponent implements OnInit {
 
     @Output() formDataDirectExportClosed: EventEmitter<string> = new EventEmitter();
 
