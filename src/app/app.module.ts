@@ -74,8 +74,9 @@ import { ShapeDeleteComponent }       from './shape.delete.component';
 
 import { DataDirectFileComponent }    from './data.direct.file.component';
 import { DataDirectQueryBuilderComponent }  from './data.direct.queryBuilder.component';
-import { DataDirectNoSQLComponent }   from './data.direct.Nosql.component';
 import { DataDirectSQLEditorComponent }      from './data.direct.sqlEditor.component';
+import { DataDirectNoSQLComponent }   from './data.direct.Nosql.component';
+import { DataDirectImportComponent }  from './data.direct.import.component';
 
 import { DataManagedConnectionComponent }    from './data.managed.connection.component';
 import { DataManagedQueryBuilderComponent }  from './data.managed.queryBuilder.component';
@@ -171,6 +172,7 @@ import { StatusbarComponent }         from './statusbar.component';
         DataDirectQueryBuilderComponent,
         DataDirectSQLEditorComponent,
         DataDirectNoSQLComponent,
+        DataDirectImportComponent,
         DataPopupComponent,
         DataManagedConnectionComponent,
         DataManagedQueryBuilderComponent,
