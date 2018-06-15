@@ -122,17 +122,22 @@ export class DataDirectImportComponent implements OnInit {
         // Validation
         if (this.datasourceName == '') {
             this.errorMessage = 'Name of the Datasource is compulsory';
+            return;
         };
         if (this.datasourceDescription == '') {
             this.errorMessage = 'Description of the Datasource is compulsory';
+            return;
         };
 
+        // Prepare, add to DB and close form
         let datasource: Datasource = JSON.parse(this.currentData);
         datasource.id = null;
         datasource.name = this.datasourceName;
         datasource.description = this.datasourceDescription;
-
         this.globalVariableService.addDatasource(datasource);
+
+        this.formDataDirectImportClosed.emit('Added');
+        
     }
 }
 
