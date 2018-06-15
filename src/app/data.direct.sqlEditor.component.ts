@@ -114,6 +114,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
     serverName: string = 'MSSQL54: 8000';
     serverTypes: { serverType: string; driverName: string}[]
     showPreview: boolean = false;
+    dataFieldsSelected: string[] = [];
 
     // connections ->
 
@@ -176,6 +177,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
         // Clicked Go: execute SQL typed in, and return results and errors
         this.globalFunctionService.printToConsole(this.constructor.name,'clickGo', '@Start');
 
+        this.dataFieldsSelected = ['id', 'InvoiceDate', 'Total']
         this.showPreview = true;
         this.currentData = constDataInvoices;
     }
