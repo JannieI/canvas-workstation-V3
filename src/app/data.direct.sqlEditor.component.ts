@@ -30,7 +30,47 @@ import { Field }                      from './models';
 import { FieldMetadata }              from './models';
 import { DataQualityIssue }           from './models';
 
- 
+const constDataInvoices: any = 
+[
+    {
+        id: 0,
+        InvoiceDate: '2017/01/01',
+        Total: 20
+    },
+    {
+        id: 1,
+        InvoiceDate: '2017/01/01',
+        Total: 40
+    },
+    {
+        id: 2,
+        InvoiceDate: '2017/01/01',
+        Total: 50
+    },
+    {
+        id: 3,
+        InvoiceDate: '2017/01/01',
+        Total: 60
+    },
+    {
+        id: 4,
+        InvoiceDate: '2017/01/01',
+        Total: 80
+    },
+    {
+        id: 5,
+        InvoiceDate: '2017/01/01',
+        Total: 100
+    },
+    {
+        id: 6,
+        InvoiceDate: '2017/01/01',
+        Total: 120
+    }
+
+];
+
+
 @Component({
     selector: 'data-direct-sqlEditor',
     templateUrl: './data.direct.sqlEditor.component.html',
@@ -57,6 +97,8 @@ export class DataDirectSQLEditorComponent implements OnInit {
 
     authentication: string = 'UsrPsw';
     connectionName: string = '';
+    currentData: any = [];
+    
     serverType: string = 'MySQL';
     datasourceName: string = '';
     description: string = 'Post Trade Data Vault';
@@ -71,6 +113,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
     selectedTableRowIndex: number = 0;
     serverName: string = 'MSSQL54: 8000';
     serverTypes: { serverType: string; driverName: string}[]
+    showPreview: boolean = false;
 
     // connections ->
 
@@ -133,6 +176,8 @@ export class DataDirectSQLEditorComponent implements OnInit {
         // Clicked Go: execute SQL typed in, and return results and errors
         this.globalFunctionService.printToConsole(this.constructor.name,'clickGo', '@Start');
 
+        this.showPreview = true;
+        this.currentData = constDataInvoices;
     }
 
     clickClose(action: string) {

@@ -113,8 +113,7 @@
                         <div *ngIf="errorMessage!=''" class="gridErrorMessage">
                             {{ errorMessage }}
                         </div>
-    
-                        
+                            
                         <div class="gridGoButton">
                             <button
                                 type="button"
@@ -128,6 +127,30 @@
     
                         <textarea class="gridSQLText">SELECT * FROM [table]</textarea>
 
+                        <div class="gridData" *ngIf="showPreview">
+                            <clr-datagrid class="gridPreviewData">
+    
+                                <clr-dg-column *ngFor="let row of dataFieldsSelected"
+                                    >
+                                    {{ row }}
+                                </clr-dg-column>
+                                
+                                <clr-dg-row *clrDgItems="let row of currentData">
+    
+                                    <clr-dg-cell *ngFor="let col of dataFieldsSelected; let i = index">
+                                            {{ row[col] }}
+                                    </clr-dg-cell>
+                                </clr-dg-row>
+    
+                                <clr-dg-footer>
+                                    {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+                                    of {{pagination.totalItems}} rows
+                                    <clr-dg-pagination #pagination [clrDgPageSize]="8"></clr-dg-pagination>
+                                </clr-dg-footer>
+    
+                            </clr-datagrid>
+                        </div>
+<!-- 
                         <clr-tabs class="gridData">
                             <clr-tab>
                                 <button clrTabLink>Data</button>
@@ -170,7 +193,7 @@
                                     </clr-tab-content>
                                 </ng-template>
                             </clr-tab>
-                        </clr-tabs>
+                        </clr-tabs> -->
                     
                         <div class="gridButtonCancel">
                                 <button
