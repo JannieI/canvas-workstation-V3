@@ -23,13 +23,13 @@ import { load } from 'datalib';
 
 
 @Component({
-    selector: 'data-direct-import',
-    templateUrl: './data.direct.import.component.html',
-    styleUrls:  ['./data.direct.import.component.css']
+    selector: 'data-direct-export',
+    templateUrl: './data.direct.export.component.html',
+    styleUrls:  ['./data.direct.export.component.css']
 })
-export class DataDirectImportComponent implements OnInit {
+export class DataDirectExortComponent implements OnInit {
 
-    @Output() formDataDirectImportClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formDataDirectExportClosed: EventEmitter<string> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
