@@ -26,9 +26,9 @@ import { DataQualityIssue }           from './models';
     styleUrls: ['./data.manageDataQuality.component.css']
 })
 
-export class DataManageDataQualityComponent implements OnInit {
+export class DataManageOwnershipComponent implements OnInit {
 
-    @Output() formDataManageDataQualityClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formDataManageOwnershipClosed: EventEmitter<string> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
@@ -149,7 +149,7 @@ export class DataManageDataQualityComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-        this.formDataManageDataQualityClosed.emit(action);
+        this.formDataManageOwnershipClosed.emit(action);
 
     }
 

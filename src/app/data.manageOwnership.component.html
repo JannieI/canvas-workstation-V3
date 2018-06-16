@@ -1,0 +1,239 @@
+<div class="modal modalBox">
+        <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
+            <div class="modal-content">
+                <form #f="ngForm" role="form" novalidate>
+    
+                    <button type="button" class="closeButton" (click)="clickClose()">
+                        X
+                    </button>
+                    <div class="gridOverall">
+                        <div class="gridTitle">
+                            Manage Ownership:
+                        </div>
+                        <div class="gridSubTitle">
+                            <i>
+                                Add, edit and solve the owner per Datasource.  
+                            </i>
+                        </div>
+    
+                        <div class="gridNameTitle">
+                            <b>Name:</b>
+                        </div>
+                        <div class="gridName">
+                            <input [(ngModel)]="selectedDataQualityIssue.name"
+                                type="text"
+                                name="name"
+                                required
+                                title="Short name to identify issue"
+                                placeholder="Short name to identify issue"
+                                [disabled]="!editing  &&  !adding"                                
+                                >
+                        </div>
+    
+                        <div class="gridDescriptionTitle">
+                            <b>Description:</b>
+                        </div>
+                        <div class="gridDescription">
+                            <input [(ngModel)]="selectedDataQualityIssue.description"
+                                type="text"
+                                name="description"
+                                size="30"
+                                title="Description of the Data Issue"
+                                required
+                                placeholder="Description of the Data Issue"
+                                [disabled]="!editing  &&  !adding"
+                                >
+                        </div>
+    
+                        <div class="gridStatusTitle">
+                            <b>Status:</b>
+                        </div>
+                        <div class="select gridStatus">
+                            <select [(ngModel)]="selectedDataQualityIssue.status"
+                                name="status"
+                                placeholder="Select the Status"
+                                [disabled]="!editing  &&  !adding"
+                                >
+                                <option>Logged</option>
+                                <option>InProgress</option>
+                                <option>Solved</option>
+                            </select>
+                        </div>
+        
+                        <div class="gridTypeTitle">
+                            <b>Type:</b>
+                        </div>
+                        <div class="gridType">
+                            <input [(ngModel)]="selectedDataQualityIssue.type"
+                                type="text"
+                                name="type"
+                                title="User-defined type, ie Stats, Backfill"
+                                placeholder="User defined type, ie Stats, Backfill"
+                                [disabled]="!editing  &&  !adding"
+                                >
+                        </div>
+    
+                        <div class="gridDatasourceTitle">
+                            <b>Datasource:</b>
+                        </div>
+                        <div class="select gridDatasource">
+                            <select
+                                [(ngModel)]="selectedLinkedDatasource"
+                                name="datasourceID"
+                                title="Datasource on which the Data Quality issues exist"
+                                placeholder="Datasource on which the Data Quality issues exist"
+                                [disabled]="!editing  &&  !adding"
+                                >
+                                <option *ngFor="let row of datasourceNames">
+                                    {{ row }}
+                                </option>
+                            </select>
+                        </div>
+    
+                        <div class="gridNrIssuesTitle">
+                            <b>NrIssues:</b>
+                        </div>
+                        <div class="gridNrIssues">
+                            <input [(ngModel)]="selectedDataQualityIssue.nrIssues"
+                                type="text"
+                                name="nrIssues"
+                                title="Optional Number of Issues raised"
+                                placeholder="Optional Number of Issues raised"
+                                [disabled]="!editing  &&  !adding"
+                                >
+                        </div>
+        
+                        <div class="gridLoggedByTitle">
+                            <b>LoggedBy:</b>
+                        </div>
+                        <div class="gridLoggedBy">
+                            <input [(ngModel)]="selectedDataQualityIssue.loggedBy"
+                                type="text"
+                                name="loggedBy"
+                                title="UserID who logged the issues"
+                                placeholder="UserID who logged the issues"
+                                [disabled]="!editing  &&  !adding"
+                                >
+                        </div>
+    
+                        <div class="gridLoggedOnTitle">
+                            <b>LoggedOn:</b>
+                        </div>
+                        <div class="gridLoggedOn">
+                            <input [(ngModel)]="selectedDataQualityIssue.loggedOn"
+                                type="text"
+                                name="loggedOn"
+                                title="Date when issues were logged"
+                                placeholder="Date when issues were logged"
+                                [disabled]="!editing  &&  !adding"
+                                >
+                        </div>
+    
+                        <div class="gridSolvedByTitle">
+                            <b>SolvedBy:</b>
+                        </div>
+                        <div class="gridSolvedBy">
+                            <input [(ngModel)]="selectedDataQualityIssue.solvedBy"
+                                type="password"
+                                name="solvedBy"
+                                title="UserID who marked the issues as solved"
+                                placeholder="UserID who solved the issues"
+                                [disabled]="!editing  &&  !adding"
+                                >
+                        </div>
+    
+                        <div class="gridSolvedOnTitle">
+                            <b>SolvedOn:</b>
+                        </div>
+                        <div class="gridSolvedOn">
+                            <input [(ngModel)]="selectedDataQualityIssue.solvedOn"
+                                type="password"
+                                name="solvedOn"
+                                title="Date when issues were marked as solved"
+                                placeholder="Date when issues were solved" 
+                                [disabled]="!editing  &&  !adding"
+                                >
+                        </div>
+    
+                        <div class="gridButtonCancel" *ngIf="editing  ||  adding">
+                            <button
+                                type="button"
+                                class="btn btn-secondary"
+                                (click)="clickCancel()"
+                                >
+                                Cancel
+                            </button>
+                        </div>
+                        <div class="gridButtonAdd" *ngIf="editing  ||  adding">
+                            <button
+                                type="button"
+                                class="btn btn-primary"
+                                (click)="clickSave()"
+                                >
+                                Save
+                            </button>
+                        </div>
+    
+                        <div class="gridButtonCancel" *ngIf="!editing  &&  !adding">
+                            <button
+                                type="button"
+                                class="btn btn-secondary"
+                                (click)="clickEdit()"
+                                >
+                                Edit
+                            </button>
+                        </div> 
+                        <div class="gridButtonAdd" *ngIf="!editing  &&  !adding">
+                            <button
+                                type="button"
+                                class="btn btn-primary"
+                                (click)="clickAdd()"
+                                >
+                                Add
+                            </button>
+                        </div>
+            
+                        <div *ngIf="errorMessage!=''" class="gridErrorMessage">
+                            {{ errorMessage }}
+                        </div>
+    
+                        <div class="gridTable">
+                            <clr-datagrid>
+                                <clr-dg-placeholder>
+                                    No records ...
+                                </clr-dg-placeholder>
+                                <clr-dg-column>Delete</clr-dg-column>
+                                <clr-dg-column>Name</clr-dg-column>
+                                <clr-dg-column>Description</clr-dg-column>
+                                <clr-dg-column>Status</clr-dg-column>
+                                <clr-dg-column>LoggedBy</clr-dg-column>
+                                <clr-dg-column>LoggedOn</clr-dg-column>
+                                <clr-dg-row
+                                    *ngFor="let row of dataQualityIssues; let i = index"
+                                    [style.background-color]="(i == selectedDataQualityIssueRowIndex)? '#123456' : 'white'"
+                                    [style.color]="(i == selectedDataQualityIssueRowIndex)? 'white' : 'gray'"
+                                    (click)="clickRow(i, row.id)"
+                                    >
+                                    <clr-dg-cell>
+                                        <clr-icon shape="times"
+                                            class="selectIcon1"
+                                            size="18"
+                                            (dblclick)="clickDelete(i, row.id)"
+                                            >
+                                        </clr-icon>
+                                    </clr-dg-cell>
+                                    <clr-dg-cell>{{ row.name }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.description }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.status }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.loggedBy }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.loggedOn }}</clr-dg-cell>
+                                </clr-dg-row>
+                            </clr-datagrid>
+                        </div>
+    
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
