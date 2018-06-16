@@ -4122,6 +4122,50 @@ export class GlobalVariableService {
         });
     }
 
+    saveDatasource(data: Datasource): Promise<string> {
+        // Description: Saves Datasource
+        // Returns: 'Saved' or error message
+        console.log('%c    Global-Variables saveDatasource ...',
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+
+        let url: string = 'Datasources';
+        this.filePath = './assets/data.Datasources.json';
+
+        return new Promise<string>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.put('http://localhost:3000/' + url + '/' + data.id, data, {headers})
+            .subscribe(
+                res => {
+
+                    // Replace local
+                    let localIndex: number = this.currentDatasources.findIndex(d =>
+                        d.id == data.id
+                    );
+                    if (localIndex >= 0) {
+                        this.currentDatasources[localIndex] = data;
+                    };
+                    localIndex = this.datasources.findIndex(d =>
+                        d.id == data.id
+                    );
+                    if (localIndex >= 0) {
+                        this.datasources[localIndex] = data;
+                    };
+
+
+                    console.log('saveDatasource SAVED', res)
+                    resolve('Saved');
+                },
+                err => {
+                    console.log('Error saveDatasource FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+        });
+    }
+
     deleteCurrentDatasource(id: number) {
         // Delete current DS
         console.log('%c    Global-Variables deleteCurrentDatasource',

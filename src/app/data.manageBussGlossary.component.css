@@ -30,70 +30,24 @@
         grid-column-start: 1;
         grid-column-end: 21;
         grid-row-start: 2;
-        grid-row-end: 4;
+        grid-row-end: 3;
         margin-left: 20px;
         text-align: left;
     }
 
-    .gridDatasourceTitle {
+    .gridBusinessGlossaryTitle {
         grid-column-start: 1;
-        grid-column-end: 2;
+        grid-column-end: 4;
         grid-row-start: 4;
         grid-row-end: 5;
     }
-    .gridDatasource {
-        grid-column-start: 2;
-        grid-column-end: 6;
+    .gridBusinessGlossary {
+        grid-column-start: 4;
+        grid-column-end: 21;
         grid-row-start: 4;
-        grid-row-end: 5;
-    }
-    
-    .gridUserIDTitle {
-        grid-column-start: 7;
-        grid-column-end: 8;
-        grid-row-start: 4;
-        grid-row-end: 5;
-        margin-top: 5px;
-    }
-    .gridUserID {
-        grid-column-start: 8;
-        grid-column-end: 14;
-        grid-row-start: 4;
-        grid-row-end: 5;
-    }
-
-    .gridTypeTitle {
-        grid-column-start: 14;
-        grid-column-end: 15;
-        grid-row-start: 4;
-        grid-row-end: 5;
-    }
-    .gridType {
-        grid-column-start: 15;
-        grid-column-end: 18;
-        grid-row-start: 4;
-        grid-row-end: 5;
-    }
-
-    .gridDescriptionTitle {
-        grid-column-start: 1;
-        grid-column-end: 2;
-        grid-row-start: 6;
         grid-row-end: 7;
-        margin-top: 5px;
-    }
-    .gridDescription {
-        grid-column-start: 2;
-        grid-column-end: 7;
-        grid-row-start: 6;
-        grid-row-end: 7;
-    }
-
-    .gridErrorMessage {
-        grid-column-start: 10;
-        grid-column-end: 20;
-        grid-row-start: 7;
-        grid-row-end: 8;
+        height: 100%;
+        width: 100%;
     }
     
     .gridButtonCancel {
@@ -104,7 +58,7 @@
         margin: 8px 2px 2px 2px;
         text-align: left;
     }
-    .gridButtonAdd {
+    .gridButtonSave {
         grid-column-start: 6;
         grid-column-end: 8;
         grid-row-start: 8;

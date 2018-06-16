@@ -8,77 +8,30 @@
                     </button>
                     <div class="gridOverall">
                         <div class="gridTitle">
-                            Manage Ownership:
+                            Business Glossary:
                         </div>
                         <div class="gridSubTitle">
                             <i>
-                                Add, edit and solve the owner per Datasource.  
+                                Add, edit and solve the business glossary per Datasource.  
                             </i>
                         </div>
     
-                        <div class="gridDatasourceTitle">
-                            <b>Datasource:</b>
+                        <div class="gridBusinessGlossaryTitle">
+                            <b>Buss. Glossary:</b>
                         </div>
-                        <div class="select gridDatasource">
-                            <select
-                                [(ngModel)]="selectedLinkedDatasource"
-                                name="datasourceID"
-                                title="Datasource for this Ownership"
-                                placeholder="Datasource for this Ownership"
-                                [disabled]="!editing  &&  !adding"
-                                >
-                                <option *ngFor="let row of datasourceNames">
-                                    {{ row }}
-                                </option>
-                            </select>
-                        </div>
-    
-                        <div class="gridUserIDTitle">
-                            <b>UserID:</b>
-                        </div>
-                        <div class="select gridUserID">
-                            <select
-                                [(ngModel)]="selectedDataOwnership.userID"
-                                name="userID"
-                                title="UserID who is the Data Owner"
-                                placeholder="UserID who is the Data Owner"
-                                [disabled]="!editing  &&  !adding"
-                                >
-                                <option *ngFor="let row of userIDs">
-                                    {{ row }}
-                                </option>
-                            </select>
-                        </div>
-    
-                        <div class="gridTypeTitle">
-                            <b>Type:</b>
-                        </div>
-                        <div class="gridType">
-                            <input [(ngModel)]="selectedDataOwnership.type"
+                        <div class="gridBusinessGlossary">
+                            <textarea [(ngModel)]="selectedDatasource.businessGlossary"
                                 type="text"
-                                name="type"
-                                title="User-defined type, ie Stats, Backfill"
-                                placeholder="User defined type, ie Stats, Backfill"
-                                [disabled]="!editing  &&  !adding"
-                                >
-                        </div>
-    
-                        <div class="gridDescriptionTitle">
-                            <b>Description:</b>
-                        </div>
-                        <div class="gridDescription">
-                            <input [(ngModel)]="selectedDataOwnership.description"
-                                type="text"
-                                name="description"
-                                size="30"
-                                title="Description of the Data Issue"
+                                name="businessGlossary"
+                                title="Business Glossary (non-technical explanation) for the Datasource"
                                 required
-                                placeholder="Description of the Data Issue"
-                                [disabled]="!editing  &&  !adding"
+                                placeholder="Business Glossary (non-technical explanation) for the Datasource"
+                                [disabled]="!editing"
                                 >
+                            </textarea> 
                         </div>
     
-                        <div class="gridButtonCancel" *ngIf="editing  ||  adding">
+                        <div class="gridButtonCancel" *ngIf="editing">
                             <button
                                 type="button"
                                 class="btn btn-secondary"
@@ -87,7 +40,7 @@
                                 Cancel
                             </button>
                         </div>
-                        <div class="gridButtonAdd" *ngIf="editing  ||  adding">
+                        <div class="gridButtonSave" *ngIf="editing">
                             <button
                                 type="button"
                                 class="btn btn-primary"
@@ -97,7 +50,7 @@
                             </button>
                         </div>
     
-                        <div class="gridButtonCancel" *ngIf="!editing  &&  !adding">
+                        <div class="gridButtonCancel" *ngIf="!editing">
                             <button
                                 type="button"
                                 class="btn btn-secondary"
@@ -106,56 +59,26 @@
                                 Edit
                             </button>
                         </div> 
-                        <div class="gridButtonAdd" *ngIf="!editing  &&  !adding">
-                            <button
-                                type="button"
-                                class="btn btn-primary"
-                                (click)="clickAdd()"
-                                >
-                                Add
-                            </button>
-                        </div>
-            
-                        <div *ngIf="errorMessage!=''" class="gridErrorMessage">
-                            {{ errorMessage }}
-                        </div>
     
                         <div class="gridTable">
                             <clr-datagrid>
                                 <clr-dg-placeholder>
                                     No records ...
                                 </clr-dg-placeholder>
-                                <clr-dg-column>Delete</clr-dg-column>
-                                <clr-dg-column>DatasourceName</clr-dg-column>
-                                <clr-dg-column>Userid</clr-dg-column>
+                                <clr-dg-column>Name</clr-dg-column>
                                 <clr-dg-column>Type</clr-dg-column>
                                 <clr-dg-column>Description</clr-dg-column>
-                                <clr-dg-column>Created By</clr-dg-column>
-                                <clr-dg-column>Created On</clr-dg-column>
-                                <clr-dg-column>Updated By</clr-dg-column>
-                                <clr-dg-column>Updated On</clr-dg-column>
+                                <clr-dg-column>Bus.Glossary</clr-dg-column>
                                 <clr-dg-row
-                                    *ngFor="let row of dataOwnerships; let i = index"
-                                    [style.background-color]="(i == selectedDataOwnershipRowIndex)? '#123456' : 'white'"
-                                    [style.color]="(i == selectedDataOwnershipRowIndex)? 'white' : 'gray'"
+                                    *ngFor="let row of datasources; let i = index"
+                                    [style.background-color]="(i == selectedDatasourcesRowIndex)? '#123456' : 'white'"
+                                    [style.color]="(i == selectedDatasourcesRowIndex)? 'white' : 'gray'"
                                     (click)="clickRow(i, row.id)"
                                     >
-                                    <clr-dg-cell>
-                                        <clr-icon shape="times"
-                                            class="selectIcon1"
-                                            size="18"
-                                            (dblclick)="clickDelete(i, row.id)"
-                                            >
-                                        </clr-icon>
-                                    </clr-dg-cell>
-                                    <clr-dg-cell>{{ row.datasourceName }}</clr-dg-cell>
-                                    <clr-dg-cell>{{ row.userID }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.name }}</clr-dg-cell>
                                     <clr-dg-cell>{{ row.type }}</clr-dg-cell>
                                     <clr-dg-cell>{{ row.description }}</clr-dg-cell>
-                                    <clr-dg-cell>{{ row.createdBy }}</clr-dg-cell>
-                                    <clr-dg-cell>{{ row.createdOn }}</clr-dg-cell>
-                                    <clr-dg-cell>{{ row.updatedBy }}</clr-dg-cell>
-                                    <clr-dg-cell>{{ row.updatedOn }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.businessGlossary }}</clr-dg-cell>
                                 </clr-dg-row>
                             </clr-datagrid>
                         </div>

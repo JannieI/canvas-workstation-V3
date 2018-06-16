@@ -3006,16 +3006,6 @@ export class AppComponent implements OnInit {
 
     }
 
-    clickMenuDataDataOwnership(){
-        // Manage Ownership for a DS
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDataOwnership', '@Start');
-
-        this.menuOptionClickPreAction();
-
-        this.showModalManageDataOwnership = true;
-
-    }
-
     clickMenuDataDataDictionary(){
         // Manage Dictionary for a DS
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDataDictionary', '@Start');
@@ -3026,6 +3016,16 @@ export class AppComponent implements OnInit {
 
     }
     
+    clickMenuDataDataOwnership(){
+        // Manage Ownership for a DS
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDataOwnership', '@Start');
+
+        this.menuOptionClickPreAction();
+
+        this.showModalManageDataOwnership = true;
+
+    }
+
     clickMenuDataBussGlossary(){
         // Manage Dictionary for a DS
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataBussGlossary', '@Start');

@@ -356,8 +356,8 @@ export class Datasource {
     subType: string;
     typeVersion: string;
     name: string;
-    username: string;           // Username to log into server
-    password: string;           // Password to log into server
+    username: string;                   // Username to log into server
+    password: string;                   // Password to log into server
     description: string;
     createdBy: string;
     createdOn: string;
@@ -378,9 +378,10 @@ export class Datasource {
     csvSeparationCharacter: string;     // CSV file column separator: comma or ;
     csvQuotCharacter: string;           // CSV values in "", in '' or without quotes
 
-    // Managed Connection, Connection created and managed outside of this form
+    // Managed Connection, Connection created and managed outside of the DS
     connectionID: number;               // Connection to DB
     dataTableID: number;                // ID of table linked in DB
+    businessGlossary: string;           // Detailed business oriented description of table (non-technical)
 
     // Direct Connection, all info provided here and once off
     databaseName: string;                   // DB to connect to
