@@ -23,11 +23,11 @@
                             <select
                                 [(ngModel)]="selectedLinkedDatasource"
                                 name="datasourceID"
-                                title="Datasource on which the Data Quality issues exist"
-                                placeholder="Datasource on which the Data Quality issues exist"
+                                title="Datasource for this Ownership"
+                                placeholder="Datasource for this Ownership"
                                 [disabled]="!editing  &&  !adding"
                                 >
-                                <option *ngFor="let row of userIDs">
+                                <option *ngFor="let row of datasourceNames">
                                     {{ row }}
                                 </option>
                             </select>
@@ -38,7 +38,7 @@
                         </div>
                         <div class="select gridUserID">
                             <select
-                                [(ngModel)]="selectedLinkedUserID"
+                                [(ngModel)]="selectedDataOwnership.userID"
                                 name="userID"
                                 title="UserID who is the Data Owner"
                                 placeholder="UserID who is the Data Owner"

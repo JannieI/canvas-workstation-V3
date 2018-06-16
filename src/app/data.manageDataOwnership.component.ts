@@ -44,17 +44,17 @@ export class DataManageDataOwnershipComponent implements OnInit {
     }
 
     adding: boolean = false;
-    dataOwnerships: DataOwnership[];
+    dataOwnerships: DataOwnership[] = [];
     datasourceID: number;
     datasourceName: string;
-    userIDs: string[] = [];
+    datasourceNames: string[] = [];    
     editing: boolean = false;
     errorMessage: string = "";
     selectedDatasourceID: number = null;
     selectedDataOwnership: DataOwnership;
     selectedDataOwnershipRowIndex: number = 0;
     selectedLinkedDatasource: string;
-
+    userIDs: string[] = [];
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -69,7 +69,21 @@ export class DataManageDataOwnershipComponent implements OnInit {
         
         // Get Datasource list
         this.globalVariableService.datasources.forEach(ds => {
-            this.userIDs.push(ds.name + ' (' + ds.id + ')');
+            this.datasourceNames.push(ds.name + ' (' + ds.id + ')');
+        });
+        this.datasourceNames = this.datasourceNames.sort( (obj1,obj2) => {
+            if (obj1 > obj2) {
+                return 1;
+            };
+            if (obj1 < obj2) {
+                return -1;
+            };
+            return 0;
+        });
+
+        // Get UserID list
+        this.globalVariableService.canvasUsers.forEach(usr => {
+            this.userIDs.push(usr.userID);
         });
         this.userIDs = this.userIDs.sort( (obj1,obj2) => {
             if (obj1 > obj2) {
@@ -80,7 +94,7 @@ export class DataManageDataOwnershipComponent implements OnInit {
             };
             return 0;
         });
-        
+
         this.globalVariableService.getDataOwnerships().then(dc => {
             
             this.dataOwnerships = dc.slice();
