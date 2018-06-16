@@ -21,7 +21,7 @@
                             <b>Name:</b>
                         </div>
                         <div class="gridConnectionName">
-                            <input [(ngModel)]="selectedConnection.connectionName"
+                            <input [(ngModel)]="selectedDataQualityIssue.connectionName"
                                 type="text"
                                 name="connectionName"
                                 required
@@ -35,7 +35,7 @@
                             <b>Description:</b>
                         </div>
                         <div class="gridDescription">
-                            <input [(ngModel)]="selectedConnection.description"
+                            <input [(ngModel)]="selectedDataQualityIssue.description"
                                 type="text"
                                 name="description"
                                 size="30"
@@ -50,14 +50,14 @@
                             <b>Status:</b>
                         </div>
                         <div class="select gridServerStatus">
-                            <select [(ngModel)]="selectedConnection.serverType"
+                            <select [(ngModel)]="selectedDataQualityIssue.status"
                                 name="ServerType"
                                 placeholder="Select the Status"
                                 [disabled]="!editing  &&  !adding"
                                 >
-                                <option>Microsft SQL</option>
-                                <option>My SQL</option>
-                                <option>Postgres</option>
+                                <option>Logged</option>
+                                <option>InProgress</option>
+                                <option>Solved</option>
                             </select>
                         </div>
         
@@ -65,7 +65,7 @@
                             <b>Server:</b>
                         </div>
                         <div class="gridServer">
-                            <input [(ngModel)]="selectedConnection.serverTitle"
+                            <input [(ngModel)]="selectedDataQualityIssue.serverTitle"
                                 type="text"
                                 name="serverTitle"
                                 title="Name of the Server/IP Address and :Port"
@@ -78,7 +78,7 @@
                             <b>Port:</b>
                         </div>
                         <div class="gridPort">
-                            <input [(ngModel)]="selectedConnection.port"
+                            <input [(ngModel)]="selectedDataQualityIssue.port"
                                 type="text"
                                 name="port"
                                 title="Optional port on DB Server"
@@ -91,7 +91,7 @@
                             <b>Database:</b>
                         </div>
                         <div class="gridDatabase">
-                            <input [(ngModel)]="selectedConnection.database"
+                            <input [(ngModel)]="selectedDataQualityIssue.database"
                                 type="text"
                                 name="database"
                                 title="Database to connect to"
@@ -104,7 +104,7 @@
                             <b>Auth:</b>
                         </div>
                         <div class="gridAuthentication">
-                            <input [(ngModel)]="selectedConnection.authentication"
+                            <input [(ngModel)]="selectedDataQualityIssue.authentication"
                                 type="text"
                                 name="authentication"
                                 title="Type of Authentication: current User or user/psw to log in"
@@ -117,7 +117,7 @@
                             <b>Username:</b>
                         </div>
                         <div class="gridUsername">
-                            <input [(ngModel)]="selectedConnection.usernameTitle"
+                            <input [(ngModel)]="selectedDataQualityIssue.usernameTitle"
                                 type="text"
                                 name="usernameTitle"
                                 title="Username to log into DB Server"
@@ -130,7 +130,7 @@
                             <b>Password:</b>
                         </div>
                         <div class="gridPassword">
-                            <input [(ngModel)]="selectedConnection.password"
+                            <input [(ngModel)]="selectedDataQualityIssue.password"
                                 type="password"
                                 name="password"
                                 title="User Password"
@@ -194,8 +194,8 @@
                                 <clr-dg-column>Description</clr-dg-column>
                                 <clr-dg-row
                                     *ngFor="let row of dataConnections; let i = index"
-                                    [style.background-color]="(i == selectedConnectionRowIndex)? '#123456' : 'white'"
-                                    [style.color]="(i == selectedConnectionRowIndex)? 'white' : 'gray'"
+                                    [style.background-color]="(i == selectedDataQualityIssueRowIndex)? '#123456' : 'white'"
+                                    [style.color]="(i == selectedDataQualityIssueRowIndex)? 'white' : 'gray'"
                                     (click)="clickRow(i, row.id)"
                                     >
                                     <clr-dg-cell>

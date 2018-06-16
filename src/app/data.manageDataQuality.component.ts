@@ -18,7 +18,7 @@ import { GlobalVariableService}       from './global-variable.service';
 
 // Models
 import { Dashboard }                  from './models';
-import { DataConnection }             from './models';
+import { DataQualityIssue }           from './models';
  
 @Component({
     selector: 'data-manageDataQuality',
@@ -45,11 +45,11 @@ export class DataManageDataQualityComponent implements OnInit {
 
     adding: boolean = false;
     connectionID: number = null;
-    dataConnections: DataConnection[];
+    dataConnections: DataQualityIssue[];
     editing: boolean = false;
     errorMessage: string = "";
-    selectedConnection: DataConnection;
-    selectedConnectionRowIndex: number = 0;
+    selectedDataQualityIssue: DataQualityIssue;
+    selectedDataQualityIssueRowIndex: number = 0;
 
     // connections ->
 
@@ -78,16 +78,16 @@ export class DataManageDataQualityComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectedDataConnection', '@Start');
 
         // Set seletected index - used for highlighting row
-        this.selectedConnectionRowIndex = index;
+        this.selectedDataQualityIssueRowIndex = index;
     }
 
     clickRow(index: number, id: number) {
         // Click Row
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
 
-        console.warn('xx clickRow STRT', this.selectedConnection, this.dataConnections)
+        console.warn('xx clickRow STRT', this.selectedDataQualityIssue, this.dataConnections)
         // Set the row index
-        this.selectedConnectionRowIndex = index;
+        this.selectedDataQualityIssueRowIndex = index;
         this.adding = false;
         this.editing = false;
         this.connectionID = id;
@@ -97,11 +97,11 @@ export class DataManageDataQualityComponent implements OnInit {
         let connectionIndex: number = this.dataConnections
             .findIndex(dc => dc.id == id);
         if (connectionIndex >= 0) {
-            this.selectedConnection = Object.assign({}, 
+            this.selectedDataQualityIssue = Object.assign({}, 
                 this.dataConnections[connectionIndex]
             );
         };
-        console.warn('xx END selectedConnection', this.selectedConnection)
+        console.warn('xx END selectedDataQualityIssue', this.selectedDataQualityIssue)
 
     }
 
@@ -109,15 +109,18 @@ export class DataManageDataQualityComponent implements OnInit {
         // Clear single record
         this.globalFunctionService.printToConsole(this.constructor.name,'clearRecord', '@Start');
 
-        this.selectedConnection = {
+        this.selectedDataQualityIssue = {
             id: null,
-            connectionName: '',
-            serverType: '',
-            serverName: '',
-            port: '',
-            database: '',
-            authentication: '',
-            description: ''
+            name: '',
+            datasourceID: null,
+            status: '',
+            type: '',
+            description: '',
+            nrIssues: 0,
+            loggedBy: '',
+            loggedOn: '',
+            solvedBy: '',
+            solvedOn: ''
         };
     }
     
@@ -136,19 +139,19 @@ export class DataManageDataQualityComponent implements OnInit {
         this.editing = false;
         this.adding = false;
         this.errorMessage = '';
-        this.clickRow(this.selectedConnectionRowIndex, this.connectionID);
+        this.clickRow(this.selectedDataQualityIssueRowIndex, this.connectionID);
         
         // Re Fill the form
         let dataconnectionIndex: number = this.dataConnections
-            .findIndex(sch => sch.id == this.selectedConnection.id);
+            .findIndex(sch => sch.id == this.selectedDataQualityIssue.id);
         if (dataconnectionIndex >= 0) {
-            this.selectedConnection = Object.assign({}, 
+            this.selectedDataQualityIssue = Object.assign({}, 
                 this.dataConnections[dataconnectionIndex]
             );
         };
 
         // Reset
-        this.selectedConnectionRowIndex = null;
+        this.selectedDataQualityIssueRowIndex = null;
         this.connectionID = null;
 
     }
@@ -162,27 +165,27 @@ export class DataManageDataQualityComponent implements OnInit {
         // Validation
         this.errorMessage = '';
 
-        if (this.selectedConnection.connectionName == null
+        if (this.selectedDataQualityIssue.connectionName == null
             ||
-            this.selectedConnection.connectionName == '') {
+            this.selectedDataQualityIssue.connectionName == '') {
                 this.errorMessage = 'Enter a Connection Name';
                 return;
         };
 
         // Add to local and DB
         if (this.adding) {
-            this.selectedConnection.id = null;
+            this.selectedDataQualityIssue.id = null;
 
-            this.globalVariableService.addDataConnection(this.selectedConnection).then(
+            this.globalVariableService.addDataConnection(this.selectedDataQualityIssue).then(
                 res => {
-                    if (this.selectedConnectionRowIndex == null) {
-                        this.selectedConnectionRowIndex = 0;
-                        this.connectionID = this.selectedConnection.id;
+                    if (this.selectedDataQualityIssueRowIndex == null) {
+                        this.selectedDataQualityIssueRowIndex = 0;
+                        this.connectionID = this.selectedDataQualityIssue.id;
                         console.warn('xx hier')
                     };
 
                     // Add locally
-                    this.dataConnections.push(this.selectedConnection);
+                    this.dataConnections.push(this.selectedDataQualityIssue);
                             
                 }
             );
@@ -191,18 +194,18 @@ export class DataManageDataQualityComponent implements OnInit {
         // Save the changes
         if (this.editing) {
             let dataconnectionIndex: number = this.dataConnections
-                .findIndex(sch => sch.id == this.selectedConnection.id);
+                .findIndex(sch => sch.id == this.selectedDataQualityIssue.id);
             if (dataconnectionIndex >= 0) {
                 this.dataConnections[dataconnectionIndex] = 
-                    Object.assign({}, this.selectedConnection);
+                    Object.assign({}, this.selectedDataQualityIssue);
             };
-            this.globalVariableService.saveDataConnection(this.selectedConnection)
+            this.globalVariableService.saveDataConnection(this.selectedDataQualityIssue)
         };
 
         // Reset
         this.editing = false;
         this.adding = false;
-        this.selectedConnectionRowIndex = null;
+        this.selectedDataQualityIssueRowIndex = null;
         this.connectionID = null;
 
     }
@@ -237,7 +240,7 @@ export class DataManageDataQualityComponent implements OnInit {
             this.dataConnections = this.globalVariableService.dataConnections
         }); 
 
-        this.selectedConnectionRowIndex = null;
+        this.selectedDataQualityIssueRowIndex = null;
         this.connectionID = null;
     }
 }
