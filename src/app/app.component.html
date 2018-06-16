@@ -504,7 +504,7 @@
                                     <button
                                         type="button"
                                         clrDropdownItem
-                                        (click)="clickMenuDataFromFile(1)"
+                                        (click)="clickMenuDataBussGlossary()"
                                         title="Manage Business Glossary for Datasources"
                                         >
                                         Manage Business Glossary
@@ -4098,9 +4098,16 @@
 
 <!-- Modal: data DataOwnership -->
 <data-manageDataOwnership
-    *ngIf="showModalManageDataDataOwnership"
+    *ngIf="showModalManageDataOwnership"
     (formDataManageDataOwnershipClosed)="handleCloseDataManageDataOwnership($event)">Load Data DataOwnership ...
 </data-manageDataOwnership>
+
+
+<!-- Modal: data BussGlossary -->
+<data-manageBussGlossary
+    *ngIf="showModalManageDataBussGlossary"
+    (formDataManageBussGlossaryClosed)="handleCloseDataManageBussGlossary($event)">Load Data BussGlossary ...
+</data-manageBussGlossary>
 
 
 <!-- Modal: data DataDictionary -->

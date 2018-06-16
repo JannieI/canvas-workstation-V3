@@ -388,7 +388,8 @@ export class AppComponent implements OnInit {
     showModalWidgetDescription: boolean = false;
     showModalTableEditor: boolean = false;
     showModalManageDataDataQuality: boolean = false;
-    showModalManageDataDataOwnership: boolean = false;
+    showModalManageDataOwnership: boolean = false;
+    showModalManageBussGlossary: boolean = false;
     showModalManageDataDataDictionary: boolean = false;
     showModalDataCombination: boolean = false;
     showModalDataRefresh: boolean = false;
@@ -1352,7 +1353,7 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPostAction();
 
-        this.showModalManageDataDataOwnership = false;
+        this.showModalManageDataOwnership = false;
     }
 
     handleCloseDataManageDataDictionary(action: string) {
@@ -1362,6 +1363,15 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPostAction();
 
         this.showModalManageDataDataDictionary = false;
+    }
+
+    handleCloseDataManageBussGlossary(action: string) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataManageBussGlossary', '@Start');
+
+        this.menuOptionClickPostAction();
+
+        this.showModalManageBussGlossary = false;
     }
 
     handleCloseDataCombination(action: string) {
@@ -3002,7 +3012,7 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
-        this.showModalManageDataDataOwnership = true;
+        this.showModalManageDataOwnership = true;
 
     }
 
@@ -3016,6 +3026,16 @@ export class AppComponent implements OnInit {
 
     }
     
+    clickMenuDataBussGlossary(){
+        // Manage Dictionary for a DS
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataBussGlossary', '@Start');
+
+        this.menuOptionClickPreAction();
+
+        this.showModalManageBussGlossary = true;
+
+    }
+
     clickMenuDataCombinations(){
         // Manage combinations of DS
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataCombinations', '@Start');
