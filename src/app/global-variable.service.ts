@@ -37,6 +37,7 @@ import { DatagridColumn }             from './models';
 import { Dataset }                    from './models';
 import { Datasource }                 from './models';
 import { DataQualityIssue}            from './models';
+import { DataOwnership}               from './models';
 import { DatasourcePermission}        from './models';
 import { DatasourcePivot }            from './models';
 import { Field }                      from './models';
@@ -594,6 +595,7 @@ export class GlobalVariableService {
     datasources: Datasource[] = [];
     transformations: Transformation[] = [];
     dataQualityIssues: DataQualityIssue[] = [];
+    dataOwnerships: DataOwnership[] = [];
     datasourcePermissions: DatasourcePermission[] = [];
     datasourcePivots: DatasourcePivot[] = [];
     transformationsFormat: Transformation[] = transformationsFormat;
@@ -611,6 +613,7 @@ export class GlobalVariableService {
     currentDatasources: Datasource[] = [];
     currentTransformations: Transformation[] = [];
     currentDataQualityIssues: DataQualityIssue[] = [];
+    currentDataOwnerships: DataOwnership[] = [];
     currentDatasourcePermissions: DatasourcePermission[] = [];
     currentDatasourcePivots: DatasourcePivot[] = [];
     currentDatasets: any = [];                          // Used in current D, with data
@@ -722,6 +725,7 @@ export class GlobalVariableService {
     isDirtyDatasources: boolean = true;
     isDirtyTransformations: boolean = true;
     isDirtyDataQualityIssues: boolean = true;
+    isDirtyDataOwnership: boolean = true;
     isDirtyDatasourcePermissions: boolean = true;
     isDirtyDatasourcePivots: boolean = true;
     isDirtyDatasets: boolean = true;
@@ -4387,6 +4391,38 @@ export class GlobalVariableService {
                     resolve(err.Message);
                 }
             )
+        });
+    }
+    
+    getDataOwnerships(): Promise<DataOwnership[]> {
+        // Description: Gets all dQual
+        // Returns: this.DataOwnerships array, unless:
+        //   If not cached or if dirty, get from File
+        console.log('%c    Global-Variables getDataOwnerships ...',
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+
+        let url: string = 'dataOwnerships';
+        this.filePath = './assets/data.dataOwnerships.json';
+
+        return new Promise<DataOwnership[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if ( (this.dataOwnerships.length == 0)  ||  (this.isDirtyDataOwnership) ) {
+                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
+                this.get(url)
+                    .then(data => {
+                        this.dataOwnerships = data;
+                        this.isDirtyDataOwnership = false;
+                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
+                        console.log('%c    Global-Variables getDataOwnerships 1',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.dataOwnerships)
+                        resolve(this.dataOwnerships);
+                    });
+            } else {
+                console.log('%c    Global-Variables getDataOwnerships 2',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.dataOwnerships)
+                resolve(this.dataOwnerships);
+            }
         });
     }
 
