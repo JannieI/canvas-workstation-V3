@@ -126,15 +126,28 @@
                                 >
                         </div>
     
-                        <div class="gridPasswordTitle">
-                            <b>Password:</b>
+                        <div class="gridSolvedByTitle">
+                            <b>SolvedBy:</b>
                         </div>
-                        <div class="gridPassword">
-                            <input [(ngModel)]="selectedDataQualityIssue.password"
+                        <div class="gridSolvedBy">
+                            <input [(ngModel)]="selectedDataQualityIssue.solvedBy"
                                 type="password"
-                                name="password"
-                                title="User Password"
-                                placeholder="User Password"
+                                name="solvedBy"
+                                title="UserID who marked the issues as solved"
+                                placeholder="UserID who solved the issues"
+                                [disabled]="!editing  &&  !adding"
+                                >
+                        </div>
+    
+                        <div class="gridSolvedOnTitle">
+                            <b>SolvedOn:</b>
+                        </div>
+                        <div class="gridSolvedOn">
+                            <input [(ngModel)]="selectedDataQualityIssue.solvedOn"
+                                type="password"
+                                name="solvedOn"
+                                title="Date when issues were marked as solved"
+                                placeholder="Date when issues were solved" 
                                 [disabled]="!editing  &&  !adding"
                                 >
                         </div>
