@@ -67,6 +67,7 @@
     }
 
     .gridErrorMessage {
+        color: red;
         grid-column-start: 14;
         grid-column-end: 21;
         grid-row-start: 4;
@@ -77,7 +78,7 @@
     .gridDatasources {
         grid-column-start: 1;
         grid-column-end: 21;
-        grid-row-start: 11;
+        grid-row-start: 5;
         grid-row-end: 21;
         margin: 2px 2px 2px 2px;
         text-align: left;

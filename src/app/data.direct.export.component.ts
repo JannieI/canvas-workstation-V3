@@ -44,6 +44,7 @@ export class DataDirectExportComponent implements OnInit {
     errorMessage: string = '';
     fileName: string = '';
     selectedDatasource: Datasource = null;
+    selectedRowIndex: number;
 
 
 	constructor(
@@ -64,6 +65,7 @@ export class DataDirectExportComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickExport',           '@Start');
 
         this.selectedDatasource = this.datasources[index];
+        this.selectedRowIndex = index;
 
     }
 
@@ -90,7 +92,7 @@ export class DataDirectExportComponent implements OnInit {
             return;
         };
         if (this.fileName == null  ||  this.fileName == '') {
-            this.errorMessage = "Select a Datasource";
+            this.errorMessage = "The file name is compulsory";
             return;
         };
         
