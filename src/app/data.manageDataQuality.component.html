@@ -87,15 +87,15 @@
                                 >
                         </div>
     
-                        <div class="gridDatabaseTitle">
-                            <b>Database:</b>
+                        <div class="gridNrIssuesTitle">
+                            <b>NrIssues:</b>
                         </div>
-                        <div class="gridDatabase">
-                            <input [(ngModel)]="selectedDataQualityIssue.database"
+                        <div class="gridNrIssues">
+                            <input [(ngModel)]="selectedDataQualityIssue.nrIssues"
                                 type="text"
-                                name="database"
-                                title="Database to connect to"
-                                placeholder="Database to connect to"
+                                name="nrIssues"
+                                title="Optional Number of Issues raised"
+                                placeholder="Optional Number of Issues raised"
                                 [disabled]="!editing  &&  !adding"
                                 >
                         </div>

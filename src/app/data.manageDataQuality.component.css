@@ -103,14 +103,14 @@
         grid-row-end: 7;
     }
 
-    .gridDatabaseTitle {
+    .gridNrIssuesTitle {
         grid-column-start: 14;
         grid-column-end: 15;
         grid-row-start: 6;
         grid-row-end: 7;
         margin-top: 5px;
     }
-    .gridDatabase {
+    .gridNrIssues {
         grid-column-start: 15;
         grid-column-end: 21;
         grid-row-start: 6;
