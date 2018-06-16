@@ -13,7 +13,6 @@
                         <div class="gridSubTitle">
                             <i>
                                 Add, edit and solve data quality issues per Datasource.  
-                                This will be done at a later stage.
                             </i>
                         </div>
     
@@ -77,14 +76,18 @@
                         <div class="gridDatasourceTitle">
                             <b>Datasource:</b>
                         </div>
-                        <div class="gridDatasource">
-                            <input [(ngModel)]="selectedDataQualityIssue.datasourceID"
-                                type="text"
+                        <div class="select gridDatasource">
+                            <select
+                                [(ngModel)]="selectedLinkedDatasource"
                                 name="datasourceID"
                                 title="Datasource on which the Data Quality issues exist"
                                 placeholder="Datasource on which the Data Quality issues exist"
                                 [disabled]="!editing  &&  !adding"
                                 >
+                                <option *ngFor="let row of datasourceNames">
+                                    {{ row }}
+                                </option>
+                            </select>
                         </div>
     
                         <div class="gridNrIssuesTitle">

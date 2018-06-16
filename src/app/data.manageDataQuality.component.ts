@@ -44,12 +44,17 @@ export class DataManageDataQualityComponent implements OnInit {
     }
 
     adding: boolean = false;
-    connectionID: number = null;
     dataQualityIssues: DataQualityIssue[];
+    datasourceID: number;
+    datasourceName: string;
+    datasourceNames: string[] = [];
     editing: boolean = false;
     errorMessage: string = "";
+    selectedDatasourceID: number = null;
     selectedDataQualityIssue: DataQualityIssue;
     selectedDataQualityIssueRowIndex: number = 0;
+    selectedLinkedDatasource: string;
+
 
 
 	constructor(
@@ -63,7 +68,22 @@ export class DataManageDataQualityComponent implements OnInit {
 
         this.clearRecord();
         
+        // Get Datasource list
+        this.globalVariableService.datasources.forEach(ds => {
+            this.datasourceNames.push(ds.name + ' (' + ds.id + ')');
+        });
+        this.datasourceNames = this.datasourceNames.sort( (obj1,obj2) => {
+            if (obj1 > obj2) {
+                return 1;
+            };
+            if (obj1 < obj2) {
+                return -1;
+            };
+            return 0;
+        });
+        
         this.globalVariableService.getDataQualityIssues().then(dc => {
+            
             this.dataQualityIssues = dc.slice();
             if (this.dataQualityIssues.length > 0) {
                 this.clickRow(0, this.dataQualityIssues[0].id);
@@ -81,17 +101,28 @@ export class DataManageDataQualityComponent implements OnInit {
         this.selectedDataQualityIssueRowIndex = index;
         this.adding = false;
         this.editing = false;
-        this.connectionID = id;
+        this.selectedDatasourceID = id;
         this.errorMessage = '';
 
         // Fill the form
-        let connectionIndex: number = this.dataQualityIssues
+        let selectedDatasourceIndex: number = this.dataQualityIssues
             .findIndex(dc => dc.id == id);
-        if (connectionIndex >= 0) {
-            this.selectedDataQualityIssue = Object.assign({}, 
-                this.dataQualityIssues[connectionIndex]
+        if (selectedDatasourceIndex >= 0) {
+
+            let datasourceIndex: number = this.globalVariableService.datasources.findIndex(ds =>
+                ds.id == this.dataQualityIssues[selectedDatasourceIndex].datasourceID
             );
+            this.selectedLinkedDatasource = this.globalVariableService.datasources[datasourceIndex]
+                .name + ' (' + this.globalVariableService.datasources[datasourceIndex].id + ')';
+            console.warn('xx ds', this.selectedLinkedDatasource, datasourceIndex, this.selectedLinkedDatasource)
+
+            this.selectedDataQualityIssue = Object.assign({}, 
+                this.dataQualityIssues[selectedDatasourceIndex]
+            );
+        } else {
+            this.selectedLinkedDatasource = '';
         };
+
         console.warn('xx END selectedDataQualityIssue', this.selectedDataQualityIssue)
 
     }
@@ -130,25 +161,25 @@ export class DataManageDataQualityComponent implements OnInit {
         this.editing = false;
         this.adding = false;
         this.errorMessage = '';
-        this.clickRow(this.selectedDataQualityIssueRowIndex, this.connectionID);
+        this.clickRow(this.selectedDataQualityIssueRowIndex, this.selectedDatasourceID);
         
         // Re Fill the form
-        let dataconnectionIndex: number = this.dataQualityIssues
+        let datasourceIndex: number = this.dataQualityIssues
             .findIndex(sch => sch.id == this.selectedDataQualityIssue.id);
-        if (dataconnectionIndex >= 0) {
+        if (datasourceIndex >= 0) {
             this.selectedDataQualityIssue = Object.assign({}, 
-                this.dataQualityIssues[dataconnectionIndex]
+                this.dataQualityIssues[datasourceIndex]
             );
         };
 
         // Reset
         this.selectedDataQualityIssueRowIndex = null;
-        this.connectionID = null;
+        this.selectedDatasourceID = null;
 
     }
 
     clickSave() {
-        // Save changes to a Data Connection
+        // Save changes to a Data Quality record
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
         this.errorMessage = '';
@@ -156,11 +187,19 @@ export class DataManageDataQualityComponent implements OnInit {
         // Validation
         this.errorMessage = '';
 
-        if (this.selectedDataQualityIssue.connectionName == null
+        if (this.selectedDataQualityIssue.name == null
             ||
-            this.selectedDataQualityIssue.connectionName == '') {
-                this.errorMessage = 'Enter a Connection Name';
+            this.selectedDataQualityIssue.name == '') {
+                this.errorMessage = 'Enter a Name to identify the issue';
                 return;
+        };
+
+        let index: number = this.selectedLinkedDatasource.indexOf(' (');
+        if (index >= 0) {
+            this.datasourceName = this.selectedLinkedDatasource.substring(0, index);
+            this.datasourceID = +this.selectedLinkedDatasource.substring(
+                index + 2, this.selectedLinkedDatasource.length - 1
+            );
         };
 
         // Add to local and DB
@@ -171,7 +210,7 @@ export class DataManageDataQualityComponent implements OnInit {
                 res => {
                     if (this.selectedDataQualityIssueRowIndex == null) {
                         this.selectedDataQualityIssueRowIndex = 0;
-                        this.connectionID = this.selectedDataQualityIssue.id;
+                        this.selectedDatasourceID = this.selectedDataQualityIssue.id;
                         console.warn('xx hier')
                     };
 
@@ -184,12 +223,13 @@ export class DataManageDataQualityComponent implements OnInit {
 
         // Save the changes
         if (this.editing) {
-            let dataconnectionIndex: number = this.dataQualityIssues
+            let datasourceIndex: number = this.dataQualityIssues
                 .findIndex(sch => sch.id == this.selectedDataQualityIssue.id);
-            if (dataconnectionIndex >= 0) {
-                this.dataQualityIssues[dataconnectionIndex] = 
+            if (datasourceIndex >= 0) {
+                this.dataQualityIssues[datasourceIndex] = 
                     Object.assign({}, this.selectedDataQualityIssue);
             };
+            this.selectedDataQualityIssue.datasourceID = this.datasourceID;
             this.globalVariableService.saveDataQualityIssue(this.selectedDataQualityIssue)
         };
 
@@ -197,12 +237,12 @@ export class DataManageDataQualityComponent implements OnInit {
         this.editing = false;
         this.adding = false;
         this.selectedDataQualityIssueRowIndex = null;
-        this.connectionID = null;
+        this.selectedDatasourceID = null;
 
     }
 
     clickEdit() {
-        // Start editing selected Data Connection
+        // Start editing selected Data Quality record
         this.globalFunctionService.printToConsole(this.constructor.name,'clickEdit', '@Start');
 
         if (this.dataQualityIssues.length > 0) {
@@ -213,7 +253,7 @@ export class DataManageDataQualityComponent implements OnInit {
     }
 
     clickAdd() {
-        // Add a new Data Connection
+        // Add a new Data Quality record
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
 
         this.adding = true;
@@ -223,16 +263,16 @@ export class DataManageDataQualityComponent implements OnInit {
     }
 
     clickDelete(index: number, id: number) {
-        // Delete a Data Connection
+        // Delete a Data Quality record
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDelete', '@Start');
 
         this.clearRecord();
-        this.globalVariableService.deleteDataConnection(id).then(res => {
-            this.dataQualityIssues = this.globalVariableService.dataConnections
+        this.globalVariableService.deleteDataQualityIssue(id).then(res => {
+            this.dataQualityIssues = this.globalVariableService.dataQualityIssues
         }); 
 
         this.selectedDataQualityIssueRowIndex = null;
-        this.connectionID = null;
+        this.selectedDatasourceID = null;
     }
 }
 
