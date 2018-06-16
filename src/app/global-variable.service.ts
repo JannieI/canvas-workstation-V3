@@ -4241,6 +4241,46 @@ export class GlobalVariableService {
         });
     }
 
+    addQualityIssue(data: DataQualityIssue): Promise<any> {
+        // Description: Adds a new QualityIssue, if it does not exist
+        // Returns: Added Data or error message
+        console.log('%c    Global-Variables addQualityIssue ...',
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", data.id);
+
+        let url: string = 'dataQualityIssues';
+        this.filePath = './assets/data.dataQualityIssues.json';
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.post('http://localhost:3000/' + url, data, {headers})
+            .subscribe(
+                res => {
+
+                    // Update Global vars to make sure they remain in sync
+                    let newDS: DataQualityIssue = JSON.parse(JSON.stringify(res))
+                    if (this.dataQualityIssues.filter(i => i.id == newDS.id).length == 0) {
+                        this.dataQualityIssues.push(newDS);
+                    };
+                    if (this.currentDataQualityIssues.filter(i => i.id == newDS.id).length == 0) {
+                        this.currentDataQualityIssues.push(newDS);
+                    };
+
+                    console.log('addQualityIssue ADDED', res,
+                        this.currentDataQualityIssues, this.dataQualityIssues)
+
+                    resolve(res);
+                },
+                err => {
+                    console.log('Error addQualityIssue FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+        });
+    }
+
     getCurrentDataQualityIssues(datasourceID: number): Promise<DataQualityIssue[]> {
         // Description: Gets dQual for current DS
         // Returns: this.dataQualityIssues.value array, unless:
