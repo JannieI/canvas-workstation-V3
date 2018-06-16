@@ -17,16 +17,16 @@
                             </i>
                         </div>
     
-                        <div class="gridConnectionNameTitle">
+                        <div class="gridNameTitle">
                             <b>Name:</b>
                         </div>
-                        <div class="gridConnectionName">
-                            <input [(ngModel)]="selectedDataQualityIssue.connectionName"
+                        <div class="gridName">
+                            <input [(ngModel)]="selectedDataQualityIssue.name"
                                 type="text"
-                                name="connectionName"
+                                name="name"
                                 required
-                                title="Name of the connection"
-                                placeholder="Name of the Connection"
+                                title="Short name to identify issue"
+                                placeholder="Short name to identify issue"
                                 [disabled]="!editing  &&  !adding"                                
                                 >
                         </div>
@@ -39,9 +39,9 @@
                                 type="text"
                                 name="description"
                                 size="30"
-                                title="Description of the connection"
+                                title="Description of the Data Issue"
                                 required
-                                placeholder="Description of the connection"
+                                placeholder="Description of the Data Issue"
                                 [disabled]="!editing  &&  !adding"
                                 >
                         </div>
@@ -194,19 +194,19 @@
                             {{ errorMessage }}
                         </div>
     
-                        <div class="gridConnectionsTable">
+                        <div class="gridTable">
                             <clr-datagrid>
                                 <clr-dg-placeholder>
                                     No records ...
                                 </clr-dg-placeholder>
                                 <clr-dg-column>Delete</clr-dg-column>
                                 <clr-dg-column>Name</clr-dg-column>
-                                <clr-dg-column>Type</clr-dg-column>
-                                <clr-dg-column>Server</clr-dg-column>
-                                <clr-dg-column>Auth</clr-dg-column>
                                 <clr-dg-column>Description</clr-dg-column>
+                                <clr-dg-column>Status</clr-dg-column>
+                                <clr-dg-column>LoggedBy</clr-dg-column>
+                                <clr-dg-column>LoggedOn</clr-dg-column>
                                 <clr-dg-row
-                                    *ngFor="let row of dataConnections; let i = index"
+                                    *ngFor="let row of dataQualityIssues; let i = index"
                                     [style.background-color]="(i == selectedDataQualityIssueRowIndex)? '#123456' : 'white'"
                                     [style.color]="(i == selectedDataQualityIssueRowIndex)? 'white' : 'gray'"
                                     (click)="clickRow(i, row.id)"
@@ -219,11 +219,11 @@
                                             >
                                         </clr-icon>
                                     </clr-dg-cell>
-                                    <clr-dg-cell>{{ row.connectionName }}</clr-dg-cell>
-                                    <clr-dg-cell>{{ row.serverType }}</clr-dg-cell>
-                                    <clr-dg-cell>{{ row.serverName }}</clr-dg-cell>
-                                    <clr-dg-cell>{{ row.authentication }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.name }}</clr-dg-cell>
                                     <clr-dg-cell>{{ row.description }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.status }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.loggedBy }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.loggedOn }}</clr-dg-cell>
                                 </clr-dg-row>
                             </clr-datagrid>
                         </div>

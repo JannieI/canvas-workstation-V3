@@ -51,7 +51,6 @@ export class DataManageDataQualityComponent implements OnInit {
     selectedDataQualityIssue: DataQualityIssue;
     selectedDataQualityIssueRowIndex: number = 0;
 
-    // connections ->
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -71,14 +70,6 @@ export class DataManageDataQualityComponent implements OnInit {
             };
         });
 
-    }
-
-    clickSelectedDataConnection(index: number, id: number) {
-        // Clicked a Connection
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectedDataConnection', '@Start');
-
-        // Set seletected index - used for highlighting row
-        this.selectedDataQualityIssueRowIndex = index;
     }
 
     clickRow(index: number, id: number) {
