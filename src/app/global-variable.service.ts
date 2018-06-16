@@ -4504,6 +4504,41 @@ export class GlobalVariableService {
         });
     }
 
+    saveDataOwnership(data: DataOwnership): Promise<string> {
+        // Description: Saves DataOwnership
+        // Returns: 'Saved' or error message
+        console.log('%c    Global-Variables saveDataOwnership ...',
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+
+        let url: string = 'dataOwnerships';
+        this.filePath = './assets/data.dataOwnerships.json';
+
+        return new Promise<string>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.put('http://localhost:3000/' + url + '/' + data.id, data, {headers})
+            .subscribe(
+                res => {
+
+                    // Replace local
+                    let localIndex: number = this.dataOwnerships.findIndex(d =>
+                        d.id == data.id
+                    );
+                    this.dataOwnerships[localIndex] = data;
+
+                    console.log('saveDataOwnership SAVED', res)
+                    resolve('Saved');
+                },
+                err => {
+                    console.log('Error saveDataOwnership FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+        });
+    }
+
     getDatasourcePermissions(): Promise<DatasourcePermission[]> {
         // Description: Gets all DS-P
         // Returns: this.datasourcePermissions array, unless:
