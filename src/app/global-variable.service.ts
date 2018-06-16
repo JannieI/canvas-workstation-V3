@@ -4426,6 +4426,44 @@ export class GlobalVariableService {
         });
     }
 
+    getCurrentDataOwnerships(datasourceID: number): Promise<DataOwnership[]> {
+        // Description: Gets dQual for current DS
+        // Returns: this.dataOwnerships.value array, unless:
+        //   If not cached or if dirty, get from File
+        console.log('%c    Global-Variables getCurrentDataOwnerships ...',
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+
+        let url: string = 'dataOwnerships';
+        this.filePath = './assets/data.dataOwnerships.json';
+
+        if ( (this.currentDataOwnerships.length == 0)  ||  (this.isDirtyDataOwnership) ) {
+            return new Promise<DataOwnership[]>((resolve, reject) => {
+                this.getDataOwnerships()
+                    .then(data => {
+                        data = data.filter(
+                            i => i.datasourceID == datasourceID
+                        );
+                        this.currentDataOwnerships = data;
+                        console.log('%c    Global-Variables getDataOwnershipss 1',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                            datasourceID, data)
+                        resolve(this.currentDataOwnerships);
+                })
+             })
+        } else {
+            return new Promise<DataOwnership[]>((resolve, reject) => {
+                let returnData: DataOwnership[];
+                returnData = this.dataOwnerships.filter(
+                    i => i.datasourceID == datasourceID
+                );
+                this.currentDataOwnerships = returnData;
+                console.log('%c    Global-Variables getDataOwnershipss 2',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", datasourceID, returnData)
+                resolve(this.currentDataOwnerships);
+            });
+        };
+    }
+
     getDatasourcePermissions(): Promise<DatasourcePermission[]> {
         // Description: Gets all DS-P
         // Returns: this.datasourcePermissions array, unless:
