@@ -74,15 +74,15 @@
                                 >
                         </div>
     
-                        <div class="gridPortTitle">
-                            <b>Port:</b>
+                        <div class="gridDatasourceTitle">
+                            <b>Datasource:</b>
                         </div>
-                        <div class="gridPort">
-                            <input [(ngModel)]="selectedDataQualityIssue.port"
+                        <div class="gridDatasource">
+                            <input [(ngModel)]="selectedDataQualityIssue.datasourceID"
                                 type="text"
-                                name="port"
-                                title="Optional port on DB Server"
-                                placeholder="Optional port on DB Server"
+                                name="datasourceID"
+                                title="Datasource on which the Data Quality issues exist"
+                                placeholder="Datasource on which the Data Quality issues exist"
                                 [disabled]="!editing  &&  !adding"
                                 >
                         </div>
