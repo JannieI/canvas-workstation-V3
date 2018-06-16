@@ -4464,6 +4464,46 @@ export class GlobalVariableService {
         };
     }
 
+    addDataOwnership(data: DataOwnership): Promise<any> {
+        // Description: Adds a new Ownership, if it does not exist
+        // Returns: Added Data or error message
+        console.log('%c    Global-Variables addDataOwnership ...',
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", data.id);
+
+        let url: string = 'dataOwnerships';
+        this.filePath = './assets/data.dataOwnerships.json';
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.post('http://localhost:3000/' + url, data, {headers})
+            .subscribe(
+                res => {
+
+                    // Update Global vars to make sure they remain in sync
+                    let newDS: DataOwnership = JSON.parse(JSON.stringify(res))
+                    if (this.dataOwnerships.filter(i => i.id == newDS.id).length == 0) {
+                        this.dataOwnerships.push(newDS);
+                    };
+                    if (this.currentDataOwnerships.filter(i => i.id == newDS.id).length == 0) {
+                        this.currentDataOwnerships.push(newDS);
+                    };
+
+                    console.log('addDataOwnership ADDED', res,
+                        this.currentDataOwnerships, this.dataOwnerships)
+
+                    resolve(res);
+                },
+                err => {
+                    console.log('Error addDataOwnership FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+        });
+    }
+
     getDatasourcePermissions(): Promise<DatasourcePermission[]> {
         // Description: Gets all DS-P
         // Returns: this.datasourcePermissions array, unless:
