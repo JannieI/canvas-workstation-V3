@@ -218,6 +218,7 @@ export class DataManageDataOwnershipComponent implements OnInit {
         if (this.adding) {
             this.selectedDataOwnership.id = null;
 
+            this.selectedDataOwnership.datasourceID = this.datasourceID;
             this.globalVariableService.addDataOwnership(this.selectedDataOwnership).then(
                 res => {
                     if (this.selectedDataOwnershipRowIndex == null) {
