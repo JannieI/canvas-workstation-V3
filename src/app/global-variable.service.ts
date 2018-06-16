@@ -4241,10 +4241,10 @@ export class GlobalVariableService {
         });
     }
 
-    addQualityIssue(data: DataQualityIssue): Promise<any> {
+    addDataQualityIssue(data: DataQualityIssue): Promise<any> {
         // Description: Adds a new QualityIssue, if it does not exist
         // Returns: Added Data or error message
-        console.log('%c    Global-Variables addQualityIssue ...',
+        console.log('%c    Global-Variables addDataQualityIssue ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", data.id);
 
         let url: string = 'dataQualityIssues';
@@ -4268,13 +4268,48 @@ export class GlobalVariableService {
                         this.currentDataQualityIssues.push(newDS);
                     };
 
-                    console.log('addQualityIssue ADDED', res,
+                    console.log('addDataQualityIssue ADDED', res,
                         this.currentDataQualityIssues, this.dataQualityIssues)
 
                     resolve(res);
                 },
                 err => {
-                    console.log('Error addQualityIssue FAILED', err);;
+                    console.log('Error addDataQualityIssue FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+        });
+    }
+
+    saveDataQualityIssue(data: DataQualityIssue): Promise<string> {
+        // Description: Saves DataQualityIssue
+        // Returns: 'Saved' or error message
+        console.log('%c    Global-Variables saveDataQualityIssue ...',
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+
+        let url: string = 'dataQualityIssues';
+        this.filePath = './assets/data.dataQualityIssues.json';
+
+        return new Promise<string>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.put('http://localhost:3000/' + url + '/' + data.id, data, {headers})
+            .subscribe(
+                res => {
+
+                    // Replace local
+                    let localIndex: number = this.dataQualityIssues.findIndex(d =>
+                        d.id == data.id
+                    );
+                    this.dataQualityIssues[localIndex] = data;
+
+                    console.log('saveDataQualityIssue SAVED', res)
+                    resolve('Saved');
+                },
+                err => {
+                    console.log('Error saveDataQualityIssue FAILED', err);;
                     resolve(err.Message);
                 }
             )

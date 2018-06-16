@@ -167,7 +167,7 @@ export class DataManageDataQualityComponent implements OnInit {
         if (this.adding) {
             this.selectedDataQualityIssue.id = null;
 
-            this.globalVariableService.addDa(this.selectedDataQualityIssue).then(
+            this.globalVariableService.addDataQualityIssue(this.selectedDataQualityIssue).then(
                 res => {
                     if (this.selectedDataQualityIssueRowIndex == null) {
                         this.selectedDataQualityIssueRowIndex = 0;
