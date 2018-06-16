@@ -457,7 +457,8 @@ export class DataPopupComponent implements OnInit {
             serverName: '',
             dataTableName: '',
             dataSQLStatement: '',
-            dataNoSQLStatement: ''
+            dataNoSQLStatement: '',
+            businessGlossary: ''
 
         };
 

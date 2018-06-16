@@ -358,7 +358,8 @@ export class DataDirectQueryBuilderComponent implements OnInit {
                 serverName: 'pellefant.db.elephantsql.com',
                 dataTableName: 'ftfhgfzh',
                 dataSQLStatement: '',
-                dataNoSQLStatement: ''
+                dataNoSQLStatement: '',
+                businessGlossary: ''
                             
             };
         };

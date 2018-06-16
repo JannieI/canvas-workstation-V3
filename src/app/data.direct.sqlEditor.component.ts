@@ -166,7 +166,8 @@ export class DataDirectSQLEditorComponent implements OnInit {
                 serverName: 'pellefant.db.elephantsql.com',
                 dataTableName: 'ftfhgfzh',
                 dataSQLStatement: '',
-                dataNoSQLStatement: ''
+                dataNoSQLStatement: '',
+                businessGlossary: ''
                             
             };
         };

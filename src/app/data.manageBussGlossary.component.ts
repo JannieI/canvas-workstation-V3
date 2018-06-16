@@ -43,18 +43,11 @@ export class DataManagBussGlossaryComponent implements OnInit {
 
     }
 
-    adding: boolean = false;
     datasources: Datasource[] = [];
-    datasourceID: number;
-    datasourceName: string;
-    datasourceNames: string[] = [];    
     editing: boolean = false;
-    errorMessage: string = "";
     selectedDatasourceID: number = null;
     selectedDatasource: Datasource;
     selectedDatasourcesRowIndex: number = 0;
-    selectedLinkedDatasource: string;
-    userIDs: string[] = [];
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -65,10 +58,50 @@ export class DataManagBussGlossaryComponent implements OnInit {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
         
+        // Reset, else async too late and form load fails
+        this.selectedDatasource = 
+        {
+            id: null,
+            type: '',
+            subType: '',
+            typeVersion: '',
+            name: '',
+            username: '',
+            password: '',
+            description: '',
+            createdBy: '',
+            createdOn: '',
+            refreshedBy: '',
+            refreshedOn: '',
+            dataFieldIDs: null,
+            dataFields: null,
+            dataFieldTypes: null,
+            dataFieldLengths: null,
+            parameters: '',
+            folder: '',
+            fileName: '',
+            excelWorksheet: '',
+            transposeOnLoad: false,
+            startLineNr: null,
+            csvSeparationCharacter: '',
+            csvQuotCharacter: '',
+            connectionID: null,
+            dataTableID: null,
+            businessGlossary: '',
+            databaseName: '',
+            port: '',
+            serverType: '',
+            serverName: '',
+            dataTableName: '',
+            dataSQLStatement: '',
+            dataNoSQLStatement: '',
+            nrWidgets: null
+        }
+
         this.globalVariableService.getDatasources().then(dc => {
-            
             // Fill local Var
             this.datasources = dc.slice();
+            console.warn('xx this.datasources.length', this.datasources.length)
             
             // Click on first one, if available
             if (this.datasources.length > 0) {
@@ -98,11 +131,11 @@ export class DataManagBussGlossaryComponent implements OnInit {
         } else {
             this.selectedDatasource = null;
         };
-
+console.warn('xx this.selectedDatasource ', this.selectedDatasource )
     }
     
     clickClose(action: string) {
-        //
+        // Close the form, nothing saved
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
         this.formDataManageBussGlossaryClosed.emit(action);
@@ -114,71 +147,53 @@ export class DataManagBussGlossaryComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickCancel', '@Start');
 
         this.editing = false;
-        this.adding = false;
-        this.errorMessage = '';
         this.clickRow(this.selectedDatasourcesRowIndex, this.selectedDatasourceID);
         
-        // Re Fill the form
-        let datasourceIndex: number = this.datasources
-            .findIndex(sch => sch.id == this.selectedDatasource.id);
-        if (datasourceIndex >= 0) {
-            this.selectedDatasource = Object.assign({}, 
-                this.datasources[datasourceIndex]
-            );
-        };
+        // // Re Fill the form
+        // let datasourceIndex: number = this.datasources
+        //     .findIndex(sch => sch.id == this.selectedDatasource.id);
+        // if (datasourceIndex >= 0) {
+        //     this.selectedDatasource = Object.assign({}, 
+        //         this.datasources[datasourceIndex]
+        //     );
+        // };
 
-        // Reset
-        this.selectedDatasourcesRowIndex = null;
-        this.selectedDatasourceID = null;
+        // // Reset
+        // this.selectedDatasourcesRowIndex = null;
+        // this.selectedDatasourceID = null;
 
     }
 
     clickSave() {
-        // Save changes to a Data Quality record
+        // Save changes to the Datasource
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
-
-        let index: number = this.selectedLinkedDatasource.indexOf(' (');
-        if (index >= 0) {
-            this.datasourceName = this.selectedLinkedDatasource.substring(0, index);
-            this.datasourceID = +this.selectedLinkedDatasource.substring(
-                index + 2, this.selectedLinkedDatasource.length - 1
-            );
-        };
-
-        // Get RunTime datasourceName
-        this.globalVariableService.datasources.forEach(ds => {
-            if (ds.id == this.datasourceID) {
-                this.datasourceName = ds.name;
-            };
-        });
 
         // Save the changes
         if (this.editing) {
             let datasourceIndex: number = this.datasources
-                .findIndex(sch => sch.id == this.selectedDatasource.id);
+                .findIndex(ds => ds.id == this.selectedDatasource.id);
             if (datasourceIndex >= 0) {
-                this.datasources[datasourceIndex] = 
-                    Object.assign({}, this.selectedDatasource);
+                this.datasources[datasourceIndex].businessGlossary = 
+                    this.selectedDatasource.businessGlossary
             };
-            this.globalVariableService.saveDatas(this.selectedDatasource)
+            this.globalVariableService.saveDatasource(this.selectedDatasource)
         };
 
         // Reset
         this.editing = false;
-        this.adding = false;
-        this.selectedDatasourcesRowIndex = null;
-        this.selectedDatasourceID = null;
+        // this.selectedDatasourcesRowIndex = null;
+        // this.selectedDatasourceID = null;
 
     }
 
     clickEdit() {
-        // Start editing selected Data Quality record
+        // Start editing selected Datasource
         this.globalFunctionService.printToConsole(this.constructor.name,'clickEdit', '@Start');
 
         if (this.datasources.length > 0) {
             this.editing = true;
         };
-
+console.warn('xx edit', this.editing)
     }
 
 }

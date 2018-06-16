@@ -113,7 +113,8 @@ export class DataManagedQueryBuilderComponent implements OnInit {
                 serverName: '',
                 dataTableName: '',
                 dataSQLStatement: '',
-                dataNoSQLStatement: ''
+                dataNoSQLStatement: '',
+                businessGlossary: ''
             };
         }
         this.globalVariableService.getDataConnections().then(dc => {

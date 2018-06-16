@@ -361,7 +361,8 @@ export class DataDirectNoSQLComponent implements OnInit {
                 serverName: 'pellefant.db.elephantsql.com',
                 dataTableName: 'ftfhgfzh',
                 dataSQLStatement: '',
-                dataNoSQLStatement: ''
+                dataNoSQLStatement: '',
+                businessGlossary: ''
                             
             };
         };
