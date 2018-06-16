@@ -35,142 +35,58 @@
         text-align: left;
     }
 
-    .gridNameTitle {
+    .gridDatasourceTitle {
         grid-column-start: 1;
         grid-column-end: 2;
         grid-row-start: 4;
         grid-row-end: 5;
     }
-    .gridName {
+    .gridDatasource {
         grid-column-start: 2;
         grid-column-end: 7;
         grid-row-start: 4;
         grid-row-end: 5;
     }
     
-    .gridDescriptionTitle {
+    .gridgridUserIDTitle {
         grid-column-start: 7;
         grid-column-end: 8;
         grid-row-start: 4;
         grid-row-end: 5;
         margin-top: 5px;
     }
-    .gridDescription {
+    .gridgridUserID {
         grid-column-start: 8;
         grid-column-end: 14;
         grid-row-start: 4;
         grid-row-end: 5;
     }
 
-    .gridStatusTitle {
+    .gridTypeTitle {
         grid-column-start: 14;
         grid-column-end: 15;
         grid-row-start: 4;
         grid-row-end: 5;
     }
-    .gridStatus {
+    .gridType {
         grid-column-start: 15;
         grid-column-end: 18;
         grid-row-start: 4;
         grid-row-end: 5;
     }
 
-    .gridTypeTitle {
+    .gridDescriptionTitle {
         grid-column-start: 1;
         grid-column-end: 2;
         grid-row-start: 6;
         grid-row-end: 7;
         margin-top: 5px;
     }
-    .gridType {
+    .gridDescription {
         grid-column-start: 2;
         grid-column-end: 7;
         grid-row-start: 6;
         grid-row-end: 7;
-    }
-
-    .gridDatasourceTitle {
-        grid-column-start: 7;
-        grid-column-end: 8;
-        grid-row-start: 6;
-        grid-row-end: 7;
-        margin-top: 5px;
-    }
-    .gridDatasource {
-        grid-column-start: 8;
-        grid-column-end: 13;
-        grid-row-start: 6;
-        grid-row-end: 7;
-    }
-
-    .gridNrIssuesTitle {
-        grid-column-start: 14;
-        grid-column-end: 15;
-        grid-row-start: 6;
-        grid-row-end: 7;
-        margin-top: 5px;
-    }
-    .gridNrIssues {
-        grid-column-start: 15;
-        grid-column-end: 21;
-        grid-row-start: 6;
-        grid-row-end: 7;
-    }
-
-    .gridLoggedByTitle {
-        grid-column-start: 1;
-        grid-column-end: 2;
-        grid-row-start: 8;
-        grid-row-end: 9;
-        margin-top: 5px;
-    }
-    .gridLoggedBy {
-        grid-column-start: 2;
-        grid-column-end: 7;
-        grid-row-start: 8;
-        grid-row-end: 9;
-    }
-
-    .gridLoggedOnTitle {
-        grid-column-start: 7;
-        grid-column-end: 8;
-        grid-row-start: 8;
-        grid-row-end: 9;
-        margin-top: 5px;
-    }
-    .gridLoggedOn {
-        grid-column-start: 8;
-        grid-column-end: 14;
-        grid-row-start: 8;
-        grid-row-end: 9;
-    }
-
-    .gridSolvedByTitle {
-        grid-column-start: 14;
-        grid-column-end: 15;
-        grid-row-start: 8;
-        grid-row-end: 9;
-        margin-top: 5px;
-    }
-    .gridSolvedBy {
-        grid-column-start: 15;
-        grid-column-end: 21;
-        grid-row-start: 8;
-        grid-row-end: 9;
-    }
-
-    .gridSolvedOnTitle {
-        grid-column-start: 1;
-        grid-column-end: 2;
-        grid-row-start: 10;
-        grid-row-end: 11;
-        margin-top: 5px;
-    }
-    .gridSolvedOn {
-        grid-column-start: 2;
-        grid-column-end: 7;
-        grid-row-start: 10;
-        grid-row-end: 11;
     }
 
     .gridErrorMessage {

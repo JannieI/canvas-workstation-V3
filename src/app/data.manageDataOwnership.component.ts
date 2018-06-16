@@ -18,7 +18,7 @@ import { GlobalVariableService}       from './global-variable.service';
 
 // Models
 import { Dashboard }                  from './models';
-import { DataQualityIssue }           from './models';
+import { DataOwnership }           from './models';
  
 @Component({
     selector: 'data-manageDataOwnership',
@@ -44,15 +44,15 @@ export class DataManageDataOwnershipComponent implements OnInit {
     }
 
     adding: boolean = false;
-    dataQualityIssues: DataQualityIssue[];
+    dataOwnerships: DataOwnership[];
     datasourceID: number;
     datasourceName: string;
-    datasourceNames: string[] = [];
+    userIDs: string[] = [];
     editing: boolean = false;
     errorMessage: string = "";
     selectedDatasourceID: number = null;
-    selectedDataQualityIssue: DataQualityIssue;
-    selectedDataQualityIssueRowIndex: number = 0;
+    selectedDataOwnership: DataOwnership;
+    selectedDataOwnershipRowIndex: number = 0;
     selectedLinkedDatasource: string;
 
 
@@ -69,9 +69,9 @@ export class DataManageDataOwnershipComponent implements OnInit {
         
         // Get Datasource list
         this.globalVariableService.datasources.forEach(ds => {
-            this.datasourceNames.push(ds.name + ' (' + ds.id + ')');
+            this.userIDs.push(ds.name + ' (' + ds.id + ')');
         });
-        this.datasourceNames = this.datasourceNames.sort( (obj1,obj2) => {
+        this.userIDs = this.userIDs.sort( (obj1,obj2) => {
             if (obj1 > obj2) {
                 return 1;
             };
@@ -81,11 +81,11 @@ export class DataManageDataOwnershipComponent implements OnInit {
             return 0;
         });
         
-        this.globalVariableService.getDataQualityIssues().then(dc => {
+        this.globalVariableService.getDataOwnerships().then(dc => {
             
-            this.dataQualityIssues = dc.slice();
-            if (this.dataQualityIssues.length > 0) {
-                this.clickRow(0, this.dataQualityIssues[0].id);
+            this.dataOwnerships = dc.slice();
+            if (this.dataOwnerships.length > 0) {
+                this.clickRow(0, this.dataOwnerships[0].id);
             };
         });
 
@@ -95,34 +95,34 @@ export class DataManageDataOwnershipComponent implements OnInit {
         // Click Row
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
 
-        console.warn('xx clickRow STRT', this.selectedDataQualityIssue, this.dataQualityIssues)
+        console.warn('xx clickRow STRT', this.selectedDataOwnership, this.dataOwnerships)
         // Set the row index
-        this.selectedDataQualityIssueRowIndex = index;
+        this.selectedDataOwnershipRowIndex = index;
         this.adding = false;
         this.editing = false;
         this.selectedDatasourceID = id;
         this.errorMessage = '';
 
         // Fill the form
-        let selectedDatasourceIndex: number = this.dataQualityIssues
+        let selectedDatasourceIndex: number = this.dataOwnerships
             .findIndex(dc => dc.id == id);
         if (selectedDatasourceIndex >= 0) {
 
             let datasourceIndex: number = this.globalVariableService.datasources.findIndex(ds =>
-                ds.id == this.dataQualityIssues[selectedDatasourceIndex].datasourceID
+                ds.id == this.dataOwnerships[selectedDatasourceIndex].datasourceID
             );
             this.selectedLinkedDatasource = this.globalVariableService.datasources[datasourceIndex]
                 .name + ' (' + this.globalVariableService.datasources[datasourceIndex].id + ')';
             console.warn('xx ds', this.selectedLinkedDatasource, datasourceIndex, this.selectedLinkedDatasource)
 
-            this.selectedDataQualityIssue = Object.assign({}, 
-                this.dataQualityIssues[selectedDatasourceIndex]
+            this.selectedDataOwnership = Object.assign({}, 
+                this.dataOwnerships[selectedDatasourceIndex]
             );
         } else {
             this.selectedLinkedDatasource = '';
         };
 
-        console.warn('xx END selectedDataQualityIssue', this.selectedDataQualityIssue)
+        console.warn('xx END selectedDataOwnership', this.selectedDataOwnership)
 
     }
 
@@ -130,18 +130,17 @@ export class DataManageDataOwnershipComponent implements OnInit {
         // Clear single record
         this.globalFunctionService.printToConsole(this.constructor.name,'clearRecord', '@Start');
 
-        this.selectedDataQualityIssue = {
+        this.selectedDataOwnership = {
             id: null,
-            name: '',
             datasourceID: null,
-            status: '',
+            userID: '',
             type: '',
             description: '',
-            nrIssues: 0,
-            loggedBy: '',
-            loggedOn: '',
-            solvedBy: '',
-            solvedOn: ''
+            createdBy: '',
+            createdOn: '',
+            updatedBy: '',
+            updatedOn: '',
+            datasourceName: ''
         };
     }
     
@@ -160,19 +159,19 @@ export class DataManageDataOwnershipComponent implements OnInit {
         this.editing = false;
         this.adding = false;
         this.errorMessage = '';
-        this.clickRow(this.selectedDataQualityIssueRowIndex, this.selectedDatasourceID);
+        this.clickRow(this.selectedDataOwnershipRowIndex, this.selectedDatasourceID);
         
         // Re Fill the form
-        let datasourceIndex: number = this.dataQualityIssues
-            .findIndex(sch => sch.id == this.selectedDataQualityIssue.id);
+        let datasourceIndex: number = this.dataOwnerships
+            .findIndex(sch => sch.id == this.selectedDataOwnership.id);
         if (datasourceIndex >= 0) {
-            this.selectedDataQualityIssue = Object.assign({}, 
-                this.dataQualityIssues[datasourceIndex]
+            this.selectedDataOwnership = Object.assign({}, 
+                this.dataOwnerships[datasourceIndex]
             );
         };
 
         // Reset
-        this.selectedDataQualityIssueRowIndex = null;
+        this.selectedDataOwnershipRowIndex = null;
         this.selectedDatasourceID = null;
 
     }
@@ -186,10 +185,10 @@ export class DataManageDataOwnershipComponent implements OnInit {
         // Validation
         this.errorMessage = '';
 
-        if (this.selectedDataQualityIssue.name == null
+        if (this.selectedDataOwnership.userID == null
             ||
-            this.selectedDataQualityIssue.name == '') {
-                this.errorMessage = 'Enter a Name to identify the issue';
+            this.selectedDataOwnership.userID == '') {
+                this.errorMessage = 'Enter the UserID of the Owner';
                 return;
         };
 
@@ -203,18 +202,18 @@ export class DataManageDataOwnershipComponent implements OnInit {
 
         // Add to local and DB
         if (this.adding) {
-            this.selectedDataQualityIssue.id = null;
+            this.selectedDataOwnership.id = null;
 
-            this.globalVariableService.addDataQualityIssue(this.selectedDataQualityIssue).then(
+            this.globalVariableService.addDataOwnership(this.selectedDataOwnership).then(
                 res => {
-                    if (this.selectedDataQualityIssueRowIndex == null) {
-                        this.selectedDataQualityIssueRowIndex = 0;
-                        this.selectedDatasourceID = this.selectedDataQualityIssue.id;
+                    if (this.selectedDataOwnershipRowIndex == null) {
+                        this.selectedDataOwnershipRowIndex = 0;
+                        this.selectedDatasourceID = this.selectedDataOwnership.id;
                         console.warn('xx hier')
                     };
 
                     // Add locally
-                    this.dataQualityIssues.push(this.selectedDataQualityIssue);
+                    this.dataOwnerships.push(this.selectedDataOwnership);
                             
                 }
             );
@@ -222,20 +221,20 @@ export class DataManageDataOwnershipComponent implements OnInit {
 
         // Save the changes
         if (this.editing) {
-            let datasourceIndex: number = this.dataQualityIssues
-                .findIndex(sch => sch.id == this.selectedDataQualityIssue.id);
+            let datasourceIndex: number = this.dataOwnerships
+                .findIndex(sch => sch.id == this.selectedDataOwnership.id);
             if (datasourceIndex >= 0) {
-                this.dataQualityIssues[datasourceIndex] = 
-                    Object.assign({}, this.selectedDataQualityIssue);
+                this.dataOwnerships[datasourceIndex] = 
+                    Object.assign({}, this.selectedDataOwnership);
             };
-            this.selectedDataQualityIssue.datasourceID = this.datasourceID;
-            this.globalVariableService.saveDataQualityIssue(this.selectedDataQualityIssue)
+            this.selectedDataOwnership.datasourceID = this.datasourceID;
+            this.globalVariableService.saveDataOwnership(this.selectedDataOwnership)
         };
 
         // Reset
         this.editing = false;
         this.adding = false;
-        this.selectedDataQualityIssueRowIndex = null;
+        this.selectedDataOwnershipRowIndex = null;
         this.selectedDatasourceID = null;
 
     }
@@ -244,7 +243,7 @@ export class DataManageDataOwnershipComponent implements OnInit {
         // Start editing selected Data Quality record
         this.globalFunctionService.printToConsole(this.constructor.name,'clickEdit', '@Start');
 
-        if (this.dataQualityIssues.length > 0) {
+        if (this.dataOwnerships.length > 0) {
             this.editing = true;
         };
         this.errorMessage = '';
@@ -266,11 +265,11 @@ export class DataManageDataOwnershipComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDelete', '@Start');
 
         this.clearRecord();
-        this.globalVariableService.deleteDataQualityIssue(id).then(res => {
-            this.dataQualityIssues = this.globalVariableService.dataQualityIssues
+        this.globalVariableService.deleteDataOwnership(id).then(res => {
+            this.dataOwnerships = this.globalVariableService.dataOwnerships
         }); 
 
-        this.selectedDataQualityIssueRowIndex = null;
+        this.selectedDataOwnershipRowIndex = null;
         this.selectedDatasourceID = null;
     }
 }

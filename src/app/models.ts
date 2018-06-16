@@ -335,6 +335,9 @@ export class DataOwnership {
     createdOn: string;                      // Date record was created
     updatedBy: string;                      // UserID who last updated the record
     updatedOn: string;                      // Last Date when record was updated
+
+    // @RunTime
+    datasourceName: string;                 // Name of the linked DS
 }
 
 export class DatasourcePivot {
