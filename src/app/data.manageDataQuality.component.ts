@@ -95,7 +95,6 @@ export class DataManageDataQualityComponent implements OnInit {
         // Click Row
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
 
-        console.warn('xx clickRow STRT', this.selectedDataQualityIssue, this.dataQualityIssues)
         // Set the row index
         this.selectedDataQualityIssueRowIndex = index;
         this.adding = false;
@@ -121,8 +120,6 @@ export class DataManageDataQualityComponent implements OnInit {
         } else {
             this.selectedLinkedDatasource = '';
         };
-
-        console.warn('xx END selectedDataQualityIssue', this.selectedDataQualityIssue)
 
     }
 
@@ -211,7 +208,6 @@ export class DataManageDataQualityComponent implements OnInit {
                     if (this.selectedDataQualityIssueRowIndex == null) {
                         this.selectedDataQualityIssueRowIndex = 0;
                         this.selectedDatasourceID = this.selectedDataQualityIssue.id;
-                        console.warn('xx hier')
                     };
 
                     // Add locally

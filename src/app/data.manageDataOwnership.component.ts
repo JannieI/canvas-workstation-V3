@@ -108,7 +108,7 @@ export class DataManageDataOwnershipComponent implements OnInit {
                     };
                 });
             });
-            
+
             // Click on first one, if available
             if (this.dataOwnerships.length > 0) {
                 this.clickRow(0, this.dataOwnerships[0].id);
@@ -121,7 +121,6 @@ export class DataManageDataOwnershipComponent implements OnInit {
         // Click Row
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
 
-        console.warn('xx clickRow STRT', this.selectedDataOwnership, this.dataOwnerships)
         // Set the row index
         this.selectedDataOwnershipRowIndex = index;
         this.adding = false;
@@ -139,7 +138,6 @@ export class DataManageDataOwnershipComponent implements OnInit {
             );
             this.selectedLinkedDatasource = this.globalVariableService.datasources[datasourceIndex]
                 .name + ' (' + this.globalVariableService.datasources[datasourceIndex].id + ')';
-            console.warn('xx ds', this.selectedLinkedDatasource, datasourceIndex, this.selectedLinkedDatasource)
 
             this.selectedDataOwnership = Object.assign({}, 
                 this.dataOwnerships[selectedDatasourceIndex]
@@ -147,8 +145,6 @@ export class DataManageDataOwnershipComponent implements OnInit {
         } else {
             this.selectedLinkedDatasource = '';
         };
-
-        console.warn('xx END selectedDataOwnership', this.selectedDataOwnership)
 
     }
 
@@ -226,6 +222,13 @@ export class DataManageDataOwnershipComponent implements OnInit {
             );
         };
 
+        // Get RunTime datasourceName
+        this.globalVariableService.datasources.forEach(ds => {
+            if (ds.id == this.datasourceID) {
+                this.datasourceName = ds.name;
+            };
+        });
+
         // Add to local and DB
         if (this.adding) {
             this.selectedDataOwnership.id = null;
@@ -249,13 +252,14 @@ export class DataManageDataOwnershipComponent implements OnInit {
 
         // Save the changes
         if (this.editing) {
+            this.selectedDataOwnership.datasourceID = this.datasourceID;
+            this.selectedDataOwnership.datasourceName = this.datasourceName;
             let datasourceIndex: number = this.dataOwnerships
                 .findIndex(sch => sch.id == this.selectedDataOwnership.id);
             if (datasourceIndex >= 0) {
                 this.dataOwnerships[datasourceIndex] = 
                     Object.assign({}, this.selectedDataOwnership);
             };
-            this.selectedDataOwnership.datasourceID = this.datasourceID;
             this.globalVariableService.saveDataOwnership(this.selectedDataOwnership)
         };
 
