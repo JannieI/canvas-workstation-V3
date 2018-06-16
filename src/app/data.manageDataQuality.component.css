@@ -117,28 +117,28 @@
         grid-row-end: 7;
     }
 
-    .gridAuthenticationTitle {
+    .gridLoggedByTitle {
         grid-column-start: 1;
         grid-column-end: 2;
         grid-row-start: 8;
         grid-row-end: 9;
         margin-top: 5px;
     }
-    .gridAuthentication {
+    .gridLoggedBy {
         grid-column-start: 2;
         grid-column-end: 7;
         grid-row-start: 8;
         grid-row-end: 9;
     }
 
-    .gridUsernameTitle {
+    .gridLoggedOnTitle {
         grid-column-start: 7;
         grid-column-end: 8;
         grid-row-start: 8;
         grid-row-end: 9;
         margin-top: 5px;
     }
-    .gridUsername {
+    .gridLoggedOn {
         grid-column-start: 8;
         grid-column-end: 14;
         grid-row-start: 8;

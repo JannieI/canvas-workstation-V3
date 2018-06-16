@@ -100,28 +100,28 @@
                                 >
                         </div>
         
-                        <div class="gridAuthenticationTitle">
-                            <b>Auth:</b>
+                        <div class="gridLoggedByTitle">
+                            <b>LoggedBy:</b>
                         </div>
-                        <div class="gridAuthentication">
-                            <input [(ngModel)]="selectedDataQualityIssue.authentication"
+                        <div class="gridLoggedBy">
+                            <input [(ngModel)]="selectedDataQualityIssue.loggedBy"
                                 type="text"
-                                name="authentication"
-                                title="Type of Authentication: current User or user/psw to log in"
-                                placeholder="Type of Authentication: current User or user/psw to log in"
+                                name="loggedBy"
+                                title="UserID who logged the issues"
+                                placeholder="UserID who logged the issues"
                                 [disabled]="!editing  &&  !adding"
                                 >
                         </div>
     
-                        <div class="gridUsernameTitle">
-                            <b>Username:</b>
+                        <div class="gridLoggedOnTitle">
+                            <b>LoggedOn:</b>
                         </div>
-                        <div class="gridUsername">
-                            <input [(ngModel)]="selectedDataQualityIssue.usernameTitle"
+                        <div class="gridLoggedOn">
+                            <input [(ngModel)]="selectedDataQualityIssue.loggedOn"
                                 type="text"
-                                name="usernameTitle"
-                                title="Username to log into DB Server"
-                                placeholder="Username to log into DB Server"
+                                name="loggedOn"
+                                title="Date when issues were logged"
+                                placeholder="Date when issues were logged"
                                 [disabled]="!editing  &&  !adding"
                                 >
                         </div>
