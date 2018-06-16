@@ -190,7 +190,7 @@ export class DataManageDataQualityComponent implements OnInit {
                 this.dataQualityIssues[dataconnectionIndex] = 
                     Object.assign({}, this.selectedDataQualityIssue);
             };
-            this.globalVariableService.saveDataConnection(this.selectedDataQualityIssue)
+            this.globalVariableService.saveDataQualityIssue(this.selectedDataQualityIssue)
         };
 
         // Reset

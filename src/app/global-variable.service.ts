@@ -4241,6 +4241,44 @@ export class GlobalVariableService {
         });
     }
 
+    getCurrentDataQualityIssues(datasourceID: number): Promise<DataQualityIssue[]> {
+        // Description: Gets dQual for current DS
+        // Returns: this.dataQualityIssues.value array, unless:
+        //   If not cached or if dirty, get from File
+        console.log('%c    Global-Variables getCurrentDataQualityIssues ...',
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+
+        let url: string = 'dataQualityIssues';
+        this.filePath = './assets/data.dataQualityIssues.json';
+
+        if ( (this.currentDataQualityIssues.length == 0)  ||  (this.isDirtyDataQualityIssues) ) {
+            return new Promise<DataQualityIssue[]>((resolve, reject) => {
+                this.getDataQualityIssues()
+                    .then(data => {
+                        data = data.filter(
+                            i => i.datasourceID == datasourceID
+                        );
+                        this.currentDataQualityIssues = data;
+                        console.log('%c    Global-Variables getDataQualityIssuess 1',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                            datasourceID, data)
+                        resolve(this.currentDataQualityIssues);
+                })
+             })
+        } else {
+            return new Promise<DataQualityIssue[]>((resolve, reject) => {
+                let returnData: DataQualityIssue[];
+                returnData = this.dataQualityIssues.filter(
+                    i => i.datasourceID == datasourceID
+                );
+                this.currentDataQualityIssues = returnData;
+                console.log('%c    Global-Variables getDataQualityIssuess 2',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", datasourceID, returnData)
+                resolve(this.currentDataQualityIssues);
+            });
+        };
+    }
+
     addDataQualityIssue(data: DataQualityIssue): Promise<any> {
         // Description: Adds a new QualityIssue, if it does not exist
         // Returns: Added Data or error message
@@ -4316,42 +4354,40 @@ export class GlobalVariableService {
         });
     }
 
-    getCurrentDataQualityIssues(datasourceID: number): Promise<DataQualityIssue[]> {
-        // Description: Gets dQual for current DS
-        // Returns: this.dataQualityIssues.value array, unless:
-        //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getCurrentDataQualityIssues ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+    deleteDataQualityIssue(id: number): Promise<string> {
+        // Description: Deletes a DataQualityIssues
+        // Returns: 'Deleted' or error message
+        console.log('%c    Global-Variables deleteDataQualityIssue ...',
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", id);
 
         let url: string = 'dataQualityIssues';
         this.filePath = './assets/data.dataQualityIssues.json';
 
-        if ( (this.currentDataQualityIssues.length == 0)  ||  (this.isDirtyDataQualityIssues) ) {
-            return new Promise<DataQualityIssue[]>((resolve, reject) => {
-                this.getDataQualityIssues()
-                    .then(data => {
-                        data = data.filter(
-                            i => i.datasourceID == datasourceID
-                        );
-                        this.currentDataQualityIssues = data;
-                        console.log('%c    Global-Variables getDataQualityIssuess 1',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            datasourceID, data)
-                        resolve(this.currentDataQualityIssues);
-                })
-             })
-        } else {
-            return new Promise<DataQualityIssue[]>((resolve, reject) => {
-                let returnData: DataQualityIssue[];
-                returnData = this.dataQualityIssues.filter(
-                    i => i.datasourceID == datasourceID
-                );
-                this.currentDataQualityIssues = returnData;
-                console.log('%c    Global-Variables getDataQualityIssuess 2',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", datasourceID, returnData)
-                resolve(this.currentDataQualityIssues);
-            });
-        };
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
+            .subscribe(
+                data => {
+
+                    this.dataQualityIssues = this.dataQualityIssues.filter(
+                        dsp => dsp.id != id
+                    );
+                    this.currentDataQualityIssues = this.currentDataQualityIssues.filter(
+                        dsp => dsp.id != id
+                    );
+
+                    console.log('deleteDataQualityIssue DELETED id: ', id)
+                    resolve('Deleted');
+                },
+                err => {
+                    console.log('Error deleteDataQualityIssue FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+        });
     }
 
     getDatasourcePermissions(): Promise<DatasourcePermission[]> {
