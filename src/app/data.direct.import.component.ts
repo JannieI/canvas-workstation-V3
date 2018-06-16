@@ -97,7 +97,7 @@ export class DataDirectImportComponent implements OnInit {
 
         // Load
         console.log('DataPopup clickDSPreview LOAD start:', currentData)
-        this.currentData = JSON.stringify(currentData);
+        this.currentData = JSON.parse(JSON.stringify(currentData));
         let obj = JSON.parse(this.currentData);
         console.warn('xx obj', obj.dataFieldTypes)
         // JSON.parse(JSON.stringify(resolvedData));
