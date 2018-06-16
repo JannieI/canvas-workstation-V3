@@ -388,6 +388,7 @@ export class AppComponent implements OnInit {
     showModalWidgetDescription: boolean = false;
     showModalTableEditor: boolean = false;
     showModalManageDataDataQuality: boolean = false;
+    showModalManageDataDataOwnership: boolean = false;
     showModalDataCombination: boolean = false;
     showModalDataRefresh: boolean = false;
     showModalDataShare: boolean = false;
@@ -1342,6 +1343,15 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPostAction();
 
         this.showModalManageDataDataQuality = false;
+    }
+
+    handleCloseDataManageDataOwnership(action: string) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataManageDataOwnership', '@Start');
+
+        this.menuOptionClickPostAction();
+
+        this.showModalManageDataDataOwnership = false;
     }
 
     handleCloseDataCombination(action: string) {
@@ -2967,7 +2977,7 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuDataDataQuality(){
-        // Manage combinations of DS
+        // Manage Data Quality Issues for a DS
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDataQuality', '@Start');
 
         this.menuOptionClickPreAction();
@@ -2976,6 +2986,15 @@ export class AppComponent implements OnInit {
 
     }
 
+    clickMenuDataDataOwnership(){
+        // Manage Ownership for a DS
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDataOwnership', '@Start');
+
+        this.menuOptionClickPreAction();
+
+        this.showModalManageDataDataOwnership = true;
+
+    }
     clickMenuDataCombinations(){
         // Manage combinations of DS
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataCombinations', '@Start');

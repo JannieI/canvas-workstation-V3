@@ -520,7 +520,7 @@
                                     <button
                                         type="button"
                                         clrDropdownItem
-                                        (click)="clickMenuDataFromFile(1)"
+                                        (click)="clickMenuDataDataOwnership()"
                                         title="Manage Data Ownership for Datasources"
                                         >
                                         Manage Data Ownership
@@ -4094,6 +4094,13 @@
     *ngIf="showModalManageDataDataQuality"
     (formDataManageDataQualityClosed)="handleCloseDataManageDataQuality($event)">Load Data DataQuality ...
 </data-manageDataQuality>
+
+
+<!-- Modal: data DataOwnership -->
+<data-manageDataOwnership
+    *ngIf="showModalManageDataDataOwnership"
+    (formDataManageDataOwnershipClosed)="handleCloseDataManageDataOwnership($event)">Load Data DataOwnership ...
+</data-manageDataOwnership>
 
 
 <!-- Modal: data Combination -->

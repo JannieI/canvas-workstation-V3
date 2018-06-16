@@ -84,6 +84,8 @@ import { DataManagedQueryBuilderComponent }  from './data.managed.queryBuilder.c
 import { DataManagedSQLEditorComponent }     from './data.managed.sqlEditor.component';
 import { DataManagedOverlayEditorComponent } from './data.managed.overlayEditor.component';
 import { DataManagedNoSQLEditorComponent }   from './data.managed.noSqlEditor.component';
+import { DataManageDataQualityComponent }    from './data.manageDataQuality.component';
+import { DataManageDataOwnershipComponent }  from './data.manageDataOwnership.component';
 
 import { DataTransformationComponent }       from './data.transformation.component';
 import { DataEditDatasourceComponent }       from './data.editDatasource.component';
@@ -95,7 +97,6 @@ import { DataRefreshComponent }       from './data.refresh.component';
 import { DatasourceShareComponent }   from './data.share.component';
 import { DataDictionaryComponent }    from './data.dictionary.component';
 import { DataSummaryComponent }       from './data.summary.component';
-import { DataManageDataQualityComponent }    from './data.manageDataQuality.component';
 import { DataDeleteDatasourceComponent }     from './data.deleteDatasource.component';
 
 import { HelpComponent }              from './help.component';
@@ -192,6 +193,7 @@ import { StatusbarComponent }         from './statusbar.component';
         DataDictionaryComponent,
         DataSummaryComponent,
         DataManageDataQualityComponent,
+        DataManageDataOwnershipComponent,
         DataDeleteDatasourceComponent,
 
         WidgetEditorComponent,
