@@ -97,7 +97,19 @@ export class DataManageDataOwnershipComponent implements OnInit {
 
         this.globalVariableService.getDataOwnerships().then(dc => {
             
+            // Fill local Var
             this.dataOwnerships = dc.slice();
+            
+            // Append RunTime datasourceName
+            this.dataOwnerships.forEach(dow => {
+                this.globalVariableService.datasources.forEach(ds => {
+                    if (ds.id == dow.datasourceID) {
+                        dow.datasourceName = ds.name;
+                    };
+                });
+            });
+            
+            // Click on first one, if available
             if (this.dataOwnerships.length > 0) {
                 this.clickRow(0, this.dataOwnerships[0].id);
             };
@@ -219,6 +231,7 @@ export class DataManageDataOwnershipComponent implements OnInit {
             this.selectedDataOwnership.id = null;
 
             this.selectedDataOwnership.datasourceID = this.datasourceID;
+            this.selectedDataOwnership.datasourceName = this.datasourceName;
             this.globalVariableService.addDataOwnership(this.selectedDataOwnership).then(
                 res => {
                     if (this.selectedDataOwnershipRowIndex == null) {
