@@ -46,13 +46,13 @@
                                 >
                         </div>
     
-                        <div class="gridServerTypeTitle">
-                            <b>Type:</b>
+                        <div class="gridServerStatusTitle">
+                            <b>Status:</b>
                         </div>
-                        <div class="select gridServerType">
+                        <div class="select gridServerStatus">
                             <select [(ngModel)]="selectedConnection.serverType"
                                 name="ServerType"
-                                placeholder="Select type of Server, ie PostreSQL"
+                                placeholder="Select the Status"
                                 [disabled]="!editing  &&  !adding"
                                 >
                                 <option>Microsft SQL</option>

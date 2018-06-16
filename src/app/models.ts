@@ -312,17 +312,17 @@ export class CombinationDetail {
 }
 
 export class DataQualityIssue {
-    id: number;
-    datasourceID: number;
-    status: string;
-    name: string;
-    type: string;
-    description;
-    nrIssues: number;
-    loggedBy: string;
-    loggedOn: string;
-    solvedBy: string;
-    solvedOn: string;
+    id: number;                             // Unique ID
+    name: string;                           // Short name to identify issue
+    datasourceID: number;                   // DS to which the issue relates
+    status: string;                         // Status: Logged, InProgress, Solved
+    type: string;                           // User defined type, ie Stats, Backfill
+    description;                            // Description of the issue
+    nrIssues: number;                       // Optional Nr of issue, can be rounded
+    loggedBy: string;                       // UserID who logged the issue
+    loggedOn: string;                       // Date Issue was logged
+    solvedBy: string;                       // UserID who solved the issue
+    solvedOn: string;                       // Date issue was marked as solved
 }
 
 export class DatasourcePivot {

@@ -62,13 +62,13 @@
         grid-row-end: 5;
     }
 
-    .gridServerTypeTitle {
+    .gridServerStatusTitle {
         grid-column-start: 14;
         grid-column-end: 15;
         grid-row-start: 4;
         grid-row-end: 5;
     }
-    .gridServerType {
+    .gridServerStatus {
         grid-column-start: 15;
         grid-column-end: 18;
         grid-row-start: 4;
