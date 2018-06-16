@@ -389,6 +389,7 @@ export class AppComponent implements OnInit {
     showModalTableEditor: boolean = false;
     showModalManageDataDataQuality: boolean = false;
     showModalManageDataDataOwnership: boolean = false;
+    showModalManageDataDataDictionary: boolean = false;
     showModalDataCombination: boolean = false;
     showModalDataRefresh: boolean = false;
     showModalDataShare: boolean = false;
@@ -1352,6 +1353,15 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPostAction();
 
         this.showModalManageDataDataOwnership = false;
+    }
+
+    handleCloseDataManageDataDictionary(action: string) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataManageDataDictionary', '@Start');
+
+        this.menuOptionClickPostAction();
+
+        this.showModalManageDataDataDictionary = false;
     }
 
     handleCloseDataCombination(action: string) {
@@ -2995,6 +3005,17 @@ export class AppComponent implements OnInit {
         this.showModalManageDataDataOwnership = true;
 
     }
+
+    clickMenuDataDataDictionary(){
+        // Manage Dictionary for a DS
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDataDictionary', '@Start');
+
+        this.menuOptionClickPreAction();
+
+        this.showModalManageDataDataDictionary = true;
+
+    }
+    
     clickMenuDataCombinations(){
         // Manage combinations of DS
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataCombinations', '@Start');

@@ -21,14 +21,14 @@ import { Dashboard }                  from './models';
 import { DataOwnership }           from './models';
  
 @Component({
-    selector: 'data-manageDataOwnership',
-    templateUrl: './data.manageDataOwnership.component.html',
-    styleUrls: ['./data.manageDataOwnership.component.css']
+    selector: 'data-manageDataDictionary',
+    templateUrl: './data.manageDataDictionary.component.html',
+    styleUrls: ['./data.manageDataDictionary.component.css']
 })
 
-export class DataManageDataOwnershipComponent implements OnInit {
+export class DataManageDataDictionaryComponent implements OnInit {
 
-    @Output() formDataManageDataOwnershipClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formDataManageDataDictionaryClosed: EventEmitter<string> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
@@ -170,7 +170,7 @@ export class DataManageDataOwnershipComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-        this.formDataManageDataOwnershipClosed.emit(action);
+        this.formDataManageDataDictionaryClosed.emit(action);
 
     }
 
