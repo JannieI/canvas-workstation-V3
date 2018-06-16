@@ -316,7 +316,7 @@ export class DataQualityIssue {
     name: string;                           // Short name to identify issue
     datasourceID: number;                   // DS to which the issue relates
     status: string;                         // Status: Logged, InProgress, Solved
-    type: string;                           // User defined type, ie Stats, Backfill
+    type: string;                           // User-defined type, ie Stats, Backfill
     description;                            // Description of the issue
     nrIssues: number;                       // Optional Nr of issue, can be rounded
     loggedBy: string;                       // UserID who logged the issue

@@ -46,12 +46,12 @@
                                 >
                         </div>
     
-                        <div class="gridServerStatusTitle">
+                        <div class="gridStatusTitle">
                             <b>Status:</b>
                         </div>
-                        <div class="select gridServerStatus">
+                        <div class="select gridStatus">
                             <select [(ngModel)]="selectedDataQualityIssue.status"
-                                name="ServerType"
+                                name="status"
                                 placeholder="Select the Status"
                                 [disabled]="!editing  &&  !adding"
                                 >
@@ -61,15 +61,15 @@
                             </select>
                         </div>
         
-                        <div class="gridServerTitle">
-                            <b>Server:</b>
+                        <div class="gridTypeTitle">
+                            <b>Type:</b>
                         </div>
-                        <div class="gridServer">
-                            <input [(ngModel)]="selectedDataQualityIssue.serverTitle"
+                        <div class="gridType">
+                            <input [(ngModel)]="selectedDataQualityIssue.type"
                                 type="text"
-                                name="serverTitle"
-                                title="Name of the Server/IP Address and :Port"
-                                placeholder="Name of DB Server/IP Address and :Port"
+                                name="type"
+                                title="User-defined type, ie Stats, Backfill"
+                                placeholder="User defined type, ie Stats, Backfill"
                                 [disabled]="!editing  &&  !adding"
                                 >
                         </div>

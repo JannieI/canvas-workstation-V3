@@ -62,27 +62,27 @@
         grid-row-end: 5;
     }
 
-    .gridServerStatusTitle {
+    .gridStatusTitle {
         grid-column-start: 14;
         grid-column-end: 15;
         grid-row-start: 4;
         grid-row-end: 5;
     }
-    .gridServerStatus {
+    .gridStatus {
         grid-column-start: 15;
         grid-column-end: 18;
         grid-row-start: 4;
         grid-row-end: 5;
     }
 
-    .gridServerTitle {
+    .gridTypeTitle {
         grid-column-start: 1;
         grid-column-end: 2;
         grid-row-start: 6;
         grid-row-end: 7;
         margin-top: 5px;
     }
-    .gridServer {
+    .gridType {
         grid-column-start: 2;
         grid-column-end: 7;
         grid-row-start: 6;

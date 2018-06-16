@@ -45,7 +45,7 @@ export class DataManageDataQualityComponent implements OnInit {
 
     adding: boolean = false;
     connectionID: number = null;
-    dataConnections: DataQualityIssue[];
+    dataQualityIssues: DataQualityIssue[];
     editing: boolean = false;
     errorMessage: string = "";
     selectedDataQualityIssue: DataQualityIssue;
@@ -64,10 +64,10 @@ export class DataManageDataQualityComponent implements OnInit {
 
         this.clearRecord();
         
-        this.globalVariableService.getDataConnections().then(dc => {
-            this.dataConnections = dc.slice();
-            if (this.dataConnections.length > 0) {
-                this.clickRow(0, this.dataConnections[0].id);
+        this.globalVariableService.getDataQualityIssues().then(dc => {
+            this.dataQualityIssues = dc.slice();
+            if (this.dataQualityIssues.length > 0) {
+                this.clickRow(0, this.dataQualityIssues[0].id);
             };
         });
 
@@ -85,7 +85,7 @@ export class DataManageDataQualityComponent implements OnInit {
         // Click Row
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
 
-        console.warn('xx clickRow STRT', this.selectedDataQualityIssue, this.dataConnections)
+        console.warn('xx clickRow STRT', this.selectedDataQualityIssue, this.dataQualityIssues)
         // Set the row index
         this.selectedDataQualityIssueRowIndex = index;
         this.adding = false;
@@ -94,11 +94,11 @@ export class DataManageDataQualityComponent implements OnInit {
         this.errorMessage = '';
 
         // Fill the form
-        let connectionIndex: number = this.dataConnections
+        let connectionIndex: number = this.dataQualityIssues
             .findIndex(dc => dc.id == id);
         if (connectionIndex >= 0) {
             this.selectedDataQualityIssue = Object.assign({}, 
-                this.dataConnections[connectionIndex]
+                this.dataQualityIssues[connectionIndex]
             );
         };
         console.warn('xx END selectedDataQualityIssue', this.selectedDataQualityIssue)
@@ -142,11 +142,11 @@ export class DataManageDataQualityComponent implements OnInit {
         this.clickRow(this.selectedDataQualityIssueRowIndex, this.connectionID);
         
         // Re Fill the form
-        let dataconnectionIndex: number = this.dataConnections
+        let dataconnectionIndex: number = this.dataQualityIssues
             .findIndex(sch => sch.id == this.selectedDataQualityIssue.id);
         if (dataconnectionIndex >= 0) {
             this.selectedDataQualityIssue = Object.assign({}, 
-                this.dataConnections[dataconnectionIndex]
+                this.dataQualityIssues[dataconnectionIndex]
             );
         };
 
@@ -185,7 +185,7 @@ export class DataManageDataQualityComponent implements OnInit {
                     };
 
                     // Add locally
-                    this.dataConnections.push(this.selectedDataQualityIssue);
+                    this.dataQualityIssues.push(this.selectedDataQualityIssue);
                             
                 }
             );
@@ -193,10 +193,10 @@ export class DataManageDataQualityComponent implements OnInit {
 
         // Save the changes
         if (this.editing) {
-            let dataconnectionIndex: number = this.dataConnections
+            let dataconnectionIndex: number = this.dataQualityIssues
                 .findIndex(sch => sch.id == this.selectedDataQualityIssue.id);
             if (dataconnectionIndex >= 0) {
-                this.dataConnections[dataconnectionIndex] = 
+                this.dataQualityIssues[dataconnectionIndex] = 
                     Object.assign({}, this.selectedDataQualityIssue);
             };
             this.globalVariableService.saveDataConnection(this.selectedDataQualityIssue)
@@ -214,7 +214,7 @@ export class DataManageDataQualityComponent implements OnInit {
         // Start editing selected Data Connection
         this.globalFunctionService.printToConsole(this.constructor.name,'clickEdit', '@Start');
 
-        if (this.dataConnections.length > 0) {
+        if (this.dataQualityIssues.length > 0) {
             this.editing = true;
         };
         this.errorMessage = '';
@@ -237,7 +237,7 @@ export class DataManageDataQualityComponent implements OnInit {
 
         this.clearRecord();
         this.globalVariableService.deleteDataConnection(id).then(res => {
-            this.dataConnections = this.globalVariableService.dataConnections
+            this.dataQualityIssues = this.globalVariableService.dataConnections
         }); 
 
         this.selectedDataQualityIssueRowIndex = null;
