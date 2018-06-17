@@ -76,6 +76,7 @@ import { DataDirectFileComponent }    from './data.direct.file.component';
 import { DataDirectQueryBuilderComponent }  from './data.direct.queryBuilder.component';
 import { DataDirectSQLEditorComponent }      from './data.direct.sqlEditor.component';
 import { DataDirectNoSQLComponent }   from './data.direct.Nosql.component';
+import { DataDirectServiceComponent } from './data.direct.service.component';
 import { DataDirectImportComponent }  from './data.direct.import.component';
 import { DataDirectExportComponent }  from './data.direct.export.component';
 
@@ -87,7 +88,7 @@ import { DataManagedNoSQLEditorComponent }   from './data.managed.noSqlEditor.co
 import { DataManageDataQualityComponent }    from './data.manageDataQuality.component';
 import { DataManageDataOwnershipComponent }  from './data.manageDataOwnership.component';
 import { DataManageDataDictionaryComponent } from './data.manageDataDictionary.component';
-import { DataManagBussGlossaryComponent }    from './data.manageBussGlossary.component';
+import { DataManagedBusGlossaryComponent }    from './data.managed.busGlossary.component';
 
 import { DataTransformationComponent }       from './data.transformation.component';
 import { DataEditDatasourceComponent }       from './data.editDatasource.component';
@@ -176,6 +177,7 @@ import { StatusbarComponent }         from './statusbar.component';
         DataDirectQueryBuilderComponent,
         DataDirectSQLEditorComponent,
         DataDirectNoSQLComponent,
+        DataDirectServiceComponent,
         DataDirectImportComponent,
         DataDirectExportComponent,
         DataPopupComponent,
@@ -197,7 +199,7 @@ import { StatusbarComponent }         from './statusbar.component';
         DataManageDataQualityComponent,
         DataManageDataOwnershipComponent,
         DataManageDataDictionaryComponent,
-        DataManagBussGlossaryComponent,
+        DataManagedBusGlossaryComponent,
         DataDeleteDatasourceComponent,
 
         WidgetEditorComponent,

@@ -20,14 +20,14 @@ import { GlobalVariableService}       from './global-variable.service';
 import { Datasource }                 from './models';
  
 @Component({
-    selector: 'data-manageBussGlossary',
-    templateUrl: './data.manageBussGlossary.component.html',
-    styleUrls: ['./data.manageBussGlossary.component.css']
+    selector: 'data-managed-busGlossary',
+    templateUrl: './data.managed.busGlossary.component.html',
+    styleUrls: ['./data.managed.busGlossary.component.css']
 })
 
-export class DataManagBussGlossaryComponent implements OnInit {
+export class DataManagedBusGlossaryComponent implements OnInit {
 
-    @Output() formDataManageBussGlossaryClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formDataManagedBusGlossaryClosed: EventEmitter<string> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
@@ -137,7 +137,7 @@ export class DataManagBussGlossaryComponent implements OnInit {
         // Close the form, nothing saved
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-        this.formDataManageBussGlossaryClosed.emit(action);
+        this.formDataManagedBusGlossaryClosed.emit(action);
 
     }
 

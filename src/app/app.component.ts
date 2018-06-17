@@ -1380,9 +1380,9 @@ export class AppComponent implements OnInit {
         this.showModalManageDataDataDictionary = false;
     }
 
-    handleCloseDataManageBussGlossary(action: string) {
+    handleCloseDataManagedBusGlossary(action: string) {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataManageBussGlossary', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataManagedBusGlossary', '@Start');
 
         this.menuOptionClickPostAction();
 
