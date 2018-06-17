@@ -1293,7 +1293,7 @@ export class AppComponent implements OnInit {
 
         this.showModalDataRefreshOnce = false;
     }
-    showModalDataRefreshOnce
+    
     handleCloseDataManagedConnection(action: string) {
         // Handle Close of SQL Query Builder
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataManagedConnection', '@Start');
@@ -2959,6 +2959,15 @@ export class AppComponent implements OnInit {
 
         this.showModalDataUsage = true;
     }
+
+    clickMenuDatasourceRefreshOnce() {
+        // Refresh selected DS Once off
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDatasourceRefreshOnce', '@Start');
+
+        this.menuOptionClickPreAction();
+
+        this.showModalDataRefreshOnce = true;
+    }    
 
     clickMenuDataDirectFile() {
         // Open DATA form for a DS that comes from a file.

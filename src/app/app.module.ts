@@ -95,12 +95,13 @@ import { DataTransformationComponent }       from './data.transformation.compone
 import { DataEditDatasourceComponent }       from './data.editDatasource.component';
 import { DataPopupComponent }         from './data.popup.component';
 import { DataDatasourceOverviewComponent }   from './data.datasourceOverview.component';
-import { DataDatasourceUsageComponent }      from './data.datasourceUsage.component';
 import { DataCombinationComponent }   from './data.combination.component';
 import { DataRefreshComponent }       from './data.refresh.component';
 import { DatasourceShareComponent }   from './data.share.component';
 import { DataDictionaryComponent }    from './data.dictionary.component';
 import { DataSummaryComponent }       from './data.summary.component';
+import { DataDatasourceUsageComponent }      from './data.datasourceUsage.component';
+import { DataRefreshOnceComponent }   from './data.refresh.once.component';
 import { DataDeleteDatasourceComponent }     from './data.deleteDatasource.component';
 
 import { HelpComponent }              from './help.component';
@@ -191,8 +192,7 @@ import { StatusbarComponent }         from './statusbar.component';
 
         DataTransformationComponent,
         DataEditDatasourceComponent,
-        DataDatasourceOverviewComponent,
-        DataDatasourceUsageComponent,
+        DataRefreshOnceComponent,
         DataCombinationComponent,
         DataRefreshComponent,
         DatasourceShareComponent,
@@ -202,6 +202,8 @@ import { StatusbarComponent }         from './statusbar.component';
         DataManageDataOwnershipComponent,
         DataManagedDataDictionaryComponent,
         DataManagedBusGlossaryComponent,
+        DataDatasourceOverviewComponent,
+        DataDatasourceUsageComponent,
         DataDeleteDatasourceComponent,
 
         WidgetEditorComponent,
