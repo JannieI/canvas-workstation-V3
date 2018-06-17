@@ -764,7 +764,6 @@ const graphWidth: number = 420;
         let dSetIndex: number = this.globalVariableService.currentDatasets.filter(
             dS => dS.datasourceID == datasourceID
         ).length;
-        console.warn('xx strt let', dSetIndex, this.globalVariableService.currentDatasets)
 
         if (dSetIndex <= 0) {
             
@@ -795,7 +794,7 @@ const graphWidth: number = 420;
                 if (globalCurrentDsetIndex >= 0) {
                     this.globalVariableService.currentDatasets.splice(globalCurrentDsetIndex, 1);
                 };
-console.warn('xx after get stuff', this.currentData, this.currentDatasources)
+
             });
 
             // Stop Synch execution
