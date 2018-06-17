@@ -371,6 +371,7 @@ export class AppComponent implements OnInit {
     showModalDataDirectQueryBuilder: boolean = false;
     showModalDataDirectSQLEditor: boolean = false;
     showModalDataDirectNoSQL: boolean = false;
+    showModalDataDirectService: boolean = false;
     showModalDataDirectImport: boolean = false;
     showModalDataDirectExport: boolean = false;
     showModalDataOverview: boolean = false;
@@ -1209,6 +1210,20 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPostAction();
 
         this.showModalDataDirectNoSQL = false;
+
+        // Open Transformations if so requested
+        if (action == 'Transformation') {
+            this.showModalDataTransformation = true;
+        };
+    }
+
+    handleCloseDataDirectService(action: string) {
+        // Handle close of Direct Service form
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDirectService', '@Start');
+
+        this.menuOptionClickPostAction();
+
+        this.showModalDataDirectService = false;
 
         // Open Transformations if so requested
         if (action == 'Transformation') {
@@ -2955,6 +2970,15 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPreAction();
 
         this.showModalDataDirectNoSQL = true;
+    }
+
+    clickMenuDataDirectService() {
+        // Open DATA form for a DS that comes from a Service.
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDirectService', '@Start');
+
+        this.menuOptionClickPreAction();
+
+        this.showModalDataDirectService = true;
     }
 
     clickMenuDataDirectImport() {

@@ -398,7 +398,7 @@
                                 <button
                                     type="button"
                                     clrDropdownItem
-                                    (click)="clickMenuDataFromFile(1)"
+                                    (click)="clickMenuDataDirectService()"
                                     title="Create a new Datasources from a Service"
                                     >
                                     From Service
@@ -4001,6 +4001,14 @@
     [selectedDatasource]="selectedDatasource"
     (formDataDirectNoSQLEditorClosed)="handleCloseDataDirectNoSQL($event)">Load Data Direct From NoSQL ...
 </data-direct-Nosql>
+
+
+<!-- Modal: Data Direct From Service -->
+<data-direct-service
+    class="formPopupDashboard"
+    *ngIf="showModalDataDirectService"
+    (formDataDirectServiceClosed)="handleCloseDataDirectService($event)">Load Data Direct From Service ...
+</data-direct-service>
 
 
 <!-- Modal: Data Direct Import DS -->

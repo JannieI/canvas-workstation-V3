@@ -25,9 +25,9 @@ import { Datasource }                 from './models';
     styleUrls: ['./data.direct.service.component.css']
 })
 
-export class DataManageServiceComponent implements OnInit {
+export class DataDirectServiceComponent implements OnInit {
 
-    @Output() formDataManageServiceClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formDataDirectServiceClosed: EventEmitter<string> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
@@ -138,7 +138,7 @@ console.warn('xx this.selectedDatasource ', this.selectedDatasource )
         // Close the form, nothing saved
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-        this.formDataManageServiceClosed.emit(action);
+        this.formDataDirectServiceClosed.emit(action);
 
     }
 
