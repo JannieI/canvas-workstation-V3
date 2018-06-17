@@ -4137,40 +4137,44 @@ export class GlobalVariableService {
             ds.id == datasourceID
         );
 
-        // DS exists in gv datasources, but not in currentDatasources
-        if (globalDSIndex >= 0  &&  globalCurrentDSIndex < 0) {
-            localDatasource = this.datasources[globalDSIndex];
+        return new Promise<any>((resolve, reject) => {
 
-            let globalCurrentDsetIndex: number = this.currentDatasets
-                .findIndex(dS => dS.id == datasourceID
-            );
-            let globalDsetIndex: number = this.datasets.findIndex(dS =>
-                dS.datasourceID == datasourceID
-            );
+            // DS exists in gv datasources, but not in currentDatasources
+            if (globalDSIndex >= 0  &&  globalCurrentDSIndex < 0) {
+                localDatasource = this.datasources[globalDSIndex];
 
-            // Add DS and Dset to gv
-            this.currentDatasources.push(localDatasource);
+                let globalCurrentDsetIndex: number = this.currentDatasets
+                    .findIndex(dS => dS.id == datasourceID
+                );
+                let globalDsetIndex: number = this.datasets.findIndex(dS =>
+                    dS.datasourceID == datasourceID
+                );
 
-            this.hasDatasources.next(true);
+                // Add DS and Dset to gv
+                this.currentDatasources.push(localDatasource);
 
-            // Dset exists in gv datasets, but not in currentDatasets
-            if (globalDsetIndex >= 0  &&  globalCurrentDsetIndex < 0) {
-                localDataset = this.datasets[globalDsetIndex];
-                
-                // Get data for Dset
-                this.getData(localDataset.id).then(res => {
+                this.hasDatasources.next(true);
 
-                    // Add data to dataset
-                    localDataset.dataRaw = res;
-                    localDataset.data = res;
+                // Dset exists in gv datasets, but not in currentDatasets
+                if (globalDsetIndex >= 0  &&  globalCurrentDsetIndex < 0) {
+                    localDataset = this.datasets[globalDsetIndex];
+                    
+                    // Get data for Dset
+                    this.getData(localDataset.id).then(res => {
 
-                    this.currentDatasets.push(localDataset);
+                        // Add data to dataset
+                        localDataset.dataRaw = res;
+                        localDataset.data = res;
 
-                });
+                        this.currentDatasets.push(localDataset);
+
+                        resolve(res);
+
+                    });
+                };
             };
-        };
-
-        // TODO - what about other arrays, ie permisions, pivots, transformations, etc ??
+        });
+        
     }
 
     saveDatasource(data: Datasource): Promise<string> {

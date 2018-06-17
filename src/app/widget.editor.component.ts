@@ -763,7 +763,7 @@ const graphWidth: number = 420;
         // let dsIndex: number = this.globalVariableService.currentDatasources
         let dsIndex: number = this.currentDatasources
             .findIndex(ds => ds.id == datasourceID);
-
+console.warn('xx start', this.isBusyRetrievingData, this.currentDatasources, this.currentData)
         // Load local arrays for ngFor
         if (dsIndex >= 0) {
             this.dataFieldNames = this.currentDatasources[dsIndex].dataFields;
@@ -779,14 +779,19 @@ const graphWidth: number = 420;
                 return;
             };
 
-            let globalCurrentDSIndex: number = this.globalVariableService.currentDatasources
+            this.isBusyRetrievingData = true;
+            this.globalVariableService.addCurrentDatasource(datasourceID).then(res => {
+                this.isBusyRetrievingData = false
+                
+                let globalCurrentDSIndex: number = this.globalVariableService.currentDatasources
                 .findIndex(dS => dS.id == datasourceID
-            );
-            if (globalCurrentDSIndex >= 0) {
-                this.currentDatasources.push(
-                    this.globalVariableService.currentDatasources[globalCurrentDSIndex])
-                ;
-            };
+                );
+                if (globalCurrentDSIndex >= 0) {
+                    this.currentDatasources.push(
+                        this.globalVariableService.currentDatasources[globalCurrentDSIndex])
+                        ;
+                    };
+            });
 
 
         // this.dataFieldNames = [];
