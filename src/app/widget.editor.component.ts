@@ -94,6 +94,7 @@ const graphWidth: number = 420;
     localWidget: Widget;                            // W to modify, copied from selected
     opened: boolean = true;
     rowField: string = 'Drag a field here ...';
+    selectedRowIndex: number = 0;
     selectedViz: string = 'Graph';
     showColFieldAdvanced: boolean = false;
     showColFieldAdvancedArea: boolean = false;
@@ -760,6 +761,9 @@ const graphWidth: number = 420;
         // Set the selected datasourceID
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDSrow', '@Start');
 
+        // Highlight selected row
+        this.selectedRowIndex = index;
+
         // Determine if data obtains in Glob Var
         let dSetIndex: number = this.globalVariableService.currentDatasets.filter(
             dS => dS.datasourceID == datasourceID
@@ -778,7 +782,6 @@ const graphWidth: number = 420;
 
                 // Reset
                 this.isBusyRetrievingData = false
-                this.errorMessage = '';
                 
                 let globalCurrentDSIndex: number = this.globalVariableService.currentDatasources
                 .findIndex(dS => dS.id == datasourceID
@@ -795,6 +798,9 @@ const graphWidth: number = 420;
                     this.globalVariableService.currentDatasets.splice(globalCurrentDsetIndex, 1);
                 };
 
+                // Tell user
+                this.errorMessage = 'Data retrieved - click row again to continue';                
+
             });
 
             // Stop Synch execution
@@ -804,7 +810,6 @@ const graphWidth: number = 420;
         // Load local arrays for ngFor
         let dsIndex: number = this.globalVariableService.currentDatasources
             .findIndex(ds => ds.id == datasourceID);
-console.warn('xx start', this.isBusyRetrievingData, this.currentDatasources, this.currentData)
         
         if (dsIndex >= 0) {
             this.dataFieldNames = this.currentDatasources[dsIndex].dataFields;
@@ -816,7 +821,7 @@ console.warn('xx start', this.isBusyRetrievingData, this.currentDatasources, thi
         } else {
 
             if (this.isBusyRetrievingData) {
-                this.errorMessage = 'Still retrieving the actual data for this DS';
+                this.errorMessage = 'Retrieving the actual data - click row again once done';
                 return;
             };
 
@@ -838,16 +843,9 @@ console.warn('xx start', this.isBusyRetrievingData, this.currentDatasources, thi
                 if (globalCurrentDsetIndex >= 0) {
                     this.globalVariableService.currentDatasets.splice(globalCurrentDsetIndex, 1);
                 };
-console.warn('xx after get stuff', this.currentData, this.currentDatasources)
+
             });
-
-
-        // this.dataFieldNames = [];
-            // this.dataFieldLengths = [];
-            // this.dataFieldTypes = [];
         };
-console.warn('xx this.dataFieldNames', this.dataFieldNames)
-
 
         // Switch on the preview after the first row was clicked
         this.hasClicked = true;
