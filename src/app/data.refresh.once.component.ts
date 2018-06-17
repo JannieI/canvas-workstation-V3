@@ -20,7 +20,7 @@ import { GlobalVariableService}       from './global-variable.service';
 import { Datasource }                 from './models';
  
 @Component({
-    selector: 'data-direct-web',
+    selector: 'data-refresh-once',
     templateUrl: './data.direct.web.component.html',
     styleUrls: ['./data.direct.web.component.css']
 })

@@ -377,6 +377,7 @@ export class AppComponent implements OnInit {
     showModalDataDirectExport: boolean = false;
     showModalDataOverview: boolean = false;
     showModalDataUsage: boolean = false;
+    showModalDataRefreshOnce: boolean = false;
     showModalDataManagedQueryBuilder: boolean = false;
     showModalDataManagedSQLEditor: boolean = false;
     showModalDataManagedNoSQLEditor: boolean = false;
@@ -1283,7 +1284,16 @@ export class AppComponent implements OnInit {
 
         this.showModalDataUsage = false;
     }
-        
+
+    handleCloseDataDatasourceRefreshOnce(action: string) {
+        // Handle close of Datasource RefreshOnce
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDatasourceRefreshOnce', '@Start');
+
+        this.menuOptionClickPostAction();
+
+        this.showModalDataRefreshOnce = false;
+    }
+    showModalDataRefreshOnce
     handleCloseDataManagedConnection(action: string) {
         // Handle Close of SQL Query Builder
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataManagedConnection', '@Start');

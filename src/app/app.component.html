@@ -4098,6 +4098,13 @@
 </data-datasourceUsage>
 
 
+<!-- Modal: Datasource Refresh Once -->
+<data-refresh-once
+    *ngIf="showModalDataRefreshOnce"
+    (formDataRefreshOnceClosed)="handleCloseDataDatasourceUsage($event)">Load Datasource Refresh Once ...
+</data-refresh-once>
+
+
 <!-- Modal: data  -->
 <data
     *ngIf="showModalData"
