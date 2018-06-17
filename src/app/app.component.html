@@ -4073,6 +4073,7 @@
 
 <data-transformation
     *ngIf="showModalDataTransformation"
+    [selectedDatasource]="selectedDatasource"
     (formDataTransformationClosed)="handleCloseDataTransformation($event)">Load Transformation ...
 </data-transformation>
 

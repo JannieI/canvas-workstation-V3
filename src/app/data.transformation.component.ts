@@ -19,15 +19,11 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
 // Our Models
-import { DataConnection }             from './models';
-import { DataTable }                  from './models';
 import { DataField }                  from './models';
 import { Datasource }                 from './models';
 import { Dataset }                    from './models';
 import { Transformation }             from './models';
 import { Field }                      from './models';
-import { FieldMetadata }              from './models';
-import { DataQualityIssue }           from './models';
 
 
 @Component({
@@ -37,23 +33,7 @@ import { DataQualityIssue }           from './models';
 })
 export class DataTransformationComponent implements OnInit {
 
-    datasourceName: string = 'Trades per Month (Stats)';
-    dataConnectionName: string = 'Trades History';
-    dataTable: DataTable = 
-    {
-        id: 1,
-        connectionID: 1,
-        nameDB: 'TradStaMnt',
-        nameLocal: 'TradesPerMonth',
-        type: 'Table',
-        description: 'Trade summary per month',
-        businessGlossary: 'Trade summary per month',
-        creator: 'EthanR',
-        dateCreated: '2017/01/01',
-        editor: '',
-        dateEdited: ''
-    };
-    dataFields: DataField[];
+    @Input() selectedDatasource: Datasource;
 
     @Output() formDataTransformationClosed: EventEmitter<string> = new EventEmitter();
 
@@ -69,11 +49,12 @@ export class DataTransformationComponent implements OnInit {
         };
 
     }
-
-    annotation: string = 'ann ... nna';
+    
+    
     connectionName: string = '';
+    dataFields: DataField[];
+    datasourceName: string = 'Trades per Month (Stats)';
     serverType: string = 'MySQL';
-    dataTables: DataTable[] = [];
     datasources: Datasource[];
     errorMessage: string = "";
     selectedTransoformationRowIndex: number = 0;
@@ -101,7 +82,7 @@ export class DataTransformationComponent implements OnInit {
                 this.dataFields = df.slice();
             });
         });
-
+console.warn('xx selectedDatasource', this.selectedDatasource)
     }
 
     clickSelectedTransformation(index: number, id: number) {
