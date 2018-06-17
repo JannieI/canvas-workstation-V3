@@ -4175,11 +4175,11 @@ export class GlobalVariableService {
                     this.getCurrentDataset(localDataset.id, dSetID).then(res => {
 
                         // Add data to dataset
-                        localDataset.dataRaw = res;
-                        localDataset.data = res;
+                        localDataset.dataRaw = res.dataRaw;
+                        localDataset.data = res.data;
 
                         this.currentDatasets.push(localDataset);
-console.warn('xx addCurrentDatasource', this.currentDatasources, this.currentDatasets)
+
                         resolve(res);
 
                     });
