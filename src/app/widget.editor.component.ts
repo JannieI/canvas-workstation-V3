@@ -68,6 +68,7 @@ const graphWidth: number = 420;
 
     }
 
+    isBusyRetrievingData: boolean = false;
     clickedButtonAggregateNo: boolean = false;
     colField: string = 'Drag a field here ...';
     containerHasTitle: boolean = true;
@@ -80,6 +81,7 @@ const graphWidth: number = 420;
     dragoverCol: boolean = false;
     dragoverRow: boolean = false;
     dragoverColor: boolean = false;
+    errorMessage: string = '';
     filterPivotFields: string = '';
     graphColorField: string = 'Drag a field here ...';
     graphCols: string[];
@@ -767,24 +769,29 @@ const graphWidth: number = 420;
             this.dataFieldNames = this.currentDatasources[dsIndex].dataFields;
             this.dataFieldLengths = this.currentDatasources[dsIndex].dataFieldLengths;
             this.dataFieldTypes = this.currentDatasources[dsIndex].dataFieldTypes;
+
+            // Reset
+            this.isBusyRetrievingData = false;
         } else {
 
-            this.globalVariableService.addCurrentDatasource()
-            let globalCurrentDSIndex: number = this.currentDatasources
-            .findIndex(dS => dS.id == id
-        );
-        if (globalCurrentDSIndex >= 0) {
-            this.currentDatasources.splice(globalCurrentDSIndex, 1);
-        };
-        let globalCurrentDsetIndex: number = this.currentDatasets
-            .findIndex(dS => dS.datasourceID == id
-        );
-        if (globalCurrentDsetIndex >= 0) {
-            this.currentDatasets.splice(globalCurrentDsetIndex, 1);
-        };
-            this.dataFieldNames = [];
-            this.dataFieldLengths = [];
-            this.dataFieldTypes = [];
+            if (this.isBusyRetrievingData) {
+                this.errorMessage = 'Still retrieving the actual data for this DS';
+                return;
+            };
+
+            let globalCurrentDSIndex: number = this.globalVariableService.currentDatasources
+                .findIndex(dS => dS.id == datasourceID
+            );
+            if (globalCurrentDSIndex >= 0) {
+                this.currentDatasources.push(
+                    this.globalVariableService.currentDatasources[globalCurrentDSIndex])
+                ;
+            };
+
+
+        // this.dataFieldNames = [];
+            // this.dataFieldLengths = [];
+            // this.dataFieldTypes = [];
         };
 console.warn('xx this.dataFieldNames', this.dataFieldNames)
 
