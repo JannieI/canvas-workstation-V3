@@ -512,7 +512,7 @@
                                     <button
                                         type="button"
                                         clrDropdownItem
-                                        (click)="clickMenuDataDataDictionary()"
+                                        (click)="clickMenuDataManagedDataDictionary()"
                                         title="Manage Data Dictionary for Datasources"
                                         >
                                         Manage Data Dictionary
@@ -4119,10 +4119,10 @@
 
 
 <!-- Modal: data DataDictionary -->
-<data-manageDataDictionary
-    *ngIf="showModalManageDataDataDictionary"
-    (formDataManageDataDictionaryClosed)="handleCloseDataManageDataDictionary($event)">Load Data DataDictionary ...
-</data-manageDataDictionary>
+<data-managed-dataDictionary
+    *ngIf="showModalManagedDataDataDictionary"
+    (formDataManagedDataDictionaryClosed)="handleCloseDataManagedDataDictionary($event)">Load Data DataDictionary ...
+</data-managed-dataDictionary>
 
 
 <!-- Modal: data Combination -->

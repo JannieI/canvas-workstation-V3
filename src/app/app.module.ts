@@ -87,7 +87,7 @@ import { DataManagedOverlayEditorComponent } from './data.managed.overlayEditor.
 import { DataManagedNoSQLEditorComponent }   from './data.managed.noSqlEditor.component';
 import { DataManageDataQualityComponent }    from './data.manageDataQuality.component';
 import { DataManageDataOwnershipComponent }  from './data.manageDataOwnership.component';
-import { DataManageDataDictionaryComponent } from './data.manageDataDictionary.component';
+import { DataManagedDataDictionaryComponent } from './data.managed.dataDictionary.component';
 import { DataManagedBusGlossaryComponent }    from './data.managed.busGlossary.component';
 
 import { DataTransformationComponent }       from './data.transformation.component';
@@ -198,7 +198,7 @@ import { StatusbarComponent }         from './statusbar.component';
         DataSummaryComponent,
         DataManageDataQualityComponent,
         DataManageDataOwnershipComponent,
-        DataManageDataDictionaryComponent,
+        DataManagedDataDictionaryComponent,
         DataManagedBusGlossaryComponent,
         DataDeleteDatasourceComponent,
 

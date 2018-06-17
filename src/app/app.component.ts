@@ -391,7 +391,7 @@ export class AppComponent implements OnInit {
     showModalManageDataDataQuality: boolean = false;
     showModalManageDataOwnership: boolean = false;
     showModalManageBussGlossary: boolean = false;
-    showModalManageDataDataDictionary: boolean = false;
+    showModalManagedDataDataDictionary: boolean = false;
     showModalDataCombination: boolean = false;
     showModalDataRefresh: boolean = false;
     showModalDataShare: boolean = false;
@@ -1371,13 +1371,13 @@ export class AppComponent implements OnInit {
         this.showModalManageDataOwnership = false;
     }
 
-    handleCloseDataManageDataDictionary(action: string) {
+    handleCloseDataManagedDataDictionary(action: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataManageDataDictionary', '@Start');
 
         this.menuOptionClickPostAction();
 
-        this.showModalManageDataDataDictionary = false;
+        this.showModalManagedDataDataDictionary = false;
     }
 
     handleCloseDataManagedBusGlossary(action: string) {
@@ -3030,13 +3030,13 @@ export class AppComponent implements OnInit {
 
     }
 
-    clickMenuDataDataDictionary(){
+    clickMenuDataManagedDataDictionary(){
         // Manage Dictionary for a DS
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDataDictionary', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataManagedDataDictionary', '@Start');
 
         this.menuOptionClickPreAction();
 
-        this.showModalManageDataDataDictionary = true;
+        this.showModalManagedDataDataDictionary = true;
 
     }
     

@@ -20,14 +20,14 @@ import { GlobalVariableService}       from './global-variable.service';
 import { Datasource }                 from './models';
  
 @Component({
-    selector: 'data-manageDataDictionary',
-    templateUrl: './data.manageDataDictionary.component.html',
-    styleUrls: ['./data.manageDataDictionary.component.css']
+    selector: 'data-managed-dataDictionary',
+    templateUrl: './data.managed.dataDictionary.component.html',
+    styleUrls: ['./data.managed.dataDictionary.component.css']
 })
 
-export class DataManageDataDictionaryComponent implements OnInit {
+export class DataManagedDataDictionaryComponent implements OnInit {
 
-    @Output() formDataManageDataDictionaryClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formDataManagedDataDictionaryClosed: EventEmitter<string> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
@@ -138,7 +138,7 @@ console.warn('xx this.selectedDatasource ', this.selectedDatasource )
         // Close the form, nothing saved
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-        this.formDataManageDataDictionaryClosed.emit(action);
+        this.formDataManagedDataDictionaryClosed.emit(action);
 
     }
 
