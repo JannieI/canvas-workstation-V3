@@ -496,7 +496,7 @@
                                     <button
                                         type="button"
                                         clrDropdownItem
-                                        (click)="clickMenuDataDataQuality()"
+                                        (click)="clickMenuDataManagedDataQuality()"
                                         title="Manage Data Quality for Datasources"
                                         >
                                         Manage Data Quality
@@ -4098,10 +4098,10 @@
 
 
 <!-- Modal: data DataQuality -->
-<data-manageDataQuality
-    *ngIf="showModalManageDataDataQuality"
-    (formDataManageDataQualityClosed)="handleCloseDataManageDataQuality($event)">Load Data DataQuality ...
-</data-manageDataQuality>
+<data-managed-dataQuality
+    *ngIf="showModalManagedDataDataQuality"
+    (formDataManagedDataQualityClosed)="handleCloseDataManagedDataQuality($event)">Load Data DataQuality ...
+</data-managed-dataQuality>
 
 
 <!-- Modal: data DataOwnership -->

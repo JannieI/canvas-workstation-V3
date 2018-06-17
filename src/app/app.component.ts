@@ -388,7 +388,7 @@ export class AppComponent implements OnInit {
     showModalWidgetTablist: boolean = false;
     showModalWidgetDescription: boolean = false;
     showModalTableEditor: boolean = false;
-    showModalManageDataDataQuality: boolean = false;
+    showModalManagedDataDataQuality: boolean = false;
     showModalManagedDataOwnership: boolean = false;
     showModalManageBussGlossary: boolean = false;
     showModalManagedDataDataDictionary: boolean = false;
@@ -1353,13 +1353,13 @@ export class AppComponent implements OnInit {
         this.showModalData = false;
     }
 
-    handleCloseDataManageDataQuality(action: string) {
+    handleCloseDataManagedDataQuality(action: string) {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataManageDataQuality', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataManagedDataQuality', '@Start');
 
         this.menuOptionClickPostAction();
 
-        this.showModalManageDataDataQuality = false;
+        this.showModalManagedDataDataQuality = false;
     }
 
     handleCloseDataManagedDataOwnership(action: string) {
@@ -3020,13 +3020,13 @@ export class AppComponent implements OnInit {
         // this.router.navigate(['/data']);
     }
 
-    clickMenuDataDataQuality(){
+    clickMenuDataManagedDataQuality(){
         // Manage Data Quality Issues for a DS
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDataQuality', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataManagedDataQuality', '@Start');
 
         this.menuOptionClickPreAction();
 
-        this.showModalManageDataDataQuality = true;
+        this.showModalManagedDataDataQuality = true;
 
     }
 

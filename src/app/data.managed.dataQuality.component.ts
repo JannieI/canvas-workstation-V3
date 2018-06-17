@@ -21,14 +21,14 @@ import { Dashboard }                  from './models';
 import { DataQualityIssue }           from './models';
  
 @Component({
-    selector: 'data-manageDataQuality',
-    templateUrl: './data.manageDataQuality.component.html',
-    styleUrls: ['./data.manageDataQuality.component.css']
+    selector: 'data-managed-dataQuality',
+    templateUrl: './data.managed.dataQuality.component.html',
+    styleUrls: ['./data.managed.dataQuality.component.css']
 })
 
 export class DataManageDataQualityComponent implements OnInit {
 
-    @Output() formDataManageDataQualityClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formDataManagedDataQualityClosed: EventEmitter<string> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
@@ -146,7 +146,7 @@ export class DataManageDataQualityComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-        this.formDataManageDataQualityClosed.emit(action);
+        this.formDataManagedDataQualityClosed.emit(action);
 
     }
 
