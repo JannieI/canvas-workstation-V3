@@ -20,14 +20,14 @@ import { GlobalVariableService}       from './global-variable.service';
 import { Datasource }                 from './models';
  
 @Component({
-    selector: 'data-refresh-once',
-    templateUrl: './data.refresh.once.component.html',
-    styleUrls: ['./data.refresh.once.component.css']
+    selector: 'data-refresh-repeat',
+    templateUrl: './data.refresh.repeat.component.html',
+    styleUrls: ['./data.refresh.repeat.component.css']
 })
 
-export class DataRefreshOnceComponent implements OnInit {
+export class DataRefreshRepeatComponent implements OnInit {
 
-    @Output() formDataRefreshOnceClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formDataRefreshRepeatClosed: EventEmitter<string> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
@@ -138,7 +138,7 @@ console.warn('xx this.selectedDatasource ', this.selectedDatasource )
         // Close the form, nothing saved
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-        this.formDataRefreshOnceClosed.emit(action);
+        this.formDataRefreshRepeatClosed.emit(action);
 
     }
 
