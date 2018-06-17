@@ -759,7 +759,7 @@ const graphWidth: number = 420;
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDSrow', '@Start');
 
         // let dsIndex: number = this.globalVariableService.currentDatasources
-        let dsIndex: number = this.globalVariableService.currentDatasources
+        let dsIndex: number = this.currentDatasources
             .findIndex(ds => ds.id == datasourceID);
 
         // Load local arrays for ngFor
@@ -768,11 +768,27 @@ const graphWidth: number = 420;
             this.dataFieldLengths = this.currentDatasources[dsIndex].dataFieldLengths;
             this.dataFieldTypes = this.currentDatasources[dsIndex].dataFieldTypes;
         } else {
+
+            this.globalVariableService.addCurrentDatasource()
+            let globalCurrentDSIndex: number = this.currentDatasources
+            .findIndex(dS => dS.id == id
+        );
+        if (globalCurrentDSIndex >= 0) {
+            this.currentDatasources.splice(globalCurrentDSIndex, 1);
+        };
+        let globalCurrentDsetIndex: number = this.currentDatasets
+            .findIndex(dS => dS.datasourceID == id
+        );
+        if (globalCurrentDsetIndex >= 0) {
+            this.currentDatasets.splice(globalCurrentDsetIndex, 1);
+        };
             this.dataFieldNames = [];
             this.dataFieldLengths = [];
             this.dataFieldTypes = [];
         };
 console.warn('xx this.dataFieldNames', this.dataFieldNames)
+
+
         // Switch on the preview after the first row was clicked
         this.hasClicked = true;
 

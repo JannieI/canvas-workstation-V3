@@ -4122,66 +4122,51 @@ export class GlobalVariableService {
         });
     }
 
-    addCurrentDatasource(index: number, id: number, isSelected: boolean, ev: any){
-        // Add DS to Current DS array
+    addCurrentDatasource(datasourceID: number){
+        // Add DS to Current DS array for a given DS-id
         console.log('%c    Global-Variables saveDatasource ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         // Get the data, if so requested
-        if (ev.target.checked) {
-            let localDatasource: Datasource;
-            let localDataset: Dataset;
-            let globalCurrentDSIndex: number = this.currentDatasources
-                .findIndex(dS => dS.id == id
-            );
-            let globalDSIndex: number = this.datasources.findIndex(ds =>
-                ds.id == id
-            );
+        let localDatasource: Datasource;
+        let localDataset: Dataset;
+        let globalCurrentDSIndex: number = this.currentDatasources
+            .findIndex(dS => dS.id == datasourceID
+        );
+        let globalDSIndex: number = this.datasources.findIndex(ds =>
+            ds.id == datasourceID
+        );
 
-            // DS exists in gv datasources, but not in currentDatasources
-            if (globalDSIndex >= 0  &&  globalCurrentDSIndex < 0) {
-                localDatasource = this.datasources[globalDSIndex];
+        // DS exists in gv datasources, but not in currentDatasources
+        if (globalDSIndex >= 0  &&  globalCurrentDSIndex < 0) {
+            localDatasource = this.datasources[globalDSIndex];
 
-                let globalCurrentDsetIndex: number = this.currentDatasets
-                    .findIndex(dS => dS.id == id
-                );
-                let globalDsetIndex: number = this.datasets.findIndex(dS =>
-                    dS.datasourceID == id
-                );
-
-                // Add DS and Dset to gv
-                this.currentDatasources.push(localDatasource);
-
-                this.hasDatasources.next(true);
-
-                // Dset exists in gv datasets, but not in currentDatasets
-                if (globalDsetIndex >= 0  &&  globalCurrentDsetIndex < 0) {
-                    localDataset = this.datasets[globalDsetIndex];
-                    
-                    // Get data for Dset
-                    this.getData(localDataset.id).then(res => {
-
-                        // Add data to dataset
-                        localDataset.dataRaw = res;
-                        localDataset.data = res;
-
-                        this.currentDatasets.push(localDataset);
-
-                    });
-                };
-            };
-        } else {
-            let globalCurrentDSIndex: number = this.currentDatasources
-                .findIndex(dS => dS.id == id
-            );
-            if (globalCurrentDSIndex >= 0) {
-                this.currentDatasources.splice(globalCurrentDSIndex, 1);
-            };
             let globalCurrentDsetIndex: number = this.currentDatasets
-                .findIndex(dS => dS.datasourceID == id
+                .findIndex(dS => dS.id == datasourceID
             );
-            if (globalCurrentDsetIndex >= 0) {
-                this.currentDatasets.splice(globalCurrentDsetIndex, 1);
+            let globalDsetIndex: number = this.datasets.findIndex(dS =>
+                dS.datasourceID == datasourceID
+            );
+
+            // Add DS and Dset to gv
+            this.currentDatasources.push(localDatasource);
+
+            this.hasDatasources.next(true);
+
+            // Dset exists in gv datasets, but not in currentDatasets
+            if (globalDsetIndex >= 0  &&  globalCurrentDsetIndex < 0) {
+                localDataset = this.datasets[globalDsetIndex];
+                
+                // Get data for Dset
+                this.getData(localDataset.id).then(res => {
+
+                    // Add data to dataset
+                    localDataset.dataRaw = res;
+                    localDataset.data = res;
+
+                    this.currentDatasets.push(localDataset);
+
+                });
             };
         };
 
