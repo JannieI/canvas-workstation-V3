@@ -20,6 +20,21 @@
                         <div class="gridConnectionSelectTitle">
                             <b>Transformation:</b>
                         </div>
+                            
+                        <div class="gridSignpost">
+                            <clr-signpost>
+                                <clr-icon shape="info-circle"
+                                    clrSignpostTrigger>
+                                </clr-icon>
+                                    <clr-signpost-content *clrIfOpen>
+                                    <h4 style="margin-top: 0">Annotation</h4>
+                                    <p> 
+                                        {{ annotation }}
+                                    </p>
+                                </clr-signpost-content>
+                            </clr-signpost>
+                        </div>
+
                         <div class="select gridConnectionSelect">
                             <select
                                 [(ngModel)]="connectionName"

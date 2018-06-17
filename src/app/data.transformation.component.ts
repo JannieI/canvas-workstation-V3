@@ -70,6 +70,7 @@ export class DataTransformationComponent implements OnInit {
 
     }
 
+    annotation: string = 'ann ... nna';
     connectionName: string = '';
     serverType: string = 'MySQL';
     dataTables: DataTable[] = [];

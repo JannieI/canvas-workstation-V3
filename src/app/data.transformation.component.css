@@ -50,6 +50,14 @@
         margin-left: 12px;
     }
     
+    .gridSignpost {
+        grid-column-start: 13;
+        grid-column-end: 14;
+        grid-row-start: 4;
+        grid-row-end: 5;
+        margin-left: 12px;
+    }
+
     .gridServerTypeTitle {
         grid-column-start: 14;
         grid-column-end: 15;
