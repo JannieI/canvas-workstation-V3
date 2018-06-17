@@ -406,7 +406,7 @@
                                 <button
                                     type="button"
                                     clrDropdownItem
-                                    (click)="clickMenuDataFromFile(1)"
+                                    (click)="clickMenuDataDirectWeb()"
                                     title="Create a new Datasources from a web page"
                                     >
                                     From Web
@@ -4009,6 +4009,14 @@
     *ngIf="showModalDataDirectService"
     (formDataDirectServiceClosed)="handleCloseDataDirectService($event)">Load Data Direct From Service ...
 </data-direct-service>
+
+
+<!-- Modal: Data Direct From Web -->
+<data-direct-web
+    class="formPopupDashboard"
+    *ngIf="showModalDataDirectWeb"
+    (formDataDirectWebClosed)="handleCloseDataDirectWeb($event)">Load Data Direct From Web ...
+</data-direct-web>
 
 
 <!-- Modal: Data Direct Import DS -->

@@ -372,6 +372,7 @@ export class AppComponent implements OnInit {
     showModalDataDirectSQLEditor: boolean = false;
     showModalDataDirectNoSQL: boolean = false;
     showModalDataDirectService: boolean = false;
+    showModalDataDirectWeb: boolean = false;
     showModalDataDirectImport: boolean = false;
     showModalDataDirectExport: boolean = false;
     showModalDataOverview: boolean = false;
@@ -1231,6 +1232,20 @@ export class AppComponent implements OnInit {
         };
     }
 
+    handleCloseDataDirectWeb(action: string) {
+        // Handle close of Direct Web form
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDirectWeb', '@Start');
+
+        this.menuOptionClickPostAction();
+
+        this.showModalDataDirectWeb = false;
+
+        // Open Transformations if so requested
+        if (action == 'Transformation') {
+            this.showModalDataTransformation = true;
+        };
+    }
+    
     handleCloseDataDirectImport(action: string) {
         // Handle close of Direct Import of DS
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDirectImport', '@Start');
@@ -2979,6 +2994,15 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPreAction();
 
         this.showModalDataDirectService = true;
+    }
+
+    clickMenuDataDirectWeb() {
+        // Open DATA form for a DS that comes from a Web page.
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDirectWeb', '@Start');
+
+        this.menuOptionClickPreAction();
+
+        this.showModalDataDirectWeb = true;
     }
 
     clickMenuDataDirectImport() {

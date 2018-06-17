@@ -359,7 +359,8 @@ export class DataDirectQueryBuilderComponent implements OnInit {
                 dataTableName: 'ftfhgfzh',
                 dataSQLStatement: '',
                 dataNoSQLStatement: '',
-                businessGlossary: ''
+                businessGlossary: '',
+                dataDictionary: ''
                             
             };
         };

@@ -85,8 +85,8 @@ import { DataManagedQueryBuilderComponent }  from './data.managed.queryBuilder.c
 import { DataManagedSQLEditorComponent }     from './data.managed.sqlEditor.component';
 import { DataManagedOverlayEditorComponent } from './data.managed.overlayEditor.component';
 import { DataManagedNoSQLEditorComponent }   from './data.managed.noSqlEditor.component';
-import { DataManageDataQualityComponent }    from './data.manageDataQuality.component';
-import { DataManageDataOwnershipComponent }  from './data.manageDataOwnership.component';
+import { DataManageDataQualityComponent }    from './data.managed.dataQuality.component';
+import { DataManageDataOwnershipComponent }  from './data.managed.dataOwnership.component';
 import { DataManagedDataDictionaryComponent } from './data.managed.dataDictionary.component';
 import { DataManagedBusGlossaryComponent }    from './data.managed.busGlossary.component';
 
