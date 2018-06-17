@@ -520,7 +520,7 @@
                                     <button
                                         type="button"
                                         clrDropdownItem
-                                        (click)="clickMenuDataDataOwnership()"
+                                        (click)="clickMenuDataManagedDataOwnership()"
                                         title="Manage Data Ownership for Datasources"
                                         >
                                         Manage Data Ownership
@@ -4105,10 +4105,10 @@
 
 
 <!-- Modal: data DataOwnership -->
-<data-manageDataOwnership
-    *ngIf="showModalManageDataOwnership"
-    (formDataManageDataOwnershipClosed)="handleCloseDataManageDataOwnership($event)">Load Data DataOwnership ...
-</data-manageDataOwnership>
+<data-managed-dataOwnership
+    *ngIf="showModalManagedDataOwnership"
+    (formDataManagedDataOwnershipClosed)="handleCloseDataManagedDataOwnership($event)">Load Data DataOwnership ...
+</data-managed-dataOwnership>
 
 
 <!-- Modal: data BussGlossary -->

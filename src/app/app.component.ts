@@ -389,7 +389,7 @@ export class AppComponent implements OnInit {
     showModalWidgetDescription: boolean = false;
     showModalTableEditor: boolean = false;
     showModalManageDataDataQuality: boolean = false;
-    showModalManageDataOwnership: boolean = false;
+    showModalManagedDataOwnership: boolean = false;
     showModalManageBussGlossary: boolean = false;
     showModalManagedDataDataDictionary: boolean = false;
     showModalDataCombination: boolean = false;
@@ -1362,13 +1362,13 @@ export class AppComponent implements OnInit {
         this.showModalManageDataDataQuality = false;
     }
 
-    handleCloseDataManageDataOwnership(action: string) {
+    handleCloseDataManagedDataOwnership(action: string) {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataManageDataOwnership', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataManagedDataOwnership', '@Start');
 
         this.menuOptionClickPostAction();
 
-        this.showModalManageDataOwnership = false;
+        this.showModalManagedDataOwnership = false;
     }
 
     handleCloseDataManagedDataDictionary(action: string) {
@@ -3040,13 +3040,13 @@ export class AppComponent implements OnInit {
 
     }
     
-    clickMenuDataDataOwnership(){
+    clickMenuDataManagedDataOwnership(){
         // Manage Ownership for a DS
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDataOwnership', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataManagedDataOwnership', '@Start');
 
         this.menuOptionClickPreAction();
 
-        this.showModalManageDataOwnership = true;
+        this.showModalManagedDataOwnership = true;
 
     }
 
