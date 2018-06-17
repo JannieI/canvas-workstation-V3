@@ -4105,6 +4105,13 @@
 </data-refresh-once>
 
 
+<!-- Modal: Datasource Refresh Repeatedly -->
+<data-refresh-repeat
+    *ngIf="showModalDataRefreshRepeat"
+    (formDataRefreshRepeatClosed)="handleCloseDataDatasourceRefreshRepeat($event)">Load Datasource Refresh Repeatedly ...
+</data-refresh-repeat>
+
+
 <!-- Modal: data  -->
 <data
     *ngIf="showModalData"

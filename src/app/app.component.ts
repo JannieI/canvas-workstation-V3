@@ -1294,6 +1294,15 @@ export class AppComponent implements OnInit {
         this.showModalDataRefreshOnce = false;
     }
     
+    handleCloseDataDatasourceRefreshRepeat(action: string) {
+        // Handle close of Datasource RefreshRepeat
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDatasourceRefreshRepeat', '@Start');
+
+        this.menuOptionClickPostAction();
+
+        this.showModalDataRefreshRepeat = false;
+    }
+    
     handleCloseDataManagedConnection(action: string) {
         // Handle Close of SQL Query Builder
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataManagedConnection', '@Start');
