@@ -4124,7 +4124,7 @@ export class GlobalVariableService {
 
     addCurrentDatasource(datasourceID: number){
         // Add DS to Current DS array for a given DS-id
-        console.log('%c    Global-Variables saveDatasource ...',
+        console.log('%c    Global-Variables addCurrentDatasource ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         // Get the data, if so requested
@@ -4141,7 +4141,11 @@ export class GlobalVariableService {
 
             // DS exists in gv datasources, but not in currentDatasources
             if (globalDSIndex >= 0  &&  globalCurrentDSIndex < 0) {
+                
+                // Add DS to currentDS
                 localDatasource = this.datasources[globalDSIndex];
+                this.currentDatasources.push(localDatasource);
+                this.hasDatasources.next(true);
 
                 let globalCurrentDsetIndex: number = this.currentDatasets
                     .findIndex(dS => dS.id == datasourceID
@@ -4150,24 +4154,32 @@ export class GlobalVariableService {
                     dS.datasourceID == datasourceID
                 );
 
-                // Add DS and Dset to gv
-                this.currentDatasources.push(localDatasource);
-
-                this.hasDatasources.next(true);
-
                 // Dset exists in gv datasets, but not in currentDatasets
                 if (globalDsetIndex >= 0  &&  globalCurrentDsetIndex < 0) {
                     localDataset = this.datasets[globalDsetIndex];
                     
+                    // Get latest dSet-ID
+                    let ds: number[]=[];
+                    let dSetID: number = -1;
+
+                    for (var i = 0; i < this.datasets.length; i++) {
+                        if(this.datasets[i].datasourceID == datasourceID) {
+                            ds.push(this.datasets[i].id)
+                        }
+                    };
+                    if (ds.length > 0) {
+                        dSetID = Math.max(...ds);
+                    };
+
                     // Get data for Dset
-                    this.getData(localDataset.id).then(res => {
+                    this.getCurrentDataset(localDataset.id, dSetID).then(res => {
 
                         // Add data to dataset
                         localDataset.dataRaw = res;
                         localDataset.data = res;
 
                         this.currentDatasets.push(localDataset);
-
+console.warn('xx addCurrentDatasource', this.currentDatasources, this.currentDatasets)
                         resolve(res);
 
                     });
