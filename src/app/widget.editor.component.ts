@@ -117,10 +117,6 @@ const graphWidth: number = 420;
 
         if (this.newWidget) {
             // Get DS
-            // this.currentDatasources = this.globalVariableService.currentDatasources.slice();
-
-
-
             this.currentDatasources = this.globalVariableService.datasources.slice();
 
             // Count the Ws
@@ -130,11 +126,7 @@ const graphWidth: number = 420;
                 ds.nrWidgets = widgets.length;
             });
 
-
-
             // Create new W
-            // this.localWidget = this.globalVariableService.widgetTemplate;
-            // let cloned = source.map(x => Object.assign({}, x));
             this.localWidget = JSON.parse(JSON.stringify(this.globalVariableService.widgetTemplate))
             this.localWidget.dashboardID = this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
             this.localWidget.dashboardTabID = this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID;

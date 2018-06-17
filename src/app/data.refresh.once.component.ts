@@ -18,6 +18,7 @@ import { GlobalVariableService}       from './global-variable.service';
 
 // Models
 import { Datasource }                 from './models';
+import { Widget }                     from './models';
  
 @Component({
     selector: 'data-refresh-once',
@@ -45,13 +46,13 @@ export class DataRefreshOnceComponent implements OnInit {
     datasources: Datasource[] = [];
     editing: boolean = false;
     errorMessage: string = '';
-    selectedDatasourceID: number = null;
     selectedDatasource: Datasource;
     selectedDatasourcesRowIndex: number = 0;
     isBusyRetrievingData: boolean = false;
     currentDatasources: Datasource[] = null;               // Current DS for the selected W
     selectedRowIndex: number = 0;
     currentData: any = [];
+    dataFieldNames: string[] = [];
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -61,82 +62,32 @@ export class DataRefreshOnceComponent implements OnInit {
 	ngOnInit() {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
-        
-        // Reset, else async too late and form load fails
-        this.selectedDatasource = 
-        {
-            id: null,
-            type: '',
-            subType: '',
-            typeVersion: '',
-            name: '',
-            username: '',
-            password: '',
-            description: '',
-            createdBy: '',
-            createdOn: '',
-            refreshedBy: '',
-            refreshedOn: '',
-            dataFieldIDs: null,
-            dataFields: null,
-            dataFieldTypes: null,
-            dataFieldLengths: null,
-            parameters: '',
-            folder: '',
-            fileName: '',
-            excelWorksheet: '',
-            transposeOnLoad: false,
-            startLineNr: null,
-            csvSeparationCharacter: '',
-            csvQuotCharacter: '',
-            connectionID: null,
-            dataTableID: null,
-            businessGlossary: '',
-            databaseName: '',
-            port: '',
-            serverType: '',
-            serverName: '',
-            dataTableName: '',
-            dataSQLStatement: '',
-            dataNoSQLStatement: '',
-            nrWidgets: null,
-            dataDictionary: ''
-        }
 
-        this.globalVariableService.getDatasources().then(dc => {
-            // Fill local Var
-            this.datasources = dc.slice();
-            console.warn('xx this.datasources.length', this.datasources.length)
+        // Get DS
+        this.currentDatasources = this.globalVariableService.datasources.slice();
+
+        if (this.currentDatasources.length > 0) {
+            this.dataFieldNames = this.currentDatasources[0].dataFields;
+        };
             
-            // Click on first one, if available
-            if (this.datasources.length > 0) {
-                this.clickRow(0, this.datasources[0].id);
-            };
+        // Count the Ws
+        let widgets: Widget[];
+        this.currentDatasources.forEach(ds => {
+            widgets = this.globalVariableService.widgets.filter(w => w.datasourceID == ds.id);
+            ds.nrWidgets = widgets.length;
         });
-
+console.warn('xx init', this.dataFieldNames, this.currentDatasources)
     }
 
     clickRow(index: number, id: number) {
         // Click Row
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
+        console.warn('xx clickRow', index, this.currentDatasources)
 
         // Set the row index
         this.selectedDatasourcesRowIndex = index;
-        this.editing = false;
-        this.selectedDatasourceID = id;
-
-        // Fill the form
-        let selectedDatasourceIndex: number = this.datasources
-            .findIndex(dc => dc.id == id);
-        if (selectedDatasourceIndex >= 0) {
-
-            this.selectedDatasource = Object.assign({}, 
-                this.datasources[selectedDatasourceIndex]
-            );
-        } else {
-            this.selectedDatasource = null;
-        };
-console.warn('xx this.selectedDatasource ', this.selectedDatasource )
+        this.dataFieldNames = this.currentDatasources[index].dataFields;
+        
     }
     
     clickClose(action: string) {
@@ -147,7 +98,7 @@ console.warn('xx this.selectedDatasource ', this.selectedDatasource )
 
     }
 
-    dblclickDSrow(datasourceID: number, index: number) {
+    dblclickDSrow(index: number, datasourceID: number) {
         // Refresh the selected datasourceID
         this.globalFunctionService.printToConsole(this.constructor.name,'dblclickDSrow', '@Start');
 
@@ -203,6 +154,8 @@ console.warn('xx this.selectedDatasource ', this.selectedDatasource )
             .findIndex(ds => ds.id == datasourceID);
         
         if (dsIndex >= 0) {
+            this.dataFieldNames = this.currentDatasources[dsIndex].dataFields;
+            
             // Reset
             this.isBusyRetrievingData = false;
         } else {
