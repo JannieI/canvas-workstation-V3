@@ -77,6 +77,7 @@ import { DataDirectQueryBuilderComponent }  from './data.direct.queryBuilder.com
 import { DataDirectSQLEditorComponent }      from './data.direct.sqlEditor.component';
 import { DataDirectNoSQLComponent }   from './data.direct.Nosql.component';
 import { DataDirectServiceComponent } from './data.direct.service.component';
+import { DataDirectWebComponent }     from './data.direct.web.component';
 import { DataDirectImportComponent }  from './data.direct.import.component';
 import { DataDirectExportComponent }  from './data.direct.export.component';
 
@@ -178,6 +179,7 @@ import { StatusbarComponent }         from './statusbar.component';
         DataDirectSQLEditorComponent,
         DataDirectNoSQLComponent,
         DataDirectServiceComponent,
+        DataDirectWebComponent,
         DataDirectImportComponent,
         DataDirectExportComponent,
         DataPopupComponent,

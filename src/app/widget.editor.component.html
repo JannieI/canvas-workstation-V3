@@ -23,11 +23,14 @@
                             >
                             <div>
                                 <clr-datagrid>
+                                    <clr-dg-column >NrWidgets</clr-dg-column>
                                     <clr-dg-column >Name</clr-dg-column>
                                     <clr-dg-column >Description</clr-dg-column>
                                     <clr-dg-row *clrDgItems="let row of currentDatasources; let i = index"
                                         (click)="clickDSrow(row.id, i)"
                                         >
+                                        
+                                        <clr-dg-cell>{{ row.nrWidgets }}</clr-dg-cell>
                                         <clr-dg-cell>{{ row.name }}</clr-dg-cell>
                                         <clr-dg-cell>{{ row.description }}</clr-dg-cell>
                                     </clr-dg-row>

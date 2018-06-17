@@ -114,7 +114,20 @@ const graphWidth: number = 420;
 
         if (this.newWidget) {
             // Get DS
-            this.currentDatasources = this.globalVariableService.currentDatasources.slice();
+            // this.currentDatasources = this.globalVariableService.currentDatasources.slice();
+
+
+
+            this.currentDatasources = this.globalVariableService.datasources.slice();
+
+            // Count the Ws
+            let widgets: Widget[];
+            this.currentDatasources.forEach(ds => {
+                widgets = this.globalVariableService.widgets.filter(w => w.datasourceID == ds.id);
+                ds.nrWidgets = widgets.length;
+            });
+
+
 
             // Create new W
             // this.localWidget = this.globalVariableService.widgetTemplate;
@@ -745,6 +758,7 @@ const graphWidth: number = 420;
         // Set the selected datasourceID
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDSrow', '@Start');
 
+        // let dsIndex: number = this.globalVariableService.currentDatasources
         let dsIndex: number = this.globalVariableService.currentDatasources
             .findIndex(ds => ds.id == datasourceID);
 
@@ -758,7 +772,7 @@ const graphWidth: number = 420;
             this.dataFieldLengths = [];
             this.dataFieldTypes = [];
         };
-
+console.warn('xx this.dataFieldNames', this.dataFieldNames)
         // Switch on the preview after the first row was clicked
         this.hasClicked = true;
 
