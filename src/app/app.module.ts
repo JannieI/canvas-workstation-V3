@@ -102,6 +102,7 @@ import { DataDictionaryComponent }    from './data.dictionary.component';
 import { DataSummaryComponent }       from './data.summary.component';
 import { DataDatasourceUsageComponent }      from './data.datasourceUsage.component';
 import { DataRefreshOnceComponent }   from './data.refresh.once.component';
+import { DataRefreshRepeatComponent }   from './data.refresh.repeat.component';
 import { DataDeleteDatasourceComponent }     from './data.deleteDatasource.component';
 
 import { HelpComponent }              from './help.component';
@@ -192,7 +193,6 @@ import { StatusbarComponent }         from './statusbar.component';
 
         DataTransformationComponent,
         DataEditDatasourceComponent,
-        DataRefreshOnceComponent,
         DataCombinationComponent,
         DataRefreshComponent,
         DatasourceShareComponent,
@@ -204,6 +204,8 @@ import { StatusbarComponent }         from './statusbar.component';
         DataManagedBusGlossaryComponent,
         DataDatasourceOverviewComponent,
         DataDatasourceUsageComponent,
+        DataRefreshOnceComponent,
+        DataRefreshRepeatComponent,
         DataDeleteDatasourceComponent,
 
         WidgetEditorComponent,

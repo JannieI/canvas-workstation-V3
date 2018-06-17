@@ -378,6 +378,7 @@ export class AppComponent implements OnInit {
     showModalDataOverview: boolean = false;
     showModalDataUsage: boolean = false;
     showModalDataRefreshOnce: boolean = false;
+    showModalDataRefreshRepeat: boolean = false;
     showModalDataManagedQueryBuilder: boolean = false;
     showModalDataManagedSQLEditor: boolean = false;
     showModalDataManagedNoSQLEditor: boolean = false;
