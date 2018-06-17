@@ -85,6 +85,14 @@ export class DataTransformationComponent implements OnInit {
 console.warn('xx selectedDatasource', this.selectedDatasource)
     }
 
+    clickSelect(ev: any) {
+        // Select a Transformation
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelect', '@Start');
+
+        // Set seletected index - used for highlighting row
+        console.warn('xx ev', ev.target.value)
+    }
+
     clickSelectedTransformation(index: number, id: number) {
         // Click on Transformation row
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectedTransformation', '@Start');

@@ -16,12 +16,21 @@
                                 tradestatprmnt).  
                             </i>
                         </div>
-    
-                        <div class="gridConnectionSelectTitle">
-                            <b>Transformation:</b>
+       
+                        <div class="select gridTransformationSelect">
+                            <select
+                                [(ngModel)]="connectionName"
+                                name="connectionSelect"
+                                (change)="clickSelect($event)"
+                                placeholder="Select previously stored Connection"
+                                >
+                                <option *ngFor="let row of transformations">
+                                    {{ row.name }}
+                                </option>
+                            </select>
                         </div>
-                            
-                        <div class="gridSignpost">
+    
+                        <div class="gridTransformationSignpost">
                             <clr-signpost>
                                 <clr-icon shape="info-circle"
                                     clrSignpostTrigger>
@@ -34,40 +43,53 @@
                                 </clr-signpost-content>
                             </clr-signpost>
                         </div>
-
-                        <div class="select gridConnectionSelect">
-                            <select
-                                [(ngModel)]="connectionName"
-                                name="connectionSelect"
-                                (change)="clickConnectionSelect($event)"
-                                placeholder="Select previously stored Connection"
+    
+                        <div class="gridTransformationButtonAdd">
+                            <button
+                                type="button"
+                                class="btn btn-secondary"
+                                (click)="clickAdd()"
                                 >
-                                <option *ngFor="let row of transformations">
-                                    {{ row.name }}
-                                </option>
-                            </select>
+                                Add
+                            </button>
                         </div>
-    
-                        <div class="gridServerTypeTitle">
-                            <b>Left:</b>
+                             
+                        <div class="gridParameter1Title">
+                            <b>Param1:</b>
                         </div>
-                        <div class="gridServerType">
-                            12 Characters
+                        <div class="gridParameter1">
+                            Parameter 1
                         </div>
-    
-                        <div class="gridUsernameTitle">
-                            <b>Right:</b>
+                        <div class="gridParameter2Title">
+                            <b>Param2:</b>
                         </div>
-                        <div class="gridUsername">
-                            1 Character
+                        <div class="gridParameter2">
+                            Parameter 2
                         </div>
-    
-                        <div class="gridDescriptionTitle">
-                            <b>Description:</b>
+                        <div class="gridParameter3Title">
+                            <b>Param3:</b>
                         </div>
-                        <div class="gridDescription">
-                            Do the ... when ...
+                        <div class="gridParameter3">
+                            Parameter 3
                         </div>
+                        <div class="gridParameter4Title">
+                            <b>Param4:</b>
+                        </div>
+                        <div class="gridParameter4">
+                            Parameter 4
+                        </div>
+                        <div class="gridParameter5Title">
+                            <b>Param5:</b>
+                        </div>
+                        <div class="gridParameter5">
+                            Parameter 5
+                        </div>
+                        <div class="gridParameter6Title">
+                            <b>Param6:</b>
+                        </div>
+                        <div class="gridParameter6">
+                            Parameter 6
+                        </div>                            
     
                         <div *ngIf="errorMessage!=''" class="gridErrorMessage">
                             {{ errorMessage }}
@@ -125,26 +147,6 @@
                                 </clr-dg-row>
                             </clr-datagrid>
                         </div>  
-
-                        <div class="gridButtonCancel">
-                                <button
-                                type="button"
-                                class="btn btn-secondary"
-                                (click)="clickClose('Close')"
-                                >
-                                Cancel
-                            </button>
-                        </div>
-    
-                        <div class="gridButtonSave">
-                            <button
-                                type="button"
-                                class="btn btn-primary"
-                                (click)="clickSave('Saved')"
-                                >
-                                Save
-                            </button>
-                        </div>
     
                     </div>
                 </form>
