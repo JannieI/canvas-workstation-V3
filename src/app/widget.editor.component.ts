@@ -763,6 +763,7 @@ const graphWidth: number = 420;
 
         // Highlight selected row
         this.selectedRowIndex = index;
+        this.errorMessage = '';
 
         // Determine if data obtains in Glob Var
         let dSetIndex: number = this.globalVariableService.currentDatasets.filter(
