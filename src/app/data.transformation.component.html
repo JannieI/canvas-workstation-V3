@@ -47,7 +47,7 @@
                         <div class="gridTransformationButtonAdd">
                             <button
                                 type="button"
-                                class="btn btn-secondary"
+                                class="btn btn-link"
                                 (click)="clickAdd()"
                                 >
                                 Add
@@ -90,6 +90,18 @@
                         <div class="gridParameter6">
                             Parameter 6
                         </div>                            
+    
+                        <div class="gridTransformationButtonSave"
+                            >
+                            <button
+                                type="button"
+                                class="btn btn-primary"
+                                [disabled]="!adding"
+                                (click)="clickSave()"
+                                >
+                                Save
+                            </button>
+                        </div>
     
                         <div *ngIf="errorMessage!=''" class="gridErrorMessage">
                             {{ errorMessage }}

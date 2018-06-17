@@ -51,6 +51,7 @@ export class DataTransformationComponent implements OnInit {
     }
     
     
+    adding: boolean = false;
     connectionName: string = '';
     dataFields: DataField[];
     datasourceName: string = 'Trades per Month (Stats)';
@@ -119,6 +120,20 @@ console.warn('xx selectedDatasource', this.selectedDatasource)
 
     }
 
+    clickAdd() {
+        // Start Adding a new Transformation
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
+
+        this.adding = true;
+    }
+
+    clickSave() {
+        // Save Transformation and its parameters
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
+
+        this.adding = false;
+    }
+    
     clickClose(action: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');

@@ -36,13 +36,30 @@
     }
 
     .gridParameter1Title {
+        grid-column-start: 7;
+        grid-column-end: 9;
+        grid-row-start: 4;
+        grid-row-end: 5;
+        margin-top: 5px;
+        margin-left: 12px;
+    }
+    .gridParameter1 {
+        grid-column-start: 9;
+        grid-column-end: 14;
+        grid-row-start: 4;
+        grid-row-end: 5;
+        margin-top: 5px;
+        margin-left: 12px;
+    }
+
+    .gridParameter2Title {
         grid-column-start: 14;
         grid-column-end: 15;
         grid-row-start: 4;
         grid-row-end: 5;
         margin-left: 12px;
     }
-    .gridParameter1 {
+    .gridParameter2 {
         grid-column-start: 15;
         grid-column-end: 20;
         grid-row-start: 4;
@@ -50,7 +67,7 @@
         margin-left: 12px;
     }
 
-    .gridParameter2Title {
+    .gridParameter3Title {
         grid-column-start: 7;
         grid-column-end: 9;
         grid-row-start: 6;
@@ -58,26 +75,9 @@
         margin-top: 5px;
         margin-left: 12px;
     }
-    .gridParameter2 {
+    .gridParameter3 {
         grid-column-start: 9;
         grid-column-end: 14;
-        grid-row-start: 6;
-        grid-row-end: 7;
-        margin-top: 5px;
-        margin-left: 12px;
-    }
-
-    .gridParameter3Title {
-        grid-column-start: 14;
-        grid-column-end: 15;
-        grid-row-start: 6;
-        grid-row-end: 7;
-        margin-top: 5px;
-        margin-left: 12px;
-    }
-    .gridParameter3 {
-        grid-column-start: 15;
-        grid-column-end: 21;
         grid-row-start: 6;
         grid-row-end: 7;
         margin-top: 5px;
@@ -85,6 +85,23 @@
     }
 
     .gridParameter4Title {
+        grid-column-start: 14;
+        grid-column-end: 15;
+        grid-row-start: 6;
+        grid-row-end: 7;
+        margin-top: 5px;
+        margin-left: 12px;
+    }
+    .gridParameter4 {
+        grid-column-start: 15;
+        grid-column-end: 21;
+        grid-row-start: 6;
+        grid-row-end: 7;
+        margin-top: 5px;
+        margin-left: 12px;
+    }
+
+    .gridParameter5Title {
         grid-column-start: 7;
         grid-column-end: 9;
         grid-row-start: 8;
@@ -92,26 +109,9 @@
         margin-top: 5px;
         margin-left: 12px;
     }
-    .gridParameter4 {
+    .gridParameter5 {
         grid-column-start: 9;
         grid-column-end: 14;
-        grid-row-start: 8;
-        grid-row-end: 9;
-        margin-top: 5px;
-        margin-left: 12px;
-    }
-
-    .gridParameter5Title {
-        grid-column-start: 14;
-        grid-column-end: 15;
-        grid-row-start: 8;
-        grid-row-end: 9;
-        margin-top: 5px;
-        margin-left: 12px;
-    }
-    .gridParameter5 {
-        grid-column-start: 15;
-        grid-column-end: 21;
         grid-row-start: 8;
         grid-row-end: 9;
         margin-top: 5px;
@@ -128,9 +128,18 @@
     }
     .gridParameter6 {
         grid-column-start: 15;
-        grid-column-end: 21;
+        grid-column-end: 19;
         grid-row-start: 8;
         grid-row-end: 9;
+        margin-top: 5px;
+        margin-left: 12px;
+    }
+
+    .gridTransformationButtonSave {
+        grid-column-start: 19;
+        grid-column-end: 21;
+        grid-row-start: 7;
+        grid-row-end: 8;
         margin-top: 5px;
         margin-left: 12px;
     }
@@ -162,22 +171,21 @@
         grid-column-end: 5;
         grid-row-start: 26;
         grid-row-end: 27;
-        margin-left: 12px;
         z-index: 100;
     }
     .gridTransformationSignpost {
         grid-column-start: 5;
         grid-column-end: 6;
-        grid-row-start: 4;
-        grid-row-end: 5;
-        margin-left: 12px;
-    }
-    .gridTransformationButtonAdd {
-        grid-column-start: 6;
-        grid-column-end: 8;
         grid-row-start: 26;
         grid-row-end: 27;
-        margin-left: 12px;
+        margin-left: 2px;
+    }
+    .gridTransformationButtonAdd {
+        grid-column-start: 5;
+        grid-column-end: 7;
+        grid-row-start: 26;
+        grid-row-end: 27;
+        margin-left: 22px;
     }
 
     .gridResult {
