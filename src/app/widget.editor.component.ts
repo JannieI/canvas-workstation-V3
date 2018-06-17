@@ -760,11 +760,53 @@ const graphWidth: number = 420;
         // Set the selected datasourceID
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDSrow', '@Start');
 
-        // let dsIndex: number = this.globalVariableService.currentDatasources
-        let dsIndex: number = this.currentDatasources
+        // Determine if data obtains in Glob Var
+        let dSetIndex: number = this.globalVariableService.currentDatasets.filter(
+            dS => dS.datasourceID == datasourceID
+        ).length;
+        console.warn('xx strt let', dSetIndex, this.globalVariableService.currentDatasets)
+
+        if (dSetIndex <= 0) {
+            
+            if (this.isBusyRetrievingData) {
+                this.errorMessage = 'Still retrieving the actual data for this DS';
+                return;
+            };
+
+            this.isBusyRetrievingData = true;
+            this.errorMessage = 'Getting data ...'
+            this.globalVariableService.addCurrentDatasource(datasourceID).then(res => {
+
+                // Reset
+                this.isBusyRetrievingData = false
+                this.errorMessage = '';
+                
+                let globalCurrentDSIndex: number = this.globalVariableService.currentDatasources
+                .findIndex(dS => dS.id == datasourceID
+                );
+                if (globalCurrentDSIndex >= 0) {
+                    this.currentDatasources.push(
+                        this.globalVariableService.currentDatasources[globalCurrentDSIndex]);
+                };
+
+                let globalCurrentDsetIndex: number = this.globalVariableService.currentDatasets
+                    .findIndex(dS => dS.datasourceID == datasourceID
+                );
+                if (globalCurrentDsetIndex >= 0) {
+                    this.globalVariableService.currentDatasets.splice(globalCurrentDsetIndex, 1);
+                };
+console.warn('xx after get stuff', this.currentData, this.currentDatasources)
+            });
+
+            // Stop Synch execution
+            return;
+        };
+ 
+        // Load local arrays for ngFor
+        let dsIndex: number = this.globalVariableService.currentDatasources
             .findIndex(ds => ds.id == datasourceID);
 console.warn('xx start', this.isBusyRetrievingData, this.currentDatasources, this.currentData)
-        // Load local arrays for ngFor
+        
         if (dsIndex >= 0) {
             this.dataFieldNames = this.currentDatasources[dsIndex].dataFields;
             this.dataFieldLengths = this.currentDatasources[dsIndex].dataFieldLengths;
@@ -788,9 +830,16 @@ console.warn('xx start', this.isBusyRetrievingData, this.currentDatasources, thi
                 );
                 if (globalCurrentDSIndex >= 0) {
                     this.currentDatasources.push(
-                        this.globalVariableService.currentDatasources[globalCurrentDSIndex])
-                        ;
-                    };
+                        this.globalVariableService.currentDatasources[globalCurrentDSIndex]);
+                };
+
+                let globalCurrentDsetIndex: number = this.globalVariableService.currentDatasets
+                    .findIndex(dS => dS.datasourceID == datasourceID
+                );
+                if (globalCurrentDsetIndex >= 0) {
+                    this.globalVariableService.currentDatasets.splice(globalCurrentDsetIndex, 1);
+                };
+console.warn('xx after get stuff', this.currentData, this.currentDatasources)
             });
 
 
