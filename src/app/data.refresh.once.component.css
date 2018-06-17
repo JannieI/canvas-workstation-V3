@@ -34,7 +34,8 @@
         margin-left: 20px;
         text-align: left;
     }
-    .gridSubTitle2 {
+    
+    .idSubTitle2 {
         color: red;
         grid-column-start: 12;
         grid-column-end: 21;

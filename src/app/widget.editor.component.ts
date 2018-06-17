@@ -68,7 +68,6 @@ const graphWidth: number = 420;
 
     }
 
-    isBusyRetrievingData: boolean = false;
     clickedButtonAggregateNo: boolean = false;
     colField: string = 'Drag a field here ...';
     containerHasTitle: boolean = true;
@@ -90,6 +89,7 @@ const graphWidth: number = 420;
     graphTypeFieldY: string[] =[];
     graphTypeFieldX: string[] =[];
     graphTypeFieldColor: string[] =[];
+    isBusyRetrievingData: boolean = false;
     hasClicked: boolean = false;
     localWidget: Widget;                            // W to modify, copied from selected
     opened: boolean = true;

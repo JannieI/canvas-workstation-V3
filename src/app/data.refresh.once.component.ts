@@ -44,9 +44,14 @@ export class DataRefreshOnceComponent implements OnInit {
 
     datasources: Datasource[] = [];
     editing: boolean = false;
+    errorMessage: string = '';
     selectedDatasourceID: number = null;
     selectedDatasource: Datasource;
     selectedDatasourcesRowIndex: number = 0;
+    isBusyRetrievingData: boolean = false;
+    currentDatasources: Datasource[] = null;               // Current DS for the selected W
+    selectedRowIndex: number = 0;
+    currentData: any = [];
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -142,57 +147,118 @@ console.warn('xx this.selectedDatasource ', this.selectedDatasource )
 
     }
 
-    clickCancel() {
-        // Cancel Editing
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickCancel', '@Start');
+    dblclickDSrow(datasourceID: number, index: number) {
+        // Refresh the selected datasourceID
+        this.globalFunctionService.printToConsole(this.constructor.name,'dblclickDSrow', '@Start');
 
-        this.editing = false;
-        this.clickRow(this.selectedDatasourcesRowIndex, this.selectedDatasourceID);
-        
-        // // Re Fill the form
-        // let datasourceIndex: number = this.datasources
-        //     .findIndex(sch => sch.id == this.selectedDatasource.id);
-        // if (datasourceIndex >= 0) {
-        //     this.selectedDatasource = Object.assign({}, 
-        //         this.datasources[datasourceIndex]
-        //     );
-        // };
+        // Highlight selected row
+        this.selectedRowIndex = index;
+        this.errorMessage = '';
 
-        // // Reset
-        // this.selectedDatasourcesRowIndex = null;
-        // this.selectedDatasourceID = null;
+        // Determine if data obtains in Glob Var
+        let dSetIndex: number = this.globalVariableService.currentDatasets.filter(
+            dS => dS.datasourceID == datasourceID
+        ).length;
 
-    }
-
-    clickSave() {
-        // Save changes to the Datasource
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
-
-        // Save the changes
-        if (this.editing) {
-            let datasourceIndex: number = this.datasources
-                .findIndex(ds => ds.id == this.selectedDatasource.id);
-            if (datasourceIndex >= 0) {
-                this.datasources[datasourceIndex].dataDictionary = 
-                    this.selectedDatasource.dataDictionary
+        if (dSetIndex <= 0) {
+            
+            if (this.isBusyRetrievingData) {
+                this.errorMessage = 'Still retrieving the actual data for this DS';
+                return;
             };
-            this.globalVariableService.saveDatasource(this.selectedDatasource)
+
+            this.isBusyRetrievingData = true;
+            this.errorMessage = 'Getting data ...'
+            this.globalVariableService.addCurrentDatasource(datasourceID).then(res => {
+
+                // Reset
+                this.isBusyRetrievingData = false
+                
+                let globalCurrentDSIndex: number = this.globalVariableService.currentDatasources
+                .findIndex(dS => dS.id == datasourceID
+                );
+                if (globalCurrentDSIndex >= 0) {
+                    this.currentDatasources.push(
+                        this.globalVariableService.currentDatasources[globalCurrentDSIndex]);
+                };
+
+                let globalCurrentDsetIndex: number = this.globalVariableService.currentDatasets
+                    .findIndex(dS => dS.datasourceID == datasourceID
+                );
+                if (globalCurrentDsetIndex >= 0) {
+                    this.globalVariableService.currentDatasets.splice(globalCurrentDsetIndex, 1);
+                };
+
+                // Tell user
+                this.errorMessage = 'Data retrieved - click row again to continue';                
+
+            });
+
+            // Stop Synch execution
+            return;
+        };
+ 
+        // Load local arrays for ngFor
+        let dsIndex: number = this.globalVariableService.currentDatasources
+            .findIndex(ds => ds.id == datasourceID);
+        
+        if (dsIndex >= 0) {
+            // Reset
+            this.isBusyRetrievingData = false;
+        } else {
+
+            if (this.isBusyRetrievingData) {
+                this.errorMessage = 'Retrieving the actual data - click row again once done';
+                return;
+            };
+
+            this.isBusyRetrievingData = true;
+            this.globalVariableService.addCurrentDatasource(datasourceID).then(res => {
+                this.isBusyRetrievingData = false
+                
+                let globalCurrentDSIndex: number = this.globalVariableService.currentDatasources
+                .findIndex(dS => dS.id == datasourceID
+                );
+                if (globalCurrentDSIndex >= 0) {
+                    this.currentDatasources.push(
+                        this.globalVariableService.currentDatasources[globalCurrentDSIndex]);
+                };
+
+                let globalCurrentDsetIndex: number = this.globalVariableService.currentDatasets
+                    .findIndex(dS => dS.datasourceID == datasourceID
+                );
+                if (globalCurrentDsetIndex >= 0) {
+                    this.globalVariableService.currentDatasets.splice(globalCurrentDsetIndex, 1);
+                };
+
+            });
         };
 
-        // Reset
-        this.editing = false;
-        // this.selectedDatasourcesRowIndex = null;
-        // this.selectedDatasourceID = null;
+
+        // Get latest dSet for the selected DS
+        let ds: number[]=[];
+        let dSetID: number = 0;
+
+        for (var i = 0; i < this.globalVariableService.currentDatasets.length; i++) {
+            if(this.globalVariableService.currentDatasets[i].datasourceID == datasourceID) {
+                ds.push(this.globalVariableService.currentDatasets[i].id)
+            }
+        };
+        if (ds.length > 0) {
+            dSetID = Math.max(...ds);
+        } else {
+            // Make proper error handling
+            alert('Error: no dataSet in glob vars for DSid = ' + datasourceID)
+        };
+        console.warn('xx this.globalVariableService.currentDatasets', this.globalVariableService.currentDatasets)
+
+        // Load first few rows into preview
+        this.currentData = this.globalVariableService.currentDatasets.filter(
+            d => d.id == dSetID)[0].data.slice(0,5);
+
+
 
     }
 
-    clickEdit() {
-        // Start editing selected Datasource
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickEdit', '@Start');
-
-        if (this.datasources.length > 0) {
-            this.editing = true;
-        };
-    }
 
 }
