@@ -381,7 +381,8 @@ export class Datasource {
     // Managed Connection, Connection created and managed outside of the DS
     connectionID: number;               // Connection to DB
     dataTableID: number;                // ID of table linked in DB
-    businessGlossary: string;           // Detailed business oriented description of table (non-technical)
+    businessGlossary: string;           // Detailed business oriented description of DS (non-technical)
+    dataDictionary: string;             // Detailed technical description of DS
 
     // Direct Connection, all info provided here and once off
     databaseName: string;                   // DB to connect to

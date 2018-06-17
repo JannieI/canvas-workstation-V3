@@ -1,5 +1,5 @@
 /*
- * Visualise page, to view / present Dashboards previously created
+ * Data Dictionary for Datasources
  */
 
 // Angular
@@ -17,8 +17,7 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService}       from './global-variable.service';
 
 // Models
-import { Dashboard }                  from './models';
-import { DataOwnership }           from './models';
+import { Datasource }                 from './models';
  
 @Component({
     selector: 'data-manageDataDictionary',
@@ -43,18 +42,11 @@ export class DataManageDataDictionaryComponent implements OnInit {
 
     }
 
-    adding: boolean = false;
-    dataOwnerships: DataOwnership[] = [];
-    datasourceID: number;
-    datasourceName: string;
-    datasourceNames: string[] = [];    
+    datasources: Datasource[] = [];
     editing: boolean = false;
-    errorMessage: string = "";
     selectedDatasourceID: number = null;
-    selectedDataOwnership: DataOwnership;
-    selectedDataOwnershipRowIndex: number = 0;
-    selectedLinkedDatasource: string;
-    userIDs: string[] = [];
+    selectedDatasource: Datasource;
+    selectedDatasourcesRowIndex: number = 0;
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -64,54 +56,56 @@ export class DataManageDataDictionaryComponent implements OnInit {
 	ngOnInit() {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
-
-        this.clearRecord();
         
-        // Get Datasource list
-        this.globalVariableService.datasources.forEach(ds => {
-            this.datasourceNames.push(ds.name + ' (' + ds.id + ')');
-        });
-        this.datasourceNames = this.datasourceNames.sort( (obj1,obj2) => {
-            if (obj1 > obj2) {
-                return 1;
-            };
-            if (obj1 < obj2) {
-                return -1;
-            };
-            return 0;
-        });
+        // Reset, else async too late and form load fails
+        this.selectedDatasource = 
+        {
+            id: null,
+            type: '',
+            subType: '',
+            typeVersion: '',
+            name: '',
+            username: '',
+            password: '',
+            description: '',
+            createdBy: '',
+            createdOn: '',
+            refreshedBy: '',
+            refreshedOn: '',
+            dataFieldIDs: null,
+            dataFields: null,
+            dataFieldTypes: null,
+            dataFieldLengths: null,
+            parameters: '',
+            folder: '',
+            fileName: '',
+            excelWorksheet: '',
+            transposeOnLoad: false,
+            startLineNr: null,
+            csvSeparationCharacter: '',
+            csvQuotCharacter: '',
+            connectionID: null,
+            dataTableID: null,
+            businessGlossary: '',
+            databaseName: '',
+            port: '',
+            serverType: '',
+            serverName: '',
+            dataTableName: '',
+            dataSQLStatement: '',
+            dataNoSQLStatement: '',
+            nrWidgets: null,
+            dataDictionary: ''
+        }
 
-        // Get UserID list
-        this.globalVariableService.canvasUsers.forEach(usr => {
-            this.userIDs.push(usr.userID);
-        });
-        this.userIDs = this.userIDs.sort( (obj1,obj2) => {
-            if (obj1 > obj2) {
-                return 1;
-            };
-            if (obj1 < obj2) {
-                return -1;
-            };
-            return 0;
-        });
-
-        this.globalVariableService.getDataOwnerships().then(dc => {
-            
+        this.globalVariableService.getDatasources().then(dc => {
             // Fill local Var
-            this.dataOwnerships = dc.slice();
+            this.datasources = dc.slice();
+            console.warn('xx this.datasources.length', this.datasources.length)
             
-            // Append RunTime datasourceName
-            this.dataOwnerships.forEach(dow => {
-                this.globalVariableService.datasources.forEach(ds => {
-                    if (ds.id == dow.datasourceID) {
-                        dow.datasourceName = ds.name;
-                    };
-                });
-            });
-
             // Click on first one, if available
-            if (this.dataOwnerships.length > 0) {
-                this.clickRow(0, this.dataOwnerships[0].id);
+            if (this.datasources.length > 0) {
+                this.clickRow(0, this.datasources[0].id);
             };
         });
 
@@ -122,52 +116,26 @@ export class DataManageDataDictionaryComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
 
         // Set the row index
-        this.selectedDataOwnershipRowIndex = index;
-        this.adding = false;
+        this.selectedDatasourcesRowIndex = index;
         this.editing = false;
         this.selectedDatasourceID = id;
-        this.errorMessage = '';
 
         // Fill the form
-        let selectedDatasourceIndex: number = this.dataOwnerships
+        let selectedDatasourceIndex: number = this.datasources
             .findIndex(dc => dc.id == id);
         if (selectedDatasourceIndex >= 0) {
 
-            let datasourceIndex: number = this.globalVariableService.datasources.findIndex(ds =>
-                ds.id == this.dataOwnerships[selectedDatasourceIndex].datasourceID
-            );
-            this.selectedLinkedDatasource = this.globalVariableService.datasources[datasourceIndex]
-                .name + ' (' + this.globalVariableService.datasources[datasourceIndex].id + ')';
-
-            this.selectedDataOwnership = Object.assign({}, 
-                this.dataOwnerships[selectedDatasourceIndex]
+            this.selectedDatasource = Object.assign({}, 
+                this.datasources[selectedDatasourceIndex]
             );
         } else {
-            this.selectedLinkedDatasource = '';
+            this.selectedDatasource = null;
         };
-
-    }
-
-    clearRecord() {
-        // Clear single record
-        this.globalFunctionService.printToConsole(this.constructor.name,'clearRecord', '@Start');
-
-        this.selectedDataOwnership = {
-            id: null,
-            datasourceID: null,
-            userID: '',
-            type: '',
-            description: '',
-            createdBy: '',
-            createdOn: '',
-            updatedBy: '',
-            updatedOn: '',
-            datasourceName: ''
-        };
+console.warn('xx this.selectedDatasource ', this.selectedDatasource )
     }
     
     clickClose(action: string) {
-        //
+        // Close the form, nothing saved
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
         this.formDataManageDataDictionaryClosed.emit(action);
@@ -179,131 +147,53 @@ export class DataManageDataDictionaryComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickCancel', '@Start');
 
         this.editing = false;
-        this.adding = false;
-        this.errorMessage = '';
-        this.clickRow(this.selectedDataOwnershipRowIndex, this.selectedDatasourceID);
+        this.clickRow(this.selectedDatasourcesRowIndex, this.selectedDatasourceID);
         
-        // Re Fill the form
-        let datasourceIndex: number = this.dataOwnerships
-            .findIndex(sch => sch.id == this.selectedDataOwnership.id);
-        if (datasourceIndex >= 0) {
-            this.selectedDataOwnership = Object.assign({}, 
-                this.dataOwnerships[datasourceIndex]
-            );
-        };
+        // // Re Fill the form
+        // let datasourceIndex: number = this.datasources
+        //     .findIndex(sch => sch.id == this.selectedDatasource.id);
+        // if (datasourceIndex >= 0) {
+        //     this.selectedDatasource = Object.assign({}, 
+        //         this.datasources[datasourceIndex]
+        //     );
+        // };
 
-        // Reset
-        this.selectedDataOwnershipRowIndex = null;
-        this.selectedDatasourceID = null;
+        // // Reset
+        // this.selectedDatasourcesRowIndex = null;
+        // this.selectedDatasourceID = null;
 
     }
 
     clickSave() {
-        // Save changes to a Data Quality record
+        // Save changes to the Datasource
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
-
-        this.errorMessage = '';
-
-        // Validation
-        this.errorMessage = '';
-
-        if (this.selectedDataOwnership.userID == null
-            ||
-            this.selectedDataOwnership.userID == '') {
-                this.errorMessage = 'Enter the UserID of the Owner';
-                return;
-        };
-
-        let index: number = this.selectedLinkedDatasource.indexOf(' (');
-        if (index >= 0) {
-            this.datasourceName = this.selectedLinkedDatasource.substring(0, index);
-            this.datasourceID = +this.selectedLinkedDatasource.substring(
-                index + 2, this.selectedLinkedDatasource.length - 1
-            );
-        };
-
-        // Get RunTime datasourceName
-        this.globalVariableService.datasources.forEach(ds => {
-            if (ds.id == this.datasourceID) {
-                this.datasourceName = ds.name;
-            };
-        });
-
-        // Add to local and DB
-        if (this.adding) {
-            this.selectedDataOwnership.id = null;
-
-            this.selectedDataOwnership.datasourceID = this.datasourceID;
-            this.selectedDataOwnership.datasourceName = this.datasourceName;
-            this.globalVariableService.addDataOwnership(this.selectedDataOwnership).then(
-                res => {
-                    if (this.selectedDataOwnershipRowIndex == null) {
-                        this.selectedDataOwnershipRowIndex = 0;
-                        this.selectedDatasourceID = this.selectedDataOwnership.id;
-                        console.warn('xx hier')
-                    };
-
-                    // Add locally
-                    this.dataOwnerships.push(this.selectedDataOwnership);
-                            
-                }
-            );
-        };
 
         // Save the changes
         if (this.editing) {
-            this.selectedDataOwnership.datasourceID = this.datasourceID;
-            this.selectedDataOwnership.datasourceName = this.datasourceName;
-            let datasourceIndex: number = this.dataOwnerships
-                .findIndex(sch => sch.id == this.selectedDataOwnership.id);
+            let datasourceIndex: number = this.datasources
+                .findIndex(ds => ds.id == this.selectedDatasource.id);
             if (datasourceIndex >= 0) {
-                this.dataOwnerships[datasourceIndex] = 
-                    Object.assign({}, this.selectedDataOwnership);
+                this.datasources[datasourceIndex].dataDictionary = 
+                    this.selectedDatasource.dataDictionary
             };
-            this.globalVariableService.saveDataOwnership(this.selectedDataOwnership)
+            this.globalVariableService.saveDatasource(this.selectedDatasource)
         };
 
         // Reset
         this.editing = false;
-        this.adding = false;
-        this.selectedDataOwnershipRowIndex = null;
-        this.selectedDatasourceID = null;
+        // this.selectedDatasourcesRowIndex = null;
+        // this.selectedDatasourceID = null;
 
     }
 
     clickEdit() {
-        // Start editing selected Data Quality record
+        // Start editing selected Datasource
         this.globalFunctionService.printToConsole(this.constructor.name,'clickEdit', '@Start');
 
-        if (this.dataOwnerships.length > 0) {
+        if (this.datasources.length > 0) {
             this.editing = true;
         };
-        this.errorMessage = '';
-
+console.warn('xx edit', this.editing)
     }
 
-    clickAdd() {
-        // Add a new Data Quality record
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
-
-        this.adding = true;
-        this.editing = false;
-        this.errorMessage = '';
-
-    }
-
-    clickDelete(index: number, id: number) {
-        // Delete a Data Quality record
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickDelete', '@Start');
-
-        this.clearRecord();
-        this.globalVariableService.deleteDataOwnership(id).then(res => {
-            this.dataOwnerships = this.globalVariableService.dataOwnerships
-        }); 
-
-        this.selectedDataOwnershipRowIndex = null;
-        this.selectedDatasourceID = null;
-    }
 }
-
-

@@ -1,5 +1,5 @@
 /*
- * Visualise page, to view / present Dashboards previously created
+ * Manage Business Glossary for Datasources
  */
 
 // Angular
@@ -17,7 +17,6 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService}       from './global-variable.service';
 
 // Models
-import { Dashboard }                  from './models';
 import { Datasource }                 from './models';
  
 @Component({
@@ -95,13 +94,13 @@ export class DataManagBussGlossaryComponent implements OnInit {
             dataTableName: '',
             dataSQLStatement: '',
             dataNoSQLStatement: '',
-            nrWidgets: null
+            nrWidgets: null,
+            dataDictionary: ''
         }
 
         this.globalVariableService.getDatasources().then(dc => {
             // Fill local Var
             this.datasources = dc.slice();
-            console.warn('xx this.datasources.length', this.datasources.length)
             
             // Click on first one, if available
             if (this.datasources.length > 0) {
@@ -131,7 +130,7 @@ export class DataManagBussGlossaryComponent implements OnInit {
         } else {
             this.selectedDatasource = null;
         };
-console.warn('xx this.selectedDatasource ', this.selectedDatasource )
+
     }
     
     clickClose(action: string) {
@@ -193,7 +192,6 @@ console.warn('xx this.selectedDatasource ', this.selectedDatasource )
         if (this.datasources.length > 0) {
             this.editing = true;
         };
-console.warn('xx edit', this.editing)
     }
 
 }

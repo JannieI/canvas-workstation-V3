@@ -458,7 +458,8 @@ export class DataPopupComponent implements OnInit {
             dataTableName: '',
             dataSQLStatement: '',
             dataNoSQLStatement: '',
-            businessGlossary: ''
+            businessGlossary: '',
+            dataDictionary: ''
 
         };
 
