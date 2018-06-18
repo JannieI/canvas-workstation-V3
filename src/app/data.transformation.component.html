@@ -13,7 +13,7 @@
                         <div class="gridSubTitle">
                             <i>
                                 Add transformations to the Datasource:
-                                {{ selectedDatasource.name }} 
+                                {{ selectedDatasource.name }}
                                 <clr-signpost>
                                     <clr-icon shape="info-circle"
                                         clrSignpostTrigger>
@@ -25,7 +25,7 @@
                                         </p>
                                     </clr-signpost-content>
                                 </clr-signpost>
-        
+
                             </i>
                         </div>
 
@@ -90,7 +90,7 @@
                                 [placeholder]="parameter2Placeholder"
                                 [title]="parameter2Title"
                                 [disabled]="!adding"
-                                
+
                                 >
                         </div>
 
@@ -132,7 +132,7 @@
                                 [disabled]="!adding"
                                 >
                         </div>
-            
+
                         <div class="gridParameter6Title">
                             <b>{{ parameter6Heading }}</b>
                         </div>
@@ -145,7 +145,7 @@
                                 [disabled]="!adding"
                                 >
                         </div>
-    
+
                         <div class="gridTransformationButtonSave"
                             >
                             <button
@@ -172,8 +172,8 @@
 
                                 <clr-dg-row
                                     *clrDgItems="let row of datasourceTransformations; let i = index"
-                                    [style.background-color]="(i == selectedTransoformationRowIndex)? '#123456' : 'white'"
-                                    [style.color]="(i == selectedTransoformationRowIndex)? 'white' : 'gray'"
+                                    [style.background-color]="(i == selectedTransformationRowIndex)? '#123456' : 'white'"
+                                    [style.color]="(i == selectedTransformationRowIndex)? 'white' : 'gray'"
                                     (click)="clickRow(i, row.id)"
                                     >
                                     <clr-dg-cell>
@@ -183,16 +183,16 @@
                                         </clr-icon>
                                         <clr-icon shape="arrow"
                                             size="12"
-                                            (click)="clickMoveUp()">
+                                            (click)="clickMoveUp(i, row.id)">
                                         </clr-icon>
                                         <clr-icon shape="arrow down"
                                             size="12"
-                                            (click)="clickMoveDown()">
+                                            (click)="clickMoveDown(i, row.id)">
                                         </clr-icon>
                                         {{ row.name }}
                                         <clr-icon shape="times"
                                             size="12"
-                                            (click)="clickDelete()">
+                                            (click)="clickDelete(i, row.id)">
                                         </clr-icon>
                                     </clr-dg-cell>
 

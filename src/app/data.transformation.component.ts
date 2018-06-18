@@ -295,7 +295,21 @@ export class DataTransformationComponent implements OnInit {
     clickMoveUp(index: number, id: number) {
         // Move Transformation Up
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMoveUp', '@Start');
+        console.warn('xx index', index)
+        // Nothing to do
+        if (index == 0) {
+            return;
+        };
 
+        // Get 2 records
+        let previous: localDatasourceTransformation = this.datasourceTransformations[index - 1]
+            // .slice(index - 1, index);
+        let selected: localDatasourceTransformation = this.datasourceTransformations[index]
+            // .slice(index, index + 1);
+console.warn('xx hier', previous, selected)
+
+        // Remove 2, and insert in reverse order
+        this.datasourceTransformations.splice(index, 2, selected, previous);
     }
     
     clickMoveDown(index: number, id: number) {
