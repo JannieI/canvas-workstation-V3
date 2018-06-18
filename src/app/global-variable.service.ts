@@ -30,6 +30,7 @@ import { DashboardTag }               from './models';
 import { DashboardTemplate }          from './models';
 import { DashboardTheme }             from './models';
 import { DataConnection }             from './models';
+import { DatasourceTransformation }   from './models';
 import { DataTable }                  from './models';
 import { DataField }                  from './models';
 import { DatagridInput }              from './models';
@@ -609,6 +610,7 @@ export class GlobalVariableService {
     fieldsMetadata: FieldMetadata[] = fieldsMetadata;
     datasets: any = [];                                 // List of dSets, NO data
     dataConnections: DataConnection[] = [];
+    datasourceTransformations: DatasourceTransformation[] = [];
     dataTables: DataTable[] = [];
     dataFields: DataField[] = [];
     finalFields: any = finalFields;
@@ -751,6 +753,7 @@ export class GlobalVariableService {
     isDirtyDataFields: boolean = true;
     isDirtyDataTables: boolean = true;
     isDirtyDataConnections: boolean = true;
+    isDirtyDatasourceTransformations: boolean = true;
 
     // Settings that can be set via UI for next time, from then on it will change
     // as the user uses them, and used the next time (a Widget is created)
@@ -2690,6 +2693,39 @@ export class GlobalVariableService {
                 }
             )
         });
+    }
+
+
+    getDatasourceTransformations(): Promise<DatasourceTransformation[]> {
+        // Description: Gets DatasourceTransformations
+        // Returns: this.DatasourceTransformation
+        console.log('%c    Global-Variables getDatasourceTransformations ...',
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+
+        let url: string = 'DatasourceTransformations';
+        this.filePath = './asConnections/data.DatasourceTransformations.json';
+
+        return new Promise<DatasourceTransformation[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if ( (this.datasourceTransformations.length == 0)  ||  (this.isDirtyDatasourceTransformations) ) {
+                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
+                this.get(url)
+                    .then(data => {
+                        this.datasourceTransformations = data;
+                        this.isDirtyDatasourceTransformations = false;
+                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
+                        console.log('%c    Global-Variables getDatasourceTransformation 1',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.datasourceTransformations)
+                        resolve(this.datasourceTransformations);
+                    });
+            } else {
+                console.log('%c    Global-Variables getDatasourceTransformation 2',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.datasourceTransformations)
+                resolve(this.datasourceTransformations);
+            }
+        });
+
     }
 
     getDataTable(): Promise<DataTable[]> {
