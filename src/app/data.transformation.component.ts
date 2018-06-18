@@ -102,21 +102,27 @@ console.warn('xx selectedDatasource', this.selectedDatasource)
         this.selectedTransoformationRowIndex = index;
     }
 
-    clickMoveTransformationUp(index: number, id: number) {
+    clickMoveUp(index: number, id: number) {
         // Move Transformation Up
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMoveTransformationUp', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMoveUp', '@Start');
 
     }
     
-    clickMoveTransformationDown(index: number, id: number) {
+    clickMoveDown(index: number, id: number) {
         // Move Transformation Down
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMoveTransformationDown', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMoveDown', '@Start');
 
     }
     
-    clickDeleteTransformation(index: number, id: number) {
+    clickEdit(index: number, id: number) {
+        // Edit Transformation 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickEdit', '@Start');
+
+    }
+    
+    clickDelete(index: number, id: number) {
         // Delete Transformation 
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickDeleteTransformation', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDelete', '@Start');
 
     }
 

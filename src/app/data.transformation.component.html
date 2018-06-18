@@ -122,18 +122,22 @@
                                     (click)="clickSelectedTransformation(i, row.id)"
                                     >
                                     <clr-dg-cell>
-                                            <clr-icon shape="arrow"
+                                        <clr-icon shape="pencil"
                                             size="12"
-                                            (click)="clickMoveTransformationUp()">
+                                            (click)="clickEdit()">
+                                        </clr-icon>
+                                        <clr-icon shape="arrow"
+                                            size="12"
+                                            (click)="clickMoveUp()">
                                         </clr-icon>
                                         <clr-icon shape="arrow down"
                                             size="12"
-                                            (click)="clickMoveTransformationDown()">
+                                            (click)="clickMoveDown()">
                                         </clr-icon>
                                         {{ row.name }}
                                         <clr-icon shape="times"
                                             size="12"
-                                            (click)="clickDeleteTransformation()">
+                                            (click)="clickDelete()">
                                         </clr-icon>
                                     </clr-dg-cell>
                                     
