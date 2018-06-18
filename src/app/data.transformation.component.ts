@@ -197,6 +197,32 @@ export class DataTransformationComponent implements OnInit {
         this.parameter6Value = '';
         this.parameter6Heading = '';
 
+        // Fill values
+        if (this.selectedDataRowIndex >= 0) {
+            
+            for (var i = 0; i < this.datasourceTransformations[this.selectedDataRowIndex].parameterValue.length; i++) {
+                if (i == 0 ) {
+                    this.parameter1Value = this.datasourceTransformations[this.selectedDataRowIndex].parameterValue[i];
+                };
+                if (i == 1 ) {
+                    this.parameter2Value = this.datasourceTransformations[this.selectedDataRowIndex].parameterValue[i];
+                };
+                if (i == 2 ) {
+                    this.parameter3Value = this.datasourceTransformations[this.selectedDataRowIndex].parameterValue[i];
+                };
+                if (i == 3 ) {
+                    this.parameter4Value = this.datasourceTransformations[this.selectedDataRowIndex].parameterValue[i];
+                };
+                if (i == 4 ) {
+                    this.parameter5Value = this.datasourceTransformations[this.selectedDataRowIndex].parameterValue[i];
+                };
+                if (i == 5 ) {
+                    this.parameter6Value = this.datasourceTransformations[this.selectedDataRowIndex].parameterValue[i];
+                };
+            };
+        };
+
+        // Fill the rest, ie field headers, title and placeholders
         for (var i = 0; i < this.transformations[this.selectedTransformationRowIndex].parameterHeading.length; i++) {
             if (i == 0 ) {
                 this.parameter1Heading = this.transformations[this.selectedTransformationRowIndex].parameterHeading[i];
@@ -215,27 +241,6 @@ export class DataTransformationComponent implements OnInit {
             };
             if (i == 5 ) {
                 this.parameter6Heading = this.transformations[this.selectedTransformationRowIndex].parameterHeading[i];
-            };
-        };
-
-        for (var i = 0; i < this.datasourceTransformations[index].parameterValue.length; i++) {
-            if (i == 0 ) {
-                this.parameter1Value = this.datasourceTransformations[index].parameterValue[i];
-            };
-            if (i == 1 ) {
-                this.parameter2Value = this.datasourceTransformations[index].parameterValue[i];
-            };
-            if (i == 2 ) {
-                this.parameter3Value = this.datasourceTransformations[index].parameterValue[i];
-            };
-            if (i == 3 ) {
-                this.parameter4Value = this.datasourceTransformations[index].parameterValue[i];
-            };
-            if (i == 4 ) {
-                this.parameter5Value = this.datasourceTransformations[index].parameterValue[i];
-            };
-            if (i == 5 ) {
-                this.parameter6Value = this.datasourceTransformations[index].parameterValue[i];
             };
         };
 
