@@ -131,16 +131,19 @@
                                 >
                         </div>
             
-                        <div class="gridParameter5">
-                            Parameter 5
-                        </div>
                         <div class="gridParameter6Title">
-                            <b>Param6:</b>
+                            <b>{{ parameter6Heading }}:</b>
                         </div>
                         <div class="gridParameter6">
-                            Parameter 6
+                            <input [(ngModel)]="parameter6Text"
+                                type="text"
+                                name="parameter6Text"
+                                [placeholder]="parameter6Placeholder"
+                                [title]="parameter6Title"
+                                [disabled]="!adding"
+                                >
                         </div>
-
+    
                         <div class="gridTransformationButtonSave"
                             >
                             <button

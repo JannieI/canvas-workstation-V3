@@ -84,6 +84,11 @@ export class DataTransformationComponent implements OnInit {
     parameter5Text: string = '50';
     parameter5Heading: string = 'Left 5';
 
+    parameter6Placeholder: string = 'Nr Chars from Left 6';
+    parameter6Title: string = 'aitsa 6';
+    parameter6Text: string = '60';
+    parameter6Heading: string = 'Left 6';
+
     selectedTransoformationRowIndex: number = 0;
     transformationDS: Transformation[] = [];
     transformations: Transformation[] = [];
