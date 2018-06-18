@@ -2695,15 +2695,14 @@ export class GlobalVariableService {
         });
     }
 
-
     getDatasourceTransformations(): Promise<DatasourceTransformation[]> {
         // Description: Gets DatasourceTransformations
         // Returns: this.DatasourceTransformation
         console.log('%c    Global-Variables getDatasourceTransformations ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
-        let url: string = 'DatasourceTransformations';
-        this.filePath = './asConnections/data.DatasourceTransformations.json';
+        let url: string = 'datasourceTransformations';
+        this.filePath = './asConnections/data.datasourceTransformations.json';
 
         return new Promise<DatasourceTransformation[]>((resolve, reject) => {
 
@@ -2726,6 +2725,74 @@ export class GlobalVariableService {
             }
         });
 
+    }
+
+    saveDatasourceTransformation(data: DatasourceTransformation): Promise<string> {
+        // Description: Saves DatasourceTransformation
+        // Returns: 'Saved' or error message
+        console.log('%c    Global-Variables saveDatasourceTransformation ...',
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+
+        let url: string = 'datasourceTransformations';
+        this.filePath = './assets/data.datasourceTransformations.json';
+
+        return new Promise<string>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.put('http://localhost:3001/' + url + '/' + data.id, data, {headers})
+            .subscribe(
+                res => {
+
+                    // Replace local
+                    let localIndex: number = this.datasourceTransformations.findIndex(d =>
+                        d.id == data.id
+                    );
+                    this.datasourceTransformations[localIndex] = data;
+
+                    console.log('saveDatasourceTransformation SAVED', res)
+                    resolve('Saved');
+                },
+                err => {
+                    console.log('Error saveDatasourceTransformation FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+        });
+    }
+
+    deleteDatasourceTransformation(id: number): Promise<string> {
+        // Description: Deletes a DatasourceTransformations
+        // Returns: 'Deleted' or error message
+        console.log('%c    Global-Variables deleteDatasourceTransformation ...',
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", id);
+
+        let url: string = 'datasourceTransformations';
+        this.filePath = './assets/data.datasourceTransformations.json';
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.delete('http://localhost:3001/' + url + '/' + id, {headers})
+            .subscribe(
+                data => {
+
+                    this.datasourceTransformations = this.datasourceTransformations.filter(
+                        dsp => dsp.id != id
+                    );
+
+                    console.log('deleteDatasourceTransformation DELETED id: ', id)
+                    resolve('Deleted');
+                },
+                err => {
+                    console.log('Error deleteDatasourceTransformation FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+        });
     }
 
     getDataTable(): Promise<DataTable[]> {
