@@ -26,6 +26,10 @@ import { Dataset }                    from './models';
 import { Transformation }             from './models';
 import { Field }                      from './models';
 
+interface localDatasourceTransformation extends DatasourceTransformation {
+    name?: string;           // Name of the Transformation to display on form
+}
+
 
 @Component({
     selector: 'data-transformation',
@@ -89,7 +93,7 @@ export class DataTransformationComponent implements OnInit {
 
     selectedTransformationRowIndex: number = 0;
     selectedDataRowIndex: number = 0;
-    datasourceTransformations: DatasourceTransformation[] = [];
+    datasourceTransformations: localDatasourceTransformation[] = [];
     transformations: Transformation[] = [];
 
     // connections ->
@@ -109,6 +113,15 @@ export class DataTransformationComponent implements OnInit {
                 // Set local Vars
                 this.datasourceTransformations = dtr.slice();
                 this.transformations = tr.slice();
+
+                // Fill name for display
+                this.datasourceTransformations.forEach(dtr => {
+                    this.transformations.forEach(tr => {
+                        if (dtr.transformationID == tr.id) {
+                            dtr.name = tr.name;
+                        };
+                    });
+                });
                 console.warn('xx tr', this.datasourceTransformations, this.transformations, this.selectedDatasource)
             });
         });
@@ -136,7 +149,15 @@ export class DataTransformationComponent implements OnInit {
         // Set seletected index - used for highlighting row
         this.selectedDataRowIndex = index;
 
-        console.warn('xx crow', this.datasourceTransformations[this.selectedDataRowIndex])
+        // Select the Tr master record
+        this.selectedTransformationRowIndex = this.transformations.findIndex(tr => tr.id == 
+            this.datasourceTransformations[this.selectedDataRowIndex].transformationID
+        );
+        console.warn('xx crow selectedTransformationRowIndex ', this.selectedTransformationRowIndex)
+        console.warn('xx crow tr-record', this.transformations[this.selectedTransformationRowIndex])
+        console.warn('xx crow selectedDataRowIndex ', this.selectedDataRowIndex)
+        console.warn('xx crow dsTr record ', this.datasourceTransformations[this.selectedDataRowIndex])
+
         // Reset
         this.parameter1Placeholder = '';
         this.parameter1Title = '';
