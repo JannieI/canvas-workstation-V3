@@ -174,6 +174,28 @@ console.warn('xx selectedDatasource', this.selectedDatasource)
                 this.parameter6Text = this.transformationDS[index].parameterText[i];
             };
         };
+
+        for (var i = 0; i <this.transformationDS[index].parameterTitle.length; i++) {
+            if (i == 0 ) {
+                this.parameter1Title = this.transformationDS[index].parameterTitle[i];
+            };
+            if (i == 1 ) {
+                this.parameter2Title = this.transformationDS[index].parameterTitle[i];
+            };
+            if (i == 2 ) {
+                this.parameter3Title = this.transformationDS[index].parameterTitle[i];
+            };
+            if (i == 3 ) {
+                this.parameter4Title = this.transformationDS[index].parameterTitle[i];
+            };
+            if (i == 4 ) {
+                this.parameter5Title = this.transformationDS[index].parameterTitle[i];
+            };
+            if (i == 5 ) {
+                this.parameter6Title = this.transformationDS[index].parameterTitle[i];
+            };
+        };
+    
     }
 
     clickMoveUp(index: number, id: number) {
