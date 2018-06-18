@@ -140,6 +140,7 @@ export class DataTransformationComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectedTransformation', '@Start');
 
         console.warn('xx clickSelectedTransformation',this.selectedTransformationRowIndex, this.transformationName)
+        this.clickFillParameters();
     }
 
     clickRow(index: number, id: number) {
@@ -158,6 +159,13 @@ export class DataTransformationComponent implements OnInit {
         console.warn('xx crow selectedDataRowIndex ', this.selectedDataRowIndex)
         console.warn('xx crow dsTr record ', this.datasourceTransformations[this.selectedDataRowIndex])
 
+        this.clickFillParameters();
+    }
+    
+    clickFillParameters() {
+            // Fill the Paramers, based on what was selected
+            this.globalFunctionService.printToConsole(this.constructor.name,'clickFillParameters', '@Start');
+    
         // Reset
         this.parameter1Placeholder = '';
         this.parameter1Title = '';
