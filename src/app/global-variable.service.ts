@@ -2727,6 +2727,39 @@ export class GlobalVariableService {
 
     }
 
+    addDatasourceTransformation(data: DatasourceTransformation): Promise<any> {
+        // Description: Adds a new DatasourceTransformation
+        // Returns: Added Data or error message
+        console.log('%c    Global-Variables addDatasourceTransformation ...',
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", data.id);
+
+        let url: string = 'datasourceTransformations';
+        this.filePath = './assets/data.datasourceTransformations.json';
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.post('http://localhost:3001/' + url, data, {headers})
+            .subscribe(
+                data => {
+
+                    // Update Global vars to make sure they remain in sync
+                    this.datasourceTransformations.push(JSON.parse(JSON.stringify(data)));
+
+                    console.log('addDatasourceTransformation ADDED', data, this.datasourceTransformations)
+
+                    resolve(data);
+                },
+                err => {
+                    console.log('Error addDatasourceTransformation FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+        });
+    }
+
     saveDatasourceTransformation(data: DatasourceTransformation): Promise<string> {
         // Description: Saves DatasourceTransformation
         // Returns: 'Saved' or error message
