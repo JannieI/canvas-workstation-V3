@@ -104,13 +104,20 @@
                                 [disabled]="!adding"
                                 >
                         </div>
-    
+
                         <div class="gridParameter4Title">
-                            <b>Param4:</b>
+                            <b>{{ parameter4Heading }}:</b>
                         </div>
                         <div class="gridParameter4">
-                            Parameter 4
+                            <input [(ngModel)]="parameter4Text"
+                                type="text"
+                                name="parameter4Text"
+                                [placeholder]="parameter4Placeholder"
+                                [title]="parameter4Title"
+                                [disabled]="!adding"
+                                >
                         </div>
+        
                         <div class="gridParameter5Title">
                             <b>Param5:</b>
                         </div>
