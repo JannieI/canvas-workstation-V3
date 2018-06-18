@@ -675,7 +675,11 @@ export class DataPopupComponent implements OnInit {
             name: 'Format Date',
             description: 'bla-bla-bla',
             fieldName: 'Trader',
-            parameters: [{paramName: '', paramValue: ''}]
+            parameters: [{paramName: '', paramValue: ''}],
+            parameterPlaceholder: ['place1'],
+            parameterTitle: ['tit1'],
+            parameterText: ['txt1'],
+            parameterHeading: ['head1']
         };
         this.currentTransformations.push(newTransformation);
     }

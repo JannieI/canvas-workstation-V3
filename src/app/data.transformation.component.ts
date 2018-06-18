@@ -132,6 +132,32 @@ console.warn('xx selectedDatasource', this.selectedDatasource)
 
         // Set seletected index - used for highlighting row
         this.selectedTransoformationRowIndex = index;
+
+        for (var i = 0; i <this.transformationDS[index].parameterHeading.length; i++) {
+            if (i == 0 ) {
+                this.parameter1Heading = this.transformationDS[index].parameterHeading[i];
+            };
+            if (i == 1 ) {
+                this.parameter2Heading = this.transformationDS[index].parameterHeading[i];
+            };
+            if (i == 2 ) {
+                this.parameter3Heading = this.transformationDS[index].parameterHeading[i];
+            };
+            if (i == 3 ) {
+                this.parameter4Heading = this.transformationDS[index].parameterHeading[i];
+            };
+            if (i == 4 ) {
+                this.parameter5Heading = this.transformationDS[index].parameterHeading[i];
+            };
+            if (i == 5 ) {
+                this.parameter6Heading = this.transformationDS[index].parameterHeading[i];
+            };
+            console.warn('xx this.transformationDS[index].parameterHeading', 
+                this.parameter1Heading,this.parameter2Heading,this.parameter3Heading,
+                this.parameter4Heading,this.parameter5Heading,this.parameter6Heading,
+            this.transformationDS[index].parameterHeading[i])
+                
+        };
     }
 
     clickMoveUp(index: number, id: number) {

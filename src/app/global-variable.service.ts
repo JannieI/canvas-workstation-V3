@@ -490,7 +490,7 @@ const transformationsFormat: Transformation[] =
         parameterPlaceholder: ['place1'],
         parameterTitle: ['tit1'],
         parameterText: ['txt1'],
-        parameterHeading: ['head1']
+        parameterHeading: ['head1','head2','head3','head4','head5','head6']
 
     },
     {
