@@ -196,6 +196,27 @@ console.warn('xx selectedDatasource', this.selectedDatasource)
             };
         };
     
+        for (var i = 0; i <this.transformationDS[index].parameterPlaceholder.length; i++) {
+            if (i == 0 ) {
+                this.parameter1Placeholder = this.transformationDS[index].parameterPlaceholder[i];
+            };
+            if (i == 1 ) {
+                this.parameter2Placeholder = this.transformationDS[index].parameterPlaceholder[i];
+            };
+            if (i == 2 ) {
+                this.parameter3Placeholder = this.transformationDS[index].parameterPlaceholder[i];
+            };
+            if (i == 3 ) {
+                this.parameter4Placeholder = this.transformationDS[index].parameterPlaceholder[i];
+            };
+            if (i == 4 ) {
+                this.parameter5Placeholder = this.transformationDS[index].parameterPlaceholder[i];
+            };
+            if (i == 5 ) {
+                this.parameter6Placeholder = this.transformationDS[index].parameterPlaceholder[i];
+            };
+        };
+
     }
 
     clickMoveUp(index: number, id: number) {
