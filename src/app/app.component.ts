@@ -1375,7 +1375,14 @@ export class AppComponent implements OnInit {
         // Open relevant form
         if (returnedDatasource != null) {
             this.selectedDatasource = returnedDatasource;
-            this.showModalDataManagedQueryBuilder = true;
+
+            if (this.globalVariableService.continueToTransformations) {
+                this.globalVariableService.continueToTransformations = false;
+                this.showModalDataTransformation = true;
+            } else {
+                this.showModalDataManagedQueryBuilder = true;
+            };
+
         };
     }
     

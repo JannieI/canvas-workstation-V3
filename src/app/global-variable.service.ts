@@ -697,6 +697,7 @@ export class GlobalVariableService {
     // This session
     // showSystemConfigButtons: boolean = true;       // Menu option called = True: SystemConfiguration, False: System Info
     sessionDateTimeLoggedin: string = '';
+    continueToTransformations: boolean = false;         // True after Edit DS -> Open Transformations form
     // sessionDashboardTabID: number = null;          // Tab ID to load when form opens, -1 = none
     // sessionLoadOnOpenDashboardID: number = null;   // Dashboard to load when form opens, 0 = none
     // sessionLoadOnOpenDashboardName: string = '';   // Dashboard to load when form opens, '' = none

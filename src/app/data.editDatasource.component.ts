@@ -80,6 +80,14 @@ export class DataEditDatasourceComponent implements OnInit {
         this.errorMessage = '';
     }
 
+    clickTransformation() {
+        // Close the form, and proceed to the Transformations of the relevant DS
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTransformation', '@Start');
+
+        this.globalVariableService.continueToTransformations = true;
+        this.clickContinue();
+    }
+
     clickClose() {
         // Close the form, no further action
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
