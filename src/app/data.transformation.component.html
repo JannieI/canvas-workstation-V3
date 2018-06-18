@@ -58,7 +58,13 @@
                             <b>Param1:</b>
                         </div>
                         <div class="gridParameter1">
-                            Parameter 1
+                            <input [(ngModel)]="parameter1Text"
+                                type="text"
+                                name="parameter1Text"
+                                [placeholder]="parameter1Placeholder"
+                                [title]="parameter1Title"
+                                [disabled]="!adding"
+                                >
                         </div>
                         <div class="gridParameter2Title">
                             <b>Param2:</b>

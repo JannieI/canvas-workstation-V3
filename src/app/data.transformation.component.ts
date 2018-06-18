@@ -58,6 +58,9 @@ export class DataTransformationComponent implements OnInit {
     serverType: string = 'MySQL';
     datasources: Datasource[];
     errorMessage: string = "";
+    parameter1Placeholder: string = 'Nr Chars from Left';
+    parameter1Title: string = 'aitsa';
+    parameter1Text: string = '10';
     selectedTransoformationRowIndex: number = 0;
     transformationDS: Transformation[] = [];
     transformations: Transformation[] = [];
@@ -74,6 +77,7 @@ export class DataTransformationComponent implements OnInit {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
+        this.parameter1Text = '10';
         this.transformationDS = this.globalVariableService.transformationsFormat;
         this.globalVariableService.getTransformations().then(tr => {
             this.globalVariableService.getDataField().then(df => {
@@ -118,6 +122,8 @@ console.warn('xx selectedDatasource', this.selectedDatasource)
         // Edit Transformation 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickEdit', '@Start');
 
+        this.adding = true;
+        
     }
     
     clickDelete(index: number, id: number) {
