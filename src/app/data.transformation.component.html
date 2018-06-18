@@ -68,9 +68,9 @@
                         </div>
 
                         <div class="gridParameter1Title">
-                            {{ parameter1Heading }}:
+                            <b>{{ parameter1Heading }}</b>
                         </div>
-                        <div class="gridParameter1">
+                        <div class="gridParameter1" *ngIf="parameter1Value">
                             <input [(ngModel)]="parameter1Value"
                                 type="parameter1Value"
                                 name="parameter1Value"
@@ -81,22 +81,23 @@
                         </div>
 
                         <div class="gridParameter2Title">
-                            {{ parameter2Heading }}:
+                            <b>{{ parameter2Heading }}</b>
                         </div>
-                        <div class="gridParameter2">
+                        <div class="gridParameter2" *ngIf="parameter2Value">
                             <input [(ngModel)]="parameter2Value"
                                 type="parameter2Value"
                                 name="parameter2Value"
                                 [placeholder]="parameter2Placeholder"
                                 [title]="parameter2Title"
                                 [disabled]="!adding"
+                                
                                 >
                         </div>
 
                         <div class="gridParameter3Title">
-                            {{ parameter3Heading }}:
+                            <b>{{ parameter3Heading }}</b>
                         </div>
-                        <div class="gridParameter3">
+                        <div class="gridParameter3" *ngIf="parameter3Value">
                             <input [(ngModel)]="parameter3Value"
                                 type="parameter3Value"
                                 name="parameter3Value"
@@ -107,9 +108,9 @@
                         </div>
 
                         <div class="gridParameter4Title">
-                            {{ parameter4Heading }}:
+                            <b>{{ parameter4Heading }}</b>
                         </div>
-                        <div class="gridParameter4">
+                        <div class="gridParameter4" *ngIf="parameter4Value">
                             <input [(ngModel)]="parameter4Value"
                                 type="parameter4Value"
                                 name="parameter4Value"
@@ -120,9 +121,9 @@
                         </div>
 
                         <div class="gridParameter5Title">
-                            {{ parameter5Heading }}:
+                            <b>{{ parameter5Heading }}</b>
                         </div>
-                        <div class="gridParameter5">
+                        <div class="gridParameter5" *ngIf="parameter5Value">
                             <input [(ngModel)]="parameter5Value"
                                 type="parameter51Value"
                                 name="parameter5Value"
@@ -133,9 +134,9 @@
                         </div>
             
                         <div class="gridParameter6Title">
-                            {{ parameter6Heading }}:
+                            <b>{{ parameter6Heading }}</b>
                         </div>
-                        <div class="gridParameter6">
+                        <div class="gridParameter6" *ngIf="parameter6Value">
                             <input [(ngModel)]="parameter6Value"
                                 type="parameter6Value"
                                 name="parameter6Value"

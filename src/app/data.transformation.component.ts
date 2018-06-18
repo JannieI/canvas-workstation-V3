@@ -86,10 +86,10 @@ export class DataTransformationComponent implements OnInit {
     parameter5Value: string = '';
     parameter5Heading: string = '';
 
-    parameter6Placeholder: string = 'Nr Chars from Left 6';
-    parameter6Title: string = 'aitsa 6';
-    parameter6Value: string = '60';
-    parameter6Heading: string = 'Left 6';
+    parameter6Placeholder: string = '';
+    parameter6Title: string = '';
+    parameter6Value: string = '';
+    parameter6Heading: string = '';
 
     selectedTransformationRowIndex: number = 0;
     selectedDataRowIndex: number = 0;
