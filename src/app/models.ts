@@ -416,6 +416,10 @@ export class Transformation {
     description: string;
     fieldName: string;
     parameters: {paramName: string; paramValue: string}[];
+    parameterPlaceholder: string[];
+    parameterTitle: string[];
+    parameterText: string[];
+    parameterHeading: string[];
 }
 
 export class DataConnection {

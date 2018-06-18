@@ -44,8 +44,8 @@
         margin-left: 12px;
     }
     .gridParameter1 {
-        grid-column-start: 9;
-        grid-column-end: 14;
+        grid-column-start: 8;
+        grid-column-end: 13;
         grid-row-start: 4;
         grid-row-end: 5;
         margin-top: 5px;
@@ -57,14 +57,13 @@
         grid-column-end: 15;
         grid-row-start: 4;
         grid-row-end: 5;
-        margin-left: 12px;
     }
     .gridParameter2 {
         grid-column-start: 15;
         grid-column-end: 20;
         grid-row-start: 4;
         grid-row-end: 5;
-        margin-left: 12px;
+        margin-left: 2px;
     }
 
     .gridParameter3Title {
@@ -76,8 +75,8 @@
         margin-left: 12px;
     }
     .gridParameter3 {
-        grid-column-start: 9;
-        grid-column-end: 14;
+        grid-column-start: 8;
+        grid-column-end: 13;
         grid-row-start: 6;
         grid-row-end: 7;
         margin-top: 5px;
@@ -90,7 +89,6 @@
         grid-row-start: 6;
         grid-row-end: 7;
         margin-top: 5px;
-        margin-left: 12px;
     }
     .gridParameter4 {
         grid-column-start: 15;
@@ -98,7 +96,7 @@
         grid-row-start: 6;
         grid-row-end: 7;
         margin-top: 5px;
-        margin-left: 12px;
+        margin-left: 2px;
     }
 
     .gridParameter5Title {
@@ -110,8 +108,8 @@
         margin-left: 12px;
     }
     .gridParameter5 {
-        grid-column-start: 9;
-        grid-column-end: 14;
+        grid-column-start: 8;
+        grid-column-end: 13;
         grid-row-start: 8;
         grid-row-end: 9;
         margin-top: 5px;
@@ -124,7 +122,6 @@
         grid-row-start: 8;
         grid-row-end: 9;
         margin-top: 5px;
-        margin-left: 12px;
     }
     .gridParameter6 {
         grid-column-start: 15;
@@ -132,7 +129,7 @@
         grid-row-start: 8;
         grid-row-end: 9;
         margin-top: 5px;
-        margin-left: 12px;
+        margin-left: 2px;
     }
 
     .gridTransformationButtonSave {
