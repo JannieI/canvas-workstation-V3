@@ -420,6 +420,7 @@ export class DatasourceTransformation {
 export class Transformation {
     id: number;                         // Unique ID
     category: string;                   // Category, ie based on a Column, etc
+    // NB: the name has to be unique: used so in code + else confusing to user
     name: string;                       // Name of transformation, ie FillBlank
     description: string;                // Description of transformation 
     

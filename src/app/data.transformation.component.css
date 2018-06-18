@@ -36,6 +36,7 @@
     }
 
     .gridParameter1Title {
+        font-size: 12px;
         grid-column-start: 7;
         grid-column-end: 9;
         grid-row-start: 4;
@@ -53,6 +54,7 @@
     }
 
     .gridParameter2Title {
+        font-size: 12px;
         grid-column-start: 14;
         grid-column-end: 15;
         grid-row-start: 4;
@@ -67,6 +69,7 @@
     }
 
     .gridParameter3Title {
+        font-size: 12px;
         grid-column-start: 7;
         grid-column-end: 9;
         grid-row-start: 6;
@@ -84,6 +87,7 @@
     }
 
     .gridParameter4Title {
+        font-size: 12px;
         grid-column-start: 14;
         grid-column-end: 15;
         grid-row-start: 6;
@@ -100,6 +104,7 @@
     }
 
     .gridParameter5Title {
+        font-size: 12px;
         grid-column-start: 7;
         grid-column-end: 9;
         grid-row-start: 8;
@@ -117,6 +122,7 @@
     }
 
     .gridParameter6Title {
+        font-size: 12px;
         grid-column-start: 14;
         grid-column-end: 15;
         grid-row-start: 8;
