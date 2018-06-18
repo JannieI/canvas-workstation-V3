@@ -152,11 +152,27 @@ console.warn('xx selectedDatasource', this.selectedDatasource)
             if (i == 5 ) {
                 this.parameter6Heading = this.transformationDS[index].parameterHeading[i];
             };
-            console.warn('xx this.transformationDS[index].parameterHeading', 
-                this.parameter1Heading,this.parameter2Heading,this.parameter3Heading,
-                this.parameter4Heading,this.parameter5Heading,this.parameter6Heading,
-            this.transformationDS[index].parameterHeading[i])
-                
+        };
+
+        for (var i = 0; i <this.transformationDS[index].parameterText.length; i++) {
+            if (i == 0 ) {
+                this.parameter1Text = this.transformationDS[index].parameterText[i];
+            };
+            if (i == 1 ) {
+                this.parameter2Text = this.transformationDS[index].parameterText[i];
+            };
+            if (i == 2 ) {
+                this.parameter3Text = this.transformationDS[index].parameterText[i];
+            };
+            if (i == 3 ) {
+                this.parameter4Text = this.transformationDS[index].parameterText[i];
+            };
+            if (i == 4 ) {
+                this.parameter5Text = this.transformationDS[index].parameterText[i];
+            };
+            if (i == 5 ) {
+                this.parameter6Text = this.transformationDS[index].parameterText[i];
+            };
         };
     }
 
