@@ -421,14 +421,12 @@ export class Transformation {
     category: string;                   // Category, ie based on a Column, etc
     name: string;                       // Name of transformation, ie FillBlank
     description: string;                // Description of transformation 
-    fieldName: string;
     
     // Parameter info
-    parameters: {paramName: string; paramValue: string}[];
-    parameterPlaceholder: string[];
-    parameterTitle: string[];
-    parameterText: string[];
-    parameterHeading: string[];
+    parameterPlaceholder: string[];     // Placeholder info, ie Fill in nr of characters ...
+    parameterTitle: string[];           // Title (tooltippie text)
+    parameterText: string[];            // Text / Value, ie 10 
+    parameterHeading: string[];         // Heading of field on form, ie Left
 }
 
 export class DataConnection {
