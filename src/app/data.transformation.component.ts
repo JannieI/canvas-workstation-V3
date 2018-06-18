@@ -58,9 +58,17 @@ export class DataTransformationComponent implements OnInit {
     serverType: string = 'MySQL';
     datasources: Datasource[];
     errorMessage: string = "";
+
     parameter1Placeholder: string = 'Nr Chars from Left';
     parameter1Title: string = 'aitsa';
     parameter1Text: string = '10';
+    parameter1Heading: string = 'Left';
+
+    parameter2Placeholder: string = 'Nr Chars from Left 2';
+    parameter2Title: string = 'aitsa 2';
+    parameter2Text: string = '20';
+    parameter2Heading: string = 'Left2';
+
     selectedTransoformationRowIndex: number = 0;
     transformationDS: Transformation[] = [];
     transformations: Transformation[] = [];

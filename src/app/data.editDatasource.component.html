@@ -31,10 +31,12 @@
                                     [style.color]="(i == selectedRowIndex)? 'white' : 'gray'"
                                     (click)="clickSelectedDatasource(i, row.id)"
                                     > 
-                                    <clr-icon shape="filter-grid"
-                                        size="24"
-                                        (click)="clickTransformation()">
-                                    </clr-icon>
+                                    <clr-dg-cell>
+                                        <clr-icon shape="filter-grid"
+                                            size="24"
+                                            (click)="clickTransformation(i, row.id)">
+                                        </clr-icon>
+                                    </clr-dg-cell>
                                     <clr-dg-cell>{{ row.nrWidgets }}</clr-dg-cell>
                                     <clr-dg-cell>{{ row.name }}</clr-dg-cell>
                                     <clr-dg-cell>{{ row.description }}</clr-dg-cell>

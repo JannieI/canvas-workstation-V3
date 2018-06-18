@@ -19,7 +19,7 @@
                                         clrSignpostTrigger>
                                     </clr-icon>
                                         <clr-signpost-content *clrIfOpen>
-                                        <h4 style="margin-top: 0">Description</h4>
+                                        <h6 style="margin-top: 0">Description:</h6>
                                         <p>
                                             {{ selectedDatasource.description }}
                                         </p>
@@ -67,7 +67,7 @@
                         </div>
 
                         <div class="gridParameter1Title">
-                            <b>Param1:</b>
+                            <b>{{ parameter1Heading }}:</b>
                         </div>
                         <div class="gridParameter1">
                             <input [(ngModel)]="parameter1Text"
@@ -78,12 +78,20 @@
                                 [disabled]="!adding"
                                 >
                         </div>
+
                         <div class="gridParameter2Title">
-                            <b>Param2:</b>
+                            <b>{{ parameter2Heading }}:</b>
                         </div>
                         <div class="gridParameter2">
-                            Parameter 2
+                            <input [(ngModel)]="parameter2Text"
+                                type="text"
+                                name="parameter2Text"
+                                [placeholder]="parameter2Placeholder"
+                                [title]="parameter2Title"
+                                [disabled]="!adding"
+                                >
                         </div>
+
                         <div class="gridParameter3Title">
                             <b>Param3:</b>
                         </div>
