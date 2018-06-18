@@ -409,12 +409,21 @@ export class DatasourcePermission {
     canDelete: boolean;                 // Can Delete a DS (Definition, not the Data)
 }
 
+export class DatasourceTransformation {
+    id: number;                         // Unique ID
+    datasourceID: number;               // FK to DS
+    sequence: number;                   // Order, 1 at top
+    parameterText: string[];            // Parameter Values for this transformation
+}
+
 export class Transformation {
-    id: number;
-    category: string;
-    name: string;
-    description: string;
+    id: number;                         // Unique ID
+    category: string;                   // Category, ie based on a Column, etc
+    name: string;                       // Name of transformation, ie FillBlank
+    description: string;                // Description of transformation 
     fieldName: string;
+    
+    // Parameter info
     parameters: {paramName: string; paramValue: string}[];
     parameterPlaceholder: string[];
     parameterTitle: string[];
