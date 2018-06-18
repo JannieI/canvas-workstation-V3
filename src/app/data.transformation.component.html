@@ -31,10 +31,10 @@
 
                         <div class="select gridTransformationSelect">
                             <select
-                                [(ngModel)]="connectionName"
-                                name="connectionSelect"
+                                [(ngModel)]="transformationName"
+                                name="transformationName"
                                 (change)="clickSelect($event)"
-                                placeholder="Select previously stored Connection"
+                                placeholder="Select a valid Transformation"
                                 >
                                 <option *ngFor="let row of transformations">
                                     {{ row.name }}
@@ -169,7 +169,7 @@
                                 <clr-dg-column [clrDgField]="nameDB">Transformation</clr-dg-column>
 
                                 <clr-dg-row
-                                    *clrDgItems="let row of transformationDS; let i = index"
+                                    *clrDgItems="let row of datasourceTransformations; let i = index"
                                     [style.background-color]="(i == selectedTransoformationRowIndex)? '#123456' : 'white'"
                                     [style.color]="(i == selectedTransoformationRowIndex)? 'white' : 'gray'"
                                     (click)="clickSelectedTransformation(i, row.id)"
