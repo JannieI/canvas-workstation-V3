@@ -20,10 +20,10 @@
                                 <clr-dg-placeholder>
                                     No records ...
                                 </clr-dg-placeholder>
-                                <clr-dg-column [clrDgField]="">Transform</clr-dg-column>
-                                <clr-dg-column [clrDgField]="">#Widgets</clr-dg-column>
-                                <clr-dg-column [clrDgField]="">Name</clr-dg-column>
-                                <clr-dg-column [clrDgField]="">Description</clr-dg-column>
+                                <clr-dg-column>Transform</clr-dg-column>
+                                <clr-dg-column [clrDgField]="nrWidgets">#Widgets</clr-dg-column>
+                                <clr-dg-column [clrDgField]="name">Name</clr-dg-column>
+                                <clr-dg-column [clrDgField]="description">Description</clr-dg-column>
     
                                 <clr-dg-row
                                     *ngFor="let row of datasources; let i = index"
@@ -32,7 +32,7 @@
                                     (click)="clickSelectedDatasource(i, row.id)"
                                     > 
                                     <clr-icon shape="filter-grid"
-                                        size="12"
+                                        size="24"
                                         (click)="clickTransformation()">
                                     </clr-icon>
                                     <clr-dg-cell>{{ row.nrWidgets }}</clr-dg-cell>

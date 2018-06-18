@@ -2,7 +2,7 @@
         <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
             <div class="modal-content">
                 <form #f="ngForm" role="form" novalidate>
-    
+
                     <button type="button" class="closeButton" (click)="clickClose()">
                         X
                     </button>
@@ -12,11 +12,23 @@
                         </div>
                         <div class="gridSubTitle">
                             <i>
-                                Add transformations to the Datasource: TradesPerMonth (for table 
-                                tradestatprmnt).  
+                                Add transformations to the Datasource:
+                                {{ selectedDatasource.name }} 
+                                <clr-signpost>
+                                    <clr-icon shape="info-circle"
+                                        clrSignpostTrigger>
+                                    </clr-icon>
+                                        <clr-signpost-content *clrIfOpen>
+                                        <h4 style="margin-top: 0">Description</h4>
+                                        <p>
+                                            {{ selectedDatasource.description }}
+                                        </p>
+                                    </clr-signpost-content>
+                                </clr-signpost>
+        
                             </i>
                         </div>
-       
+
                         <div class="select gridTransformationSelect">
                             <select
                                 [(ngModel)]="connectionName"
@@ -29,7 +41,7 @@
                                 </option>
                             </select>
                         </div>
-    
+
                         <div class="gridTransformationSignpost">
                             <clr-signpost>
                                 <clr-icon shape="info-circle"
@@ -37,13 +49,13 @@
                                 </clr-icon>
                                     <clr-signpost-content *clrIfOpen>
                                     <h4 style="margin-top: 0">Annotation</h4>
-                                    <p> 
+                                    <p>
                                         {{ selectedDatasource.description }}
                                     </p>
                                 </clr-signpost-content>
                             </clr-signpost>
                         </div>
-    
+
                         <div class="gridTransformationButtonAdd">
                             <button
                                 type="button"
@@ -53,7 +65,7 @@
                                 Add
                             </button>
                         </div>
-                             
+
                         <div class="gridParameter1Title">
                             <b>Param1:</b>
                         </div>
@@ -95,8 +107,8 @@
                         </div>
                         <div class="gridParameter6">
                             Parameter 6
-                        </div>                            
-    
+                        </div>
+
                         <div class="gridTransformationButtonSave"
                             >
                             <button
@@ -108,11 +120,11 @@
                                 Save
                             </button>
                         </div>
-    
+
                         <div *ngIf="errorMessage!=''" class="gridErrorMessage">
                             {{ errorMessage }}
                         </div>
-    
+
                         <div class="gridTransformations">
                             <clr-datagrid>
                                 <clr-dg-placeholder>
@@ -146,11 +158,11 @@
                                             (click)="clickDelete()">
                                         </clr-icon>
                                     </clr-dg-cell>
-                                    
+
                                 </clr-dg-row>
                             </clr-datagrid>
-                        </div>  
-    
+                        </div>
+
                         <div class="gridResult">
                             <clr-datagrid>
                                 <clr-dg-placeholder>
@@ -168,11 +180,10 @@
 
                                 </clr-dg-row>
                             </clr-datagrid>
-                        </div>  
-    
+                        </div>
+
                     </div>
                 </form>
             </div>
         </div>
     </div>
-    
