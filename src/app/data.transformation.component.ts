@@ -133,6 +133,37 @@ console.warn('xx selectedDatasource', this.selectedDatasource)
         // Set seletected index - used for highlighting row
         this.selectedTransoformationRowIndex = index;
 
+        // Reset
+        this.parameter1Placeholder = '';
+        this.parameter1Title = '';
+        this.parameter1Text = '';
+        this.parameter1Heading = '';
+
+        this.parameter2Placeholder = '';
+        this.parameter2Title = '';
+        this.parameter2Text = '';
+        this.parameter2Heading = '';
+
+        this.parameter3Placeholder = '';
+        this.parameter3Title = '';
+        this.parameter3Text = '';
+        this.parameter3Heading = '';
+
+        this.parameter4Placeholder = '';
+        this.parameter4Title = '';
+        this.parameter4Text = '';
+        this.parameter4Heading = '';
+
+        this.parameter5Placeholder = '';
+        this.parameter5Title = '';
+        this.parameter5Text = '';
+        this.parameter5Heading = '';
+
+        this.parameter6Placeholder = '';
+        this.parameter6Title = '';
+        this.parameter6Text = '';
+        this.parameter6Heading = '';
+
         for (var i = 0; i <this.transformationDS[index].parameterHeading.length; i++) {
             if (i == 0 ) {
                 this.parameter1Heading = this.transformationDS[index].parameterHeading[i];
