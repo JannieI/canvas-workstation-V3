@@ -35,7 +35,7 @@
                                 name="transformationName"
                                 (change)="clickSelect($event)"
                                 placeholder="Select a valid Transformation"
-                                (click)="clickSelectedTransformation(i, row.id)"
+                                (click)="clickSelectedTransformation()"
                                 >
                                 <option *ngFor="let row of transformations">
                                     {{ row.name }}

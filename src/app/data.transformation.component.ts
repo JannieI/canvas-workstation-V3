@@ -122,10 +122,11 @@ export class DataTransformationComponent implements OnInit {
         console.warn('xx ev', ev.target.value)
     }
 
-    clickSelectedTransformation(index: number, id: number) {
+    clickSelectedTransformation() {
         // Click on Transformation 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectedTransformation', '@Start');
-        this.selectedTransformationRowIndex = index;
+
+        console.warn('xx clickSelectedTransformation',this.selectedTransformationRowIndex, this.transformationName)
     }
 
     clickRow(index: number, id: number) {
