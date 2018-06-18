@@ -59,35 +59,36 @@ export class DataTransformationComponent implements OnInit {
 
     parameter1Placeholder: string = '';
     parameter1Title: string = '';
-    parameter1Text: string = '';
+    parameter1Value: string = '';
     parameter1Heading: string = '';
 
     parameter2Placeholder: string = '';
     parameter2Title: string = '';
-    parameter2Text: string = '';
+    parameter2Value: string = '';
     parameter2Heading: string = '';
 
     parameter3Placeholder: string = '';
     parameter3Title: string = '';
-    parameter3Text: string = '';
+    parameter3Value: string = '';
     parameter3Heading: string = '';
 
     parameter4Placeholder: string = '';
     parameter4Title: string = '';
-    parameter4Text: string = '';
+    parameter4Value: string = '';
     parameter4Heading: string = '';
 
     parameter5Placeholder: string = '';
     parameter5Title: string = '';
-    parameter5Text: string = '';
+    parameter5Value: string = '';
     parameter5Heading: string = '';
 
     parameter6Placeholder: string = 'Nr Chars from Left 6';
     parameter6Title: string = 'aitsa 6';
-    parameter6Text: string = '60';
+    parameter6Value: string = '60';
     parameter6Heading: string = 'Left 6';
 
-    selectedTransoformationRowIndex: number = 0;
+    selectedTransformationRowIndex: number = 0;
+    selectedDataRowIndex: number = 0;
     datasourceTransformations: DatasourceTransformation[] = [];
     transformations: Transformation[] = [];
 
@@ -122,124 +123,130 @@ export class DataTransformationComponent implements OnInit {
     }
 
     clickSelectedTransformation(index: number, id: number) {
-        // Click on Transformation row
+        // Click on Transformation 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectedTransformation', '@Start');
+        this.selectedTransformationRowIndex = index;
+    }
+
+    clickRow(index: number, id: number) {
+        // Click on DatasourceTransformation row
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
 
         // Set seletected index - used for highlighting row
-        this.selectedTransoformationRowIndex = index;
+        this.selectedDataRowIndex = index;
 
         // Reset
         this.parameter1Placeholder = '';
         this.parameter1Title = '';
-        this.parameter1Text = '';
+        this.parameter1Value = '';
         this.parameter1Heading = '';
 
         this.parameter2Placeholder = '';
         this.parameter2Title = '';
-        this.parameter2Text = '';
+        this.parameter2Value = '';
         this.parameter2Heading = '';
 
         this.parameter3Placeholder = '';
         this.parameter3Title = '';
-        this.parameter3Text = '';
+        this.parameter3Value = '';
         this.parameter3Heading = '';
 
         this.parameter4Placeholder = '';
         this.parameter4Title = '';
-        this.parameter4Text = '';
+        this.parameter4Value = '';
         this.parameter4Heading = '';
 
         this.parameter5Placeholder = '';
         this.parameter5Title = '';
-        this.parameter5Text = '';
+        this.parameter5Value = '';
         this.parameter5Heading = '';
 
         this.parameter6Placeholder = '';
         this.parameter6Title = '';
-        this.parameter6Text = '';
+        this.parameter6Value = '';
         this.parameter6Heading = '';
 
-        for (var i = 0; i <this.transformations[index].parameterHeading.length; i++) {
+        for (var i = 0; i < this.transformations[this.selectedTransformationRowIndex].parameterHeading.length; i++) {
             if (i == 0 ) {
-                this.parameter1Heading = this.transformations[index].parameterHeading[i];
+                this.parameter1Heading = this.transformations[this.selectedTransformationRowIndex].parameterHeading[i];
             };
             if (i == 1 ) {
-                this.parameter2Heading = this.transformations[index].parameterHeading[i];
+                this.parameter2Heading = this.transformations[this.selectedTransformationRowIndex].parameterHeading[i];
             };
             if (i == 2 ) {
-                this.parameter3Heading = this.transformations[index].parameterHeading[i];
+                this.parameter3Heading = this.transformations[this.selectedTransformationRowIndex].parameterHeading[i];
             };
             if (i == 3 ) {
-                this.parameter4Heading = this.transformations[index].parameterHeading[i];
+                this.parameter4Heading = this.transformations[this.selectedTransformationRowIndex].parameterHeading[i];
             };
             if (i == 4 ) {
-                this.parameter5Heading = this.transformations[index].parameterHeading[i];
+                this.parameter5Heading = this.transformations[this.selectedTransformationRowIndex].parameterHeading[i];
             };
             if (i == 5 ) {
-                this.parameter6Heading = this.transformations[index].parameterHeading[i];
+                this.parameter6Heading = this.transformations[this.selectedTransformationRowIndex].parameterHeading[i];
             };
         };
 
-        for (var i = 0; i <this.datasourceTransformations[index].parameterText.length; i++) {
+        for (var i = 0; i < this.datasourceTransformations[index].parameterValue.length; i++) {
             if (i == 0 ) {
-                this.parameter1Text = this.datasourceTransformations[index].parameterText[i];
+                this.parameter1Value = this.datasourceTransformations[index].parameterValue[i];
             };
             if (i == 1 ) {
-                this.parameter2Text = this.datasourceTransformations[index].parameterText[i];
+                this.parameter2Value = this.datasourceTransformations[index].parameterValue[i];
             };
             if (i == 2 ) {
-                this.parameter3Text = this.datasourceTransformations[index].parameterText[i];
+                this.parameter3Value = this.datasourceTransformations[index].parameterValue[i];
             };
             if (i == 3 ) {
-                this.parameter4Text = this.datasourceTransformations[index].parameterText[i];
+                this.parameter4Value = this.datasourceTransformations[index].parameterValue[i];
             };
             if (i == 4 ) {
-                this.parameter5Text = this.datasourceTransformations[index].parameterText[i];
+                this.parameter5Value = this.datasourceTransformations[index].parameterValue[i];
             };
             if (i == 5 ) {
-                this.parameter6Text = this.datasourceTransformations[index].parameterText[i];
+                this.parameter6Value = this.datasourceTransformations[index].parameterValue[i];
             };
         };
 
-        for (var i = 0; i <this.transformations[index].parameterTitle.length; i++) {
+        for (var i = 0; i < this.transformations[this.selectedTransformationRowIndex].parameterTitle.length; i++) {
             if (i == 0 ) {
-                this.parameter1Title = this.transformations[index].parameterTitle[i];
+                this.parameter1Title = this.transformations[this.selectedTransformationRowIndex].parameterTitle[i];
             };
             if (i == 1 ) {
-                this.parameter2Title = this.transformations[index].parameterTitle[i];
+                this.parameter2Title = this.transformations[this.selectedTransformationRowIndex].parameterTitle[i];
             };
             if (i == 2 ) {
-                this.parameter3Title = this.transformations[index].parameterTitle[i];
+                this.parameter3Title = this.transformations[this.selectedTransformationRowIndex].parameterTitle[i];
             };
             if (i == 3 ) {
-                this.parameter4Title = this.transformations[index].parameterTitle[i];
+                this.parameter4Title = this.transformations[this.selectedTransformationRowIndex].parameterTitle[i];
             };
             if (i == 4 ) {
-                this.parameter5Title = this.transformations[index].parameterTitle[i];
+                this.parameter5Title = this.transformations[this.selectedTransformationRowIndex].parameterTitle[i];
             };
             if (i == 5 ) {
-                this.parameter6Title = this.transformations[index].parameterTitle[i];
+                this.parameter6Title = this.transformations[this.selectedTransformationRowIndex].parameterTitle[i];
             };
         };
     
-        for (var i = 0; i <this.transformations[index].parameterPlaceholder.length; i++) {
+        for (var i = 0; i < this.transformations[this.selectedTransformationRowIndex].parameterPlaceholder.length; i++) {
             if (i == 0 ) {
-                this.parameter1Placeholder = this.transformations[index].parameterPlaceholder[i];
+                this.parameter1Placeholder = this.transformations[this.selectedTransformationRowIndex].parameterPlaceholder[i];
             };
             if (i == 1 ) {
-                this.parameter2Placeholder = this.transformations[index].parameterPlaceholder[i];
+                this.parameter2Placeholder = this.transformations[this.selectedTransformationRowIndex].parameterPlaceholder[i];
             };
             if (i == 2 ) {
-                this.parameter3Placeholder = this.transformations[index].parameterPlaceholder[i];
+                this.parameter3Placeholder = this.transformations[this.selectedTransformationRowIndex].parameterPlaceholder[i];
             };
             if (i == 3 ) {
-                this.parameter4Placeholder = this.transformations[index].parameterPlaceholder[i];
+                this.parameter4Placeholder = this.transformations[this.selectedTransformationRowIndex].parameterPlaceholder[i];
             };
             if (i == 4 ) {
-                this.parameter5Placeholder = this.transformations[index].parameterPlaceholder[i];
+                this.parameter5Placeholder = this.transformations[this.selectedTransformationRowIndex].parameterPlaceholder[i];
             };
             if (i == 5 ) {
-                this.parameter6Placeholder = this.transformations[index].parameterPlaceholder[i];
+                this.parameter6Placeholder = this.transformations[this.selectedTransformationRowIndex].parameterPlaceholder[i];
             };
         };
 

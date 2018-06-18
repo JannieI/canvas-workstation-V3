@@ -488,7 +488,7 @@ const transformationsFormat: Transformation[] =
         description: '(columnName, new-date-format, old-date-format): if the columnName is blank, Tributary will try to convert all date fields.  The format can be YYYYMMDD, MMMMM, M/D/Y, etc.',
         parameterPlaceholder: ['place1','place2','place3','place4','place5','place6'],
         parameterTitle: ['tit1','tit2','tit3','tit4','tit5','tit6'],
-        parameterText: ['txt1','txt2','txt3','txt4','txt5','txt6'],
+        parameterDefaultValue: ['txt1','txt2','txt3','txt4','txt5','txt6'],
         parameterHeading: ['head1','head2','head3','head4','head5','head6']
 
     },
@@ -499,7 +499,7 @@ const transformationsFormat: Transformation[] =
         description: '(columnName, DatePart) extracts a portion from the date.  For example, DatePart can be Day, Month, Year, Hour, Minute, Second',
         parameterPlaceholder: ['place1'],
         parameterTitle: ['tit1'],
-        parameterText: ['txt1'],
+        parameterDefaultValue: ['txt1'],
         parameterHeading: ['head1']
 
     },
@@ -510,7 +510,7 @@ const transformationsFormat: Transformation[] =
         description: '(columnName, formatString) where formatString is a valid string in Excel (VBA) format.  For example, ‘#0.00’, R#0,00’, ‘0000’',
         parameterPlaceholder: ['place1'],
         parameterTitle: ['tit1'],
-        parameterText: ['txt1'],
+        parameterDefaultValue: ['txt1'],
         parameterHeading: ['head1']
 
     }

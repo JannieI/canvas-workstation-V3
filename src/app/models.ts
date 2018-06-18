@@ -413,7 +413,7 @@ export class DatasourceTransformation {
     id: number;                         // Unique ID
     datasourceID: number;               // FK to DS
     sequence: number;                   // Order, 1 at top
-    parameterText: string[];            // Parameter Values for this transformation
+    parameterValue: string[];           // Parameter Values for this transformation
 }
 
 export class Transformation {
@@ -425,7 +425,7 @@ export class Transformation {
     // Parameter info
     parameterPlaceholder: string[];     // Placeholder info, ie Fill in nr of characters ...
     parameterTitle: string[];           // Title (tooltippie text)
-    parameterText: string[];            // Text / Value, ie 10 
+    parameterDefaultValue: string[];    // Default Text / Value when creating a new record
     parameterHeading: string[];         // Heading of field on form, ie Left
 }
 

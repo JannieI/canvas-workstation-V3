@@ -35,6 +35,7 @@
                                 name="transformationName"
                                 (change)="clickSelect($event)"
                                 placeholder="Select a valid Transformation"
+                                (click)="clickSelectedTransformation(i, row.id)"
                                 >
                                 <option *ngFor="let row of transformations">
                                     {{ row.name }}
@@ -70,9 +71,9 @@
                             <b>{{ parameter1Heading }}:</b>
                         </div>
                         <div class="gridParameter1">
-                            <input [(ngModel)]="parameter1Text"
-                                type="text"
-                                name="parameter1Text"
+                            <input [(ngModel)]="parameter1Value"
+                                type="parameter1Value"
+                                name="parameter1Value"
                                 [placeholder]="parameter1Placeholder"
                                 [title]="parameter1Title"
                                 [disabled]="!adding"
@@ -83,9 +84,9 @@
                             <b>{{ parameter2Heading }}:</b>
                         </div>
                         <div class="gridParameter2">
-                            <input [(ngModel)]="parameter2Text"
-                                type="text"
-                                name="parameter2Text"
+                            <input [(ngModel)]="parameter2Value"
+                                type="parameter2Value"
+                                name="parameter2Value"
                                 [placeholder]="parameter2Placeholder"
                                 [title]="parameter2Title"
                                 [disabled]="!adding"
@@ -96,9 +97,9 @@
                             <b>{{ parameter3Heading }}:</b>
                         </div>
                         <div class="gridParameter3">
-                            <input [(ngModel)]="parameter3Text"
-                                type="text"
-                                name="parameter3Text"
+                            <input [(ngModel)]="parameter3Value"
+                                type="parameter3Value"
+                                name="parameter3Value"
                                 [placeholder]="parameter3Placeholder"
                                 [title]="parameter3Title"
                                 [disabled]="!adding"
@@ -109,9 +110,9 @@
                             <b>{{ parameter4Heading }}:</b>
                         </div>
                         <div class="gridParameter4">
-                            <input [(ngModel)]="parameter4Text"
-                                type="text"
-                                name="parameter4Text"
+                            <input [(ngModel)]="parameter4Value"
+                                type="parameter4Value"
+                                name="parameter4Value"
                                 [placeholder]="parameter4Placeholder"
                                 [title]="parameter4Title"
                                 [disabled]="!adding"
@@ -122,9 +123,9 @@
                             <b>{{ parameter5Heading }}:</b>
                         </div>
                         <div class="gridParameter5">
-                            <input [(ngModel)]="parameter5Text"
-                                type="text"
-                                name="parameter5Text"
+                            <input [(ngModel)]="parameter5Value"
+                                type="parameter51Value"
+                                name="parameter5Value"
                                 [placeholder]="parameter5Placeholder"
                                 [title]="parameter5Title"
                                 [disabled]="!adding"
@@ -135,9 +136,9 @@
                             <b>{{ parameter6Heading }}:</b>
                         </div>
                         <div class="gridParameter6">
-                            <input [(ngModel)]="parameter6Text"
-                                type="text"
-                                name="parameter6Text"
+                            <input [(ngModel)]="parameter6Value"
+                                type="parameter6Value"
+                                name="parameter6Value"
                                 [placeholder]="parameter6Placeholder"
                                 [title]="parameter6Title"
                                 [disabled]="!adding"
@@ -172,7 +173,7 @@
                                     *clrDgItems="let row of datasourceTransformations; let i = index"
                                     [style.background-color]="(i == selectedTransoformationRowIndex)? '#123456' : 'white'"
                                     [style.color]="(i == selectedTransoformationRowIndex)? 'white' : 'gray'"
-                                    (click)="clickSelectedTransformation(i, row.id)"
+                                    (click)="clickRow(i, row.id)"
                                     >
                                     <clr-dg-cell>
                                         <clr-icon shape="pencil"
