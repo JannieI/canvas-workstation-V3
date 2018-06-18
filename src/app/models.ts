@@ -411,6 +411,7 @@ export class DatasourcePermission {
 
 export class DatasourceTransformation {
     id: number;                         // Unique ID
+    transformationID: number;           // FK to Tr
     datasourceID: number;               // FK to DS
     sequence: number;                   // Order, 1 at top
     parameterValue: string[];           // Parameter Values for this transformation

@@ -136,6 +136,7 @@ export class DataTransformationComponent implements OnInit {
         // Set seletected index - used for highlighting row
         this.selectedDataRowIndex = index;
 
+        console.warn('xx crow', this.datasourceTransformations[this.selectedDataRowIndex])
         // Reset
         this.parameter1Placeholder = '';
         this.parameter1Title = '';
