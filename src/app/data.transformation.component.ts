@@ -409,6 +409,13 @@ export class DataTransformationComponent implements OnInit {
         this.adding = true;
     }
 
+    clickCancel() {
+        // Cancel Editing Transformation parameters
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickCancel', '@Start');
+
+        this.adding = false;
+    }
+
     clickSave() {
         // Save Transformation and its parameters
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
