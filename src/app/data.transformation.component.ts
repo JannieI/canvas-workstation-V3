@@ -492,7 +492,11 @@ export class DataTransformationComponent implements OnInit {
             };
 
             // Save to DB
-            this.globalVariableService.addDatasourceTransformation(newDatasourceTransition);
+            this.globalVariableService.addDatasourceTransformation(newDatasourceTransition)
+                .then(dtr => {
+                    this.datasourceTransformations.push(dtr) 
+                }
+            );
             console.warn('xx new', newDatasourceTransition)
         };
 
@@ -518,6 +522,13 @@ export class DataTransformationComponent implements OnInit {
         // Delete Transformation 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDelete', '@Start');
 
+        // Delete from local and DB
+        this.globalVariableService.deleteDatasourceTransformation(id).then(res => {
+            this.datasourceTransformations = this.datasourceTransformations.filter(dtr => {
+                dtr.id != id
+            });
+        });
+    
     }
 
     clickCancel() {
