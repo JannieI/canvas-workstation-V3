@@ -169,7 +169,7 @@ export class DataTransformationComponent implements OnInit {
                 this.selectedTransformationRowIndex].nrParameters;
         };
 
-        console.warn('xx clickSelectedTransformation',this.selectedTransformationRowIndex, this.transformationName)
+        // Fill form
         this.clickFillParameters(this.selectedTransformationRowIndex, -1);
     }
 
@@ -199,11 +199,7 @@ export class DataTransformationComponent implements OnInit {
                 this.selectedTransformationRowIndex].nrParameters;
         };
 
-        // console.warn('xx crow selectedTransformationRowIndex ', this.selectedTransformationRowIndex)
-        // console.warn('xx crow tr-record', this.transformations[this.selectedTransformationRowIndex])
-        // console.warn('xx crow selectedDataRowIndex ', this.selectedDataRowIndex)
-        // console.warn('xx crow dsTr record ', this.datasourceTransformations[this.selectedDataRowIndex])
-
+        // Fill form
         this.clickFillParameters(this.selectedTransformationRowIndex, this.selectedDataRowIndex);
     }
 
