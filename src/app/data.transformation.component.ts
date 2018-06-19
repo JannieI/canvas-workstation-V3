@@ -147,18 +147,10 @@ export class DataTransformationComponent implements OnInit {
                 if (this.datasourceTransformations.length > 0) {
                     this.clickRow(0, this.datasourceTransformations[0].id);
                 };
-                console.warn('xx tr', this.datasourceTransformations, this.transformations, this.selectedDatasource)
             });
         });
     }
 
-    clickSelect(ev: any) {
-        // Select a Transformation
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelect', '@Start');
-
-        // Set seletected index - used for highlighting row
-        console.warn('xx ev', ev.target.value)
-    }
 
     clickSelectedTransformation() {
         // Click on Transformation
@@ -523,7 +515,6 @@ export class DataTransformationComponent implements OnInit {
                     let newID: number = dtr.id;
                     let newIndex: number = this.datasourceTransformations.findIndex(d => 
                         d.id == newID);
-                    console.warn('xx Sav', newIndex, newID, this.adding, this.editing)
                     this.clickRow(newIndex, newID);
 
                 }
@@ -560,7 +551,6 @@ export class DataTransformationComponent implements OnInit {
             // Refresh previous row
             let newIndex: number = index > 0? index - 1 : 0;
             let newID: number = this.datasourceTransformations[newIndex].id;
-            console.warn('xx Del', newIndex, newID, this.adding, this.editing)
             this.clickRow(newIndex, newID);
         });
 
