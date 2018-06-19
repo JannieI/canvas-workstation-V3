@@ -111,7 +111,9 @@ export class DataTransformationComponent implements OnInit {
         this.globalVariableService.getDatasourceTransformations().then(dtr => {
             this.globalVariableService.getTransformations().then(tr => {
                 // Set local Vars
-                this.datasourceTransformations = dtr.slice().sort( (obj1,obj2) => {
+                this.datasourceTransformations = dtr.filter(ftr =>
+                    ftr.datasourceID == this.selectedDatasource.id
+                ).sort( (obj1,obj2) => {
                     if (obj1.sequence > obj2.sequence) {
                         return 1;
                     };
@@ -310,14 +312,22 @@ export class DataTransformationComponent implements OnInit {
         };
 
         // Get 2 records
-        let previous: localDatasourceTransformation = this.datasourceTransformations[index - 1]
-            // .slice(index - 1, index);
-        let selected: localDatasourceTransformation = this.datasourceTransformations[index]
-            // .slice(index, index + 1);
-console.warn('xx hier', previous, selected)
+        let previousSequence: number = this.datasourceTransformations[index - 1].sequence;
+        let selectedSequence: number = this.datasourceTransformations[index].sequence;
+console.warn('xx hier', previousSequence, selectedSequence)
 
-        // Remove 2, and insert in reverse order
-        this.datasourceTransformations.splice(index, 2, selected, previous);
+        // Swap Sequence, and sort again
+        this.datasourceTransformations[index - 1].sequence = selectedSequence;
+        this.datasourceTransformations[index].sequence = previousSequence;
+        this.datasourceTransformations = this.datasourceTransformations.sort( (obj1,obj2) => {
+            if (obj1.sequence > obj2.sequence) {
+                return 1;
+            };
+            if (obj1.sequence < obj2.sequence) {
+                return -1;
+            };
+            return 0;
+        });
     }
     
     clickMoveDown(index: number, id: number) {
