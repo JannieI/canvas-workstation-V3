@@ -71,6 +71,7 @@ export class DataCombinationAppendComponent implements OnInit {
     fileName: string = '';
     folderName: string = '';
     finalFields: any = [];
+    selectedDatasources: Datasource[];
     selectedDatasource: Datasource;
     selectedRowID: number = 0;
     selectedRowIndex: number = 0;

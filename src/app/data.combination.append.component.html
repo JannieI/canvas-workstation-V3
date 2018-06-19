@@ -7,28 +7,27 @@
                 </button>
                 <div class="gridOverall">
                     <div class="gridTitle">
-                        Apend Datasources 
+                        Append Datasources :
                     </div> 
                     <div class="gridSubTitle">
                         <i>
                             Create a new Datasources by appending the selected Datasources to the
                             end of the first one.  Note that only Datasources with the same number
                             of fields and the same type of fields can be appended.
+                            <span class="username" *ngIf="selectedDatasources">{{selectedDatasources.name}}</span>
                         </i>
                     </div>
              
                     <div class="gridDatasources">
-                        <clr-datagrid> 
-                            <clr-dg-placeholder>
-                                No records ...
-                            </clr-dg-placeholder>
+                        <clr-datagrid [(clrDgSingleSelected)]="selectedDatasources">
 
                             <clr-dg-column>Selected</clr-dg-column>
                             <clr-dg-column>Name</clr-dg-column>
                             <clr-dg-column>Description</clr-dg-column>
 
                             <clr-dg-row
-                                *ngFor="let row of datasources; let i = index"
+                                *clrDgItems="let row of datasources; let i = index"
+                                [clrDgItem]="row"
                                 [style.background-color]="(i == selectedRowIndex)? '#123456' : 'white'"
                                 [style.color]="(i == selectedRowIndex)? 'white' : 'gray'"
                                 (click)="clickSelectedDatasource(i, row.id)"
@@ -36,7 +35,6 @@
                                 <clr-dg-cell>
                                     <input type="checkbox" class="dsCheckbox"
                                         [checked]="row.isSelected"
-                                        [disabled]="row.hasWidget"
                                         (click)="clickDSCheckbox(i, row.id, row.isSelected, $event)"
                                         >
                                 </clr-dg-cell>
@@ -54,6 +52,9 @@
                         {{ errorMessage }}
                     </div>
 
+                    <div class="gridFieldsFirstHeading">
+                        First
+                    </div>
                     <div class="gridFieldsFirst">
                         <clr-datagrid>
                             <clr-dg-column>FieldName</clr-dg-column>
@@ -65,6 +66,9 @@
                         </clr-datagrid>
                     </div>
 
+                    <div class="gridFieldsCurrentHeading">
+                        Current
+                    </div>
                     <div class="gridFieldsCurrent">
                         <clr-datagrid>
                             <clr-dg-column>FieldName</clr-dg-column>

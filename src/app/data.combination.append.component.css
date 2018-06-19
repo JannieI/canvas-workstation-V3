@@ -39,13 +39,28 @@
         border: 1px solid gray;
         border-radius: 4px;
         grid-column-start: 1;
-        grid-column-end: 5;
-        grid-row-start: 4;
+        grid-column-end: 8;
+        grid-row-start: 5;
         grid-row-end: 21;
         overflow-y: scroll;
         width: 100%;
     }
 
+        .datagrid {
+            margin: 0px !important;
+            margin-top: 0px !important;
+            padding: 0 !important;
+        }
+
+        .datagrid-cell {
+            font-size: 0.45rem !important;
+            height: 1rem !important;
+            margin: 2px !important;
+            overflow: hidden;
+            padding: 0 0 0 6px !important;
+            text-align: left;
+            text-overflow: ellipsis;
+        }
         .dsCheckbox {
             margin: 4px 0 0 0 !important;    
         }
@@ -58,19 +73,41 @@
         grid-row-end: 4;
     }
 
-    .gridFieldsFirst {
+    .gridFieldsFirstHeading {
+        border: 1px solid gray;
         grid-column-start: 9;
         grid-column-end: 14;
-        grid-row-start: 4;
+        grid-row-start: 5;
+        grid-row-end: 6;
+        margin-left: 10px;
+        overflow-y: scroll;
+    }
+    .gridFieldsFirst {
+        border: 1px solid gray;
+        grid-column-start: 9;
+        grid-column-end: 14;
+        grid-row-start: 6;
         grid-row-end: 21;
         margin-left: 10px;
+        overflow-y: scroll;
     }
 
-    .gridFieldsCurrent {
+    .gridFieldsCurrentHeading {
+        border: 1px solid gray;
         grid-column-start: 15;
         grid-column-end: 21;
-        grid-row-start: 4;
+        grid-row-start: 5;
+        grid-row-end: 6;
+        margin-left: 10px;
+        overflow-y: scroll;
+    }
+    .gridFieldsCurrent {
+        border: 1px solid gray;
+        grid-column-start: 15;
+        grid-column-end: 21;
+        grid-row-start: 6;
         grid-row-end: 21;
         margin-left: 10px;
+        overflow-y: scroll;
     }
 
