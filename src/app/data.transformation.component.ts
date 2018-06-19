@@ -132,6 +132,10 @@ export class DataTransformationComponent implements OnInit {
                         };
                     });
                 });
+
+                if (this.datasourceTransformations.length > 0) {
+                    this.clickRow(0, this.datasourceTransformations[0].id);
+                };
                 console.warn('xx tr', this.datasourceTransformations, this.transformations, this.selectedDatasource)
             });
         });
@@ -305,7 +309,7 @@ export class DataTransformationComponent implements OnInit {
     clickMoveUp(index: number, id: number) {
         // Move Transformation Up
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMoveUp', '@Start');
-        console.warn('xx index', index)
+
         // Nothing to do
         if (index == 0) {
             return;
@@ -314,7 +318,6 @@ export class DataTransformationComponent implements OnInit {
         // Get 2 records
         let previousSequence: number = this.datasourceTransformations[index - 1].sequence;
         let selectedSequence: number = this.datasourceTransformations[index].sequence;
-console.warn('xx hier', previousSequence, selectedSequence)
 
         // Swap Sequence, and sort again
         this.datasourceTransformations[index - 1].sequence = selectedSequence;
@@ -328,6 +331,9 @@ console.warn('xx hier', previousSequence, selectedSequence)
             };
             return 0;
         });
+
+        // Highlight same row
+        this.clickRow(index - 1, id);
     }
     
     clickMoveDown(index: number, id: number) {
