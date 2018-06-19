@@ -428,6 +428,17 @@ export class DataTransformationComponent implements OnInit {
         // Cancel Editing Transformation parameters
         this.globalFunctionService.printToConsole(this.constructor.name,'clickCancel', '@Start');
 
+        // Restore form
+
+        // Remember the originals, in case we want to Cancel
+        this.parameter1ValueOriginal = this.parameter1Value;
+        this.parameter2ValueOriginal = this.parameter2Value;
+        this.parameter3ValueOriginal = this.parameter3Value;
+        this.parameter4ValueOriginal = this.parameter4Value;
+        this.parameter5ValueOriginal = this.parameter5Value;
+        this.parameter6ValueOriginal = this.parameter6Value;
+
+        // Cancel Editing
         this.adding = false;
     }
 
