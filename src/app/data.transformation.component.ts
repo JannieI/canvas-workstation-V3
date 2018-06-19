@@ -491,6 +491,8 @@ export class DataTransformationComponent implements OnInit {
                 ]
             };
 
+            // Save to DB
+            this.globalVariableService.addDatasourceTransformation(newDatasourceTransition);
             console.warn('xx new', newDatasourceTransition)
         };
 
