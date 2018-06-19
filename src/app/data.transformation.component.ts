@@ -65,31 +65,37 @@ export class DataTransformationComponent implements OnInit {
     parameter1Title: string = '';
     parameter1Value: string = '';
     parameter1Heading: string = '';
+    parameter1ValueOriginal: string = '';
 
     parameter2Placeholder: string = '';
     parameter2Title: string = '';
     parameter2Value: string = '';
     parameter2Heading: string = '';
+    parameter2ValueOriginal: string = '';
 
     parameter3Placeholder: string = '';
     parameter3Title: string = '';
     parameter3Value: string = '';
     parameter3Heading: string = '';
+    parameter3ValueOriginal: string = '';
 
     parameter4Placeholder: string = '';
     parameter4Title: string = '';
     parameter4Value: string = '';
     parameter4Heading: string = '';
+    parameter4ValueOriginal: string = '';
 
     parameter5Placeholder: string = '';
     parameter5Title: string = '';
     parameter5Value: string = '';
     parameter5Heading: string = '';
+    parameter5ValueOriginal: string = '';
 
     parameter6Placeholder: string = '';
     parameter6Title: string = '';
     parameter6Value: string = '';
     parameter6Heading: string = '';
+    parameter6ValueOriginal: string = '';
 
     selectedTransformationRowIndex: number = 0;
     selectedDataRowIndex: number = 0;
@@ -392,6 +398,15 @@ export class DataTransformationComponent implements OnInit {
         // Edit Transformation 
         this.globalFunctionService.printToConsole(this.constructor.name,'clickEdit', '@Start');
 
+        // Remember the originals, in case we want to Cancel
+        this.parameter1Value = this.parameter1ValueOriginal;
+        this.parameter2Value = this.parameter2ValueOriginal;
+        this.parameter3Value = this.parameter3ValueOriginal;
+        this.parameter4Value = this.parameter4ValueOriginal;
+        this.parameter5Value = this.parameter5ValueOriginal;
+        this.parameter6Value = this.parameter6ValueOriginal;
+
+        // Open form for editing
         this.adding = true;
         
     }
