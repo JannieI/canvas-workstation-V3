@@ -426,6 +426,10 @@ export class DataTransformationComponent implements OnInit {
             this.parameter4Value, this.parameter5Value, this.parameter6Value
         ];
 
+        // Save to DB
+        this.globalVariableService.saveDatasourceTransformation(
+            this.datasourceTransformations[this.selectedDataRowIndex]);
+
         // Disable
         this.adding = false;
     }
