@@ -179,10 +179,14 @@ export class DataTransformationComponent implements OnInit {
         this.selectedTransformationRowIndex = this.transformations.findIndex(tr => tr.id == 
             this.datasourceTransformations[this.selectedDataRowIndex].transformationID
         );
-        console.warn('xx crow selectedTransformationRowIndex ', this.selectedTransformationRowIndex)
-        console.warn('xx crow tr-record', this.transformations[this.selectedTransformationRowIndex])
-        console.warn('xx crow selectedDataRowIndex ', this.selectedDataRowIndex)
-        console.warn('xx crow dsTr record ', this.datasourceTransformations[this.selectedDataRowIndex])
+
+        // Reset Add/Edit
+        this.adding = false;
+        this.editing = false;
+        // console.warn('xx crow selectedTransformationRowIndex ', this.selectedTransformationRowIndex)
+        // console.warn('xx crow tr-record', this.transformations[this.selectedTransformationRowIndex])
+        // console.warn('xx crow selectedDataRowIndex ', this.selectedDataRowIndex)
+        // console.warn('xx crow dsTr record ', this.datasourceTransformations[this.selectedDataRowIndex])
 
         this.clickFillParameters(this.selectedTransformationRowIndex, this.selectedDataRowIndex);
     }
@@ -421,6 +425,14 @@ export class DataTransformationComponent implements OnInit {
     clickAdd() {
         // Start Adding a new Transformation
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
+
+        // Clear Values
+        this.parameter1Value = '';
+        this.parameter2Value = '';
+        this.parameter3Value = '';
+        this.parameter4Value = '';
+        this.parameter5Value = '';
+        this.parameter6Value = '';
 
         // Open form
         this.adding = true;
