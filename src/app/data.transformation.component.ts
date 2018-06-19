@@ -111,7 +111,15 @@ export class DataTransformationComponent implements OnInit {
         this.globalVariableService.getDatasourceTransformations().then(dtr => {
             this.globalVariableService.getTransformations().then(tr => {
                 // Set local Vars
-                this.datasourceTransformations = dtr.slice();
+                this.datasourceTransformations = dtr.slice().sort( (obj1,obj2) => {
+                    if (obj1.sequence > obj2.sequence) {
+                        return 1;
+                    };
+                    if (obj1.sequence < obj2.sequence) {
+                        return -1;
+                    };
+                    return 0;
+                });
                 this.transformations = tr.slice();
 
                 // Fill name for display
