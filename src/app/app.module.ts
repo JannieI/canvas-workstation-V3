@@ -96,6 +96,7 @@ import { DataEditDatasourceComponent }       from './data.editDatasource.compone
 import { DataPopupComponent }         from './data.popup.component';
 import { DataDatasourceOverviewComponent }   from './data.datasourceOverview.component';
 import { DataCombinationComponent }   from './data.combination.component';
+import { DataCombinationAppendComponent }    from './data.combination.append.component';
 import { DataRefreshComponent }       from './data.refresh.component';
 import { DatasourceShareComponent }   from './data.share.component';
 import { DataDictionaryComponent }    from './data.dictionary.component';
@@ -194,6 +195,7 @@ import { StatusbarComponent }         from './statusbar.component';
         DataTransformationComponent,
         DataEditDatasourceComponent,
         DataCombinationComponent,
+        DataCombinationAppendComponent,
         DataRefreshComponent,
         DatasourceShareComponent,
         DataDictionaryComponent,

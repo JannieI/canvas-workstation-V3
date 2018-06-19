@@ -376,6 +376,7 @@ export class AppComponent implements OnInit {
     showModalDataDirectImport: boolean = false;
     showModalDataDirectExport: boolean = false;
     showModalDataOverview: boolean = false;
+    showModalCombinationAppend: boolean = false;
     showModalDataUsage: boolean = false;
     showModalDataRefreshOnce: boolean = false;
     showModalDataRefreshRepeat: boolean = false;
@@ -1268,6 +1269,15 @@ export class AppComponent implements OnInit {
 
     }
 
+    handleCloseDataCombinationAppend(action: string) {
+        // Handle close of CombinationAppend form
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataCombinationAppend', '@Start');
+
+        this.menuOptionClickPostAction();
+
+        this.showModalCombinationAppend = false;
+    }
+
     handleCloseDataDatasourceOverview(action: string) {
         // Handle close of Datasource Overview
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDatasourceOverview', '@Start');
@@ -1276,7 +1286,7 @@ export class AppComponent implements OnInit {
 
         this.showModalDataOverview = false;
     }
-
+    
     handleCloseDataDatasourceUsage(action: string) {
         // Handle close of Datasource Usage
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDatasourceUsage', '@Start');
@@ -2966,6 +2976,15 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPreAction();
 
         this.showModalDataOverview = true;
+    }
+
+    clickMenuDataCombinationAppend() {
+        // Combine one or more existing DS by appending at end of first one
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataCombinationAppend', '@Start');
+
+        this.menuOptionClickPreAction();
+
+        this.showModalCombinationAppend = true;
     }
 
     clickMenuDatasourceUsage() {

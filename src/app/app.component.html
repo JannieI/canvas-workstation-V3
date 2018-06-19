@@ -532,18 +532,15 @@
         
                         <div class="dropdown-divider"></div>
                         
-                        <clr-dropdown>
-                            <button
-                                type="button"
-                                class="btn btn-link btn-sm"
-                                clrDropdownItem
-                                title="Edit Datasources"
-                                (click)="clickMenuDataEditDatasource()"
-                                >
-                                Edit
-                            </button>
- 
-                        </clr-dropdown>
+                        <button
+                            type="button"
+                            class="btn btn-link btn-sm"
+                            clrDropdownItem
+                            title="Edit Datasources"
+                            (click)="clickMenuDataEditDatasource()"
+                            >
+                            Edit
+                        </button>
 
                         <button
                             type="button"
@@ -567,15 +564,73 @@
 
                         <div class="dropdown-divider"></div>
                         
-                        <button
-                            type="button"
-                            class="btn btn-link btn-sm"
-                            clrDropdownItem
-                            title="Manage Combinations from Datasources"
-                            (click)="clickMenuDataCombinations()"
-                            >
-                            Combinations
-                        </button>
+                        <clr-dropdown>
+    
+                            <button
+                                type="button"
+                                class="btn btn-link btn-sm"
+                                clrDropdownTrigger
+                                title="Create Datasources by combining existing ones"
+                                >
+                                Combinations
+                            </button>
+                            <clr-dropdown-menu
+                                clrPosition="right-top"
+                                *clrIfOpen
+                                >
+
+                                <clr-dropdown>
+                                    <button
+                                        type="button"
+                                        class="btn btn-link btn-sm"
+                                        clrDropdownItem
+                                        title="Append selected Datasources below each other"
+                                        (click)="clickMenuDataCombinationAppend()"
+                                        >
+                                        Append
+                                    </button>
+
+                                    <div class="dropdown-divider"></div>
+                                    <button
+                                        type="button"
+                                        clrDropdownItem
+                                        (click)="clickMenuDataCombinations()"
+                                        title="Create a new Datasources using Query Builder"
+                                        >
+                                        Union
+                                    </button>
+                                    <button
+                                        type="button"
+                                        clrDropdownItem
+                                        (click)="clickMenuDataCombinations()"
+                                        title="Create a new Datasources using the SQL Editor"
+                                        >
+                                        Join
+                                    </button>
+                                    <button
+                                        type="button"
+                                        clrDropdownItem
+                                        (click)="clickMenuDataCombinations()"
+                                        title="Create a new Datasources using the Overlay Editor"
+                                        >
+                                        Intersection
+                                    </button>
+                                    <button
+                                        type="button"
+                                        clrDropdownItem
+                                        (click)="clickMenuDataCombinations()"
+                                        title="Create a new Datasources using the NoSQL query Editor"
+                                        >
+                                        Subtract
+                                    </button>
+
+                                </clr-dropdown>
+                            </clr-dropdown-menu>
+                        </clr-dropdown>
+        
+
+
+
 
                         <button
                             type="button"
@@ -4094,8 +4149,8 @@
 
 <!-- Modal: Data Combination Append -->
 <data-combination-append
-    *ngIf="showModalCombinationAppendC"
-    (formDataCombinationAppendClosed)="handleCloseDataCombinationAppendC($event)">Load Data Combination Append ...
+    *ngIf="showModalCombinationAppend"
+    (formDataCombinationAppendClosed)="handleCloseDataCombinationAppend($event)">Load Data Combination Append ...
 </data-combination-append>
 
 
