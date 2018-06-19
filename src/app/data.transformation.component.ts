@@ -467,6 +467,29 @@ export class DataTransformationComponent implements OnInit {
 
         // Add NEW record
         if (this.adding) {
+
+            // Create max Sequence
+            let newSequence: number = 1;
+            if (this.datasourceTransformations.length > 0) {
+                newSequence = this.datasourceTransformations[
+                    this.datasourceTransformations.length - 1].sequence + 1;
+            };
+            
+            // Create New record
+            let newDatasourceTransition: DatasourceTransformation = 
+            {
+                id: null,
+                transformationID: this.transformations[this.selectedTransformationRowIndex].id,
+                datasourceID: this.selectedDatasource.id,
+                sequence: newSequence,
+                parameterValue: 
+                [
+                this.parameter1Value, this.parameter2Value, this.parameter3Value, 
+                this.parameter4Value, this.parameter5Value, this.parameter6Value
+                ]
+            };
+
+            console.warn('xx new', newDatasourceTransition)
         };
 
         // Save EDITs
