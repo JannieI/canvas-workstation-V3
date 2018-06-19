@@ -244,54 +244,35 @@ export class DataTransformationComponent implements OnInit {
         this.parameter6Value = '';
         this.parameter6Heading = '';
 
-        // Fill values
-        if (dataRowIndex >= 0) {
-            
-            for (var i = 0; i < this.datasourceTransformations[dataRowIndex].parameterValue.length; i++) {
-                if (i == 0 ) {
-                    this.parameter1Value = this.datasourceTransformations[dataRowIndex].parameterValue[i];
-                };
-                if (i == 1 ) {
-                    this.parameter2Value = this.datasourceTransformations[dataRowIndex].parameterValue[i];
-                };
-                if (i == 2 ) {
-                    this.parameter3Value = this.datasourceTransformations[dataRowIndex].parameterValue[i];
-                };
-                if (i == 3 ) {
-                    this.parameter4Value = this.datasourceTransformations[dataRowIndex].parameterValue[i];
-                };
-                if (i == 4 ) {
-                    this.parameter5Value = this.datasourceTransformations[dataRowIndex].parameterValue[i];
-                };
-                if (i == 5 ) {
-                    this.parameter6Value = this.datasourceTransformations[dataRowIndex].parameterValue[i];
-                };
-            };
-        };
-
         // Fill the rest, ie field headers, title and placeholders
-        for (var i = 0; i < this.transformations[transformationRowIndex].parameterHeading.length; i++) {
+        for (var i = 0; i < this.transformations[transformationRowIndex].nrParameters ; i++) {
             if (i == 0 ) {
                 this.parameter1Heading = this.transformations[transformationRowIndex].parameterHeading[i];
+                this.parameter1Value = '*';
             };
             if (i == 1 ) {
                 this.parameter2Heading = this.transformations[transformationRowIndex].parameterHeading[i];
+                this.parameter2Value = '*';
             };
             if (i == 2 ) {
                 this.parameter3Heading = this.transformations[transformationRowIndex].parameterHeading[i];
+                this.parameter3Value = '*';
             };
             if (i == 3 ) {
                 this.parameter4Heading = this.transformations[transformationRowIndex].parameterHeading[i];
+                this.parameter4Value = '*';
             };
             if (i == 4 ) {
                 this.parameter5Heading = this.transformations[transformationRowIndex].parameterHeading[i];
+                this.parameter5Value = '*';
             };
             if (i == 5 ) {
                 this.parameter6Heading = this.transformations[transformationRowIndex].parameterHeading[i];
+                this.parameter6Value = '*';
             };
         };
 
-        for (var i = 0; i < this.transformations[transformationRowIndex].parameterTitle.length; i++) {
+        for (var i = 0; i < this.transformations[transformationRowIndex].nrParameters; i++) {
             if (i == 0 ) {
                 this.parameter1Title = this.transformations[transformationRowIndex].parameterTitle[i];
             };
@@ -312,7 +293,7 @@ export class DataTransformationComponent implements OnInit {
             };
         };
     
-        for (var i = 0; i < this.transformations[transformationRowIndex].parameterPlaceholder.length; i++) {
+        for (var i = 0; i < this.transformations[transformationRowIndex].nrParameters; i++) {
             if (i == 0 ) {
                 this.parameter1Placeholder = this.transformations[transformationRowIndex].parameterPlaceholder[i];
             };
@@ -330,6 +311,31 @@ export class DataTransformationComponent implements OnInit {
             };
             if (i == 5 ) {
                 this.parameter6Placeholder = this.transformations[transformationRowIndex].parameterPlaceholder[i];
+            };
+        };
+
+        // Fill values - AFTER the above
+        if (dataRowIndex >= 0) {
+            
+            for (var i = 0; i < this.transformations[transformationRowIndex].nrParameters; i++) {
+                if (i == 0 ) {
+                    this.parameter1Value = this.datasourceTransformations[dataRowIndex].parameterValue[i];
+                };
+                if (i == 1 ) {
+                    this.parameter2Value = this.datasourceTransformations[dataRowIndex].parameterValue[i];
+                };
+                if (i == 2 ) {
+                    this.parameter3Value = this.datasourceTransformations[dataRowIndex].parameterValue[i];
+                };
+                if (i == 3 ) {
+                    this.parameter4Value = this.datasourceTransformations[dataRowIndex].parameterValue[i];
+                };
+                if (i == 4 ) {
+                    this.parameter5Value = this.datasourceTransformations[dataRowIndex].parameterValue[i];
+                };
+                if (i == 5 ) {
+                    this.parameter6Value = this.datasourceTransformations[dataRowIndex].parameterValue[i];
+                };
             };
         };
 
@@ -454,6 +460,7 @@ export class DataTransformationComponent implements OnInit {
 
         // Open form
         this.adding = true;
+        
     }
 
     clickCancel() {

@@ -425,6 +425,7 @@ export class Transformation {
     description: string;                // Description of transformation 
     
     // Parameter info
+    nrParameters: number;               // Nr of parameters, to make sure all array below the same length
     parameterPlaceholder: string[];     // Placeholder info, ie Fill in nr of characters ...
     parameterTitle: string[];           // Title (tooltippie text)
     parameterDefaultValue: string[];    // Default Text / Value when creating a new record
