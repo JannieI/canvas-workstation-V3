@@ -420,6 +420,13 @@ export class DataTransformationComponent implements OnInit {
         // Save Transformation and its parameters
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
+        // Change the array
+        this.datasourceTransformations[this.selectedDataRowIndex].parameterValue = [
+            this.parameter1Value, this.parameter2Value, this.parameter3Value, 
+            this.parameter4Value, this.parameter5Value, this.parameter6Value
+        ];
+
+        // Disable
         this.adding = false;
     }
     
