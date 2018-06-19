@@ -98,8 +98,10 @@ export class DataTransformationComponent implements OnInit {
     parameter6Heading: string = '';
     parameter6ValueOriginal: string = '';
 
+    position: string = 'top-middle';
     selectedTransformationRowIndex: number = 0;
     selectedDataRowIndex: number = 0;
+    transitionDescription: string ='';
     transformationName: string = '';
     transformations: Transformation[] = [];
 
@@ -130,6 +132,11 @@ export class DataTransformationComponent implements OnInit {
                     return 0;
                 });
                 this.transformations = tr.slice();
+
+                // Set description
+                if (this.transformations.length > 0) {
+                    this.transitionDescription = this.transformations[0].description;
+                };
 
                 // Fill name for display
                 this.datasourceTransformations.forEach(dtr => {
@@ -164,6 +171,13 @@ export class DataTransformationComponent implements OnInit {
         this.selectedTransformationRowIndex = this.transformations.findIndex(tr => 
             tr.name == this.transformationName
         );
+
+        // Set Description
+        if (this.transformations.length > 0) {
+            this.transitionDescription = this.transformations[
+                this.selectedTransformationRowIndex].description;
+        };
+
         console.warn('xx clickSelectedTransformation',this.selectedTransformationRowIndex, this.transformationName)
         this.clickFillParameters(this.selectedTransformationRowIndex, -1);
     }

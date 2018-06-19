@@ -48,10 +48,10 @@
                                 <clr-icon shape="info-circle"
                                     clrSignpostTrigger>
                                 </clr-icon>
-                                    <clr-signpost-content *clrIfOpen>
+                                    <clr-signpost-content *clrIfOpen [clrPosition]="position">
                                     <h4 style="margin-top: 0">Annotation</h4>
                                     <p>
-                                        {{ selectedDatasource.description }}
+                                        {{ transitionDescription }}
                                     </p>
                                 </clr-signpost-content>
                             </clr-signpost>
