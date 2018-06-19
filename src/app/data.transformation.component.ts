@@ -57,8 +57,8 @@ export class DataTransformationComponent implements OnInit {
     
     
     adding: boolean = false;
-    transformationName: string = '';
     dataFields: DataField[];
+    datasourceTransformations: localDatasourceTransformation[] = [];
     errorMessage: string = "";
 
     parameter1Placeholder: string = '';
@@ -93,7 +93,7 @@ export class DataTransformationComponent implements OnInit {
 
     selectedTransformationRowIndex: number = 0;
     selectedDataRowIndex: number = 0;
-    datasourceTransformations: localDatasourceTransformation[] = [];
+    transformationName: string = '';
     transformations: Transformation[] = [];
 
     // connections ->
@@ -333,7 +333,10 @@ export class DataTransformationComponent implements OnInit {
         });
 
         // Highlight same row
-        this.clickRow(index - 1, id);
+        let currentIndex: number = this.datasourceTransformations.findIndex(dtr =>
+            dtr.id == id
+        );
+        this.clickRow(currentIndex, id);
     }
     
     clickMoveDown(index: number, id: number) {

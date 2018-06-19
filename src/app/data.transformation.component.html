@@ -172,8 +172,8 @@
 
                                 <clr-dg-row
                                     *clrDgItems="let row of datasourceTransformations; let i = index"
-                                    [style.background-color]="(i == selectedTransformationRowIndex)? '#123456' : 'white'"
-                                    [style.color]="(i == selectedTransformationRowIndex)? 'white' : 'gray'"
+                                    [style.background-color]="(i == selectedDataRowIndex)? '#123456' : 'white'"
+                                    [style.color]="(i == selectedDataRowIndex)? 'white' : 'gray'"
                                     (click)="clickRow(i, row.id)"
                                     >
                                     <clr-dg-cell>
