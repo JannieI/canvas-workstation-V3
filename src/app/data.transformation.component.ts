@@ -172,6 +172,12 @@ export class DataTransformationComponent implements OnInit {
         // Click on DatasourceTransformation row
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
 
+        // Reset Add/Edit
+        if (this.selectedDataRowIndex != index) {
+            this.adding = false;
+            this.editing = false;
+        };
+        
         // Set seletected index - used for highlighting row
         this.selectedDataRowIndex = index;
 
@@ -180,9 +186,7 @@ export class DataTransformationComponent implements OnInit {
             this.datasourceTransformations[this.selectedDataRowIndex].transformationID
         );
 
-        // Reset Add/Edit
-        this.adding = false;
-        this.editing = false;
+
         // console.warn('xx crow selectedTransformationRowIndex ', this.selectedTransformationRowIndex)
         // console.warn('xx crow tr-record', this.transformations[this.selectedTransformationRowIndex])
         // console.warn('xx crow selectedDataRowIndex ', this.selectedDataRowIndex)
