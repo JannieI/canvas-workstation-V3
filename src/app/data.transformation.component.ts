@@ -458,6 +458,12 @@ export class DataTransformationComponent implements OnInit {
         this.parameter5Value = '';
         this.parameter6Value = '';
 
+        // Auto select first one
+        if (this.transformations.length > 0) {
+            this.transformationName = this.transformations[0].name;
+            this.clickSelectedTransformation();
+        };
+
         // Open form
         this.adding = true;
         

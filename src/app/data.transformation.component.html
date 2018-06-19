@@ -29,6 +29,16 @@
                             </i>
                         </div>
 
+                        <div class="gridTransformationButtonAdd">
+                            <button
+                                type="button"
+                                class="btn btn-link"
+                                (click)="clickAdd()"
+                                >
+                                Add
+                            </button>
+                        </div>
+
                         <div class="select gridTransformationSelect">
                             <select
                                 [(ngModel)]="transformationName"
@@ -55,16 +65,6 @@
                                     </p>
                                 </clr-signpost-content>
                             </clr-signpost>
-                        </div>
-
-                        <div class="gridTransformationButtonAdd">
-                            <button
-                                type="button"
-                                class="btn btn-link"
-                                (click)="clickAdd()"
-                                >
-                                Add
-                            </button>
                         </div>
 
                         <div class="gridParameter1Title">

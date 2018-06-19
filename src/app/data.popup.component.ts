@@ -674,6 +674,7 @@ export class DataPopupComponent implements OnInit {
             category: 'Format',
             name: 'Format Date',
             description: 'bla-bla-bla',
+            nrParameters: 0,
             parameterPlaceholder: ['place1'],
             parameterTitle: ['tit1'],
             parameterDefaultValue: ['txt1'],
