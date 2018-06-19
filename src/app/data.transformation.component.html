@@ -76,7 +76,7 @@
                                 name="parameter1Value"
                                 [placeholder]="parameter1Placeholder"
                                 [title]="parameter1Title"
-                                [disabled]="!adding"
+                                [disabled]="!adding  &&  !editing"
                                 >
                         </div>
 
@@ -89,7 +89,7 @@
                                 name="parameter2Value"
                                 [placeholder]="parameter2Placeholder"
                                 [title]="parameter2Title"
-                                [disabled]="!adding"
+                                [disabled]="!adding  &&  !editing"
 
                                 >
                         </div>
@@ -103,7 +103,7 @@
                                 name="parameter3Value"
                                 [placeholder]="parameter3Placeholder"
                                 [title]="parameter3Title"
-                                [disabled]="!adding"
+                                [disabled]="!adding  &&  !editing"
                                 >
                         </div>
 
@@ -116,7 +116,7 @@
                                 name="parameter4Value"
                                 [placeholder]="parameter4Placeholder"
                                 [title]="parameter4Title"
-                                [disabled]="!adding"
+                                [disabled]="!adding  &&  !editing"
                                 >
                         </div>
 
@@ -129,7 +129,7 @@
                                 name="parameter5Value"
                                 [placeholder]="parameter5Placeholder"
                                 [title]="parameter5Title"
-                                [disabled]="!adding"
+                                [disabled]="!adding  &&  !editing"
                                 >
                         </div>
 
@@ -142,7 +142,7 @@
                                 name="parameter6Value"
                                 [placeholder]="parameter6Placeholder"
                                 [title]="parameter6Title"
-                                [disabled]="!adding"
+                                [disabled]="!adding  &&  !editing"
                                 >
                         </div>
 
@@ -150,7 +150,7 @@
                             <button
                                 type="button"
                                 class="btn btn-secondary"
-                                [disabled]="!adding"
+                                [disabled]="!adding  &&  !editing"
                                 (click)="clickCancel()"
                                 >
                                 Cancel
@@ -161,7 +161,7 @@
                             <button
                                 type="button"
                                 class="btn btn-primary"
-                                [disabled]="!adding"
+                                [disabled]="!adding  &&  !editing"
                                 (click)="clickSave()"
                                 >
                                 Save

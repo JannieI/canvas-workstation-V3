@@ -59,6 +59,7 @@ export class DataTransformationComponent implements OnInit {
     adding: boolean = false;
     dataFields: DataField[];
     datasourceTransformations: localDatasourceTransformation[] = [];
+    editing: boolean = false;
     errorMessage: string = "";
 
     parameter1Placeholder: string = '';
@@ -399,15 +400,15 @@ export class DataTransformationComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickEdit', '@Start');
 
         // Remember the originals, in case we want to Cancel
-        this.parameter1Value = this.parameter1ValueOriginal;
-        this.parameter2Value = this.parameter2ValueOriginal;
-        this.parameter3Value = this.parameter3ValueOriginal;
-        this.parameter4Value = this.parameter4ValueOriginal;
-        this.parameter5Value = this.parameter5ValueOriginal;
-        this.parameter6Value = this.parameter6ValueOriginal;
+        this.parameter1ValueOriginal = this.parameter1Value;
+        this.parameter2ValueOriginal = this.parameter2Value;
+        this.parameter3ValueOriginal = this.parameter3Value;
+        this.parameter4ValueOriginal = this.parameter4Value;
+        this.parameter5ValueOriginal = this.parameter5Value;
+        this.parameter6ValueOriginal = this.parameter6Value;
 
         // Open form for editing
-        this.adding = true;
+        this.editing = true;
         
     }
     
@@ -421,6 +422,7 @@ export class DataTransformationComponent implements OnInit {
         // Start Adding a new Transformation
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
 
+        // Open form
         this.adding = true;
     }
 
@@ -431,33 +433,42 @@ export class DataTransformationComponent implements OnInit {
         // Restore form
 
         // Remember the originals, in case we want to Cancel
-        this.parameter1ValueOriginal = this.parameter1Value;
-        this.parameter2ValueOriginal = this.parameter2Value;
-        this.parameter3ValueOriginal = this.parameter3Value;
-        this.parameter4ValueOriginal = this.parameter4Value;
-        this.parameter5ValueOriginal = this.parameter5Value;
-        this.parameter6ValueOriginal = this.parameter6Value;
-
+        this.parameter1Value = this.parameter1ValueOriginal;
+        this.parameter2Value = this.parameter2ValueOriginal;
+        this.parameter3Value = this.parameter3ValueOriginal;
+        this.parameter4Value = this.parameter4ValueOriginal;
+        this.parameter5Value = this.parameter5ValueOriginal;
+        this.parameter6Value = this.parameter6ValueOriginal;
+        
         // Cancel Editing
         this.adding = false;
+        this.editing = false;
     }
 
     clickSave() {
         // Save Transformation and its parameters
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
-        // Change the array
-        this.datasourceTransformations[this.selectedDataRowIndex].parameterValue = [
-            this.parameter1Value, this.parameter2Value, this.parameter3Value, 
-            this.parameter4Value, this.parameter5Value, this.parameter6Value
-        ];
+        // Add NEW record
+        if (this.adding) {
+        };
 
-        // Save to DB
-        this.globalVariableService.saveDatasourceTransformation(
-            this.datasourceTransformations[this.selectedDataRowIndex]);
+        // Save EDITs
+        if (this.editing) {
+            // Change the array
+            this.datasourceTransformations[this.selectedDataRowIndex].parameterValue = [
+                this.parameter1Value, this.parameter2Value, this.parameter3Value, 
+                this.parameter4Value, this.parameter5Value, this.parameter6Value
+            ];
+
+            // Save to DB
+            this.globalVariableService.saveDatasourceTransformation(
+                this.datasourceTransformations[this.selectedDataRowIndex]);
+        };
 
         // Disable
         this.adding = false;
+        this.editing = false;
     }
     
     clickClose(action: string) {
