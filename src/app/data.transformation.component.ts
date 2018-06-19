@@ -1,6 +1,6 @@
 /*
  * List of Transformations that forms part of the Datasource definition.
- * 
+ *
  */
 
 // Angular
@@ -54,8 +54,8 @@ export class DataTransformationComponent implements OnInit {
         };
 
     }
-    
-    
+
+
     adding: boolean = false;                        // True if adding a new Tr, click Save to complete
     dataFields: DataField[];
     datasourceTransformations: localDatasourceTransformation[] = [];
@@ -161,11 +161,11 @@ export class DataTransformationComponent implements OnInit {
     }
 
     clickSelectedTransformation() {
-        // Click on Transformation 
+        // Click on Transformation
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectedTransformation', '@Start');
-        
+
         // Select the Tr master record
-        this.selectedTransformationRowIndex = this.transformations.findIndex(tr => 
+        this.selectedTransformationRowIndex = this.transformations.findIndex(tr =>
             tr.name == this.transformationName
         );
 
@@ -190,12 +190,12 @@ export class DataTransformationComponent implements OnInit {
             this.adding = false;
             this.editing = false;
         };
-        
+
         // Set seletected index - used for highlighting row
         this.selectedDataRowIndex = index;
 
         // Select the Tr master record
-        this.selectedTransformationRowIndex = this.transformations.findIndex(tr => tr.id == 
+        this.selectedTransformationRowIndex = this.transformations.findIndex(tr => tr.id ==
             this.datasourceTransformations[this.selectedDataRowIndex].transformationID
         );
 
@@ -214,11 +214,11 @@ export class DataTransformationComponent implements OnInit {
 
         this.clickFillParameters(this.selectedTransformationRowIndex, this.selectedDataRowIndex);
     }
-    
+
     clickFillParameters(transformationRowIndex, dataRowIndex) {
         // Fill the Paramers, based on what was selected
         this.globalFunctionService.printToConsole(this.constructor.name,'clickFillParameters', '@Start');
-    
+
         // Reset
         this.parameter1Placeholder = '';
         this.parameter1Title = '';
@@ -292,7 +292,7 @@ export class DataTransformationComponent implements OnInit {
                 this.parameter6Title = this.transformations[transformationRowIndex].parameterTitle[i];
             };
         };
-    
+
         for (var i = 0; i < this.transformations[transformationRowIndex].nrParameters; i++) {
             if (i == 0 ) {
                 this.parameter1Placeholder = this.transformations[transformationRowIndex].parameterPlaceholder[i];
@@ -316,7 +316,7 @@ export class DataTransformationComponent implements OnInit {
 
         // Fill values - AFTER the above
         if (dataRowIndex >= 0) {
-            
+
             for (var i = 0; i < this.transformations[transformationRowIndex].nrParameters; i++) {
                 if (i == 0 ) {
                     this.parameter1Value = this.datasourceTransformations[dataRowIndex].parameterValue[i];
@@ -381,7 +381,7 @@ export class DataTransformationComponent implements OnInit {
         );
         this.clickRow(currentIndex, id);
     }
-    
+
     clickMoveDown(index: number, id: number) {
         // Move Transformation Down
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMoveDown', '@Start');
@@ -422,7 +422,7 @@ export class DataTransformationComponent implements OnInit {
         );
         this.clickRow(currentIndex, id);
     }
-    
+
     clickAdd() {
         // Start Adding a new Transformation
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
@@ -443,11 +443,11 @@ export class DataTransformationComponent implements OnInit {
 
         // Open form
         this.adding = true;
-        
+
     }
 
     clickEdit(index: number, id: number) {
-        // Edit Transformation 
+        // Edit Transformation
         this.globalFunctionService.printToConsole(this.constructor.name,'clickEdit', '@Start');
 
         // Remember the originals, in case we want to Cancel
@@ -460,9 +460,9 @@ export class DataTransformationComponent implements OnInit {
 
         // Open form for editing
         this.editing = true;
-        
+
     }
-   
+
     clickSave() {
         // Save Transformation and its parameters
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
@@ -476,17 +476,17 @@ export class DataTransformationComponent implements OnInit {
                 newSequence = this.datasourceTransformations[
                     this.datasourceTransformations.length - 1].sequence + 1;
             };
-            
+
             // Create New record
-            let newDatasourceTransition: DatasourceTransformation = 
+            let newDatasourceTransition: DatasourceTransformation =
             {
                 id: null,
                 transformationID: this.transformations[this.selectedTransformationRowIndex].id,
                 datasourceID: this.selectedDatasource.id,
                 sequence: newSequence,
-                parameterValue: 
+                parameterValue:
                 [
-                this.parameter1Value, this.parameter2Value, this.parameter3Value, 
+                this.parameter1Value, this.parameter2Value, this.parameter3Value,
                 this.parameter4Value, this.parameter5Value, this.parameter6Value
                 ]
             };
@@ -494,17 +494,20 @@ export class DataTransformationComponent implements OnInit {
             // Save to DB
             this.globalVariableService.addDatasourceTransformation(newDatasourceTransition)
                 .then(dtr => {
-                    this.datasourceTransformations.push(dtr) 
+
+                    // Add Tr name to display on form
+                    let localDtr: localDatasourceTransformation = dtr;
+                    localDtr.name = this.transformations[this.selectedTransformationRowIndex].name;
+                    this.datasourceTransformations.push(localDtr);
                 }
             );
-            console.warn('xx new', newDatasourceTransition)
         };
 
         // Save EDITs
         if (this.editing) {
             // Change the array
             this.datasourceTransformations[this.selectedDataRowIndex].parameterValue = [
-                this.parameter1Value, this.parameter2Value, this.parameter3Value, 
+                this.parameter1Value, this.parameter2Value, this.parameter3Value,
                 this.parameter4Value, this.parameter5Value, this.parameter6Value
             ];
 
@@ -517,18 +520,23 @@ export class DataTransformationComponent implements OnInit {
         this.adding = false;
         this.editing = false;
     }
-     
+
     clickDelete(index: number, id: number) {
-        // Delete Transformation 
+        // Delete Transformation
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDelete', '@Start');
 
         // Delete from local and DB
         this.globalVariableService.deleteDatasourceTransformation(id).then(res => {
-            this.datasourceTransformations = this.datasourceTransformations.filter(dtr => {
-                dtr.id != id
-            });
+            this.datasourceTransformations = this.datasourceTransformations.filter(dtr =>
+                dtr.id != id);
         });
-    
+
+        // Refresh previous row
+        let newIndex: number = index > 0? index - 1 : 0;
+        let newID: number = this.datasourceTransformations[newIndex].id;
+        console.warn('xx ids', newIndex, newID)
+        this.clickRow(newIndex, newID);
+
     }
 
     clickCancel() {
@@ -544,7 +552,7 @@ export class DataTransformationComponent implements OnInit {
         this.parameter4Value = this.parameter4ValueOriginal;
         this.parameter5Value = this.parameter5ValueOriginal;
         this.parameter6Value = this.parameter6ValueOriginal;
-        
+
         // Cancel Editing
         this.adding = false;
         this.editing = false;
