@@ -182,6 +182,7 @@
         grid-row-start: 26;
         grid-row-end: 27;
         margin-left: 22px;
+        margin-top: 6px;
     }
     .gridTransformationSelect {
         grid-column-start: 3;

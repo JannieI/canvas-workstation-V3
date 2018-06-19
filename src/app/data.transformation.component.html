@@ -39,7 +39,7 @@
                             </button>
                         </div>
 
-                        <div class="select gridTransformationSelect">
+                        <div class="select gridTransformationSelect" *ngIf="adding">
                             <select
                                 [(ngModel)]="transformationName"
                                 name="transformationName"
@@ -53,7 +53,7 @@
                             </select>
                         </div>
 
-                        <div class="gridTransformationSignpost">
+                        <div class="gridTransformationSignpost" *ngIf="adding">
                             <clr-signpost>
                                 <clr-icon shape="info-circle"
                                     clrSignpostTrigger>
@@ -70,7 +70,7 @@
                         <div class="gridParameter1Title">
                             <b>{{ parameter1Heading }}</b>
                         </div>
-                        <div class="gridParameter1" *ngIf="parameter1Value">
+                        <div class="gridParameter1" *ngIf="nrParameters>=1">
                             <input [(ngModel)]="parameter1Value"
                                 type="parameter1Value"
                                 name="parameter1Value"
@@ -83,7 +83,7 @@
                         <div class="gridParameter2Title">
                             <b>{{ parameter2Heading }}</b>
                         </div>
-                        <div class="gridParameter2" *ngIf="parameter2Value">
+                        <div class="gridParameter2" *ngIf="nrParameters>=2">
                             <input [(ngModel)]="parameter2Value"
                                 type="parameter2Value"
                                 name="parameter2Value"
@@ -97,7 +97,7 @@
                         <div class="gridParameter3Title">
                             <b>{{ parameter3Heading }}</b>
                         </div>
-                        <div class="gridParameter3" *ngIf="parameter3Value">
+                        <div class="gridParameter3" *ngIf="nrParameters>=3">
                             <input [(ngModel)]="parameter3Value"
                                 type="parameter3Value"
                                 name="parameter3Value"
