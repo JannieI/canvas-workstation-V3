@@ -322,6 +322,14 @@ export class DataTransformationComponent implements OnInit {
         // Swap Sequence, and sort again
         this.datasourceTransformations[index - 1].sequence = selectedSequence;
         this.datasourceTransformations[index].sequence = previousSequence;
+
+        // Save to DB
+        this.globalVariableService.saveDatasourceTransformation(
+            this.datasourceTransformations[index - 1]);
+        this.globalVariableService.saveDatasourceTransformation(
+            this.datasourceTransformations[index]);
+
+        // Resort
         this.datasourceTransformations = this.datasourceTransformations.sort( (obj1,obj2) => {
             if (obj1.sequence > obj2.sequence) {
                 return 1;
