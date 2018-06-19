@@ -463,6 +463,25 @@ export class DataTransformationComponent implements OnInit {
 
     }
 
+    clickCancel() {
+        // Cancel Editing Transformation parameters
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickCancel', '@Start');
+
+        // Restore form
+
+        // Remember the originals, in case we want to Cancel
+        this.parameter1Value = this.parameter1ValueOriginal;
+        this.parameter2Value = this.parameter2ValueOriginal;
+        this.parameter3Value = this.parameter3ValueOriginal;
+        this.parameter4Value = this.parameter4ValueOriginal;
+        this.parameter5Value = this.parameter5ValueOriginal;
+        this.parameter6Value = this.parameter6ValueOriginal;
+
+        // Cancel Editing
+        this.adding = false;
+        this.editing = false;
+    }
+
     clickSave() {
         // Save Transformation and its parameters
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
@@ -499,6 +518,14 @@ export class DataTransformationComponent implements OnInit {
                     let localDtr: localDatasourceTransformation = dtr;
                     localDtr.name = this.transformations[this.selectedTransformationRowIndex].name;
                     this.datasourceTransformations.push(localDtr);
+
+                    // Refresh previous row
+                    let newID: number = dtr.id;
+                    let newIndex: number = this.datasourceTransformations.findIndex(d => 
+                        d.id == newID);
+                    console.warn('xx Sav', newIndex, newID, this.adding, this.editing)
+                    this.clickRow(newIndex, newID);
+
                 }
             );
         };
@@ -529,33 +556,14 @@ export class DataTransformationComponent implements OnInit {
         this.globalVariableService.deleteDatasourceTransformation(id).then(res => {
             this.datasourceTransformations = this.datasourceTransformations.filter(dtr =>
                 dtr.id != id);
+
+            // Refresh previous row
+            let newIndex: number = index > 0? index - 1 : 0;
+            let newID: number = this.datasourceTransformations[newIndex].id;
+            console.warn('xx Del', newIndex, newID, this.adding, this.editing)
+            this.clickRow(newIndex, newID);
         });
 
-        // Refresh previous row
-        let newIndex: number = index > 0? index - 1 : 0;
-        let newID: number = this.datasourceTransformations[newIndex].id;
-        console.warn('xx ids', newIndex, newID)
-        this.clickRow(newIndex, newID);
-
-    }
-
-    clickCancel() {
-        // Cancel Editing Transformation parameters
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickCancel', '@Start');
-
-        // Restore form
-
-        // Remember the originals, in case we want to Cancel
-        this.parameter1Value = this.parameter1ValueOriginal;
-        this.parameter2Value = this.parameter2ValueOriginal;
-        this.parameter3Value = this.parameter3ValueOriginal;
-        this.parameter4Value = this.parameter4ValueOriginal;
-        this.parameter5Value = this.parameter5ValueOriginal;
-        this.parameter6Value = this.parameter6ValueOriginal;
-
-        // Cancel Editing
-        this.adding = false;
-        this.editing = false;
     }
 
     clickClose(action: string) {
