@@ -343,6 +343,33 @@ export class DataTransformationComponent implements OnInit {
         // Move Transformation Down
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMoveDown', '@Start');
 
+        // Nothing to do
+        if (index == (this.datasourceTransformations.length - 1) )  {
+            return;
+        };
+
+        // Get 2 records
+        let selectedSequence: number = this.datasourceTransformations[index].sequence;
+        let nextSequence: number = this.datasourceTransformations[index + 1].sequence;
+
+        // Swap Sequence, and sort again
+        this.datasourceTransformations[index + 1].sequence = selectedSequence;
+        this.datasourceTransformations[index].sequence = nextSequence;
+        this.datasourceTransformations = this.datasourceTransformations.sort( (obj1,obj2) => {
+            if (obj1.sequence > obj2.sequence) {
+                return 1;
+            };
+            if (obj1.sequence < obj2.sequence) {
+                return -1;
+            };
+            return 0;
+        });
+
+        // Highlight same row
+        let currentIndex: number = this.datasourceTransformations.findIndex(dtr =>
+            dtr.id == id
+        );
+        this.clickRow(currentIndex, id);
     }
     
     clickEdit(index: number, id: number) {
