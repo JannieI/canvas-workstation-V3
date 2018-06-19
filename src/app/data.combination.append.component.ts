@@ -60,14 +60,6 @@ export class DataCombinationAppendComponent implements OnInit {
     }
 
     // datasources: Datasource[];
-    clickedDeleteDS: boolean = false;
-    clickedViewDescription: boolean = false;
-    clickedViewPreview: boolean = false;
-    clickedViewOverview: boolean = false;
-    clickedViewFields: boolean = false;
-    clickedViewFieldProperties: boolean = false;
-    clickedViewFieldProfile: boolean = false;
-    clickedViewDataQuality: boolean = false;
     currentData: any = [];
     currentDSids: number[] = [];                    // List of DS-IDs in use
     dataFieldLengths: number[] = [];
@@ -134,91 +126,6 @@ export class DataCombinationAppendComponent implements OnInit {
         // TODO - fix!!
         this.finalFields = this.globalVariableService.finalFields;
 
-        // Show first tab
-        this.clickDSDescription('gridViewDescription');
-    }
-
-    clickDSDescription(area: string) {
-        // Show description area
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickDSDescription', '@Start');
-
-        // Make area visible
-        this.clickViewOptions(area);
-    }
-
-    clickDSPreview(area: string) {
-        // Show preview area
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickDSPreview', '@Start');
-
-        // Make area visible
-        this.clickViewOptions(area);
-        
-        // Reset
-        this.errorMessage = '';
-
-        // Get the data, either lives in the dataset, or in a url
-        let selectedDataset: Dataset[] = this.globalVariableService.datasets.filter(dS => 
-            dS.datasourceID == this.selectedRowID
-        );
-
-        // TODO - do better with DB
-        let maxDsetIndex: number = selectedDataset.length - 1;
-        if (selectedDataset.length > 0) {
-
-            if (selectedDataset[maxDsetIndex].dataRaw != null) {
-                this.currentData = selectedDataset[maxDsetIndex].dataRaw;
-            } else {
-                this.globalVariableService.getData(selectedDataset[maxDsetIndex].id).then(dt => {
-                    this.currentData = dt;
-                });
-            };
-        };
-
-    }
-
-    clickViewProperties(area: string) {
-        // Show  area
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickViewProperties', '@Start');
-
-        // Make area visible
-        this.clickViewOptions(area);
-        
-    }
-
-    clickViewProfile(area: string) {
-        // Show profile area
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickViewProfile', '@Start');
-
-        // Make area visible
-        this.clickViewOptions(area);
-        
-    }
-
-    clickViewOverview(area: string) {
-        // Show overview area
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickViewOverview', '@Start');
-
-        // Make area visible
-        this.clickViewOptions(area);
-        
-    }
-
-    clickViewFields(area: string) {
-        // Show fields area
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickViewFields', '@Start');
-
-        // Make area visible
-        this.clickViewOptions(area);
-        
-    }
-
-    clickViewDataQuality(area: string) {
-        // Show data quality areclickViewOptionsa
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickViewDataQuality', '@Start');
-
-        // Make area visible
-        this.clickViewOptions(area);
-        
     }
 
     clickSelectedDatasource(index: number, id: number) {
@@ -244,9 +151,6 @@ export class DataCombinationAppendComponent implements OnInit {
                 w.dashboardID == this.globalVariableService.currentDashboardInfo.value.currentDashboardID
             ).length;
 
-
-            // Show first tab
-            this.clickDSDescription('gridViewDescription');
         };
         this.errorMessage = '';
     }
@@ -316,14 +220,6 @@ export class DataCombinationAppendComponent implements OnInit {
         // TODO - what about other arrays, ie permisions, pivots, transformations, etc ??
     }
 
-    ngOnDestroy() {
-        // Cleanup just before Angular destroys the directive/component.
-        // Unsubscribe Observables and detach event handlers to avoid memory leaks.
-        // Called just before Angular destroys the directive/component.
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnDestroy', '@Start');
-
-    }
-
     clickClose(action: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
@@ -331,43 +227,6 @@ export class DataCombinationAppendComponent implements OnInit {
         this.formDataCombinationAppendClosed.emit(action);
 
     }
-
-    clickViewOptions(area: string) {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickViewOptions', '@Start');
-
-        this.clickedViewDescription = false;
-        this.clickedViewPreview = false;
-        this.clickedViewOverview = false;
-        this.clickedViewFields = false;
-        this.clickedViewFieldProperties = false;
-        this.clickedViewFieldProfile = false;
-        this.clickedViewDataQuality = false;
-        if (area == 'gridViewDescription') {
-            this.clickedViewDescription = true;
-        };
-        if (area == 'gridViewPreview') {
-            this.clickedViewPreview = true;
-        };
-        if (area == 'gridViewFieldProperties') {
-            this.clickedViewFieldProperties = true;
-        };
-        if (area == 'gridViewFieldProfile') {
-            this.clickedViewFieldProfile = true;
-        };
-        if (area == 'gridViewOverview') {
-            this.clickedViewOverview = true;
-        };
-        
-        if (area == 'gridViewFields') {
-            this.clickedViewFields = true;
-        };
-        if (area == 'gridViewDataQuality') {
-            this.clickedViewDataQuality = true;
-        };
-
-    }
-
 
 }
 

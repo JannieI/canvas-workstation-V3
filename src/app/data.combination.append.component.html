@@ -7,13 +7,13 @@
                 </button>
                 <div class="gridOverall">
                     <div class="gridTitle">
-                        Manage Datasources 
+                        Apend Datasources 
                     </div> 
                     <div class="gridSubTitle">
                         <i>
-                            Add Datasources to the current Dashboard by checking them, or Remove
-                            by unchecking.  Removal is only possible if no Widget is linked 
-                            to it.
+                            Create a new Datasources by appending the selected Datasources to the
+                            end of the first one.  Note that only Datasources with the same number
+                            of fields and the same type of fields can be appended.
                         </i>
                     </div>
              
@@ -22,6 +22,10 @@
                             <clr-dg-placeholder>
                                 No records ...
                             </clr-dg-placeholder>
+
+                            <clr-dg-column>Selected</clr-dg-column>
+                            <clr-dg-column>Name</clr-dg-column>
+                            <clr-dg-column>Description</clr-dg-column>
 
                             <clr-dg-row
                                 *ngFor="let row of datasources; let i = index"
@@ -35,10 +39,12 @@
                                         [disabled]="row.hasWidget"
                                         (click)="clickDSCheckbox(i, row.id, row.isSelected, $event)"
                                         >
-                                    <div class="dsName">
-                                        {{ row.fieldValue }}                                        {{row.name}}
-                                    </div>
-
+                                </clr-dg-cell>
+                                <clr-dg-cell>
+                                    {{ row.name }}
+                                </clr-dg-cell>
+                                <clr-dg-cell>
+                                    {{ row.description }}
                                 </clr-dg-cell>
                             </clr-dg-row>
                         </clr-datagrid>
@@ -48,369 +54,28 @@
                         {{ errorMessage }}
                     </div>
 
-                    <div class="gridButtons">
-                        <div class="btn-group btn-link btn-sm">
-                            <button class="btn" 
-                                (click)="clickDSDescription('gridViewDescription')"
-                                >
-                                Description
-                            </button>
-                            <button class="btn" 
-                                (click)="clickDSPreview('gridViewPreview')"
-                                >
-                                Preview
-                            </button>
-                            <button class="btn" 
-                                (click)="clickViewProperties('gridViewFieldProperties')">Field
-                                 
-                                Properties
-                            </button>
-                            <button class="btn" 
-                                (click)="clickViewProfile('gridViewFieldProfile')">Field
-                                 
-                                Profile
-                            </button>
-                            <button class="btn" 
-                                (click)="clickViewOverview('gridViewOverview')"
-                                >
-                                Overview
-                            </button>
-                            <button class="btn" 
-                                (click)="clickViewFields('gridViewFields')"
-                                >
-                                Fields
-                            </button>
-                            <button class="btn" 
-                                (click)="clickViewDataQuality('gridViewDataQuality')">Data
-                                 
-                                Quality
-                            </button>
-                        </div>                        
-                    </div>
-
-                    <div *ngIf="clickedViewDescription" class="gridDesc">
-                        <div class="gridDescDescriptionTitle">
-                            <b>Description:</b>
-                        </div>
-                        <div class="gridDescDescription">
-                            {{ selectedRowDescription }}
-                        </div>
-                        <div class="gridDescNameTitle">
-                            <b>Names:</b>
-                        </div>
-                        <div class="gridDescName">
-                            {{ selectedRowName }}
-                        </div>
-                        <div class="gridDescNrWidgetsTitle">
-                            <b>Nr Widgets:</b>
-                        </div>
-                        <div class="gridDescNrWidgets">
-                            {{ selectedRowNrWidgetsInUse }}
-                        </div>
-    
-                        <div class="gridDescFileInfo" *ngIf="typeDS==='File'">
-
-                            <div class="fileFolderNameTitle">
-                                Folder:
-                            </div>
-                            <div class="fileFolderName">
-                                Folder:
-                                {{ folderName }}
-                            </div>
-    
-                            <div class="fileNameTitle">
-                                Filename:
-                            </div>
-                            <div class="fileName">
-                                {{ fileName }}
-                            </div>
-    
-                            <div class="fileExcelTitle">
-                                Excel Worksheet:
-                            </div>
-    
-                            <div class="fileExcel">
-                                {{ excelWorksheet }}
-                            </div>
-    
-                            <div  class="fileStartLineTitle">
-                                Start at:
-                            </div>
-                            <div  class="fileStartLine">
-                                {{ startLineNr }}
-                            </div>
-    
-                        </div>
-        
-                    </div>
-    
-                    <div *ngIf="clickedViewPreview" class="gridPreview">
-                        <clr-datagrid class="gridPreviewData">
-
-                            <clr-dg-column *ngFor="let row of dataFieldNames">{{row}}</clr-dg-column>
-                            <clr-dg-row *clrDgItems="let row of currentData">
-
-                                <clr-dg-cell *ngFor="let col of dataFieldNames; let i = index">
-                                        {{ row[col] }}
-                                </clr-dg-cell>
+                    <div class="gridFieldsFirst">
+                        <clr-datagrid>
+                            <clr-dg-column>FieldName</clr-dg-column>
+                            <clr-dg-column>DataType</clr-dg-column>
+                            <clr-dg-row *clrDgItems="let row of finalFields">
+                                <clr-dg-cell>{{ row.fieldName }}</clr-dg-cell>
+                                <clr-dg-cell>{{ row.dataType }}</clr-dg-cell>
                             </clr-dg-row>
-
-                            <clr-dg-footer>
-                                {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
-                                of {{pagination.totalItems}} rows
-                                <clr-dg-pagination #pagination [clrDgPageSize]="8"></clr-dg-pagination>
-                            </clr-dg-footer>
-
                         </clr-datagrid>
                     </div>
 
-                    <div *ngIf="clickedViewFieldProperties" class="gridFieldProperties">
-                        <div class="gridFieldPropSelectTitle">
-                            <b>Select field:</b>
-                        </div>
-                        <div class="gridFieldPropSelect">
-                            <div class="select">
-                                <select>    
-                                    <option *ngFor="let row of dataFieldNames">
-                                        {{ row }}
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="gridFieldPropDescTitle">
-                            <b>Description:</b>
-                        </div>
-                        <div class="gridFieldPropDesc">
-                            This is used for ... and contains all types of ... 
-                        </div>
-
-                        <div class="gridFieldPropLocalNameTitle">
-                            <b>Local Name:</b>
-                        </div>
-                        <div class="gridFieldPropLocalName">
-                            Full Date
-                        </div>
-
-                        <div class="gridFieldPropTypeTitle">
-                            <b>Type:</b> 
-                        </div>
-                        <div class="gridFieldPropType">
-                            Number
-                        </div>
-
-                        <div class="gridFieldPropFormatTitle">
-                            <b>Format:</b>
-                        </div>
-                        <div class="gridFieldPropFormat">
-                            YYYY/MM/DD
-                        </div>
-
-                        <div class="gridFieldPropFilterTitle">
-                            <b>Filter:</b>
-                        </div>
-                        <div class="gridFieldPropFilter">
-                            >= 0
-                        </div>
-
-                        <div class="gridFieldPropCalcTitle">
-                            <b>Calculation:</b>
-                        </div>
-                        <div class="gridFieldPropCalc">
-                            None
-                        </div>
-
-                        <div class="gridFieldPropOrderTitle">
-                            <b>Order:</b>
-                        </div>
-                        <div class="gridFieldPropOrder">
-                            None
-                        </div>
-
-                        <div class="gridFieldPropHideTitle">
-                            <b>Hide:</b>
-                        </div>
-                        <div class="gridFieldPropHide">
-                            False
-                        </div>
-
-                        <div class="gridFieldPropKeyTitle">
-                            <b>Key Field:</b>
-                        </div>
-                        <div class="gridFieldPropKey">
-                            Key Field:
-                        </div>
-    
-                    </div>
-   
-                    <div *ngIf="clickedViewFieldProfile" class="gridFieldProfile">
-                        <div class="gridFieldProfileSelectTitle">
-                            <b>Select field:</b>
-                        </div>
-                        <div class="gridFieldProfileSelect">
-                            <div class="select">
-                                <select>    
-                                    <option *ngFor="let row of dataFieldNames">
-                                        {{ row }}
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
-                       
-                        <div class="gridFieldProfileDBfield">
-                            <b>"DB field":</b> (field name)
-                        </div>
-                        <div class="gridFieldProfileUnique">
-                            <b>"Unique":</b> (# value:count pairs)
-                        </div>
-
-                        <div class="gridFieldProfileCount">
-                            <b>"Count":</b> 1000,
-                        </div>
-                        <div class="gridFieldProfileValid">
-                            <b>"Valid":</b> 1000,
-                        </div>
-                       
-                        <div class="gridFieldProfileMissing">
-                            <b>"Missing":</b> 0,
-                        </div>
-                        <div class="gridFieldProfileDistinct">
-                            <b>"Distinct":</b> 1000,
-                        </div>
-                       
-                        <div class="gridFieldProfileMin">
-                            <b>"Min":</b> -2.7983914656538427,
-                        </div>
-                        <div class="gridFieldProfileMax">
-                            <b>"Max":</b> 2.9931226872439436,
-                        </div>
-                       
-                        <div class="gridFieldProfileMean">
-                            <b>"Mean":</b> 0.024987537472992594,
-                        </div>
-                        <div class="gridFieldProfileStdev">
-                            <b>"Stdev":</b> 0.965105294571081,
-                        </div>
-                       
-                        <div class="gridFieldProfileMedian">
-                            <b>"Median":</b> 0.012544328964464974,
-                        </div>
-                        <div class="gridFieldProfileQ1">
-                            <b>"Q1":</b> -0.6686040453830552, // 25th percentile
-                        </div>
-                       
-                        <div class="gridFieldProfileQ3">
-                            <b>"Q3":</b> 0.7090708668163043   // 75th percentile
-                        </div>
-                        <div class="gridFieldProfileModeSkew">
-                            <b>"Modeskew":</b> 0.012893109776231,
-                        </div>
-                    </div>
-    
-                    <div *ngIf="clickedViewOverview" class="gridOverview">
-
-                        <div class="gridOverviewTitle">
-                            <i> This area shows a summary of the data.
-
-                                <br>
-                                Your dataset has <b>241</b> records, and <b>24</b> fields,
-                                Text fields: <b>8</b>,
-                                Date fields: <b>4</b>,
-                                Number fields: <b>9</b>,
-                                Boolean fields: <b>2</b>,
-                                ? fields: <b>1</b>.
-                            </i>
-                        </div>
-
-                        <div class="gridOverviewGraph1">
-                            <img
-                                [style.height.px]="220"
-                                [style.width.px]="220"
-                                src="../images/ChartCandleStick.png"
-                            >
-
-                        </div>
-                        <div class="gridOverviewGraph2">
-                                <img
-                                [style.height.px]="220"
-                                [style.width.px]="220"
-                                src="../images/ChartBoxPlot.png"
-                            >
-                        </div>
-                        <div class="gridOverviewGraph3">
-                            <img
-                                [style.height.px]="220"
-                                [style.width.px]="220"
-                                src="../images/ChartRangedDot.png"
-                            >
-                        </div>
-
+                    <div class="gridFieldsCurrent">
+                        <clr-datagrid>
+                            <clr-dg-column>FieldName</clr-dg-column>
+                            <clr-dg-column>DataType</clr-dg-column>
+                            <clr-dg-row *clrDgItems="let row of finalFields">
+                                <clr-dg-cell>{{ row.fieldName }}</clr-dg-cell>
+                                <clr-dg-cell>{{ row.dataType }}</clr-dg-cell>
+                            </clr-dg-row>
+                        </clr-datagrid>
                     </div>
 
-                    <div *ngIf="clickedViewFields" class="gridFields">
-                        <div class="gridFieldsTable">
-
-                            <clr-datagrid>
-                                <clr-dg-column>FieldName</clr-dg-column>
-                                <clr-dg-column>DataType</clr-dg-column>
-                                <clr-dg-column>LocalName</clr-dg-column>
-                                <clr-dg-column>Filtered</clr-dg-column>
-                                <clr-dg-column>Transformed</clr-dg-column>
-                                <clr-dg-row *clrDgItems="let row of finalFields">
-                                    <clr-dg-cell>{{ row.fieldName }}</clr-dg-cell>
-                                    <clr-dg-cell>{{ row.dataType }}</clr-dg-cell>
-                                    <clr-dg-cell>{{ row.localName }}</clr-dg-cell>
-                                    <clr-dg-cell>{{ row.filtered }}</clr-dg-cell>
-                                    <clr-dg-cell>{{ row.transformed }}</clr-dg-cell>
-                                </clr-dg-row>
-
-                                <clr-dg-footer>
-                                    {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
-                                    of {{pagination.totalItems}} rows
-                                    <clr-dg-pagination #pagination [clrDgPageSize]="8"></clr-dg-pagination>
-                                </clr-dg-footer>
-                            </clr-datagrid>
-    
-                        </div>
-                    </div>
-
-                    <div *ngIf="clickedViewDataQuality" class="gridDataQuality">
-                        <div class="gridDataQualityTable">
-                            <clr-datagrid>
-                                <clr-dg-column>ID</clr-dg-column>
-                                <clr-dg-column>Status</clr-dg-column>
-                                <clr-dg-column>Name</clr-dg-column>
-                                <clr-dg-column>Type</clr-dg-column>
-                                <clr-dg-column>Description</clr-dg-column>
-                                <clr-dg-column>NrIssues</clr-dg-column>
-                                <clr-dg-column>LoggedBy</clr-dg-column>
-                                <clr-dg-column>LoggedOn</clr-dg-column>
-                                <clr-dg-column>SolvedBy</clr-dg-column>
-                                <clr-dg-column>SolvedOn</clr-dg-column>
-
-                                <clr-dg-row *clrDgItems="let row of dataQualityIssues">
-                                    <clr-dg-cell>{{row.id}}</clr-dg-cell>
-                                    <clr-dg-cell>{{row.status}}</clr-dg-cell>
-                                    <clr-dg-cell>{{row.name}}</clr-dg-cell>
-                                    <clr-dg-cell>{{row.type}}</clr-dg-cell>
-                                    <clr-dg-cell>{{row.description}}</clr-dg-cell>
-                                    <clr-dg-cell>{{row.nrIssues}}</clr-dg-cell>
-                                    <clr-dg-cell>{{row.loggedBy}}</clr-dg-cell>
-                                    <clr-dg-cell>{{row.loggedOn}}</clr-dg-cell>
-                                    <clr-dg-cell>{{row.solvedBy}}</clr-dg-cell>
-                                    <clr-dg-cell>{{row.solvedOn}}</clr-dg-cell>
-                                </clr-dg-row>
-
-
-                                <clr-dg-footer>
-                                    {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
-                                    of {{pagination.totalItems}} rows
-                                    <clr-dg-pagination #pagination [clrDgPageSize]="8"></clr-dg-pagination>
-                                </clr-dg-footer>
-                            </clr-datagrid>
-                        </div>
-                    </div>
-                    
                 </div>
             </div>
         </div>
