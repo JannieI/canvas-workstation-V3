@@ -138,6 +138,14 @@
         margin-left: 2px;
     }
 
+    .gridTransformationButtonCancel {
+        grid-column-start: 19;
+        grid-column-end: 21;
+        grid-row-start: 4;
+        grid-row-end: 5;
+        margin-top: 5px;
+        margin-left: 12px;
+    }
     .gridTransformationButtonSave {
         grid-column-start: 19;
         grid-column-end: 21;

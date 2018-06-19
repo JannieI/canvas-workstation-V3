@@ -146,8 +146,18 @@
                                 >
                         </div>
 
-                        <div class="gridTransformationButtonSave"
-                            >
+                        <div class="gridTransformationButtonCancel">
+                            <button
+                                type="button"
+                                class="btn btn-primary"
+                                [disabled]="!adding"
+                                (click)="clickCancel()"
+                                >
+                                Cancel
+                            </button>
+                        </div>
+
+                        <div class="gridTransformationButtonSave">
                             <button
                                 type="button"
                                 class="btn btn-primary"
