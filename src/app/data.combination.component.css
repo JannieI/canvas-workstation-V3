@@ -157,8 +157,8 @@
     }
 
     .gridButtonCancel {
-        grid-column-start: 15;
-        grid-column-end: 17;
+        grid-column-start: 16;
+        grid-column-end: 18;
         grid-row-start: 19;
         grid-row-end: 20;
     }

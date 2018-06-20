@@ -44,9 +44,13 @@ export class DataDirectWebComponent implements OnInit {
 
     datasources: Datasource[] = [];
     editing: boolean = false;
+    element: string = '';
+    newName: string = '';
+    newDescription: string = '';
     selectedDatasourceID: number = null;
     selectedDatasource: Datasource;
     selectedDatasourcesRowIndex: number = 0;
+    url: string = '';
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,

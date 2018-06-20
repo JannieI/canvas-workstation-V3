@@ -15,12 +15,71 @@
                                 Obtain data from a web page.  
                             </i>
                         </div>
-                        <div class="gridSubTitle2">
-                            <i>
-                                To be done at a later stage.  
-                            </i>
+
+                        <div class="gridUrlTitle">
+                            <b>Url:</b>
+                        </div>
+                        <div class="gridUrl">
+                            <input [(ngModel)]="url"
+                                type="text"
+                                name="url"
+                                title="Url (address) of the data to be read"
+                                >
+                        </div>
+
+                        <div class="gridElementTitle">
+                            <b>Element:</b>
+                        </div>
+                        <div class="gridElement">
+                            <input [(ngModel)]="element"
+                                type="text"
+                                name="element"
+                                title="Optional Element ID on the url"
+                                >
+                        </div>
+            
+                        <div class="gridDatasourceNameTitle">
+                            <b>Name:</b>
+                        </div>
+                        <div class="gridDatasourceName">
+                            <input [(ngModel)]="newName"
+                                type="text"
+                                name="name"
+                                title="Name of the new Datasource"
+                                >
                         </div>
     
+                        <div class="gridDatasourceDescriptionTitle">
+                            <b>Description:</b>
+                        </div>
+                        <div class="gridDatasourceDescription">
+                            <input [(ngModel)]="newDescription"
+                                type="text"
+                                description="description"
+                                size="45"
+                                title="Description of the new Datasource"
+                                >
+                        </div>
+        
+                        <div class="gridButtonCancel">
+                            <button
+                                type="button"
+                                class="btn btn-secondary"
+                                (click)="clickClose()"
+                                >
+                                Cancel
+                            </button>
+                        </div>
+    
+                        <div class="gridButtonSave">
+                            <button
+                                type="button"
+                                class="btn btn-primary"
+                                (click)="clickSave()"
+                                >
+                                Save
+                            </button>
+                        </div>    
                     </div>
                 </form>
             </div>
