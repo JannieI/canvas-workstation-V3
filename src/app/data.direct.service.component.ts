@@ -44,7 +44,7 @@ export class DataDirectServiceComponent implements OnInit {
     }
 
     datasources: Datasource[] = [];
-    element: string = '';
+    parameters: string = '';
     errorMessage: string = '';
     newName: string = '';
     newDescription: string = '';

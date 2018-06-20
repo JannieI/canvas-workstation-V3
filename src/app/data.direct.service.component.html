@@ -17,14 +17,14 @@
                     </div>
 
                     <div class="gridUrlTitle">
-                        <b>Url:</b>
+                        <b>Service:</b>
                     </div>
                     <div class="gridUrl">
                         <input [(ngModel)]="url"
                             type="text"
                             name="url"
                             size="40"
-                            title="Url (address) of the data to be read"
+                            title="Service (ie Google APIs) of the data to be read"
                             >
                     </div>
     
@@ -38,14 +38,14 @@
                         </button>
                     </div>
 
-                    <div class="gridElementTitle">
-                        <b>Element:</b>
+                    <div class="gridParamsTitle">
+                        <b>Params:</b>
                     </div>
-                    <div class="gridElement">
-                        <input [(ngModel)]="element"
+                    <div class="gridParams">
+                        <input [(ngModel)]="parameters"
                             type="text"
-                            name="element"
-                            title="Optional Element ID on the url"
+                            name="parameters"
+                            title="Optional parameters of the service"
                             >
                     </div>
 
