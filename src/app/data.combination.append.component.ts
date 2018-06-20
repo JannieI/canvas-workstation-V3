@@ -31,7 +31,7 @@ import { DataQualityIssue }           from './models';
 import * as dl from 'datalib';
 import { load } from 'datalib';
 
-interface localDatasources extends Datasource 
+interface localDatasources extends Datasource
     {
         isSelected?: boolean;
         hasWidget?: boolean;
@@ -70,7 +70,8 @@ export class DataCombinationAppendComponent implements OnInit {
     errorMessage: string = "";
     fileName: string = '';
     folderName: string = '';
-    finalFields: any = [];
+    fieldTypes: {MonthTraded: string; TradeType: string; Volume: string; Price: string; Value: string;}[] = [];
+    headers: string[] = [];
     selectedDatasources: Datasource[];
     selectedDatasource: Datasource;
     selectedRowID: number = 0;
@@ -125,7 +126,7 @@ export class DataCombinationAppendComponent implements OnInit {
         };
         console.warn('xx DS, dSet', this.globalVariableService.datasources, this.globalVariableService.currentDatasources, this.globalVariableService.datasets, this.globalVariableService.currentDatasets)
         // TODO - fix!!
-        this.finalFields = this.globalVariableService.finalFields;
+        this.fieldTypes = [{MonthTraded: 'MonthTraded', TradeType: 'TradeType', Volume: 'Volume', Price: 'Price', Value: 'Value'}];
 
     }
 
@@ -147,7 +148,7 @@ export class DataCombinationAppendComponent implements OnInit {
             this.selectedRowDescription = this.datasources[dsIndex].description;
 
             this.selectedRowNrWidgetsInUse = this.globalVariableService.widgets.filter(w =>
-                w.datasourceID == this.datasources[index].id    
+                w.datasourceID == this.datasources[index].id
                 &&
                 w.dashboardID == this.globalVariableService.currentDashboardInfo.value.currentDashboardID
             ).length;
@@ -190,7 +191,7 @@ export class DataCombinationAppendComponent implements OnInit {
                 // Dset exists in gv datasets, but not in currentDatasets
                 if (globalDsetIndex >= 0  &&  globalCurrentDsetIndex < 0) {
                     localDataset = this.globalVariableService.datasets[globalDsetIndex];
-                    
+
                     // Get data for Dset
                     this.globalVariableService.getData(localDataset.id).then(res => {
 
