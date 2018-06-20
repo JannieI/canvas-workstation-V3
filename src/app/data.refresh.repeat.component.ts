@@ -1,11 +1,12 @@
 /*
- * Data refresh Datasources once
+ * Repeatly refresh the Datasources for the current Dashboard.
  */
 
 // Angular
 import { Component }                  from '@angular/core';
 import { EventEmitter }               from '@angular/core';
 import { HostListener }               from '@angular/core';
+import { HttpClient }                 from '@angular/common/http';
 import { Input }                      from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
@@ -43,95 +44,79 @@ export class DataRefreshRepeatComponent implements OnInit {
     }
 
     datasources: Datasource[] = [];
-    editing: boolean = false;
-    selectedDatasourceID: number = null;
-    selectedDatasource: Datasource;
-    selectedDatasourcesRowIndex: number = 0;
+    parameters: string = '';
+    errorMessage: string = '';
+    newName: string = '';
+    newDescription: string = '';
+    url: string = '';
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
+        private http: HttpClient,
 	) {}
 
 	ngOnInit() {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
-        
-        // Reset, else async too late and form load fails
-        this.selectedDatasource = 
-        {
-            id: null,
-            type: '',
-            subType: '',
-            typeVersion: '',
-            name: '',
-            username: '',
-            password: '',
-            description: '',
-            createdBy: '',
-            createdOn: '',
-            refreshedBy: '',
-            refreshedOn: '',
-            dataFieldIDs: null,
-            dataFields: null,
-            dataFieldTypes: null,
-            dataFieldLengths: null,
-            parameters: '',
-            folder: '',
-            fileName: '',
-            excelWorksheet: '',
-            transposeOnLoad: false,
-            startLineNr: null,
-            csvSeparationCharacter: '',
-            csvQuotCharacter: '',
-            connectionID: null,
-            dataTableID: null,
-            businessGlossary: '',
-            databaseName: '',
-            port: '',
-            serverType: '',
-            serverName: '',
-            dataTableName: '',
-            dataSQLStatement: '',
-            dataNoSQLStatement: '',
-            nrWidgets: null,
-            dataDictionary: ''
-        }
 
-        this.globalVariableService.getDatasources().then(dc => {
-            // Fill local Var
-            this.datasources = dc.slice();
-            console.warn('xx this.datasources.length', this.datasources.length)
+        // this.globalVariableService.getDatasources().then(dc => {
+        //     // Fill local Var
+        //     this.datasources = dc.slice();
+        //     console.warn('xx this.datasources.length', this.datasources.length)
             
-            // Click on first one, if available
-            if (this.datasources.length > 0) {
-                this.clickRow(0, this.datasources[0].id);
-            };
-        });
+        //     // Click on first one, if available
+        //     if (this.datasources.length > 0) {
+        //         this.clickRow(0, this.datasources[0].id);
+        //     };
+        // });
 
     }
 
-    clickRow(index: number, id: number) {
-        // Click Row
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
+    returnHttpGet() {
+        // Get HTML
+        this.globalFunctionService.printToConsole(this.constructor.name,'returnHttpGet', '@Start');
 
-        // Set the row index
-        this.selectedDatasourcesRowIndex = index;
-        this.editing = false;
-        this.selectedDatasourceID = id;
+        // TODO - fix CORS & Authorisation
+        // return this.http.get('https://stackoverflow.com/questions/43489689/use-angular-2-service-from-regular-js-in-browser')
+        return this.http.get('https://www.w3schools.com/')
+    }
 
-        // Fill the form
-        let selectedDatasourceIndex: number = this.datasources
-            .findIndex(dc => dc.id == id);
-        if (selectedDatasourceIndex >= 0) {
+    clickHttpGet() {
+        // User clicked Get with URL
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickHttpGet', '@Start');
 
-            this.selectedDatasource = Object.assign({}, 
-                this.datasources[selectedDatasourceIndex]
-            );
-        } else {
-            this.selectedDatasource = null;
-        };
-console.warn('xx this.selectedDatasource ', this.selectedDatasource )
+        // Reset
+        this.errorMessage = '';
+
+        // Get html
+        this.returnHttpGet().subscribe((data: any) => {
+            console.warn('xx HOLY MOLY 3', data)
+        },
+        err => {
+            this.errorMessage = err.message;
+        });
+
+
+
+        // // code for IE7+, Firefox, Chrome, Opera, Safari
+        // let xmlhttp = new XMLHttpRequest();
+        
+        // xmlhttp.onreadystatechange=function()
+        //     {
+        //         if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+        //             console.warn('HOLY MOLY', xmlhttp.responseText);
+        //         };
+        //     }
+
+        // // Setup callback
+        // xmlhttp.onload = function() {
+        //     console.warn('HOLY MOLY !!', this.responseXML );
+        // }
+
+        // xmlhttp.open("GET", 'https://stackoverflow.com/questions/43489689/use-angular-2-service-from-regular-js-in-browser', false);
+        // // xmlhttp.send();    
+        // console.warn('xx after SEND')
     }
     
     clickClose(action: string) {
@@ -142,57 +127,21 @@ console.warn('xx this.selectedDatasource ', this.selectedDatasource )
 
     }
 
-    clickCancel() {
-        // Cancel Editing
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickCancel', '@Start');
-
-        this.editing = false;
-        this.clickRow(this.selectedDatasourcesRowIndex, this.selectedDatasourceID);
-        
-        // // Re Fill the form
-        // let datasourceIndex: number = this.datasources
-        //     .findIndex(sch => sch.id == this.selectedDatasource.id);
-        // if (datasourceIndex >= 0) {
-        //     this.selectedDatasource = Object.assign({}, 
-        //         this.datasources[datasourceIndex]
-        //     );
-        // };
-
-        // // Reset
-        // this.selectedDatasourcesRowIndex = null;
-        // this.selectedDatasourceID = null;
-
-    }
-
     clickSave() {
         // Save changes to the Datasource
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
         // Save the changes
-        if (this.editing) {
-            let datasourceIndex: number = this.datasources
-                .findIndex(ds => ds.id == this.selectedDatasource.id);
-            if (datasourceIndex >= 0) {
-                this.datasources[datasourceIndex].dataDictionary = 
-                    this.selectedDatasource.dataDictionary
-            };
-            this.globalVariableService.saveDatasource(this.selectedDatasource)
-        };
+        // if (this.editing) {
+        //     let datasourceIndex: number = this.datasources
+        //         .findIndex(ds => ds.id == this.selectedDatasource.id);
+        //     if (datasourceIndex >= 0) {
+        //         this.datasources[datasourceIndex].dataDictionary = 
+        //             this.selectedDatasource.dataDictionary
+        //     };
+        //     this.globalVariableService.saveDatasource(this.selectedDatasource)
+        // };
 
-        // Reset
-        this.editing = false;
-        // this.selectedDatasourcesRowIndex = null;
-        // this.selectedDatasourceID = null;
-
-    }
-
-    clickEdit() {
-        // Start editing selected Datasource
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickEdit', '@Start');
-
-        if (this.datasources.length > 0) {
-            this.editing = true;
-        };
     }
 
 }
