@@ -43,13 +43,9 @@ export class DataDirectWebComponent implements OnInit {
     }
 
     datasources: Datasource[] = [];
-    editing: boolean = false;
     element: string = '';
     newName: string = '';
     newDescription: string = '';
-    selectedDatasourceID: number = null;
-    selectedDatasource: Datasource;
-    selectedDatasourcesRowIndex: number = 0;
     url: string = '';
 
 	constructor(
@@ -60,82 +56,36 @@ export class DataDirectWebComponent implements OnInit {
 	ngOnInit() {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
-        
-        // Reset, else async too late and form load fails
-        this.selectedDatasource = 
-        {
-            id: null,
-            type: '',
-            subType: '',
-            typeVersion: '',
-            name: '',
-            username: '',
-            password: '',
-            description: '',
-            createdBy: '',
-            createdOn: '',
-            refreshedBy: '',
-            refreshedOn: '',
-            dataFieldIDs: null,
-            dataFields: null,
-            dataFieldTypes: null,
-            dataFieldLengths: null,
-            parameters: '',
-            folder: '',
-            fileName: '',
-            excelWorksheet: '',
-            transposeOnLoad: false,
-            startLineNr: null,
-            csvSeparationCharacter: '',
-            csvQuotCharacter: '',
-            connectionID: null,
-            dataTableID: null,
-            businessGlossary: '',
-            databaseName: '',
-            port: '',
-            serverType: '',
-            serverName: '',
-            dataTableName: '',
-            dataSQLStatement: '',
-            dataNoSQLStatement: '',
-            nrWidgets: null,
-            dataDictionary: ''
-        }
 
-        this.globalVariableService.getDatasources().then(dc => {
-            // Fill local Var
-            this.datasources = dc.slice();
-            console.warn('xx this.datasources.length', this.datasources.length)
+        // this.globalVariableService.getDatasources().then(dc => {
+        //     // Fill local Var
+        //     this.datasources = dc.slice();
+        //     console.warn('xx this.datasources.length', this.datasources.length)
             
-            // Click on first one, if available
-            if (this.datasources.length > 0) {
-                this.clickRow(0, this.datasources[0].id);
-            };
-        });
+        //     // Click on first one, if available
+        //     if (this.datasources.length > 0) {
+        //         this.clickRow(0, this.datasources[0].id);
+        //     };
+        // });
 
     }
 
-    clickRow(index: number, id: number) {
-        // Click Row
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
+    clickHttpGet(index: number, id: number) {
+        // Get HTML
+        this.globalFunctionService.printToConsole(this.constructor.name,'httpGet', '@Start');
 
-        // Set the row index
-        this.selectedDatasourcesRowIndex = index;
-        this.editing = false;
-        this.selectedDatasourceID = id;
-
-        // Fill the form
-        let selectedDatasourceIndex: number = this.datasources
-            .findIndex(dc => dc.id == id);
-        if (selectedDatasourceIndex >= 0) {
-
-            this.selectedDatasource = Object.assign({}, 
-                this.datasources[selectedDatasourceIndex]
-            );
-        } else {
-            this.selectedDatasource = null;
-        };
-console.warn('xx this.selectedDatasource ', this.selectedDatasource )
+        // code for IE7+, Firefox, Chrome, Opera, Safari
+        let xmlhttp = new XMLHttpRequest();
+        
+        xmlhttp.onreadystatechange=function()
+            {
+                if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+                    console.warn('HOLY MOLY', xmlhttp.responseText);
+                };
+            }
+        xmlhttp.open("GET", 'https://stackoverflow.com/questions/43489689/use-angular-2-service-from-regular-js-in-browser', false);
+        xmlhttp.send();    
+        console.warn('xx after SEND')
     }
     
     clickClose(action: string) {
@@ -149,9 +99,6 @@ console.warn('xx this.selectedDatasource ', this.selectedDatasource )
     clickCancel() {
         // Cancel Editing
         this.globalFunctionService.printToConsole(this.constructor.name,'clickCancel', '@Start');
-
-        this.editing = false;
-        this.clickRow(this.selectedDatasourcesRowIndex, this.selectedDatasourceID);
         
         // // Re Fill the form
         // let datasourceIndex: number = this.datasources
@@ -173,31 +120,16 @@ console.warn('xx this.selectedDatasource ', this.selectedDatasource )
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
         // Save the changes
-        if (this.editing) {
-            let datasourceIndex: number = this.datasources
-                .findIndex(ds => ds.id == this.selectedDatasource.id);
-            if (datasourceIndex >= 0) {
-                this.datasources[datasourceIndex].dataDictionary = 
-                    this.selectedDatasource.dataDictionary
-            };
-            this.globalVariableService.saveDatasource(this.selectedDatasource)
-        };
+        // if (this.editing) {
+        //     let datasourceIndex: number = this.datasources
+        //         .findIndex(ds => ds.id == this.selectedDatasource.id);
+        //     if (datasourceIndex >= 0) {
+        //         this.datasources[datasourceIndex].dataDictionary = 
+        //             this.selectedDatasource.dataDictionary
+        //     };
+        //     this.globalVariableService.saveDatasource(this.selectedDatasource)
+        // };
 
-        // Reset
-        this.editing = false;
-        // this.selectedDatasourcesRowIndex = null;
-        // this.selectedDatasourceID = null;
-
-    }
-
-    clickEdit() {
-        // Start editing selected Datasource
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickEdit', '@Start');
-
-        if (this.datasources.length > 0) {
-            this.editing = true;
-        };
-console.warn('xx edit', this.editing)
     }
 
 }
