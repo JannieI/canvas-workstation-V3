@@ -15,12 +15,12 @@
                             right of the LH one where the selected fields are equal.
                         </i>
                         <i *ngIf="combinationType=='Intersection'">
-                                Create a new Datasources by shows only records in the LH
-                                Datasource that also exist in the RH based on the columns.
+                            Create a new Datasources by shows only records in the LH
+                            Datasource that also exist in the RH based on the columns.
                         </i>
                         <i *ngIf="combinationType=='Minus'">
-                                Create a new Datasources by showing only records in the LH
-                                Datasource that does NOT exist in the RH based on the columns.
+                            Create a new Datasources by showing only records in the LH
+                            Datasource that does NOT exist in the RH based on the columns.
                         </i>
                     </div>
 
@@ -35,9 +35,9 @@
 
                             <clr-dg-row
                                 *clrDgItems="let row of datasources; let i = index"
-                                [style.background-color]="(i == selectedRowIndex)? '#123456' : 'white'"
-                                [style.color]="(i == selectedRowIndex)? 'white' : 'gray'"
-                                (click)="clickSelectedDatasource(i, row.id)"
+                                [style.background-color]="(i == selectedRowIndexLH)? '#123456' : 'white'"
+                                [style.color]="(i == selectedRowIndexLH)? 'white' : 'gray'"
+                                (click)="clickSelectedDatasourceLH(i, row.id)"
                                 >
                                 <clr-dg-cell>
                                     {{ row.name }}
@@ -89,9 +89,9 @@
 
                             <clr-dg-row
                                 *clrDgItems="let row of datasources; let i = index"
-                                [style.background-color]="(i == selectedRowIndex)? '#123456' : 'white'"
-                                [style.color]="(i == selectedRowIndex)? 'white' : 'gray'"
-                                (click)="clickSelectedDatasource(i, row.id)"
+                                [style.background-color]="(i == selectedRowIndexRH)? '#123456' : 'white'"
+                                [style.color]="(i == selectedRowIndexRH)? 'white' : 'gray'"
+                                (click)="clickSelectedDatasourceRH(i, row.id)"
                                 >
                                 <clr-dg-cell>
                                     {{ row.name }}
