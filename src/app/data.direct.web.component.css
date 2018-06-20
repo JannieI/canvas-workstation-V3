@@ -47,6 +47,12 @@
         grid-row-start: 4;
         grid-row-end: 5;
     }
+    .gridButtonGet {
+        grid-column-start: 13;
+        grid-column-end: 15;
+        grid-row-start: 4;
+        grid-row-end: 5;
+    }
 
     .gridElementTitle {
         grid-column-start: 1;
