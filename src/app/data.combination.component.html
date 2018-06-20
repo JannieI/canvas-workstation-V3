@@ -103,6 +103,28 @@
                         </clr-datagrid>
                     </div>
     
+                    <div class="gridDatasourceNameTitle">
+                        <b>Name:</b>
+                    </div>
+                    <div class="gridDatasourceName">
+                        <input [(ngModel)]="selectedDatasource.name"
+                            type="text"
+                            name="name"
+                            title="Name of the Datasource"
+                            >
+                    </div>
+
+                    <div class="gridDatasourceDescriptionTitle">
+                        <b>Description:</b>
+                    </div>
+                    <div class="gridDatasourceDescription">
+                        <input [(ngModel)]="selectedDatasource.description"
+                            type="text"
+                            description="description"
+                            title="Description of the Datasource"
+                            >
+                    </div>
+    
                     <div class="gridButtonCancel">
                         <button
                             type="button"
