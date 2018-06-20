@@ -6,6 +6,7 @@
 import { Component }                  from '@angular/core';
 import { EventEmitter }               from '@angular/core';
 import { HostListener }               from '@angular/core';
+import { HttpClient }                 from '@angular/common/http';
 import { Input }                      from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
@@ -51,6 +52,7 @@ export class DataDirectWebComponent implements OnInit {
 	constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
+        private http: HttpClient,
 	) {}
 
 	ngOnInit() {
@@ -70,22 +72,42 @@ export class DataDirectWebComponent implements OnInit {
 
     }
 
-    clickHttpGet(index: number, id: number) {
+    returnHttpGet() {
         // Get HTML
-        this.globalFunctionService.printToConsole(this.constructor.name,'httpGet', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'returnHttpGet', '@Start');
 
-        // code for IE7+, Firefox, Chrome, Opera, Safari
-        let xmlhttp = new XMLHttpRequest();
+        // return this.http.get('https://stackoverflow.com/questions/43489689/use-angular-2-service-from-regular-js-in-browser')
+        return this.http.get('https://www.w3schools.com/')
+    }
+
+    clickHttpGet() {
+        // User clicked Get with URL
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickHttpGet', '@Start');
+
+        this.returnHttpGet().subscribe((data: any) => {
+            console.warn('xx HOLY MOLY 3', data)
+        });
+
+
+
+        // // code for IE7+, Firefox, Chrome, Opera, Safari
+        // let xmlhttp = new XMLHttpRequest();
         
-        xmlhttp.onreadystatechange=function()
-            {
-                if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-                    console.warn('HOLY MOLY', xmlhttp.responseText);
-                };
-            }
-        xmlhttp.open("GET", 'https://stackoverflow.com/questions/43489689/use-angular-2-service-from-regular-js-in-browser', false);
-        xmlhttp.send();    
-        console.warn('xx after SEND')
+        // xmlhttp.onreadystatechange=function()
+        //     {
+        //         if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+        //             console.warn('HOLY MOLY', xmlhttp.responseText);
+        //         };
+        //     }
+
+        // // Setup callback
+        // xmlhttp.onload = function() {
+        //     console.warn('HOLY MOLY !!', this.responseXML );
+        // }
+
+        // xmlhttp.open("GET", 'https://stackoverflow.com/questions/43489689/use-angular-2-service-from-regular-js-in-browser', false);
+        // // xmlhttp.send();    
+        // console.warn('xx after SEND')
     }
     
     clickClose(action: string) {
@@ -93,25 +115,6 @@ export class DataDirectWebComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
         this.formDataDirectWebClosed.emit(action);
-
-    }
-
-    clickCancel() {
-        // Cancel Editing
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickCancel', '@Start');
-        
-        // // Re Fill the form
-        // let datasourceIndex: number = this.datasources
-        //     .findIndex(sch => sch.id == this.selectedDatasource.id);
-        // if (datasourceIndex >= 0) {
-        //     this.selectedDatasource = Object.assign({}, 
-        //         this.datasources[datasourceIndex]
-        //     );
-        // };
-
-        // // Reset
-        // this.selectedDatasourcesRowIndex = null;
-        // this.selectedDatasourceID = null;
 
     }
 
