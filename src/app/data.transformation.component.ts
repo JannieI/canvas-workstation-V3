@@ -474,6 +474,18 @@ export class DataTransformationComponent implements OnInit {
         // Save Transformation and its parameters
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
+        console.warn('xx hier', this.parameter1Value, this.transformations[this.selectedTransformationRowIndex])
+        // Validate
+        for (var i = 0; i < this.transformations[this.selectedTransformationRowIndex].nrParameters; i++) {
+            if (i == 0) {
+                if (this.parameter1Value == '') {
+                    this.errorMessage = this.transformations[this.selectedTransformationRowIndex]
+                        .parameterHeading[i] + ' is compulsory';
+                    return;
+                }
+            };
+        };
+
         // Add NEW record
         if (this.adding) {
 
