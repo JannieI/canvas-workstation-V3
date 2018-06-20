@@ -507,6 +507,13 @@ export class DataTransformationComponent implements OnInit {
                     return;
                 }
             };
+            if (i == 4) {
+                if (this.parameter5Value == '') {
+                    this.errorMessage = this.transformations[this.selectedTransformationRowIndex]
+                        .parameterHeading[i] + ' is compulsory';
+                    return;
+                }
+            };
         };
 
         // Add NEW record
