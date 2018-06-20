@@ -23,7 +23,7 @@
                             <input [(ngModel)]="url"
                                 type="text"
                                 name="url"
-                                size="45"
+                                size="40"
                                 title="Url (address) of the data to be read"
                                 >
                         </div>
@@ -31,7 +31,7 @@
                         <div class="gridButtonGet">
                             <button
                                 type="button"
-                                class="btn btn-secondary"
+                                class="btn btn-link"
                                 (click)="clickHttpGet()"
                                 >
                                 Get
@@ -48,7 +48,11 @@
                                 title="Optional Element ID on the url"
                                 >
                         </div>
-            
+
+                        <div class="gridErrorMessage">
+                            {{ errorMessage }}
+                        </div>
+    
                         <div class="gridDatasourceNameTitle">
                             <b>Name:</b>
                         </div>

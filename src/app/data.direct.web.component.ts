@@ -45,6 +45,7 @@ export class DataDirectWebComponent implements OnInit {
 
     datasources: Datasource[] = [];
     element: string = '';
+    errorMessage: string = '';
     newName: string = '';
     newDescription: string = '';
     url: string = '';
@@ -76,6 +77,7 @@ export class DataDirectWebComponent implements OnInit {
         // Get HTML
         this.globalFunctionService.printToConsole(this.constructor.name,'returnHttpGet', '@Start');
 
+        // TODO - fix CORS & Authorisation
         // return this.http.get('https://stackoverflow.com/questions/43489689/use-angular-2-service-from-regular-js-in-browser')
         return this.http.get('https://www.w3schools.com/')
     }
