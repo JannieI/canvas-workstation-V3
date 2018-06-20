@@ -1,41 +1,19 @@
 <div class="modal modalBox">
-        <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
-            <div class="modal-content modalContent">
-
-                <div>
-                    <button type="button" class="closeButton" (click)="clickClose()">
-                        X
-                    </button>
-
-                    Combinations of Datasets
-
-                    <div class="helpMessage" *ngIf="isFirstTimeDataCombination">
-                        <div class="propertyLine">
-                            Using existing Datasets, you can create new Datasets for this
-                            Dashboard.  For example, if you have two Datasets for different
-                            sales regions, you can combine them into a new Dataset to show
-                            information from both in the same graph.  These combinations
-                            are refreshed automatically when the underlying Dataset is
-                            refreshed.  There are different types of combinations:
-                        </div>
-                        <div class="propertyLine">
-                            <b>Got it</b> <input type="checkbox" (click)="clickGotIt()">
-                            (You can make this message re-appear with the <i>Preferences</i> option under your
-                            User icon <clr-icon shape="user"></clr-icon> on the menu top right.)
-                        </div>
-                    </div>
-
-                    <div class="gridOverall" *ngIf="!isFirstTimeDataCombination">
-                        <div class="gridFieldHeader">
-                            Select Combination type:
-                            <select class="select" id="selects_3"
-                                (change)="clickSelectStep($event)"
-                                >
-                                <option>Union</option>
-                                <option>Intersect</option>
-                                <option>Minus</option>
-                                <option>Join</option>
-                            </select>
+    <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div modalContent>
+                <button type="button" class="closeButton" (click)="clickClose()">
+                    X
+                </button>
+                <div class="gridOverall">
+                    <div class="gridTitle">
+                        Append Datasources :
+                    </div> 
+                    <div class="gridSubTitle">
+                        <i>
+                            Create a new Datasources by appending the selected Datasources to the
+                            end of the first one.  Note that only Datasources with the same number
+                            of fields and the same type of fields can be appended.
                             <div class="propertyLine" *ngIf="selectedUnion">
                                 <b>Union</b> - appends (at the bottom) any number of Datasets, showing
                                 all the records in them.  The Datasets must have the same number
@@ -53,90 +31,111 @@
                             <div class="propertyLine" *ngIf="selectedJoin">
                                 <b>Join</b> - joins (to right) two Datasets together on a mutual column.
                             </div>
+                        </i>
+                    </div>
+                
+                    <div class="gridDatasources">
+                        <clr-datagrid [(clrDgSelected)]="selectedDatasources">
 
-                        </div>
-                        <div class="gridFieldLH">
-                            <div class="propertyLine">
-                                <b>Left Hand:</b>
-                            </div>
-                            <div class="propertyLine">
-                                Select Dataset:
-                                <select class="select" id="selects_3"
-                                    (change)="clickSelectStep($event)"
-                                    >
-                                    <option>Budget</option>
-                                    <option>Sales forecast</option>
-                                    <option>Factory output</option>
-                                </select>
-                            </div>
-                            <div class="propertyLine">
-                                Select Field:
-                                <select class="select" id="selects_3"
-                                    (change)="clickSelectStep($event)"
-                                    >
-                                    <option>TradeData</option>
-                                    <option>Broker</option>
-                                    <option>TradeType</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="gridFieldRH">
-                            <div class="propertyLine">
-                                <b>Right Hand:</b>
-                            </div>
-                            <div class="propertyLine">
-                                Select Dataset:
-                                <select class="select" id="selects_3"
-                                    (change)="clickSelectStep($event)"
-                                    >
-                                    <option>Budget 2</option>
-                                    <option>Sales forecast</option>
-                                    <option>Factory output</option>
-                                </select>
-                            </div>
-                            <div class="propertyLine">
-                                Select Field:
-                                <select class="select" id="selects_3"
-                                    (change)="clickSelectStep($event)"
-                                    >
-                                    <option>TradeData 2</option>
-                                    <option>Broker</option>
-                                    <option>TradeType</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="buttonSave">
-                            <button
-                                type="button"
-                                class="btn btn-sedondary"
-                                (click)="clickSave()"
+                            <clr-dg-column>Selected</clr-dg-column>
+                            <clr-dg-column>Name</clr-dg-column>
+                            <clr-dg-column>Description</clr-dg-column>
+
+                            <clr-dg-row
+                                *clrDgItems="let row of datasources; let i = index"
+                                [clrDgItem]="row"
+                                [style.background-color]="(i == selectedRowIndex)? '#123456' : 'white'"
+                                [style.color]="(i == selectedRowIndex)? 'white' : 'gray'"
+                                (click)="clickSelectedDatasource(i, row.id)"
                                 >
-                                Save
-                            </button>
-                        </div>
-
-
-                        <div class="gridFieldTable">
-                            <clr-datagrid class="fieldsDataGrid">
-                                <clr-dg-column>Delete</clr-dg-column>
-                                <clr-dg-column>Type</clr-dg-column>
-                                <clr-dg-column>LH DS</clr-dg-column>
-                                <clr-dg-column>LH Field</clr-dg-column>
-                                <clr-dg-column>RH DS</clr-dg-column>
-                                <clr-dg-column>RH Field</clr-dg-column>
-
-                                <clr-dg-row>
-                                    <clr-dg-cell><clr-icon shape="times"></clr-icon></clr-dg-cell>
-                                    <clr-dg-cell>Union</clr-dg-cell>
-                                    <clr-dg-cell>Budget Jan</clr-dg-cell>
-                                    <clr-dg-cell>Cost Center</clr-dg-cell>
-                                    <clr-dg-cell>Budget Feb</clr-dg-cell>
-                                    <clr-dg-cell>Cost Center</clr-dg-cell>
-                                    </clr-dg-row>
-                            </clr-datagrid>
-                        </div>
+                                <clr-dg-cell>
+                                    <input type="checkbox" class="dsCheckbox"
+                                        [checked]="row.isSelected"
+                                        (click)="clickDSCheckbox(i, row.id, row.isSelected, $event)"
+                                        >
+                                </clr-dg-cell>
+                                <clr-dg-cell>
+                                    {{ row.name }}
+                                </clr-dg-cell>
+                                <clr-dg-cell>
+                                    {{ row.description }}
+                                </clr-dg-cell>
+                            </clr-dg-row>
+                        </clr-datagrid>
                     </div>
 
+                    <div *ngIf="errorMessage!=''" class="gridErrorMessage">
+                        {{ errorMessage }}
+                    </div>
+
+                    <div class="gridFieldsFirstHeading">
+                        <b>First selection:</b>
+                    </div>
+                    <div class="gridFieldsFirst">
+                        <clr-datagrid>
+                            <clr-dg-column>MonthTraded</clr-dg-column>
+                            <clr-dg-column>TradeType</clr-dg-column>
+                            <clr-dg-column>Volume</clr-dg-column>
+                            <clr-dg-column>Price</clr-dg-column>
+                            <clr-dg-column>Value</clr-dg-column>
+
+                            <clr-dg-row>
+                                <clr-dg-cell>string</clr-dg-cell>
+                                <clr-dg-cell>string</clr-dg-cell>
+                                <clr-dg-cell>number</clr-dg-cell>
+                                <clr-dg-cell>number</clr-dg-cell>
+                                <clr-dg-cell>number</clr-dg-cell>
+                            </clr-dg-row>
+                        </clr-datagrid>
+                    </div>
+
+                    <div class="gridFieldsCurrentHeading">
+                        <b>Current selection</b> <i>(fields and types match)</i>:
+                    </div>
+                    <div class="gridFieldsCurrent">
+                        <clr-datagrid>
+                            <clr-dg-column>MonthTraded</clr-dg-column>
+                            <clr-dg-column>TradeType</clr-dg-column>
+                            <clr-dg-column>Volume</clr-dg-column>
+                            <clr-dg-column>Price</clr-dg-column>
+                            <clr-dg-column>Value</clr-dg-column>
+
+                            <clr-dg-row>
+                                <clr-dg-cell>string</clr-dg-cell>
+                                <clr-dg-cell>string</clr-dg-cell>
+                                <clr-dg-cell>number</clr-dg-cell>
+                                <clr-dg-cell>number</clr-dg-cell>
+                                <clr-dg-cell>number</clr-dg-cell>
+                            </clr-dg-row>
+                        </clr-datagrid>
+                    </div>
+
+                    <div class="gridButtonCancel">
+                        <button
+                            type="button"
+                            class="btn btn-sedondary"
+                            (click)="clickSave()"
+                            >
+                            Save
+                        </button>
+                    </div>
+
+                    <div class="gridButtonSave">
+                        <button
+                            type="button"
+                            class="btn btn-sedondary"
+                            (click)="clickSave()"
+                            >
+                            Save
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
+</div>
+    
+
+
+
+

@@ -1,7 +1,5 @@
 /*
- * Data page: to get new datasources, and add to the current list of datasources for this
- * Dashboard.  Can also do transformations to the data, and crteate new datasets, ie via
- * pivot.
+ * Manage (add, edit, delete) Transformations for a Datasource.
  */
 
 // Angular
