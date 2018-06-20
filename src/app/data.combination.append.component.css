@@ -74,40 +74,34 @@
     }
 
     .gridFieldsFirstHeading {
-        border: 1px solid gray;
         grid-column-start: 9;
         grid-column-end: 14;
         grid-row-start: 5;
         grid-row-end: 6;
         margin-left: 10px;
-        overflow-y: scroll;
     }
     .gridFieldsFirst {
-        border: 1px solid gray;
         grid-column-start: 9;
-        grid-column-end: 14;
-        grid-row-start: 6;
-        grid-row-end: 21;
+        grid-column-end: 21;
+        grid-row-start: 5;
+        grid-row-end: 10;
         margin-left: 10px;
-        overflow-y: scroll;
+        overflow-x: scroll;
     }
 
     .gridFieldsCurrentHeading {
-        border: 1px solid gray;
-        grid-column-start: 15;
+        grid-column-start: 9;
         grid-column-end: 21;
-        grid-row-start: 5;
-        grid-row-end: 6;
+        grid-row-start: 13;
+        grid-row-end: 14;
         margin-left: 10px;
-        overflow-y: scroll;
     }
     .gridFieldsCurrent {
-        border: 1px solid gray;
-        grid-column-start: 15;
+        grid-column-start: 9;
         grid-column-end: 21;
-        grid-row-start: 6;
-        grid-row-end: 21;
+        grid-row-start: 13;
+        grid-row-end: 18;
         margin-left: 10px;
-        overflow-y: scroll;
+        overflow-x: scroll;
     }
 
