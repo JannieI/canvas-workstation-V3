@@ -1,29 +1,103 @@
 <div class="modal modalBox">
-        <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
-            <div class="modal-content">
-                <form #f="ngForm" role="form" novalidate>
-    
-                    <button type="button" class="closeButton" (click)="clickClose()">
-                        X
-                    </button>
-                    <div class="gridOverall">
-                        <div class="gridTitle">
-                            Service:
-                        </div>
-                        <div class="gridSubTitle">
-                            <i>
-                                Obtain data from a service.  
-                            </i>
-                        </div>
-                        <div class="gridSubTitle2">
-                            <i>
-                                To be done at a later stage.  
-                            </i>
-                        </div>
-    
+    <div class="modal-dialog modal-md" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <form #f="ngForm" role="form" novalidate>
+
+                <button type="button" class="closeButton" (click)="clickClose()">
+                    X
+                </button>
+                <div class="gridOverall">
+                    <div class="gridTitle">
+                        Service:
                     </div>
-                </form>
-            </div>
+                    <div class="gridSubTitle">
+                        <i>
+                            Obtain data from a service.  
+                        </i>
+                    </div>
+
+                    <div class="gridUrlTitle">
+                        <b>Url:</b>
+                    </div>
+                    <div class="gridUrl">
+                        <input [(ngModel)]="url"
+                            type="text"
+                            name="url"
+                            size="40"
+                            title="Url (address) of the data to be read"
+                            >
+                    </div>
+    
+                    <div class="gridButtonGet">
+                        <button
+                            type="button"
+                            class="btn btn-link"
+                            (click)="clickHttpGet()"
+                            >
+                            Get
+                        </button>
+                    </div>
+
+                    <div class="gridElementTitle">
+                        <b>Element:</b>
+                    </div>
+                    <div class="gridElement">
+                        <input [(ngModel)]="element"
+                            type="text"
+                            name="element"
+                            title="Optional Element ID on the url"
+                            >
+                    </div>
+
+                    <div class="gridErrorMessage">
+                        {{ errorMessage }}
+                    </div>
+
+                    <div class="gridDatasourceNameTitle">
+                        <b>Name:</b>
+                    </div>
+                    <div class="gridDatasourceName">
+                        <input [(ngModel)]="newName"
+                            type="text"
+                            name="newName"
+                            title="Name of the new Datasource"
+                            >
+                    </div>
+
+                    <div class="gridDatasourceDescriptionTitle">
+                        <b>Description:</b>
+                    </div>
+                    <div class="gridDatasourceDescription">
+                        <input [(ngModel)]="newDescription"
+                            type="text"
+                            name="newDescription"
+                            description="description"
+                            size="45"
+                            title="Description of the new Datasource"
+                            >
+                    </div>
+    
+                    <div class="gridButtonCancel">
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            (click)="clickClose()"
+                            >
+                            Cancel
+                        </button>
+                    </div>
+
+                    <div class="gridButtonSave">
+                        <button
+                            type="button"
+                            class="btn btn-primary"
+                            (click)="clickSave()"
+                            >
+                            Save
+                        </button>
+                    </div>    
+                </div>
+            </form>
         </div>
     </div>
-    
+</div>
