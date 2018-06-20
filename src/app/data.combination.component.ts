@@ -19,21 +19,8 @@ import { GlobalVariableService }      from './global-variable.service';
 
 // Our Models
 import { Datasource }                 from './models';
-import { Dataset }                    from './models';
-import { Transformation }             from './models';
 import { Field }                      from './models';
-import { FieldMetadata }              from './models';
-import { DataQualityIssue }           from './models';
 
-// Vega
-import * as dl from 'datalib';
-import { load } from 'datalib';
-
-interface localDatasources extends Datasource
-    {
-        isSelected?: boolean;
-        hasWidget?: boolean;
-    }
 
 @Component({
     selector: 'data-combination',
@@ -64,14 +51,13 @@ export class DataCombinationComponent implements OnInit {
     dataFieldLengths: number[] = [];
     dataFieldNames: string[];
     dataFieldTypes: string[] = [];
-    dataQualityIssues: DataQualityIssue[];
-    datasources: localDatasources[];
+    datasources: Datasource[];
     errorMessage: string = "";
-    fileName: string = '';
-    folderName: string = '';
     // TODO - fix!!
     fieldTypes: string[] = ['MonthTraded', 'TradeType', 'Volume' ,'Price', 'Value'];
     headers: string[] = [];
+    newName: string = '';
+    newDescription: string = '';
     selectedDatasources: Datasource[];
     selectedDatasource: Datasource;
     selectedRowID: number = 0;
@@ -80,10 +66,6 @@ export class DataCombinationComponent implements OnInit {
     selectedRowName: string = '';
     selectedRowDescription: string = '';
     selectedRowNrWidgetsInUse: number = 0;
-    selectedUnion: boolean = false;
-    selectedIntersect: boolean = false;
-    selectedMinus: boolean = false;
-    selectedJoin: boolean = false;
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -111,14 +93,6 @@ export class DataCombinationComponent implements OnInit {
         if (this.datasources.length > 0) {
             this.clickSelectedDatasourceLH(0, this.datasources[0].id);
         };
-        console.warn('xx DS, dSet', this.globalVariableService.datasources, this.globalVariableService.currentDatasources, this.globalVariableService.datasets, this.globalVariableService.currentDatasets)
-
-
-        if (this.combinationType == 'Union') { this.selectedUnion = false };
-        if (this.combinationType == 'Intersect') { this.selectedIntersect = false };
-        if (this.combinationType == 'Minus') { this.selectedMinus = false };
-        if (this.combinationType == 'Join') { this.selectedJoin = false };
-    
 
     }
 
