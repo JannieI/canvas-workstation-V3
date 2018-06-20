@@ -44,11 +44,8 @@ export class DataRefreshRepeatComponent implements OnInit {
     }
 
     datasources: Datasource[] = [];
-    parameters: string = '';
+    minutes: string = '';
     errorMessage: string = '';
-    newName: string = '';
-    newDescription: string = '';
-    url: string = '';
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -127,9 +124,9 @@ export class DataRefreshRepeatComponent implements OnInit {
 
     }
 
-    clickSave() {
-        // Save changes to the Datasource
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
+    clickGo() {
+        // Start refreshing
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickGo', '@Start');
 
         // Save the changes
         // if (this.editing) {

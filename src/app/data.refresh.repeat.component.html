@@ -17,67 +17,22 @@
                         </i>
                     </div>
 
-                    <div class="gridUrlTitle">
-                        <b>Service:</b>
+                    <div class="gridMinutesTitle">
+                        <b>Minutes:</b>
                     </div>
-                    <div class="gridUrl">
-                        <input [(ngModel)]="url"
+                    <div class="gridMinutes">
+                        <input [(ngModel)]="minutes"
                             type="text"
-                            name="url"
-                            size="40"
-                            title="Service (ie Google APIs) of the data to be read"
+                            name="minutes"
+                            title="Minutes after which all the Datasources for this Dashboard must be refrehed"
                             >
                     </div>
     
-                    <div class="gridButtonGet">
-                        <button
-                            type="button"
-                            class="btn btn-link"
-                            (click)="clickHttpGet()"
-                            >
-                            Get
-                        </button>
-                    </div>
-
-                    <div class="gridParamsTitle">
-                        <b>Params:</b>
-                    </div>
-                    <div class="gridParams">
-                        <input [(ngModel)]="parameters"
-                            type="text"
-                            name="parameters"
-                            title="Optional parameters of the service"
-                            >
-                    </div>
-
                     <div class="gridErrorMessage">
                         {{ errorMessage }}
                     </div>
 
-                    <div class="gridDatasourceNameTitle">
-                        <b>Name:</b>
-                    </div>
-                    <div class="gridDatasourceName">
-                        <input [(ngModel)]="newName"
-                            type="text"
-                            name="newName"
-                            title="Name of the new Datasource"
-                            >
-                    </div>
-
-                    <div class="gridDatasourceDescriptionTitle">
-                        <b>Description:</b>
-                    </div>
-                    <div class="gridDatasourceDescription">
-                        <input [(ngModel)]="newDescription"
-                            type="text"
-                            name="newDescription"
-                            description="description"
-                            size="45"
-                            title="Description of the new Datasource"
-                            >
-                    </div>
-    
+        
                     <div class="gridButtonCancel">
                         <button
                             type="button"
@@ -88,13 +43,13 @@
                         </button>
                     </div>
 
-                    <div class="gridButtonSave">
+                    <div class="gridButtonGo">
                         <button
                             type="button"
                             class="btn btn-primary"
-                            (click)="clickSave()"
+                            (click)="clickGo()"
                             >
-                            Save
+                            Go
                         </button>
                     </div>    
                 </div>

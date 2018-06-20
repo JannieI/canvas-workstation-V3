@@ -14,7 +14,7 @@
 .gridOverall {
     display: grid;
     grid-template-columns: repeat(14, 1fr);
-    grid-template-rows: repeat(14, 0.8rem);
+    grid-template-rows: repeat(10, 0.8rem);
     margin-top: 2px;
 }
 
@@ -35,82 +35,37 @@
         text-align: left;
     }
 
-    .gridUrlTitle {
+    .gridMinutesTitle {
         grid-column-start: 1;
         grid-column-end: 3;
-        grid-row-start: 4;
-        grid-row-end: 5;
+        grid-row-start: 5;
+        grid-row-end: 6;
     }
-    .gridUrl {
+    .gridMinutes {
         grid-column-start: 3;
         grid-column-end: 12;
-        grid-row-start: 4;
-        grid-row-end: 5;
-    }
-    .gridButtonGet {
-        grid-column-start: 13;
-        grid-column-end: 15;
-        grid-row-start: 4;
-        grid-row-end: 5;
-    }
-
-    .gridParamsTitle {
-        grid-column-start: 1;
-        grid-column-end: 3;
-        grid-row-start: 6;
-        grid-row-end: 7;
-    }
-    .gridParams {
-        grid-column-start: 3;
-        grid-column-end: 10;
-        grid-row-start: 6;
-        grid-row-end: 7;
+        grid-row-start: 5;
+        grid-row-end: 6;
     }
 
     .gridErrorMessage {
         color: red;
         grid-column-start: 3;
         grid-column-end: 21;
-        grid-row-start: 8;
-        grid-row-end: 10;
-    }
-
-    .gridDatasourceNameTitle {
-        grid-column-start: 1;
-        grid-column-end: 3;
-        grid-row-start: 9;
-        grid-row-end: 10;
-    }
-    .gridDatasourceName {
-        grid-column-start: 3;
-        grid-column-end: 10;
-        grid-row-start: 9;
-        grid-row-end: 10;
-    }
-
-    .gridDatasourceDescriptionTitle {
-        grid-column-start: 1;
-        grid-column-end: 3;
-        grid-row-start: 11;
-        grid-row-end: 12;
-    }
-    .gridDatasourceDescription {
-        grid-column-start: 4;
-        grid-column-end: 12;
-        grid-row-start: 11;
-        grid-row-end: 12;
+        grid-row-start: 7;
+        grid-row-end: 8;
     }
 
     .gridButtonCancel {
         grid-column-start: 2;
         grid-column-end: 4;
-        grid-row-start: 13;
-        grid-row-end: 14;
+        grid-row-start: 8;
+        grid-row-end: 9;
     }
 
-    .gridButtonSave {
+    .gridButtonGo {
         grid-column-start: 6;
         grid-column-end: 8;
-        grid-row-start: 13;
-        grid-row-end: 14;
+        grid-row-start: 8;
+        grid-row-end: 9;
     }
