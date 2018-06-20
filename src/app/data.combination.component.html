@@ -7,29 +7,20 @@
                 </button>
                 <div class="gridOverall">
                     <div class="gridTitle">
-                        Join Datasources :
+                        {{ combinationType }} Datasources :
                     </div> 
                     <div class="gridSubTitle">
-                        <i>
+                        <i *ngIf="combinationType=='Join'">
                             Create a new Datasources by joining the RH Datasource to the
                             right of the LH one where the selected fields are equal.
-                            <div class="propertyLine" *ngIf="selectedUnion">
-                                <b>Union</b> - appends (at the bottom) any number of Datasets, showing
-                                all the records in them.  The Datasets must have the same number
-                                of columns, and corresponding datatype (ie numbers).  Any number
-                                of Datasets can be added.
-                            </div>
-                            <div class="propertyLine" *ngIf="selectedIntersect">
-                                <b>Intersect</b> - shows only records that exist in both Datasets, based
-                                on a mutual column.
-                            </div>
-                            <div class="propertyLine" *ngIf="selectedMinus">
-                                <b>Minus</b> - shows only records that exist one Dataset, based on a mutual
-                                column.
-                            </div>
-                            <div class="propertyLine" *ngIf="selectedJoin">
-                                <b>Join</b> - joins (to right) two Datasets together on a mutual column.
-                            </div>
+                        </i>
+                        <i *ngIf="combinationType=='Intersection'">
+                                Create a new Datasources by shows only records in the LH
+                                Datasource that also exist in the RH based on the columns.
+                        </i>
+                        <i *ngIf="combinationType=='Minus'">
+                                Create a new Datasources by showing only records in the LH
+                                Datasource that does NOT exist in the RH based on the columns.
                         </i>
                     </div>
 
