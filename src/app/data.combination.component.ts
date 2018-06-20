@@ -65,7 +65,6 @@ export class DataCombinationComponent implements OnInit {
     selectedRowIndexRH: number = 0;
     selectedRowName: string = '';
     selectedRowDescription: string = '';
-    selectedRowNrWidgetsInUse: number = 0;
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -87,7 +86,6 @@ export class DataCombinationComponent implements OnInit {
         this.selectedRowIndexLH = -1;
         this.selectedRowIndexRH = -1;
         this.selectedRowName = '';
-        this.selectedRowNrWidgetsInUse = 0;
 
         // Select first row if exists
         if (this.datasources.length > 0) {
@@ -97,9 +95,8 @@ export class DataCombinationComponent implements OnInit {
     }
 
     clickSelectedDatasourceLH(index: number, id: number) {
-        // Clicked a DS -> Show related info and preview its data
-        // index = Index / position on CURRENT page, when using pagination
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectedDatasource', '@Start');
+        // Clicked LH DS -> Show LH fields
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectedDatasourceLH', '@Start');
 
         // Set seletected index - used for highlighting row
         this.selectedRowIndexLH = index;
@@ -113,20 +110,13 @@ export class DataCombinationComponent implements OnInit {
             this.selectedRowName = this.datasources[dsIndex].name;
             this.selectedRowDescription = this.datasources[dsIndex].description;
 
-            this.selectedRowNrWidgetsInUse = this.globalVariableService.widgets.filter(w =>
-                w.datasourceID == this.datasources[index].id
-                &&
-                w.dashboardID == this.globalVariableService.currentDashboardInfo.value.currentDashboardID
-            ).length;
-
         };
         this.errorMessage = '';
     }
 
     clickSelectedDatasourceRH(index: number, id: number) {
-        // Clicked a DS -> Show related info and preview its data
-        // index = Index / position on CURRENT page, when using pagination
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectedDatasource', '@Start');
+        // Clicked RH DS -> Show RH fields
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectedDatasourceRH', '@Start');
 
         // Set seletected index - used for highlighting row
         this.selectedRowIndexRH = index;
@@ -139,12 +129,6 @@ export class DataCombinationComponent implements OnInit {
             this.selectedRowID = this.datasources[dsIndex].id;
             this.selectedRowName = this.datasources[dsIndex].name;
             this.selectedRowDescription = this.datasources[dsIndex].description;
-
-            this.selectedRowNrWidgetsInUse = this.globalVariableService.widgets.filter(w =>
-                w.datasourceID == this.datasources[index].id
-                &&
-                w.dashboardID == this.globalVariableService.currentDashboardInfo.value.currentDashboardID
-            ).length;
 
         };
         this.errorMessage = '';
