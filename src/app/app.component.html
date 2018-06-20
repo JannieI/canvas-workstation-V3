@@ -594,7 +594,7 @@
                                     <button
                                         type="button"
                                         clrDropdownItem
-                                        (click)="clickMenuDataCombinations()"
+                                        (click)="clickMenuDataCombinations('Join')"
                                         title="Create a new Datasources using the SQL Editor"
                                         >
                                         Join
@@ -602,7 +602,7 @@
                                     <button
                                         type="button"
                                         clrDropdownItem
-                                        (click)="clickMenuDataCombinations()"
+                                        (click)="clickMenuDataCombinations('Intersection')"
                                         title="Create a new Datasources using the Overlay Editor"
                                         >
                                         Intersection
@@ -610,7 +610,7 @@
                                     <button
                                         type="button"
                                         clrDropdownItem
-                                        (click)="clickMenuDataCombinations()"
+                                        (click)="clickMenuDataCombinations('Minus')"
                                         title="Create a new Datasources using the NoSQL query Editor"
                                         >
                                         Minus/Subtract
@@ -4205,6 +4205,7 @@
 <!-- Modal: data Combination -->
 <data-combination
     *ngIf="showModalDataCombination"
+    [combinationType]="combinationType"
     (formDataCombinationClosed)="handleCloseDataCombination($event)">Load Data Combination ...
 </data-combination>
 

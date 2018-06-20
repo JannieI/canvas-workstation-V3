@@ -42,6 +42,7 @@ interface localDatasources extends Datasource
 })
 export class DataCombinationComponent implements OnInit {
 
+    @Input() combinationType: string;
     @Output() formDataCombinationClosed: EventEmitter<string> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
@@ -78,9 +79,6 @@ export class DataCombinationComponent implements OnInit {
     selectedRowName: string = '';
     selectedRowDescription: string = '';
     selectedRowNrWidgetsInUse: number = 0;
-
-
-    combinationType: string = 'Union';
     selectedUnion: boolean = false;
     selectedIntersect: boolean = false;
     selectedMinus: boolean = false;
@@ -96,28 +94,10 @@ export class DataCombinationComponent implements OnInit {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        let widgetIDs: number[] = [];
-        this.globalVariableService.currentWidgets.forEach(w => {
-            widgetIDs.push(w.datasourceID);
-        });
-        this.globalVariableService.currentDatasources.forEach(cds => {
-            this.currentDSids.push(cds.id);
-        });
+        console.warn('xx combinationType', this.combinationType)
 
         // Load from global variables
         this.datasources = this.globalVariableService.datasources.slice();
-        this.datasources.forEach(ds => {
-            if (widgetIDs.indexOf(ds.id) >= 0) {
-                ds.hasWidget = true;
-            } else {
-                ds.hasWidget = false;
-            };
-            if (this.currentDSids.indexOf(ds.id) >= 0) {
-                ds.isSelected = true;
-            } else {
-                ds.isSelected = false;
-            };
-        });
 
         // Reset
         this.selectedRowID = -1;
@@ -165,71 +145,6 @@ export class DataCombinationComponent implements OnInit {
 
         };
         this.errorMessage = '';
-    }
-
-    clickDSCheckbox(index: number, id: number, isSelected: boolean, ev: any){
-        // Checked / UnChecked DS
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickDSCheckbox', '@Start');
-
-        // Get the data, if so requested
-        if (ev.target.checked) {
-            let localDatasource: Datasource;
-            let localDataset: Dataset;
-            let globalCurrentDSIndex: number = this.globalVariableService.currentDatasources
-                .findIndex(dS => dS.id == id
-            );
-            let globalDSIndex: number = this.globalVariableService.datasources.findIndex(ds =>
-                ds.id == id
-            );
-
-            // DS exists in gv datasources, but not in currentDatasources
-            if (globalDSIndex >= 0  &&  globalCurrentDSIndex < 0) {
-                localDatasource = this.globalVariableService.datasources[globalDSIndex];
-
-                let globalCurrentDsetIndex: number = this.globalVariableService.currentDatasets
-                    .findIndex(dS => dS.id == id
-                );
-                let globalDsetIndex: number = this.globalVariableService.datasets.findIndex(dS =>
-                    dS.datasourceID == id
-                );
-
-                // Add DS and Dset to gv
-                this.globalVariableService.currentDatasources.push(localDatasource);
-
-                this.globalVariableService.hasDatasources.next(true);
-
-                // Dset exists in gv datasets, but not in currentDatasets
-                if (globalDsetIndex >= 0  &&  globalCurrentDsetIndex < 0) {
-                    localDataset = this.globalVariableService.datasets[globalDsetIndex];
-
-                    // Get data for Dset
-                    this.globalVariableService.getData(localDataset.id).then(res => {
-
-                        // Add data to dataset
-                        localDataset.dataRaw = res;
-                        localDataset.data = res;
-
-                        this.globalVariableService.currentDatasets.push(localDataset);
-
-                    });
-                };
-            };
-        } else {
-            let globalCurrentDSIndex: number = this.globalVariableService.currentDatasources
-                .findIndex(dS => dS.id == id
-            );
-            if (globalCurrentDSIndex >= 0) {
-                this.globalVariableService.currentDatasources.splice(globalCurrentDSIndex, 1);
-            };
-            let globalCurrentDsetIndex: number = this.globalVariableService.currentDatasets
-                .findIndex(dS => dS.datasourceID == id
-            );
-            if (globalCurrentDsetIndex >= 0) {
-                this.globalVariableService.currentDatasets.splice(globalCurrentDsetIndex, 1);
-            };
-        };
-
-        // TODO - what about other arrays, ie permisions, pivots, transformations, etc ??
     }
 
     clickClose(action: string) {

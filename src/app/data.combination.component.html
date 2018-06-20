@@ -80,22 +80,12 @@
                     </div>
                     <div class="gridFieldsRH">
                         <clr-datagrid>
-                            <clr-dg-column>MonthTraded</clr-dg-column>
-                            <clr-dg-column>TradeType</clr-dg-column>
-                            <clr-dg-column>Volume</clr-dg-column>
-                            <clr-dg-column>Price</clr-dg-column>
-                            <clr-dg-column>Value</clr-dg-column>
-
-                            <clr-dg-row>
-                                <clr-dg-cell>string</clr-dg-cell>
-                                <clr-dg-cell>string</clr-dg-cell>
-                                <clr-dg-cell>number</clr-dg-cell>
-                                <clr-dg-cell>number</clr-dg-cell>
-                                <clr-dg-cell>number</clr-dg-cell>
+                            <clr-dg-column>Column</clr-dg-column>
+                            <clr-dg-row *ngFor="let row of fieldTypes">
+                                <clr-dg-cell>{{ row }}</clr-dg-cell>
                             </clr-dg-row>
                         </clr-datagrid>
                     </div>
-
 
                     <div class="gridDatasourcesRHHeading">
                         <b>Right Hand Datasources:</b>
@@ -125,17 +115,17 @@
                     <div class="gridButtonCancel">
                         <button
                             type="button"
-                            class="btn btn-sedondary"
-                            (click)="clickSave()"
+                            class="btn btn-secondary"
+                            (click)="clickClose()"
                             >
-                            Save
+                            Cancel
                         </button>
                     </div>
 
                     <div class="gridButtonSave">
                         <button
                             type="button"
-                            class="btn btn-sedondary"
+                            class="btn btn-primary"
                             (click)="clickSave()"
                             >
                             Save

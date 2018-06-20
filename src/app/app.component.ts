@@ -297,10 +297,11 @@ export class AppComponent implements OnInit {
     fields: Field[];
     isBusyResizing: boolean = false;
     isFirstTimeUser: boolean = false;
-    minWidgetContainerHeight: number = 96;     // Smallest that W Container can get
-    minWidgetContainerWidth: number = 108;     // Smallest that W Container can get
-    minGraphHeight: number = 1;                // Smallest that Graph can get
-    minGraphWidth: number = 1;                 // Smallest that Graph can get
+    combinationType: string;                    // Type passed to Combinations form
+    minWidgetContainerHeight: number = 96;      // Smallest that W Container can get
+    minWidgetContainerWidth: number = 108;      // Smallest that W Container can get
+    minGraphHeight: number = 1;                 // Smallest that Graph can get
+    minGraphWidth: number = 1;                  // Smallest that Graph can get
     modalFormOpen: boolean = false;
     moveStartX: number;
     moveStartY: number;
@@ -3148,7 +3149,7 @@ export class AppComponent implements OnInit {
 
     }
 
-    clickMenuDataCombinations(){
+    clickMenuDataCombinations(joinType: string){
         // Manage combinations of DS
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataCombinations', '@Start');
 
@@ -3163,6 +3164,8 @@ export class AppComponent implements OnInit {
             );
             return;
         };
+
+        this.combinationType = joinType;
 
         this.menuOptionClickPreAction();
 
