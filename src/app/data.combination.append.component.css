@@ -84,7 +84,7 @@
         grid-column-start: 9;
         grid-column-end: 21;
         grid-row-start: 5;
-        grid-row-end: 10;
+        grid-row-end: 12;
         margin-left: 10px;
         overflow-x: scroll;
     }
@@ -100,7 +100,7 @@
         grid-column-start: 9;
         grid-column-end: 21;
         grid-row-start: 13;
-        grid-row-end: 18;
+        grid-row-end: 21;
         margin-left: 10px;
         overflow-x: scroll;
     }

@@ -474,6 +474,9 @@ This document describes items for later versions of Canvas.
     - generalise this: user can record task!!  For example, add arrow, gray with black border at 45 degrees = recorded and add as a button !!!
     - make icons draggable - like Ubuntu palette on left !
 
+    Themes:
+    -------
+    - consider light, etc themes, see https://medium.com/@amcdnl/theming-angular-with-css-variables-3c78a5b20b24
 
     Global Variables:
     -----------------

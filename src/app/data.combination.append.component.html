@@ -78,14 +78,21 @@
                     </div>
                     <div class="gridFieldsCurrent">
                         <clr-datagrid>
-                            <clr-dg-column>FieldName</clr-dg-column>
-                            <clr-dg-column>DataType</clr-dg-column>
-                            <clr-dg-row *clrDgItems="let row of finalFields">
-                                <clr-dg-cell>{{ row.fieldName }}</clr-dg-cell>
-                                <clr-dg-cell>{{ row.dataType }}</clr-dg-cell>
+                            <clr-dg-column>MonthTraded</clr-dg-column>
+                            <clr-dg-column>TradeType</clr-dg-column>
+                            <clr-dg-column>Volume</clr-dg-column>
+                            <clr-dg-column>Price</clr-dg-column>
+                            <clr-dg-column>Value</clr-dg-column>
+
+                            <clr-dg-row>
+                                <clr-dg-cell>string</clr-dg-cell>
+                                <clr-dg-cell>string</clr-dg-cell>
+                                <clr-dg-cell>number</clr-dg-cell>
+                                <clr-dg-cell>number</clr-dg-cell>
+                                <clr-dg-cell>number</clr-dg-cell>
                             </clr-dg-row>
                         </clr-datagrid>
-                    </div>
+                            </div>
 
                 </div>
             </div>
