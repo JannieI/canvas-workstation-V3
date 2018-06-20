@@ -86,8 +86,15 @@ export class DataDirectWebComponent implements OnInit {
         // User clicked Get with URL
         this.globalFunctionService.printToConsole(this.constructor.name,'clickHttpGet', '@Start');
 
+        // Reset
+        this.errorMessage = '';
+
+        // Get html
         this.returnHttpGet().subscribe((data: any) => {
             console.warn('xx HOLY MOLY 3', data)
+        },
+        err => {
+            this.errorMessage = err.message;
         });
 
 
