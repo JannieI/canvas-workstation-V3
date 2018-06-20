@@ -500,6 +500,13 @@ export class DataTransformationComponent implements OnInit {
                     return;
                 }
             };
+            if (i == 3) {
+                if (this.parameter4Value == '') {
+                    this.errorMessage = this.transformations[this.selectedTransformationRowIndex]
+                        .parameterHeading[i] + ' is compulsory';
+                    return;
+                }
+            };
         };
 
         // Add NEW record
