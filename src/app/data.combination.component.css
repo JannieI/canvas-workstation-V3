@@ -35,13 +35,24 @@
         text-align: left;
     }
 
+    .gridDatasourcesLHHeading {
+        border: 1px solid gray;
+        border-radius: 4px;
+        grid-column-start: 1;
+        grid-column-end: 6;
+        grid-row-start: 4;
+        grid-row-end: 5;
+        overflow-y: scroll;
+        width: 100%;
+    }
+
     .gridDatasourcesLH {
         border: 1px solid gray;
         border-radius: 4px;
         grid-column-start: 1;
         grid-column-end: 6;
         grid-row-start: 5;
-        grid-row-end: 21;
+        grid-row-end: 18;
         overflow-y: scroll;
         width: 100%;
     }
@@ -84,7 +95,7 @@
         grid-column-start: 6;
         grid-column-end: 10;
         grid-row-start: 5;
-        grid-row-end: 12;
+        grid-row-end: 18;
         margin-left: 10px;
         overflow-x: scroll;
     }
@@ -92,40 +103,50 @@
     .gridFieldsRHHeading {
         grid-column-start: 11;
         grid-column-end: 15;
-        grid-row-start: 13;
-        grid-row-end: 14;
+        grid-row-start: 5;
+        grid-row-end: 6;
         margin-left: 10px;
     }
     .gridFieldsRH {
         grid-column-start: 11;
         grid-column-end: 15;
-        grid-row-start: 13;
-        grid-row-end: 21;
+        grid-row-start: 5;
+        grid-row-end: 18;
         margin-right: 10px;
         overflow-x: scroll;
     }
 
+    .gridDatasourcesRHHeading {
+        border: 1px solid gray;
+        border-radius: 4px;
+        grid-column-start: 15;
+        grid-column-end: 21;
+        grid-row-start: 4;
+        grid-row-end: 5;
+        overflow-y: scroll;
+        width: 100%;
+    }
     .gridDatasourcesRH {
         border: 1px solid gray;
         border-radius: 4px;
         grid-column-start: 15;
         grid-column-end: 21;
         grid-row-start: 5;
-        grid-row-end: 21;
+        grid-row-end: 18;
         overflow-y: scroll;
         width: 100%;
     }
 
     .gridButtonCancel {
-        grid-column-start: 19;
-        grid-column-end: 21;
-        grid-row-start: 9;
-        grid-row-end: 10;
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 19;
+        grid-row-end: 20;
     }
 
     .gridButtonSave {
-        grid-column-start: 19;
-        grid-column-end: 21;
-        grid-row-start: 9;
-        grid-row-end: 10;
+        grid-column-start: 4;
+        grid-column-end: 6;
+        grid-row-start: 19;
+        grid-row-end: 20;
     }
