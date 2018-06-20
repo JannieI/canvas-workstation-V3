@@ -36,9 +36,9 @@ interface localDatasources extends Datasource
     }
 
 @Component({
-    selector: 'data-combination-append',
-    templateUrl: './data.combination.append.component.html',
-    styleUrls:  ['./data.combination.append.component.css']
+    selector: 'data-combination',
+    templateUrl: './data.combination.component.html',
+    styleUrls:  ['./data.combination.component.css']
 })
 export class DataCombinationComponent implements OnInit {
 
@@ -68,7 +68,8 @@ export class DataCombinationComponent implements OnInit {
     errorMessage: string = "";
     fileName: string = '';
     folderName: string = '';
-    fieldTypes: {MonthTraded: string; TradeType: string; Volume: string; Price: string; Value: string;}[] = [];
+    // TODO - fix!!
+    fieldTypes: string[] = ['MonthTraded', 'TradeType', 'Volume' ,'Price', 'Value'];
     headers: string[] = [];
     selectedDatasources: Datasource[];
     selectedDatasource: Datasource;
@@ -129,14 +130,12 @@ export class DataCombinationComponent implements OnInit {
             this.clickSelectedDatasource(0, this.datasources[0].id);
         };
         console.warn('xx DS, dSet', this.globalVariableService.datasources, this.globalVariableService.currentDatasources, this.globalVariableService.datasets, this.globalVariableService.currentDatasets)
-        // TODO - fix!!
-        this.fieldTypes = [{MonthTraded: 'MonthTraded', TradeType: 'TradeType', Volume: 'Volume', Price: 'Price', Value: 'Value'}];
 
 
-        if (this.combinationType == 'Union') { this.selectedUnion = true };
-        if (this.combinationType == 'Intersect') { this.selectedIntersect = true };
-        if (this.combinationType == 'Minus') { this.selectedMinus = true };
-        if (this.combinationType == 'Join') { this.selectedJoin = true };
+        if (this.combinationType == 'Union') { this.selectedUnion = false };
+        if (this.combinationType == 'Intersect') { this.selectedIntersect = false };
+        if (this.combinationType == 'Minus') { this.selectedMinus = false };
+        if (this.combinationType == 'Join') { this.selectedJoin = false };
     
 
     }

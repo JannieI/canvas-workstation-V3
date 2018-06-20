@@ -35,11 +35,11 @@
         text-align: left;
     }
 
-    .gridDatasources {
+    .gridDatasourcesLH {
         border: 1px solid gray;
         border-radius: 4px;
         grid-column-start: 1;
-        grid-column-end: 8;
+        grid-column-end: 6;
         grid-row-start: 5;
         grid-row-end: 21;
         overflow-y: scroll;
@@ -73,38 +73,48 @@
         grid-row-end: 4;
     }
 
-    .gridFieldsFirstHeading {
-        grid-column-start: 9;
-        grid-column-end: 14;
+    .gridFieldsLHHeading {
+        grid-column-start: 6;
+        grid-column-end: 10;
         grid-row-start: 5;
         grid-row-end: 6;
         margin-left: 10px;
     }
-    .gridFieldsFirst {
-        grid-column-start: 9;
-        grid-column-end: 21;
+    .gridFieldsLH {
+        grid-column-start: 6;
+        grid-column-end: 10;
         grid-row-start: 5;
         grid-row-end: 12;
         margin-left: 10px;
         overflow-x: scroll;
     }
 
-    .gridFieldsCurrentHeading {
-        grid-column-start: 9;
-        grid-column-end: 21;
+    .gridFieldsRHHeading {
+        grid-column-start: 11;
+        grid-column-end: 15;
         grid-row-start: 13;
         grid-row-end: 14;
         margin-left: 10px;
     }
-    .gridFieldsCurrent {
-        grid-column-start: 9;
-        grid-column-end: 21;
+    .gridFieldsRH {
+        grid-column-start: 11;
+        grid-column-end: 15;
         grid-row-start: 13;
         grid-row-end: 21;
-        margin-left: 10px;
+        margin-right: 10px;
         overflow-x: scroll;
     }
 
+    .gridDatasourcesRH {
+        border: 1px solid gray;
+        border-radius: 4px;
+        grid-column-start: 15;
+        grid-column-end: 21;
+        grid-row-start: 5;
+        grid-row-end: 21;
+        overflow-y: scroll;
+        width: 100%;
+    }
 
     .gridButtonCancel {
         grid-column-start: 19;

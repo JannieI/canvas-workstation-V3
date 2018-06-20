@@ -7,13 +7,12 @@
                 </button>
                 <div class="gridOverall">
                     <div class="gridTitle">
-                        Append Datasources :
+                        Join Datasources :
                     </div> 
                     <div class="gridSubTitle">
                         <i>
-                            Create a new Datasources by appending the selected Datasources to the
-                            end of the first one.  Note that only Datasources with the same number
-                            of fields and the same type of fields can be appended.
+                            Create a new Datasources by joining the RH Datasource to the
+                            right of the LH one where the selected fields are equal.
                             <div class="propertyLine" *ngIf="selectedUnion">
                                 <b>Union</b> - appends (at the bottom) any number of Datasets, showing
                                 all the records in them.  The Datasets must have the same number
@@ -34,26 +33,18 @@
                         </i>
                     </div>
                 
-                    <div class="gridDatasources">
-                        <clr-datagrid [(clrDgSelected)]="selectedDatasources">
+                    <div class="gridDatasourcesLH">
+                        <clr-datagrid>
 
-                            <clr-dg-column>Selected</clr-dg-column>
                             <clr-dg-column>Name</clr-dg-column>
                             <clr-dg-column>Description</clr-dg-column>
 
                             <clr-dg-row
                                 *clrDgItems="let row of datasources; let i = index"
-                                [clrDgItem]="row"
                                 [style.background-color]="(i == selectedRowIndex)? '#123456' : 'white'"
                                 [style.color]="(i == selectedRowIndex)? 'white' : 'gray'"
                                 (click)="clickSelectedDatasource(i, row.id)"
                                 >
-                                <clr-dg-cell>
-                                    <input type="checkbox" class="dsCheckbox"
-                                        [checked]="row.isSelected"
-                                        (click)="clickDSCheckbox(i, row.id, row.isSelected, $event)"
-                                        >
-                                </clr-dg-cell>
                                 <clr-dg-cell>
                                     {{ row.name }}
                                 </clr-dg-cell>
@@ -68,10 +59,23 @@
                         {{ errorMessage }}
                     </div>
 
-                    <div class="gridFieldsFirstHeading">
-                        <b>First selection:</b>
+                    <div class="gridFieldsLHHeading">
+                        <b>Left Hand Fields:</b>
                     </div>
-                    <div class="gridFieldsFirst">
+                    
+                    <div class="gridFieldsLH">
+                        <clr-datagrid>
+                            <clr-dg-column>Column</clr-dg-column>
+                            <clr-dg-row *ngFor="let row of fieldTypes">
+                                <clr-dg-cell>{{ row }}</clr-dg-cell>
+                            </clr-dg-row>
+                        </clr-datagrid>
+                    </div>
+
+                    <div class="gridFieldsRHHeading">
+                        <b>Right Hand Fields</b>:
+                    </div>
+                    <div class="gridFieldsRH">
                         <clr-datagrid>
                             <clr-dg-column>MonthTraded</clr-dg-column>
                             <clr-dg-column>TradeType</clr-dg-column>
@@ -88,28 +92,28 @@
                             </clr-dg-row>
                         </clr-datagrid>
                     </div>
-
-                    <div class="gridFieldsCurrentHeading">
-                        <b>Current selection</b> <i>(fields and types match)</i>:
-                    </div>
-                    <div class="gridFieldsCurrent">
+                    <div class="gridDatasourcesRH">
                         <clr-datagrid>
-                            <clr-dg-column>MonthTraded</clr-dg-column>
-                            <clr-dg-column>TradeType</clr-dg-column>
-                            <clr-dg-column>Volume</clr-dg-column>
-                            <clr-dg-column>Price</clr-dg-column>
-                            <clr-dg-column>Value</clr-dg-column>
 
-                            <clr-dg-row>
-                                <clr-dg-cell>string</clr-dg-cell>
-                                <clr-dg-cell>string</clr-dg-cell>
-                                <clr-dg-cell>number</clr-dg-cell>
-                                <clr-dg-cell>number</clr-dg-cell>
-                                <clr-dg-cell>number</clr-dg-cell>
+                            <clr-dg-column>Name</clr-dg-column>
+                            <clr-dg-column>Description</clr-dg-column>
+
+                            <clr-dg-row
+                                *clrDgItems="let row of datasources; let i = index"
+                                [style.background-color]="(i == selectedRowIndex)? '#123456' : 'white'"
+                                [style.color]="(i == selectedRowIndex)? 'white' : 'gray'"
+                                (click)="clickSelectedDatasource(i, row.id)"
+                                >
+                                <clr-dg-cell>
+                                    {{ row.name }}
+                                </clr-dg-cell>
+                                <clr-dg-cell>
+                                    {{ row.description }}
+                                </clr-dg-cell>
                             </clr-dg-row>
                         </clr-datagrid>
                     </div>
-
+    
                     <div class="gridButtonCancel">
                         <button
                             type="button"
