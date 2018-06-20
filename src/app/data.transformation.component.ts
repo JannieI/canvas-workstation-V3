@@ -484,35 +484,42 @@ export class DataTransformationComponent implements OnInit {
                     this.errorMessage = this.transformations[this.selectedTransformationRowIndex]
                         .parameterHeading[i] + ' is compulsory';
                     return;
-                }
+                };
             };
             if (i == 1) {
                 if (this.parameter2Value == '') {
                     this.errorMessage = this.transformations[this.selectedTransformationRowIndex]
                         .parameterHeading[i] + ' is compulsory';
                     return;
-                }
+                };
             };
             if (i == 2) {
                 if (this.parameter3Value == '') {
                     this.errorMessage = this.transformations[this.selectedTransformationRowIndex]
                         .parameterHeading[i] + ' is compulsory';
                     return;
-                }
+                };
             };
             if (i == 3) {
                 if (this.parameter4Value == '') {
                     this.errorMessage = this.transformations[this.selectedTransformationRowIndex]
                         .parameterHeading[i] + ' is compulsory';
                     return;
-                }
+                };
             };
             if (i == 4) {
                 if (this.parameter5Value == '') {
                     this.errorMessage = this.transformations[this.selectedTransformationRowIndex]
                         .parameterHeading[i] + ' is compulsory';
                     return;
-                }
+                };
+            };
+            if (i == 5) {
+                if (this.parameter6Value == '') {
+                    this.errorMessage = this.transformations[this.selectedTransformationRowIndex]
+                        .parameterHeading[i] + ' is compulsory';
+                    return;
+                };
             };
         };
 
