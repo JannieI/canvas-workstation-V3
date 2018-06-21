@@ -120,7 +120,7 @@ export class DataManagedQueryBuilderComponent implements OnInit {
                 businessGlossary: '',
                 dataDictionary: ''
             };
-        }
+        };
         this.globalVariableService.getDataConnections().then(dc => {
             this.globalVariableService.getDataTable().then(dt => {
                 this.globalVariableService.getDataField().then(df => {

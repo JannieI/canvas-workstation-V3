@@ -4101,6 +4101,7 @@
 <!-- Modal: Data Managed SQL Editor -->
 <data-managedSqlEditor
     *ngIf="showModalDataManagedSQLEditor"
+    [selectedDatasource]="selectedDatasource"
     (formDataManagedSQLEditorClosed)="handleCloseDataManagedSQLEditor($event)">Load Managed SQL Editor ...
 </data-managedSqlEditor>
 
@@ -4108,6 +4109,7 @@
 <!-- Modal: Data Managed NoSQL Editor -->
 <data-managedNoSqlEditor
     *ngIf="showModalDataManagedNoSQLEditor"
+    [selectedDatasource]="selectedDatasource"
     (formDataManagedNoSQLEditorClosed)="handleCloseDataManagedNoSQLEditor($event)">Load Managed NoSQL Editor ...
 </data-managedNoSqlEditor>
 
@@ -4115,6 +4117,7 @@
 <!-- Modal: Data Managed Overlay Editor -->
 <data-managedOverlayEditor
     *ngIf="showModalDataManagedOverlayEditor"
+    [selectedDatasource]="selectedDatasource"
     (formDataManagedOverlayEditorClosed)="handleCloseDataManagedOverlayEditor($event)">Load Managed Overlay Editor ...
 </data-managedOverlayEditor>
 

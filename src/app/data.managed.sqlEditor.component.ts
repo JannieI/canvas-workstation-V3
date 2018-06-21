@@ -36,6 +36,8 @@ import { DataQualityIssue }           from './models';
 })
 export class DataManagedSQLEditorComponent implements OnInit {
 
+    @Input() selectedDatasource: Datasource;
+
     @Output() formDataManagedSQLEditorClosed: EventEmitter<string> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
@@ -78,6 +80,49 @@ export class DataManagedSQLEditorComponent implements OnInit {
 	ngOnInit() {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        if (this.selectedDatasource == null) {
+            this.selectedDatasource = {
+                id: 0,
+                type: '',
+                subType: '',
+                typeVersion: '',
+                name: '',
+                username: '',
+                password: '',
+                description: '...',
+                createdBy: '',
+                createdOn: '',
+                createMethod: 'managedSQLEditor',
+                editor: '',
+                dateEdited: '',
+                refreshedBy: '',
+                refreshedOn: '',
+                dataFieldIDs: [0],
+                dataFields: [''],
+                dataFieldTypes: [''],
+                dataFieldLengths: [0],
+                parameters: '',
+                folder: '',
+                fileName: '',
+                excelWorksheet: '',
+                transposeOnLoad: false,
+                startLineNr: 0,
+                csvSeparationCharacter: '',
+                csvQuotCharacter: '',
+                connectionID: 0,
+                dataTableID: 0,
+                nrWidgets: 0,
+                databaseName: '',
+                port: '',
+                serverType: '',
+                serverName: '',
+                dataTableName: '',
+                dataSQLStatement: '',
+                dataNoSQLStatement: '',
+                businessGlossary: '',
+                dataDictionary: ''
+            };
+        };
 
         this.globalVariableService.getDataConnections().then(dc => {
             this.globalVariableService.getDataTable().then(dt => {

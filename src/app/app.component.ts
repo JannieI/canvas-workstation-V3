@@ -1406,6 +1406,15 @@ export class AppComponent implements OnInit {
                 if (returnedDatasource.createMethod == 'managedQueryBuilder') {
                     this.showModalDataManagedQueryBuilder = true;
                 };
+                if (returnedDatasource.createMethod == 'managedSQLEditor') {
+                    this.showModalDataManagedSQLEditor = true;
+                };
+                if (returnedDatasource.createMethod == 'managedNoSQLEditor') {
+                    this.showModalDataManagedNoSQLEditor = true;
+                };
+                if (returnedDatasource.createMethod == 'managedOverlayEditor') {
+                    this.showModalDataManagedOverlayEditor = true;
+                };
 
 
             };
