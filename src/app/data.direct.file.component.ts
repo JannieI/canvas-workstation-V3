@@ -123,7 +123,23 @@ export class DataDirectFileComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickFileBrowse', '@Start');
 
+        if ( (<any>window).File && (<any>window).FileReader && (<any>window).FileList && window.Blob) {
+            console.warn('xx strt Great success! All the File APIs are supported.')
+          } else {
+            alert('The File APIs are not fully supported in this browser.');
+          }
+
         // TODO alert('Later: File component to browse ...')
+        var inp: any = document.getElementById("get-files");
+        
+        // Access and handle the files 
+
+        for (var i = 0; i < inp.files.length; i++) {
+            let file = inp.files[i];
+            console.warn('xx file', file.name, file.type, file.size, file.lastModifiedDate, file.lastModifiedDate.toLocaleDateString()
+        )
+            // do things with file
+        }
     }
 
     clickDSPreview() {
