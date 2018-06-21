@@ -229,6 +229,7 @@ export class DataManagedQueryBuilderComponent implements OnInit {
         + ',   Description: ' + this.dataConnections[index].description;
 
     }
+    
     clickSelectedDataTable(index: number, id: number) {
         // Clicked a Table
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectedDataTable', '@Start');
