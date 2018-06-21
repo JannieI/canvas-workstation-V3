@@ -323,6 +323,11 @@ export class DataDirectFileComponent implements OnInit {
 
     }
 
+    clickDSAdd() {
+        // Add the DS, with data, to the DB
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDSAdd', '@Start');
+
+    }
 }
 
 
