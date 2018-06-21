@@ -76,13 +76,11 @@ export class DataRefreshOnceComponent implements OnInit {
             widgets = this.globalVariableService.widgets.filter(w => w.datasourceID == ds.id);
             ds.nrWidgets = widgets.length;
         });
-console.warn('xx init', this.dataFieldNames, this.currentDatasources)
     }
 
     clickRow(index: number, id: number) {
         // Click Row
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
-        console.warn('xx clickRow', index, this.currentDatasources)
 
         // Set the row index
         this.selectedDatasourcesRowIndex = index;
@@ -150,7 +148,7 @@ console.warn('xx init', this.dataFieldNames, this.currentDatasources)
         };
  
         // Load local arrays for ngFor
-        let dsIndex: number = this.globalVariableService.currentDatasources
+        let dsIndex: number = this.currentDatasources
             .findIndex(ds => ds.id == datasourceID);
         
         if (dsIndex >= 0) {
@@ -208,8 +206,6 @@ console.warn('xx init', this.dataFieldNames, this.currentDatasources)
         // Load first few rows into preview
         this.currentData = this.globalVariableService.currentDatasets.filter(
             d => d.id == dSetID)[0].data.slice(0,5);
-
-
 
     }
 
