@@ -1393,29 +1393,30 @@ export class AppComponent implements OnInit {
             } else {
                 if (returnedDatasource.createMethod == 'directFile') {
                     this.showModalDataDirectFile = true;
-                };
-                if (returnedDatasource.createMethod == 'directQueryBuilder') {
+                } else if (returnedDatasource.createMethod == 'directQueryBuilder') {
                     this.showModalDataDirectQueryBuilder = true;
-                };
-                if (returnedDatasource.createMethod == 'directSQLEditor') {
+                } else if (returnedDatasource.createMethod == 'directSQLEditor') {
                     this.showModalDataDirectSQLEditor = true
-                };
-                if (returnedDatasource.createMethod == 'directNoSQL') {
+                } else if (returnedDatasource.createMethod == 'directNoSQL') {
                     this.showModalDataDirectNoSQL = true
-                };
-                if (returnedDatasource.createMethod == 'managedQueryBuilder') {
+                } else if (returnedDatasource.createMethod == 'managedQueryBuilder') {
                     this.showModalDataManagedQueryBuilder = true;
-                };
-                if (returnedDatasource.createMethod == 'managedSQLEditor') {
+                } else if (returnedDatasource.createMethod == 'managedSQLEditor') {
                     this.showModalDataManagedSQLEditor = true;
-                };
-                if (returnedDatasource.createMethod == 'managedNoSQLEditor') {
+                } else if (returnedDatasource.createMethod == 'managedNoSQLEditor') {
                     this.showModalDataManagedNoSQLEditor = true;
-                };
-                if (returnedDatasource.createMethod == 'managedOverlayEditor') {
+                } else if (returnedDatasource.createMethod == 'managedOverlayEditor') {
                     this.showModalDataManagedOverlayEditor = true;
+                } else {
+                    this.showMessage(
+                        'Datasource has invalid data (createMethod)',
+                        'StatusBar',
+                        'Error',
+                        3000,
+                        ''
+                    );
+        
                 };
-
 
             };
 
