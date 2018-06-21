@@ -1391,16 +1391,23 @@ export class AppComponent implements OnInit {
                 this.globalVariableService.continueToTransformations = false;
                 this.showModalDataTransformation = true;
             } else {
-                if (returnedDatasource.createMethod == 'DirectNoSQL') {
+                if (returnedDatasource.createMethod == 'directFile') {
+                    this.showModalDataDirectFile = true;
+                };
+                if (returnedDatasource.createMethod == 'directQueryBuilder') {
+                    this.showModalDataDirectQueryBuilder = true;
+                };
+                if (returnedDatasource.createMethod == 'directSQLEditor') {
+                    this.showModalDataDirectSQLEditor = true
+                };
+                if (returnedDatasource.createMethod == 'directNoSQL') {
                     this.showModalDataDirectNoSQL = true
                 };
                 if (returnedDatasource.createMethod == 'managedQueryBuilder') {
                     this.showModalDataManagedQueryBuilder = true;
                 };
-                if (returnedDatasource.createMethod == 'DirectSQLEditor') {
-                    this.showModalDataDirectSQLEditor = true
-                };
-                
+
+
             };
 
         };

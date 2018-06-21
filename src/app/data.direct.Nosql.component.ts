@@ -336,7 +336,7 @@ export class DataDirectNoSQLComponent implements OnInit {
                 description: 'Post Trade Data Vault',
                 createdBy: '',
                 createdOn: '',
-                createMethod: 'DirectNoSQL',
+                createMethod: 'directNoSQL',
                 editor: '',
                 dateEdited: '',
                 refreshedBy: '',

@@ -141,7 +141,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
                 description: 'Post Trade Data Vault',
                 createdBy: '',
                 createdOn: '',
-                createMethod: 'DirectSQLEditor',
+                createMethod: 'directSQLEditor',
                 editor: '',
                 dateEdited: '',
                 refreshedBy: '',

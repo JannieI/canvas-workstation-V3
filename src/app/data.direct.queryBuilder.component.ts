@@ -335,7 +335,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
                 description: 'Post Trade Data Vault',
                 createdBy: '',
                 createdOn: '',
-                createMethod: '',
+                createMethod: 'directQueryBuilder',
                 editor: '',
                 dateEdited: '',
                 refreshedBy: '',
