@@ -430,6 +430,7 @@ export class Transformation {
     parameterTitle: string[];           // Title (tooltippie text)
     parameterDefaultValue: string[];    // Default Text / Value when creating a new record
     parameterHeading: string[];         // Heading of field on form, ie Left
+    parameterType: string[];            // Type of field (string, numeric, boolean).  Blank means any
 }
 
 export class DataConnection {

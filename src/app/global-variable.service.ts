@@ -490,7 +490,8 @@ const transformationsFormat: Transformation[] =
         parameterPlaceholder: ['place1','place2','place3','place4','place5','place6'],
         parameterTitle: ['tit1','tit2','tit3','tit4','tit5','tit6'],
         parameterDefaultValue: ['txt1','txt2','txt3','txt4','txt5','txt6'],
-        parameterHeading: ['head1','head2','head3','head4','head5','head6']
+        parameterHeading: ['head1','head2','head3','head4','head5','head6'],
+        parameterType: ['','','','','','']
 
     },
     {
@@ -502,7 +503,8 @@ const transformationsFormat: Transformation[] =
         parameterPlaceholder: ['place1'],
         parameterTitle: ['tit1'],
         parameterDefaultValue: ['txt1'],
-        parameterHeading: ['head1']
+        parameterHeading: ['head1'],
+        parameterType: ['','','','','','']
 
     },
     {
@@ -514,7 +516,8 @@ const transformationsFormat: Transformation[] =
         parameterPlaceholder: ['place1'],
         parameterTitle: ['tit1'],
         parameterDefaultValue: ['txt1'],
-        parameterHeading: ['head1']
+        parameterHeading: ['head1'],
+        parameterType: ['','','','','','']
 
     }
 ];

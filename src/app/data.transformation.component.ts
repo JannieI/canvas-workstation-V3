@@ -475,7 +475,7 @@ export class DataTransformationComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
         // Reset
-        this.parameter1Value = '';
+        this.errorMessage = '';
 
         // Validate
         for (var i = 0; i < this.transformations[this.selectedTransformationRowIndex].nrParameters; i++) {
@@ -485,12 +485,30 @@ export class DataTransformationComponent implements OnInit {
                         .parameterHeading[i] + ' is compulsory';
                     return;
                 };
+                if (this.transformations[this.selectedTransformationRowIndex]
+                    .parameterType[i].toLowerCase() == 'number') {
+                        var reg = /^-?\d+(\.\d+)?$/;
+                    if (!reg.test(this.parameter1Value)) {
+                        this.errorMessage = this.transformations[this.selectedTransformationRowIndex]
+                        .parameterHeading[i] + ' is not numeric!';
+                        return;
+                    };
+                };
             };
             if (i == 1) {
                 if (this.parameter2Value == '') {
                     this.errorMessage = this.transformations[this.selectedTransformationRowIndex]
                         .parameterHeading[i] + ' is compulsory';
                     return;
+                };
+                if (this.transformations[this.selectedTransformationRowIndex]
+                    .parameterType[i].toLowerCase() == 'number') {
+                    var reg = /^-?\d+(\.\d+)?$/;
+                    if (!reg.test(this.parameter2Value)) {
+                        this.errorMessage = this.transformations[this.selectedTransformationRowIndex]
+                        .parameterHeading[i] + ' is not numeric!';
+                        return;
+                    };
                 };
             };
             if (i == 2) {
