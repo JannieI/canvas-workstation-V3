@@ -1397,6 +1397,9 @@ export class AppComponent implements OnInit {
                 if (returnedDatasource.createMethod == 'managedQueryBuilder') {
                     this.showModalDataManagedQueryBuilder = true;
                 };
+                if (returnedDatasource.createMethod == 'DirectSQLEditor') {
+                    this.showModalDataDirectSQLEditor = true
+                };
                 
             };
 
