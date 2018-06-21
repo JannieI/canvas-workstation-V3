@@ -23,6 +23,7 @@
                                 <clr-dg-column>Transform</clr-dg-column>
                                 <clr-dg-column [clrDgField]="nrWidgets">#Widgets</clr-dg-column>
                                 <clr-dg-column [clrDgField]="name">Name</clr-dg-column>
+                                <clr-dg-column [clrDgField]="createMethod">Method</clr-dg-column>
                                 <clr-dg-column [clrDgField]="description">Description</clr-dg-column>
     
                                 <clr-dg-row
@@ -39,6 +40,7 @@
                                     </clr-dg-cell>
                                     <clr-dg-cell>{{ row.nrWidgets }}</clr-dg-cell>
                                     <clr-dg-cell>{{ row.name }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.createMethod }}</clr-dg-cell>
                                     <clr-dg-cell>{{ row.description }}</clr-dg-cell>
                                     
                                 </clr-dg-row>
