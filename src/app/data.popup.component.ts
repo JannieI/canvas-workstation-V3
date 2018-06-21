@@ -680,7 +680,8 @@ export class DataPopupComponent implements OnInit {
             parameterPlaceholder: ['place1'],
             parameterTitle: ['tit1'],
             parameterDefaultValue: ['txt1'],
-            parameterHeading: ['head1']
+            parameterHeading: ['head1'],
+            parameterType: ['string']
         };
         this.currentTransformations.push(newTransformation);
     }

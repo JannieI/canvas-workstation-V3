@@ -90,7 +90,7 @@ export class DataManagedQueryBuilderComponent implements OnInit {
                 description: '...',
                 createdBy: '',
                 createdOn: '',
-                createMethod: '',
+                createMethod: 'managedQueryBuilder',
                 editor: '',
                 dateEdited: '',
                 refreshedBy: '',

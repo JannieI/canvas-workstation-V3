@@ -1391,7 +1391,13 @@ export class AppComponent implements OnInit {
                 this.globalVariableService.continueToTransformations = false;
                 this.showModalDataTransformation = true;
             } else {
-                this.showModalDataManagedQueryBuilder = true;
+                if (returnedDatasource.createMethod == 'DirectNoSQL') {
+                    this.showModalDataDirectNoSQL = true
+                };
+                if (returnedDatasource.createMethod == 'managedQueryBuilder') {
+                    this.showModalDataManagedQueryBuilder = true;
+                };
+                
             };
 
         };
