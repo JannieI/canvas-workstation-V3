@@ -307,13 +307,6 @@ export class DataDirectFileComponent implements OnInit {
         this.currentDatasetName = '';
 
     }
- 
-    clickFileSaveTransformation() {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickFileSaveTransformation', '@Start');
-
-        // TODO - add code to Save the name for next time ...
-    }
 
     clickClose(action: string) {
         //
