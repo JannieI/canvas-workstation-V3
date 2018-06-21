@@ -322,18 +322,11 @@ export class DataDirectFileComponent implements OnInit {
         // Add the DS, with data, to the DB
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDSAdd', '@Start');
 
-        // Get new DSid
-        // TODO - do better with DB
-        let newDSID: number = 1;
-        let dsIDs: number[] = [];
-        this.globalVariableService.datasources.forEach(ds => dsIDs.push(ds.id));
-        newDSID = Math.max(...dsIDs) + 1;
-
         let today =new Date();
 
         // New Datasource
         let newData: Datasource =  {
-            id: newDSID,
+            id: null,
             name: this.fileName,
             username: '',
             password: '',
@@ -384,67 +377,67 @@ export class DataDirectFileComponent implements OnInit {
         this.existingDSName = '';
 
         // Add to all DS (DB, global), for later use
-        this.globalVariableService.addDatasource(newData).then(res =>
+        this.globalVariableService.addDatasource(newData).then(res => {
             this.currentDatasources = this.globalVariableService.currentDatasources.slice()
-        );
 
-        // Get new dSetID
-        // TODO - do better with DB
-        let newdSetID: number = 1;
-        let dSetIDs: number[] = [];
-        this.globalVariableService.datasets.forEach(ds => dSetIDs.push(ds.id));
-        newdSetID = Math.max(...dSetIDs) + 1;
+            // Get new dSetID
+            // TODO - do better with DB
+            let newdSetID: number = 1;
+            let dSetIDs: number[] = [];
+            this.globalVariableService.datasets.forEach(ds => dSetIDs.push(ds.id));
+            newdSetID = Math.max(...dSetIDs) + 1;
 
-        // Get list of dSet-ids to make array work easier
-        let dsCurrIDs: number[] = [];       // currentDataset IDs
-        this.globalVariableService.currentDatasets.forEach(d => dsCurrIDs.push(d.id));
-        let newdSet: Dataset = {
-            id: newdSetID,
-            datasourceID: newDSID,
-            sourceLocation: 'HTTP',
-            url: 'data',
-            folderName: '',
-            fileName: '',
-            data: this.currentData,
-            dataRaw: this.currentData
-        };
-
-        let dataToAdd: any = {
-            id: newdSetID,
-            data: this.currentData
-        };
-
-        // Add to All datasets
-        if (dSetIDs.indexOf(newdSetID) < 0) {
-            // this.globalVariableService.datasets.push(newdSet);
-            this.globalVariableService.addDataset(newdSet);
-            this.globalVariableService.addData(dataToAdd).then(res => {
-                this.globalVariableService.getData(res.id).then(dat => {
-                    console.warn('xx ----------')
-                    console.warn('xx added data', dat)
-                                    });
-            });
-            this.globalVariableService.saveLocal('Dataset', newdSet);
-        } else {
-             // Add to CurrentDatasets
-            if (dsCurrIDs.indexOf(newdSetID) < 0) {
-                this.globalVariableService.currentDatasets.push(newdSet);
+            // Get list of dSet-ids to make array work easier
+            let dsCurrIDs: number[] = [];       // currentDataset IDs
+            this.globalVariableService.currentDatasets.forEach(d => dsCurrIDs.push(d.id));
+            let newdSet: Dataset = {
+                id: newdSetID,
+                datasourceID: res.id,
+                sourceLocation: 'HTTP',
+                url: 'data',
+                folderName: '',
+                fileName: '',
+                data: this.currentData,
+                dataRaw: this.currentData
             };
-        };
+
+            let dataToAdd: any = {
+                id: newdSetID,
+                data: this.currentData
+            };
+
+            // Add to All datasets
+            if (dSetIDs.indexOf(newdSetID) < 0) {
+                // this.globalVariableService.datasets.push(newdSet);
+                this.globalVariableService.addDataset(newdSet);
+                this.globalVariableService.addData(dataToAdd).then(res => {
+                    this.globalVariableService.getData(res.id).then(dat => {
+                        console.warn('xx ----------')
+                        console.warn('xx added data', dat)
+                    });
+                });
+                this.globalVariableService.saveLocal('Dataset', newdSet);
+            } else {
+                // Add to CurrentDatasets
+                if (dsCurrIDs.indexOf(newdSetID) < 0) {
+                    this.globalVariableService.currentDatasets.push(newdSet);
+                };
+            };
 
 
 
 
-        console.warn('xx ----------')
-        console.warn('xx @end newdSet-datasets-currentDatasets', newdSet, this.globalVariableService.datasets,
-         this.globalVariableService.currentDatasets)
+            console.warn('xx ----------')
+            console.warn('xx @end newdSet-datasets-currentDatasets', newdSet, this.globalVariableService.datasets,
+            this.globalVariableService.currentDatasets)
 
-        // Reset data related to this DS
-        console.warn('xx currDS, gv.currDS', this.currentDatasources , this.globalVariableService.currentDatasources)
-        this.currentDatasources = this.globalVariableService.currentDatasources.slice();
+            // Reset data related to this DS
+            console.warn('xx currDS, gv.currDS', this.currentDatasources , this.globalVariableService.currentDatasources)
+            this.currentDatasources = this.globalVariableService.currentDatasources.slice();
 
-        console.log('done DS:', this.currentDatasources, this.globalVariableService.datasources)
-   
+            console.log('done DS:', this.currentDatasources, this.globalVariableService.datasources)
+        });
+    
     }
 }
 
