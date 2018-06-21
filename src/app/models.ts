@@ -359,15 +359,22 @@ export class Datasource {
     username: string;                   // Username to log into server
     password: string;                   // Password to log into server
     description: string;
-    createdBy: string;
-    createdOn: string;
-    refreshedBy: string;
-    refreshedOn: string;
     dataFieldIDs: number[];             // IDs of fields in DB table
     dataFields: string[];               // FieldNames, in order to display
     dataFieldTypes: string[];           // Field Types, same order as dataFields
     dataFieldLengths: number[];         // Max field lengths, same order as dataFields
     parameters: string;                 // Parameters to pass into SQL query
+
+    // Create and Edit info
+    createMethod: string;               // Method how DS was created, ie DirectFile, ..., ManagedSQLEditor
+    createdBy: string;                  // Creator
+    createdOn: string;                  // DateTime Created
+    editor: string;                     // Last Edited By
+    dateEdited: string;                 // Last Edited On
+    
+    // Refresh info
+    refreshedBy: string;
+    refreshedOn: string;
 
     // Location and authentication
     folder: string;
