@@ -565,6 +565,15 @@ export class DataTransformationComponent implements OnInit {
                         .parameterHeading[i] + ' is compulsory';
                     return;
                 };
+                if (this.transformations[this.selectedTransformationRowIndex]
+                    .parameterType[i].toLowerCase() == 'number') {
+                    var reg = /^-?\d+(\.\d+)?$/;
+                    if (!reg.test(this.parameter6Value)) {
+                        this.errorMessage = this.transformations[this.selectedTransformationRowIndex]
+                        .parameterHeading[i] + ' is not numeric!';
+                        return;
+                    };
+                };
             };
         };
 
