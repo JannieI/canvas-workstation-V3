@@ -9,6 +9,7 @@ import { HostListener }               from '@angular/core';
 import { Input }                      from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
+import { Token }                      from './models';
 
 // Our Functions
 import { GlobalFunctionService } 	  from './global-function.service';
@@ -91,6 +92,9 @@ export class LoginComponent implements OnInit {
         // Log in
         this.globalFunctionService.printToConsole(this.constructor.name,'clickLocalServer', '@Start');
 
+        // Reset
+        this.errorMessage = '';
+
         // Validate user
         this.globalVariableService.login(this.currentUserID, this.password).then(res => {
             if (!res) {
@@ -98,6 +102,10 @@ export class LoginComponent implements OnInit {
                 this.errorMessage = 'Login failed';
                 return;
             } else {
+                console.warn('xx tkn', res)
+                let tkn: Token = JSON.parse(localStorage.getItem('eazl-token'));
+                console.warn('xx tkn', tkn.token, tkn.user)
+
                 // Register session start time
                 let today = new Date();
                 this.globalVariableService.sessionDateTimeLoggedin =

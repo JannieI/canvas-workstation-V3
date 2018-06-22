@@ -8221,7 +8221,7 @@ export class GlobalVariableService {
 
     // Eazl, Tributary stuffies
     // TODO - to be replaced by actual Eazl 
-    login(userID: string, password: string): Promise<boolean> {
+    login(username: string, password: string): Promise<boolean> {
         // Login, and return a token which is stored in LocalStorage.  Also, set global User
         // If not a valid user, return false.
         // If so, set currentUser object and return true
@@ -8232,7 +8232,7 @@ export class GlobalVariableService {
 
             // Get a Token
             this.http.post<Token>('https://eazl-rest.xyz/eazl/accounts/obtain-token/', 
-                {userID, password}).subscribe(token => {
+                {username, password}).subscribe(token => {
 
                 // Store locally
                 localStorage.setItem("eazl-token", JSON.stringify(token));
@@ -8249,10 +8249,10 @@ export class GlobalVariableService {
     obtainToken(username: string, password: string): Promise<Token> {
         return new Promise((resolve, reject) => {
         
-		this.http.post<Token>('https://eazl-rest.xyz/eazl/accounts/obtain-token/', {username, password})
-			.subscribe(res => {
-                localStorage.setItem("eazl-token", JSON.stringify(res));
-                resolve(res);
+            this.http.post<Token>('https://eazl-rest.xyz/eazl/accounts/obtain-token/', {username, password})
+                .subscribe(res => {
+                    localStorage.setItem("eazl-token", JSON.stringify(res));
+                    resolve(res);
             });
         });
     }
