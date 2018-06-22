@@ -24,6 +24,7 @@ import { DataTable }                  from './models';
 import { DataField }                  from './models';
 import { Dataset }                    from './models';
 import { Field }                      from './models';
+import { Token }                      from './models';
 
 
 @Component({
@@ -255,7 +256,7 @@ export class DataManagedQueryBuilderComponent implements OnInit {
 
         this.globalVariableService.obtainToken('admin','canvas100*').then(res => {
             console.warn('xx tkn', res)
-            let tkn: any = localStorage.getItem('eazl-token');
+            let tkn: Token = JSON.parse(localStorage.getItem('eazl-token'));
             console.warn('xx tkn', tkn.token, tkn.user)
         });
         // this.formDataManagedQueryBuilderClosed.emit(null);

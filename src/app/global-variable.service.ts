@@ -52,6 +52,9 @@ import { Transformation }             from './models';
 import { Widget }                     from './models';
 import { WidgetCheckpoint }           from './models';
 
+// TODO - to remove
+import { Token }                      from './models';
+import { User }                       from './models';
 
 // External
 import * as dl                        from 'datalib';
@@ -8219,6 +8222,31 @@ export class GlobalVariableService {
 
     // Eazl, Tributary stuffies
     // TODO - to be replaced by actual Eazl 
+    login(userID: string, password: string): Promise<boolean> {
+        // Login, and return a token which is stored in LocalStorage.  Also, set global User
+        // If not a valid user, return false.
+        // If so, set currentUser object and return true
+        console.log('%c    Global-Variables login ...',
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        
+        return new Promise<boolean>((resolve, reject) => {
+
+            // Get a Token
+            this.http.post<Token>('https://eazl-rest.xyz/eazl/accounts/obtain-token/', 
+                {userID, password}).subscribe(token => {
+
+                // Store locally
+                localStorage.setItem("eazl-token", JSON.stringify(token));
+
+                resolve(true);
+            },
+            err => {
+                console.log('Error login FAILED', err);;
+                resolve(false);
+            });
+        });
+    };
+
     obtainToken(username: string, password: string): Promise<Token> {
         return new Promise((resolve, reject) => {
         
