@@ -283,7 +283,7 @@ export class DataDirectNoSQLComponent implements OnInit {
 
     @Input() selectedDatasource: Datasource;
     
-    @Output() formDataDirectNoSQLEditorClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formDataDirectNoSQLEditorClosed: EventEmitter<Datasource> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
@@ -381,7 +381,7 @@ export class DataDirectNoSQLComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-        this.formDataDirectNoSQLEditorClosed.emit(action);
+        this.formDataDirectNoSQLEditorClosed.emit(null);
 
     }
          
@@ -395,14 +395,6 @@ export class DataDirectNoSQLComponent implements OnInit {
                 return df;
             };
         });
-
-    }
-
-    clickTransformation() {
-        // Close the form, and open Transformations form
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickTransformation', '@Start');
-
-        this.formDataDirectNoSQLEditorClosed.emit('Transformation');
 
     }
     
