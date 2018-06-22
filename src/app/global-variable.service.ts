@@ -8272,7 +8272,7 @@ export class GlobalVariableService {
             console.warn('xx token', localToken)
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json")
-                .set("Authorization", localToken.token);
+                .set("Authorization", "JWT " + localToken.token);
 
             this.http.post(url, data, {headers})
             .subscribe(
