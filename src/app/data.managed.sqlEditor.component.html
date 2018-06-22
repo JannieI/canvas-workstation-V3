@@ -97,7 +97,16 @@
                         <div *ngIf="errorMessage!=''" class="gridErrorMessage">
                             {{ errorMessage }}
                         </div>
-    
+            
+                        <div class="gridButtonTransformation">
+                            <button
+                                type="button"
+                                class="btn btn-link"
+                                (click)="clickTransformation()"
+                                >
+                                Transformations
+                            </button>
+                        </div>
                         
                         <div class="gridGoButton">
                             <button
