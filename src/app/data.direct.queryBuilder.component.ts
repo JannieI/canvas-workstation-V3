@@ -279,7 +279,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
 
     @Input() selectedDatasource: Datasource;
  
-    @Output() formDataDirectQueryBuilderClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formDataDirectQueryBuilderClosed: EventEmitter<Datasource> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
@@ -410,14 +410,6 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         this.dataFieldsSelected = this.selectedFields.map(f => f.nameDB);
         console.warn('xx selectedFields', this.selectedFields, this.dataFieldsSelected)
     }
-
-    clickTransformation() {
-        // Close the form, and open Transformations form
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickTransformation', '@Start');
-
-        this.formDataDirectQueryBuilderClosed.emit('Transformation');
-
-    }
     
     clickGetData() {
         // Get the data
@@ -472,7 +464,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         // Close form, nothing saved
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-        this.formDataDirectQueryBuilderClosed.emit(action);
+        this.formDataDirectQueryBuilderClosed.emit(null);
 
     } 
 
