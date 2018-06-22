@@ -190,7 +190,7 @@
     }
 
     .gridButtonTransformation {
-        grid-column-start: 16;
+        grid-column-start: 15;
         grid-column-end: 21;
         grid-row-start: 25;
         grid-row-end: 26;

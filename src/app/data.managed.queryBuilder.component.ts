@@ -257,11 +257,11 @@ export class DataManagedQueryBuilderComponent implements OnInit {
 
     } 
 
-    clickTransformation() {
+    clickSave(action: string) {
         // Close the form, and open Transformations form
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickTransformation', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
-        this.formDataManagedQueryBuilderClosed.emit('Transformation');
+        this.formDataManagedQueryBuilderClosed.emit(action);
 
     }
     
