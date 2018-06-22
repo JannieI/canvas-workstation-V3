@@ -1324,18 +1324,23 @@ export class AppComponent implements OnInit {
         this.showModalDataManagedConnection = false;
     }
 
-    handleCloseDataManagedQueryBuilder(action: string) {
+    handleCloseDataManagedQueryBuilder(returnDS: Datasource) {
         // Handle Close of SQL Query Builder
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataManagedQueryBuilder', '@Start');
 
         this.menuOptionClickPostAction();
 
+        this.selectedDatasource = returnDS;
         this.showModalDataManagedQueryBuilder = false;
+        console.warn('xx APP sel ds', this.selectedDatasource)
 
         // Open Transformations if so requested
-        if (action == 'Transformation') {
+        if (returnDS != null) {
             this.showModalDataTransformation = true;
         };
+        // if (action == 'Transformation') {
+        //     this.showModalDataTransformation = true;
+        // };
     }
 
     handleCloseDataManagedSQLEditor(action: string) {

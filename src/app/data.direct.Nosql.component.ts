@@ -423,7 +423,7 @@ export class DataDirectNoSQLComponent implements OnInit {
             }
         }
 
-        this.globalVariableService.getTriburaryData(data).then(res => {
+        this.globalVariableService.getTributaryData(data).then(res => {
             console.warn('xx res', res, this.selectedDatasource)
         });
 

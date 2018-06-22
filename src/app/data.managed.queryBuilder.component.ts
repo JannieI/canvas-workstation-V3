@@ -35,7 +35,7 @@ export class DataManagedQueryBuilderComponent implements OnInit {
 
     @Input() selectedDatasource: Datasource;
  
-    @Output() formDataManagedQueryBuilderClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formDataManagedQueryBuilderClosed: EventEmitter<Datasource> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
@@ -253,7 +253,7 @@ export class DataManagedQueryBuilderComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-        this.formDataManagedQueryBuilderClosed.emit(action);
+        this.formDataManagedQueryBuilderClosed.emit(null);
 
     } 
 
@@ -261,7 +261,14 @@ export class DataManagedQueryBuilderComponent implements OnInit {
         // Close the form, and open Transformations form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
-        this.formDataManagedQueryBuilderClosed.emit(action);
+        console.warn('xx END sel ds', this.selectedDatasource)
+        if (action == 'Saved') {
+            this.formDataManagedQueryBuilderClosed.emit(null);
+
+        } else {
+            this.formDataManagedQueryBuilderClosed.emit(this.selectedDatasource);
+
+        }
 
     }
     

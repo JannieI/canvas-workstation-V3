@@ -6,6 +6,8 @@ import { HttpErrorResponse }          from '@angular/common/http';
 import { HttpParams }                 from "@angular/common/http";
 import { HttpHeaders }                from "@angular/common/http";
 
+import { tap }                        from 'rxjs/operators';
+
 // Our Models
 import { CanvasAction }               from './models';
 import { CanvasAuditTrail }           from './models';
@@ -523,6 +525,31 @@ const transformationsFormat: Transformation[] =
 ];
 
 
+// TODO - temporary, to be removed later
+export class User {
+	id?: number;
+	username: string;
+	first_name: string;
+	last_name: string;
+	email: string;
+	is_superuser: boolean;
+	is_staff: boolean;
+	is_active: boolean;
+	groups: number[];
+	user_permissions: number[];
+	last_login: string;
+	date_joined: string;
+	profile: string;
+	url: string;
+
+}
+
+export class Token {
+	token: string;
+	user: User;
+
+}
+
 @Injectable()
 export class GlobalVariableService {
 
@@ -958,37 +985,6 @@ export class GlobalVariableService {
         // Load Current DatasourcePivots
         this.getCurrentDatasourcePivots(1);
 
-    }
-
-    getTriburaryData(data: any): Promise<any> {
-        // Description: Gets data from the Tributary Server
-        // Returns: Added Data or error message
-        console.log('%c    Global-Variables getTriburaryData ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", data.id);
-
-        let url: string = 'https://eazl-rest.xyz/eazl/canvas/enqueue/';
-        this.filePath = './assets/data.dashboards.json';
-
-        return new Promise<any>((resolve, reject) => {
-
-            const headers = new HttpHeaders()
-                .set("Content-Type", "application/json")
-                .set("Authorization", "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6ImFkbWluIiwiZXhwIjoxNTI5NjkwNzExLCJlbWFpbCI6IiJ9.p_DJZUILx9OXoJt1pavHXKZsI-lhiCm-FvcbX-FKxwo");
-
-            this.http.post(url, data, {headers})
-            .subscribe(
-                res => {
-
-                    console.log('Tributary Data', res)
-
-                    resolve(res);
-                },
-                err => {
-                    console.log('Error Get Tributary Data FAILED', err);;
-                    resolve(err.Message);
-                }
-            )
-        });
     }
 
     getDashboards(params: string = ''): Promise<Dashboard[]> {
@@ -8242,6 +8238,51 @@ export class GlobalVariableService {
         if (day.length < 2) day = '0' + day;
 
         return [year, month, day].join('/') + ' ' + hour + ':' + minute + ':' + second;
+    }
+
+
+    // Eazl, Tributary stuffies
+    // TODO - to be replaced by actual Eazl 
+    obtainToken(username: string, password: string): Promise<Token> {
+        return new Promise((resolve, reject) => {
+        
+		this.http.post<Token>('https://eazl-rest.xyz/eazl/accounts/obtain-token/', {username, password})
+			.subscribe(res => {
+                localStorage.setItem("eazl-token", JSON.stringify(res));
+                resolve(res);
+            });
+        });
+    }
+    
+    getTributaryData(data: any): Promise<any> {
+        // Description: Gets data from the Tributary Server
+        // Returns: Added Data or error message
+        console.log('%c    Global-Variables getTributaryData ...',
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", data.id);
+
+        let url: string = 'https://eazl-rest.xyz/eazl/canvas/enqueue/';
+        this.filePath = './assets/data.dashboards.json';
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json")
+                .set("Authorization", "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6ImFkbWluIiwiZXhwIjoxNTI5NjkwNzExLCJlbWFpbCI6IiJ9.p_DJZUILx9OXoJt1pavHXKZsI-lhiCm-FvcbX-FKxwo");
+
+            this.http.post(url, data, {headers})
+            .subscribe(
+                res => {
+
+                    console.log('Tributary Data', res)
+
+                    resolve(res);
+                },
+                err => {
+                    console.log('Error Get Tributary Data FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+        });
     }
 
 }
