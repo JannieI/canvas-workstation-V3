@@ -439,6 +439,14 @@ export class DataDirectFileComponent implements OnInit {
         });
     
     }
+
+    clickTransformation() {
+        // Close the form, and open Transformations form
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTransformation', '@Start');
+
+        this.formDataDirectFileClosed.emit('Transformation');
+
+    }
 }
 
 
