@@ -80,7 +80,7 @@ export class DataManagedQueryBuilderComponent implements OnInit {
 
         if (this.selectedDatasource == null) {
             this.selectedDatasource = {
-                id: 0,
+                id: null,
                 type: '',
                 subType: '',
                 typeVersion: '',
