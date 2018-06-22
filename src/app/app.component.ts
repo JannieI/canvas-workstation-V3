@@ -1223,7 +1223,7 @@ export class AppComponent implements OnInit {
         };
     }
 
-    handleCloseDataDirectService(action: string) {
+    handleCloseDataDirectService(returnDS: Datasource) {
         // Handle close of Direct Service form
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDirectService', '@Start');
 
@@ -1232,7 +1232,7 @@ export class AppComponent implements OnInit {
         this.showModalDataDirectService = false;
 
         // Open Transformations if so requested
-        if (action == 'Transformation') {
+        if (returnDS != null) {
             this.showModalDataTransformation = true;
         };
     }
