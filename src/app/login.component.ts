@@ -92,10 +92,10 @@ export class LoginComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickLocalServer', '@Start');
 
         // Validate user
-        this.globalVariableService.validateUser(this.currentUserID).then(res => {
+        this.globalVariableService.login(this.currentUserID, this.password).then(res => {
             if (!res) {
 
-                this.errorMessage = 'Invalid user';
+                this.errorMessage = 'Login failed';
                 return;
             } else {
                 // Register session start time

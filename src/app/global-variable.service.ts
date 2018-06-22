@@ -8219,7 +8219,6 @@ export class GlobalVariableService {
         return [year, month, day].join('/') + ' ' + hour + ':' + minute + ':' + second;
     }
 
-
     // Eazl, Tributary stuffies
     // TODO - to be replaced by actual Eazl 
     login(userID: string, password: string): Promise<boolean> {
