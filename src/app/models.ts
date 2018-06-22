@@ -892,3 +892,28 @@ export class WidgetCheckpoint {
     creator: string;                    // UserID
     createdOn: string;                  // DateTime of creation
 }
+
+// TODO - temporary, to be removed later
+export class User {
+	id?: number;
+	username: string;
+	first_name: string;
+	last_name: string;
+	email: string;
+	is_superuser: boolean;
+	is_staff: boolean;
+	is_active: boolean;
+	groups: number[];
+	user_permissions: number[];
+	last_login: string;
+	date_joined: string;
+	profile: string;
+	url: string;
+
+}
+
+export class Token {
+	token: string;
+	user: User;
+
+}
