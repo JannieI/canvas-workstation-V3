@@ -147,6 +147,14 @@
         margin-top: 5px;
     }
 
+    .gridButtonTransformation {
+        grid-column-start: 18;
+        grid-column-end: 21;
+        grid-row-start: 7;
+        grid-row-end: 8;
+        margin-top: 12px;
+    }
+    
     .gridErrorMessage {
         grid-column-start: 2;
         grid-column-end: 20;

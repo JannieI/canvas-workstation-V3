@@ -972,7 +972,8 @@ export class GlobalVariableService {
         return new Promise<any>((resolve, reject) => {
 
             const headers = new HttpHeaders()
-                .set("Content-Type", "application/json");
+                .set("Content-Type", "application/json")
+                .set("Authorization", "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6ImFkbWluIiwiZXhwIjoxNTI5NjkwNzExLCJlbWFpbCI6IiJ9.p_DJZUILx9OXoJt1pavHXKZsI-lhiCm-FvcbX-FKxwo");
 
             this.http.post(url, data, {headers})
             .subscribe(
