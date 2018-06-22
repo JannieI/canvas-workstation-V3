@@ -1237,7 +1237,7 @@ export class AppComponent implements OnInit {
         };
     }
 
-    handleCloseDataDirectWeb(action: string) {
+    handleCloseDataDirectWeb(returnDS: Datasource) {
         // Handle close of Direct Web form
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDirectWeb', '@Start');
 
@@ -1246,7 +1246,7 @@ export class AppComponent implements OnInit {
         this.showModalDataDirectWeb = false;
 
         // Open Transformations if so requested
-        if (action == 'Transformation') {
+        if (returnDS != null) {
             this.showModalDataTransformation = true;
         };
     }
