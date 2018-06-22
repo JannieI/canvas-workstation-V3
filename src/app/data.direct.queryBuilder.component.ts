@@ -411,14 +411,6 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         console.warn('xx selectedFields', this.selectedFields, this.dataFieldsSelected)
     }
 
-    clickClose(action: string) {
-        // Close form, nothing saved
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
-
-        this.formDataDirectQueryBuilderClosed.emit(action);
-
-    } 
-
     clickTransformation() {
         // Close the form, and open Transformations form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickTransformation', '@Start');
@@ -474,6 +466,29 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         } else {
             this.filterFields(-1);
         };
+    }
+
+    clickClose(action: string) {
+        // Close form, nothing saved
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
+
+        this.formDataDirectQueryBuilderClosed.emit(action);
+
+    } 
+
+    clickSave(action: string) {
+        // Close the form, and open Transformations form
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
+
+        console.warn('xx END sel ds', this.selectedDatasource)
+        if (action == 'Saved') {
+            this.formDataDirectQueryBuilderClosed.emit(null);
+
+        } else {
+            this.formDataDirectQueryBuilderClosed.emit(this.selectedDatasource);
+
+        }
+
     }
 }
 
