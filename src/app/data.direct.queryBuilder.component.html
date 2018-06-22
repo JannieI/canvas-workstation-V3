@@ -130,16 +130,6 @@
                             </button>
                         </div>
         
-                        <div class="gridButtonTransformation">
-                            <button
-                                type="button"
-                                class="btn btn-link"
-                                (click)="clickSave('Transformation')"
-                                >
-                                Transformations
-                            </button>
-                        </div>
-    
                         <div *ngIf="errorMessage!=''" class="gridErrorMessage">
                             {{ errorMessage }}
                         </div>
@@ -231,6 +221,16 @@
                                 (click)="clickSave('Saved')"
                                 >
                                 Save
+                            </button>
+                        </div>
+    
+                        <div class="gridButtonTransformation">
+                            <button
+                                type="button"
+                                class="btn btn-link"
+                                (click)="clickSave('Transformation')"
+                                >
+                                Save and open Transformations
                             </button>
                         </div>
     
