@@ -4117,21 +4117,22 @@ export class GlobalVariableService {
                         this.isDirtyDatasources = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
 
-                        this.datasources.forEach(ds => {
+                        // this.datasources.forEach(ds => {
+                            // console.warn('xx ds bug', ds)
                             // TODO - remove this, currently datalib reads array as string 'a,b,c'
-                            let f: string = ds.dataFields.toString();
-                            let fN: string[] = f.split(',');
-                            ds.dataFields = fN;
-                            let t: string = ds.dataFieldTypes.toString();
-                            let fT: string[] = t.split(',');
-                            ds.dataFieldTypes = fT;
-                            let l: string[] = ds.dataFieldLengths.toString().split(',');
-                            let fL: number[] = [];
-                            for (var i = 0; i < l.length; i++) {
-                                fL.push(+l[i]);
-                            };
-                            ds.dataFieldLengths = fL;
-                        });
+                            // let f: string = ds.dataFields.toString();
+                            // let fN: string[] = f.split(',');
+                            // ds.dataFields = fN;
+                            // let t: string = ds.dataFieldTypes.toString();
+                            // let fT: string[] = t.split(',');
+                            // ds.dataFieldTypes = fT;
+                            // let l: string[] = ds.dataFieldLengths.toString().split(',');
+                            // let fL: number[] = [];
+                            // for (var i = 0; i < l.length; i++) {
+                            //     fL.push(+l[i]);
+                            // };
+                            // ds.dataFieldLengths = fL;
+                        // });
 
 
                         console.log('%c    Global-Variables getDatasources 1',

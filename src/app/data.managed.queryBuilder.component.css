@@ -72,6 +72,34 @@
         grid-row-start: 6;
         grid-row-end: 7;
     }
+
+    .gridUsernameTitle {
+        grid-column-start: 7;
+        grid-column-end: 9;
+        grid-row-start: 6;
+        grid-row-end: 7;
+        margin-top: 5px;
+    }
+    .gridUsername {
+        grid-column-start: 9;
+        grid-column-end: 14;
+        grid-row-start: 6;
+        grid-row-end: 7;
+    }
+
+    .gridPasswordTitle {
+        grid-column-start: 14;
+        grid-column-end: 15;
+        grid-row-start: 6;
+        grid-row-end: 7;
+        margin-top: 5px;
+    }
+    .gridPassword {
+        grid-column-start: 15;
+        grid-column-end: 21;
+        grid-row-start: 6;
+        grid-row-end: 7;
+    }
     
     .connectionString {
         grid-column-start: 1;
@@ -79,34 +107,6 @@
         grid-row-start: 8;
         grid-row-end: 9;
         margin-top: 5px;
-    }
-
-    .gridUsernameTitle {
-        grid-column-start: 7;
-        grid-column-end: 9;
-        grid-row-start: 8;
-        grid-row-end: 9;
-        margin-top: 5px;
-    }
-    .gridUsername {
-        grid-column-start: 9;
-        grid-column-end: 14;
-        grid-row-start: 8;
-        grid-row-end: 9;
-    }
-
-    .gridPasswordTitle {
-        grid-column-start: 14;
-        grid-column-end: 15;
-        grid-row-start: 8;
-        grid-row-end: 9;
-        margin-top: 5px;
-    }
-    .gridPassword {
-        grid-column-start: 15;
-        grid-column-end: 21;
-        grid-row-start: 8;
-        grid-row-end: 9;
     }
 
     .gridErrorMessage {
@@ -192,7 +192,7 @@
     .gridButtonTransformation {
         grid-column-start: 10;
         grid-column-end: 14;
-        grid-row-start: 26;
-        grid-row-end: 27;
+        grid-row-start: 25;
+        grid-row-end: 26;
         margin-top: 12px;
     }
