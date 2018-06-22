@@ -1209,7 +1209,7 @@ export class AppComponent implements OnInit {
         this.showModalDataDirectSQLEditor = false;
     }
 
-    handleCloseDataDirectNoSQL(action: string) {
+    handleCloseDataDirectNoSQL(returnDS: Datasource) {
         // Handle close of Direct NoSQL Editor
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDirectNoSQL', '@Start');
 
@@ -1218,7 +1218,7 @@ export class AppComponent implements OnInit {
         this.showModalDataDirectNoSQL = false;
 
         // Open Transformations if so requested
-        if (action == 'Transformation') {
+        if (returnDS != null) {
             this.showModalDataTransformation = true;
         };
     }
