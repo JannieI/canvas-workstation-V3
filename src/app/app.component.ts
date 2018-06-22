@@ -1185,7 +1185,7 @@ export class AppComponent implements OnInit {
         this.showModalDataDirectFile = false;
     }
 
-    handleCloseDataDirectQueryBuilder(action: string) {
+    handleCloseDataDirectQueryBuilder(returnDS: Datasource) {
         // Handle Close of Direct SQL Query Builder
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDirectQueryBuilder', '@Start');
 
@@ -1194,9 +1194,10 @@ export class AppComponent implements OnInit {
         this.showModalDataDirectQueryBuilder = false;
 
         // Open Transformations if so requested
-        if (action == 'Transformation') {
+        if (returnDS != null) {
             this.showModalDataTransformation = true;
         };
+
     }
 
     handleCloseDataDirectSQLEditor(action: string) {
@@ -1338,9 +1339,6 @@ export class AppComponent implements OnInit {
         if (returnDS != null) {
             this.showModalDataTransformation = true;
         };
-        // if (action == 'Transformation') {
-        //     this.showModalDataTransformation = true;
-        // };
     }
 
     handleCloseDataManagedSQLEditor(action: string) {
