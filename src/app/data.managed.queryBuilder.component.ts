@@ -253,7 +253,12 @@ export class DataManagedQueryBuilderComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-        this.formDataManagedQueryBuilderClosed.emit(null);
+        this.globalVariableService.obtainToken('admin','canvas100*').then(res => {
+            console.warn('xx tkn', res)
+            let tkn: any = localStorage.getItem('eazl-token');
+            console.warn('xx tkn', tkn.token, tkn.user)
+        });
+        // this.formDataManagedQueryBuilderClosed.emit(null);
 
     } 
 
