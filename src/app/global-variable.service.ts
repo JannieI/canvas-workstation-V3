@@ -8268,9 +8268,11 @@ export class GlobalVariableService {
 
         return new Promise<any>((resolve, reject) => {
 
+            let localToken: Token = JSON.parse(localStorage.getItem('eazl-token'));
+            console.warn('xx token', localToken)
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json")
-                .set("Authorization", "JWT eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6ImFkbWluIiwiZXhwIjoxNTI5NjkwNzExLCJlbWFpbCI6IiJ9.p_DJZUILx9OXoJt1pavHXKZsI-lhiCm-FvcbX-FKxwo");
+                .set("Authorization", localToken.token);
 
             this.http.post(url, data, {headers})
             .subscribe(
