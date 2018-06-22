@@ -376,14 +376,6 @@ export class DataDirectNoSQLComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickGo', '@Start');
 
     }
-
-    clickClose(action: string) {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
-
-        this.formDataDirectNoSQLEditorClosed.emit(null);
-
-    }
          
     filterFields(tableID: number) {
         // Filter Fields on Selected Connection
@@ -445,6 +437,29 @@ export class DataDirectNoSQLComponent implements OnInit {
         } else {
             this.filterFields(-1);
         };
+    }
+
+    clickClose(action: string) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
+
+        this.formDataDirectNoSQLEditorClosed.emit(null);
+
+    }
+
+    clickSave(action: string) {
+        // Close the form, and open Transformations form
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
+
+        console.warn('xx END sel ds', this.selectedDatasource)
+        if (action == 'Saved') {
+            this.formDataDirectNoSQLEditorClosed.emit(null);
+
+        } else {
+            this.formDataDirectNoSQLEditorClosed.emit(this.selectedDatasource);
+
+        }
+
     }
 }
 
