@@ -1176,13 +1176,18 @@ export class AppComponent implements OnInit {
         this.showModalWidgetDescription = false;
     }
 
-    handleCloseDataDirectFile(action: string) {
+    handleCloseDataDirectFile(returnDS: Datasource) {
         // Handle close of Direct File load
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDirectFile', '@Start');
 
         this.menuOptionClickPostAction();
 
+    
         this.showModalDataDirectFile = false;
+        // Open Transformations if so requested
+        if (returnDS != null) {
+            this.showModalDataTransformation = true;
+        };
     }
 
     handleCloseDataDirectQueryBuilder(returnDS: Datasource) {

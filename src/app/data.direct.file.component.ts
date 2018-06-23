@@ -31,7 +31,7 @@ import { load } from 'datalib';
 export class DataDirectFileComponent implements OnInit {
 
     @Input() selectedDatasource: Datasource;
- 
+
     @Output() formDataDirectFileClosed: EventEmitter<Datasource> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
@@ -72,7 +72,7 @@ export class DataDirectFileComponent implements OnInit {
 	ngOnInit() {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
-        
+
         if (this.selectedDatasource == null) {
             this.selectedDatasource = {
                 id: 0,
@@ -134,8 +134,8 @@ export class DataDirectFileComponent implements OnInit {
 
         // TODO alert('Later: File component to browse ...')
         var inp: any = document.getElementById("get-files");
-        
-        // Access and handle the files 
+
+        // Access and handle the files
 
         for (var i = 0; i < inp.files.length; i++) {
             let file = inp.files[i];
@@ -318,9 +318,9 @@ export class DataDirectFileComponent implements OnInit {
 
     }
 
-    clickDSAdd() {
+    clickAdd(action: string) {
         // Add the DS, with data, to the DB
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickDSAdd', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
 
         let today =new Date();
 
@@ -425,8 +425,6 @@ export class DataDirectFileComponent implements OnInit {
             };
 
 
-
-
             console.warn('xx ----------')
             console.warn('xx @end newdSet-datasets-currentDatasets', newdSet, this.globalVariableService.datasets,
             this.globalVariableService.currentDatasets)
@@ -437,7 +435,14 @@ export class DataDirectFileComponent implements OnInit {
 
             console.log('done DS:', this.currentDatasources, this.globalVariableService.datasources)
         });
-        'Transformation'
+
+        this.formDataDirectFileClosed.emit(null);'Saved'
+
+        if (action == 'Saved') {
+            this.formDataDirectFileClosed.emit(null);
+        } else {
+            this.formDataDirectFileClosed.emit(this.selectedDatasource);
+        };
     }
 }
 
