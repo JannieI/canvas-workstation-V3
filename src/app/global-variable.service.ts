@@ -8245,17 +8245,6 @@ export class GlobalVariableService {
             });
         });
     };
-
-    obtainToken(username: string, password: string): Promise<Token> {
-        return new Promise((resolve, reject) => {
-        
-            this.http.post<Token>('https://eazl-rest.xyz/eazl/accounts/obtain-token/', {username, password})
-                .subscribe(res => {
-                    localStorage.setItem("eazl-token", JSON.stringify(res));
-                    resolve(res);
-            });
-        });
-    }
     
     getTributaryData(data: any): Promise<any> {
         // Description: Gets data from the Tributary Server
