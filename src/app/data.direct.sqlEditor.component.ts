@@ -78,7 +78,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
 
     @Input() selectedDatasource: Datasource;
     
-    @Output() formDataDirectSQLEditorClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formDataDirectSQLEditorClosed: EventEmitter<Datasource> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
@@ -186,11 +186,22 @@ export class DataDirectSQLEditorComponent implements OnInit {
     }
 
     clickClose(action: string) {
-        //
+        // Close form, nothing saved
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-        this.formDataDirectSQLEditorClosed.emit(action);
+        this.formDataDirectSQLEditorClosed.emit(null);
 
+    }
+
+    clickSave(action: string) {
+        // Add DS, close form and optionaly open Transitions form
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
+
+        if (action == 'Saved') {
+            this.formDataDirectSQLEditorClosed.emit(null);
+        } else {
+            this.formDataDirectSQLEditorClosed.emit(this.selectedDatasource);
+        };
     }
  
 }
