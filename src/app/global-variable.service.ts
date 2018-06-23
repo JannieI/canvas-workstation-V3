@@ -8279,4 +8279,12 @@ export class GlobalVariableService {
         });
     }
 
+    getTributaryDBSchema(dataConnection: DataConnection): DataSchema {
+        // Description: Returns schema of a given DB via Tributary Server
+        // Returns: Added Data or error message
+        console.log('%c    Global-Variables getTributaryData ...',
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", databaseDetail);
+    }
+
+
 }
