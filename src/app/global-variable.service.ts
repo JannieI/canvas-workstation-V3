@@ -4364,6 +4364,43 @@ export class GlobalVariableService {
         });
     }
 
+    deleteDatasource(id: number): Promise<string> {
+        // Description: Deletes a Datasources
+        // Returns: 'Deleted' or error message
+        console.log('%c    Global-Variables deleteDatasource ...',
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", id);
+
+        let url: string = 'datasources';
+        this.filePath = './assets/data.datasources.json';
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
+            .subscribe(
+                data => {
+
+                    this.datasources = this.datasources.filter(
+                        dsp => dsp.id != id
+                    );
+                    this.currentDatasources = this.currentDatasources.filter(
+                        dsp => dsp.id != id
+                    );
+
+                    console.log('deleteDatasource DELETED id: ', id)
+                    resolve('Deleted');
+                },
+                err => {
+                    console.log('Error deleteDatasource FAILED', err);;
+                    resolve(err.Message);
+                }
+            )
+        });
+    }
+
+    // TODO - is this still needed?
     deleteCurrentDatasource(id: number) {
         // Delete current DS
         console.log('%c    Global-Variables deleteCurrentDatasource',

@@ -86,7 +86,7 @@ export class DataDeleteDatasourceComponent implements OnInit {
         // Delete a DS
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDelete', '@Start');
 
-        this.globalVariableService.deleteCurrentDatasource(id);
+        this.globalVariableService.deleteDatasource(id);
     }
 
     clickClose(action: string) {
