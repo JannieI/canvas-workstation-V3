@@ -50,7 +50,7 @@ import { PaletteButtonBar }           from './models';
 import { PaletteButtonsSelected }     from './models';
 import { StatusBarMessage }           from './models';
 import { Transformation }             from './models';
-import { TributaryServerTypes }       from './models';
+import { TributaryServerType }        from './models';
 import { Widget }                     from './models';
 import { WidgetCheckpoint }           from './models';
 
@@ -558,7 +558,7 @@ export class GlobalVariableService {
     widgetTemplate: Widget = widgetTemplate;
     dashboardTemplate: Dashboard = dashboardTemplate;
     dashboardTabTemplate: DashboardTab = dashboardTabTemplate;
-    serverTypes: TributaryServerTypes[] = 
+    serverTypes: TributaryServerType[] = 
     [
         {
             serverType: 'MySQL', 

@@ -16,257 +16,14 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
 // Our Models
-import { DataConnection }             from './models';
+import { DataConnection }            from './models';
 import { DataSchema }                 from './models';
 import { Datasource }                 from './models';
 import { DataTable }                  from './models';
 import { DataField }                  from './models';
 import { Dataset }                    from './models';
 import { Field }                      from './models';
-
-const constDataTables: DataTable[] = 
-[
-    {
-        id: 1,
-        connectionID: null,
-        nameDB: 'Invoices',
-        nameLocal: '',
-        type: 'Table',
-        description: '',
-        businessGlossary: '',
-        creator: '',
-        dateCreated: '',
-        editor: '',
-        dateEdited: '',
-    },
-    {
-        id: 2,
-        connectionID: null,
-        nameDB: 'Accounts',
-        nameLocal: '',
-        type: 'Table',
-        description: '',
-        businessGlossary: '',
-        creator: '',
-        dateCreated: '',
-        editor: '',
-        dateEdited: '',
-    }
-];
-const constDataFields: DataField[] = 
-[
-    {
-        id: 0,
-        tableID: 1,
-        nameDB: 'id',
-        nameLocal: '',
-        type: '',
-        format: '',
-        filterOperand: '',
-        filterValue: '',
-        calculation: '',
-        orderSequence: 0,
-        orderDirection: '',
-        description: '',
-        businessGlossary: '',
-        keyField: false,
-        explainedBy: '',
-        creator: '',
-        dateCreated: '',
-        editor: '',
-        dateEdited: '',
-        hidden: false
-    },
-    {
-        id: 2,
-        tableID: 1,
-        nameDB: 'InvoiceDate',
-        nameLocal: '',
-        type: '',
-        format: '',
-        filterOperand: '',
-        filterValue: '',
-        calculation: '',
-        orderSequence: 0,
-        orderDirection: '',
-        description: '',
-        businessGlossary: '',
-        keyField: false,
-        explainedBy: '',
-        creator: '',
-        dateCreated: '',
-        editor: '',
-        dateEdited: '',
-        hidden: false
-    },
-    {
-        id: 3,
-        tableID: 1,
-        nameDB: 'Total',
-        nameLocal: '',
-        type: '',
-        format: '',
-        filterOperand: '',
-        filterValue: '',
-        calculation: '',
-        orderSequence: 0,
-        orderDirection: '',
-        description: '',
-        businessGlossary: '',
-        keyField: false,
-        explainedBy: '',
-        creator: '',
-        dateCreated: '',
-        editor: '',
-        dateEdited: '',
-        hidden: false
-    },
-    {
-        id: 0,
-        tableID: 2,
-        nameDB: 'id',
-        nameLocal: '',
-        type: '',
-        format: '',
-        filterOperand: '',
-        filterValue: '',
-        calculation: '',
-        orderSequence: 0,
-        orderDirection: '',
-        description: '',
-        businessGlossary: '',
-        keyField: false,
-        explainedBy: '',
-        creator: '',
-        dateCreated: '',
-        editor: '',
-        dateEdited: '',
-        hidden: false
-    },
-    {
-        id: 2,
-        tableID: 2,
-        nameDB: 'TransactDate',
-        nameLocal: '',
-        type: '',
-        format: '',
-        filterOperand: '',
-        filterValue: '',
-        calculation: '',
-        orderSequence: 0,
-        orderDirection: '',
-        description: '',
-        businessGlossary: '',
-        keyField: false,
-        explainedBy: '',
-        creator: '',
-        dateCreated: '',
-        editor: '',
-        dateEdited: '',
-        hidden: false
-    },
-    {
-        id: 3,
-        tableID: 2,
-        nameDB: 'Amount',
-        nameLocal: '',
-        type: '',
-        format: '',
-        filterOperand: '',
-        filterValue: '',
-        calculation: '',
-        orderSequence: 0,
-        orderDirection: '',
-        description: '',
-        businessGlossary: '',
-        keyField: false,
-        explainedBy: '',
-        creator: '',
-        dateCreated: '',
-        editor: '',
-        dateEdited: '',
-        hidden: false
-    }
-
-];
-
-const constDataInvoices: any = 
-[
-    {
-        id: 0,
-        InvoiceDate: '2017/01/01',
-        Total: 20
-    },
-    {
-        id: 1,
-        InvoiceDate: '2017/01/01',
-        Total: 40
-    },
-    {
-        id: 2,
-        InvoiceDate: '2017/01/01',
-        Total: 50
-    },
-    {
-        id: 3,
-        InvoiceDate: '2017/01/01',
-        Total: 60
-    },
-    {
-        id: 4,
-        InvoiceDate: '2017/01/01',
-        Total: 80
-    },
-    {
-        id: 5,
-        InvoiceDate: '2017/01/01',
-        Total: 100
-    },
-    {
-        id: 6,
-        InvoiceDate: '2017/01/01',
-        Total: 120
-    }
-
-];
-const constDataAcounts: any = 
-[
-    {
-        id: 1,
-        TransactDate: '2017/01/01',
-        Amount: 1
-    },
-    {
-        id: 2,
-        TransactDate: '2017/01/01',
-        Amount: 2
-    },
-    {
-        id: 3,
-        TransactDate: '2017/01/01',
-        Amount: 3
-    },
-    {
-        id: 4,
-        TransactDate: '2017/01/01',
-        Amount: 4
-    },
-    {
-        id: 5,
-        TransactDate: '2017/01/01',
-        Amount: 5
-    },
-    {
-        id: 6,
-        TransactDate: '2017/01/01',
-        Amount: 6
-    },
-    {
-        id: 7,
-        TransactDate: '2017/01/01',
-        Amount: 7
-    }
-];
+import { TributaryServerType }       from './models';
 
 
 @Component({
@@ -308,7 +65,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
     selectedFieldRowIndex: number = 0;
     selectedFields: DataField[] = [];
     selectedTableRowIndex: number = 0;
-    serverTypes: { serverType: string; driverName: string}[]
+    serverTypes: TributaryServerType[]
     showPreview: boolean = false;
     
     // driverName
@@ -414,20 +171,23 @@ export class DataDirectQueryBuilderComponent implements OnInit {
     clickGetData() {
         // Get the data
         this.globalFunctionService.printToConsole(this.constructor.name,'clickGetData', '@Start');
-        console.warn('xx sel ds', this.selectedDatasource)
+        let selectServerType: TributaryServerType = this.serverTypes.find(tst =>
+            tst.serverType == this.selectedDatasource.serverType);
         let source = 
         {
             "source": {
-                "connector": "tributary.connectors.sql:SqlConnector",
-                "drivername": "postgres",
-                "username": "ftfhgfzh",
-                "password": "L0Eph9ftbx0yh45aeDtgzsGKBa2ZNhfl",
-                "database": "ftfhgfzh",
-                "host": "pellefant.db.elephantsql.com",
-                "port": 5432,
+                "connector": selectServerType.connector,
+                "drivername": selectServerType.driverName,
+                "username": this.selectedDatasource.username,
+                "password": this.selectedDatasource.password,
+                "database": this.selectedDatasource.databaseName,
+                "host": this.selectedDatasource.serverName,
+                "port": +this.selectedDatasource.port,
                 "query": "select I.\"InvoiceDate\" as \"Date\", sum(I.\"Total\") as \"Amount\" from invoices I group by I.\"InvoiceDate\""
             }
         };
+        console.warn('xx sel ds', source, selectServerType, this.selectedDatasource)
+
         // {
         //     "source": {
         //         "connector": "tributary.connectors.sql:SqlConnector",
@@ -454,8 +214,6 @@ export class DataDirectQueryBuilderComponent implements OnInit {
     
         // Fill Table and Field Names
         // TODO - remove hardcoding once received from DB
-        this.dataTables = constDataTables;
-        this.dataFields = constDataFields;
 
         this.dataSchemas = this.globalVariableService.getTributaryDirectDBSchema(
             'pellefant.db.elephantsql.com');
