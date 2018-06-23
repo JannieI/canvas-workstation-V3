@@ -33,11 +33,12 @@ import { DashboardTemplate }          from './models';
 import { DashboardTheme }             from './models';
 import { DataConnection }             from './models';
 import { DatasourceTransformation }   from './models';
-import { DataTable }                  from './models';
 import { DataField }                  from './models';
 import { DatagridInput }              from './models';
 import { DatagridColumn }             from './models';
+import { DataSchema }                 from './models';
 import { Dataset }                    from './models';
+import { DataTable }                  from './models';
 import { Datasource }                 from './models';
 import { DataQualityIssue}            from './models';
 import { DataOwnership}               from './models';
@@ -8279,11 +8280,37 @@ export class GlobalVariableService {
         });
     }
 
-    getTributaryDBSchema(dataConnection: DataConnection): DataSchema {
+    getTributaryDirectDBSchema(dataConnection: DataConnection): DataSchema {
         // Description: Returns schema of a given DB via Tributary Server
         // Returns: Added Data or error message
-        console.log('%c    Global-Variables getTributaryData ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", databaseDetail);
+        console.log('%c    Global-Variables getTributaryDirectDBSchema ...',
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", dataConnection);
+        let tributarySchemas: DataSchema[] = [
+            {
+                serverName: 'pellefant.db.elephantsql.com',
+                tableName: 'Invoices',
+                tableDescription: '',
+                tableFields: [
+                    {
+                        fieldName: 'id',
+                        fieldType: 'any'
+                    },
+                    {
+                        fieldName: 'InvoiceDate',
+                        fieldType: 'any'
+                    },
+                    {
+                        fieldName: 'Total',
+                        fieldType: 'any'
+                    }
+                ]
+            }
+        ];
+
+        let tributarySchema: DataSchema = tributarySchemas.find(trib => trib.serverName == dataConnection.serverName)
+        
+        // Return requested schema
+        return tributarySchema;
     }
 
 
