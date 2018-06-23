@@ -297,12 +297,14 @@ export class DataDirectQueryBuilderComponent implements OnInit {
     connectionName: string = 'tributary.connectors.sql:SqlConnector';
     currentData: any = [];
     dataFields: DataField[] = [];
-    dataFieldsFiltered: DataField[] = [];
+    dataFieldsFiltered: {
+        fieldName: string;  // FieldName
+        fieldType: string;  // FieldType
+    }[] = [];
     dataFieldsSelected: string[];
     dataSchemas: DataSchema[] = [];
     dataTables: DataTable[] = [];
     errorMessage: string = "";
-    selectedTableID: number;
     selectedFieldRowIndex: number = 0;
     selectedFields: DataField[] = [];
     selectedTableRowIndex: number = 0;
@@ -369,16 +371,16 @@ export class DataDirectQueryBuilderComponent implements OnInit {
 
     }
     
-    filterFields(tableID: number) {
+    filterFields(tableName: string) {
         // Filter Fields on Selected Connection
         this.globalFunctionService.printToConsole(this.constructor.name,'filterFields', '@Start');
 
-        console.warn('xx id', tableID)
-        this.dataFieldsFiltered = this.dataFields.filter(df => {
-            if (df.tableID == tableID) {
-                return df;
+        console.warn('xx id', tableName)
+        this.dataFieldsFiltered = this.dataSchemas.filter(datsch => {
+            if (datsch.tableName == tableName) {
+                return datsch;
             };
-        });
+        })[0].tableFields;
 
     }
     
@@ -388,10 +390,9 @@ export class DataDirectQueryBuilderComponent implements OnInit {
 
         // Set seletected index - used for highlighting row
         this.selectedTableRowIndex = index;
-        this.selectedTableID = id;
 
         // Select Fields in the table
-        this.filterFields(id);
+        this.filterFields(this.dataSchemas[this.selectedTableRowIndex].tableName);
 
         // Refresh data if already Preview-ed before
         if (this.showPreview) {
@@ -431,12 +432,6 @@ export class DataDirectQueryBuilderComponent implements OnInit {
             console.warn('xx res', res, this.selectedDatasource)
         });
 
-        if (this.selectedTableID == 1) {
-            this.currentData = constDataInvoices;
-        } else {
-            this.currentData = constDataAcounts;
-        };
-        
         console.warn('xx this.currentData', this.currentData)
         this.showPreview = true;
     }
@@ -455,11 +450,11 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         console.warn('xx dat sch', this.dataSchemas)
 
         // Select the Tables, Fields
-        if (this.dataTables.length > 0) {
-            this.filterFields(this.dataTables[0].id);
+        if (this.dataSchemas.length > 0) {
+            this.filterFields(this.dataSchemas[0].tableName);
 
         } else {
-            this.filterFields(-1);
+            this.filterFields('');
         };
     }
 
