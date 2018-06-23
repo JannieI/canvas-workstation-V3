@@ -202,7 +202,7 @@
     .gridButtonTransformation {
         grid-column-start: 15;
         grid-column-end: 21;
-        grid-row-start: 26;
-        grid-row-end: 27;
+        grid-row-start: 25;
+        grid-row-end: 26;
         margin-top: 12px;
     }

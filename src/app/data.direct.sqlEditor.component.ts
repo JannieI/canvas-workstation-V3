@@ -175,14 +175,6 @@ export class DataDirectSQLEditorComponent implements OnInit {
         };
 
     }
-  
-    clickTransformation() {
-        // Close the form, and open Transformations form
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickTransformation', '@Start');
-
-        this.formDataDirectSQLEditorClosed.emit('Transformation');
-
-    }
 
     clickGo() {
         // Clicked Go: execute SQL typed in, and return results and errors
