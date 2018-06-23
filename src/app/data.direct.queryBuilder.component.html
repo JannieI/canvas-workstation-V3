@@ -141,20 +141,16 @@
                                 </clr-dg-placeholder>
     
                                 <clr-dg-column class="widthTn" [clrDgField]="nameDB">Name</clr-dg-column>
-                                <clr-dg-column class="widthTn" [clrDgField]="nameLocal">Local Name</clr-dg-column>
-                                <clr-dg-column class="widthTd" [clrDgField]="businessGlossary">Business Glossary</clr-dg-column>
-                                <clr-dg-column class="widthTd" [clrDgField]="id">ID</clr-dg-column>
+                                <clr-dg-column class="widthTn" [clrDgField]="nameLocal">Description</clr-dg-column>
     
                                 <clr-dg-row
-                                    *ngFor="let row of dataTables; let i = index"
+                                    *ngFor="let row of dataSchemas; let i = index"
                                     [style.background-color]="(i == selectedTableRowIndex)? '#123456' : 'white'"
                                     [style.color]="(i == selectedTableRowIndex)? 'white' : 'gray'"
                                     (click)="clickSelectedDataTable(i, row.id)"
                                     >
-                                    <clr-dg-cell>{{ row.nameDB }}</clr-dg-cell>
-                                    <clr-dg-cell>{{ row.nameLocal }}</clr-dg-cell>
-                                    <clr-dg-cell>{{ row.businessGlossary }}</clr-dg-cell>
-                                    <clr-dg-cell>{{ row.id }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.tableName }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.tableDescription }}</clr-dg-cell>
     
                                 </clr-dg-row>
                             </clr-datagrid>

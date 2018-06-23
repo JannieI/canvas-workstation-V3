@@ -7,11 +7,9 @@ import { Component }                  from '@angular/core';
 import { ElementRef }                 from '@angular/core';
 import { EventEmitter }               from '@angular/core';
 import { HostListener }               from '@angular/core';
-import { Input }                     from '@angular/core';
+import { Input }                      from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
-import { Router }                     from '@angular/router';
-import { ViewChild }                  from '@angular/core';
 
 // Our Functions
 import { GlobalFunctionService } 	  from './global-function.service';
@@ -19,6 +17,7 @@ import { GlobalVariableService }      from './global-variable.service';
 
 // Our Models
 import { DataConnection }             from './models';
+import { DataSchema }                 from './models';
 import { Datasource }                 from './models';
 import { DataTable }                  from './models';
 import { DataField }                  from './models';
@@ -297,10 +296,11 @@ export class DataDirectQueryBuilderComponent implements OnInit {
 
     connectionName: string = 'tributary.connectors.sql:SqlConnector';
     currentData: any = [];
-    dataTables: DataTable[] = [];
     dataFields: DataField[] = [];
     dataFieldsFiltered: DataField[] = [];
     dataFieldsSelected: string[];
+    dataSchemas: DataSchema[] = [];
+    dataTables: DataTable[] = [];
     errorMessage: string = "";
     selectedTableID: number;
     selectedFieldRowIndex: number = 0;
@@ -313,7 +313,6 @@ export class DataDirectQueryBuilderComponent implements OnInit {
 	constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
-        private router: Router,
 	) {}
 
 	ngOnInit() {
@@ -450,6 +449,10 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         // TODO - remove hardcoding once received from DB
         this.dataTables = constDataTables;
         this.dataFields = constDataFields;
+
+        this.dataSchemas = this.globalVariableService.getTributaryDirectDBSchema(
+            'pellefant.db.elephantsql.com');
+        console.warn('xx dat sch', this.dataSchemas)
 
         // Select the Tables, Fields
         if (this.dataTables.length > 0) {

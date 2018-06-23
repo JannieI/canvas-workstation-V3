@@ -8280,12 +8280,33 @@ export class GlobalVariableService {
         });
     }
 
-    getTributaryDirectDBSchema(dataConnection: DataConnection): DataSchema {
+    getTributaryDirectDBSchema(serverName: string): DataSchema[] {
         // Description: Returns schema of a given DB via Tributary Server
         // Returns: Added Data or error message
         console.log('%c    Global-Variables getTributaryDirectDBSchema ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", dataConnection);
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", serverName);
+        
+        // TODO - Remove once Tributary can do discovery
         let tributarySchemas: DataSchema[] = [
+            {
+                serverName: 'pellefant.db.elephantsql.com',
+                tableName: 'Accounts',
+                tableDescription: '',
+                tableFields: [
+                    {
+                        fieldName: 'id',
+                        fieldType: 'any'
+                    },
+                    {
+                        fieldName: 'AccountCode',
+                        fieldType: 'any'
+                    },
+                    {
+                        fieldName: 'AcctDescription',
+                        fieldType: 'any'
+                    }
+                ]
+            },
             {
                 serverName: 'pellefant.db.elephantsql.com',
                 tableName: 'Invoices',
@@ -8304,10 +8325,12 @@ export class GlobalVariableService {
                         fieldType: 'any'
                     }
                 ]
-            }
+            },
         ];
 
-        let tributarySchema: DataSchema = tributarySchemas.find(trib => trib.serverName == dataConnection.serverName)
+        let tributarySchema: DataSchema[] = tributarySchemas.filter(
+            trib => trib.serverName == serverName
+        );
         
         // Return requested schema
         return tributarySchema;

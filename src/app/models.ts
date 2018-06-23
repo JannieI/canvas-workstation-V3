@@ -464,12 +464,11 @@ export class DataSchema {
     serverName: string;         // TODO - Is this needed in read DB?
     tableName: string;          // Name of DB Table
     tableDescription: string;   // Description of DB Table
-    tableFields: [              // Fields in DB Table
+    tableFields:               // Fields in DB Table
         {
             fieldName: string;  // FieldName
             fieldType: string;  // FieldType
-        }
-    ];
+        }[];
 }
 
 export class DataTable {
