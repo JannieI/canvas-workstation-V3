@@ -1186,6 +1186,7 @@ export class AppComponent implements OnInit {
         this.showModalDataDirectFile = false;
         // Open Transformations if so requested
         if (returnDS != null) {
+            this.selectedDatasource = returnDS;
             this.showModalDataTransformation = true;
         };
     }
@@ -1200,6 +1201,7 @@ export class AppComponent implements OnInit {
 
         // Open Transformations if so requested
         if (returnDS != null) {
+            this.selectedDatasource = returnDS;
             this.showModalDataTransformation = true;
         };
 
@@ -1224,6 +1226,7 @@ export class AppComponent implements OnInit {
 
         // Open Transformations if so requested
         if (returnDS != null) {
+            this.selectedDatasource = returnDS;
             this.showModalDataTransformation = true;
         };
     }
@@ -1238,6 +1241,7 @@ export class AppComponent implements OnInit {
 
         // Open Transformations if so requested
         if (returnDS != null) {
+            this.selectedDatasource = returnDS;
             this.showModalDataTransformation = true;
         };
     }
@@ -1252,6 +1256,7 @@ export class AppComponent implements OnInit {
 
         // Open Transformations if so requested
         if (returnDS != null) {
+            this.selectedDatasource = returnDS;
             this.showModalDataTransformation = true;
         };
     }
@@ -1342,6 +1347,7 @@ export class AppComponent implements OnInit {
 
         // Open Transformations if so requested
         if (returnDS != null) {
+            this.selectedDatasource = returnDS;
             this.showModalDataTransformation = true;
         };
     }

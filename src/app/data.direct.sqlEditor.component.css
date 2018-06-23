@@ -146,14 +146,6 @@
         grid-row-end: 9;
         margin-top: 5px;
     }
-
-    .gridButtonTransformation {
-        grid-column-start: 18;
-        grid-column-end: 21;
-        grid-row-start: 7;
-        grid-row-end: 8;
-        margin-top: 12px;
-    }
     
     .gridErrorMessage {
         grid-column-start: 2;
@@ -205,4 +197,12 @@
         grid-row-start: 26;
         grid-row-end: 27;
         text-align: left;
+    }
+
+    .gridButtonTransformation {
+        grid-column-start: 15;
+        grid-column-end: 21;
+        grid-row-start: 26;
+        grid-row-end: 27;
+        margin-top: 12px;
     }
