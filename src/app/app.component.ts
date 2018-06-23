@@ -1352,13 +1352,19 @@ export class AppComponent implements OnInit {
         };
     }
 
-    handleCloseDataManagedSQLEditor(action: string) {
+    handleCloseDataManagedSQLEditor(returnDS: Datasource) {
         // Handle Close of SQL Editor
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataManagedSQLEditor', '@Start');
 
         this.menuOptionClickPostAction();
 
         this.showModalDataManagedSQLEditor = false;
+
+        // Open Transformations if so requested
+        if (returnDS != null) {
+            this.selectedDatasource = returnDS;
+            this.showModalDataTransformation = true;
+        };
     }
     
     handleCloseDataManagedNoSQLEditor(action: string) {

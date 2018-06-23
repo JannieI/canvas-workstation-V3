@@ -38,7 +38,7 @@ export class DataManagedSQLEditorComponent implements OnInit {
 
     @Input() selectedDatasource: Datasource;
 
-    @Output() formDataManagedSQLEditorClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formDataManagedSQLEditorClosed: EventEmitter<Datasource> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
@@ -211,10 +211,24 @@ export class DataManagedSQLEditorComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-        this.formDataManagedSQLEditorClosed.emit(action);
+        this.formDataManagedSQLEditorClosed.emit(null);
 
     }
  
+    clickSave(action: string) {
+        // Close the form, and open Transformations form
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
+
+        console.warn('xx END sel ds', this.selectedDatasource)
+        if (action == 'Saved') {
+            this.formDataManagedSQLEditorClosed.emit(null);
+
+        } else {
+            this.formDataManagedSQLEditorClosed.emit(this.selectedDatasource);
+
+        }
+
+    }
 }
 
 
