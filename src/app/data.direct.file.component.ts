@@ -32,7 +32,7 @@ export class DataDirectFileComponent implements OnInit {
 
     @Input() selectedDatasource: Datasource;
  
-    @Output() formDataDirectFileClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formDataDirectFileClosed: EventEmitter<Datasource> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
@@ -314,7 +314,7 @@ export class DataDirectFileComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-        this.formDataDirectFileClosed.emit(action);
+        this.formDataDirectFileClosed.emit(null);
 
     }
 
@@ -437,15 +437,7 @@ export class DataDirectFileComponent implements OnInit {
 
             console.log('done DS:', this.currentDatasources, this.globalVariableService.datasources)
         });
-    
-    }
-
-    clickTransformation() {
-        // Close the form, and open Transformations form
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickTransformation', '@Start');
-
-        this.formDataDirectFileClosed.emit('Transformation');
-
+        'Transformation'
     }
 }
 
