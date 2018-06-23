@@ -440,6 +440,12 @@ export class Transformation {
     parameterType: string[];            // Type of field (string, numeric, boolean).  Blank means any
 }
 
+export class TributaryServerTypes { 
+        serverType: string;             // Type of Server, ie PostgresSQL 
+        driverName: string;             // Tributary driver string, ie postgres
+        connector: string               // Tributary connector, ie tributary.connectors.sql:SqlConnector
+}
+
 export class DataConnection {
     id: number;                 // Unique ID
     connectionName: string;     // Name of the Connection, ie XIS MS SQL Server

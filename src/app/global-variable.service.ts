@@ -50,6 +50,7 @@ import { PaletteButtonBar }           from './models';
 import { PaletteButtonsSelected }     from './models';
 import { StatusBarMessage }           from './models';
 import { Transformation }             from './models';
+import { TributaryServerTypes }       from './models';
 import { Widget }                     from './models';
 import { WidgetCheckpoint }           from './models';
 
@@ -557,19 +558,22 @@ export class GlobalVariableService {
     widgetTemplate: Widget = widgetTemplate;
     dashboardTemplate: Dashboard = dashboardTemplate;
     dashboardTabTemplate: DashboardTab = dashboardTabTemplate;
-    serverTypes: { serverType: string; driverName: string}[] = 
+    serverTypes: TributaryServerTypes[] = 
     [
         {
             serverType: 'MySQL', 
-            driverName: 'mysql'
+            driverName: 'mysql',
+            connector: 'tributary.connectors.sql:SqlConnector'
         },
         {
             serverType: 'PostgresSQL', 
-            driverName: 'postgres'
+            driverName: 'postgres',
+            connector: 'tributary.connectors.sql:SqlConnector'
         },
         {
             serverType:'Microsoft SQL',
-            driverName: 'mssql'
+            driverName: 'mssql',
+            connector: 'tributary.connectors.sql:SqlConnector'
         }
     ];
 
@@ -8247,11 +8251,11 @@ export class GlobalVariableService {
         });
     };
     
-    getTributaryData(data: any): Promise<any> {
+    getTributaryData(source: any): Promise<any> {
         // Description: Gets data from the Tributary Server
         // Returns: Added Data or error message
         console.log('%c    Global-Variables getTributaryData ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", data.id);
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", source);
 
         let url: string = 'https://eazl-rest.xyz/eazl/canvas/enqueue/';
         this.filePath = './assets/data.dashboards.json';
@@ -8264,7 +8268,7 @@ export class GlobalVariableService {
                 .set("Content-Type", "application/json")
                 .set("Authorization", "JWT " + localToken.token);
 
-            this.http.post(url, data, {headers})
+            this.http.post(url, source, {headers})
             .subscribe(
                 res => {
 

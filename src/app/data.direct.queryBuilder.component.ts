@@ -414,7 +414,8 @@ export class DataDirectQueryBuilderComponent implements OnInit {
     clickGetData() {
         // Get the data
         this.globalFunctionService.printToConsole(this.constructor.name,'clickGetData', '@Start');
-        let data = 
+        console.warn('xx sel ds', this.selectedDatasource)
+        let source = 
         {
             "source": {
                 "connector": "tributary.connectors.sql:SqlConnector",
@@ -426,9 +427,20 @@ export class DataDirectQueryBuilderComponent implements OnInit {
                 "port": 5432,
                 "query": "select I.\"InvoiceDate\" as \"Date\", sum(I.\"Total\") as \"Amount\" from invoices I group by I.\"InvoiceDate\""
             }
-        }
-
-        this.globalVariableService.getTributaryData(data).then(res => {
+        };
+        // {
+        //     "source": {
+        //         "connector": "tributary.connectors.sql:SqlConnector",
+        //         "drivername": "postgres",
+        //         "username": "ftfhgfzh",
+        //         "password": "L0Eph9ftbx0yh45aeDtgzsGKBa2ZNhfl",
+        //         "database": "ftfhgfzh",
+        //         "host": "pellefant.db.elephantsql.com",
+        //         "port": 5432,
+        //         "query": "select I.\"InvoiceDate\" as \"Date\", sum(I.\"Total\") as \"Amount\" from invoices I group by I.\"InvoiceDate\""
+        //     }
+        // }
+        this.globalVariableService.getTributaryData(source).then(res => {
             console.warn('xx res', res, this.selectedDatasource)
         });
 
