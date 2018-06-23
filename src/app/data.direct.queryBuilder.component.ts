@@ -26,6 +26,47 @@ import { Field }                      from './models';
 import { TributaryServerType }       from './models';
 
 
+// TODO - remove when real DB
+const constDataInvoices: any = 
+[
+    {
+        id: 0,
+        InvoiceDate: '2017/01/01',
+        Total: 20
+    },
+    {
+        id: 1,
+        InvoiceDate: '2017/01/01',
+        Total: 40
+    },
+    {
+        id: 2,
+        InvoiceDate: '2017/01/01',
+        Total: 50
+    },
+    {
+        id: 3,
+        InvoiceDate: '2017/01/01',
+        Total: 60
+    },
+    {
+        id: 4,
+        InvoiceDate: '2017/01/01',
+        Total: 80
+    },
+    {
+        id: 5,
+        InvoiceDate: '2017/01/01',
+        Total: 100
+    },
+    {
+        id: 6,
+        InvoiceDate: '2017/01/01',
+        Total: 120
+    }
+
+];
+
 @Component({
     selector: 'data-directQueryBuilder',
     templateUrl: './data.direct.queryBuilder.component.html',
@@ -52,7 +93,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
 
 
     connectionName: string = 'tributary.connectors.sql:SqlConnector';
-    currentData: any = [];
+    currentData: any[] = constDataInvoices;
     dataFields: DataField[] = [];
     dataFieldsFiltered: {
         fieldName: string;  // FieldName
@@ -63,7 +104,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
     dataTables: DataTable[] = [];
     errorMessage: string = "";
     selectedFieldRowIndex: number = 0;
-    selectedFields: DataField[] = [];
+    selectedFields: any[] = [];
     selectedTableRowIndex: number = 0;
     serverTypes: TributaryServerType[]
     showPreview: boolean = false;
@@ -164,7 +205,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         // Set seletected index - used for highlighting row
         this.selectedFieldRowIndex = index;
 
-        this.dataFieldsSelected = this.selectedFields.map(f => f.nameDB);
+        this.dataFieldsSelected = this.selectedFields.map(f => f.fieldName);
         console.warn('xx selectedFields', this.selectedFields, this.dataFieldsSelected)
     }
     
@@ -186,7 +227,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
                 "query": "select I.\"InvoiceDate\" as \"Date\", sum(I.\"Total\") as \"Amount\" from invoices I group by I.\"InvoiceDate\""
             }
         };
-        console.warn('xx sel ds', source, selectServerType, this.selectedDatasource)
+        console.warn('xx sel ds', source, this.dataFieldsSelected, selectServerType, this.selectedDatasource)
 
         // {
         //     "source": {
