@@ -5493,7 +5493,7 @@ export class GlobalVariableService {
                     },
                     err => {
                         console.log('Error addDashboardSubscription FAILED', err);;
-                        resolve(err.Message);
+                        reject(err);
                     }
                 )
         });
@@ -5729,7 +5729,7 @@ export class GlobalVariableService {
                 },
                 err => {
                     console.log('Error addWidget FAILED', err);;
-                    resolve(err.Message);
+                    reject(err);
                 }
             )
         });
@@ -5773,7 +5773,7 @@ export class GlobalVariableService {
                 },
                 err => {
                     console.log('Error deleteWidget FAILED', err);;
-                    resolve(err.Message);
+                    reject(err);
                 }
             )
         });
@@ -5844,7 +5844,7 @@ export class GlobalVariableService {
                 },
                 err => {
                     console.log('Error saveWidget FAILED', err);;
-                    resolve(err.Message);
+                    reject(err);
                 }
             )
         });
@@ -6053,7 +6053,7 @@ export class GlobalVariableService {
                 },
                 err => {
                     console.log('Error addCanvasTask FAILED', err);;
-                    resolve(err.Message);
+                    reject(err);
                 }
             )
         });
@@ -6088,7 +6088,7 @@ export class GlobalVariableService {
                 },
                 err => {
                     console.log('Error saveCanvasTask FAILED', err);;
-                    resolve(err.Task);
+                    reject(err);
                 }
             )
         });
@@ -6164,7 +6164,7 @@ export class GlobalVariableService {
                 },
                 err => {
                     console.log('Error addCanvasComment FAILED', err);;
-                    resolve(err.Message);
+                    reject(err);
                 }
             )
         });
@@ -6199,7 +6199,7 @@ export class GlobalVariableService {
                 },
                 err => {
                     console.log('Error saveCanvasComment FAILED', err);;
-                    resolve(err.Comment);
+                    reject(err);
                 }
             )
         });
@@ -6241,7 +6241,7 @@ export class GlobalVariableService {
                 },
                 err => {
                     console.log('Error deleteCanvasComment FAILED', err);;
-                    resolve(err.Message);
+                    reject(err);
                 }
             )
         });
@@ -6308,7 +6308,7 @@ export class GlobalVariableService {
                 },
                 err => {
                     console.log('Error addCanvasMessage FAILED', err);;
-                    resolve(err.Message);
+                    reject(err);
                 }
             )
         });
@@ -6343,7 +6343,7 @@ export class GlobalVariableService {
                 },
                 err => {
                     console.log('Error saveCanvasMessage FAILED', err);;
-                    resolve(err.Message);
+                    reject(err);
                 }
             )
         });
@@ -6393,7 +6393,7 @@ export class GlobalVariableService {
                 },
                 err => {
                     console.log('Error deleteCanvasMessage FAILED', err);;
-                    resolve(err.Message);
+                    reject(err);
                 }
             )
         });
@@ -6498,7 +6498,7 @@ export class GlobalVariableService {
                 },
                 err => {
                     console.log('Error addWidgetCheckpoint FAILED', err);;
-                    resolve(err.Message);
+                    reject(err);
                 }
             )
         });
@@ -6535,7 +6535,7 @@ export class GlobalVariableService {
                 },
                 err => {
                     console.log('Error deleteWidgetCheckpoint FAILED', err);;
-                    resolve(err.Message);
+                    reject(err);
                 }
             )
         });
@@ -6570,7 +6570,7 @@ export class GlobalVariableService {
                 },
                 err => {
                     console.log('Error saveWidgetCheckpoint FAILED');;
-                    resolve(err.Message.toString());
+                    reject(err);
                 }
             )
         });
@@ -6674,7 +6674,7 @@ export class GlobalVariableService {
                 },
                 err => {
                     console.log('Error saveCanvasUser FAILED', err);;
-                    resolve(err.Message);
+                    reject(err);
                 }
             )
         });
@@ -6741,7 +6741,7 @@ export class GlobalVariableService {
                 },
                 err => {
                     console.log('Error addCanvasAuditTrail FAILED', err);;
-                    resolve(err.Message);
+                    reject(err);
                 }
             )
         });
