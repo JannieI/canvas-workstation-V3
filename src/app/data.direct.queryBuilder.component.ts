@@ -176,6 +176,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
             let dsIndex: number = this.dataSchemas.findIndex(
                 dsch => dsch.tableName == this.selectedDatasource.dataTableName
             );
+            console.warn('xx dsIndex, this.selectedDatasource', dsIndex, this.selectedDatasource)
             this.clickSelectedDataTable(dsIndex, this.selectedDatasource.dataTableID);
         };
 
@@ -309,11 +310,11 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         let newDatasource: Datasource =  {
             id: null,
             name: this.selectedDatasource.name,
-            username: '',
+            username: this.selectedDatasource.username,
             password: '',
-            type: 'Server',
-            subType: 'SQL',
-            typeVersion: '',
+            type: this.selectedDatasource.type,
+            subType: this.selectedDatasource.subType,
+            typeVersion: this.selectedDatasource.typeVersion,
             description: this.selectedDatasource.description,
             createdBy: this.globalVariableService.currentUser.userID,
             createdOn: this.globalVariableService.formatDate(today),
@@ -322,30 +323,30 @@ export class DataDirectQueryBuilderComponent implements OnInit {
             dateEdited: '',
             refreshedBy: this.globalVariableService.currentUser.userID,
             refreshedOn: this.globalVariableService.formatDate(today),
-            dataFieldIDs: [0],
-            dataFields: this.selectedFields,
-            dataFieldTypes: [],
-            dataFieldLengths: [],
-            parameters: 'None',
-            folder: '',
-            fileName: '',
-            excelWorksheet: '',
-            transposeOnLoad: false,
-            startLineNr: 1,
-            csvSeparationCharacter: '',
-            csvQuotCharacter: '',
-            connectionID: 0,
+            dataFieldIDs: this.selectedDatasource.dataFieldIDs,
+            dataFields: this.selectedDatasource.dataFields,
+            dataFieldTypes: this.selectedDatasource.dataFieldTypes,
+            dataFieldLengths: this.selectedDatasource.dataFieldLengths,
+            parameters: this.selectedDatasource.parameters,
+            folder: this.selectedDatasource.folder,
+            fileName: this.selectedDatasource.fileName,
+            excelWorksheet: this.selectedDatasource.excelWorksheet,
+            transposeOnLoad: this.selectedDatasource.transposeOnLoad,
+            startLineNr: this.selectedDatasource.startLineNr,
+            csvSeparationCharacter: this.selectedDatasource.csvSeparationCharacter,
+            csvQuotCharacter: this.selectedDatasource.csvQuotCharacter,
+            connectionID: this.selectedDatasource.connectionID,
             dataTableID: this.selectedDatasource.dataTableID,
-            nrWidgets: 0,
+            nrWidgets: this.selectedDatasource.nrWidgets,
             databaseName: this.selectedDatasource.databaseName,
             port: this.selectedDatasource.port,
             serverType: selectTributaryServerType.driverName,
             serverName: this.selectedDatasource.serverName,
             dataTableName: this.selectedDatasource.dataTableName,
             dataSQLStatement: this.selectedDatasource.dataSQLStatement,
-            dataNoSQLStatement: '',
-            businessGlossary: '',
-            dataDictionary: ''
+            dataNoSQLStatement: this.selectedDatasource.dataNoSQLStatement,
+            businessGlossary: this.selectedDatasource.businessGlossary,
+            dataDictionary: this.selectedDatasource.dataDictionary
 
         };
         let newdSet: Dataset = {
