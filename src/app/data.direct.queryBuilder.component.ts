@@ -245,19 +245,16 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         // Build source string
         let selectServerType: TributaryServerType = this.serverTypes.find(tst =>
             tst.serverType == this.selectedDatasource.serverType);
-        let source: TributarySource = 
-        {
-            "source": {
-                "connector": selectServerType.connector,
-                "drivername": selectServerType.driverName,
-                "username": this.selectedDatasource.username,
-                "password": this.selectedDatasource.password,
-                "database": this.selectedDatasource.databaseName,
-                "host": this.selectedDatasource.serverName,
-                "port": +this.selectedDatasource.port,
-                "query": "select I.\"InvoiceDate\" as \"Date\", sum(I.\"Total\") as \"Amount\" from invoices I group by I.\"InvoiceDate\""
-            }
-        };
+        let source: TributarySource = this.globalVariableService.constructTributarySQLSource(
+            selectServerType.connector,
+            selectServerType.driverName,
+            this.selectedDatasource.username,
+            this.selectedDatasource.password,
+            this.selectedDatasource.databaseName,
+            this.selectedDatasource.serverName,
+            +this.selectedDatasource.port,
+            "select I.\"InvoiceDate\" as \"Date\", sum(I.\"Total\") as \"Amount\" from invoices I group by I.\"InvoiceDate\""
+        );
 
         // {
         //     "source": {

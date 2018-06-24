@@ -8385,21 +8385,23 @@ export class GlobalVariableService {
         password: string,
         database: string,
         host: string,
-        port: string,
+        port: number,
         query: string): TributarySource {
         // Description: constructs a Tributary Source object from the given parameters
         console.log('%c    Global-Variables constructTributarySQLSource ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", host);
         
         let tributarySource: TributarySource = {
-            "connector": connector,
-            "drivername": drivername,
-            "username": username,
-            "password": password,
-            "database": database,
-            "host": host,
-            "port": port,
-            "query": query
+            "source": {
+                "connector": connector,
+                "drivername": drivername,
+                "username": username,
+                "password": password,
+                "database": database,
+                "host": host,
+                "port": port,
+                "query": query
+            }
         };
 
         // Return

@@ -447,14 +447,16 @@ export class TributaryServerType {
 }
 
 export class TributarySource {
-    connector: string;              // Tributary Connector, ie tributary.connectors.sql:SqlConnector
-    drivername: string;             // Tributary driver, ie postgres
-    username: string;               // Username to log into the DB
-    password: string;               // Password to log into the DB
-    database: string;               // Database Name
-    host: string;                   // Host or Server Name
-    port: string;                   // Optional Port on the host, ie 5432
-    query: string;                  // SQL, escaped, ie "select I.\"InvoiceDate\" as \"Date\", sum(I.\"Total\") as \"Amount\" from invoices I group by I.\"InvoiceDate\""
+    source: {
+        connector: string;              // Tributary Connector, ie tributary.connectors.sql:SqlConnector
+        drivername: string;             // Tributary driver, ie postgres
+        username: string;               // Username to log into the DB
+        password: string;               // Password to log into the DB
+        database: string;               // Database Name
+        host: string;                   // Host or Server Name
+        port: number;                   // Optional Port on the host, ie 5432
+        query: string;                  // SQL, escaped, ie "select I.\"InvoiceDate\" as \"Date\", sum(I.\"Total\") as \"Amount\" from invoices I group by I.\"InvoiceDate\""
+    }
 }
 
 export class DataConnection {
