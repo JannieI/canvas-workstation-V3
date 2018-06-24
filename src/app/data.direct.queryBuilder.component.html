@@ -124,7 +124,7 @@
                             <button
                                 type="button"
                                 class="btn btn-link"
-                                (click)="clickGetData()"
+                                (click)="clickPreview()"
                                 >
                                 Preview
                             </button>
@@ -175,7 +175,7 @@
                         <div *ngIf="errorMessage!=''" class="gridErrorMessage">
                             {{ errorMessage }}
                         </div>
-                        
+
                         <div class="gridPreviewData" *ngIf="showPreview">
                             <clr-datagrid class="gridPreviewData">
     

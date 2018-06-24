@@ -190,11 +190,12 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         this.selectedTableRowIndex = index;
 
         // Select Fields in the table
+        this.selectedFields = [];
         this.filterFields(this.dataSchemas[this.selectedTableRowIndex].tableName);
 
         // Refresh data if already Preview-ed before
         if (this.showPreview) {
-            this.clickGetData();
+            this.clickPreview();
         };
     }
 
@@ -208,10 +209,36 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         this.dataFieldsSelected = this.selectedFields.map(f => f.fieldName);
         console.warn('xx selectedFields', this.selectedFields, this.dataFieldsSelected)
     }
+
+    clickRefresh() {
+        // Get the tables and fields from the DB
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickRefresh', '@Start');
     
-    clickGetData() {
+        // Fill Table and Field Names
+        // TODO - remove hardcoding once received from DB
+
+        this.dataSchemas = this.globalVariableService.getTributaryDirectDBSchema(
+            'pellefant.db.elephantsql.com');
+        console.warn('xx dat sch', this.dataSchemas)
+
+        // Select the Tables, Fields
+        if (this.dataSchemas.length > 0) {
+            this.filterFields(this.dataSchemas[0].tableName);
+
+        } else {
+            this.filterFields('');
+        };
+    }
+    
+    clickPreview() {
         // Get the data
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickGetData', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickPreview', '@Start');
+
+        // No Fields, no data
+        if (this.selectedFields.length = 0) {
+            this.errorMessage = 'First Refresh, select a Table and then some fields.';
+            return;
+        };
 
         // Reset
         this.errorMessage = '';
@@ -255,26 +282,6 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         });
 
         console.warn('xx this.currentData', this.currentData)
-    }
-
-    clickRefresh() {
-        // Get the tables and fields from the DB
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickRefresh', '@Start');
-    
-        // Fill Table and Field Names
-        // TODO - remove hardcoding once received from DB
-
-        this.dataSchemas = this.globalVariableService.getTributaryDirectDBSchema(
-            'pellefant.db.elephantsql.com');
-        console.warn('xx dat sch', this.dataSchemas)
-
-        // Select the Tables, Fields
-        if (this.dataSchemas.length > 0) {
-            this.filterFields(this.dataSchemas[0].tableName);
-
-        } else {
-            this.filterFields('');
-        };
     }
 
     clickClose(action: string) {
