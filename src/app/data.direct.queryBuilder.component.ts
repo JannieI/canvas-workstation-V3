@@ -173,7 +173,6 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         // Filter Fields on Selected Connection
         this.globalFunctionService.printToConsole(this.constructor.name,'filterFields', '@Start');
 
-        console.warn('xx id', tableName)
         this.dataFieldsFiltered = this.dataSchemas.filter(datsch => {
             if (datsch.tableName == tableName) {
                 return datsch;
@@ -207,7 +206,6 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         this.selectedFieldRowIndex = index;
 
         this.dataFieldsSelected = this.selectedFields.map(f => f.fieldName);
-        console.warn('xx selectedFields', this.selectedFields, this.dataFieldsSelected)
     }
 
     clickRefresh() {
@@ -219,7 +217,6 @@ export class DataDirectQueryBuilderComponent implements OnInit {
 
         this.dataSchemas = this.globalVariableService.getTributaryDirectDBSchema(
             'pellefant.db.elephantsql.com');
-        console.warn('xx dat sch', this.dataSchemas)
 
         // Select the Tables, Fields
         if (this.dataSchemas.length > 0) {
@@ -235,8 +232,8 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickPreview', '@Start');
 
         // No Fields, no data
-        if (this.selectedFields.length = 0) {
-            this.errorMessage = 'First Refresh, select a Table and then some fields.';
+        if (this.selectedFields.length == 0) {
+            this.errorMessage = 'First Refresh, select a Table and then some fields...';
             return;
         };
 
@@ -281,7 +278,6 @@ export class DataDirectQueryBuilderComponent implements OnInit {
             this.errorMessage = err.message;
         });
 
-        console.warn('xx this.currentData', this.currentData)
     }
 
     clickClose(action: string) {
@@ -296,7 +292,6 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         // Close the form, and open Transformations form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
-        console.warn('xx END sel ds', this.selectedDatasource)
         if (action == 'Saved') {
             this.formDataDirectQueryBuilderClosed.emit(null);
 
