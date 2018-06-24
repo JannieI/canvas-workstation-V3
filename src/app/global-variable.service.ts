@@ -51,6 +51,7 @@ import { PaletteButtonsSelected }     from './models';
 import { StatusBarMessage }           from './models';
 import { Transformation }             from './models';
 import { TributaryServerType }        from './models';
+import { TributarySource }            from './models';
 import { Widget }                     from './models';
 import { WidgetCheckpoint }           from './models';
 
@@ -8377,18 +8378,32 @@ export class GlobalVariableService {
         return tributarySchema;
     }
 
-    constructTributarySQLSource
-    {
-        "source": {
-            "connector": selectServerType.connector,
-            "drivername": selectServerType.driverName,
-            "username": this.selectedDatasource.username,
-            "password": this.selectedDatasource.password,
-            "database": this.selectedDatasource.databaseName,
-            "host": this.selectedDatasource.serverName,
-            "port": +this.selectedDatasource.port,
-            "query": "select I.\"InvoiceDate\" as \"Date\", sum(I.\"Total\") as \"Amount\" from invoices I group by I.\"InvoiceDate\""
-        }
+    constructTributarySQLSource(
+        connector: string,
+        drivername: string,
+        username: string,
+        password: string,
+        database: string,
+        host: string,
+        port: string,
+        query: string): TributarySource {
+        // Description: constructs a Tributary Source object from the given parameters
+        console.log('%c    Global-Variables constructTributarySQLSource ...',
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", host);
+        
+        let tributarySource: TributarySource = {
+            "connector": connector,
+            "drivername": drivername,
+            "username": username,
+            "password": password,
+            "database": database,
+            "host": host,
+            "port": port,
+            "query": query
+        };
+
+        // Return
+        return tributarySource;
     };
 
 }
