@@ -290,13 +290,126 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         // Close the form, and open Transformations form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
+
+
+        let today =new Date();
+
+        // New Datasource
+        let newData: Datasource =  {
+            id: null,
+            name: this.selectedDatasource.name,
+            username: '',
+            password: '',
+            type: 'Server',
+            subType: 'SQL',
+            typeVersion: '',
+            description: this.selectedDatasource.description,
+            createdBy: this.globalVariableService.currentUser.userID,
+            createdOn: this.globalVariableService.formatDate(today),
+            createMethod: 'directQueryBuilder',
+            editor: '',
+            dateEdited: '',
+            refreshedBy: this.globalVariableService.currentUser.userID,
+            refreshedOn: this.globalVariableService.formatDate(today),
+            dataFieldIDs: [0],
+            dataFields: this.selectedFields,
+            dataFieldTypes: [],
+            dataFieldLengths: [],
+            parameters: 'None',
+            folder: '',
+            fileName: '',
+            excelWorksheet: '',
+            transposeOnLoad: false,
+            startLineNr: 1,
+            csvSeparationCharacter: '',
+            csvQuotCharacter: '',
+            connectionID: 0,
+            dataTableID: 0,
+            nrWidgets: 0,
+            databaseName: '',
+            port: '',
+            serverType: '',
+            serverName: '',
+            dataTableName: '',
+            dataSQLStatement: '',
+            dataNoSQLStatement: '',
+            businessGlossary: '',
+            dataDictionary: ''
+
+        };
+
+        // Add to all DS (DB, global), for later use
+        this.globalVariableService.addDatasource(newData).then(res => {
+            console.warn('xx res', res)
+
+            // Get new dSetID
+            // TODO - do better with DB
+            let newdSetID: number = 1;
+            let dSetIDs: number[] = [];
+            this.globalVariableService.datasets.forEach(ds => dSetIDs.push(ds.id));
+            newdSetID = Math.max(...dSetIDs) + 1;
+
+            // Get list of dSet-ids to make array work easier
+            let dsCurrIDs: number[] = [];       // currentDataset IDs
+            this.globalVariableService.currentDatasets.forEach(d => dsCurrIDs.push(d.id));
+            let newdSet: Dataset = {
+                id: newdSetID,
+                datasourceID: res.id,
+                sourceLocation: 'HTTP',
+                url: 'data',
+                folderName: '',
+                fileName: '',
+                data: this.currentData,
+                dataRaw: this.currentData
+            };
+
+            let dataToAdd: any = {
+                id: newdSetID,
+                data: this.currentData
+            };
+
+            // Add to All datasets
+            if (dSetIDs.indexOf(newdSetID) < 0) {
+                // this.globalVariableService.datasets.push(newdSet);
+                this.globalVariableService.addDataset(newdSet);
+                this.globalVariableService.addData(dataToAdd).then(res => {
+                    this.globalVariableService.getData(res.id).then(dat => {
+                        console.warn('xx ----------')
+                        console.warn('xx added data', dat)
+                    });
+                });
+                this.globalVariableService.saveLocal('Dataset', newdSet);
+            } else {
+                // Add to CurrentDatasets
+                if (dsCurrIDs.indexOf(newdSetID) < 0) {
+                    this.globalVariableService.currentDatasets.push(newdSet);
+                };
+            };
+
+
+            console.warn('xx ----------')
+            console.warn('xx @end newdSet-datasets-currentDatasets', newdSet, this.globalVariableService.datasets,
+            this.globalVariableService.currentDatasets)
+
+            // Reset data related to this DS
+            console.warn('xx currDS, gv.currDS' , this.globalVariableService.currentDatasources)
+
+            console.log('done DS:', this.globalVariableService.datasources)
+        });
+
+
+
+
+
+
+
         if (action == 'Saved') {
             this.formDataDirectQueryBuilderClosed.emit(null);
 
         } else {
             this.formDataDirectQueryBuilderClosed.emit(this.selectedDatasource);
 
-        }
+        };
 
     }
 }

@@ -436,8 +436,6 @@ export class DataDirectFileComponent implements OnInit {
             console.log('done DS:', this.currentDatasources, this.globalVariableService.datasources)
         });
 
-        this.formDataDirectFileClosed.emit(null);'Saved'
-
         if (action == 'Saved') {
             this.formDataDirectFileClosed.emit(null);
         } else {
