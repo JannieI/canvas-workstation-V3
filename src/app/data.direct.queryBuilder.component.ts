@@ -290,7 +290,8 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         // Close the form, and open Transformations form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
-
+        let selectServerType: TributaryServerType = this.serverTypes.find(tst =>
+            tst.serverType == this.selectedDatasource.serverType);
 
         let today =new Date();
 
@@ -324,14 +325,14 @@ export class DataDirectQueryBuilderComponent implements OnInit {
             csvSeparationCharacter: '',
             csvQuotCharacter: '',
             connectionID: 0,
-            dataTableID: 0,
+            dataTableID: this.selectedDatasource.dataTableID,
             nrWidgets: 0,
-            databaseName: '',
-            port: '',
-            serverType: '',
-            serverName: '',
-            dataTableName: '',
-            dataSQLStatement: '',
+            databaseName: this.selectedDatasource.databaseName,
+            port: this.selectedDatasource.port,
+            serverType: selectServerType.driverName,
+            serverName: this.selectedDatasource.serverName,
+            dataTableName: this.selectedDatasource.dataTableName,
+            dataSQLStatement: this.selectedDatasource.dataSQLStatement,
             dataNoSQLStatement: '',
             businessGlossary: '',
             dataDictionary: ''
