@@ -286,10 +286,10 @@ export class DataDirectQueryBuilderComponent implements OnInit {
     } 
 
     clickSave(action: string) {
-        // Close the form, and open Transformations form
+        // Save the DS and info, Close the form, and open Transformations form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
-        let selectServerType: TributaryServerType = this.serverTypes.find(tst =>
+        let selectTributaryServerType: TributaryServerType = this.serverTypes.find(tst =>
             tst.serverType == this.selectedDatasource.serverType);
 
         let today =new Date();
@@ -328,7 +328,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
             nrWidgets: 0,
             databaseName: this.selectedDatasource.databaseName,
             port: this.selectedDatasource.port,
-            serverType: selectServerType.driverName,
+            serverType: selectTributaryServerType.driverName,
             serverName: this.selectedDatasource.serverName,
             dataTableName: this.selectedDatasource.dataTableName,
             dataSQLStatement: this.selectedDatasource.dataSQLStatement,
@@ -344,8 +344,8 @@ export class DataDirectQueryBuilderComponent implements OnInit {
             url: 'data',
             folderName: '',
             fileName: '',
-            data: this.currentData,
-            dataRaw: this.currentData
+            data: null,
+            dataRaw: null
         };
         let newData: any = {
             id: null,
@@ -355,11 +355,12 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         // Add Data, then dataset, then DS
         this.globalVariableService.addData(newData).then(resData => {
 
-            newdSet.url = 'data/' + resData.id;
-            this.globalVariableService.addDataset(newdSet);
-            this.globalVariableService.addDatasource(newDatasource).then(res => {
+            newdSet.url = 'data/' + resData.id.toString();
+            this.globalVariableService.addDatasource(newDatasource).then(resDS => {
+                newdSet.datasourceID = resDS.id;
+                this.globalVariableService.addDataset(newdSet);
 
-        });
+            });
 
             // Add dataset and data to DB
             console.warn('xx currDS, ' , this.globalVariableService.currentDatasources)
