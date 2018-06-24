@@ -129,10 +129,6 @@
                                 Preview
                             </button>
                         </div>
-        
-                        <div *ngIf="errorMessage!=''" class="gridErrorMessage">
-                            {{ errorMessage }}
-                        </div>
     
                         <div class="gridTables">
                             <clr-datagrid>
@@ -175,7 +171,11 @@
                                 </clr-dg-row>
                             </clr-datagrid>
                         </div>
-
+        
+                        <div *ngIf="errorMessage!=''" class="gridErrorMessage">
+                            {{ errorMessage }}
+                        </div>
+                        
                         <div class="gridPreviewData" *ngIf="showPreview">
                             <clr-datagrid class="gridPreviewData">
     

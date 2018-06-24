@@ -212,6 +212,12 @@ export class DataDirectQueryBuilderComponent implements OnInit {
     clickGetData() {
         // Get the data
         this.globalFunctionService.printToConsole(this.constructor.name,'clickGetData', '@Start');
+
+        // Reset
+        this.errorMessage = '';
+        this.showPreview = false;
+
+        // Build source string
         let selectServerType: TributaryServerType = this.serverTypes.find(tst =>
             tst.serverType == this.selectedDatasource.serverType);
         let source = 
@@ -227,7 +233,6 @@ export class DataDirectQueryBuilderComponent implements OnInit {
                 "query": "select I.\"InvoiceDate\" as \"Date\", sum(I.\"Total\") as \"Amount\" from invoices I group by I.\"InvoiceDate\""
             }
         };
-        console.warn('xx sel ds', source, this.dataFieldsSelected, selectServerType, this.selectedDatasource)
 
         // {
         //     "source": {
@@ -241,12 +246,15 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         //         "query": "select I.\"InvoiceDate\" as \"Date\", sum(I.\"Total\") as \"Amount\" from invoices I group by I.\"InvoiceDate\""
         //     }
         // }
-        this.globalVariableService.getTributaryData(source).then(res => {
-            console.warn('xx res', res, this.selectedDatasource)
+        this.globalVariableService.getTributaryData(source)
+        .then(res => {
+            this.showPreview = true;
+        })
+        .catch(err => {
+            this.errorMessage = err.message;
         });
 
         console.warn('xx this.currentData', this.currentData)
-        this.showPreview = true;
     }
 
     clickRefresh() {

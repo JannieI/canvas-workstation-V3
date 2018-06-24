@@ -8315,7 +8315,7 @@ export class GlobalVariableService {
                 },
                 err => {
                     console.log('Error Get Tributary Data FAILED', err);;
-                    resolve(err.Message);
+                    reject(err);
                 }
             )
         });
