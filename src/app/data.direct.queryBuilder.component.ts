@@ -166,6 +166,17 @@ export class DataDirectQueryBuilderComponent implements OnInit {
                 dataDictionary: ''
                             
             };
+        } else {
+
+            // Get the Schema from Tributary
+            this.dataSchemas = this.globalVariableService.getTributaryDirectDBSchema(
+                this.selectedDatasource.serverName);
+            
+            // Click Table, which will filter Fields
+            let dsIndex: number = this.dataSchemas.findIndex(
+                dsch => dsch.tableName == this.selectedDatasource.dataTableName
+            );
+            this.clickSelectedDataTable(dsIndex, this.selectedDatasource.dataTableID);
         };
 
     }
