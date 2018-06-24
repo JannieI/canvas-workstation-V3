@@ -8377,5 +8377,18 @@ export class GlobalVariableService {
         return tributarySchema;
     }
 
+    constructTributarySQLSource
+    {
+        "source": {
+            "connector": selectServerType.connector,
+            "drivername": selectServerType.driverName,
+            "username": this.selectedDatasource.username,
+            "password": this.selectedDatasource.password,
+            "database": this.selectedDatasource.databaseName,
+            "host": this.selectedDatasource.serverName,
+            "port": +this.selectedDatasource.port,
+            "query": "select I.\"InvoiceDate\" as \"Date\", sum(I.\"Total\") as \"Amount\" from invoices I group by I.\"InvoiceDate\""
+        }
+    };
 
 }

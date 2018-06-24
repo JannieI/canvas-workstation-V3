@@ -441,9 +441,20 @@ export class Transformation {
 }
 
 export class TributaryServerType { 
-        serverType: string;             // Type of Server, ie PostgresSQL 
-        driverName: string;             // Tributary driver string, ie postgres
-        connector: string               // Tributary connector, ie tributary.connectors.sql:SqlConnector
+    serverType: string;             // Type of Server, ie PostgresSQL 
+    driverName: string;             // Tributary driver string, ie postgres
+    connector: string               // Tributary connector, ie tributary.connectors.sql:SqlConnector
+}
+
+export class TributarySource {
+    connector: string;              // Tributary Connector, ie tributary.connectors.sql:SqlConnector
+    drivername: string;             // Tributary driver, ie postgres
+    username: string;               // Username to log into the DB
+    password: string;               // Password to log into the DB
+    database: string;               // Database Name
+    host: string;                   // Host or Server Name
+    port: string;                   // Optional Port on the host, ie 5432
+    query: string;                  // SQL, escaped, ie "select I.\"InvoiceDate\" as \"Date\", sum(I.\"Total\") as \"Amount\" from invoices I group by I.\"InvoiceDate\""
 }
 
 export class DataConnection {

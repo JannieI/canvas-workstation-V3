@@ -275,7 +275,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
             this.showPreview = true;
         })
         .catch(err => {
-            this.errorMessage = err.message;
+            this.errorMessage = err.message + ': ' + err.error;
         });
 
     }
