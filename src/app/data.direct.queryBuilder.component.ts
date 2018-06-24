@@ -351,8 +351,8 @@ export class DataDirectQueryBuilderComponent implements OnInit {
             newdSetID = Math.max(...dSetIDs) + 1;
 
             // Get list of dSet-ids to make array work easier
-            let dsCurrIDs: number[] = [];       // currentDataset IDs
-            this.globalVariableService.currentDatasets.forEach(d => dsCurrIDs.push(d.id));
+            let dSetCurrIDs: number[] = [];       // currentDataset IDs
+            this.globalVariableService.currentDatasets.forEach(d => dSetCurrIDs.push(d.id));
             let newdSet: Dataset = {
                 id: newdSetID,
                 datasourceID: res.id,
@@ -369,41 +369,16 @@ export class DataDirectQueryBuilderComponent implements OnInit {
                 data: this.currentData
             };
 
-            // Add to All datasets
-            if (dSetIDs.indexOf(newdSetID) < 0) {
-                // this.globalVariableService.datasets.push(newdSet);
-                this.globalVariableService.addDataset(newdSet);
-                this.globalVariableService.addData(dataToAdd).then(res => {
-                    this.globalVariableService.getData(res.id).then(dat => {
-                        console.warn('xx ----------')
-                        console.warn('xx added data', dat)
-                    });
-                });
-                this.globalVariableService.saveLocal('Dataset', newdSet);
-            } else {
-                // Add to CurrentDatasets
-                if (dsCurrIDs.indexOf(newdSetID) < 0) {
-                    this.globalVariableService.currentDatasets.push(newdSet);
-                };
-            };
+            // Add dataset and data to DB
+            this.globalVariableService.addDataset(newdSet);
+            this.globalVariableService.addData(dataToAdd);
 
-
-            console.warn('xx ----------')
-            console.warn('xx @end newdSet-datasets-currentDatasets', newdSet, this.globalVariableService.datasets,
-            this.globalVariableService.currentDatasets)
-
-            // Reset data related to this DS
-            console.warn('xx currDS, gv.currDS' , this.globalVariableService.currentDatasources)
-
-            console.log('done DS:', this.globalVariableService.datasources)
+            console.warn('xx currDS, ' , this.globalVariableService.currentDatasources)
+            console.warn('xx curr dSet, ' , this.globalVariableService.currentDatasets)
+            console.log('xx DS:', this.globalVariableService.datasources)
         });
 
-
-
-
-
-
-
+        // Close form and open Transitions if requested
         if (action == 'Saved') {
             this.formDataDirectQueryBuilderClosed.emit(null);
 
