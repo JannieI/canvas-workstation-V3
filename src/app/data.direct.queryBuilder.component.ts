@@ -268,8 +268,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         //         "query": "select I.\"InvoiceDate\" as \"Date\", sum(I.\"Total\") as \"Amount\" from invoices I group by I.\"InvoiceDate\""
         //     }
         // }
-        this.globalVariableService.getTributaryData(source)
-        .then(res => {
+        this.globalVariableService.getTributaryData(source).then(res => {
             this.showPreview = true;
         })
         .catch(err => {
@@ -295,8 +294,8 @@ export class DataDirectQueryBuilderComponent implements OnInit {
 
         let today =new Date();
 
-        // New Datasource
-        let newData: Datasource =  {
+        // Create new Datasource, dataSet & Data
+        let newDatasource: Datasource =  {
             id: null,
             name: this.selectedDatasource.name,
             username: '',
@@ -338,41 +337,31 @@ export class DataDirectQueryBuilderComponent implements OnInit {
             dataDictionary: ''
 
         };
+        let newdSet: Dataset = {
+            id: null,
+            datasourceID: null,
+            sourceLocation: 'HTTP',
+            url: 'data',
+            folderName: '',
+            fileName: '',
+            data: this.currentData,
+            dataRaw: this.currentData
+        };
+        let newData: any = {
+            id: null,
+            data: this.currentData
+        };
 
-        // Add to all DS (DB, global), for later use
-        this.globalVariableService.addDatasource(newData).then(res => {
-            console.warn('xx res', res)
+        // Add Data, then dataset, then DS
+        this.globalVariableService.addData(newData).then(resData => {
 
-            // Get new dSetID
-            // TODO - do better with DB
-            let newdSetID: number = 1;
-            let dSetIDs: number[] = [];
-            this.globalVariableService.datasets.forEach(ds => dSetIDs.push(ds.id));
-            newdSetID = Math.max(...dSetIDs) + 1;
+            newdSet.url = 'data/' + resData.id;
+            this.globalVariableService.addDataset(newdSet);
+            this.globalVariableService.addDatasource(newDatasource).then(res => {
 
-            // Get list of dSet-ids to make array work easier
-            let dSetCurrIDs: number[] = [];       // currentDataset IDs
-            this.globalVariableService.currentDatasets.forEach(d => dSetCurrIDs.push(d.id));
-            let newdSet: Dataset = {
-                id: newdSetID,
-                datasourceID: res.id,
-                sourceLocation: 'HTTP',
-                url: 'data',
-                folderName: '',
-                fileName: '',
-                data: this.currentData,
-                dataRaw: this.currentData
-            };
-
-            let dataToAdd: any = {
-                id: newdSetID,
-                data: this.currentData
-            };
+        });
 
             // Add dataset and data to DB
-            this.globalVariableService.addDataset(newdSet);
-            this.globalVariableService.addData(dataToAdd);
-
             console.warn('xx currDS, ' , this.globalVariableService.currentDatasources)
             console.warn('xx curr dSet, ' , this.globalVariableService.currentDatasets)
             console.log('xx DS:', this.globalVariableService.datasources)

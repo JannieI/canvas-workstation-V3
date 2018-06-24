@@ -781,7 +781,8 @@ const graphWidth: number = 420;
                 );
                 if (globalCurrentDSIndex >= 0) {
                     this.currentDatasources.push(
-                        this.globalVariableService.currentDatasources[globalCurrentDSIndex]);
+                        this.globalVariableService.currentDatasources[globalCurrentDSIndex]
+                    );
                 };
 
                 let globalCurrentDsetIndex: number = this.globalVariableService.currentDatasets
