@@ -47,7 +47,6 @@ export class DataRefreshOnceComponent implements OnInit {
     editing: boolean = false;
     errorMessage: string = '';
     selectedDatasource: Datasource;
-    selectedDatasourceRowIndex: number = 0;
     isBusyRetrievingData: boolean = false;
     currentDatasources: Datasource[] = null;               // Current DS for the selected W
     selectedRowIndex: number = 0;
@@ -83,8 +82,9 @@ export class DataRefreshOnceComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
 
         // Set the row index
-        this.selectedDatasourceRowIndex = index;
+        this.selectedRowIndex = index;
         this.dataFieldNames = this.currentDatasources[index].dataFields;
+        this.errorMessage = '';
         
     }
     
