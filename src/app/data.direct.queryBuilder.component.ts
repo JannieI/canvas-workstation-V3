@@ -89,7 +89,18 @@ export class DataDirectQueryBuilderComponent implements OnInit {
             this.clickClose('Close');
             return;
         };
-
+        if ( 
+            (event.code == 'Enter'  ||  event.code == 'NumpadEnter')
+            &&  
+            (!event.ctrlKey)  
+            &&  
+            (!event.shiftKey) 
+           ) {
+                if (this.showPreview) {
+                   this.clickSave('Saved');
+                   return;
+                };
+        };
     }
 
 
