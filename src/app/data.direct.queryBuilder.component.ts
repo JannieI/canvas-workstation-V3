@@ -182,8 +182,17 @@ export class DataDirectQueryBuilderComponent implements OnInit {
                     };
                 };
             };
+
             // Build the selected fields
-            this.selectedDatasource.dataFields.forEach
+            for (let i = 0; i < this.selectedDatasource.dataFields.length; i++) {
+                this.selectedFields.push(
+                    {
+                        fieldName: this.selectedDatasource.dataFields[i],
+                        fieldType: this.selectedDatasource.dataFieldTypes[i]
+                    }
+                );
+            };
+
             // Click Table, which will filter Fields
             let dsIndex: number = this.dataSchemas.findIndex(
                 dsch => dsch.tableName == this.selectedDatasource.dataTableName
