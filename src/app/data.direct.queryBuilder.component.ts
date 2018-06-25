@@ -296,7 +296,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
             +this.selectedDatasource.port,
             "select I.\"InvoiceDate\" as \"Date\", sum(I.\"Total\") as \"Amount\" from invoices I group by I.\"InvoiceDate\""
         );
-
+        console.warn('xx source', source)
         // {
         //     "source": {
         //         "connector": "tributary.connectors.sql:SqlConnector",
@@ -341,10 +341,12 @@ export class DataDirectQueryBuilderComponent implements OnInit {
 
         // Validation
         if (this.selectedTableRowIndex < 0) {
+            this.showPreview = false;
             this.errorMessage = 'No Table selected';
             return;
         };
-        if (this.selectedFields.length = 0) {
+        if (this.selectedFields.length == 0) {
+            this.showPreview = false;
             this.errorMessage = 'No Fields selected';
             return;
         };
@@ -367,7 +369,10 @@ export class DataDirectQueryBuilderComponent implements OnInit {
             };
         });
 
-        if (dataFields.length = 0) {
+        console.warn('xx dataFields', this.selectedFields, dataFields, dataFieldLengths, dataFieldTypes)
+
+        if (dataFields.length == 0) {
+            this.showPreview = false;
             this.errorMessage = 'No fields selected';
             return;
         };
@@ -441,11 +446,6 @@ export class DataDirectQueryBuilderComponent implements OnInit {
                 this.globalVariableService.addDataset(newdSet);
 
             });
-
-            // Add dataset and data to DB
-            console.warn('xx currDS, ' , this.globalVariableService.currentDatasources)
-            console.warn('xx curr dSet, ' , this.globalVariableService.currentDatasets)
-            console.log('xx DS:', this.globalVariableService.datasources)
         });
 
         // Close form and open Transitions if requested
