@@ -38,6 +38,16 @@ export class DataEditDatasourceComponent implements OnInit {
             this.clickClose();
             return;
         };
+        if ( 
+            (event.code == 'Enter'  ||  event.code == 'NumpadEnter')
+            &&  
+            (!event.ctrlKey)  
+            &&  
+            (!event.shiftKey) 
+           ) {
+            this.clickContinue();
+            return;
+        };
 
     }
 
