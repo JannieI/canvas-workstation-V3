@@ -43,6 +43,8 @@ export class DataDirectWebComponent implements OnInit {
 
     }
 
+    currentData: any[] = [];
+    dataFieldsSelected: string[] = ['id', 'date'];
     datasources: Datasource[] = [];
     element: string = '';
     errorMessage: string = '';

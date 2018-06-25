@@ -620,7 +620,7 @@ export class DashboardRecent {
     dashboardID: number;                // Last D position
     dashboardTabID: number;             // Last T position
     editMode: boolean;                  // EditMode when last saved
-    accessed: string;                   // Last dateTime opened
+    accessed: Date;                     // Last dateTime opened
     stateAtRunTime: string;             // State when opened, ie Deleted
     nameAtRunTime: string;              // Name when opened
 }

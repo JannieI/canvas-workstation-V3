@@ -2305,6 +2305,8 @@ export class GlobalVariableService {
                 // Add State and Name, at Runtime
                 for (var x = 0; x < temp.length; x++) {
                     temp[x].stateAtRunTime = 'Deleted';
+                    let newDate = new Date(temp[x].accessed);
+                    temp[x].accessed = newDate;
                     for (var y = 0; y < this.dashboards.length; y++) {
                         if (this.dashboards[y].id ==
                             temp[x].dashboardID) {
@@ -2393,7 +2395,7 @@ export class GlobalVariableService {
                 dashboardID: dashboardID,
                 dashboardTabID: dashboardTabID,
                 editMode: this.editMode.value,
-                accessed: this.formatDate(today),
+                accessed: new Date(this.formatDate(today)),
                 stateAtRunTime: 'Draft',
                 nameAtRunTime: ''
             };
@@ -2414,7 +2416,7 @@ export class GlobalVariableService {
 
             // Reset editMode, accessed
             recentD.editMode = this.editMode.value;
-            recentD.accessed = this.formatDate(today);
+            recentD.accessed = new Date(this.formatDate(today));
 
             return new Promise<any>((resolve, reject) => {
                 this.saveDashboardRecent(recentD).then(res =>
