@@ -749,7 +749,7 @@ const graphWidth: number = 420;
 
     }
 
-    clickDSrow(datasourceID: number, index: number) {
+    clickDSrow(index: number, datasourceID: number) {
         // Set the selected datasourceID
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDSrow', '@Start');
 
@@ -758,11 +758,11 @@ const graphWidth: number = 420;
         this.errorMessage = '';
 
         // Determine if data obtains in Glob Var
-        let dSetIndex: number = this.globalVariableService.currentDatasets.filter(
-            dS => dS.datasourceID == datasourceID
-        ).length;
+        let dSetIndex: number = this.globalVariableService.currentDatasets.findIndex(
+            ds => ds.datasourceID == datasourceID
+        );
 
-        if (dSetIndex <= 0) {
+        if (dSetIndex < 0) {
             
             if (this.isBusyRetrievingData) {
                 this.errorMessage = 'Still retrieving the actual data for this DS';
@@ -802,8 +802,8 @@ const graphWidth: number = 420;
         };
  
         // Load local arrays for ngFor
-        let dsIndex: number = this.globalVariableService.currentDatasources
-            .findIndex(ds => ds.id == datasourceID);
+        let dsIndex: number = this.currentDatasources.findIndex(ds => ds.id == datasourceID);
+        console.warn('xx dSetIndex', dSetIndex)
         
         if (dsIndex >= 0) {
             this.dataFieldNames = this.currentDatasources[dsIndex].dataFields;
@@ -840,6 +840,7 @@ const graphWidth: number = 420;
 
             });
         };
+        console.warn('xx this.dataFieldNames', this.dataFieldNames)
 
         // Switch on the preview after the first row was clicked
         this.hasClicked = true;

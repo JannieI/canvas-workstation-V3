@@ -34,7 +34,7 @@
                                     <clr-dg-row *clrDgItems="let row of currentDatasources; let i = index"
                                         [style.background-color]="(i == selectedRowIndex)? '#123456' : 'white'"
                                         [style.color]="(i == selectedRowIndex)? 'white' : 'gray'"
-                                        (click)="clickDSrow(row.id, i)"
+                                        (click)="clickDSrow(i, row.id)"
                                         >
                                         
                                         <clr-dg-cell>{{ row.nrWidgets }}</clr-dg-cell>
