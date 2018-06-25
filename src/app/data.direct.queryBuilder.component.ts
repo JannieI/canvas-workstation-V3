@@ -75,6 +75,7 @@ const constDataInvoices: any =
 })
 export class DataDirectQueryBuilderComponent implements OnInit {
 
+    @Input() editingDS: boolean;
     @Input() selectedDatasource: Datasource;
  
     @Output() formDataDirectQueryBuilderClosed: EventEmitter<Datasource> = new EventEmitter();
@@ -134,7 +135,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         // Set base info
         this.serverTypes = this.globalVariableService.serverTypes;
 
-        if (this.selectedDatasource == null) {
+        if (!this.editingDS) {
             this.selectedDatasource = {
                 id: 0,
                 type: '',

@@ -4024,6 +4024,7 @@
 <!-- Modal: Data Direct Query Builder -->
 <data-directQueryBuilder
     *ngIf="showModalDataDirectQueryBuilder"
+    [editingDS]="editingDS"
     [selectedDatasource]="selectedDatasource"
     (formDataDirectQueryBuilderClosed)="handleCloseDataDirectQueryBuilder($event)">Load Direct SQL Query Builder ...
 </data-directQueryBuilder>

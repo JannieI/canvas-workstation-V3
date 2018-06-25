@@ -291,6 +291,7 @@ export class AppComponent implements OnInit {
     currentWidgetDashboardTabIDs: number[] = [];  // Of current W
     draggableWidgets: number[] = [];
     editMode: boolean;
+    editingDS: boolean;
     hasDashboard: boolean = false;
     hasDatasources: boolean = false;
     editMenuText: string;
@@ -1417,6 +1418,7 @@ export class AppComponent implements OnInit {
         
         // Open relevant form
         if (returnedDatasource != null) {
+            this.editingDS = true;
             this.selectedDatasource = returnedDatasource;
 
             if (this.globalVariableService.continueToTransformations) {
@@ -3088,6 +3090,7 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
+        this.editingDS = false;
         this.showModalDataDirectQueryBuilder = true;
     }
 
