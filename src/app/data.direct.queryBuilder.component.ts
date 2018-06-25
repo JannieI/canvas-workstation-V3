@@ -349,9 +349,6 @@ export class DataDirectQueryBuilderComponent implements OnInit {
             return;
         };
 
-        let selectTributaryServerType: TributaryServerType = this.serverTypes.find(tst =>
-            tst.serverType == this.selectedDatasource.serverType);
-
         // Convert dataFields & - Types to string array
         let dataFields: string[] = [];
         this.selectedFields.forEach(sdf => {
@@ -369,6 +366,11 @@ export class DataDirectQueryBuilderComponent implements OnInit {
                 dataFieldLengths.push(12);
             };
         });
+
+        if (dataFields.length = 0) {
+            this.errorMessage = 'No fields selected';
+            return;
+        };
 
         let today = new Date();
 
@@ -406,7 +408,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
             nrWidgets: this.selectedDatasource.nrWidgets,
             databaseName: this.selectedDatasource.databaseName,
             port: this.selectedDatasource.port,
-            serverType: selectTributaryServerType.driverName,
+            serverType: this.selectedDatasource.serverType,
             serverName: this.selectedDatasource.serverName,
             dataTableName: this.dataSchemas[this.selectedTableRowIndex].tableName,
             dataSQLStatement: this.selectedDatasource.dataSQLStatement,
