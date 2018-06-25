@@ -43,7 +43,7 @@ export class DataRefreshComponent implements OnInit {
 
     }
 
-    // currentDatasources: Datasource[];
+    selectedDatasourceRowIndex: number = -1;
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -62,10 +62,11 @@ export class DataRefreshComponent implements OnInit {
   	  	this.formDataRefreshClosed.emit(action);
     }
 
-    clickDatasourceRow(id: number) {
+    clickDatasourceRow(index: number, id: number, name: string) {
         // Select a DS
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDatasourceRow', '@Start');
         
+        this.selectedDatasourceRowIndex = index;
     }
 
   }

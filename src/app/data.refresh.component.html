@@ -18,8 +18,10 @@
                     <clr-dg-column [clrDgField]="'filterDataset'">Name</clr-dg-column>
 
                     <clr-dg-row
-                        *clrDgItems="let row of currentDatasources" [clrDgItem]="row"
-                        (click)="clickDatasourceRow(row.name)"
+                        *clrDgItems="let row of currentDatasources; let i = index" [clrDgItem]="row"
+                        [style.background-color]="(i == selectedDatasourceRowIndex)? '#123456' : 'white'"
+                        [style.color]="(i == selectedDatasourceRowIndex)? 'white' : 'gray'"
+                        (click)="clickDatasourceRow(i, row.id, row.name)"
                         >
                         <clr-dg-cell>{{row.name}}</clr-dg-cell>
                     </clr-dg-row>
