@@ -27,10 +27,20 @@
                             {{ errorMessage }}
                         </div>
 
-                        <div class="gridButtonExport">
+                        <div class="gridButtonCancel">
                             <button
                                 type="button"
                                 class="btn btn-secondary selectButton"
+                                (click)="clickClose()"
+                                >
+                                Cancel
+                            </button>
+                        </div>
+
+                        <div class="gridButtonExport">
+                            <button
+                                type="button"
+                                class="btn btn-primary selectButton"
                                 (click)="clickExport()"
                                 >
                                 Export

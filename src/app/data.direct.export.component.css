@@ -58,9 +58,17 @@
         text-align: left;
     }
 
-    .gridButtonExport {
+    .gridButtonCancel {
         grid-column-start: 11;
         grid-column-end: 13;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        text-align: left;
+    }
+
+    .gridButtonExport {
+        grid-column-start: 14;
+        grid-column-end: 16;
         grid-row-start: 3;
         grid-row-end: 4;
         text-align: left;
