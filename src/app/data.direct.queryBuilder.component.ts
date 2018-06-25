@@ -221,6 +221,9 @@ export class DataDirectQueryBuilderComponent implements OnInit {
             };
         })[0].tableFields;
 
+        // Set array for preview headings
+        this.dataFieldsSelected = this.selectedFields.map(f => f.fieldName);
+
     }
     
     clickSelectedDataTable(index: number) {
@@ -251,8 +254,6 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         // Set seletected index - used for highlighting row
         this.selectedFieldRowIndex = index;
         
-        this.dataFieldsSelected = this.selectedFields.map(f => f.fieldName);
-        console.warn('xx selectedFields', this.selectedFields, this.dataFieldsSelected)
     }
 
     clickRefresh() {
@@ -284,6 +285,9 @@ export class DataDirectQueryBuilderComponent implements OnInit {
             this.errorMessage = 'First Refresh, select a Table and then some fields...';
             return;
         };
+
+        // Set array for preview headings
+        this.dataFieldsSelected = this.selectedFields.map(f => f.fieldName);
 
         // Reset
         this.errorMessage = '';
@@ -386,6 +390,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         let today = new Date();
 
         // Create new Datasource, dataSet & Data
+        // TODO - Encrypt password at a later stage
         let newDatasource: Datasource =  {
             id: null,
             name: this.selectedDatasource.name,
