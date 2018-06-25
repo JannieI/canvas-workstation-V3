@@ -326,6 +326,10 @@ export class DataDirectFileComponent implements OnInit {
         this.errorMessage = '';
 
         // Validation
+        if (this.folderName == ''  ||  this.folderName == null) {
+            this.errorMessage = 'Please enter a folder  OR  select one using the Browse button';
+            return;
+        };
         if (this.fileName == ''  ||  this.fileName == null) {
             this.errorMessage = 'Please enter a file name  OR  select one using the Browse button';
             return;
