@@ -48,6 +48,7 @@ export class DataDirectWebComponent implements OnInit {
     errorMessage: string = '';
     newName: string = '';
     newDescription: string = '';
+    showPreview: boolean = false;
     url: string = '';
 
 	constructor(
@@ -97,6 +98,7 @@ export class DataDirectWebComponent implements OnInit {
             this.errorMessage = err.message;
         });
 
+        this.showPreview = true;
 
 
         // // code for IE7+, Firefox, Chrome, Opera, Safari

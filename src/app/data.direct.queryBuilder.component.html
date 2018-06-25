@@ -218,7 +218,12 @@
                                 (click)="clickSave('Saved')"
                                 [disabled]="!showPreview"
                                 >
-                                Add
+                                <span *ngIf="!editingDS">
+                                    Add
+                                </span> 
+                                <span *ngIf="editingDS">
+                                    Save
+                                </span> 
                             </button>
                         </div>
     
@@ -228,7 +233,13 @@
                                 class="btn btn-link"
                                 (click)="clickSave('Transformation')"
                                 >
-                                Add and open Transformations
+                                <span *ngIf="!editingDS">
+                                    Add
+                                </span> 
+                                <span *ngIf="editingDS">
+                                    Save
+                                </span> 
+                                and open Transformations
                             </button>
                         </div>
     
