@@ -140,7 +140,7 @@
                                 <clr-dg-column class="widthTn" [clrDgField]="nameLocal">Description</clr-dg-column>
     
                                 <clr-dg-row
-                                    *ngFor="let row of dataSchemas; let i = index"
+                                    *clrDgItems="let row of dataSchemas; let i = index"
                                     [style.background-color]="(i == selectedTableRowIndex)? '#123456' : 'white'"
                                     [style.color]="(i == selectedTableRowIndex)? 'white' : 'gray'"
                                     (click)="clickSelectedDataTable(i, row.id)"

@@ -183,16 +183,6 @@ export class DataDirectQueryBuilderComponent implements OnInit {
                 };
             };
 
-            // Build the selected fields
-            for (let i = 0; i < this.selectedDatasource.dataFields.length; i++) {
-                this.selectedFields.push(
-                    {
-                        fieldName: this.selectedDatasource.dataFields[i],
-                        fieldType: this.selectedDatasource.dataFieldTypes[i]
-                    }
-                );
-            };
-
             // Click Table, which will filter Fields
             let dsIndex: number = this.dataSchemas.findIndex(
                 dsch => dsch.tableName == this.selectedDatasource.dataTableName
@@ -202,6 +192,18 @@ export class DataDirectQueryBuilderComponent implements OnInit {
                 this.clickSelectedDataTable(dsIndex, this.selectedDatasource.dataTableID);
             };
 
+            // Build the selected fields
+            for (let i = 0; i < this.selectedDatasource.dataFields.length; i++) {
+                this.selectedFields.push(
+                    {
+                        fieldName: this.selectedDatasource.dataFields[i],
+                        fieldType: this.selectedDatasource.dataFieldTypes[i]
+                    }
+                );
+            };
+            console.warn('xx sel dF', this.selectedFields)
+
+            this.clickSelectedDatafield(0,0)
             console.warn('xx dsIndex, this.selectedDatasource', dsIndex, 
             this.selectedDatasource)
 
