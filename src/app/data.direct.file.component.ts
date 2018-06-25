@@ -136,13 +136,13 @@ export class DataDirectFileComponent implements OnInit {
         var inp: any = document.getElementById("get-files");
 
         // Access and handle the files
-
-        for (var i = 0; i < inp.files.length; i++) {
-            let file = inp.files[i];
-            console.warn('xx file', this.theFile, file.name, file.type, file.size, file.lastModifiedDate, file.lastModifiedDate.toLocaleDateString()
-        )
-            // do things with file
-        }
+        console.warn('xx inp.files.length', inp.files.length)
+        // for (var i = 0; i < inp.files.length; i++) {
+        //     let file = inp.files[i];
+        //     console.warn('xx file', this.theFile, file.name, file.type, file.size, file.lastModifiedDate, file.lastModifiedDate.toLocaleDateString()
+        // )
+        //     // do things with file
+        // }
     }
 
     clickDSPreview() {
@@ -151,6 +151,16 @@ export class DataDirectFileComponent implements OnInit {
 
         // Reset
         this.errorMessage = '';
+
+        // Validation
+        if (this.folderName == ''  ||  this.folderName == null) {
+            this.errorMessage = 'Please enter a folder  OR  select one using the Browse button';
+            return;
+        };
+        if (this.fileName == ''  ||  this.fileName == null) {
+            this.errorMessage = 'Please enter a file name  OR  select one using the Browse button';
+            return;
+        };
 
         // // Get the folder and file, setting some defaults
         // if (this.folderName == ''  ||  this.folderName == undefined) {
