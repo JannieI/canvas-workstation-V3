@@ -88,7 +88,7 @@ export class DataDirectExportComponent implements OnInit {
 
         // Validate
         if (this.selectedDatasource == null) {
-            this.errorMessage = "Select a Datasource";
+            this.errorMessage = "First select a Datasource by clicking on it, then try again.";
             return;
         };
         if (this.fileName == null  ||  this.fileName == '') {

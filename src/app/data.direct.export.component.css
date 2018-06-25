@@ -76,10 +76,10 @@
 
     .gridErrorMessage {
         color: red;
-        grid-column-start: 14;
+        grid-column-start: 2;
         grid-column-end: 21;
-        grid-row-start: 4;
-        grid-row-end: 5;
+        grid-row-start: 6;
+        grid-row-end: 7;
         text-align: left;
     }
 
