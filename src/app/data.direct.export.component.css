@@ -86,8 +86,9 @@
     .gridDatasources {
         grid-column-start: 1;
         grid-column-end: 21;
-        grid-row-start: 5;
+        grid-row-start: 6;
         grid-row-end: 21;
         margin: 2px 2px 2px 2px;
         text-align: left;
+        overflow-y: scroll;
     }
