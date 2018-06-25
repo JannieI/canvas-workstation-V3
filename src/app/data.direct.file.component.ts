@@ -322,6 +322,15 @@ export class DataDirectFileComponent implements OnInit {
         // Add the DS, with data, to the DB
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
 
+        // Reset
+        this.errorMessage = '';
+
+        // Validation
+        if (this.fileName == ''  ||  this.fileName == null) {
+            this.errorMessage = 'Please enter a file name  OR  select one using the Browse button';
+            return;
+        };
+
         let today = new Date();
 
         // New Datasource

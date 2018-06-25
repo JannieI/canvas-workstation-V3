@@ -119,7 +119,11 @@ This document describes items for later versions of Canvas.
     
 
 
-
+    Tributary:
+    ----------
+    - Read more - see Pentaho ETL / Data Integration for features.
+    - Combinations must also be done here
+    - Add token management forms: forgot password, refresh token ...
 
 
 
