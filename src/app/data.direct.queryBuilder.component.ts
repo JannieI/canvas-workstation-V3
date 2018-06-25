@@ -172,6 +172,18 @@ export class DataDirectQueryBuilderComponent implements OnInit {
             this.dataSchemas = this.globalVariableService.getTributaryDirectDBSchema(
                 this.selectedDatasource.serverName);
             
+            // Cater for missing field types
+            if (this.selectedDatasource.dataFields.length > 
+                this.selectedDatasource.dataFieldTypes.length) {
+
+                for (let i = 1; i <= this.selectedDatasource.dataFields.length; i++) {
+                    if (this.selectedDatasource.dataFieldTypes.length < i) {
+                        this.selectedDatasource.dataFieldTypes.push('any');
+                    };
+                };
+            };
+            // Build the selected fields
+            this.selectedDatasource.dataFields.forEach
             // Click Table, which will filter Fields
             let dsIndex: number = this.dataSchemas.findIndex(
                 dsch => dsch.tableName == this.selectedDatasource.dataTableName
@@ -217,8 +229,9 @@ export class DataDirectQueryBuilderComponent implements OnInit {
 
         // Set seletected index - used for highlighting row
         this.selectedFieldRowIndex = index;
-
+        
         this.dataFieldsSelected = this.selectedFields.map(f => f.fieldName);
+        console.warn('xx selectedFields', this.selectedFields, this.dataFieldsSelected)
     }
 
     clickRefresh() {
@@ -304,7 +317,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         let selectTributaryServerType: TributaryServerType = this.serverTypes.find(tst =>
             tst.serverType == this.selectedDatasource.serverType);
 
-        let today =new Date();
+        let today = new Date();
 
         // Create new Datasource, dataSet & Data
         let newDatasource: Datasource =  {

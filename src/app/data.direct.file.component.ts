@@ -322,7 +322,7 @@ export class DataDirectFileComponent implements OnInit {
         // Add the DS, with data, to the DB
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
 
-        let today =new Date();
+        let today = new Date();
 
         // New Datasource
         let newData: Datasource =  {
