@@ -313,7 +313,13 @@ export class DataDirectQueryBuilderComponent implements OnInit {
             this.showPreview = true;
         })
         .catch(err => {
-            this.errorMessage = err.message + ': ' + err.error;
+            this.errorMessage = err.message + '. ';
+            if (err.status == 401) {
+                this.errorMessage = 'Either you login has expired, or you dont have access to the Database';
+                this.errorMessage = 'Error: ' + this.errorMessage +'. ' + err.message;
+            } else {
+                this.errorMessage = err.message;
+            };
         });
 
     }
