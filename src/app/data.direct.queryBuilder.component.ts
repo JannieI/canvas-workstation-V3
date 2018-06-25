@@ -255,10 +255,8 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRefresh', '@Start');
     
         // Fill Table and Field Names
-        // TODO - remove hardcoding once received from DB
-
         this.dataSchemas = this.globalVariableService.getTributaryDirectDBSchema(
-            'pellefant.db.elephantsql.com');
+            this.selectedDatasource.serverName);
 
         // Select the Tables, Fields
         if (this.dataSchemas.length > 0) {
