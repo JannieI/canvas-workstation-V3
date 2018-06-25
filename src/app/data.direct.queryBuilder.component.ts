@@ -106,7 +106,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
     errorMessage: string = "";
     selectedFieldRowIndex: number = 0;
     selectedFields: any[] = [];
-    selectedTableRowIndex: number = 0;
+    selectedTableRowIndex: number = -1;
     serverTypes: TributaryServerType[]
     showPreview: boolean = false;
     
@@ -336,6 +336,19 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         // Save the DS and info, Close the form, and open Transformations form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
+        // Reset
+        this.errorMessage = '';
+
+        // Validation
+        if (this.selectedTableRowIndex < 0) {
+            this.errorMessage = 'No Table selected';
+            return;
+        };
+        if (this.selectedFields.length = 0) {
+            this.errorMessage = 'No Fields selected';
+            return;
+        };
+
         let selectTributaryServerType: TributaryServerType = this.serverTypes.find(tst =>
             tst.serverType == this.selectedDatasource.serverType);
 
@@ -395,7 +408,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
             port: this.selectedDatasource.port,
             serverType: selectTributaryServerType.driverName,
             serverName: this.selectedDatasource.serverName,
-            dataTableName: this.selectedDatasource.dataTableName,
+            dataTableName: this.dataSchemas[this.selectedTableRowIndex].tableName,
             dataSQLStatement: this.selectedDatasource.dataSQLStatement,
             dataNoSQLStatement: this.selectedDatasource.dataNoSQLStatement,
             businessGlossary: this.selectedDatasource.businessGlossary,
