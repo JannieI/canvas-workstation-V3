@@ -197,8 +197,15 @@ export class DataDirectQueryBuilderComponent implements OnInit {
             let dsIndex: number = this.dataSchemas.findIndex(
                 dsch => dsch.tableName == this.selectedDatasource.dataTableName
             );
-            console.warn('xx dsIndex, this.selectedDatasource', dsIndex, this.selectedDatasource)
-            this.clickSelectedDataTable(dsIndex, this.selectedDatasource.dataTableID);
+
+            if (dsIndex >= 0) {
+                this.clickSelectedDataTable(dsIndex, this.selectedDatasource.dataTableID);
+            };
+
+            console.warn('xx dsIndex, this.selectedDatasource', dsIndex, 
+            this.selectedDatasource)
+
+            //
         };
 
     }
@@ -326,6 +333,24 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         let selectTributaryServerType: TributaryServerType = this.serverTypes.find(tst =>
             tst.serverType == this.selectedDatasource.serverType);
 
+        // Convert dataFields & - Types to string array
+        let dataFields: string[] = [];
+        this.selectedFields.forEach(sdf => {
+            dataFields.push(sdf.fieldName)
+        });
+        let dataFieldTypes: string[] = [];
+        let dataFieldLengths: number[] = [];
+        this.selectedFields.forEach(sdf => {
+            dataFieldTypes.push(sdf.fieldType)
+
+            // TODO - improve later
+            if (sdf.fieldType == 'string') {
+                dataFieldLengths.push(25);
+            } else {
+                dataFieldLengths.push(12);
+            };
+        });
+
         let today = new Date();
 
         // Create new Datasource, dataSet & Data
@@ -346,9 +371,9 @@ export class DataDirectQueryBuilderComponent implements OnInit {
             refreshedBy: this.globalVariableService.currentUser.userID,
             refreshedOn: this.globalVariableService.formatDate(today),
             dataFieldIDs: this.selectedDatasource.dataFieldIDs,
-            dataFields: this.selectedDatasource.dataFields,
-            dataFieldTypes: this.selectedDatasource.dataFieldTypes,
-            dataFieldLengths: this.selectedDatasource.dataFieldLengths,
+            dataFields: dataFields,
+            dataFieldTypes: dataFieldTypes,
+            dataFieldLengths: dataFieldLengths,
             parameters: this.selectedDatasource.parameters,
             folder: this.selectedDatasource.folder,
             fileName: this.selectedDatasource.fileName,
