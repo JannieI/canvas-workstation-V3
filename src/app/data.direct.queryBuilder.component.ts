@@ -260,10 +260,13 @@ export class DataDirectQueryBuilderComponent implements OnInit {
 
         // Select the Tables, Fields
         if (this.dataSchemas.length > 0) {
-            this.filterFields(this.dataSchemas[0].tableName);
+            this.selectedTableRowIndex = 0;
+            if (this.dataSchemas.length > 0) {
+                this.filterFields(this.dataSchemas[0].tableName);
 
-        } else {
-            this.filterFields('');
+            } else {
+                this.filterFields('');
+            };
         };
     }
     
