@@ -70,14 +70,14 @@ export class DataDirectExportComponent implements OnInit {
     }
 
     saveText(text, filename){
-        // Export selected DS to a file by creating <a> tag
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickExport',           '@Start');
+        // Actual Export of selected DS to a file by creating <a> tag
+        this.globalFunctionService.printToConsole(this.constructor.name,'saveText',           '@Start');
 
         var a = document.createElement('a');
         a.setAttribute('href', 'data:text/plain;charset=utf-u,'+encodeURIComponent(text));
         a.setAttribute('download', filename);
         a.click()
-      }
+    }
 
     clickExport() {
         // Export selected DS
@@ -98,7 +98,7 @@ export class DataDirectExportComponent implements OnInit {
         
         // Export
         var obj = JSON.stringify(this.selectedDatasource);  
-        this.saveText( JSON.stringify(obj), "filename.json" );
+        this.saveText( JSON.stringify(obj), this.fileName);
 
     }
 
