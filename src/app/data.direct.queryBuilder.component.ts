@@ -183,15 +183,6 @@ export class DataDirectQueryBuilderComponent implements OnInit {
                 };
             };
 
-            // Click Table, which will filter Fields
-            let dsIndex: number = this.dataSchemas.findIndex(
-                dsch => dsch.tableName == this.selectedDatasource.dataTableName
-            );
-
-            if (dsIndex >= 0) {
-                this.clickSelectedDataTable(dsIndex, this.selectedDatasource.dataTableID);
-            };
-
             // Build the selected fields
             for (let i = 0; i < this.selectedDatasource.dataFields.length; i++) {
                 this.selectedFields.push(
@@ -201,10 +192,18 @@ export class DataDirectQueryBuilderComponent implements OnInit {
                     }
                 );
             };
-            console.warn('xx sel dF', this.selectedFields)
 
-            this.clickSelectedDatafield(0,0)
-            console.warn('xx dsIndex, this.selectedDatasource', dsIndex, 
+            // Click Table, which will filter Fields
+            let dsIndex: number = this.dataSchemas.findIndex(
+                dsch => dsch.tableName == this.selectedDatasource.dataTableName
+            );
+            if (dsIndex >= 0) {
+                this.showPreview = true;
+                this.selectedTableRowIndex = dsIndex;
+                this.clickSelectedDataTable(dsIndex);
+            };
+
+            console.warn('xx dsIndex, this.selectedDatasource', dsIndex, this.selectedFields,
             this.selectedDatasource)
 
             //
@@ -224,15 +223,19 @@ export class DataDirectQueryBuilderComponent implements OnInit {
 
     }
     
-    clickSelectedDataTable(index: number, id: number) {
+    clickSelectedDataTable(index: number) {
         // Clicked a Table
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectedDataTable', '@Start');
+
+        // Reset selected Fields
+        if (this.selectedTableRowIndex != index) {
+            this.selectedFields = [];
+        };
 
         // Set seletected index - used for highlighting row
         this.selectedTableRowIndex = index;
 
         // Select Fields in the table
-        this.selectedFields = [];
         this.filterFields(this.dataSchemas[this.selectedTableRowIndex].tableName);
 
         // Refresh data if already Preview-ed before
@@ -387,7 +390,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
             id: null,
             name: this.selectedDatasource.name,
             username: this.selectedDatasource.username,
-            password: '',
+            password: this.selectedDatasource.password,
             type: this.selectedDatasource.type,
             subType: this.selectedDatasource.subType,
             typeVersion: this.selectedDatasource.typeVersion,
