@@ -232,9 +232,6 @@ export class DataDirectQueryBuilderComponent implements OnInit {
             };
         })[0].tableFields;
 
-        // Set array for preview headings
-        this.dataFieldsSelected = this.selectedFields.map(f => f.fieldName);
-
     }
     
     clickSelectedDataTable(index: number) {
@@ -265,6 +262,9 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         // Set seletected index - used for highlighting row
         this.selectedFieldRowIndex = index;
         
+        // Set array for preview headings
+        this.dataFieldsSelected = this.selectedFields.map(f => f.fieldName);
+
     }
 
     clickRefresh() {
