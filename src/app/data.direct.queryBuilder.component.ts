@@ -238,7 +238,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
     clickSelectedDataTable(index: number, tableName: string) {
         // Clicked a Table
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectedDataTable', '@Start');
-console.warn('xx index', index, tableName)
+
         // Reset selected Fields
         if (this.selectedTableRowIndex != index) {
             console.warn('xx reset sel Flds')
@@ -250,7 +250,6 @@ console.warn('xx index', index, tableName)
         this.selectedTableRowIndex = index;
 
         // Select Fields in the table
-        // this.filterFields(this.dataSchemas[this.selectedTableRowIndex].tableName);
         this.dataFieldsFiltered = this.dataSchemas.filter(datsch => {
             if (datsch.tableName == tableName) {
                 return datsch;
@@ -283,10 +282,14 @@ console.warn('xx index', index, tableName)
         if (this.dataSchemas.length > 0) {
             this.selectedTableRowIndex = 0;
             if (this.dataSchemas.length > 0) {
-                this.filterFields(this.dataSchemas[0].tableName);
+                this.dataFieldsFiltered = this.dataSchemas.filter(datsch => {
+                    if (datsch.tableName == this.dataSchemas[0].tableName) {
+                        return datsch;
+                    };
+                })[0].tableFields;
 
             } else {
-                this.filterFields('');
+                this.dataFieldsFiltered = [];
             };
         };
     }
