@@ -45,6 +45,11 @@ This document describes items for later versions of Canvas.
 
     - consider if we need SAVE AS functionality
 
+    Create DS via File:
+    -------------------
+    - consider multiple files, in which case to loop over files Array
+    - consider drag and drop from external places - see example in 
+        https://www.html5rocks.com/en/tutorials/file/dndfiles/
 
     PDF / IMAGE:
     ------------

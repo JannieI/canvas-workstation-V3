@@ -61,7 +61,7 @@ export class DataDirectFileComponent implements OnInit {
     selectedFile: boolean = true;
     currentDatasetName: string;
 
-    theFile: string = 'Brws';
+    theFile: any;
     existingDSName: string = '';
 
 	constructor(
@@ -141,13 +141,51 @@ export class DataDirectFileComponent implements OnInit {
         };
         
         // Access and handle the files
-        console.warn('xx inp.files.length', inp.files.length, inp.files[0])
-        // for (var i = 0; i < inp.files.length; i++) {
-        //     let file = inp.files[i];
-        //     console.warn('xx file', this.theFile, file.name, file.type, file.size, file.lastModifiedDate, file.lastModifiedDate.toLocaleDateString()
-        // )
-        //     // do things with file
-        // }
+        this.theFile = inp.files[0];
+        console.warn('xx file', this.theFile, this.theFile.name, this.theFile.type, this.theFile.size, this.theFile.lastModifiedDate, this.theFile.lastModifiedDate.toLocaleDateString())
+
+        // Read file as Binary
+        var reader = new FileReader();
+
+        // Closure to capture the file information.
+        reader.onload = (function(theFile) {
+            return function(e) {
+                console.warn('Done reading file')
+                let specification = {
+                    source: {
+                        connector: "tributary.connectors.spreadsheet:XlsxConnector",
+                        content: localStorage.getItem("content"),
+                        headers: 4,
+                        skip_rows: [0, 1, 2, 3, 4]
+                    }
+                }
+                let token = JSON.parse(localStorage.getItem('eazl-token'));
+                let options = {
+                    method: "POST", 
+                    body: JSON.stringify(specification), 
+                    mode: "cors", 
+                    headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `JWT ${token}`
+                    }
+                };
+                
+                // fetch( "https://eazl-rest.xyz/eazl/canvas/enqueue/", options)
+                //     .then(response => {
+                //         return response.json();
+                //     })
+                //     .then(data => {
+                //         console.log(data);
+                //     })
+                //     .catch(error => {
+                //         console.log(error)
+                //     });
+            };
+        })(this.theFile);
+  
+        // Read in the image file as a data URL.
+        reader.readAsBinaryString(this.theFile);
+
     }
 
     clickDSPreview() {
