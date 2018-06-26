@@ -135,6 +135,11 @@ export class DataDirectFileComponent implements OnInit {
         // TODO alert('Later: File component to browse ...')
         var inp: any = document.getElementById("get-files");
 
+        // Return if nothing selected
+        if (inp.files.length == 0) {
+            return;
+        };
+        
         // Access and handle the files
         console.warn('xx inp.files.length', inp.files.length, inp.files[0])
         // for (var i = 0; i < inp.files.length; i++) {

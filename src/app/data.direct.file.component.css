@@ -83,6 +83,9 @@
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
+    .gridButtonBrowse:hover {
+        cursor: hand;
+    }
 
     .gridExcelTitle {
         grid-column-start: 1;
