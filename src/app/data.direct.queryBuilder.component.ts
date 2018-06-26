@@ -116,7 +116,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
     dataSchemas: DataSchema[] = [];
     dataTables: DataTable[] = [];
     errorMessage: string = "";
-    helpMessage: string = 'Enter detail, then click Refresh to show the Tables.  Select one, then select the fields to display. Click Preview to see a portion of the data.';
+    helpMessage: string = '';
     selectedFieldRowIndex: number = 0;
     selectedFields: any[] = [];
     selectedTableRowIndex: number = -1;
@@ -137,6 +137,8 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         this.serverTypes = this.globalVariableService.serverTypes;
 
         if (!this.editingDS) {
+        this.helpMessage = 'Enter detail, then click Refresh to show the Tables.  Select one, then select the fields to display. Click Preview to see a portion of the data.';
+            
             this.selectedDatasource = {
                 id: 0,
                 type: '',
@@ -181,6 +183,8 @@ export class DataDirectQueryBuilderComponent implements OnInit {
             };
         } else {
 
+            this.helpMessage = 'Amend the above info if needed, then click Refresh and select the Table & Fields.  Else, click Preview to see a portion of the data.';
+            
             // Get the Schema from Tributary
             this.dataSchemas = this.globalVariableService.getTributaryDirectDBSchema(
                 this.selectedDatasource.serverName);
@@ -295,6 +299,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         // No Fields, no data
         if (this.selectedFields.length == 0) {
             this.showPreview = false;
+            this.helpMessage = '';
             this.errorMessage = 'First Refresh, select a Table and then some fields...';
             return;
         };
@@ -370,6 +375,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
 
         // Reset
         this.errorMessage = '';
+        this.helpMessage = '';
 
         // Validation
         if (this.selectedTableRowIndex < 0) {
