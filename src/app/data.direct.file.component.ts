@@ -359,7 +359,7 @@ export class DataDirectFileComponent implements OnInit {
             description: 'Hard coded name',
             createdBy: this.globalVariableService.currentUser.userID,
             createdOn: this.globalVariableService.formatDate(today),
-            createMethod: 'DirectFile',
+            createMethod: 'directFile',
             editor: '',
             dateEdited: '',
             refreshedBy: this.globalVariableService.currentUser.userID,
