@@ -172,6 +172,7 @@ This document describes items for later versions of Canvas.
     12.Remember usage - and can sort by popular ones or show it for all relevant objects
     13.Allow own profile pic upload!
     14.How do we treat sensitive data - that may not be seen by DBA.  Keep it in Excel and reload   each time ...
+    - Add Named-Transformations: have a CRUD form where user specifies a name, and a list of transformations to be performed with it.  Maybe give a start DS -> can only work if the requested DS has this layout, plus has field types, etc to calc and also know it will work.  Seems best solution to have a start DS.
 
     Data types and field lengths:
     --------------------------------

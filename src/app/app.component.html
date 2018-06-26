@@ -1969,10 +1969,12 @@
                             clrSignpostTrigger>
                         </clr-icon>
                             <clr-signpost-content *clrIfOpen>
-                            <h4 style="margin-top: 0">Annotation</h4>
+                            <h4 style="margin-top: 0; color:gray;">Annotation</h4>
                             <p> {{ row.annotation }}
                             </p>
-                            <span *ngIf="row.annotationLastUserID">
+                            <span *ngIf="row.annotationLastUserID"
+                                [style.color]="'gray'"
+                                >
                                 ( {{ row.annotationLastUserID }} - {{ row.annotationLastUpdated }} )
                             </span>
                         </clr-signpost-content>
@@ -2881,7 +2883,7 @@
                         Full screen
                     </button>
                     <button class="dropdown-item" *ngIf="row.widgetType=='Graph'
-                    || row.widgetType=='Table'"
+                        || row.widgetType=='Table'"
                         type="button"
                         clrDropdownItem
                         (click)="actionmenuWidgetDescription($event, i, row.id)"

@@ -651,7 +651,7 @@ export class AppComponent implements OnInit {
                                 if (dashboardIndex >= 0) {
                                     this.currentDashboardBackgroundColor = this.globalVariableService.dashboards[dashboardIndex].backgroundColor;
                                     let templateDashboardID: number = this.globalVariableService.dashboards[dashboardIndex].templateDashboardID; 
-                                    console.warn('xx templateDashboardID', templateDashboardID)
+                                    console.warn('xx templateDashboardID', templateDashboardID, 'D index =', dashboardIndex, this.globalVariableService.dashboards )
                                     if (templateDashboardID != null  &&  templateDashboardID > 0) {
                                         // Load Template
                                         this.templateWidgets = this.globalVariableService.widgets.filter(w => 
