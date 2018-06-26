@@ -58,12 +58,12 @@ export class CollaborateTasksComponent implements OnInit {
     datagridColumns: DatagridColumn[];
     datagridInput: DatagridInput = null;
     datagridData: any;
-    datagridPagination: boolean = false;
-    datagridPaginationSize: number = 10;
+    datagridPagination: boolean = true;
+    datagridPaginationSize: number = 3;
     datagridShowHeader: boolean = false;
     datagridShowRowActionMenu: boolean = false;
     datagridShowData: boolean = true;
-    datagridShowFooter: boolean = false;
+    datagridShowFooter: boolean = true;
     datagridRowHeight: number = 12;
     datagriduserCanChangeProperties: boolean = false;
     datagridShowTotalsRow: boolean = false;
@@ -80,7 +80,6 @@ export class CollaborateTasksComponent implements OnInit {
     userNames: string[] = [];
     users: CanvasUser[] = [];
     
-
     displayGantt: boolean = true;
 
     constructor(

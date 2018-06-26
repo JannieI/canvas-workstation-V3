@@ -102,7 +102,7 @@
                             <button clrTabLink>High Level</button>
                             <ng-template [(clrIfActive)]="dashboardActive">
                                 <clr-tab-content>
-                                    <clr-datagrid class="gridTable">
+                                    <clr-datagrid>
 
                                         <!-- Empty Message -->
                                         <clr-dg-placeholder>
@@ -143,7 +143,7 @@
                                             of {{pagination.totalItems}} records
                                             <clr-dg-pagination
                                                 #pagination
-                                                [clrDgPageSize]="5"
+                                                [clrDgPageSize]="4"
                                                 >
                                             </clr-dg-pagination>
                                         </clr-dg-footer>
@@ -156,7 +156,7 @@
                             <button clrTabLink>Detail</button>
                             <ng-template [(clrIfActive)]="cloudActive">
                                 <clr-tab-content>
-                                    <ca-datagrid class="gridTable"
+                                    <!-- <ca-datagrid
                                         [datagridColumns]="datagridColumns"
                                         [datagridData]="datagridData"
                                         [datagridPagination]="datagridPagination"
@@ -172,7 +172,43 @@
                                         [datagridCanEditInCell]="datagridCanEditInCell"
                                         [datagridCanExportData]="datagridCanExportData"
                                         >
-                                    </ca-datagrid>
+                                    </ca-datagrid> -->
+                                    <clr-datagrid>
+
+                                        <!-- Empty Message -->
+                                        <clr-dg-placeholder>
+                                            No Tasks created as yet
+                                        </clr-dg-placeholder>
+
+                                        <!-- Headers -->
+                                        <clr-dg-column *ngFor="let row of datagridColumns">
+                                            {{row}}
+                                        </clr-dg-column>
+                                        
+                                        <!-- Each Row -->
+                                        <clr-dg-row *clrDgItems="let row of datagridData;
+                                            let i = index"
+                                            [style.background-color]="(i == selectedRow)? '#123456' : 'white'"
+                                            [style.color]="(i == selectedRow)? 'white' : 'gray'"
+                                            (click)="clickRow(i, row.id)">
+                                            <clr-dg-cell >
+                                                {{ row }}
+                                            </clr-dg-cell>
+                                        </clr-dg-row>
+
+                                        <!-- Footer -->
+                                        <clr-dg-footer>
+                                            {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+                                            of {{pagination.totalItems}} records
+                                            <clr-dg-pagination
+                                                #pagination
+                                                [clrDgPageSize]="4"
+                                                >
+                                            </clr-dg-pagination>
+                                        </clr-dg-footer>
+                                    </clr-datagrid>
+
+
                                 </clr-tab-content>
                             </ng-template>
                         </clr-tab>
