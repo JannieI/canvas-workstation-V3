@@ -55,11 +55,6 @@ export class CollaborateTasksComponent implements OnInit {
     canvasTasks: CanvasTask[] = [];
     canvasTasksOrignal: CanvasTask[] = [];
     dashboardNames: string[] = [];
-    datagridShowHeader: boolean = false;
-    datagridShowRowActionMenu: boolean = false;
-    datagridShowData: boolean = true;
-    datagridShowFooter: boolean = true;
-    datagridRowHeight: number = 12;
     datagriduserCanChangeProperties: boolean = false;
     datagridShowTotalsRow: boolean = false;
     datagridShowTotalsCol: boolean = false;
