@@ -55,11 +55,6 @@ export class CollaborateTasksComponent implements OnInit {
     canvasTasks: CanvasTask[] = [];
     canvasTasksOrignal: CanvasTask[] = [];
     dashboardNames: string[] = [];
-    datagridColumns: DatagridColumn[];
-    datagridInput: DatagridInput = null;
-    datagridData: any;
-    datagridPagination: boolean = true;
-    datagridPaginationSize: number = 3;
     datagridShowHeader: boolean = false;
     datagridShowRowActionMenu: boolean = false;
     datagridShowData: boolean = true;
@@ -96,11 +91,6 @@ export class CollaborateTasksComponent implements OnInit {
             // Set the data for the grid
             this.canvasTasks = ca;
             this.canvasTasksOrignal = ca;
-            this.datagridData = ca;
-
-            // Set the column object
-            this.datagridColumns = this.globalVariableService.createDatagridColumns(
-                ca[0], this.datagridShowFields, this.datagridVisibleFields);
 
             // Get User list
             this.globalVariableService.getCanvasUsers().then(usr => {
