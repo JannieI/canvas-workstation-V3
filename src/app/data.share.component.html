@@ -18,6 +18,8 @@
                     <input type="text" id="formFields_7" placeholder="Group ID">
                     <input type="text" id="formFields_7" placeholder="CanView">
                     <input type="text" id="formFields_7" placeholder="CanEdit">
+                    <input type="text" id="formFields_7" placeholder="CanAdd">
+                    <input type="text" id="formFields_7" placeholder="CanDelete">
                     <button
                         type="button"
                         class="btn btn-secondary"
@@ -34,6 +36,8 @@
                     <clr-dg-column>Group ID</clr-dg-column>
                     <clr-dg-column>CanView</clr-dg-column>
                     <clr-dg-column>CanEdit</clr-dg-column>
+                    <clr-dg-column>CanAdd</clr-dg-column>
+                    <clr-dg-column>CanDelete</clr-dg-column>
 
                     <clr-dg-row *ngFor="let row of datasourcePermissions; let i = index">
                         <clr-dg-cell>
@@ -46,6 +50,8 @@
                         <clr-dg-cell>{{row.groupID}}</clr-dg-cell>
                         <clr-dg-cell>{{row.canView}}</clr-dg-cell>
                         <clr-dg-cell>{{row.canEdit}}</clr-dg-cell>
+                        <clr-dg-cell>{{row.CanAdd}}</clr-dg-cell>
+                        <clr-dg-cell>{{row.CanDelete}}</clr-dg-cell>
                     </clr-dg-row>
 
                 </clr-datagrid>
