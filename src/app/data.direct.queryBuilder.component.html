@@ -144,7 +144,7 @@
                                     *clrDgItems="let row of dataSchemas; let i = index"
                                     [style.background-color]="(i == selectedTableRowIndex)? '#123456' : 'white'"
                                     [style.color]="(i == selectedTableRowIndex)? 'white' : 'gray'"
-                                    (click)="clickSelectedDataTable(i)"
+                                    (click)="clickSelectedDataTable(i, row.nameDB)"
                                     >
                                     <clr-dg-cell>{{ row.tableName }}</clr-dg-cell>
                                     <clr-dg-cell>{{ row.tableDescription }}</clr-dg-cell>

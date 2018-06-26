@@ -136,7 +136,7 @@ export class DataDirectFileComponent implements OnInit {
         var inp: any = document.getElementById("get-files");
 
         // Access and handle the files
-        console.warn('xx inp.files.length', inp.files.length)
+        console.warn('xx inp.files.length', inp.files.length, inp.files[0])
         // for (var i = 0; i < inp.files.length; i++) {
         //     let file = inp.files[i];
         //     console.warn('xx file', this.theFile, file.name, file.type, file.size, file.lastModifiedDate, file.lastModifiedDate.toLocaleDateString()

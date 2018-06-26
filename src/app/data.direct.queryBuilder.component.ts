@@ -235,25 +235,28 @@ export class DataDirectQueryBuilderComponent implements OnInit {
 
     }
     
-    clickSelectedDataTable(index: number) {
+    clickSelectedDataTable(index: number, tableName: string) {
         // Clicked a Table
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectedDataTable', '@Start');
 
         // Reset selected Fields
         if (this.selectedTableRowIndex != index) {
+            console.warn('xx reset sel Flds')
             this.selectedFields = [];
+            this.showPreview = false;
         };
 
         // Set seletected index - used for highlighting row
         this.selectedTableRowIndex = index;
 
         // Select Fields in the table
-        this.filterFields(this.dataSchemas[this.selectedTableRowIndex].tableName);
+        // this.filterFields(this.dataSchemas[this.selectedTableRowIndex].tableName);
+        this.dataFieldsFiltered = this.dataSchemas.filter(datsch => {
+            if (datsch.tableName == tableName) {
+                return datsch;
+            };
+        })[0].tableFields;
 
-        // Refresh data if already Preview-ed before
-        if (this.showPreview) {
-            this.clickPreview();
-        };
     }
 
     clickSelectedDatafield(index: number, id: number) {
@@ -294,6 +297,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
 
         // No Fields, no data
         if (this.selectedFields.length == 0) {
+            this.showPreview = false;
             this.errorMessage = 'First Refresh, select a Table and then some fields...';
             return;
         };
