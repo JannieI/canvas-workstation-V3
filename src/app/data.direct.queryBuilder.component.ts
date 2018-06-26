@@ -293,6 +293,9 @@ export class DataDirectQueryBuilderComponent implements OnInit {
             return;
         };
 
+        // Remember table we started with
+        let localSelectedTableRowIndex = this.selectedTableRowIndex;
+
         // Set array for preview headings
         this.dataFieldsSelected = this.selectedFields.map(f => f.fieldName);
 
@@ -327,7 +330,11 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         //     }
         // }
         this.globalVariableService.getTributaryData(source).then(res => {
-            this.showPreview = true;
+            // Show if the user has not clicked another row - this result came back async
+            if ( localSelectedTableRowIndex == this.selectedTableRowIndex) {
+                this.showPreview = true;
+            };
+
         })
         .catch(err => {
             this.errorMessage = err.message + '. ';
