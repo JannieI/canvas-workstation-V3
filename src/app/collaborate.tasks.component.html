@@ -156,23 +156,6 @@
                             <button clrTabLink>Detail</button>
                             <ng-template [(clrIfActive)]="cloudActive">
                                 <clr-tab-content>
-                                    <!-- <ca-datagrid
-                                        [datagridColumns]="datagridColumns"
-                                        [datagridData]="datagridData"
-                                        [datagridPagination]="datagridPagination"
-                                        [datagridPaginationSize]="datagridPaginationSize"
-                                        [datagridShowHeader]="datagridShowHeader"
-                                        [datagridShowRowActionMenu]="datagridShowRowActionMenu"
-                                        [datagridShowData]="datagridShowData"
-                                        [datagridShowFooter]="datagridShowFooter"
-                                        [datagridRowHeight]="datagridRowHeight"
-                                        [datagriduserCanChangeProperties]="uatagriderCanChangeProperties"
-                                        [datagridShowTotalsRow]="datagridShowTotalsRow"
-                                        [datagridShowTotalsCol]="datagridShowTotalsCol"
-                                        [datagridCanEditInCell]="datagridCanEditInCell"
-                                        [datagridCanExportData]="datagridCanExportData"
-                                        >
-                                    </ca-datagrid> -->
                                     <clr-datagrid>
 
                                         <!-- Empty Message -->
@@ -181,20 +164,46 @@
                                         </clr-dg-placeholder>
 
                                         <!-- Headers -->
-                                        <clr-dg-column *ngFor="let row of datagridColumns">
-                                            {{row}}
-                                        </clr-dg-column>
+                                        <clr-dg-column>ID</clr-dg-column>
+                                        <clr-dg-column>TaskText</clr-dg-column>
+                                        <clr-dg-column>ActivityType</clr-dg-column>
+                                        <clr-dg-column>TaskStatus</clr-dg-column>
+                                        <clr-dg-column>AssignedToUserID</clr-dg-column>
+                                        <clr-dg-column>PrecedingTaskID</clr-dg-column>
+                                        <clr-dg-column>LinkedDashboardID</clr-dg-column>
+                                        <clr-dg-column>TaskComments</clr-dg-column>
+                                        <clr-dg-column>StartDate</clr-dg-column>
+                                        <clr-dg-column>DeadlineDate</clr-dg-column>
+                                        <clr-dg-column>EndDate</clr-dg-column>
+                                        <clr-dg-column>DurationDays</clr-dg-column>
+                                        <clr-dg-column>EditedBy</clr-dg-column>
+                                        <clr-dg-column>EditedOn</clr-dg-column>
+                                        <clr-dg-column>CreatedBy</clr-dg-column>
+                                        <clr-dg-column>CreatedOn}</clr-dg-column>
                                         
                                         <!-- Each Row -->
-                                        <clr-dg-row *clrDgItems="let row of datagridData;
+                                        <clr-dg-row *clrDgItems="let row of canvasTasks;
                                             let i = index"
                                             [style.background-color]="(i == selectedRow)? '#123456' : 'white'"
                                             [style.color]="(i == selectedRow)? 'white' : 'gray'"
-                                            (click)="clickRow(i, row.id)">
-                                            <clr-dg-cell >
-                                                {{ row }}
-                                            </clr-dg-cell>
-                                        </clr-dg-row>
+                                            >
+                                            <clr-dg-cell > {{ row }} </clr-dg-cell> {{ row.
+                                            </clr-dg-cell> {{ row.id }} </clr-dg-cell>
+                                            </clr-dg-cell> {{ row.taskText }} </clr-dg-cell>
+                                            </clr-dg-cell> {{ row.activityType }} </clr-dg-cell>
+                                            </clr-dg-cell> {{ row.taskStatus }} </clr-dg-cell>
+                                            </clr-dg-cell> {{ row.assignedToUserID }} </clr-dg-cell>
+                                            </clr-dg-cell> {{ row.precedingTaskID }} </clr-dg-cell>
+                                            </clr-dg-cell> {{ row.linkedDashboardID }} </clr-dg-cell>
+                                            </clr-dg-cell> {{ row.taskComments }} </clr-dg-cell>
+                                            </clr-dg-cell> {{ row.startDate }} </clr-dg-cell>
+                                            </clr-dg-cell> {{ row.deadlineDate }} </clr-dg-cell>
+                                            </clr-dg-cell> {{ row.endDate }} </clr-dg-cell>
+                                            </clr-dg-cell> {{ row.durationDays }} </clr-dg-cell>
+                                            </clr-dg-cell> {{ row.editedBy }} </clr-dg-cell>
+                                            </clr-dg-cell> {{ row.editedOn }} </clr-dg-cell>
+                                            </clr-dg-cell> {{ row.createdBy }} </clr-dg-cell>
+                                            </clr-dg-cell> {{ row.createdOn                                            {{row}} }} </clr-dg-cell>
 
                                         <!-- Footer -->
                                         <clr-dg-footer>
@@ -202,7 +211,7 @@
                                             of {{pagination.totalItems}} records
                                             <clr-dg-pagination
                                                 #pagination
-                                                [clrDgPageSize]="4"
+                                                [clrDgPageSize]="3"
                                                 >
                                             </clr-dg-pagination>
                                         </clr-dg-footer>
