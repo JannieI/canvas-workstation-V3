@@ -216,7 +216,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
                 this.clickSelectedDataTable(dsIndex, this.dataSchemas[this.selectedTableRowIndex].tableName);
             };
 
-            this.clickSelectedDatafield(0 ,1)
+            this.clickSelectedDatafield(0)
             console.warn('xx dsIndex, this.selectedDatasource', dsIndex, this.selectedFields,
             this.selectedDatasource)
 
@@ -249,7 +249,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
 
     }
 
-    clickSelectedDatafield(index: number, id: number) {
+    clickSelectedDatafield(index: number) {
         // Clicked a Field
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectedDatafield', '@Start');
 

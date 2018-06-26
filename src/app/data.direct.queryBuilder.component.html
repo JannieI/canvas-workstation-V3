@@ -165,7 +165,7 @@
                                     *clrDgItems="let row of dataFieldsFiltered; let i = index" [clrDgItem]="row"
                                     [style.background-color]="(i == selectedFieldRowIndex)? '#123456' : 'white'"
                                     [style.color]="(i == selectedFieldRowIndex)? 'white' : 'gray'"
-                                    (click)="clickSelectedDatafield(i, row.id)"
+                                    (click)="clickSelectedDatafield(i)"
                                     >
                                     <clr-dg-cell>{{ row.fieldName }}</clr-dg-cell>
     
