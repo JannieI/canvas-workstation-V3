@@ -148,7 +148,7 @@ export class DataDirectFileComponent implements OnInit {
         // Read file as Binary
 
         this.reader.onerror = this.errorHandler;
-        this.reader.onprogress = updateProgress;
+        this.reader.onprogress = this.updateProgress;
         // Closure to capture the file information.
         this.reader.onload = (function(theFile) {
             return function(e) {
@@ -207,7 +207,20 @@ export class DataDirectFileComponent implements OnInit {
           default:
             alert('An error occurred reading this file.');
         };
-      }
+    }
+    
+    updateProgress(evt) {
+        // evt is an ProgressEvent.
+        if (evt.lengthComputable) {
+            var percentLoaded = Math.round((evt.loaded / evt.total) * 100);
+            // Increase the progress bar length.
+            if (percentLoaded < 100) {
+                console.warn('xx % loaded', percentLoaded)
+                // progress.style.width = percentLoaded + '%';
+                // progress.textContent = percentLoaded + '%';
+            };
+        };
+    };
 
     clickDSPreview() {
         // Load the new DS in the ID section, and show in Preview area
