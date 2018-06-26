@@ -223,18 +223,6 @@ export class DataDirectQueryBuilderComponent implements OnInit {
 
     }
     
-    filterFields(tableName: string) {
-        // Filter Fields on Selected Connection
-        this.globalFunctionService.printToConsole(this.constructor.name,'filterFields', '@Start');
-
-        this.dataFieldsFiltered = this.dataSchemas.filter(datsch => {
-            if (datsch.tableName == tableName) {
-                return datsch;
-            };
-        })[0].tableFields;
-
-    }
-    
     clickSelectedDataTable(index: number, tableName: string) {
         // Clicked a Table
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectedDataTable', '@Start');
