@@ -102,7 +102,7 @@
                             <button clrTabLink>High Level</button>
                             <ng-template [(clrIfActive)]="dashboardActive">
                                 <clr-tab-content>
-                                    <clr-datagrid>
+                                    <clr-datagrid class="gridTable">
 
                                         <!-- Empty Message -->
                                         <clr-dg-placeholder>
@@ -133,7 +133,7 @@
                                                 {{ row.deadlineDate }}
                                             </clr-dg-cell>
                                             <clr-dg-cell >
-                                                {{ row.assignedToUserID }}
+                                                class="gridTable"      {{ row.assignedToUserID }}
                                             </clr-dg-cell>
                                         </clr-dg-row>
 
@@ -156,7 +156,7 @@
                             <button clrTabLink>Detail</button>
                             <ng-template [(clrIfActive)]="cloudActive">
                                 <clr-tab-content>
-                                    <ca-datagrid
+                                    <ca-datagrid class="gridTable"
                                         [datagridColumns]="datagridColumns"
                                         [datagridData]="datagridData"
                                         [datagridPagination]="datagridPagination"

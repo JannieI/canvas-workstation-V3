@@ -197,7 +197,8 @@ This document describes items for later versions of Canvas.
     - when open NEW and only 1 DS, then skip DS selection page?
     - when add NEW, ensure it is accessable: always same position top left + z-index = Max(rest)+1
     - How to show comparison between current and previous period ?
-    - Bug with IE: 'IE supports only grid-row-end with span. You should add grid: false option to Autoprefixer and use some JS grid polyfill for full spec support' - looks like no solution at    the moment
+    - Bug with IE: 'IE supports only grid-row-end with span. You should add grid: false option to Autoprefixer and use some JS grid polyfill for full spec support' - looks like no solution at the moment
+    - can switch DS for a W, provided used fields are the same (name and type): is this REALLY necessary and useful as it looks complicated and not important
     - Cross hair with showing values on axis - ie crypto trading websites!
     - Look at embeding widgets -> export Vega spec + embed line, user puts it in his html ...?
     - Serias work to be done - learning Vega and adding ALL features !!!
