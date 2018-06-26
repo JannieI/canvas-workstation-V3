@@ -48,6 +48,16 @@ export class DataEditDatasourceComponent implements OnInit {
             this.clickContinue();
             return;
         };
+        if (event.code == 'End'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
+            if (this.datasources.length == 0) {
+                return;
+            };
+            // Click on the last one
+            let dsIndex: number = this.datasources.length - 1;
+            let dsID: number = this.datasources[dsIndex].id;
+            this.clickSelectedDatasource(dsIndex, dsID);
+            return;
+        };
 
     }
 

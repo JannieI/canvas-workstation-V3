@@ -112,7 +112,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         fieldName: string;  // FieldName
         fieldType: string;  // FieldType
     }[] = [];
-    dataFieldsSelected: string[];
+    dataFieldsSelected: string[] = [];
     dataSchemas: DataSchema[] = [];
     dataTables: DataTable[] = [];
     errorMessage: string = "";
@@ -203,6 +203,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
                         fieldType: this.selectedDatasource.dataFieldTypes[i]
                     }
                 );
+                this.dataFieldsSelected.push(this.selectedDatasource.dataFields[i]);
             };
 
             // Click Table, which will filter Fields
@@ -215,6 +216,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
                 this.clickSelectedDataTable(dsIndex, this.dataSchemas[this.selectedTableRowIndex].tableName);
             };
 
+            this.clickSelectedDatafield(0 ,1)
             console.warn('xx dsIndex, this.selectedDatasource', dsIndex, this.selectedFields,
             this.selectedDatasource)
 
@@ -231,6 +233,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         if (this.selectedTableRowIndex != index) {
             console.warn('xx reset sel Flds')
             this.selectedFields = [];
+            this.dataFieldsSelected = [];
             this.showPreview = false;
         };
 
