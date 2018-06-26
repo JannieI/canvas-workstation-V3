@@ -221,6 +221,13 @@
         width: 100%;
     }
 
+    .gridHelpMessage {
+        color: rgb(194, 191, 191);
+        grid-column-start: 13;
+        grid-column-end: 21;
+        grid-row-start: 12;
+        grid-row-end: 13;
+    }
     .gridErrorMessage {
         color: red;
         grid-column-start: 13;

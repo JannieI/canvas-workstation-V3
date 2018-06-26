@@ -116,6 +116,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
     dataSchemas: DataSchema[] = [];
     dataTables: DataTable[] = [];
     errorMessage: string = "";
+    helpMessage: string = 'Enter detail, then click Refresh to show the Tables.  Select one, then select the fields to display. Click Preview to see a portion of the data.';
     selectedFieldRowIndex: number = 0;
     selectedFields: any[] = [];
     selectedTableRowIndex: number = -1;
@@ -297,6 +298,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
             this.errorMessage = 'First Refresh, select a Table and then some fields...';
             return;
         };
+        this.helpMessage = 'Getting the data ...';
 
         // Remember table we started with
         let localSelectedTableRowIndex = this.selectedTableRowIndex;
@@ -338,6 +340,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
             // Show if the user has not clicked another row - this result came back async
             if ( localSelectedTableRowIndex == this.selectedTableRowIndex) {
                 this.showPreview = true;
+                this.helpMessage = 'Enter detail, then click Refresh to show the Tables.  Select one, then select the fields to display. Click Preview to see a portion of the data.';
             };
 
         })
