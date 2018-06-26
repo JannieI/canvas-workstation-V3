@@ -60,6 +60,7 @@ export class DataDirectFileComponent implements OnInit {
     finalFields: any = [];
     selectedFile: boolean = true;
     currentDatasetName: string;
+    reader = new FileReader();
 
     theFile: any;
     existingDSName: string = '';
@@ -145,10 +146,11 @@ export class DataDirectFileComponent implements OnInit {
         console.warn('xx file', this.theFile, this.theFile.name, this.theFile.type, this.theFile.size, this.theFile.lastModifiedDate, this.theFile.lastModifiedDate.toLocaleDateString())
 
         // Read file as Binary
-        var reader = new FileReader();
 
+        this.reader.onerror = this.errorHandler;
+        this.reader.onprogress = updateProgress;
         // Closure to capture the file information.
-        reader.onload = (function(theFile) {
+        this.reader.onload = (function(theFile) {
             return function(e) {
                 console.warn('Done reading file')
                 let specification = {
@@ -184,9 +186,28 @@ export class DataDirectFileComponent implements OnInit {
         })(this.theFile);
   
         // Read in the image file as a data URL.
-        reader.readAsBinaryString(this.theFile);
+        this.reader.readAsBinaryString(this.theFile);
 
     }
+
+    abortRead() {
+        this.reader.abort();
+      }
+    
+     errorHandler(evt) {
+        switch(evt.target.error.code) {
+          case evt.target.error.NOT_FOUND_ERR:
+            alert('File Not Found!');
+            break;
+          case evt.target.error.NOT_READABLE_ERR:
+            alert('File is not readable');
+            break;
+          case evt.target.error.ABORT_ERR:
+            break; // noop
+          default:
+            alert('An error occurred reading this file.');
+        };
+      }
 
     clickDSPreview() {
         // Load the new DS in the ID section, and show in Preview area
