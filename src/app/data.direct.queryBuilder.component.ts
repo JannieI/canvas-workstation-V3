@@ -235,6 +235,8 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         // Clicked a Table
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectedDataTable', '@Start');
 
+        this.helpMessage = 'Select Fields, and click Preview to see a portion of the data.';
+        
         // Reset selected Fields
         if (this.selectedTableRowIndex != index) {
             console.warn('xx reset sel Flds')
@@ -300,7 +302,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         if (this.selectedFields.length == 0) {
             this.showPreview = false;
             this.helpMessage = '';
-            this.errorMessage = 'First Refresh, select a Table and then some fields...';
+            this.errorMessage = 'Make sure you have selected a Table and some fields.  If these are not showing, click Refresh.';
             return;
         };
         this.helpMessage = 'Getting the data ...';
