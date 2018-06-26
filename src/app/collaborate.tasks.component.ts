@@ -55,14 +55,6 @@ export class CollaborateTasksComponent implements OnInit {
     canvasTasks: CanvasTask[] = [];
     canvasTasksOrignal: CanvasTask[] = [];
     dashboardNames: string[] = [];
-    datagriduserCanChangeProperties: boolean = false;
-    datagridShowTotalsRow: boolean = false;
-    datagridShowTotalsCol: boolean = false;
-    datagridCanEditInCell: boolean = false;
-    datagridCanExportData: boolean = false;
-    datagridEmptyMessage: string = 'No Activities created so far';
-    datagridVisibleFields: string[];
-    datagridShowFields: string[];
     selectedDashboard: string = '';
     selectedStatus: string = '';
     selectedTaskText: string = '';
