@@ -212,7 +212,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
             if (dsIndex >= 0) {
                 this.showPreview = true;
                 this.selectedTableRowIndex = dsIndex;
-                this.clickSelectedDataTable(dsIndex);
+                this.clickSelectedDataTable(dsIndex, this.dataSchemas[this.selectedTableRowIndex].tableName);
             };
 
             console.warn('xx dsIndex, this.selectedDatasource', dsIndex, this.selectedFields,
@@ -238,7 +238,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
     clickSelectedDataTable(index: number, tableName: string) {
         // Clicked a Table
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectedDataTable', '@Start');
-
+console.warn('xx index', index, tableName)
         // Reset selected Fields
         if (this.selectedTableRowIndex != index) {
             console.warn('xx reset sel Flds')
