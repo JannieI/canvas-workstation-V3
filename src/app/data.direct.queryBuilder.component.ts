@@ -195,28 +195,29 @@ export class DataDirectQueryBuilderComponent implements OnInit {
                 };
             };
 
-            // Build the selected fields
-            for (let i = 0; i < this.selectedDatasource.dataFields.length; i++) {
-                this.selectedFields.push(
-                    {
-                        fieldName: this.selectedDatasource.dataFields[i],
-                        fieldType: this.selectedDatasource.dataFieldTypes[i]
-                    }
-                );
-                this.dataFieldsSelected.push(this.selectedDatasource.dataFields[i]);
-            };
 
             // Click Table, which will filter Fields
             let dsIndex: number = this.dataSchemas.findIndex(
                 dsch => dsch.tableName == this.selectedDatasource.dataTableName
             );
             if (dsIndex >= 0) {
-                this.showPreview = true;
+                // this.showPreview = true;
                 this.selectedTableRowIndex = dsIndex;
                 this.clickSelectedDataTable(dsIndex, this.dataSchemas[this.selectedTableRowIndex].tableName);
+
+                // Build the selected fields
+                for (let i = 0; i < this.selectedDatasource.dataFields.length; i++) {
+                    this.selectedFields.push(
+                        {
+                            fieldName: this.selectedDatasource.dataFields[i],
+                            fieldType: this.selectedDatasource.dataFieldTypes[i]
+                        }
+                    );
+                    this.dataFieldsSelected.push(this.selectedDatasource.dataFields[i]);
+                };
             };
 
-            this.clickSelectedDatafield(0)
+            // this.clickSelectedDatafield(1)
             console.warn('xx dsIndex, this.selectedDatasource', dsIndex, this.selectedFields,
             this.selectedDatasource)
 
@@ -224,7 +225,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         };
 
     }
-    
+   
     clickSelectedDataTable(index: number, tableName: string) {
         // Clicked a Table
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectedDataTable', '@Start');
@@ -252,6 +253,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
     clickSelectedDatafield(index: number) {
         // Clicked a Field
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectedDatafield', '@Start');
+        console.warn('xx start', this.selectedFields, this.dataFieldsSelected)
 
         // Set seletected index - used for highlighting row
         this.selectedFieldRowIndex = index;

@@ -720,7 +720,7 @@ export class AppComponent implements OnInit {
     }
 
     ngAfterViewInit() {
-        //
+        // ngAfterViewInit Life Cycle Hook
         this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewInit', '@Start');
     }
 
