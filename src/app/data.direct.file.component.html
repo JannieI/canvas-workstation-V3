@@ -140,7 +140,15 @@
                         </button>
                     </div>
 
-                    <span *ngIf="editingDS">Note: data will be reloaded.</span>
+                    <div class="errorMessage"
+                        >
+                        {{ errorMessage }}
+                    </div>
+                    <div class="gridEditMessage" *ngIf="editingDS">
+                        <i>
+                            Note: data will be reloaded when you click Save.
+                        </i>
+                    </div>
 
                     <div class="gridButtonTransformation">
                         <button
@@ -172,10 +180,6 @@
                             </clr-dg-footer>
 
                         </clr-datagrid>
-                    </div>
-                    <div class="errorMessage"
-                        >
-                        {{ errorMessage }}
                     </div>
                     <div class="gridButtonBrowse">
                         <input class="btn btn-primary" 
