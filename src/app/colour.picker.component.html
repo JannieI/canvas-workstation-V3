@@ -1,7 +1,22 @@
 <div class="colourpicker">
     <button type="button" class="closeButton" (click)="clickClose()">
-        X
+        <b>X</b>
     </button>
+    <clr-signpost>
+        <clr-icon shape="info-circle"
+            clrSignpostTrigger>
+        </clr-icon>
+            <clr-signpost-content *clrIfOpen
+            [clrPosition]="'bottom-middle'">
+            <h5 style="margin-top: 0; color:gray;">
+                Help
+            </h5>
+            <p style="margin-top: 0; color:gray;"> 
+                Select a color by clicking on it.  Click the X or press Escape to close the 
+                colour picker if you do not want to select a colour.
+            </p>
+        </clr-signpost-content>
+    </clr-signpost>
     <img
         width="236"
         src="../images/colormap.png"
