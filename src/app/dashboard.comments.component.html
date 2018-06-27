@@ -10,9 +10,25 @@
     
                     <div class="gridTitle">
                         <b>Comments:</b>
+                        <clr-signpost>
+                            <clr-icon shape="info-circle"
+                                clrSignpostTrigger>
+                            </clr-icon>
+                                <clr-signpost-content *clrIfOpen
+                                [clrPosition]="'bottom-middle'">
+                                <h5 style="margin-top: 0; color:gray;">
+                                    Help
+                                </h5>
+                                <p style="margin-top: 0; color:gray;"> 
+                                    This form Manage Comments for {{ headerText }}. To add a 
+                                    new comment: enter the description, and click Add.  Click on
+                                    the Edit Icon (left) of a selected row to edit the comment. 
+                                    Click the X or press Escape to close this form.
+                                </p>
+                            </clr-signpost-content>
+                        </clr-signpost>
                     </div>
                     <div class="gridSubTitle">
-                        <i>Manage Comments for {{ headerText }}</i>
                     </div>
 
                     <div class="newMessageHeader">
@@ -30,13 +46,13 @@
                             >
                             Cancel
                         </button>
-                        <button class="btn btn-secondary textLine" *ngIf="editLast"
+                        <button class="btn btn-primary textLine" *ngIf="editLast"
                             type="button"
                             (click)="clickSave()"
                             >
                             Save
                         </button>
-                        <button class="btn btn-secondary textLine" *ngIf="!editLast"
+                        <button class="btn btn-primary textLine" *ngIf="!editLast"
                             type="button"
                             (click)="clickAdd()"
                             >
