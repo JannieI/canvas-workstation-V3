@@ -8,12 +8,26 @@
                     </button>
     
                     <div class="gridTitle">
-                        <b>Add Task:</b>
+                        <b>Add a Canvas Task.</b>
+                        <clr-signpost>
+                            <clr-icon shape="info-circle"
+                                clrSignpostTrigger>
+                            </clr-icon>
+                                <clr-signpost-content *clrIfOpen
+                                [clrPosition]="'bottom-middle'">
+                                <h5 style="margin-top: 0; color:gray;">
+                                    Help
+                                </h5>
+                                <p style="margin-top: 0; color:gray;"> 
+                                    Add a task (todo item) to Canvas.  This may be assigned to 
+                                    another Canvas User.  The type, status and description are 
+                                    compulsory.  The rest of the fields are optional. Click the X 
+                                    or press Escape to close this form.
+                                </p>
+                            </clr-signpost-content>
+                        </clr-signpost>
                     </div>
                     <div class="gridSubTitle">
-                        <i>
-                            Add a Task.  This may be assigned to another Canvas User.
-                        </i>
                     </div>
 
                     <div class="gridActivityTypeTitle">
@@ -119,10 +133,10 @@
                             >
                     </div>
 
-                    <div class="gridDuarationDaysTitle">
-                        <b>Duaration:</b>
+                    <div class="gridDurationDaysTitle">
+                        <b>Duration:</b>
                     </div>
-                    <div class="gridDuarationDays">
+                    <div class="gridDurationDays">
                         <input [(ngModel)]="selectedDurationDays"
                             type="text"
                             title="Duration in days"
