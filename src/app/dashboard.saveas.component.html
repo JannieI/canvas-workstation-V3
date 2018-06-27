@@ -2,17 +2,33 @@
     <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
         <div class="modal-content modalContent">
 
-            <button type="button" class="closeButton" (click)="clickClose()">
-                X
-            </button>
-
             <div class="gridOverall">
+                <button type="button" class="closeButton" (click)="clickClose()">
+                    <b>X</b>
+                </button>
                 <div class="gridTitle">
-                    <b>Save As:</b>
+                    <b>Make a copy of the current Dashboard under a new name.</b>
+                    <clr-signpost>
+                        <clr-icon shape="info-circle"
+                            clrSignpostTrigger>
+                        </clr-icon>
+                            <clr-signpost-content *clrIfOpen
+                            [clrPosition]="'bottom-middle'">
+                            <h5 style="margin-top: 0; color:gray;">
+                                Help
+                            </h5>
+                            <p style="margin-top: 0; color:gray;"> 
+                                The current Dashboard will be saved as, under a new name.  
+                                This will make a copy of the Dashboard, while keeping the 
+                                current Dashboard unchanged, and still open.  Click the X 
+                                or press Escape to close this form.
+                            </p>
+                        </clr-signpost-content>
+                    </clr-signpost>
                 </div>
                 <div class="gridSubTitle">
                     <i>
-                        Make a copy of the current Dashboard under a new name.
+                        
                     </i>
                 </div>
             
@@ -40,7 +56,7 @@
                 <div class="gridButtonCancel">
                     <button
                         type="button"
-                        class="btn btn-primary"
+                        class="btn btn-secondary"
                         (click)="clickClose()"
                         >
                         Cancel
