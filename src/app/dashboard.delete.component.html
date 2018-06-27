@@ -10,13 +10,27 @@
                 <div class="gridTitle">
                     <b>Delete the current Dashboard: </b> {{ dashboard.name }} 
                     ({{ dashboard.state }})
+                    <clr-signpost>
+                        <clr-icon shape="info-circle"
+                            clrSignpostTrigger>
+                        </clr-icon>
+                            <clr-signpost-content *clrIfOpen
+                            [clrPosition]="'bottom-middle'">
+                            <h5 style="margin-top: 0; color:gray;">
+                                Help
+                            </h5>
+                            <p style="margin-top: 0; color:gray;"> 
+                                The current Dashboard is linked to the entities below, ALL of 
+                                which will be deleted when this Dashboard is deleted.  A 
+                                deleted Dashboard can be restored via the <i>Open Dashboard</i>
+                                menu option.  Click the X, click the Cancel button or press 
+                                Escape to close this form (nothing will be deleted in this case).
+                            </p>
+                        </clr-signpost-content>
+                    </clr-signpost>
+
                 </div>
                 <div class="gridSubTitle">
-                    <i>
-                        This Dashboard is linked to the entities below, ALL of which will be 
-                        deleted when this Dashboard is deleted.  A deleted Dashboard can be 
-                        restored via the <i>Open Dashboard</i> menu option:
-                    </i>
                 </div>
 
                 <div class="gridTabs"
@@ -125,7 +139,7 @@
                 <div class="gridButtonSave">
                     <button
                         type="button"
-                        class="btn btn-primary"
+                        class="btn btn-danger"
                         (click)="clickDelete()"
                         >
                         Delete
