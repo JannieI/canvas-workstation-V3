@@ -10,11 +10,26 @@
 
                 <div class="gridTitle">
                     <b>Audit Trail:</b>
+                    <clr-signpost>
+                        <clr-icon shape="info-circle"
+                            clrSignpostTrigger>
+                        </clr-icon>
+                            <clr-signpost-content *clrIfOpen
+                            [clrPosition]="'bottom-middle'">
+                            <h5 style="margin-top: 0; color:gray;">
+                                Help
+                            </h5>
+                            <p style="margin-top: 0; color:gray;"> 
+                                This form shows an Audit trail of all actions created by users.
+                                An action is stored when a user makes a changes to a Dashboard
+                                or to a Widget.  Actions are kept until pruned by the 
+                                administrator.  Click the X or press Escape to close this form.
+                            </p>
+                        </clr-signpost-content>
+                    </clr-signpost>
+
                 </div>
                 <div class="gridSubTitle">
-                    <i>
-                        Audit trail of all actions created by users.
-                    </i>
                 </div>                        
        
                 <div class="gridTable">
