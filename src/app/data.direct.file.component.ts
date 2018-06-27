@@ -30,6 +30,7 @@ import { load } from 'datalib';
 })
 export class DataDirectFileComponent implements OnInit {
 
+    @Input() editingDS: boolean;
     @Input() selectedDatasource: Datasource;
 
     @Output() formDataDirectFileClosed: EventEmitter<Datasource> = new EventEmitter();

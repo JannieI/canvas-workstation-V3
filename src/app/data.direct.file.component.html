@@ -8,7 +8,9 @@
                     </button>
                     <div class="gridTitle">
                         <b>
-                            Create a new Datasource from a File.
+                            <span *ngIf="!editingDS">Create a new </span>
+                            <span *ngIf="editingDS">Edit an existing </span>
+                            Datasource from a File.
                         </b>
                         <clr-signpost>
                             <clr-icon shape="info-circle"
@@ -133,17 +135,22 @@
                             class="btn btn-primary"
                             (click)="clickAdd('Saved')"
                             >
-                            Add
+                            <span *ngIf="!editingDS">Add</span>
+                            <span *ngIf="editingDS">Save</span>
                         </button>
                     </div>
-        
+
+                    <span *ngIf="editingDS">Note: data will be reloaded.</span>
+
                     <div class="gridButtonTransformation">
                         <button
                             type="button"
                             class="btn btn-link"
                             (click)="clickAdd('Transformation')"
                             >
-                            Add and open Transformations
+                            <span *ngIf="!editingDS">Add</span>
+                            <span *ngIf="editingDS">Save</span>
+                            and open Transformations
                         </button>
                     </div>
                     
