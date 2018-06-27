@@ -117,7 +117,9 @@ export class DataDirectFileComponent implements OnInit {
                 businessGlossary: '',
                 dataDictionary: ''
             };
-        }
+        } else {
+            this.fileName = this.selectedDatasource.fileName;
+        };
 
         // Load from global variables
         this.currentDatasources = this.globalVariableService.currentDatasources.slice();
@@ -161,7 +163,7 @@ export class DataDirectFileComponent implements OnInit {
                         headers: 4,
                         skip_rows: [0, 1, 2, 3, 4]
                     }
-                }
+                };
                 let token = JSON.parse(localStorage.getItem('eazl-token'));
                 let options = {
                     method: "POST", 
@@ -265,7 +267,7 @@ export class DataDirectFileComponent implements OnInit {
                 } else {
                     // Callback
                     this.fileLoadedCallback(fileSuffix, currentData);
-                }
+                };
             });
         };
         if (fileSuffix == 'csv') {
@@ -276,7 +278,7 @@ export class DataDirectFileComponent implements OnInit {
                 } else {
                     // Callback
                     this.fileLoadedCallback(fileSuffix, currentData);
-                }
+                };
             });
         };
 
@@ -474,7 +476,7 @@ export class DataDirectFileComponent implements OnInit {
             this.currentDatasetName = this.fileName;
         } else {
             this.currentDatasetName = this.existingDSName;
-        }
+        };
         this.existingDSName = '';
 
         // Add to all DS (DB, global), for later use
