@@ -21,6 +21,7 @@ import { Datasource }                 from './models';
 // Vega
 import * as dl from 'datalib';
 import { load } from 'datalib';
+import { NgSwitch } from '@angular/common';
 
 
 @Component({
@@ -47,7 +48,7 @@ export class DataDirectFileComponent implements OnInit {
         };
 
     }
-
+    
     datasources: Datasource[];
     currentDatasources: Datasource[] = [];
     currentData: any = [];
@@ -471,7 +472,7 @@ export class DataDirectFileComponent implements OnInit {
             dataDictionary: ''
 
         };
-
+        
         // General var with name - used in *ngIF, etc
         if (this.existingDSName == '') {
             this.currentDatasetName = this.fileName;
