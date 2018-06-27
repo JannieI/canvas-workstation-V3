@@ -156,6 +156,7 @@ export class DataDirectFileComponent implements OnInit {
         this.reader.onload = (function(theFile) {
             return function(e) {
                 console.warn('Done reading file')
+                this.fileName = this.theFile;
                 let specification = {
                     source: {
                         connector: "tributary.connectors.spreadsheet:XlsxConnector",
@@ -195,9 +196,9 @@ export class DataDirectFileComponent implements OnInit {
 
     abortRead() {
         this.reader.abort();
-      }
+    }
     
-     errorHandler(evt) {
+    errorHandler(evt) {
         switch(evt.target.error.code) {
           case evt.target.error.NOT_FOUND_ERR:
             alert('File Not Found!');
@@ -450,7 +451,7 @@ export class DataDirectFileComponent implements OnInit {
             dataFieldLengths: this.dataFieldLengths,
             parameters: 'None',
             folder: '',
-            fileName: '',
+            fileName: this.fileName,
             excelWorksheet: '',
             transposeOnLoad: false,
             startLineNr: 1,
