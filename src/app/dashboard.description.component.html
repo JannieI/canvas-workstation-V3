@@ -18,11 +18,24 @@
         
                     <div class="gridTitle">
                         <b>Dashboard Description</b>
+                        <clr-signpost>
+                            <clr-icon shape="info-circle"
+                                clrSignpostTrigger>
+                            </clr-icon>
+                                <clr-signpost-content *clrIfOpen
+                                [clrPosition]="'bottom-middle'">
+                                <h5 style="margin-top: 0; color:gray;">
+                                    Help
+                                </h5>
+                                <p style="margin-top: 0; color:gray;"> 
+                                    This form shows descriptive detail for the current Dashboard.
+                                    Hover over fields to display field level help.  Click the X 
+                                    or press Escape to close this form.
+                                </p>
+                            </clr-signpost-content>
+                        </clr-signpost>
                     </div>
                     <div class="gridSubTitle">
-                        <i>
-                            Descriptive detail for the current Dashboard.
-                        </i>
                     </div>
 
                     <div class="gridName">

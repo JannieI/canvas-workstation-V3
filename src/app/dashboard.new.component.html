@@ -2,27 +2,39 @@
     <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
         <div class="modal-content modalContent">
 
-            <button type="button" class="closeButton" (click)="clickClose()">
-                X
-            </button>
-                <div class="gridOverall">
-
+            <div class="gridOverall">
+                <button type="button" class="closeButton" (click)="clickClose()">
+                    <b>X</b>
+                </button>
+    
                 <div class="gridTitle">
                     <b>New Dashboard</b>
+                    <clr-signpost>
+                        <clr-icon shape="info-circle"
+                            clrSignpostTrigger>
+                        </clr-icon>
+                            <clr-signpost-content *clrIfOpen
+                            [clrPosition]="'bottom-middle'">
+                            <h5 style="margin-top: 0; color:gray;">
+                                Help
+                            </h5>
+                            <p style="margin-top: 0; color:gray;"> 
+                                The existing open Dashboard will be closed (all changes will be saved
+                                automatically) and a new Dashboard will be opened.  It has one Tab
+                                called Tab1 (shown in the Statusbar at the bottom of the screen).  A Tab can be renamed
+                                by clicking on its name.  More Tabs can be added using the
+                                <clr-icon shape="plus"></clr-icon> in the Statusbar. You can add 
+                                Dashboard properties (ie. Description) under the Dashboard -> 
+                                Details menu option.  After creation, the new Dashboard is only 
+                                visible and editable by yourself.  Other users or groups
+                                have to be granted Permissions, using the Dashboard -> Share menu 
+                                option. 
+                            </p>
+                        </clr-signpost-content>
+                    </clr-signpost>
                 </div>
 
                 <div class="gridSubTitle">
-                    <i>
-                        Note: The existing open Dashboard will be closed (all changes will be saved
-                        automatically) and a new Dashboard will be opened.  It has one Tab
-                        called Tab1 (shown in the Statusbar at the bottom of the screen).  A Tab can be renamed
-                        by clicking on its name.  More Tabs can be added using the
-                        <clr-icon shape="plus"></clr-icon> at
-                        the buttom of the screen.  You can add Dashboard properties (Description, Theme,
-                        Schedule, Favourite, etc) under the File -> Details menu option.  After creation,
-                        the new Dashboard is only visible and editable by yourself.  Other users or groups
-                        have to be granted Permissions, using the File -> Permissions menu option.
-                    </i>
                 </div>
 
                 <div class="gridAddCodeTitle">
