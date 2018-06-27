@@ -6,12 +6,24 @@
                     <b>X</b>
                 </button>
                 <div class="gridTitle">
-                    <b>Data Quality</b>
+                    <b>Data Quality Issues for {{ headerText }}</b>
+                    <clr-signpost>
+                        <clr-icon shape="info-circle"
+                            clrSignpostTrigger>
+                        </clr-icon>
+                            <clr-signpost-content *clrIfOpen
+                            [clrPosition]="'bottom-middle'">
+                            <h5 style="margin-top: 0; color:gray;">
+                                Help
+                            </h5>
+                            <p style="margin-top: 0; color:gray;"> 
+                                This form shows all the related Data Quality Issues raised.  
+                                Click the X or press Escape to close this form.
+                            </p>
+                        </clr-signpost-content>
+                    </clr-signpost>
                 </div>
                 <div class="gridSubTitle">
-                    <i>
-                        All Data Quality Issues raised for {{ headerText }}.
-                    </i>
                 </div>
                 <div class="gridTable">
                     <ca-datagrid 

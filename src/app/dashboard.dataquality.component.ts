@@ -77,7 +77,7 @@ export class DashboardDataQualityComponent implements OnInit {
         // Display the source, and set the array of DSids
         let dsArray: number[] = [];
         if (this.selectedDatasourceID == -1) {
-            this.headerText = 'this Dashboard';
+            this.headerText = 'the current Dashboard';
             this.globalVariableService.currentDatasources.forEach(ds =>
                 dsArray.push(ds.id)
             );
