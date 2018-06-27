@@ -6,7 +6,26 @@
         </button>
 
         <div class="gridTitle">
-            <b>Send Message: </b>
+            <b>Send a Message to another Canvas User.</b>
+            <clr-signpost>
+                <clr-icon shape="info-circle"
+                    clrSignpostTrigger>
+                </clr-icon>
+                    <clr-signpost-content *clrIfOpen
+                    [clrPosition]="'bottom-middle'">
+                    <h5 style="margin-top: 0; color:gray;">
+                        Help
+                    </h5>
+                    <p style="margin-top: 0; color:gray;"> 
+                        Address the message to a user or a group.  The Subject and Body are 
+                        compulsory.  One can optionally link the current Dashboard to a 
+                        message (allowing the recipient to open it with one click when reading
+                        the message).  New messages are indicated on the user icon in the top
+                        right hand corner of the top menu bar.  Click the X or press Escape 
+                        to close this form.
+                    </p>
+                </clr-signpost-content>
+            </clr-signpost>
         </div>
         <div class="gridSubTitle">
             <i>
