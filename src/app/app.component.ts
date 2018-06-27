@@ -1971,26 +1971,26 @@ export class AppComponent implements OnInit {
 
                     } else {
                         console.warn ('xx COPY !!', localDashboard)
-                        // this.globalVariableService.copyDashboard(
-                        //     localDashboard.id, null, 'Draft'
-                        // ).then(res => {
-                        //     console.warn('xx res', res)
-                        //     this.globalVariableService.refreshCurrentDashboard(
-                        //         'app-clickMenuEditMode', res.id, -1, ''
-                        //     );
+                        this.globalVariableService.copyDashboard(
+                            localDashboard.id, null, 'Draft'
+                        ).then(res => {
+                            console.warn('xx res', res)
+                            this.globalVariableService.refreshCurrentDashboard(
+                                'app-clickMenuEditMode', res.id, -1, ''
+                            );
 
-                        //     let today = new Date();
-                        //     let snapshotName: string = this.globalVariableService.dashboards[
-                        //         dashboardIndex].name + ' ' 
-                        //         + this.globalVariableService.formatDate(today);
-                        //     this.globalVariableService.newDashboardSnapshot(
-                        //         snapshotName, 'Starting Edit Mode','StartEditMode'
-                        //     );
+                            let today = new Date();
+                            let snapshotName: string = this.globalVariableService.dashboards[
+                                dashboardIndex].name + ' ' 
+                                + this.globalVariableService.formatDate(today);
+                            this.globalVariableService.newDashboardSnapshot(
+                                snapshotName, 'Starting Edit Mode','StartEditMode'
+                            );
 
-                        //     // Toggle mode
-                        //     this.globalVariableService.editMode.next(!this.editMode);
+                            // Toggle mode
+                            this.globalVariableService.editMode.next(!this.editMode);
 
-                        // });
+                        });
                     };
                 } else {
                     this.globalVariableService.editMode.next(true);
