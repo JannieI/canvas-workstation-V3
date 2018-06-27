@@ -2916,6 +2916,7 @@
         [style.top.px]="row.containerTop"
         [style.width.px]="row.containerWidth"
         [style.z-index]="10"
+        [style.opacity]="row.state=='Draft'? 0.5 : 1"
         (click)="clickTemplateWidget()"
         >
 

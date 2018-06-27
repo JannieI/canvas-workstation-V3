@@ -4038,16 +4038,16 @@ export class GlobalVariableService {
                             if (data[i].templateDashboardID != 0  &&
                                 data[i].templateDashboardID != null) {
                                 arrTemplateIDs.push(data[i].templateDashboardID)
-                            }
-                        }
+                            };
+                        };
                         let returnData: Dashboard[] = [];
                         if (arrTemplateIDs.length > 0) {
                             for (var i = 0; i < data.length; i++) {
                                 if (arrTemplateIDs.indexOf(data[i].id) != -1) {
                                     returnData.push(data[i]);
-                                }
-                            }
-                        }
+                                };
+                            };
+                        };
                         console.log('%c    Global-Variables getDashboardTemplates 1',
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", returnData)
                         resolve(returnData);
@@ -4060,16 +4060,16 @@ export class GlobalVariableService {
                     if (this.dashboards[i].templateDashboardID != 0  &&
                         this.dashboards[i].templateDashboardID != null) {
                         arrTemplateIDs.push(this.dashboards[i].templateDashboardID)
-                    }
-                }
+                    };
+                };
                 let returnData: Dashboard[] = [];
                 if (arrTemplateIDs.length > 0) {
                     for (var i = 0; i < this.dashboards.length; i++) {
                         if (arrTemplateIDs.indexOf(this.dashboards[i].id) != -1) {
                             returnData.push(this.dashboards[i]);
-                        }
-                    }
-                }
+                        };
+                    };
+                };
                 console.log('%c    Global-Variables getDashboardTemplates 2',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", returnData)
                 resolve(returnData);
