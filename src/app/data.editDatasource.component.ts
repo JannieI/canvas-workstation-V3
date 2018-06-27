@@ -63,7 +63,7 @@ export class DataEditDatasourceComponent implements OnInit {
 
     datasources: Datasource[];
     errorMessage: string = "";
-    selectedRowIndex: number = 0;
+    selectedRowIndex: number = null;
     selectedDatasource: Datasource;
 
 

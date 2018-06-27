@@ -31,11 +31,13 @@
                                     [style.background-color]="(i == selectedRowIndex)? '#123456' : 'white'"
                                     [style.color]="(i == selectedRowIndex)? 'white' : 'gray'"
                                     (click)="clickSelectedDatasource(i, row.id)"
+                                    (dblclick)="clickContinue()"
                                     > 
                                     <clr-dg-cell>
                                         <clr-icon shape="filter-grid"
                                             size="24"
-                                            (click)="clickTransformation(i, row.id)">
+                                            (click)="clickTransformation(i, row.id)"
+                                            >
                                         </clr-icon>
                                     </clr-dg-cell>
                                     <clr-dg-cell>{{ row.nrWidgets }}</clr-dg-cell>
