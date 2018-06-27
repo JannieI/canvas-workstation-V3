@@ -90,7 +90,7 @@
 
     .gridErrorMessage {
         color: red;
-        grid-column-start: 7;
+        grid-column-start: 9;
         grid-column-end: 14;
         grid-row-start: 5;
         grid-row-end: 6;

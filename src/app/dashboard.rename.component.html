@@ -2,20 +2,33 @@
     <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
         <div class="modal-content modalContent">
             <form #f="ngForm" role="form" novalidate>
-
-                <button type="button" class="closeButton" (click)="clickClose()">
-                    X
-                </button>
-
                 <div class="gridOverall">
-
+                    <button type="button" class="closeButton" (click)="clickClose()">
+                        <b>X</b>
+                    </button>
+    
                     <div class="gridTitle">
                         <b>Rename Dashboard:</b>
+                        <clr-signpost>
+                            <clr-icon shape="info-circle"
+                                clrSignpostTrigger>
+                            </clr-icon>
+                                <clr-signpost-content *clrIfOpen
+                                [clrPosition]="'bottom-middle'">
+                                <h5 style="margin-top: 0; color:gray;">
+                                    Help
+                                </h5>
+                                <p style="margin-top: 0; color:gray;"> 
+                                    Enter filters, and then click Search to show the 
+                                    corresponding Dashboards in the grid below.  Click the
+                                    Rename icon (left column) to rename.  Click the Clear button
+                                    to remove any previous filter text (and then click Search to
+                                    apply).  Click the X or press Escape to close this form.
+                                </p>
+                            </clr-signpost-content>
+                        </clr-signpost>
                     </div>
                     <div class="gridSubTitle">
-                        <i>Enter filters, and then click Search
-                            to show the corresponding Dashboards in the grid below.  Click the
-                            Rename icon to rename.</i>
                     </div>
 
                     <div class="gridName">
