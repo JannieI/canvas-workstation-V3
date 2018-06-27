@@ -9,8 +9,14 @@
                     <div class="gridTitle">
                         <b>
                             <span *ngIf="!editingDS">Create a new </span>
-                            <span *ngIf="editingDS">Edit an existing </span>
-                            Datasource from a File.
+                            <span *ngIf="editingDS">Edit </span>
+                            Datasource 
+                            <span *ngIf="editingDS"
+                                style="color:gray"
+                                >
+                                {{ selectedDatasource.name }} 
+                            </span>
+                            obtained from File.
                         </b>
                         <clr-signpost>
                             <clr-icon shape="info-circle"
