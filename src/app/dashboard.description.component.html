@@ -3,11 +3,10 @@
         <div class="modal-content modalContent">
             <form #f="ngForm" role="form" novalidate>
 
-                <button type="button" class="closeButton" (click)="clickClose()">
-                    X
-                </button>
-
                 <div class="gridOverall">
+                    <button type="button" class="closeButton" (click)="clickClose()">
+                        <b>X</b>
+                    </button>
 
                     <div class="colourpicker" *ngIf="colourPickerClosed">
                         <colour-picker
