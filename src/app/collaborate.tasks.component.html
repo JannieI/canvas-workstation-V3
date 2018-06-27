@@ -9,11 +9,24 @@
 
                 <div class="gridTitle">
                     <b>Tasks:</b>
+                    <clr-signpost>
+                        <clr-icon shape="info-circle"
+                            clrSignpostTrigger>
+                        </clr-icon>
+                            <clr-signpost-content *clrIfOpen
+                            [clrPosition]="'bottom-middle'">
+                            <h5 style="margin-top: 0; color:gray;">
+                                Help
+                            </h5>
+                            <p style="margin-top: 0; color:gray;"> 
+                                This form shows a list of tasks (activities) created by users. 
+                                The top of the form provides various optional filters.  
+                                Click the X or press Escape to close this form.
+                            </p>
+                        </clr-signpost-content>
+                    </clr-signpost>
                 </div>
                 <div class="gridSubTitle">
-                    <i>
-                        A list of tasks (activities) created by users.
-                    </i>
                 </div>
 
                 <div class="gridAssignedToUserTitle">
