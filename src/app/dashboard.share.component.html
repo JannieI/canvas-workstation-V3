@@ -2,11 +2,10 @@
     <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
         <div class="modal-content modalContent">
 
-            <button type="button" class="closeButton" (click)="clickClose()">
-                X
-            </button>
-
             <div class="gridOverall">
+                <button type="button" class="closeButton" (click)="clickClose()">
+                    <b>X</b>
+                </button>
                 <div class="gridTitle">
                     <b>Share Dashboard</b>
                     <clr-signpost>
@@ -47,7 +46,7 @@
                 <div class="gridCurrentButton">
                     <button
                         type="button"
-                        class="btn btn-secondary"
+                        class="btn btn-primary"
                         (click)="clickSave()"
                         >
                         Save and Close
