@@ -3,23 +3,30 @@
         <div class="modal-content modalContent">
             <form #f="ngForm" role="form" novalidate>
 
-                <button type="button" class="closeButton" (click)="clickClose()">
-                    X
-                </button>
-
                 <div class="gridOverall">
+                    <button type="button" class="closeButton" (click)="clickClose()">
+                        <b>X</b>
+                    </button>
                     <div class="gridTitle">
                         <b>Dashboard Snapshots</b>
+                        <clr-signpost>
+                            <clr-icon shape="info-circle"
+                                clrSignpostTrigger>
+                            </clr-icon>
+                                <clr-signpost-content *clrIfOpen
+                                [clrPosition]="'bottom-middle'">
+                                <h5 style="margin-top: 0; color:gray;">
+                                    Help
+                                </h5>
+                                <p style="margin-top: 0; color:gray;"> 
+                                        Snapshots can be saved by the user for the current Dashboard, 
+                                        and are bookmarks to which one can roll back at any stage, if necessary.  
+                                        Click the X or press Escape to close this form.
+                                </p>
+                            </clr-signpost-content>
+                        </clr-signpost>
                     </div>
                     <div class="gridSubTitle">
-                        <i>
-                            Snapshots are saved by the user for the current Dashboard, and are 
-                            bookmarks to which one can roll back at any stage, if necessary.
-                        </i>
-                    </div>
-
-                    <div class="gridSaveTitle">
-                        Save a Snapshot of the current Dashboard:
                     </div>
 
                     <div class="gridSaveName">
