@@ -8,14 +8,28 @@
 
                 <div class="gridOverall">
                     <div class="gridTitle">
-                        Dashboard Schedules: {{ dashboardName }} ( {{ dashboardState }})
+                        <b>
+                            Dashboard Schedules: {{ dashboardName }} ( {{ dashboardState }})
+                        </b>
+                        <clr-signpost>
+                            <clr-icon shape="info-circle"
+                                clrSignpostTrigger>
+                            </clr-icon>
+                                <clr-signpost-content *clrIfOpen
+                                [clrPosition]="'bottom-middle'">
+                                <h5 style="margin-top: 0; color:gray;">
+                                    Help
+                                </h5>
+                                <p style="margin-top: 0; color:gray;"> 
+                                    Each schedule will be executed on the given date and time, and a
+                                    message with the Dashboard attached will be send to the relevant
+                                    user(s).  The data in the Dashboard will also be refreshed.  
+                                    Click the X or press Escape to close this form.
+                                </p>
+                            </clr-signpost-content>
+                        </clr-signpost>
                     </div>
                     <div class="gridSubTitle">
-                        <i>
-                            Each schedule will be executed on the given date and time, and a
-                            message with the Dashboard attached will be send to the relevant
-                            user(s).  The data in the Dashboard will also be refreshed.
-                        </i>
                     </div>
 
                     <div class="gridRepeatFrequencyTitle">

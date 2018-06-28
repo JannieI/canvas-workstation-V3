@@ -39,7 +39,7 @@
     .gridSchedules {
         grid-column-start: 1;
         grid-column-end: 41;
-        grid-row-start: 3;
+        grid-row-start: 2;
         grid-row-end: 19;
         margin: 2px 2px 2px 2px;
         text-align: left;
