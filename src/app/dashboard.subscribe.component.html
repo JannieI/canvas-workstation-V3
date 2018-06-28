@@ -21,8 +21,11 @@
                             <p style="margin-top: 0; color:gray;"> 
                                 You will be notified via a CanvasMessage or via email if the 
                                 specified event takes place on a Dashboard.  The subscription 
-                                events are toggle switched - double click in the required cell 
-                                to toggle the values. Changes are saved automaticaly.  Click the X or press Escape to close this form.
+                                events are toggle switched - Double click in the required cell 
+                                to toggle the values. Changes are saved automaticaly.  
+                                Double click the Unsubscribe icon to remove a subscription (the 
+                                Dashboard itself is not removed). 
+                                Click the X or press Escape to close this form.
                             </p>
                         </clr-signpost-content>
                     </clr-signpost>
@@ -77,7 +80,7 @@
                                 <clr-icon 
                                     shape="trash" 
                                     size="12"
-                                    (click)="clickUnSubscribe(row.id)"
+                                    (dblclick)="dblclickUnSubscribe(row.id)"
                                     >
                                 </clr-icon>
                             </clr-dg-cell>

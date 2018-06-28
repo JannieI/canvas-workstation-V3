@@ -309,9 +309,9 @@ export class DashboardSubscribeComponent implements OnInit {
         };
     }
 
-    clickUnSubscribe(id: number){
+    dblclickUnSubscribe(id: number){
         // Deletes a Subscription
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickUnSubscribe', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'dblclickUnSubscribe', '@Start');
 
         // Delete globally and in DB
         // TODO - Proper error handling

@@ -3,12 +3,11 @@
 		<div class="modal-content modalContent">
             <form #f="ngForm" role="form" novalidate>
 
-                <button type="button" class="closeButton" (click)="clickClose()">
-                    X
-                </button>
-    
                 <div class="gridOverall">
-
+                    <button type="button" class="closeButton" (click)="clickClose()">
+                        <b>X</b>
+                    </button>
+            
                     <div class="colourpicker" *ngIf="colourPickerClosed">
                         <colour-picker
                             [callingRoutine]="callingRoutine"
@@ -19,9 +18,24 @@
 
                     <div class="titleHeader">
                         <b>Dashboard Tab:</b>
+                        <clr-signpost>
+                            <clr-icon shape="info-circle"
+                                clrSignpostTrigger>
+                            </clr-icon>
+                                <clr-signpost-content *clrIfOpen
+                                [clrPosition]="'bottom-middle'">
+                                <h5 style="margin-top: 0; color:gray;">
+                                    Help
+                                </h5>
+                                <p style="margin-top: 0; color:gray;"> 
+                                    Set properties of the current Dashboard Tab.  
+                                    Click the X or press Escape to close this form.
+                                </p>
+                            </clr-signpost-content>
+                    </clr-signpost>
+        
                     </div>
                     <div class="titleSubHeader">
-                        <i>Set properties of the current Dashboard Tab.</i>
                     </div>
 
                     <div class="gridName">
