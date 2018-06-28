@@ -4,10 +4,10 @@
             <form #f="ngForm" role="form" novalidate>
 
                 <div class="gridOverall">
+                    <button type="button" class="closeButton" (click)="clickClose()">
+                        <b>X</b>
+                    </button>
                     <div class="gridTitle">
-                        <button type="button" class="closeButton" (click)="clickClose()">
-                            <b>X</b>
-                        </button>
                         <b>NoSQL Editor</b>
                         <clr-signpost>
                             <clr-icon shape="info-circle"
