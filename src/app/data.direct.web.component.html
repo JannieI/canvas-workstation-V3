@@ -1,128 +1,138 @@
 <div class="modal modalBox">
-        <div class="modal-dialog modal-md" role="dialog" aria-hidden="true">
-            <div class="modal-content">
-                <form #f="ngForm" role="form" novalidate>
-    
+    <div class="modal-dialog modal-md" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <form #f="ngForm" role="form" novalidate>
+
+                <div class="gridOverall">
                     <button type="button" class="closeButton" (click)="clickClose()">
-                        X
+                        <b>X</b>
                     </button>
-                    <div class="gridOverall">
-                        <div class="gridTitle">
-                            Web:
-                        </div>
-                        <div class="gridSubTitle">
-                            <i>
-                                Obtain data from a web page.  
-                            </i>
-                        </div>
-
-                        <div class="gridUrlTitle">
-                            <b>Url:</b>
-                        </div>
-                        <div class="gridUrl">
-                            <input [(ngModel)]="url"
-                                type="text"
-                                name="url"
-                                size="40"
-                                title="Url (address) of the data to be read"
-                                >
-                        </div>
-        
-                        <div class="gridButtonGet">
-                            <button
-                                type="button"
-                                class="btn btn-link"
-                                (click)="clickHttpGet()"
-                                >
-                                Get
-                            </button>
-                        </div>
-    
-                        <div class="gridElementTitle">
-                            <b>Element:</b>
-                        </div>
-                        <div class="gridElement">
-                            <input [(ngModel)]="element"
-                                type="text"
-                                name="element"
-                                title="Optional Element ID on the url"
-                                >
-                        </div>
-
-                        <div class="gridErrorMessage">
-                            {{ errorMessage }}
-                        </div>
-    
-                        <div class="gridDatasourceNameTitle">
-                            <b>Name:</b>
-                        </div>
-                        <div class="gridDatasourceName">
-                            <input [(ngModel)]="newName"
-                                type="text"
-                                name="newName"
-                                title="Name of the new Datasource"
-                                >
-                        </div>
-    
-                        <div class="gridDatasourceDescriptionTitle">
-                            <b>Description:</b>
-                        </div>
-                        <div class="gridDatasourceDescription">
-                            <input [(ngModel)]="newDescription"
-                                type="text"
-                                name="newDescription"
-                                description="description"
-                                size="45"
-                                title="Description of the new Datasource"
-                                >
-                        </div>
-        
-                        <div class="gridPreviewData" *ngIf="showPreview">
-                            <clr-datagrid>
-    
-                                <clr-dg-column *ngFor="let row of dataFieldsSelected"
-                                    >
-                                    {{ row }}
-                                </clr-dg-column>
-                                
-                                <clr-dg-row *clrDgItems="let row of currentData">
-    
-                                    <clr-dg-cell *ngFor="let col of dataFieldsSelected; let i = index">
-                                            {{ row[col] }}
-                                    </clr-dg-cell>
-                                </clr-dg-row>
-    
-                                <clr-dg-footer>
-                                    {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
-                                    of {{pagination.totalItems}} rows
-                                    <clr-dg-pagination #pagination [clrDgPageSize]="8"></clr-dg-pagination>
-                                </clr-dg-footer>
-    
-                            </clr-datagrid>
-                        </div>
-
-                        <div class="gridButtonCancel">
-                            <button
-                                type="button"
-                                class="btn btn-secondary"
-                                (click)="clickClose()"
-                                >
-                                Cancel
-                            </button>
-                        </div>
-    
-                        <div class="gridButtonSave">
-                            <button
-                                type="button"
-                                class="btn btn-primary"
-                                (click)="clickSave()"
-                                >
-                                Save
-                            </button>
-                        </div>    
+                    <div class="gridTitle">
+                        <b>Create / Edit a Datasource from a web page</b>
+                        <clr-signpost>
+                            <clr-icon shape="info-circle"
+                                clrSignpostTrigger>
+                            </clr-icon>
+                                <clr-signpost-content *clrIfOpen
+                                [clrPosition]="'bottom-middle'">
+                                <h5 style="margin-top: 0; color:gray;">
+                                    Help
+                                </h5>
+                                <p style="margin-top: 0; color:gray;"> 
+                                    Obtain data from a web page.  Click the X or press Escape to close this form.
+                                </p>
+                            </clr-signpost-content>
+                        </clr-signpost>
                     </div>
-                </form>
-            </div>
+                    <div class="gridSubTitle">
+                    </div>
+
+                    <div class="gridUrlTitle">
+                        <b>Url:</b>
+                    </div>
+                    <div class="gridUrl">
+                        <input [(ngModel)]="url"
+                            type="text"
+                            name="url"
+                            size="40"
+                            title="Url (address) of the data to be read"
+                            >
+                    </div>
+    
+                    <div class="gridButtonGet">
+                        <button
+                            type="button"
+                            class="btn btn-link"
+                            (click)="clickHttpGet()"
+                            >
+                            Get
+                        </button>
+                    </div>
+
+                    <div class="gridElementTitle">
+                        <b>Element:</b>
+                    </div>
+                    <div class="gridElement">
+                        <input [(ngModel)]="element"
+                            type="text"
+                            name="element"
+                            title="Optional Element ID on the url"
+                            >
+                    </div>
+
+                    <div class="gridErrorMessage">
+                        {{ errorMessage }}
+                    </div>
+
+                    <div class="gridDatasourceNameTitle">
+                        <b>Name:</b>
+                    </div>
+                    <div class="gridDatasourceName">
+                        <input [(ngModel)]="newName"
+                            type="text"
+                            name="newName"
+                            title="Name of the new Datasource"
+                            >
+                    </div>
+
+                    <div class="gridDatasourceDescriptionTitle">
+                        <b>Description:</b>
+                    </div>
+                    <div class="gridDatasourceDescription">
+                        <input [(ngModel)]="newDescription"
+                            type="text"
+                            name="newDescription"
+                            description="description"
+                            size="45"
+                            title="Description of the new Datasource"
+                            >
+                    </div>
+    
+                    <div class="gridPreviewData" *ngIf="showPreview">
+                        <clr-datagrid>
+
+                            <clr-dg-column *ngFor="let row of dataFieldsSelected"
+                                >
+                                {{ row }}
+                            </clr-dg-column>
+                            
+                            <clr-dg-row *clrDgItems="let row of currentData">
+
+                                <clr-dg-cell *ngFor="let col of dataFieldsSelected; let i = index">
+                                        {{ row[col] }}
+                                </clr-dg-cell>
+                            </clr-dg-row>
+
+                            <clr-dg-footer>
+                                {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+                                of {{pagination.totalItems}} rows
+                                <clr-dg-pagination #pagination [clrDgPageSize]="8"></clr-dg-pagination>
+                            </clr-dg-footer>
+
+                        </clr-datagrid>
+                    </div>
+
+                    <div class="gridButtonCancel">
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            (click)="clickClose()"
+                            >
+                            Cancel
+                        </button>
+                    </div>
+
+                    <div class="gridButtonSave">
+                        <button
+                            type="button"
+                            class="btn btn-primary"
+                            (click)="clickSave()"
+                            >
+                            Save
+                        </button>
+                    </div>    
+                </div>
+            </form>
         </div>
     </div>
-    
+</div>
