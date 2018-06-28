@@ -1,76 +1,93 @@
 <div class="modal modalBox">
-        <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
-            <div class="modal-content">
-                <div modalContent>
+    <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div modalContent>
+
+                <div class="gridOverall">
                     <button type="button" class="closeButton" (click)="clickClose()">
-                        X
+                        <b>X</b>
                     </button>
-                    <div class="gridOverall">
-                        <div class="gridTitle">
-                            Export Datasource:
-                        </div>
-                        <div class="gridSubTitle">
-                            Enter filename to which the selected Datasource must be exported.
-                        </div>
-    
-                        <div class="gridFileNameTitle">
-                            Filename:
-                        </div>
-                        <div class="gridFileName">
-                            <input type="text" [(ngModel)]="fileName"
-                                placeholder="stocks.csv"
-                                class="selectFile"
-                                >
-                        </div>
-
-                        <div class="gridErrorMessage">
-                            {{ errorMessage }}
-                        </div>
-
-                        <div class="gridButtonCancel">
-                            <button
-                                type="button"
-                                class="btn btn-secondary selectButton"
-                                (click)="clickClose()"
-                                >
-                                Cancel
-                            </button>
-                        </div>
-
-                        <div class="gridButtonExport">
-                            <button
-                                type="button"
-                                class="btn btn-primary selectButton"
-                                (click)="clickExport()"
-                                >
-                                Export
-                            </button>
-                        </div>
-                              
-                        <div class="gridDatasources">
-                            <clr-datagrid> 
-                                <clr-dg-placeholder>
-                                    No records ...
-                                </clr-dg-placeholder>
-                                <clr-dg-column [clrDgField]="">Name</clr-dg-column>
-                                <clr-dg-column [clrDgField]="">Description</clr-dg-column>
-    
-                                <clr-dg-row
-                                    *ngFor="let row of datasources; let i = index"
-                                    [style.background-color]="(i == selectedRowIndex)? '#123456' : 'white'"
-                                    [style.color]="(i == selectedRowIndex)? 'white' : 'gray'"
-                                    (click)="clickSelectedDatasource(i, row.id)"
-                                    > 
-                                    <clr-dg-cell>{{ row.name }}</clr-dg-cell>
-                                    <clr-dg-cell>{{ row.description }}</clr-dg-cell>
-                                    
-                                </clr-dg-row>
-                            </clr-datagrid>
-                        </div>
-    
+                    <div class="gridTitle">
+                        <b>Export a Datasource</b>
+                        <clr-signpost>
+                            <clr-icon shape="info-circle"
+                                clrSignpostTrigger>
+                            </clr-icon>
+                                <clr-signpost-content *clrIfOpen
+                                [clrPosition]="'bottom-middle'">
+                                <h5 style="margin-top: 0; color:gray;">
+                                    Help
+                                </h5>
+                                <p style="margin-top: 0; color:gray;"> 
+                                    Enter a local filename to which the selected Datasource will be 
+                                    exported.  This text file can be imported again.
+                                    Click the X or press Escape to close this form.
+                                </p>
+                            </clr-signpost-content>
+                        </clr-signpost>
+        
                     </div>
+                    <div class="gridSubTitle">
+                    </div>
+
+                    <div class="gridFileNameTitle">
+                        Filename:
+                    </div>
+                    <div class="gridFileName">
+                        <input type="text" [(ngModel)]="fileName"
+                            placeholder="stocks.csv"
+                            class="selectFile"
+                            >
+                    </div>
+
+                    <div class="gridErrorMessage">
+                        {{ errorMessage }}
+                    </div>
+
+                    <div class="gridButtonCancel">
+                        <button
+                            type="button"
+                            class="btn btn-secondary selectButton"
+                            (click)="clickClose()"
+                            >
+                            Cancel
+                        </button>
+                    </div>
+
+                    <div class="gridButtonExport">
+                        <button
+                            type="button"
+                            class="btn btn-primary selectButton"
+                            (click)="clickExport()"
+                            >
+                            Export
+                        </button>
+                    </div>
+                            
+                    <div class="gridDatasources">
+                        <clr-datagrid> 
+                            <clr-dg-placeholder>
+                                No records ...
+                            </clr-dg-placeholder>
+                            <clr-dg-column [clrDgField]="">Name</clr-dg-column>
+                            <clr-dg-column [clrDgField]="">Description</clr-dg-column>
+
+                            <clr-dg-row
+                                *ngFor="let row of datasources; let i = index"
+                                [style.background-color]="(i == selectedRowIndex)? '#123456' : 'white'"
+                                [style.color]="(i == selectedRowIndex)? 'white' : 'gray'"
+                                (click)="clickSelectedDatasource(i, row.id)"
+                                > 
+                                <clr-dg-cell>{{ row.name }}</clr-dg-cell>
+                                <clr-dg-cell>{{ row.description }}</clr-dg-cell>
+                                
+                            </clr-dg-row>
+                        </clr-datagrid>
+                    </div>
+
                 </div>
             </div>
         </div>
     </div>
-        
+</div>
+    
