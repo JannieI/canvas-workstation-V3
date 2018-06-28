@@ -57,7 +57,7 @@
         margin: 20px 2px 2px 2px;
         text-align: left;
     }    
-    .gridSaveButton {
+    .gridAddButton {
         grid-column-start: 12;
         grid-column-end: 14;
         grid-row-start: 2;
@@ -69,15 +69,15 @@
     .gridPreviousTitle {
         grid-column-start: 1;
         grid-column-end: 15;
-        grid-row-start: 6;
-        grid-row-end: 7;
+        grid-row-start: 5;
+        grid-row-end: 6;
         margin: 20px 2px 2px 2px;
         text-align: left;
     }
     .gridPrevious {
         grid-column-start: 1;
         grid-column-end: 15;
-        grid-row-start: 6;
+        grid-row-start: 4;
         grid-row-end: 15;
         margin: 20px 2px 2px 2px;
         text-align: left;

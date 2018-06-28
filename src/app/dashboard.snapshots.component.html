@@ -21,6 +21,9 @@
                                 <p style="margin-top: 0; color:gray;"> 
                                         Snapshots can be saved by the user for the current Dashboard, 
                                         and are bookmarks to which one can roll back at any stage, if necessary.  
+                                        Double Click the roll back icon in a row to replace the content 
+                                        of the current Dashboard with that one.  Note that all current 
+                                        changes will be lost.
                                         Click the X or press Escape to close this form.
                                 </p>
                             </clr-signpost-content>
@@ -51,13 +54,13 @@
                             placeholder="Comment"
                         >
                     </div>
-                    <div class="gridSaveButton">
+                    <div class="gridAddButton">
                         <button
                             type="button"
                             class="btn btn-primary"
-                            (click)="clickSave()"
+                            (click)="clickAdd()"
                             >
-                            Save
+                            Add
                         </button>
                     </div>
 

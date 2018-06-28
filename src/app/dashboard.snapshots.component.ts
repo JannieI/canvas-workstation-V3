@@ -46,7 +46,7 @@ export class DashboardSnapshotsComponent implements OnInit {
             &&
             (!event.shiftKey)
            ) {
-            this.clickSave();
+            this.clickAdd();
             return;
         };
 
@@ -103,9 +103,9 @@ export class DashboardSnapshotsComponent implements OnInit {
         });
     }
 
-    clickSave() {
-        // Save the snapshot
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
+    clickAdd() {
+        // Add a new snapshot
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
 
         this.globalVariableService.newDashboardSnapshot(
             this.snapshotName, this.snapshotComment,'UserDefined').then(res => {
