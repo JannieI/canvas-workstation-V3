@@ -2,19 +2,32 @@
     <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div modalContent>
-                <button type="button" class="closeButton" (click)="clickClose()">
-                    X
-                </button>
+
                 <div class="gridOverall">
+                    <button type="button" class="closeButton" (click)="clickClose()">
+                        <b>X</b>
+                    </button>
                     <div class="gridTitle">
-                        Manage Datasources 
+                        <b>Overview of Datasources</b>
+                        <clr-signpost>
+                            <clr-icon shape="info-circle"
+                                clrSignpostTrigger>
+                            </clr-icon>
+                                <clr-signpost-content *clrIfOpen
+                                [clrPosition]="'bottom-middle'">
+                                <h5 style="margin-top: 0; color:gray;">
+                                    Help
+                                </h5>
+                                <p style="margin-top: 0; color:gray;"> 
+                                    This form shows an overview of a selected Datasource.
+                                    Select a row, and then click on the different tabs to 
+                                    show different perspectives.  
+                                    Click the X or press Escape to close this form.
+                                </p>
+                            </clr-signpost-content>
+                        </clr-signpost>
                     </div> 
                     <div class="gridSubTitle">
-                        <i>
-                            Add Datasources to the current Dashboard by checking them, or Remove
-                            by unchecking.  Removal is only possible if no Widget is linked 
-                            to it.
-                        </i>
                     </div>
              
                     <div class="gridDatasources">
