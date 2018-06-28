@@ -2,22 +2,40 @@
     <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div modalContent>
-                <button type="button" class="closeButton" (click)="clickClose()">
-                    X
-                </button>
+
                 <div class="gridOverall">
+                    <button type="button" class="closeButton" (click)="clickClose()">
+                        <b>X</b>
+                    </button>
                     <div class="gridTitle">
-                        Delete Datasources 
-                    </div> 
+                        <b>Delete Datasources</b>
+                        <clr-signpost>
+                            <clr-icon shape="info-circle"
+                                clrSignpostTrigger>
+                            </clr-icon>
+                                <clr-signpost-content *clrIfOpen
+                                [clrPosition]="'bottom-middle'">
+                                <h5 style="margin-top: 0; color:gray;">
+                                    Help
+                                </h5>
+                                <p style="margin-top: 0; color:gray;">
+                                    Double Click the X to delete.  A Datasources linked to Widgets cannot
+                                    be deleted.  See the Data -> Usage menu option where it is used.  
+                                    Click the X or press Escape to close this form.
+                                </p>
+                            </clr-signpost-content>
+                        </clr-signpost>
+
+                    </div>
                     <div class="gridSubTitle">
                         <i>
                             Double Click the X to delete.  A Datasources linked to Widgets cannot
                             be deleted.  See Usage menu option where it is used.
                         </i>
                     </div>
-            
+
                     <div class="gridDatasources">
-                        <clr-datagrid> 
+                        <clr-datagrid>
                             <clr-dg-placeholder>
                                 No records ...
                             </clr-dg-placeholder>
@@ -31,7 +49,7 @@
                                 [style.background-color]="(i == selectedRowIndex)? '#123456' : 'white'"
                                 [style.color]="(i == selectedRowIndex)? 'white' : 'gray'"
                                 (click)="clickSelectedDatasource(i, row.id)"
-                                > 
+                                >
                                 <clr-dg-cell>
                                     <clr-icon *ngIf="row.nrWidgets==0"
                                         shape="times"
@@ -44,11 +62,11 @@
                                 <clr-dg-cell>{{ row.nrWidgets }}</clr-dg-cell>
                                 <clr-dg-cell>{{ row.name }}</clr-dg-cell>
                                 <clr-dg-cell>{{ row.description }}</clr-dg-cell>
-                                
+
                             </clr-dg-row>
                         </clr-datagrid>
                     </div>
-                    
+
                 </div>
             </div>
         </div>
