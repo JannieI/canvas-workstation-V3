@@ -1,77 +1,91 @@
 <div class="modal modalBox">
-        <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
-            <div class="modal-content">
-                <div modalContent>
-                    <button type="button" class="closeButton" (click)="clickClose()">
-                        X
-                    </button>
-                    <div class="gridOverall">
-                        <div class="gridTitle">
-                            Edit Datasources 
-                        </div> 
-                        <div class="gridSubTitle">
-                            <i>
-                                Select a Datasources to edit.
-                            </i>
-                        </div>
-                
-                        <div class="gridDatasources">
-                            <clr-datagrid> 
-                                <clr-dg-placeholder>
-                                    No records ...
-                                </clr-dg-placeholder>
-                                <clr-dg-column>Transform</clr-dg-column>
-                                <clr-dg-column [clrDgField]="nrWidgets">#Widgets</clr-dg-column>
-                                <clr-dg-column [clrDgField]="name">Name</clr-dg-column>
-                                <clr-dg-column [clrDgField]="createMethod">Method</clr-dg-column>
-                                <clr-dg-column [clrDgField]="description">Description</clr-dg-column>
-    
-                                <clr-dg-row
-                                    *ngFor="let row of datasources; let i = index"
-                                    [style.background-color]="(i == selectedRowIndex)? '#123456' : 'white'"
-                                    [style.color]="(i == selectedRowIndex)? 'white' : 'gray'"
-                                    (click)="clickSelectedDatasource(i, row.id)"
-                                    (dblclick)="clickContinue()"
-                                    > 
-                                    <clr-dg-cell>
-                                        <clr-icon shape="filter-grid"
-                                            size="24"
-                                            (click)="clickTransformation(i, row.id)"
-                                            >
-                                        </clr-icon>
-                                    </clr-dg-cell>
-                                    <clr-dg-cell>{{ row.nrWidgets }}</clr-dg-cell>
-                                    <clr-dg-cell>{{ row.name }}</clr-dg-cell>
-                                    <clr-dg-cell>{{ row.createMethod }}</clr-dg-cell>
-                                    <clr-dg-cell>{{ row.description }}</clr-dg-cell>
-                                    
-                                </clr-dg-row>
-                            </clr-datagrid>
-                        </div>
+    <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div modalContent>
 
-                        <div class="gridButtonCancel">
-                                <button
-                                type="button"
-                                class="btn btn-secondary"
-                                (click)="clickClose()"
-                                >
-                                Cancel
-                            </button>
-                        </div>
-    
-                        <div class="gridButtonContinue">
-                            <button
-                                type="button"
-                                class="btn btn-primary"
-                                (click)="clickContinue()"
-                                >
-                                Continue
-                            </button>
-                        </div>
-                        
+                <div class="gridOverall">
+                    <button type="button" class="closeButton" (click)="clickClose()">
+                        <b>X</b>
+                    </button>
+                    <div class="gridTitle">
+                        <b></b>Edit Datasources</b>
+                        <clr-signpost>
+                            <clr-icon shape="info-circle"
+                                clrSignpostTrigger>
+                            </clr-icon>
+                                <clr-signpost-content *clrIfOpen
+                                [clrPosition]="'bottom-middle'">
+                                <h5 style="margin-top: 0; color:gray;">
+                                    Help
+                                </h5>
+                                <p style="margin-top: 0; color:gray;"> 
+                                    Select a Datasources to edit, and click Continue.  
+                                    Click the transform icon (left in row) to open the 
+                                    transformations for the selected Datasource.
+                                    Click the X or press Escape to close this form.
+                                </p>
+                            </clr-signpost-content>
+                        </clr-signpost>
                     </div>
+                    <div class="gridSubTitle">
+                    </div>
+
+                    <div class="gridDatasources">
+                        <clr-datagrid>
+                            <clr-dg-placeholder>
+                                No records ...
+                            </clr-dg-placeholder>
+                            <clr-dg-column>Transform</clr-dg-column>
+                            <clr-dg-column [clrDgField]="nrWidgets">#Widgets</clr-dg-column>
+                            <clr-dg-column [clrDgField]="name">Name</clr-dg-column>
+                            <clr-dg-column [clrDgField]="createMethod">Method</clr-dg-column>
+                            <clr-dg-column [clrDgField]="description">Description</clr-dg-column>
+
+                            <clr-dg-row
+                                *ngFor="let row of datasources; let i = index"
+                                [style.background-color]="(i == selectedRowIndex)? '#123456' : 'white'"
+                                [style.color]="(i == selectedRowIndex)? 'white' : 'gray'"
+                                (click)="clickSelectedDatasource(i, row.id)"
+                                (dblclick)="clickContinue()"
+                                >
+                                <clr-dg-cell>
+                                    <clr-icon shape="filter-grid"
+                                        size="24"
+                                        (click)="clickTransformation(i, row.id)"
+                                        >
+                                    </clr-icon>
+                                </clr-dg-cell>
+                                <clr-dg-cell>{{ row.nrWidgets }}</clr-dg-cell>
+                                <clr-dg-cell>{{ row.name }}</clr-dg-cell>
+                                <clr-dg-cell>{{ row.createMethod }}</clr-dg-cell>
+                                <clr-dg-cell>{{ row.description }}</clr-dg-cell>
+
+                            </clr-dg-row>
+                        </clr-datagrid>
+                    </div>
+
+                    <div class="gridButtonCancel">
+                            <button
+                            type="button"
+                            class="btn btn-secondary"
+                            (click)="clickClose()"
+                            >
+                            Cancel
+                        </button>
+                    </div>
+
+                    <div class="gridButtonContinue">
+                        <button
+                            type="button"
+                            class="btn btn-primary"
+                            (click)="clickContinue()"
+                            >
+                            Continue
+                        </button>
+                    </div>
+
                 </div>
             </div>
         </div>
     </div>
-    
+</div>
