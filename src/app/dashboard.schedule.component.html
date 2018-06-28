@@ -2,20 +2,35 @@
     <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
         <div class="modal-content modalContent">
 
-            <button type="button" class="closeButton" (click)="clickClose()">
-                X
-            </button>
-    
             <div class="gridOverall">
+                <button type="button" class="closeButton" (click)="clickClose()">
+                    <b>X</b>
+                </button>
+
                 <div class="gridTitle">
                     Dashboard Schedules
+                    <clr-signpost>
+                        <clr-icon shape="info-circle"
+                            clrSignpostTrigger>
+                        </clr-icon>
+                            <clr-signpost-content *clrIfOpen
+                            [clrPosition]="'bottom-middle'">
+                            <h5 style="margin-top: 0; color:gray;">
+                                Help
+                            </h5>
+                            <p style="margin-top: 0; color:gray;"> 
+                                This form shows a list of all Schedules in the system.  Each schedule will be
+                                executed on the specified date and time: the Dashboard will be prepared,
+                                and a message with the Dashboard attached will be send to the relevant 
+                                user(s).  The data contained in the Dashboard will also be refreshed.  
+                                Click the X or press Escape to close this form.
+                            </p>
+                        </clr-signpost-content>
+                    </clr-signpost>
                 </div>
                 <div class="gridSubTitle">
                     <i>
-                        Shows a list of all Schedules in the system.  Each schedule will be
-                        executed on the specified date and time: the Dashboard will be prepared,
-                        and a message with the Dashboard attached will be send to the relevant 
-                        user(s).  The data contained in the Dashboard will also be refreshed.
+                        
                     </i>
                 </div>
 
