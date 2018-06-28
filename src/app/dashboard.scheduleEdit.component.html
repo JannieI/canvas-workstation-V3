@@ -9,7 +9,7 @@
                 <div class="gridOverall">
                     <div class="gridTitle">
                         <b>
-                            Dashboard Schedules: {{ dashboardName }} ( {{ dashboardState }})
+                            Dashboard Schedules: {{ dashboardName }} ({{ dashboardState }})
                         </b>
                         <clr-signpost>
                             <clr-icon shape="info-circle"
@@ -25,8 +25,8 @@
                                     message with the Dashboard attached will be send to the relevant
                                     user(s).  The data in the Dashboard will also be refreshed. 
                                     Select a row and click Edit to amend, else click Add.  A schedule
-                                    is deleted by clicking the X inside the selected row. 
-                                    Click the X or press Escape to close this form.
+                                    is deleted by Double clicking the X inside the selected row. 
+                                    Click the top X or press Escape to close this form.
                                 </p>
                             </clr-signpost-content>
                         </clr-signpost>
@@ -465,7 +465,7 @@
 
                     <div class="gridSchedules">
 
-                        <clr-datagrid [(clrDgSingleSelected)]="selectedDashboardSchedule" [clDgRowSelection]="true">
+                        <clr-datagrid>
                             <clr-dg-column>Delete</clr-dg-column>
                             <clr-dg-column>ID</clr-dg-column>
                             <clr-dg-column>Name</clr-dg-column>

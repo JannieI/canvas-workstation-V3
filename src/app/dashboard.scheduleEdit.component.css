@@ -354,8 +354,8 @@
     }
 
     .gridYearlySeptemberTitle {
-        grid-column-start: 5;
-        grid-column-end: 6;
+        grid-column-start: 7;
+        grid-column-end: 8;
         grid-row-start: 5;
         grid-row-end: 6;
         margin: 2px 2px 2px 2px;
@@ -441,16 +441,16 @@
     .gridStartsOnTitle {
         grid-column-start: 1;
         grid-column-end: 3;
-        grid-row-start: 8;
-        grid-row-end: 9;
+        grid-row-start: 6;
+        grid-row-end: 7;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
     .gridStartsOn {
         grid-column-start: 3;
         grid-column-end: 9;
-        grid-row-start: 8;
-        grid-row-end: 9;
+        grid-row-start: 6;
+        grid-row-end: 7;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
@@ -458,16 +458,16 @@
     .gridNeverEndsTitle {
         grid-column-start: 10;
         grid-column-end: 13;
-        grid-row-start: 8;
-        grid-row-end: 9;
+        grid-row-start: 6;
+        grid-row-end: 7;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
     .gridNeverEnds {
         grid-column-start: 13;
         grid-column-end: 19;
-        grid-row-start: 8;
-        grid-row-end: 9;
+        grid-row-start: 6;
+        grid-row-end: 7;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
@@ -475,16 +475,16 @@
     .gridEndsAfterTitle {
         grid-column-start: 1;
         grid-column-end: 3;
-        grid-row-start: 10;
-        grid-row-end: 11;
+        grid-row-start: 8;
+        grid-row-end: 9;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
     .gridEndsAfter {
         grid-column-start: 3;
         grid-column-end: 9;
-        grid-row-start: 10;
-        grid-row-end: 11;
+        grid-row-start: 8;
+        grid-row-end: 9;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
@@ -492,16 +492,16 @@
     .gridEndsOnTitle {
         grid-column-start: 10;
         grid-column-end: 13;
-        grid-row-start: 10;
-        grid-row-end: 11;
+        grid-row-start: 8;
+        grid-row-end: 9;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
     .gridEndsOn {
         grid-column-start: 13;
         grid-column-end: 19;
-        grid-row-start: 10;
-        grid-row-end: 11;
+        grid-row-start: 8;
+        grid-row-end: 9;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
@@ -509,16 +509,16 @@
     .gridScheduleNameTitle {
         grid-column-start: 1;
         grid-column-end: 3;
-        grid-row-start: 12;
-        grid-row-end: 13;
+        grid-row-start: 10;
+        grid-row-end: 11;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
     .gridScheduleName {
         grid-column-start: 3;
         grid-column-end: 9;
-        grid-row-start: 12;
-        grid-row-end: 13;
+        grid-row-start: 10;
+        grid-row-end: 11;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
@@ -526,16 +526,16 @@
     .gridButtonCancel {
         grid-column-start: 10;
         grid-column-end: 13;
-        grid-row-start: 12;
-        grid-row-end: 13;
+        grid-row-start: 10;
+        grid-row-end: 11;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
     .gridButtonAdd {
         grid-column-start: 14;
         grid-column-end: 16;
-        grid-row-start: 12;
-        grid-row-end: 13;
+        grid-row-start: 10;
+        grid-row-end: 11;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
@@ -543,7 +543,7 @@
     .gridSchedules {
         grid-column-start: 1;
         grid-column-end: 41;
-        grid-row-start: 13;
+        grid-row-start: 12;
         grid-row-end: 19;
         margin: 2px 2px 2px 2px;
         text-align: left;
