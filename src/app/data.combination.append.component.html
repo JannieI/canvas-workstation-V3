@@ -2,20 +2,34 @@
     <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div modalContent>
-                <button type="button" class="closeButton" (click)="clickClose()">
-                    X
-                </button>
                 <div class="gridOverall">
+                    <button type="button" class="closeButton" (click)="clickClose()">
+                        <b>X</b>
+                    </button>
                     <div class="gridTitle">
-                        Append Datasources :
+                        <b>Append Datasources</b>
+                        <clr-signpost>
+                            <clr-icon shape="info-circle"
+                                clrSignpostTrigger>
+                            </clr-icon>
+                                <clr-signpost-content *clrIfOpen
+                                [clrPosition]="'bottom-middle'">
+                                <h5 style="margin-top: 0; color:gray;">
+                                    Help
+                                </h5>
+                                <p style="margin-top: 0; color:gray;"> 
+                                    Create a new Datasources by appending the selected Datasources to the
+                                    end of the first one.  Note that only Datasources with the same number
+                                    of fields and the same type of fields can be appended.
+                                    <span class="username" *ngIf="selectedDatasources">{{selectedDatasources.name}}</span>
+                                    The row that was clicked first is shown in the top right hand
+                                    grid.  Click the X or press Escape to close this form.
+                                </p>
+                            </clr-signpost-content>
+                        </clr-signpost>
+        
                     </div> 
                     <div class="gridSubTitle">
-                        <i>
-                            Create a new Datasources by appending the selected Datasources to the
-                            end of the first one.  Note that only Datasources with the same number
-                            of fields and the same type of fields can be appended.
-                            <span class="username" *ngIf="selectedDatasources">{{selectedDatasources.name}}</span>
-                        </i>
                     </div>
              
                     <div class="gridDatasources">
