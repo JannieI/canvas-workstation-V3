@@ -3254,15 +3254,6 @@ export class AppComponent implements OnInit {
         this.showModalDataShare = true;
     }
 
-    clickMenuDataDictionary() {
-        // Shows Data Dictionary
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDictionary', '@Start');
-
-        this.menuOptionClickPreAction();
-
-        this.showModalDataDictionary = true;
-    }
-
     clickMenuDataSummary() {
         // Shows Data Summary
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataSummary', '@Start');
