@@ -44,7 +44,7 @@
         grid-row-end: 4;
     }
     .gridBusinessGlossary {
-        grid-column-start: 4;
+        grid-column-start: 3;
         grid-column-end: 21;
         grid-row-start: 3;
         grid-row-end: 4;
@@ -75,7 +75,7 @@
         grid-column-start: 1;
         grid-column-end: 21;
         grid-row-start: 10;
-        grid-row-end: 25;
+        grid-row-end: 27;
         overflow-y: scroll;
         width: 100%;
     }

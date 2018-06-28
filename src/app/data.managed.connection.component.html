@@ -1,223 +1,233 @@
 <div class="modal modalBox">
-        <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
-            <div class="modal-content">
-                <form #f="ngForm" role="form" novalidate>
-    
+    <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <form #f="ngForm" role="form" novalidate>
+
+                <div class="gridOverall">
                     <button type="button" class="closeButton" (click)="clickClose()">
-                        X
+                        <b>X</b>
                     </button>
-                    <div class="gridOverall">
-                        <div class="gridTitle">
-                            Manage Connections:
-                        </div>
-                        <div class="gridSubTitle">
-                            <i>
-                                Manage Connections (links to SQL DB Servers) that are used to 
-                                define a Datasource.  DblClick x to delete a row.
-                            </i>
-                        </div>
-    
-                        <div class="gridConnectionNameTitle">
-                            <b>Name:</b>
-                        </div>
-                        <div class="gridConnectionName">
-                            <input [(ngModel)]="selectedConnection.connectionName"
-                                type="text"
-                                name="connectionName"
-                                required
-                                title="Name of the connection"
-                                placeholder="Name of the Connection"
-                                [disabled]="!editing  &&  !adding"                                
-                                >
-                        </div>
-    
-                        <div class="gridDescriptionTitle">
-                            <b>Description:</b>
-                        </div>
-                        <div class="gridDescription">
-                            <input [(ngModel)]="selectedConnection.description"
-                                type="text"
-                                name="description"
-                                size="30"
-                                title="Description of the connection"
-                                required
-                                placeholder="Description of the connection"
-                                [disabled]="!editing  &&  !adding"
-                                >
-                        </div>
-    
-                        <div class="gridServerTypeTitle">
-                            <b>Type:</b>
-                        </div>
-                        <div class="select gridServerType">
-                            <select [(ngModel)]="selectedConnection.serverType"
-                                name="ServerType"
-                                placeholder="Select type of Server, ie PostreSQL"
-                                [disabled]="!editing  &&  !adding"
-                                >
-                                <option>Microsft SQL</option>
-                                <option>My SQL</option>
-                                <option>Postgres</option>
-                            </select>
-                        </div>
-        
-                        <div class="gridServerTitle">
-                            <b>Server:</b>
-                        </div>
-                        <div class="gridServer">
-                            <input [(ngModel)]="selectedConnection.serverTitle"
-                                type="text"
-                                name="serverTitle"
-                                title="Name of the Server/IP Address and :Port"
-                                placeholder="Name of DB Server/IP Address and :Port"
-                                [disabled]="!editing  &&  !adding"
-                                >
-                        </div>
-    
-                        <div class="gridPortTitle">
-                            <b>Port:</b>
-                        </div>
-                        <div class="gridPort">
-                            <input [(ngModel)]="selectedConnection.port"
-                                type="text"
-                                name="port"
-                                title="Optional port on DB Server"
-                                placeholder="Optional port on DB Server"
-                                [disabled]="!editing  &&  !adding"
-                                >
-                        </div>
-    
-                        <div class="gridDatabaseTitle">
-                            <b>Database:</b>
-                        </div>
-                        <div class="gridDatabase">
-                            <input [(ngModel)]="selectedConnection.database"
-                                type="text"
-                                name="database"
-                                title="Database to connect to"
-                                placeholder="Database to connect to"
-                                [disabled]="!editing  &&  !adding"
-                                >
-                        </div>
-        
-                        <div class="gridAuthenticationTitle">
-                            <b>Auth:</b>
-                        </div>
-                        <div class="gridAuthentication">
-                            <input [(ngModel)]="selectedConnection.authentication"
-                                type="text"
-                                name="authentication"
-                                title="Type of Authentication: current User or user/psw to log in"
-                                placeholder="Type of Authentication: current User or user/psw to log in"
-                                [disabled]="!editing  &&  !adding"
-                                >
-                        </div>
-    
-                        <div class="gridUsernameTitle">
-                            <b>Username:</b>
-                        </div>
-                        <div class="gridUsername">
-                            <input [(ngModel)]="selectedConnection.usernameTitle"
-                                type="text"
-                                name="usernameTitle"
-                                title="Username to log into DB Server"
-                                placeholder="Username to log into DB Server"
-                                [disabled]="!editing  &&  !adding"
-                                >
-                        </div>
-    
-                        <div class="gridPasswordTitle">
-                            <b>Password:</b>
-                        </div>
-                        <div class="gridPassword">
-                            <input [(ngModel)]="selectedConnection.password"
-                                type="password"
-                                name="password"
-                                title="User Password"
-                                placeholder="User Password"
-                                [disabled]="!editing  &&  !adding"
-                                >
-                        </div>
-    
-                        <div class="gridButtonCancel" *ngIf="editing  ||  adding">
-                            <button
-                                type="button"
-                                class="btn btn-secondary"
-                                (click)="clickCancel()"
-                                >
-                                Cancel
-                            </button>
-                        </div>
-                        <div class="gridButtonAdd" *ngIf="editing  ||  adding">
-                            <button
-                                type="button"
-                                class="btn btn-primary"
-                                (click)="clickSave()"
-                                >
-                                Save
-                            </button>
-                        </div>
-    
-                        <div class="gridButtonCancel" *ngIf="!editing  &&  !adding">
-                            <button
-                                type="button"
-                                class="btn btn-secondary"
-                                (click)="clickEdit()"
-                                >
-                                Edit
-                            </button>
-                        </div> 
-                        <div class="gridButtonAdd" *ngIf="!editing  &&  !adding">
-                            <button
-                                type="button"
-                                class="btn btn-primary"
-                                (click)="clickAdd()"
-                                >
-                                Add
-                            </button>
-                        </div>
-            
-                        <div *ngIf="errorMessage!=''" class="gridErrorMessage">
-                            {{ errorMessage }}
-                        </div>
-    
-                        <div class="gridConnectionsTable">
-                            <clr-datagrid>
-                                <clr-dg-placeholder>
-                                    No records ...
-                                </clr-dg-placeholder>
-                                <clr-dg-column>Delete</clr-dg-column>
-                                <clr-dg-column>Name</clr-dg-column>
-                                <clr-dg-column>Type</clr-dg-column>
-                                <clr-dg-column>Server</clr-dg-column>
-                                <clr-dg-column>Auth</clr-dg-column>
-                                <clr-dg-column>Description</clr-dg-column>
-                                <clr-dg-row
-                                    *ngFor="let row of dataConnections; let i = index"
-                                    [style.background-color]="(i == selectedConnectionRowIndex)? '#123456' : 'white'"
-                                    [style.color]="(i == selectedConnectionRowIndex)? 'white' : 'gray'"
-                                    (click)="clickRow(i, row.id)"
-                                    >
-                                    <clr-dg-cell>
-                                        <clr-icon shape="times"
-                                            class="selectIcon1"
-                                            size="18"
-                                            (dblclick)="clickDelete(i, row.id)"
-                                            >
-                                        </clr-icon>
-                                    </clr-dg-cell>
-                                    <clr-dg-cell>{{ row.connectionName }}</clr-dg-cell>
-                                    <clr-dg-cell>{{ row.serverType }}</clr-dg-cell>
-                                    <clr-dg-cell>{{ row.serverName }}</clr-dg-cell>
-                                    <clr-dg-cell>{{ row.authentication }}</clr-dg-cell>
-                                    <clr-dg-cell>{{ row.description }}</clr-dg-cell>
-                                </clr-dg-row>
-                            </clr-datagrid>
-                        </div>
-    
+                    <div class="gridTitle">
+                        <b>Manage Connections</b>
+                        <clr-signpost>
+                            <clr-icon shape="info-circle"
+                                clrSignpostTrigger>
+                            </clr-icon>
+                                <clr-signpost-content *clrIfOpen
+                                [clrPosition]="'bottom-middle'">
+                                <h5 style="margin-top: 0; color:gray;">
+                                    Help
+                                </h5>
+                                <p style="margin-top: 0; color:gray;">
+                                    Manage Connections (links to SQL DB Servers) that are used to
+                                    define a Datasource.  DblClick x to delete a row.  Click the X or press Escape to close this form.
+                                </p>
+                            </clr-signpost-content>
+                        </clr-signpost>
                     </div>
-                </form>
-            </div>
+                    <div class="gridSubTitle">
+                    </div>
+
+                    <div class="gridConnectionNameTitle">
+                        <b>Name:</b>
+                    </div>
+                    <div class="gridConnectionName">
+                        <input [(ngModel)]="selectedConnection.connectionName"
+                            type="text"
+                            name="connectionName"
+                            required
+                            title="Name of the connection"
+                            placeholder="Name of the Connection"
+                            [disabled]="!editing  &&  !adding"
+                            >
+                    </div>
+
+                    <div class="gridDescriptionTitle">
+                        <b>Description:</b>
+                    </div>
+                    <div class="gridDescription">
+                        <input [(ngModel)]="selectedConnection.description"
+                            type="text"
+                            name="description"
+                            size="30"
+                            title="Description of the connection"
+                            required
+                            placeholder="Description of the connection"
+                            [disabled]="!editing  &&  !adding"
+                            >
+                    </div>
+
+                    <div class="gridServerTypeTitle">
+                        <b>Type:</b>
+                    </div>
+                    <div class="select gridServerType">
+                        <select [(ngModel)]="selectedConnection.serverType"
+                            name="ServerType"
+                            placeholder="Select type of Server, ie PostreSQL"
+                            [disabled]="!editing  &&  !adding"
+                            >
+                            <option>Microsft SQL</option>
+                            <option>My SQL</option>
+                            <option>Postgres</option>
+                        </select>
+                    </div>
+
+                    <div class="gridServerTitle">
+                        <b>Server:</b>
+                    </div>
+                    <div class="gridServer">
+                        <input [(ngModel)]="selectedConnection.serverTitle"
+                            type="text"
+                            name="serverTitle"
+                            title="Name of the Server/IP Address and :Port"
+                            placeholder="Name of DB Server/IP Address and :Port"
+                            [disabled]="!editing  &&  !adding"
+                            >
+                    </div>
+
+                    <div class="gridPortTitle">
+                        <b>Port:</b>
+                    </div>
+                    <div class="gridPort">
+                        <input [(ngModel)]="selectedConnection.port"
+                            type="text"
+                            name="port"
+                            title="Optional port on DB Server"
+                            placeholder="Optional port on DB Server"
+                            [disabled]="!editing  &&  !adding"
+                            >
+                    </div>
+
+                    <div class="gridDatabaseTitle">
+                        <b>Database:</b>
+                    </div>
+                    <div class="gridDatabase">
+                        <input [(ngModel)]="selectedConnection.database"
+                            type="text"
+                            name="database"
+                            title="Database to connect to"
+                            placeholder="Database to connect to"
+                            [disabled]="!editing  &&  !adding"
+                            >
+                    </div>
+
+                    <div class="gridAuthenticationTitle">
+                        <b>Auth:</b>
+                    </div>
+                    <div class="gridAuthentication">
+                        <input [(ngModel)]="selectedConnection.authentication"
+                            type="text"
+                            name="authentication"
+                            title="Type of Authentication: current User or user/psw to log in"
+                            placeholder="Type of Authentication: current User or user/psw to log in"
+                            [disabled]="!editing  &&  !adding"
+                            >
+                    </div>
+
+                    <div class="gridUsernameTitle">
+                        <b>Username:</b>
+                    </div>
+                    <div class="gridUsername">
+                        <input [(ngModel)]="selectedConnection.usernameTitle"
+                            type="text"
+                            name="usernameTitle"
+                            title="Username to log into DB Server"
+                            placeholder="Username to log into DB Server"
+                            [disabled]="!editing  &&  !adding"
+                            >
+                    </div>
+
+                    <div class="gridPasswordTitle">
+                        <b>Password:</b>
+                    </div>
+                    <div class="gridPassword">
+                        <input [(ngModel)]="selectedConnection.password"
+                            type="password"
+                            name="password"
+                            title="User Password"
+                            placeholder="User Password"
+                            [disabled]="!editing  &&  !adding"
+                            >
+                    </div>
+
+                    <div class="gridButtonCancel" *ngIf="editing  ||  adding">
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            (click)="clickCancel()"
+                            >
+                            Cancel
+                        </button>
+                    </div>
+                    <div class="gridButtonAdd" *ngIf="editing  ||  adding">
+                        <button
+                            type="button"
+                            class="btn btn-primary"
+                            (click)="clickSave()"
+                            >
+                            Save
+                        </button>
+                    </div>
+
+                    <div class="gridButtonCancel" *ngIf="!editing  &&  !adding">
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            (click)="clickEdit()"
+                            >
+                            Edit
+                        </button>
+                    </div>
+                    <div class="gridButtonAdd" *ngIf="!editing  &&  !adding">
+                        <button
+                            type="button"
+                            class="btn btn-primary"
+                            (click)="clickAdd()"
+                            >
+                            Add
+                        </button>
+                    </div>
+
+                    <div *ngIf="errorMessage!=''" class="gridErrorMessage">
+                        {{ errorMessage }}
+                    </div>
+
+                    <div class="gridConnectionsTable">
+                        <clr-datagrid>
+                            <clr-dg-placeholder>
+                                No records ...
+                            </clr-dg-placeholder>
+                            <clr-dg-column>Delete</clr-dg-column>
+                            <clr-dg-column>Name</clr-dg-column>
+                            <clr-dg-column>Type</clr-dg-column>
+                            <clr-dg-column>Server</clr-dg-column>
+                            <clr-dg-column>Auth</clr-dg-column>
+                            <clr-dg-column>Description</clr-dg-column>
+                            <clr-dg-row
+                                *ngFor="let row of dataConnections; let i = index"
+                                [style.background-color]="(i == selectedConnectionRowIndex)? '#123456' : 'white'"
+                                [style.color]="(i == selectedConnectionRowIndex)? 'white' : 'gray'"
+                                (click)="clickRow(i, row.id)"
+                                >
+                                <clr-dg-cell>
+                                    <clr-icon shape="times"
+                                        class="selectIcon1"
+                                        size="18"
+                                        (dblclick)="clickDelete(i, row.id)"
+                                        >
+                                    </clr-icon>
+                                </clr-dg-cell>
+                                <clr-dg-cell>{{ row.connectionName }}</clr-dg-cell>
+                                <clr-dg-cell>{{ row.serverType }}</clr-dg-cell>
+                                <clr-dg-cell>{{ row.serverName }}</clr-dg-cell>
+                                <clr-dg-cell>{{ row.authentication }}</clr-dg-cell>
+                                <clr-dg-cell>{{ row.description }}</clr-dg-cell>
+                            </clr-dg-row>
+                        </clr-datagrid>
+                    </div>
+
+                </div>
+            </form>
         </div>
     </div>
-    
+</div>
