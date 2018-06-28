@@ -1,136 +1,146 @@
 <div class="modal modalBox">
-        <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
-            <div class="modal-content modalContent">
-
+    <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
+        <div class="modal-content modalContent">
+            
+            <div class="gridOverall">
                 <button type="button" class="closeButton" (click)="clickClose()">
-                    X
+                    <b>X</b>
                 </button>
-                
-                <div class="gridOverall">
-
-                    <div class="gridTitle">
-                        <b>Dashboard Subscriptions</b>
-                    </div>
-                    <div class="gridSubTitle">
-                        <i>
-                            You will be notified via a CanvasMessage or via email if the 
-                            specified event takes place on a Dashboard.  The subscription 
-                            events are toggle switched - double click in the required cell 
-                            to toggle the values. Changes are saved automaticaly.
-                        </i>
-                    </div>
-
-                    <div class="gridAddTitle">
-                        <b>Add new Dashboard:</b>
-                    </div>
-
-                    <div class="gridAddDashboard">
-                        <div class="select">
-                            <select 
-                                (change)="clickSelect($event)"
-                                >
-                                <option *ngFor="let row of availableDashboards; 
-                                    let i = index"
-                                    >
-                                    {{ row }}
-                                </option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="gridAddButtonSave">
-                        <button
-                            type="button"
-                            class="btn btn-primary"
-                            (click)="clickAdd()"
-                            >
-                            Add
-                        </button>
-                    </div>  
-
-                    <div class="gridTable">
-                        <clr-datagrid>
-                            <clr-dg-column>UnSubscribe</clr-dg-column>
-                            <clr-dg-column>Dashboard</clr-dg-column>
-                            <clr-dg-column>View</clr-dg-column>
-                            <clr-dg-column>EditMode</clr-dg-column>
-                            <clr-dg-column>Save</clr-dg-column>
-                            <clr-dg-column>Delete</clr-dg-column>
-                            <clr-dg-column>Notify</clr-dg-column>
-
-                            <clr-dg-row *clrDgItems="let row of dashboardSubscriptions; let i = index"
-                                [style.background-color]="(i == selectedRow)? '#123456' : 'white'"
-                                [style.color]="(i == selectedRow)? 'white' : 'gray'"
-                                (click)="clickRow(i)" 
-                                >
-                                <clr-dg-cell>
-                                    <clr-icon 
-                                        shape="trash" 
-                                        size="12"
-                                        (click)="clickUnSubscribe(row.id)"
-                                        >
-                                    </clr-icon>
-                                </clr-dg-cell>
-                                <clr-dg-cell>
-                                    {{ row.dashboardCode }}
-                                </clr-dg-cell>
-                                
-                                <clr-dg-cell
-                                    (dblclick)="dblClickView(row.id)"
-                                    >
-                                    <clr-icon *ngIf="row.view" 
-                                        shape="check" 
-                                        size="12"
-                                        >
-                                    </clr-icon>
-                                </clr-dg-cell>
-
-                                <clr-dg-cell
-                                    (dblclick)="dblClickEditMode(row.id)"
-                                    >
-                                    <clr-icon *ngIf="row.editmode" 
-                                        shape="check" 
-                                        size="12"
-                                        >
-                                    </clr-icon>
-                                </clr-dg-cell>
-
-                                <clr-dg-cell
-                                    (dblclick)="dblClickSave(row.id)"
-                                    >
-                                    <clr-icon *ngIf="row.save" 
-                                        shape="check" 
-                                        size="12"
-                                        >
-                                    </clr-icon>
-                                </clr-dg-cell>
-
-                                <clr-dg-cell
-                                    (dblclick)="dblClickDelete(row.id)"
-                                    >
-                                    <clr-icon *ngIf="row.delete" 
-                                        shape="check" 
-                                        size="12"
-                                        >
-                                    </clr-icon>
-                                </clr-dg-cell>
-
-                                <clr-dg-cell
-                                    (dblclick)="dblClickNotify(row.id)"
-                                    >
-                                    {{ row.notify }}
-                                </clr-dg-cell>
-                            </clr-dg-row>
-
-                            <clr-dg-footer>
-                                {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
-                                of {{pagination.totalItems}} rows
-                                <clr-dg-pagination #pagination [clrDgPageSize]="5"></clr-dg-pagination>
-                            </clr-dg-footer>
         
-                        </clr-datagrid>
+                <div class="gridTitle">
+                    <b>Dashboard Subscriptions</b>
+                    <clr-signpost>
+                        <clr-icon shape="info-circle"
+                            clrSignpostTrigger>
+                        </clr-icon>
+                            <clr-signpost-content *clrIfOpen
+                            [clrPosition]="'bottom-middle'">
+                            <h5 style="margin-top: 0; color:gray;">
+                                Help
+                            </h5>
+                            <p style="margin-top: 0; color:gray;"> 
+                                You will be notified via a CanvasMessage or via email if the 
+                                specified event takes place on a Dashboard.  The subscription 
+                                events are toggle switched - double click in the required cell 
+                                to toggle the values. Changes are saved automaticaly.  Click the X or press Escape to close this form.
+                            </p>
+                        </clr-signpost-content>
+                    </clr-signpost>
+                </div>
+                <div class="gridSubTitle">
+                </div>
+
+                <div class="gridAddTitle">
+                    <b>Add new Dashboard:</b>
+                </div>
+
+                <div class="gridAddDashboard">
+                    <div class="select">
+                        <select 
+                            (change)="clickSelect($event)"
+                            >
+                            <option *ngFor="let row of availableDashboards; 
+                                let i = index"
+                                >
+                                {{ row }}
+                            </option>
+                        </select>
                     </div>
+                </div>
+
+                <div class="gridAddButtonSave">
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                        (click)="clickAdd()"
+                        >
+                        Add
+                    </button>
+                </div>  
+
+                <div class="gridTable">
+                    <clr-datagrid>
+                        <clr-dg-column>UnSubscribe</clr-dg-column>
+                        <clr-dg-column>Dashboard</clr-dg-column>
+                        <clr-dg-column>View</clr-dg-column>
+                        <clr-dg-column>EditMode</clr-dg-column>
+                        <clr-dg-column>Save</clr-dg-column>
+                        <clr-dg-column>Delete</clr-dg-column>
+                        <clr-dg-column>Notify</clr-dg-column>
+
+                        <clr-dg-row *clrDgItems="let row of dashboardSubscriptions; let i = index"
+                            [style.background-color]="(i == selectedRow)? '#123456' : 'white'"
+                            [style.color]="(i == selectedRow)? 'white' : 'gray'"
+                            (click)="clickRow(i)" 
+                            >
+                            <clr-dg-cell>
+                                <clr-icon 
+                                    shape="trash" 
+                                    size="12"
+                                    (click)="clickUnSubscribe(row.id)"
+                                    >
+                                </clr-icon>
+                            </clr-dg-cell>
+                            <clr-dg-cell>
+                                {{ row.dashboardCode }}
+                            </clr-dg-cell>
+                            
+                            <clr-dg-cell
+                                (dblclick)="dblClickView(row.id)"
+                                >
+                                <clr-icon *ngIf="row.view" 
+                                    shape="check" 
+                                    size="12"
+                                    >
+                                </clr-icon>
+                            </clr-dg-cell>
+
+                            <clr-dg-cell
+                                (dblclick)="dblClickEditMode(row.id)"
+                                >
+                                <clr-icon *ngIf="row.editmode" 
+                                    shape="check" 
+                                    size="12"
+                                    >
+                                </clr-icon>
+                            </clr-dg-cell>
+
+                            <clr-dg-cell
+                                (dblclick)="dblClickSave(row.id)"
+                                >
+                                <clr-icon *ngIf="row.save" 
+                                    shape="check" 
+                                    size="12"
+                                    >
+                                </clr-icon>
+                            </clr-dg-cell>
+
+                            <clr-dg-cell
+                                (dblclick)="dblClickDelete(row.id)"
+                                >
+                                <clr-icon *ngIf="row.delete" 
+                                    shape="check" 
+                                    size="12"
+                                    >
+                                </clr-icon>
+                            </clr-dg-cell>
+
+                            <clr-dg-cell
+                                (dblclick)="dblClickNotify(row.id)"
+                                >
+                                {{ row.notify }}
+                            </clr-dg-cell>
+                        </clr-dg-row>
+
+                        <clr-dg-footer>
+                            {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+                            of {{pagination.totalItems}} rows
+                            <clr-dg-pagination #pagination [clrDgPageSize]="5"></clr-dg-pagination>
+                        </clr-dg-footer>
+    
+                    </clr-datagrid>
                 </div>
             </div>
         </div>
     </div>
+</div>
