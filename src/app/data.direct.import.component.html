@@ -1,85 +1,103 @@
 <div class="modal modalBox">
-        <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
-            <div class="modal-content">
-                <div modalContent>
+    <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div modalContent>
+
+                <div class="gridOverall">
                     <button type="button" class="closeButton" (click)="clickClose()">
-                        X
+                        <b>X</b>
                     </button>
-                    <div class="gridOverall">
-                        <div class="gridTitle">
-                            Import Datasource from File:
-                        </div>
-                        <div class="gridSubTitle">
-                            Select file from which to import a new Datasource.
-                        </div>
+                    <div class="gridTitle">
+                        <b>Import Datasource from File</b>
+                        <clr-signpost>
+                            <clr-icon shape="info-circle"
+                                clrSignpostTrigger>
+                            </clr-icon>
+                                <clr-signpost-content *clrIfOpen
+                                [clrPosition]="'bottom-middle'">
+                                <h5 style="margin-top: 0; color:gray;">
+                                    Help
+                                </h5>
+                                <p style="margin-top: 0; color:gray;"> 
+                                    Specify a local text file (saved using Export) from which 
+                                    to import a new Datasource.  The name and description fields
+                                    are required.  Click Preview to see the file content without
+                                    importing.
+                                    Click the X or press Escape to close this form.
+                                </p>
+                            </clr-signpost-content>
+                        </clr-signpost>
+                    </div>
+                    <div class="gridSubTitle">
+                    </div>
 
-                        <div class="errorMessage">
-                            {{ errorMessage }}
-                        </div>
-        
-                        <div class="gridFolderTitle">
-                            Folder:
-                        </div>
-                        <div class="gridFolder">
-                            <input type="text" [(ngModel)]="folderName"
-                                placeholder="./assets/"
-                                class="selectFile"
-                                >
-                        </div>
+                    <div class="errorMessage">
+                        {{ errorMessage }}
+                    </div>
     
-                        <div class="gridFileNameTitle">
-                            Filename:
-                        </div>
-                        <div class="gridFileName">
-                            <input type="text" [(ngModel)]="fileName"
-                                placeholder="datasource.sharePrices.json"
-                                class="selectFile"
-                                >
-                        </div>
+                    <div class="gridFolderTitle">
+                        Folder:
+                    </div>
+                    <div class="gridFolder">
+                        <input type="text" [(ngModel)]="folderName"
+                            placeholder="./assets/"
+                            class="selectFile"
+                            >
+                    </div>
 
-                        <div class="gridDatasourceNameTitle">
-                            Name:
-                        </div>
-                        <div class="gridDatasourceName">
-                            <input type="text" 
-                                [(ngModel)]="datasourceName"
-                                > 
-                        </div>
+                    <div class="gridFileNameTitle">
+                        Filename:
+                    </div>
+                    <div class="gridFileName">
+                        <input type="text" [(ngModel)]="fileName"
+                            placeholder="datasource.sharePrices.json"
+                            class="selectFile"
+                            >
+                    </div>
+
+                    <div class="gridDatasourceNameTitle">
+                        Name:
+                    </div>
+                    <div class="gridDatasourceName">
+                        <input type="text" 
+                            [(ngModel)]="datasourceName"
+                            > 
+                    </div>
+
+                    <div class="gridDatasourceDescriptionTitle">
+                        Description:
+                    </div>
+                    <div class="gridDatasourceDescription">
+                        <input type="text" 
+                            [(ngModel)]="datasourceDescription"
+                            > 
+                    </div>
     
-                        <div class="gridDatasourceDescriptionTitle">
-                            Description:
-                        </div>
-                        <div class="gridDatasourceDescription">
-                            <input type="text" 
-                                [(ngModel)]="datasourceDescription"
-                                > 
-                        </div>
-        
-                        <div class="gridButtonPreview">
-                            <button
-                                type="button"
-                                class="btn btn-secondary selectButton"
-                                (click)="clickDSPreview()"
-                                >
-                                Preview
-                            </button>
-                        </div>
-                        <div class="gridButtonAdd">
-                            <button
-                                type="button"
-                                class="btn btn-primary"
-                                (click)="clickDSAdd()"
-                                >
-                                Add
-                            </button>
-                        </div>
-        
-                        <div class="gridPreviewFile">
-                            <textarea cols="30" rows="7">{{ currentData }}</textarea>
-                        </div>
+                    <div class="gridButtonPreview">
+                        <button
+                            type="button"
+                            class="btn btn-secondary selectButton"
+                            (click)="clickDSPreview()"
+                            >
+                            Preview
+                        </button>
+                    </div>
+                    <div class="gridButtonAdd">
+                        <button
+                            type="button"
+                            class="btn btn-primary"
+                            (click)="clickDSAdd()"
+                            >
+                            Add
+                        </button>
+                    </div>
+    
+                    <div class="gridPreviewFile">
+                        <textarea cols="30" rows="7">{{ currentData }}</textarea>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-        
+</div>
+    
