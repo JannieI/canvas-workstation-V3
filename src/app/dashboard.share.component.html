@@ -9,15 +9,26 @@
             <div class="gridOverall">
                 <div class="gridTitle">
                     <b>Share Dashboard</b>
+                    <clr-signpost>
+                        <clr-icon shape="info-circle"
+                            clrSignpostTrigger>
+                        </clr-icon>
+                            <clr-signpost-content *clrIfOpen
+                            [clrPosition]="'bottom-middle'">
+                            <h5 style="margin-top: 0; color:gray;">
+                                Help
+                            </h5>
+                            <p style="margin-top: 0; color:gray;"> 
+                                Indicate who can access this Dashboard, and how.  The options are Private
+                                (only accesable to myself), Public (all users can view and edit it) or
+                                Access List (list of users and groups shown below, each with
+                                View/Edit/Delete permissions.  To change existing permissions, double click the
+                                View/Edit/Delete cell in the grid below.  Click the X or press Escape to close this form.
+                            </p>
+                        </clr-signpost-content>
+                    </clr-signpost>
                 </div>
                 <div class="gridSubTitle">
-                    <i>
-                        Indicate who can access this Dashboard, and how.  The options are Private
-                        (only accesable to myself), Public (all users can view and edit it) or
-                        Access List (list of users and groups shown below, each with
-                        View/Edit/Delete permissions.  To change existing permissions, double click the
-                        View/Edit/Delete cell in the grid below.
-                    </i>
                 </div>
 
                 <div class="gridCurrentTitle">
