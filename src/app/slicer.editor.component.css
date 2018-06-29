@@ -3,14 +3,6 @@
 	-shadow: 0 2px 2px 0 lightgray;
 }
 
-.closeButton {
-    background-color: transparent;
-    border: none;
-    left: 0;
-    position: relative;
-    top: 0;
-}
-
 .selecteAll {
     margin: 0 0 0 13px;
 }
@@ -20,14 +12,25 @@
     grid-template-columns: repeat(40, 1fr);
     grid-auto-rows: 0.8rem;
     margin-top: 2px;
+}
+
+    .closeButton {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        text-align: left;
     }
 
-    .slicerHeader {
+    .slicerTitle {
         grid-column-start: 1;
         grid-column-end: 40;
         grid-row-start: 2;
         grid-row-end: 4;
-        margin: 2px 2px 2px 20px;
+        margin-left: 30px;
         width: 100%;
     }
 
