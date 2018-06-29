@@ -1,20 +1,32 @@
 <div class="modal modalBox">
-    <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-md" role="dialog" aria-hidden="true">
         <div class="modal-content modalContent">
 
-            <button type="button" class="closeButton" (click)="clickClose()">
-                X
-            </button>
-
             <div class="gridOverall">
+                <button type="button" class="closeButton" (click)="clickClose()">
+                    <b>X</b>
+                </button>
 
                 <div class="gridTitle">
-                    <b>My Profile: </b>
+                    <b>My Profile</b>
+                    <clr-signpost>
+                        <clr-icon shape="info-circle"
+                            clrSignpostTrigger>
+                        </clr-icon>
+                            <clr-signpost-content *clrIfOpen
+                            [clrPosition]="'bottom-middle'">
+                            <h5 style="margin-top: 0; color:gray;">
+                                Help
+                            </h5>
+                            <p style="margin-top: 0; color:gray;">
+                                This form shows permissions that are applicable to the current 
+                                Dashboard and user.  
+                                Click the X or press Escape to close this form.
+                            </p>
+                        </clr-signpost-content>
+                    </clr-signpost>
                 </div>
                 <div class="gridSubTitle">
-                    <i>
-                        These are applicable to the current Dashboard and user.
-                    </i>
                 </div>
 
                 <div class="gridDashboardRolesTitle">
@@ -205,7 +217,7 @@
                         Cancel
                     </button>
                 </div>
- 
+
                 <div class="gridButtonSave">
                     <button
                         type="button"
