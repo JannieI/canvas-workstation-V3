@@ -3,14 +3,6 @@
 	-shadow: 0 2px 2px 0 lightgray;
 }
 
-.closeButton {
-    background-color: transparent;
-    border: none;
-    left: 0;
-    position: relative;
-    top: 0;
-}
-
 .buttonBarIcon {
     background-color: rgb(223, 223, 171);
     background-color: rgb(224, 177, 150);
@@ -41,6 +33,16 @@
     grid-template-columns: repeat(15, 1fr);
     grid-template-rows: repeat(19, 1rem);
 }
+    .closeButton {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        text-align: left;
+    }
 
     .gridTitle {
         font-size: 0.75rem;
@@ -48,6 +50,7 @@
         grid-column-end: 18;
         grid-row-start: 1;
         grid-row-end: 2;
+        margin-left: 30px;
         text-align: left;
     }
 

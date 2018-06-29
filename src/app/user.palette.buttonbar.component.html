@@ -1,139 +1,159 @@
 <div class="modal modalBox">
-        <div class="modal-dialog modal-lg" role="dialog" aria-hidden="true">
-            <div class="modal-content modalContent">
+    <div class="modal-dialog modal-lg" role="dialog" aria-hidden="true">
+        <div class="modal-content modalContent">
 
+            <div class="gridOverall">
                 <button type="button" class="closeButton" (click)="clickClose()">
-                    X
+                    <b>X</b>
                 </button>
+                <div class="gridTitle">
+                    <b>Palette Button Bar</b>
+                    <clr-signpost>
+                        <clr-icon shape="info-circle"
+                            clrSignpostTrigger>
+                        </clr-icon>
+                            <clr-signpost-content *clrIfOpen
+                            [clrPosition]="'bottom-middle'">
+                            <h5 style="margin-top: 0; color:gray;">
+                                Help
+                            </h5>
+                            <p style="margin-top: 0; color:gray;"> 
+                                Manage your palette button bar (displayed when you are in 
+                                EditMode to change Widgets). Each menu option is represented
+                                by a button, and the buttons are colour coded per main menu option.
+                                The list on the left hand are all available buttons, while the right
+                                hand list shows the ones that have been selected.  Use the arrows to
+                                change your selected buttons.  Click the reset button to restore the 
+                                original selection of buttons (which you can then modify afterwards).
+                                Click the X or press Escape to close this form.
+                            </p>
+                        </clr-signpost-content>
+                    </clr-signpost>
+                </div>
 
-                <div class="gridOverall">
-                    <div class="gridTitle">
-                        Palette Button Bar
-                    </div>
+                <div class="gridAvailableTitle">
+                    Available
+                </div>
+                <div class="gridAvailable">
+                    <nav>
+                        <ul class="nav-list">
+                            <div *ngFor="let row of paletteButtons; let i = index"
+                                [style.background-color]="row.isSelected? 'rgb(212, 212, 208)' : 'transparent'"
+                                (click)="clickAvailable(row.id, i)"
 
-                    <div class="gridAvailableTitle">
-                        Available
-                    </div>
-                    <div class="gridAvailable">
-                        <nav>
-                            <ul class="nav-list">
-                                <div *ngFor="let row of paletteButtons; let i = index"
-                                    [style.background-color]="row.isSelected? 'rgb(212, 212, 208)' : 'transparent'"
-                                    (click)="clickAvailable(row.id, i)"
-
-                                    >
-                                    <span class="nav-link tooltip tooltip-md tooltip-right">
-                                        <clr-icon
-                                            [attr.shape]="row.shape"
-                                            [attr.size]="row.size"
-                                            class="buttonBarIcon"
-                                            [style.background-color]="row.backgroundColor"
-                                            (click)="paletteFunctionCall(row.functionName, row.params)"
-                                            >
-                                        </clr-icon>
-                                        {{ row.mainmenuItem }} - {{ row.menuText }}
-                                        <span class="tooltip-content">
-                                            {{ row.tooltipContent }}
-                                        </span>
+                                >
+                                <span class="nav-link tooltip tooltip-md tooltip-right">
+                                    <clr-icon
+                                        [attr.shape]="row.shape"
+                                        [attr.size]="row.size"
+                                        class="buttonBarIcon"
+                                        [style.background-color]="row.backgroundColor"
+                                        (click)="paletteFunctionCall(row.functionName, row.params)"
+                                        >
+                                    </clr-icon>
+                                    {{ row.mainmenuItem }} - {{ row.menuText }}
+                                    <span class="tooltip-content">
+                                        {{ row.tooltipContent }}
                                     </span>
-                                </div>
-                            </ul>
-                        </nav>
-                    </div>
+                                </span>
+                            </div>
+                        </ul>
+                    </nav>
+                </div>
 
-                    <div class="gridSelectedTitle" *ngIf="paletteButtonsSelected">
-                        Selected: {{ paletteButtonsSelected.length }}
-                    </div>
-                    <div class="gridSelected">
-                        <nav>
-                            <ul class="nav-list">
-                                <div *ngFor="let row of paletteButtonsSelected; let i = index"
-                                    [style.background-color]="row.isSelected? 'rgb(212, 212, 208)' : 'transparent'"
-                                    (click)="clickSelected(row.id, i)"
-                                    >
-                                    <span class="nav-link tooltip tooltip-md tooltip-right">
-                                        <clr-icon
-                                            [attr.shape]="row.shape"
-                                            [attr.size]="row.size"
-                                            class="buttonBarIcon"
-                                            [style.background-color]="row.backgroundColor"
-                                            (click)="paletteFunctionCall(row.functionName, row.params)"
-                                            >
-                                        </clr-icon>
-                                        {{ row.mainmenuItem }} - {{ row.menuText }}
-                                        <span class="tooltip-content">
-                                            {{ row.tooltipContent }}
-                                        </span>
+                <div class="gridSelectedTitle" *ngIf="paletteButtonsSelected">
+                    Selected: {{ paletteButtonsSelected.length }}
+                </div>
+                <div class="gridSelected">
+                    <nav>
+                        <ul class="nav-list">
+                            <div *ngFor="let row of paletteButtonsSelected; let i = index"
+                                [style.background-color]="row.isSelected? 'rgb(212, 212, 208)' : 'transparent'"
+                                (click)="clickSelected(row.id, i)"
+                                >
+                                <span class="nav-link tooltip tooltip-md tooltip-right">
+                                    <clr-icon
+                                        [attr.shape]="row.shape"
+                                        [attr.size]="row.size"
+                                        class="buttonBarIcon"
+                                        [style.background-color]="row.backgroundColor"
+                                        (click)="paletteFunctionCall(row.functionName, row.params)"
+                                        >
+                                    </clr-icon>
+                                    {{ row.mainmenuItem }} - {{ row.menuText }}
+                                    <span class="tooltip-content">
+                                        {{ row.tooltipContent }}
                                     </span>
-                                </div>
-                            </ul>
-                        </nav>
-                    </div>
-                    <div class="gridArrowAdd">
-                        <button
-                            type="button"
-                            class="btn btn-secondary btn-sm"
-                            (click)="clickAdd()"
-                            >
-                            <clr-icon shape="arrow right" size="20"></clr-icon>
-                        </button>
-                    </div>
-                    <div class="gridArrowDelete">
-                        <button
-                            type="button"
-                            class="btn btn-secondary btn-sm"
-                            (click)="clickDelete()"
-                            >
-                            <clr-icon shape="arrow left" size="20"></clr-icon>
-                        </button>
-                    </div>
-                    <div class="gridMoveUp">
-                        <button
-                            type="button"
-                            class="btn btn-secondary btn-sm"
-                            (click)="clickMoveUp()"
-                            >
-                            <clr-icon shape="arrow up" size="20"></clr-icon>
-                        </button>
-                    </div>
-                    <div class="gridMoveDown">
-                        <button
-                            type="button"
-                            class="btn btn-secondary btn-sm"
-                            (click)="clickMoveDown()"
-                            >
-                            <clr-icon shape="arrow down" size="20"></clr-icon>
-                        </button>
-                    </div>
+                                </span>
+                            </div>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="gridArrowAdd">
+                    <button
+                        type="button"
+                        class="btn btn-secondary btn-sm"
+                        (click)="clickAdd()"
+                        >
+                        <clr-icon shape="arrow right" size="20"></clr-icon>
+                    </button>
+                </div>
+                <div class="gridArrowDelete">
+                    <button
+                        type="button"
+                        class="btn btn-secondary btn-sm"
+                        (click)="clickDelete()"
+                        >
+                        <clr-icon shape="arrow left" size="20"></clr-icon>
+                    </button>
+                </div>
+                <div class="gridMoveUp">
+                    <button
+                        type="button"
+                        class="btn btn-secondary btn-sm"
+                        (click)="clickMoveUp()"
+                        >
+                        <clr-icon shape="arrow up" size="20"></clr-icon>
+                    </button>
+                </div>
+                <div class="gridMoveDown">
+                    <button
+                        type="button"
+                        class="btn btn-secondary btn-sm"
+                        (click)="clickMoveDown()"
+                        >
+                        <clr-icon shape="arrow down" size="20"></clr-icon>
+                    </button>
+                </div>
 
-                    <div class="gridButtonCancel">
-                            <button
-                            type="button"
-                            class="btn btn-secondary"
-                            (click)="clickClose('Close')"
-                            >
-                            Cancel
-                        </button>
-                    </div>
-                    <div class="gridButtonReset">
+                <div class="gridButtonCancel">
                         <button
-                            type="button"
-                            class="btn btn-primary"
-                            (click)="clickReset()"
-                            >
-                            Reset
-                        </button>
-                    </div>
-                    <div class="gridButtonSave">
-                        <button
-                            type="button"
-                            class="btn btn-primary"
-                            (click)="clickSave('Saved')"
-                            >
-                            Save
-                        </button>
-                    </div>
+                        type="button"
+                        class="btn btn-secondary"
+                        (click)="clickClose('Close')"
+                        >
+                        Cancel
+                    </button>
+                </div>
+                <div class="gridButtonReset">
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                        (click)="clickReset()"
+                        >
+                        Reset
+                    </button>
+                </div>
+                <div class="gridButtonSave">
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                        (click)="clickSave('Saved')"
+                        >
+                        Save
+                    </button>
                 </div>
             </div>
         </div>
     </div>
+</div>
