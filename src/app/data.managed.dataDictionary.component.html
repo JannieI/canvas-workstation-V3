@@ -1,96 +1,95 @@
 <div class="modal modalBox">
-        <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
-            <div class="modal-content">
-                <form #f="ngForm" role="form" novalidate>
-    
-                    <button type="button" class="closeButton" (click)="clickClose()">
-                        X
-                    </button>
-                    <div class="gridOverall">
-                        <div class="gridTitle">
-                            Data Dictionary:
-                        </div>
-                        <div class="gridSubTitle">
-                            <i>
-                                Add, edit and solve the Data Dictionary per Datasource.  
-                            </i>
-                        </div>
-                        <div class="gridSubTitle2">
-                            <i>
-                                Dictionary for Tables & Fields to be done at a later stage.  
-                            </i>
-                        </div>
-    
-                        <div class="gridDataDictionaryTitle">
-                            <b>DataDictionary:</b>
-                        </div>
-                        <div class="gridDataDictionary">
-                            <textarea [(ngModel)]="selectedDatasource.dataDictionary"
-                                type="text"
-                                name="dataDictionary"
-                                title="DataDictionary (technical explanation) for the Datasource"
-                                required
-                                placeholder="DataDictionary (technical explanation) for the Datasource"
-                                [disabled]="!editing"
-                                >
-                            </textarea> 
-                        </div>
-    
-                        <div class="gridButtonCancel" *ngIf="editing">
-                            <button
-                                type="button"
-                                class="btn btn-secondary"
-                                (click)="clickCancel()"
-                                >
-                                Cancel
-                            </button>
-                        </div>
-                        <div class="gridButtonSave" *ngIf="editing">
-                            <button
-                                type="button"
-                                class="btn btn-primary"
-                                (click)="clickSave()"
-                                >
-                                Save
-                            </button>
-                        </div>
-    
-                        <div class="gridButtonCancel" *ngIf="!editing">
-                            <button
-                                type="button"
-                                class="btn btn-secondary"
-                                (click)="clickEdit()"
-                                >
-                                Edit
-                            </button>
-                        </div> 
-    
-                        <div class="gridTable">
-                            <clr-datagrid>
-                                <clr-dg-placeholder>
-                                    No records ...
-                                </clr-dg-placeholder>
-                                <clr-dg-column>Name</clr-dg-column>
-                                <clr-dg-column>Type</clr-dg-column>
-                                <clr-dg-column>Description</clr-dg-column>
-                                <clr-dg-column>DataDictionary</clr-dg-column>
-                                <clr-dg-row
-                                    *ngFor="let row of datasources; let i = index"
-                                    [style.background-color]="(i == selectedDatasourcesRowIndex)? '#123456' : 'white'"
-                                    [style.color]="(i == selectedDatasourcesRowIndex)? 'white' : 'gray'"
-                                    (click)="clickRow(i, row.id)"
-                                    >
-                                    <clr-dg-cell>{{ row.name }}</clr-dg-cell>
-                                    <clr-dg-cell>{{ row.type }}</clr-dg-cell>
-                                    <clr-dg-cell>{{ row.description }}</clr-dg-cell>
-                                    <clr-dg-cell>{{ row.dataDictionary }}</clr-dg-cell>
-                                </clr-dg-row>
-                            </clr-datagrid>
-                        </div>
-    
+    <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <form #f="ngForm" role="form" novalidate>
+
+                <button type="button" class="closeButton" (click)="clickClose()">
+                    X
+                </button>
+                <div class="gridOverall">
+                    <div class="gridTitle">
+                        Data Dictionary:
                     </div>
-                </form>
-            </div>
+                    <div class="gridSubTitle">
+                        <i>
+                            Add, edit and solve the Data Dictionary per Datasource.  
+                        </i>
+                    </div>
+                    <div class="gridSubTitle2">
+                        <i>
+                            Dictionary for Tables & Fields to be done at a later stage.  
+                        </i>
+                    </div>
+
+                    <div class="gridDataDictionaryTitle">
+                        <b>DataDictionary:</b>
+                    </div>
+                    <div class="gridDataDictionary">
+                        <textarea [(ngModel)]="selectedDatasource.dataDictionary"
+                            type="text"
+                            name="dataDictionary"
+                            title="DataDictionary (technical explanation) for the Datasource"
+                            required
+                            placeholder="DataDictionary (technical explanation) for the Datasource"
+                            [disabled]="!editing"
+                            >
+                        </textarea> 
+                    </div>
+
+                    <div class="gridButtonCancel" *ngIf="editing">
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            (click)="clickCancel()"
+                            >
+                            Cancel
+                        </button>
+                    </div>
+                    <div class="gridButtonSave" *ngIf="editing">
+                        <button
+                            type="button"
+                            class="btn btn-primary"
+                            (click)="clickSave()"
+                            >
+                            Save
+                        </button>
+                    </div>
+
+                    <div class="gridButtonCancel" *ngIf="!editing">
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            (click)="clickEdit()"
+                            >
+                            Edit
+                        </button>
+                    </div> 
+
+                    <div class="gridTable">
+                        <clr-datagrid>
+                            <clr-dg-placeholder>
+                                No records ...
+                            </clr-dg-placeholder>
+                            <clr-dg-column>Name</clr-dg-column>
+                            <clr-dg-column>Type</clr-dg-column>
+                            <clr-dg-column>Description</clr-dg-column>
+                            <clr-dg-column>DataDictionary</clr-dg-column>
+                            <clr-dg-row
+                                *ngFor="let row of datasources; let i = index"
+                                [style.background-color]="(i == selectedDatasourcesRowIndex)? '#123456' : 'white'"
+                                [style.color]="(i == selectedDatasourcesRowIndex)? 'white' : 'gray'"
+                                (click)="clickRow(i, row.id)"
+                                >
+                                <clr-dg-cell>{{ row.name }}</clr-dg-cell>
+                                <clr-dg-cell>{{ row.type }}</clr-dg-cell>
+                                <clr-dg-cell>{{ row.description }}</clr-dg-cell>
+                                <clr-dg-cell>{{ row.dataDictionary }}</clr-dg-cell>
+                            </clr-dg-row>
+                        </clr-datagrid>
+                    </div>
+
+                </div>
+            </form>
         </div>
     </div>
-    
+</div>

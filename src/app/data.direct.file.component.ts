@@ -48,7 +48,7 @@ export class DataDirectFileComponent implements OnInit {
         };
 
     }
-    
+
     datasources: Datasource[];
     currentDatasources: Datasource[] = [];
     currentData: any = [];
@@ -132,7 +132,7 @@ export class DataDirectFileComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickFileBrowse', '@Start');
 
         if ( (<any>window).File && (<any>window).FileReader && (<any>window).FileList && window.Blob) {
-            console.warn('xx strt Great success! All the File APIs are supported.')
+            console.warn('xx Start Great success! All the File APIs are supported.')
           } else {
             alert('The File APIs are not fully supported in this browser.');
         };
@@ -144,61 +144,55 @@ export class DataDirectFileComponent implements OnInit {
         if (inp.files.length == 0) {
             return;
         };
-        
+
         // Access and handle the files
         this.theFile = inp.files[0];
-        console.warn('xx file', this.theFile, this.theFile.name, this.theFile.type, this.theFile.size, this.theFile.lastModifiedDate, this.theFile.lastModifiedDate.toLocaleDateString())
+        console.warn('xx pre readAsBinaryString', this.theFile, this.theFile.name, this.theFile.type, this.theFile.size, this.theFile.lastModifiedDate, this.theFile.lastModifiedDate.toLocaleDateString())
 
         // Read file as Binary
 
         this.reader.onerror = this.errorHandler;
         this.reader.onprogress = this.updateProgress;
-        // Closure to capture the file information.
-        this.reader.onload = (function(theFile) {
-            return function(e) {
-                console.warn('Done reading file')
-                this.fileName = this.theFile;
-                let specification = {
-                    source: {
-                        connector: "tributary.connectors.spreadsheet:XlsxConnector",
-                        content: localStorage.getItem("content"),
-                        headers: 4,
-                        skip_rows: [0, 1, 2, 3, 4]
-                    }
-                };
-                let token = JSON.parse(localStorage.getItem('eazl-token'));
-                let options = {
-                    method: "POST", 
-                    body: JSON.stringify(specification), 
-                    mode: "cors", 
-                    headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `JWT ${token}`
-                    }
-                };
-                
-                // fetch( "https://eazl-rest.xyz/eazl/canvas/enqueue/", options)
-                //     .then(response => {
-                //         return response.json();
-                //     })
-                //     .then(data => {
-                //         console.log(data);
-                //     })
-                //     .catch(error => {
-                //         console.log(error)
-                //     });
-            };
-        })(this.theFile);
-  
+        this.reader.onload = (theFile) =>{ this.loadFile(theFile) };
+
         // Read in the image file as a data URL.
         this.reader.readAsBinaryString(this.theFile);
+        console.warn('xx Post readAsBinaryString')
+    }
 
+    loadFile(theFile) {
+        console.warn('  begin loadFile', theFile, this.theFile)
+        this.fileName = this.theFile;
+        // skip_rows = [number = rows to skip, string = ignore rows that starts with this]
+        // First row = 0
+        // heaers = single integer to indicate the header, array of strings = use THIS text
+        let specification = {
+            source: {
+                connector: "tributary.connectors.spreadsheet:XlsxConnector",
+                content:  btoa(theFile.target.result),
+                headers: 0,
+                skip_rows: []
+            }
+        };
+        let token = JSON.parse(localStorage.getItem('eazl-token'));
+        let options = {
+            method: "POST",
+            body: JSON.stringify(specification),
+            mode: "cors",
+            headers: {
+            "Content-Type": "application/json",
+            "Authorization": `JWT ${token}`
+            }
+        };
+        this.globalVariableService.getTributaryData(specification);
+
+        console.warn('  end loadFile', theFile, this.theFile)
     }
 
     abortRead() {
         this.reader.abort();
     }
-    
+
     errorHandler(evt) {
         switch(evt.target.error.code) {
           case evt.target.error.NOT_FOUND_ERR:
@@ -213,7 +207,7 @@ export class DataDirectFileComponent implements OnInit {
             alert('An error occurred reading this file.');
         };
     }
-    
+
     updateProgress(evt) {
         // evt is an ProgressEvent.
         if (evt.lengthComputable) {
@@ -472,7 +466,7 @@ export class DataDirectFileComponent implements OnInit {
             dataDictionary: ''
 
         };
-        
+
         // General var with name - used in *ngIF, etc
         if (this.existingDSName == '') {
             this.currentDatasetName = this.fileName;

@@ -270,6 +270,23 @@ export class DataDirectQueryBuilderComponent implements OnInit {
 
     }
 
+    clickGraphQL() {
+        // user(id: 1) {
+        //     name
+        // }
+        let graphQLquery: string = `
+            query {
+                all_users {
+                    id
+                    username
+                    groups {
+                        id
+                    }
+                }
+            }
+        `;
+        this.globalVariableService.getTributaryGraphQL(graphQLquery)
+    }
     clickRefresh() {
         // Get the tables and fields from the DB
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRefresh', '@Start');
@@ -292,6 +309,45 @@ export class DataDirectQueryBuilderComponent implements OnInit {
                 this.dataFieldsFiltered = [];
             };
         };
+
+
+
+
+                // Remember table we started with
+                let localSelectedTableRowIndex = this.selectedTableRowIndex;
+
+            
+            let source: any =  {
+                "inspector": "tributary.inspectors.sql:SqlInspector",
+                "specification": {
+                    "drivername": "postgres",
+                    "username": "ftfhgfzh",
+                    "password": "L0Eph9ftbx0yh45aeDtgzsGKBa2ZNhfl",
+                    "database": "ftfhgfzh",
+                    "host": "pellefant.db.elephantsql.com",
+                    "port": 5432
+                }
+            }
+        
+
+        this.globalVariableService.getTributaryInspect(source).then(res => {
+            // Show if the user has not clicked another row - this result came back async
+            if ( localSelectedTableRowIndex == this.selectedTableRowIndex) {
+                this.showPreview = true;
+                this.helpMessage = 'Enter detail, then click Refresh to show the Tables.  Select one, then select the fields to display. Click Preview to see a portion of the data.';
+            };
+
+        })
+        .catch(err => {
+            this.errorMessage = err.message + '. ';
+            if (err.status == 401) {
+                this.errorMessage = 'Error: ' + 'Either you login has expired, or you dont have access to the Database. ' 
+                    + err.message;
+            } else {
+                this.errorMessage = err.message;
+            };
+        });
+
     }
     
     clickPreview() {

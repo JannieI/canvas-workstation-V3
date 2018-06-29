@@ -144,6 +144,13 @@
         margin-top: 5px;
     }
 
+    .gridButtonGraphQL {
+        grid-column-start: 12;
+        grid-column-end: 16;
+        grid-row-start: 7;
+        grid-row-end: 8;
+        margin-top: 12px;
+    }
     .gridButtonRefresh {
         grid-column-start: 14;
         grid-column-end: 16;

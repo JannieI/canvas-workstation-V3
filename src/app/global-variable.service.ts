@@ -8264,7 +8264,10 @@ export class GlobalVariableService {
         return [year, month, day].join('/') + ' ' + hour + ':' + minute + ':' + second;
     }
 
+
+
     // Eazl, Tributary stuffies
+    // ***********************************************************************
     // TODO - to be replaced by actual Eazl 
     login(username: string, password: string): Promise<boolean> {
         // Login, and return a token which is stored in LocalStorage.  Also, set global User
