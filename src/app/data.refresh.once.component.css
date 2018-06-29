@@ -3,27 +3,29 @@
 	-shadow: 0 2px 2px 0 lightgray;
 }
 
-.closeButton {
-    background-color: transparent;
-    border: none;
-    left: 0;
-    position: relative;
-    top: 0;
-}
-
 .gridOverall {
     display: grid;
     grid-template-columns: repeat(20, 1fr);
     grid-template-rows: repeat(27, 0.8rem);
     margin-top: 2px;
 }
-
+    .closeButton {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        text-align: left;
+    }
     .gridTitle {
         font-size: 0.75rem;
         grid-column-start: 1;
         grid-column-end: 21;
         grid-row-start: 1;
         grid-row-end: 2;
+        margin-left: 30px;
         text-align: left;
     }
     .gridSubTitle {
@@ -39,7 +41,7 @@
         border: 1px solid black;
         grid-column-start: 1;
         grid-column-end: 10;
-        grid-row-start: 4;
+        grid-row-start: 3;
         grid-row-end: 27;
         margin: 10px;
     }
@@ -48,7 +50,7 @@
         border: 1px solid black;
         grid-column-start: 10;
         grid-column-end: 21;
-        grid-row-start: 4;
+        grid-row-start: 3;
         grid-row-end: 27;
         margin: 10px;
     }
