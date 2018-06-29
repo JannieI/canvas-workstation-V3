@@ -8327,6 +8327,39 @@ export class GlobalVariableService {
         });
     }
 
+    getTributaryInspect(source: any): Promise<any> {
+        // Description: Gets data from the Tributary Server
+        // Returns: Added Data or error message
+        console.log('%c    Global-Variables getTributaryData ...',
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", source);
+
+        let url: string = 'https://eazl-rest.xyz/eazl/canvas/inspect/';
+        this.filePath = './assets/data.dashboards.json';
+
+        return new Promise<any>((resolve, reject) => {
+
+            let localToken: Token = JSON.parse(localStorage.getItem('eazl-token'));
+            console.warn('xx token', localToken)
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json")
+                .set("Authorization", "JWT " + localToken.token);
+
+            this.http.post(url, source, {headers})
+            .subscribe(
+                res => {
+
+                    console.log('Tributary Data', res)
+
+                    resolve(res);
+                },
+                err => {
+                    console.log('Error Get Tributary Inspect FAILED', err);;
+                    reject(err);
+                }
+            )
+        });
+    }
+
     getTributaryDirectDBSchema(serverName: string): DataSchema[] {
         // Description: Returns schema of a given DB via Tributary Server
         // Returns: Added Data or error message
