@@ -2,11 +2,10 @@
     <div class="modal-dialog modal-lg" role="dialog" aria-hidden="true">
         <div class="modal-content modalContent">
 
-            <button type="button" class="closeButton" (click)="clickClose()">
-                X
-            </button>
-
             <div class="gridOverall">
+                <button type="button" class="closeButton" (click)="clickClose()">
+                    <b>X</b>
+                </button>
 
                 <div class="colourpicker" *ngIf="colourPickerClosed">
                     <colour-picker
@@ -18,6 +17,25 @@
 
                 <div class="gridTitle">
                     <b>Shape Editor</b>
+                    <clr-signpost>
+                        <clr-icon shape="info-circle"
+                            clrSignpostTrigger>
+                        </clr-icon>
+                            <clr-signpost-content *clrIfOpen
+                            [clrPosition]="'bottom-middle'">
+                            <h5 style="margin-top: 0; color:gray;">
+                                Help
+                            </h5>
+                            <p style="margin-top: 0; color:gray;"> 
+                                This form allows for the adding of a new Shape, or the editing
+                                of an existing Shape.  The fields on the left side of the form
+                                will change depending on the type of Shape selected at the top.
+                                Colors can also be selected with a colour Picker.  The resultant
+                                Shape will be shown on the right hand side.
+                                Click the X or press Escape to close this form.
+                            </p>
+                        </clr-signpost-content>
+                    </clr-signpost>
                 </div>
 
                 <div class="gridShapeTypes">

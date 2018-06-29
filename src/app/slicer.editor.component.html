@@ -10,7 +10,26 @@
                 </div>
 
                 <div class="slicerHeader">
-                    Data Slicer
+                    Slicer Editor
+                    <clr-signpost>
+                        <clr-icon shape="info-circle"
+                            clrSignpostTrigger>
+                        </clr-icon>
+                            <clr-signpost-content *clrIfOpen
+                            [clrPosition]="'bottom-middle'">
+                            <h5 style="margin-top: 0; color:gray;">
+                                Help
+                            </h5>
+                            <p style="margin-top: 0; color:gray;"> 
+                                This form allows for the adding of a new Shape, or the editing
+                                of an existing Shape.  The fields on the left side of the form
+                                will change depending on the type of Shape selected at the top.
+                                Colors can also be selected with a colour Picker.  The resultant
+                                Shape will be shown on the right hand side.
+                                Click the X or press Escape to close this form.
+                            </p>
+                        </clr-signpost-content>
+                    </clr-signpost>
                     <i>
                         The connected dataset will be refreshed as the user clicks on the Slicer.
                     </i>
