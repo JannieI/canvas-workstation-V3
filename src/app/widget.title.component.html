@@ -3,12 +3,11 @@
 		<div class="modal-content modalContent">
             <form #f="ngForm" role="form" novalidate>
 
-                <button type="button" class="closeButton" (click)="clickClose()">
-                    X
-                </button>
-
                 <div class="gridOverall">
-
+                    <button type="button" class="closeButton" (click)="clickClose()">
+                        <b>X</b>
+                    </button>
+    
                     <div class="colourpicker" *ngIf="colourPickerClosed">
                         <colour-picker
                             [callingRoutine]="callingRoutine"
@@ -17,11 +16,25 @@
                         </colour-picker>
                     </div>
 
-                    <div class="titleHeader">
-                        <b>Title:</b>
+                    <div class="gridTitle">
+                        <b>Edit the Widget Title</b>
+                        <clr-signpost>
+                            <clr-icon shape="info-circle"
+                                clrSignpostTrigger>
+                            </clr-icon>
+                                <clr-signpost-content *clrIfOpen
+                                [clrPosition]="'bottom-middle'">
+                                <h5 style="margin-top: 0; color:gray;">
+                                    Help
+                                </h5>
+                                <p style="margin-top: 0; color:gray;"> 
+                                    Set properties of the Title bar at the top of the Widget.  
+                                    Click the X or press Escape to close this form.
+                                </p>
+                            </clr-signpost-content>
+                        </clr-signpost>
                     </div>
                     <div class="titleSubHeader">
-                        <i>Set properties of the Title box at the top of the Widget.</i>
                     </div>
 
                     <div class="titleText">
