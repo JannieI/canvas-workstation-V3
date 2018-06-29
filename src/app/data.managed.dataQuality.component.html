@@ -3,17 +3,34 @@
             <div class="modal-content">
                 <form #f="ngForm" role="form" novalidate>
     
-                    <button type="button" class="closeButton" (click)="clickClose()">
-                        X
-                    </button>
                     <div class="gridOverall">
+                        <button type="button" class="closeButton" (click)="clickClose()">
+                            <b>X</b>
+                        </button>
                         <div class="gridTitle">
-                            Manage Data Quality:
+                            <b>Manage Data Quality issues</b>
+                            <clr-signpost>
+                                <clr-icon shape="info-circle"
+                                    clrSignpostTrigger>
+                                </clr-icon>
+                                    <clr-signpost-content *clrIfOpen
+                                    [clrPosition]="'bottom-middle'">
+                                    <h5 style="margin-top: 0; color:gray;">
+                                        Help
+                                    </h5>
+                                    <p style="margin-top: 0; color:gray;"> 
+                                        Manage (add and edit) data quality issues per selected 
+                                        Datasource.  Issues can also be marked as resolved.  If a 
+                                        data quality issue has been raised against a Datasource, a 
+                                        warning triangle will be displayed on the graph or table 
+                                        that is based on it to alert the user viewing the Dashboard.
+                                        Click the X or press Escape to close this form.
+                                    </p>
+                                </clr-signpost-content>
+                            </clr-signpost>
+        
                         </div>
                         <div class="gridSubTitle">
-                            <i>
-                                Add, edit and solve data quality issues per Datasource.  
-                            </i>
                         </div>
     
                         <div class="gridNameTitle">
