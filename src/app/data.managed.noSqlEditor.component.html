@@ -3,18 +3,29 @@
             <div class="modal-content">
                 <form #f="ngForm" role="form" novalidate>
     
-                    <button type="button" class="closeButton" (click)="clickClose()">
-                        X
-                    </button>
                     <div class="gridOverall">
+                        <button type="button" class="closeButton" (click)="clickClose()">
+                            <b>X</b>
+                        </button>
                         <div class="gridTitle">
-                            NoSQL Editor:
+                            <b>NoSQL Editor</b>
+                            <clr-signpost>
+                                <clr-icon shape="info-circle"
+                                    clrSignpostTrigger>
+                                </clr-icon>
+                                    <clr-signpost-content *clrIfOpen
+                                    [clrPosition]="'bottom-middle'">
+                                    <h5 style="margin-top: 0; color:gray;">
+                                        Help
+                                    </h5>
+                                    <p style="margin-top: 0; color:gray;"> 
+                                        Add a Datasource from a NoSQL Database: identify the Connection,
+                                type the query string, and see the results with GO.  Click the X or press Escape to close this form.
+                                    </p>
+                                </clr-signpost-content>
+                            </clr-signpost>
                         </div>
                         <div class="gridSubTitle">
-                            <i>
-                                Add a Datasource from a NoSQL Database: identify the Connection,
-                                type the query string, and see the results with GO.
-                            </i>
                         </div>
     
                         <div class="gridDatasourceNameTitle">
