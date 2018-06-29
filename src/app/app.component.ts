@@ -399,7 +399,6 @@ export class AppComponent implements OnInit {
     showModalManageBussGlossary: boolean = false;
     showModalManagedDataDataDictionary: boolean = false;
     showModalDataCombination: boolean = false;
-    showModalDataRefresh: boolean = false;
     showModalDataShare: boolean = false;
     showModalDataDictionary: boolean = false;
     showModalDataSummary: boolean = false;
@@ -1509,15 +1508,6 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPostAction();
 
         this.showModalDataCombination = false;
-    }
-
-    handleCloseDataRefresh(action: string) {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataRefresh', '@Start');
-
-        this.menuOptionClickPostAction();
-
-        this.showModalDataRefresh = false;
     }
 
     handleCloseDataShare(action: string) {
@@ -3234,15 +3224,6 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPreAction();
 
         this.showModalDataCombination = true;
-    }
-
-    clickMenuDataRefreshAll() {
-        // Refresh all DS
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataRefreshAll', '@Start');
-
-        this.menuOptionClickPreAction();
-
-        this.showModalDataRefresh = true;
     }
 
     clickMenuDataShare() {
