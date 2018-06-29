@@ -2,23 +2,34 @@
     <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
         <div class="modal-content modalContent">
 
-            <button type="button" class="closeButton" (click)="clickClose()">
-                X
-            </button>
-
             <div class="gridOverall">
+                <button type="button" class="closeButton" (click)="clickClose()">
+                    <b>X</b>
+                </button>
                 <div class="gridTitle">
                     <b>My Permissions</b>
+                    <clr-signpost>
+                        <clr-icon shape="info-circle"
+                            clrSignpostTrigger>
+                        </clr-icon>
+                            <clr-signpost-content *clrIfOpen
+                            [clrPosition]="'bottom-middle'">
+                            <h5 style="margin-top: 0; color:gray;">
+                                Help
+                            </h5>
+                            <p style="margin-top: 0; color:gray;"> 
+                                The grid below show permissions granted for the current user to 
+                                different Dashboards, at user or group level.  Note that the final
+                                access depends on the mode (View/Edit), the access type of the 
+                                Dashboard and the role(s) of the user.  For example, a user without
+                                the CanEdit role will not be able to edit any Dashboard under any
+                                circumstances.  
+                                Click the X or press Escape to close this form.
+                            </p>
+                        </clr-signpost-content>
+                    </clr-signpost>
                 </div>
                 <div class="gridSubTitle">
-                    <i>
-                        The grid below show permissions granted for the current user to 
-                        different Dashboards, at user or group level.  Note that the final
-                        access depends on the mode (View/Edit), the access type of the 
-                        Dashboard and the role(s) of the user.  For example, a user without
-                        the CanEdit role will not be able to edit any Dashboard under any
-                        circumstances.
-                    </i>
                 </div>
 
                 <div class="gridTable">
