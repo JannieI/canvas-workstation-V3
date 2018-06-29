@@ -7,14 +7,29 @@
                     X
                 </button>
                 <div class="gridOverall">
+                    <button type="button" class="closeButton" (click)="clickClose()">
+                        <b>X</b>
+                    </button>
                     <div class="gridTitle">
-                            Refresh (repeat):
+                        <b>Refresh Dashboard repeatedly</b>
+                        <clr-signpost>
+                            <clr-icon shape="info-circle"
+                                clrSignpostTrigger>
+                            </clr-icon>
+                                <clr-signpost-content *clrIfOpen
+                                [clrPosition]="'bottom-middle'">
+                                <h5 style="margin-top: 0; color:gray;">
+                                    Help
+                                </h5>
+                                <p style="margin-top: 0; color:gray;"> 
+                                    The data for all Datasources linked to this Dashboard will 
+                                    be refreshed repeatedly according to the frequency set below.  
+                                    Click the X or press Escape to close this form.
+                                </p>
+                            </clr-signpost-content>
+                        </clr-signpost>
                     </div>
                     <div class="gridSubTitle">
-                        <i>
-                            The data for all Datasources linked to this Dashboard will be
-                            refreshed repeatedly according to the frequency set below.
-                        </i>
                     </div>
 
                     <div class="gridMinutesTitle">
