@@ -3,13 +3,12 @@
         <div class="modal-content modalContent">
             <form #f="ngForm" role="form" novalidate>
 
-                <button type="button" class="closeButton" (click)="clickClose()">
-                    X
-                </button>
- 
                 <div class="gridOverall">
-
-                    <div class="gridHeader">
+                    <button type="button" class="closeButton" (click)="clickClose()">
+                        <b>X</b>
+                    </button>
+    
+                    <div class="gridTitle">
                         <b>Logout:</b>
                         <clr-signpost>
                             <clr-icon shape="info-circle"
@@ -21,7 +20,7 @@
                                     Help
                                 </h5>
                                 <p style="margin-top: 0; color:gray;"> 
-                                    Log into a server (if available), or as a local user.  After 
+                                    Log out as the current Canvas user.  After 
                                     being logged out, no work can be performed and no Dashboard 
                                     can be accessed.  The only valid action is Login (on the same
                                     menu).  Click the X or press Escape to close this form.
@@ -30,7 +29,6 @@
                         </clr-signpost>
                     </div>
                     <div class="gridSubHeader">
-                        <i>Log out as the current user.  The only valid future action will be to log in.</i>
                     </div>
  
                     <div class="gridQuestion">
