@@ -8333,7 +8333,7 @@ export class GlobalVariableService {
         console.log('%c    Global-Variables getTributaryData ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", graphQLquery);
 
-        let url: string = 'https://eazl-rest.xyz/eazl/accounts/graphql';
+        let url: string = 'https://eazl-rest.xyz/eazl/accounts/graphql/';
         this.filePath = './assets/data.dashboards.json';
 
         return new Promise<any>((resolve, reject) => {
