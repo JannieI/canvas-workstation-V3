@@ -11,6 +11,23 @@
 
                     <div class="gridHeader">
                         <b>Logout:</b>
+                        <clr-signpost>
+                            <clr-icon shape="info-circle"
+                                clrSignpostTrigger>
+                            </clr-icon>
+                                <clr-signpost-content *clrIfOpen
+                                [clrPosition]="'bottom-middle'">
+                                <h5 style="margin-top: 0; color:gray;">
+                                    Help
+                                </h5>
+                                <p style="margin-top: 0; color:gray;"> 
+                                    Log into a server (if available), or as a local user.  After 
+                                    being logged out, no work can be performed and no Dashboard 
+                                    can be accessed.  The only valid action is Login (on the same
+                                    menu).  Click the X or press Escape to close this form.
+                                </p>
+                            </clr-signpost-content>
+                        </clr-signpost>
                     </div>
                     <div class="gridSubHeader">
                         <i>Log out as the current user.  The only valid future action will be to log in.</i>
