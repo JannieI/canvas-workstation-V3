@@ -3,21 +3,22 @@
 	-shadow: 0 2px 2px 0 lightgray;
 }
 
-.closeButton {
-    background-color: transparent;
-    border: none;
-    left: 0;
-    position: relative;
-    top: 0;
-}
-
-
 .gridOverall {
     display: grid;
     grid-template-columns: repeat(14, 1fr);
     grid-template-rows: repeat(18, 1rem);
     margin-top: 2px;
 }
+    .closeButton {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        text-align: left;
+    }
 
     .gridTitle {
         font-size: 0.75rem;
@@ -25,6 +26,7 @@
         grid-column-end: 18;
         grid-row-start: 1;
         grid-row-end: 2;
+        margin-left: 30px;
         text-align: left;
     }
     .gridSubTitle {
@@ -39,24 +41,24 @@
         font-size: 0.65rem;
         grid-column-start: 1;
         grid-column-end: 2;
-        grid-row-start: 5;
-        grid-row-end: 6;
+        grid-row-start: 3;
+        grid-row-end: 4;
         text-align: left;
     }
 
         .gridCheckpoint {
             grid-column-start: 2;
             grid-column-end: 4;
-            grid-row-start: 5;
-            grid-row-end: 6;
+            grid-row-start: 3;
+            grid-row-end: 4;
             text-align: left;
         }
 
         .gridCheckpointButton {
             grid-column-start: 5;
             grid-column-end: 6;
-            grid-row-start: 5;
-            grid-row-end: 6;
+            grid-row-start: 3;
+            grid-row-end: 4;
             margin-left: 20px;
             text-align: left;
         }
@@ -64,7 +66,7 @@
         .gridCheckpointTable {
             grid-column-start: 1;
             grid-column-end: 8;
-            grid-row-start: 6;
+            grid-row-start: 4;
             grid-row-end: 19;
             text-align: left;
         }
@@ -74,8 +76,8 @@
         border-radius: 4px;
         grid-column-start: 9;
         grid-column-end: 19;
-        grid-row-start: 5;
-        grid-row-end: 19;
+        grid-row-start: 3;
+        grid-row-end: 14;
         height: 300px;
         margin: 0;
         text-align: center;

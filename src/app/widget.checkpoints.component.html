@@ -3,23 +3,34 @@
         <div class="modal-content modalContent">
             <form #f="ngForm" role="form" novalidate>
 
-                <button type="button" class="closeButton" (click)="clickClose()">
-                    X
-                </button>
-
                 <div class="gridOverall">
-
+                    <button type="button" class="closeButton" (click)="clickClose()">
+                        <b>X</b>
+                    </button>
+    
                     <div class="gridTitle">
                         <b>Widget Checkpoints: </b>
+                        <clr-signpost>
+                            <clr-icon shape="info-circle"
+                                clrSignpostTrigger>
+                            </clr-icon>
+                                <clr-signpost-content *clrIfOpen
+                                [clrPosition]="'bottom-middle'">
+                                <h5 style="margin-top: 0; color:gray;">
+                                    Help
+                                </h5>
+                                <p style="margin-top: 0; color:gray;"> 
+                                    A Checkpoint is saved at a point in time, and shows how the Widget
+                                    looked then (including filters, colours, etc).  This could be usedful
+                                    during presentations as the same physical area on the screen can be used
+                                    to show different graphs, for example drill down into progressively more
+                                    detail.  
+                                    Click the X or press Escape to close this form.
+                                </p>
+                            </clr-signpost-content>
+                        </clr-signpost>
                     </div>
                     <div class="gridSubTitle">
-                        <i>
-                                A Checkpoint is saved at a point in time, and shows how the Widget
-                                looked then (including filters, colours, etc).  This could be usedful
-                                during presentations as the same physical area on the screen can be used
-                                to show different graphs, for example drill down into progressively more
-                                detail.
-                        </i>
                     </div>
 
                     <div class="gridCheckpointTitle">
@@ -45,7 +56,7 @@
                     <div class="gridCheckpointButton">
                         <button
                             type="button"
-                            class="btn btn-secondary btn-sm"
+                            class="btn btn-primary"
                             (click)="clickAddCheckpoint()"
                             >
                             Add
