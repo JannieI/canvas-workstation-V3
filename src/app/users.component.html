@@ -1,75 +1,65 @@
 <div class="modal modalBox">
-        <div class="modal-dialog modal-lg" role="dialog" aria-hidden="true">
-            <div class="modal-content modalContent">
+    <div class="modal-dialog modal-lg" role="dialog" aria-hidden="true">
+        <div class="modal-content modalContent">
     
+            <div class="gridOverall">
                 <button type="button" class="closeButton" (click)="clickClose()">
-                    X
+                    <b>X</b>
                 </button>
-     
-                <div class="gridOverall">
-                    <div class="gridTitle">
-                        Users
-                    </div>
-                    <div class="gridSubTitle">
-                        <i>
-                            List of Canvas Users.  These are edited by an Administrator.
-                        </i>
-                    </div>
-    
-                    <!-- <div class="gridUsersTitle">
-                        <b>Current Users:</b>
-                    </div> -->
-                    <div class="gridUsers">
-                        <div class="gridPrevious">
-                            <clr-datagrid>
-                                <clr-dg-column [clrDgField]="userID">UserID</clr-dg-column>
-                                <clr-dg-column [clrDgField]="firstName">FirstName</clr-dg-column>
-                                <clr-dg-column [clrDgField]="lastName">LastName</clr-dg-column>
-                                <clr-dg-column [clrDgField]="email">Email</clr-dg-column>
-                                <clr-dg-column [clrDgField]="workNumber">WorkNumber</clr-dg-column>
-                                <clr-dg-column [clrDgField]="cellNumber">CellNumber</clr-dg-column>
-                                <clr-dg-column [clrDgField]="isSuperuser">IsSuperuser</clr-dg-column>
-                                <clr-dg-column [clrDgField]="isStaff">IsStaff</clr-dg-column>
-                                <clr-dg-column [clrDgField]="isActive">IsActive</clr-dg-column>
-    
-                                <clr-dg-row *clrDgItems="let row of users;
-                                    let i = index"
-                                    (click)="clickRow(i, row.userID)"
-                                    [style.background-color]="(i == selectedRow)? '#123456' : 'white'"
-                                    [style.color]="(i == selectedRow)? 'white' : 'gray'"
-                                    >
-                                    <clr-dg-cell>{{row.userID}}</clr-dg-cell>
-                                    <clr-dg-cell>{{row.firstName}}</clr-dg-cell>
-                                    <clr-dg-cell>{{row.lastName}}</clr-dg-cell>
-                                    <clr-dg-cell>{{row.email}}</clr-dg-cell>
-                                    <clr-dg-cell>{{row.workNumber}}</clr-dg-cell>
-                                    <clr-dg-cell>{{row.cellNumber}}</clr-dg-cell>
-                                    <clr-dg-cell>{{row.isSuperuser}}</clr-dg-cell>
-                                    <clr-dg-cell>{{row.isStaff}}</clr-dg-cell>
-                                    <clr-dg-cell>{{row.isActive}}</clr-dg-cell>
-                                </clr-dg-row>
-        
-                                <clr-dg-footer>
-                                    {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
-                                    of {{pagination.totalItems}} rows
-                                    <clr-dg-pagination #pagination [clrDgPageSize]="5"></clr-dg-pagination>
-                                </clr-dg-footer>
-        
-                            </clr-datagrid>
-                        </div>
-                    </div>
-     
-                    <!-- <div class="gridGroupsTitle">
-                        <i>Groups that the user belongs to:</i>
-                    </div> -->
-                    <div class="gridGroups">
+                <div class="gridTitle">
+                    <b>List of Canvas Users</b>
+                    <clr-signpost>
+                        <clr-icon shape="info-circle"
+                            clrSignpostTrigger>
+                        </clr-icon>
+                            <clr-signpost-content *clrIfOpen
+                            [clrPosition]="'bottom-middle'">
+                            <h5 style="margin-top: 0; color:gray;">
+                                Help
+                            </h5>
+                            <p style="margin-top: 0; color:gray;"> 
+                                List of Canvas Users.  These are edited by an Administrator.
+                                Selecting a user in the left hand list will show the group(s) 
+                                that he/she belongs to on the right.  
+                                Click the X or press Escape to close this form.
+                            </p>
+                        </clr-signpost-content>
+                    </clr-signpost>
+                </div>
+                <div class="gridSubTitle">
+                </div>
+
+                <!-- <div class="gridUsersTitle">
+                    <b>Current Users:</b>
+                </div> -->
+                <div class="gridUsers">
+                    <div class="gridPrevious">
                         <clr-datagrid>
-                            <clr-dg-column [clrDgField]="name">Groups</clr-dg-column>
-    
-                            <clr-dg-row *clrDgItems="let row of groups;
+                            <clr-dg-column [clrDgField]="userID">UserID</clr-dg-column>
+                            <clr-dg-column [clrDgField]="firstName">FirstName</clr-dg-column>
+                            <clr-dg-column [clrDgField]="lastName">LastName</clr-dg-column>
+                            <clr-dg-column [clrDgField]="email">Email</clr-dg-column>
+                            <clr-dg-column [clrDgField]="workNumber">WorkNumber</clr-dg-column>
+                            <clr-dg-column [clrDgField]="cellNumber">CellNumber</clr-dg-column>
+                            <clr-dg-column [clrDgField]="isSuperuser">IsSuperuser</clr-dg-column>
+                            <clr-dg-column [clrDgField]="isStaff">IsStaff</clr-dg-column>
+                            <clr-dg-column [clrDgField]="isActive">IsActive</clr-dg-column>
+
+                            <clr-dg-row *clrDgItems="let row of users;
                                 let i = index"
+                                (click)="clickRow(i, row.userID)"
+                                [style.background-color]="(i == selectedRow)? '#123456' : 'white'"
+                                [style.color]="(i == selectedRow)? 'white' : 'gray'"
                                 >
-                                <clr-dg-cell>{{ row }}</clr-dg-cell>
+                                <clr-dg-cell>{{row.userID}}</clr-dg-cell>
+                                <clr-dg-cell>{{row.firstName}}</clr-dg-cell>
+                                <clr-dg-cell>{{row.lastName}}</clr-dg-cell>
+                                <clr-dg-cell>{{row.email}}</clr-dg-cell>
+                                <clr-dg-cell>{{row.workNumber}}</clr-dg-cell>
+                                <clr-dg-cell>{{row.cellNumber}}</clr-dg-cell>
+                                <clr-dg-cell>{{row.isSuperuser}}</clr-dg-cell>
+                                <clr-dg-cell>{{row.isStaff}}</clr-dg-cell>
+                                <clr-dg-cell>{{row.isActive}}</clr-dg-cell>
                             </clr-dg-row>
     
                             <clr-dg-footer>
@@ -80,10 +70,32 @@
     
                         </clr-datagrid>
                     </div>
-
                 </div>
+    
+                <!-- <div class="gridGroupsTitle">
+                    <i>Groups that the user belongs to:</i>
+                </div> -->
+                <div class="gridGroups">
+                    <clr-datagrid>
+                        <clr-dg-column [clrDgField]="name">Groups</clr-dg-column>
+
+                        <clr-dg-row *clrDgItems="let row of groups;
+                            let i = index"
+                            >
+                            <clr-dg-cell>{{ row }}</clr-dg-cell>
+                        </clr-dg-row>
+
+                        <clr-dg-footer>
+                            {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+                            of {{pagination.totalItems}} rows
+                            <clr-dg-pagination #pagination [clrDgPageSize]="5"></clr-dg-pagination>
+                        </clr-dg-footer>
+
+                    </clr-datagrid>
+                </div>
+
             </div>
         </div>
     </div>
-    
-    
+</div>
+
