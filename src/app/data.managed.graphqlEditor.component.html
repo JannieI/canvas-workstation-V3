@@ -8,7 +8,7 @@
                         <b>X</b>
                     </button>
                     <div class="gridTitle">
-                        <b>SQL Editor</b>
+                        <b>GraphQL Editor</b>
                         <clr-signpost>
                             <clr-icon shape="info-circle"
                                 clrSignpostTrigger>
@@ -20,7 +20,7 @@
                                 </h5>
                                 <p style="margin-top: 0; color:gray;"> 
                                     Add a Datasource from a SQL Database: identify the Connection,
-                                    type the SQL string, and see the results with GO.  
+                                    type the GraphQL string, and see the results with GO.  
                                     Click the X or press Escape to close this form.
                                 </p>
                             </clr-signpost-content>
@@ -121,7 +121,7 @@
                         </button>
                     </div>
 
-                    <textarea class="gridSQLText">SELECT * FROM [table]</textarea>
+                    <textarea class="gridGraphQLText">{{graphQLquery}}</textarea>
 
                     <clr-tabs class="gridData">
                         <clr-tab>

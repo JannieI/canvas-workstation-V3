@@ -270,23 +270,6 @@ export class DataDirectQueryBuilderComponent implements OnInit {
 
     }
 
-    clickGraphQL() {
-        // user(id: 1) {
-        //     name
-        // }
-        let graphQLquery: string = `
-            query {
-                all_users {
-                    id
-                    username
-                    groups {
-                        id
-                    }
-                }
-            }
-        `;
-        this.globalVariableService.getTributaryGraphQL(graphQLquery)
-    }
     clickRefresh() {
         // Get the tables and fields from the DB
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRefresh', '@Start');

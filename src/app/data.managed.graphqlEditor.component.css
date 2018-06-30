@@ -163,7 +163,7 @@
         grid-row-end: 16;
     }
  
-    .gridSQLText {
+    .gridGraphQLText {
         border: 1px solid gray;
         border-radius: 4px;
         grid-column-start: 1;

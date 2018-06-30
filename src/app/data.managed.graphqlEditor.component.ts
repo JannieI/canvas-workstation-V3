@@ -68,7 +68,21 @@ export class DataManagedGraphQLEditorComponent implements OnInit {
     selectedTableRowIndex: number = 0;
     serverName: string = 'MSSQL54: 8000';
 
-    // connections ->
+    
+        // user(id: 1) {
+        //     name
+        // }
+    graphQLquery: string = `
+            query {
+                all_users {
+                    id
+                    username
+                    groups {
+                        id
+                    }
+                }
+            }
+    `;
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -204,6 +218,8 @@ export class DataManagedGraphQLEditorComponent implements OnInit {
         // Clicked Go: execute SQL typed in, and return results and errors
         this.globalFunctionService.printToConsole(this.constructor.name,'clickGo', '@Start');
 
+        this.globalVariableService.getTributaryGraphQL(this.graphQLquery)
+    
     }
 
     clickClose(action: string) {
