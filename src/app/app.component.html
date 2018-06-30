@@ -478,6 +478,14 @@
                                     <button
                                         type="button"
                                         clrDropdownItem
+                                        (click)="clickMenuDataManagedGraphQLEditor()"
+                                        title="Create a new Datasources using the GraphQL Editor"
+                                        >
+                                        New GraphQL Editor
+                                    </button>
+                                    <button
+                                        type="button"
+                                        clrDropdownItem
                                         (click)="clickMenuDataManagedOverlayEditor()"
                                         title="Create a new Datasources using the Overlay Editor"
                                         >
@@ -4105,6 +4113,14 @@
     [selectedDatasource]="selectedDatasource"
     (formDataManagedSQLEditorClosed)="handleCloseDataManagedSQLEditor($event)">Load Managed SQL Editor ...
 </data-managedSqlEditor>
+
+
+<!-- Modal: Data Managed GraphQL Editor -->
+<data-managedGraphqlEditor
+    *ngIf="showModalDataManagedGraphQLEditor"
+    [selectedDatasource]="selectedDatasource"
+    (formDataManagedGraphQLEditorClosed)="handleCloseDataManagedGraphQLEditor($event)">Load Managed GraphQL Editor ...
+</data-managedGraphqlEditor>
 
 
 <!-- Modal: Data Managed NoSQL Editor -->

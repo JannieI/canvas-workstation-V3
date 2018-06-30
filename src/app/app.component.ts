@@ -384,6 +384,7 @@ export class AppComponent implements OnInit {
     showModalDataRefreshRepeat: boolean = false;
     showModalDataManagedQueryBuilder: boolean = false;
     showModalDataManagedSQLEditor: boolean = false;
+    showModalDataManagedGraphQLEditor: boolean = false;
     showModalDataManagedNoSQLEditor: boolean = false;
     showModalDataManagedOverlayEditor: boolean = false;
     showModalDataTransformation: boolean = false;
@@ -1367,6 +1368,21 @@ export class AppComponent implements OnInit {
         };
     }
     
+    handleCloseDataManagedGraphQLEditor(returnDS: Datasource) {
+        // Handle Close of GraphQL Editor
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataManagedGraphQLEditor', '@Start');
+
+        this.menuOptionClickPostAction();
+
+        this.showModalDataManagedGraphQLEditor = false;
+
+        // Open Transformations if so requested
+        if (returnDS != null) {
+            this.selectedDatasource = returnDS;
+            this.showModalDataTransformation = true;
+        };
+    }
+    
     handleCloseDataManagedNoSQLEditor(returnDS: Datasource) {
         // Handle Close of NoSQL Editor
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataManagedNoSQLEditor', '@Start');
@@ -1436,7 +1452,9 @@ export class AppComponent implements OnInit {
                     this.showModalDataManagedQueryBuilder = true;
                 } else if (returnedDatasource.createMethod == 'managedSQLEditor') {
                     this.showModalDataManagedSQLEditor = true;
-                } else if (returnedDatasource.createMethod == 'managedNoSQLEditor') {
+                } else if (returnedDatasource.createMethod == 'managedGraphQLEditor') {
+                    this.showModalDataManagedGraphQLEditor = true;
+                } else if (returnedDatasource.createMethod == 'managedNoGraphQLEditor') {
                     this.showModalDataManagedNoSQLEditor = true;
                 } else if (returnedDatasource.createMethod == 'managedOverlayEditor') {
                     this.showModalDataManagedOverlayEditor = true;
@@ -2982,7 +3000,16 @@ export class AppComponent implements OnInit {
 
         this.showModalDataManagedSQLEditor = true;
     }
-    
+
+    clickMenuDataManagedGraphQLEditor() {
+        // SQL Editor
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataManagedGraphQLEditor', '@Start');
+
+        this.menuOptionClickPreAction();
+
+        this.showModalDataManagedGraphQLEditor = true;
+    }
+
     clickMenuDataManagedNoSQLEditor() {
         // No SQL Editor
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataManagedNoSQLEditor', '@Start');
