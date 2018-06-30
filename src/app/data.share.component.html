@@ -28,15 +28,109 @@
                     </clr-signpost>
                 </div>
 
-                <div class="gridInput">
-                    <input type="text" id="formFields_7" placeholder="DS Name">
+                <div class="gridDatasourceNameTitle">
+                    <b>DS Name:</b>
+                </div>
+
+                <div class="gridDatasourceName">
+                    <input [ngModel]="datasourceName"
+                        type="text"
+                        name="datasourceName"
+                        #datasourceNameVar="ngModel"
+                        required
+                        minlength="3"
+                        maxlength="40"
+                        [style.color]="!datasourceNameVar.valid ? 'red' : 'gray'"
+                        placeholder="Datasource Name"
+                        size="25"
+                        >
+                </div>
+
+                <div class="gridUserIDTitle">
+                    <b>UserID:</b>
+                </div>
+                <div class="gridUserID">
+                    <input [ngModel]="UserID"
+                        type="text"
+                        name="UserID"
+                        #UserIDVar="ngModel"
+                        required
+                        minlength="3"
+                        maxlength="40"
+                        [style.color]="!UserIDVar.valid ? 'red' : 'gray'"
+                        placeholder="Datasource Name"
+                        size="25"
+                        >
+                </div>
+    
+                <div class="gridGroupTitle">
+                    <b>Group:</b>
+                </div>
+                <div class="gridGroup">
+                    <input [ngModel]="Group"
+                        type="text"
+                        name="Group"
+                        #GroupVar="ngModel"
+                        required
+                        minlength="3"
+                        maxlength="40"
+                        [style.color]="!GroupVar.valid ? 'red' : 'gray'"
+                        placeholder="Datasource Name"
+                        size="25"
+                        >
+                </div>
+
+                <div class="gridCanView">
+                    Can View:
+                    <input [(ngModel)]="canView"
+                        type="checkbox"
+                        name="canView"
+                        #snapToGridVar="ngModel"
+                        title="The specified User/Group Can View this Datasource (T/F)"
+                        [style.color]="!snapToGridVar.valid ? 'red' : 'gray'"
+                        >
+                </div>
+
+                <div class="gridCanEdit">
+                    Can Edit:
+                    <input [(ngModel)]="canEdit"
+                        type="checkbox"
+                        name="canEdit"
+                        #snapToGridVar="ngModel"
+                        title="The specified User/Group Can Edit this Datasource (T/F)"
+                        [style.color]="!snapToGridVar.valid ? 'red' : 'gray'"
+                        >
+                </div>
+    
+                <div class="gridCanAdd">
+                    Can Add:
+                    <input [(ngModel)]="canAdd"
+                        type="checkbox"
+                        name="canAdd"
+                        #snapToGridVar="ngModel"
+                        title="The specified User/Group Can Add this Datasource (T/F)"
+                        [style.color]="!snapToGridVar.valid ? 'red' : 'gray'"
+                        >
+                </div>
+    
+                    <!-- <input type="text" id="formFields_7" placeholder="DS Name">
                     <input type="text" id="formFields_7" placeholder="User ID">
                     <input type="text" id="formFields_7" placeholder="Group ID">
                     <input type="text" id="formFields_7" placeholder="CanView">
                     <input type="text" id="formFields_7" placeholder="CanEdit">
                     <input type="text" id="formFields_7" placeholder="CanAdd">
-                    <input type="text" id="formFields_7" placeholder="CanDelete">
+                    <input type="text" id="formFields_7" placeholder="CanDelete"> -->
+                <div class="gridCanDelete">
+                    Can Delete:
+                    <input [(ngModel)]="canDelete"
+                        type="checkbox"
+                        name="canDelete"
+                        #snapToGridVar="ngModel"
+                        title="The specified User/Group Can Delete this Datasource (T/F)"
+                        [style.color]="!snapToGridVar.valid ? 'red' : 'gray'"
+                        >
                 </div>
+
                 <div class = "gridButtonAdd">
 
                     <button

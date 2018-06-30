@@ -3,10 +3,6 @@
 	-shadow: 0 2px 2px 0 lightgray;
 }
 
-.propertyLine {
-    margin: 5px;
-}
-
 .gridOverall {
     display: grid;
     grid-template-columns: repeat(20, 1fr);
@@ -29,6 +25,7 @@
         grid-column-end: 18;
         grid-row-start: 1;
         grid-row-end: 2;
+        margin-left: 30px;
         text-align: left;
     }
     .gridSubTitle {
@@ -41,14 +38,108 @@
         text-align: left;
     }
 
-    .gridInput {
+    .gridDatasourceNameTitle {
         grid-column-start: 1;
-        grid-column-end: 41;
+        grid-column-end: 3;
         grid-row-start: 3;
+        grid-row-end: 4;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridDatasourceName {
+        grid-column-start: 3;
+        grid-column-end: 9;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+
+    .gridUserIDTitle {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridUserID {
+        grid-column-start: 10;
+        grid-column-end: 13;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+
+    .gridGroupIDTitle {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 5;
         grid-row-end: 6;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
+    .gridGroupID {
+        grid-column-start: 3;
+        grid-column-end: 9;
+        grid-row-start: 5;
+        grid-row-end: 6;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+
+    .gridCanViewTitle {
+        grid-column-start: 10;
+        grid-column-end: 13;
+        grid-row-start: 5;
+        grid-row-end: 6;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridCanView {
+        grid-column-start: 13;
+        grid-column-end: 19;
+        grid-row-start: 5;
+        grid-row-end: 6;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+
+    .gridCanEditTitle {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 5;
+        grid-row-end: 6;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridCanEdit {
+        grid-column-start: 3;
+        grid-column-end: 9;
+        grid-row-start: 5;
+        grid-row-end: 6;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+
+    .gridCanAddTitle {
+        grid-column-start: 10;
+        grid-column-end: 13;
+        grid-row-start: 5;
+        grid-row-end: 6;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridCanAdd {
+        grid-column-start: 13;
+        grid-column-end: 19;
+        grid-row-start: 5;
+        grid-row-end: 6;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+
 
     .gridButtonAdd {
         grid-column-start: 1;
@@ -62,7 +153,7 @@
     .gridTable {
         grid-column-start: 1;
         grid-column-end: 41;
-        grid-row-start: 9;
+        grid-row-start: 8;
         grid-row-end: 20;
         margin: 2px 2px 2px 2px;
         text-align: left;
