@@ -827,6 +827,15 @@ export class AppComponent implements OnInit {
         this.showModalDashboardSaveAs = false;
     }
 
+    handleCloseDashboardExport(action: string) {
+        // Handle close form for Export of D to a text file
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardExport', '@Start');
+
+        this.menuOptionClickPostAction();
+
+        this.showModalDashboardExport = false;
+    }
+
     handleCloseDashboardSnapshots(action: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardSnapshots', '@Start');
