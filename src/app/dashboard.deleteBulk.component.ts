@@ -76,9 +76,9 @@ export class DashboardDeleteBulkComponent implements OnInit {
 		this.formDashboardDeleteClosed.emit(action);
     }
 
-    clickDelete(index: number, id: number) {
+    dblclickDelete(index: number, id: number) {
         // Delete selected D and all related records, if user has access
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickDelete', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'dblclickDelete', '@Start');
 
         // Determine access
         if (!this.globalVariableService.dashboardPermissionCheck(id, 'CanDelete')) {
