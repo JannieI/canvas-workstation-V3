@@ -230,6 +230,7 @@ export class CollaborateMessagesComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'handleReplyForward', '@Start');
         
         this.clickFilter(false);
+        this.messageAction = '';
         
     }
 
