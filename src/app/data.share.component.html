@@ -23,7 +23,7 @@
                                 Add a user or group with the specified permissions (View, Edit, 
                                 Add or Delete).  Amend existing permissions by double clicking 
                                 the permission (cross or tick) in the grid below.  Delete a 
-                                permission by clicking the X in the row (at left).
+                                permission by clicking the delete icon in the row (at left).
                                 Click the X or press Escape to close this form.
                             </p>
                         </clr-signpost-content>
@@ -164,7 +164,7 @@
 
                         <clr-dg-row *ngFor="let row of datasourcePermissions; let i = index">
                             <clr-dg-cell>
-                                <clr-icon shape="times"
+                                <clr-icon shape="trash"
                                     (click)="clickDeletePermission(row.id, i)">
                                 </clr-icon>
                             </clr-dg-cell>

@@ -4928,7 +4928,7 @@ export class GlobalVariableService {
     }
 
     saveDatasourcePermission(data: DatasourcePermission): Promise<string> {
-        // Description: Saves Datasource Permissions
+        // Description: Saves DatasourcePermission
         // Returns: 'Saved' or error message
         console.log('%c    Global-Variables saveDatasourcePermission ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
@@ -4941,20 +4941,35 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.put('http://localhost:3000/' + url, data, {headers})
+            this.http.put('http://localhost:3000/' + url + '/' + data.id, data, {headers})
             .subscribe(
                 res => {
 
-                    this.datasourcePermissions = JSON.parse(JSON.stringify(res));
-                    console.log('saveDatasourcePermission SAVED')
+                    // Replace local
+                    let localIndex: number = this.datasourcePermissions.findIndex(d =>
+                        d.id == data.id
+                    );
+                    if (localIndex >= 0) {
+                        this.datasourcePermissions[localIndex] = data;
+                    };
+                    localIndex = this.currentDatasourcePermissions.findIndex(d =>
+                        d.id == data.id
+                    );
+                    if (localIndex >= 0) {
+                        this.currentDatasourcePermissions[localIndex] = data;
+                    };
+
+
+                    console.log('saveDatasourcePermission SAVED', res)
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error saveDatasourcePermission FAILED');;
+                    console.log('Error saveDatasourcePermission FAILED', err);;
                     reject(err);
                 }
             )
         });
+
     }
 
     deleteDatasourcePermission(id: number) {

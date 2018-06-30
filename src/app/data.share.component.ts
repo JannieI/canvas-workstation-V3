@@ -64,6 +64,25 @@ export class DatasourceShareComponent implements OnInit {
 
     }
 
+    clickToggleView(id: number, $event) {
+        // User dblclicked View - so toggle it
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickToggleView', '@Start');
+
+        let index: number = -1;
+        for(var i = 0; i < this.datasourcePermissions.length; i++) {
+            if (this.datasourcePermissions[i].id == id) {
+                this.datasourcePermissions[i].canView = ! this.datasourcePermissions[i].canView;
+                index = i;
+            };
+        };
+
+        if (index != -1) {
+            this.globalVariableService.saveDatasourcePermission(
+                this.datasourcePermissions[index])
+                ;
+        };
+    }
+
     clickToggleEdit(id: number, $event) {
         // User dblclicked Edit - so toggle it
         this.globalFunctionService.printToConsole(this.constructor.name,'clickToggleEdit', '@Start');
