@@ -2,18 +2,15 @@
     <div class="modal-dialog modal-md" role="dialog" aria-hidden="true">
         <div class="modal-content modalContent">
 
-            <button type="button" class="closeButton" (click)="clickClose()">
-                X
-            </button>
-
-            <collaborate-messageContent
-                (formMessageContentClosed)="clickClose($event)"
-                [messageAction]="messageAction"
-                [existingMessagge]="existingMessagge"
-                >
-                Send Message ...
-            </collaborate-messageContent>
-
+            <div class="wrapper">
+                <collaborate-messageContent
+                    (formMessageContentClosed)="clickClose($event)"
+                    [messageAction]="messageAction"
+                    [existingMessagge]="existingMessagge"
+                    >
+                    Send Message ...
+                </collaborate-messageContent>
+            </div>
         </div>
     </div>
 </div>
