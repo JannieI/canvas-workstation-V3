@@ -239,17 +239,24 @@
                                 </button>
                                 <button type="button"
                                     clrDropdownItem
-                                    title="Save or Export the current Dashboard"
+                                    title="Save the current Draft Dashboard (to the original)"
                                     (click)="clickDashboardSave()"
                                     >
                                     Save
                                 </button>
                                 <button type="button"
                                     clrDropdownItem
-                                    title="Save or Export the current Dashboard"
+                                    title="Save the current Dashboard under a new name (copy)"
                                     (click)="clickDashboardSaveAs()"
                                     >
                                     Save As
+                                </button>
+                                <button type="button"
+                                    clrDropdownItem
+                                    title="Export the current Dashboard to a text file"
+                                    (click)="clickDashboardExport()"
+                                    >
+                                    Export
                                 </button>
 
                                 <div class="dropdown-divider"></div>

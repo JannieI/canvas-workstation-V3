@@ -339,6 +339,7 @@ export class AppComponent implements OnInit {
     showModalDashboardOpen: boolean = false;
     showModalDashboardSave: boolean = false;
     showModalDashboardSaveAs: boolean = false;
+    showModalDashboardExport: boolean = false;
     showModalDashboardSnapshots: boolean = false;
     showModalDashboardShare: boolean = false;
     showModalDashboardImport: boolean = false;
@@ -2569,7 +2570,7 @@ export class AppComponent implements OnInit {
     }
 
     clickDashboardSaveAs() {
-        // Save D AS 
+        // Save D AS (make a copy)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardSaveAs', '@Start');
 
         // Permissions
@@ -2607,6 +2608,29 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPreAction();
 
         this.showModalDashboardSaveAs = true;
+    }
+
+    clickDashboardExport() {
+        // Export D as text file
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardExport', '@Start');
+
+        // Permissions
+        if (!this.globalVariableService.currentUser.dashboardCanSaveRole
+            &&
+            !this.globalVariableService.currentUser.isAdministrator) {
+            this.showMessage(
+                'You do not have Save Permissions (role must be added)',
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+
+        this.menuOptionClickPreAction();
+
+        this.showModalDashboardExport = true;        
     }
 
     clickDashboardSnapshots() {
