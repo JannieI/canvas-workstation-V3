@@ -44,6 +44,7 @@ import { DashboardTabComponent }      from './dashboard.tab.component';
 import { DashboardHelpComponent }     from './dashboard.help.component';
 import { DashboardTreeviewComponent } from './dashboard.treeview.component';
 import { DashboardImportComponent }   from './dashboard.import.component';
+import { DashboardExportComponent }   from './dashboard.export.component';
 import { DashboardSubscribeComponent }         from './dashboard.subscribe.component';
 import { DashboardDataQualityComponent }       from './dashboard.dataquality.component';
 import { DashboardUsagestatsComponent }        from './dashboard.usagestats.component';
@@ -174,6 +175,7 @@ import { StatusbarComponent }         from './statusbar.component';
         DashboardTreeviewComponent,
         DashboardSubscribeComponent,
         DashboardImportComponent,
+        DashboardExportComponent,
         DashboardDataQualityComponent,
         DashboardUsagestatsComponent,
 

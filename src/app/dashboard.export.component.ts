@@ -24,7 +24,7 @@ import { Dashboard }                  from './models';
     templateUrl: './dashboard.export.component.html',
     styleUrls: ['./dashboard.export.component.css']
 })
-export class DashboardexportComponent implements OnInit {
+export class DashboardExportComponent implements OnInit {
 
     @Output() formDashboardExportClosed: EventEmitter<string> = new EventEmitter();
 
