@@ -63,10 +63,10 @@ export class WidgetDeleteComponent implements OnInit {
         // Rescale and limit amount of detail on the graph
         localWidget.containerLeft = 100;
         localWidget.containerTop = 100;
-        localWidget.containerHeight = 100;
-        localWidget.graphHeight = 80;
-        localWidget.containerWidth = 100;
-        localWidget.graphWidth = 80;
+        localWidget.containerHeight = 300;
+        localWidget.graphHeight = 280;
+        localWidget.containerWidth = 300;
+        localWidget.graphWidth = 280;
         localWidget.containerBoxshadow = 'none';
         localWidget.containerBorder = 'none';
         localWidget.isSelected = false;

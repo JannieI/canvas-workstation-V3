@@ -3,20 +3,33 @@
 		<div class="modal-content modalContent">
 
             <div class="overall">
-                <div class="closeButton">
-                    <button type="button" class="closeButton" (click)="clickClose('')">
-                        X
-                    </button>
-                </div>
+                <button type="button" class="closeButton" (click)="clickClose()">
+                    <b>X</b>
+                </button>
 
-                <div class="header0">
-                    Delete a Widget
+                <div class="gridTitle">
+                    <b>Delete a Widget</b>
+                    <clr-signpost>
+                        <clr-icon shape="info-circle"
+                            clrSignpostTrigger>
+                        </clr-icon>
+                            <clr-signpost-content *clrIfOpen
+                            [clrPosition]="'bottom-middle'">
+                            <h5 style="margin-top: 0; color:gray;">
+                                Help
+                            </h5>
+                            <p style="margin-top: 0; color:gray;"> 
+                                This form deletes the selected Widget.  Select <b>Edit -> Undo</b>
+                                on the main menu to undo the action if necessary.  
+                                Click the X or press Escape to close this form.
+                            </p>
+                        </clr-signpost-content>
+                    </clr-signpost>
 
                 </div>
-                <div class="header1">
-                    Select <b>Edit -> Undo</b> on the main menu to retrieve a deleted Widget.
+                <div class="gridSubTitle">
                 </div>
-                <div class="header2">
+                <div class="gridNrWidgets">
                     {{ nrWidgetsSelected }} Widgets were selected for deletion.
                 </div>
                 <div class="widget">
@@ -25,16 +38,29 @@
                     </div>
                 </div>
 
-                <div class="header3">
+                <div class="gridConfirmation">
                     Are you sure you want to delete the current Widget?
                 </div>
-                <button
-                    type="button"
-                    class="btn btn-danger deleteButton"
-                    (click)="clickClose('delete')"
-                    >
-                    Delete
-                </button>
+
+                <div class="gridButtonCancel">
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        (click)="clickClose()"
+                        >
+                        Cancel
+                    </button>
+                </div>
+    
+                <div class="gridButtonDelete">
+                    <button
+                        type="button"
+                        class="btn btn-danger"
+                        (click)="clickClose('delete')"
+                        >
+                        Delete
+                    </button>
+                </div>
             </div>
         </div>
     </div>
