@@ -33,14 +33,14 @@
         text-align: left;
     }
 
-    gridPrinterTitle {
+    .gridPrinterTitle {
         grid-column-start: 1;
         grid-column-end: 4;
         grid-row-start: 3;
         grid-row-end: 4;
         text-align: left;
     }
-    gridPrinter {
+    .gridPrinter {
         grid-column-start: 4;
         grid-column-end: 10;
         grid-row-start: 3;
@@ -48,14 +48,14 @@
         text-align: left;
     }
 
-    gridPageSizeTitle {
+    .gridPageSizeTitle {
         grid-column-start: 1;
         grid-column-end: 4;
         grid-row-start: 5;
         grid-row-end: 6;
         text-align: left;
     }
-    gridPageSize {
+    .gridPageSize {
         grid-column-start: 4;
         grid-column-end: 10;
         grid-row-start: 5;
@@ -63,14 +63,14 @@
         text-align: left;
     }
 
-    gridFormatTitle {
+    .gridFormatTitle {
         grid-column-start: 1;
         grid-column-end: 4;
         grid-row-start: 7;
         grid-row-end: 8;
         text-align: left;
     }
-    gridFormat {
+    .gridFormat {
         grid-column-start: 4;
         grid-column-end: 10;
         grid-row-start: 7;
@@ -78,14 +78,14 @@
         text-align: left;
     }
 
-    gridColourTitle {
+    .gridColourTitle {
         grid-column-start: 1;
         grid-column-end: 4;
         grid-row-start: 9;
         grid-row-end: 10;
         text-align: left;
     }
-    gridColour {
+    .gridColour {
         grid-column-start: 4;
         grid-column-end: 10;
         grid-row-start: 9;
@@ -93,15 +93,15 @@
         text-align: left;
     }
 
-    gridButtonCancel {
-        grid-column-start: 2;
-        grid-column-end: 4;
+    .gridButtonCancel {
+        grid-column-start: 4;
+        grid-column-end: 6;
         grid-row-start: 11;
         grid-row-end: 12;
         text-align: left;
     }
-    gridButtonSave {
-        grid-column-start: 6;
+    .gridButtonSave {
+        grid-column-start: 7;
         grid-column-end: 10;
         grid-row-start: 11;
         grid-row-end: 12;
