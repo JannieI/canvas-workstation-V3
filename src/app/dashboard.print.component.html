@@ -1,79 +1,105 @@
 <div class="modal modalBox">
 	<div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
 		<div class="modal-content modalContent">
+            <form #f="ngForm" role="form" novalidate>
 
-            <div class="overall">
-                <div class="closeButton">
+                <div class="gridOverall">
                     <button type="button" class="closeButton" (click)="clickClose()">
-                        X
+                        <b>X</b>
                     </button>
+
+                    <div class="gridTitle">
+                        <b>Print a Dashboard.</b>
+                        <clr-signpost>
+                            <clr-icon shape="info-circle"
+                                clrSignpostTrigger>
+                            </clr-icon>
+                                <clr-signpost-content *clrIfOpen
+                                [clrPosition]="'bottom-middle'">
+                                <h5 style="margin-top: 0; color:gray;">
+                                    Help
+                                </h5>
+                                <p style="margin-top: 0; color:gray;"> 
+                                    Prints out the current Dashboard in the selected format.  
+                                    Click the X or press Escape to close this form.
+                                </p>
+                            </clr-signpost-content>
+                        </clr-signpost>
+
+                    </div>
+
+                    <div class="gridSubTitle">
+                    </div> 
+
+                    <div class="gridPrinterTitle">
+                        <b>Select a printer:</b>
+                    </div>
+                    <div class="select gridPrinter">
+                        <select id="selects_3"
+                            (change)="clickSelectStep($event)"
+                            >
+                            <option>Local HP</option>
+                            <option>Network Toshiba</option>
+                            <option>Beast 2nd floor</option>
+                        </select>
+                    </div>
+                    
+                    <div class="gridPageSizeTitle">
+                        <b>Select page size:</b>
+                    </div>
+                    <div class="select gridPageSize">
+                        <select id="selects_3"
+                            (change)="clickSelectStep($event)"
+                            >
+                            <option>A3</option>
+                            <option>A4</option>
+                        </select>
+                    </div>
+                    
+                    <div class="gridFormatTitle">
+                        <b>Select Format:</b>
+                    </div>
+                    <div class="select gridFormat">
+                        <select id="selects_3"
+                            (change)="clickSelectStep($event)"
+                            >
+                            <option>Single page</option>
+                            <option>Widget per page</option>
+                            <option>Auto layout</option>
+                        </select>
+                    </div>
+
+                    <div class="gridColourTitle">
+                        <b>Select Colour:</b>
+                    </div>    
+                    <div class="select gridColour">
+                        <select id="selects_3"
+                            (change)="clickSelectStep($event)"
+                            >
+                            <option>Black and White</option>
+                            <option>Full colour</option>
+                        </select>
+                    </div>
+
+                    <div class="select gridButtonCancel">
+                        <button
+                            type="button"
+                            class="btn btn-primary"
+                            (click)="clickClose()"
+                            >
+                            Cancel
+                        </button>
+                    </div>
+                    <div class="select gridButtonSave">
+                        <button
+                            type="button"
+                            class="btn btn-primary"
+                            (click)="clickSave()"
+                            >
+                            Save
+                        </button>
+                    </div>
                 </div>
-
-                Prints a Dashboard in selected format
-                <form>
-                    <section>
-                        <div class="form-group">
-                            <label for="selects_4">Select a printer:</label>
-                            <div class="select">
-                                <select id="selects_3"
-                                    (change)="clickSelectStep($event)"
-                                    >
-                                    <option>Local HP</option>
-                                    <option>Network Toshiba</option>
-                                    <option>Beast 2nd floor</option>
-                                </select>
-                            </div>
-                        </div>
-                    </section>
-                    <section>
-                        <div class="form-group">
-                            <label for="selects_4">Select a page size:</label>
-                            <div class="select">
-                                <select id="selects_3"
-                                    (change)="clickSelectStep($event)"
-                                    >
-                                    <option>A3</option>
-                                    <option>A4</option>
-                                </select>
-                            </div>
-                        </div>
-                    </section>
-                    <section>
-                        <div class="form-group">
-                            <label for="selects_4">Select a format:</label>
-                            <div class="select">
-                                <select id="selects_3"
-                                    (change)="clickSelectStep($event)"
-                                    >
-                                    <option>Single page</option>
-                                    <option>Widget per page</option>
-                                    <option>Auto layout</option>
-                                </select>
-                            </div>
-                        </div>
-                    </section>
-                    <section>
-                        <div class="form-group">
-                            <label for="selects_4">Select colour:</label>
-                            <div class="select">
-                                <select id="selects_3"
-                                    (change)="clickSelectStep($event)"
-                                    >
-                                    <option>Black and White</option>
-                                    <option>Full colour</option>
-                                </select>
-                            </div>
-                        </div>
-                    </section>
-                    <button
-                        type="button"
-                        class="btn btn-primary"
-                        (click)="clickSave()"
-                        >
-                        Save
-                    </button>
-
-                </form>
             </div>
         </div>
     </div>
