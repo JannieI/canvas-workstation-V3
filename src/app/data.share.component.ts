@@ -121,6 +121,25 @@ export class DatasourceShareComponent implements OnInit {
         };
     }
 
+    clickToggleDelete(id: number, $event) {
+        // User dblclicked Delete - so toggle it
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickToggleDelete', '@Start');
+
+        let index: number = -1;
+        for(var i = 0; i < this.datasourcePermissions.length; i++) {
+            if (this.datasourcePermissions[i].id == id) {
+                this.datasourcePermissions[i].canDelete = ! this.datasourcePermissions[i].canDelete;
+                index = i;
+            };
+        };
+
+        if (index != -1) {
+            this.globalVariableService.saveDatasourcePermission(
+                this.datasourcePermissions[index])
+                ;
+        };
+    }
+
     clickDeletePermission(id: number, index: number) {
         // Delete the selected Permission
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDeletePermission', '@Start');
