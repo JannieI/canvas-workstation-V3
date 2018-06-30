@@ -3,10 +3,33 @@
             <div class="modal-content modalContent">
 
                 <div>
-                    <button type="button" class="closeButton" (click)="clickClose()">
-                        X
+                    <div class="cl">
+                        <button type="button" class="closeButton" (click)="clickClose()">
+                            <b>X</b>
+                        </button>
+            
                         <b>Messages</b>
-                    </button>
+                    
+                        <clr-signpost>
+                            <clr-icon shape="info-circle"
+                                clrSignpostTrigger>
+                            </clr-icon>
+                                <clr-signpost-content *clrIfOpen
+                                [clrPosition]="'bottom-middle'">
+                                <h5 style="margin-top: 0; color:gray;">
+                                    Help
+                                </h5>
+                                <p style="margin-top: 0; color:gray;"> 
+                                    List Canvas Messages.  Use the fields at the top to filter the 
+                                    messages shown, and then click the Filter button.  Click on the 
+                                    message action menu (bottom right) to reply or forward the message.  
+                                    If a Dashboard has been linked by the sender, click the -> icon
+                                    bottom right to open it.  
+                                    Click the X or press Escape to close this form.
+                                </p>
+                            </clr-signpost-content>
+                        </clr-signpost>
+                    </div>
 
                     <div class="filterArea">
                         <b>Sender:</b>
