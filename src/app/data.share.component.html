@@ -2,17 +2,33 @@
     <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
         <div class="modal-content modalContent">
 
-            <div>
+            <div class="gridOverall">
                 <button type="button" class="closeButton" (click)="clickClose()">
-                    X
+                    <b>X</b>
                 </button>
 
-                Share Data
-                <div class="propertyLine">
-                    Add a user or group and specify View or Edit permissions.  To change
-                    existing permissions, double click the View / Edit cell in the grid below.
+                <div class="gridTitle">
+        
+                    <b>Share Data</b>
+                    <clr-signpost>
+                        <clr-icon shape="info-circle"
+                            clrSignpostTrigger>
+                        </clr-icon>
+                            <clr-signpost-content *clrIfOpen
+                            [clrPosition]="'bottom-middle'">
+                            <h5 style="margin-top: 0; color:gray;">
+                                Help
+                            </h5>
+                            <p style="margin-top: 0; color:gray;"> 
+                                Add a user or group and specify View or Edit permissions.  To change
+                                existing permissions, double click the View / Edit cell in the grid below.  
+                                Click the X or press Escape to close this form.
+                            </p>
+                        </clr-signpost-content>
+                    </clr-signpost>
                 </div>
-                <div class="propertyLine">
+
+                <div class="gridInput">
                     <input type="text" id="formFields_7" placeholder="DS Name">
                     <input type="text" id="formFields_7" placeholder="User ID">
                     <input type="text" id="formFields_7" placeholder="Group ID">
@@ -20,6 +36,9 @@
                     <input type="text" id="formFields_7" placeholder="CanEdit">
                     <input type="text" id="formFields_7" placeholder="CanAdd">
                     <input type="text" id="formFields_7" placeholder="CanDelete">
+                </div>
+                <div class = "gridButtonAdd">
+
                     <button
                         type="button"
                         class="btn btn-secondary"
@@ -28,34 +47,34 @@
                         Add
                     </button>
                 </div>
- 
-                <clr-datagrid>
-                    <clr-dg-column>Delete</clr-dg-column>
-                    <clr-dg-column>DS Name</clr-dg-column>
-                    <clr-dg-column>User ID</clr-dg-column>
-                    <clr-dg-column>Group ID</clr-dg-column>
-                    <clr-dg-column>CanView</clr-dg-column>
-                    <clr-dg-column>CanEdit</clr-dg-column>
-                    <clr-dg-column>CanAdd</clr-dg-column>
-                    <clr-dg-column>CanDelete</clr-dg-column>
+                <div class = "gridTable">
+                    <clr-datagrid>
+                        <clr-dg-column>Delete</clr-dg-column>
+                        <clr-dg-column>DS Name</clr-dg-column>
+                        <clr-dg-column>User ID</clr-dg-column>
+                        <clr-dg-column>Group ID</clr-dg-column>
+                        <clr-dg-column>CanView</clr-dg-column>
+                        <clr-dg-column>CanEdit</clr-dg-column>
+                        <clr-dg-column>CanAdd</clr-dg-column>
+                        <clr-dg-column>CanDelete</clr-dg-column>
 
-                    <clr-dg-row *ngFor="let row of datasourcePermissions; let i = index">
-                        <clr-dg-cell>
-                            <clr-icon shape="times"
-                                (click)="clickDeletePermission(row.id, i)">
-                            </clr-icon>
-                        </clr-dg-cell>
-                        <clr-dg-cell>{{row.name}}</clr-dg-cell>
-                        <clr-dg-cell>{{row.userID}}</clr-dg-cell>
-                        <clr-dg-cell>{{row.groupID}}</clr-dg-cell>
-                        <clr-dg-cell>{{row.canView}}</clr-dg-cell>
-                        <clr-dg-cell>{{row.canEdit}}</clr-dg-cell>
-                        <clr-dg-cell>{{row.CanAdd}}</clr-dg-cell>
-                        <clr-dg-cell>{{row.CanDelete}}</clr-dg-cell>
-                    </clr-dg-row>
+                        <clr-dg-row *ngFor="let row of datasourcePermissions; let i = index">
+                            <clr-dg-cell>
+                                <clr-icon shape="times"
+                                    (click)="clickDeletePermission(row.id, i)">
+                                </clr-icon>
+                            </clr-dg-cell>
+                            <clr-dg-cell>{{row.name}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.userID}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.groupID}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.canView}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.canEdit}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.CanAdd}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.CanDelete}}</clr-dg-cell>
+                        </clr-dg-row>
 
-                </clr-datagrid>
-
+                    </clr-datagrid>
+                </div>
             </div>
         </div>
     </div>
