@@ -55,11 +55,15 @@
         float: right;
     }
 
+    .title {
+        font-size: 0.75rem;
+        margin-left: 30px;
+        text-align: left;
+    }
 
 
 
-
-
+/* 
 .gridOverall {
     display: grid;
     grid-template-columns: repeat(14, 1fr);
@@ -67,14 +71,7 @@
     margin-top: 2px;
 }
 
-    .gridTitle {
-        font-size: 0.75rem;
-        grid-column-start: 1;
-        grid-column-end: 18;
-        grid-row-start: 1;
-        grid-row-end: 2;
-        text-align: left;
-    }
+
     .gridSubTitle {
         grid-column-start: 5;
         grid-column-end: 18;
@@ -187,4 +184,4 @@
         grid-row-start: 14;
         grid-row-end: 15;
         text-align: left;
-    }
+    } */
