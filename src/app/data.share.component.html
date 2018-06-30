@@ -20,8 +20,10 @@
                                 Help
                             </h5>
                             <p style="margin-top: 0; color:gray;"> 
-                                Add a user or group and specify View or Edit permissions.  To change
-                                existing permissions, double click the View / Edit cell in the grid below.  
+                                Add a user or group with the specified permissions (View, Edit, 
+                                Add or Delete).  Amend existing permissions by double clicking 
+                                the permission (cross or tick) in the grid below.  Delete a 
+                                permission by clicking the X in the row (at left).
                                 Click the X or press Escape to close this form.
                             </p>
                         </clr-signpost-content>
@@ -58,15 +60,15 @@
                         minlength="3"
                         maxlength="40"
                         [style.color]="!UserIDVar.valid ? 'red' : 'gray'"
-                        placeholder="Datasource Name"
+                        placeholder="User Name"
                         size="25"
                         >
                 </div>
     
-                <div class="gridGroupTitle">
+                <div class="gridGroupIDTitle">
                     <b>Group:</b>
                 </div>
-                <div class="gridGroup">
+                <div class="gridGroupID">
                     <input [ngModel]="Group"
                         type="text"
                         name="Group"
@@ -75,13 +77,15 @@
                         minlength="3"
                         maxlength="40"
                         [style.color]="!GroupVar.valid ? 'red' : 'gray'"
-                        placeholder="Datasource Name"
+                        placeholder="Group Name"
                         size="25"
                         >
                 </div>
 
-                <div class="gridCanView">
+                <div class="gridCanViewTitle">
                     Can View:
+                </div>
+                <div class="gridCanView">
                     <input [(ngModel)]="canView"
                         type="checkbox"
                         name="canView"
@@ -91,8 +95,10 @@
                         >
                 </div>
 
-                <div class="gridCanEdit">
+                <div class="gridCanEditTitle">
                     Can Edit:
+                </div>
+                <div class="gridCanEdit">
                     <input [(ngModel)]="canEdit"
                         type="checkbox"
                         name="canEdit"
@@ -102,8 +108,10 @@
                         >
                 </div>
     
-                <div class="gridCanAdd">
+                <div class="gridCanAddTitle">
                     Can Add:
+                </div>
+                <div class="gridCanAdd">
                     <input [(ngModel)]="canAdd"
                         type="checkbox"
                         name="canAdd"
@@ -120,8 +128,10 @@
                     <input type="text" id="formFields_7" placeholder="CanEdit">
                     <input type="text" id="formFields_7" placeholder="CanAdd">
                     <input type="text" id="formFields_7" placeholder="CanDelete"> -->
-                <div class="gridCanDelete">
+                <div class="gridCanDeleteTitle">
                     Can Delete:
+                </div>
+                <div class="gridCanDelete">
                     <input [(ngModel)]="canDelete"
                         type="checkbox"
                         name="canDelete"
@@ -135,7 +145,7 @@
 
                     <button
                         type="button"
-                        class="btn btn-secondary"
+                        class="btn btn-primary"
                         (click)="clickClose('Close')"
                         >
                         Add
@@ -162,7 +172,20 @@
                             <clr-dg-cell>{{row.userID}}</clr-dg-cell>
                             <clr-dg-cell>{{row.groupID}}</clr-dg-cell>
                             <clr-dg-cell>{{row.canView}}</clr-dg-cell>
-                            <clr-dg-cell>{{row.canEdit}}</clr-dg-cell>
+                            <clr-dg-cell class="checkCell">
+                                <clr-icon shape="check" *ngIf="row.canEdit"
+                                    size="16"
+                                    (dblclick)="clickToggleEdit(row.id, $event)"
+                                    >
+                                </clr-icon>
+                                <clr-icon shape="times" *ngIf="!row.canEdit"
+                                    size="16"
+                                    (dblclick)="clickToggleEdit(row.id, $event)"
+                                    >
+                                </clr-icon>
+                            </clr-dg-cell>
+    
+
                             <clr-dg-cell>{{row.CanAdd}}</clr-dg-cell>
                             <clr-dg-cell>{{row.CanDelete}}</clr-dg-cell>
                         </clr-dg-row>

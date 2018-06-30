@@ -56,16 +56,16 @@
     }
 
     .gridUserIDTitle {
-        grid-column-start: 1;
-        grid-column-end: 3;
+        grid-column-start: 10;
+        grid-column-end: 13;
         grid-row-start: 3;
         grid-row-end: 4;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
     .gridUserID {
-        grid-column-start: 10;
-        grid-column-end: 13;
+        grid-column-start: 13;
+        grid-column-end: 19;
         grid-row-start: 3;
         grid-row-end: 4;
         margin: 2px 2px 2px 2px;
@@ -109,16 +109,16 @@
     .gridCanEditTitle {
         grid-column-start: 1;
         grid-column-end: 3;
-        grid-row-start: 5;
-        grid-row-end: 6;
+        grid-row-start: 7;
+        grid-row-end: 8;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
     .gridCanEdit {
         grid-column-start: 3;
         grid-column-end: 9;
-        grid-row-start: 5;
-        grid-row-end: 6;
+        grid-row-start: 7;
+        grid-row-end: 8;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
@@ -126,26 +126,42 @@
     .gridCanAddTitle {
         grid-column-start: 10;
         grid-column-end: 13;
-        grid-row-start: 5;
-        grid-row-end: 6;
+        grid-row-start: 7;
+        grid-row-end: 8;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
     .gridCanAdd {
         grid-column-start: 13;
         grid-column-end: 19;
-        grid-row-start: 5;
-        grid-row-end: 6;
+        grid-row-start: 7;
+        grid-row-end: 8;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
 
+    .gridCanDeleteTitle {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 9;
+        grid-row-end: 10;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridCanDelete {
+        grid-column-start: 3;
+        grid-column-end: 9;
+        grid-row-start: 9;
+        grid-row-end: 10;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
 
     .gridButtonAdd {
-        grid-column-start: 1;
-        grid-column-end: 41;
-        grid-row-start: 7;
-        grid-row-end: 8;
+        grid-column-start: 15;
+        grid-column-end: 17;
+        grid-row-start: 8;
+        grid-row-end: 9;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
@@ -153,7 +169,7 @@
     .gridTable {
         grid-column-start: 1;
         grid-column-end: 41;
-        grid-row-start: 8;
+        grid-row-start: 10;
         grid-row-end: 20;
         margin: 2px 2px 2px 2px;
         text-align: left;
