@@ -7,16 +7,33 @@
                     X
                 </button>
 
-                Open an existing Dashboard
+                <span class="title">
+                    <b>Open an existing Dashboard</b>
+                    <clr-signpost>
+                        <clr-icon shape="info-circle"
+                            clrSignpostTrigger>
+                        </clr-icon>
+                            <clr-signpost-content *clrIfOpen
+                            [clrPosition]="'bottom-middle'">
+                            <h5 style="margin-top: 0; color:gray;">
+                                Help
+                            </h5>
+                            <p style="margin-top: 0; color:gray;"> 
+                                    Use the filters at the top to narrow down the list of
+                                    Dashboards displayed in the grid below.  Opening a Dashboard is
+                                    done in View mode by default.  Click <i>Edit -> EditMode</i> to 
+                                    change to Edit mode after a Dashboard has been opened. This will
+                                    create a Draft copy, leaving the original unchanged.  Only the 
+                                    editor can see the Draft copy.  
+                                    Click the X or press Escape to close this form.
+                            </p>
+                        </clr-signpost-content>
+                    </clr-signpost>
+    
+                </span>
 
                 <div class="helpMessage" *ngIf="isFirstTimeDashboardOpen">
-                    <b>Help</b> message: use the filters at the top to narrow down the list of
-                    Dashboards displayed in the grid below.  Opening a Dashboard is
-                    done in View mode by default.  Click <i>File -> Edit</i> to change to Edit
-                    mode after a Dashboard has been opened. This will create a Draft copy,
-                    leaving the original unchanged.  Only the editor can see the Draft copy.
-                    Subsequently opening this Dashboard will open it in Edit mode, ready for
-                    editing.
+                    <b>Help</b> message: 
                     <br><br>
                     <b>Got it</b> <input type="checkbox" (click)="clickGotIt()" [checked]="!isFirstTimeDashboardOpen">
                     (You can make this message re-appear with the <i>Preferences</i> option under your

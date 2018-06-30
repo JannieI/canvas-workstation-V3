@@ -10,6 +10,9 @@
 	-shadow: 0 2px 2px 0 lightgray;
 }
 
+.title {
+    font-size: 0.75rem;
+}
 .closeButton {
     background-color: transparent;
     border: none;
