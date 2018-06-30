@@ -46,7 +46,6 @@ export class WidgetDeleteComponent implements OnInit {
 
     }
 
-    nrWidgetsSelected: number = 0;
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -86,13 +85,6 @@ export class WidgetDeleteComponent implements OnInit {
             .hover()
             .run()
             .finalize();
-
-        // Count the number of W selected
-        this.globalVariableService.currentWidgets.forEach(w => {
-            if (w.isSelected) {
-                this.nrWidgetsSelected = this.nrWidgetsSelected + 1;
-            };
-        });
 
     }
 
