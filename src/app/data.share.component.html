@@ -9,7 +9,7 @@
 
                 <div class="gridTitle">
         
-                    <b>Share Data</b>
+                    <b>Share Datasource (permissions)</b>
                     <clr-signpost>
                         <clr-icon shape="info-circle"
                             clrSignpostTrigger>
@@ -121,13 +121,6 @@
                         >
                 </div>
     
-                    <!-- <input type="text" id="formFields_7" placeholder="DS Name">
-                    <input type="text" id="formFields_7" placeholder="User ID">
-                    <input type="text" id="formFields_7" placeholder="Group ID">
-                    <input type="text" id="formFields_7" placeholder="CanView">
-                    <input type="text" id="formFields_7" placeholder="CanEdit">
-                    <input type="text" id="formFields_7" placeholder="CanAdd">
-                    <input type="text" id="formFields_7" placeholder="CanDelete"> -->
                 <div class="gridCanDeleteTitle">
                     Can Delete:
                 </div>
@@ -162,10 +155,14 @@
                         <clr-dg-column>CanAdd</clr-dg-column>
                         <clr-dg-column>CanDelete</clr-dg-column>
 
-                        <clr-dg-row *ngFor="let row of datasourcePermissions; let i = index">
+                        <clr-dg-row *ngFor="let row of datasourcePermissions; let i = index"
+                            [style.background-color]="(i == selectedRowIndex)? '#123456' : 'white'"
+                            [style.color]="(i == selectedRowIndex)? 'white' : 'gray'"
+                            (click)="clickRow(i, row.id)"
+                            >
                             <clr-dg-cell>
                                 <clr-icon shape="trash"
-                                    (click)="clickDeletePermission(row.id, i)">
+                                    (dblclick)="dblclickDeletePermission(row.id, i)">
                                 </clr-icon>
                             </clr-dg-cell>
                             <clr-dg-cell>{{row.name}}</clr-dg-cell>

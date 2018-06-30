@@ -41,8 +41,9 @@ export class DatasourceShareComponent implements OnInit {
 
     }
 
-    showTypeDatasource: boolean = false;
     datasourcePermissions: DatasourcePermission[];
+    selectedRowIndex: number = 0;
+    showTypeDatasource: boolean = false;
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -62,6 +63,14 @@ export class DatasourceShareComponent implements OnInit {
             console.warn('xx this.datasourcePermissions', this.datasourcePermissions)
         });
 
+    }
+
+    clickRow(index: number, id: number) {
+        // Highlight selected Row
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectedDatasource', '@Start');
+
+        // Set seletected index - used for highlighting row
+        this.selectedRowIndex = index;
     }
 
     clickToggleView(id: number, $event) {
@@ -140,7 +149,7 @@ export class DatasourceShareComponent implements OnInit {
         };
     }
 
-    clickDeletePermission(id: number, index: number) {
+    dblclickDeletePermission(id: number, index: number) {
         // Delete the selected Permission
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDeletePermission', '@Start');
 
