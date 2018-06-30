@@ -84,6 +84,7 @@ import { DataDirectExportComponent }  from './data.direct.export.component';
 import { DataManagedConnectionComponent }    from './data.managed.connection.component';
 import { DataManagedQueryBuilderComponent }  from './data.managed.queryBuilder.component';
 import { DataManagedSQLEditorComponent }     from './data.managed.sqlEditor.component';
+import { DataManagedGraphQLEditorComponent } from './data.managed.graphqlEditor.component';
 import { DataManagedOverlayEditorComponent } from './data.managed.overlayEditor.component';
 import { DataManagedNoSQLEditorComponent }   from './data.managed.noSqlEditor.component';
 import { DataManageDataQualityComponent }    from './data.managed.dataQuality.component';
@@ -188,6 +189,7 @@ import { StatusbarComponent }         from './statusbar.component';
         DataManagedConnectionComponent,
         DataManagedQueryBuilderComponent,
         DataManagedSQLEditorComponent,
+        DataManagedGraphQLEditorComponent,
         DataManagedOverlayEditorComponent,
         DataManagedNoSQLEditorComponent,
 
