@@ -4927,6 +4927,36 @@ export class GlobalVariableService {
 
     }
 
+    saveDatasourcePermission(data: DatasourcePermission): Promise<string> {
+        // Description: Saves Datasource Permissions
+        // Returns: 'Saved' or error message
+        console.log('%c    Global-Variables saveDatasourcePermission ...',
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+
+        let url: string = 'datasourcePermissions';
+        this.filePath = './assets/data.datasourcePermissions.json';
+
+        return new Promise<string>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.put('http://localhost:3000/' + url, data, {headers})
+            .subscribe(
+                res => {
+
+                    this.datasourcePermissions = JSON.parse(JSON.stringify(res));
+                    console.log('saveDatasourcePermission SAVED')
+                    resolve('Saved');
+                },
+                err => {
+                    console.log('Error saveDatasourcePermission FAILED');;
+                    reject(err);
+                }
+            )
+        });
+    }
+
     deleteDatasourcePermission(id: number) {
         // Remove a record from the global and current DatasourcePermissions
         console.log('%c    Global-Variables deleteDatasourcePermission ...',

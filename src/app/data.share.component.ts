@@ -77,7 +77,7 @@ export class DatasourceShareComponent implements OnInit {
         };
 
         if (index != -1) {
-            this.globalVariableService.saveDatasourcePermissions(
+            this.globalVariableService.saveDatasourcePermission(
                 this.datasourcePermissions[index])
                 ;
         };
