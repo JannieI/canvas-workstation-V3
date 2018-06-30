@@ -1,3 +1,7 @@
+.modalBox {
+	background-color: rgba(0,0,0,0.4);
+	-shadow: 0 2px 2px 0 lightgray;
+}
 
 .gridOverall {
     display: grid;
@@ -94,14 +98,14 @@
     }
 
     .gridButtonCancel {
-        grid-column-start: 4;
+        grid-column-start: 3;
         grid-column-end: 6;
         grid-row-start: 11;
         grid-row-end: 12;
         text-align: left;
     }
     .gridButtonSave {
-        grid-column-start: 7;
+        grid-column-start: 8;
         grid-column-end: 10;
         grid-row-start: 11;
         grid-row-end: 12;
