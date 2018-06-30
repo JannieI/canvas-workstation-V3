@@ -1,46 +1,63 @@
 <div class="modal modalBox">
     <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
         <div class="modal-content modalContent">
-
-            <div>
+        
+            <div class="gridOverall">
                 <button type="button" class="closeButton" (click)="clickClose()">
-                    X
+                    <b>X</b>
                 </button>
 
-                Discard all Dashboard changes
+                <div class="gridTitle">
+                    <b>Discard Draft changes.</b>
+                    <clr-signpost>
+                        <clr-icon shape="info-circle"
+                            clrSignpostTrigger>
+                        </clr-icon>
+                            <clr-signpost-content *clrIfOpen
+                            [clrPosition]="'bottom-middle'">
+                            <h5 style="margin-top: 0; color:gray;">
+                                Help
+                            </h5>
+                            <p style="margin-top: 0; color:gray;"> 
+                                Changes made to a Draft Dashboard will be lost.  This includes
+                                snapshots.  The original Dashboard (from which the Draft was
+                                copied) will be restored.  Discarding is finel - the lost 
+                                changes in the Draft Dashboard cannot be restored again. 
+                                Click the X or press Escape to close this form.
+                            </p>
+                        </clr-signpost-content>
+                    </clr-signpost>
 
-                <div class="helpMessage" *ngIf="isFirstTimeDashboardDiscard">
-                    <div class="propertyLine">
-                        With this option, <b>ALL</b> changes to the current Dashboard since
-                        editing has started will be lost.  The Dasboard will be restored to
-                        the original state, before editing has started.  Also, all snapshots
-                        will be lost.
-                    </div>
-                    <div class="propertyLine">
-                        The Discard action is final, there is <b>NO</b> way to get your changes
-                        back.
-                    </div>
-                    <div class="propertyLine">
-                        <b>Got it</b> <input type="checkbox" (click)="clickGotIt()" [checked]="!isFirstTimeDashboardDiscard">
-                        (You can make this message re-appear with the <i>Preferences</i> option under your
-                        User icon <clr-icon shape="user"></clr-icon> on the menu top right.)
-                    </div>
                 </div>
 
-                <div>
-                    <br>
-                    All changes made to the Dashboard since editing has started will be lost,
-                    all snapshots for it will be deleted and the Dashboard will be restored
-                    to its original state.  Click Discard to continue, else close the form.
+                <div class="gridSubTitle">
+                    Changes made to a Draft Dashboard will be lost.  This includes
+                    snapshots.  The original Dashboard (from which the Draft was
+                    copied) will be restored.  Discarding is finel - the lost 
+                    changes in the Draft Dashboard cannot be restored again. 
+                    Click the X or press Escape to close this form.
+                </div> 
+
+                <div class="gridButtonCancel">
                     <button
                         type="button"
-                        class="btn btn-primary"
+                        class="btn btn-secondary"
+                        (click)="clickClose()"
+                        >
+                        Cancel
+                    </button>
+                </div>
+                <div class="gridButtonDiscard">
+                    <button
+                        type="button"
+                        class="btn btn-danger"
                         (click)="clickDiscard('Discard')"
                         >
                         Discard
                     </button>
                 </div>
-
+    
             </div>
         </div>
     </div>
+</div>
