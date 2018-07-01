@@ -63,8 +63,9 @@
                         <nav>
                             <ul class="nav-list">
                                 <div *ngFor="let row of availableDashboardTags; let i = index"
-                                    (click)="clickAvailable(row.id, i)"
                                     [style.background-color]="selectedTagIndex==i? '#123456' : 'transparent'"
+                                    [style.color]="(i == selectedTagIndex)? 'white' : 'gray'"
+                                    (click)="clickAvailable(row.id, i)"
                                     >
                                     <span class="tagText">
                                         {{ row.tag }}

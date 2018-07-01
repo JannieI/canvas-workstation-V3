@@ -199,6 +199,7 @@
                                             let i = index"
                                             [style.background-color]="(i == selectedRow)? '#123456' : 'white'"
                                             [style.color]="(i == selectedRow)? 'white' : 'gray'"
+                                            (click)="clickDetailRow(i)"
                                             >
                                             <clr-dg-cell> {{ row.id }} </clr-dg-cell>
                                             <clr-dg-cell> {{ row.taskText }} </clr-dg-cell>

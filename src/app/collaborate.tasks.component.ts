@@ -56,6 +56,7 @@ export class CollaborateTasksComponent implements OnInit {
     canvasTasksOrignal: CanvasTask[] = [];
     dashboardNames: string[] = [];
     selectedDashboard: string = '';
+    selectedRow: number = 0;
     selectedStatus: string = '';
     selectedTaskText: string = '';
     selectedUser: string = '';
@@ -146,6 +147,20 @@ export class CollaborateTasksComponent implements OnInit {
             .run()
             .finalize();
 
+    }
+
+    clickRow(id: number, index: number){
+        // Heighlight the clicked High Level row
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
+
+        this.selectedRow = index;
+    }
+
+    clickDetailRow(id: number, index: number){
+        // Heighlight the clicked Detail row
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickAvailable', '@Start');
+
+        this.selectedRow = index;
     }
 
     clickClose(action: string) {
