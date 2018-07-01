@@ -160,9 +160,9 @@ export class DashboardShareComponent implements OnInit {
         });
     }
 
-    clickDelete(id: number)  {
+    dblclickDelete(id: number)  {
         // Delete clicked permission
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickDelete', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'dblclickDelete', '@Start');
 
         // Delete locally, globally and DB
         this.globalVariableService.deleteDashboardPermission(id).then(res => {
