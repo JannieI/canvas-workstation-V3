@@ -131,6 +131,12 @@ export class MyProfileComponent implements OnInit {
         // };
     }
  
+    dblclickDelete(id: number) {
+        // Remove an access
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
+
+    }
+
     clickClose(action: string) {
         // Close form, no changes
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
