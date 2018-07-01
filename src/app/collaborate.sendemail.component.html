@@ -1,14 +1,14 @@
 <div class="modal modalBox">
     <div class="modal-dialog modal-md" role="dialog" aria-hidden="true">
         <div class="modal-content modalContent">
-            
+
             <div class="gridOverall">
                 <button type="button" class="closeButton" (click)="clickClose()">
                     <b>X</b>
                 </button>
 
                 <div class="gridTitle">
-                    <b>Send Email: </b> 
+                    <b>Send Email: </b>
                     <clr-signpost>
                         <clr-icon shape="info-circle"
                             clrSignpostTrigger>
@@ -18,18 +18,16 @@
                             <h5 style="margin-top: 0; color:gray;">
                                 Help
                             </h5>
-                            <p style="margin-top: 0; color:gray;"> 
-                                This form will open a dialogue box to send an email.  The 
-                                dialogue box will only appear if the the email system has 
-                                configured on your installation.  Click the X or press 
+                            <p style="margin-top: 0; color:gray;">
+                                This form will open a dialogue box to send an email.  The
+                                dialogue box will only appear if the the email system has
+                                configured on your installation.  Click the X or press
                                 Escape to close this form.
                             </p>
                         </clr-signpost-content>
                     </clr-signpost>
-                </div>                
-                <div class="gridSubTitle">
-                </div>                
-    
+                </div>
+
                 <div class="gridToUsersTitle">
                     <b>To:</b>
                 </div>
@@ -46,7 +44,7 @@
                 <div class="gridSubjectTitle">
                     <b>Subject:</b>
                 </div>
-    
+
                 <div class="gridSubject">
                     <input [(ngModel)]="subject"
                         type="text"
@@ -76,7 +74,7 @@
                         Cancel
                     </button>
                 </div>
-                
+
                 <div class="gridButtonSave">
                     <button
                         type="button"
@@ -85,7 +83,7 @@
                         >
                         Save
                     </button>
-                </div>                
+                </div>
             </div>
         </div>
     </div>
