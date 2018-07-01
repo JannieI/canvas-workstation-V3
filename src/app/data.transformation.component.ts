@@ -638,9 +638,9 @@ export class DataTransformationComponent implements OnInit {
         this.editing = false;
     }
 
-    clickDelete(index: number, id: number) {
+    dblclickDelete(index: number, id: number) {
         // Delete Transformation
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickDelete', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'dblclickDelete', '@Start');
 
         // Delete from local and DB
         this.globalVariableService.deleteDatasourceTransformation(id).then(res => {

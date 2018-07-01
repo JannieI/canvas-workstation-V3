@@ -132,7 +132,7 @@
                                     (click)="clickCurrentDatasource(row.id, i)"
                                     >
                                     <clr-dg-cell>
-                                        <clr-icon shape="trash" (click)="clickCurrentDSDelete(row.id)"></clr-icon>
+                                        <clr-icon shape="trash" (dblclick)="dblclickCurrentDSDelete(row.id)"></clr-icon>
                                         {{row.name}}
                                     </clr-dg-cell>
                                 </clr-dg-row>

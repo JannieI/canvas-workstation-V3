@@ -193,9 +193,9 @@ export class DataPopupComponent implements OnInit {
         // TODO alert('Later: File component to browse ...')
     }
 
-    clickCurrentDSDelete(id: number) {
+    dblclickCurrentDSDelete(id: number) {
         // Delete the selected current DS
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickCurrentDSDelete', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'dblclickCurrentDSDelete', '@Start');
 
         // Reset
         this.errorMessage = '';
