@@ -198,9 +198,9 @@ export class LandingComponent implements OnInit {
 		this.formLandingClosed.emit('OpenRecent');
 	}
 
-	clickDeleteRecent(id: number) {
+	dblclickDeleteRecent(id: number) {
         //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickDeleteRecent', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'dblclickDeleteRecent', '@Start');
 
 		// Delete from temp array, refresh
 		this.globalVariableService.deleteDashboardRecent(id).then(
