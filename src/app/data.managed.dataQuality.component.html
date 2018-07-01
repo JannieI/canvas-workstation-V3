@@ -24,6 +24,7 @@
                                         data quality issue has been raised against a Datasource, a 
                                         warning triangle will be displayed on the graph or table 
                                         that is based on it to alert the user viewing the Dashboard.
+                                        Double click the delete icon to remove a record.
                                         Click the X or press Escape to close this form.
                                     </p>
                                 </clr-signpost-content>
@@ -232,7 +233,7 @@
                                     (click)="clickRow(i, row.id)"
                                     >
                                     <clr-dg-cell>
-                                        <clr-icon shape="times"
+                                        <clr-icon shape="trash"
                                             class="selectIcon1"
                                             size="18"
                                             (dblclick)="clickDelete(i, row.id)"
