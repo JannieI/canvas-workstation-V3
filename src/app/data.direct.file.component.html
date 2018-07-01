@@ -6,16 +6,16 @@
                     <button type="button" class="closeButton" (click)="clickClose()">
                         <b>X</b>
                     </button>
-    
+
                     <div class="gridTitle">
                         <b>
                             <span *ngIf="!editingDS">Create a new </span>
                             <span *ngIf="editingDS">Edit </span>
-                            Datasource 
+                            Datasource
                             <span *ngIf="editingDS"
                                 style="color:gray"
                                 >
-                                {{ selectedDatasource.name }} 
+                                {{ selectedDatasource.name }}
                             </span>
                             obtained from File.
                         </b>
@@ -28,22 +28,19 @@
                                 <h5 style="margin-top: 0; color:gray;">
                                     Help
                                 </h5>
-                                <p style="margin-top: 0; color:gray;"> 
-                                    First identify the file, either by typing the name 
+                                <p style="margin-top: 0; color:gray;">
+                                    First identify the file, either by typing the name
                                     or by browsing.  Then click Preview to see the content.
                                     Last, click Add to create a new Datasource.  For Excel
                                     spreadsheet the Worksheet (tab) has to be identified as
-                                    well.  Click Transpose to flip the rows and columns 
+                                    well.  Click Transpose to flip the rows and columns
                                     before loading the data.  Due to security, the folder where
                                     the file was read from cannot be recorded. Important: a
-                                    copy will be made of the file, so it has to be reloaded 
+                                    copy will be made of the file, so it has to be reloaded
                                     for Canvas to see the latest changes to the file.
                                 </p>
                             </clr-signpost-content>
                         </clr-signpost>
-                    </div>
-            
-                    <div class="gridSubTitle">
                     </div>
 
                     <div class="gridFolderTitle">
@@ -95,7 +92,7 @@
                         Transpose:
                     </div>
                     <div class="gridTranspose">
-                        
+
                         <span >
                             <input type="checkbox" id="checkrads_5">
                         </span>
@@ -111,9 +108,9 @@
                         Name:
                     </div>
                     <div class="gridDatasourceName">
-                        <input type="text" 
+                        <input type="text"
                             id="formFields_7"
-                            > 
+                            >
                             {{ existingDSName }}
                     </div>
 
@@ -121,11 +118,11 @@
                         Description:
                     </div>
                     <div class="gridDatasourceDescription">
-                        <input type="text" 
+                        <input type="text"
                             id="formFields_7"
-                            > 
+                            >
                     </div>
-    
+
                     <div class="gridButtonPreview">
                         <button
                             type="button"
@@ -167,7 +164,7 @@
                             and open Transformations
                         </button>
                     </div>
-                    
+
                     <div class="gridPreviewTable">
                         <clr-datagrid>
 
@@ -188,13 +185,13 @@
                         </clr-datagrid>
                     </div>
                     <div class="gridButtonBrowse">
-                        <input class="btn btn-primary" 
-                            style="background-color:brown; border:none;color:white;opacity:0;" 
-                            type="file" 
-                            name="client-file" 
-                            id="get-files" 
+                        <input class="btn btn-primary"
+                            style="background-color:brown; border:none;color:white;opacity:0;"
+                            type="file"
+                            name="client-file"
+                            id="get-files"
                             placeholder="Browse"
-                            multiple 
+                            multiple
                             (change)="clickFileBrowse()"
                             />
                     </div>
@@ -203,4 +200,3 @@
         </div>
     </div>
 </div>
-    
