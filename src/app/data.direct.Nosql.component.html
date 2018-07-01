@@ -183,8 +183,6 @@
             
                                         <clr-dg-row
                                             *clrDgItems="let row of dataFieldsFiltered; let i = index" [clrDgItem]="row"
-                                            [style.background-color]="(i == selectedFieldRowIndex)? '#123456' : 'white'"
-                                            [style.color]="(i == selectedFieldRowIndex)? 'white' : 'gray'"
                                             >
                                             <clr-dg-cell>{{ row.nameDB }}</clr-dg-cell>
                                             <clr-dg-cell>{{ row.nameLocal }}</clr-dg-cell>

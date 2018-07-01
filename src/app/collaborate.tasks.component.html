@@ -197,8 +197,8 @@
                                         <!-- Each Row -->
                                         <clr-dg-row *clrDgItems="let row of canvasTasks;
                                             let i = index"
-                                            [style.background-color]="(i == selectedRow)? '#123456' : 'white'"
-                                            [style.color]="(i == selectedRow)? 'white' : 'gray'"
+                                            [style.background-color]="(i == selectedDetailRow)? '#123456' : 'white'"
+                                            [style.color]="(i == selectedDetailRow)? 'white' : 'gray'"
                                             (click)="clickDetailRow(i)"
                                             >
                                             <clr-dg-cell> {{ row.id }} </clr-dg-cell>
