@@ -769,7 +769,7 @@
                             (click)="clickBulletEdit(i, row)"
                             >
                             <clr-icon shape="trash"
-                                (click)="clickBulletDelete(i, row)">
+                                (dblclick)="dblclickBulletDelete(i, row)">
                             </clr-icon>
                             {{ row.text }}
                         </li>

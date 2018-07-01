@@ -405,9 +405,9 @@ export class ShapeEditComponent implements OnInit {
 
     }
 
-    clickBulletDelete(index: number, item: string) {
+    dblclickBulletDelete(index: number, item: string) {
         // Remove item from bullet list
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickBulletDelete', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'dblclickBulletDelete', '@Start');
 
         this.localWidget.shapeBullet.splice(index,1);
         this.bulletText = '';
