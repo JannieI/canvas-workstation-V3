@@ -31,14 +31,6 @@
         margin-left: 30px;
         text-align: left;
     }
-    .gridSubTitle {
-        grid-column-start: 3;
-        grid-column-end: 21;
-        grid-row-start: 1;
-        grid-row-end: 2;
-        margin-left: 30px;
-        text-align: left;
-    }
 
     .gridName {
         grid-column-start: 1;
