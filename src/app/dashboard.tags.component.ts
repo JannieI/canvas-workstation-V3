@@ -186,9 +186,9 @@ export class DashboardTagsComponent implements OnInit {
 
     }
 
-    clickDelete(id: number, index: number){
+    dblclickDelete(id: number, index: number){
         // Close the form, nothing saved
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickDelete', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'dblclickDelete', '@Start');
 
         // Remove from seleted list
         this.globalVariableService.deleteDashboardTag(id).then(res => {
