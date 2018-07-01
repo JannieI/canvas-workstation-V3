@@ -26,14 +26,6 @@
         grid-row-end: 2;
         text-align: left;
     }
-    .gridSubTitle {
-        grid-column-start: 1;
-        grid-column-end: 21;
-        grid-row-start: 2;
-        grid-row-end: 4;
-        margin-left: 20px;
-        text-align: left;
-    }
 
     .gridDatasourceNameTitle {
         grid-column-start: 1;
