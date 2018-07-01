@@ -20,7 +20,9 @@
                                 </h5>
                                 <p style="margin-top: 0; color:gray;"> 
                                     Specify an optional owner per Datasource.  The owner is 
-                                    responsible for the content of its data.  Click the X or press Escape to close this form.
+                                    responsible for the content of its data.  Double click
+                                    the delete icon to delete a record.  
+                                    Click the X or press Escape to close this form.
                                 </p>
                             </clr-signpost-content>
                         </clr-signpost>
@@ -153,7 +155,7 @@
                                 (click)="clickRow(i, row.id)"
                                 >
                                 <clr-dg-cell>
-                                    <clr-icon shape="times"
+                                    <clr-icon shape="trash"
                                         class="selectIcon1"
                                         size="18"
                                         (dblclick)="clickDelete(i, row.id)"
