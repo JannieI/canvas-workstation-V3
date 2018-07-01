@@ -30,14 +30,6 @@
         text-align: left;
     }
 
-    .gridSubTitle {
-        grid-column-start: 2;
-        grid-column-end: 12;
-        grid-row-start: 2;
-        grid-row-end: 3;
-        text-align: left;
-    }
-
     .widget {
         grid-column-start: 2;
         grid-column-end: 18;

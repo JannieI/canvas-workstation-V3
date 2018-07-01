@@ -6,9 +6,9 @@
                     <button type="button" class="closeButton" (click)="clickClose()">
                         <b>X</b>
                     </button>
-    
+
                     <div class="gridTitle">
-                        <b>Widget Description</b> 
+                        <b>Widget Description</b>
                         <clr-signpost>
                             <clr-icon shape="info-circle"
                                 clrSignpostTrigger>
@@ -18,20 +18,18 @@
                                 <h5 style="margin-top: 0; color:gray;">
                                     Help
                                 </h5>
-                                <p style="margin-top: 0; color:gray;"> 
+                                <p style="margin-top: 0; color:gray;">
                                     Descriptive detail for the current Widget  The information is
-                                    read-only, and cannot be changed.  
+                                    read-only, and cannot be changed.
                                     Click the X or press Escape to close this form.
                                 </p>
                             </clr-signpost-content>
                         </clr-signpost>
-                    </div>                
-                    <div class="gridSubTitle">
-                    </div>                
-        
+                    </div>
+
                     <div class="griDescription">
                         <b>Description:</b>
-                        <textarea [(ngModel)]="selectedWidget.description" 
+                        <textarea [(ngModel)]="selectedWidget.description"
                         rows="2"
                         disabled
                         >
@@ -40,13 +38,13 @@
                     </div>
                         <div class="gridAnnotation">
                             <b>Annotation:</b>
-                            <textarea [(ngModel)]="selectedWidget.annotation" 
+                            <textarea [(ngModel)]="selectedWidget.annotation"
                             rows="2"
                             disabled
                             >
                         </textarea>
                     </div>
-    
+
                     <div class="gridIsLocked">
                         <b>Is Locked:</b>
                         <input [(ngModel)]="selectedWidget.isLocked"
@@ -81,7 +79,7 @@
                             <option>EU Indices</option>
                         </select>
                     </div>
-        
+
                     <div class="gridCreator">
                         <b>Creator:</b>
                         {{ selectedWidget.widgetCreatedBy }}
@@ -90,7 +88,7 @@
                         <b>Created:</b>
                         {{ selectedWidget.widgetCreatedOn }}
                     </div>
-    
+
                     <div class="gridEditor">
                         <b>Editor:</b>
                         {{ selectedWidget.widgetUpdatedBy }}
@@ -99,7 +97,7 @@
                         <b>Edited:</b>
                         {{ selectedWidget.widgetUpdatedOn }}
                     </div>
-                
+
                     <div class="gridButtonCancel">
                         <button
                             type="button"
@@ -109,9 +107,8 @@
                             Cancel
                         </button>
                     </div>
-        
+
                 </div>
             </div>
         </div>
     </div>
-    

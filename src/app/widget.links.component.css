@@ -42,14 +42,6 @@
         margin-left: 30px;
         text-align: left;
     }
-    .gridSubTitle {
-        grid-column-start: 9;
-        grid-column-end: 41;
-        grid-row-start: 1;
-        grid-row-end: 2;
-        margin: 2px 2px 2px 2px;
-        text-align: left;
-    }
 
     .gridTitleDashboards {
         grid-column-start: 5;
