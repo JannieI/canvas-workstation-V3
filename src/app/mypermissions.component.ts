@@ -74,7 +74,7 @@ export class MyPermissionsComponent implements OnInit {
             // Get supplimentary info
             // TODO - do this better with DB
             this.dashboardPermissions.forEach(dP => {
-                filteredDashboard = this.globalVariableService.dashboards.filter(d => 
+                filteredDashboard = this.globalVariableService.dashboards.filter(d =>
                     d.id == dP.dashboardID
                 );
                 if (filteredDashboard.length > 0) {
@@ -89,7 +89,7 @@ export class MyPermissionsComponent implements OnInit {
             });
 
             // Filter for current user
-            this.dashboardPermissions = this.dashboardPermissions.filter(dP => 
+            this.dashboardPermissions = this.dashboardPermissions.filter(dP =>
                 (dP.userID == this.globalVariableService.currentUser.userID)
                 ||
                 (this.globalVariableService.currentUser.groups
@@ -111,6 +111,42 @@ export class MyPermissionsComponent implements OnInit {
         // Show groups
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
         this.selectedRow = index;
+    }
+    
+    dblclickToggleEdit(id: number, $event: any) {
+        // Double click the Edit Event
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
+
+    }
+
+    dblclickToggleView(id: number, $event: any) {
+        // Double click the Edit Event
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
+
+    }
+
+    dblclickToggleSave(id: number, $event: any) {
+        // Double click the Edit Event
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
+
+    }
+
+    dblclickToggleDelete(id: number, $event: any) {
+        // Double click the Edit Event
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
+
+    }
+
+    dblclickToggleAddDS(id: number, $event: any) {
+        // Double click the Edit Event
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
+
+    }
+
+    dblclickToggleGrantAccess(id: number, $event: any) {
+        // Double click the Edit Event
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
+
     }
 
 }
