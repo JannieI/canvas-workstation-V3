@@ -176,9 +176,9 @@ export class WidgetCheckpointsComponent implements OnInit {
 
     }
 
-    clickDeleteCheckpoint(id: number) {
+    dblclickDeleteCheckpoint(id: number) {
         // Delete selected Checkpoint
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickDeleteCheckpoint', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'dblclickDeleteCheckpoint', '@Start');
 
         let index: number = -1;
         for (var i = 0; i < this.currentWidgetCheckpoints.length; i++) {
