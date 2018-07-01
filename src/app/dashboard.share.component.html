@@ -22,7 +22,9 @@
                                 (only accesable to myself), Public (all users can view and edit it) or
                                 Access List (list of users and groups shown below, each with
                                 View/Edit/Delete permissions.  To change existing permissions, double click the
-                                View/Edit/Delete cell in the grid below.  Click the X or press Escape to close this form.
+                                View/Edit/Delete cell in the grid below.  Double click the delete icon 
+                                to delete a row. 
+                                Click the X or press Escape to close this form.
                             </p>
                         </clr-signpost-content>
                     </clr-signpost>
@@ -124,7 +126,7 @@
                                     (dblclick)="clickToggleView(row.id, $event)"
                                     >
                                 </clr-icon>
-                                <clr-icon shape="times" *ngIf="!row.canView"
+                                <clr-icon shape="trash" *ngIf="!row.canView"
                                     size="16"
                                     (dblclick)="clickToggleView(row.id, $event)"
                                     >
