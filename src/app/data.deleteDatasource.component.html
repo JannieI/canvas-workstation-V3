@@ -19,8 +19,9 @@
                                     Help
                                 </h5>
                                 <p style="margin-top: 0; color:gray;">
-                                    Double Click the X to delete.  A Datasources linked to Widgets cannot
-                                    be deleted.  See the Data -> Usage menu option where it is used.  
+                                    Double click the delete icon (left in row) to delete.  A Datasources 
+                                    linked to Widgets cannot be deleted.  See the Data -> Usage menu 
+                                    option where it is used.  
                                     Click the X or press Escape to close this form.
                                 </p>
                             </clr-signpost-content>
@@ -52,7 +53,7 @@
                                 >
                                 <clr-dg-cell>
                                     <clr-icon *ngIf="row.nrWidgets==0"
-                                        shape="times"
+                                        shape="trash"
                                         class="selectIcon1"
                                         size="18"
                                         (dblclick)="clickDelete(i, row.id)"
