@@ -99,16 +99,16 @@ export class DashboardTagsComponent implements OnInit {
 
     }
 
-    clickAvailable(id: number, index: number){
+    clickAvailable(index: number){
         // Heighlight the clicked row
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAvailable', '@Start');
 
         this.availableTagIndex = index;
     }
 
-    clickSelected(id: number, index: number){
+    clickSelected(index: number){
         // Heighlight the clicked row
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickAvailable', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelected', '@Start');
 
         this.selectedTagIndex = index;
     }

@@ -3,10 +3,6 @@
 	bottom: 0;
 }
 
-a:hover{
-	cursor: pointer;
-}
-
 .modalBox {
     background-color: rgb(0,0,0); /* Fallback color */
 	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
@@ -14,5 +10,15 @@ a:hover{
 }
 
 .modalContent {
-	background-color: rgb(251, 251, 253);
+	background-image: url("../images/landingPageBackgroundImage1.jpg");
+	background-position: center; 
+	background-size: cover;
+	color: white;
+}
+
+h3, a {
+	color: white;
+}
+a:hover{
+	cursor: pointer;
 }
