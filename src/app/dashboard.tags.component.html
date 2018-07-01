@@ -63,8 +63,8 @@
                         <nav>
                             <ul class="nav-list">
                                 <div *ngFor="let row of availableDashboardTags; let i = index"
-                                    [style.background-color]="selectedTagIndex==i? '#123456' : 'transparent'"
-                                    [style.color]="(i == selectedTagIndex)? 'white' : 'gray'"
+                                    [style.background-color]="availableTagIndex==i? '#123456' : 'transparent'"
+                                    [style.color]="(i == availableTagIndex)? 'white' : 'gray'"
                                     (click)="clickAvailable(row.id, i)"
                                     >
                                     <span class="tagText">
@@ -86,6 +86,9 @@
                                     <span class="tagText">
                                         <clr-icon shape="trash" 
                                             size="12" 
+                                            [style.background-color]="selectedTagIndex==i? '#123456' : 'transparent'"
+                                            [style.color]="(i == selectedTagIndex)? 'white' : 'gray'"
+                                            (click)="clickSelected(row.id, i)"
                                             (dblclick)="dblclickDelete(row.id, i)"
                                             >
                                         </clr-icon>

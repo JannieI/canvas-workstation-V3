@@ -53,6 +53,7 @@ export class DashboardTagsComponent implements OnInit {
     newTag: string = '';
     paletteButtons: PaletteButtonBar[];
     paletteButtonsSelected: PaletteButtonsSelected[];
+    availableTagIndex: number = -1;
     selectedTagIndex: number = -1;
 
 	constructor(
@@ -102,9 +103,15 @@ export class DashboardTagsComponent implements OnInit {
         // Heighlight the clicked row
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAvailable', '@Start');
 
-        this.selectedTagIndex = index;
+        this.availableTagIndex = index;
     }
 
+    clickSelected(id: number, index: number){
+        // Heighlight the clicked row
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickAvailable', '@Start');
+
+        this.selectedTagIndex = index;
+    }
 
     clickAddNew() {
         // Add text for a new tag
@@ -148,12 +155,12 @@ export class DashboardTagsComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
 
         // Nothing to do
-        if (this.selectedTagIndex < 0) {
+        if (this.availableTagIndex < 0) {
             return;
         };
         let isFound: boolean = false;
         this.selectedDashboardTags.forEach(dt => {
-            if (dt.tag == this.availableDashboardTags[this.selectedTagIndex].tag) {
+            if (dt.tag == this.availableDashboardTags[this.availableTagIndex].tag) {
                 isFound = true;
             }
         });
@@ -176,7 +183,7 @@ export class DashboardTagsComponent implements OnInit {
             {
                 id: null,
                 dashboardID: this.selectedDashboard.id,
-                tag: this.availableDashboardTags[this.selectedTagIndex].tag
+                tag: this.availableDashboardTags[this.availableTagIndex].tag
 
             };
 
