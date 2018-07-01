@@ -30,11 +30,6 @@
                         </clr-signpost>
     
                     </div>
-                    <div class="gridSubTitle">
-                        <i>
-                            Tags help to group different Dashboards.  Any text can be used as a tag.
-                        </i>
-                    </div>
 
                     <div class="gridAdd">
                         New tag:
@@ -46,15 +41,16 @@
                             minlength="3"
                             maxlength="40"
                             [style.color]="!newTagVar.valid ? 'red' : 'gray'"
-                        placeholder="Enter new tag name here"
+                            placeholder="Enter new tag name here"
                             >
+                    </div>
+                    <div class="gridButtonAdd">
                         <button  type="button"
                             class="btn btn-primary"
                             (click)="clickAddNew()">
                             Add
                         </button>
                     </div>
-
 
                     <div class="gridAvailableTitle">
                         <b>Tags used before:</b>
