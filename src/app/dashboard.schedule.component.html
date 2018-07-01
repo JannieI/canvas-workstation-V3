@@ -23,7 +23,7 @@
                                 executed on the specified date and time: the Dashboard will be prepared,
                                 and a message with the Dashboard attached will be send to the relevant 
                                 user(s).  The data contained in the Dashboard will also be refreshed.  
-                                Click the X or press Escape to close this form.
+                                Click the delete icon or press Escape to close this form.
                             </p>
                         </clr-signpost-content>
                     </clr-signpost>
@@ -75,7 +75,11 @@
                             (click)="clickRow(i)" 
                             >
                             <clr-dg-cell>
-                                <clr-icon shape="times" class="selectIcon1" size="12"></clr-icon>
+                                <clr-icon shape="trash" 
+                                    class="selectIcon1" 
+                                    size="12"
+                                    >
+                                </clr-icon>
                             </clr-dg-cell>
                             <clr-dg-cell>{{row.id}}</clr-dg-cell>
                             <clr-dg-cell>{{row.name}}</clr-dg-cell>
