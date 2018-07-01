@@ -94,9 +94,9 @@ export class DashboardSnapshotsComponent implements OnInit {
 		this.formDashboardSnapshotsClosed.emit(action);
     }
 
-    clickDelete(index: number, id: number) {
+    dblclickDelete(index: number, id: number) {
         // Delete the selected Snapshot
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickDelete', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'dblclickDelete', '@Start');
 
         this.globalVariableService.deleteDashboardSnapshot(id).then(res => {
             this.currentDashboardSnapshots.splice(index, 1)
