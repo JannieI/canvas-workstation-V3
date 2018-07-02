@@ -6,7 +6,7 @@
 .gridOverall {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: repeat(8, 1rem);
+    grid-template-rows: repeat(7, 1rem);
     margin-top: 2px;
 }
     .closeButton {
