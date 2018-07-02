@@ -41,14 +41,14 @@
                                 (click)="clickSelectedDatasource(i, row.id)"
                                 >
                                 <clr-dg-cell>
-                                    <input type="checkbox" class="dsCheckbox"
+                                    <input type="checkbox"
                                         [checked]="row.isSelected"
                                         [disabled]="row.hasWidget"
                                         (click)="clickDSCheckbox(i, row.id, row.isSelected, $event)"
                                         >
-                                    <div class="dsName">
+                                    <span>
                                         {{ row.fieldValue }}                                        {{row.name}}
-                                    </div>
+                                    </span>
 
                                 </clr-dg-cell>
                             </clr-dg-row>
