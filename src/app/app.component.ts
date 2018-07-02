@@ -3267,18 +3267,6 @@ export class AppComponent implements OnInit {
         // Manage combinations of DS
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataCombinations', '@Start');
 
-        // Has to be in editMode
-        if (!this.editMode) {
-            this.showMessage(
-                this.globalVariableService.canvasSettings.notInEditModeMsg,
-                'StatusBar',
-                'Warning',
-                3000,
-                ''
-            );
-            return;
-        };
-
         this.combinationType = joinType;
 
         this.menuOptionClickPreAction();
