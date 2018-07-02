@@ -45,7 +45,6 @@ import { BoxPlotStyle } from 'vega-lite/build/src/compositemark/boxplot';
 })
 export class WidgetSingleComponent {
     @Input() widget: Widget;
-    @Input() showDataQuality: boolean;
     @Input() showComments: boolean;
 
     @ViewChild('graphDOM')  graphDOM: ElementRef;

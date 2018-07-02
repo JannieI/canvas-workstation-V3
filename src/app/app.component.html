@@ -1191,14 +1191,6 @@
                         </button>
                         <button type="button"
                             clrDropdownItem
-                            (click)="clickMenuViewShowDataQuality()"
-                            title="Show data qualitiy issus for Datasources in this Dashboard"
-                            >
-                            Show DataQuality
-                            <clr-icon shape="check" size="12" *ngIf="showDataQuality"></clr-icon>
-                        </button>
-                        <button type="button"
-                            clrDropdownItem
                             (click)="clickMenuViewShowComments()"
                             title="Show comments related to this Dashboard"
                             >
@@ -2025,7 +2017,6 @@
                 <widget-single
                     #widgetDOMX
                     [widget]="row"
-                    [showDataQuality]="showDataQuality"
                     [showComments]="showComments"
                     >
                 </widget-single>
@@ -2775,7 +2766,6 @@
                 <widget-single
                     #widgetDOM
                     [widget]="row"
-                    [showDataQuality]="showDataQuality"
                     [showComments]="showComments"
                     >
                 </widget-single>
@@ -2975,7 +2965,6 @@
                 <widget-single
                     #widgetDOMX
                     [widget]="row"
-                    [showDataQuality]="showDataQuality"
                     [showComments]="showComments"
                     >
                 </widget-single>

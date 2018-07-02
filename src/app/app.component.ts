@@ -334,7 +334,6 @@ export class AppComponent implements OnInit {
     showGrid: boolean;
     showComments: boolean;
     showDatasourcePopup: boolean = false;
-    showDataQuality: boolean;
     showModalDashboardNew: boolean = false;
     showModalDashboardOpen: boolean = false;
     showModalDashboardSave: boolean = false;
