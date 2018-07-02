@@ -94,7 +94,7 @@
 
     .gridArrowAdd {
         grid-column-start: 8;
-        grid-column-end: 9;
+        grid-column-end: 10;
         grid-row-start: 6;
         grid-row-end: 7
 
@@ -102,43 +102,43 @@
 
     .gridArrowDelete {
         grid-column-start: 8;
-        grid-column-end: 9;
+        grid-column-end: 10;
         grid-row-start: 8;
         grid-row-end: 9;
     }
 
     .gridMoveUp {
         grid-column-start: 8;
-        grid-column-end: 9;
+        grid-column-end: 10;
         grid-row-start: 10;
         grid-row-end: 11;
     }
     .gridMoveDown {
         grid-column-start: 8;
-        grid-column-end: 9;
+        grid-column-end: 10;
         grid-row-start: 12;
         grid-row-end: 13;
     }
 
     .gridButtonCancel {
-        grid-column-start: 1;
-        grid-column-end: 3;
+        grid-column-start: 5;
+        grid-column-end: 7;
         grid-row-start: 18;
         grid-row-end: 19;
         text-align: left;
     }
 
     .gridButtonReset {
-        grid-column-start: 3;
-        grid-column-end: 5;
+        grid-column-start: 14;
+        grid-column-end: 16;
         grid-row-start: 18;
         grid-row-end: 19;
         text-align: left;
     }
 
     .gridButtonSave {
-        grid-column-start: 5;
-        grid-column-end: 7;
+        grid-column-start: 12;
+        grid-column-end: 14;
         grid-row-start: 18;
         grid-row-end: 19;
         text-align: left;
