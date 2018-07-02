@@ -5097,17 +5097,6 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPostAction();
     }
 
-    clickMenuViewShowDataQuality() {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewShowDataQuality', '@Start');
-
-        this.menuOptionClickPreAction();
-
-        this.showDataQuality = !this.showDataQuality;
-
-        this.menuOptionClickPostAction();
-    }
-
     clickMenuViewShowComments() {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewShowComments', '@Start');
