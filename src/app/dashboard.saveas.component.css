@@ -34,7 +34,6 @@
         grid-column-end: 18;
         grid-row-start: 3;
         grid-row-end: 5;
-        margin-left: 20px;
         text-align: left;
     }
 
@@ -43,23 +42,20 @@
         grid-column-end: 18;
         grid-row-start: 6;
         grid-row-end: 7;
-        margin-left: 20px;
         text-align: left;
     }
 
     .gridButtonCancel {
-        grid-column-start: 4;
-        grid-column-end: 5;
+        grid-column-start: 5;
+        grid-column-end: 7;
         grid-row-start: 9;
         grid-row-end: 10;
-        margin-left: 20px;
         text-align: left;
     }
     .gridButtonSave {
-        grid-column-start: 11;
-        grid-column-end: 13;
+        grid-column-start: 12;
+        grid-column-end: 14;
         grid-row-start: 9;
         grid-row-end: 10;
-        margin-left: 20px;
         text-align: left;
     }
