@@ -293,7 +293,7 @@ export class AppComponent implements OnInit {
     editMode: boolean;
     editingDS: boolean;
     hasDashboard: boolean = false;
-    hasDatasources: boolean = false;
+    hasDatasources: boolean = true;             // TODO - consider removing this totally
     editMenuText: string;
     fields: Field[];
     isBusyResizing: boolean = false;
