@@ -140,7 +140,7 @@
                     <div class="gridClearButton">
                         <button
                             type="button"
-                            class="btn btn-secondary btn-sm"
+                            class="btn btn-link"
                             (click)="clickClear()"
                             >
                             Clear
@@ -150,7 +150,7 @@
                     <div class="gridSearchButton">
                         <button
                             type="button"
-                            class="btn btn-primary btn-sm"
+                            class="btn btn-link"
                             (click)="clickSearch()"
                             >
                             Search
@@ -234,7 +234,7 @@
                                 of {{pagination.totalItems}} records
                                 <clr-dg-pagination
                                     #pagination
-                                    [clrDgPageSize]="3"
+                                    [clrDgPageSize]="5"
                                     >
                                 </clr-dg-pagination>
                             </clr-dg-footer>

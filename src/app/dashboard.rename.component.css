@@ -10,7 +10,7 @@
 .gridOverall {
     display: grid;
     grid-template-columns: repeat(14, 1fr);
-    grid-template-rows: repeat(17, 1.1rem);
+    grid-template-rows: repeat(18, 1.1rem);
 }
     .closeButton {
         background-color: transparent;
