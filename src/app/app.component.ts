@@ -332,7 +332,6 @@ export class AppComponent implements OnInit {
     selectWidgetIndex: number;
     selectedDatasourceID: number;       // DS of selecte W, -1 for D
     showGrid: boolean;
-    showComments: boolean;
     showDatasourcePopup: boolean = false;
     showModalDashboardNew: boolean = false;
     showModalDashboardOpen: boolean = false;
@@ -5094,15 +5093,6 @@ export class AppComponent implements OnInit {
         this.globalVariableService.showGrid.next(!this.showGrid);
 
         this.menuOptionClickPostAction();
-    }
-
-    clickMenuViewShowComments() {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewShowComments', '@Start');
-
-        this.menuOptionClickPreAction();
-
-        this.showComments = !this.showComments;
     }
 
     clickMenuViewSnapToGrid() {
