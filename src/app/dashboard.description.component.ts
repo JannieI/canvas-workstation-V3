@@ -205,6 +205,20 @@ export class DashboardDescriptionComponent implements OnInit {
         // Save the changes, then close the form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
+        // Validation
+        if (this.dashboardName == '') {
+            this.errorMessage = 'Please enter a Name';
+            return;
+        };
+        if (this.dashboardDescription == '') {
+            this.errorMessage = 'Please enter a Description';
+            return;
+        };
+        if (this.dashboardCode == '') {
+            this.errorMessage = 'Please enter a Code';
+            return;
+        };
+
         // Add permission check
         if (!this.globalVariableService.dashboardPermissionCheck(
             this.selectedDashboard.id,
