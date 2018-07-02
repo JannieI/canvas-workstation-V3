@@ -323,6 +323,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         })
         .catch(err => {
             this.errorMessage = err.message + '. ';
+            this.helpMessage = '';
             if (err.status == 401) {
                 this.errorMessage = 'Error: ' + 'Either you login has expired, or you dont have access to the Database. ' 
                     + err.message;
@@ -392,6 +393,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         })
         .catch(err => {
             this.errorMessage = err.message + '. ';
+            this.helpMessage = '';
             if (err.status == 401) {
                 this.errorMessage = 'Error: ' + 'Either you login has expired, or you dont have access to the Database. ' 
                     + err.message;
@@ -452,6 +454,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
 
         if (dataFields.length == 0) {
             this.showPreview = false;
+            this.helpMessage = '';
             this.errorMessage = 'No fields selected';
             return;
         };
