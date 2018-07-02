@@ -16,8 +16,12 @@
 	color: white;
 }
 
+.clr-icon {
+	color: white !important;
+}
+
 h3, a {
-	color: white;
+	color: white !important;
 }
 a:hover{
 	cursor: pointer;
