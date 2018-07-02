@@ -32,7 +32,7 @@
 
     .gridTable {
         grid-column-start: 1;
-        grid-column-end: 20;
+        grid-column-end: 21;
         grid-row-start: 3;
         grid-row-end: 15;
         text-align: left;
