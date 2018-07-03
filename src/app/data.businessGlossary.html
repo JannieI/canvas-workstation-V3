@@ -1,0 +1,99 @@
+<div class="modal modalBox">
+    <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <form #f="ngForm" role="form" novalidate>
+
+                <div class="gridOverall">
+                    <button type="button" class="closeButton" (click)="clickClose()">
+                        <b>X</b>
+                    </button>
+                    <div class="gridTitle">
+                        <b>Manage Business Glossary</b>
+                        <clr-signpost>
+                            <clr-icon shape="info-circle"
+                                clrSignpostTrigger>
+                            </clr-icon>
+                                <clr-signpost-content *clrIfOpen
+                                [clrPosition]="'bottom-middle'">
+                                <h5 style="margin-top: 0; color:gray;">
+                                    Help
+                                </h5>
+                                <p style="margin-top: 0; color:gray;"> 
+                                    Add, edit and solve the business glossary per Datasource.  Click the X or press Escape to close this form.
+                                </p>
+                            </clr-signpost-content>
+                        </clr-signpost>
+                    </div>
+
+                    <div class="gridBusinessGlossaryTitle">
+                        <b>Buss. Glossary:</b>
+                    </div>
+                    <div class="gridBusinessGlossary">
+                        <textarea [(ngModel)]="selectedDatasource.businessGlossary"
+                            type="text"
+                            name="businessGlossary"
+                            title="Business Glossary (non-technical explanation) for the Datasource"
+                            required
+                            placeholder="Business Glossary (non-technical explanation) for the Datasource"
+                            [disabled]="!editing"
+                            >
+                        </textarea> 
+                    </div>
+
+                    <div class="gridButtonCancel" *ngIf="editing">
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            (click)="clickCancel()"
+                            >
+                            Cancel
+                        </button>
+                    </div>
+                    <div class="gridButtonSave" *ngIf="editing">
+                        <button
+                            type="button"
+                            class="btn btn-primary"
+                            (click)="clickSave()"
+                            >
+                            Save
+                        </button>
+                    </div>
+
+                    <div class="gridButtonCancel" *ngIf="!editing">
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            (click)="clickEdit()"
+                            >
+                            Edit
+                        </button>
+                    </div> 
+
+                    <div class="gridTable">
+                        <clr-datagrid>
+                            <clr-dg-placeholder>
+                                No records ...
+                            </clr-dg-placeholder>
+                            <clr-dg-column>Name</clr-dg-column>
+                            <clr-dg-column>Type</clr-dg-column>
+                            <clr-dg-column>Description</clr-dg-column>
+                            <clr-dg-column>Bus.Glossary</clr-dg-column>
+                            <clr-dg-row
+                                *ngFor="let row of datasources; let i = index"
+                                [style.background-color]="(i == selectedDatasourcesRowIndex)? '#123456' : 'white'"
+                                [style.color]="(i == selectedDatasourcesRowIndex)? 'white' : 'gray'"
+                                (click)="clickRow(i, row.id)"
+                                >
+                                <clr-dg-cell>{{ row.name }}</clr-dg-cell>
+                                <clr-dg-cell>{{ row.type }}</clr-dg-cell>
+                                <clr-dg-cell>{{ row.description }}</clr-dg-cell>
+                                <clr-dg-cell>{{ row.businessGlossary }}</clr-dg-cell>
+                            </clr-dg-row>
+                        </clr-datagrid>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

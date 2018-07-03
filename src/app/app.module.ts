@@ -101,6 +101,7 @@ import { DataCombinationComponent }   from './data.combination.component';
 import { DataCombinationAppendComponent }    from './data.combination.append.component';
 import { DatasourceShareComponent }   from './data.share.component';
 import { DataDictionaryComponent }    from './data.dictionary.component';
+import { DataBusinessGlossaryComponent }     from './data.businessGlossary';
 import { DataSummaryComponent }       from './data.summary.component';
 import { DataDatasourceUsageComponent }      from './data.datasourceUsage.component';
 import { DataRefreshOnceComponent }   from './data.refresh.once.component';
@@ -201,6 +202,7 @@ import { StatusbarComponent }         from './statusbar.component';
         DataCombinationAppendComponent,
         DatasourceShareComponent,
         DataDictionaryComponent,
+        DataBusinessGlossaryComponent,
         DataSummaryComponent,
         DataManageDataQualityComponent,
         DataManageDataOwnershipComponent,

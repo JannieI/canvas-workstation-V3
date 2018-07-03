@@ -1,0 +1,94 @@
+.modalBox {
+	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+	-shadow: 0 2px 2px 0 lightgray;
+}
+
+.gridOverall {
+    display: grid;
+    grid-template-columns: repeat(20, 1fr);
+    grid-template-rows: repeat(27, 0.8rem);
+    margin-top: 2px;
+}
+    .closeButton {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        text-align: left;
+    }
+    .gridTitle {
+        font-size: 0.75rem;
+        grid-column-start: 1;
+        grid-column-end: 21;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        margin-left: 30px;
+        text-align: left;
+    }
+
+    .gridBusinessGlossaryTitle {
+        grid-column-start: 1;
+        grid-column-end: 4;
+        grid-row-start: 3;
+        grid-row-end: 4;
+    }
+    .gridBusinessGlossary {
+        grid-column-start: 3;
+        grid-column-end: 21;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        height: 100%;
+        width: 100%;
+    }
+    
+    .gridButtonCancel {
+        grid-column-start: 2;
+        grid-column-end: 4;
+        grid-row-start: 7;
+        grid-row-end: 8;
+        margin: 8px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridButtonSave {
+        grid-column-start: 6;
+        grid-column-end: 8;
+        grid-row-start: 7;
+        grid-row-end: 8;
+        margin: 8px 2px 2px 2px;
+        text-align: left;
+    }
+
+    .gridTable {
+        border: 1px solid gray;
+        border-radius: 4px;
+        grid-column-start: 1;
+        grid-column-end: 21;
+        grid-row-start: 10;
+        grid-row-end: 27;
+        overflow-y: scroll;
+        width: 100%;
+    }
+
+        .datagrid {
+            margin: 0px !important;
+            margin-top: 0px !important;
+            padding: 0 !important;
+        }
+
+        .datagrid-cell {
+            font-size: 0.45rem !important;
+            height: 0.8rem !important;
+            margin: 2px !important;
+            overflow: hidden;
+            padding: 0 0 0 6px !important;
+            text-align: left;
+            text-overflow: ellipsis;
+        }
+
+        .dsCheckbox {
+            margin: 4px 0 0 0 !important;    
+        }
+
