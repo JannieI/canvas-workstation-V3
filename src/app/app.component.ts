@@ -401,6 +401,7 @@ export class AppComponent implements OnInit {
     showModalDataCombination: boolean = false;
     showModalDataShare: boolean = false;
     showModalDataDictionary: boolean = false;
+    showModalBusinessGlossary: boolean = false;
     showModalDataSummary: boolean = false;
     showModalDataDeleteDatasource: boolean = false;
     showModalShapeEdit: boolean = false;
@@ -1552,6 +1553,15 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPostAction();
 
         this.showModalDataDictionary = false;
+    }
+
+    handleCloseBusinessGlossary(action: string) {
+        //
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseBusinessGlossary', '@Start');
+
+        this.menuOptionClickPostAction();
+
+        this.showModalBusinessGlossary = false;
     }
 
     handleCloseDataSummary(action: string) {
@@ -3263,6 +3273,15 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPreAction();
 
         this.showModalDataDictionary = true;
+    }
+    
+    clickMenuBusinessGlossary() {
+        // Shows Data Dictionary
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuBusinessGlossary', '@Start');
+
+        this.menuOptionClickPreAction();
+
+        this.showModalBusinessGlossary = true;
     }
 
     clickMenuDataSummary() {

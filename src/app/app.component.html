@@ -4258,6 +4258,13 @@
 </data-share>
 
 
+<!-- Modal: Business Glossary -->
+<data-business-glossary
+    *ngIf="showModalBusinessGlossary"
+    (formDataBusinessGlossaryClosed)="handleCloseBusinessGlossary($event)">Business Glossary for Data Source ...
+</data-business-glossary>
+
+
 <!-- Modal: data Dictionary -->
 <data-dictionary
     *ngIf="showModalDataDictionary"
