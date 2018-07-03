@@ -29,44 +29,12 @@
         text-align: left;
     }
 
-    .gridBusinessGlossaryTitle {
-        grid-column-start: 1;
-        grid-column-end: 4;
-        grid-row-start: 3;
-        grid-row-end: 4;
-    }
-    .gridBusinessGlossary {
-        grid-column-start: 3;
-        grid-column-end: 21;
-        grid-row-start: 3;
-        grid-row-end: 4;
-        height: 100%;
-        width: 100%;
-    }
-    
-    .gridButtonCancel {
-        grid-column-start: 2;
-        grid-column-end: 4;
-        grid-row-start: 7;
-        grid-row-end: 8;
-        margin: 8px 2px 2px 2px;
-        text-align: left;
-    }
-    .gridButtonSave {
-        grid-column-start: 6;
-        grid-column-end: 8;
-        grid-row-start: 7;
-        grid-row-end: 8;
-        margin: 8px 2px 2px 2px;
-        text-align: left;
-    }
-
     .gridTable {
         border: 1px solid gray;
         border-radius: 4px;
         grid-column-start: 1;
         grid-column-end: 21;
-        grid-row-start: 10;
+        grid-row-start: 3;
         grid-row-end: 27;
         overflow-y: scroll;
         width: 100%;
@@ -88,7 +56,4 @@
             text-overflow: ellipsis;
         }
 
-        .dsCheckbox {
-            margin: 4px 0 0 0 !important;    
-        }
 

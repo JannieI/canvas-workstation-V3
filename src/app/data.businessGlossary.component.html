@@ -19,55 +19,13 @@
                                     Help
                                 </h5>
                                 <p style="margin-top: 0; color:gray;"> 
-                                    Add, edit and solve the business glossary per Datasource.  Click the X or press Escape to close this form.
+                                    Shows the business glossary (non-technical explanation)
+                                    for the Datasource underlying the selected Graph.  
+                                    Click the X or press Escape to close this form.
                                 </p>
                             </clr-signpost-content>
                         </clr-signpost>
                     </div>
-
-                    <div class="gridBusinessGlossaryTitle">
-                        <b>Buss. Glossary:</b>
-                    </div>
-                    <div class="gridBusinessGlossary">
-                        <textarea [(ngModel)]="selectedDatasource.businessGlossary"
-                            type="text"
-                            name="businessGlossary"
-                            title="Business Glossary (non-technical explanation) for the Datasource"
-                            required
-                            placeholder="Business Glossary (non-technical explanation) for the Datasource"
-                            [disabled]="!editing"
-                            >
-                        </textarea> 
-                    </div>
-
-                    <div class="gridButtonCancel" *ngIf="editing">
-                        <button
-                            type="button"
-                            class="btn btn-secondary"
-                            (click)="clickCancel()"
-                            >
-                            Cancel
-                        </button>
-                    </div>
-                    <div class="gridButtonSave" *ngIf="editing">
-                        <button
-                            type="button"
-                            class="btn btn-primary"
-                            (click)="clickSave()"
-                            >
-                            Save
-                        </button>
-                    </div>
-
-                    <div class="gridButtonCancel" *ngIf="!editing">
-                        <button
-                            type="button"
-                            class="btn btn-secondary"
-                            (click)="clickEdit()"
-                            >
-                            Edit
-                        </button>
-                    </div> 
 
                     <div class="gridTable">
                         <clr-datagrid>
