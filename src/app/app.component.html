@@ -805,27 +805,34 @@
                                 Data related
                             </button>
                             <clr-dropdown-menu clrPosition="right-top" *clrIfOpen>
-
+                                
                                 <button type="button"
                                     clrDropdownItem
-                                    (click)="clickMenuWidgetDataSummary()"
-                                    title="Data Summary for Datasource selected Widget"
+                                    (click)="clickMenuWidgetBusinessGlossary()"
+                                    title="Business Glossary for Datasource of the selected Widget"
                                     >
-                                    Data Summary
+                                    Business Glossary
+                                </button>
+                                <button type="button"
+                                    clrDropdownItem
+                                    (click)="clickMenuWidgetDataDictionary()"
+                                    title="Data Dictionary for Datasource of the selected Widget"
+                                    >
+                                    Data Dictionary
                                 </button>
                                 <button type="button"
                                     clrDropdownItem
                                     (click)="clickMenuWidgetDataQuality()"
-                                    title="Data quality issues for selected Widget"
+                                    title="Data quality issues for the selected Widget"
                                     >
                                     Data Quality
                                 </button>
                                 <button type="button"
                                     clrDropdownItem
-                                    (click)="clickMenuWidgetDataDictionary()"
-                                    title="Data Dictionary for Datasource selected Widget"
+                                    (click)="clickMenuWidgetDataSummary()"
+                                    title="Data Summary for Datasource of the selected Widget"
                                     >
-                                    Data Dictionary
+                                    Data Summary
                                 </button>
 
                                 <div class="dropdown-divider"></div>
@@ -838,10 +845,6 @@
                                 </button>
                             </clr-dropdown-menu>
                         </clr-dropdown>
-
-
-
-
 
                         <button type="button"
                             clrDropdownItem
