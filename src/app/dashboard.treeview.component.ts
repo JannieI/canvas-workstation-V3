@@ -217,9 +217,10 @@ export class DashboardTreeviewComponent implements OnInit {
             });
 
             // Get widgets for this T
-            let widgets: Widget[] = this.globalVariableService.currentWidgets.filter(
+            let widgets: Widget[] = this.globalVariableService.widgets.filter(
                 w => w.dashboardTabIDs.indexOf(tabs[i].id)>=0
             );
+
             let dsIDs: number[] = [];
 
             // Widget Label - at level 1 = [0].children
@@ -241,21 +242,21 @@ export class DashboardTreeviewComponent implements OnInit {
                 // Put W into treeview
                 if (w.widgetType == 'Graph') {
                     this.objectTree[i].children[0].grandchildren.push({
-                        icon: "objects",
+                        icon: "line-chart",
                         name: 'Graph (' + w.graphYtype + ') ' + w.titleText + ' (' + w.description + ')',
                         active: false
                     });
                 };
                 if (w.widgetType == 'Table') {
                     this.objectTree[i].children[0].grandchildren.push({
-                        icon: "objects",
+                        icon: "grid-view",
                         name: 'Table ' + w.titleText + ' (' + w.description + ')',
                         active: false
                     });
                 };
                 if (w.widgetType == 'Slicer') {
                     this.objectTree[i].children[0].grandchildren.push({
-                        icon: "objects",
+                        icon: "slider",
                         name: 'Slicer ' + w.titleText + ' (' + w.description + ')',
                         active: false
                     });
@@ -272,7 +273,7 @@ export class DashboardTreeviewComponent implements OnInit {
                     
             // DS Label - at level 1 = [0].children
             if (widgets.length > 0) {
-                this.objectTree[0].children.push({
+                this.objectTree[i].children.push({
                     name: 'Datasources',
                     icon: 'folder',
                     expanded: false,
@@ -285,7 +286,7 @@ export class DashboardTreeviewComponent implements OnInit {
                     .findIndex(ds => ds.id == dsid);
                     if (datasourceIndex >= 0) {
                         this.objectTree[i].children[1].grandchildren.push({
-                            icon: "objects",
+                            icon: "folder",
                             name: 'Datasource: ' + this.globalVariableService.datasources[datasourceIndex].name
                             + ' (' + this.globalVariableService.datasources[datasourceIndex].description + ')',
                             active: false
