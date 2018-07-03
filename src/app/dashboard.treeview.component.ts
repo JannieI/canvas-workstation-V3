@@ -189,7 +189,12 @@ export class DashboardTreeviewComponent implements OnInit {
                 expanded: false,
                 grandchildren: []
             });
-            
+            this.objectTree[i].children[3].grandchildren.push({
+                icon: "folder",
+                name: 'User - who used and how often ...',
+                active: false
+            });
+
         };
     }
 
