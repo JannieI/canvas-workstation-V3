@@ -44,145 +44,10 @@ export class DashboardTreeviewComponent implements OnInit {
 
     }
 
-    showTypeDashboard: boolean = false;
     dashboards: Dashboard[];
+    objectTree: any[] = [];
+    showTypeDashboard: boolean = false;
 
-    objectTree: any[] = [
-        {
-            name: "Datasources",
-            icon: "folder",
-            expanded: true,
-            children: [
-                {
-                    icon: 'data-cluster',
-                    name: 'Budget vs Inflation 2017',
-                    active: true,
-                    grandchildren: [
-                        {
-                            icon: "line-chart",
-                            name: "Graph: Economic review for 2017 (Bar, Inflation x Industry)",
-                            active: true
-                        },
-                        {
-                            icon: "line-chart",
-                            name: "Graph: Budget monthly review (Line, year x Costs)",
-                            active: false
-                        },
-                        {
-                            icon: "slider",
-                            name: "Slicer: Cost Centre (5, sorted on Volume)",
-                            active: false
-                        },
-                        {
-                            icon: "grid-view",
-                            name: "Table: Economic review for 2017, version 2",
-                            active: false
-                        }
-                    ]
-                },
-                {
-                    icon: 'data-cluster',
-                    name: 'Trades 2017',
-                    active: false,
-                    grandchildren: [
-                        {
-                            icon: "line-chart",
-                            name: "Graph: Value traded (Bar, Market x Month)",
-                            active: false
-                        },
-                        {
-                            icon: "line-chart",
-                            name: "Graph: Equity Trades ex-OD (Line, Month x Volume)",
-                            active: false
-                        },
-                        {
-                            icon: "slider",
-                            name: "Slicer: TradeType (5, sorted on Volume)",
-                            active: false
-                        },
-                        {
-                            icon: "grid-view",
-                            name: "Table: Top 10 brokers",
-                            active: false
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            name: "Widgets",
-            icon: "folder",
-            expanded: false,
-            children: [
-                {
-                    icon: "line-chart",
-                    name: "Graph: Economic review for 2017 (Bar, Inflation x Industry)",
-                    active: false
-                },
-                {
-                    icon: "line-chart",
-                    name: "Graph: Budget monthly review (Line, year x Costs)",
-                    active: false
-                },
-                {
-                    icon: "line-chart",
-                    name: "Graph: Value traded (Bar, Market x Month)",
-                    active: false
-                },
-                {
-                    icon: "line-chart",
-                    name: "Graph: Equity Trades ex-OD (Line, Month x Volume)",
-                    active: false
-                }
-            ]
-        },
-        {
-            name: "Tables",
-            icon: "folder",
-            expanded: false,
-            children: [
-                {
-                    icon: "grid-view",
-                    name: "Table: Economic review for 2017, version 2",
-                    active: false
-                },
-                {
-                    icon: "grid-view",
-                    name: "Table: Top 10 brokers",
-                    active: false
-                }
-            ]
-        },
-        {
-            name: "Slicers",
-            icon: "folder",
-            expanded: false,
-            children: [
-                {
-                    icon: "slider",
-                    name: "Slicer: Cost Centre (5, sorted on Volume)",
-                    active: false
-                },
-                {
-                    icon: "slider",
-                    name: "Slicer: TradeType (5, sorted on Volume)",
-                    active: false
-                }
-            ]
-        },
-        {
-            name: "Shapes",
-            icon: "folder",
-            expanded: false,
-            children: [
-                {
-                    icon: "objects",
-                    name: "Circle",
-                    active: false
-                },
-            ]
-        },
-    ];
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -224,20 +89,22 @@ export class DashboardTreeviewComponent implements OnInit {
             let dsIDs: number[] = [];
 
             // Widget Label - at level 1 = [0].children
-            if (widgets.length > 0) {
-                this.objectTree[i].children.push({
-                    name: 'Widgets',
-                    icon: 'folder',
-                    expanded: false,
-                    grandchildren: []
-                });
-            };
+            this.objectTree[i].children.push({
+                name: 'Widgets',
+                icon: 'folder',
+                expanded: false,
+                grandchildren: []
+            });
 
             // Widgets - at level 2 = [0].children[0].grandchildren
             widgets.forEach(w => {
 
                 // Record DS id
-                dsIDs.push(w.id);
+                if (w.datasourceID != null) {
+                    if (dsIDs.indexOf(w.datasourceID) < 0) {
+                        dsIDs.push(w.datasourceID);
+                    };
+                };
 
                 // Put W into treeview
                 if (w.widgetType == 'Graph') {
@@ -269,21 +136,19 @@ export class DashboardTreeviewComponent implements OnInit {
                     });
                 };
             });
-
                     
             // DS Label - at level 1 = [0].children
-            if (widgets.length > 0) {
-                this.objectTree[i].children.push({
-                    name: 'Datasources',
-                    icon: 'folder',
-                    expanded: false,
-                    grandchildren: []
-                });
-            };
+            this.objectTree[i].children.push({
+                name: 'Datasources',
+                icon: 'folder',
+                expanded: false,
+                grandchildren: []
+            });
+
             if (dsIDs.length > 0) {
                 dsIDs.forEach(dsid => {
                     let datasourceIndex: number= this.globalVariableService.datasources
-                    .findIndex(ds => ds.id == dsid);
+                        .findIndex(ds => ds.id == dsid);
                     if (datasourceIndex >= 0) {
                         this.objectTree[i].children[1].grandchildren.push({
                             icon: "folder",
@@ -294,6 +159,8 @@ export class DashboardTreeviewComponent implements OnInit {
                     };
                 })
             };
+
+            
         };
     }
 
