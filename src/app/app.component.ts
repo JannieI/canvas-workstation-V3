@@ -3670,6 +3670,35 @@ export class AppComponent implements OnInit {
         this.showModalDataDictionary = true;
     }
 
+    clickMenuWidgetBusinessGlossary(widgetIndex: number = null) {
+        // Show the form of Data Dictionary for selected W
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetBusinessGlossary', '@Start');
+
+        if (widgetIndex == null) {
+
+            // Can only edit one W at a time, so ignore if multiple selected
+            if (!this.checkForOnlyOneWidget()) {
+                return;
+            };
+            if (!this.checkForOnlyOneWidget('Graph')) {
+                return;
+            };
+
+            this.currentWidgets.forEach(w => {
+                if (w.isSelected  &&  w.widgetType == 'Graph') {
+                    this.selectedWidget = w;
+                };
+            });
+        } else {
+            this.selectedWidget = this.currentWidgets[widgetIndex];
+        };
+
+        this.menuOptionClickPreAction();
+
+        this.showModalBusinessGlossary = true;
+    }
+
+
     clickMenuWidgetDataSummary(widgetIndex: number = null) {
         // Show the form of Data Summary for selected W
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetDataSummary', '@Start');
