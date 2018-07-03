@@ -1,51 +1,51 @@
 <div class="modal modalBox">
-        <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
-            <div class="modal-content modalContent">
+    <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
+        <div class="modal-content modalContent">
 
-                <div>
-                    <button type="button" class="closeButton" (click)="clickClose()">
-                        X
-                    </button>
+            <div>
+                <button type="button" class="closeButton" (click)="clickClose()">
+                    X
+                </button>
 
-                    Dashboard Treeview
-                    <div class="propertyLine">
-                        Readonly view of the current Dashboard.  Note that objects may be 
-                        duplicated for ease of reference.
-                    </div>
-                    <div class="treeview">
-                        <clr-tree-node *ngFor="let row of objectTree">
-                            <clr-icon [attr.shape]="row.icon"></clr-icon>
-                            {{row.name}} 
-                            <ng-template [(clrIfExpanded)]="row.expanded">
-                                <clr-tree-node *ngFor="let child of row.children">
-                                    <button class="clr-treenode-link"
-                                        (click)="openchild(row.name, child.name)"
-                                        [class.active]="child.active"
-                                        >
-                                        <clr-icon [attr.shape]="child.icon"></clr-icon>
-                                        {{child.name}}
+                Dashboard Treeview
+                <div class="propertyLine">
+                    Readonly view of the current Dashboard.  Note that objects may be 
+                    duplicated for ease of reference.
+                </div>
+                <div class="treeview">
+                    <clr-tree-node *ngFor="let row of objectTree">
+                        <clr-icon [attr.shape]="row.icon"></clr-icon>
+                        {{row.name}} 
+                        <ng-template [(clrIfExpanded)]="row.expanded">
+                            <clr-tree-node *ngFor="let child of row.children">
+                                <button class="clr-treenode-link"
+                                    (click)="openchild(row.name, child.name)"
+                                    [class.active]="child.active"
+                                    >
+                                    <clr-icon [attr.shape]="child.icon"></clr-icon>
+                                    {{child.name}}
 
-                                            <ng-template [(clrIfExpanded)]="child.expanded">
-                                                <clr-tree-node *ngFor="let grandchild of child.grandchildren">
-                                                    <button class="clr-treenode-link"
-                                                        (click)="openchild(row.name, child.name, grandchild.name)"
-                                                        [class.active]="grandchild.active"
-                                                        >
-                                                        <clr-icon [attr.shape]="grandchild.icon"></clr-icon>
-                                                        {{grandchild.name}}
-                                                    </button>
-                                                </clr-tree-node>
-                                            </ng-template>
-            
+                                        <ng-template [(clrIfExpanded)]="child.expanded">
+                                            <clr-tree-node *ngFor="let grandchild of child.grandchildren">
+                                                <button class="clr-treenode-link"
+                                                    (click)="openchild(row.name, child.name, grandchild.name)"
+                                                    [class.active]="grandchild.active"
+                                                    >
+                                                    <clr-icon [attr.shape]="grandchild.icon"></clr-icon>
+                                                    {{grandchild.name}}
+                                                </button>
+                                            </clr-tree-node>
+                                        </ng-template>
+        
 
 
 
-                                    </button>
-                                </clr-tree-node>
-                            </ng-template>
-                        </clr-tree-node>
-                    </div>
+                                </button>
+                            </clr-tree-node>
+                        </ng-template>
+                    </clr-tree-node>
                 </div>
             </div>
         </div>
     </div>
+</div>

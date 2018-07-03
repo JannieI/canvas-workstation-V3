@@ -199,19 +199,53 @@ export class DashboardTreeviewComponent implements OnInit {
             d.id == this.globalVariableService.currentDashboardInfo.value.currentDashboardID
         )[0];
 
-        // Widgets
-        let dsIDs: number[];
-        this.objectTree.push({
-            name: 'Widgets',
-            icon: 'folder',
-            expanded: true,
-            children: []
-        });
-        this.globalVariableService.currentWidgets.forEach(w => {
-            this.objectTree[0].children.push({
+        // Tabs
+        this.globalVariableService.currentDashboardTabs.filter(t =>
+            t.dashboardID == currentDashboard.id).forEach(t => {
+            this.objectTree.push({
                 icon: "objects",
-                name: w.titleText,
-                active: false
+                name: 'Tab: ' + t.name + ' (' + t.description + ')',
+                active: false,
+                children: []
+            });
+        
+            // Widgets
+            let dsIDs: number[];
+            this.objectTree[0].push({
+                name: 'Widgets',
+                icon: 'folder',
+                expanded: false,
+                grandchildren: []
+            });
+            this.globalVariableService.currentWidgets.forEach(w => {
+                if (w.widgetType == 'Graph') {
+                    this.objectTree[0].children.push({
+                        icon: "objects",
+                        name: 'Graph (' + w.graphYtype + ') ' + w.titleText + ' (' + w.description + ')',
+                        active: false
+                    });
+                };
+                if (w.widgetType == 'Table') {
+                    this.objectTree[0].children.push({
+                        icon: "objects",
+                        name: 'Table ' + w.titleText + ' (' + w.description + ')',
+                        active: false
+                    });
+                };
+                if (w.widgetType == 'Slicer') {
+                    this.objectTree[0].children.push({
+                        icon: "objects",
+                        name: 'Slicer ' + w.titleText + ' (' + w.description + ')',
+                        active: false
+                    });
+                };
+                if (w.widgetType == 'Shape') {
+                    this.objectTree[0].children.push({
+                        icon: "objects",
+                        name: 'Shape: ' + w.widgetSubType,
+                        active: false
+                    });
+                };
             });
         });
     }
