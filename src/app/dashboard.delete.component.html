@@ -116,7 +116,9 @@
                     {{ startupDashboards }}
                 </div>
                 
-
+                <div class="gridErrorMessage" *ngIf="errorMessage">
+                    {{ errorMessage }}
+                </div>
                 <div class="gridFavourite"
                     title="Nr of users who marked this Dashboard as Favourite"
                     >

@@ -160,6 +160,12 @@ export class DashboardDeleteComponent implements OnInit {
             return;
         };
   
+        // Cannot remove if Draft present
+        if (this.dashboard.draftID != null){
+            this.errorMessage = 'First discard the Draft for this Dashboard';
+            return;
+        }; 
+
         // TODO - remove later on!!
         let id: number = this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
         if (
