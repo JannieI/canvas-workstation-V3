@@ -187,10 +187,29 @@ export class DashboardTreeviewComponent implements OnInit {
 	) {}
 
     ngOnInit() {
+        // Initial
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
         this.dashboards = this.globalVariableService.dashboards.slice();
+
+        this.objectTree = []
+        this.objectTree.push({
+            name: 'Datasources',
+            icon: 'folder',
+            expanded: true,
+            children: []
+        });
+        this.objectTree[0].children.push({
+            icon: "objects",
+            name: "Circle",
+            active: false
+        })
     }
 
     clickClose(action: string) {
+        // Close the form, nothing saved
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
+
 		this.formDashboardTreeviewClosed.emit(action);
     }
 }
