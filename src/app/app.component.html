@@ -511,14 +511,6 @@
                                     <button
                                         type="button"
                                         clrDropdownItem
-                                        (click)="clickMenuDataManagedDataQuality()"
-                                        title="Manage Data Quality for Datasources"
-                                        >
-                                        Manage Data Quality
-                                    </button>
-                                    <button
-                                        type="button"
-                                        clrDropdownItem
                                         (click)="clickMenuDataBussGlossary()"
                                         title="Manage Business Glossary for Datasources"
                                         >
@@ -539,6 +531,14 @@
                                         title="Manage Data Ownership for Datasources"
                                         >
                                         Manage Data Ownership
+                                    </button>
+                                    <button
+                                        type="button"
+                                        clrDropdownItem
+                                        (click)="clickMenuDataManagedDataQuality()"
+                                        title="Manage Data Quality for Datasources"
+                                        >
+                                        Manage Data Quality
                                     </button>
 
                                 </clr-dropdown>
@@ -748,6 +748,24 @@
                                 </button>
                                 <button type="button"
                                     clrDropdownItem
+                                    (click)="clickMenuWidgetDescription()"
+                                    title="Description for the selected Widget"
+                                    >
+                                    Description
+                                </button>
+
+                                <div class="dropdown-divider"></div>
+                                <button type="button"
+                                    clrDropdownItem
+                                    (click)="clickMenuWidgetFullScreen()"
+                                    title="Show the selected Widget in full screen"
+                                    >
+                                    Full Screen
+                                </button>
+
+                                <div class="dropdown-divider"></div>
+                                <button type="button"
+                                    clrDropdownItem
                                     (click)="clickMenuWidgetCheckpoints()"
                                     title="Managing checkpoints for selected Widget"
                                     >
@@ -767,6 +785,27 @@
                                     >
                                     Comments
                                 </button>
+                                <button type="button" 
+                                    clrDropdownItem 
+                                    (click)="clickMenuWidgetLinks()"
+                                    >
+                                    Links
+                                </button>
+                            </clr-dropdown-menu>
+                        </clr-dropdown>
+
+
+                        <clr-dropdown>
+                            <button
+                                type="button"
+                                class="btn btn-link btn-sm"
+                                clrDropdownTrigger
+                                title="Options on underlying Datasource"
+                                >
+                                Data related
+                            </button>
+                            <clr-dropdown-menu clrPosition="right-top" *clrIfOpen>
+
                                 <button type="button"
                                     clrDropdownItem
                                     (click)="clickMenuWidgetDataSummary()"
@@ -788,23 +827,7 @@
                                     >
                                     Data Dictionary
                                 </button>
-                                <button type="button"
-                                    clrDropdownItem
-                                    (click)="clickMenuWidgetFullScreen()"
-                                    title="Show the selected Widget in full screen"
-                                    >
-                                    Full Screen
-                                </button>
-                                <button type="button"
-                                    clrDropdownItem
-                                    (click)="clickMenuWidgetDescription()"
-                                    title="Description for the selected Widget"
-                                    >
-                                    Description
-                                </button>
-                                <button type="button" clrDropdownItem (click)="clickMenuWidgetLinks()">
-                                    Links
-                                </button>
+
                                 <div class="dropdown-divider"></div>
                                 <button type="button"
                                     clrDropdownItem
@@ -815,6 +838,10 @@
                                 </button>
                             </clr-dropdown-menu>
                         </clr-dropdown>
+
+
+
+
 
                         <button type="button"
                             clrDropdownItem
