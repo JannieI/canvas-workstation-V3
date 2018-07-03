@@ -193,17 +193,27 @@ export class DashboardTreeviewComponent implements OnInit {
         this.dashboards = this.globalVariableService.dashboards.slice();
 
         this.objectTree = []
+
+        // Get the current D, and then its info (ie DS)
+        let currentDashboard: Dashboard = this.globalVariableService.dashboards.filter(d =>
+            d.id == this.globalVariableService.currentDashboardInfo.value.currentDashboardID
+        )[0];
+
+        // Widgets
+        let dsIDs: number[];
         this.objectTree.push({
-            name: 'Datasources',
+            name: 'Widgets',
             icon: 'folder',
             expanded: true,
             children: []
         });
-        this.objectTree[0].children.push({
-            icon: "objects",
-            name: "Circle",
-            active: false
-        })
+        this.globalVariableService.currentWidgets.forEach(w => {
+            this.objectTree[0].children.push({
+                icon: "objects",
+                name: w.titleText,
+                active: false
+            });
+        });
     }
 
     clickClose(action: string) {
