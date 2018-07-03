@@ -18,6 +18,9 @@ import { GlobalVariableService}       from './global-variable.service';
 
 // Models
 import { Dashboard }                  from './models';
+import { DashboardTab }               from './models';
+import { Datasource }                 from './models';
+import { Widget }                     from './models';
 
 @Component({
     selector: 'dashboard-treeview',
@@ -199,55 +202,98 @@ export class DashboardTreeviewComponent implements OnInit {
             d.id == this.globalVariableService.currentDashboardInfo.value.currentDashboardID
         )[0];
 
-        // Tabs
-        this.globalVariableService.currentDashboardTabs.filter(t =>
-            t.dashboardID == currentDashboard.id).forEach(t => {
+        // Get T for this D
+        let tabs: DashboardTab[] = this.globalVariableService.currentDashboardTabs.filter(t =>
+            t.dashboardID == currentDashboard.id
+        );
+
+        // Tabs - at level [0]
+        for (var i = 0; i < tabs.length; i++) {
             this.objectTree.push({
                 icon: "objects",
-                name: 'Tab: ' + t.name + ' (' + t.description + ')',
+                name: 'Tab: ' + tabs[i].name + ' (' + tabs[i].description + ')',
                 active: false,
                 children: []
             });
-        
-            // Widgets
-            let dsIDs: number[];
-            this.objectTree[0].push({
-                name: 'Widgets',
-                icon: 'folder',
-                expanded: false,
-                grandchildren: []
-            });
-            this.globalVariableService.currentWidgets.forEach(w => {
+
+            // Get widgets for this T
+            let widgets: Widget[] = this.globalVariableService.currentWidgets.filter(
+                w => w.dashboardTabIDs.indexOf(tabs[i].id)>=0
+            );
+            let dsIDs: number[] = [];
+
+            // Widget Label - at level 1 = [0].children
+            if (widgets.length > 0) {
+                this.objectTree[i].children.push({
+                    name: 'Widgets',
+                    icon: 'folder',
+                    expanded: false,
+                    grandchildren: []
+                });
+            };
+
+            // Widgets - at level 2 = [0].children[0].grandchildren
+            widgets.forEach(w => {
+
+                // Record DS id
+                dsIDs.push(w.id);
+
+                // Put W into treeview
                 if (w.widgetType == 'Graph') {
-                    this.objectTree[0].children.push({
+                    this.objectTree[i].children[0].grandchildren.push({
                         icon: "objects",
                         name: 'Graph (' + w.graphYtype + ') ' + w.titleText + ' (' + w.description + ')',
                         active: false
                     });
                 };
                 if (w.widgetType == 'Table') {
-                    this.objectTree[0].children.push({
+                    this.objectTree[i].children[0].grandchildren.push({
                         icon: "objects",
                         name: 'Table ' + w.titleText + ' (' + w.description + ')',
                         active: false
                     });
                 };
                 if (w.widgetType == 'Slicer') {
-                    this.objectTree[0].children.push({
+                    this.objectTree[i].children[0].grandchildren.push({
                         icon: "objects",
                         name: 'Slicer ' + w.titleText + ' (' + w.description + ')',
                         active: false
                     });
                 };
                 if (w.widgetType == 'Shape') {
-                    this.objectTree[0].children.push({
+                    this.objectTree[i].children[0].grandchildren.push({
                         icon: "objects",
                         name: 'Shape: ' + w.widgetSubType,
                         active: false
                     });
                 };
             });
-        });
+
+                    
+            // DS Label - at level 1 = [0].children
+            if (widgets.length > 0) {
+                this.objectTree[0].children.push({
+                    name: 'Datasources',
+                    icon: 'folder',
+                    expanded: false,
+                    grandchildren: []
+                });
+            };
+            if (dsIDs.length > 0) {
+                dsIDs.forEach(dsid => {
+                    let datasourceIndex: number= this.globalVariableService.datasources
+                    .findIndex(ds => ds.id == dsid);
+                    if (datasourceIndex >= 0) {
+                        this.objectTree[i].children[1].grandchildren.push({
+                            icon: "objects",
+                            name: 'Datasource: ' + this.globalVariableService.datasources[datasourceIndex].name
+                            + ' (' + this.globalVariableService.datasources[datasourceIndex].description + ')',
+                            active: false
+                        });
+                    };
+                })
+            };
+        };
     }
 
     clickClose(action: string) {
