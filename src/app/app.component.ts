@@ -2457,32 +2457,19 @@ export class AppComponent implements OnInit {
         // Share a D - set the Access Type (ie Private) and Access List
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardShare', '@Start');
         
-        // TODO - remove once happy not needed
+        // TODO - is this correct ??
         // Can only be done for state = Complete
-        // if (this.globalVariableService.currentDashboardInfo.value.currentDashboardState
-        //     != 'Complete') {
-        //     this.showMessage(
-        //         'Only possible for Dashboards with state = Complete',
-        //         'StatusBar',
-        //         'Info',
-        //         3000,
-        //         ''
-        //     );
-        //     return;
-        // }
-
-        // Not for Draft
-        if (this.globalVariableService.currentDashboardInfo.value.currentDashboardState ==
-            'Draft') {
+        if (this.globalVariableService.currentDashboardInfo.value.currentDashboardState
+            != 'Complete') {
             this.showMessage(
-                'Draft Dashboards cannot be shared',
+                'Only possible for Dashboards with state = Complete',
                 'StatusBar',
-                'Warning',
+                'Info',
                 3000,
                 ''
             );
             return;
-        };
+        }
 
         // Permissions
         if (!this.globalVariableService.currentUser.dashboardCanGrantAccessRole
@@ -2490,18 +2477,6 @@ export class AppComponent implements OnInit {
             !this.globalVariableService.currentUser.isAdministrator) {
             this.showMessage(
                 'You do not have Access Permissions (role must be added)',
-                'StatusBar',
-                'Warning',
-                3000,
-                ''
-            );
-            return;
-        };
-
-        // Has to be in editMode
-        if (!this.editMode) {
-            this.showMessage(
-                this.globalVariableService.canvasSettings.notInEditModeMsg,
                 'StatusBar',
                 'Warning',
                 3000,
