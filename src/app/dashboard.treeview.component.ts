@@ -75,7 +75,7 @@ export class DashboardTreeviewComponent implements OnInit {
         // Tabs - at level [0]
         for (var i = 0; i < tabs.length; i++) {
             this.objectTree.push({
-                icon: "objects",
+                icon: "file-group",
                 name: 'Tab: ' + tabs[i].name + ' (' + tabs[i].description + ')',
                 active: false,
                 children: []
@@ -91,7 +91,7 @@ export class DashboardTreeviewComponent implements OnInit {
             // Widget Label - at level 1 = [0].children
             this.objectTree[i].children.push({
                 name: 'Widgets',
-                icon: 'folder',
+                icon: 'bubble-chart',
                 expanded: false,
                 grandchildren: []
             });
@@ -140,7 +140,7 @@ export class DashboardTreeviewComponent implements OnInit {
             // DS Label - at level 1 = [0].children
             this.objectTree[i].children.push({
                 name: 'Datasources',
-                icon: 'folder',
+                icon: 'storage',
                 expanded: false,
                 grandchildren: []
             });
@@ -159,7 +159,36 @@ export class DashboardTreeviewComponent implements OnInit {
                     };
                 })
             };
-
+  
+            // Data Quality Label - at level 1 = [0].children
+            this.objectTree[i].children.push({
+                name: 'Data Quality',
+                icon: 'shield-check',
+                expanded: false,
+                grandchildren: []
+            });
+            if (dsIDs.length > 0) {
+                dsIDs.forEach(dsid => {
+                    let dataqualityIndex: number= this.globalVariableService.dataQualityIssues
+                        .findIndex(dq => dq.datasourceID == dsid);
+                    if (dataqualityIndex >= 0) {
+                        this.objectTree[i].children[2].grandchildren.push({
+                            icon: "folder",
+                            name: 'Datasource: ' + this.globalVariableService.dataQualityIssues[dataqualityIndex].name
+                            + ' (' + this.globalVariableService.dataQualityIssues[dataqualityIndex].description + ')',
+                            active: false
+                        });
+                    };
+                })
+            };
+              
+            // Usage Label - at level 1 = [0].children
+            this.objectTree[i].children.push({
+                name: 'Usage',
+                icon: 'dashboard',
+                expanded: false,
+                grandchildren: []
+            });
             
         };
     }
