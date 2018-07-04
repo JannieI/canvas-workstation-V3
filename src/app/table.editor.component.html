@@ -7,6 +7,29 @@
                     <b>X</b>
                 </button>
 
+                <div class="gridTitle">
+                    <b>Table Editor</b>
+                    <clr-signpost>
+                        <clr-icon shape="info-circle"
+                            clrSignpostTrigger>
+                        </clr-icon>
+                            <clr-signpost-content *clrIfOpen
+                            [clrPosition]="'bottom-middle'">
+                            <h5 style="margin-top: 0; color:gray;">
+                                Help
+                            </h5>
+                            <p style="margin-top: 0; color:gray;">
+                                This form allows for the adding of a new Table, or the editing
+                                of an existing Table.  For new Tables, first select the 
+                                Datasource.  Afterwards, select the fields to show in the
+                                table.  Enhance the Table (i.e. sorting) by clicking the 
+                                More button.
+                                Click the X or press Escape to close this form.
+                            </p>
+                        </clr-signpost-content>
+                    </clr-signpost>
+                </div>
+
                 <div class="datasources" *ngIf="showDatasourcePopup">
                     Select a <b>Datasources</b> added before, and click Continue.
 
