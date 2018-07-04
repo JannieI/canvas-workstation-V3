@@ -93,7 +93,7 @@
                     <b>Fields for: {{ currentDatasources[0].name }}</b>
                 </div>
 
-                <div class="selectedFields">
+                <div class="gridFields">
                     <clr-datagrid [(clrDgSelected)]="selectedRow" [clDgRowSelection]="true">
                         <clr-dg-column [clrDgField]="'filterPivotFields'">Name</clr-dg-column>
                         <clr-dg-row *clrDgItems="let row of dataFieldNames" [clrDgItem]="row">
@@ -108,35 +108,6 @@
                     </clr-datagrid>
                 </div>
 
-                <!-- <div class="fieldList">
-                    <nav
-                        id="wrapper"
-                        class="sidenav"
-                        [style.width.px]="sideNavWidth"
-                        [style.min-width.rem]="sideNavMinWidth"
-                        >
-
-                        <div class="selectedDatasource">
-                            <b>Fields for: {{ currentDatasources[0].name }}</b>
-                        </div>
-
-                        <div class="selectedFields">
-                            <clr-datagrid [(clrDgSelected)]="selectedRow" [clDgRowSelection]="true">
-                                <clr-dg-column [clrDgField]="'filterPivotFields'">Name</clr-dg-column>
-                                <clr-dg-row *clrDgItems="let row of dataFieldNames" [clrDgItem]="row">
-                                    <clr-dg-cell
-                                        id="fld"
-                                        draggable="true"
-                                        (dragstart)="dragstartField($event)"
-                                        >
-                                        {{ row }}
-                                    </clr-dg-cell>
-                                </clr-dg-row>
-                            </clr-datagrid>
-                        </div>
-                    </nav>
-                </div> -->
-
                 <div class="hasTitle">
                     <div class="checkbox">
                         <input type="checkbox" id="checkTitle" [(ngModel)]="containerHasTitle">
@@ -147,7 +118,7 @@
                 <div class="propertyButton">
                     <button
                         type="button"
-                        class="btn btn-secondary"
+                        class="btn btn-link"
                         title="Show more table properties"
                         (click)="clickProperties()"
                         >

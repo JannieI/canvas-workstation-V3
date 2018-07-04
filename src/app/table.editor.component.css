@@ -76,27 +76,15 @@
         margin-bottom: 0;
         text-align: center;
     }
-    .selectedFields {
+    
+    .gridFields {
         grid-column-start: 1;
         grid-column-end: 6;
         grid-row-start: 3;
-        grid-row-end: 25;
+        grid-row-end: 24;
         margin-bottom: 0;
         text-align: center;
     }
-
-    .fieldList {
-        grid-column-start: 1;
-        grid-column-end: 6;
-        grid-row-start: 3;
-        grid-row-end: 25;
-        margin-bottom: 0;
-        text-align: center;
-    }
-
-        /* .selectedDatasource {
-            background-color: lightgray;
-        } */
 
     .hasTitle {
         grid-column-start: 7;
