@@ -38,4 +38,5 @@
         grid-column-end: 21;
         grid-row-start: 3;
         grid-row-end: 21;
+        overflow: auto
     }

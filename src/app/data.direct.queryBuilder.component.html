@@ -244,6 +244,7 @@
                             type="button"
                             class="btn btn-link"
                             (click)="clickSave('Transformation')"
+                            [disabled]="!showPreview"
                             >
                             <span *ngIf="!editingDS">
                                 Add
