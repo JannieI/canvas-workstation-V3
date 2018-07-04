@@ -64,10 +64,6 @@
             width: 600px;
         }
 
-        .datasourceButton {
-            float: right;
-        }
-
     .selectedDatasource {
         grid-column-start: 1;
         grid-column-end: 6;
@@ -84,6 +80,14 @@
         grid-row-end: 26;
         margin-bottom: 0;
         text-align: center;
+    }
+
+    .gridButtonContinue {
+        grid-column-start: 17;
+        grid-column-end: 19;
+        grid-row-start: 24;
+        grid-row-end: 25;
+        margin: 8px 0 0 15px;
     }
 
     .hasTitle {

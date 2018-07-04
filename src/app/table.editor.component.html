@@ -33,11 +33,6 @@
                 <div class="datasources" *ngIf="showDatasourcePopup">
                     Select a <b>Datasources</b> added before, and click Continue.
 
-                    <button class="btn btn-sm btn-secondary datasourceButton"
-                        (click)="clickContinue()">
-                        Continue
-                    </button>
-
                     <div class="datasourceList">
                         <nav
                             >
@@ -86,6 +81,13 @@
                     </div>
 
                 </div>
+
+                <div class="gridButtonContinue" *ngIf="showDatasourcePopup">
+                    <button class="btn btn-primary"
+                        (click)="clickContinue()">
+                        Continue
+                    </button>
+                </div>  
 
                 <div class="selectedDatasource">
                     <b>Fields for: {{ currentDatasources[0].name }}</b>
