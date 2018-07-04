@@ -1482,15 +1482,6 @@ export class AppComponent implements OnInit {
 
         };
     }
-    
-    handleCloseData(action: string) {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseData', '@Start');
-
-        this.menuOptionClickPostAction();
-
-        this.showModalData = false;
-    }
 
     handleCloseDataManagedDataQuality(action: string) {
         //
