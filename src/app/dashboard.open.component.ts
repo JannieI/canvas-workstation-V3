@@ -44,7 +44,6 @@ export class DashboardOpenComponent implements OnInit {
 
     dashboards: Dashboard[];
     errorMessage: string = '';
-    isFirstTimeDashboardOpen: boolean;
     records: number = 10;
     selectedRow: number = 0;
     showAdvancedFilters: boolean = false;
@@ -70,7 +69,6 @@ export class DashboardOpenComponent implements OnInit {
 
             return 0;
         });
-        this.isFirstTimeDashboardOpen = this.globalVariableService.currentUser.preferenceShowOpenStartupMessage;
     }
 
     clickClose(action: string) {
