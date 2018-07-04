@@ -89,19 +89,19 @@
         width: 100%;
     }
 
-    .slicerButtonCancel {
+    .gridSlicerButtonCancel {
         grid-column-start: 31;
         grid-column-end: 33;
-        grid-row-start: 21;
-        grid-row-end: 22;
+        grid-row-start: 23;
+        grid-row-end: 24;
         margin: 2px 2px 2px 2px;
         width: 100%;
     }
-    .slicerButtonSave {
+    .gridSlicerButtonSave {
         grid-column-start: 36;
         grid-column-end: 38;
-        grid-row-start: 21;
-        grid-row-end: 22;
+        grid-row-start: 23;
+        grid-row-end: 24;
         margin: 2px 2px 2px 2px;
         width: 100%;
     }

@@ -130,7 +130,7 @@ import { GlobalVariableService }      from './global-variable.service';
             // this.dataFieldTypes = this.currentDatasources[0].dataFieldTypes;
 
             this.showTable = true;
-            this.clickDSrow(0, this.localWidget.datasourceID)
+            this.clickDSrow(-1, this.localWidget.datasourceID)
         }
 
     }
