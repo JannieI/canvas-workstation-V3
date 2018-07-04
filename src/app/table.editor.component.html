@@ -30,10 +30,11 @@
                     </clr-signpost>
                 </div>
 
-                <div class="datasources" *ngIf="showDatasourcePopup">
+                <div class="gridDatasourceTitle" *ngIf="showDatasourcePopup">
                     Select a <b>Datasources</b> added before, and click Continue.
+                </div>
 
-                    <div class="datasourceList">
+                    <div class="gridDatasourceTable" *ngIf="showDatasourcePopup">
                         <nav
                             >
                             <div>
@@ -58,7 +59,7 @@
                         </nav>
                     </div>
 
-                    <div class="datasourcePreview" *ngIf="hasClicked">
+                    <div class="gridDatasourcePreview" *ngIf="hasClicked  &&  showDatasourcePopup">
                         <div>
                             <clr-datagrid class="gridIdentifyDataPreviewGrid">
 
@@ -80,7 +81,6 @@
                         </div>
                     </div>
 
-                </div>
 
                 <div class="gridButtonContinue" *ngIf="showDatasourcePopup">
                     <button class="btn btn-primary"

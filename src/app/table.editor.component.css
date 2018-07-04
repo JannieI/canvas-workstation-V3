@@ -31,38 +31,29 @@
         width: 100%;
     }
 
-    .datasources {
-        background-color: white;
+    .gridDatasourceTitle {
         grid-column-start: 1;
         grid-column-end: 19;
         grid-row-start: 3;
-        grid-row-end: 25;
+        grid-row-end: 4;
         margin-bottom: 0;
-        padding: 0.7rem;
+        padding: 0 0.7rem 0 0.7rem;
         z-index: 100;
     }
 
-        .datasourceList {
-            border: 1px solid black;
-            display: inline-block;
-            height: 375px;
-            left: 20px;
-            margin: 10px;
-            position: absolute;
-            top: 125px;
-            width: 450px;
-        }
+    .gridDatasourceTable {
+        grid-column-start: 1;
+        grid-column-end: 10;
+        grid-row-start: 3;
+        grid-row-end: 24;
+    }
 
-        .datasourcePreview{
-            border: 1px solid black;
-            display: inline-block;
-            height: 375px;
-            left: 510px;
-            margin: 10px;
-            position: absolute;
-            top: 125px;
-            width: 600px;
-        }
+    .gridDatasourcePreview{
+        grid-column-start: 10;
+        grid-column-end: 19;
+        grid-row-start: 3;
+        grid-row-end: 24;
+    }
 
     .selectedDatasource {
         grid-column-start: 1;
