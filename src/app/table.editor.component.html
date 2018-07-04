@@ -87,8 +87,6 @@
 
                 </div>
 
-
-
                 <div class="selectedDatasource">
                     <b>Fields for: {{ currentDatasources[0].name }}</b>
                 </div>
@@ -108,22 +106,11 @@
                     </clr-datagrid>
                 </div>
 
-                <div class="hasTitle">
+                <div class="hasTitle" *ngIf="!showDatasourcePopup">
                     <div class="checkbox">
                         <input type="checkbox" id="checkTitle" [(ngModel)]="containerHasTitle">
                         <label for="checkTitle">Has Title</label>
                     </div>
-                </div>
-
-                <div class="propertyButton">
-                    <button
-                        type="button"
-                        class="btn btn-link"
-                        title="Show more table properties"
-                        (click)="clickProperties()"
-                        >
-                        More ...
-                    </button>
                 </div>
 
                 <div class="propertiesArea" *ngIf="showPropertiesArea">
@@ -269,11 +256,22 @@
                     </clr-datagrid>
                 </div>
 
-                <div class="gridLastRefreshedMsg">
+                <div class="gridButtonMore" *ngIf="!showDatasourcePopup">
+                    <button
+                        type="button"
+                        class="btn btn-link"
+                        title="Show more table properties"
+                        (click)="clickProperties()"
+                        >
+                        More ...
+                    </button>
+                </div>
+
+                <div class="gridLastRefreshedMsg" *ngIf="!showDatasourcePopup">
                     Last refreshed: 2017/01/01 08:31
                 </div>
                 
-                <div class="gridButtonCancel">
+                <div class="gridButtonCancel" *ngIf="!showDatasourcePopup">
                     <button
                         type="button"
                         class="btn btn-secondary"
@@ -282,7 +280,7 @@
                         Cancel
                     </button>
                 </div>
-                <div class="gridButtonSave">
+                <div class="gridButtonSave" *ngIf="!showDatasourcePopup">
                     <button
                         type="button"
                         class="btn btn-primary"

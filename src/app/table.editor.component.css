@@ -76,12 +76,12 @@
         margin-bottom: 0;
         text-align: center;
     }
-    
+
     .gridFields {
         grid-column-start: 1;
         grid-column-end: 6;
         grid-row-start: 3;
-        grid-row-end: 24;
+        grid-row-end: 26;
         margin-bottom: 0;
         text-align: center;
     }
@@ -96,6 +96,15 @@
     }
 
     .propertyButton {
+        grid-column-start: 9;
+        grid-column-end: 11;
+        grid-row-start: 24;
+        grid-row-end: 25;
+        margin: 8px 0 0 0;
+        padding: 0 0 0 10px;
+    }
+
+    .gridButtonMore {
         grid-column-start: 9;
         grid-column-end: 11;
         grid-row-start: 24;
