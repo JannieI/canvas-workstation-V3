@@ -77,7 +77,6 @@
                     </clr-datagrid>
                 </div>
 
-
                 <div class="gridButtonContinue" *ngIf="showDatasourcePopup">
                     <button class="btn btn-primary"
                         (click)="clickContinue()">
@@ -85,7 +84,7 @@
                     </button>
                 </div>  
 
-                <div class="selectedDatasource" *ngIf="!showDatasourcePopup">
+                <div class="gridSelectedDatasource" *ngIf="!showDatasourcePopup">
                     <b>Fields for: {{ currentDatasources[0].name }}</b>
                 </div>
 
@@ -104,7 +103,7 @@
                     </clr-datagrid>
                 </div>
 
-                <div class="hasTitle" *ngIf="!showDatasourcePopup">
+                <div class="gridHasTitle" *ngIf="!showDatasourcePopup">
                     <div class="checkbox">
                         <input type="checkbox" id="checkTitle" [(ngModel)]="containerHasTitle">
                         <label for="checkTitle">Has Title</label>
@@ -241,7 +240,7 @@
                     </button>
                 </div>
 
-                <div *ngIf="showTable" class="gridDataTable">
+                <div class="gridDataTable" *ngIf="showTable">
                     <clr-datagrid>
 
                         <clr-dg-column *ngFor="let row of dataFieldNames">{{row}}</clr-dg-column>
