@@ -55,7 +55,7 @@ export class DashboardOpenComponent implements OnInit {
 	) {}
 
     ngOnInit() {
-        //
+        // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         this.dashboards = this.globalVariableService.dashboards.slice().sort((n1,n2) => {
@@ -71,8 +71,12 @@ export class DashboardOpenComponent implements OnInit {
         });
     }
 
+    clickSearch()
+        // Create a new Dashboard, and close form
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSearch', '@Start');
+
     clickClose(action: string) {
-        //
+        // Close form, nothing saved
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
         this.test = true;
@@ -80,15 +84,6 @@ export class DashboardOpenComponent implements OnInit {
         console.log('DashboardOpen clickClose', this.test)
 
 		this.formDashboardOpenClosed.emit(action);
-    }
-
-    clickGotIt() {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickGotIt', '@Start');
-
-        this.globalVariableService.currentUser.preferenceShowOpenStartupMessage
-            = false;
-        this.globalVariableService.saveCanvasUser(this.globalVariableService.currentUser);
     }
 
     clickShowAdvancedFilters() {
