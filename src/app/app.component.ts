@@ -3181,31 +3181,6 @@ export class AppComponent implements OnInit {
         this.showModalDataDirectExport = true;
     }
 
-    clickMenuDataFromFile(id: number) {
-        // Open DATA form for a DS that comes from a file.  The id is -1 for a new one
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataFromFile', '@Start');
-
-        // Has to be in editMode
-        // if (!this.editMode) {
-        //     this.showMessage(
-        //         this.globalVariableService.canvasSettings.notInEditModeMsg,
-        //         'StatusBar',
-        //         'Warning',
-        //         3000,
-        //         ''
-        //     );
-        //     return;
-        // };
-
-        this.menuOptionClickPreAction();
-
-        console.log('App clickMenuDataFromFile')
-        this.globalVariableService.dataGetFromSwitch.next('File');
-        // this.globalVariableService.showModalData.next(true);
-        this.showModalData = true;
-        // this.router.navigate(['/data']);
-    }
-
     clickMenuDataManagedDataQuality(){
         // Manage Data Quality Issues for a DS
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataManagedDataQuality', '@Start');

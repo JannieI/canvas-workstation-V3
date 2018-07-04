@@ -16,7 +16,7 @@
         background-color: transparent;
         border: none;
         cursor: pointer;
-        grid-column-start: 2;
+        grid-column-start: 1;
         grid-column-end: 2;
         grid-row-start: 1;
         grid-row-end: 2;
@@ -33,7 +33,7 @@
     }
 
     .gridFilterTitle {
-        grid-column-start: 2;
+        grid-column-start: 1;
         grid-column-end: 7;
         grid-row-start: 3;
         grid-row-end: 4;
@@ -197,7 +197,7 @@
     }
 
     .gridTable {
-        grid-column-start: 2;
+        grid-column-start: 1;
         grid-column-end: 15;
         grid-row-start: 10;
         grid-row-end: 12;
