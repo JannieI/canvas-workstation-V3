@@ -3,11 +3,9 @@
         <div class="modal-content modalContent">
 
             <div class="overall">
-                <div class="closeButton">
-                    <button type="button" class="closeButton" (click)="clickClose()">
-                        X
-                    </button>
-                </div>
+                <button type="button" class="closeButton" (click)="clickClose()">
+                    <b>X</b>
+                </button>
 
                 <div class="datasources" *ngIf="showDatasourcePopup">
                     Select a <b>Datasources</b> added before, and click Continue.

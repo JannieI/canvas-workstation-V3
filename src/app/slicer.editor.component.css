@@ -89,9 +89,17 @@
         width: 100%;
     }
 
-    .slicerButton {
-        grid-column-start: 34;
-        grid-column-end: 36;
+    .slicerButtonCancel {
+        grid-column-start: 31;
+        grid-column-end: 33;
+        grid-row-start: 21;
+        grid-row-end: 22;
+        margin: 2px 2px 2px 2px;
+        width: 100%;
+    }
+    .slicerButtonSave {
+        grid-column-start: 36;
+        grid-column-end: 38;
         grid-row-start: 21;
         grid-row-end: 22;
         margin: 2px 2px 2px 2px;
