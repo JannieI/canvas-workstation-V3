@@ -130,7 +130,7 @@ import { GlobalVariableService }      from './global-variable.service';
             // this.dataFieldTypes = this.currentDatasources[0].dataFieldTypes;
 
             this.showTable = true;
-            this.clickDSrow(this.localWidget.datasourceID)
+            this.clickDSrow(0, this.localWidget.datasourceID)
         }
 
     }
@@ -154,12 +154,6 @@ import { GlobalVariableService }      from './global-variable.service';
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
         this.formWidgetEditorClosed.emit(null);
-    }
- 
-    clickRow(index: number) {
-        // Show groups
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
-        this.selectedRowIndex = index;
     }
 
     clickSave(action: string) {
@@ -366,9 +360,11 @@ import { GlobalVariableService }      from './global-variable.service';
         this.dragoverColor = false;
     }
 
-    clickDSrow(datasourceID: number) {
+    clickDSrow(index: number, datasourceID: number) {
         // Set the selected datasourceID
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDSrow', '@Start');
+
+        this.selectedRowIndex = index;
 
         this.currentDatasources = this.globalVariableService.currentDatasources
             .filter(ds => ds.id == datasourceID)
