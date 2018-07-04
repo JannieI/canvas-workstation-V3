@@ -87,7 +87,28 @@
 
                 </div>
 
-                <div class="fieldList">
+
+
+                <div class="selectedDatasource">
+                    <b>Fields for: {{ currentDatasources[0].name }}</b>
+                </div>
+
+                <div class="selectedFields">
+                    <clr-datagrid [(clrDgSelected)]="selectedRow" [clDgRowSelection]="true">
+                        <clr-dg-column [clrDgField]="'filterPivotFields'">Name</clr-dg-column>
+                        <clr-dg-row *clrDgItems="let row of dataFieldNames" [clrDgItem]="row">
+                            <clr-dg-cell
+                                id="fld"
+                                draggable="true"
+                                (dragstart)="dragstartField($event)"
+                                >
+                                {{ row }}
+                            </clr-dg-cell>
+                        </clr-dg-row>
+                    </clr-datagrid>
+                </div>
+
+                <!-- <div class="fieldList">
                     <nav
                         id="wrapper"
                         class="sidenav"
@@ -96,10 +117,10 @@
                         >
 
                         <div class="selectedDatasource">
-                            Fields for: {{ currentDatasources[0].name }}
+                            <b>Fields for: {{ currentDatasources[0].name }}</b>
                         </div>
 
-                        <div>
+                        <div class="selectedFields">
                             <clr-datagrid [(clrDgSelected)]="selectedRow" [clDgRowSelection]="true">
                                 <clr-dg-column [clrDgField]="'filterPivotFields'">Name</clr-dg-column>
                                 <clr-dg-row *clrDgItems="let row of dataFieldNames" [clrDgItem]="row">
@@ -112,10 +133,9 @@
                                     </clr-dg-cell>
                                 </clr-dg-row>
                             </clr-datagrid>
-                            Selected rows: <span *ngFor="let item of selectedRow">{{ item }}</span>
                         </div>
                     </nav>
-                </div>
+                </div> -->
 
                 <div class="hasTitle">
                     <div class="checkbox">

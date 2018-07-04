@@ -68,6 +68,23 @@
             float: right;
         }
 
+    .selectedDatasource {
+        grid-column-start: 1;
+        grid-column-end: 6;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        margin-bottom: 0;
+        text-align: center;
+    }
+    .selectedFields {
+        grid-column-start: 1;
+        grid-column-end: 6;
+        grid-row-start: 3;
+        grid-row-end: 25;
+        margin-bottom: 0;
+        text-align: center;
+    }
+
     .fieldList {
         grid-column-start: 1;
         grid-column-end: 6;
@@ -76,6 +93,10 @@
         margin-bottom: 0;
         text-align: center;
     }
+
+        /* .selectedDatasource {
+            background-color: lightgray;
+        } */
 
     .hasTitle {
         grid-column-start: 7;
@@ -134,7 +155,7 @@
         grid-column-start: 7;
         grid-column-end: 19;
         grid-row-start: 3;
-        grid-row-end: 21;
+        grid-row-end: 23;
         margin-bottom: 0;
         text-align: center;
         z-index: 100;
@@ -172,7 +193,4 @@
     width: 100% !important;
 }
 
-.selectedDatasource {
-    background-color: lightgray;
-}
 
