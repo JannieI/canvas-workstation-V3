@@ -43,7 +43,9 @@ export class DashboardOpenComponent implements OnInit {
     }
 
     dashboards: Dashboard[];
+    dashboardsOriginal: Dashboard[];
     errorMessage: string = '';
+    filterDashboardName: string = '';
     records: number = 10;
     selectedRow: number = 0;
     showAdvancedFilters: boolean = false;
@@ -58,7 +60,8 @@ export class DashboardOpenComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.dashboards = this.globalVariableService.dashboards.slice().sort((n1,n2) => {
+        this.dashboardsOriginal = this.globalVariableService.dashboards.slice()
+        this.dashboards = this.dashboardsOriginal.slice().sort((n1,n2) => {
             if (n1.name > n2.name) {
                 return 1;
             };
@@ -71,9 +74,16 @@ export class DashboardOpenComponent implements OnInit {
         });
     }
 
-    clickSearch()
+    clickSearch() {
         // Create a new Dashboard, and close form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSearch', '@Start');
+
+        // Filter Name
+        if (this.filterDashboardName != '') {
+            this.dashboards = this.dashboardsOriginal.filter(d => 
+                this.filterDashboardName.includes(d.name));
+        };
+    }
 
     clickClose(action: string) {
         // Close form, nothing saved
@@ -87,7 +97,7 @@ export class DashboardOpenComponent implements OnInit {
     }
 
     clickShowAdvancedFilters() {
-        //
+        // Open area with advanced filters
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowAdvancedFilters', '@Start');
 
         this.showAdvancedFilters = !this.showAdvancedFilters;
