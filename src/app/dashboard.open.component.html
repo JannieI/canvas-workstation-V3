@@ -45,7 +45,7 @@
                 <div class="gridButtonFilter">
                     <button type="button" class="btn btn-link"
                         (click)="clickShowAdvancedFilters()"
-                        [style.background-color]="showAdvancedFilters? 'white' : 'lightgray'">
+                        [style.color]="showAdvancedFilters? 'blue' : 'red'">
                         Advanced Filters
                     </button>
                 </div>
@@ -59,7 +59,7 @@
                     {{ errorMessage }}
                 </div>
 
-                <div *ngIf="showAdvancedFilters" class="propertyLine">
+                <div *ngIf="showAdvancedFilters" class="gridFilterArea">
                     <div class="propertyLine">
                         Schedule:
                         <input type="text" id="formFields_7" placeholder="Send to">
@@ -110,43 +110,46 @@
                         <input type="text" id="formFields_7" placeholder="Last wk/mnth">
                         <input type="text" id="formFields_7" placeholder="By user / By Me">
                     </div>
-                </div>
-                <clr-datagrid>
-                    <clr-dg-column [style.width.%]="10">View</clr-dg-column>
-                    <clr-dg-column [style.width.%]="10">Edit</clr-dg-column>
-                    <clr-dg-column [style.width.%]="10">State</clr-dg-column>
-                    <clr-dg-column>Name</clr-dg-column>
-                    <clr-dg-column>Description</clr-dg-column>
-                    <clr-dg-column># Widgets</clr-dg-column>
-                    <clr-dg-column># Recs</clr-dg-column>
-                    <clr-dg-column>Creator</clr-dg-column>
-                    <clr-dg-column>#Opened</clr-dg-column>
 
-                    <clr-dg-row *clrDgItems="let row of dashboards; let i = index"
-                        [style.background-color]="(i == selectedRow)? '#123456' : 'white'"
-                        [style.color]="(i == selectedRow)? 'white' : 'gray'"
-                        (click)="clickRow(i)"
-                        >
-                        <clr-dg-cell (click)="clickOpenView(row.id)">
-                            <clr-icon shape="eye" class="selectIcon1" size="12"></clr-icon>
-                        </clr-dg-cell>
-                        <clr-dg-cell (click)="clickOpenEdit(i, row.id)">
-                            <clr-icon shape="pencil" class="selectIcon1" size="12"></clr-icon>
-                        </clr-dg-cell>
-                        <clr-dg-cell [style.width.px]="80">{{row.state}}</clr-dg-cell>
-                        <clr-dg-cell>{{row.name}}</clr-dg-cell>
-                        <clr-dg-cell>{{row.description}}</clr-dg-cell>
-                        <clr-dg-cell>{{row.nrWidgets}}</clr-dg-cell>
-                        <clr-dg-cell>{{row.nrRecords}}</clr-dg-cell>
-                        <clr-dg-cell>{{row.creator}}</clr-dg-cell>
-                        <clr-dg-cell>{{row.nrTimesOpened}}</clr-dg-cell>
-                    </clr-dg-row>
-                    <clr-dg-footer>
-                        {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
-                        of {{pagination.totalItems}} dashboards
-                        <clr-dg-pagination #pagination [clrDgPageSize]="records"></clr-dg-pagination>
-                    </clr-dg-footer>
-                </clr-datagrid>
+                    <div class="gridTableX">
+                        <clr-datagrid>
+                            <clr-dg-column [style.width.%]="10">View</clr-dg-column>
+                            <clr-dg-column [style.width.%]="10">Edit</clr-dg-column>
+                            <clr-dg-column [style.width.%]="10">State</clr-dg-column>
+                            <clr-dg-column>Name</clr-dg-column>
+                            <clr-dg-column>Description</clr-dg-column>
+                            <clr-dg-column># Widgets</clr-dg-column>
+                            <clr-dg-column># Recs</clr-dg-column>
+                            <clr-dg-column>Creator</clr-dg-column>
+                            <clr-dg-column>#Opened</clr-dg-column>
+
+                            <clr-dg-row *clrDgItems="let row of dashboards; let i = index"
+                                [style.background-color]="(i == selectedRow)? '#123456' : 'white'"
+                                [style.color]="(i == selectedRow)? 'white' : 'gray'"
+                                (click)="clickRow(i)"
+                                >
+                                <clr-dg-cell (click)="clickOpenView(row.id)">
+                                    <clr-icon shape="eye" class="selectIcon1" size="12"></clr-icon>
+                                </clr-dg-cell>
+                                <clr-dg-cell (click)="clickOpenEdit(i, row.id)">
+                                    <clr-icon shape="pencil" class="selectIcon1" size="12"></clr-icon>
+                                </clr-dg-cell>
+                                <clr-dg-cell [style.width.px]="80">{{row.state}}</clr-dg-cell>
+                                <clr-dg-cell>{{row.name}}</clr-dg-cell>
+                                <clr-dg-cell>{{row.description}}</clr-dg-cell>
+                                <clr-dg-cell>{{row.nrWidgets}}</clr-dg-cell>
+                                <clr-dg-cell>{{row.nrRecords}}</clr-dg-cell>
+                                <clr-dg-cell>{{row.creator}}</clr-dg-cell>
+                                <clr-dg-cell>{{row.nrTimesOpened}}</clr-dg-cell>
+                            </clr-dg-row>
+                            <clr-dg-footer>
+                                {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+                                of {{pagination.totalItems}} dashboards
+                                <clr-dg-pagination #pagination [clrDgPageSize]="records"></clr-dg-pagination>
+                            </clr-dg-footer>
+                        </clr-datagrid>
+                    </div>
+                </div>
 
             </div>
         </div>

@@ -13,7 +13,7 @@
 .gridOverall {
     display: grid;
     grid-template-columns: repeat(20, 1fr);
-    grid-template-rows: repeat(20, 1.1rem);
+    grid-template-rows: repeat(26, 0.8rem);
 }
     .closeButton {
         background-color: transparent;
@@ -43,9 +43,9 @@
         text-align: left;
     }
 
-    .gridDashboardNameTitle {
+    .gridDashboardName {
         grid-column-start: 2;
-        grid-column-end: 9;
+        grid-column-end: 13;
         grid-row-start: 3;
         grid-row-end: 4;
         text-align: left;
@@ -53,14 +53,14 @@
 
     .gridButtonFilter {
         grid-column-start: 9;
-        grid-column-end: 11;
+        grid-column-end: 13;
         grid-row-start: 3;
         grid-row-end: 4;
         text-align: left;
     }
     .gridButtonSearch {
-        grid-column-start: 11;
-        grid-column-end: 13;
+        grid-column-start: 13;
+        grid-column-end: 15;
         grid-row-start: 3;
         grid-row-end: 4;
         text-align: left;
@@ -72,6 +72,22 @@
         grid-column-end: 19;
         grid-row-start: 2;
         grid-row-end: 3;
+        text-align: left;
+    }
+
+    .gridFilterArea {
+        grid-column-start: 2;
+        grid-column-end: 19;
+        grid-row-start: 5;
+        grid-row-end: 6;
+        text-align: left;
+    }
+
+    .gridTable {
+        grid-column-start: 2;
+        grid-column-end: 19;
+        grid-row-start: 6;
+        grid-row-end: 25;
         text-align: left;
     }
 
