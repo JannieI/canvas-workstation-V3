@@ -95,7 +95,6 @@ import { DataManagedBusGlossaryComponent }    from './data.managed.busGlossary.c
 
 import { DataTransformationComponent }       from './data.transformation.component';
 import { DataEditDatasourceComponent }       from './data.editDatasource.component';
-import { DataPopupComponent }         from './data.popup.component';
 import { DataDatasourceOverviewComponent }   from './data.datasourceOverview.component';
 import { DataCombinationComponent }   from './data.combination.component';
 import { DataCombinationAppendComponent }    from './data.combination.append.component';
@@ -188,7 +187,6 @@ import { StatusbarComponent }         from './statusbar.component';
         DataDirectWebComponent,
         DataDirectImportComponent,
         DataDirectExportComponent,
-        DataPopupComponent,
         DataManagedConnectionComponent,
         DataManagedQueryBuilderComponent,
         DataManagedSQLEditorComponent,

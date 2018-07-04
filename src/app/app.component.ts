@@ -389,7 +389,6 @@ export class AppComponent implements OnInit {
     showModalDataTransformation: boolean = false;
     showModalDataEditDatasource: boolean = false;
     showModalDataManagedConnection: boolean = false;
-    showModalData: boolean = false;
     showModalSlicerEditor: boolean = false;
     showModalWidgetTablist: boolean = false;
     showModalWidgetDescription: boolean = false;
