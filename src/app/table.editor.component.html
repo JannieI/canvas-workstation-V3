@@ -34,52 +34,50 @@
                     Select a <b>Datasources</b> added before, and click Continue.
                 </div>
 
-                    <div class="gridDatasourceTable" *ngIf="showDatasourcePopup">
-                        <nav
-                            >
-                            <div>
-                                <clr-datagrid>
-                                    <clr-dg-column >Name</clr-dg-column>
-                                    <clr-dg-column >Description</clr-dg-column>
-                                    <clr-dg-row *clrDgItems="let row of currentDatasources; let i = index"
-                                        (click)="clickDSrow(row.id)"
-                                        >
-                                        <clr-dg-cell>{{ row.name }}</clr-dg-cell>
-                                        <clr-dg-cell>{{ row.description }}</clr-dg-cell>
-                                    </clr-dg-row>
-
-                                    <clr-dg-footer>
-                                        {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
-                                        of {{pagination.totalItems}} rows
-                                        <clr-dg-pagination #pagination [clrDgPageSize]="7"></clr-dg-pagination>
-                                    </clr-dg-footer>
-
-                                </clr-datagrid>
-                            </div>
-                        </nav>
-                    </div>
-
-                    <div class="gridDatasourcePreview" *ngIf="hasClicked  &&  showDatasourcePopup">
+                <div class="gridDatasourceTable" *ngIf="showDatasourcePopup">
+                    <nav
+                        >
                         <div>
-                            <clr-datagrid class="gridIdentifyDataPreviewGrid">
-
-                                <clr-dg-column *ngFor="let row of dataFieldNames">{{row}}</clr-dg-column>
-                                <clr-dg-row *ngFor="let row of currentData">
-
-                                    <clr-dg-cell *ngFor="let col of dataFieldNames; let i = index">
-                                            {{ row[col] }}
-                                    </clr-dg-cell>
+                            <clr-datagrid>
+                                <clr-dg-column >Name</clr-dg-column>
+                                <clr-dg-column >Description</clr-dg-column>
+                                <clr-dg-row *clrDgItems="let row of currentDatasources; let i = index"
+                                    (click)="clickDSrow(row.id)"
+                                    >
+                                    <clr-dg-cell>{{ row.name }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.description }}</clr-dg-cell>
                                 </clr-dg-row>
 
                                 <clr-dg-footer>
                                     {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
                                     of {{pagination.totalItems}} rows
-                                    <clr-dg-pagination #pagination [clrDgPageSize]="10"></clr-dg-pagination>
+                                    <clr-dg-pagination #pagination [clrDgPageSize]="7"></clr-dg-pagination>
                                 </clr-dg-footer>
 
                             </clr-datagrid>
                         </div>
-                    </div>
+                    </nav>
+                </div>
+
+                <div class="gridDatasourcePreview" *ngIf="hasClicked  &&  showDatasourcePopup">
+                    <clr-datagrid>
+
+                        <clr-dg-column *ngFor="let row of dataFieldNames">{{row}}</clr-dg-column>
+                        <clr-dg-row *ngFor="let row of currentData">
+
+                            <clr-dg-cell *ngFor="let col of dataFieldNames; let i = index">
+                                    {{ row[col] }}
+                            </clr-dg-cell>
+                        </clr-dg-row>
+
+                        <clr-dg-footer>
+                            {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+                            of {{pagination.totalItems}} rows
+                            <clr-dg-pagination #pagination [clrDgPageSize]="10"></clr-dg-pagination>
+                        </clr-dg-footer>
+
+                    </clr-datagrid>
+                </div>
 
 
                 <div class="gridButtonContinue" *ngIf="showDatasourcePopup">
@@ -89,11 +87,11 @@
                     </button>
                 </div>  
 
-                <div class="selectedDatasource">
+                <div class="selectedDatasource" *ngIf="!showDatasourcePopup">
                     <b>Fields for: {{ currentDatasources[0].name }}</b>
                 </div>
 
-                <div class="gridFields">
+                <div class="gridFields" *ngIf="!showDatasourcePopup">
                     <clr-datagrid [(clrDgSelected)]="selectedRow" [clDgRowSelection]="true">
                         <clr-dg-column [clrDgField]="'filterPivotFields'">Name</clr-dg-column>
                         <clr-dg-row *clrDgItems="let row of dataFieldNames" [clrDgItem]="row">
@@ -246,11 +244,14 @@
                 </div>
 
                 <div *ngIf="showTable" class="gridDataTable">
-                    <clr-datagrid class="gridIdentifyDataPreviewGrid">
+                    <clr-datagrid>
 
                         <clr-dg-column *ngFor="let row of dataFieldNames">{{row}}</clr-dg-column>
-                        <clr-dg-row *ngFor="let row of currentData">
-
+                        <clr-dg-row *ngFor="let row of currentData"
+                            [style.background-color]="(i == selectedRowIndex)? '#123456' : 'white'"
+                            [style.color]="(i == selectedRowIndex)? 'white' : 'gray'"
+                            (click)="clickRow(i)" 
+                            >
                             <clr-dg-cell *ngFor="let col of dataFieldNames; let i = index">
                                     {{ row[col] }}
                             </clr-dg-cell>

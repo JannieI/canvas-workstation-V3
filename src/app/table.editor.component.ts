@@ -73,6 +73,7 @@ import { GlobalVariableService }      from './global-variable.service';
     showPropertiesArea: boolean;
     rowField: string = 'Drag a field here ...';
     selectedRow: string[] = [];
+    selectedRowIndex: number = 0;
     showRowFieldAdvanced: boolean = false;
     showColFieldAdvanced: boolean = false;
     showColFieldAdvancedArea: boolean = false;
@@ -153,6 +154,12 @@ import { GlobalVariableService }      from './global-variable.service';
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
         this.formWidgetEditorClosed.emit(null);
+    }
+ 
+    clickRow(index: number) {
+        // Show groups
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
+        this.selectedRowIndex = index;
     }
 
     clickSave(action: string) {
