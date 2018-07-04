@@ -78,10 +78,14 @@ export class DashboardOpenComponent implements OnInit {
         // Create a new Dashboard, and close form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSearch', '@Start');
 
+        // Reset
+        this.dashboards = this.dashboardsOriginal;
+
         // Filter Name
         if (this.filterDashboardName != '') {
             this.dashboards = this.dashboardsOriginal.filter(d => 
-                this.filterDashboardName.includes(d.name));
+                d.name.toLowerCase().includes(this.filterDashboardName.toLowerCase())
+            );
         };
     }
 
