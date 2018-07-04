@@ -232,13 +232,6 @@
 
                                 <button type="button"
                                     clrDropdownItem
-                                    title="Rename an existing Dashboard"
-                                    (click)="clickDashboardRename()"
-                                    >
-                                    Rename
-                                </button>
-                                <button type="button"
-                                    clrDropdownItem
                                     title="Save the current Draft Dashboard (to the original)"
                                     (click)="clickDashboardSave()"
                                     >
@@ -260,7 +253,15 @@
                                 </button>
 
                                 <div class="dropdown-divider"></div>
-                                
+                                <button type="button"
+                                    clrDropdownItem
+                                    title="Rename an existing Dashboard"
+                                    (click)="clickDashboardRename()"
+                                    >
+                                    Rename
+                                </button>
+
+                                <div class="dropdown-divider"></div>                               
                                 <button type="button"
                                     clrDropdownItem
                                     title="Discard changes to the current Dashboard"
@@ -298,7 +299,7 @@
 
                                 <button type="button"
                                     clrDropdownItem
-                                    title="Rename an existing Dashboard"
+                                    title="Manage scheduled runs for this Dashboard"
                                     (click)="clickMenuDashboardScheduleEdit()"
                                     >
                                     Manage
@@ -306,7 +307,7 @@
                                 <button
                                     type="button"
                                     clrDropdownItem
-                                    title="Manage scheduled runs for this Dashboard"
+                                    title="Shows all scheduled runs"
                                     (click)="clickMenuDashboardSchedule()"
                                     >
                                     Show All

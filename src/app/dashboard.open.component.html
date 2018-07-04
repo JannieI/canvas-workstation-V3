@@ -4,10 +4,10 @@
 
             <div>
                 <button type="button" class="closeButton" (click)="clickClose()">
-                    X
+                    <b>X</b>
                 </button>
 
-                <span class="title">
+                <div class="gridTitle">
                     <b>Open an existing Dashboard</b>
                     <clr-signpost>
                         <clr-icon shape="info-circle"
@@ -30,34 +30,33 @@
                         </clr-signpost-content>
                     </clr-signpost>
     
-                </span>
+                </div>
 
-                <div class="propertyLine">
-                    Origin:
-                    <input type="text" id="formFields_7" placeholder="Sample/Recent/Normal/Trash">
-                    (rights will be checked)
-                    <span>
-                        <label for="dashboardName" class="popupLabel">Name :</label>
-                        <input type="text" [(ngModel)]="filterDashboardName"
-                            id="dashboardName" 
-                            placeholder="Enter dashboard/portion"
-                            >
-                    </span>
-                    <span>
-                        <button type="button" class="btn btn-secondary"
-                            (click)="clickSearch()">
-                            Search
-                        </button>
-                        <button type="button" class="btn btn-secondary"
-                            (click)="clickShowAdvancedFilters()"
-                            [style.background-color]="showAdvancedFilters? 'white' : 'lightgray'">
-                            Filters
-                        </button>
-                        <span class="errorMessage">
-                            {{ errorMessage }}
-                        </span>
-                    </span>
+                <div class="gridDashboardNameTitle">
+                    <b>Name:</b>
+                </div>
+                <div class="gridDashboardName">
+                    <input type="text" [(ngModel)]="filterDashboardName"
+                        size="40" 
+                        placeholder="Enter dashboard/portion"
+                        >
+                </div>
 
+                <div class="gridButtonFilter">
+                    <button type="button" class="btn btn-link"
+                        (click)="clickShowAdvancedFilters()"
+                        [style.background-color]="showAdvancedFilters? 'white' : 'lightgray'">
+                        Advanced Filters
+                    </button>
+                </div>
+                <div class="gridButtonSearch">
+                    <button type="button" class="btn btn-secondary"
+                        (click)="clickSearch()">
+                        Search
+                    </button>
+                </div>
+                <div class="gridErrorMessage">
+                    {{ errorMessage }}
                 </div>
 
                 <div *ngIf="showAdvancedFilters" class="propertyLine">
