@@ -166,12 +166,19 @@
         margin-left: 1px;
     }
 
+    .gridButtonCancel {
+        grid-column-start: 15;
+        grid-column-end: 17;
+        grid-row-start: 24;
+        grid-row-end: 25;
+        margin: 8px 0 0 15px;
+    }
     .gridButtonSave {
         grid-column-start: 17;
         grid-column-end: 19;
         grid-row-start: 24;
         grid-row-end: 25;
-        margin: 8px 0 0 0;
+        margin: 8px 0 0 15px;
     }
 
     .presentationNoSave {
