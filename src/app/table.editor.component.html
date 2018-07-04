@@ -285,7 +285,7 @@
                     </button>
                 </div>
 
-                <div *ngIf="showTable" class="tableArea">
+                <div *ngIf="showTable" class="gridDataTable">
                     <clr-datagrid class="gridIdentifyDataPreviewGrid">
 
                         <clr-dg-column *ngFor="let row of dataFieldNames">{{row}}</clr-dg-column>
@@ -298,11 +298,11 @@
                     </clr-datagrid>
                 </div>
 
-                <div class="graphTypeMoreMsg">
+                <div class="gridLastRefreshedMsg">
                     Last refreshed: 2017/01/01 08:31
                 </div>
 
-                <div class="saveButton">
+                <div class="gridButtonSave">
                     <button
                         type="button"
                         class="btn btn-primary"

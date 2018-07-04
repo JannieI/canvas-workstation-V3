@@ -112,7 +112,7 @@
         grid-column-end: 11;
         grid-row-start: 24;
         grid-row-end: 25;
-        margin: 0;
+        margin: 8px 0 0 0;
         padding: 0 0 0 10px;
     }
 
@@ -144,14 +144,10 @@
             margin: 0 0 0 10px !important;
         }
 
-        .propertyButton {
-            margin: 0 0 0 30px !important;
-        }
-
-    .tableArea {
-        background-color: white;
+    .gridDataTable {
+        /* background-color: white;
         border: 1px solid gray;
-        border-radius: 4px;
+        border-radius: 4px; */
         grid-column-start: 7;
         grid-column-end: 19;
         grid-row-start: 3;
@@ -161,20 +157,21 @@
         z-index: 100;
     }
 
-    .graphTypeMoreMsg {
-        grid-column-start: 16;
-        grid-column-end: 19;
-        grid-row-start: 19;
-        grid-row-end: 20;
-        margin: 15px;
+    .gridLastRefreshedMsg {
         font-size: 0.4rem;
+        grid-column-start: 11;
+        grid-column-end: 17;
+        grid-row-start: 25;
+        grid-row-end: 26;
+        margin-left: 1px;
     }
 
-    .saveButton {
+    .gridButtonSave {
         grid-column-start: 17;
-        grid-column-end: 18;
+        grid-column-end: 19;
         grid-row-start: 24;
         grid-row-end: 25;
+        margin: 8px 0 0 0;
     }
 
     .presentationNoSave {
