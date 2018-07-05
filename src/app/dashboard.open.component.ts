@@ -57,7 +57,7 @@ export class DashboardOpenComponent implements OnInit {
     filterSharedByUserID: string = '';
     filterSharedWithUserID: string = '';
     filterSharedWithGroup: string = '';
-    filterOpenedByMe: string = '';
+    filterOpenedByUserID: string = '';
     filterOpenedLastMonth: string = '';
     filterCreatedBy: string = '';
     filterCreatedLastMonth: string = '';
@@ -154,7 +154,7 @@ export class DashboardOpenComponent implements OnInit {
         this.filterSharedByUserID = '';
         this.filterSharedWithUserID = '';
         this.filterSharedWithGroup = '';
-        this.filterOpenedByMe = '';
+        this.filterOpenedByUserID = '';
         this.filterOpenedLastMonth = '';
         this.filterCreatedBy = '';
         this.filterCreatedLastMonth = '';
@@ -220,7 +220,7 @@ export class DashboardOpenComponent implements OnInit {
         if (this.filterSharedWithGroup != '') {
 
         };
-        if (this.filterOpenedByMe != '') {
+        if (this.filterOpenedByUserID != '') {
 
         };
         if (this.filterOpenedLastMonth != '') {
