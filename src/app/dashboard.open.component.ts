@@ -49,6 +49,10 @@ export class DashboardOpenComponent implements OnInit {
     errorMessage: string = '';
     filterDashboardName: string = '';
     filteredDashboardIDs: number[] = [];
+
+
+    filterSharedWithUserID: string;
+
     records: number = 15;
     selectedRow: number = 0;
     showAdvancedFilters: boolean = false;
@@ -108,6 +112,9 @@ export class DashboardOpenComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowAdvancedFilters', '@Start');
 
         this.showAdvancedFilters = !this.showAdvancedFilters;
+
+        // Nothing selected
+        this.filteredDashboardIDs = [];
     }
 
     clickFiltersClear() {
@@ -118,9 +125,20 @@ export class DashboardOpenComponent implements OnInit {
     clickFiltersApply() {
         // Open area with advanced filters
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowAdvancedFilters', '@Start');
-        dashboardPermission
-        showAdvancedFilters=!showAdvancedFilters
+
+        // filterSharedWithUserID
+        this.dashboardsOriginal.forEach(d => {
+            this.globalVariableService.dashboardPermissions.forEach(dP => {
+                if (dP.dashboardID == d.id  &&  dP.grantor == this.filterSharedWithUserID) {
+                    if (this.filteredDashboardIDs.indexOf(d.id) < 0) {
+                        this.filteredDashboardIDs.push(d.id);
+                    };
+                };
+            });
+        })
+        
     }
+
     clickOpenView(dashboardID: number) {
         // Open a Dashboard in ViewOnly Mode
         this.globalFunctionService.printToConsole(this.constructor.name,'clickOpenView', '@Start');
