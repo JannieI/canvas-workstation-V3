@@ -54,7 +54,7 @@ export class DashboardOpenComponent implements OnInit {
     filterSchedulesDueOn: string = '';
     filterSchedulesSentAfter: string = '';
     filterSchedulesSentBefore: string = '';
-    filterSharedByMe: string = '';
+    filterSharedByUserID: string = '';
     filterSharedWithMe: string = '';
     filterSharedWithUserID: string;
     filterSharedWithGroup: string = '';
@@ -135,6 +135,14 @@ export class DashboardOpenComponent implements OnInit {
         this.filteredDashboardIDs = [];
     }
 
+    clickFiltersClose() {
+        // Clear the filters
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickFiltersClear', '@Start');
+
+        // Close the filter
+        this.showAdvancedFilters = false;
+    }
+    
     clickFiltersClear() {
         // Clear the filters
         this.globalFunctionService.printToConsole(this.constructor.name,'clickFiltersClear', '@Start');
@@ -144,7 +152,7 @@ export class DashboardOpenComponent implements OnInit {
         this.filterSchedulesDueOn = '';
         this.filterSchedulesSentAfter = '';
         this.filterSchedulesSentBefore = '';
-        this.filterSharedByMe = '';
+        this.filterSharedByUserID = '';
         this.filterSharedWithMe = '';
         this.filterSharedWithUserID = '';
         this.filterSharedWithGroup = '';
@@ -183,7 +191,7 @@ export class DashboardOpenComponent implements OnInit {
         if (this.filterSchedulesSentBefore != '') {
 
         };
-        if (this.filterSharedByMe != '') {
+        if (this.filterSharedByUserID != '') {
             this.dashboardsOriginal.forEach(d => {
                 this.globalVariableService.dashboardPermissions.forEach(dP => {
                     if (dP.dashboardID == d.id  &&  dP.grantor == this.filterSharedWithUserID) {
@@ -194,7 +202,7 @@ export class DashboardOpenComponent implements OnInit {
                 });
             });
         };
-        
+
         if (this.filterSharedWithMe != '') {
 
         };
@@ -240,22 +248,10 @@ export class DashboardOpenComponent implements OnInit {
         if (this.filterModifiedByUserID != '') {
 
         };
+        console.warn('xx this.filteredDashboardIDs', this.filteredDashboardIDs)
 
-
-
-
-
-        // filterSharedWithUserID
-        this.dashboardsOriginal.forEach(d => {
-            this.globalVariableService.dashboardPermissions.forEach(dP => {
-                if (dP.dashboardID == d.id  &&  dP.grantor == this.filterSharedWithUserID) {
-                    if (this.filteredDashboardIDs.indexOf(d.id) < 0) {
-                        this.filteredDashboardIDs.push(d.id);
-                    };
-                };
-            });
-        });
-        
+        // Close the filter
+        this.showAdvancedFilters = false;
     }
 
     clickOpenView(dashboardID: number) {

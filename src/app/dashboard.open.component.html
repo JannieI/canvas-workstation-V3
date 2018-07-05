@@ -175,11 +175,11 @@
                     <div class="filterSharedTitle">
                         <b>Shared:</b>
                     </div>
-                    <div class="filterSharedByMeTitle">
-                        <b>By me:</b>
+                    <div class="filterSharedByUserIDTitle">
+                        <b>By UserID:</b>
                     </div>
-                    <div class="filterSharedByMe">
-                        <input type="text" [(ngModel)]="filterSharedByMe"
+                    <div class="filterSharedByUserID">
+                        <input type="text" [(ngModel)]="filterSharedByUserID"
                             placeholder="By me"
                             >
                     </div>
@@ -329,6 +329,13 @@
                         <button type="button" class="btn btn-link"
                             (click)="clickFiltersClear()">
                             Clear
+                        </button>
+                    </div>
+
+                    <div class="filterButtonClear">
+                        <button type="button" class="btn btn-link"
+                            (click)="clickFiltersClose()">
+                            Clear and Close
                         </button>
                     </div>
                     <div class="filterButtonApply">
