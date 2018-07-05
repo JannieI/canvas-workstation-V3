@@ -1,7 +1,7 @@
 <div class="modal modalBox">
     <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
         <div class="modal-content modalContent"
-            [style.background-color]="'lightgray'"
+            [style.background-color]="showAdvancedFilters? 'lightgray' : 'white'"
             >
 
             <div class="gridOverall">
@@ -62,6 +62,7 @@
                 </div>
             
                 <div class="gridTable" 
+                    [disabled]="showAdvancedFilters"
                     >
                     <clr-datagrid>
                         <clr-dg-column [style.width.%]="10">View</clr-dg-column>
