@@ -192,7 +192,9 @@ export class DashboardOpenComponent implements OnInit {
         if (this.filterSharedByUserID != '') {
             this.dashboardsOriginal.forEach(d => {
                 this.globalVariableService.dashboardPermissions.forEach(dP => {
-                    if (dP.dashboardID == d.id  &&  dP.grantor == this.filterSharedWithUserID) {
+                    if (dP.dashboardID == d.id  
+                        &&  
+                        dP.grantor.toLowerCase() == this.filterSharedWithUserID.toLowerCase()) {
                         if (this.filteredDashboardIDs.indexOf(d.id) < 0) {
                             this.filteredDashboardIDs.push(d.id);
                         };
@@ -202,17 +204,17 @@ export class DashboardOpenComponent implements OnInit {
         };
 
         if (this.filterSharedWithUserID != '') {
-            if (this.filterSharedWithUserID != '') {
-                this.dashboardsOriginal.forEach(d => {
-                    this.globalVariableService.dashboardPermissions.forEach(dP => {
-                        if (dP.dashboardID == d.id  &&  dP.userID == this.filterSharedWithUserID) {
-                            if (this.filteredDashboardIDs.indexOf(d.id) < 0) {
-                                this.filteredDashboardIDs.push(d.id);
-                            };
+            this.dashboardsOriginal.forEach(d => {
+                this.globalVariableService.dashboardPermissions.forEach(dP => {
+                    if (dP.dashboardID == d.id  
+                        &&  
+                        dP.userID.toLowerCase() == this.filterSharedWithUserID.toLowerCase()) {
+                        if (this.filteredDashboardIDs.indexOf(d.id) < 0) {
+                            this.filteredDashboardIDs.push(d.id);
                         };
-                    });
+                    };
                 });
-            };
+            });
         };
         if (this.filterSharedWithUserID != '') {
 
@@ -254,7 +256,13 @@ export class DashboardOpenComponent implements OnInit {
 
         };
         if (this.filterModifiedByUserID != '') {
-
+            this.dashboardsOriginal.forEach(d => {
+                if (d.editor.toLowerCase() == this.filterModifiedByUserID.toLowerCase()) {
+                    if (this.filteredDashboardIDs.indexOf(d.id) < 0) {
+                        this.filteredDashboardIDs.push(d.id);
+                    };
+                };
+            });
         };
         console.warn('xx this.filteredDashboardIDs', this.filteredDashboardIDs)
 
