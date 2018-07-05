@@ -87,6 +87,7 @@
         border: 1px solid gray;
         border-radius: 8px;
         display: grid;
+        font-size: 90%;
         grid-template-columns: repeat(20, 1fr);
         grid-template-rows: repeat(28, 0.8rem);
         grid-column-start: 1;

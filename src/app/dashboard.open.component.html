@@ -139,7 +139,6 @@
                     <div class="filterSchedulesTitle">
                         <b>Schedules:</b>
                     </div>
-
                     <div class="filterSchedulesSendToTitle">
                         <b>Send To:</b>
                     </div>
@@ -148,7 +147,6 @@
                             placeholder="Send to"
                             >
                     </div>
-
                     <div class="filterSchedulesDueOnTitle">
                         <b>Due on:</b>
                     </div>
@@ -157,7 +155,6 @@
                             placeholder="Due on Date"
                             >
                     </div>
-    
                     <div class="filterSchedulesSentAfterTitle">
                         <b>Sent After:</b>
                     </div>
@@ -166,7 +163,6 @@
                             placeholder="Sent after"
                             >
                     </div>
-
                     <div class="filterSchedulesSentBeforeTitle">
                         <b>Sent Before:</b>
                     </div>
@@ -187,16 +183,14 @@
                             placeholder="By me"
                             >
                     </div>
-
                     <div class="filterSharedWithMeTitle">
                         <b>With me:</b>
                     </div>
                     <div class="filterSharedWithMe">
                         <input type="text" 
-                            placeholder="To with me (by another user)"
+                            placeholder="Shared with me"
                             >
                     </div>
- 
                     <div class="filterSharedWithUserIDTitle">
                         <b>With User:</b>
                     </div>
@@ -205,7 +199,6 @@
                             placeholder="To user"
                             >
                     </div>
- 
                     <div class="filterSharedWithGroupTitle">
                         <b>With Group:</b>
                     </div>
@@ -227,7 +220,6 @@
                             placeholder="By me"
                             >
                     </div>
-
                     <div class="filterOpenedLastMonthTitle">
                         <b>Last Month:</b>
                     </div>
@@ -240,7 +232,6 @@
                     <div class="filterCreatedTitle">
                         <b>Created:</b>
                     </div>
-
                     <div class="filterCreatedByTitle">
                         <b>Creator:</b>
                     </div>
@@ -249,7 +240,6 @@
                             placeholder="Creator (userID)"
                             >
                     </div>
-
                     <div class="filterCreatedLastMonthTitle">
                         <b>Last Month:</b>
                     </div>
@@ -270,7 +260,6 @@
                             placeholder="Datasource"
                             >
                     </div>
-
                     <div class="filterDataFieldTitle">
                         <b>Field:</b>
                     </div>
@@ -280,11 +269,9 @@
                             >
                     </div>
 
-
                     <div class="filterOtherTitle">
                         <b>Other:</b>
                     </div>
-    
                     <div class="filterStatusTitle">
                         <b>Status:</b>
                     </div>
@@ -293,7 +280,6 @@
                             placeholder="Draft, Complete"
                             >
                     </div>
-    
                     <div class="filterTagTitle">
                         <b>Tag:</b>
                     </div>
@@ -302,7 +288,6 @@
                             placeholder="By tag"
                             >
                     </div>
-
                     <div class="filterMyFavTitle">
                         <b>MyFav:</b>
                     </div>
@@ -323,7 +308,6 @@
                             placeholder="Last wk/mnth"
                             >
                     </div>
-
                     <div class="filterModifiedBeforeTitle">
                         <b>Modified Before:</b>
                     </div>
@@ -332,12 +316,10 @@
                             placeholder="Last wk/mnth"
                             >
                     </div>
-
                     <div class="filterModifiedByUserIDTitle">
                             <b>By User:</b>
                     </div>
                     <div class="filterModifiedByUserID">
-    
                         <input type="text" 
                             placeholder="Modified by UserID"
                             >
@@ -345,13 +327,13 @@
 
                     <div class="filterButtonClose">
                         <button type="button" class="btn btn-link"
-                            (click)="showAdvancedFilters=!showAdvancedFilters">
+                            (click)="clickFiltersClear()">
                             Clear
                         </button>
                     </div>
                     <div class="filterButtonApply">
                         <button type="button" class="btn btn-link"
-                            (click)="showAdvancedFilters=!showAdvancedFilters">
+                            (click)="clickFiltersApply()">
                             Apply
                         </button>
                     </div>

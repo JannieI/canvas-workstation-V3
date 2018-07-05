@@ -18,6 +18,7 @@ import { GlobalVariableService}       from './global-variable.service';
 
 // Models
 import { Dashboard }                  from './models';
+import { DashboardPermission }        from './models';
 
 @Component({
     selector: 'dashboard-open',
@@ -43,9 +44,11 @@ export class DashboardOpenComponent implements OnInit {
     }
 
     dashboards: Dashboard[];
+    dashboardPermission: DashboardPermission[];
     dashboardsOriginal: Dashboard[];
     errorMessage: string = '';
     filterDashboardName: string = '';
+    filteredDashboardIDs: number[] = [];
     records: number = 15;
     selectedRow: number = 0;
     showAdvancedFilters: boolean = false;
@@ -107,6 +110,17 @@ export class DashboardOpenComponent implements OnInit {
         this.showAdvancedFilters = !this.showAdvancedFilters;
     }
 
+    clickFiltersClear() {
+        // Open area with advanced filters
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowAdvancedFilters', '@Start');
+    }
+
+    clickFiltersApply() {
+        // Open area with advanced filters
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowAdvancedFilters', '@Start');
+        dashboardPermission
+        showAdvancedFilters=!showAdvancedFilters
+    }
     clickOpenView(dashboardID: number) {
         // Open a Dashboard in ViewOnly Mode
         this.globalFunctionService.printToConsole(this.constructor.name,'clickOpenView', '@Start');
