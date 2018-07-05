@@ -74,6 +74,13 @@
         grid-row-end: 3;
         text-align: left;
     }
+    .gridTable {
+        grid-column-start: 1;
+        grid-column-end: 21;
+        grid-row-start: 4;
+        grid-row-end: 25;
+        text-align: left;
+    }
 
     .gridFilterArea {
         background-color: white;
@@ -89,14 +96,22 @@
         text-align: left;
         z-index: 100;
     }
-
-    .gridTable {
-        grid-column-start: 1;
-        grid-column-end: 21;
-        grid-row-start: 4;
-        grid-row-end: 25;
+    .filterButtonClose {
+        grid-column-start: 3;
+        grid-column-end: 5;
+        grid-row-start: 19;
+        grid-row-end: 20;
         text-align: left;
     }
+
+        .filterButtonClose {
+            grid-column-start: 3;
+            grid-column-end: 5;
+            grid-row-start: 19;
+            grid-row-end: 20;
+            text-align: left;
+        }
+    
 
 .propertyLine {
     margin: 5px;

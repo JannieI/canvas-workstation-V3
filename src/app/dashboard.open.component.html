@@ -62,9 +62,10 @@
                 </div>
             
                 <div class="gridTable" 
-                    [disabled]="showAdvancedFilters"
                     >
-                    <clr-datagrid>
+                    <clr-datagrid
+                        [disabled]="showAdvancedFilters"
+                        >
                         <clr-dg-column [style.width.%]="10">View</clr-dg-column>
                         <clr-dg-column [style.width.%]="10">Edit</clr-dg-column>
                         <clr-dg-column [style.width.%]="10">State</clr-dg-column>
@@ -104,13 +105,54 @@
             
 
                 <div *ngIf="showAdvancedFilters" class="gridFilterArea">
-                    <div class="propertyLine">
-                        Schedule:
-                        <input type="text" id="formFields_7" placeholder="Send to">
-                        <input type="text" id="formFields_7" placeholder="Sent on">
-                        <input type="text" id="formFields_7" placeholder="Due on Date">
-                        <input type="text" id="formFields_7" placeholder="Send last wk/mnth">
+                    <div class="filterSchedulesTitle">
+                        Schedules:
                     </div>
+
+                    <div class="filterScheduleSendToTitle">
+                        Send To:
+                    </div>
+                    <div class="filterScheduleSendTo">
+                        <input type="text"
+                            placeholder="Send to"
+                            >
+                    </div>
+
+                    <div class="filterScheduleSentAfterTitle">
+                        Sent On:
+                    </div>
+                    <div class="filterScheduleSentOn">
+                        <input type="text" 
+                            placeholder="Sent on"
+                            >
+                    </div>
+
+                    <div class="filterScheduleSentAfterTitle">
+                        Sent On:
+                    </div>
+                    <div class="filterScheduleSentOn">
+                        <input type="text" 
+                            placeholder="Sent on"
+                            >
+                    </div>
+    
+                    <div class="filterScheduleDueOnTitle">
+                        Due on:
+                    </div>
+                    <div class="filterScheduleDueOn">
+                        <input type="text" 
+                            placeholder="Due on Date"
+                            >
+                    </div>
+                    <div class="filterScheduleSendToTitle">
+                        Schedule:
+                    </div>
+                    <div class="filterScheduleTitle">
+                        <input type="text" 
+                            placeholder="Send last wk/mnth"
+                            >
+                    </div>
+
                     <div class="propertyLine">
                         Shared:
                         <input type="text" id="formFields_7" placeholder="By me">
@@ -154,11 +196,12 @@
                         <input type="text" id="formFields_7" placeholder="Last wk/mnth">
                         <input type="text" id="formFields_7" placeholder="By user / By Me">
                     </div>
-                    <button type="button" class="btn btn-secondary"
-                        (click)="showAdvancedFilters=!showAdvancedFilters">
-                        Close
-                    </button>
-
+                    <div class="filterButtonClose">
+                        <button type="button" class="btn btn-secondary"
+                            (click)="showAdvancedFilters=!showAdvancedFilters">
+                            Close
+                        </button>
+                    </div>
                 </div>
     
             </div>
