@@ -47,8 +47,7 @@ export class DashboardOpenComponent implements OnInit {
     dashboardPermission: DashboardPermission[];
     dashboardsOriginal: Dashboard[];
     errorMessage: string = '';
-    
-    
+        
     filteredDashboardIDs: number[] = [];
     filterDashboardName: string = '';
     filterSchedulesSendToTitle: string = '';
@@ -71,8 +70,6 @@ export class DashboardOpenComponent implements OnInit {
     filterModifiedAfter: string = '';
     filterModifiedBefore: string = '';
     filterModifiedByUserID: string = '';
-
-
 
     records: number = 15;
     selectedRow: number = 0;
@@ -139,8 +136,31 @@ export class DashboardOpenComponent implements OnInit {
     }
 
     clickFiltersClear() {
-        // Open area with advanced filters
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowAdvancedFilters', '@Start');
+        // Clear the filters
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickFiltersClear', '@Start');
+
+        this.filterDashboardName = '';
+        this.filterSchedulesSendToTitle = '';
+        this.filterSchedulesDueOn = '';
+        this.filterSchedulesSentAfter = '';
+        this.filterSchedulesSentBefore = '';
+        this.filterSharedByMe = '';
+        this.filterSharedWithMe = '';
+        this.filterSharedWithUserID = '';
+        this.filterSharedWithGroup = '';
+        this.filterOpenedByMe = '';
+        this.filterOpenedLastMonth = '';
+        this.filterCreatedBy = '';
+        this.filterCreatedLastMonth = '';
+        this.filterDataDatasource = '';
+        this.filterDataField = '';
+        this.filterStatus = '';
+        this.filterTag = '';
+        this.filterMyFav = '';
+        this.filterModifiedAfter = '';
+        this.filterModifiedBefore = '';
+        this.filterModifiedByUserID = '';
+
     }
 
     clickFiltersApply() {
