@@ -20,18 +20,18 @@
                             <h5 style="margin-top: 0; color:gray;">
                                 Help
                             </h5>
-                            <p style="margin-top: 0; color:gray;"> 
+                            <p style="margin-top: 0; color:gray;">
                                     Use the filters at the top to narrow down the list of
                                     Dashboards displayed in the grid below.  Opening a Dashboard is
-                                    done in View mode by default.  Click <i>Edit -> EditMode</i> to 
+                                    done in View mode by default.  Click <i>Edit -> EditMode</i> to
                                     change to Edit mode after a Dashboard has been opened. This will
-                                    create a Draft copy, leaving the original unchanged.  Only the 
-                                    editor can see the Draft copy.  
+                                    create a Draft copy, leaving the original unchanged.  Only the
+                                    editor can see the Draft copy.
                                     Click the X or press Escape to close this form.
                             </p>
                         </clr-signpost-content>
                     </clr-signpost>
-    
+
                 </div>
 
                 <div class="gridDashboardNameTitle">
@@ -39,7 +39,7 @@
                 </div>
                 <div class="gridDashboardName">
                     <input type="text" [(ngModel)]="filterDashboardName"
-                        size="40" 
+                        size="40"
                         placeholder="Enter dashboard/portion"
                         >
                 </div>
@@ -61,8 +61,8 @@
                 <div class="gridErrorMessage">
                     {{ errorMessage }}
                 </div>
-            
-                <div class="gridTable" 
+
+                <div class="gridTable"
                     >
                     <clr-datagrid
                         >
@@ -82,15 +82,15 @@
                             (click)="clickRow(i)"
                             >
                             <clr-dg-cell (click)="clickOpenView(row.id)">
-                                <clr-icon shape="eye" 
-                                    class="selectIcon1" 
+                                <clr-icon shape="eye"
+                                    class="selectIcon1"
                                     size="12"
                                     >
                                 </clr-icon>
                             </clr-dg-cell>
                             <clr-dg-cell (click)="clickOpenEdit(i, row.id)">
-                                <clr-icon shape="pencil" 
-                                    class="selectIcon1" 
+                                <clr-icon shape="pencil"
+                                    class="selectIcon1"
                                     size="12"
                                     >
                                 </clr-icon>
@@ -110,7 +110,7 @@
                         </clr-dg-footer>
                     </clr-datagrid>
                 </div>
-            
+
                 <!-- ************** Advanced Filter **************** -->
                 <div *ngIf="showAdvancedFilters" class="gridFilterArea">
                     <div class="filterHeading">
@@ -124,8 +124,8 @@
                                     <h5 style="margin-top: 0; color:gray;">
                                         Help
                                     </h5>
-                                    <p style="margin-top: 0; color:gray;"> 
-                                        This form form is used for additional filters.  Enter 
+                                    <p style="margin-top: 0; color:gray;">
+                                        This form form is used for additional filters.  Enter
                                         the required fields, and click Apply to filter the list
                                         of Dashboards on the Open Dashboard form. Click the
                                         Clear button to remove typed valued, and then click the
@@ -135,7 +135,7 @@
                             </clr-signpost>
                         </h3>
                     </div>
-    
+
                     <div class="filterSchedulesTitle">
                         <b>Schedules:</b>
                     </div>
@@ -143,7 +143,7 @@
                         <b>Send To:</b>
                     </div>
                     <div class="filterSchedulesSendTo">
-                        <input type="text"
+                        <input type="text" [(ngModel)]="filterSchedulesSendToTitle"
                             placeholder="Send to"
                             >
                     </div>
@@ -151,7 +151,7 @@
                         <b>Due on:</b>
                     </div>
                     <div class="filterSchedulesDueOn">
-                        <input type="text" 
+                        <input type="text" [(ngModel)]="filterSchedulesDueOn"
                             placeholder="Due on Date"
                             >
                     </div>
@@ -159,7 +159,7 @@
                         <b>Sent After:</b>
                     </div>
                     <div class="filterSchedulesSentAfter">
-                        <input type="text" 
+                        <input type="text" [(ngModel)]="filterSchedulesSentAfter"
                             placeholder="Sent after"
                             >
                     </div>
@@ -167,19 +167,19 @@
                         <b>Sent Before:</b>
                     </div>
                     <div class="filterSchedulesSentBefore">
-                        <input type="text" 
+                        <input type="text" [(ngModel)]="filterSchedulesSentBefore"
                             placeholder="Sent before"
                             >
                     </div>
-    
+
                     <div class="filterSharedTitle">
                         <b>Shared:</b>
                     </div>
                     <div class="filterSharedByMeTitle">
                         <b>By me:</b>
                     </div>
-                    <div class="filterSharedByMe">    
-                        <input type="text" 
+                    <div class="filterSharedByMe">
+                        <input type="text" [(ngModel)]="filterSharedByMe"
                             placeholder="By me"
                             >
                     </div>
@@ -187,7 +187,7 @@
                         <b>With me:</b>
                     </div>
                     <div class="filterSharedWithMe">
-                        <input type="text" 
+                        <input type="text" [(ngModel)]="filterSharedWithMe"
                             placeholder="Shared with me"
                             >
                     </div>
@@ -195,7 +195,7 @@
                         <b>With User:</b>
                     </div>
                     <div class="filterSharedWithUserID">
-                        <input type="text" [(ngMode)]="filterSharedWithUserID"
+                        <input type="text" [(ngModel)]="filterSharedWithUserID"
                             placeholder="To user"
                             >
                     </div>
@@ -203,7 +203,7 @@
                         <b>With Group:</b>
                     </div>
                     <div class="filterSharedWithGroup">
-                        <input type="text" 
+                        <input type="text" [(ngModel)]="filterSharedWithGroup"
                             placeholder="To grp"
                             >
                     </div>
@@ -216,7 +216,7 @@
                         <b>By me:</b>
                     </div>
                     <div class="filterOpenedByMe">
-                        <input type="text" 
+                        <input type="text" [(ngModel)]="filterOpenedByMe"
                             placeholder="By me"
                             >
                     </div>
@@ -224,7 +224,7 @@
                         <b>Last Month:</b>
                     </div>
                     <div class="filterOpenedLastMonth">
-                        <input type="text" 
+                        <input type="text" [(ngModel)]="filterOpenedLastMonth"
                             placeholder="Last wk/mnth"
                             >
                     </div>
@@ -236,7 +236,7 @@
                         <b>Creator:</b>
                     </div>
                     <div class="filterCreatedBy">
-                        <input type="text" 
+                        <input type="text" [(ngModel)]="filterCreatedBy"
                             placeholder="Creator (userID)"
                             >
                     </div>
@@ -244,7 +244,7 @@
                         <b>Last Month:</b>
                     </div>
                     <div class="filterCreatedLastMonth">
-                        <input type="text" 
+                        <input type="text" [(ngModel)]="filterCreatedLastMonth"
                             placeholder="User"
                             >
                     </div>
@@ -256,7 +256,7 @@
                         <b>Datasource:</b>
                     </div>
                     <div class="filterDataDatasource">
-                        <input type="text" 
+                        <input type="text" [(ngModel)]="filterDataDatasource"
                             placeholder="Datasource"
                             >
                     </div>
@@ -264,7 +264,7 @@
                         <b>Field:</b>
                     </div>
                     <div class="filterDataField">
-                        <input type="text" 
+                        <input type="text" [(ngModel)]="filterDataField"
                             placeholder="Field"
                             >
                     </div>
@@ -276,7 +276,7 @@
                         <b>Status:</b>
                     </div>
                     <div class="filterStatus">
-                        <input type="text" 
+                        <input type="text" [(ngModel)]="filterStatus"
                             placeholder="Draft, Complete"
                             >
                     </div>
@@ -284,7 +284,7 @@
                         <b>Tag:</b>
                     </div>
                     <div class="filterTag">
-                        <input type="text" 
+                        <input type="text" [(ngModel)]="filterTag"
                             placeholder="By tag"
                             >
                     </div>
@@ -292,7 +292,7 @@
                         <b>MyFav:</b>
                     </div>
                     <div class="filterMyFav">
-                        <input type="checkbox" 
+                        <input type="checkbox" [(ngModel)]="filterMyFav"
                             placeholder="My fav only"
                             >
                     </div>
@@ -304,7 +304,7 @@
                         <b>Modified After:</b>
                     </div>
                     <div class="filterModifiedAfter">
-                        <input type="text" 
+                        <input type="text" [(ngModel)]="filterModifiedAfter"
                             placeholder="Last wk/mnth"
                             >
                     </div>
@@ -312,7 +312,7 @@
                         <b>Modified Before:</b>
                     </div>
                     <div class="filterModifiedBefore">
-                        <input type="text" 
+                        <input type="text" [(ngModel)]="filterModifiedBefore"
                             placeholder="Last wk/mnth"
                             >
                     </div>
@@ -320,7 +320,7 @@
                             <b>By User:</b>
                     </div>
                     <div class="filterModifiedByUserID">
-                        <input type="text" [(ngMode)]="filterModifiedByUserID"
+                        <input type="text" [(ngModel)]="filterModifiedByUserID"
                             placeholder="Modified by UserID"
                             >
                     </div>
@@ -338,7 +338,7 @@
                         </button>
                     </div>
                     </div>
-    
+
             </div>
         </div>
     </div>
