@@ -148,7 +148,7 @@ export class DashboardDescriptionComponent implements OnInit {
         this.dashboardCreator = this.selectedDashboard.creator;
         this.dashboardCreated = this.selectedDashboard.dateCreated;
         this.dashboardEditor = this.selectedDashboard.editor;
-        this.dashboardEdited = this.selectedDashboard.dateEdited;
+        this.dashboardEdited = this.selectedDashboard.dateEdited.toString();
         this.dashboardRefresher = this.selectedDashboard.refresher;
         this.dashboardRefreshed = this.selectedDashboard.dateRefreshed;
 
@@ -247,7 +247,7 @@ export class DashboardDescriptionComponent implements OnInit {
         this.selectedDashboard.creator = this.dashboardCreator;
         this.selectedDashboard.dateCreated = this.dashboardCreated;
         this.selectedDashboard.editor = this.dashboardEditor;
-        this.selectedDashboard.dateEdited = this.dashboardEdited;
+        this.selectedDashboard.dateEdited = new Date(this.dashboardEdited);
         this.selectedDashboard.refresher = this.dashboardRefresher;
         this.selectedDashboard.dateRefreshed = this.dashboardRefreshed;
 

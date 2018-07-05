@@ -588,7 +588,7 @@ export class Dashboard {
     creator: string;
     dateCreated: string;
     editor: string;
-    dateEdited: string;
+    dateEdited: Date;
     refresher: string;
     dateRefreshed: string;
 

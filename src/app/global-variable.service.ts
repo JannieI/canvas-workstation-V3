@@ -316,7 +316,7 @@ const dashboardTemplate: Dashboard =
         creator: '',
         dateCreated: '',
         editor: '',
-        dateEdited: '',
+        dateEdited: null,
         refresher: '',
         dateRefreshed: '',
         nrWidgets: 0,
