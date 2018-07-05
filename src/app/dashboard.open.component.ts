@@ -46,7 +46,7 @@ export class DashboardOpenComponent implements OnInit {
     dashboardsOriginal: Dashboard[];
     errorMessage: string = '';
     filterDashboardName: string = '';
-    records: number = 13;
+    records: number = 15;
     selectedRow: number = 0;
     showAdvancedFilters: boolean = false;
     showTypeDashboard: boolean = false;
