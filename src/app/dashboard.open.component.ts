@@ -63,7 +63,7 @@ export class DashboardOpenComponent implements OnInit {
     filterCreatedLastMonth: string = '';
     filterDataDatasource: string = '';
     filterDataField: string = '';
-    filterStatus: string = '';
+    filterState: string = '';
     filterTag: string = '';
     filterMyFav: string = '';
     filterModifiedAfter: string = '';
@@ -160,7 +160,7 @@ export class DashboardOpenComponent implements OnInit {
         this.filterCreatedLastMonth = '';
         this.filterDataDatasource = '';
         this.filterDataField = '';
-        this.filterStatus = '';
+        this.filterState = '';
         this.filterTag = '';
         this.filterMyFav = '';
         this.filterModifiedAfter = '';
@@ -240,7 +240,16 @@ export class DashboardOpenComponent implements OnInit {
         if (this.filterDataField != '') {
 
         };
-        if (this.filterStatus != '') {
+        if (this.filterState != '') {
+            this.dashboardsOriginal.forEach(d => {
+                if (d.state != null) {
+                    if (d.state.toLowerCase() == this.filterModifiedByUserID.toLowerCase()) {
+                        if (this.filteredDashboardIDs.indexOf(d.id) < 0) {
+                            this.filteredDashboardIDs.push(d.id);
+                        };
+                    };
+                };
+            });
 
         };
         if (this.filterTag != '') {

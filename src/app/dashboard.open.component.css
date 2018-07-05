@@ -337,7 +337,7 @@
             text-align: left;
         }
 
-        .filterStatusTitle {
+        .filterStateTitle {
             grid-column-start: 2;
             grid-column-end: 4;
             grid-row-start: 21;
@@ -345,7 +345,7 @@
             text-align: left;
         }
 
-        .filterStatus {
+        .filterState {
             grid-column-start: 4;
             grid-column-end: 10;
             grid-row-start: 21;
