@@ -192,44 +192,30 @@
             grid-row-end: 9;
             text-align: left;
         }
-        .filterSharedWithMeTitle {
+        .filterSharedWithUserIDTitle {
             grid-column-start: 10;
             grid-column-end: 14;
             grid-row-start: 8;
             grid-row-end: 9;
             text-align: left;
         }
-        .filterSharedWithMe {
+        .filterSharedWithUserID {
             grid-column-start: 14;
             grid-column-end: 20;
             grid-row-start: 8;
             grid-row-end: 9;
             text-align: left;
         }
-        .filterSharedWithUserIDTitle {
+        .filterSharedWithGroupTitle {
             grid-column-start: 2;
             grid-column-end: 4;
             grid-row-start: 9;
             grid-row-end: 10;
             text-align: left;
         }
-        .filterSharedWithUserID {
+        .filterSharedWithGroup {
             grid-column-start: 4;
             grid-column-end: 10;
-            grid-row-start: 9;
-            grid-row-end: 10;
-            text-align: left;
-        }
-        .filterSharedWithGroupTitle {
-            grid-column-start: 10;
-            grid-column-end: 14;
-            grid-row-start: 9;
-            grid-row-end: 10;
-            text-align: left;
-        }
-        .filterSharedWithGroup {
-            grid-column-start: 14;
-            grid-column-end: 20;
             grid-row-start: 9;
             grid-row-end: 10;
             text-align: left;

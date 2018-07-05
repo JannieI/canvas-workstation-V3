@@ -183,20 +183,12 @@
                             placeholder="By me"
                             >
                     </div>
-                    <div class="filterSharedWithMeTitle">
-                        <b>With me:</b>
-                    </div>
-                    <div class="filterSharedWithMe">
-                        <input type="text" [(ngModel)]="filterSharedWithMe"
-                            placeholder="Shared with me"
-                            >
-                    </div>
                     <div class="filterSharedWithUserIDTitle">
                         <b>With User:</b>
                     </div>
                     <div class="filterSharedWithUserID">
                         <input type="text" [(ngModel)]="filterSharedWithUserID"
-                            placeholder="To user"
+                            placeholder="Shared with me"
                             >
                     </div>
                     <div class="filterSharedWithGroupTitle">
@@ -327,15 +319,15 @@
 
                     <div class="filterButtonClose">
                         <button type="button" class="btn btn-link"
-                            (click)="clickFiltersClear()">
-                            Clear
+                            (click)="clickFiltersClose()">
+                            Close
                         </button>
                     </div>
 
                     <div class="filterButtonClear">
                         <button type="button" class="btn btn-link"
-                            (click)="clickFiltersClose()">
-                            Clear and Close
+                            (click)="clickFiltersClear()">
+                            Clear
                         </button>
                     </div>
                     <div class="filterButtonApply">

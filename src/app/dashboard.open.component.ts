@@ -55,8 +55,7 @@ export class DashboardOpenComponent implements OnInit {
     filterSchedulesSentAfter: string = '';
     filterSchedulesSentBefore: string = '';
     filterSharedByUserID: string = '';
-    filterSharedWithMe: string = '';
-    filterSharedWithUserID: string;
+    filterSharedWithUserID: string = '';
     filterSharedWithGroup: string = '';
     filterOpenedByMe: string = '';
     filterOpenedLastMonth: string = '';
@@ -137,12 +136,12 @@ export class DashboardOpenComponent implements OnInit {
 
     clickFiltersClose() {
         // Clear the filters
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickFiltersClear', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickFiltersClose', '@Start');
 
         // Close the filter
         this.showAdvancedFilters = false;
     }
-    
+
     clickFiltersClear() {
         // Clear the filters
         this.globalFunctionService.printToConsole(this.constructor.name,'clickFiltersClear', '@Start');
@@ -153,7 +152,6 @@ export class DashboardOpenComponent implements OnInit {
         this.filterSchedulesSentAfter = '';
         this.filterSchedulesSentBefore = '';
         this.filterSharedByUserID = '';
-        this.filterSharedWithMe = '';
         this.filterSharedWithUserID = '';
         this.filterSharedWithGroup = '';
         this.filterOpenedByMe = '';
@@ -203,8 +201,18 @@ export class DashboardOpenComponent implements OnInit {
             });
         };
 
-        if (this.filterSharedWithMe != '') {
-
+        if (this.filterSharedWithUserID != '') {
+            if (this.filterSharedWithUserID != '') {
+                this.dashboardsOriginal.forEach(d => {
+                    this.globalVariableService.dashboardPermissions.forEach(dP => {
+                        if (dP.dashboardID == d.id  &&  dP.userID == this.filterSharedWithUserID) {
+                            if (this.filteredDashboardIDs.indexOf(d.id) < 0) {
+                                this.filteredDashboardIDs.push(d.id);
+                            };
+                        };
+                    });
+                });
+            };
         };
         if (this.filterSharedWithUserID != '') {
 
