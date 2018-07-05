@@ -57,6 +57,7 @@
                         Search
                     </button>
                 </div>
+
                 <div class="gridErrorMessage">
                     {{ errorMessage }}
                 </div>
@@ -64,7 +65,6 @@
                 <div class="gridTable" 
                     >
                     <clr-datagrid
-                        [disabled]="showAdvancedFilters"
                         >
                         <clr-dg-column [style.width.%]="10">View</clr-dg-column>
                         <clr-dg-column [style.width.%]="10">Edit</clr-dg-column>
@@ -82,10 +82,18 @@
                             (click)="clickRow(i)"
                             >
                             <clr-dg-cell (click)="clickOpenView(row.id)">
-                                <clr-icon shape="eye" class="selectIcon1" size="12"></clr-icon>
+                                <clr-icon shape="eye" 
+                                    class="selectIcon1" 
+                                    size="12"
+                                    >
+                                </clr-icon>
                             </clr-dg-cell>
                             <clr-dg-cell (click)="clickOpenEdit(i, row.id)">
-                                <clr-icon shape="pencil" class="selectIcon1" size="12"></clr-icon>
+                                <clr-icon shape="pencil" 
+                                    class="selectIcon1" 
+                                    size="12"
+                                    >
+                                </clr-icon>
                             </clr-dg-cell>
                             <clr-dg-cell [style.width.px]="80">{{row.state}}</clr-dg-cell>
                             <clr-dg-cell>{{row.name}}</clr-dg-cell>
@@ -148,47 +156,166 @@
     
                     <div class="propertyLine">
                         Shared:
-                        <input type="text" id="formFields_7" placeholder="By me">
-                        <input type="text" id="formFields_7" placeholder="To me">
-                        <input type="text" id="formFields_7" placeholder="To user">
-                        <input type="text" id="formFields_7" placeholder="To grp">
                     </div>
-                    <div class="propertyLine">
+                    <div class="filterScheduleByMeTitle">
+                        By me:
+                    </div>
+                    <div class="filterScheduleByMe">    
+                        <input type="text" 
+                            placeholder="By me"
+                            >
+                    </div>
+
+                    <div class="filterScheduleWithMeTitle">
+                        With me:
+                    </div>
+                    <div class="filterScheduleWithMeTitle">
+                        <input type="text" 
+                            placeholder="To with me (by another user)"
+                            >
+                    </div>
+ 
+                    <div class="filterScheduleWithUserTitle">
+                        With User:
+                    </div>
+                    <div class="filterScheduleWithUserTitle">
+                        <input type="text" 
+                            placeholder="To user"
+                            >
+                    </div>
+ 
+                    <div class="filterScheduleWithGroupTitle">
+                        With Group:
+                    </div>
+                    <div class="filterScheduleWithGroupTitle">
+                        <input type="text" 
+                            placeholder="To grp"
+                            >
+                    </div>
+
+                    <div class="filterScheduleOpenedTitle">
                         Opened:
-                        <input type="text" id="formFields_7" placeholder="By me">
-                        <input type="text" id="formFields_7" placeholder="Last wk/mnth">
                     </div>
-    
-                    <div class="propertyLine">
-                        <span>
-                            Created by:
-                            <input type="text" id="formFields_7" placeholder="User">
-                            </span>
-                        <span>
-                            Status:
-                            <input type="text" id="formFields_7" placeholder="Draft, Complete">
-                        </span>>
-                        <span>
-                            Uses data:
-                            <input type="text" id="formFields_7" placeholder="Datasource">
-                            <input type="text" id="formFields_7" placeholder="Field">
-                        </span>
+
+                    <div class="filterScheduleOpenedByMeTitle">
+                        By me:
                     </div>
-                    <div class="propertyLine">
-                        <span>
-                            Tags:
-                            <input type="text" id="formFields_7" placeholder="By tag">
-                        </span>
-                        <span class="propertyLine">
-                            My fav:
-                            <input type="text" id="formFields_7" placeholder="My fav only">
-                        </span>
+                    <div class="filterScheduleOpenedByMeTitle">
+                        <input type="text" 
+                            placeholder="By me"
+                            >
                     </div>
-                    <div class="propertyLine">
-                        Last Modified / Editted:
-                        <input type="text" id="formFields_7" placeholder="Last wk/mnth">
-                        <input type="text" id="formFields_7" placeholder="By user / By Me">
+
+                    <div class="filterScheduleOpenedLastMonthTitle">
+                        Last Month:
                     </div>
+                    <div class="filterScheduleOpenedLastMonthTitle">
+                        <input type="text" 
+                            placeholder="Last wk/mnth"
+                            >
+                    </div>
+
+                    <div class="filterScheduleCreatedTitle">
+                        Created:
+                    </div>
+                    <div class="filterScheduleCreatedByTitle">
+                        Creator:
+                    </div>
+                    <div class="filterScheduleCreatedBy">
+                    <input type="text" 
+                        placeholder="Creator (userID)"
+                        >
+                    </div>
+
+                    <div class="filterScheduleCreatedLastMonthTitle">
+                        Last Month:
+                    </div>
+                    <div class="filterScheduleCreatedLastMonth">
+                        <input type="text" 
+                            placeholder="User"
+                            >
+                    </div>
+
+                    <div class="filterScheduleStatusTitle">
+                        Status:
+                    </div>
+                    <div class="filterScheduleStatus">
+                        <input type="text" 
+                            placeholder="Draft, Complete"
+                            >
+                    </div>
+
+
+                    <div class="filterScheduleDataDatasourceTitle">
+                        Datasource:
+                    </div>
+                    <div class="filterScheduleDataDatasourceTitle">
+                        Uses:
+                    </div>
+                    <div class="filterScheduleDataDatasource">
+                        <input type="text" 
+                            placeholder="Datasource"
+                            >
+                    </div>
+
+                    <div class="filterScheduleDataFieldTitle">
+                        Field:
+                    </div>
+                    <div class="filterScheduleDataField">
+                        <input type="text" 
+                            placeholder="Field"
+                            >
+                    </div>
+
+                    <div class="filterScheduleTagTitle">
+                        Tag:
+                    </div>
+                    <div class="filterScheduleTag">
+                        <input type="text" 
+                            placeholder="By tag"
+                            >
+                    </div>
+
+                    <div class="filterScheduleMyFavTitle">
+                        MyFav:
+                    </div>
+                    <div class="filterScheduleMyFav">
+                        <input type="checkbox" 
+                            placeholder="My fav only"
+                            >
+                    </div>
+
+                    <div class="filterScheduleModifiedTitle">
+                        Modified:
+                    </div>
+                    <div class="filterScheduleModifiedAfterTitle">
+                        Modified After:
+                    </div>
+                    <div class="filterScheduleModifiedAfter">
+                        <input type="text" 
+                            placeholder="Last wk/mnth"
+                            >
+                    </div>
+
+                    <div class="filterScheduleModifiedBeforeTitle">
+                        Modified Before:
+                    </div>
+                    <div class="filterScheduleModifiedBefore">
+                        <input type="text" 
+                            placeholder="Last wk/mnth"
+                            >
+                    </div>
+
+                    <div class="filterScheduleModifiedByUserIDTitle">
+                            By User:
+                        </div>
+                        <div class="filterScheduleModifiedByUserID">
+        
+                        <input type="text" 
+                            placeholder="Modified by UserID"
+                            >
+                    </div>
+
                     <div class="filterButtonClose">
                         <button type="button" class="btn btn-secondary"
                             (click)="showAdvancedFilters=!showAdvancedFilters">
