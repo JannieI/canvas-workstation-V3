@@ -105,6 +105,7 @@
             
 
                 <div *ngIf="showAdvancedFilters" class="gridFilterArea">
+                    <h3 class="filterHeading">Advanced filters</h3>
                     <div class="filterSchedulesTitle">
                         Schedules:
                     </div>
@@ -118,24 +119,6 @@
                             >
                     </div>
 
-                    <div class="filterScheduleSentAfterTitle">
-                        Sent On:
-                    </div>
-                    <div class="filterScheduleSentOn">
-                        <input type="text" 
-                            placeholder="Sent on"
-                            >
-                    </div>
-
-                    <div class="filterScheduleSentAfterTitle">
-                        Sent On:
-                    </div>
-                    <div class="filterScheduleSentOn">
-                        <input type="text" 
-                            placeholder="Sent on"
-                            >
-                    </div>
-    
                     <div class="filterScheduleDueOnTitle">
                         Due on:
                     </div>
@@ -144,15 +127,25 @@
                             placeholder="Due on Date"
                             >
                     </div>
-                    <div class="filterScheduleSendToTitle">
-                        Schedule:
+    
+                    <div class="filterScheduleSentAfterTitle">
+                        Sent After:
                     </div>
-                    <div class="filterScheduleTitle">
+                    <div class="filterScheduleSentAfter">
                         <input type="text" 
-                            placeholder="Send last wk/mnth"
+                            placeholder="Sent after"
                             >
                     </div>
 
+                    <div class="filterScheduleSentBeforeTitle">
+                        Sent Before:
+                    </div>
+                    <div class="filterScheduleSentBefore">
+                        <input type="text" 
+                            placeholder="Sent before"
+                            >
+                    </div>
+    
                     <div class="propertyLine">
                         Shared:
                         <input type="text" id="formFields_7" placeholder="By me">

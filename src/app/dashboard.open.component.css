@@ -96,13 +96,79 @@
         text-align: left;
         z-index: 100;
     }
-    .filterButtonClose {
-        grid-column-start: 3;
-        grid-column-end: 5;
-        grid-row-start: 19;
-        grid-row-end: 20;
-        text-align: left;
-    }
+
+        .filterHeading {
+            grid-column-start: 1;
+            grid-column-end: 21;
+            grid-row-start: 1;
+            grid-row-end: 2;
+            text-align: center;
+        }
+        
+        .filterSchedulesTitle {
+            grid-column-start: 3;
+            grid-column-end: 5;
+            grid-row-start: 3;
+            grid-row-end: 4;
+            text-align: left;
+        }
+        .filterScheduleSendToTitle {
+            grid-column-start: 2;
+            grid-column-end: 4;
+            grid-row-start: 4;
+            grid-row-end: 5;
+            text-align: left;
+        }
+        .filterScheduleSendTo {
+            grid-column-start: 4;
+            grid-column-end: 10;
+            grid-row-start: 4;
+            grid-row-end: 5;
+            text-align: left;
+        }
+        .filterScheduleDueOnTitle {
+            grid-column-start: 2;
+            grid-column-end: 4;
+            grid-row-start: 4;
+            grid-row-end: 5;
+            text-align: left;
+        }
+        .filterScheduleDueOn {
+            grid-column-start: 4;
+            grid-column-end: 10;
+            grid-row-start: 4;
+            grid-row-end: 5;
+            text-align: left;
+        }
+
+        .filterScheduleSentAfterTitle {
+            grid-column-start: 2;
+            grid-column-end: 4;
+            grid-row-start: 6;
+            grid-row-end: 7;
+            text-align: left;
+        }
+        .filterScheduleSentAfter {
+            grid-column-start: 4;
+            grid-column-end: 10;
+            grid-row-start: 6;
+            grid-row-end: 7;
+            text-align: left;
+        }
+        .filterScheduleSentBeforeTitle {
+            grid-column-start: 2;
+            grid-column-end: 4;
+            grid-row-start: 6;
+            grid-row-end: 7;
+            text-align: left;
+        }
+        .filterScheduleSentBefore {
+            grid-column-start: 4;
+            grid-column-end: 10;
+            grid-row-start: 6;
+            grid-row-end: 7;
+            text-align: left;
+        }
 
         .filterButtonClose {
             grid-column-start: 3;
