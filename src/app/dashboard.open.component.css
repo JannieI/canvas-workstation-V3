@@ -93,7 +93,7 @@
         grid-column-end: 21;
         grid-row-start: 2;
         grid-row-end: 26;
-        margin: 10px;
+        padding: 10px;
         text-align: left;
         z-index: 100;
     }
@@ -445,10 +445,18 @@
         }
 
         .filterButtonClose {
-            grid-column-start: 3;
-            grid-column-end: 5;
-            grid-row-start: 19;
-            grid-row-end: 20;
+            grid-column-start: 6;
+            grid-column-end: 7;
+            grid-row-start: 25;
+            grid-row-end: 26;
+            text-align: left;
+        }
+
+        .filterButtonApply {
+            grid-column-start: 13;
+            grid-column-end: 15;
+            grid-row-start: 25;
+            grid-row-end: 26;
             text-align: left;
         }
 
