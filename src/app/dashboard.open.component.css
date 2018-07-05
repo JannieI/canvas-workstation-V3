@@ -54,15 +54,15 @@
     .gridButtonFilter {
         grid-column-start: 9;
         grid-column-end: 13;
-        grid-row-start: 3;
-        grid-row-end: 4;
+        grid-row-start: 2;
+        grid-row-end: 3;
         text-align: left;
     }
     .gridButtonSearch {
         grid-column-start: 13;
         grid-column-end: 15;
-        grid-row-start: 3;
-        grid-row-end: 4;
+        grid-row-start: 2;
+        grid-row-end: 3;
         text-align: left;
     }
 
@@ -76,17 +76,21 @@
     }
 
     .gridFilterArea {
-        grid-column-start: 2;
+        background-color: white;
+        border: 1px solid gray;
+        border-radius: 6px;
+        grid-column-start: 4;
         grid-column-end: 19;
         grid-row-start: 5;
         grid-row-end: 6;
         text-align: left;
+        z-index: 100;
     }
 
     .gridTable {
-        grid-column-start: 2;
+        grid-column-start: 1;
         grid-column-end: 19;
-        grid-row-start: 6;
+        grid-row-start: 4;
         grid-row-end: 25;
         text-align: left;
     }
