@@ -167,6 +167,84 @@ export class DashboardOpenComponent implements OnInit {
         // Open area with advanced filters
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowAdvancedFilters', '@Start');
 
+        // Reset
+        this.filteredDashboardIDs = [];
+
+        // TODO - add Schedule filters later
+        if (this.filterSchedulesSendToTitle != '') {
+
+        };
+        if (this.filterSchedulesDueOn != '') {
+
+        };
+        if (this.filterSchedulesSentAfter != '') {
+
+        };
+        if (this.filterSchedulesSentBefore != '') {
+
+        };
+        if (this.filterSharedByMe != '') {
+            this.dashboardsOriginal.forEach(d => {
+                this.globalVariableService.dashboardPermissions.forEach(dP => {
+                    if (dP.dashboardID == d.id  &&  dP.grantor == this.filterSharedWithUserID) {
+                        if (this.filteredDashboardIDs.indexOf(d.id) < 0) {
+                            this.filteredDashboardIDs.push(d.id);
+                        };
+                    };
+                });
+            });
+        };
+        
+        if (this.filterSharedWithMe != '') {
+
+        };
+        if (this.filterSharedWithUserID != '') {
+
+        };
+        if (this.filterSharedWithGroup != '') {
+
+        };
+        if (this.filterOpenedByMe != '') {
+
+        };
+        if (this.filterOpenedLastMonth != '') {
+
+        };
+        if (this.filterCreatedBy != '') {
+
+        };
+        if (this.filterCreatedLastMonth != '') {
+
+        };
+        if (this.filterDataDatasource != '') {
+
+        };
+        if (this.filterDataField != '') {
+
+        };
+        if (this.filterStatus != '') {
+
+        };
+        if (this.filterTag != '') {
+
+        };
+        if (this.filterMyFav != '') {
+
+        };
+        if (this.filterModifiedAfter != '') {
+
+        };
+        if (this.filterModifiedBefore != '') {
+
+        };
+        if (this.filterModifiedByUserID != '') {
+
+        };
+
+
+
+
+
         // filterSharedWithUserID
         this.dashboardsOriginal.forEach(d => {
             this.globalVariableService.dashboardPermissions.forEach(dP => {
@@ -176,7 +254,7 @@ export class DashboardOpenComponent implements OnInit {
                     };
                 };
             });
-        })
+        });
         
     }
 

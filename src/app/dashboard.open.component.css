@@ -385,6 +385,7 @@
             grid-column-end: 4;
             grid-row-start: 22;
             grid-row-end: 23;
+            padding-top: 3px;
             text-align: left;
         }
         .filterMyFav {
