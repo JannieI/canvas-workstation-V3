@@ -46,7 +46,7 @@ export class DashboardOpenComponent implements OnInit {
     dashboardsOriginal: Dashboard[];
     errorMessage: string = '';
     filterDashboardName: string = '';
-    records: number = 10;
+    records: number = 15;
     selectedRow: number = 0;
     showAdvancedFilters: boolean = false;
     showTypeDashboard: boolean = false;
@@ -105,11 +105,6 @@ export class DashboardOpenComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowAdvancedFilters', '@Start');
 
         this.showAdvancedFilters = !this.showAdvancedFilters;
-        if (this.showAdvancedFilters) {
-            this.records = 3
-        } else {
-            this.records = 10
-        };
     }
 
     clickOpenView(dashboardID: number) {
