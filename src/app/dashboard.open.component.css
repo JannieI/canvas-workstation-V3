@@ -445,17 +445,17 @@
         }
 
         .filterButtonClose {
-            grid-column-start: 6;
-            grid-column-end: 7;
-            grid-row-start: 27;
-            grid-row-end: 28;
+            grid-column-start: 10;
+            grid-column-end: 12;
+            grid-row-start: 26;
+            grid-row-end: 27;
             text-align: left;
         }
 
         .filterButtonApply {
-            grid-column-start: 13;
-            grid-column-end: 15;
-            grid-row-start: 27;
-            grid-row-end: 28;
+            grid-column-start: 14;
+            grid-column-end: 18;
+            grid-row-start: 26;
+            grid-row-end: 27;
             text-align: left;
         }
