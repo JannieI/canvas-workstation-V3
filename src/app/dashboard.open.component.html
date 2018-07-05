@@ -111,9 +111,30 @@
                     </clr-datagrid>
                 </div>
             
-
+                <!-- ************** Advanced Filter **************** -->
                 <div *ngIf="showAdvancedFilters" class="gridFilterArea">
-                    <h3 class="filterHeading">Advanced filters</h3>
+                    <div class="filterHeading">Advanced filters
+                        <h3>Advanced filters</h3>
+                        <clr-signpost>
+                            <clr-icon shape="info-circle"
+                                clrSignpostTrigger>
+                            </clr-icon>
+                                <clr-signpost-content *clrIfOpen
+                                [clrPosition]="'bottom-middle'">
+                                <h5 style="margin-top: 0; color:gray;">
+                                    Help
+                                </h5>
+                                <p style="margin-top: 0; color:gray;"> 
+                                    This form form is used for additional filters.  Enter 
+                                    the required fields, and click Apply to filter the list
+                                    of Dashboards on the Open Dashboard form. Click the
+                                    Clear button to remove typed valued, and then click the
+                                    Apply button to refresh the grid.
+                                </p>
+                            </clr-signpost-content>
+                        </clr-signpost>
+                    </div>
+    
                     <div class="filterSchedulesTitle">
                         Schedules:
                     </div>

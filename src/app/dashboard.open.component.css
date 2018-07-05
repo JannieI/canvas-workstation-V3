@@ -459,11 +459,3 @@
             grid-row-end: 26;
             text-align: left;
         }
-
-.propertyLine {
-    margin: 5px;
-}
-
-.errorMessage {
-    color: red;
-}
