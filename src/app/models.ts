@@ -586,7 +586,7 @@ export class Dashboard {
 
     // Creation, update and refresh
     creator: string;
-    dateCreated: string;
+    dateCreated: Date;
     editor: string;
     dateEdited: Date;
     refresher: string;

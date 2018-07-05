@@ -314,7 +314,7 @@ const dashboardTemplate: Dashboard =
         backgroundImage: '',
         templateDashboardID: 0,
         creator: '',
-        dateCreated: '',
+        dateCreated: null,
         editor: '',
         dateEdited: null,
         refresher: '',
@@ -1033,7 +1033,7 @@ export class GlobalVariableService {
                 let newD = Object.assign({}, this.dashboards[dashboardIndex]);
                 newD.id = null;
                 newD.creator = this.currentUser.userID;
-                newD.dateCreated = this.formatDate(today);
+                newD.dateCreated = today;
                 newD.editor = null;
                 newD.dateEdited = null;
 
