@@ -250,6 +250,15 @@ export class DashboardOpenComponent implements OnInit {
 
         };
         if (this.filterModifiedAfter != '') {
+            this.dashboardsOriginal.forEach(d => {
+                if (d.dateEdited != null) {
+                    if (d.dateEdited >= new Date(this.filterModifiedAfter)) {
+                        if (this.filteredDashboardIDs.indexOf(d.id) < 0) {
+                            this.filteredDashboardIDs.push(d.id);
+                        };
+                    };
+                };
+            });
 
         };
         if (this.filterModifiedBefore != '') {
@@ -257,9 +266,11 @@ export class DashboardOpenComponent implements OnInit {
         };
         if (this.filterModifiedByUserID != '') {
             this.dashboardsOriginal.forEach(d => {
-                if (d.editor.toLowerCase() == this.filterModifiedByUserID.toLowerCase()) {
-                    if (this.filteredDashboardIDs.indexOf(d.id) < 0) {
-                        this.filteredDashboardIDs.push(d.id);
+                if (d.editor != null) {
+                    if (d.editor.toLowerCase() == this.filterModifiedByUserID.toLowerCase()) {
+                        if (this.filteredDashboardIDs.indexOf(d.id) < 0) {
+                            this.filteredDashboardIDs.push(d.id);
+                        };
                     };
                 };
             });
