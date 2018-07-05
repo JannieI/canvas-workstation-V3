@@ -250,9 +250,10 @@ export class DashboardOpenComponent implements OnInit {
 
         };
         if (this.filterModifiedAfter != '') {
+            let dateAfter: Date = new Date(this.filterModifiedAfter);
             this.dashboardsOriginal.forEach(d => {
                 if (d.dateEdited != null) {
-                    if (d.dateEdited >= new Date(this.filterModifiedAfter)) {
+                    if (d.dateEdited >= dateAfter) {
                         if (this.filteredDashboardIDs.indexOf(d.id) < 0) {
                             this.filteredDashboardIDs.push(d.id);
                         };
@@ -262,6 +263,16 @@ export class DashboardOpenComponent implements OnInit {
 
         };
         if (this.filterModifiedBefore != '') {
+            let dateAfter: Date = new Date(this.filterModifiedAfter);
+            this.dashboardsOriginal.forEach(d => {
+                if (d.dateEdited != null) {
+                    if (d.dateEdited <= dateAfter) {
+                        if (this.filteredDashboardIDs.indexOf(d.id) < 0) {
+                            this.filteredDashboardIDs.push(d.id);
+                        };
+                    };
+                };
+            });
 
         };
         if (this.filterModifiedByUserID != '') {
