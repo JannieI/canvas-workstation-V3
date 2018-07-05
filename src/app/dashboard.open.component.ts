@@ -241,6 +241,16 @@ export class DashboardOpenComponent implements OnInit {
 
         };
         if (this.filterCreatedAfter != '') {
+            let dateAfter: Date = new Date(this.filterModifiedAfter);
+            this.dashboardsOriginal.forEach(d => {
+                if (d.dateCreated != null) {
+                    if (d.dateCreated >= dateAfter) {
+                        if (this.filteredDashboardIDs.indexOf(d.id) < 0) {
+                            this.filteredDashboardIDs.push(d.id);
+                        };
+                    };
+                };
+            });
 
         };
         if (this.filterDataDatasource != '') {
