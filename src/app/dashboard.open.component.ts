@@ -47,11 +47,32 @@ export class DashboardOpenComponent implements OnInit {
     dashboardPermission: DashboardPermission[];
     dashboardsOriginal: Dashboard[];
     errorMessage: string = '';
-    filterDashboardName: string = '';
+    
+    
     filteredDashboardIDs: number[] = [];
-
-
+    filterDashboardName: string = '';
+    filterSchedulesSendToTitle: string = '';
+    filterSchedulesDueOn: string = '';
+    filterSchedulesSentAfter: string = '';
+    filterSchedulesSentBefore: string = '';
+    filterSharedByMe: string = '';
+    filterSharedWithMe: string = '';
     filterSharedWithUserID: string;
+    filterSharedWithGroup: string = '';
+    filterOpenedByMe: string = '';
+    filterOpenedLastMonth: string = '';
+    filterCreatedBy: string = '';
+    filterCreatedLastMonth: string = '';
+    filterDataDatasource: string = '';
+    filterDataField: string = '';
+    filterStatus: string = '';
+    filterTag: string = '';
+    filterMyFav: string = '';
+    filterModifiedAfter: string = '';
+    filterModifiedBefore: string = '';
+    filterModifiedByUserID: string = '';
+
+
 
     records: number = 15;
     selectedRow: number = 0;
