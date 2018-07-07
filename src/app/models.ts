@@ -79,7 +79,7 @@ export class CanvasAction {
     widgetID: number;                       // Optional W where action took place
 
     objectType: string;                     // Type, ie Dashboard, Widget
-    actionType: string;                     // Main type of action: Add, Delete, Change, Open, etc
+    actionType: string;                     // Main type of action: Add, Edit, Delete, Open, etc
     action: string;                         // Sub action type, ie Move Widget
     description: string;                    // Optional description, ie calling routine, etc
 
