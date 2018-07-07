@@ -432,6 +432,18 @@ export class DashboardOpenComponent implements OnInit {
 
         };
         if (this.filterTag != '') {
+            this.dashboardsOriginal.forEach(d => {
+                this.globalVariableService.dashboardTags.forEach(tag => {
+                    if (d.id == tag.id) {
+                        if (tag.tag.toLowerCase() == this.filterTag.toLowerCase()) {
+                            if (this.filteredDashboardIDs.indexOf(tag.id) < 0) {
+                                this.filteredDashboardIDs.push(tag.id);
+                            };
+                        };
+                    };
+                });
+            });
+
 
         };
         if (this.filterMyFav != '') {
