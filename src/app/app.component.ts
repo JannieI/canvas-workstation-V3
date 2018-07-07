@@ -7340,8 +7340,10 @@ export class AppComponent implements OnInit {
             null,
             null,
             null,
-            null
-        );    }
+            null,
+            true
+        );    
+    }
 
     clearDashboard() {
         // Clears all the vars for the current D

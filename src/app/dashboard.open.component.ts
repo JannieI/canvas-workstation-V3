@@ -17,6 +17,7 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService}       from './global-variable.service';
 
 // Models
+import { CanvasAuditTrail }           from './models';
 import { CanvasGroup }                from './models';
 import { Dashboard }                  from './models';
 import { DashboardPermission }        from './models';
@@ -81,6 +82,7 @@ export class DashboardOpenComponent implements OnInit {
     dashboardScheduleLog: DashboardScheduleLog[] = [];
     dashboardSchedules: DashboardSchedule[] = [];
     groups: CanvasGroup[] = [];
+    canvasAuditTrails: CanvasAuditTrail[] = [];
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -91,10 +93,12 @@ export class DashboardOpenComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
+        // Prefetch data
         this.globalVariableService.getCanvasGroups().then( res => {
             this.groups = res;
         });
-
+        
+        // Get Ds
         this.dashboardsOriginal = this.globalVariableService.dashboards.slice()
         this.dashboards = this.dashboardsOriginal.slice().sort((n1,n2) => {
             if (n1.name > n2.name) {
@@ -141,6 +145,11 @@ export class DashboardOpenComponent implements OnInit {
 
         this.showAdvancedFilters = !this.showAdvancedFilters;
 
+        // Get AuditTrail in advance
+        this.globalVariableService.getCanvasAuditTrails().then( res => {
+            this.canvasAuditTrails = res;
+        });
+        
         // Get Schedule Logs in advance
         this.globalVariableService.getDashboardScheduleLog().then(res =>
             this.dashboardScheduleLog = res);
@@ -333,6 +342,26 @@ export class DashboardOpenComponent implements OnInit {
         };
 
         if (this.filterOpenedByUserID != '') {
+            if (this.dashboardScheduleLog.length = 0) {
+                this.errorMessage = 'Still retrieving Schedule Log ...';
+                return;
+            };
+            this.dashboardsOriginal.forEach(d => {
+                this.canvasAuditTrails.forEach(aud => {
+                    if (aud.dashboardID == d.id  
+                        &&  
+                        aud.userID.toLowerCase() == this.filterOpenedByUserID.toLowerCase()
+                        &&
+                        aud.objectType == 'Dashboard'
+                        &&
+                        aud.actionType == 'Open'
+                        ) {
+                            if (this.filteredDashboardIDs.indexOf(d.id) < 0) {
+                                this.filteredDashboardIDs.push(d.id);
+                            };
+                    };
+                });
+            });
 
         };
         if (this.filterOpenedLastMonth != '') {

@@ -19,7 +19,6 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService}       from './global-variable.service';
 
 // Models
-import { CanvasAuditTrail }           from './models';
 
 @Component({
     selector: 'data-dictionary',
