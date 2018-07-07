@@ -274,12 +274,13 @@ export class DashboardOpenComponent implements OnInit {
             });
 
         };
+
         if (this.filterSharedByUserID != '') {
             this.dashboardsOriginal.forEach(d => {
                 this.globalVariableService.dashboardPermissions.forEach(dP => {
                     if (dP.dashboardID == d.id  
                         &&  
-                        dP.grantor.toLowerCase() == this.filterSharedWithUserID.toLowerCase()) {
+                        dP.grantor.toLowerCase() == this.filterSharedByUserID.toLowerCase()) {
                         if (this.filteredDashboardIDs.indexOf(d.id) < 0) {
                             this.filteredDashboardIDs.push(d.id);
                         };
@@ -287,7 +288,6 @@ export class DashboardOpenComponent implements OnInit {
                 });
             });
         };
-
         if (this.filterSharedWithUserID != '') {
             this.dashboardsOriginal.forEach(d => {
                 this.globalVariableService.dashboardPermissions.forEach(dP => {
@@ -301,10 +301,18 @@ export class DashboardOpenComponent implements OnInit {
                 });
             });
         };
-        if (this.filterSharedWithUserID != '') {
-
-        };
         if (this.filterSharedWithGroup != '') {
+            this.dashboardsOriginal.forEach(d => {
+                this.globalVariableService.dashboardPermissions.forEach(dP => {
+                    if (dP.dashboardID == d.id  
+                        &&  
+                        dP.groupID.toLowerCase() == this.filterSharedWithGroup.toLowerCase()) {
+                        if (this.filteredDashboardIDs.indexOf(d.id) < 0) {
+                            this.filteredDashboardIDs.push(d.id);
+                        };
+                    };
+                });
+            });
 
         };
         if (this.filterOpenedByUserID != '') {
