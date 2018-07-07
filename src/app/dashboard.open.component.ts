@@ -158,7 +158,7 @@ export class DashboardOpenComponent implements OnInit {
         this.globalVariableService.getDashboardTags().then(res =>
             this.dashboardTags = res);
 
-            // Get Schedule Logs in advance
+        // Get Schedule Logs in advance
         this.globalVariableService.getDashboardScheduleLog().then(res =>
             this.dashboardScheduleLog = res);
 
@@ -216,7 +216,7 @@ export class DashboardOpenComponent implements OnInit {
 
         // TODO - add Schedule filters later
         if (this.filterSchedulesSendTo != '') {
-            if (this.dashboardScheduleLog.length = 0) {
+            if (this.dashboardScheduleLog.length ==0) {
                 this.errorMessage = 'Still retrieving Schedule Log ...';
                 return;
             };
@@ -238,9 +238,10 @@ export class DashboardOpenComponent implements OnInit {
             });
 
         };
+        console.warn('xx AFTER filterSchedulesSendTo', this.dashboards)
         if (this.filterSchedulesDueOn != '') {
             // TODO - this is not final - needs to calc the due date
-            if (this.dashboardSchedules.length = 0) {
+            if (this.dashboardSchedules.length == 0) {
                 this.errorMessage = 'Still retrieving Schedules ...';
                 return;
             };
@@ -259,8 +260,9 @@ export class DashboardOpenComponent implements OnInit {
             });
 
         };
+        console.warn('xx AFTER filterSchedulesDueOn', this.dashboards)
         if (this.filterSchedulesSentAfter != '') {
-            if (this.dashboardScheduleLog.length = 0) {
+            if (this.dashboardScheduleLog.length == 0) {
                 this.errorMessage = 'Still retrieving Schedule Log ...';
                 return;
             };
@@ -279,8 +281,9 @@ export class DashboardOpenComponent implements OnInit {
             });
 
         };
+        console.warn('xx AFTER filterSchedulesSentAfter', this.dashboards)
         if (this.filterSchedulesSentBefore != '') {
-            if (this.dashboardScheduleLog.length = 0) {
+            if (this.dashboardScheduleLog.length == 0) {
                 this.errorMessage = 'Still retrieving Schedule Log ...';
                 return;
             };
@@ -299,6 +302,7 @@ export class DashboardOpenComponent implements OnInit {
             });
 
         };
+        console.warn('xx AFTER filterSchedulesSentBefore', this.dashboards)
 
         if (this.filterSharedByUserID != '') {
             this.dashboards.forEach(d => {
@@ -313,6 +317,7 @@ export class DashboardOpenComponent implements OnInit {
                 });
             });
         };
+        console.warn('xx AFTER filterSharedByUserID', this.dashboards)
         if (this.filterSharedWithUserID != '') {
             this.dashboards.forEach(d => {
                 this.globalVariableService.dashboardPermissions.forEach(dP => {
@@ -326,6 +331,7 @@ export class DashboardOpenComponent implements OnInit {
                 });
             });
         };
+        console.warn('xx AFTER filterSharedWithUserID', this.dashboards)
         if (this.filterSharedWithGroup != '') {
             let groupIndex: number = this.groups.findIndex(grp => grp.name == this.filterSharedWithGroup);
             let groupID: number = null;
@@ -350,9 +356,10 @@ export class DashboardOpenComponent implements OnInit {
             });
 
         };
+        console.warn('xx AFTER filterSharedWithGroup', this.dashboards)
 
         if (this.filterOpenedByUserID != '') {
-            if (this.dashboardScheduleLog.length = 0) {
+            if (this.dashboardScheduleLog.length == 0) {
                 this.errorMessage = 'Still retrieving Schedule Log ...';
                 return;
             };
@@ -374,8 +381,9 @@ export class DashboardOpenComponent implements OnInit {
             });
 
         };
+        console.warn('xx AFTER filterOpenedByUserID', this.dashboards)
         if (this.filterOpenedAfterDate != '') {
-            if (this.dashboardScheduleLog.length = 0) {
+            if (this.dashboardScheduleLog.length == 0) {
                 this.errorMessage = 'Still retrieving Schedule Log ...';
                 return;
             };
@@ -398,19 +406,18 @@ export class DashboardOpenComponent implements OnInit {
             });
 
         };
+        console.warn('xx AFTER filterOpenedAfterDate', this.dashboards)
         if (this.filterCreatedBy != '') {
             this.dashboards = this.dashboards.filter(d => {
                 if (d.creator != null) {
                     if (d.creator.toLowerCase() == this.filterCreatedBy.toLowerCase()) {
                         return d;
-                        // if (this.filteredDashboardIDs.indexOf(d.id) < 0) {
-                        //     this.filteredDashboardIDs.push(d.id);
-                        // };
                     };
                 };
             });
 
         };
+        console.warn('xx AFTER filterCreatedBy', this.dashboards)
         if (this.filterCreatedAfter != '') {
             let dateAfter: Date = new Date(this.filterCreatedAfter);
             console.log('xx dafter', dateAfter, this.filterCreatedAfter)
@@ -423,6 +430,7 @@ export class DashboardOpenComponent implements OnInit {
             });
 
         };
+        console.warn('xx AFTER filterCreatedAfter', this.dashboards)
         if (this.filterDataDatasource != '') {
             let datasourceIndex: number = this.datasources.findIndex(ds => ds.name == this.filterDataDatasource);
             let datasourceID: number = null;
@@ -446,6 +454,7 @@ export class DashboardOpenComponent implements OnInit {
             });
 
         };
+        console.warn('xx AFTER filterDataDatasource', this.dashboards)
         if (this.filterState != '') {
             this.dashboards = this.dashboards.filter(d => {
                 if (d.state != null) {
@@ -459,18 +468,23 @@ export class DashboardOpenComponent implements OnInit {
             });
 
         };
+        console.warn('xx AFTER filterState', this.dashboards)
         if (this.filterTag != '') {
-            console.warn('xx dashboardTags', this.globalVariableService.dashboardTags)
+            if (this.dashboardTags.length == 0) {
+                this.errorMessage = 'Still retrieving Dashboard Tags ...';
+                return;
+            };
+            let dTagIDs: number[] = this.dashboardTags
+                .filter(tag => tag.tag.toLowerCase() == this.filterTag.toLowerCase())
+                .map(tag => tag.dashboardID)
             this.dashboards = this.dashboards.filter(d => {
-                this.globalVariableService.dashboardTags.forEach(tag => {
-                    if (d.id == tag.dashboardID) {
-                        if (tag.tag.toLowerCase() == this.filterTag.toLowerCase()) {
+                if (dTagIDs.indexOf(d.id) >= 0) {
                             return d;
-                        };
-                    };
-                });
+                };
             });
         };
+        console.warn('xx AFTER filterTag', this.filterTag, this.dashboards, this.dashboardTags)
+
         if (this.filterMyFav != '') {
             this.dashboards = this.dashboards.filter(d => {
                 if (this.globalVariableService.currentUser.favouriteDashboards.indexOf(d.id) >= 0) {
@@ -479,6 +493,7 @@ export class DashboardOpenComponent implements OnInit {
             });
 
         };
+        console.warn('xx AFTER filterMyFav', this.dashboards)
         if (this.filterModifiedAfter != '') {
             let dateAfter: Date = new Date(this.filterModifiedAfter);
             this.dashboards = this.dashboards.filter(d => {
@@ -490,6 +505,7 @@ export class DashboardOpenComponent implements OnInit {
             });
 
         };
+        console.warn('xx AFTER filterModifiedAfter', this.dashboards)
         if (this.filterModifiedBefore != '') {
             let dateAfter: Date = new Date(this.filterModifiedAfter);
             this.dashboards = this.dashboards.filter(d => {
@@ -501,6 +517,7 @@ export class DashboardOpenComponent implements OnInit {
             });
 
         };
+        console.warn('xx AFTER filterModifiedBefore', this.dashboards)
         if (this.filterModifiedByUserID != '') {
             this.dashboards = this.dashboards.filter(d => {
                 if (d.editor != null) {
@@ -510,7 +527,7 @@ export class DashboardOpenComponent implements OnInit {
                 };
             });
         };
-        console.warn('xx this.filteredDashboardIDs', this.filteredDashboardIDs)
+        console.warn('xx AFTER filterModifiedByUserID', this.dashboards)
 
         // Close the filter
         this.showAdvancedFilters = false;
