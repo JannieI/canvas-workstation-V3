@@ -363,21 +363,19 @@ export class DashboardOpenComponent implements OnInit {
                 this.errorMessage = 'Still retrieving Schedule Log ...';
                 return;
             };
-            this.dashboards.forEach(d => {
-                this.canvasAuditTrails.forEach(aud => {
-                    if (aud.dashboardID == d.id  
-                        &&  
-                        aud.userID.toLowerCase() == this.filterOpenedByUserID.toLowerCase()
-                        &&
-                        aud.objectType == 'Dashboard'
-                        &&
-                        aud.actionType == 'Open'
-                        ) {
-                            if (this.filteredDashboardIDs.indexOf(d.id) < 0) {
-                                this.filteredDashboardIDs.push(d.id);
-                            };
-                    };
-                });
+            let dIDs: number[] = this.canvasAuditTrails.filter(aud => 
+                aud.userID.toLowerCase() == this.filterOpenedByUserID.toLowerCase()
+                &&
+                aud.objectType == 'Dashboard'
+                &&
+                aud.actionType == 'Open')
+                .map(aud => aud.dashboardID);
+            console.warn('xx dIDs', dIDs)
+
+            this.dashboards = this.dashboards.filter(d => {
+                if (dIDs.indexOf(d.id) >= 0) {
+                    return d;
+                };
             });
 
         };
