@@ -52,7 +52,7 @@ export class DashboardOpenComponent implements OnInit {
         
     filteredDashboardIDs: number[] = [];
     filterDashboardName: string = '';
-    filterSchedulesSendToTitle: string = '';
+    filterSchedulesSendTo: string = '';
     filterSchedulesDueOn: string = '';
     filterSchedulesSentAfter: string = '';
     filterSchedulesSentBefore: string = '';
@@ -76,7 +76,7 @@ export class DashboardOpenComponent implements OnInit {
     selectedRow: number = 0;
     showAdvancedFilters: boolean = false;
     showTypeDashboard: boolean = false;
-    dashboardScheduleLog: DashboardScheduleLog[];
+    dashboardScheduleLog: DashboardScheduleLog[] = [];
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -136,7 +136,7 @@ export class DashboardOpenComponent implements OnInit {
         // Get Schedule Logs in advance
         this.globalVariableService.getDashboardScheduleLog().then(res =>
             this.dashboardScheduleLog = res);
-            
+
         // Nothing selected
         this.filteredDashboardIDs = [];
     }
@@ -154,7 +154,7 @@ export class DashboardOpenComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickFiltersClear', '@Start');
 
         this.filterDashboardName = '';
-        this.filterSchedulesSendToTitle = '';
+        this.filterSchedulesSendTo = '';
         this.filterSchedulesDueOn = '';
         this.filterSchedulesSentAfter = '';
         this.filterSchedulesSentBefore = '';
@@ -184,15 +184,24 @@ export class DashboardOpenComponent implements OnInit {
         this.filteredDashboardIDs = [];
 
         // TODO - add Schedule filters later
-        if (this.filterSchedulesSendToTitle != '') {
+        if (this.filterSchedulesSendTo != '') {
+            if (this.dashboardScheduleLog.length = 0) {
+                this.errorMessage = 'Still retrieving Schedule Log ...';
+                return;
+            };
             this.dashboardsOriginal.forEach(d => {
-                this.globalVariableService.dashboardSchedules.forEach(sch => {
-                    if (sch.dashboardID == d.id  
+                this.dashboardScheduleLog.forEach(dsl => {
+                    if (dsl.dashboardID == d.id  
                         &&  
-                        sch. userID.toLowerCase() == this.filterSharedWithUserID.toLowerCase()) {
-                        if (this.filteredDashboardIDs.indexOf(d.id) < 0) {
-                            this.filteredDashboardIDs.push(d.id);
-                        };
+                        (
+                            dsl.userID.toLowerCase() == this.filterSchedulesSendTo.toLowerCase()
+                            ||
+                            dsl.groupID.toLowerCase() == this.filterSchedulesSendTo.toLowerCase()
+                        )
+                        ) {
+                            if (this.filteredDashboardIDs.indexOf(d.id) < 0) {
+                                this.filteredDashboardIDs.push(d.id);
+                            };
                     };
                 });
             });
