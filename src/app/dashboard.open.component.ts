@@ -20,6 +20,7 @@ import { GlobalVariableService}       from './global-variable.service';
 import { Dashboard }                  from './models';
 import { DashboardPermission }        from './models';
 import { DashboardScheduleLog }       from './models';
+import { DashboardSchedule }          from './models';
 import { Scheduler } from 'rxjs/Scheduler';
 
 @Component({
@@ -77,6 +78,7 @@ export class DashboardOpenComponent implements OnInit {
     showAdvancedFilters: boolean = false;
     showTypeDashboard: boolean = false;
     dashboardScheduleLog: DashboardScheduleLog[] = [];
+    dashboardSchedules: DashboardSchedule[] = [];
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -136,6 +138,10 @@ export class DashboardOpenComponent implements OnInit {
         // Get Schedule Logs in advance
         this.globalVariableService.getDashboardScheduleLog().then(res =>
             this.dashboardScheduleLog = res);
+
+        // Get Schedules in advance
+        this.globalVariableService.getDashboardSchedules().then(res =>
+            this.dashboardSchedules = res);
 
         // Nothing selected
         this.filteredDashboardIDs = [];
