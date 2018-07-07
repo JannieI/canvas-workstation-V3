@@ -453,38 +453,30 @@ export class DashboardOpenComponent implements OnInit {
 
         };
         if (this.filterTag != '') {
-            this.dashboards.forEach(d => {
+            this.dashboards = this.dashboards.filter(d => {
                 this.globalVariableService.dashboardTags.forEach(tag => {
                     if (d.id == tag.id) {
                         if (tag.tag.toLowerCase() == this.filterTag.toLowerCase()) {
-                            if (this.filteredDashboardIDs.indexOf(tag.id) < 0) {
-                                this.filteredDashboardIDs.push(tag.id);
-                            };
+                            return d;
                         };
                     };
                 });
             });
-
-
         };
         if (this.filterMyFav != '') {
-            this.dashboards.forEach(d => {
+            this.dashboards = this.dashboards.filter(d => {
                 if (this.globalVariableService.currentUser.favouriteDashboards.indexOf(d.id) >= 0) {
-                    if (this.filteredDashboardIDs.indexOf(d.id) < 0) {
-                        this.filteredDashboardIDs.push(d.id);
-                    };
+                    return d;
                 };
             });
 
         };
         if (this.filterModifiedAfter != '') {
             let dateAfter: Date = new Date(this.filterModifiedAfter);
-            this.dashboards.forEach(d => {
+            this.dashboards = this.dashboards.filter(d => {
                 if (d.dateEdited != null) {
                     if (d.dateEdited >= dateAfter) {
-                        if (this.filteredDashboardIDs.indexOf(d.id) < 0) {
-                            this.filteredDashboardIDs.push(d.id);
-                        };
+                        return d;
                     };
                 };
             });
@@ -492,12 +484,10 @@ export class DashboardOpenComponent implements OnInit {
         };
         if (this.filterModifiedBefore != '') {
             let dateAfter: Date = new Date(this.filterModifiedAfter);
-            this.dashboards.forEach(d => {
+            this.dashboards = this.dashboards.filter(d => {
                 if (d.dateEdited != null) {
                     if (d.dateEdited <= dateAfter) {
-                        if (this.filteredDashboardIDs.indexOf(d.id) < 0) {
-                            this.filteredDashboardIDs.push(d.id);
-                        };
+                        return d;
                     };
                 };
             });
