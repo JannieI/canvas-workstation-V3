@@ -178,6 +178,17 @@ export class DashboardOpenComponent implements OnInit {
 
         // TODO - add Schedule filters later
         if (this.filterSchedulesSendToTitle != '') {
+            this.dashboardsOriginal.forEach(d => {
+                this.globalVariableService.dashboardSchedules.forEach(sch => {
+                    if (sch.dashboardID == d.id  
+                        &&  
+                        sch. userID.toLowerCase() == this.filterSharedWithUserID.toLowerCase()) {
+                        if (this.filteredDashboardIDs.indexOf(d.id) < 0) {
+                            this.filteredDashboardIDs.push(d.id);
+                        };
+                    };
+                });
+            });
 
         };
         if (this.filterSchedulesDueOn != '') {

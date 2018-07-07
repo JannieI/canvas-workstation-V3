@@ -691,6 +691,16 @@ export class DashboardSchedule {
     endsOn: string;                     // Date
 }
 
+export class DashboardScheduleLog {
+    id: number;                         // Unique ID
+    dashboardID: number;                // D that was linked
+    userID: string;                     // User to whom D was sent
+    groupID: string;                    // Optional Group to which D was sent
+    sentOn: Date;                       // Date dispatched
+    status: string;                     // Pending, Halted, Success, Failed
+    errorMessage;                       // Error message if it failed
+}
+
 export class DashboardPermission {
     id: number;                         // Unique ID
     dashboardID: number;                // FK to D
