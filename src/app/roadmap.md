@@ -121,6 +121,7 @@ This document describes items for later versions of Canvas.
      + Dont show top if no Dataset - rather appropriate Unexpected Error msg
     Resize does not snap sable IN 3 CLICKSto grid - is this philosophy correct?  If it does snap, remember to change the graphW & -H as well
     - FIX nrDataQualityIssues at DB level: join and fill the value, so that Canvas dont need to do any manipulation
+    - in Open D we list those 'Due on' a date.  This can only be done when we calculate the due date given the schedule - remember the Omega complexity with this.
     
 
 

@@ -214,6 +214,24 @@ export class DashboardOpenComponent implements OnInit {
 
         };
         if (this.filterSchedulesDueOn != '') {
+            // TODO - this is not final - needs to calc the due date
+            if (this.dashboardSchedules.length = 0) {
+                this.errorMessage = 'Still retrieving Schedules ...';
+                return;
+            };
+            let dueOn: Date = new Date(this.filterSchedulesDueOn);
+            this.dashboardsOriginal.forEach(d => {
+                this.dashboardSchedules.forEach(sch => {
+                    if (sch.dashboardID == d.id  
+                        &&  
+                        sch.startsOn >= dueOn
+                        ) {
+                            if (this.filteredDashboardIDs.indexOf(d.id) < 0) {
+                                this.filteredDashboardIDs.push(d.id);
+                            };
+                    };
+                });
+            });
 
         };
         if (this.filterSchedulesSentAfter != '') {

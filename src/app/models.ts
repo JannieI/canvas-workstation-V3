@@ -685,7 +685,7 @@ export class DashboardSchedule {
     yearlyOctober: boolean;             // For Yearly: Occurs in this month
     yearlyNovember: boolean;            // For Yearly: Occurs in this month
     yearlyDecember: boolean;            // For Yearly: Occurs in this month
-    startsOn: string;                   // Date
+    startsOn: Date;                     // Date
     endsNever: boolean;                 // True means never ends
     endsAfter: number;                  // n times, ie 2 means it will run twice
     endsOn: string;                     // Date

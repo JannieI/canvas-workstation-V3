@@ -266,9 +266,7 @@ export class DashboardScheduleEditComponent implements OnInit {
             };
         };
 
-        if (this.selectedDashboardSchedule.startsOn == null
-            ||
-            this.selectedDashboardSchedule.startsOn == '') {
+        if (this.selectedDashboardSchedule.startsOn == null) {
                 this.errorMessage = 'Enter start date';
                 return;
         };
