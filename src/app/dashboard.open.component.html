@@ -205,14 +205,6 @@
                             </select>
                         </div>
                     </div>
-    
-
-
-                    <!-- <div class="filterSharedWithGroup">
-                        <input type="text" [(ngModel)]="filterSharedWithGroup"
-                            placeholder="To grp"
-                            >
-                    </div> -->
 
                     <div class="filterOpenedTitle">
                         <b>Opened:</b>
@@ -263,28 +255,14 @@
                     </div>
                     <div class="filterDataDatasource">
                         <div class="select">
-                        <select [(ngModel)]="filterDataDatasource"
-                            >
-                            <option *ngFor="let row of datasources; let i = index">
-                                {{ row.name }}
-                            </option>
-                        </select>
-
-
-                        <!-- <input type="text" [(ngModel)]="filterDataDatasource"
-                            placeholder="Datasource"
-                            > -->
+                            <select [(ngModel)]="filterDataDatasource"
+                                >
+                                <option *ngFor="let row of datasources; let i = index">
+                                    {{ row.name }}
+                                </option>
+                            </select>
+                        </div>
                     </div>
-
-                    <!-- LATER -->
-                    <!-- <div class="filterDataFieldTitle">
-                        <b>Field:</b>
-                    </div>
-                    <div class="filterDataField">
-                        <input type="text" [(ngModel)]="filterDataField"
-                            placeholder="Field"
-                            >
-                    </div> -->
 
                     <div class="filterOtherTitle">
                         <b>Other:</b>

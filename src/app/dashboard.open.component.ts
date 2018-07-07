@@ -54,7 +54,7 @@ export class DashboardOpenComponent implements OnInit {
     dashboards: Dashboard[];
     dashboardScheduleLog: DashboardScheduleLog[] = [];
     dashboardSchedules: DashboardSchedule[] = [];
-    dataDatasources: Datasource[] = [];
+    datasources: Datasource[] = [];
     errorMessage: string = '';       
     filteredDashboardIDs: number[] = [];
     filterDashboardName: string = '';
@@ -98,8 +98,8 @@ export class DashboardOpenComponent implements OnInit {
         });
 
         // Get DSs
-        this.dataDatasources = this.globalVariableService.datasources.slice();
-        
+        this.datasources = this.globalVariableService.datasources.slice();
+        console.warn('xx this.ds', this.datasources)
         // Get Ds
         this.dashboardsOriginal = this.globalVariableService.dashboards.slice()
         this.dashboards = this.dashboardsOriginal.slice().sort((n1,n2) => {
