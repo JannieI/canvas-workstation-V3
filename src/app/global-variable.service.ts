@@ -26,6 +26,7 @@ import { DashboardPermission }        from './models';
 import { DashboardRecent}             from './models';
 import { DashboardSnapshot }          from './models';
 import { DashboardSchedule }          from './models';
+import { DashboardScheduleLog }       from './models';
 import { DashboardSubscription }      from './models';
 import { DashboardTab }               from './models';
 import { DashboardTag }               from './models';
@@ -609,6 +610,7 @@ export class GlobalVariableService {
     canvasGroups: CanvasGroup[] = [];
     dashboardTabs: DashboardTab[] = [];
     dashboardSchedules: DashboardSchedule[] = [];
+    dashboardScheduleLog: DashboardScheduleLog[] = [];
     dashboardTags: DashboardTag[] = [];
     dashboardPermissions: DashboardPermission[] = [];
     dashboardSnapshots: DashboardSnapshot[] = [];
@@ -3458,6 +3460,43 @@ export class GlobalVariableService {
                 }
             )
         });
+    }
+
+    getDashboardScheduleLog(
+        dashboardID: number,
+        sentAfter: Date = null,
+        sentBefore: Date = null): Promise<DashboardScheduleLog[]> {
+        // Description: Gets the Schedule Log for a single D or data range
+        // Returns: this.dashboardScheduleLog array
+        // NOTE: this routine does NOT use cached or if dirty (goes to DB each time)
+        console.log('%c    Global-Variables getDashboardScheduleLog ...',
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+
+        let url: string = 'dashboardScheduleLog';
+        this.filePath = './assets/data.dashboardScheduleLog.json';
+
+        return new Promise<DashboardScheduleLog[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
+            this.get(url)
+                .then(data => {
+                    // TODO - perform on DB side
+                    data = data.filter(dsl => dsl.dashboardID == dashboardID);
+                    if (sentAfter != null) {
+                        data = data.filter(dsl => dsl.sentOn >= sentAfter);
+                    };
+                    if (sentBefore != null) {
+                        data = data.filter(dsl => dsl.sentOn <= sentBefore);
+                    };
+                    this.dashboardScheduleLog = data;
+                    this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
+                    console.log('%c    Global-Variables getDashboardScheduleLog 1',
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
+                    resolve(this.dashboardScheduleLog);
+                });
+        });
+
     }
 
     getDashboardTags(): Promise<DashboardTag[]> {
