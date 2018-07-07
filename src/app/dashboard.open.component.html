@@ -262,18 +262,29 @@
                         <b>Datasource:</b>
                     </div>
                     <div class="filterDataDatasource">
-                        <input type="text" [(ngModel)]="filterDataDatasource"
-                            placeholder="Datasource"
+                        <div class="select">
+                        <select [(ngModel)]="filterDataDatasource"
                             >
+                            <option *ngFor="let row of datasources; let i = index">
+                                {{ row.name }}
+                            </option>
+                        </select>
+
+
+                        <!-- <input type="text" [(ngModel)]="filterDataDatasource"
+                            placeholder="Datasource"
+                            > -->
                     </div>
-                    <div class="filterDataFieldTitle">
+
+                    <!-- LATER -->
+                    <!-- <div class="filterDataFieldTitle">
                         <b>Field:</b>
                     </div>
                     <div class="filterDataField">
                         <input type="text" [(ngModel)]="filterDataField"
                             placeholder="Field"
                             >
-                    </div>
+                    </div> -->
 
                     <div class="filterOtherTitle">
                         <b>Other:</b>

@@ -17,7 +17,7 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService}       from './global-variable.service';
 
 // Models
-import { CanvasAuditTrail }           from './models';
+import { CanvasAuditTrail, Datasource }           from './models';
 import { CanvasGroup }                from './models';
 import { Dashboard }                  from './models';
 import { DashboardPermission }        from './models';
@@ -48,11 +48,14 @@ export class DashboardOpenComponent implements OnInit {
 
     }
 
-    dashboards: Dashboard[];
-    dashboardPermission: DashboardPermission[];
+    canvasAuditTrails: CanvasAuditTrail[] = [];
     dashboardsOriginal: Dashboard[];
-    errorMessage: string = '';
-        
+    dashboardPermission: DashboardPermission[];
+    dashboards: Dashboard[];
+    dashboardScheduleLog: DashboardScheduleLog[] = [];
+    dashboardSchedules: DashboardSchedule[] = [];
+    dataDatasources: Datasource[] = [];
+    errorMessage: string = '';       
     filteredDashboardIDs: number[] = [];
     filterDashboardName: string = '';
     filterSchedulesSendTo: string = '';
@@ -67,22 +70,18 @@ export class DashboardOpenComponent implements OnInit {
     filterCreatedBy: string = '';
     filterCreatedAfter: string = '';
     filterDataDatasource: string = '';
-    filterDataField: string = '';
+    // filterDataField: string = '';
     filterState: string = '';
     filterTag: string = '';
     filterMyFav: string = '';
     filterModifiedAfter: string = '';
     filterModifiedBefore: string = '';
     filterModifiedByUserID: string = '';
-
+    groups: CanvasGroup[] = [];
     records: number = 15;
     selectedRow: number = 0;
     showAdvancedFilters: boolean = false;
     showTypeDashboard: boolean = false;
-    dashboardScheduleLog: DashboardScheduleLog[] = [];
-    dashboardSchedules: DashboardSchedule[] = [];
-    groups: CanvasGroup[] = [];
-    canvasAuditTrails: CanvasAuditTrail[] = [];
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -97,6 +96,9 @@ export class DashboardOpenComponent implements OnInit {
         this.globalVariableService.getCanvasGroups().then( res => {
             this.groups = res;
         });
+
+        // Get DSs
+        this.dataDatasources = this.globalVariableService.datasources.slice();
         
         // Get Ds
         this.dashboardsOriginal = this.globalVariableService.dashboards.slice()
@@ -187,7 +189,7 @@ export class DashboardOpenComponent implements OnInit {
         this.filterCreatedBy = '';
         this.filterCreatedAfter = '';
         this.filterDataDatasource = '';
-        this.filterDataField = '';
+        // this.filterDataField = '';
         this.filterState = '';
         this.filterTag = '';
         this.filterMyFav = '';
@@ -416,9 +418,9 @@ export class DashboardOpenComponent implements OnInit {
         if (this.filterDataDatasource != '') {
 
         };
-        if (this.filterDataField != '') {
+        // if (this.filterDataField != '') {
 
-        };
+        // };
         if (this.filterState != '') {
             this.dashboardsOriginal.forEach(d => {
                 if (d.state != null) {
