@@ -405,13 +405,12 @@ export class DashboardOpenComponent implements OnInit {
 
         };
         if (this.filterCreatedAfter != '') {
-            let dateAfter: Date = new Date(this.filterModifiedAfter);
-            this.dashboards.forEach(d => {
+            let dateAfter: Date = new Date(this.filterCreatedAfter);
+            console.log('xx dafter', dateAfter, this.filterCreatedAfter)
+            this.dashboards = this.dashboards.filter(d => {
                 if (d.dateCreated != null) {
                     if (d.dateCreated >= dateAfter) {
-                        if (this.filteredDashboardIDs.indexOf(d.id) < 0) {
-                            this.filteredDashboardIDs.push(d.id);
-                        };
+                        return d;
                     };
                 };
             });
@@ -441,12 +440,13 @@ export class DashboardOpenComponent implements OnInit {
 
         };
         if (this.filterState != '') {
-            this.dashboards.forEach(d => {
+            this.dashboards = this.dashboards.filter(d => {
                 if (d.state != null) {
-                    if (d.state.toLowerCase() == this.filterModifiedByUserID.toLowerCase()) {
-                        if (this.filteredDashboardIDs.indexOf(d.id) < 0) {
-                            this.filteredDashboardIDs.push(d.id);
-                        };
+                    if (d.state.toLowerCase() == this.filterState.toLowerCase()) {
+                        // if (this.filteredDashboardIDs.indexOf(d.id) < 0) {
+                        //     this.filteredDashboardIDs.push(d.id);
+                        // };
+                        return d;
                     };
                 };
             });
