@@ -99,7 +99,7 @@ export class DashboardOpenComponent implements OnInit {
 
         // Get DSs
         this.datasources = this.globalVariableService.datasources.slice();
-        console.warn('xx this.ds', this.datasources)
+
         // Get Ds
         this.dashboardsOriginal = this.globalVariableService.dashboards.slice()
         this.dashboards = this.dashboardsOriginal.slice().sort((n1,n2) => {
@@ -146,7 +146,7 @@ export class DashboardOpenComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowAdvancedFilters', '@Start');
 
         this.showAdvancedFilters = !this.showAdvancedFilters;
-
+        console.warn('xx ', this.filterDataDatasource)
         // Get AuditTrail in advance
         this.globalVariableService.getCanvasAuditTrails().then( res => {
             this.canvasAuditTrails = res;
@@ -416,6 +416,26 @@ export class DashboardOpenComponent implements OnInit {
 
         };
         if (this.filterDataDatasource != '') {
+            let datasourceIndex: number = this.datasources.findIndex(ds => ds.name == this.filterDataDatasource);
+            let datasourceID: number = null;
+            if (datasourceIndex >= 0) {
+                datasourceID = this.datasources[datasourceIndex].id;
+            } else {
+                this.errorMessage = 'Unexpected error: The selected datasource does not exist in the DB';
+                return;
+            };
+
+            this.dashboardsOriginal.forEach(d => {
+                this.globalVariableService.widgets.forEach(w => {
+                    if (w.dashboardID == d.id  
+                        &&  
+                        w.datasourceID == datasourceID) {
+                        if (this.filteredDashboardIDs.indexOf(d.id) < 0) {
+                            this.filteredDashboardIDs.push(d.id);
+                        };
+                    };
+                });
+            });
 
         };
         // if (this.filterDataField != '') {
