@@ -70,7 +70,6 @@ export class DashboardOpenComponent implements OnInit {
     filterCreatedBy: string = '';
     filterCreatedAfter: string = '';
     filterDataDatasource: string = '';
-    // filterDataField: string = '';
     filterState: string = '';
     filterTag: string = '';
     filterMyFav: string = '';
@@ -201,10 +200,12 @@ export class DashboardOpenComponent implements OnInit {
 
     clickFiltersApply() {
         // Open area with advanced filters
+        // Note: these are combined as AND conditions
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowAdvancedFilters', '@Start');
 
         // Reset
         this.filteredDashboardIDs = [];
+        this.dashboards = this.dashboardsOriginal.slice();
 
         // TODO - add Schedule filters later
         if (this.filterSchedulesSendTo != '') {
@@ -212,7 +213,7 @@ export class DashboardOpenComponent implements OnInit {
                 this.errorMessage = 'Still retrieving Schedule Log ...';
                 return;
             };
-            this.dashboardsOriginal.forEach(d => {
+            this.dashboards.forEach(d => {
                 this.dashboardScheduleLog.forEach(dsl => {
                     if (dsl.dashboardID == d.id  
                         &&  
@@ -237,7 +238,7 @@ export class DashboardOpenComponent implements OnInit {
                 return;
             };
             let dueOn: Date = new Date(this.filterSchedulesDueOn);
-            this.dashboardsOriginal.forEach(d => {
+            this.dashboards.forEach(d => {
                 this.dashboardSchedules.forEach(sch => {
                     if (sch.dashboardID == d.id  
                         &&  
@@ -257,7 +258,7 @@ export class DashboardOpenComponent implements OnInit {
                 return;
             };
             let sentAfter: Date = new Date(this.filterSchedulesSentAfter);
-            this.dashboardsOriginal.forEach(d => {
+            this.dashboards.forEach(d => {
                 this.dashboardScheduleLog.forEach(dsl => {
                     if (dsl.dashboardID == d.id  
                         &&  
@@ -277,7 +278,7 @@ export class DashboardOpenComponent implements OnInit {
                 return;
             };
             let sentBefore: Date = new Date(this.filterSchedulesSentBefore);
-            this.dashboardsOriginal.forEach(d => {
+            this.dashboards.forEach(d => {
                 this.dashboardScheduleLog.forEach(dsl => {
                     if (dsl.dashboardID == d.id  
                         &&  
@@ -293,7 +294,7 @@ export class DashboardOpenComponent implements OnInit {
         };
 
         if (this.filterSharedByUserID != '') {
-            this.dashboardsOriginal.forEach(d => {
+            this.dashboards.forEach(d => {
                 this.globalVariableService.dashboardPermissions.forEach(dP => {
                     if (dP.dashboardID == d.id  
                         &&  
@@ -306,7 +307,7 @@ export class DashboardOpenComponent implements OnInit {
             });
         };
         if (this.filterSharedWithUserID != '') {
-            this.dashboardsOriginal.forEach(d => {
+            this.dashboards.forEach(d => {
                 this.globalVariableService.dashboardPermissions.forEach(dP => {
                     if (dP.dashboardID == d.id  
                         &&  
@@ -329,7 +330,7 @@ export class DashboardOpenComponent implements OnInit {
             };
 
             this.groups.findIndex(grp => grp.name == this.filterSharedWithGroup);
-            this.dashboardsOriginal.forEach(d => {
+            this.dashboards.forEach(d => {
                 this.globalVariableService.dashboardPermissions.forEach(dP => {
                     if (dP.dashboardID == d.id  
                         &&  
@@ -348,7 +349,7 @@ export class DashboardOpenComponent implements OnInit {
                 this.errorMessage = 'Still retrieving Schedule Log ...';
                 return;
             };
-            this.dashboardsOriginal.forEach(d => {
+            this.dashboards.forEach(d => {
                 this.canvasAuditTrails.forEach(aud => {
                     if (aud.dashboardID == d.id  
                         &&  
@@ -372,7 +373,7 @@ export class DashboardOpenComponent implements OnInit {
                 return;
             };
             let afterDate: Date = new Date(this.filterOpenedAfterDate);
-            this.dashboardsOriginal.forEach(d => {
+            this.dashboards.forEach(d => {
                 this.canvasAuditTrails.forEach(aud => {
                     if (aud.dashboardID == d.id  
                         &&  
@@ -391,12 +392,13 @@ export class DashboardOpenComponent implements OnInit {
 
         };
         if (this.filterCreatedBy != '') {
-            this.dashboardsOriginal.forEach(d => {
+            this.dashboards = this.dashboards.filter(d => {
                 if (d.creator != null) {
                     if (d.creator.toLowerCase() == this.filterCreatedBy.toLowerCase()) {
-                        if (this.filteredDashboardIDs.indexOf(d.id) < 0) {
-                            this.filteredDashboardIDs.push(d.id);
-                        };
+                        return d;
+                        // if (this.filteredDashboardIDs.indexOf(d.id) < 0) {
+                        //     this.filteredDashboardIDs.push(d.id);
+                        // };
                     };
                 };
             });
@@ -404,7 +406,7 @@ export class DashboardOpenComponent implements OnInit {
         };
         if (this.filterCreatedAfter != '') {
             let dateAfter: Date = new Date(this.filterModifiedAfter);
-            this.dashboardsOriginal.forEach(d => {
+            this.dashboards.forEach(d => {
                 if (d.dateCreated != null) {
                     if (d.dateCreated >= dateAfter) {
                         if (this.filteredDashboardIDs.indexOf(d.id) < 0) {
@@ -425,7 +427,7 @@ export class DashboardOpenComponent implements OnInit {
                 return;
             };
 
-            this.dashboardsOriginal.forEach(d => {
+            this.dashboards.forEach(d => {
                 this.globalVariableService.widgets.forEach(w => {
                     if (w.dashboardID == d.id  
                         &&  
@@ -438,11 +440,8 @@ export class DashboardOpenComponent implements OnInit {
             });
 
         };
-        // if (this.filterDataField != '') {
-
-        // };
         if (this.filterState != '') {
-            this.dashboardsOriginal.forEach(d => {
+            this.dashboards.forEach(d => {
                 if (d.state != null) {
                     if (d.state.toLowerCase() == this.filterModifiedByUserID.toLowerCase()) {
                         if (this.filteredDashboardIDs.indexOf(d.id) < 0) {
@@ -454,7 +453,7 @@ export class DashboardOpenComponent implements OnInit {
 
         };
         if (this.filterTag != '') {
-            this.dashboardsOriginal.forEach(d => {
+            this.dashboards.forEach(d => {
                 this.globalVariableService.dashboardTags.forEach(tag => {
                     if (d.id == tag.id) {
                         if (tag.tag.toLowerCase() == this.filterTag.toLowerCase()) {
@@ -469,7 +468,7 @@ export class DashboardOpenComponent implements OnInit {
 
         };
         if (this.filterMyFav != '') {
-            this.dashboardsOriginal.forEach(d => {
+            this.dashboards.forEach(d => {
                 if (this.globalVariableService.currentUser.favouriteDashboards.indexOf(d.id) >= 0) {
                     if (this.filteredDashboardIDs.indexOf(d.id) < 0) {
                         this.filteredDashboardIDs.push(d.id);
@@ -480,7 +479,7 @@ export class DashboardOpenComponent implements OnInit {
         };
         if (this.filterModifiedAfter != '') {
             let dateAfter: Date = new Date(this.filterModifiedAfter);
-            this.dashboardsOriginal.forEach(d => {
+            this.dashboards.forEach(d => {
                 if (d.dateEdited != null) {
                     if (d.dateEdited >= dateAfter) {
                         if (this.filteredDashboardIDs.indexOf(d.id) < 0) {
@@ -493,7 +492,7 @@ export class DashboardOpenComponent implements OnInit {
         };
         if (this.filterModifiedBefore != '') {
             let dateAfter: Date = new Date(this.filterModifiedAfter);
-            this.dashboardsOriginal.forEach(d => {
+            this.dashboards.forEach(d => {
                 if (d.dateEdited != null) {
                     if (d.dateEdited <= dateAfter) {
                         if (this.filteredDashboardIDs.indexOf(d.id) < 0) {
@@ -505,12 +504,10 @@ export class DashboardOpenComponent implements OnInit {
 
         };
         if (this.filterModifiedByUserID != '') {
-            this.dashboardsOriginal.forEach(d => {
+            this.dashboards = this.dashboards.filter(d => {
                 if (d.editor != null) {
                     if (d.editor.toLowerCase() == this.filterModifiedByUserID.toLowerCase()) {
-                        if (this.filteredDashboardIDs.indexOf(d.id) < 0) {
-                            this.filteredDashboardIDs.push(d.id);
-                        };
+                        return d;
                     };
                 };
             });
