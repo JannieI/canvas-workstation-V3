@@ -447,6 +447,13 @@ export class DashboardOpenComponent implements OnInit {
 
         };
         if (this.filterMyFav != '') {
+            this.dashboardsOriginal.forEach(d => {
+                if (this.globalVariableService.currentUser.favouriteDashboards.indexOf(d.id) >= 0) {
+                    if (this.filteredDashboardIDs.indexOf(d.id) < 0) {
+                        this.filteredDashboardIDs.push(d.id);
+                    };
+                };
+            });
 
         };
         if (this.filterModifiedAfter != '') {
