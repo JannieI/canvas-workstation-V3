@@ -211,6 +211,23 @@ export class DashboardOpenComponent implements OnInit {
 
         };
         if (this.filterSchedulesSentAfter != '') {
+            if (this.dashboardScheduleLog.length = 0) {
+                this.errorMessage = 'Still retrieving Schedule Log ...';
+                return;
+            };
+            let sentAfter: Date = new Date(this.filterSchedulesSentAfter);
+            this.dashboardsOriginal.forEach(d => {
+                this.dashboardScheduleLog.forEach(dsl => {
+                    if (dsl.dashboardID == d.id  
+                        &&  
+                        dsl.sentOn >= sentAfter
+                        ) {
+                            if (this.filteredDashboardIDs.indexOf(d.id) < 0) {
+                                this.filteredDashboardIDs.push(d.id);
+                            };
+                    };
+                });
+            });
 
         };
         if (this.filterSchedulesSentBefore != '') {
