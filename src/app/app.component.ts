@@ -998,6 +998,7 @@ export class AppComponent implements OnInit {
                 null,
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                'Change',
                 changedWidget.id,
                 'Widget',
                 this.newWidget? 'Add' : 'Edit',
@@ -1028,6 +1029,7 @@ export class AppComponent implements OnInit {
                 null,
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                'Change',
                 this.selectedWidget.id,
                 'Widget',
                 'Delete',
@@ -1092,6 +1094,7 @@ export class AppComponent implements OnInit {
                 null,
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                'Change',
                 changedWidget.id,
                 'Widget',
                 this.newWidget? 'Add' : 'Edit',
@@ -1135,6 +1138,7 @@ export class AppComponent implements OnInit {
                 null,
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                'Change',
                 changedWidget.id,
                 'Widget',
                 this.newWidget? 'Add' : 'Edit',
@@ -1642,6 +1646,7 @@ export class AppComponent implements OnInit {
                 null,
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                'Change',
                 this.selectedWidget.id,
                 'Widget',
                 'Delete',
@@ -1671,6 +1676,7 @@ export class AppComponent implements OnInit {
                 null,
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                'Change',
                 changedWidget.id,
                 'Widget',
                 this.newWidget? 'Add' : 'Edit',
@@ -1701,6 +1707,7 @@ export class AppComponent implements OnInit {
                 null,
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                'Change',
                 this.selectedWidget.id,
                 'Widget',
                 'Delete',
@@ -1731,6 +1738,7 @@ export class AppComponent implements OnInit {
                 null,
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                'Change',
                 this.selectedWidget.id,
                 'Widget',
                 'Delete',
@@ -2083,6 +2091,7 @@ export class AppComponent implements OnInit {
                 null,
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                'Change',
                 filteredActions[0].newWidget.id,
                 'Widget',
                 'Undo',
@@ -2163,6 +2172,7 @@ export class AppComponent implements OnInit {
                 null,
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                'Change',
                 filteredActions[0].newWidget.id,
                 'Widget',
                 'Undo ' + filteredActions[0].redoID == null? 'DO' : 'REDO',
@@ -2274,6 +2284,7 @@ export class AppComponent implements OnInit {
                             null,
                             this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
                             this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                            'Change',
                             ourActions[i].newWidget.id,
                             'Widget',
                             'Redo',
@@ -6468,6 +6479,7 @@ export class AppComponent implements OnInit {
                         null,
                         this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
                         this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                        'Change',
                         w.id,
                         'Widget',
                         'Move',
@@ -6501,6 +6513,7 @@ export class AppComponent implements OnInit {
                         actID,
                         this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
                         this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                        'Change',
                         w.id,
                         null,
                         null,
@@ -6757,6 +6770,7 @@ export class AppComponent implements OnInit {
             null,
             this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
             this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+            'Change',
             oldWidget.id,
             'Widget',
             'Resize',
@@ -7234,6 +7248,7 @@ export class AppComponent implements OnInit {
                 null,
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                'Change',
                 copiedWidget.id,
                 'Widget',
                 'Duplicate',
@@ -7311,7 +7326,22 @@ export class AppComponent implements OnInit {
 
         // Reset first action flag
         this.globalVariableService.firstAction = true;
-    }
+
+        // Add to Audit Trail
+        this.globalVariableService.actionUpsert(
+            null,
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+            'Change',
+            copiedWidget.id,
+            'Widget',
+            'Duplicate',
+            'App clickMenuWidgetDuplicate',
+            null,
+            null,
+            null,
+            copiedWidget
+        );    }
 
     clearDashboard() {
         // Clears all the vars for the current D
