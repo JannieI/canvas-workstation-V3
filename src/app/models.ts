@@ -91,6 +91,7 @@ export class CanvasAuditTrail {
     id: number;                             // Unique id per action
     dashboardID: number;                    // Where action took place
     dashboardTabID: number;                 // Where action took place
+    actionType: string;                     // Add, Delete, Change, Open
     widgetID: number;                       // If linked to a Widget
     userID: string;                         // User who made change
     keyChanged: string;                     // Field / key that was changed

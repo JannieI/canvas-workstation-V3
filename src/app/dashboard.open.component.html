@@ -198,7 +198,6 @@
                     <div class="filterSharedWithGroup">
                         <div class="select">
                             <select [(ngModel)]="filterSharedWithGroup"
-                                (change)="clickSelectGroup($event)"
                                 >
                                 <option *ngFor="let row of groups; let i = index">
                                     {{ row.name }}

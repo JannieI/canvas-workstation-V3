@@ -34,6 +34,7 @@
                         <clr-dg-column [clrDgField]="id">ID</clr-dg-column>
                         <clr-dg-column [clrDgField]="dashboardID">DashboardID</clr-dg-column>
                         <clr-dg-column [clrDgField]="dashboardTabID">TabID</clr-dg-column>
+                        <clr-dg-column [clrDgField]="dashboardTabID">ActionType</clr-dg-column>
                         <clr-dg-column [clrDgField]="widgetID">WidgetID</clr-dg-column>
                         <clr-dg-column [clrDgField]="userID">User ID</clr-dg-column>
                         <clr-dg-column [clrDgField]="keyChanged">keyChanged</clr-dg-column>
@@ -50,6 +51,7 @@
                             <clr-dg-cell>{{ row.id }}</clr-dg-cell>
                             <clr-dg-cell>{{ row.dashboardID }}</clr-dg-cell>
                             <clr-dg-cell>{{ row.dashboardTabID }}</clr-dg-cell>
+                            <clr-dg-cell>{{ row.actionType }}</clr-dg-cell>
                             <clr-dg-cell>{{ row.widgetID }}</clr-dg-cell>
                             <clr-dg-cell>{{ row.userID }}</clr-dg-cell>
                             <clr-dg-cell>{{ row.keyChanged }}</clr-dg-cell>
