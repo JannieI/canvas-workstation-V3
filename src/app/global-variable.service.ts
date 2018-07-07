@@ -7889,6 +7889,23 @@ export class GlobalVariableService {
         return vlSpecsNew;
     }
 
+    // id: number,
+    // dashboardID: number,
+    // dashboardTabID: number,
+    // widgetID: number,
+
+    // objectType: string,
+    // actionType: string,
+    // action: string,
+    // description: string,
+
+    // undoID: number,
+    // redoID: number,
+
+    // oldWidget: any,
+    // newWidget: any,
+    // logToDB: boolean = true
+
     actionUpsert(
         id: number,
         dashboardID: number,
@@ -7937,7 +7954,6 @@ export class GlobalVariableService {
             this.firstAction = false;
         };
 
-
         if (id == null) {
             // Add / Update an action to the ActionLog.  It returns id of new/updated record
             // It returns -1 if it failed.
@@ -7958,7 +7974,9 @@ export class GlobalVariableService {
                 id: actID,
                 dashboardID: dashboardID,
                 dashboardTabID: dashboardTabID,
+                widgetID: oldWidget == null? null : oldWidget.id,
                 objectType: objectType,
+                actionType: actionType, 
                 action: action,
                 description: description,
                 undoID: undoID,
@@ -8020,12 +8038,15 @@ export class GlobalVariableService {
                                 id: null,
                                 dashboardID: this.currentDashboardInfo.value.currentDashboardID,
                                 dashboardTabID: this.currentDashboardInfo.value.currentDashboardTabID,
-                                actionType: actionType,
                                 widgetID: widgetID,
-                                userID: this.currentUser.userID,
+                                objectType: objectType,
+                                actionType: actionType,
+                                action: action,
+                                description: description,
                                 keyChanged: key,
                                 oldValue: actOldWidget[key],
                                 newValue: actNewWidget[key],
+                                userID: this.currentUser.userID,
                                 changedOn: this.formatDate(today)
                             }
                             this.addCanvasAuditTrail(newAuditTrail);

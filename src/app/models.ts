@@ -76,13 +76,19 @@ export class CanvasAction {
     id: number;                             // Unique id per action
     dashboardID: number;                    // Where action took place
     dashboardTabID: number;                 // Where action took place
+    widgetID: number;                       // Optional W where action took place
+
     objectType: string;                     // Type, ie Dashboard, Widget
-    action: string;                         // Optional name, ie Move Widget
+    actionType: string;                     // Main type of action: Add, Delete, Change, Open, etc
+    action: string;                         // Sub action type, ie Move Widget
     description: string;                    // Optional description, ie calling routine, etc
+
     undoID: number;                         // Optional id of item in UNDO
     redoID: number;                         // Optonal id of item in REDO
+
     oldWidget: any;                         // Full W before action
     newWidget: any;                         // Full W after action
+
     createor: string;                       // UserID who created action
     created: string;                        // DateTime action was created
 }
@@ -91,12 +97,18 @@ export class CanvasAuditTrail {
     id: number;                             // Unique id per action
     dashboardID: number;                    // Where action took place
     dashboardTabID: number;                 // Where action took place
-    actionType: string;                     // Add, Delete, Change, Open
     widgetID: number;                       // If linked to a Widget
-    userID: string;                         // User who made change
+
+    objectType: string;                     // Dashboard, Widget
+    actionType: string;                     // Add, Delete, Change, Open
+    action: string;                         // Sub action type, ie Move Widget
+    description: string;                    // Optional description, ie calling routine, etc
+
     keyChanged: string;                     // Field / key that was changed
     oldValue: any;                          // Value prior to change
     newValue: any;                          // Value after change
+
+    userID: string;                         // User who made change
     changedOn: string;                      // Date Time when changes was made
 }
 

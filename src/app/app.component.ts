@@ -7332,15 +7332,15 @@ export class AppComponent implements OnInit {
             null,
             this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
             this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
-            'Change',
-            copiedWidget.id,
-            'Widget',
-            'Duplicate',
+            'Open',
+            null,
+            'Dashboard',
+            '',
             'App clickMenuWidgetDuplicate',
             null,
             null,
             null,
-            copiedWidget
+            null
         );    }
 
     clearDashboard() {
