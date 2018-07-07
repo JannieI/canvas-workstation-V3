@@ -17,6 +17,7 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService}       from './global-variable.service';
 
 // Models
+import { CanvasGroup }                from './models';
 import { Dashboard }                  from './models';
 import { DashboardPermission }        from './models';
 import { DashboardScheduleLog }       from './models';
@@ -79,6 +80,7 @@ export class DashboardOpenComponent implements OnInit {
     showTypeDashboard: boolean = false;
     dashboardScheduleLog: DashboardScheduleLog[] = [];
     dashboardSchedules: DashboardSchedule[] = [];
+    groups: CanvasGroup[] = [];
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -88,6 +90,10 @@ export class DashboardOpenComponent implements OnInit {
     ngOnInit() {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
+        this.globalVariableService.getCanvasGroups().then( res => {
+            this.groups = res;
+        });
 
         this.dashboardsOriginal = this.globalVariableService.dashboards.slice()
         this.dashboards = this.dashboardsOriginal.slice().sort((n1,n2) => {
@@ -302,11 +308,21 @@ export class DashboardOpenComponent implements OnInit {
             });
         };
         if (this.filterSharedWithGroup != '') {
+            let groupIndex: number = this.groups.findIndex(grp => grp.name == this.filterSharedWithGroup);
+            let groupID: number = null;
+            if (groupIndex >= 0) {
+                groupID = this.groups[groupIndex].id;
+            } else {
+                this.errorMessage = 'Unexpected error: The group does not exist in the DB';
+                return;
+            };
+
+            this.groups.findIndex(grp => grp.name == this.filterSharedWithGroup);
             this.dashboardsOriginal.forEach(d => {
                 this.globalVariableService.dashboardPermissions.forEach(dP => {
                     if (dP.dashboardID == d.id  
                         &&  
-                        dP.groupID.toLowerCase() == this.filterSharedWithGroup.toLowerCase()) {
+                        dP.groupID == groupID) {
                         if (this.filteredDashboardIDs.indexOf(d.id) < 0) {
                             this.filteredDashboardIDs.push(d.id);
                         };
@@ -315,6 +331,7 @@ export class DashboardOpenComponent implements OnInit {
             });
 
         };
+
         if (this.filterOpenedByUserID != '') {
 
         };

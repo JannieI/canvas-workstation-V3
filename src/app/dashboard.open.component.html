@@ -194,11 +194,26 @@
                     <div class="filterSharedWithGroupTitle">
                         <b>With Group:</b>
                     </div>
+
                     <div class="filterSharedWithGroup">
+                        <div class="select">
+                            <select [(ngModel)]="filterSharedWithGroup"
+                                (change)="clickSelectGroup($event)"
+                                >
+                                <option *ngFor="let row of groups; let i = index">
+                                    {{ row.name }}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+    
+
+
+                    <!-- <div class="filterSharedWithGroup">
                         <input type="text" [(ngModel)]="filterSharedWithGroup"
                             placeholder="To grp"
                             >
-                    </div>
+                    </div> -->
 
                     <div class="filterOpenedTitle">
                         <b>Opened:</b>
