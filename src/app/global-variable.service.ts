@@ -3463,10 +3463,10 @@ export class GlobalVariableService {
     }
 
     getDashboardScheduleLog(
-        dashboardID: number,
+        dashboardID: number = null,
         sentAfter: Date = null,
         sentBefore: Date = null): Promise<DashboardScheduleLog[]> {
-        // Description: Gets the Schedule Log for a single D or data range
+        // Description: Gets the Schedule Log for a single D or requested range
         // Returns: this.dashboardScheduleLog array
         // NOTE: this routine does NOT use cached or if dirty (goes to DB each time)
         console.log('%c    Global-Variables getDashboardScheduleLog ...',
@@ -3482,7 +3482,9 @@ export class GlobalVariableService {
             this.get(url)
                 .then(data => {
                     // TODO - perform on DB side
-                    data = data.filter(dsl => dsl.dashboardID == dashboardID);
+                    if (dashboardID != null) {
+                        data = data.filter(dsl => dsl.dashboardID == dashboardID);
+                    };
                     if (sentAfter != null) {
                         data = data.filter(dsl => dsl.sentOn >= sentAfter);
                     };
