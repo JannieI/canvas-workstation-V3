@@ -17,7 +17,9 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService}       from './global-variable.service';
 
 // Models
-import { CanvasAuditTrail, Datasource }           from './models';
+import { CanvasAuditTrail }           from './models';
+import { Datasource }                 from './models';
+import { DashboardTag }               from './models';
 import { CanvasGroup }                from './models';
 import { Dashboard }                  from './models';
 import { DashboardPermission }        from './models';
@@ -54,6 +56,7 @@ export class DashboardOpenComponent implements OnInit {
     dashboards: Dashboard[];
     dashboardScheduleLog: DashboardScheduleLog[] = [];
     dashboardSchedules: DashboardSchedule[] = [];
+    dashboardTags: DashboardTag[] =[];
     datasources: Datasource[] = [];
     errorMessage: string = '';       
     filteredDashboardIDs: number[] = [];
@@ -151,7 +154,11 @@ export class DashboardOpenComponent implements OnInit {
             this.canvasAuditTrails = res;
         });
         
-        // Get Schedule Logs in advance
+        // Get Tags in advance
+        this.globalVariableService.getDashboardTags().then(res =>
+            this.dashboardTags = res);
+
+            // Get Schedule Logs in advance
         this.globalVariableService.getDashboardScheduleLog().then(res =>
             this.dashboardScheduleLog = res);
 
@@ -453,9 +460,10 @@ export class DashboardOpenComponent implements OnInit {
 
         };
         if (this.filterTag != '') {
+            console.warn('xx dashboardTags', this.globalVariableService.dashboardTags)
             this.dashboards = this.dashboards.filter(d => {
                 this.globalVariableService.dashboardTags.forEach(tag => {
-                    if (d.id == tag.id) {
+                    if (d.id == tag.dashboardID) {
                         if (tag.tag.toLowerCase() == this.filterTag.toLowerCase()) {
                             return d;
                         };
