@@ -109,7 +109,7 @@ export class CanvasAuditTrail {
     newValue: any;                          // Value after change
 
     userID: string;                         // User who made change
-    changedOn: string;                      // Date Time when changes was made
+    changedOn: Date;                        // Date Time of log, when changes was made
 }
 
 export class StatusBarMessage {

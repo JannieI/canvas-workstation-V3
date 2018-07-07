@@ -63,7 +63,7 @@ export class DashboardOpenComponent implements OnInit {
     filterSharedWithUserID: string = '';
     filterSharedWithGroup: string = '';
     filterOpenedByUserID: string = '';
-    filterOpenedLastMonth: string = '';
+    filterOpenedAfterDate: string = '';
     filterCreatedBy: string = '';
     filterCreatedAfter: string = '';
     filterDataDatasource: string = '';
@@ -183,7 +183,7 @@ export class DashboardOpenComponent implements OnInit {
         this.filterSharedWithUserID = '';
         this.filterSharedWithGroup = '';
         this.filterOpenedByUserID = '';
-        this.filterOpenedLastMonth = '';
+        this.filterOpenedAfterDate = '';
         this.filterCreatedBy = '';
         this.filterCreatedAfter = '';
         this.filterDataDatasource = '';
@@ -364,7 +364,28 @@ export class DashboardOpenComponent implements OnInit {
             });
 
         };
-        if (this.filterOpenedLastMonth != '') {
+        if (this.filterOpenedAfterDate != '') {
+            if (this.dashboardScheduleLog.length = 0) {
+                this.errorMessage = 'Still retrieving Schedule Log ...';
+                return;
+            };
+            let afterDate: Date = new Date(this.filterOpenedAfterDate);
+            this.dashboardsOriginal.forEach(d => {
+                this.canvasAuditTrails.forEach(aud => {
+                    if (aud.dashboardID == d.id  
+                        &&  
+                        aud.changedOn == afterDate
+                        &&
+                        aud.objectType == 'Dashboard'
+                        &&
+                        aud.actionType == 'Open'
+                        ) {
+                            if (this.filteredDashboardIDs.indexOf(d.id) < 0) {
+                                this.filteredDashboardIDs.push(d.id);
+                            };
+                    };
+                });
+            });
 
         };
         if (this.filterCreatedBy != '') {
