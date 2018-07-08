@@ -235,6 +235,25 @@ export class DashboardShareComponent implements OnInit {
         };
     }
 
+    clickToggleSave(id: number, $event) {
+        // User dblclicked Save - so toggle it
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickToggleSave', '@Start');
+
+        let index: number = -1;
+        for(var i = 0; i < this.dashboardPermissions.length; i++) {
+            if (this.dashboardPermissions[i].id == id) {
+                this.dashboardPermissions[i].canSaveRight = ! this.dashboardPermissions[i].canSaveRight;
+                index = i;
+            };
+        };
+
+        if (index != -1) {
+            this.globalVariableService.saveDashboardPermission(
+                this.dashboardPermissions[index])
+                ;
+        };
+    }
+
     clickToggleDelete(id: number, $event) {
         // User dblclicked Delete - so toggle it
         this.globalFunctionService.printToConsole(this.constructor.name,'clickToggleDelete', '@Start');
