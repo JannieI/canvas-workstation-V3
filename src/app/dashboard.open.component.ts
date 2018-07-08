@@ -235,7 +235,6 @@ export class DashboardOpenComponent implements OnInit {
             });
 
         };
-        console.warn('xx AFTER filterSchedulesSendTo', this.dashboards)
         if (this.filterSchedulesDueOn != '') {
             // TODO - this is not final - needs to calc the due date
             if (this.dashboardSchedules.length == 0) {
@@ -257,46 +256,27 @@ export class DashboardOpenComponent implements OnInit {
             });
 
         };
-        console.warn('xx AFTER filterSchedulesDueOn', this.dashboards)
         if (this.filterSchedulesSentAfter != '') {
-            if (this.dashboardScheduleLog.length == 0) {
+            let sentAfter: Date = new Date(this.filterSchedulesSentAfter);
+
+            if (this.dashboardScheduleLog.length ==0) {
                 this.errorMessage = 'Still retrieving Schedule Log ...';
                 return;
             };
-            let sentAfter: Date = new Date(this.filterSchedulesSentAfter);
-            this.dashboards.forEach(d => {
-                this.dashboardScheduleLog.forEach(dsl => {
-                    if (dsl.dashboardID == d.id  
-                        &&  
-                        dsl.sentOn >= sentAfter
-                        ) {
-                            if (this.filteredDashboardIDs.indexOf(d.id) < 0) {
-                                this.filteredDashboardIDs.push(d.id);
-                            };
-                    };
-                });
+
+            let dIDs: number[] = this.dashboardScheduleLog
+                .filter(dsl => new Date(dsl.sentOn) >= sentAfter)
+                .map(dsl => dsl.dashboardID);
+
+            this.dashboards = this.dashboards.filter(d => {
+                if (dIDs.indexOf(d.id) >= 0) {
+                    return d;
+                };
             });
 
         };
-        console.warn('xx AFTER filterSchedulesSentAfter', this.dashboards)
         if (this.filterSchedulesSentBefore != '') {
-            if (this.dashboardScheduleLog.length == 0) {
-                this.errorMessage = 'Still retrieving Schedule Log ...';
-                return;
-            };
-            let sentBefore: Date = new Date(this.filterSchedulesSentBefore);
-            this.dashboards.forEach(d => {
-                this.dashboardScheduleLog.forEach(dsl => {
-                    if (dsl.dashboardID == d.id  
-                        &&  
-                        dsl.sentOn <= sentBefore
-                        ) {
-                            if (this.filteredDashboardIDs.indexOf(d.id) < 0) {
-                                this.filteredDashboardIDs.push(d.id);
-                            };
-                    };
-                });
-            });
+
 
         };
         console.warn('xx AFTER filterSchedulesSentBefore', this.dashboards)
