@@ -37,55 +37,32 @@
         text-align: left;
     }
 
-    .gridFolderTitle {
+    .gridFileTitle {
         grid-column-start: 1;
         grid-column-end: 3;
-        grid-row-start: 10;
-        grid-row-end: 11;
-        text-align: left;
-    }
-    .gridFolder {
-        grid-column-start: 3;
-        grid-column-end: 9;
-        grid-row-start: 10;
-        grid-row-end: 11;
-        text-align: left;
-    }
-
-    .gridFileTitle {
-        grid-column-start: 10;
-        grid-column-end: 13;
-        grid-row-start: 10;
-        grid-row-end: 11;
+        grid-row-start: 8;
+        grid-row-end: 9;
         text-align: left;
     }
     .gridFile {
-        grid-column-start: 13;
-        grid-column-end: 17;
+        grid-column-start: 3;
+        grid-column-end: 7;
         grid-row-start: 10;
         grid-row-end: 11;
-        text-align: left;
-    }
-
-    .gridFolderBrowse {
-        grid-column-start: 1;
-        grid-column-end: 3;
-        grid-row-start: 12;
-        grid-row-end: 13;
         text-align: left;
     }
 
     .gridButtonCancel {
         grid-column-start: 6;
         grid-column-end: 8;
-        grid-row-start: 14;
-        grid-row-end: 15;
+        grid-row-start: 10;
+        grid-row-end: 11;
         text-align: left;
     }
     .gridButtonImport {
         grid-column-start: 13;
         grid-column-end: 20;
-        grid-row-start: 14;
-        grid-row-end: 15;
+        grid-row-start: 10;
+        grid-row-end: 11;
         text-align: left;
     }

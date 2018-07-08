@@ -95,6 +95,7 @@ export class WidgetExportComponent implements OnInit {
         // Export
         let newW: Widget = Object.assign({}, this.selectedWidget);
         newW.data = [];
+        newW.graphData = [];
         var obj = JSON.stringify(newW);  
         this.saveText(JSON.stringify(obj), this.fileName);
 

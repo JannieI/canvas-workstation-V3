@@ -53,6 +53,44 @@ export class DashboardExportComponent implements OnInit {
         this.dashboards = this.globalVariableService.dashboards.slice();
     }
 
+    clickExport() {
+        // Export the image, and close the file
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickExport', '@Start');
+
+        // Reset
+        this.errorMessage = '';
+
+        // Validate
+        if (this.selectedWidget == null) {
+            this.errorMessage = "The Widget selected is empty.  Close and try again.";
+            return;
+        };
+        if (this.fileName == null  ||  this.fileName == '') {
+            this.errorMessage = "The file name is compulsory";
+            return;
+        };
+        
+        // Export
+        let newW: Widget = Object.assign({}, this.selectedWidget);
+        newW.data = [];
+        newW.graphData = [];
+        var obj = JSON.stringify(newW);  
+        this.saveText(JSON.stringify(obj), this.fileName);
+
+  	  	this.formDashboardExportClosed.emit('Exported');
+
+    }
+
+    saveText(text, filename){
+        // Actual Export of selected DS to a file by creating <a> tag
+        this.globalFunctionService.printToConsole(this.constructor.name,'saveText',           '@Start');
+
+        var a = document.createElement('a');
+        a.setAttribute('href', 'data:text/plain;charset=utf-u,'+encodeURIComponent(text));
+        a.setAttribute('download', filename);
+        a.click()
+    }
+
     clickClose(action: string) {
         console.log('clickClose')
 
