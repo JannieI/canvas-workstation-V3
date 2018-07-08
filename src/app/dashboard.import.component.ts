@@ -47,8 +47,8 @@ export class DashboardImportComponent implements OnInit {
 
     dashboards: Dashboard[];
     errorMessage: string = "";
-    fileName: string = '';
-    folderName: string = '';
+    fileName: string = 'asdf.txt';
+    folderName: string = '/home/jannie/Downloads/';
     showTypeDashboard: boolean = false;
 
 	constructor(
@@ -84,17 +84,15 @@ export class DashboardImportComponent implements OnInit {
 
         let fileSuffix = this.fileName.substr(this.fileName.lastIndexOf('.')+1,this.fileName.length-this.fileName.indexOf('.'));
 
-        if (fileSuffix == 'json') {
-            dl.json({url: filePath}, {}, (err, currentData) => {
-                if (err) {
-                    this.errorMessage = 'Error loading file: ' + err.status + ':' + err.statusText;
-                    this.errorMessage = 'Error loading file';
-                } else {
-                    // Callback
-                    this.fileLoadedCallback(fileSuffix, currentData);
-                }
-            });
-        };
+        dl.json({url: filePath}, {}, (err, currentData) => {
+            if (err) {
+                this.errorMessage = 'Error loading file: ' + err.status + ':' + err.statusText;
+                this.errorMessage = 'Error loading file';
+            } else {
+                // Callback
+                this.fileLoadedCallback(fileSuffix, currentData);
+            }
+        });
     }
 
     fileLoadedCallback(fileSuffix: string, currentData: any) {
