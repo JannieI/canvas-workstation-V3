@@ -17,13 +17,13 @@
                             <h5 style="margin-top: 0; color:gray;">
                                 Help
                             </h5>
-                            <p style="margin-top: 0; color:gray;"> 
+                            <p style="margin-top: 0; color:gray;">
                                 Indicate who can access this Dashboard, and how.  The options are Private
                                 (only accesable to myself), Public (all users can view and edit it) or
                                 Access List (list of users and groups shown below, each with
                                 View/Edit/Delete permissions.  To change existing permissions, double click the
-                                View/Edit/Delete cell in the grid below.  Double click the delete icon 
-                                to delete a row. 
+                                View/Edit/Delete cell in the grid below.  Double click the delete icon
+                                to delete a row.
                                 Click the X or press Escape to close this form.
                             </p>
                         </clr-signpost-content>
@@ -96,12 +96,12 @@
                         [style.text-align]="center">Remove</clr-dg-column>
                         <clr-dg-column [clrDgField]="userID">User ID (single)</clr-dg-column>
                         <clr-dg-column [clrDgField]="name">Group Name (applies to all its members)</clr-dg-column>
-                        <clr-dg-column [clrDgField]="canView" class="checkCell">View</clr-dg-column>
-                        <clr-dg-column [clrDgField]="canEdit">Edit</clr-dg-column>
-                        <clr-dg-column [clrDgField]="canDelete">Delete</clr-dg-column>
-                        <clr-dg-column [clrDgField]="canDelete">Add DS</clr-dg-column>
-                        <clr-dg-column [clrDgField]="canDelete">Grantor</clr-dg-column>
-                        <clr-dg-column [clrDgField]="canDelete">Granted On</clr-dg-column>
+                        <clr-dg-column [clrDgField]="canViewRight" class="checkCell">View</clr-dg-column>
+                        <clr-dg-column [clrDgField]="canEditRight">Edit</clr-dg-column>
+                        <clr-dg-column [clrDgField]="canDeleteRight">Delete</clr-dg-column>
+                        <clr-dg-column [clrDgField]="canAddDatasource">Add DS</clr-dg-column>
+                        <clr-dg-column [clrDgField]="grantor">Grantor</clr-dg-column>
+                        <clr-dg-column [clrDgField]="grantedOn">Granted On</clr-dg-column>
 
                         <clr-dg-row *clrDgItems="let row of dashboardPermissions;
                             let i = index"
@@ -119,36 +119,36 @@
                             <clr-dg-cell>{{row.userID}}</clr-dg-cell>
                             <clr-dg-cell>{{row.groupName}}</clr-dg-cell>
                             <clr-dg-cell class="checkCell">
-                                <clr-icon shape="check" *ngIf="row.canView"
+                                <clr-icon shape="check" *ngIf="row.canViewRight"
                                     size="16"
                                     (dblclick)="clickToggleView(row.id, $event)"
                                     >
                                 </clr-icon>
-                                <clr-icon shape="times" *ngIf="!row.canView"
+                                <clr-icon shape="times" *ngIf="!row.canViewRight"
                                     size="16"
                                     (dblclick)="clickToggleView(row.id, $event)"
                                     >
                                 </clr-icon>
                             </clr-dg-cell>
                             <clr-dg-cell class="checkCell">
-                                    <clr-icon shape="check" *ngIf="row.canEdit"
+                                    <clr-icon shape="check" *ngIf="row.canEditRight"
                                     size="16"
                                     (dblclick)="clickToggleEdit(row.id, $event)"
                                     >
                                 </clr-icon>
-                                <clr-icon shape="times" *ngIf="!row.canEdit"
+                                <clr-icon shape="times" *ngIf="!row.canEditRight"
                                     size="16"
                                     (dblclick)="clickToggleEdit(row.id, $event)"
                                     >
                                 </clr-icon>
                             </clr-dg-cell>
                             <clr-dg-cell class="checkCell">
-                                    <clr-icon shape="check" *ngIf="row.canDelete"
+                                    <clr-icon shape="check" *ngIf="row.canDeleteRight"
                                     size="16"
                                     (dblclick)="clickToggleDelete(row.id, $event)"
                                     >
                                 </clr-icon>
-                                <clr-icon shape="times" *ngIf="!row.canDelete"
+                                <clr-icon shape="times" *ngIf="!row.canDeleteRight"
                                     size="16"
                                     (dblclick)="clickToggleDelete(row.id, $event)"
                                     >

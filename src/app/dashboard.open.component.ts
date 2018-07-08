@@ -319,16 +319,14 @@ export class DashboardOpenComponent implements OnInit {
         };
         console.warn('xx AFTER filterSharedByUserID', this.dashboards)
         if (this.filterSharedWithUserID != '') {
-            this.dashboards.forEach(d => {
-                this.globalVariableService.dashboardPermissions.forEach(dP => {
-                    if (dP.dashboardID == d.id  
-                        &&  
-                        dP.userID.toLowerCase() == this.filterSharedWithUserID.toLowerCase()) {
-                        if (this.filteredDashboardIDs.indexOf(d.id) < 0) {
-                            this.filteredDashboardIDs.push(d.id);
-                        };
-                    };
-                });
+            let dIDs: number[] = this.globalVariableService.dashboardPermissions
+                .filter(dP => dP.grantor == this.filterSharedWithUserID)
+                .map(dP => dP.dashboardID);
+
+            this.dashboards = this.dashboards.filter(d => {
+                if (dIDs.indexOf(d.id) >= 0) {
+                    return d;
+                };
             });
         };
         console.warn('xx AFTER filterSharedWithUserID', this.dashboards)
