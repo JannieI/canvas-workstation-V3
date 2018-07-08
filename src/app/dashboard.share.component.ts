@@ -294,6 +294,26 @@ export class DashboardShareComponent implements OnInit {
 
     }
 
+    clickToggleGrantAccess(id: number, $event) {
+        // User dblclicked Grant Access - so toggle it
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickToggleGrantAccess', '@Start');
+
+        let index: number = -1;
+        for(var i = 0; i < this.dashboardPermissions.length; i++) {
+            if (this.dashboardPermissions[i].id == id) {
+                this.dashboardPermissions[i].canGrantAccess = ! this.dashboardPermissions[i].canGrantAccess;
+                index = i;
+            };
+        };
+
+        if (index != -1) {
+            this.globalVariableService.saveDashboardPermission(
+                this.dashboardPermissions[index])
+                ;
+        };
+
+    }
+
     clickRow(index: number) {
         // Show groups
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
