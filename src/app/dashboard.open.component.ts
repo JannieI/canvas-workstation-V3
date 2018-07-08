@@ -342,17 +342,14 @@ export class DashboardOpenComponent implements OnInit {
                 return;
             };
 
-            this.groups.findIndex(grp => grp.name == this.filterSharedWithGroup);
-            this.dashboards.forEach(d => {
-                this.globalVariableService.dashboardPermissions.forEach(dP => {
-                    if (dP.dashboardID == d.id  
-                        &&  
-                        dP.groupID == groupID) {
-                        if (this.filteredDashboardIDs.indexOf(d.id) < 0) {
-                            this.filteredDashboardIDs.push(d.id);
-                        };
-                    };
-                });
+            let dIDs: number[] = this.globalVariableService.dashboardPermissions
+                .filter(dP => dP.groupID == groupID)
+                .map(dP => dP.dashboardID);
+
+            this.dashboards = this.dashboards.filter(d => {
+                if (dIDs.indexOf(d.id) >= 0) {
+                    return d;
+                };
             });
 
         };
