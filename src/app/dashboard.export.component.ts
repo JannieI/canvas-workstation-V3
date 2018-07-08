@@ -41,8 +41,10 @@ export class DashboardExportComponent implements OnInit {
 
     }
 
-    showTypeDashboard: boolean = false;
     dashboards: Dashboard[];
+    errorMessage: string = '';
+    fileName: string = '';
+    showTypeDashboard: boolean = false;
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -61,20 +63,23 @@ export class DashboardExportComponent implements OnInit {
         this.errorMessage = '';
 
         // Validate
-        if (this.selectedWidget == null) {
-            this.errorMessage = "The Widget selected is empty.  Close and try again.";
-            return;
-        };
         if (this.fileName == null  ||  this.fileName == '') {
             this.errorMessage = "The file name is compulsory";
             return;
         };
-        
+
         // Export
-        let newW: Widget = Object.assign({}, this.selectedWidget);
-        newW.data = [];
-        newW.graphData = [];
-        var obj = JSON.stringify(newW);  
+        if (this.globalVariableService.currentDashboardInfo.value.currentDashboardID < 0) {
+            this.errorMessage = 'Unexpected error, current dashboard not found in local cache';
+            return;
+        };
+        let dashboardIndex: number = this.globalVariableService.dashboards.findIndex(d =>
+            d.id == this.globalVariableService.currentDashboardInfo.value.currentDashboardID);
+        let newD: Dashboard = this.globalVariableService.dashboards
+            [dashboardIndex];
+        console.warn('xx d', this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+        newD)
+        var obj = JSON.stringify(newD);
         this.saveText(JSON.stringify(obj), this.fileName);
 
   	  	this.formDashboardExportClosed.emit('Exported');

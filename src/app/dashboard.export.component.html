@@ -42,13 +42,16 @@
                         Click the X or press Escape to close this form.
                     </div>
 
+                    <div class="gridErrorMessage">
+                        {{ errorMessage }}
+                    </div> 
+
                     <div class="gridFileTitle">
                         <b>File:</b>
                     </div>
                     <div class="gridFile">
-                        <input type="text" id="formFields_7"
+                        <input type="text" [(ngModel)]="fileName"
                             placeholder="Folder/FileName"
-                            class="selectFile"
                             >
                     </div>
 
@@ -62,11 +65,11 @@
                         </button>
                     </div>
 
-                    <div class="gridButtonImport">
+                    <div class="gridButtonExport">
                         <button
                             type="button"
                             class="btn btn-primary"
-                            (click)="clickClose('Close')"
+                            (click)="clickExport()"
                             >
                             Export
                         </button>
