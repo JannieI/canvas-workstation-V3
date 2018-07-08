@@ -720,8 +720,8 @@ export class DashboardPermission {
     userID: string;                     // UserID - NB: 1 of usr/grp filled in, one blank
     groupID: number;                    // Group ID
     groupName: string;                  // Filled in @RunTime
-    canEditRight: boolean;              // True if can Edit this D
     canViewRight: boolean;              // True if can View this D
+    canEditRight: boolean;              // True if can Edit this D
     canSaveRight: boolean;              // Can Save a D
     canDeleteRight: boolean;            // True if can Delete this D
     canAddDatasource: boolean;          // True if can Add a DS to this D

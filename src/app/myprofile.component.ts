@@ -130,12 +130,6 @@ export class MyProfileComponent implements OnInit {
         //     console.warn('xx cData', this.currentData.length, this.currentData)
         // };
     }
- 
-    dblclickDelete(id: number) {
-        // Remove an access
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
-
-    }
 
     clickClose(action: string) {
         // Close form, no changes
