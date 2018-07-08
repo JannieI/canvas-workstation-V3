@@ -38,6 +38,14 @@
         text-align: left;
     }
 
+    .gridHelpMessage {
+        grid-column-start: 1;
+        grid-column-end: 18;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        text-align: left;
+    }
+
     .gridErrorMessage {
         color: red;
         grid-column-start: 1;

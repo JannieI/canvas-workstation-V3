@@ -25,7 +25,7 @@ import { Widget }                     from './models';
 })
 export class WidgetExportComponent implements OnInit {
 
-    @Input() selectedtWidget: Widget;
+    @Input() selectedWidget: Widget;
     @Output() formWidgetExportClosed: EventEmitter<string> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
@@ -83,7 +83,7 @@ export class WidgetExportComponent implements OnInit {
         this.errorMessage = '';
 
         // Validate
-        if (this.selectedtWidget == null) {
+        if (this.selectedWidget == null) {
             this.errorMessage = "The Widget selected is empty.  Close and try again.";
             return;
         };
@@ -93,7 +93,9 @@ export class WidgetExportComponent implements OnInit {
         };
         
         // Export
-        var obj = JSON.stringify(this.selectedtWidget);  
+        let newW: Widget = Object.assign({}, this.selectedWidget);
+        newW.data = [];
+        var obj = JSON.stringify(newW);  
         this.saveText(JSON.stringify(obj), this.fileName);
 
   	  	this.formWidgetExportClosed.emit('Exported');

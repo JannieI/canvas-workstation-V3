@@ -19,8 +19,9 @@
                                 Help
                             </h5>
                             <p style="margin-top: 0; color:gray;">
-                                This form is used to Export the Dataset linked to a Widget
-                                (Graph, Table or Slicer).
+                                This form is used to Export the selected Widget
+                                (Graph, Table or Slicer) to a text file.  The data
+                                inside the graph is NOT exported.
                                 Click the X or press Escape to close this form.
                             </p>
                         </clr-signpost-content>
@@ -29,6 +30,13 @@
 
                 <div class="gridErrorMessage">
                     {{ errorMessage }}
+                </div>
+
+                <div class="gridHelpMessage">
+                    This form is used to Export the selected Widget
+                    (Graph, Table or Slicer) to a text file.  The data
+                    inside the graph is NOT exported.
+                    Click the X or press Escape to close this form.
                 </div>
 
                 <div class="gridFileTitle">
