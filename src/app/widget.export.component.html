@@ -27,32 +27,20 @@
                     </clr-signpost>
                 </div>
 
-                <div class="gridFolderTitle">
-                    <b>Select a folder:</b>
-                </div>
-
-                <div class="gridFolder">
-                    <div class="select">
-                        <select id="selects_3"
-                            (change)="clickSelectStep($event)"
-                            >
-                            <option>My Documents</option>
-                        </select>
-                    </div>
+                <div class="gridErrorMessage">
+                    {{ errorMessage }}
                 </div>
 
                 <div class="gridFileTitle">
-                    <b>Select a File:</b>
+                    <b>File Name:</b>
                 </div>
 
                 <div class="gridFile">
-                    <div class="select">
-                        <select id="selects_3"
-                            (change)="clickSelectStep($event)"
-                            >
-                            <option>My File</option>
-                        </select>
-                    </div>
+                    <input [(ngModel)]="fileName"
+                        type="text"
+                        name="usernameTitle"
+                        title="Name of the connection"
+                        >
                 </div>
 
                 <div class="gridButtonCancel">

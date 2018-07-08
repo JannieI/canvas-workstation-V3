@@ -25,7 +25,7 @@ import { Widget }                     from './models';
 })
 export class WidgetExportComponent implements OnInit {
 
-    @Input() selectWidget: Widget;
+    @Input() selectedtWidget: Widget;
     @Output() formWidgetExportClosed: EventEmitter<string> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
@@ -50,6 +50,10 @@ export class WidgetExportComponent implements OnInit {
         };
 
     }
+
+    errorMessage: string = '';
+    fileName: string = '';
+
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -79,8 +83,8 @@ export class WidgetExportComponent implements OnInit {
         this.errorMessage = '';
 
         // Validate
-        if (this.selectedDatasource == null) {
-            this.errorMessage = "First select a Datasource by clicking on it, then try again.";
+        if (this.selectedtWidget == null) {
+            this.errorMessage = "The Widget selected is empty.  Close and try again.";
             return;
         };
         if (this.fileName == null  ||  this.fileName == '') {
@@ -89,7 +93,7 @@ export class WidgetExportComponent implements OnInit {
         };
         
         // Export
-        var obj = JSON.stringify(this.selectedDatasource);  
+        var obj = JSON.stringify(this.selectedtWidget);  
         this.saveText(JSON.stringify(obj), this.fileName);
 
   	  	this.formWidgetExportClosed.emit('Exported');

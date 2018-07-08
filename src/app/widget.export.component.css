@@ -38,23 +38,14 @@
         text-align: left;
     }
 
-    .gridFolderTitle {
-        font-size: 0.65rem;
+    .gridErrorMessage {
+        color: red;
         grid-column-start: 1;
         grid-column-end: 18;
         grid-row-start: 4;
         grid-row-end: 5;
         text-align: left;
     }
-
-        .gridFolder {
-            grid-column-start: 4;
-            grid-column-end: 18;
-            grid-row-start: 4;
-            grid-row-end: 5;
-            margin-left: 20px;
-            text-align: left;
-        }
 
     .gridFileTitle {
         font-size: 0.65rem;
@@ -65,14 +56,14 @@
         text-align: left;
     }
 
-        .gridFile {
-            grid-column-start: 4;
-            grid-column-end: 7;
-            grid-row-start: 7;
-            grid-row-end: 8;
-            margin-left: 20px;
-            text-align: left;
-        }
+    .gridFile {
+        grid-column-start: 4;
+        grid-column-end: 7;
+        grid-row-start: 7;
+        grid-row-end: 8;
+        margin-left: 20px;
+        text-align: left;
+    }
      
     .gridButtonCancel {
         grid-column-start: 4;
