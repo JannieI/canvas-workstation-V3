@@ -11,8 +11,11 @@ import { Router }                     from '@angular/router';
 import { ViewChild }                  from '@angular/core';
 
 // Our Services
-import { GlobalFunctionService } 		  from './global-function.service';
+import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
+
+// Our Models
+import { Widget }                     from './models';
 
 
 @Component({
@@ -22,6 +25,7 @@ import { GlobalVariableService }      from './global-variable.service';
 })
 export class WidgetExportComponent implements OnInit {
 
+    @Input() selectWidget: Widget;
     @Output() formWidgetExportClosed: EventEmitter<string> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
@@ -60,7 +64,6 @@ export class WidgetExportComponent implements OnInit {
 
     }
 
-
   	clickClose(action: string) {
         // Close the form, no action taken
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
@@ -71,8 +74,36 @@ export class WidgetExportComponent implements OnInit {
     clickExport() {
         // Export the image, and close the file
         this.globalFunctionService.printToConsole(this.constructor.name,'clickExport', '@Start');
-  
-  	  	this.formWidgetExportClosed.emit('Exported');
+
+        // Reset
+        this.errorMessage = '';
+
+        // Validate
+        if (this.selectedDatasource == null) {
+            this.errorMessage = "First select a Datasource by clicking on it, then try again.";
+            return;
+        };
+        if (this.fileName == null  ||  this.fileName == '') {
+            this.errorMessage = "The file name is compulsory";
+            return;
+        };
         
+        // Export
+        var obj = JSON.stringify(this.selectedDatasource);  
+        this.saveText(JSON.stringify(obj), this.fileName);
+
+  	  	this.formWidgetExportClosed.emit('Exported');
+
     }
+
+    saveText(text, filename){
+        // Actual Export of selected DS to a file by creating <a> tag
+        this.globalFunctionService.printToConsole(this.constructor.name,'saveText',           '@Start');
+
+        var a = document.createElement('a');
+        a.setAttribute('href', 'data:text/plain;charset=utf-u,'+encodeURIComponent(text));
+        a.setAttribute('download', filename);
+        a.click()
+    }
+
 }

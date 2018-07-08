@@ -62,7 +62,7 @@ export class DataDirectExportComponent implements OnInit {
 
     clickSelectedDatasource(index: number, id: number) {
         // User selected a DS
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickExport',           '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectedDatasource',           '@Start');
 
         this.selectedDatasource = this.datasources[index];
         this.selectedRowIndex = index;
@@ -98,7 +98,7 @@ export class DataDirectExportComponent implements OnInit {
         
         // Export
         var obj = JSON.stringify(this.selectedDatasource);  
-        this.saveText( JSON.stringify(obj), this.fileName);
+        this.saveText(JSON.stringify(obj), this.fileName);
 
     }
 
