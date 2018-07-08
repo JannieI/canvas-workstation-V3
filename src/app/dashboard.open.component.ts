@@ -318,7 +318,7 @@ export class DashboardOpenComponent implements OnInit {
         console.warn('xx AFTER filterSharedByUserID', this.dashboards)
         if (this.filterSharedWithUserID != '') {
             let dIDs: number[] = this.globalVariableService.dashboardPermissions
-                .filter(dP => dP.grantor.toLowerCase() == this.filterSharedWithUserID.toLowerCase())
+                .filter(dP => dP.userID.toLowerCase() == this.filterSharedWithUserID.toLowerCase())
                 .map(dP => dP.dashboardID);
 
             this.dashboards = this.dashboards.filter(d => {
