@@ -276,7 +276,7 @@ export class DashboardOpenComponent implements OnInit {
 
         };
         if (this.filterSchedulesSentBefore != '') {
-            let sentBefore: Date = new Date(this.filterSchedulesSentAfter);
+            let sentBefore: Date = new Date(this.filterSchedulesSentBefore);
 
             if (this.dashboardScheduleLog.length ==0) {
                 this.errorMessage = 'Still retrieving Schedule Log ...';

@@ -112,41 +112,5 @@ export class MyPermissionsComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
         this.selectedRow = index;
     }
-    
-    dblclickToggleEdit(id: number, $event: any) {
-        // Double click the Edit Event
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
-
-    }
-
-    dblclickToggleView(id: number, $event: any) {
-        // Double click the Edit Event
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
-
-    }
-
-    dblclickToggleSave(id: number, $event: any) {
-        // Double click the Edit Event
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
-
-    }
-
-    dblclickToggleDelete(id: number, $event: any) {
-        // Double click the Edit Event
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
-
-    }
-
-    dblclickToggleAddDS(id: number, $event: any) {
-        // Double click the Edit Event
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
-
-    }
-
-    dblclickToggleGrantAccess(id: number, $event: any) {
-        // Double click the Edit Event
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
-
-    }
 
 }

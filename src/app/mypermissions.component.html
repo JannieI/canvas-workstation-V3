@@ -55,12 +55,10 @@
                             <clr-dg-cell class="checkCell">
                                 <clr-icon shape="check" *ngIf="row.canEditRight"
                                     size="16"
-                                    (dblclick)="dblclickToggleEdit(row.id, $event)"
                                     >
                                 </clr-icon>
                                 <clr-icon shape="times" *ngIf="!row.canEditRight"
                                     size="16"
-                                    (dblclick)="dblclickToggleEdit(row.id, $event)"
                                     >
                                 </clr-icon>
                             </clr-dg-cell>
@@ -68,12 +66,10 @@
                             <clr-dg-cell class="checkCell">
                                 <clr-icon shape="check" *ngIf="row.canViewRight"
                                     size="16"
-                                    (dblclick)="dblclickToggleView(row.id, $event)"
                                     >
                                 </clr-icon>
                                 <clr-icon shape="times" *ngIf="!row.canViewRight"
                                     size="16"
-                                    (dblclick)="dblclickToggleView(row.id, $event)"
                                     >
                                 </clr-icon>
                             </clr-dg-cell>
@@ -81,12 +77,10 @@
                             <clr-dg-cell class="checkCell">
                                 <clr-icon shape="check" *ngIf="row.canSaveRight"
                                     size="16"
-                                    (dblclick)="dblclickToggleSave(row.id, $event)"
                                     >
                                 </clr-icon>
                                 <clr-icon shape="times" *ngIf="!row.canSaveRight"
                                     size="16"
-                                    (dblclick)="dblclickToggleSave(row.id, $event)"
                                     >
                                 </clr-icon>
                             </clr-dg-cell>
@@ -94,12 +88,10 @@
                             <clr-dg-cell class="checkCell">
                                     <clr-icon shape="check" *ngIf="row.canDelete"
                                     size="16"
-                                    (dblclick)="dblclickToggleDelete(row.id, $event)"
                                     >
                                 </clr-icon>
                                 <clr-icon shape="times" *ngIf="!row.canDelete"
                                     size="16"
-                                    (dblclick)="dblclickToggleDelete(row.id, $event)"
                                     >
                                 </clr-icon>
                             </clr-dg-cell>
@@ -107,12 +99,10 @@
                             <clr-dg-cell class="checkCell">
                                     <clr-icon shape="check" *ngIf="row.canAddDatasource"
                                     size="16"
-                                    (dblclick)="dblclickToggleAddDS(row.id, $event)"
                                     >
                                 </clr-icon>
                                 <clr-icon shape="times" *ngIf="!row.canAddDatasource"
                                     size="16"
-                                    (dblclick)="dblclickToggleAddDS(row.id, $event)"
                                     >
                                 </clr-icon>
                             </clr-dg-cell>
@@ -120,12 +110,10 @@
                             <clr-dg-cell class="checkCell">
                                     <clr-icon shape="check" *ngIf="row.canGrantAccess"
                                     size="16"
-                                    (dblclick)="dblclickToggleGrantAccess(row.id, $event)"
                                     >
                                 </clr-icon>
                                 <clr-icon shape="times" *ngIf="!row.canGrantAccess"
                                     size="16"
-                                    (dblclick)="dblclickToggleGrantAccess(row.id, $event)"
                                     >
                                 </clr-icon>
                             </clr-dg-cell>
