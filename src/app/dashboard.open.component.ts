@@ -429,7 +429,8 @@ export class DashboardOpenComponent implements OnInit {
         };
         console.warn('xx AFTER filterCreatedAfter', this.dashboards)
         if (this.filterDataDatasource != '') {
-            let datasourceIndex: number = this.datasources.findIndex(ds => ds.name == this.filterDataDatasource);
+            let datasourceIndex: number = this.datasources.findIndex(
+                ds => ds.name == this.filterDataDatasource);
             let datasourceID: number = null;
             if (datasourceIndex >= 0) {
                 datasourceID = this.datasources[datasourceIndex].id;
@@ -438,17 +439,17 @@ export class DashboardOpenComponent implements OnInit {
                 return;
             };
 
-            this.dashboards.forEach(d => {
-                this.globalVariableService.widgets.forEach(w => {
-                    if (w.dashboardID == d.id  
-                        &&  
-                        w.datasourceID == datasourceID) {
-                        if (this.filteredDashboardIDs.indexOf(d.id) < 0) {
-                            this.filteredDashboardIDs.push(d.id);
-                        };
+            // Loop on W and get list of their D-ids that use this D
+            let dISs: number[] = [];
+            this.globalVariableService.widgets.forEach(w => {
+                if (w.datasourceID == datasourceID) {
+                    if (dISs.indexOf(w.dashboardID) < 0) {
+                        dISs.push(w.dashboardID);
                     };
-                });
+                };
             });
+
+            this.dashboards = this.dashboards.filter(d => dISs.indexOf(d.id) >= 0);
 
         };
         console.warn('xx AFTER filterDataDatasource', this.dashboards)
@@ -476,7 +477,7 @@ export class DashboardOpenComponent implements OnInit {
                 .map(tag => tag.dashboardID)
             this.dashboards = this.dashboards.filter(d => {
                 if (dTagIDs.indexOf(d.id) >= 0) {
-                            return d;
+                    return d;
                 };
             });
         };
