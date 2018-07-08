@@ -64,13 +64,25 @@
                         >
                 </div>  
 
-                <div class="gridFolderBrowse">
+                <div class="gridButtonBrowse">
                     <button
                         type="button"
-                        class="btn btn-link"
+                        class="btn btn-secondary"
+                        (dblclick)="clickFileBrowse()"
                         >
                         Browse
                     </button>
+                </div>
+                <div class="gridButtonBrowse">
+                    <input class="btn btn-primary"
+                        style="background-color:brown; border:none;color:white;opacity:0;"
+                        type="file"
+                        name="client-file"
+                        id="get-files"
+                        placeholder="Browse"
+                        multiple
+                        (change)="clickFileBrowse()"
+                        />
                 </div>
 
                 <div class="gridButtonCancel">
@@ -87,7 +99,7 @@
                     <button
                         type="button"
                         class="btn btn-primary"
-                        (click)="clickClose('Close')"
+                        (click)="clickImport()"
                         >
                         Import
                     </button>

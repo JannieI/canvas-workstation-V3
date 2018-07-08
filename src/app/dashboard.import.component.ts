@@ -19,6 +19,10 @@ import { GlobalVariableService}       from './global-variable.service';
 // Models
 import { Dashboard }                  from './models';
 
+// Vega
+import * as dl from 'datalib';
+import { load } from 'datalib';
+
 @Component({
     selector: 'dashboard-import',
     templateUrl: './dashboard.import.component.html',
@@ -41,8 +45,11 @@ export class DashboardImportComponent implements OnInit {
 
     }
 
-    showTypeDashboard: boolean = false;
     dashboards: Dashboard[];
+    errorMessage: string = "";
+    fileName: string = '';
+    folderName: string = '';
+    showTypeDashboard: boolean = false;
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -50,11 +57,57 @@ export class DashboardImportComponent implements OnInit {
 	) {}
 
     ngOnInit() {
+        // Initial
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
         this.dashboards = this.globalVariableService.dashboards.slice();
     }
 
+    clickImport() {
+        // Import D
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickImport', '@Start');
+
+        // Reset
+        this.errorMessage = '';
+
+        // Get the folder and file, setting some defaults
+        if (this.folderName == ''  ||  this.folderName == undefined) {
+            this.errorMessage = 'The folder name is compulsory';
+            return;
+        };
+        if (this.fileName ==''  ||  this.fileName == undefined) {
+            this.errorMessage = 'The file name is compulsory';
+            return;
+        };
+
+        let filePath: string = this.folderName + this.fileName;
+
+        let fileSuffix = this.fileName.substr(this.fileName.lastIndexOf('.')+1,this.fileName.length-this.fileName.indexOf('.'));
+
+        if (fileSuffix == 'json') {
+            dl.json({url: filePath}, {}, (err, currentData) => {
+                if (err) {
+                    this.errorMessage = 'Error loading file: ' + err.status + ':' + err.statusText;
+                    this.errorMessage = 'Error loading file';
+                } else {
+                    // Callback
+                    this.fileLoadedCallback(fileSuffix, currentData);
+                }
+            });
+        };
+    }
+
+    fileLoadedCallback(fileSuffix: string, currentData: any) {
+        // Handles callback from async datalib load
+        this.globalFunctionService.printToConsole(this.constructor.name,'fileLoadedCallback', '@Start');
+
+        // Load
+        console.log('xx currentData', currentData)
+    }
+
     clickClose(action: string) {
-        console.log('clickClose')
+        // Close form, importing nothing
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
 		this.formDashboardImportClosed.emit(action);
     }

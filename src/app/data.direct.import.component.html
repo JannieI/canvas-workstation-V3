@@ -18,8 +18,8 @@
                                 <h5 style="margin-top: 0; color:gray;">
                                     Help
                                 </h5>
-                                <p style="margin-top: 0; color:gray;"> 
-                                    Specify a local text file (saved using Export) from which 
+                                <p style="margin-top: 0; color:gray;">
+                                    Specify a local text file (saved using Export) from which
                                     to import a new Datasource.  The name and description fields
                                     are required.  Click Preview to see the file content without
                                     importing.
@@ -32,7 +32,7 @@
                     <div class="errorMessage">
                         {{ errorMessage }}
                     </div>
-    
+
                     <div class="gridFolderTitle">
                         Folder:
                     </div>
@@ -57,20 +57,20 @@
                         Name:
                     </div>
                     <div class="gridDatasourceName">
-                        <input type="text" 
+                        <input type="text"
                             [(ngModel)]="datasourceName"
-                            > 
+                            >
                     </div>
 
                     <div class="gridDatasourceDescriptionTitle">
                         Description:
                     </div>
                     <div class="gridDatasourceDescription">
-                        <input type="text" 
+                        <input type="text"
                             [(ngModel)]="datasourceDescription"
-                            > 
+                            >
                     </div>
-    
+
                     <div class="gridButtonPreview">
                         <button
                             type="button"
@@ -89,7 +89,7 @@
                             Add
                         </button>
                     </div>
-    
+
                     <div class="gridPreviewFile">
                         <textarea cols="30" rows="7">{{ currentData }}</textarea>
                     </div>
@@ -98,4 +98,3 @@
         </div>
     </div>
 </div>
-    

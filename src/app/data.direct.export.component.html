@@ -18,14 +18,14 @@
                                 <h5 style="margin-top: 0; color:gray;">
                                     Help
                                 </h5>
-                                <p style="margin-top: 0; color:gray;"> 
-                                    Enter a local filename to which the selected Datasource will be 
+                                <p style="margin-top: 0; color:gray;">
+                                    Enter a local filename to which the selected Datasource will be
                                     exported.  This text file can be imported again.
                                     Click the X, click Cancel or press Escape to close this form.
                                 </p>
                             </clr-signpost-content>
                         </clr-signpost>
-        
+
                     </div>
 
                     <div class="gridFileNameTitle">
@@ -61,9 +61,9 @@
                             Export
                         </button>
                     </div>
-                            
+
                     <div class="gridDatasources">
-                        <clr-datagrid> 
+                        <clr-datagrid>
                             <clr-dg-placeholder>
                                 No records ...
                             </clr-dg-placeholder>
@@ -75,10 +75,10 @@
                                 [style.background-color]="(i == selectedRowIndex)? '#123456' : 'white'"
                                 [style.color]="(i == selectedRowIndex)? 'white' : 'gray'"
                                 (click)="clickSelectedDatasource(i, row.id)"
-                                > 
+                                >
                                 <clr-dg-cell>{{ row.name }}</clr-dg-cell>
                                 <clr-dg-cell>{{ row.description }}</clr-dg-cell>
-                                
+
                             </clr-dg-row>
                         </clr-datagrid>
                     </div>
@@ -88,4 +88,3 @@
         </div>
     </div>
 </div>
-    
