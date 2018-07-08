@@ -420,7 +420,7 @@ export class DashboardOpenComponent implements OnInit {
             console.log('xx dafter', dateAfter, this.filterCreatedAfter)
             this.dashboards = this.dashboards.filter(d => {
                 if (d.dateCreated != null) {
-                    if (d.dateCreated >= dateAfter) {
+                    if (new Date(d.dateCreated) >= dateAfter) {
                         return d;
                     };
                 };
