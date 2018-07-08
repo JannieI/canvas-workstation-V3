@@ -305,22 +305,20 @@ export class DashboardOpenComponent implements OnInit {
         console.warn('xx AFTER filterSchedulesSentBefore', this.dashboards)
 
         if (this.filterSharedByUserID != '') {
-            this.dashboards.forEach(d => {
-                this.globalVariableService.dashboardPermissions.forEach(dP => {
-                    if (dP.dashboardID == d.id  
-                        &&  
-                        dP.grantor.toLowerCase() == this.filterSharedByUserID.toLowerCase()) {
-                        if (this.filteredDashboardIDs.indexOf(d.id) < 0) {
-                            this.filteredDashboardIDs.push(d.id);
-                        };
-                    };
-                });
+            let dIDs: number[] = this.globalVariableService.dashboardPermissions
+                .filter(dP => dP.grantor.toLowerCase() == this.filterSharedByUserID.toLowerCase())
+                .map(dP => dP.dashboardID);
+
+            this.dashboards = this.dashboards.filter(d => {
+                if (dIDs.indexOf(d.id) >= 0) {
+                    return d;
+                };
             });
         };
         console.warn('xx AFTER filterSharedByUserID', this.dashboards)
         if (this.filterSharedWithUserID != '') {
             let dIDs: number[] = this.globalVariableService.dashboardPermissions
-                .filter(dP => dP.grantor == this.filterSharedWithUserID)
+                .filter(dP => dP.grantor.toLowerCase() == this.filterSharedWithUserID.toLowerCase())
                 .map(dP => dP.dashboardID);
 
             this.dashboards = this.dashboards.filter(d => {
@@ -331,7 +329,8 @@ export class DashboardOpenComponent implements OnInit {
         };
         console.warn('xx AFTER filterSharedWithUserID', this.dashboards)
         if (this.filterSharedWithGroup != '') {
-            let groupIndex: number = this.groups.findIndex(grp => grp.name == this.filterSharedWithGroup);
+            let groupIndex: number = this.groups.findIndex(
+                grp => grp.name.toLowerCase() == this.filterSharedWithGroup.toLowerCase());
             let groupID: number = null;
             if (groupIndex >= 0) {
                 groupID = this.groups[groupIndex].id;
@@ -425,7 +424,7 @@ export class DashboardOpenComponent implements OnInit {
         console.warn('xx AFTER filterCreatedAfter', this.dashboards)
         if (this.filterDataDatasource != '') {
             let datasourceIndex: number = this.datasources.findIndex(
-                ds => ds.name == this.filterDataDatasource);
+                ds => ds.name.toLowerCase() == this.filterDataDatasource.toLowerCase());
             let datasourceID: number = null;
             if (datasourceIndex >= 0) {
                 datasourceID = this.datasources[datasourceIndex].id;
