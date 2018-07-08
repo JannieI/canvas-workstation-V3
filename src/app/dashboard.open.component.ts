@@ -148,7 +148,7 @@ export class DashboardOpenComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowAdvancedFilters', '@Start');
 
         this.showAdvancedFilters = !this.showAdvancedFilters;
-        console.warn('xx ', this.filterDataDatasource)
+
         // Get AuditTrail in advance
         this.globalVariableService.getCanvasAuditTrails().then( res => {
             this.canvasAuditTrails = res;
@@ -220,21 +220,18 @@ export class DashboardOpenComponent implements OnInit {
                 this.errorMessage = 'Still retrieving Schedule Log ...';
                 return;
             };
-            this.dashboards.forEach(d => {
-                this.dashboardScheduleLog.forEach(dsl => {
-                    if (dsl.dashboardID == d.id  
-                        &&  
-                        (
-                            dsl.userID.toLowerCase() == this.filterSchedulesSendTo.toLowerCase()
-                            ||
-                            dsl.groupID.toLowerCase() == this.filterSchedulesSendTo.toLowerCase()
-                        )
-                        ) {
-                            if (this.filteredDashboardIDs.indexOf(d.id) < 0) {
-                                this.filteredDashboardIDs.push(d.id);
-                            };
-                    };
-                });
+
+            let dIDs: number[] = this.dashboardScheduleLog
+                .filter(
+                    dsl => dsl.userID.toLowerCase() == this.filterSchedulesSendTo.toLowerCase()
+                    ||
+                    dsl.groupID.toLowerCase() == this.filterSchedulesSendTo.toLowerCase())
+                .map(dsl => dsl.dashboardID);
+
+            this.dashboards = this.dashboards.filter(d => {
+                if (dIDs.indexOf(d.id) >= 0) {
+                    return d;
+                };
             });
 
         };
@@ -315,7 +312,6 @@ export class DashboardOpenComponent implements OnInit {
                 };
             });
         };
-        console.warn('xx AFTER filterSharedByUserID', this.dashboards)
         if (this.filterSharedWithUserID != '') {
             let dIDs: number[] = this.globalVariableService.dashboardPermissions
                 .filter(dP => dP.userID.toLowerCase() == this.filterSharedWithUserID.toLowerCase())
@@ -327,7 +323,6 @@ export class DashboardOpenComponent implements OnInit {
                 };
             });
         };
-        console.warn('xx AFTER filterSharedWithUserID', this.dashboards)
         if (this.filterSharedWithGroup != '') {
             let groupIndex: number = this.groups.findIndex(
                 grp => grp.name.toLowerCase() == this.filterSharedWithGroup.toLowerCase());
@@ -350,7 +345,6 @@ export class DashboardOpenComponent implements OnInit {
             });
 
         };
-        console.warn('xx AFTER filterSharedWithGroup', this.dashboards)
 
         if (this.filterOpenedByUserID != '') {
             if (this.dashboardScheduleLog.length == 0) {
@@ -364,7 +358,6 @@ export class DashboardOpenComponent implements OnInit {
                 &&
                 aud.actionType == 'Open')
                 .map(aud => aud.dashboardID);
-            console.warn('xx dIDs', dIDs)
 
             this.dashboards = this.dashboards.filter(d => {
                 if (dIDs.indexOf(d.id) >= 0) {
@@ -373,7 +366,6 @@ export class DashboardOpenComponent implements OnInit {
             });
 
         };
-        console.warn('xx AFTER filterOpenedByUserID', this.dashboards)
         if (this.filterOpenedAfterDate != '') {
             if (this.dashboardScheduleLog.length == 0) {
                 this.errorMessage = 'Still retrieving Schedule Log ...';
@@ -388,7 +380,6 @@ export class DashboardOpenComponent implements OnInit {
                 &&
                 aud.actionType == 'Open')
                 .map(aud => aud.dashboardID);
-            console.warn('xx dIDs', dIDs)
 
             this.dashboards = this.dashboards.filter(d => {
                 if (dIDs.indexOf(d.id) >= 0) {
@@ -397,7 +388,6 @@ export class DashboardOpenComponent implements OnInit {
             });
 
         };
-        console.warn('xx AFTER filterOpenedAfterDate', this.dashboards)
         if (this.filterCreatedBy != '') {
             this.dashboards = this.dashboards.filter(d => {
                 if (d.creator != null) {
@@ -408,10 +398,8 @@ export class DashboardOpenComponent implements OnInit {
             });
 
         };
-        console.warn('xx AFTER filterCreatedBy', this.dashboards)
         if (this.filterCreatedAfter != '') {
             let dateAfter: Date = new Date(this.filterCreatedAfter);
-            console.log('xx dafter', dateAfter, this.filterCreatedAfter)
             this.dashboards = this.dashboards.filter(d => {
                 if (d.dateCreated != null) {
                     if (new Date(d.dateCreated) >= dateAfter) {
@@ -421,7 +409,6 @@ export class DashboardOpenComponent implements OnInit {
             });
 
         };
-        console.warn('xx AFTER filterCreatedAfter', this.dashboards)
         if (this.filterDataDatasource != '') {
             let datasourceIndex: number = this.datasources.findIndex(
                 ds => ds.name.toLowerCase() == this.filterDataDatasource.toLowerCase());
@@ -446,7 +433,6 @@ export class DashboardOpenComponent implements OnInit {
             this.dashboards = this.dashboards.filter(d => dISs.indexOf(d.id) >= 0);
 
         };
-        console.warn('xx AFTER filterDataDatasource', this.dashboards)
         if (this.filterState != '') {
             this.dashboards = this.dashboards.filter(d => {
                 if (d.state != null) {
@@ -460,7 +446,6 @@ export class DashboardOpenComponent implements OnInit {
             });
 
         };
-        console.warn('xx AFTER filterState', this.dashboards)
         if (this.filterTag != '') {
             if (this.dashboardTags.length == 0) {
                 this.errorMessage = 'Still retrieving Dashboard Tags ...';
@@ -475,7 +460,6 @@ export class DashboardOpenComponent implements OnInit {
                 };
             });
         };
-        console.warn('xx AFTER filterTag', this.filterTag, this.dashboards, this.dashboardTags)
 
         if (this.filterMyFav != '') {
             this.dashboards = this.dashboards.filter(d => {
@@ -485,7 +469,6 @@ export class DashboardOpenComponent implements OnInit {
             });
 
         };
-        console.warn('xx AFTER filterMyFav', this.dashboards)
         if (this.filterModifiedAfter != '') {
             let dateAfter: Date = new Date(this.filterModifiedAfter);
             this.dashboards = this.dashboards.filter(d => {
@@ -497,7 +480,6 @@ export class DashboardOpenComponent implements OnInit {
             });
 
         };
-        console.warn('xx AFTER filterModifiedAfter', this.dashboards)
         if (this.filterModifiedBefore != '') {
             let dateAfter: Date = new Date(this.filterModifiedAfter);
             this.dashboards = this.dashboards.filter(d => {
@@ -509,7 +491,6 @@ export class DashboardOpenComponent implements OnInit {
             });
 
         };
-        console.warn('xx AFTER filterModifiedBefore', this.dashboards)
         if (this.filterModifiedByUserID != '') {
             this.dashboards = this.dashboards.filter(d => {
                 if (d.editor != null) {
@@ -519,7 +500,6 @@ export class DashboardOpenComponent implements OnInit {
                 };
             });
         };
-        console.warn('xx AFTER filterModifiedByUserID', this.dashboards)
 
         // Close the filter
         this.showAdvancedFilters = false;
@@ -556,7 +536,6 @@ export class DashboardOpenComponent implements OnInit {
             this.globalVariableService.copyDashboard(
                 this.dashboards[index].id, null, 'Draft'
             ).then(res => {
-                console.warn('xx res', res)
                 this.globalVariableService.refreshCurrentDashboard(
                     'openDashboard-clickOpenEdit', res.id, -1, ''
                 );
