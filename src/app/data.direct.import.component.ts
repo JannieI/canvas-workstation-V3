@@ -101,7 +101,7 @@ export class DataDirectImportComponent implements OnInit {
         // JSON.parse(JSON.stringify(resolvedData));
 
     }
- 
+
     clickClose(action: string) {
         // Close form, nothing imported
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
@@ -135,7 +135,7 @@ export class DataDirectImportComponent implements OnInit {
         this.globalVariableService.addDatasource(datasource);
 
         this.formDataDirectImportClosed.emit('Added');
-        
+
     }
 }
 

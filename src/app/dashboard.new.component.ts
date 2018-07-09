@@ -117,13 +117,9 @@ export class DashboardNewComponent implements OnInit {
     loadFile(theFile) {
         // Callback for loading File
         console.warn('loadFile', '@Start');
+        let newD: Dashboard = JSON.parse(JSON.parse(theFile.target.result))
 
-        this.theFile = JSON.parse(JSON.stringify(theFile.target.result));
-        let obj: Dashboard = JSON.parse(this.theFile);
-        console.warn('xx obj', obj.code)
-
-        // let newD: Dashboard = JSON.parse(JSON.stringify(theFile.target.result));
-        // console.warn('  end loadFile', newD)
+        console.warn('xx obj', newD.code)
     }
 
     abortRead() {
