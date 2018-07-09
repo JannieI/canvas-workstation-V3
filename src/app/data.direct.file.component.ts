@@ -217,7 +217,7 @@ export class DataDirectFileComponent implements OnInit {
                 // progress.textContent = percentLoaded + '%';
             };
         };
-    };
+    }
 
     clickDSPreview() {
         // Load the new DS in the ID section, and show in Preview area
