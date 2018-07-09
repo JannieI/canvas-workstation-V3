@@ -18,9 +18,6 @@ import { GlobalVariableService}       from './global-variable.service';
 
 // Models
 import { CanvasComment }              from './models';
-import { DatagridInput }              from './models';
-import { DatagridColumn }             from './models';
-import { DashboardNewComponent } from './dashboard.new.component';
 
 @Component({
     selector: 'dashboard-comments',
