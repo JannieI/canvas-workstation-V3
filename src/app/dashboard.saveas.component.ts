@@ -6,7 +6,6 @@
 import { Component }                  from '@angular/core';
 import { EventEmitter }               from '@angular/core';
 import { HostListener }               from '@angular/core';
-import { Input }                      from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
 
@@ -17,7 +16,6 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService}       from './global-variable.service';
 
 // Models
-import { Dashboard }                  from './models';
 
 @Component({
     selector: 'dashboard-save-as',

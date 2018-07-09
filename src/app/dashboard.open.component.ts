@@ -25,7 +25,6 @@ import { Dashboard }                  from './models';
 import { DashboardPermission }        from './models';
 import { DashboardScheduleLog }       from './models';
 import { DashboardSchedule }          from './models';
-import { Scheduler } from 'rxjs/Scheduler';
 
 @Component({
     selector: 'dashboard-open',
