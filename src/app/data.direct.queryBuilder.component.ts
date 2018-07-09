@@ -4,7 +4,6 @@
 
 // Angular
 import { Component }                  from '@angular/core';
-import { ElementRef }                 from '@angular/core';
 import { EventEmitter }               from '@angular/core';
 import { HostListener }               from '@angular/core';
 import { Input }                      from '@angular/core';
@@ -16,13 +15,11 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
 // Our Models
-import { DataConnection }             from './models';
 import { DataSchema }                 from './models';
 import { Datasource }                 from './models';
 import { DataTable }                  from './models';
 import { DataField }                  from './models';
 import { Dataset }                    from './models';
-import { Field }                      from './models';
 import { TributaryServerType }        from './models';
 import { TributarySource }            from './models';
 

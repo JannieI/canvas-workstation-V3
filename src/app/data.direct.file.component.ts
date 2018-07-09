@@ -20,8 +20,6 @@ import { Datasource }                 from './models';
 
 // Vega
 import * as dl from 'datalib';
-import { load } from 'datalib';
-import { NgSwitch } from '@angular/common';
 
 
 @Component({
