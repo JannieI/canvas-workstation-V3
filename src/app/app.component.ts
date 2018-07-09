@@ -8,15 +8,10 @@ import { DOCUMENT }                   from '@angular/platform-browser';
 import { ElementRef }                 from '@angular/core';
 import { HostListener }               from '@angular/core';
 import { Inject }                     from "@angular/core";
-import { Input }                      from "@angular/core";
 import { OnInit }                     from '@angular/core';
-import { OnDestroy }                  from '@angular/core';
-import { QueryList }                  from '@angular/core';
 import { Renderer }                   from '@angular/core';
 import { Router }                     from '@angular/router';
 import { ViewChild }                  from '@angular/core';
-import { ViewChildren }               from '@angular/core';
-import { Observable }                 from 'rxjs/Rx';
 import { Subscription }               from "rxjs";
 import { TimerObservable }            from "rxjs/observable/TimerObservable";
 
