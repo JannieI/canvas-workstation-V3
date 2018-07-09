@@ -3,19 +3,15 @@
  */
 
 // From Angular
-import { AfterViewInit }              from '@angular/core';
 import { Component }                  from '@angular/core';
 import { Input }                      from '@angular/core';
-import { OnInit }                     from '@angular/core';
 
 // Our Services
 import { GlobalVariableService }      from './global-variable.service';
 import { GlobalFunctionService }      from './global-function.service';
 
 // Our Models
-import { Dashboard }                  from './models'
 import { DashboardTab }               from './models'
-import { Datasource }                 from './models'
 import { Subscription }               from 'rxjs/Subscription';
 
 
