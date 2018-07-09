@@ -72,12 +72,30 @@
                     {{ errorMessage }}
                 </div>
 
-                <div class="gridAddImportTitle">
-                    <b>Import:</b>
+                <div class="gridButtonBrowse">
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        (dblclick)="clickFileBrowse()"
+                        >
+                        Browse
+                    </button>
                 </div>
-                <div class="gridAddImport">
-                    <input type="text" [(ngModel)]="importFolder" placeholder="Folder/File Name.json">
+                <div class="gridButtonBrowse">
+                    <input class="btn btn-primary"
+                        style="background-color:brown; border:none;color:white;opacity:0;"
+                        type="file"
+                        name="client-file"
+                        id="get-files"
+                        placeholder="Browse"
+                        multiple
+                        (change)="clickFileBrowse()"
+                        />
                 </div>
+
+                <div class="gridImportMessage">
+                    When Importing a Dashboard, a brand new Dashboard is created (and new 
+                    permisions, etc has to be created afresh).
 
                 <div class="gridCancelButton">
                     <button
