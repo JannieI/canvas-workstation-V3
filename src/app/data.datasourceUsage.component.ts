@@ -4,14 +4,11 @@
 
 // Angular
 import { Component }                  from '@angular/core';
-import { ElementRef }                 from '@angular/core';
 import { EventEmitter }               from '@angular/core';
 import { HostListener }               from '@angular/core';
-import { Input }                     from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
 import { Router }                     from '@angular/router';
-import { ViewChild }                  from '@angular/core';
 
 // Our Functions
 import { GlobalFunctionService } 	  from './global-function.service';
