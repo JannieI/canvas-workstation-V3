@@ -78,7 +78,7 @@ export class DataDirectImportComponent implements OnInit {
                     console.log('DataPopup clickDSPreview error on load', err)
                 } else {
                     // Callback
-                    this.fileLoadedCallback(fileSuffix, currentData);
+                    this.fileLoadedCallback(currentData);
                 }
             });
         };
@@ -89,7 +89,7 @@ export class DataDirectImportComponent implements OnInit {
         };
     }
 
-    fileLoadedCallback(fileSuffix: string, currentData: any) {
+    fileLoadedCallback(currentData: any) {
         // Handles callback from async datalib load
         this.globalFunctionService.printToConsole(this.constructor.name,'fileLoadedCallback', '@Start');
 

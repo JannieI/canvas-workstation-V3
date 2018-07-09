@@ -114,26 +114,28 @@ export class DashboardNewComponent implements OnInit {
         console.warn('xx Post readAsText')
     }
 
-
     loadFile(theFile) {
         // Callback for loading File
-        this.globalFunctionService.printToConsole(this.constructor.name,'loadFile', '@Start');
+        console.warn('loadFile', '@Start');
 
-        this.fileName = this.theFile;
+        this.theFile = JSON.parse(JSON.stringify(theFile.target.result));
+        let obj: Dashboard = JSON.parse(this.theFile);
+        console.warn('xx obj', obj.code)
 
-        console.warn('  end loadFile', theFile, this.theFile)
+        // let newD: Dashboard = JSON.parse(JSON.stringify(theFile.target.result));
+        // console.warn('  end loadFile', newD)
     }
 
     abortRead() {
         // Cancelled reading File
-        this.globalFunctionService.printToConsole(this.constructor.name,'abortRead', '@Start');
+        console.warn('abortRead', '@Start');
 
         this.reader.abort();
     }
 
     errorHandler(evt) {
         // Handling errors on File load
-        this.globalFunctionService.printToConsole(this.constructor.name,'errorHandler', '@Start');
+        console.warn('errorHandler', '@Start');
 
         switch(evt.target.error.code) {
           case evt.target.error.NOT_FOUND_ERR:
@@ -151,7 +153,7 @@ export class DashboardNewComponent implements OnInit {
 
     updateProgress(evt) {
         // Update event to show progress on file load
-        this.globalFunctionService.printToConsole(this.constructor.name,'updateProgress', '@Start');
+        console.warn('updateProgress', '@Start');
 
         // evt is an ProgressEvent.
         if (evt.lengthComputable) {
