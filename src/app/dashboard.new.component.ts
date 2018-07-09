@@ -56,8 +56,8 @@ export class DashboardNewComponent implements OnInit {
     dashboardName: string = '';
     dashboardDescription: string = '';
     errorMessage: string = '';
-    fileName: string = '';
     importFolder: string;
+    newDashboard: Dashboard = null;
     reader = new FileReader();
     theFile: any;
 
@@ -117,9 +117,12 @@ export class DashboardNewComponent implements OnInit {
     loadFile(theFile) {
         // Callback for loading File
         console.warn('loadFile', '@Start');
-        let newD: Dashboard = JSON.parse(JSON.parse(theFile.target.result))
-
-        console.warn('xx obj', newD.code)
+        
+        this.newDashboard = JSON.parse(JSON.parse(theFile.target.result))
+        this.dashboardCode = this.newDashboard.code;
+        this.dashboardName = this.newDashboard.name;
+        this.dashboardDescription = this.newDashboard.description;
+        
     }
 
     abortRead() {
