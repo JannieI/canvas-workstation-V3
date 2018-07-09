@@ -3,22 +3,11 @@
  */
 
 // From Angular
-import { AfterViewInit }              from '@angular/core';
 import { Component }                  from '@angular/core';
-import { ContentChildren }            from '@angular/core';
-import { Directive }                  from '@angular/core';
 import { ElementRef }                 from '@angular/core';
-import { HostBinding }                from '@angular/core';
-import { HostListener }               from '@angular/core';
 import { Input }                      from '@angular/core';
-import { OnInit }                     from '@angular/core';
-import { QueryList }                  from '@angular/core';
-import { Renderer }                   from '@angular/core';
-import { Renderer2 }                  from '@angular/core';
 import { ViewChild }                  from '@angular/core';
-import { ViewChildren }               from '@angular/core';
 
-import { Observable} from 'rxjs'
 // Our Services
 import { GlobalVariableService }      from './global-variable.service';
 import { GlobalFunctionService }      from './global-function.service';
@@ -30,8 +19,6 @@ import { Widget }                     from './models'
 import { compile }                    from 'vega-lite';
 import { parse }                      from 'vega';
 import { View }                       from 'vega';
-import * as dl from 'datalib';
-import { BoxPlotStyle } from 'vega-lite/build/src/compositemark/boxplot';
 
 // Own Services
 

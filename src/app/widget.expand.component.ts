@@ -7,8 +7,6 @@ import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
 
 // Our models
-import { Datasource }                 from './models';
-import { DatagridColumn }             from './models';
 
 // Our Services
 import { GlobalFunctionService } 	  from './global-function.service';

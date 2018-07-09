@@ -19,10 +19,9 @@ import { GlobalFunctionService } 		  from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
 // Functions
-import { compile, transform }                    from 'vega-lite';
+import { compile }                    from 'vega-lite';
 import { parse }                      from 'vega';
 import { View }                       from 'vega';
-import * as dl from 'datalib';
 
 const graphHeight: number = 260;
 const graphWidth: number = 420;

@@ -10,7 +10,6 @@ import { Renderer }                   from '@angular/core';
 import { ViewChild }                  from '@angular/core';
 
 // Our models
-import { DatagridInput }              from './models';
 import { DatagridColumn }             from './models';
 import { Widget }                     from './models';
 import { WidgetCheckpoint }           from './models';
@@ -20,11 +19,9 @@ import { GlobalFunctionService } 		  from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
 // Functions
-import { compile, transform }                    from 'vega-lite';
+import { compile }                    from 'vega-lite';
 import { parse }                      from 'vega';
 import { View }                       from 'vega';
-import * as dl from 'datalib';
-import { load } from 'datalib';
 
 
 @Component({
