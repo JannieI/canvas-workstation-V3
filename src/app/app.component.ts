@@ -335,7 +335,6 @@ export class AppComponent implements OnInit {
     showModalDashboardExport: boolean = false;
     showModalDashboardSnapshots: boolean = false;
     showModalDashboardShare: boolean = false;
-    showModalDashboardImport: boolean = false;
     showModalDashboardDiscard: boolean = false;
     showModalDashboardLogin: boolean = false;
     showModalDashboardLogout: boolean = false;
@@ -2639,15 +2638,6 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
         this.showModalDashboardSnapshots = true;
-    }
-
-    clickDashboardImport() {
-        // Import a D from a text file
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardImport', '@Start');
-
-        this.menuOptionClickPreAction();
-
-        this.showModalDashboardImport = true;
     }
 
     clickDashboardRename() {
