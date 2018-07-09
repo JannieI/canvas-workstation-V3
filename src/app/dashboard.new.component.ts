@@ -57,7 +57,7 @@ export class DashboardNewComponent implements OnInit {
     dashboardDescription: string = '';
     errorMessage: string = '';
     importFolder: string;
-    newDashboard: Dashboard = null;
+    importedDashboard: Dashboard = null;
     reader = new FileReader();
     theFile: any;
 
@@ -118,10 +118,10 @@ export class DashboardNewComponent implements OnInit {
         // Callback for loading File
         console.warn('loadFile', '@Start');
         
-        this.newDashboard = JSON.parse(JSON.parse(theFile.target.result))
-        this.dashboardCode = this.newDashboard.code;
-        this.dashboardName = this.newDashboard.name;
-        this.dashboardDescription = this.newDashboard.description;
+        this.importedDashboard = JSON.parse(JSON.parse(theFile.target.result))
+        this.dashboardCode = this.importedDashboard.code;
+        this.dashboardName = this.importedDashboard.name;
+        this.dashboardDescription = this.importedDashboard.description;
         
     }
 
@@ -193,6 +193,19 @@ export class DashboardNewComponent implements OnInit {
         newDashboard.description = this.dashboardDescription;
         newDashboard.creator = this.globalVariableService.currentUser.userID;
 
+        if (this.importedDashboard != null) {
+            newDashboard.accessType = this.importedDashboard.accessType;
+            newDashboard.backgroundColor = this.importedDashboard.backgroundColor;
+            newDashboard.backgroundImage = this.importedDashboard.backgroundImage;
+            newDashboard.defaultExportFileType = this.importedDashboard.defaultExportFileType;
+            newDashboard.defaultTabID = this.importedDashboard.defaultTabID;
+            newDashboard.isSample = this.importedDashboard.isSample;
+            newDashboard.qaRequired = this.importedDashboard.qaRequired;
+            newDashboard.templateDashboardID = this.importedDashboard.templateDashboardID;
+            newDashboard.url = this.importedDashboard.url;
+            newDashboard.version = this.importedDashboard.version;
+        };
+      
         // Add new (Complete + Draft) to DB, and open Draft
         newDashboard.state = 'Complete';
         this.globalVariableService.addDashboard(newDashboard).then(newD => {
