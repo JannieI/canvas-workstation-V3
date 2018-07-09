@@ -101,54 +101,40 @@ export class DashboardNewComponent implements OnInit {
 
         // Access and handle the files
         this.theFile = inp.files[0];
-        console.warn('xx pre readAsBinaryString', this.theFile, this.theFile.name, this.theFile.type, this.theFile.size, this.theFile.lastModifiedDate, this.theFile.lastModifiedDate.toLocaleDateString())
+        console.warn('xx pre readAsText', this.theFile, this.theFile.name, this.theFile.type, this.theFile.size, this.theFile.lastModifiedDate, this.theFile.lastModifiedDate.toLocaleDateString())
 
-        // Read file as Binary
+        // Read file as Text
 
         this.reader.onerror = this.errorHandler;
         this.reader.onprogress = this.updateProgress;
         this.reader.onload = (theFile) =>{ this.loadFile(theFile) };
 
         // Read in the image file as a data URL.
-        this.reader.readAsBinaryString(this.theFile);
-        console.warn('xx Post readAsBinaryString')
+        this.reader.readAsText(this.theFile);
+        console.warn('xx Post readAsText')
     }
 
 
     loadFile(theFile) {
-        console.warn('  begin loadFile', theFile, this.theFile)
+        // Callback for loading File
+        this.globalFunctionService.printToConsole(this.constructor.name,'loadFile', '@Start');
+
         this.fileName = this.theFile;
-        // skip_rows = [number = rows to skip, string = ignore rows that starts with this]
-        // First row = 0
-        // heaers = single integer to indicate the header, array of strings = use THIS text
-        let specification = {
-            source: {
-                connector: "tributary.connectors.spreadsheet:XlsxConnector",
-                content:  btoa(theFile.target.result),
-                headers: 0,
-                skip_rows: []
-            }
-        };
-        let token = JSON.parse(localStorage.getItem('eazl-token'));
-        let options = {
-            method: "POST",
-            body: JSON.stringify(specification),
-            mode: "cors",
-            headers: {
-            "Content-Type": "application/json",
-            "Authorization": `JWT ${token}`
-            }
-        };
-        this.globalVariableService.getTributaryData(specification);
 
         console.warn('  end loadFile', theFile, this.theFile)
     }
 
     abortRead() {
+        // Cancelled reading File
+        this.globalFunctionService.printToConsole(this.constructor.name,'abortRead', '@Start');
+
         this.reader.abort();
     }
 
     errorHandler(evt) {
+        // Handling errors on File load
+        this.globalFunctionService.printToConsole(this.constructor.name,'errorHandler', '@Start');
+
         switch(evt.target.error.code) {
           case evt.target.error.NOT_FOUND_ERR:
             alert('File Not Found!');
@@ -164,6 +150,9 @@ export class DashboardNewComponent implements OnInit {
     }
 
     updateProgress(evt) {
+        // Update event to show progress on file load
+        this.globalFunctionService.printToConsole(this.constructor.name,'updateProgress', '@Start');
+
         // evt is an ProgressEvent.
         if (evt.lengthComputable) {
             var percentLoaded = Math.round((evt.loaded / evt.total) * 100);

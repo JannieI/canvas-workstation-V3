@@ -102,7 +102,7 @@
         cursor: hand;
     }
     .gridImportMessage {
-        grid-column-start: 4;
+        grid-column-start: 3;
         grid-column-end: 15;
         grid-row-start: 7;
         grid-row-end: 8;
