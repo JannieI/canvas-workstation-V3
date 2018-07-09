@@ -47,23 +47,23 @@ export class DataDirectFileComponent implements OnInit {
 
     }
 
-    datasources: Datasource[];
-    currentDatasources: Datasource[] = [];
     currentData: any = [];
+    currentDatasetName: string;
+    currentDatasources: Datasource[] = [];
     dataArray: any;
     dataFieldLengths: number[] = [];
     dataFieldNames: string[];
     dataFieldTypes: string[] = [];
+    datasources: Datasource[];
     errorMessage: string = "";
-    fileName: string = '';
-    folderName: string = '';
-    finalFields: any = [];
-    selectedFile: boolean = true;
-    currentDatasetName: string;
-    reader = new FileReader();
-
-    theFile: any;
     existingDSName: string = '';
+    fileName: string = '';
+    finalFields: any = [];
+    folderName: string = '';
+    reader = new FileReader();
+    selectedFile: boolean = true;
+    theFile: any;
+
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
