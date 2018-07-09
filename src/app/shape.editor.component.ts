@@ -11,11 +11,9 @@ import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
 
 // Our Components
-import { ColourPickerComponent }      from './colour.picker.component';
 
 // Our Models
 import { CSScolor }                   from './models';
-import { DashboardTab }               from './models';
 import { Widget }                     from './models';
 
 // Our Functions

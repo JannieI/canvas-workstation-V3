@@ -17,7 +17,6 @@ import { GlobalVariableService }      from './global-variable.service';
 import { Datasource, PaletteButtonsSelected } 				  from './models';
 import { Dashboard } 				  from './models';
 import { DashboardRecent } 			  from './models';
-import { DashboardTab } 			  from './models';
 
 
 @Component({

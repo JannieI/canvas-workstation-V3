@@ -10,7 +10,6 @@ import { Renderer }                   from '@angular/core';
 import { ViewChild }                  from '@angular/core';
 
 // Our models
-import { Datasource }                 from './models';
 
 // Our Services
 import { GlobalFunctionService } 		  from './global-function.service';
