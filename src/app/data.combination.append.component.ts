@@ -4,14 +4,11 @@
 
 // Angular
 import { Component }                  from '@angular/core';
-import { ElementRef }                 from '@angular/core';
 import { EventEmitter }               from '@angular/core';
 import { HostListener }               from '@angular/core';
-import { Input }                     from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
 import { Router }                     from '@angular/router';
-import { ViewChild }                  from '@angular/core';
 
 // Our Functions
 import { GlobalFunctionService } 	  from './global-function.service';
@@ -20,14 +17,7 @@ import { GlobalVariableService }      from './global-variable.service';
 // Our Models
 import { Datasource }                 from './models';
 import { Dataset }                    from './models';
-import { Transformation }             from './models';
-import { Field }                      from './models';
-import { FieldMetadata }              from './models';
 import { DataQualityIssue }           from './models';
-
-// Vega
-import * as dl from 'datalib';
-import { load } from 'datalib';
 
 interface localDatasources extends Datasource
     {
