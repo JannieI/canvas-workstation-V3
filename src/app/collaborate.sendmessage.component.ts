@@ -17,8 +17,6 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService}       from './global-variable.service';
 
 // Models
-import { CanvasUser }                 from './models';
-import { CanvasGroup }                from './models';
 import { CanvasMessage }              from './models';
 
 @Component({

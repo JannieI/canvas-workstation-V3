@@ -7,7 +7,6 @@ import { Component }                  from '@angular/core';
 import { ElementRef }                 from '@angular/core';
 import { EventEmitter }               from '@angular/core';
 import { HostListener }               from '@angular/core';
-import { Input }                      from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
 import { ViewChild }                  from '@angular/core';
@@ -21,8 +20,6 @@ import { GlobalVariableService}       from './global-variable.service';
 // Models
 import { CanvasTask }                 from './models';
 import { CanvasUser }                 from './models';
-import { DatagridInput }              from './models';
-import { DatagridColumn }             from './models';
 
 // Vega, Vega-Lite
 import { compile }                    from 'vega-lite';
