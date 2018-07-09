@@ -846,15 +846,6 @@ export class AppComponent implements OnInit {
         this.showModalDashboardShare = false;
     }
 
-    handleCloseDashboardImport(action: string) {
-        //
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardImport', '@Start');
-
-        this.menuOptionClickPostAction();
-
-        this.showModalDashboardImport = false;
-    }
-
     handleCloseDashboardDiscard(action: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardDiscard', '@Start');
