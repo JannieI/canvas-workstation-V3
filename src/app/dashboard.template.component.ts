@@ -91,7 +91,9 @@ export class DashboardTemplateComponent implements OnInit {
             d => d.id == dashboardID);
         this.currentTemplateName = this.dashboards[templateIndex].name;
 
-        console.warn('xx dID', dashboardID)
+        // Change Template ID and save
+        this.currentDashboard.templateDashboardID = dashboardID;
+        this.globalVariableService.saveDashboard(this.currentDashboard);
     }
 
     clickClose(action: string) {
