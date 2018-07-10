@@ -76,8 +76,14 @@ export class DashboardTemplateComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClear', '@Start');
 
         // Change Template ID and save
+        this.currentTemplateName = '';
         this.currentDashboard.templateDashboardID = null;
         this.globalVariableService.saveDashboard(this.currentDashboard);
+        this.globalVariableService.refreshCurrentDashboard(
+            'DashboardTemplate clickClear',
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID
+        );
 
     }
  
@@ -98,6 +104,11 @@ export class DashboardTemplateComponent implements OnInit {
         // Change Template ID and save
         this.currentDashboard.templateDashboardID = dashboardID;
         this.globalVariableService.saveDashboard(this.currentDashboard);
+        this.globalVariableService.refreshCurrentDashboard(
+            'DashboardTemplate clickClear',
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID
+        );
     }
 
     clickClose(action: string) {
