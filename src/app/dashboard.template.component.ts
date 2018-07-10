@@ -74,9 +74,9 @@ export class DashboardTemplateComponent implements OnInit {
         this.selectedRow = index;
     }
 
-    dblclickAdd(dashboardID: number) {
+    dblclickAdd(index: number, dashboardID: number) {
         // Add a new Template
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'dblclickAdd', '@Start');
 
         console.warn('xx dID', dashboardID)
     }
