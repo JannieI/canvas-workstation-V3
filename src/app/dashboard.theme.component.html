@@ -6,15 +6,32 @@
                 <button type="button" class="closeButton" (click)="clickClose()">
                     <b>X</b>
                 </button>
-        
+
                 <div class="gridTitle">
                     <b>Theme for the current Dashboard</b>
+                    <clr-signpost>
+                        <clr-icon shape="info-circle"
+                            clrSignpostTrigger>
+                        </clr-icon>
+                        <clr-signpost-content *clrIfOpen
+                            [clrPosition]="'bottom-middle'">
+                            <h5 style="margin-top: 0; color:gray;">
+                                Help
+                            </h5>
+                            <p style="margin-top: 0; color:gray;"> 
+                                A Theme can be added to a Dashboard to amend how colours
+                                and fonts are displayed.
+                                Click the X or press Escape to close this form.
+                            </p>
+                        </clr-signpost-content>
+                    </clr-signpost>
+
                 </div>
                 <div class="gridSubTitle">
                     <i>
                         Will be added at later stage.  Themes are optional, and changes some aspects of the look and feel.
                         Your current theme is:
-                        <input type="text" 
+                        <input type="text"
                             placeholder="Theme name"
                             >
                     </i>
