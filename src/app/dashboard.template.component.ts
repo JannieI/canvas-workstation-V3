@@ -45,6 +45,7 @@ export class DashboardTemplateComponent implements OnInit {
     currentDashboard: string = '';
     dashboards: Dashboard[];
     dashboardTemplates: DashboardTemplate[];
+    selectedRow: number = 0;
     showTypeDashboard: boolean = false;
 
 
@@ -66,11 +67,18 @@ export class DashboardTemplateComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClear', '@Start');
 
     }
+ 
+    clickRow(index: number) {
+        // Show selected record
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
+        this.selectedRow = index;
+    }
 
-    dblclickAdd() {
+    dblclickAdd(dashboardID: number) {
         // Add a new Template
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
 
+        console.warn('xx dID', dashboardID)
     }
 
     clickClose(action: string) {

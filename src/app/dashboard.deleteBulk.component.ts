@@ -110,7 +110,7 @@ export class DashboardDeleteBulkComponent implements OnInit {
     }
  
     clickRow(index: number) {
-        // Show groups
+        // Show selected record
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
         this.selectedRow = index;
     }

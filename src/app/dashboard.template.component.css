@@ -73,10 +73,11 @@
  
     .gridRest {
         grid-column-start: 1;
-        grid-column-end: 15;
+        grid-column-end: 16;
         grid-row-start: 7;
         grid-row-end: 16;
         margin: 2px 2px 2px 2px;
         text-align: left;
+        overflow-y: scroll;
     }
 
