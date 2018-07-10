@@ -16,6 +16,8 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService}       from './global-variable.service';
 
 // Models
+import { CanvasGroup }                from './models';
+import { CanvasUser }                 from './models';
 import { DatasourcePermission }       from './models';
 
 @Component({
@@ -44,15 +46,70 @@ export class DatasourceShareComponent implements OnInit {
     selectedRowIndex: number = 0;
     showTypeDatasource: boolean = false;
 
+
+    groupID: number;
+    groupName: string = '';
+    groups: CanvasGroup[];
+    groupNames: string[] = [];
+    userNames: string[] = [];
+    users: CanvasUser[];
+
 	constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
 	) {}
 
     ngOnInit() {
-        //
+        // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
+        this.globalVariableService.getCanvasUsers().then(usr => {
+            this.userNames = usr.sort((n1,n2) => {
+                if (n1.userID > n2.userID) {
+                    return 1;
+                };
+            
+                if (n1.userID < n2.userID) {
+                    return -1;
+                };
+            
+                return 0;
+            })
+            .map(u => u.userID); 
+
+            this.users = usr;
+
+            this.globalVariableService.getCanvasGroups().then(grp => {
+                this.groupNames = grp.sort((n1,n2) => {
+                    if (n1.name > n2.name) {
+                        return 1;
+                    };
+                
+                    if (n1.name < n2.name) {
+                        return -1;
+                    };
+                
+                    return 0;
+                })
+                .map(g => g.name);
+                
+                this.groups = grp;
+            });
+
+            this.groupNames = this.groupNames.sort((n1,n2) => {
+                if (n1 > n2) {
+                    return 1;
+                };
+            
+                if (n1 < n2) {
+                    return -1;
+                };
+            
+                return 0;
+            });
+
+            // this.groupNames = ['', ...this.groupNames];
+        });
         this.globalVariableService.getDatasourcePermissions().then (dp => {
             this.datasourcePermissions = dp;
             this.datasourcePermissions.forEach(tdsp => {
@@ -71,6 +128,27 @@ export class DatasourceShareComponent implements OnInit {
         // Set seletected index - used for highlighting row
         this.selectedRowIndex = index;
     }
+
+
+
+    clickSelectGroup(ev) {
+        // User changed the security access for the D
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectGroup', '@Start');
+
+        // Reset
+        this.groupID = null;
+        this.groupName = null;
+
+        // Set group info
+        this.groupName = ev.srcElement.value.toString();
+        this.groups.forEach(g => {
+            if (g.name.toLowerCase() == this.groupName.toLowerCase()) {
+                this.groupID = g.id;
+            };
+        });
+        console.log(ev.srcElement.value, this.groupID)
+    }
+
 
     clickToggleView(id: number, $event) {
         // User dblclicked View - so toggle it

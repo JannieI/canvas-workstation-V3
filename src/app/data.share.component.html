@@ -51,7 +51,7 @@
                 <div class="gridUserIDTitle">
                     <b>UserID:</b>
                 </div>
-                <div class="gridUserID">
+                <!-- <div class="gridUserID">
                     <input [ngModel]="UserID"
                         type="text"
                         name="UserID"
@@ -63,12 +63,25 @@
                         placeholder="User Name"
                         size="25"
                         >
+                </div> -->
+                <div class="select gridUserID">
+                    <select
+                        [(ngModel)]="selectedAssignedToUserID"
+                        >
+                        <option *ngFor="let row of userNames"
+                            >
+                            {{ row }}
+                        </option>
+                    </select>
                 </div>
+
+
+
     
                 <div class="gridGroupIDTitle">
                     <b>Group:</b>
                 </div>
-                <div class="gridGroupID">
+                <!-- <div class="gridGroupID">
                     <input [ngModel]="Group"
                         type="text"
                         name="Group"
@@ -80,7 +93,22 @@
                         placeholder="Group Name"
                         size="25"
                         >
+                </div> -->
+
+                <div class="gridGroupID">
+                    <div class="select">
+                        <select
+                            (change)="clickSelectGroup($event)"
+                            >
+                            <option *ngFor="let row of groupNames; let i = index">
+                                {{ row }}
+                            </option>
+                        </select>
+                    </div>
                 </div>
+
+
+
 
                 <div class="gridCanViewTitle">
                     Can View:
