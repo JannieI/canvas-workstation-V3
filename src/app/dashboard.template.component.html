@@ -32,9 +32,9 @@
                 </div>
 
                 <div class="gridSubTitle">
-                    Double click a Dashboard in the grid and then click the Add button to
-                    add it as a Template to the current Dashboard.  Click Clear remove a 
-                    previously linked Template.
+                    Double click a Dashboard in the grid to add it as a Template to the 
+                    current Dashboard.  
+                    Click Clear remove a previously linked Template.
                 </div>
 
                 <div class="gridCurrentTitle">
@@ -57,15 +57,6 @@
                         Clear
                     </button>
                 </div>
-                <div class="gridButtonAdd">
-                    <button
-                        type="button"
-                        class="btn btn-primary"
-                        (click)="clickAdd()"
-                        >
-                        Add
-                    </button>
-                </div>
 
                 <div class="gridRest">
 
@@ -75,7 +66,9 @@
                         <clr-dg-column>Name</clr-dg-column>
                         <clr-dg-column>Description</clr-dg-column>
 
-                        <clr-dg-row *ngFor="let row of dashboardTemplates">
+                        <clr-dg-row *ngFor="let row of dashboardTemplates"
+                            (dblclick)="dblclickAdd()"
+                            >
                             <clr-dg-cell>
                                 <clr-icon shape="check" class="selectIcon1" size="12"></clr-icon>
                             </clr-dg-cell>

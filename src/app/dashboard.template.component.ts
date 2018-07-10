@@ -54,11 +54,29 @@ export class DashboardTemplateComponent implements OnInit {
 	) {}
 
     ngOnInit() {
+        // Initial
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
         this.dashboards = this.globalVariableService.dashboards.slice();
         this.dashboardTemplates = this.globalVariableService.dashboardTemplates;
     }
 
+    clickClear() {
+        // Clear a previously added Template
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClear', '@Start');
+
+    }
+
+    dblclickAdd() {
+        // Add a new Template
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
+
+    }
+
     clickClose(action: string) {
+        // Close the form, nothing saved
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
+
         console.log('clickClose')
 
 		this.formDashboardTemplateClosed.emit(action);
