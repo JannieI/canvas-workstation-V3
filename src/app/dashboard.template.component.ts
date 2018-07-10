@@ -41,10 +41,9 @@ export class DashboardTemplateComponent implements OnInit {
 
     }
 
-    
-    currentDashboard: string = '';
+    currentDashboard: Dashboard;
+    currentTemplateName: string = '';
     dashboards: Dashboard[];
-    dashboardTemplates: DashboardTemplate[];
     selectedRow: number = 0;
     showTypeDashboard: boolean = false;
 
@@ -58,8 +57,18 @@ export class DashboardTemplateComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
+        // Get D info
         this.dashboards = this.globalVariableService.dashboards.slice();
-        this.dashboardTemplates = this.globalVariableService.dashboardTemplates;
+        let dashboardIndex: number = this.dashboards.findIndex(d => d.id 
+            == this.globalVariableService.currentDashboardInfo.value.currentDashboardID);
+        this.currentDashboard = this.dashboards[dashboardIndex];
+
+        // Get Template info
+        if (this.currentDashboard.templateDashboardID != null) {
+            let templateIndex: number = this.dashboards.findIndex(
+                d => d.id == this.currentDashboard.templateDashboardID);
+            this.currentTemplateName = this.dashboards[templateIndex].name;
+        };
     }
 
     clickClear() {
