@@ -19,6 +19,7 @@ import { GlobalVariableService}       from './global-variable.service';
 import { CanvasGroup }                from './models';
 import { CanvasUser }                 from './models';
 import { DatasourcePermission }       from './models';
+import { Datasource }                 from './models';
 
 @Component({
     selector: 'data-share',
@@ -43,6 +44,7 @@ export class DatasourceShareComponent implements OnInit {
     }
 
     datasourcePermissions: DatasourcePermission[];
+    datasources: Datasource[];
     selectedRowIndex: number = 0;
     showTypeDatasource: boolean = false;
 
@@ -51,6 +53,7 @@ export class DatasourceShareComponent implements OnInit {
     groupName: string = '';
     groups: CanvasGroup[];
     groupNames: string[] = [];
+    selectedUserID: string;
     userNames: string[] = [];
     users: CanvasUser[];
 
@@ -63,59 +66,51 @@ export class DatasourceShareComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.globalVariableService.getCanvasUsers().then(usr => {
-            this.userNames = usr.sort((n1,n2) => {
-                if (n1.userID > n2.userID) {
-                    return 1;
-                };
-            
-                if (n1.userID < n2.userID) {
-                    return -1;
-                };
-            
-                return 0;
-            })
-            .map(u => u.userID); 
-
-            this.users = usr;
-
-            this.globalVariableService.getCanvasGroups().then(grp => {
-                this.groupNames = grp.sort((n1,n2) => {
-                    if (n1.name > n2.name) {
-                        return 1;
-                    };
-                
-                    if (n1.name < n2.name) {
-                        return -1;
-                    };
-                
-                    return 0;
-                })
-                .map(g => g.name);
-                
-                this.groups = grp;
-            });
-
-            this.groupNames = this.groupNames.sort((n1,n2) => {
-                if (n1 > n2) {
-                    return 1;
-                };
-            
-                if (n1 < n2) {
-                    return -1;
-                };
-            
-                return 0;
-            });
-
-            // this.groupNames = ['', ...this.groupNames];
-        });
         this.globalVariableService.getDatasourcePermissions().then (dp => {
             this.datasourcePermissions = dp;
             this.datasourcePermissions.forEach(tdsp => {
                 tdsp.name = this.globalVariableService.datasources.filter(
                     ds => ds.id == tdsp.datasourceID)[0].name;
             })
+
+            this.globalVariableService.getCanvasUsers().then(usr => {
+                this.userNames = usr.sort((n1,n2) => {
+                    if (n1.userID > n2.userID) {
+                        return 1;
+                    };
+                
+                    if (n1.userID < n2.userID) {
+                        return -1;
+                    };
+                
+                    return 0;
+                })
+                .map(u => u.userID); 
+                this.userNames = ['', ...this.userNames];
+                this.selectedUserID = 'JannieI';
+
+                this.users = usr;
+
+                this.globalVariableService.getCanvasGroups().then(grp => {
+                    this.groupNames = grp.sort((n1,n2) => {
+                        if (n1.name > n2.name) {
+                            return 1;
+                        };
+                    
+                        if (n1.name < n2.name) {
+                            return -1;
+                        };
+                    
+                        return 0;
+                    })
+                    .map(g => g.name);
+
+                    this.groups = grp;
+                });
+                this.groupNames = ['', ...this.groupNames];
+
+            });
+
             console.warn('xx this.datasourcePermissions', this.datasourcePermissions)
         });
 

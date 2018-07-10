@@ -34,39 +34,9 @@
                     <b>DS Name:</b>
                 </div>
 
-                <div class="gridDatasourceName">
-                    <input [ngModel]="datasourceName"
-                        type="text"
-                        name="datasourceName"
-                        #datasourceNameVar="ngModel"
-                        required
-                        minlength="3"
-                        maxlength="40"
-                        [style.color]="!datasourceNameVar.valid ? 'red' : 'gray'"
-                        placeholder="Datasource Name"
-                        size="25"
-                        >
-                </div>
-
-                <div class="gridUserIDTitle">
-                    <b>UserID:</b>
-                </div>
-                <!-- <div class="gridUserID">
-                    <input [ngModel]="UserID"
-                        type="text"
-                        name="UserID"
-                        #UserIDVar="ngModel"
-                        required
-                        minlength="3"
-                        maxlength="40"
-                        [style.color]="!UserIDVar.valid ? 'red' : 'gray'"
-                        placeholder="User Name"
-                        size="25"
-                        >
-                </div> -->
-                <div class="select gridUserID">
+                <div class="select gridDatasourceName">
                     <select
-                        [(ngModel)]="selectedAssignedToUserID"
+                        [(ngModel)]="datasourceName"
                         >
                         <option *ngFor="let row of userNames"
                             >
@@ -75,26 +45,23 @@
                     </select>
                 </div>
 
-
-
+                <div class="gridUserIDTitle">
+                    <b>User:</b>
+                </div>
+                <div class="select gridUserID">
+                    <select
+                        [(ngModel)]="selectedUserID"
+                        >
+                        <option *ngFor="let row of userNames"
+                            >
+                            {{ row }}
+                        </option>
+                    </select>
+                </div>
     
                 <div class="gridGroupIDTitle">
                     <b>Group:</b>
                 </div>
-                <!-- <div class="gridGroupID">
-                    <input [ngModel]="Group"
-                        type="text"
-                        name="Group"
-                        #GroupVar="ngModel"
-                        required
-                        minlength="3"
-                        maxlength="40"
-                        [style.color]="!GroupVar.valid ? 'red' : 'gray'"
-                        placeholder="Group Name"
-                        size="25"
-                        >
-                </div> -->
-
                 <div class="gridGroupID">
                     <div class="select">
                         <select
@@ -106,9 +73,6 @@
                         </select>
                     </div>
                 </div>
-
-
-
 
                 <div class="gridCanViewTitle">
                     Can View:
