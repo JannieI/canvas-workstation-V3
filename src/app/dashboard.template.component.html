@@ -31,18 +31,19 @@
 
                 </div>
 
-                <div class="griSubTitle">
+                <div class="gridSubTitle">
                     Double click a Dashboard in the grid and then click the Add button to
                     add it as a Template to the current Dashboard.  Click Clear remove a 
                     previously linked Template.
                 </div>
 
                 <div class="gridCurrentTitle">
-                    <b>Current</b>
+                    <b>Current Template:</b>
                 </div>
                 <div class="gridCurrent">
                     <input [(ngModel)]="currentDashboard" 
                         type="text" 
+                        size="45"
                         placeholder="Template name"
                         >
                 </div>
@@ -67,11 +68,6 @@
                 </div>
 
                 <div class="gridRest">
-
-
-                    <div class="propertyLine">
-                        Available templates:
-                    </div>
 
                     <clr-datagrid>
                         <clr-dg-column>Select</clr-dg-column>

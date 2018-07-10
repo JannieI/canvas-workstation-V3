@@ -3,10 +3,6 @@
 	-shadow: 0 2px 2px 0 lightgray;
 }
 
-.propertyLine {
-    margin: 5px;
-}
-
 .gridOverall {
     display: grid;
     grid-template-columns: repeat(15, 1fr);
@@ -32,55 +28,55 @@
         text-align: left;
     }
 
-    .griSubTitle {
+    .gridSubTitle {
         grid-column-start: 1;
         grid-column-end: 15;
         grid-row-start: 3;
-        grid-row-end: 4;
+        grid-row-end: 5;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
 
-    .griCurrentTitle {
+    .gridCurrentTitle {
         grid-column-start: 1;
         grid-column-end: 3;
-        grid-row-start: 5;
-        grid-row-end: 6;
+        grid-row-start: 6;
+        grid-row-end: 7;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
-    .griCurrent {
+    .gridCurrent {
         grid-column-start: 3;
         grid-column-end: 15;
-        grid-row-start: 5;
-        grid-row-end: 6;
+        grid-row-start: 6;
+        grid-row-end: 7;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
 
-    gridButtonClear {
+    .gridButtonClear {
         grid-column-start: 5;
         grid-column-end: 7;
-        grid-row-start: 7;
-        grid-row-end: 8;
+        grid-row-start: 5;
+        grid-row-end: 6;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
-    gridButtonAdd {
+    .gridButtonAdd {
         grid-column-start: 11;
         grid-column-end: 13;
-        grid-row-start: 7;
-        grid-row-end: 8;
-        margin: 2px 2px 2px 2px;
+        grid-row-start: 9;
+        grid-row-end: 11;
+        margin: 12px 2px 2px 2px;
         text-align: left;
     }
  
     .gridRest {
         grid-column-start: 1;
         grid-column-end: 15;
-        grid-row-start: 9;
-        grid-row-end: 16;
-        margin: 2px 2px 2px 2px;
+        grid-row-start: 12;
+        grid-row-end: 13;
+        margin: 12px 2px 2px 2px;
         text-align: left;
     }
 
