@@ -30,18 +30,42 @@
                     </clr-signpost>
 
                 </div>
-                <div class="gridSubTitle">
-                    <i>
-                        Will be done at a later stage. A Template is an optional Dashboard that is displayed behind your
-                        Dashboard.  It is readonly wherever it has been added as a Template,
-                        and cannot be edited here.  The original Template can be edited at
-                        any stage, similar to any other Dashboard.  When the template is
-                        changed, these will reflect in all the Dashboards where it is used
-                        as a template.  Current
-                        <input type="text" id="formFields_7" placeholder="Template name">
-                        <input type="text" id="formFields_7" placeholder="Visible: Yes/No">
-                    </i>
+
+                <div class="griSubTitle">
+                    Double click a Dashboard in the grid and then click the Add button to
+                    add it as a Template to the current Dashboard.  Click Clear remove a 
+                    previously linked Template.
                 </div>
+
+                <div class="gridCurrentTitle">
+                    <b>Current</b>
+                </div>
+                <div class="gridCurrent">
+                    <input [(ngModel)]="currentDashboard" 
+                        type="text" 
+                        placeholder="Template name"
+                        >
+                </div>
+
+                <div class="gridButtonClear">
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        (click)="clickClear()"
+                        >
+                        Clear
+                    </button>
+                </div>
+                <div class="gridButtonAdd">
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                        (click)="clickAdd()"
+                        >
+                        Add
+                    </button>
+                </div>
+
                 <div class="gridRest">
 
 

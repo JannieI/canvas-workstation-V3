@@ -41,9 +41,11 @@ export class DashboardTemplateComponent implements OnInit {
 
     }
 
-    showTypeDashboard: boolean = false;
+    
+    currentDashboard: string = '';
     dashboards: Dashboard[];
     dashboardTemplates: DashboardTemplate[];
+    showTypeDashboard: boolean = false;
 
 
 	constructor(

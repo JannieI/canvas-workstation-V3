@@ -25,27 +25,61 @@
     .gridTitle {
         font-size: 0.75rem;
         grid-column-start: 1;
-        grid-column-end: 18;
+        grid-column-end: 15;
         grid-row-start: 1;
         grid-row-end: 2;
         margin-left: 30px;
         text-align: left;
     }
-    .gridSubTitle {
-        color: red;
+
+    .griSubTitle {
         grid-column-start: 1;
-        grid-column-end: 41;
-        grid-row-start: 2;
-        grid-row-end: 3;
+        grid-column-end: 15;
+        grid-row-start: 3;
+        grid-row-end: 4;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
 
+    .griCurrentTitle {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 5;
+        grid-row-end: 6;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .griCurrent {
+        grid-column-start: 3;
+        grid-column-end: 15;
+        grid-row-start: 5;
+        grid-row-end: 6;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+
+    gridButtonClear {
+        grid-column-start: 5;
+        grid-column-end: 7;
+        grid-row-start: 7;
+        grid-row-end: 8;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    gridButtonAdd {
+        grid-column-start: 11;
+        grid-column-end: 13;
+        grid-row-start: 7;
+        grid-row-end: 8;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+ 
     .gridRest {
         grid-column-start: 1;
-        grid-column-end: 41;
-        grid-row-start: 5;
-        grid-row-end: 19;
+        grid-column-end: 15;
+        grid-row-start: 9;
+        grid-row-end: 16;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
