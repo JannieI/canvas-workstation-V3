@@ -75,6 +75,10 @@ export class DashboardTemplateComponent implements OnInit {
         // Clear a previously added Template
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClear', '@Start');
 
+        // Change Template ID and save
+        this.currentDashboard.templateDashboardID = null;
+        this.globalVariableService.saveDashboard(this.currentDashboard);
+
     }
  
     clickRow(index: number) {
