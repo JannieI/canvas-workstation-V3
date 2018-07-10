@@ -7,14 +7,13 @@ import { Component }                  from '@angular/core';
 import { EventEmitter }               from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
-import { Router }                     from '@angular/router';
 
 // Our Functions
 import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
 // Our Models
-import { Datasource, PaletteButtonsSelected } 				  from './models';
+import { PaletteButtonsSelected } 	  from './models';
 import { Dashboard } 				  from './models';
 import { DashboardRecent } 			  from './models';
 
@@ -36,7 +35,6 @@ export class LandingComponent implements OnInit {
 	constructor(
 		private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
-		private router: Router
 	) {
 
 		// Load Startup info:
@@ -198,7 +196,7 @@ export class LandingComponent implements OnInit {
 	}
 
 	dblclickDeleteRecent(id: number) {
-        //
+        // Delete recent record
         this.globalFunctionService.printToConsole(this.constructor.name,'dblclickDeleteRecent', '@Start');
 
 		// Delete from temp array, refresh

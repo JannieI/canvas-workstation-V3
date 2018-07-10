@@ -1,5 +1,3 @@
-import { DashboardCommentsComponent } from "./dashboard.comments.component";
-
 // ALL models (schema) are kept here
 
 // CA Datagrid

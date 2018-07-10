@@ -78,6 +78,14 @@
 										)"
 								>
 								{{row.nameAtRunTime}} ({{ row.stateAtRunTime }})
+								<clr-icon *ngIf="row.editMode"
+									shape="pencil" 
+									class="selectIcon1" 
+									size="8"
+									(dblclick)="dblclickDelete(i, row.id)"
+									>
+                                </clr-icon>
+
 							</span>
 						</a>
 					</div>
