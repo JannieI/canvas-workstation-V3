@@ -47,7 +47,7 @@ export class DatasourceShareComponent implements OnInit {
     datasources: Datasource[];
     selectedRowIndex: number = 0;
     showTypeDatasource: boolean = false;
-
+    selectedDatasource: Datasource;
 
     groupID: number;
     groupName: string = '';
@@ -66,6 +66,8 @@ export class DatasourceShareComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
+        this.datasources = this.globalVariableService.datasources;
+        
         this.globalVariableService.getDatasourcePermissions().then (dp => {
             this.datasourcePermissions = dp;
             this.datasourcePermissions.forEach(tdsp => {
@@ -124,7 +126,10 @@ export class DatasourceShareComponent implements OnInit {
         this.selectedRowIndex = index;
     }
 
+    clickDatasource() {
+        console.warn('xx selectedDatasource', this.selectedDatasource)
 
+    }
 
     clickSelectGroup(ev) {
         // User changed the security access for the D

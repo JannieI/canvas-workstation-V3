@@ -36,11 +36,12 @@
 
                 <div class="select gridDatasourceName">
                     <select
-                        [(ngModel)]="datasourceName"
+                        [(ngModel)]="selectedDatasource"
+                        (click)="clickDatasource()"
                         >
-                        <option *ngFor="let row of userNames"
+                        <option *ngFor="let row of datasources"
                             >
-                            {{ row }}
+                            {{ row.name }}
                         </option>
                     </select>
                 </div>
