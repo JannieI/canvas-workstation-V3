@@ -49,6 +49,7 @@ export class DataDirectImportComponent implements OnInit {
     fileName: string = 'datasource.sharePrices.json';
     folderName: string = './assets/';
     reader = new FileReader();
+    theFile: any;
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -164,6 +165,38 @@ export class DataDirectImportComponent implements OnInit {
         this.globalVariableService.getTributaryData(specification);
 
         console.warn('  end loadFile', theFile, this.theFile)
+    }
+
+    abortRead() {
+        this.reader.abort();
+    }
+
+    errorHandler(evt) {
+        switch(evt.target.error.code) {
+          case evt.target.error.NOT_FOUND_ERR:
+            alert('File Not Found!');
+            break;
+          case evt.target.error.NOT_READABLE_ERR:
+            alert('File is not readable');
+            break;
+          case evt.target.error.ABORT_ERR:
+            break; // noop
+          default:
+            alert('An error occurred reading this file.');
+        };
+    }
+
+    updateProgress(evt) {
+        // evt is an ProgressEvent.
+        if (evt.lengthComputable) {
+            var percentLoaded = Math.round((evt.loaded / evt.total) * 100);
+            // Increase the progress bar length.
+            if (percentLoaded < 100) {
+                console.warn('xx % loaded', percentLoaded)
+                // progress.style.width = percentLoaded + '%';
+                // progress.textContent = percentLoaded + '%';
+            };
+        };
     }
 
     clickClose(action: string) {
