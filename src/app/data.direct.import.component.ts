@@ -99,8 +99,8 @@ export class DataDirectImportComponent implements OnInit {
         
         this.currentData = theFile.target.result;
         this.importedDatasource = JSON.parse(JSON.parse(theFile.target.result));
-        this.datasourceName = this.currentData.name;
-        this.datasourceDescription = this.currentData.description;
+        this.datasourceName = this.importedDatasource.name;
+        this.datasourceDescription = this.importedDatasource.description;
         
     }
 
@@ -162,7 +162,7 @@ export class DataDirectImportComponent implements OnInit {
         };
 
         // Prepare, add to DB and close form
-        let datasource: Datasource = JSON.parse(this.currentData);
+        let datasource: Datasource = this.importedDatasource;
         datasource.id = null;
         datasource.name = this.datasourceName;
         datasource.description = this.datasourceDescription;
