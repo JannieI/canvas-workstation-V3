@@ -45,6 +45,7 @@ export class DataDirectImportComponent implements OnInit {
     errorMessage: string = "";
     fileName: string = 'datasource.sharePrices.json';
     folderName: string = './assets/';
+    importedDatasource: Datasource;
     reader = new FileReader();
     theFile: any;
 
@@ -96,7 +97,8 @@ export class DataDirectImportComponent implements OnInit {
         // Callback for loading File
         console.warn('loadFile', '@Start');
         
-        this.currentData = JSON.parse(JSON.parse(theFile.target.result))
+        this.currentData = theFile.target.result;
+        this.importedDatasource = JSON.parse(JSON.parse(theFile.target.result));
         this.datasourceName = this.currentData.name;
         this.datasourceDescription = this.currentData.description;
         
