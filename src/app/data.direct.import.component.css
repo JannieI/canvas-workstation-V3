@@ -136,3 +136,15 @@
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
+
+    .gridButtonBrowse {
+        grid-column-start: 14;
+        grid-column-end: 15;
+        grid-row-start: 4;
+        grid-row-end: 5;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridButtonBrowse:hover {
+        cursor: hand;
+    }
