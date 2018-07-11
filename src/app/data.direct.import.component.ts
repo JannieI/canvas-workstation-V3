@@ -91,21 +91,9 @@ export class DataDirectImportComponent implements OnInit {
         };
     }
 
-    fileLoadedCallback(currentData: any) {
-        // Handles callback from async datalib load
-        this.globalFunctionService.printToConsole(this.constructor.name,'fileLoadedCallback', '@Start');
-
-        // Load
-        console.log('DataPopup clickDSPreview LOAD start:', currentData)
-        this.currentData = JSON.parse(JSON.stringify(currentData));
-        let obj = JSON.parse(this.currentData);
-        console.warn('xx obj', obj.dataFieldTypes)
-        // JSON.parse(JSON.stringify(resolvedData));
-
-    }
 
     clickFileBrowse() {
-        // Browse local folders
+        // Browse for file to import
         this.globalFunctionService.printToConsole(this.constructor.name,'clickFileBrowse', '@Start');
 
         if ( (<any>window).File && (<any>window).FileReader && (<any>window).FileList && window.Blob) {
@@ -124,47 +112,28 @@ export class DataDirectImportComponent implements OnInit {
 
         // Access and handle the files
         this.theFile = inp.files[0];
-        console.warn('xx pre readAsBinaryString', this.theFile, this.theFile.name, this.theFile.type, this.theFile.size, this.theFile.lastModifiedDate, this.theFile.lastModifiedDate.toLocaleDateString())
+        console.warn('xx pre readAsText', this.theFile, this.theFile.name, this.theFile.type, this.theFile.size, this.theFile.lastModifiedDate, this.theFile.lastModifiedDate.toLocaleDateString())
 
-        // Read file as Binary
+        // Read file as Text
 
         this.reader.onerror = this.errorHandler;
         this.reader.onprogress = this.updateProgress;
         this.reader.onload = (theFile) =>{ this.loadFile(theFile) };
 
         // Read in the image file as a data URL.
-        this.reader.readAsBinaryString(this.theFile);
-        console.warn('xx Post readAsBinaryString')
+        this.reader.readAsText(this.theFile);
+        console.warn('xx Post readAsText')
     }
 
-
     loadFile(theFile) {
-        console.warn('  begin loadFile', theFile, this.theFile)
-        this.fileName = this.theFile;
-        // skip_rows = [number = rows to skip, string = ignore rows that starts with this]
-        // First row = 0
-        // heaers = single integer to indicate the header, array of strings = use THIS text
-        let specification = {
-            source: {
-                connector: "tributary.connectors.spreadsheet:XlsxConnector",
-                content:  btoa(theFile.target.result),
-                headers: 0,
-                skip_rows: []
-            }
-        };
-        let token = JSON.parse(localStorage.getItem('eazl-token'));
-        let options = {
-            method: "POST",
-            body: JSON.stringify(specification),
-            mode: "cors",
-            headers: {
-            "Content-Type": "application/json",
-            "Authorization": `JWT ${token}`
-            }
-        };
-        this.globalVariableService.getTributaryData(specification);
-
-        console.warn('  end loadFile', theFile, this.theFile)
+        // Callback for loading File
+        console.warn('loadFile', '@Start');
+        
+        this.importedDashboard = JSON.parse(JSON.parse(theFile.target.result))
+        this.dashboardCode = this.importedDashboard.code;
+        this.dashboardName = this.importedDashboard.name;
+        this.dashboardDescription = this.importedDashboard.description;
+        
     }
 
     abortRead() {
