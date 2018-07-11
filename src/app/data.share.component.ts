@@ -44,15 +44,12 @@ export class DatasourceShareComponent implements OnInit {
     }
 
     datasourcePermissions: DatasourcePermission[];
-    datasources: Datasource[];
-    selectedRowIndex: number = 0;
-    showTypeDatasource: boolean = false;
-    selectedDatasource: Datasource;
-
-    groupID: number;
-    groupName: string = '';
-    groups: CanvasGroup[];
+    datasources: Datasource[];    
     groupNames: string[] = [];
+    groups: CanvasGroup[];
+    selectedDatasource: string;
+    selectedGroupName: string = '';
+    selectedRowIndex: number = 0;
     selectedUserID: string;
     userNames: string[] = [];
     users: CanvasUser[];
@@ -89,7 +86,7 @@ export class DatasourceShareComponent implements OnInit {
                 })
                 .map(u => u.userID); 
                 this.userNames = ['', ...this.userNames];
-                this.selectedUserID = 'JannieI';
+                this.selectedUserID = 'JenS';
 
                 this.users = usr;
 
@@ -120,35 +117,11 @@ export class DatasourceShareComponent implements OnInit {
 
     clickRow(index: number, id: number) {
         // Highlight selected Row
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectedDatasource', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
 
         // Set seletected index - used for highlighting row
         this.selectedRowIndex = index;
     }
-
-    clickDatasource() {
-        console.warn('xx selectedDatasource', this.selectedDatasource)
-
-    }
-
-    clickSelectGroup(ev) {
-        // User changed the security access for the D
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectGroup', '@Start');
-
-        // Reset
-        this.groupID = null;
-        this.groupName = null;
-
-        // Set group info
-        this.groupName = ev.srcElement.value.toString();
-        this.groups.forEach(g => {
-            if (g.name.toLowerCase() == this.groupName.toLowerCase()) {
-                this.groupID = g.id;
-            };
-        });
-        console.log(ev.srcElement.value, this.groupID)
-    }
-
 
     clickToggleView(id: number, $event) {
         // User dblclicked View - so toggle it

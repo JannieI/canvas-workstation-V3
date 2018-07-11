@@ -37,7 +37,6 @@
                 <div class="select gridDatasourceName">
                     <select
                         [(ngModel)]="selectedDatasource"
-                        (click)="clickDatasource()"
                         >
                         <option *ngFor="let row of datasources"
                             >
@@ -66,7 +65,7 @@
                 <div class="gridGroupID">
                     <div class="select">
                         <select
-                            (change)="clickSelectGroup($event)"
+                            [(ngModel)]="selectedGroupName"
                             >
                             <option *ngFor="let row of groupNames; let i = index">
                                 {{ row }}
