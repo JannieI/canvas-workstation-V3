@@ -62,36 +62,6 @@ export class DataDirectImportComponent implements OnInit {
 
     }
 
-    clickDSPreview() {
-        // Load the new DS in the ID section, and show in Preview area
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickDSPreview',           '@Start');
-
-        // Reset
-        this.errorMessage = '';
-
-        let filePath: string = this.folderName + this.fileName;
-        let fileSuffix = this.fileName.substr(this.fileName.lastIndexOf('.')+1,this.fileName.length-this.fileName.indexOf('.'));
-
-        if (fileSuffix == 'json') {
-            dl.json({url: filePath}, {}, (err, currentData) => {
-                if (err) {
-                    this.errorMessage = err.status + ':' + err.statusText;
-
-                    console.log('DataPopup clickDSPreview error on load', err)
-                } else {
-                    // Callback
-                    this.fileLoadedCallback(currentData);
-                }
-            });
-        };
-
-        // Message when file type unknown
-        if (fileSuffix != 'json') {
-            this.errorMessage = 'File type must be .json';
-        };
-    }
-
-
     clickFileBrowse() {
         // Browse for file to import
         this.globalFunctionService.printToConsole(this.constructor.name,'clickFileBrowse', '@Start');
