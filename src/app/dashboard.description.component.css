@@ -36,7 +36,7 @@
         grid-row-end: 2;
         text-align: left;
     }
-    
+
     .gridTitle {
         font-size: 0.75rem;
         grid-column-start: 1;
@@ -182,7 +182,7 @@
         margin-left: 20px;
         text-align: left;
     }
-    
+
     .gridBackgroundImage {
         grid-column-start: 8;
         grid-column-end: 14;
@@ -269,6 +269,15 @@
         text-align: left;
     }
 
+    .gridAccessType {
+        grid-column-start: 1;
+        grid-column-end: 7;
+        grid-row-start: 17;
+        grid-row-end: 18;
+        margin-left: 20px;
+        text-align: left;
+    }
+
     .gridErrorMessage {
         color: red;
         grid-column-start: 1;
@@ -278,7 +287,7 @@
         margin-left: 20px;
         text-align: center;
     }
- 
+
 .gridButtonCancel {
     grid-column-start: 4;
     grid-column-end: 6;

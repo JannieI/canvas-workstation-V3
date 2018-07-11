@@ -81,6 +81,7 @@ export class DashboardDescriptionComponent implements OnInit {
     dashboardEdited: string;
     dashboardRefresher: string;
     dashboardRefreshed: string;
+    dashboardAccessType: string;
     errorMessage: string = '';
     selectedColour: string;
     selectedDashboardId: number;
@@ -151,6 +152,7 @@ export class DashboardDescriptionComponent implements OnInit {
         this.dashboardEdited = this.selectedDashboard.dateEdited.toString();
         this.dashboardRefresher = this.selectedDashboard.refresher;
         this.dashboardRefreshed = this.selectedDashboard.dateRefreshed;
+        this.dashboardAccessType = this.selectedDashboard.accessType;
 
         // Manage colour picker
         this.globalVariableService.colourPickerClosed.subscribe(clp => {
@@ -250,7 +252,8 @@ export class DashboardDescriptionComponent implements OnInit {
         this.selectedDashboard.dateEdited = new Date(this.dashboardEdited);
         this.selectedDashboard.refresher = this.dashboardRefresher;
         this.selectedDashboard.dateRefreshed = this.dashboardRefreshed;
-
+        this.selectedDashboard.accessType = this.dashboardAccessType;
+        
         // Update global D
         this.globalVariableService.saveDashboard(this.selectedDashboard);
 

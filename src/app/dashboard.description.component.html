@@ -14,8 +14,8 @@
                             [selectedColor]="selectedColour"
                             >
                         </colour-picker>
-                    </div> 
-        
+                    </div>
+
                     <div class="gridTitle">
                         <b>Amend the Dashboard Description.</b>
                         <clr-signpost>
@@ -27,9 +27,9 @@
                                 <h5 style="margin-top: 0; color:gray;">
                                     Help
                                 </h5>
-                                <p style="margin-top: 0; color:gray;"> 
+                                <p style="margin-top: 0; color:gray;">
                                     This form shows descriptive detail for the current Dashboard.
-                                    Hover over fields to display field level help.  Click the X 
+                                    Hover over fields to display field level help.  Click the X
                                     or press Escape to close this form.
                                 </p>
                             </clr-signpost-content>
@@ -49,7 +49,7 @@
                             maxlength="60"
                             [style.color]="!dashboardNameVar.valid ? 'red' : 'gray'"
                         >
-                    </div> 
+                    </div>
                     <div class="gridDescription">
                         <b>Description:</b>
                         <input [(ngModel)]="dashboardDescription"
@@ -171,7 +171,7 @@
 
                     <div class="gridBackgroundColorTitle">
                         <b>Bg Colour:</b>
-                    </div>  
+                    </div>
                     <div class="select gridBackgroundColor">
                         <select [(ngModel)]="dashboardBackgroundColor"
                             name="titleBackgroundColor"
@@ -243,6 +243,11 @@
                     <div class="gridRefreshed">
                         <b>Refreshed:</b>
                         {{ dashboardRefreshed }}
+                    </div>
+                    
+                    <div class="gridAccessType">
+                        <b>Access:</b>
+                        {{ dashboardAccessType }}
                     </div>
 
                     <div class="gridErrorMessage">
