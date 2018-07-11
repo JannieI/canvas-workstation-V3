@@ -4144,6 +4144,14 @@
 </data-managedNoSqlEditor>
 
 
+<!-- Modal: Data Managed Neo4j Editor -->
+<data-managedNeo4jEditor
+    *ngIf="showModalDataManagedNeo4jEditor"
+    [selectedDatasource]="selectedDatasource"
+    (formDataManagedNeo4jEditorClosed)="handleCloseDataManagedNeo4jEditor($event)">Load Managed Neo4j Editor ...
+</data-managedNeo4jEditor>
+
+
 <!-- Modal: Data Managed Overlay Editor -->
 <data-managedOverlayEditor
     *ngIf="showModalDataManagedOverlayEditor"

@@ -1,5 +1,5 @@
 /*
- * Create a new Datasource to a managed NoSQL database.
+ * Create a new Datasource to a managed Neo4j database.
  */
 
 // Angular
@@ -23,15 +23,15 @@ import { Datasource }                 from './models';
 
 
 @Component({
-    selector: 'data-managedNoSqlEditor',
-    templateUrl: './data.managed.noSqlEditor.component.html',
-    styleUrls:  ['./data.managed.noSqlEditor.component.css']
+    selector: 'data-managedNeo4jEditor',
+    templateUrl: './data.managed.Neo4jEditor.component.html',
+    styleUrls:  ['./data.managed.Neo4jEditor.component.css']
 })
-export class DataManagedNoSQLEditorComponent implements OnInit {
+export class DataManagedNeo4jEditorComponent implements OnInit {
 
     @Input() selectedDatasource: Datasource;
 
-    @Output() formDataManagedNoSQLEditorClosed: EventEmitter<Datasource> = new EventEmitter();
+    @Output() formDataManagedNeo4jEditorClosed: EventEmitter<Datasource> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
@@ -86,7 +86,7 @@ export class DataManagedNoSQLEditorComponent implements OnInit {
                 description: '...',
                 createdBy: '',
                 createdOn: '',
-                createMethod: 'managedNoSQLEditor',
+                createMethod: 'managedNeo4jEditor',
                 editor: '',
                 dateEdited: '',
                 refreshedBy: '',
@@ -112,7 +112,8 @@ export class DataManagedNoSQLEditorComponent implements OnInit {
                 serverName: '',
                 dataTableName: '',
                 dataSQLStatement: '',
-                dataNoSQLStatement: '',
+                dataNeo4jStatement: '',
+                dataNeo4jStatement: '',
                 businessGlossary: '',
                 dataDictionary: ''
             };
@@ -205,7 +206,7 @@ export class DataManagedNoSQLEditorComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-        this.formDataManagedNoSQLEditorClosed.emit(null);
+        this.formDataManagedNeo4jEditorClosed.emit(null);
 
     }
 
@@ -215,10 +216,10 @@ export class DataManagedNoSQLEditorComponent implements OnInit {
 
         console.warn('xx END sel ds', this.selectedDatasource)
         if (action == 'Saved') {
-            this.formDataManagedNoSQLEditorClosed.emit(null);
+            this.formDataManagedNeo4jEditorClosed.emit(null);
 
         } else {
-            this.formDataManagedNoSQLEditorClosed.emit(this.selectedDatasource);
+            this.formDataManagedNeo4jEditorClosed.emit(this.selectedDatasource);
 
         }
 
