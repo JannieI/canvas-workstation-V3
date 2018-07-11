@@ -215,7 +215,7 @@ export class DatasourceShareComponent implements OnInit {
     clickAdd() {
         // Add a new Permission
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
-
+console.warn('xx ', this.selectedDatasource, this.selectedGroupName, this.selectedUserID)
         // Reset 
         this.errorMessage = '';
 
@@ -230,19 +230,22 @@ export class DatasourceShareComponent implements OnInit {
         };
 
         // Get groupID
-        let groupIndex: number = this.groups.findIndex(
+        let groupID: number = -1;
+        if (this.selectedGroupName != '') {
+            let groupIndex: number = this.groups.findIndex(
                 grp => grp.name == this.selectedGroupName);
-        if (groupIndex < 0) {
-            this.errorMessage = 'Unexpected error - group not found';
-            return;
-        }
-        let groupID: number = this.groups[groupIndex].id;
+            if (groupIndex < 0) {
+                this.errorMessage = 'Unexpected error - group not found';
+                return;
+            };
+            groupID = this.groups[groupIndex].id;
+        };
 
         // Get DS-ID
         let datasourceIndex: number = this.datasources.findIndex(
-            grp => grp.name == this.selectedGroupName);
+            ds => ds.name == this.selectedDatasource);
         if (datasourceIndex < 0) {
-            this.errorMessage = 'Unexpected error - group not found';
+            this.errorMessage = 'Unexpected error - Datasource not found';
             return;
         }
         let datasourceID: number = this.datasources[datasourceIndex].id;
@@ -251,7 +254,7 @@ export class DatasourceShareComponent implements OnInit {
         let newDatasourcePermision: DatasourcePermission = {
                 id: null,
                 datasourceID: datasourceID,
-                name?: '',
+                name: '',
                 userID: this.selectedUserID,
                 groupID: groupID,
                 canView: this.canView,
@@ -259,7 +262,7 @@ export class DatasourceShareComponent implements OnInit {
                 canAdd: this.canAdd,
                 canDelete: this.canDelete             
         };
-        this.globalVariableService.saveDashboardPermission(newDatasourcePermision);
+        this.globalVariableService.saveDatasourcePermission(newDatasourcePermision);
 
     }
 
