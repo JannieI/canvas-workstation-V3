@@ -102,6 +102,39 @@ export class DataDirectImportComponent implements OnInit {
 
     }
 
+    clickFileBrowse() {
+        // Browse local folders
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickFileBrowse', '@Start');
+
+        if ( (<any>window).File && (<any>window).FileReader && (<any>window).FileList && window.Blob) {
+            console.warn('xx Start Great success! All the File APIs are supported.')
+          } else {
+            alert('The File APIs are not fully supported in this browser.');
+        };
+
+        // TODO alert('Later: File component to browse ...')
+        var inp: any = document.getElementById("get-files");
+
+        // Return if nothing selected
+        if (inp.files.length == 0) {
+            return;
+        };
+
+        // Access and handle the files
+        this.theFile = inp.files[0];
+        console.warn('xx pre readAsBinaryString', this.theFile, this.theFile.name, this.theFile.type, this.theFile.size, this.theFile.lastModifiedDate, this.theFile.lastModifiedDate.toLocaleDateString())
+
+        // Read file as Binary
+
+        this.reader.onerror = this.errorHandler;
+        this.reader.onprogress = this.updateProgress;
+        this.reader.onload = (theFile) =>{ this.loadFile(theFile) };
+
+        // Read in the image file as a data URL.
+        this.reader.readAsBinaryString(this.theFile);
+        console.warn('xx Post readAsBinaryString')
+    }
+
     clickClose(action: string) {
         // Close form, nothing imported
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
