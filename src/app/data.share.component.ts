@@ -234,8 +234,20 @@ export class DatasourceShareComponent implements OnInit {
         }
         let groupID: number = this.groups[groupIndex].id;
 
-        // Create new Permisions record and save
-        
+        // Create new Permisions record and save to DB
+        let newDatasourcePermision: DatasourcePermission = {
+                id: null,
+                datasourceID: null,
+                name?: '',
+                userID: this.selectedUserID,
+                groupID: groupID,
+                canView: this.canView,
+                canEdit: this.canEdit,
+                canAdd: this.canAdd,
+                canDelete: this.canDelete             
+        };
+        this.globalVariableService.saveDashboardPermission(newDatasourcePermision);
+
     }
 
     clickClose(action: string) {
