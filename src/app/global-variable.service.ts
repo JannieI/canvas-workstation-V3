@@ -4917,6 +4917,20 @@ export class GlobalVariableService {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
                     .then(data => {
+
+                        // Fill in @RunTime info
+                        data.forEach(d => {
+                            this.datasources.forEach(ds => {
+                                if (ds.id == d.datasourceID) {
+                                    d.name = ds.name;
+                                };
+                            });
+                            this.canvasGroups.forEach(grp => {
+                                if (grp.id == d.groupID) {
+                                    d.groupName = grp.name;
+                                };
+                            });
+                        });
                         this.datasourcePermissions = data;
                         this.isDirtyDatasourcePermissions = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);

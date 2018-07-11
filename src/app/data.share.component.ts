@@ -257,6 +257,7 @@ console.warn('xx ', this.selectedDatasource, this.selectedGroupName, this.select
                 name: this.selectedDatasource,
                 userID: this.selectedUserID,
                 groupID: groupID,
+                groupName: this.selectedGroupName,
                 canView: this.canView,
                 canEdit: this.canEdit,
                 canAdd: this.canAdd,
