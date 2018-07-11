@@ -91,8 +91,6 @@ export class DatasourceShareComponent implements OnInit {
                 })
                 .map(u => u.userID);
                 this.userNames = ['', ...this.userNames];
-                this.selectedUserID = 'JenS';
-
                 this.users = usr;
 
                 this.globalVariableService.getCanvasGroups().then(grp => {
@@ -215,7 +213,7 @@ export class DatasourceShareComponent implements OnInit {
     clickAdd() {
         // Add a new Permission
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
-console.warn('xx ', this.selectedDatasource, this.selectedGroupName, this.selectedUserID)
+
         // Reset 
         this.errorMessage = '';
 
@@ -264,7 +262,7 @@ console.warn('xx ', this.selectedDatasource, this.selectedGroupName, this.select
                 canDelete: this.canDelete             
         };
         this.globalVariableService.addDatasourcePermission(newDatasourcePermision).then(
-            res => this.datasources.push(res)
+            res => this.datasourcePermissions.push(res)
         );
 
     }
