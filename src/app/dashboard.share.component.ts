@@ -63,6 +63,8 @@ export class DashboardShareComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
+        this.accessType = this.selectedDashboard.accessType;
+
         this.globalVariableService.getCanvasGroups().then( res => {
             this.accessType = this.selectedDashboard.accessType;
             this.dashboardPermissions = this.globalVariableService.dashboardPermissions.slice();
@@ -83,23 +85,25 @@ export class DashboardShareComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
         // Update global D
-        this.globalVariableService.currentDashboards.forEach(d => {
-            if (d.id == this.globalVariableService.currentDashboardInfo
-                .value.currentDashboardID) {
-                d.accessType = this.accessType;
-            };
-        });
+        // this.globalVariableService.currentDashboards.forEach(d => {
+        //     if (d.id == this.globalVariableService.currentDashboardInfo
+        //         .value.currentDashboardID) {
+        //         d.accessType = this.accessType;
+        //     };
+        // });
+        this.selectedDashboard.accessType = this.accessType;
+        this.globalVariableService.saveDashboard(this.selectedDashboard);
 
-        // Update global permissions
-        this.globalVariableService.dashboardPermissions.forEach(gdP => {
-            this.dashboardPermissions.forEach(dP => {
-                if (dP.id == gdP.id) {
-                    gdP.canViewRight = dP.canViewRight;
-                    gdP.canEditRight = dP.canEditRight;
-                    gdP.canDeleteRight = dP.canDeleteRight;
-                };
-            });
-        });
+        // // Update global permissions
+        //     this.globalVariableService.dashboardPermissions.forEach(gdP => {
+        //         this.dashboardPermissions.forEach(dP => {
+        //             if (dP.id == gdP.id) {
+        //                 gdP.canViewRight = dP.canViewRight;
+        //                 gdP.canEditRight = dP.canEditRight;
+        //                 gdP.canDeleteRight = dP.canDeleteRight;
+        //             };
+        //         });
+        //     })
 
         this.formDashboardShareClosed.emit('Saved');
     }
