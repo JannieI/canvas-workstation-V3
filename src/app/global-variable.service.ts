@@ -4970,6 +4970,47 @@ export class GlobalVariableService {
 
     }
 
+
+    addDatasourcePermission(data: DatasourcePermission): Promise<any> {
+        // Description: Adds a new Ownership, if it does not exist
+        // Returns: Added Data or error message
+        console.log('%c    Global-Variables addDatasourcePermission ...',
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", data.id);
+
+        let url: string = 'datasourcePermissions';
+        this.filePath = './assets/data.datasourcePermissions.json';
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.post('http://localhost:3000/' + url, data, {headers})
+            .subscribe(
+                res => {
+
+                    // Update Global vars to make sure they remain in sync
+                    let newDS: DatasourcePermission = JSON.parse(JSON.stringify(res))
+                    if (this.datasourcePermissions.filter(i => i.id == newDS.id).length == 0) {
+                        this.datasourcePermissions.push(newDS);
+                    };
+                    if (this.currentDatasourcePermissions.filter(i => i.id == newDS.id).length == 0) {
+                        this.currentDatasourcePermissions.push(newDS);
+                    };
+
+                    console.log('addDatasourcePermission ADDED', res,
+                        this.currentDatasourcePermissions, this.datasourcePermissions)
+
+                    resolve(res);
+                },
+                err => {
+                    console.log('Error addDatasourcePermission FAILED', err);;
+                    reject(err);
+                }
+            )
+        });
+    }
+
     saveDatasourcePermission(data: DatasourcePermission): Promise<string> {
         // Description: Saves DatasourcePermission
         // Returns: 'Saved' or error message
