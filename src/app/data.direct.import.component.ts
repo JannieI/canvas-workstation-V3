@@ -96,10 +96,9 @@ export class DataDirectImportComponent implements OnInit {
         // Callback for loading File
         console.warn('loadFile', '@Start');
         
-        this.importedDashboard = JSON.parse(JSON.parse(theFile.target.result))
-        this.dashboardCode = this.importedDashboard.code;
-        this.dashboardName = this.importedDashboard.name;
-        this.dashboardDescription = this.importedDashboard.description;
+        this.currentData = JSON.parse(JSON.parse(theFile.target.result))
+        this.datasourceName = this.currentData.name;
+        this.datasourceDescription = this.currentData.description;
         
     }
 
