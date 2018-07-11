@@ -43,6 +43,10 @@ export class DatasourceShareComponent implements OnInit {
 
     }
 
+    canView: boolean = false;
+    canEdit: boolean = false;
+    canAdd: boolean = false;
+    canDelete: boolean = false;
     datasourcePermissions: DatasourcePermission[];
     datasources: Datasource[];
     errorMessage: string = '';
@@ -234,10 +238,19 @@ export class DatasourceShareComponent implements OnInit {
         }
         let groupID: number = this.groups[groupIndex].id;
 
+        // Get DS-ID
+        let datasourceIndex: number = this.datasources.findIndex(
+            grp => grp.name == this.selectedGroupName);
+        if (datasourceIndex < 0) {
+            this.errorMessage = 'Unexpected error - group not found';
+            return;
+        }
+        let datasourceID: number = this.datasources[datasourceIndex].id;
+
         // Create new Permisions record and save to DB
         let newDatasourcePermision: DatasourcePermission = {
                 id: null,
-                datasourceID: null,
+                datasourceID: datasourceID,
                 name?: '',
                 userID: this.selectedUserID,
                 groupID: groupID,
