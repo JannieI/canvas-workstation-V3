@@ -87,6 +87,7 @@ import { DataManagedSQLEditorComponent }        from './data.managed.sqlEditor.c
 import { DataManagedGraphQLEditorComponent }    from './data.managed.graphqlEditor.component';
 import { DataManagedOverlayEditorComponent }    from './data.managed.overlayEditor.component';
 import { DataManagedNoSQLEditorComponent }      from './data.managed.noSqlEditor.component';
+import { DataManagedNeo4jEditorComponent }      from './data.managed.neo4jEditor.component';
 import { DataManageDataQualityComponent }       from './data.managed.dataQuality.component';
 import { DataManageDataOwnershipComponent }     from './data.managed.dataOwnership.component';
 import { DataManagedDataDictionaryComponent }   from './data.managed.dataDictionary.component';
@@ -191,6 +192,7 @@ import { StatusbarComponent }         from './statusbar.component';
         DataManagedGraphQLEditorComponent,
         DataManagedOverlayEditorComponent,
         DataManagedNoSQLEditorComponent,
+        DataManagedNeo4jEditorComponent,
 
         DataTransformationComponent,
         DataEditDatasourceComponent,

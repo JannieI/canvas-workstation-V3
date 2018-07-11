@@ -24,8 +24,8 @@ import { Datasource }                 from './models';
 
 @Component({
     selector: 'data-managedNeo4jEditor',
-    templateUrl: './data.managed.Neo4jEditor.component.html',
-    styleUrls:  ['./data.managed.Neo4jEditor.component.css']
+    templateUrl: './data.managed.neo4jEditor.component.html',
+    styleUrls:  ['./data.managed.neo4jEditor.component.css']
 })
 export class DataManagedNeo4jEditorComponent implements OnInit {
 
