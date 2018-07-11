@@ -19,11 +19,7 @@ import { Datasource }                 from './models';
 import { Dataset }                    from './models';
 import { DataQualityIssue }           from './models';
 
-// Vega
-import * as dl from 'datalib';
-import { load } from 'datalib';
-
-interface localDatasources extends Datasource 
+interface localDatasources extends Datasource
     {
         isSelected?: boolean;
         hasWidget?: boolean;
@@ -144,12 +140,12 @@ export class DataDatasourceOverviewComponent implements OnInit {
 
         // Make area visible
         this.clickViewOptions(area);
-        
+
         // Reset
         this.errorMessage = '';
 
         // Get the data, either lives in the dataset, or in a url
-        let selectedDataset: Dataset[] = this.globalVariableService.datasets.filter(dS => 
+        let selectedDataset: Dataset[] = this.globalVariableService.datasets.filter(dS =>
             dS.datasourceID == this.selectedRowID
         );
 
@@ -174,7 +170,7 @@ export class DataDatasourceOverviewComponent implements OnInit {
 
         // Make area visible
         this.clickViewOptions(area);
-        
+
     }
 
     clickViewProfile(area: string) {
@@ -183,7 +179,7 @@ export class DataDatasourceOverviewComponent implements OnInit {
 
         // Make area visible
         this.clickViewOptions(area);
-        
+
     }
 
     clickViewOverview(area: string) {
@@ -192,7 +188,7 @@ export class DataDatasourceOverviewComponent implements OnInit {
 
         // Make area visible
         this.clickViewOptions(area);
-        
+
     }
 
     clickViewFields(area: string) {
@@ -201,7 +197,7 @@ export class DataDatasourceOverviewComponent implements OnInit {
 
         // Make area visible
         this.clickViewOptions(area);
-        
+
     }
 
     clickViewDataQuality(area: string) {
@@ -210,7 +206,7 @@ export class DataDatasourceOverviewComponent implements OnInit {
 
         // Make area visible
         this.clickViewOptions(area);
-        
+
     }
 
     clickSelectedDatasource(index: number, id: number) {
@@ -231,7 +227,7 @@ export class DataDatasourceOverviewComponent implements OnInit {
             this.selectedRowDescription = this.datasources[dsIndex].description;
 
             this.selectedRowNrWidgetsInUse = this.globalVariableService.widgets.filter(w =>
-                w.datasourceID == this.datasources[index].id    
+                w.datasourceID == this.datasources[index].id
                 &&
                 w.dashboardID == this.globalVariableService.currentDashboardInfo.value.currentDashboardID
             ).length;
@@ -243,70 +239,70 @@ export class DataDatasourceOverviewComponent implements OnInit {
         this.errorMessage = '';
     }
 
-    clickDSCheckbox(index: number, id: number, isSelected: boolean, ev: any){
-        // Checked / UnChecked DS
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickDSCheckbox', '@Start');
+    // clickDSCheckbox(index: number, id: number, isSelected: boolean, ev: any){
+    //     // Checked / UnChecked DS
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'clickDSCheckbox', '@Start');
 
-        // Get the data, if so requested
-        if (ev.target.checked) {
-            let localDatasource: Datasource;
-            let localDataset: Dataset;
-            let globalCurrentDSIndex: number = this.globalVariableService.currentDatasources
-                .findIndex(dS => dS.id == id
-            );
-            let globalDSIndex: number = this.globalVariableService.datasources.findIndex(ds =>
-                ds.id == id
-            );
+    //     // Get the data, if so requested
+    //     if (ev.target.checked) {
+    //         let localDatasource: Datasource;
+    //         let localDataset: Dataset;
+    //         let globalCurrentDSIndex: number = this.globalVariableService.currentDatasources
+    //             .findIndex(dS => dS.id == id
+    //         );
+    //         let globalDSIndex: number = this.globalVariableService.datasources.findIndex(ds =>
+    //             ds.id == id
+    //         );
 
-            // DS exists in gv datasources, but not in currentDatasources
-            if (globalDSIndex >= 0  &&  globalCurrentDSIndex < 0) {
-                localDatasource = this.globalVariableService.datasources[globalDSIndex];
+    //         // DS exists in gv datasources, but not in currentDatasources
+    //         if (globalDSIndex >= 0  &&  globalCurrentDSIndex < 0) {
+    //             localDatasource = this.globalVariableService.datasources[globalDSIndex];
 
-                let globalCurrentDsetIndex: number = this.globalVariableService.currentDatasets
-                    .findIndex(dS => dS.id == id
-                );
-                let globalDsetIndex: number = this.globalVariableService.datasets.findIndex(dS =>
-                    dS.datasourceID == id
-                );
+    //             let globalCurrentDsetIndex: number = this.globalVariableService.currentDatasets
+    //                 .findIndex(dS => dS.id == id
+    //             );
+    //             let globalDsetIndex: number = this.globalVariableService.datasets.findIndex(dS =>
+    //                 dS.datasourceID == id
+    //             );
 
-                // Add DS and Dset to gv
-                this.globalVariableService.currentDatasources.push(localDatasource);
+    //             // Add DS and Dset to gv
+    //             this.globalVariableService.currentDatasources.push(localDatasource);
 
-                this.globalVariableService.hasDatasources.next(true);
+    //             this.globalVariableService.hasDatasources.next(true);
 
-                // Dset exists in gv datasets, but not in currentDatasets
-                if (globalDsetIndex >= 0  &&  globalCurrentDsetIndex < 0) {
-                    localDataset = this.globalVariableService.datasets[globalDsetIndex];
-                    
-                    // Get data for Dset
-                    this.globalVariableService.getData(localDataset.id).then(res => {
+    //             // Dset exists in gv datasets, but not in currentDatasets
+    //             if (globalDsetIndex >= 0  &&  globalCurrentDsetIndex < 0) {
+    //                 localDataset = this.globalVariableService.datasets[globalDsetIndex];
 
-                        // Add data to dataset
-                        localDataset.dataRaw = res;
-                        localDataset.data = res;
+    //                 // Get data for Dset
+    //                 this.globalVariableService.getData(localDataset.id).then(res => {
 
-                        this.globalVariableService.currentDatasets.push(localDataset);
+    //                     // Add data to dataset
+    //                     localDataset.dataRaw = res;
+    //                     localDataset.data = res;
 
-                    });
-                };
-            };
-        } else {
-            let globalCurrentDSIndex: number = this.globalVariableService.currentDatasources
-                .findIndex(dS => dS.id == id
-            );
-            if (globalCurrentDSIndex >= 0) {
-                this.globalVariableService.currentDatasources.splice(globalCurrentDSIndex, 1);
-            };
-            let globalCurrentDsetIndex: number = this.globalVariableService.currentDatasets
-                .findIndex(dS => dS.datasourceID == id
-            );
-            if (globalCurrentDsetIndex >= 0) {
-                this.globalVariableService.currentDatasets.splice(globalCurrentDsetIndex, 1);
-            };
-        };
+    //                     this.globalVariableService.currentDatasets.push(localDataset);
 
-        // TODO - what about other arrays, ie permisions, pivots, transformations, etc ??
-    }
+    //                 });
+    //             };
+    //         };
+    //     } else {
+    //         let globalCurrentDSIndex: number = this.globalVariableService.currentDatasources
+    //             .findIndex(dS => dS.id == id
+    //         );
+    //         if (globalCurrentDSIndex >= 0) {
+    //             this.globalVariableService.currentDatasources.splice(globalCurrentDSIndex, 1);
+    //         };
+    //         let globalCurrentDsetIndex: number = this.globalVariableService.currentDatasets
+    //             .findIndex(dS => dS.datasourceID == id
+    //         );
+    //         if (globalCurrentDsetIndex >= 0) {
+    //             this.globalVariableService.currentDatasets.splice(globalCurrentDsetIndex, 1);
+    //         };
+    //     };
+
+    //     // TODO - what about other arrays, ie permisions, pivots, transformations, etc ??
+    // }
 
     ngOnDestroy() {
         // Cleanup just before Angular destroys the directive/component.
@@ -350,7 +346,7 @@ export class DataDatasourceOverviewComponent implements OnInit {
         if (area == 'gridViewOverview') {
             this.clickedViewOverview = true;
         };
-        
+
         if (area == 'gridViewFields') {
             this.clickedViewFields = true;
         };
