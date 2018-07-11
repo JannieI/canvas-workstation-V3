@@ -16,9 +16,6 @@ import { GlobalVariableService }      from './global-variable.service';
 // Our Models
 import { Datasource }                 from './models';
 
-// Vega
-import * as dl from 'datalib';
-
 
 @Component({
     selector: 'data-direct-import',

@@ -33,26 +33,6 @@
                         {{ errorMessage }}
                     </div>
 
-                    <div class="gridFolderTitle">
-                        Folder:
-                    </div>
-                    <div class="gridFolder">
-                        <input type="text" [(ngModel)]="folderName"
-                            placeholder="./assets/"
-                            class="selectFile"
-                            >
-                    </div>
-
-                    <div class="gridFileNameTitle">
-                        Filename:
-                    </div>
-                    <div class="gridFileName">
-                        <input type="text" [(ngModel)]="fileName"
-                            placeholder="datasource.sharePrices.json"
-                            class="selectFile"
-                            >
-                    </div>
-
                     <div class="gridDatasourceNameTitle">
                         Name:
                     </div>
@@ -67,10 +47,10 @@
                     </div>
                     <div class="gridDatasourceDescription">
                         <input type="text"
+                            size="45"
                             [(ngModel)]="datasourceDescription"
                             >
                     </div>
-
 
                     <div class="gridButtonBrowse">
                         <button
@@ -93,15 +73,6 @@
                             />
                     </div>
 
-                    <div class="gridButtonPreview">
-                        <button
-                            type="button"
-                            class="btn btn-secondary selectButton"
-                            (click)="clickDSPreview()"
-                            >
-                            Preview
-                        </button>
-                    </div>
                     <div class="gridButtonAdd">
                         <button
                             type="button"

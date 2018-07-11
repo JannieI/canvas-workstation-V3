@@ -35,53 +35,19 @@
         text-align: left;
     }
 
-    .gridFolderTitle {
-        grid-column-start: 1;
-        grid-column-end: 2;
-        grid-row-start: 3;
-        grid-row-end: 4;
-        margin: 2px 2px 2px 22px;
-        text-align: left;
-    }
-    .gridFolder {
-        grid-column-start: 2;
-        grid-column-end: 7;
-        grid-row-start: 3;
-        grid-row-end: 4;
-        margin: 2px 2px 2px 22px;
-        text-align: left;
-    }
-
-    .gridFileNameTitle {
-        grid-column-start: 7;
-        grid-column-end: 9;
-        grid-row-start: 3;
-        grid-row-end: 4;
-        margin: 2px 2px 2px 22px;
-        text-align: left;
-    }
-    .gridFileName {
-        grid-column-start: 9;
-        grid-column-end: 14;
-        grid-row-start: 3;
-        grid-row-end: 4;
-        margin: 2px 2px 2px 22px;
-        text-align: left;
-    }
-
     .gridDatasourceNameTitle {
         grid-column-start: 1;
         grid-column-end: 2;
-        grid-row-start: 5;
-        grid-row-end: 6;
+        grid-row-start: 3;
+        grid-row-end: 4;
         margin: 2px 2px 2px 22px;
         text-align: left;
     }
     .gridDatasourceName {
         grid-column-start: 2;
         grid-column-end: 7;
-        grid-row-start: 5;
-        grid-row-end: 6;
+        grid-row-start: 3;
+        grid-row-end: 4;
         margin: 2px 2px 2px 22px;
         text-align: left;
     }
@@ -89,41 +55,46 @@
     .gridDatasourceDescriptionTitle {
         grid-column-start: 7;
         grid-column-end: 9;
-        grid-row-start: 5;
-        grid-row-end: 6;
+        grid-row-start: 3;
+        grid-row-end: 4;
         margin: 2px 2px 2px 22px;
         text-align: left;
     }
     .gridDatasourceDescription {
         grid-column-start: 9;
         grid-column-end: 21;
-        grid-row-start: 5;
-        grid-row-end: 6;
+        grid-row-start: 3;
+        grid-row-end: 4;
         margin: 2px 2px 2px 22px;
         text-align: left;
     }
 
-    .gridButtonPreview {
-        grid-column-start: 2;
-        grid-column-end: 4;
-        grid-row-start: 7;
-        grid-row-end: 8;
-        text-align: left;
-    }
-    .gridButtonAdd {
+    .gridButtonBrowse {
         grid-column-start: 6;
         grid-column-end: 8;
-        grid-row-start: 7;
-        grid-row-end: 8;
+        grid-row-start: 5;
+        grid-row-end: 6;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridButtonBrowse:hover {
+        cursor: hand;
+    }
+
+    .gridButtonAdd {
+        grid-column-start: 13;
+        grid-column-end: 15;
+        grid-row-start: 5;
+        grid-row-end: 6;
         text-align: left;
     }
 
     .errorMessage {
         color: red;
-        grid-column-start: 10;
+        grid-column-start: 1;
         grid-column-end: 21;
-        grid-row-start: 7;
-        grid-row-end: 8;
+        grid-row-start: 4;
+        grid-row-end: 5;
         margin: 2px 2px 2px 22px;
         text-align: left;
     }
@@ -135,16 +106,4 @@
         grid-row-end: 21;
         margin: 2px 2px 2px 2px;
         text-align: left;
-    }
-
-    .gridButtonBrowse {
-        grid-column-start: 14;
-        grid-column-end: 15;
-        grid-row-start: 4;
-        grid-row-end: 5;
-        margin: 2px 2px 2px 2px;
-        text-align: left;
-    }
-    .gridButtonBrowse:hover {
-        cursor: hand;
     }
