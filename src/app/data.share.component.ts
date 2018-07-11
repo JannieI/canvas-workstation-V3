@@ -44,7 +44,8 @@ export class DatasourceShareComponent implements OnInit {
     }
 
     datasourcePermissions: DatasourcePermission[];
-    datasources: Datasource[];    
+    datasources: Datasource[];
+    errorMessage: string = '';
     groupNames: string[] = [];
     groups: CanvasGroup[];
     selectedDatasource: string;
@@ -64,7 +65,7 @@ export class DatasourceShareComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         this.datasources = this.globalVariableService.datasources;
-        
+
         this.globalVariableService.getDatasourcePermissions().then (dp => {
             this.datasourcePermissions = dp;
             this.datasourcePermissions.forEach(tdsp => {
@@ -77,14 +78,14 @@ export class DatasourceShareComponent implements OnInit {
                     if (n1.userID > n2.userID) {
                         return 1;
                     };
-                
+
                     if (n1.userID < n2.userID) {
                         return -1;
                     };
-                
+
                     return 0;
                 })
-                .map(u => u.userID); 
+                .map(u => u.userID);
                 this.userNames = ['', ...this.userNames];
                 this.selectedUserID = 'JenS';
 
@@ -95,11 +96,11 @@ export class DatasourceShareComponent implements OnInit {
                         if (n1.name > n2.name) {
                             return 1;
                         };
-                    
+
                         if (n1.name < n2.name) {
                             return -1;
                         };
-                    
+
                         return 0;
                     })
                     .map(g => g.name);
@@ -205,6 +206,17 @@ export class DatasourceShareComponent implements OnInit {
 
         this.datasourcePermissions.splice(index,1);
         this.globalVariableService.deleteDatasourcePermission(id);
+    }
+
+    clickAdd() {
+        // Add a new Permission
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
+
+        // Validation
+        if (this.selectedDatasource == ''  ||  this.selectedDatasource == null) {
+            this.errorMessage = 'Please select a Datasource';
+            return;
+        };
     }
 
     clickClose(action: string) {
