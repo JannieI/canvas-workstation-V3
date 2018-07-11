@@ -355,6 +355,8 @@ export class DataDirectNoSQLComponent implements OnInit {
                 dataTableName: 'ftfhgfzh',
                 dataSQLStatement: '',
                 dataNoSQLStatement: '',
+                dataNeo4jStatement: '',
+                dataGraphQLStatement: '',
                 businessGlossary: '',
                 dataDictionary: ''
                             

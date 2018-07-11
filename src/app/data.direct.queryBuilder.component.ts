@@ -174,6 +174,8 @@ export class DataDirectQueryBuilderComponent implements OnInit {
                 dataTableName: 'ftfhgfzh',
                 dataSQLStatement: '',
                 dataNoSQLStatement: '',
+                dataNeo4jStatement: '',
+                dataGraphQLStatement: '',
                 businessGlossary: '',
                 dataDictionary: ''
                             
@@ -498,6 +500,8 @@ export class DataDirectQueryBuilderComponent implements OnInit {
             dataTableName: this.dataSchemas[this.selectedTableRowIndex].tableName,
             dataSQLStatement: this.selectedDatasource.dataSQLStatement,
             dataNoSQLStatement: this.selectedDatasource.dataNoSQLStatement,
+            dataNeo4jStatement: this.selectedDatasource.dataNeo4jStatement,
+            dataGraphQLStatement: this.selectedDatasource.dataGraphQLStatement,
             businessGlossary: this.selectedDatasource.businessGlossary,
             dataDictionary: this.selectedDatasource.dataDictionary
 

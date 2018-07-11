@@ -96,6 +96,8 @@ export class DataManagedBusGlossaryComponent implements OnInit {
             dataTableName: '',
             dataSQLStatement: '',
             dataNoSQLStatement: '',
+            dataNeo4jStatement: '',
+            dataGraphQLStatement: '',
             nrWidgets: null,
             dataDictionary: ''
         }

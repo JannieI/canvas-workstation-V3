@@ -112,8 +112,9 @@ export class DataManagedNeo4jEditorComponent implements OnInit {
                 serverName: '',
                 dataTableName: '',
                 dataSQLStatement: '',
+                dataNoSQLStatement: '',
                 dataNeo4jStatement: '',
-                dataNeo4jStatement: '',
+                dataGraphQLStatement: '',
                 businessGlossary: '',
                 dataDictionary: ''
             };

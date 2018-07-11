@@ -113,6 +113,8 @@ export class DataManagedQueryBuilderComponent implements OnInit {
                 dataTableName: '',
                 dataSQLStatement: '',
                 dataNoSQLStatement: '',
+                dataNeo4jStatement: '',
+                dataGraphQLStatement: '',
                 businessGlossary: '',
                 dataDictionary: ''
             };

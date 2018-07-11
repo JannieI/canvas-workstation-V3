@@ -161,6 +161,8 @@ export class DataDirectSQLEditorComponent implements OnInit {
                 dataTableName: 'ftfhgfzh',
                 dataSQLStatement: '',
                 dataNoSQLStatement: '',
+                dataNeo4jStatement: '',
+                dataGraphQLStatement: '',
                 businessGlossary: '',
                 dataDictionary: ''
                             

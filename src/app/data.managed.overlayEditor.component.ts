@@ -113,6 +113,8 @@ export class DataManagedOverlayEditorComponent implements OnInit {
                 dataTableName: '',
                 dataSQLStatement: '',
                 dataNoSQLStatement: '',
+                dataNeo4jStatement: '',
+                dataGraphQLStatement: '',
                 businessGlossary: '',
                 dataDictionary: ''
             };
