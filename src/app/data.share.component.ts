@@ -254,7 +254,7 @@ console.warn('xx ', this.selectedDatasource, this.selectedGroupName, this.select
         let newDatasourcePermision: DatasourcePermission = {
                 id: null,
                 datasourceID: datasourceID,
-                name: '',
+                name: this.selectedDatasource,
                 userID: this.selectedUserID,
                 groupID: groupID,
                 canView: this.canView,
@@ -262,7 +262,9 @@ console.warn('xx ', this.selectedDatasource, this.selectedGroupName, this.select
                 canAdd: this.canAdd,
                 canDelete: this.canDelete             
         };
-        this.globalVariableService.saveDatasourcePermission(newDatasourcePermision);
+        this.globalVariableService.addDatasourcePermission(newDatasourcePermision).then(
+            res => this.datasources.push(res)
+        );
 
     }
 

@@ -163,7 +163,7 @@
                             </clr-dg-cell>
                             <clr-dg-cell>{{row.name}}</clr-dg-cell>
                             <clr-dg-cell>{{row.userID}}</clr-dg-cell>
-                            <clr-dg-cell>{{row.groupID}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.name}}</clr-dg-cell>
                             <clr-dg-cell class="checkCell">
                                 <clr-icon shape="check" *ngIf="row.canView"
                                     size="16"
@@ -212,10 +212,6 @@
                                     >
                                 </clr-icon>
                             </clr-dg-cell>
-    
-
-                            <clr-dg-cell>{{row.CanAdd}}</clr-dg-cell>
-                            <clr-dg-cell>{{row.CanDelete}}</clr-dg-cell>
                         </clr-dg-row>
 
                     </clr-datagrid>
