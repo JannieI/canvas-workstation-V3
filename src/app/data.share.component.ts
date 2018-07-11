@@ -212,11 +212,30 @@ export class DatasourceShareComponent implements OnInit {
         // Add a new Permission
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
 
+        // Reset 
+        this.errorMessage = '';
+
         // Validation
         if (this.selectedDatasource == ''  ||  this.selectedDatasource == null) {
             this.errorMessage = 'Please select a Datasource';
             return;
         };
+        if (this.selectedUserID == ''  &&  this.selectedGroupName == '') {
+            this.errorMessage = 'Select at least a user or a group';
+            return;
+        };
+
+        // Get groupID
+        let groupIndex: number = this.groups.findIndex(
+                grp => grp.name == this.selectedGroupName);
+        if (groupIndex < 0) {
+            this.errorMessage = 'Unexpected error - group not found';
+            return;
+        }
+        let groupID: number = this.groups[groupIndex].id;
+
+        // Create new Permisions record and save
+        
     }
 
     clickClose(action: string) {
