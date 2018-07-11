@@ -379,6 +379,7 @@ export class AppComponent implements OnInit {
     showModalDataManagedSQLEditor: boolean = false;
     showModalDataManagedGraphQLEditor: boolean = false;
     showModalDataManagedNoSQLEditor: boolean = false;
+    showModalDataManagedNeo4jEditor: boolean = false;
     showModalDataManagedOverlayEditor: boolean = false;
     showModalDataTransformation: boolean = false;
     showModalDataEditDatasource: boolean = false;
@@ -1394,6 +1395,21 @@ export class AppComponent implements OnInit {
             this.showModalDataTransformation = true;
         };
     }
+    
+    handleCloseDataManagedNeo4jEditor(returnDS: Datasource) {
+        // Handle Close of Neo4j Editor
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataManagedNeo4jEditor', '@Start');
+
+        this.menuOptionClickPostAction();
+
+        this.showModalDataManagedNeo4jEditor = false;
+
+        // Open Transformations if so requested
+        if (returnDS != null) {
+            this.selectedDatasource = returnDS;
+            this.showModalDataTransformation = true;
+        };
+    }
 
     handleCloseDataManagedOverlayEditor(returnDS: Datasource) {
         // Handle Close of Overlay Editor
@@ -1449,12 +1465,14 @@ export class AppComponent implements OnInit {
                     this.showModalDataManagedQueryBuilder = true;
                 } else if (returnedDatasource.createMethod == 'managedSQLEditor') {
                     this.showModalDataManagedSQLEditor = true;
-                } else if (returnedDatasource.createMethod == 'managedGraphQLEditor') {
-                    this.showModalDataManagedGraphQLEditor = true;
-                } else if (returnedDatasource.createMethod == 'managedNoGraphQLEditor') {
-                    this.showModalDataManagedNoSQLEditor = true;
                 } else if (returnedDatasource.createMethod == 'managedOverlayEditor') {
                     this.showModalDataManagedOverlayEditor = true;
+                } else if (returnedDatasource.createMethod == 'managedGraphQLEditor') {
+                    this.showModalDataManagedGraphQLEditor = true;
+                } else if (returnedDatasource.createMethod == 'managedNoSQLEditor') {
+                    this.showModalDataManagedNoSQLEditor = true;
+                } else if (returnedDatasource.createMethod == 'managedNeo4jEditor') {
+                    this.showModalDataManagedNeo4jEditor = true;
                 } else {
                     this.showMessage(
                         'Datasource has invalid data (createMethod)',
@@ -3010,6 +3028,15 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPreAction();
 
         this.showModalDataManagedNoSQLEditor = true;
+    }
+    
+    clickMenuDataManagedNeo4jEditor() {
+        // Ne04j Editor
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataManagedNeo4jEditor', '@Start');
+
+        this.menuOptionClickPreAction();
+
+        this.showModalDataManagedNeo4jEditor = true;
     }
 
     clickMenuDataManagedOverlayEditor() {

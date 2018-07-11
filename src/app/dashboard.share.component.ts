@@ -84,26 +84,8 @@ export class DashboardShareComponent implements OnInit {
         // Save the change, and Close the form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
-        // Update global D
-        // this.globalVariableService.currentDashboards.forEach(d => {
-        //     if (d.id == this.globalVariableService.currentDashboardInfo
-        //         .value.currentDashboardID) {
-        //         d.accessType = this.accessType;
-        //     };
-        // });
         this.selectedDashboard.accessType = this.accessType;
         this.globalVariableService.saveDashboard(this.selectedDashboard);
-
-        // // Update global permissions
-        //     this.globalVariableService.dashboardPermissions.forEach(gdP => {
-        //         this.dashboardPermissions.forEach(dP => {
-        //             if (dP.id == gdP.id) {
-        //                 gdP.canViewRight = dP.canViewRight;
-        //                 gdP.canEditRight = dP.canEditRight;
-        //                 gdP.canDeleteRight = dP.canDeleteRight;
-        //             };
-        //         });
-        //     })
 
         this.formDashboardShareClosed.emit('Saved');
     }
