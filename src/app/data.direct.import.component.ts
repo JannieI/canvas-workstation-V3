@@ -48,6 +48,7 @@ export class DataDirectImportComponent implements OnInit {
     errorMessage: string = "";
     fileName: string = 'datasource.sharePrices.json';
     folderName: string = './assets/';
+    reader = new FileReader();
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -133,6 +134,36 @@ export class DataDirectImportComponent implements OnInit {
         // Read in the image file as a data URL.
         this.reader.readAsBinaryString(this.theFile);
         console.warn('xx Post readAsBinaryString')
+    }
+
+
+    loadFile(theFile) {
+        console.warn('  begin loadFile', theFile, this.theFile)
+        this.fileName = this.theFile;
+        // skip_rows = [number = rows to skip, string = ignore rows that starts with this]
+        // First row = 0
+        // heaers = single integer to indicate the header, array of strings = use THIS text
+        let specification = {
+            source: {
+                connector: "tributary.connectors.spreadsheet:XlsxConnector",
+                content:  btoa(theFile.target.result),
+                headers: 0,
+                skip_rows: []
+            }
+        };
+        let token = JSON.parse(localStorage.getItem('eazl-token'));
+        let options = {
+            method: "POST",
+            body: JSON.stringify(specification),
+            mode: "cors",
+            headers: {
+            "Content-Type": "application/json",
+            "Authorization": `JWT ${token}`
+            }
+        };
+        this.globalVariableService.getTributaryData(specification);
+
+        console.warn('  end loadFile', theFile, this.theFile)
     }
 
     clickClose(action: string) {
