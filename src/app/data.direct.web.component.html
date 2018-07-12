@@ -1,5 +1,5 @@
 <div class="modal modalBox">
-    <div class="modal-dialog modal-md" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <form #f="ngForm" role="form" novalidate>
 
@@ -85,7 +85,28 @@
                             title="Description of the new Datasource"
                             >
                     </div>
-    
+
+                    <div class="gridTables">
+                        <clr-datagrid>
+                            <clr-dg-placeholder>
+                                No records ...
+                            </clr-dg-placeholder>
+
+                            <clr-dg-column class="widthTn" [clrDgField]="tableName">Table Name</clr-dg-column>
+                            <clr-dg-column class="widthTn" [clrDgField]="tableDescription">Description</clr-dg-column>
+
+                            <clr-dg-row
+                                *clrDgItems="let row of tables; let i = index"
+                                [style.background-color]="(i == selectedTableRowIndex)? '#123456' : 'white'"
+                                [style.color]="(i == selectedTableRowIndex)? 'white' : 'gray'"
+                                (click)="clickSelectedDataTable(i, row.tableName)"
+                                >
+                                <clr-dg-cell>{{ row }}</clr-dg-cell>
+
+                            </clr-dg-row>
+                        </clr-datagrid>
+                    </div>
+
                     <div class="gridPreviewData" *ngIf="showPreview">
                         <clr-datagrid>
 

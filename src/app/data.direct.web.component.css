@@ -5,7 +5,7 @@
 
 .gridOverall {
     display: grid;
-    grid-template-columns: repeat(14, 1fr);
+    grid-template-columns: repeat(20, 1fr);
     grid-template-rows: repeat(26, 0.8rem);
     margin-top: 2px;
 }
@@ -86,7 +86,18 @@
         grid-row-start: 9;
         grid-row-end: 10;
     }
-  
+
+    .gridTables {
+        border: 1px solid gray;
+        border-radius: 4px;
+        grid-column-start: 1;
+        grid-column-end: 4;
+        grid-row-start: 11;
+        grid-row-end: 25;
+        margin-left: 32x;
+        width: 100%;
+    }
+
     .gridPreviewData {
         border: 1px solid gray;
         border-radius: 4px;

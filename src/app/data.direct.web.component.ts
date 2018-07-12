@@ -18,7 +18,7 @@ import { GlobalVariableService}       from './global-variable.service';
 
 // Models
 import { Datasource }                 from './models';
- 
+
 @Component({
     selector: 'data-direct-web',
     templateUrl: './data.direct.web.component.html',
@@ -50,6 +50,7 @@ export class DataDirectWebComponent implements OnInit {
     newName: string = '';
     newDescription: string = '';
     showPreview: boolean = false;
+    tables: string[];
     url: string = '';
 
 	constructor(
@@ -66,7 +67,7 @@ export class DataDirectWebComponent implements OnInit {
         //     // Fill local Var
         //     this.datasources = dc.slice();
         //     console.warn('xx this.datasources.length', this.datasources.length)
-            
+
         //     // Click on first one, if available
         //     if (this.datasources.length > 0) {
         //         this.clickRow(0, this.datasources[0].id);
@@ -104,7 +105,7 @@ export class DataDirectWebComponent implements OnInit {
 
         // // code for IE7+, Firefox, Chrome, Opera, Safari
         // let xmlhttp = new XMLHttpRequest();
-        
+
         // xmlhttp.onreadystatechange=function()
         //     {
         //         if (xmlhttp.readyState==4 && xmlhttp.status==200) {
@@ -118,10 +119,10 @@ export class DataDirectWebComponent implements OnInit {
         // }
 
         // xmlhttp.open("GET", 'https://stackoverflow.com/questions/43489689/use-angular-2-service-from-regular-js-in-browser', false);
-        // // xmlhttp.send();    
+        // // xmlhttp.send();
         // console.warn('xx after SEND')
     }
-    
+
     clickClose(action: string) {
         // Close the form, nothing saved
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
@@ -139,7 +140,7 @@ export class DataDirectWebComponent implements OnInit {
         //     let datasourceIndex: number = this.datasources
         //         .findIndex(ds => ds.id == this.selectedDatasource.id);
         //     if (datasourceIndex >= 0) {
-        //         this.datasources[datasourceIndex].dataDictionary = 
+        //         this.datasources[datasourceIndex].dataDictionary =
         //             this.selectedDatasource.dataDictionary
         //     };
         //     this.globalVariableService.saveDatasource(this.selectedDatasource)
