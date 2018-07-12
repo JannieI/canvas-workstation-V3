@@ -19,6 +19,22 @@ import { GlobalVariableService}       from './global-variable.service';
 // Models
 import { Datasource }                 from './models';
 
+interface webTables {
+	fields: 
+		{
+			name: string;
+			dtype: string
+		}[];
+	meta: 
+		{
+			has_body: boolean;
+			has_headers: boolean;
+			index: number;
+			attrs: {}
+		};
+	name: string;
+}
+
 @Component({
     selector: 'data-direct-web',
     templateUrl: './data.direct.web.component.html',
@@ -50,7 +66,7 @@ export class DataDirectWebComponent implements OnInit {
     newName: string = '';
     newDescription: string = '';
     showPreview: boolean = false;
-    tables: string[];
+    tables: webTables[];
     url: string = '';
 
 	constructor(
@@ -115,9 +131,16 @@ export class DataDirectWebComponent implements OnInit {
 
         this.globalVariableService.getTributaryInspect(source).then(res => {
             // Show if the user has not clicked another row - this result came back async
-            this.dataFieldsSelected = res;
-                this.showPreview = true;
-                this.errorMessage = 'Enter detail, then click Refresh to show the Tables.  Select one, then select the fields to display. Click Preview to see a portion of the data.';
+            this.tables = res;
+
+            // Add Names
+            for (var i = 0; i < this.tables.length; i++) {
+                if (this.tables[i].name == null) {
+                    this.tables[i].name = 'Table ' + i;
+                }
+            };
+            this.showPreview = true;
+            this.errorMessage = 'Enter detail, then click Refresh to show the Tables.  Select one, then select the fields to display. Click Preview to see a portion of the data.';
         })
         .catch(err => {
             this.errorMessage = err.message + '. ';

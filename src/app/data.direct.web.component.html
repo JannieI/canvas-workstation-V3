@@ -92,8 +92,7 @@
                                 No records ...
                             </clr-dg-placeholder>
 
-                            <clr-dg-column class="widthTn" [clrDgField]="tableName">Table Name</clr-dg-column>
-                            <clr-dg-column class="widthTn" [clrDgField]="tableDescription">Description</clr-dg-column>
+                            <clr-dg-column class="widthTn" [clrDgField]="name">Table Name</clr-dg-column>
 
                             <clr-dg-row
                                 *clrDgItems="let row of tables; let i = index"
@@ -101,7 +100,7 @@
                                 [style.color]="(i == selectedTableRowIndex)? 'white' : 'gray'"
                                 (click)="clickSelectedDataTable(i, row.tableName)"
                                 >
-                                <clr-dg-cell>{{ row }}</clr-dg-cell>
+                                <clr-dg-cell>{{ row.name }}</clr-dg-cell>
 
                             </clr-dg-row>
                         </clr-datagrid>
