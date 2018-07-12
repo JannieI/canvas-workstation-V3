@@ -19,47 +19,14 @@
                                     Help
                                 </h5>
                                 <p style="margin-top: 0; color:gray;"> 
-                                    Obtain data from a web page.  Click the X or press Escape to close this form.
+                                    Obtain data from a web page.  Enter the url, and click
+                                    get to obtain a list of tables.  Select a table to preview
+                                    the data.  Enter a name and description for the datasource,
+                                    and click Save to store it permanently.  
+                                    Click the X or press Escape to close this form.
                                 </p>
                             </clr-signpost-content>
                         </clr-signpost>
-                    </div>
-
-                    <div class="gridUrlTitle">
-                        <b>Url:</b>
-                    </div>
-                    <div class="gridUrl">
-                        <input [(ngModel)]="url"
-                            type="text"
-                            name="url"
-                            size="40"
-                            title="Url (address) of the data to be read"
-                            >
-                    </div>
-    
-                    <div class="gridButtonGet">
-                        <button
-                            type="button"
-                            class="btn btn-link"
-                            (click)="clickHttpGet()"
-                            >
-                            Get
-                        </button>
-                    </div>
-
-                    <div class="gridElementTitle">
-                        <b>Element:</b>
-                    </div>
-                    <div class="gridElement">
-                        <input [(ngModel)]="element"
-                            type="text"
-                            name="element"
-                            title="Optional Element ID on the url"
-                            >
-                    </div>
-
-                    <div class="gridErrorMessage">
-                        {{ errorMessage }}
                     </div>
 
                     <div class="gridDatasourceNameTitle">
@@ -84,6 +51,32 @@
                             size="45"
                             title="Description of the new Datasource"
                             >
+                    </div>
+
+                    <div class="gridUrlTitle">
+                        <b>Url:</b>
+                    </div>
+                    <div class="gridUrl">
+                        <input [(ngModel)]="url"
+                            type="text"
+                            name="url"
+                            size="40"
+                            title="Url (address) of the data to be read"
+                            >
+                    </div>
+    
+                    <div class="gridButtonGet">
+                        <button
+                            type="button"
+                            class="btn btn-link"
+                            (click)="clickHttpGet()"
+                            >
+                            Get
+                        </button>
+                    </div>
+
+                    <div class="gridErrorMessage">
+                        {{ errorMessage }}
                     </div>
 
                     <div class="gridTables">

@@ -92,7 +92,7 @@ export class DataDirectWebComponent implements OnInit {
         // });
 
     }
-
+J
     clickSelectedDataTable(index: number, tableName: string) {
         // Clicked a Table
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectedDataTable', '@Start');
@@ -105,13 +105,14 @@ export class DataDirectWebComponent implements OnInit {
                 "connector": "tributary.connectors.web:WebTablesConnector",
                 "specification": {
                     "content": "https://en.wikipedia.org/wiki/Iris_flower_data_set",
-                    "index": 0
+                    "index": index
                 }
             }
         }
 
         this.globalVariableService.getTributaryData(source).then(res => {
             this.currentData = res;
+            console.warn('xx res', res)
         });
     }
 
