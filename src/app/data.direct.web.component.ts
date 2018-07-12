@@ -92,7 +92,7 @@ export class DataDirectWebComponent implements OnInit {
         // });
 
     }
-J
+
     clickSelectedDataTable(index: number, tableName: string) {
         // Clicked a Table
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectedDataTable', '@Start');
@@ -112,7 +112,17 @@ J
 
         this.globalVariableService.getTributaryData(source).then(res => {
             this.currentData = res;
-            console.warn('xx res', res)
+
+            // JSON.parse(JSON.stringify(res), (this.keyEvent, value)
+            var dataFieldsSelected = [];
+
+            if (res.length > 0) {
+
+                for(var key in res[0]) {
+                    dataFieldsSelected.push(key);
+                }
+            }
+            console.warn('xx res', res.length, this.dataFieldsSelected)
         });
     }
 

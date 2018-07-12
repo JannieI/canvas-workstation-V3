@@ -74,6 +74,14 @@
         grid-row-end: 6;
     }
 
+    .gridErrorMessage {
+        color: red;
+        grid-column-start: 1;
+        grid-column-end: 21;
+        grid-row-start: 6;
+        grid-row-end: 7;
+    }
+    
     .gridTables {
         border: 1px solid gray;
         border-radius: 4px;
@@ -97,23 +105,16 @@
     }
 
     .gridButtonCancel {
-        grid-column-start: 2;
-        grid-column-end: 4;
+        grid-column-start: 4;
+        grid-column-end: 6;
         grid-row-start: 25;
         grid-row-end: 26;
     }
 
     .gridButtonSave {
-        grid-column-start: 6;
-        grid-column-end: 8;
+        grid-column-start: 13;
+        grid-column-end: 15;
         grid-row-start: 25;
         grid-row-end: 26;
     }
 
-    .gridErrorMessage {
-        color: red;
-        grid-column-start: 9;
-        grid-column-end: 21;
-        grid-row-start: 25;
-        grid-row-end: 26;
-    }
