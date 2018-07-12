@@ -83,6 +83,7 @@ export class DataDirectWebComponent implements OnInit {
         // TODO - fix CORS & Authorisation
         // return this.http.get('https://stackoverflow.com/questions/43489689/use-angular-2-service-from-regular-js-in-browser')
         return this.http.get('https://www.w3schools.com/')
+
     }
 
     clickHttpGet() {
@@ -92,35 +93,42 @@ export class DataDirectWebComponent implements OnInit {
         // Reset
         this.errorMessage = '';
 
-        // Get html
-        this.returnHttpGet().subscribe((data: any) => {
-            console.warn('xx HOLY MOLY 3', data)
-        },
-        err => {
-            this.errorMessage = err.message;
+        // // Get html
+        // this.returnHttpGet().subscribe((data: any) => {
+        //     console.warn('xx HOLY MOLY 3', data)
+        // },
+        // err => {
+        //     this.errorMessage = err.message;
+        // });
+
+        // this.showPreview = true;
+
+
+        let source: any = {
+            "source": {
+                "inspector": "tributary.inspectors.web:WebTablesInspector",
+                "specification": {
+                    "content": "https://en.wikipedia.org/wiki/Iris_flower_data_set"
+                }
+            }
+        }
+
+        this.globalVariableService.getTributaryInspect(source).then(res => {
+            // Show if the user has not clicked another row - this result came back async
+            this.dataFieldsSelected = res;
+                this.showPreview = true;
+                this.errorMessage = 'Enter detail, then click Refresh to show the Tables.  Select one, then select the fields to display. Click Preview to see a portion of the data.';
+        })
+        .catch(err => {
+            this.errorMessage = err.message + '. ';
+            if (err.status == 401) {
+                this.errorMessage = 'Error: ' + 'Either you login has expired, or you dont have access to the Database. ' 
+                    + err.message;
+            } else {
+                this.errorMessage = err.message;
+            };
         });
 
-        this.showPreview = true;
-
-
-        // // code for IE7+, Firefox, Chrome, Opera, Safari
-        // let xmlhttp = new XMLHttpRequest();
-
-        // xmlhttp.onreadystatechange=function()
-        //     {
-        //         if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-        //             console.warn('HOLY MOLY', xmlhttp.responseText);
-        //         };
-        //     }
-
-        // // Setup callback
-        // xmlhttp.onload = function() {
-        //     console.warn('HOLY MOLY !!', this.responseXML );
-        // }
-
-        // xmlhttp.open("GET", 'https://stackoverflow.com/questions/43489689/use-angular-2-service-from-regular-js-in-browser', false);
-        // // xmlhttp.send();
-        // console.warn('xx after SEND')
     }
 
     clickClose(action: string) {
