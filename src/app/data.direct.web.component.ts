@@ -109,6 +109,20 @@ export class DataDirectWebComponent implements OnInit {
 
         // Set seletected index - used for highlighting row
         this.selectedTableRowIndex = index;
+
+        let source: any = {
+            "source": {
+                "connector": "tributary.connectors.web:WebTablesConnector",
+                "specification": {
+                    "content": "https://en.wikipedia.org/wiki/Iris_flower_data_set",
+                    "index": 0
+                }
+            }
+        }
+
+        this.globalVariableService.getTributaryData(source).then(res => {
+            this.currentData = res;
+        });
     }
 
     clickHttpGet() {
