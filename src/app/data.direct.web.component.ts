@@ -65,6 +65,7 @@ export class DataDirectWebComponent implements OnInit {
     errorMessage: string = '';
     newName: string = '';
     newDescription: string = '';
+    selectedTableRowIndex: number = 0;
     showPreview: boolean = false;
     tables: webTables[];
     url: string = '';
@@ -100,6 +101,14 @@ export class DataDirectWebComponent implements OnInit {
         // return this.http.get('https://stackoverflow.com/questions/43489689/use-angular-2-service-from-regular-js-in-browser')
         return this.http.get('https://www.w3schools.com/')
 
+    }
+
+    clickSelectedDataTable(index: number, tableName: string) {
+        // Clicked a Table
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectedDataTable', '@Start');
+
+        // Set seletected index - used for highlighting row
+        this.selectedTableRowIndex = index;
     }
 
     clickHttpGet() {

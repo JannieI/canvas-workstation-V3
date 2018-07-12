@@ -98,7 +98,7 @@
                                 *clrDgItems="let row of tables; let i = index"
                                 [style.background-color]="(i == selectedTableRowIndex)? '#123456' : 'white'"
                                 [style.color]="(i == selectedTableRowIndex)? 'white' : 'gray'"
-                                (click)="clickSelectedDataTable(i, row.tableName)"
+                                (click)="clickSelectedDataTable(i, row.name)"
                                 >
                                 <clr-dg-cell>{{ row.name }}</clr-dg-cell>
 
