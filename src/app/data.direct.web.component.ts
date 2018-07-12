@@ -59,7 +59,7 @@ export class DataDirectWebComponent implements OnInit {
     }
 
     currentData: any[] = [];
-    dataFieldsSelected: string[] = ['id', 'date'];
+    dataFieldsSelected: string[];
     datasources: Datasource[] = [];
     element: string = '';
     errorMessage: string = '';
@@ -114,12 +114,13 @@ export class DataDirectWebComponent implements OnInit {
             this.currentData = res;
 
             // JSON.parse(JSON.stringify(res), (this.keyEvent, value)
-            var dataFieldsSelected = [];
+            this.dataFieldsSelected = [];
 
             if (res.length > 0) {
-
+                console.warn('xx res[0]', res[0])
                 for(var key in res[0]) {
-                    dataFieldsSelected.push(key);
+                    console.warn('xx key', key)
+                    this.dataFieldsSelected.push(key);
                 }
             }
             console.warn('xx res', res.length, this.dataFieldsSelected)
