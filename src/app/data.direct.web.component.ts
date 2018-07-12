@@ -93,16 +93,6 @@ export class DataDirectWebComponent implements OnInit {
 
     }
 
-    returnHttpGet() {
-        // Get HTML
-        this.globalFunctionService.printToConsole(this.constructor.name,'returnHttpGet', '@Start');
-
-        // TODO - fix CORS & Authorisation
-        // return this.http.get('https://stackoverflow.com/questions/43489689/use-angular-2-service-from-regular-js-in-browser')
-        return this.http.get('https://www.w3schools.com/')
-
-    }
-
     clickSelectedDataTable(index: number, tableName: string) {
         // Clicked a Table
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectedDataTable', '@Start');
@@ -131,16 +121,6 @@ export class DataDirectWebComponent implements OnInit {
 
         // Reset
         this.errorMessage = '';
-
-        // // Get html
-        // this.returnHttpGet().subscribe((data: any) => {
-        //     console.warn('xx HOLY MOLY 3', data)
-        // },
-        // err => {
-        //     this.errorMessage = err.message;
-        // });
-
-        // this.showPreview = true;
 
 
         let source: any = {
