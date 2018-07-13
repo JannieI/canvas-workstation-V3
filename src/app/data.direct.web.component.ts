@@ -65,7 +65,7 @@ export class DataDirectWebComponent implements OnInit {
     errorMessage: string = '';
     newName: string = '';
     newDescription: string = '';
-    selectedTableRowIndex: number = 0;
+    selectedTableRowIndex: number = -1;
     showPreview: boolean = false;
     tables: webTables[];
     url: string = 'https://en.wikipedia.org/wiki/Iris_flower_data_set';
@@ -93,8 +93,48 @@ export class DataDirectWebComponent implements OnInit {
 
     }
 
-    clickSelectedDataTable(index: number, tableName: string) {
-        // Clicked a Table
+    clickHttpGet() {
+        // User clicked Get with URL: read the web page and return list of tables
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickHttpGet', '@Start');
+
+        // Reset
+        this.showPreview = false;
+        this.errorMessage = '';
+        let source: any = {
+            "source": {
+                "inspector": "tributary.inspectors.web:WebTablesInspector",
+                "specification": {
+                    "content": this.url
+                }
+            }
+        };
+
+        // Get a list of Tables (created with <table> tag) on the web page
+        this.globalVariableService.getTributaryInspect(source)
+            .then(res => {
+                this.tables = res;
+
+                // Add Table Names where missing
+                for (var i = 0; i < this.tables.length; i++) {
+                    if (this.tables[i].name == null) {
+                        this.tables[i].name = 'Table ' + i;
+                    }
+                };
+            })
+            .catch(err => {
+                this.errorMessage = err.message + '. ';
+                if (err.status == 401) {
+                    this.errorMessage = 'Error: ' + 'Either you login has expired, or you dont have access to the Database. ' 
+                        + err.message;
+                } else {
+                    this.errorMessage = err.message;
+                };
+            });
+
+    }
+
+    clickSelectedDataTable(index: number) {
+        // Clicked a Table, so get the data for the selected table
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectedDataTable', '@Start');
 
         // Set seletected index - used for highlighting row
@@ -113,7 +153,10 @@ export class DataDirectWebComponent implements OnInit {
         this.globalVariableService.getTributaryData(source).then(res => {
             this.currentData = res;
 
-            // JSON.parse(JSON.stringify(res), (this.keyEvent, value)
+            // Show the preview data table
+            this.showPreview = true;
+
+            // Construct a list of field name / column headings from the data
             this.dataFieldsSelected = [];
 
             if (res.length > 0) {
@@ -125,46 +168,6 @@ export class DataDirectWebComponent implements OnInit {
             }
             console.warn('xx res', res.length, this.dataFieldsSelected)
         });
-    }
-
-    clickHttpGet() {
-        // User clicked Get with URL
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickHttpGet', '@Start');
-
-        // Reset
-        this.errorMessage = '';
-        let source: any = {
-            "source": {
-                "inspector": "tributary.inspectors.web:WebTablesInspector",
-                "specification": {
-                    "content": this.url
-                }
-            }
-        }
-
-        this.globalVariableService.getTributaryInspect(source).then(res => {
-            // Show if the user has not clicked another row - this result came back async
-            this.tables = res;
-
-            // Add Names
-            for (var i = 0; i < this.tables.length; i++) {
-                if (this.tables[i].name == null) {
-                    this.tables[i].name = 'Table ' + i;
-                }
-            };
-            this.showPreview = true;
-            this.errorMessage = 'Enter detail, then click Refresh to show the Tables.  Select one, then select the fields to display. Click Preview to see a portion of the data.';
-        })
-        .catch(err => {
-            this.errorMessage = err.message + '. ';
-            if (err.status == 401) {
-                this.errorMessage = 'Error: ' + 'Either you login has expired, or you dont have access to the Database. ' 
-                    + err.message;
-            } else {
-                this.errorMessage = err.message;
-            };
-        });
-
     }
 
     clickClose(action: string) {

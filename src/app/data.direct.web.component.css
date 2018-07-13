@@ -63,13 +63,13 @@
     }
     .gridUrl {
         grid-column-start: 3;
-        grid-column-end: 12;
+        grid-column-end: 16;
         grid-row-start: 5;
         grid-row-end: 6;
     }
     .gridButtonGet {
-        grid-column-start: 13;
-        grid-column-end: 15;
+        grid-column-start: 17;
+        grid-column-end: 19;
         grid-row-start: 5;
         grid-row-end: 6;
     }
@@ -81,7 +81,16 @@
         grid-row-start: 6;
         grid-row-end: 7;
     }
-    
+
+    .gridHelpMessage {
+        grid-column-start: 5;
+        grid-column-end: 20;
+        grid-row-start: 12;
+        grid-row-end: 18;
+        text-align: center;
+        z-index: 0;
+    }
+
     .gridTables {
         border: 1px solid gray;
         border-radius: 4px;
@@ -91,6 +100,7 @@
         grid-row-end: 25;
         margin-left: 12px;
         width: 100%;
+        z-index: 1;
     }
 
     .gridPreviewData {

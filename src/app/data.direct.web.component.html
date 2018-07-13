@@ -48,7 +48,7 @@
                             type="text"
                             name="newDescription"
                             description="description"
-                            size="45"
+                            size="40"
                             title="Description of the new Datasource"
                             >
                     </div>
@@ -60,8 +60,8 @@
                         <input [(ngModel)]="url"
                             type="text"
                             name="url"
-                            size="40"
-                            title="Url (address) of the data to be read"
+                            size="50"
+                            title="Url (address) of the data to be read, ie https://en.wikipedia.org/wiki/Iris_flower_data_set"
                             >
                     </div>
     
@@ -79,6 +79,13 @@
                         {{ errorMessage }}
                     </div>
 
+                    <div class="gridHelpMessage" *ngIf="!showPreview">
+                        <i>
+                            <p>Click the Get button to show a list of tables.</p>
+                            <p>Then click on a table to show the data here.</p>
+                        </i>
+                    </div>
+
                     <div class="gridTables">
                         <clr-datagrid>
                             <clr-dg-placeholder>
@@ -91,7 +98,7 @@
                                 *clrDgItems="let row of tables; let i = index"
                                 [style.background-color]="(i == selectedTableRowIndex)? '#123456' : 'white'"
                                 [style.color]="(i == selectedTableRowIndex)? 'white' : 'gray'"
-                                (click)="clickSelectedDataTable(i, row.name)"
+                                (click)="clickSelectedDataTable(i)"
                                 >
                                 <clr-dg-cell>{{ row.name }}</clr-dg-cell>
 
