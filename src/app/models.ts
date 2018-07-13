@@ -362,11 +362,11 @@ export class DatasourcePivot {
 }
 
 export class Datasource {
-    id: number;
-    type: string;
-    subType: string;
-    typeVersion: string;
-    name: string;
+    id: number;                         // Unique record ID
+    type: string;                       // 
+    subType: string;                    // 
+    typeVersion: string;                // 
+    name: string;                       // Name of Datasource 
     username: string;                   // Username to log into server
     password: string;                   // Password to log into server
     description: string;
@@ -384,14 +384,14 @@ export class Datasource {
     dateEdited: string;                 // Last Edited On
     
     // Refresh info
-    refreshedBy: string;
-    refreshedOn: string;
+    refreshedBy: string;                // Last UserID that refreshed this datasource
+    refreshedOn: string;                // Last dateTime this datasource was refreshed
 
     // Location and authentication
-    folder: string;
-    fileName: string;
-    excelWorksheet: string;
-    transposeOnLoad: boolean;
+    folder: string;                     // Folder from which the data was loaded
+    fileName: string;                   // Filename from which the data was loaded                   
+    excelWorksheet: string;             // Excel Worksheet name from which the data was loaded
+    transposeOnLoad: boolean;           // True to transpose data before loading (X <-> Y)
     startLineNr: number;                // 1 = first = default
     csvSeparationCharacter: string;     // CSV file column separator: comma or ;
     csvQuotCharacter: string;           // CSV values in "", in '' or without quotes
