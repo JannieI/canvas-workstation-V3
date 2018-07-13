@@ -17,6 +17,7 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService}       from './global-variable.service';
 
 // Models
+import { Dataset }                    from './models';
 import { Datasource }                 from './models';
 
 interface webTables {
@@ -196,6 +197,7 @@ export class DataDirectWebComponent implements OnInit {
         //     this.globalVariableService.saveDatasource(this.selectedDatasource)
         // };
 
+        // Construct DS and add to DB
         let today: Date = new Date();
         let newDatasource: Datasource = {
             id: null,
@@ -241,16 +243,22 @@ export class DataDirectWebComponent implements OnInit {
             nrWidgets: null
         };
 
-        let dataset: Dataset = {
-            id: null,
-            datasourceID: res.id;
-            sourceLocation: 'HTTP',
-            url: '',
-            folderName: '',
-            fileName: '',
-            data: this.currentData,
-            dataRaw: this.currentData
-        }
+        this.globalVariableService.addDatasource(newDatasource). then(res => {
+
+            // Construct Dataset
+            let dataset: Dataset = {
+                id: null,
+                datasourceID: res.id,
+                sourceLocation: 'HTTP',
+                url: '',
+                folderName: '',
+                fileName: '',
+                data: this.currentData,
+                dataRaw: this.currentData
+            };
+
+            this.globalVariableService.addDataset(dataset);
+        });
     }
 
 }
