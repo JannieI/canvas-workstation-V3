@@ -244,7 +244,7 @@ export class DataDirectWebComponent implements OnInit {
         };
 
         this.globalVariableService.addDatasource(newDatasource). then(res => {
-
+            console.warn('xx res', res)
             // Construct Dataset
             let dataset: Dataset = {
                 id: null,
