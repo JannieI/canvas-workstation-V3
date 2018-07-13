@@ -379,13 +379,13 @@ export class Datasource {
     // Create and Edit info
     createMethod: string;               // Method how DS was created, ie DirectFile, ..., ManagedSQLEditor
     createdBy: string;                  // Creator
-    createdOn: string;                  // DateTime Created
+    createdOn: Date;                    // DateTime Created
     editor: string;                     // Last Edited By
-    dateEdited: string;                 // Last Edited On
+    dateEdited: Date;                   // Last Edited On
     
     // Refresh info
     refreshedBy: string;                // Last UserID that refreshed this datasource
-    refreshedOn: string;                // Last dateTime this datasource was refreshed
+    refreshedOn: Date;                  // Last dateTime this datasource was refreshed
 
     // Location and authentication
     folder: string;                     // Folder from which the data was loaded
