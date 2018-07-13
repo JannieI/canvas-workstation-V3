@@ -185,8 +185,7 @@ export class DataRefreshOnceComponent implements OnInit {
                 let today = new Date();
                 this.currentDatasources[dsIndex].refreshedBy = this.globalVariableService
                     .currentUser.userID;
-                this.currentDatasources[dsIndex].refreshedOn = this.globalVariableService
-                    .formatDate(today);
+                this.currentDatasources[dsIndex].refreshedOn = today;
                 this.globalVariableService.saveDatasource(this.currentDatasources[dsIndex]);
             });
         };

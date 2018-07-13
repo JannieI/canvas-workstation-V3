@@ -186,16 +186,16 @@ export class DataDirectWebComponent implements OnInit {
         // Save changes to the Datasource
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
-        // Save the changes
-        // if (this.editing) {
-        //     let datasourceIndex: number = this.datasources
-        //         .findIndex(ds => ds.id == this.selectedDatasource.id);
-        //     if (datasourceIndex >= 0) {
-        //         this.datasources[datasourceIndex].dataDictionary =
-        //             this.selectedDatasource.dataDictionary
-        //     };
-        //     this.globalVariableService.saveDatasource(this.selectedDatasource)
-        // };
+        // Valiation
+        this.errorMessage = '';
+        if (this.newName == '') {
+            this.errorMessage = 'Please enter a Name for the new Datasource';
+            return;
+        };
+        if (this.newDescription == '') {
+            this.errorMessage = 'Please enter a Description for the new Datasource';
+            return;
+        };
 
         // Construct DS and add to DB
         let today: Date = new Date();
