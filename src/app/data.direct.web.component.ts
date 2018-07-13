@@ -100,6 +100,9 @@ export class DataDirectWebComponent implements OnInit {
         // Reset
         this.showPreview = false;
         this.errorMessage = '';
+        this.tables = [];
+
+        // Construct spec for Tributary
         let source: any = {
             "source": {
                 "inspector": "tributary.inspectors.web:WebTablesInspector",
