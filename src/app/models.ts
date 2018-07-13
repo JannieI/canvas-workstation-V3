@@ -363,13 +363,13 @@ export class DatasourcePivot {
 
 export class Datasource {
     id: number;                         // Unique record ID
-    type: string;                       // 
-    subType: string;                    // 
-    typeVersion: string;                // 
+    type: string;                       // Type of source, ie File, Server, Web, Service
+    subType: string;                    // Subtype, ie Excel/ CSV for File, PostgreSQL/ Mongo for Server
+    typeVersion: string;                // Version of source, ie Excel 2016
     name: string;                       // Name of Datasource 
-    username: string;                   // Username to log into server
+    username: string;                   // Username to log into server (if not via AD)
     password: string;                   // Password to log into server
-    description: string;
+    description: string;                // Description of the DS
     dataFieldIDs: number[];             // IDs of fields in DB table
     dataFields: string[];               // FieldNames, in order to display
     dataFieldTypes: string[];           // Field Types, same order as dataFields

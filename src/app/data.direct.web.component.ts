@@ -196,60 +196,50 @@ export class DataDirectWebComponent implements OnInit {
         //     this.globalVariableService.saveDatasource(this.selectedDatasource)
         // };
 
+        let today: Date = new Date();
         let newDatasource: Datasource = {
             id: null,
-            type: string;
-            subType: string;
-            typeVersion: string;
-            name: string;
-            username: string;                   // Username to log into server
-            password: string;                   // Password to log into server
-            description: string;
-            dataFieldIDs: number[];             // IDs of fields in DB table
-            dataFields: string[];               // FieldNames, in order to display
-            dataFieldTypes: string[];           // Field Types, same order as dataFields
-            dataFieldLengths: number[];         // Max field lengths, same order as dataFields
-            parameters: string;                 // Parameters to pass into SQL query
-        
-            // Create and Edit info
-            createMethod: string;               // Method how DS was created, ie DirectFile, ..., ManagedSQLEditor
-            createdBy: string;                  // Creator
-            createdOn: string;                  // DateTime Created
-            editor: string;                     // Last Edited By
-            dateEdited: string;                 // Last Edited On
-            
-            // Refresh info
-            refreshedBy: string;
-            refreshedOn: string;
-        
-            // Location and authentication
-            folder: string;
-            fileName: string;
-            excelWorksheet: string;
-            transposeOnLoad: boolean;
-            startLineNr: number;                // 1 = first = default
-            csvSeparationCharacter: string;     // CSV file column separator: comma or ;
-            csvQuotCharacter: string;           // CSV values in "", in '' or without quotes
-        
-            // Managed Connection, Connection created and managed outside of the DS
-            connectionID: number;               // Connection to DB
-            dataTableID: number;                // ID of table linked in DB
-            businessGlossary: string;           // Detailed business oriented description of DS (non-technical)
-            dataDictionary: string;             // Detailed technical description of DS
-        
-            // Direct Connection, all info provided here and once off
-            databaseName: string;                   // DB to connect to
-            port: string;                       // Port on the DB Server
-            serverType: string;                 // Server or Host type, ie MySQL, PostgreSQL, etc
-            serverName: string;                 // Server or Host name
-            dataTableName: string;              // Table inside Server with the data
-            dataSQLStatement: string;           // SQL Statement to extract data with
-            dataNoSQLStatement: string;         // NoSQL Statement to extract data with
-            dataNeo4jStatement: string;         // Cypher Statement to extract data with
-            dataGraphQLStatement: string;       // GraphQL Statement to extract data with
-        
-            // Updated at runtime
-            nrWidgets: number; 
+            type: 'Web',
+            subType: '',
+            typeVersion:  '',
+            name: this.newName,
+            username: '',
+            password: '',
+            description: this.newDescription,
+            dataFieldIDs: [],
+            dataFields: this.dataFieldsSelected,
+            dataFieldTypes: [],
+            dataFieldLengths: [],
+            parameters: '',
+            createMethod: 'Web',
+            createdBy: this.globalVariableService.currentUser.userID,
+            createdOn: today,
+            editor: '',
+            dateEdited: null,
+            refreshedBy: '',
+            refreshedOn: null,
+            folder: '',
+            fileName: '',
+            excelWorksheet: '',
+            transposeOnLoad: false,
+            startLineNr: 0,
+            csvSeparationCharacter: '',
+            csvQuotCharacter: '',
+            connectionID: null,
+            dataTableID: null,
+            businessGlossary: 'Obtained from ' + this.url,
+            dataDictionary: '',
+            databaseName: '',
+            port: '',
+            serverType: '',
+            serverName: '',
+            dataTableName: '',
+            dataSQLStatement: '',
+            dataNoSQLStatement: '',
+            dataNeo4jStatement: '',
+            dataGraphQLStatement: '',
+            nrWidgets: null
+        };
 
         Dataset {
             id: number;
