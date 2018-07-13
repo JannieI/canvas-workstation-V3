@@ -68,7 +68,7 @@ export class DataDirectWebComponent implements OnInit {
     selectedTableRowIndex: number = 0;
     showPreview: boolean = false;
     tables: webTables[];
-    url: string = '';
+    url: string = 'https://en.wikipedia.org/wiki/Iris_flower_data_set';
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -104,11 +104,11 @@ export class DataDirectWebComponent implements OnInit {
             "source": {
                 "connector": "tributary.connectors.web:WebTablesConnector",
                 "specification": {
-                    "content": "https://en.wikipedia.org/wiki/Iris_flower_data_set",
+                    "content": this.url,
                     "index": index
                 }
             }
-        }
+        };
 
         this.globalVariableService.getTributaryData(source).then(res => {
             this.currentData = res;
@@ -133,13 +133,11 @@ export class DataDirectWebComponent implements OnInit {
 
         // Reset
         this.errorMessage = '';
-
-
         let source: any = {
             "source": {
                 "inspector": "tributary.inspectors.web:WebTablesInspector",
                 "specification": {
-                    "content": "https://en.wikipedia.org/wiki/Iris_flower_data_set"
+                    "content": this.url
                 }
             }
         }
