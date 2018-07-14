@@ -4399,7 +4399,7 @@ export class GlobalVariableService {
                     localDataset = this.datasets[globalDsetIndex];
                     
                     // Get latest dSet-ID
-                    let ds: number[]=[];
+                    let ds: number[] = [];
                     let dSetID: number = -1;
 
                     for (var i = 0; i < this.datasets.length; i++) {
@@ -4419,8 +4419,8 @@ export class GlobalVariableService {
                         localDataset.data = res.data;
 
                         this.currentDatasets.push(localDataset);
-console.warn('xx gv end localDataset addCurrentDS', localDataset, this.currentDatasets)
-console.warn('xx gv end datasets', localDataset, this.datasets)
+console.warn('xx gv end localDataset currentDatasets', localDataset, this.currentDatasets)
+console.warn('xx gv end datasets', this.datasets)
                         resolve(res);
 
                     });

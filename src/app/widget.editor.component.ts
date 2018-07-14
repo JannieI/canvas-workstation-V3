@@ -775,11 +775,12 @@ const graphWidth: number = 420;
                 // Reset
                 this.isBusyRetrievingData = false
                 
-                let globalCurrentDSIndex: number = this.globalVariableService.currentDatasources
-                .findIndex(dS => dS.id == datasourceID
-                );
-                console.warn('xx ds dSet', globalCurrentDSIndex, this.globalVariableService.currentDatasources,
-this.globalVariableService.currentDatasets)
+                let globalCurrentDSIndex: number = this.globalVariableService
+                    .currentDatasources.findIndex(dS => dS.id == datasourceID);
+
+                console.warn('xx ds globalCurrentDSIndex', globalCurrentDSIndex)
+                console.warn('xx ds GV-currentDatasources', this.globalVariableService.currentDatasources)
+                console.warn('xx ds GV-currentDatasets', this.globalVariableService.currentDatasets)
 
                 if (globalCurrentDSIndex >= 0) {
                     this.currentDatasources.push(
@@ -862,7 +863,7 @@ this.globalVariableService.currentDatasets)
             // Make proper error handling
             alert('Error: no dataSet in glob vars for DSid = ' + datasourceID)
         };
-        console.warn('xx this.globalVariableService.currentDatasets', this.globalVariableService.currentDatasets)
+        console.warn('xx this.globalVariableService.currentDatasets', dSetID, this.globalVariableService.currentDatasets)
 
         // Load first few rows into preview
         this.currentData = this.globalVariableService.currentDatasets.filter(
