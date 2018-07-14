@@ -3111,6 +3111,42 @@ export class GlobalVariableService {
         });
     }
 
+    deleteDataset(id: number): Promise<string> {
+        // Description: Deletes a Dataset
+        // Returns: 'Deleted' or error message
+        console.log('%c    Global-Variables deleteDataset ...',
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", id);
+
+        let url: string = 'datasets';
+        this.filePath = './assets/data.Datasets.json';
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.delete('http://localhost:3001/' + url + '/' + id, {headers})
+            .subscribe(
+                data => {
+
+                    this.datasets = this.datasets.filter(
+                        dSet => dSet.id != id
+                    );
+                    this.currentDatasets = this.currentDatasets.filter(
+                        dSet => dSet.id != id
+                    );
+
+                    console.log('deleteDataset DELETED id: ', id)
+                    resolve('Deleted');
+                },
+                err => {
+                    console.log('Error deleteDataset FAILED', err);;
+                    reject(err);
+                }
+            )
+        });
+    }
+
     getData(id: number): Promise<any[]> {
         // Description: Gets Datasets, WITHOUT data
         // Returns: this.dataset
