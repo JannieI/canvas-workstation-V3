@@ -243,21 +243,30 @@ export class DataDirectWebComponent implements OnInit {
             nrWidgets: null
         };
 
-        this.globalVariableService.addDatasource(newDatasource). then(res => {
-            console.warn('xx res', res)
-            // Construct Dataset
-            let dataset: Dataset = {
-                id: null,
-                datasourceID: res.id,
-                sourceLocation: 'HTTP',
-                url: '',
-                folderName: '',
-                fileName: '',
-                data: this.currentData,
-                dataRaw: this.currentData
-            };
+        let newdSet: Dataset = {
+            id: null,
+            datasourceID: null,
+            sourceLocation: 'HTTP',
+            url: 'data',
+            folderName: '',
+            fileName: '',
+            data: null,
+            dataRaw: null
+        };
+        let newData: any = {
+            id: null,
+            data: this.currentData
+        };
 
-            this.globalVariableService.addDataset(dataset);
+        // Add Data, then dataset, then DS
+        this.globalVariableService.addData(newData).then(resData => {
+
+            newdSet.url = 'data/' + resData.id.toString();
+            this.globalVariableService.addDatasource(newDatasource).then(resDS => {
+                newdSet.datasourceID = resDS.id;
+                this.globalVariableService.addDataset(newdSet);
+
+            });
         });
     }
 
