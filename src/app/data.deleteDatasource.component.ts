@@ -82,7 +82,7 @@ export class DataDeleteDatasourceComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'dblclickDelete', '@Start');
 
         this.globalVariableService.deleteDatasource(id).then(res => {
-            this.datasources = this.datasources.filter(ds => ds.id != id)
+            this.datasources = this.datasources.filter(ds => ds.id != id);
 
             this.globalVariableService.datasets.forEach(dSet => {
                 if (dSet.datasourceID == id) {
@@ -92,11 +92,12 @@ export class DataDeleteDatasourceComponent implements OnInit {
                         let slashPositon = url.indexOf('/');
                         if (slashPositon >= 0) {
                             dataID = +url.substring(slashPositon + 1);
-                        }
+                            console.warn ('xx dataID',dataID)
+                        };
                     };
                     if (dataID != null) {
                         this.globalVariableService.deleteData(dataID);
-                    }
+                    };
                     this.globalVariableService.deleteDataset(dSet.id).then();
                 };
             })

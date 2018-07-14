@@ -3125,7 +3125,7 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.delete('http://localhost:3001/' + url + '/' + id, {headers})
+            this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
             .subscribe(
                 data => {
 
@@ -3217,7 +3217,7 @@ export class GlobalVariableService {
         console.log('%c    Global-Variables deleteData ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", id);
 
-        let url: string = 'data/';
+        let url: string = 'data';
         this.filePath = './assets/data.data.json';
 
         return new Promise<any>((resolve, reject) => {
