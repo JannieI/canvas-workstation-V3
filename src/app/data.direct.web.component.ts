@@ -276,6 +276,8 @@ export class DataDirectWebComponent implements OnInit {
 
             });
 
+            // Indicate to the user
+            this.canSave = false;
             this.savedMessage = 'Datasource created';
         });
     }
