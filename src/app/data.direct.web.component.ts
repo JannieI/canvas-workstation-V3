@@ -67,6 +67,7 @@ export class DataDirectWebComponent implements OnInit {
     errorMessage: string = '';
     newName: string = '';
     newDescription: string = '';
+    savedMessage: string = '';
     selectedTableRowIndex: number = -1;
     showPreview: boolean = false;
     tables: webTables[];
@@ -103,6 +104,7 @@ export class DataDirectWebComponent implements OnInit {
         this.showPreview = false;
         this.errorMessage = '';
         this.tables = [];
+        this.savedMessage = '';
 
         // Construct spec for Tributary
         let source: any = {
@@ -175,6 +177,7 @@ export class DataDirectWebComponent implements OnInit {
 
             // The User can save now
             this.canSave = true;
+            this.savedMessage = '';
             console.warn('xx res', res.length, this.dataFieldsSelected)
         });
     }
@@ -272,6 +275,8 @@ export class DataDirectWebComponent implements OnInit {
                 this.globalVariableService.addDataset(newdSet);
 
             });
+
+            this.savedMessage = 'Datasource created';
         });
     }
 
