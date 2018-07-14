@@ -778,6 +778,9 @@ const graphWidth: number = 420;
                 let globalCurrentDSIndex: number = this.globalVariableService.currentDatasources
                 .findIndex(dS => dS.id == datasourceID
                 );
+                console.warn('xx ds dSet', globalCurrentDSIndex, this.globalVariableService.currentDatasources,
+this.globalVariableService.currentDatasets)
+
                 if (globalCurrentDSIndex >= 0) {
                     this.currentDatasources.push(
                         this.globalVariableService.currentDatasources[globalCurrentDSIndex]

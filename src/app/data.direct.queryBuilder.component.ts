@@ -25,7 +25,7 @@ import { TributarySource }            from './models';
 
 
 // TODO - remove when real DB
-const constDataInvoices: any = 
+const constDataInvoices: any =
 [
     {
         id: 0,
@@ -74,7 +74,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
 
     @Input() editingDS: boolean;
     @Input() selectedDatasource: Datasource;
- 
+
     @Output() formDataDirectQueryBuilderClosed: EventEmitter<Datasource> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
@@ -87,12 +87,12 @@ export class DataDirectQueryBuilderComponent implements OnInit {
             this.clickClose('Close');
             return;
         };
-        if ( 
+        if (
             (event.code == 'Enter'  ||  event.code == 'NumpadEnter')
-            &&  
-            (!event.ctrlKey)  
-            &&  
-            (!event.shiftKey) 
+            &&
+            (!event.ctrlKey)
+            &&
+            (!event.shiftKey)
            ) {
                 if (this.showPreview) {
                    this.clickSave('Saved');
@@ -119,7 +119,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
     selectedTableRowIndex: number = -1;
     serverTypes: TributaryServerType[]
     showPreview: boolean = false;
-    
+
     // driverName
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -135,7 +135,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
 
         if (!this.editingDS) {
         this.helpMessage = 'Enter detail, then click Refresh to show the Tables.  Select one, then select the fields to display. Click Preview to see a portion of the data.';
-            
+
             this.selectedDatasource = {
                 id: 0,
                 type: '',
@@ -178,18 +178,18 @@ export class DataDirectQueryBuilderComponent implements OnInit {
                 dataGraphQLStatement: '',
                 businessGlossary: '',
                 dataDictionary: ''
-                            
+
             };
         } else {
 
             this.helpMessage = 'Amend the above info if needed, then click Refresh and select the Table & Fields.  Else, click Preview to see a portion of the data.';
-            
+
             // Get the Schema from Tributary
             this.dataSchemas = this.globalVariableService.getTributaryDirectDBSchema(
                 this.selectedDatasource.serverName);
-            
+
             // Cater for missing field types
-            if (this.selectedDatasource.dataFields.length > 
+            if (this.selectedDatasource.dataFields.length >
                 this.selectedDatasource.dataFieldTypes.length) {
 
                 for (let i = 1; i <= this.selectedDatasource.dataFields.length; i++) {
@@ -229,13 +229,13 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         };
 
     }
-   
+
     clickSelectedDataTable(index: number, tableName: string) {
         // Clicked a Table
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectedDataTable', '@Start');
 
         this.helpMessage = 'Select Fields, and click Preview to see a portion of the data.';
-        
+
         // Reset selected Fields
         if (this.selectedTableRowIndex != index) {
             console.warn('xx reset sel Flds')
@@ -263,7 +263,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
 
         // Set seletected index - used for highlighting row
         this.selectedFieldRowIndex = index;
-        
+
         // Set array for preview headings
         this.dataFieldsSelected = this.selectedFields.map(f => f.fieldName);
 
@@ -272,7 +272,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
     clickRefresh() {
         // Get the tables and fields from the DB
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRefresh', '@Start');
-    
+
         // Fill Table and Field Names
         this.dataSchemas = this.globalVariableService.getTributaryDirectDBSchema(
             this.selectedDatasource.serverName);
@@ -298,7 +298,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
                 // Remember table we started with
                 let localSelectedTableRowIndex = this.selectedTableRowIndex;
 
-            
+
             let source: any =  {
                 "inspector": "tributary.inspectors.sql:SqlInspector",
                 "specification": {
@@ -310,7 +310,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
                     "port": 5432
                 }
             }
-        
+
 
         this.globalVariableService.getTributaryInspect(source).then(res => {
             // Show if the user has not clicked another row - this result came back async
@@ -324,7 +324,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
             this.errorMessage = err.message + '. ';
             this.helpMessage = '';
             if (err.status == 401) {
-                this.errorMessage = 'Error: ' + 'Either you login has expired, or you dont have access to the Database. ' 
+                this.errorMessage = 'Error: ' + 'Either you login has expired, or you dont have access to the Database. '
                     + err.message;
             } else {
                 this.errorMessage = err.message;
@@ -332,7 +332,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         });
 
     }
-    
+
     clickPreview() {
         // Get the data
         this.globalFunctionService.printToConsole(this.constructor.name,'clickPreview', '@Start');
@@ -394,7 +394,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
             this.errorMessage = err.message + '. ';
             this.helpMessage = '';
             if (err.status == 401) {
-                this.errorMessage = 'Error: ' + 'Either you login has expired, or you dont have access to the Database. ' 
+                this.errorMessage = 'Error: ' + 'Either you login has expired, or you dont have access to the Database. '
                     + err.message;
             } else {
                 this.errorMessage = err.message;
@@ -409,7 +409,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
 
         this.formDataDirectQueryBuilderClosed.emit(null);
 
-    } 
+    }
 
     clickSave(action: string) {
         // Save the DS and info, Close the form, and open Transformations form

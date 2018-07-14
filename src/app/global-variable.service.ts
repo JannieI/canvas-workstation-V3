@@ -4347,7 +4347,7 @@ export class GlobalVariableService {
                     if (ds.length > 0) {
                         dSetID = Math.max(...ds);
                     };
-
+                    console.warn('xx dSetID', dSetID, localDataset)
                     // Get data for Dset
                     this.getCurrentDataset(localDataset.id, dSetID).then(res => {
 
@@ -4356,7 +4356,8 @@ export class GlobalVariableService {
                         localDataset.data = res.data;
 
                         this.currentDatasets.push(localDataset);
-
+console.warn('xx gv end localDataset addCurrentDS', localDataset, this.currentDatasets)
+console.warn('xx gv end datasets', localDataset, this.datasets)
                         resolve(res);
 
                     });
