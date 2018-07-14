@@ -145,6 +145,7 @@
                             type="button"
                             class="btn btn-primary"
                             (click)="clickSave()"
+                            [disabled]="!canSave"
                             >
                             Save
                         </button>

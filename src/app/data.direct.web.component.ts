@@ -59,6 +59,7 @@ export class DataDirectWebComponent implements OnInit {
 
     }
 
+    canSave: boolean = false;
     currentData: any[] = [];
     dataFieldsSelected: string[];
     datasources: Datasource[] = [];
@@ -134,6 +135,8 @@ export class DataDirectWebComponent implements OnInit {
                 };
             });
 
+        // Cannot save as yet
+        this.canSave = false;
     }
 
     clickSelectedDataTable(index: number) {
@@ -168,7 +171,10 @@ export class DataDirectWebComponent implements OnInit {
                     console.warn('xx key', key)
                     this.dataFieldsSelected.push(key);
                 }
-            }
+            };
+
+            // The User can save now
+            this.canSave = true;
             console.warn('xx res', res.length, this.dataFieldsSelected)
         });
     }
