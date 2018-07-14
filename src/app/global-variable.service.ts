@@ -6,8 +6,6 @@ import { HttpErrorResponse }          from '@angular/common/http';
 import { HttpParams }                 from "@angular/common/http";
 import { HttpHeaders }                from "@angular/common/http";
 
-import { tap }                        from 'rxjs/operators';
-
 // Our Models
 import { CanvasAction }               from './models';
 import { CanvasAuditTrail }           from './models';
@@ -3171,6 +3169,35 @@ export class GlobalVariableService {
                 },
                 err => {
                     console.log('Error addData FAILED', err);;
+                    reject(err);
+                }
+            )
+        });
+    }
+
+    deleteData(id: number): Promise<string> {
+        // Description: Deletes given Data
+        // Returns: 'Deleted' or error message
+        console.log('%c    Global-Variables deleteData ...',
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", id);
+
+        let url: string = 'data/';
+        this.filePath = './assets/data.data.json';
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
+            .subscribe(
+                data => {
+
+                    console.log('deleteData DELETED id: ', id)
+                    resolve('Deleted');
+                },
+                err => {
+                    console.log('Error deleteData FAILED', err);;
                     reject(err);
                 }
             )
