@@ -42,7 +42,7 @@
         border: 1px solid gray;
         border-radius: 4px;
         grid-column-start: 1;
-        grid-column-end: 20;
+        grid-column-end: 21;
         grid-row-start: 5;
         grid-row-end: 21;
         overflow-y: scroll;

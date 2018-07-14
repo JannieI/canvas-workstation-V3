@@ -3096,8 +3096,8 @@ export class GlobalVariableService {
                 res => {
 
                     // Update Global vars to make sure they remain in sync
-                    this.datasets.push(JSON.parse(JSON.stringify(data)));
-                    this.currentDatasets.push(JSON.parse(JSON.stringify(data)));
+                    this.datasets.push(JSON.parse(JSON.stringify(res)));
+                    this.currentDatasets.push(JSON.parse(JSON.stringify(res)));
 
                     console.log('addDataset ADDED', res, this.datasets, this.currentDatasets)
 
