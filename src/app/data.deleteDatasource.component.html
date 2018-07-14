@@ -31,9 +31,10 @@
                     </div>
                     <div class="gridSubTitle">
                         <i>
-                            Double Click the X to delete.  A Datasources linked to Widgets cannot
-                            be deleted.  The <i>Data -> Usage</i> menu option where each Datasource 
-                            is used.
+                            Double Click the Delete icon in a row to delete the Datasource
+                            and associated data.  A Datasources linked to Widgets cannot
+                            be deleted.  The <i>Data -> Usage</i> menu option shows where 
+                            each Datasource is used.
                         </i>
                     </div>
 
@@ -58,7 +59,7 @@
                                         shape="trash"
                                         class="selectIcon1"
                                         size="18"
-                                        (dblclick)="clickDelete(i, row.id)"
+                                        (dblclick)="dblclickDelete(i, row.id)"
                                         >
                                     </clr-icon>
                                 </clr-dg-cell>

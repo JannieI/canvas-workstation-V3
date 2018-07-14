@@ -79,9 +79,9 @@ export class DataDeleteDatasourceComponent implements OnInit {
         this.errorMessage = '';
     }
 
-    clickDelete(index: number, id: number) {
-        // Delete a DS
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickDelete', '@Start');
+    dblclickDelete(index: number, id: number) {
+        // Delete a DS and associated info
+        this.globalFunctionService.printToConsole(this.constructor.name,'dblclickDelete', '@Start');
 
         this.globalVariableService.deleteDatasource(id).then(res => {
             this.datasources = this.datasources.filter(ds => ds.id != id)
