@@ -8,7 +8,6 @@ import { EventEmitter }               from '@angular/core';
 import { HostListener }               from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
-import { Router }                     from '@angular/router';
 
 // Our Functions
 import { GlobalFunctionService } 	  from './global-function.service';
@@ -49,7 +48,6 @@ export class DataDeleteDatasourceComponent implements OnInit {
 	constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
-        private router: Router,
 	) {}
 
 	ngOnInit() {
@@ -85,6 +83,14 @@ export class DataDeleteDatasourceComponent implements OnInit {
 
         this.globalVariableService.deleteDatasource(id).then(res => {
             this.datasources = this.datasources.filter(ds => ds.id != id)
+
+            this.globalVariableService.datasets.forEach(dSet => {
+                if (dSet.datasourceID == id) {
+                    this.globalVariableService.deleteData(dataID).then({
+                        this.globalVariableService.deleteDataset();
+                    });
+                };
+            })
         });
     }
 
