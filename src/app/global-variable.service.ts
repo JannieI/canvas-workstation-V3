@@ -885,7 +885,7 @@ export class GlobalVariableService {
         for (var i = 0; i < this.datasets.length; i++) {
             if(this.datasets[i].datasourceID == datasourceID) {
                 ds.push(this.datasets[i].id)
-            }
+            };
         };
         if (ds.length > 0) {
             dSetID = Math.max(...ds);

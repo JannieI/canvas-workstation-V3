@@ -128,9 +128,11 @@ export class DataDirectWebComponent implements OnInit {
                     };
                 };
 
-                if (!isNaN(+this.selectedDatasource.webTableIndex)) {
-                    this.clickSelectedDataTable(+this.selectedDatasource.webTableIndex);
-                    this.firstTimeEdit = false;
+                if (this.selectedDatasource != null) {
+                    if (!isNaN(+this.selectedDatasource.webTableIndex)) {
+                        this.clickSelectedDataTable(+this.selectedDatasource.webTableIndex);
+                        this.firstTimeEdit = false;
+                    };
                 };
 
             })
@@ -224,13 +226,50 @@ export class DataDirectWebComponent implements OnInit {
             this.selectedDatasource.dateEdited = today;
             this.selectedDatasource.dataFields = this.dataFieldsSelected;
 
-            // Save to DB
-            this.globalVariableService.saveDatasource(this.selectedDatasource).then(res => {
-                
+            // Save DS to DB, but create a new dSet and new data records.
+            let ds: number[] = [];
+            let dSetID: number = 1;
+            for (var i = 0; i < this.globalVariableService.datasets.length; i++) {
+                if(this.globalVariableService.datasets[i].datasourceID == 
+                    this.selectedDatasource.id) {
+                    ds.push(this.globalVariableService.datasets[i].id)
+                };
+            };
+            if (ds.length > 0) {
+                dSetID = Math.max(...ds);
+            };
+            let datasetIndex: number = this.globalVariableService.datasets.findIndex(dSet => {
+                dSet.id = dSetID
+            });
+            let newdSet: Dataset = this.globalVariableService.datasets[datasetIndex];
+            let newData: any = {
+                id: null,
+                data: this.currentData
+            };
+
+            // Add Data, then dataset, then DS
+            this.globalVariableService.addData(newData).then(resData => {
+
+                newdSet.url = 'data/' + resData.id.toString();
+                this.globalVariableService.saveDatasource(this.selectedDatasource).then(
+                    resDS => {
+                        newdSet.datasourceID = this.selectedDatasource.id;
+                        this.globalVariableService.saveDataset(newdSet);
+                });
+
                 // Indicate to the user
                 this.canSave = false;
-                this.savedMessage = 'Datasource updated';
+                this.savedMessage = 'Datasource created';
             });
+
+console.warn('xx ds', this.globalVariableService.datasources)
+console.warn('xx dSet', this.globalVariableService.datasets)
+            // this.globalVariableService.saveDatasource(this.selectedDatasource).then(res => {
+                
+            //     // Indicate to the user
+            //     this.canSave = false;
+            //     this.savedMessage = 'Datasource updated';
+            // });
 
         } else {
             // Add new one
