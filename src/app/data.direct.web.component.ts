@@ -6,7 +6,6 @@
 import { Component }                  from '@angular/core';
 import { EventEmitter }               from '@angular/core';
 import { HostListener }               from '@angular/core';
-import { HttpClient }                 from '@angular/common/http';
 import { Input }                      from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
@@ -69,6 +68,7 @@ export class DataDirectWebComponent implements OnInit {
     datasources: Datasource[] = [];
     element: string = '';
     errorMessage: string = '';
+    firstTimeEdit: boolean = false;
     newName: string = '';
     newDescription: string = '';
     savedMessage: string = '';
@@ -80,7 +80,6 @@ export class DataDirectWebComponent implements OnInit {
 	constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
-        private http: HttpClient,
 	) {}
 
 	ngOnInit() {
@@ -91,10 +90,8 @@ export class DataDirectWebComponent implements OnInit {
             this.newName = this.selectedDatasource.name;
             this.newDescription = this.selectedDatasource.description;
             this.url = this.selectedDatasource.webUrl;
+            this.firstTimeEdit = true;
             this.clickHttpGet();
-            if (typeof this.selectedDatasource.webTableIndex == 'number') {
-                this.clickSelectedDataTable(+this.selectedDatasource.webTableIndex);
-            };
         };
 
     }
@@ -128,8 +125,14 @@ export class DataDirectWebComponent implements OnInit {
                 for (var i = 0; i < this.tables.length; i++) {
                     if (this.tables[i].name == null) {
                         this.tables[i].name = 'Table ' + i;
-                    }
+                    };
                 };
+                console.warn('xx typeof this.selectedDatasource.webTableIndex', typeof this.selectedDatasource.webTableIndex)
+                if (!isNaN(+this.selectedDatasource.webTableIndex)) {
+                    this.clickSelectedDataTable(+this.selectedDatasource.webTableIndex);
+                    this.firstTimeEdit = false;
+                };
+
             })
             .catch(err => {
                 this.errorMessage = err.message + '. ';
