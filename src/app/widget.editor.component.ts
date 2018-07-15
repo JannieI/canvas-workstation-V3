@@ -6,7 +6,6 @@ import { HostListener }               from '@angular/core';
 import { Input }                      from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
-import { Renderer }                   from '@angular/core';
 import { ViewChild }                  from '@angular/core';
 
 // Our models
@@ -107,12 +106,14 @@ const graphWidth: number = 420;
     constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
-        private renderer: Renderer,
     ) {}
 
     ngOnInit() {
         // ngOnInit Life Cycle Hook
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        console.warn('xx INIT this.globalVariableService.currentDatasets', this.globalVariableService.currentDatasets)
+        console.warn('xx INIT this.globalVariableService.currentDatasources', this.globalVariableService.currentDatasources)
+        console.warn('xx INIT this.currentDatasources', this.currentDatasources)
 
         if (this.newWidget) {
             // Get DS

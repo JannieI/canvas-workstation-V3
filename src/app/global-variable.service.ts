@@ -33,7 +33,6 @@ import { DashboardTheme }             from './models';
 import { DataConnection }             from './models';
 import { DatasourceTransformation }   from './models';
 import { DataField }                  from './models';
-import { DatagridInput }              from './models';
 import { DatagridColumn }             from './models';
 import { DataSchema }                 from './models';
 import { Dataset }                    from './models';
@@ -56,11 +55,9 @@ import { WidgetCheckpoint }           from './models';
 
 // TODO - to remove
 import { Token }                      from './models';
-import { User }                       from './models';
 
 // External
 import * as dl                        from 'datalib';
-import { Observable }                 from 'rxjs/Observable';
 
 // Functions
 import { nSQL } from "nano-sql";
@@ -4363,7 +4360,7 @@ export class GlobalVariableService {
     }
 
     addCurrentDatasource(datasourceID: number){
-        // Add DS to Current DS array for a given DS-id
+        // Add DS AND dSet to current-arrays (from DS and dSet arrays) for a given DS-id
         console.log('%c    Global-Variables addCurrentDatasource ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
@@ -4409,21 +4406,21 @@ export class GlobalVariableService {
                     };
                     if (ds.length > 0) {
                         dSetID = Math.max(...ds);
+                        console.warn('xx dSetID', dSetID, localDataset)
+                        // Get data for Dset
+                        this.getCurrentDataset(localDataset.id, dSetID).then(res => {
+                            
+                            // Add data to dataset
+                            localDataset.dataRaw = res.dataRaw;
+                            localDataset.data = res.data;
+                            
+                            this.currentDatasets.push(localDataset);
+                            console.warn('xx gv end localDataset currentDatasets', localDataset, this.currentDatasets)
+                            console.warn('xx gv end datasets', this.datasets)
+                            resolve(res);
+                            
+                        });
                     };
-                    console.warn('xx dSetID', dSetID, localDataset)
-                    // Get data for Dset
-                    this.getCurrentDataset(localDataset.id, dSetID).then(res => {
-
-                        // Add data to dataset
-                        localDataset.dataRaw = res.dataRaw;
-                        localDataset.data = res.data;
-
-                        this.currentDatasets.push(localDataset);
-console.warn('xx gv end localDataset currentDatasets', localDataset, this.currentDatasets)
-console.warn('xx gv end datasets', this.datasets)
-                        resolve(res);
-
-                    });
                 };
             };
         });
