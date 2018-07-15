@@ -761,13 +761,18 @@ const graphWidth: number = 420;
             ds => ds.datasourceID == datasourceID
         );
 
+        console.warn('xx start 1 dSetIndex', dSetIndex)
+        console.warn('xx start 2 this.globalVariableService.currentDatasets', this.globalVariableService.currentDatasets)
+        console.warn('xx start d', )
+        console.warn('xx start d', )
         if (dSetIndex < 0) {
             
             if (this.isBusyRetrievingData) {
                 this.errorMessage = 'Still retrieving the actual data for this DS';
+                console.warn('xx (dSetIndex < 0) return')
                 return;
             };
-
+            console.warn('xx (dSetIndex < 0) 1')
             this.isBusyRetrievingData = true;
             this.errorMessage = 'Getting data ...'
             this.globalVariableService.addCurrentDatasource(datasourceID).then(res => {
@@ -778,22 +783,23 @@ const graphWidth: number = 420;
                 let globalCurrentDSIndex: number = this.globalVariableService
                     .currentDatasources.findIndex(dS => dS.id == datasourceID);
 
-                console.warn('xx ds globalCurrentDSIndex', globalCurrentDSIndex)
-                console.warn('xx ds GV-currentDatasources', this.globalVariableService.currentDatasources)
-                console.warn('xx ds GV-currentDatasets', this.globalVariableService.currentDatasets)
+                console.warn('xx (dSetIndex < 0) 2 globalCurrentDSIndex', globalCurrentDSIndex)
+                console.warn('xx (dSetIndex < 0) 3 GV-currentDatasources', this.globalVariableService.currentDatasources)
+                console.warn('xx (dSetIndex < 0) 4 GV-currentDatasets', this.globalVariableService.currentDatasets)
 
                 if (globalCurrentDSIndex >= 0) {
                     this.currentDatasources.push(
                         this.globalVariableService.currentDatasources[globalCurrentDSIndex]
                     );
                 };
+                console.warn('xx (dSetIndex < 0) 5 currentDatasources', this.currentDatasources)
 
-                let globalCurrentDsetIndex: number = this.globalVariableService.currentDatasets
-                    .findIndex(dS => dS.datasourceID == datasourceID
-                );
-                if (globalCurrentDsetIndex >= 0) {
-                    this.globalVariableService.currentDatasets.splice(globalCurrentDsetIndex, 1);
-                };
+                // let globalCurrentDsetIndex: number = this.globalVariableService.currentDatasets
+                //     .findIndex(dS => dS.datasourceID == datasourceID
+                // );
+                // if (globalCurrentDsetIndex >= 0) {
+                //     this.globalVariableService.currentDatasets.splice(globalCurrentDsetIndex, 1);
+                // };
 
                 // Tell user
                 this.errorMessage = 'Data retrieved - click row again to continue';                
