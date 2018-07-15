@@ -127,7 +127,7 @@ export class DataDirectWebComponent implements OnInit {
                         this.tables[i].name = 'Table ' + i;
                     };
                 };
-                console.warn('xx typeof this.selectedDatasource.webTableIndex', typeof this.selectedDatasource.webTableIndex)
+
                 if (!isNaN(+this.selectedDatasource.webTableIndex)) {
                     this.clickSelectedDataTable(+this.selectedDatasource.webTableIndex);
                     this.firstTimeEdit = false;
@@ -200,7 +200,7 @@ export class DataDirectWebComponent implements OnInit {
         // Save changes to the Datasource
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
-        // Valiation
+        // Validation
         this.errorMessage = '';
         if (this.newName == '') {
             this.errorMessage = 'Please enter a Name for the new Datasource';
@@ -213,81 +213,98 @@ export class DataDirectWebComponent implements OnInit {
 
         // Construct DS and add to DB
         let today: Date = new Date();
-        let newDatasource: Datasource = {
-            id: null,
-            type: 'Web',
-            subType: '',
-            typeVersion:  '',
-            name: this.newName,
-            username: '',
-            password: '',
-            description: this.newDescription,
-            dataFieldIDs: [],
-            dataFields: this.dataFieldsSelected,
-            dataFieldTypes: [],
-            dataFieldLengths: [],
-            parameters: '',
-            createMethod: 'directWeb',
-            createdBy: this.globalVariableService.currentUser.userID,
-            createdOn: today,
-            editor: '',
-            dateEdited: null,
-            refreshedBy: '',
-            refreshedOn: null,
-            folder: '',
-            fileName: '',
-            excelWorksheet: '',
-            transposeOnLoad: false,
-            startLineNr: 0,
-            csvSeparationCharacter: '',
-            csvQuotCharacter: '',
-            webUrl: '',
-            webTableIndex: '',
-            connectionID: null,
-            dataTableID: null,
-            businessGlossary: 'Obtained from ' + this.url,
-            dataDictionary: '',
-            databaseName: '',
-            port: '',
-            serverType: '',
-            serverName: '',
-            dataTableName: '',
-            dataSQLStatement: '',
-            dataNoSQLStatement: '',
-            dataNeo4jStatement: '',
-            dataGraphQLStatement: '',
-            nrWidgets: null
-        };
 
-        let newdSet: Dataset = {
-            id: null,
-            datasourceID: null,
-            sourceLocation: 'HTTP',
-            url: 'data',
-            folderName: '',
-            fileName: '',
-            data: null,
-            dataRaw: null
-        };
-        let newData: any = {
-            id: null,
-            data: this.currentData
-        };
+        if (this.selectedDatasource != null) {
+            // Mark the changes
+            this.selectedDatasource.name = this.newName;
+            this.selectedDatasource.description = this.newDescription;
+            this.selectedDatasource.webUrl = this.url;
+            this.selectedDatasource.webTableIndex = this.selectedTableRowIndex.toString();
+            this.selectedDatasource.editor = this.globalVariableService.currentUser.userID;
+            this.selectedDatasource.dateEdited = today;
+            this.selectedDatasource.dataFields = this.dataFieldsSelected;
 
-        // Add Data, then dataset, then DS
-        this.globalVariableService.addData(newData).then(resData => {
+            // Save to DB
+            this.globalVariableService.saveDatasource(this.selectedDatasource);
 
-            newdSet.url = 'data/' + resData.id.toString();
-            this.globalVariableService.addDatasource(newDatasource).then(resDS => {
-                newdSet.datasourceID = resDS.id;
-                this.globalVariableService.addDataset(newdSet);
+        } else {
+            // Add new one
+            let newDatasource: Datasource = {
+                id: null,
+                type: 'Web',
+                subType: '',
+                typeVersion:  '',
+                name: this.newName,
+                username: '',
+                password: '',
+                description: this.newDescription,
+                dataFieldIDs: [],
+                dataFields: this.dataFieldsSelected,
+                dataFieldTypes: [],
+                dataFieldLengths: [],
+                parameters: '',
+                createMethod: 'directWeb',
+                createdBy: this.globalVariableService.currentUser.userID,
+                createdOn: today,
+                editor: '',
+                dateEdited: null,
+                refreshedBy: '',
+                refreshedOn: null,
+                folder: '',
+                fileName: '',
+                excelWorksheet: '',
+                transposeOnLoad: false,
+                startLineNr: 0,
+                csvSeparationCharacter: '',
+                csvQuotCharacter: '',
+                webUrl: this.url,
+                webTableIndex: this.selectedTableRowIndex.toString(),
+                connectionID: null,
+                dataTableID: null,
+                businessGlossary: 'Obtained from ' + this.url + this.selectedTableRowIndex,
+                dataDictionary: '',
+                databaseName: '',
+                port: '',
+                serverType: '',
+                serverName: '',
+                dataTableName: '',
+                dataSQLStatement: '',
+                dataNoSQLStatement: '',
+                dataNeo4jStatement: '',
+                dataGraphQLStatement: '',
+                nrWidgets: null
+            };
 
+            let newdSet: Dataset = {
+                id: null,
+                datasourceID: null,
+                sourceLocation: 'HTTP',
+                url: 'data',
+                folderName: '',
+                fileName: '',
+                data: null,
+                dataRaw: null
+            };
+            let newData: any = {
+                id: null,
+                data: this.currentData
+            };
+
+            // Add Data, then dataset, then DS
+            this.globalVariableService.addData(newData).then(resData => {
+
+                newdSet.url = 'data/' + resData.id.toString();
+                this.globalVariableService.addDatasource(newDatasource).then(resDS => {
+                    newdSet.datasourceID = resDS.id;
+                    this.globalVariableService.addDataset(newdSet);
+
+                });
+
+                // Indicate to the user
+                this.canSave = false;
+                this.savedMessage = 'Datasource created';
             });
-
-            // Indicate to the user
-            this.canSave = false;
-            this.savedMessage = 'Datasource created';
-        });
+        };
     }
 
 }

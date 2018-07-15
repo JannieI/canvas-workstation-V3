@@ -157,7 +157,8 @@
                             (click)="clickSave()"
                             [disabled]="!canSave"
                             >
-                            Save
+                            <span *ngIf="!editingDS">Add</span>
+                            <span *ngIf="editingDS">Save</span>
                         </button>
                     </div>
 
