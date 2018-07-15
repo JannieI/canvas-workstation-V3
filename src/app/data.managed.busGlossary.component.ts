@@ -86,6 +86,8 @@ export class DataManagedBusGlossaryComponent implements OnInit {
             startLineNr: null,
             csvSeparationCharacter: '',
             csvQuotCharacter: '',
+            webUrl: '',
+            webTableIndex: '',
             connectionID: null,
             dataTableID: null,
             businessGlossary: '',
