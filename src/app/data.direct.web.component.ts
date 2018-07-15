@@ -7,6 +7,7 @@ import { Component }                  from '@angular/core';
 import { EventEmitter }               from '@angular/core';
 import { HostListener }               from '@angular/core';
 import { HttpClient }                 from '@angular/common/http';
+import { Input }                      from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
 
@@ -43,6 +44,9 @@ interface webTables {
 })
 
 export class DataDirectWebComponent implements OnInit {
+
+    @Input() editingDS: boolean;
+    @Input() selectedDatasource: Datasource;
 
     @Output() formDataDirectWebClosed: EventEmitter<string> = new EventEmitter();
 

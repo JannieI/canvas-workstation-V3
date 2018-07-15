@@ -4085,6 +4085,8 @@
 <data-direct-web
     class="formPopupDashboard"
     *ngIf="showModalDataDirectWeb"
+    [editingDS]="editingDS"
+    [selectedDatasource]="selectedDatasource"
     (formDataDirectWebClosed)="handleCloseDataDirectWeb($event)">Load Data Direct From Web ...
 </data-direct-web>
 
