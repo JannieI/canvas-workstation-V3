@@ -225,7 +225,7 @@ export class DataDirectWebComponent implements OnInit {
             dataFieldTypes: [],
             dataFieldLengths: [],
             parameters: '',
-            createMethod: 'Web',
+            createMethod: 'directWeb',
             createdBy: this.globalVariableService.currentUser.userID,
             createdOn: today,
             editor: '',

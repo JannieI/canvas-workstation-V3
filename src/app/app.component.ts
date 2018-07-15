@@ -1461,6 +1461,8 @@ export class AppComponent implements OnInit {
                     this.showModalDataDirectSQLEditor = true
                 } else if (returnedDatasource.createMethod == 'directNoSQL') {
                     this.showModalDataDirectNoSQL = true
+                } else if (returnedDatasource.createMethod == 'directWeb') {
+                    this.showModalDataDirectWeb = true
                 } else if (returnedDatasource.createMethod == 'managedQueryBuilder') {
                     this.showModalDataManagedQueryBuilder = true;
                 } else if (returnedDatasource.createMethod == 'managedSQLEditor') {
