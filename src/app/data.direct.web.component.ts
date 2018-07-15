@@ -87,16 +87,10 @@ export class DataDirectWebComponent implements OnInit {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        // this.globalVariableService.getDatasources().then(dc => {
-        //     // Fill local Var
-        //     this.datasources = dc.slice();
-        //     console.warn('xx this.datasources.length', this.datasources.length)
-
-        //     // Click on first one, if available
-        //     if (this.datasources.length > 0) {
-        //         this.clickRow(0, this.datasources[0].id);
-        //     };
-        // });
+        if (this.selectedDatasource != null) {
+            this.newName = this.selectedDatasource.name;
+            this.newDescription = this.selectedDatasource.description;
+        };
 
     }
 
