@@ -225,7 +225,12 @@ export class DataDirectWebComponent implements OnInit {
             this.selectedDatasource.dataFields = this.dataFieldsSelected;
 
             // Save to DB
-            this.globalVariableService.saveDatasource(this.selectedDatasource);
+            this.globalVariableService.saveDatasource(this.selectedDatasource).then(res => {
+                
+                // Indicate to the user
+                this.canSave = false;
+                this.savedMessage = 'Datasource updated';
+            });
 
         } else {
             // Add new one
