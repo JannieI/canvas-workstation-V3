@@ -3110,6 +3110,46 @@ export class GlobalVariableService {
             )
         });
     }
+    
+    saveDataset(data: Dataset): Promise<string> {
+        // Description: Saves Dataset
+        // Returns: 'Saved' or error message
+        console.log('%c    Global-Variables saveDataset ...',
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+
+        let url: string = 'datasets';
+        this.filePath = './assets/data.Datasets.json';
+
+        return new Promise<string>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.put('http://localhost:3000/' + url + '/' + data.id, data, {headers})
+            .subscribe(
+                res => {
+
+                    // Replace local
+                    let localIndex: number = this.datasets.findIndex(d =>
+                        d.id == data.id
+                    );
+                    this.datasets[localIndex] = data;
+
+                    let localCurrentIndex: number = this.currentDatasets.findIndex(d =>
+                        d.id == data.id
+                    );
+                    this.currentDatasets[localCurrentIndex] = data;
+
+                    console.log('saveDataset SAVED', res)
+                    resolve('Saved');
+                },
+                err => {
+                    console.log('Error saveDataset FAILED', err);;
+                    reject(err);
+                }
+            )
+        });
+    }
 
     deleteDataset(id: number): Promise<string> {
         // Description: Deletes a Dataset
