@@ -8,7 +8,17 @@
                         <b>X</b>
                     </button>
                     <div class="gridTitle">
-                        <b>Create / Edit a Datasource from a web page</b>
+                        <b>
+                            <span *ngIf="!editingDS">Create a new </span>
+                            <span *ngIf="editingDS">Edit </span>
+                            Datasource
+                            <span *ngIf="editingDS"
+                                style="color:gray"
+                                >
+                                {{ selectedDatasource.name }}
+                            </span>
+                            obtained from a web page
+                        </b>
                         <clr-signpost>
                             <clr-icon shape="info-circle"
                                 clrSignpostTrigger>
