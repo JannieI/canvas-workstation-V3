@@ -234,6 +234,8 @@ export class DataDirectWebComponent implements OnInit {
             startLineNr: 0,
             csvSeparationCharacter: '',
             csvQuotCharacter: '',
+            webUrl: '',
+            webTableIndex: '',
             connectionID: null,
             dataTableID: null,
             businessGlossary: 'Obtained from ' + this.url,
