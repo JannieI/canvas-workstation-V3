@@ -449,6 +449,8 @@ export class DataDirectFileComponent implements OnInit {
             startLineNr: 1,
             csvSeparationCharacter: '',
             csvQuotCharacter: '',
+            webUrl: '',
+            webTableIndex: '',
             connectionID: 0,
             dataTableID: 0,
             nrWidgets: 0,
