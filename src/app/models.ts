@@ -395,6 +395,8 @@ export class Datasource {
     startLineNr: number;                // 1 = first = default
     csvSeparationCharacter: string;     // CSV file column separator: comma or ;
     csvQuotCharacter: string;           // CSV values in "", in '' or without quotes
+    webUrl: string;                     // URL for web connectors
+    webTableIndex: string;              // Index number (base 0) of table to load, else the Name of the table
 
     // Managed Connection, Connection created and managed outside of the DS
     connectionID: number;               // Connection to DB

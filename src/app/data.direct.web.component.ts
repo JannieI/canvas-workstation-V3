@@ -90,6 +90,7 @@ export class DataDirectWebComponent implements OnInit {
         if (this.selectedDatasource != null) {
             this.newName = this.selectedDatasource.name;
             this.newDescription = this.selectedDatasource.description;
+            this.clickHttpGet();
         };
 
     }
