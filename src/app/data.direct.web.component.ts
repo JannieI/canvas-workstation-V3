@@ -239,27 +239,36 @@ export class DataDirectWebComponent implements OnInit {
                 dSetID = Math.max(...ds);
             };
             let datasetIndex: number = this.globalVariableService.datasets.findIndex(dSet => {
-                dSet.id = dSetID
+                dSet.id == dSetID
             });
-            let newdSet: Dataset = this.globalVariableService.datasets[datasetIndex];
-            let newData: any = {
-                id: null,
+            let updatedDataset: Dataset = this.globalVariableService.datasets[datasetIndex];
+            
+            let dataIndex: number = updatedDataset.url.indexOf('/');
+            let dataID: number = -1;
+            if (dataIndex < 0) {
+                dataID = +updatedDataset.url.substring(dataIndex + 1);
+            } else {
+                alert('Error in save Web - url has no / character');
+                return;
+            };
+            let updatedData: any = {
+                id: dataID,
                 data: this.currentData
             };
 
             // Add Data, then dataset, then DS
-            this.globalVariableService.addData(newData).then(resData => {
+            this.globalVariableService.saveData(updatedData).then(resData => {
 
-                newdSet.url = 'data/' + resData.id.toString();
+                updatedDataset.url = 'data/' + resData.id.toString();
                 this.globalVariableService.saveDatasource(this.selectedDatasource).then(
                     resDS => {
-                        newdSet.datasourceID = this.selectedDatasource.id;
-                        this.globalVariableService.saveDataset(newdSet);
+                        updatedDataset.datasourceID = this.selectedDatasource.id;
+                        this.globalVariableService.saveDataset(updatedDataset);
                 });
 
                 // Indicate to the user
                 this.canSave = false;
-                this.savedMessage = 'Datasource created';
+                this.savedMessage = 'Datasource updated';
             });
 
 console.warn('xx ds', this.globalVariableService.datasources)
@@ -319,7 +328,7 @@ console.warn('xx dSet', this.globalVariableService.datasets)
                 nrWidgets: null
             };
 
-            let newdSet: Dataset = {
+            let newdDataset: Dataset = {
                 id: null,
                 datasourceID: null,
                 sourceLocation: 'HTTP',
@@ -337,10 +346,10 @@ console.warn('xx dSet', this.globalVariableService.datasets)
             // Add Data, then dataset, then DS
             this.globalVariableService.addData(newData).then(resData => {
 
-                newdSet.url = 'data/' + resData.id.toString();
+                newdDataset.url = 'data/' + resData.id.toString();
                 this.globalVariableService.addDatasource(newDatasource).then(resDS => {
-                    newdSet.datasourceID = resDS.id;
-                    this.globalVariableService.addDataset(newdSet);
+                    newdDataset.datasourceID = resDS.id;
+                    this.globalVariableService.addDataset(newdDataset);
 
                 });
 

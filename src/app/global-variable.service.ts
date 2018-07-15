@@ -3110,7 +3110,7 @@ export class GlobalVariableService {
             )
         });
     }
-    
+
     saveDataset(data: Dataset): Promise<string> {
         // Description: Saves Dataset
         // Returns: 'Saved' or error message
@@ -3130,13 +3130,13 @@ export class GlobalVariableService {
                 res => {
 
                     // Replace local
-                    let localIndex: number = this.datasets.findIndex(d =>
-                        d.id == data.id
+                    let localIndex: number = this.datasets.findIndex(dSet =>
+                        dSet.id == data.id
                     );
                     this.datasets[localIndex] = data;
 
-                    let localCurrentIndex: number = this.currentDatasets.findIndex(d =>
-                        d.id == data.id
+                    let localCurrentIndex: number = this.currentDatasets.findIndex(dSet =>
+                        dSet.id == data.id
                     );
                     this.currentDatasets[localCurrentIndex] = data;
 
@@ -3245,6 +3245,37 @@ export class GlobalVariableService {
                 },
                 err => {
                     console.log('Error addData FAILED', err);;
+                    reject(err);
+                }
+            )
+        });
+    }
+
+    saveData(data: any): Promise<string> {
+        // Description: Saves Data
+        // Returns: 'Saved' or error message
+        console.log('%c    Global-Variables saveData ...',
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+
+        let url: string = 'data';
+        this.filePath = './assets/data.Datas.json';
+
+        return new Promise<string>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.put('http://localhost:3000/' + url + '/' + data.id, data, {headers})
+            .subscribe(
+                res => {
+
+                    // No local to Replace
+
+                    console.log('saveData SAVED', res)
+                    resolve('Saved');
+                },
+                err => {
+                    console.log('Error saveData FAILED', err);;
                     reject(err);
                 }
             )
