@@ -762,18 +762,13 @@ const graphWidth: number = 420;
             ds => ds.datasourceID == datasourceID
         );
 
-        console.warn('xx start 1 dSetIndex', dSetIndex)
-        console.warn('xx start 2 this.globalVariableService.currentDatasets', this.globalVariableService.currentDatasets)
-        console.warn('xx start d', )
-        console.warn('xx start d', )
         if (dSetIndex < 0) {
             
             if (this.isBusyRetrievingData) {
                 this.errorMessage = 'Still retrieving the actual data for this DS';
-                console.warn('xx (dSetIndex < 0) return')
                 return;
             };
-            console.warn('xx (dSetIndex < 0) 1')
+
             this.isBusyRetrievingData = true;
             this.errorMessage = 'Getting data ...'
             this.globalVariableService.addCurrentDatasource(datasourceID).then(res => {
@@ -812,21 +807,6 @@ const graphWidth: number = 420;
             this.isBusyRetrievingData = true;
             this.globalVariableService.addCurrentDatasource(datasourceID).then(res => {
                 this.isBusyRetrievingData = false
-                
-                let globalCurrentDSIndex: number = this.globalVariableService.currentDatasources
-                .findIndex(dS => dS.id == datasourceID
-                );
-                // if (globalCurrentDSIndex >= 0) {
-                //     this.currentDatasources.push(
-                //         this.globalVariableService.currentDatasources[globalCurrentDSIndex]);
-                // };
-
-                // let globalCurrentDsetIndex: number = this.globalVariableService.currentDatasets
-                //     .findIndex(dS => dS.datasourceID == datasourceID
-                // );
-                // if (globalCurrentDsetIndex >= 0) {
-                //     this.globalVariableService.currentDatasets.splice(globalCurrentDsetIndex, 1);
-                // };
 
             });
         };

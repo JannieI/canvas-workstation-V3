@@ -4369,7 +4369,6 @@ export class GlobalVariableService {
 
         // Get the data, if so requested
         let localDatasource: Datasource;
-        let localDataset: Dataset;
         let globalCurrentDSIndex: number = this.currentDatasources
             .findIndex(dS => dS.id == datasourceID
         );
@@ -4396,7 +4395,6 @@ export class GlobalVariableService {
 
                 // Dset exists in gv datasets, but not in currentDatasets
                 if (globalDsetIndex >= 0  &&  globalCurrentDsetIndex < 0) {
-                    localDataset = this.datasets[globalDsetIndex];
                     
                     // Get latest dSet-ID
                     let ds: number[] = [];
@@ -4409,18 +4407,11 @@ export class GlobalVariableService {
                     };
                     if (ds.length > 0) {
                         dSetID = Math.max(...ds);
-                        console.warn('xx dSetID', dSetID, localDataset)
-                        // Get data for Dset
+
+                        // Get dSet with Data
                         this.getCurrentDataset(datasourceID, dSetID).then(res => {
                             
-                            // Add data to dataset
-                            // localDataset.dataRaw = res.dataRaw;
-                            // localDataset.data = res.data;
-                            
-                            // this.currentDatasets.push(localDataset);
-                            console.warn('xx gv end localDataset currentDatasets', localDataset, this.currentDatasets)
-                            console.warn('xx gv end datasets', this.datasets)
-                            resolve(res);
+                        resolve(res);
                             
                         });
                     };
