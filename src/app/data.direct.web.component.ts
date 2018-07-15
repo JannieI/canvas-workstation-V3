@@ -239,13 +239,15 @@ export class DataDirectWebComponent implements OnInit {
                 dSetID = Math.max(...ds);
             };
             let datasetIndex: number = this.globalVariableService.datasets.findIndex(dSet => {
-                dSet.id == dSetID
+                if (dSet.id == dSetID) {
+                    return dSet;
+                };
             });
             let updatedDataset: Dataset = this.globalVariableService.datasets[datasetIndex];
             
-            let dataIndex: number = updatedDataset.url.indexOf('/');
             let dataID: number = -1;
-            if (dataIndex < 0) {
+            let dataIndex: number = updatedDataset.url.indexOf('/');
+            if (dataIndex >= 0) {
                 dataID = +updatedDataset.url.substring(dataIndex + 1);
             } else {
                 alert('Error in save Web - url has no / character');
@@ -255,14 +257,15 @@ export class DataDirectWebComponent implements OnInit {
                 id: dataID,
                 data: this.currentData
             };
-
+            console.warn('xx dataID updatedata', dataID, updatedData)
             // Add Data, then dataset, then DS
             this.globalVariableService.saveData(updatedData).then(resData => {
 
-                updatedDataset.url = 'data/' + resData.id.toString();
+                updatedDataset.url = 'data/' + dataID;
                 this.globalVariableService.saveDatasource(this.selectedDatasource).then(
                     resDS => {
                         updatedDataset.datasourceID = this.selectedDatasource.id;
+                        console.warn('xx updatedDataset', updatedDataset)
                         this.globalVariableService.saveDataset(updatedDataset);
                 });
 
