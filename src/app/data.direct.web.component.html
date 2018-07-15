@@ -18,11 +18,11 @@
                                 <h5 style="margin-top: 0; color:gray;">
                                     Help
                                 </h5>
-                                <p style="margin-top: 0; color:gray;"> 
+                                <p style="margin-top: 0; color:gray;">
                                     Obtain data from a web page.  Enter the url, and click
                                     get to obtain a list of tables.  Select a table to preview
                                     the data.  Enter a name and description for the datasource,
-                                    and click Save to store it permanently.  
+                                    and click Save to store it permanently.
                                     Click the X or press Escape to close this form.
                                 </p>
                             </clr-signpost-content>
@@ -64,7 +64,7 @@
                             title="Url (address) of the data to be read, ie https://en.wikipedia.org/wiki/Iris_flower_data_set"
                             >
                     </div>
-    
+
                     <div class="gridButtonGet">
                         <button
                             type="button"
@@ -113,7 +113,7 @@
                                 >
                                 {{ row }}
                             </clr-dg-column>
-                            
+
                             <clr-dg-row *clrDgItems="let row of currentData">
 
                                 <clr-dg-cell *ngFor="let col of dataFieldsSelected; let i = index">
@@ -149,7 +149,7 @@
                             >
                             Save
                         </button>
-                    </div>    
+                    </div>
 
                     <div class="gridSavedMessage">
                         {{ savedMessage }}

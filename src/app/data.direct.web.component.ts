@@ -21,12 +21,12 @@ import { Dataset }                    from './models';
 import { Datasource }                 from './models';
 
 interface webTables {
-	fields: 
+	fields:
 		{
 			name: string;
 			dtype: string
 		}[];
-	meta: 
+	meta:
 		{
 			has_body: boolean;
 			has_headers: boolean;

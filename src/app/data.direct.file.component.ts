@@ -165,26 +165,21 @@ export class DataDirectFileComponent implements OnInit {
         this.fileName = this.theFile;
         // skip_rows = [number = rows to skip, string = ignore rows that starts with this]
         // First row = 0
-        // heaers = single integer to indicate the header, array of strings = use THIS text
-        let specification = {
-            source: {
-                connector: "tributary.connectors.spreadsheet:XlsxConnector",
-                content:  btoa(theFile.target.result),
-                headers: 0,
-                skip_rows: []
+        // headers = single integer to indicate the header, array of strings = use THIS text
+        let specification: any = {
+            "source": {
+                "connector": "tributary.connectors.spreadsheet:XlsxConnector",
+                "specification": {
+                    "content":  btoa(theFile.target.result),
+                    "headers": 0,
+                    "skip_rows": []
+                }
             }
         };
-        let token = JSON.parse(localStorage.getItem('eazl-token'));
-        let options = {
-            method: "POST",
-            body: JSON.stringify(specification),
-            mode: "cors",
-            headers: {
-            "Content-Type": "application/json",
-            "Authorization": `JWT ${token}`
-            }
-        };
-        this.globalVariableService.getTributaryData(specification);
+
+        this.globalVariableService.getTributaryData(specification).then(res => {
+            console.warn('xx res from Trib', res) 
+        });
 
         console.warn('  end loadFile', theFile, this.theFile)
     }
