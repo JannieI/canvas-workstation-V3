@@ -102,6 +102,8 @@ export class DataManagedSQLEditorComponent implements OnInit {
                 startLineNr: 0,
                 csvSeparationCharacter: '',
                 csvQuotCharacter: '',
+                webUrl: '',
+                webTableIndex: '',
                 connectionID: 0,
                 dataTableID: 0,
                 nrWidgets: 0,
