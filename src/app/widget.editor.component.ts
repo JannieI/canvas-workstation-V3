@@ -779,28 +779,8 @@ const graphWidth: number = 420;
             this.globalVariableService.addCurrentDatasource(datasourceID).then(res => {
 
                 // Reset
-                this.isBusyRetrievingData = false
-                
-                let globalCurrentDSIndex: number = this.globalVariableService
-                    .currentDatasources.findIndex(dS => dS.id == datasourceID);
-
-                console.warn('xx (dSetIndex < 0) 2 globalCurrentDSIndex', globalCurrentDSIndex)
-                console.warn('xx (dSetIndex < 0) 3 GV-currentDatasources', this.globalVariableService.currentDatasources)
-                console.warn('xx (dSetIndex < 0) 4 GV-currentDatasets', this.globalVariableService.currentDatasets)
-
-                if (globalCurrentDSIndex >= 0) {
-                    this.currentDatasources.push(
-                        this.globalVariableService.currentDatasources[globalCurrentDSIndex]
-                    );
-                };
-                console.warn('xx (dSetIndex < 0) 5 currentDatasources', this.currentDatasources)
-
-                // let globalCurrentDsetIndex: number = this.globalVariableService.currentDatasets
-                //     .findIndex(dS => dS.datasourceID == datasourceID
-                // );
-                // if (globalCurrentDsetIndex >= 0) {
-                //     this.globalVariableService.currentDatasets.splice(globalCurrentDsetIndex, 1);
-                // };
+                this.isBusyRetrievingData = false                
+                this.currentDatasources = this.globalVariableService.datasources.slice();
 
                 // Tell user
                 this.errorMessage = 'Data retrieved - click row again to continue';                
