@@ -2995,8 +2995,9 @@ export class GlobalVariableService {
                     };
 
                     console.log('%c    Global-Variables getCurrentDataset 1 from ',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", dsSourceLocation, datasourceID,
-                        datasetID, newdSet, 'currentDatasets', this.currentDatasets)
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                        dsSourceLocation, ' for DS-id = ', datasourceID, '.  Added dSet: ',
+                        newdSet, ', and currentDatasets = ', this.currentDatasets)
                     resolve(newdSet);
                 });
             };
@@ -3029,8 +3030,9 @@ export class GlobalVariableService {
                         };
 
                         console.log('%c    Global-Variables getCurrentDataset 1 from ',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", dsSourceLocation, datasourceID,
-                            datasetID, newdSet, 'currentDatasets', this.currentDatasets)
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                            dsSourceLocation, ' for DS-id = ', datasourceID, '.  Added dSet: ',
+                            newdSet, ', and currentDatasets = ', this.currentDatasets)
                         resolve(newdSet);
                     }
                 );
@@ -3063,8 +3065,9 @@ export class GlobalVariableService {
                         };
 
                         console.log('%c    Global-Variables getCurrentDataset 1 from ',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", dsSourceLocation, datasourceID,
-                            datasetID, newdSet, 'currentDatasets', this.currentDatasets)
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                            dsSourceLocation, ' for DS-id  = ', datasourceID, '.  Added dSet: ',
+                            newdSet, ', and currentDatasets = ', this.currentDatasets)
                         resolve(newdSet);
                     }
                 );
