@@ -4411,7 +4411,7 @@ export class GlobalVariableService {
                         dSetID = Math.max(...ds);
                         console.warn('xx dSetID', dSetID, localDataset)
                         // Get data for Dset
-                        this.getCurrentDataset(localDataset.id, dSetID).then(res => {
+                        this.getCurrentDataset(datasourceID, dSetID).then(res => {
                             
                             // Add data to dataset
                             // localDataset.dataRaw = res.dataRaw;
