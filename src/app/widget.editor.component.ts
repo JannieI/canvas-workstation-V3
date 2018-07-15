@@ -836,17 +836,17 @@ const graphWidth: number = 420;
                 let globalCurrentDSIndex: number = this.globalVariableService.currentDatasources
                 .findIndex(dS => dS.id == datasourceID
                 );
-                if (globalCurrentDSIndex >= 0) {
-                    this.currentDatasources.push(
-                        this.globalVariableService.currentDatasources[globalCurrentDSIndex]);
-                };
+                // if (globalCurrentDSIndex >= 0) {
+                //     this.currentDatasources.push(
+                //         this.globalVariableService.currentDatasources[globalCurrentDSIndex]);
+                // };
 
-                let globalCurrentDsetIndex: number = this.globalVariableService.currentDatasets
-                    .findIndex(dS => dS.datasourceID == datasourceID
-                );
-                if (globalCurrentDsetIndex >= 0) {
-                    this.globalVariableService.currentDatasets.splice(globalCurrentDsetIndex, 1);
-                };
+                // let globalCurrentDsetIndex: number = this.globalVariableService.currentDatasets
+                //     .findIndex(dS => dS.datasourceID == datasourceID
+                // );
+                // if (globalCurrentDsetIndex >= 0) {
+                //     this.globalVariableService.currentDatasets.splice(globalCurrentDsetIndex, 1);
+                // };
 
             });
         };

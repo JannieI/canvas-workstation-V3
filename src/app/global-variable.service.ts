@@ -4411,10 +4411,10 @@ export class GlobalVariableService {
                         this.getCurrentDataset(localDataset.id, dSetID).then(res => {
                             
                             // Add data to dataset
-                            localDataset.dataRaw = res.dataRaw;
-                            localDataset.data = res.data;
+                            // localDataset.dataRaw = res.dataRaw;
+                            // localDataset.data = res.data;
                             
-                            this.currentDatasets.push(localDataset);
+                            // this.currentDatasets.push(localDataset);
                             console.warn('xx gv end localDataset currentDatasets', localDataset, this.currentDatasets)
                             console.warn('xx gv end datasets', this.datasets)
                             resolve(res);
