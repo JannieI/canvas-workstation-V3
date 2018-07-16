@@ -18,9 +18,6 @@ import { GlobalVariableService }      from './global-variable.service';
 import { Dataset }                    from './models';
 import { Datasource }                 from './models';
 
-// Vega
-import * as dl from 'datalib';
-
 
 @Component({
     selector: 'data-direct-fileSpreadsheet',
@@ -67,9 +64,8 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
     theFile: any;
     worksheets: string[] = [];
     worksheetColumns: any[] = [];
-    // worksheetColumns: {name: string; dtype: string;}[] = [];
     fields: string[] = [];
-
+    loadedFile: any;
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -159,37 +155,18 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
         console.warn('xx pre readAsBinaryString', this.theFile, this.theFile.name, this.theFile.type, this.theFile.size, this.theFile.lastModifiedDate, this.theFile.lastModifiedDate.toLocaleDateString())
 
         // Read file as Binary
-
         this.reader.onerror = this.errorHandler;
         this.reader.onprogress = this.updateProgress;
-        this.reader.onload = (theFile) =>{ this.loadFile(theFile) };
+        this.reader.onload = (theFile) =>{ this.inspectFile(theFile) };
 
         // Read in the image file as a data URL.
         this.reader.readAsBinaryString(this.theFile);
         console.warn('xx Post readAsBinaryString')
     }
 
-    loadFile(loadedFile) {
-        console.warn('  begin loadFile', loadedFile, this.theFile)
-        // this.fileName = this.theFile;
-
-        // skip_rows = [number = rows to skip, string = ignore rows that starts with this]
-        // First row = 0
-        // headers = single integer to indicate the header, array of strings = use THIS text
-        // let specification: any = {
-        //     "source": {
-        //         "connector": "tributary.connectors.spreadsheet:XlsxConnector",
-        //         "specification": {
-        //             "content":  btoa(theFile.target.result),
-        //             "headers": 0,
-        //             "skip_rows": []
-        //         }
-        //     }
-        // };
-        // this.globalVariableService.getTributaryData(specification).then(res => {
-        //     console.warn('xx data from Trib', res) 
-        // });
-
+    inspectFile(loadedFile) {
+        console.warn('  Begin inspectFile for ', loadedFile)
+        this.loadedFile = loadedFile;
         // Create spec for Tributary, and then submit to Inspector
         let specification = {
             "source": {
@@ -208,9 +185,6 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
             });
             console.warn('xx fields', this.worksheetColumns)
         });
-
-        
-        console.warn('  end loadFile', loadedFile, this.theFile)
     }
 
     abortRead() {
@@ -257,10 +231,54 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
         console.warn('xx fields ', this.fields)
     }
 
+    loadFile(loadedFile) {
+        console.warn('  begin loadFile', loadedFile, this.theFile)
+
+        // skip_rows = [number = rows to skip, string = ignore rows that starts with this]
+        // First row = 0
+        // headers = single integer to indicate the header, array of strings = use THIS text
+        // let specification: any = {
+        //     "source": {
+        //         "connector": "tributary.connectors.spreadsheet:XlsxConnector",
+        //         "specification": {
+        //             "content":  btoa(theFile.target.result),
+        //             "headers": 0,
+        //             "skip_rows": []
+        //         }
+        //     }
+        // };
+        // this.globalVariableService.getTributaryData(specification).then(res => {
+        //     console.warn('xx data from Trib', res) 
+        // });
+
+        // Create spec for Tributary, and then submit to Inspector
+        let specification = {
+            "source": {
+                "inspector": "tributary.inspectors.spreadsheet:XlsxInspector",
+                "specification": {
+                    "content": btoa(loadedFile.target.result)
+                }
+            }
+        };
+        this.globalVariableService.getTributaryInspect(specification).then(res => {
+            console.warn('xx inspect from Trib', res) 
+            this.worksheets = [];
+            res.forEach(row => {
+                this.worksheets.push(row.name);
+                this.worksheetColumns.push(row.fields);
+            });
+            console.warn('xx fields', this.worksheetColumns)
+        });
+
+        
+        console.warn('  end loadFile', loadedFile, this.theFile)
+    }
+
     clickDSPreview() {
         // Load the new DS in the ID section, and show in Preview area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDSPreview',           '@Start');
 
+        console.warn('xx this.loadedFile', this.loadedFile)
         // Reset
         this.errorMessage = '';
 
@@ -269,7 +287,23 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
             this.errorMessage = 'Please enter a file name  OR  select one using the Browse button';
             return;
         };
-
+        // skip_rows = [number = rows to skip, string = ignore rows that starts with this]
+        // First row = 0
+        // headers = single integer to indicate the header, array of strings = use THIS text
+        let specification: any = {
+            "source": {
+                "connector": "tributary.connectors.spreadsheet:XlsxConnector",
+                "specification": {
+                    "content":  btoa(this.loadedFile.target.result),
+                    "headers": 0,
+                    "skip_rows": []
+                }
+            }
+        };
+        this.globalVariableService.getTributaryData(specification).then(res => {
+            console.warn('xx data from Trib', res) 
+            this.currentData = res;
+        });
     }
 
     clickClose(action: string) {

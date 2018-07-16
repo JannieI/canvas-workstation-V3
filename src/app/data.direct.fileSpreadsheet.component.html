@@ -163,7 +163,7 @@
                             <clr-datagrid>
     
                                     <clr-dg-column [clrDgField]="userID">Columns</clr-dg-column>
-                                    <clr-dg-row *ngFor="let row of currentData">
+                                    <clr-dg-row *ngFor="let row of fields">
     
                                     <clr-dg-cell *ngFor="let col of dataFieldNames; let i = index">
                                             {{ row }}
@@ -176,7 +176,7 @@
                         <div class="gridTableData">
                             <clr-datagrid>
     
-                                <clr-dg-column *ngFor="let row of dataFieldNames">{{row}}</clr-dg-column>
+                                <clr-dg-column *ngFor="let row of fields">{{row}}</clr-dg-column>
                                 <clr-dg-row *ngFor="let row of currentData">
     
                                     <clr-dg-cell *ngFor="let col of dataFieldNames; let i = index">
