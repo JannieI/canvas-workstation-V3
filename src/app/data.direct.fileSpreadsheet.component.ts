@@ -221,16 +221,54 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
             this.headerRow = '0';
         };
 
-        let specification: any = {
-            "source": {
-                "connector": "tributary.connectors.spreadsheet:XlsxConnector",
-                "specification": {
-                    "content":  btoa(this.loadedFile.target.result),
-                    "headers": +this.headerRow,
-                    "sheet": index,
-                    "skip_rows": []
+        // Set up specification according to file type
+        let specification: any;
+        let lastFive: string = this.fileName.slice(-5);
+        if (lastFive.toLowerCase() == '.xlsx') {
+            specification = {
+                "source": {
+                    "connector": "tributary.connectors.spreadsheet:XlsxConnector",
+                    "specification": {
+                        "content":  btoa(this.loadedFile.target.result),
+                        "headers": +this.headerRow,
+                        "sheet": index,
+                        "skip_rows": []
+                    }
                 }
-            }
+            };
+        } else {
+            let lastFour: string = this.fileName.slice(-4);
+        
+            if (lastFour.toLowerCase() == '.xls') {
+
+                specification = {
+                    "source": {
+                        "connector": "tributary.connectors.spreadsheet:XlsInspector",
+                        "specification": {
+                            "content":  btoa(this.loadedFile.target.result),
+                            "headers": +this.headerRow,
+                            "sheet": index,
+                            "skip_rows": []
+                        }
+                    }
+                };
+            } else if (lastFour.toLowerCase() == '.ods') {
+
+                specification = {
+                    "source": {
+                        "connector": "tributary.connectors.spreadsheet:OdsInspector",
+                        "specification": {
+                            "content":  btoa(this.loadedFile.target.result),
+                            "headers": +this.headerRow,
+                            "sheet": index,
+                            "skip_rows": []
+                        }
+                    }
+                };
+            } else {
+                this.errorMessage = 'Invalid file extension (must be .xlsx .xls .ods)';
+                return;
+            };
         };
         this.globalVariableService.getTributaryData(specification).then(res => {
             console.warn('xx data from Trib', res) 
