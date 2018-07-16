@@ -60,6 +60,7 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
     fileName: string = '';
     finalFields: any = [];
     folderName: string = '';
+    headerRow: string = '0';
     reader = new FileReader();
     selectedFile: boolean = true;
     theFile: any;
@@ -192,8 +193,13 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
                 this.worksheetColumns.push(row.fields);
             });
 
+            if (this.worksheets.length > 0) {
+                this.clickWorksheet(0);
+            }
             console.warn('xx fields', this.worksheetColumns)
         });
+
+
     }
 
     abortRead() {
@@ -241,6 +247,40 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
         // Can Add now
         this.disableAdd = false;
         console.warn('xx fields ', this.fields)
+
+
+        console.warn('xx this.loadedFile', this.loadedFile)
+        // Reset
+        this.errorMessage = '';
+
+        // Validation
+        if (this.fileName == ''  ||  this.fileName == null) {
+            this.errorMessage = 'Please enter a file name  OR  select one using the Browse button';
+            return;
+        };
+        // skip_rows = [number = rows to skip, string = ignore rows that starts with this]
+        // First row = 0
+        // headers = single integer to indicate the header, array of strings = use THIS text
+        if (this.headerRow == null  ||  this.headerRow == '') {
+            this.headerRow = '0';
+        };
+
+        let specification: any = {
+            "source": {
+                "connector": "tributary.connectors.spreadsheet:XlsxConnector",
+                "specification": {
+                    "content":  btoa(this.loadedFile.target.result),
+                    "headers": +this.headerRow,
+                    "skip_rows": []
+                }
+            }
+        };
+        this.globalVariableService.getTributaryData(specification).then(res => {
+            console.warn('xx data from Trib', res) 
+            this.worksheetData = res.slice(0,10);
+            this.worksheetDataFull = res;
+        });
+
     }
 
     clickDSPreview() {

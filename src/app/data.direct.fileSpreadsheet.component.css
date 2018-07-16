@@ -100,7 +100,7 @@
         text-align: left;
     }
 
-    .gridStartatTitle {
+    .gridHeaderRowTitle {
         grid-column-start: 14;
         grid-column-end: 16;
         grid-row-start: 5;
@@ -108,7 +108,7 @@
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
-    .gridStartat {
+    .gridHeaderRow {
         grid-column-start: 15;
         grid-column-end: 21;
         grid-row-start: 5;

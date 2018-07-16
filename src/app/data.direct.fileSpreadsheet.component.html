@@ -94,11 +94,12 @@
                                 >
                         </div>
     
-                        <div class="gridStartatTitle">
-                            Start at:
+                        <div class="gridHeaderRowTitle">
+                            Header:
                         </div>
-                        <div class="gridStartat">
-                            <input type="text" id="formFields_7" placeholder="Start on line nr">
+                        <div class="gridHeaderRow">
+                            <input type="text" [ngModel]="headerRow" 
+                            placeholder="Row number for the Headers">
                         </div>
     
                         <div class="gridButtonPreview">
@@ -173,7 +174,7 @@
                         <div class="gridButtonCancel">
                             <button
                                 type="button"
-                                class="btn btn-primary"
+                                class="btn btn-secondary"
                                 (click)="clickClose()"
                                 >
                                 Cancel
