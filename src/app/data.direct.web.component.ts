@@ -274,15 +274,6 @@ export class DataDirectWebComponent implements OnInit {
                 this.savedMessage = 'Datasource updated';
             });
 
-console.warn('xx ds', this.globalVariableService.datasources)
-console.warn('xx dSet', this.globalVariableService.datasets)
-            // this.globalVariableService.saveDatasource(this.selectedDatasource).then(res => {
-                
-            //     // Indicate to the user
-            //     this.canSave = false;
-            //     this.savedMessage = 'Datasource updated';
-            // });
-
         } else {
             // Add new one
             let newDatasource: Datasource = {

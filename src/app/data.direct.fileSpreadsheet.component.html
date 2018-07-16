@@ -33,11 +33,11 @@
                                         Valid file types are .xls, xlsx and .ods (Libre Office).
                                         This will display a list of worksheets (tabs) inside the
                                         selected file.  Click a Worksheet to show the fields (columns)
-                                        inside it.  Select the desired columns, and click Preview to 
-                                        see a snippet of the data.  Due to browser security, the 
+                                        and a snippet of the data inside it.  Click Add / Save to 
+                                        permanently store the Datasource. Due to browser security, the 
                                         folder where the file was read from cannot be recorded. 
                                         Important: a copy will be made of the file, so it has to be 
-                                        reloaded for Canvas to see the latest changes to the file.
+                                        reloaded for Canvas to register the latest changes to the file.
                                         Click the X or press Escape to close this form.                                        
                                     </p>
                                 </clr-signpost-content>
@@ -48,7 +48,7 @@
                             Name:
                         </div>
                         <div class="gridDatasourceName">
-                            <input type="text" [(ngModel)]="datasourceName"
+                            <input type="text" [(ngModel)]="newName"
                                 id="formFields_7"
                                 >
                                 {{ datasourceName }}
@@ -58,7 +58,7 @@
                             Description:
                         </div>
                         <div class="gridDatasourceDescription">
-                            <input type="text" [(ngModel)]="datasourceDescription"
+                            <input type="text" [(ngModel)]="newDescription"
                                 size="50"
                                 >
                         </div>

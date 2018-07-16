@@ -53,8 +53,8 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
     dataFieldNames: string[] = ['ColA','ColB'];
     dataFieldTypes: string[] = [];
     datasources: Datasource[];
-    datasourceName: string = '';
-    datasourceDescription: string = '';
+    newName: string = '';
+    newDescription: string = '';
     errorMessage: string = "";
     existingDSName: string = '';
     fileName: string = '';
@@ -300,138 +300,292 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
         this.errorMessage = '';
 
         // Validation
-        if (this.folderName == ''  ||  this.folderName == null) {
-            this.errorMessage = 'Please enter a folder  OR  select one using the Browse button';
-            return;
-        };
         if (this.fileName == ''  ||  this.fileName == null) {
             this.errorMessage = 'Please enter a file name  OR  select one using the Browse button';
             return;
         };
 
-        let today = new Date();
+        // let today = new Date();
 
-        // New Datasource
-        let newData: Datasource =  {
-            id: null,
-            name: this.fileName,
-            username: '',
-            password: '',
-            type: 'File',
-            subType: 'CSV',
-            typeVersion: 'Comma-Separated',
-            description: 'Hard coded name',
-            createdBy: this.globalVariableService.currentUser.userID,
-            createdOn: today,
-            createMethod: 'directFile',
-            editor: '',
-            dateEdited: null,
-            refreshedBy: this.globalVariableService.currentUser.userID,
-            refreshedOn: today,
-            dataFieldIDs: [0],
-            dataFields: this.dataFieldNames,
-            dataFieldTypes: this.dataFieldTypes,
-            dataFieldLengths: this.dataFieldLengths,
-            parameters: 'None',
-            folder: '',
-            fileName: this.fileName,
-            excelWorksheet: '',
-            transposeOnLoad: false,
-            startLineNr: 1,
-            csvSeparationCharacter: '',
-            csvQuotCharacter: '',
-            webUrl: '',
-            webTableIndex: '',
-            connectionID: 0,
-            dataTableID: 0,
-            nrWidgets: 0,
-            databaseName: '',
-            port: '',
-            serverType: '',
-            serverName: '',
-            dataTableName: '',
-            dataSQLStatement: '',
-            dataNoSQLStatement: '',
-            dataNeo4jStatement: '',
-            dataGraphQLStatement: '',
-            businessGlossary: '',
-            dataDictionary: ''
+        // // New Datasource
+        // let newData: Datasource =  {
+        //     id: null,
+        //     name: this.fileName,
+        //     username: '',
+        //     password: '',
+        //     type: 'File',
+        //     subType: 'CSV',
+        //     typeVersion: 'Comma-Separated',
+        //     description: 'Hard coded name',
+        //     createdBy: this.globalVariableService.currentUser.userID,
+        //     createdOn: today,
+        //     createMethod: 'directFile',
+        //     editor: '',
+        //     dateEdited: null,
+        //     refreshedBy: this.globalVariableService.currentUser.userID,
+        //     refreshedOn: today,
+        //     dataFieldIDs: [0],
+        //     dataFields: this.dataFieldNames,
+        //     dataFieldTypes: this.dataFieldTypes,
+        //     dataFieldLengths: this.dataFieldLengths,
+        //     parameters: 'None',
+        //     folder: '',
+        //     fileName: this.fileName,
+        //     excelWorksheet: '',
+        //     transposeOnLoad: false,
+        //     startLineNr: 1,
+        //     csvSeparationCharacter: '',
+        //     csvQuotCharacter: '',
+        //     webUrl: '',
+        //     webTableIndex: '',
+        //     connectionID: 0,
+        //     dataTableID: 0,
+        //     nrWidgets: 0,
+        //     databaseName: '',
+        //     port: '',
+        //     serverType: '',
+        //     serverName: '',
+        //     dataTableName: '',
+        //     dataSQLStatement: '',
+        //     dataNoSQLStatement: '',
+        //     dataNeo4jStatement: '',
+        //     dataGraphQLStatement: '',
+        //     businessGlossary: '',
+        //     dataDictionary: ''
 
+        // };
+
+        // // General var with name - used in *ngIF, etc
+        // if (this.existingDSName == '') {
+        //     this.currentDatasetName = this.fileName;
+        // } else {
+        //     this.currentDatasetName = this.existingDSName;
+        // };
+        // this.existingDSName = '';
+
+        // // Add to all DS (DB, global), for later use
+        // this.globalVariableService.addDatasource(newData).then(res => {
+        //     this.currentDatasources = this.globalVariableService.currentDatasources.slice()
+
+        //     // Get new dSetID
+        //     // TODO - do better with DB
+        //     let newdSetID: number = 1;
+        //     let dSetIDs: number[] = [];
+        //     this.globalVariableService.datasets.forEach(ds => dSetIDs.push(ds.id));
+        //     newdSetID = Math.max(...dSetIDs) + 1;
+
+        //     // Get list of dSet-ids to make array work easier
+        //     let dsCurrIDs: number[] = [];       // currentDataset IDs
+        //     this.globalVariableService.currentDatasets.forEach(d => dsCurrIDs.push(d.id));
+        //     let newdSet: Dataset = {
+        //         id: newdSetID,
+        //         datasourceID: res.id,
+        //         sourceLocation: 'HTTP',
+        //         url: 'data',
+        //         folderName: '',
+        //         fileName: '',
+        //         data: this.worksheetData,
+        //         dataRaw: this.worksheetData
+        //     };
+
+        //     let dataToAdd: any = {
+        //         id: newdSetID,
+        //         data: this.worksheetData
+        //     };
+
+        //     // Add to All datasets
+        //     if (dSetIDs.indexOf(newdSetID) < 0) {
+        //         // this.globalVariableService.datasets.push(newdSet);
+        //         this.globalVariableService.addDataset(newdSet);
+        //         this.globalVariableService.addData(dataToAdd).then(res => {
+        //             this.globalVariableService.getData(res.id).then(dat => {
+        //                 console.warn('xx ----------')
+        //                 console.warn('xx added data', dat)
+        //             });
+        //         });
+        //         this.globalVariableService.saveLocal('Dataset', newdSet);
+        //     } else {
+        //         // Add to CurrentDatasets
+        //         if (dsCurrIDs.indexOf(newdSetID) < 0) {
+        //             this.globalVariableService.currentDatasets.push(newdSet);
+        //         };
+        //     };
+
+
+        //     console.warn('xx ----------')
+        //     console.warn('xx @end newdSet-datasets-currentDatasets', newdSet, this.globalVariableService.datasets,
+        //     this.globalVariableService.currentDatasets)
+
+        //     // Reset data related to this DS
+        //     console.warn('xx currDS, gv.currDS', this.currentDatasources , this.globalVariableService.currentDatasources)
+        //     this.currentDatasources = this.globalVariableService.currentDatasources.slice();
+
+        //     console.log('done DS:', this.currentDatasources, this.globalVariableService.datasources)
+        // });
+
+        // if (action == 'Saved') {
+        //     this.formDataDirectFileSpreadsheetClosed.emit(null);
+        // } else {
+        //     this.formDataDirectFileSpreadsheetClosed.emit(this.selectedDatasource);
+        // };
+
+        // Save changes to the Datasource
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
+
+        // Validation
+        this.errorMessage = '';
+        if (this.newName == '') {
+            this.errorMessage = 'Please enter a Name for the new Datasource';
+            return;
+        };
+        if (this.newDescription == '') {
+            this.errorMessage = 'Please enter a Description for the new Datasource';
+            return;
         };
 
-        // General var with name - used in *ngIF, etc
-        if (this.existingDSName == '') {
-            this.currentDatasetName = this.fileName;
+        // Construct DS and add to DB
+        let today: Date = new Date();
+
+        if (this.selectedDatasource != null) {
+            // Mark the changes
+            this.selectedDatasource.name = this.newName;
+            this.selectedDatasource.description = this.newDescription;
+            this.selectedDatasource.webUrl = '';
+            this.selectedDatasource.webTableIndex = '';
+            this.selectedDatasource.editor = this.globalVariableService.currentUser.userID;
+            this.selectedDatasource.dateEdited = today;
+            this.selectedDatasource.dataFields = this.fields;
+
+            // Save DS to DB, but create a new dSet and new data records.
+            let ds: number[] = [];
+            let dSetID: number = 1;
+            for (var i = 0; i < this.globalVariableService.datasets.length; i++) {
+                if(this.globalVariableService.datasets[i].datasourceID == 
+                    this.selectedDatasource.id) {
+                    ds.push(this.globalVariableService.datasets[i].id)
+                };
+            };
+            if (ds.length > 0) {
+                dSetID = Math.max(...ds);
+            };
+            let datasetIndex: number = this.globalVariableService.datasets.findIndex(dSet => {
+                if (dSet.id == dSetID) {
+                    return dSet;
+                };
+            });
+            let updatedDataset: Dataset = this.globalVariableService.datasets[datasetIndex];
+            
+            let dataID: number = -1;
+            let dataIndex: number = updatedDataset.url.indexOf('/');
+            if (dataIndex >= 0) {
+                dataID = +updatedDataset.url.substring(dataIndex + 1);
+            } else {
+                alert('Error in save Web - url has no / character');
+                return;
+            };
+            let updatedData: any = {
+                id: dataID,
+                data: this.worksheetData
+            };
+            console.warn('xx dataID updatedata', dataID, updatedData)
+            // Add Data, then dataset, then DS
+            this.globalVariableService.saveData(updatedData).then(resData => {
+
+                updatedDataset.url = 'data/' + dataID;
+                this.globalVariableService.saveDatasource(this.selectedDatasource).then(
+                    resDS => {
+                        updatedDataset.datasourceID = this.selectedDatasource.id;
+                        console.warn('xx updatedDataset', updatedDataset)
+                        this.globalVariableService.saveDataset(updatedDataset);
+                });
+
+                // Indicate to the user
+                this.canSave = false;
+                this.savedMessage = 'Datasource updated';
+            });
+
         } else {
-            this.currentDatasetName = this.existingDSName;
-        };
-        this.existingDSName = '';
+            // Add new one
+            let newDatasource: Datasource = {
+                id: null,
+                type: 'Web',
+                subType: '',
+                typeVersion:  '',
+                name: this.newName,
+                username: '',
+                password: '',
+                description: this.newDescription,
+                dataFieldIDs: [],
+                dataFields: this.fields,
+                dataFieldTypes: [],
+                dataFieldLengths: [],
+                parameters: '',
+                createMethod: 'directWeb',
+                createdBy: this.globalVariableService.currentUser.userID,
+                createdOn: today,
+                editor: '',
+                dateEdited: null,
+                refreshedBy: '',
+                refreshedOn: null,
+                folder: '',
+                fileName: '',
+                excelWorksheet: '',
+                transposeOnLoad: false,
+                startLineNr: 0,
+                csvSeparationCharacter: '',
+                csvQuotCharacter: '',
+                webUrl: '',
+                webTableIndex: '',
+                connectionID: null,
+                dataTableID: null,
+                businessGlossary: 'Obtained from Spreadsheet' + this.fileName ,
+                dataDictionary: '',
+                databaseName: '',
+                port: '',
+                serverType: '',
+                serverName: '',
+                dataTableName: '',
+                dataSQLStatement: '',
+                dataNoSQLStatement: '',
+                dataNeo4jStatement: '',
+                dataGraphQLStatement: '',
+                nrWidgets: null
+            };
 
-        // Add to all DS (DB, global), for later use
-        this.globalVariableService.addDatasource(newData).then(res => {
-            this.currentDatasources = this.globalVariableService.currentDatasources.slice()
-
-            // Get new dSetID
-            // TODO - do better with DB
-            let newdSetID: number = 1;
-            let dSetIDs: number[] = [];
-            this.globalVariableService.datasets.forEach(ds => dSetIDs.push(ds.id));
-            newdSetID = Math.max(...dSetIDs) + 1;
-
-            // Get list of dSet-ids to make array work easier
-            let dsCurrIDs: number[] = [];       // currentDataset IDs
-            this.globalVariableService.currentDatasets.forEach(d => dsCurrIDs.push(d.id));
-            let newdSet: Dataset = {
-                id: newdSetID,
-                datasourceID: res.id,
+            let newdDataset: Dataset = {
+                id: null,
+                datasourceID: null,
                 sourceLocation: 'HTTP',
                 url: 'data',
                 folderName: '',
                 fileName: '',
-                data: this.worksheetData,
-                dataRaw: this.worksheetData
+                data: null,
+                dataRaw: null
             };
-
-            let dataToAdd: any = {
-                id: newdSetID,
+            let newData: any = {
+                id: null,
                 data: this.worksheetData
             };
 
-            // Add to All datasets
-            if (dSetIDs.indexOf(newdSetID) < 0) {
-                // this.globalVariableService.datasets.push(newdSet);
-                this.globalVariableService.addDataset(newdSet);
-                this.globalVariableService.addData(dataToAdd).then(res => {
-                    this.globalVariableService.getData(res.id).then(dat => {
-                        console.warn('xx ----------')
-                        console.warn('xx added data', dat)
-                    });
+            // Add Data, then dataset, then DS
+            this.globalVariableService.addData(newData).then(resData => {
+
+                newdDataset.url = 'data/' + resData.id.toString();
+                this.globalVariableService.addDatasource(newDatasource).then(resDS => {
+                    newdDataset.datasourceID = resDS.id;
+                    this.globalVariableService.addDataset(newdDataset);
+
                 });
-                this.globalVariableService.saveLocal('Dataset', newdSet);
-            } else {
-                // Add to CurrentDatasets
-                if (dsCurrIDs.indexOf(newdSetID) < 0) {
-                    this.globalVariableService.currentDatasets.push(newdSet);
-                };
-            };
 
-
-            console.warn('xx ----------')
-            console.warn('xx @end newdSet-datasets-currentDatasets', newdSet, this.globalVariableService.datasets,
-            this.globalVariableService.currentDatasets)
-
-            // Reset data related to this DS
-            console.warn('xx currDS, gv.currDS', this.currentDatasources , this.globalVariableService.currentDatasources)
-            this.currentDatasources = this.globalVariableService.currentDatasources.slice();
-
-            console.log('done DS:', this.currentDatasources, this.globalVariableService.datasources)
-        });
-
-        if (action == 'Saved') {
-            this.formDataDirectFileSpreadsheetClosed.emit(null);
-        } else {
-            this.formDataDirectFileSpreadsheetClosed.emit(this.selectedDatasource);
+                // Indicate to the user
+                this.canSave = false;
+                this.savedMessage = 'Datasource created';
+            });
         };
+
+
+
+
     }
 }
 
