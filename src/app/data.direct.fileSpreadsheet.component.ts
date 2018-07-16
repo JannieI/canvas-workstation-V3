@@ -81,53 +81,7 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        if (this.selectedDatasource == null) {
-            this.selectedDatasource = {
-                id: 0,
-                type: '',
-                subType: '',
-                typeVersion: '',
-                name: '',
-                username: '',
-                password: '',
-                description: '...',
-                createdBy: '',
-                createdOn: null,
-                createMethod: 'directFileSpreadsheet',
-                editor: '',
-                dateEdited: null,
-                refreshedBy: '',
-                refreshedOn: null,
-                dataFieldIDs: [0],
-                dataFields: [''],
-                dataFieldTypes: [''],
-                dataFieldLengths: [0],
-                parameters: '',
-                folder: '',
-                fileName: '',
-                excelWorksheet: '',
-                transposeOnLoad: false,
-                startLineNr: 0,
-                csvSeparationCharacter: '',
-                csvQuotCharacter: '',
-                webUrl: '',
-                webTableIndex: '',
-                connectionID: 0,
-                dataTableID: 0,
-                nrWidgets: 0,
-                databaseName: '',
-                port: '',
-                serverType: '',
-                serverName: '',
-                dataTableName: '',
-                dataSQLStatement: '',
-                dataNoSQLStatement: '',
-                dataNeo4jStatement: '',
-                dataGraphQLStatement: '',
-                businessGlossary: '',
-                dataDictionary: ''
-            };
-        } else {
+        if (!this.selectedDatasource == null) {
             this.fileName = this.selectedDatasource.fileName;
         };
 
@@ -250,7 +204,7 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
 
         // Can Add now
         this.canSave = true;
-        console.warn('xx fields ', this.fields)
+        console.warn('xx fields ', this.fields, index)
 
         // Reset
         this.errorMessage = '';
@@ -273,6 +227,7 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
                 "specification": {
                     "content":  btoa(this.loadedFile.target.result),
                     "headers": +this.headerRow,
+                    "sheet": index,
                     "skip_rows": []
                 }
             }
@@ -299,12 +254,6 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
 
         // Reset
         this.errorMessage = '';
-
-        // Validation
-        if (this.fileName == ''  ||  this.fileName == null) {
-            this.errorMessage = 'Please enter a file name  OR  select one using the Browse button';
-            return;
-        };
 
         // let today = new Date();
 
@@ -436,11 +385,15 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
         // Validation
         this.errorMessage = '';
         if (this.newName == '') {
-            this.errorMessage = 'Please enter a Name for the new Datasource';
+            this.errorMessage = 'Please enter a Name for the Datasource';
             return;
         };
         if (this.newDescription == '') {
-            this.errorMessage = 'Please enter a Description for the new Datasource';
+            this.errorMessage = 'Please enter a Description for the Datasource';
+            return;
+        };
+        if (this.fileName == ''  ||  this.fileName == null) {
+            this.errorMessage = 'Please select a file using the Browse button';
             return;
         };
 
@@ -509,8 +462,8 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
             // Add new one
             let newDatasource: Datasource = {
                 id: null,
-                type: 'Web',
-                subType: '',
+                type: 'File',
+                subType: 'xlsx',
                 typeVersion:  '',
                 name: this.newName,
                 username: '',
@@ -521,7 +474,7 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
                 dataFieldTypes: [],
                 dataFieldLengths: [],
                 parameters: '',
-                createMethod: 'directWeb',
+                createMethod: 'directFileSpreadsheet',
                 createdBy: this.globalVariableService.currentUser.userID,
                 createdOn: today,
                 editor: '',

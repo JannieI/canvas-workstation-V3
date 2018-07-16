@@ -15,7 +15,10 @@
                                 <span *ngIf="editingDS"
                                     style="color:gray"
                                     >
-                                    {{ selectedDatasource.name }}
+                                    <span *ngIf="selectedDatasource">
+                                        {{ selectedDatasource.name }}
+                                    </span>
+                                    
                                 </span>
                                 obtained from a Spreadsheet.
                             </b>
