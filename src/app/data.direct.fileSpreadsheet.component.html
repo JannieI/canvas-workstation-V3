@@ -161,12 +161,11 @@
 
                         <div class="gridTableColumns">
                             <clr-datagrid>
-    
-                                    <clr-dg-column [clrDgField]="userID">Columns</clr-dg-column>
-                                    <clr-dg-row *ngFor="let row of fields">
-    
-                                    <clr-dg-cell *ngFor="let col of dataFieldNames; let i = index">
-                                            {{ row }}
+                                <clr-dg-column [clrDgField]="userID">Columns</clr-dg-column>
+
+                                <clr-dg-row *ngFor="let row of fields">    
+                                    <clr-dg-cell>
+                                        {{ row }}
                                     </clr-dg-cell>
                                 </clr-dg-row>
     

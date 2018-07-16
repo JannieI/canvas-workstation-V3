@@ -263,6 +263,7 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
         this.globalVariableService.getTributaryInspect(specification).then(res => {
             console.warn('xx inspect from Trib', res) 
             this.worksheets = [];
+            this.worksheetColumns = [];
             res.forEach(row => {
                 this.worksheets.push(row.name);
                 this.worksheetColumns.push(row.fields);
