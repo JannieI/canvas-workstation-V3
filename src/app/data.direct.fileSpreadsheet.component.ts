@@ -23,16 +23,16 @@ import * as dl from 'datalib';
 
 
 @Component({
-    selector: 'data-direct-file',
-    templateUrl: './data.direct.file.component.html',
-    styleUrls:  ['./data.direct.file.component.css']
+    selector: 'data-direct-fileSpreadsheet',
+    templateUrl: './data.direct.fileSpreadsheet.component.html',
+    styleUrls:  ['./data.direct.fileSpreadsheet.component.css']
 })
-export class DataDirectFileComponent implements OnInit {
+export class DataDirectFileSpreadsheetComponent implements OnInit {
 
     @Input() editingDS: boolean;
     @Input() selectedDatasource: Datasource;
 
-    @Output() formDataDirectFileClosed: EventEmitter<Datasource> = new EventEmitter();
+    @Output() formDataDirectFileSpreadsheetClosed: EventEmitter<Datasource> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
@@ -414,7 +414,7 @@ export class DataDirectFileComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-        this.formDataDirectFileClosed.emit(null);
+        this.formDataDirectFileSpreadsheetClosed.emit(null);
 
     }
 
@@ -554,9 +554,9 @@ export class DataDirectFileComponent implements OnInit {
         });
 
         if (action == 'Saved') {
-            this.formDataDirectFileClosed.emit(null);
+            this.formDataDirectFileSpreadsheetClosed.emit(null);
         } else {
-            this.formDataDirectFileClosed.emit(this.selectedDatasource);
+            this.formDataDirectFileSpreadsheetClosed.emit(this.selectedDatasource);
         };
     }
 }
