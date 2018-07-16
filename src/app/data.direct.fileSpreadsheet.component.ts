@@ -69,6 +69,7 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
     fields: string[] = [];
     loadedFile: any;
     disableAdd: boolean = true;
+    selectedWorksheetRowIndex: number;
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -242,14 +243,14 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
         // Load the Fields/Columns for a selected Worksheet
         this.globalFunctionService.printToConsole(this.constructor.name,'clickWorksheet',           '@Start');
 
+        // Set highlighted row
+        this.selectedWorksheetRowIndex = index;
         this.fields = this.worksheetColumns[index].map(cols => cols.name);
 
         // Can Add now
         this.disableAdd = false;
         console.warn('xx fields ', this.fields)
 
-
-        console.warn('xx this.loadedFile', this.loadedFile)
         // Reset
         this.errorMessage = '';
 
