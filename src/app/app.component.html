@@ -4052,6 +4052,17 @@
     [selectedDatasource]="selectedDatasource"
     (formDataDirectFileClosed)="handleCloseDataDirectFile($event)">Load Data Direct From File ...
 </data-direct-file>
+handleCloseDataDirectFileSpreadsheet
+
+
+<!-- Modal: Data Direct From Spreadsheet -->
+<data-direct-fileSpreadsheet
+    class="formPopupDashboard"
+    *ngIf="showModalDataDirectFileSpreadsheet"
+    [editingDS]="editingDS"
+    [selectedDatasource]="selectedDatasource"
+    (formDataDirectFileSpreadsheetClosed)="handleCloseDataDirectFileSpreadsheet($event)">Load Data Direct From Spreadsheet ...
+</data-direct-fileSpreadsheet>
 
 
 <!-- Modal: Data Direct Query Builder -->

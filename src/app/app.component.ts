@@ -363,6 +363,7 @@ export class AppComponent implements OnInit {
     showModalWidgetDelete: boolean = false;
     showModalDashboardPrint: boolean = false;
     showModalDataDirectFile: boolean = false;
+    showModalDataDirectFileSpreadsheet: boolean = false;
     showModalDataDirectQueryBuilder: boolean = false;
     showModalDataDirectSQLEditor: boolean = false;
     showModalDataDirectNoSQL: boolean = false;
@@ -1180,7 +1181,6 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDirectFile', '@Start');
 
         this.menuOptionClickPostAction();
-
     
         this.showModalDataDirectFile = false;
         // Open Transformations if so requested
@@ -1188,8 +1188,22 @@ export class AppComponent implements OnInit {
             this.selectedDatasource = returnDS;
             this.showModalDataTransformation = true;
         };
-    }
+    }    
+   
+    handleCloseDataDirectFileSpreadsheet(returnDS: Datasource) {
+        // Handle close of Direct File Spreadsheet load
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDirectFileSpreadsheet', '@Start');
 
+        this.menuOptionClickPostAction();
+    
+        this.showModalDataDirectFileSpreadsheet = false;
+        // Open Transformations if so requested
+        if (returnDS != null) {
+            this.selectedDatasource = returnDS;
+            this.showModalDataTransformation = true;
+        };
+    }
+    
     handleCloseDataDirectQueryBuilder(returnDS: Datasource) {
         // Handle Close of Direct SQL Query Builder
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDirectQueryBuilder', '@Start');
@@ -1455,6 +1469,8 @@ export class AppComponent implements OnInit {
             } else {
                 if (returnedDatasource.createMethod == 'directFile') {
                     this.showModalDataDirectFile = true;
+                } else if (returnedDatasource.createMethod == 'directFileSpreadsheet') {
+                    this.showModalDataDirectFileSpreadsheet = true;
                 } else if (returnedDatasource.createMethod == 'directQueryBuilder') {
                     this.showModalDataDirectQueryBuilder = true;
                 } else if (returnedDatasource.createMethod == 'directSQLEditor') {
