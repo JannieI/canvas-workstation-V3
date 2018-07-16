@@ -115,16 +115,53 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
 
     inspectFile(loadedFile) {
         console.warn('  Begin inspectFile for ', loadedFile)
+
         this.loadedFile = loadedFile;
-        // Create spec for Tributary, and then submit to Inspector
-        let specification = {
-            "source": {
-                "inspector": "tributary.inspectors.spreadsheet:XlsxInspector",
-                "specification": {
-                    "content": btoa(loadedFile.target.result)
+        
+        // Set up Tributary specification according to file type
+        let specification: any;
+        let lastFive: string = this.fileName.slice(-5);
+        if (lastFive.toLowerCase() == '.xlsx') {
+            console.warn('xx xlsx')
+            specification = {
+                "source": {
+                    "inspector": "tributary.inspectors.spreadsheet:XlsxInspector",
+                    "specification": {
+                        "content": btoa(loadedFile.target.result)
+                    }
                 }
-            }
+            };
+        } else {
+            let lastFour: string = this.fileName.slice(-4);
+        
+            if (lastFour.toLowerCase() == '.xls') {
+                console.warn('xx xls')
+
+                specification = {
+                    "source": {
+                        "inspector": "tributary.inspectors.spreadsheet:XlsInspector",
+                        "specification": {
+                            "content": btoa(loadedFile.target.result)
+                        }
+                    }
+                        };
+            } else if (lastFour.toLowerCase() == '.ods') {
+                console.warn('xx ods')
+
+                specification = {
+                    "source": {
+                        "inspector": "tributary.inspectors.spreadsheet:OdsInspector",
+                        "specification": {
+                            "content": btoa(loadedFile.target.result)
+                        }
+                    }
+                        };
+            } else {
+                this.errorMessage = 'Invalid file extension (must be .xlsx .xls .ods)';
+                return;
+            };
         };
+
         this.globalVariableService.getTributaryInspect(specification).then(res => {
             this.worksheets = [];
             res.forEach(row => {
