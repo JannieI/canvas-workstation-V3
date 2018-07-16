@@ -144,7 +144,7 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
                             "content": btoa(loadedFile.target.result)
                         }
                     }
-                        };
+                };
             } else if (lastFour.toLowerCase() == '.ods') {
                 console.warn('xx ods')
 
@@ -155,7 +155,7 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
                             "content": btoa(loadedFile.target.result)
                         }
                     }
-                        };
+                };
             } else {
                 this.errorMessage = 'Invalid file extension (must be .xlsx .xls .ods)';
                 return;
@@ -263,7 +263,7 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
 
                 specification = {
                     "source": {
-                        "connector": "tributary.connectors.spreadsheet:XlsInspector",
+                        "connector": "tributary.connectors.spreadsheet:XlsConnector",
                         "specification": {
                             "content":  btoa(this.loadedFile.target.result),
                             "headers": +this.headerRow,
@@ -277,7 +277,7 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
 
                 specification = {
                     "source": {
-                        "connector": "tributary.connectors.spreadsheet:OdsInspector",
+                        "connector": "tributary.connectors.spreadsheet:OdsConnector",
                         "specification": {
                             "content":  btoa(this.loadedFile.target.result),
                             "headers": +this.headerRow,
