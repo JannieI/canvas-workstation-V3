@@ -65,7 +65,9 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
     reader = new FileReader();
     selectedFile: boolean = true;
     theFile: any;
-    worksheets: string[] = ['Alpha', 'Beta'];
+    worksheets: string[] = [];
+    worksheetColumns: any[] = [];
+    fields: string[] = [];
 
 
 	constructor(
@@ -201,7 +203,9 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
             this.worksheets = [];
             res.forEach(row => {
                 this.worksheets.push(row.name);
-            })
+                this.worksheetColumns.push(row.fields);
+            });
+            console.warn('xx fields', this.worksheetColumns)
         });
 
         
@@ -244,6 +248,13 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
         };
     }
 
+    clickWorksheet(index: number) {
+        // Load the Fields/Columns for a selected Worksheet
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickWorksheet',           '@Start');
+
+        this.fields = this.worksheetColumns[index].map(cols => cols.fields)
+    }
+    
     clickDSPreview() {
         // Load the new DS in the ID section, and show in Preview area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDSPreview',           '@Start');

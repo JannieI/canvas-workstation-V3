@@ -148,7 +148,9 @@
                                
                                 <clr-dg-column [clrDgField]="userID">Worksheets</clr-dg-column>
                                
-                                <clr-dg-row *ngFor="let row of worksheets">
+                                <clr-dg-row *ngFor="let row of worksheets; let i = index"
+                                    (click)="clickWorksheet(i)"
+                                >
                                     <clr-dg-cell>
                                         {{ row }}
                                     </clr-dg-cell>
