@@ -44,7 +44,7 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
 
     }
 
-    currentData: any = [];
+    worksheetData: any = [];
     currentDatasetName: string;
     currentDatasources: Datasource[] = [];
     dataArray: any;
@@ -66,6 +66,7 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
     worksheetColumns: any[] = [];
     fields: string[] = [];
     loadedFile: any;
+    disableAdd: boolean = true;
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -141,6 +142,12 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
             alert('The File APIs are not fully supported in this browser.');
         };
 
+        // Reset
+        this.worksheetColumns = [];
+        this.worksheets = [];
+        this.worksheetData = [];
+        this.disableAdd = true;
+
         // TODO alert('Later: File component to browse ...')
         var inp: any = document.getElementById("get-files");
 
@@ -183,6 +190,7 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
                 this.worksheets.push(row.name);
                 this.worksheetColumns.push(row.fields);
             });
+
             console.warn('xx fields', this.worksheetColumns)
         });
     }
@@ -228,51 +236,10 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickWorksheet',           '@Start');
 
         this.fields = this.worksheetColumns[index].map(cols => cols.name);
+
+        // Can Add now
+        this.disableAdd = false;
         console.warn('xx fields ', this.fields)
-    }
-
-    loadFile(loadedFile) {
-        console.warn('  begin loadFile', loadedFile, this.theFile)
-
-        // skip_rows = [number = rows to skip, string = ignore rows that starts with this]
-        // First row = 0
-        // headers = single integer to indicate the header, array of strings = use THIS text
-        // let specification: any = {
-        //     "source": {
-        //         "connector": "tributary.connectors.spreadsheet:XlsxConnector",
-        //         "specification": {
-        //             "content":  btoa(theFile.target.result),
-        //             "headers": 0,
-        //             "skip_rows": []
-        //         }
-        //     }
-        // };
-        // this.globalVariableService.getTributaryData(specification).then(res => {
-        //     console.warn('xx data from Trib', res) 
-        // });
-
-        // Create spec for Tributary, and then submit to Inspector
-        let specification = {
-            "source": {
-                "inspector": "tributary.inspectors.spreadsheet:XlsxInspector",
-                "specification": {
-                    "content": btoa(loadedFile.target.result)
-                }
-            }
-        };
-        this.globalVariableService.getTributaryInspect(specification).then(res => {
-            console.warn('xx inspect from Trib', res) 
-            this.worksheets = [];
-            this.worksheetColumns = [];
-            res.forEach(row => {
-                this.worksheets.push(row.name);
-                this.worksheetColumns.push(row.fields);
-            });
-            console.warn('xx fields', this.worksheetColumns)
-        });
-
-        
-        console.warn('  end loadFile', loadedFile, this.theFile)
     }
 
     clickDSPreview() {
@@ -303,7 +270,7 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
         };
         this.globalVariableService.getTributaryData(specification).then(res => {
             console.warn('xx data from Trib', res) 
-            this.currentData = res;
+            this.worksheetData = res;
         });
     }
 
@@ -411,13 +378,13 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
                 url: 'data',
                 folderName: '',
                 fileName: '',
-                data: this.currentData,
-                dataRaw: this.currentData
+                data: this.worksheetData,
+                dataRaw: this.worksheetData
             };
 
             let dataToAdd: any = {
                 id: newdSetID,
-                data: this.currentData
+                data: this.worksheetData
             };
 
             // Add to All datasets

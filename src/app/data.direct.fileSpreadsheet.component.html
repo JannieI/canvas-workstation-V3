@@ -107,7 +107,7 @@
                                 class="btn btn-link selectButton"
                                 (click)="clickDSPreview()"
                                 >
-                                Preview
+                                ->
                             </button>
                         </div>
                         <div class="gridButtonAdd">
@@ -115,6 +115,7 @@
                                 type="button"
                                 class="btn btn-primary"
                                 (click)="clickAdd('Saved')"
+                                [disabled]="disableAdd"
                                 >
                                 <span *ngIf="!editingDS">Add</span>
                                 <span *ngIf="editingDS">Save</span>
@@ -136,6 +137,7 @@
                                 type="button"
                                 class="btn btn-link"
                                 (click)="clickAdd('Transformation')"
+                                [disabled]="disableAdd"
                                 >
                                 <span *ngIf="!editingDS">Add</span>
                                 <span *ngIf="editingDS">Save</span>
@@ -176,7 +178,7 @@
                             <clr-datagrid>
     
                                 <clr-dg-column *ngFor="let row of fields">{{row}}</clr-dg-column>
-                                <clr-dg-row *ngFor="let row of currentData">
+                                <clr-dg-row *ngFor="let row of worksheetData">
     
                                     <clr-dg-cell *ngFor="let col of dataFieldNames; let i = index">
                                             {{ row[col] }}
