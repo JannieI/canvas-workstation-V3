@@ -3618,8 +3618,8 @@ export class AppComponent implements OnInit {
         this.currentWidgets.forEach(w => {
             if (w.isSelected) {
                 this.selectedDatasourceID = w.datasourceID;
-            }
-        })
+            };
+        });
         this.showModalDashboardDataQuality = true;
     }
 
@@ -6156,7 +6156,17 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'contextmenuWidgetDataQuality', '@Start');
 
         // Call the function
-        this.clickMenuDashboardDetailDataQuality();
+        // this.clickMenuDashboardDetailDataQuality();
+
+        this.menuOptionClickPreAction();
+
+        this.selectedDatasourceID = -1;
+        this.currentWidgets.forEach(w => {
+            if (w.id == id) {
+                this.selectedDatasourceID = w.datasourceID;
+            };
+        });
+        this.showModalDashboardDataQuality = true;
 
     }
 

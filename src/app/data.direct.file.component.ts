@@ -180,7 +180,7 @@ export class DataDirectFileComponent implements OnInit {
         };
 
         this.globalVariableService.getTributaryData(specification).then(res => {
-            console.warn('xx res from Trib', res) 
+            console.warn('xx data from Trib', res) 
         });
 
         console.warn('  end loadFile', theFile, this.theFile)
@@ -188,9 +188,11 @@ export class DataDirectFileComponent implements OnInit {
 
     abortRead() {
         this.reader.abort();
+        console.warn('xx abort')
     }
 
     errorHandler(evt) {
+        console.warn('xx error')
         switch(evt.target.error.code) {
           case evt.target.error.NOT_FOUND_ERR:
             alert('File Not Found!');
@@ -206,6 +208,8 @@ export class DataDirectFileComponent implements OnInit {
     }
 
     updateProgress(evt) {
+        console.warn('xx progress')
+
         // evt is an ProgressEvent.
         if (evt.lengthComputable) {
             var percentLoaded = Math.round((evt.loaded / evt.total) * 100);
