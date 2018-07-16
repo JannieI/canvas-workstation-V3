@@ -355,15 +355,15 @@
                     <b>Starts On:</b>
                 </div>
                 <div class="gridStartsOn">
-                    <input [(ngModel)]="selectedDashboardSchedule.startsOn"
-                        type="text"
+                    <input type="date"
+                        clrDate
+                        [(ngModel)]="selectedDashboardSchedule.startsOn"
                         name="startsOn"
                         placeholder="Starting Date"
-                        #startsOnVar="ngModel"
                         required
-                        [style.color]="!startsOnVar.valid  &&  editing ? 'red' : 'gray'"
                         [disabled]="!editing  &&  !adding"
                         >
+
                 </div>
 
                 <div class="gridNeverEndsTitle">
