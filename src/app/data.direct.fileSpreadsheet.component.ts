@@ -68,8 +68,9 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
     worksheetColumns: any[] = [];
     fields: string[] = [];
     loadedFile: any;
-    disableAdd: boolean = true;
+    canSave: boolean = false;
     selectedWorksheetRowIndex: number;
+    savedMessage: string = '';
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -149,7 +150,7 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
         this.worksheetColumns = [];
         this.worksheets = [];
         this.worksheetData = [];
-        this.disableAdd = true;
+        this.canSave = false;
 
         // TODO alert('Later: File component to browse ...')
         var inp: any = document.getElementById("get-files");
@@ -248,7 +249,7 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
         this.fields = this.worksheetColumns[index].map(cols => cols.name);
 
         // Can Add now
-        this.disableAdd = false;
+        this.canSave = true;
         console.warn('xx fields ', this.fields)
 
         // Reset

@@ -126,6 +126,14 @@
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
+    .savedMessage {
+        grid-column-start: 7;
+        grid-column-end: 21;
+        grid-row-start: 6;
+        grid-row-end: 7;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
 
     .gridButtonPreview {
         grid-column-start: 7;

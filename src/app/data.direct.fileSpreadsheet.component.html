@@ -102,10 +102,13 @@
                             placeholder="Row number for the Headers">
                         </div>
     
-                        <div class="errorMessage"
-                            >
+                        <div class="errorMessage">
                             {{ errorMessage }}
                         </div>
+                        <div class="savedMessage">
+                            {{ savedMessage }}
+                        </div>
+
                         <div class="gridEditMessage" *ngIf="editingDS">
                             <i>
                                 Note: data will be reloaded when you click Save.
@@ -177,7 +180,7 @@
                                 type="button"
                                 class="btn btn-primary"
                                 (click)="clickAdd('Saved')"
-                                [disabled]="disableAdd"
+                                [disabled]="!canSave"
                                 >
                                 <span *ngIf="!editingDS">Add</span>
                                 <span *ngIf="editingDS">Save</span>
@@ -189,7 +192,7 @@
                                 type="button"
                                 class="btn btn-link"
                                 (click)="clickAdd('Transformation')"
-                                [disabled]="disableAdd"
+                                [disabled]="!canSave"
                                 >
                                 <span *ngIf="!editingDS">Add</span>
                                 <span *ngIf="editingDS">Save</span>
