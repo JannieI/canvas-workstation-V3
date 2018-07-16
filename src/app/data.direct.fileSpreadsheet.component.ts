@@ -52,7 +52,7 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
     currentDatasources: Datasource[] = [];
     dataArray: any;
     dataFieldLengths: number[] = [];
-    dataFieldNames: string[];
+    dataFieldNames: string[] = ['ColA','ColB'];
     dataFieldTypes: string[] = [];
     datasources: Datasource[];
     errorMessage: string = "";
@@ -63,6 +63,7 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
     reader = new FileReader();
     selectedFile: boolean = true;
     theFile: any;
+    worksheets: string[] = ['Alpha', 'Beta'];
 
 
 	constructor(
