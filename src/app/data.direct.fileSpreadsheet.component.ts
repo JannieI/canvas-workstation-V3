@@ -265,59 +265,11 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
         this.errorMessage = '';
 
         // Validation
-        if (this.folderName == ''  ||  this.folderName == null) {
-            this.errorMessage = 'Please enter a folder  OR  select one using the Browse button';
-            return;
-        };
         if (this.fileName == ''  ||  this.fileName == null) {
             this.errorMessage = 'Please enter a file name  OR  select one using the Browse button';
             return;
         };
 
-        // // Get the folder and file, setting some defaults
-        // if (this.folderName == ''  ||  this.folderName == undefined) {
-        //     this.folderName = './assets/vega-datasets/';
-        // }
-        // if (this.fileName ==''  ||  this.fileName == undefined) {
-        //     this.fileName = 'stocks.csv';
-        // };
-
-        // Load synchronously
-        var csv_data = dl.load({url: this.folderName + this.fileName});
-        console.log('DataPopup clickDSPreview LOAD data start:', this.folderName, this.fileName)
-        // let fileFolder: string = './assets/vega-datasets/';
-        let filePath: string = this.folderName + this.fileName;
-
-        let fileSuffix = this.fileName.substr(this.fileName.lastIndexOf('.')+1,this.fileName.length-this.fileName.indexOf('.'));
-
-        if (fileSuffix == 'json') {
-            dl.json({url: filePath}, {}, (err, currentData) => {
-                if (err) {
-                    this.errorMessage = err.status + ':' + err.statusText;
-
-                    console.log('DataPopup clickDSPreview error on load', err)
-                } else {
-                    // Callback
-                    this.fileLoadedCallback(fileSuffix, currentData);
-                };
-            });
-        };
-        if (fileSuffix == 'csv') {
-            dl.csv({url: filePath}, {}, (err, currentData) => {
-                if (err) {
-                    this.errorMessage = err.status + ':' + err.statusText;
-                    console.log('DataPopup clickDSPreview error on load', err)
-                } else {
-                    // Callback
-                    this.fileLoadedCallback(fileSuffix, currentData);
-                };
-            });
-        };
-
-        // Message when file type unknown
-        if (fileSuffix != 'json'  &&  fileSuffix != 'csv') {
-            this.errorMessage = 'Unknown file type';
-        };
     }
 
     clickClose(action: string) {
