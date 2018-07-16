@@ -45,6 +45,7 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
     }
 
     worksheetData: any = [];
+    worksheetDataFull: any = [];
     currentDatasetName: string;
     currentDatasources: Datasource[] = [];
     dataArray: any;
@@ -270,7 +271,8 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
         };
         this.globalVariableService.getTributaryData(specification).then(res => {
             console.warn('xx data from Trib', res) 
-            this.worksheetData = res;
+            this.worksheetData = res.slice(10);
+            this.worksheetDataFull = res.slice(10);
         });
     }
 

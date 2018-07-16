@@ -180,7 +180,7 @@
                                 <clr-dg-column *ngFor="let row of fields">{{row}}</clr-dg-column>
                                 <clr-dg-row *ngFor="let row of worksheetData">
     
-                                    <clr-dg-cell *ngFor="let col of dataFieldNames; let i = index">
+                                    <clr-dg-cell *ngFor="let col of fields; let i = index">
                                             {{ row[col] }}
                                     </clr-dg-cell>
                                 </clr-dg-row>
