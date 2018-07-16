@@ -12,7 +12,7 @@
 .gridOverall {
     display: grid;
     grid-template-columns: repeat(20, 1fr);
-    grid-template-rows: repeat(20, 0.8rem);
+    grid-template-rows: repeat(24, 0.8rem);
     margin-top: 2px;
 }
 
@@ -128,10 +128,59 @@
     }
 
     .gridButtonPreview {
-        grid-column-start: 8;
-        grid-column-end: 9;
+        grid-column-start: 7;
+        grid-column-end: 8;
         grid-row-start: 13;
         grid-row-end: 14;
+        margin-left: 2px;
+        text-align: left;
+    }
+    .gridEditMessage {
+        grid-column-start: 2;
+        grid-column-end: 15;
+        grid-row-start: 6;
+        grid-row-end: 7;
+        text-align: left;
+    }
+
+    .gridTableWorksheets {
+        border: 1px solid gray;
+        border-radius: 4px;
+        grid-column-start: 1;
+        grid-column-end: 4;
+        grid-row-start: 8;
+        grid-row-end: 24;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+        overflow-y: scroll;
+    }
+    .gridTableColumns {
+        border: 1px solid gray;
+        border-radius: 4px;
+        grid-column-start: 4;
+        grid-column-end: 7;
+        grid-row-start: 8;
+        grid-row-end: 24;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+        overflow-y: scroll;
+    }
+    .gridTableData {
+        border: 1px solid gray;
+        border-radius: 4px;
+        grid-column-start: 8;
+        grid-column-end: 21;
+        grid-row-start: 8;
+        grid-row-end: 24;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+        overflow-y: scroll;
+    }
+    .gridButtonCancel {
+        grid-column-start: 6;
+        grid-column-end: 8;
+        grid-row-start: 8;
+        grid-row-end: 9;
         text-align: left;
     }
     .gridButtonAdd {
@@ -141,46 +190,9 @@
         grid-row-end: 9;
         text-align: left;
     }
-
-    .gridEditMessage {
-        grid-column-start: 2;
-        grid-column-end: 15;
-        grid-row-start: 6;
-        grid-row-end: 7;
-        text-align: left;
-    }
-
     .gridButtonTransformation {
         grid-column-start: 15;
         grid-column-end: 21;
         grid-row-start: 8;
         grid-row-end: 9;
-    }
-
-    .gridTableWorksheets {
-        grid-column-start: 1;
-        grid-column-end: 4;
-        grid-row-start: 11;
-        grid-row-end: 24;
-        margin: 2px 2px 2px 2px;
-        text-align: left;
-        overflow-y: scroll;
-    }
-    .gridTableColumns {
-        grid-column-start: 4;
-        grid-column-end: 7;
-        grid-row-start: 11;
-        grid-row-end: 24;
-        margin: 2px 2px 2px 2px;
-        text-align: left;
-        overflow-y: scroll;
-    }
-    .gridTableData {
-        grid-column-start: 9;
-        grid-column-end: 21;
-        grid-row-start: 11;
-        grid-row-end: 24;
-        margin: 2px 2px 2px 2px;
-        text-align: left;
-        overflow-y: scroll;
     }

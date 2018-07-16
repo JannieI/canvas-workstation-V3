@@ -110,17 +110,6 @@
                                 ->
                             </button>
                         </div>
-                        <div class="gridButtonAdd">
-                            <button
-                                type="button"
-                                class="btn btn-primary"
-                                (click)="clickAdd('Saved')"
-                                [disabled]="disableAdd"
-                                >
-                                <span *ngIf="!editingDS">Add</span>
-                                <span *ngIf="editingDS">Save</span>
-                            </button>
-                        </div>
     
                         <div class="errorMessage"
                             >
@@ -130,19 +119,6 @@
                             <i>
                                 Note: data will be reloaded when you click Save.
                             </i>
-                        </div>
-    
-                        <div class="gridButtonTransformation">
-                            <button
-                                type="button"
-                                class="btn btn-link"
-                                (click)="clickAdd('Transformation')"
-                                [disabled]="disableAdd"
-                                >
-                                <span *ngIf="!editingDS">Add</span>
-                                <span *ngIf="editingDS">Save</span>
-                                and open Transformations
-                            </button>
                         </div>
 
                         <div class="gridTableWorksheets">
@@ -193,6 +169,44 @@
     
                             </clr-datagrid>
                         </div>
+
+                        <div class="gridButtonCancel">
+                            <button
+                                type="button"
+                                class="btn btn-primary"
+                                (click)="clickClose()"
+                                [disabled]="disableAdd"
+                                >
+                                Cancel
+                            </button>
+                        </div>
+                        <div class="gridButtonAdd">
+                            <button
+                                type="button"
+                                class="btn btn-primary"
+                                (click)="clickAdd('Saved')"
+                                [disabled]="disableAdd"
+                                >
+                                <span *ngIf="!editingDS">Add</span>
+                                <span *ngIf="editingDS">Save</span>
+                            </button>
+                        </div>
+
+    
+                        <div class="gridButtonTransformation">
+                            <button
+                                type="button"
+                                class="btn btn-link"
+                                (click)="clickAdd('Transformation')"
+                                [disabled]="disableAdd"
+                                >
+                                <span *ngIf="!editingDS">Add</span>
+                                <span *ngIf="editingDS">Save</span>
+                                and open Transformations
+                            </button>
+                        </div>
+    
+
                     </div>
                 </div>
             </div>

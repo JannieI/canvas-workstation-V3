@@ -271,8 +271,8 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
         };
         this.globalVariableService.getTributaryData(specification).then(res => {
             console.warn('xx data from Trib', res) 
-            this.worksheetData = res.slice(10);
-            this.worksheetDataFull = res.slice(10);
+            this.worksheetData = res.slice(0,10);
+            this.worksheetDataFull = res;
         });
     }
 
