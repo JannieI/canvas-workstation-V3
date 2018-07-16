@@ -55,6 +55,8 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
     dataFieldNames: string[] = ['ColA','ColB'];
     dataFieldTypes: string[] = [];
     datasources: Datasource[];
+    datasourceName: string = '';
+    datasourceDescription: string = '';
     errorMessage: string = "";
     existingDSName: string = '';
     fileName: string = '';
@@ -87,7 +89,7 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
                 description: '...',
                 createdBy: '',
                 createdOn: null,
-                createMethod: 'directFile',
+                createMethod: 'directFileSpreadsheet',
                 editor: '',
                 dateEdited: null,
                 refreshedBy: '',
@@ -150,6 +152,7 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
 
         // Access and handle the files
         this.theFile = inp.files[0];
+        this.fileName = this.theFile.name
         console.warn('xx pre readAsBinaryString', this.theFile, this.theFile.name, this.theFile.type, this.theFile.size, this.theFile.lastModifiedDate, this.theFile.lastModifiedDate.toLocaleDateString())
 
         // Read file as Binary
@@ -163,9 +166,10 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
         console.warn('xx Post readAsBinaryString')
     }
 
-    loadFile(theFile) {
-        console.warn('  begin loadFile', theFile, this.theFile)
-        this.fileName = this.theFile;
+    loadFile(loadedFile) {
+        console.warn('  begin loadFile', loadedFile, this.theFile)
+        // this.fileName = this.theFile;
+
         // skip_rows = [number = rows to skip, string = ignore rows that starts with this]
         // First row = 0
         // headers = single integer to indicate the header, array of strings = use THIS text
@@ -183,21 +187,25 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
         //     console.warn('xx data from Trib', res) 
         // });
 
-
+        // Create spec for Tributary, and then submit to Inspector
         let specification = {
             "source": {
                 "inspector": "tributary.inspectors.spreadsheet:XlsxInspector",
                 "specification": {
-                    "content": btoa(theFile.target.result)
+                    "content": btoa(loadedFile.target.result)
                 }
             }
         };
         this.globalVariableService.getTributaryInspect(specification).then(res => {
             console.warn('xx inspect from Trib', res) 
+            this.worksheets = [];
+            res.forEach(row => {
+                this.worksheets.push(row.name);
+            })
         });
 
         
-        console.warn('  end loadFile', theFile, this.theFile)
+        console.warn('  end loadFile', loadedFile, this.theFile)
     }
 
     abortRead() {

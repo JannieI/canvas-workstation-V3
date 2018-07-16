@@ -72,10 +72,10 @@
     }
 
     .gridButtonBrowse {
-        grid-column-start: 14;
-        grid-column-end: 16;
-        grid-row-start: 4;
-        grid-row-end: 5;
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 5;
+        grid-row-end: 6;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
@@ -128,34 +128,33 @@
     }
 
     .gridButtonPreview {
-        grid-column-start: 2;
-        grid-column-end: 6;
-        grid-row-start: 7;
-        grid-row-end: 10;
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 8;
+        grid-row-end: 9;
         text-align: left;
     }
     .gridButtonAdd {
-        grid-column-start: 5;
-        grid-column-end: 7;
-        grid-row-start: 6;
-        grid-row-end: 7;
+        grid-column-start: 13;
+        grid-column-end: 15;
+        grid-row-start: 8;
+        grid-row-end: 9;
         text-align: left;
     }
 
     .gridEditMessage {
-        grid-column-start: 7;
+        grid-column-start: 2;
         grid-column-end: 15;
-        grid-row-start: 9;
-        grid-row-end: 10;
+        grid-row-start: 6;
+        grid-row-end: 7;
         text-align: left;
     }
 
     .gridButtonTransformation {
         grid-column-start: 15;
         grid-column-end: 21;
-        grid-row-start: 6;
-        grid-row-end: 7;
-        margin-top: 12px;
+        grid-row-start: 8;
+        grid-row-end: 9;
     }
 
     .gridTableWorksheets {

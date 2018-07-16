@@ -48,7 +48,7 @@
                             Name:
                         </div>
                         <div class="gridDatasourceName">
-                            <input type="text" [(ngMovel)]="datasourceName"
+                            <input type="text" [(ngModel)]="datasourceName"
                                 id="formFields_7"
                                 >
                                 {{ datasourceName }}
@@ -59,7 +59,7 @@
                         </div>
                         <div class="gridDatasourceDescription">
                             <input type="text" [(ngModel)]="datasourceDescription"
-                                size="40"
+                                size="50"
                                 >
                         </div>
 
@@ -104,7 +104,7 @@
                         <div class="gridButtonPreview">
                             <button
                                 type="button"
-                                class="btn btn-secondary selectButton"
+                                class="btn btn-link selectButton"
                                 (click)="clickDSPreview()"
                                 >
                                 Preview
@@ -149,9 +149,8 @@
                                 <clr-dg-column [clrDgField]="userID">Worksheets</clr-dg-column>
                                
                                 <clr-dg-row *ngFor="let row of worksheets">
-    
-                                    <clr-dg-cell *ngFor="let col of dataFieldNames; let i = index">
-                                            {{ row[col] }}
+                                    <clr-dg-cell>
+                                        {{ row }}
                                     </clr-dg-cell>
                                 </clr-dg-row>
         
