@@ -3126,6 +3126,15 @@ export class AppComponent implements OnInit {
         this.showModalDataDirectFile = true;
     }
 
+    clickMenuDataDirectFileSpreadsheet() {
+        // Open DATA form for a DS that comes from a file.
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDirectFileSpreadsheet', '@Start');
+
+        this.menuOptionClickPreAction();
+
+        this.showModalDataDirectFileSpreadsheet = true;
+    }
+
     clickMenuDataDirectQueryBuilder() {
         // Open DATA form for a DS that comes from a QueryBuilder.
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDirectQueryBuilder', '@Start');
