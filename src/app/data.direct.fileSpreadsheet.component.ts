@@ -284,39 +284,6 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
 
     }
 
-    clickDSPreview() {
-        // Load the new DS in the ID section, and show in Preview area
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickDSPreview',           '@Start');
-
-        console.warn('xx this.loadedFile', this.loadedFile)
-        // Reset
-        this.errorMessage = '';
-
-        // Validation
-        if (this.fileName == ''  ||  this.fileName == null) {
-            this.errorMessage = 'Please enter a file name  OR  select one using the Browse button';
-            return;
-        };
-        // skip_rows = [number = rows to skip, string = ignore rows that starts with this]
-        // First row = 0
-        // headers = single integer to indicate the header, array of strings = use THIS text
-        let specification: any = {
-            "source": {
-                "connector": "tributary.connectors.spreadsheet:XlsxConnector",
-                "specification": {
-                    "content":  btoa(this.loadedFile.target.result),
-                    "headers": 0,
-                    "skip_rows": []
-                }
-            }
-        };
-        this.globalVariableService.getTributaryData(specification).then(res => {
-            console.warn('xx data from Trib', res) 
-            this.worksheetData = res.slice(0,10);
-            this.worksheetDataFull = res;
-        });
-    }
-
     clickClose(action: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
