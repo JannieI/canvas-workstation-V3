@@ -68,8 +68,8 @@ export class DataDirectFileCSVComponent implements OnInit {
 	ngOnInit() {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
-
-        if (!this.selectedDatasource == null) {
+        if (this.selectedDatasource != null) {
+            console.warn('xx this.selectedDatasource', this.selectedDatasource)
             this.newName = this.selectedDatasource.name;
             this.newDescription = this.selectedDatasource.description;
             this.fileName = this.selectedDatasource.fileName;

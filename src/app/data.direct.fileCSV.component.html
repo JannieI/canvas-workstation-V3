@@ -51,7 +51,7 @@
                     </div>
                     <div class="gridDatasourceName">
                         <input type="text" [(ngModel)]="newName"
-                            id="formFields_7"
+                            placeholder="Name of Datasource"
                             [disabled]="editingDS"
                             >
                             {{ datasourceName }}
@@ -62,6 +62,7 @@
                     </div>
                     <div class="gridDatasourceDescription">
                         <input type="text" [(ngModel)]="newDescription"
+                            placeholder="Description of Datasource"
                             size="50"
                             [disabled]="editingDS"
                             >
@@ -93,7 +94,8 @@
                     </div>
                     <div class="gridFileName">
                         <input type="text" [ngModel]="fileName"
-                            placeholder="stocks.csv"
+                            placeholder="Selected file name"
+                            disabled
                             class="selectFile"
                             >
                     </div>
