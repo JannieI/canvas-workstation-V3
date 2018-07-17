@@ -32,10 +32,9 @@
                                     Help
                                 </h5>
                                 <p style="margin-top: 0; color:gray;">
-                                    First select the spreadsheet with the Browse button. 
-                                    Valid file types are .xls, xlsx and .ods (Libre Office).
-                                    This will display a list of worksheets (tabs) inside the
-                                    selected file.  Click a Worksheet to show the fields (columns)
+                                    First select the CSV File (comma separated value) with 
+                                    the Browse button. Only .csv files are accepted.
+                                    This will display a list of files.  Click a File to show the fields (columns)
                                     and a snippet of the data inside it.  Click Add / Save to 
                                     permanently store the Datasource. Due to browser security, the 
                                     folder where the file was read from cannot be recorded. 
@@ -119,15 +118,15 @@
                         </i>
                     </div>
 
-                    <div class="gridTableWorksheets">
+                    <div class="gridTableFiles">
                         <clr-datagrid>
                             
-                            <clr-dg-column [clrDgField]="userID">Worksheets</clr-dg-column>
+                            <clr-dg-column [clrDgField]="userID">Files</clr-dg-column>
                             
-                            <clr-dg-row *ngFor="let row of worksheets; let i = index"
+                            <clr-dg-row *ngFor="let row of files; let i = index"
                                 [style.background-color]="(i == selectedWorksheetRowIndex)? '#123456' : 'white'"
                                 [style.color]="(i == selectedWorksheetRowIndex)? 'white' : 'gray'"
-                                (click)="clickWorksheet(i)"
+                                (click)="clickFile(i)"
                             >
                                 <clr-dg-cell>
                                     {{ row }}

@@ -59,7 +59,7 @@ export class DataDirectFileCSVComponent implements OnInit {
     worksheetColumns: any[] = [];
     worksheetData: any = [];
     worksheetDataFull: any = [];
-    worksheets: string[] = [];
+    files: string[] = [];
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -88,7 +88,7 @@ export class DataDirectFileCSVComponent implements OnInit {
 
         // Reset
         this.worksheetColumns = [];
-        this.worksheets = [];
+        this.files = [];
         this.worksheetData = [];
         this.fields = [];
         this.canSave = false;
@@ -117,9 +117,10 @@ export class DataDirectFileCSVComponent implements OnInit {
     inspectFile(loadedFile) {
         console.warn('  Begin inspectFile for ', loadedFile)
 
+        // Remember for loading
         this.loadedFile = loadedFile;
         
-        // Set up specification according to file type
+        // Set up specification for csv file type
         let specification: any;
         let lastFour: string = this.fileName.slice(-4);
     
@@ -128,11 +129,12 @@ export class DataDirectFileCSVComponent implements OnInit {
 
             specification = {
                 "source": {
-                    "connector": "tributary.connectors.spreadsheet:CsvInspector",
+                    "connector": "tributary.inspectors.csv:CsvInspector",
                     "specification": {
-                        "content":  btoa(this.loadedFile.target.result),
+                        "content":  this.loadedFile.target.result,
                         "headers": +this.headerRow,
-                        "skip_rows": []
+                        "skip_rows": [],
+                        "delimiter": ","
                     }
                 }
             };
@@ -141,19 +143,18 @@ export class DataDirectFileCSVComponent implements OnInit {
             return;
         };
 
+        // Call Tributary
         this.globalVariableService.getTributaryInspect(specification).then(res => {
-            this.worksheets = [];
+            this.files = [];
             res.forEach(row => {
-                this.worksheets.push(row.name);
+                this.files.push(row.name);
                 this.worksheetColumns.push(row.fields);
             });
 
-            if (this.worksheets.length > 0) {
-                this.clickWorksheet(0);
+            if (this.files.length > 0) {
+                this.clickFile(0);
             };
         });
-
-
     }
 
     abortRead() {
@@ -192,9 +193,9 @@ export class DataDirectFileCSVComponent implements OnInit {
         };
     }
 
-    clickWorksheet(index: number) {
+    clickFile(index: number) {
         // Load the Fields/Columns for a selected Worksheet
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickWorksheet',           '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickFile',           '@Start');
 
         // Set highlighted row
         this.selectedWorksheetRowIndex = index;
@@ -227,9 +228,9 @@ export class DataDirectFileCSVComponent implements OnInit {
 
             specification = {
                 "source": {
-                    "connector": "tributary.connectors.spreadsheet:CsvInspector",
+                    "connector": "tributary.connectors.csv:CsvConnector",
                     "specification": {
-                        "content":  btoa(this.loadedFile.target.result),
+                        "content":  this.loadedFile.target.result,
                         "headers": +this.headerRow,
                         "skip_rows": []
                     }
