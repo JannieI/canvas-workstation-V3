@@ -1,5 +1,5 @@
 /*
- * Create a new datasources from a CSV File.
+ * Create a new datasources from a JSON File.
  */
 
 // Angular
@@ -121,23 +121,23 @@ export class DataDirectFileJSONComponent implements OnInit {
         // Remember for loading
         this.loadedFile = loadedFile;
         
-        // Set up specification for csv file type
+        // Set up specification for JSON file type
         let specification: any;
-        let lastFour: string = this.fileName.slice(-4);
+        let lastFive: string = this.fileName.slice(-5);
     
-        if (lastFour.toLowerCase() == '.csv') {
-            console.warn('xx csv')
+        if (lastFive.toLowerCase() == '.json') {
+            console.warn('xx json')
 
             specification = {
                 "source": {
-                    "inspector": "tributary.inspectors.csv:CsvInspector",
+                    "inspector": "tributary.inspectors.json:JsonInspector",
                     "specification": {
                         "content":  this.loadedFile.target.result
                     }
                 }
             };
         } else {
-            this.errorMessage = 'Invalid file extension (must be .csv)';
+            this.errorMessage = 'Invalid file extension (must be .json)';
             return;
         };
 
@@ -219,14 +219,14 @@ export class DataDirectFileJSONComponent implements OnInit {
 
         // Set up specification according to file type
         let specification: any;
-        let lastFour: string = this.fileName.slice(-4);
+        let lastFive: string = this.fileName.slice(-5);
     
-        if (lastFour.toLowerCase() == '.csv') {
-            console.warn('xx csv')
+        if (lastFive.toLowerCase() == '.json') {
+            console.warn('xx json')
 
             specification = {
                 "source": {
-                    "connector": "tributary.connectors.csv:CsvConnector",
+                    "connector": "tributary.connectors.json:JsonConnector",
                     "specification": {
                         "content":  this.loadedFile.target.result,
                         "headers": +this.headerRow,
@@ -235,7 +235,7 @@ export class DataDirectFileJSONComponent implements OnInit {
                 }
             };
         } else {
-            this.errorMessage = 'Invalid file extension (must be .csv)';
+            this.errorMessage = 'Invalid file extension (must be .json)';
             return;
         };
         
@@ -358,7 +358,7 @@ export class DataDirectFileJSONComponent implements OnInit {
                 dataFieldTypes: [],
                 dataFieldLengths: [],
                 parameters: '',
-                createMethod: 'directFileCSV',
+                createMethod: 'directFileJSON',
                 createdBy: this.globalVariableService.currentUser.userID,
                 createdOn: today,
                 editor: '',
@@ -376,7 +376,7 @@ export class DataDirectFileJSONComponent implements OnInit {
                 webTableIndex: '',
                 connectionID: null,
                 dataTableID: null,
-                businessGlossary: 'Obtained from CSV File' + this.fileName ,
+                businessGlossary: 'Obtained from JSON File' + this.fileName ,
                 dataDictionary: '',
                 databaseName: '',
                 port: '',
