@@ -1,5 +1,5 @@
 /*
- * Create a new datasources from a Spreadsheet.
+ * Create a new datasources from a CSV File.
  */
 
 // Angular
@@ -55,10 +55,9 @@ export class DataDirectFileCSVComponent implements OnInit {
     reader = new FileReader();
     savedMessage: string = '';
     theFile: any;
-    selectedWorksheetRowIndex: number;
-    worksheetColumns: any[] = [];
-    worksheetData: any = [];
-    worksheetDataFull: any = [];
+    fileColumns: any[] = [];
+    fileData: any = [];
+    fileDataFull: any = [];
     files: string[] = [];
 
 	constructor(
@@ -87,9 +86,9 @@ export class DataDirectFileCSVComponent implements OnInit {
         };
 
         // Reset
-        this.worksheetColumns = [];
+        this.fileColumns = [];
         this.files = [];
-        this.worksheetData = [];
+        this.fileData = [];
         this.fields = [];
         this.canSave = false;
 
@@ -129,12 +128,9 @@ export class DataDirectFileCSVComponent implements OnInit {
 
             specification = {
                 "source": {
-                    "connector": "tributary.inspectors.csv:CsvInspector",
+                    "inspector": "tributary.inspectors.csv:CsvInspector",
                     "specification": {
-                        "content":  this.loadedFile.target.result,
-                        "headers": +this.headerRow,
-                        "skip_rows": [],
-                        "delimiter": ","
+                        "content":  this.loadedFile.target.result
                     }
                 }
             };
@@ -148,11 +144,11 @@ export class DataDirectFileCSVComponent implements OnInit {
             this.files = [];
             res.forEach(row => {
                 this.files.push(row.name);
-                this.worksheetColumns.push(row.fields);
+                this.fileColumns.push(row.fields);
             });
 
             if (this.files.length > 0) {
-                this.clickFile(0);
+                this.loadFileContent(0);
             };
         });
     }
@@ -193,13 +189,12 @@ export class DataDirectFileCSVComponent implements OnInit {
         };
     }
 
-    clickFile(index: number) {
-        // Load the Fields/Columns for a selected Worksheet
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickFile',           '@Start');
+    loadFileContent(index: number) {
+        // Load the File content
+        this.globalFunctionService.printToConsole(this.constructor.name,'loadFileContent',           '@Start');
 
         // Set highlighted row
-        this.selectedWorksheetRowIndex = index;
-        this.fields = this.worksheetColumns[index].map(cols => cols.name);
+        this.fields = this.fileColumns[index].map(cols => cols.name);
 
         // Can Add now
         this.canSave = true;
@@ -244,8 +239,8 @@ export class DataDirectFileCSVComponent implements OnInit {
         this.globalVariableService.getTributaryData(specification).then(res => {
 
             // Fill the data
-            this.worksheetData = res.slice(0,10);
-            this.worksheetDataFull = res;
+            this.fileData = res.slice(0,10);
+            this.fileDataFull = res;
         });
 
     }
@@ -325,7 +320,7 @@ export class DataDirectFileCSVComponent implements OnInit {
             };
             let updatedData: any = {
                 id: dataID,
-                data: this.worksheetData
+                data: this.fileData
             };
 
             // Add Data, then dataset, then DS
@@ -377,7 +372,7 @@ export class DataDirectFileCSVComponent implements OnInit {
                 webTableIndex: '',
                 connectionID: null,
                 dataTableID: null,
-                businessGlossary: 'Obtained from Spreadsheet' + this.fileName ,
+                businessGlossary: 'Obtained from CSV File' + this.fileName ,
                 dataDictionary: '',
                 databaseName: '',
                 port: '',
@@ -403,7 +398,7 @@ export class DataDirectFileCSVComponent implements OnInit {
             };
             let newData: any = {
                 id: null,
-                data: this.worksheetData
+                data: this.fileData
             };
 
             // Add Data, then dataset, then DS

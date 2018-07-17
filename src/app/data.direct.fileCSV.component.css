@@ -143,7 +143,7 @@
         text-align: left;
     }
 
-    .gridTableFiles {
+    .gridTableColumns {
         border: 1px solid gray;
         border-radius: 4px;
         grid-column-start: 1;
@@ -154,21 +154,10 @@
         text-align: left;
         overflow-y: scroll;
     }
-    .gridTableColumns {
-        border: 1px solid gray;
-        border-radius: 4px;
-        grid-column-start: 4;
-        grid-column-end: 7;
-        grid-row-start: 8;
-        grid-row-end: 23;
-        margin: 2px 2px 2px 2px;
-        text-align: left;
-        overflow-y: scroll;
-    }
     .gridTableData {
         border: 1px solid gray;
         border-radius: 4px;
-        grid-column-start: 8;
+        grid-column-start: 5;
         grid-column-end: 21;
         grid-row-start: 8;
         grid-row-end: 23;

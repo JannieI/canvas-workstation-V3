@@ -118,24 +118,6 @@
                         </i>
                     </div>
 
-                    <div class="gridTableFiles">
-                        <clr-datagrid>
-                            
-                            <clr-dg-column [clrDgField]="userID">Files</clr-dg-column>
-                            
-                            <clr-dg-row *ngFor="let row of files; let i = index"
-                                [style.background-color]="(i == selectedWorksheetRowIndex)? '#123456' : 'white'"
-                                [style.color]="(i == selectedWorksheetRowIndex)? 'white' : 'gray'"
-                                (click)="clickFile(i)"
-                            >
-                                <clr-dg-cell>
-                                    {{ row }}
-                                </clr-dg-cell>
-                            </clr-dg-row>
-    
-                        </clr-datagrid>
-                    </div>
-
                     <div class="gridTableColumns">
                         <clr-datagrid>
                             <clr-dg-column [clrDgField]="userID">Columns</clr-dg-column>
@@ -153,7 +135,7 @@
                         <clr-datagrid>
 
                             <clr-dg-column *ngFor="let row of fields">{{row}}</clr-dg-column>
-                            <clr-dg-row *ngFor="let row of worksheetData">
+                            <clr-dg-row *ngFor="let row of fileData">
 
                                 <clr-dg-cell *ngFor="let col of fields; let i = index">
                                         {{ row[col] }}
