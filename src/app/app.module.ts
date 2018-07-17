@@ -73,6 +73,7 @@ import { ShapeEditComponent }         from './shape.editor.component';
 import { ShapeDeleteComponent }       from './shape.delete.component';
 
 import { DataDirectFileComponent }    from './data.direct.file.component';
+import { DataDirectFileCSVComponent } from './data.direct.fileCSV.component';
 import { DataDirectFileSpreadsheetComponent }   from './data.direct.fileSpreadsheet.component';
 import { DataDirectQueryBuilderComponent }      from './data.direct.queryBuilder.component';
 import { DataDirectSQLEditorComponent }         from './data.direct.sqlEditor.component';
@@ -181,6 +182,7 @@ import { StatusbarComponent }         from './statusbar.component';
 
         DataDirectFileComponent,
         DataDirectFileSpreadsheetComponent,
+        DataDirectFileCSVComponent,
         DataDirectQueryBuilderComponent,
         DataDirectSQLEditorComponent,
         DataDirectNoSQLComponent,
