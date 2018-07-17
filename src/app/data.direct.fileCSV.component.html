@@ -52,6 +52,7 @@
                     <div class="gridDatasourceName">
                         <input type="text" [(ngModel)]="newName"
                             id="formFields_7"
+                            [disabled]="editingDS"
                             >
                             {{ datasourceName }}
                     </div>
@@ -62,6 +63,7 @@
                     <div class="gridDatasourceDescription">
                         <input type="text" [(ngModel)]="newDescription"
                             size="50"
+                            [disabled]="editingDS"
                             >
                     </div>
 
