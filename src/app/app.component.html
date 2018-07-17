@@ -4072,6 +4072,16 @@
 </data-direct-fileCSV>
 
 
+<!-- Modal: Data Direct From JSON -->
+<data-direct-fileJSON
+    class="formPopupDashboard"
+    *ngIf="showModalDataDirectFileJSON"
+    [editingDS]="editingDS"
+    [selectedDatasource]="selectedDatasource"
+    (formDataDirectFileJSONClosed)="handleCloseDataDirectFileJSON($event)">Load Data Direct From JSON ...
+</data-direct-fileJSON>
+
+
 <!-- Modal: Data Direct From Spreadsheet -->
 <data-direct-fileSpreadsheet
     class="formPopupDashboard"

@@ -365,6 +365,7 @@ export class AppComponent implements OnInit {
     showModalDataDirectFile: boolean = false;
     showModalDataDirectFileSpreadsheet: boolean = false;
     showModalDataDirectFileCSV: boolean = false;
+    showModalDataDirectFileJSON: boolean = false;
     showModalDataDirectQueryBuilder: boolean = false;
     showModalDataDirectSQLEditor: boolean = false;
     showModalDataDirectNoSQL: boolean = false;
@@ -1205,7 +1206,22 @@ export class AppComponent implements OnInit {
             this.showModalDataTransformation = true;
         };
     }
-       
+        
+    handleCloseDataDirectFileJSON(returnDS: Datasource) {
+        // Handle close of Direct File JSON file load
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDirectFileJSON', '@Start');
+
+        this.menuOptionClickPostAction();
+    
+        this.showModalDataDirectFileJSON = false;
+
+        // Open Transformations if so requested
+        if (returnDS != null) {
+            this.selectedDatasource = returnDS;
+            this.showModalDataTransformation = true;
+        };
+    }
+
     handleCloseDataDirectFileSpreadsheet(returnDS: Datasource) {
         // Handle close of Direct File Spreadsheet load
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDirectFileSpreadsheet', '@Start');
@@ -1487,6 +1503,8 @@ export class AppComponent implements OnInit {
                     this.showModalDataDirectFile = true;
                 } else if (returnedDatasource.createMethod == 'directFileCSV') {
                     this.showModalDataDirectFileCSV = true;
+                } else if (returnedDatasource.createMethod == 'directFileJSON') {
+                    this.showModalDataDirectFileJSON = true;
                 } else if (returnedDatasource.createMethod == 'directFileSpreadsheet') {
                     this.showModalDataDirectFileSpreadsheet = true;
                 } else if (returnedDatasource.createMethod == 'directQueryBuilder') {
@@ -3169,6 +3187,17 @@ export class AppComponent implements OnInit {
         this.editingDS = false;
         this.selectedDatasource = null;
         this.showModalDataDirectFileCSV = true;
+    }
+
+    clickMenuDataDirectFileJSON() {
+        // Open form to create a DS with data that comes from a JSON file.
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDirectFileJSON', '@Start');
+
+        this.menuOptionClickPreAction();
+        
+        this.editingDS = false;
+        this.selectedDatasource = null;
+        this.showModalDataDirectFileJSON = true;
     }
 
     clickMenuDataDirectFileSpreadsheet() {
