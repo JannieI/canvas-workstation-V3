@@ -3189,6 +3189,7 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPreAction();
 
         this.editingDS = false;
+        this.selectedDatasource = null;
         this.showModalDataDirectQueryBuilder = true;
     }
 
