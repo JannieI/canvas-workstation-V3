@@ -17,7 +17,7 @@ import { GlobalVariableService }      from './global-variable.service';
 // Our Models
 import { Dataset }                    from './models';
 import { Datasource }                 from './models';
-
+import { TributaryServerType }        from './models';
 
 @Component({
     selector: 'data-direct-sqlEditor',
@@ -50,7 +50,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
     fileDataFull: any = [];
     reader = new FileReader();
     savedMessage: string = '';
-    serverTypes: { serverType: string; driverName: string}[]
+    serverTypes: TributaryServerType[];
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -103,7 +103,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
                 serverType: 'PostgresSQL',
                 serverName: 'pellefant.db.elephantsql.com',
                 dataTableName: 'ftfhgfzh',
-                dataSQLStatement: '',
+                dataSQLStatement: 'select count(*) from table',
                 dataNoSQLStatement: '',
                 dataNeo4jStatement: '',
                 dataGraphQLStatement: '',
@@ -131,22 +131,25 @@ export class DataDirectSQLEditorComponent implements OnInit {
             this.errorMessage = 'The name is compulsory';
             return;
         };
-        // skip_rows = [number = rows to skip, string = ignore rows that starts with this]
-        // First row = 0
-        // headers = single integer to indicate the header, array of strings = use THIS text
 
-        // Set up specification according to file type
+        // Get drivers
+        let driver: string = this.serverTypes
+            .filter(styp => styp.serverType == this.selectedDatasource.serverType)
+            .map(styp => styp.driverName)[0];
+
+        // Set up specification
+        this.selectedDatasource.dataSQLStatement = this.selectedDatasource.dataSQLStatement.trim();
         let specification: any = {
             "source": {
-                "connector": "tributary.connectors.csv:CsvConnector",
+                "connector": "tributary.connectors.sql:SqlConnector",
                 "specification": {
-                    "drivername": this.selectedDatasource.serverType,
+                    "drivername": driver,
                     "username": this.selectedDatasource.username,
                     "password": this.selectedDatasource.password,
-                    "database": this.selectedDatasource.serverName,
-                    "host": this.selectedDatasource.databaseName,
-                    "port": this.selectedDatasource.port,
-                    "query": "select count(*) from table"
+                    "database": this.selectedDatasource.databaseName,
+                    "host": this.selectedDatasource.serverName,
+                    "port": +this.selectedDatasource.port,
+                    "query": this.selectedDatasource.dataSQLStatement
                 }
             }
         };

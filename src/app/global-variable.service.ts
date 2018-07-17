@@ -564,14 +564,26 @@ export class GlobalVariableService {
         },
         {
             serverType: 'PostgresSQL', 
-            driverName: 'postgres',
+            driverName: 'postgresql',
             connector: 'tributary.connectors.sql:SqlConnector'
         },
         {
             serverType:'Microsoft SQL',
-            driverName: 'mssql',
+            driverName: 'mssql',    // "mssql+pyodbc", "mssql+pymssql"
+            connector: 'tributary.connectors.sql:SqlConnector'
+        },
+        {
+            serverType:'SQLite',
+            driverName: 'sqlite',
+            connector: 'tributary.connectors.sql:SqlConnector'
+        },
+        {
+            serverType:'Oracle',
+            driverName: 'oracle',
             connector: 'tributary.connectors.sql:SqlConnector'
         }
+
+
     ];
 
     // System-wide related variables, set at Installation - for later use

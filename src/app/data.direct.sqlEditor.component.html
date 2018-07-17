@@ -2,7 +2,7 @@
         <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
             <div class="modal-content">
                 <form #f="ngForm" role="form" novalidate>
-    
+
                     <div class="gridOverall">
                         <button type="button" class="closeButton" (click)="clickClose()">
                             <b>X</b>
@@ -18,14 +18,14 @@
                                     <h5 style="margin-top: 0; color:gray;">
                                         Help
                                     </h5>
-                                    <p style="margin-top: 0; color:gray;"> 
+                                    <p style="margin-top: 0; color:gray;">
                                         Add / Edit a Datasource from a SQL Database: identify the Connection,
                                         type the SQL string, and see the results with GO.  Click the X or press Escape to close this form.
                                     </p>
                                 </clr-signpost-content>
                             </clr-signpost>
                         </div>
-        
+
                         <div class="gridDatasourceNameTitle">
                             <b>Name:</b>
                         </div>
@@ -36,25 +36,25 @@
                                 title="Name of the Datasource"
                                 >
                         </div>
-    
+
                         <div class="gridServerTypeTitle">
-                            <b>Server:</b>
+                            <b>Type:</b>
                         </div>
                         <div class="select gridServerType">
                             <select
                                 [(ngModel)]="selectedDatasource.serverType"
                                 name="serverType"
                                 (change)="clickTemplateDashboard($event)"
-                                placeholder="Select a Dashboard as Template"
+                                placeholder="Select a Type of server, ie MySQL"
                                 >
                                 <option *ngFor="let row of serverTypes">
                                     {{ row.serverType }}
                                 </option>
                             </select>
                         </div>
-                        
+
                         <div class="gridServerNameTitle">
-                            <b>Type:</b>
+                            <b>Server:</b>
                         </div>
                         <div class="gridServerName">
                             <input [(ngModel)]="selectedDatasource.serverName"
@@ -63,7 +63,7 @@
                                 title="Name of the Server / Host"
                                 >
                         </div>
-    
+
                         <div class="gridServerPortTitle">
                             <b>Port:</b>
                         </div>
@@ -74,7 +74,7 @@
                                 title="Name of the port on the DB Server"
                                 >
                         </div>
-    
+
                         <div class="gridDatabaseTitle">
                             <b>Database:</b>
                         </div>
@@ -85,7 +85,7 @@
                                 title="Name of the Database or Host"
                                 >
                         </div>
-    
+
                         <div class="gridUsernameTitle">
                             <b>Username:</b>
                         </div>
@@ -96,7 +96,7 @@
                                 title="Name of the connection"
                                 >
                         </div>
-    
+
                         <div class="gridPasswordTitle">
                             <b>Password:</b>
                         </div>
@@ -107,7 +107,7 @@
                                 title="User Password"
                                 >
                         </div>
-    
+
                         <div class="gridDescriptionTitle">
                             <b>Description:</b>
                         </div>
@@ -118,11 +118,11 @@
                                 title="Description of the Datasource"
                                 >
                         </div>
-            
+
                         <div *ngIf="errorMessage!=''" class="gridErrorMessage">
                             {{ errorMessage }}
                         </div>
-                            
+
                         <div class="gridGoButton">
                             <button
                                 type="button"
@@ -133,33 +133,36 @@
                                 <clr-icon shape="arrow right" size="12"></clr-icon>
                             </button>
                         </div>
-    
-                        <textarea class="gridSQLText">SELECT * FROM [Invoices]</textarea>
+
+                        <textarea class="gridSQLText" [(ngModel)]="selectedDatasource.dataSQLStatement"
+                            name="textArea"
+                            >SELECT COUNT(*) FROM table
+                        </textarea>
 
                         <div class="gridData" *ngIf="showPreview">
                             <clr-datagrid class="gridPreviewData">
-    
+
                                 <clr-dg-column *ngFor="let row of dataFieldsSelected"
                                     >
                                     {{ row }}
                                 </clr-dg-column>
-                                
+
                                 <clr-dg-row *clrDgItems="let row of currentData">
-    
+
                                     <clr-dg-cell *ngFor="let col of dataFieldsSelected; let i = index">
                                             {{ row[col] }}
                                     </clr-dg-cell>
                                 </clr-dg-row>
-    
+
                                 <clr-dg-footer>
                                     {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
                                     of {{pagination.totalItems}} rows
                                     <clr-dg-pagination #pagination [clrDgPageSize]="8"></clr-dg-pagination>
                                 </clr-dg-footer>
-    
+
                             </clr-datagrid>
                         </div>
-                    
+
                         <div class="gridButtonCancel">
                                 <button
                                 type="button"
@@ -169,7 +172,7 @@
                                 Cancel
                             </button>
                         </div>
-    
+
                         <div class="gridButtonSave">
                             <button
                                 type="button"
@@ -195,4 +198,3 @@
             </div>
         </div>
     </div>
-    
