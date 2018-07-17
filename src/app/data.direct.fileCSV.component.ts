@@ -119,48 +119,26 @@ export class DataDirectFileCSVComponent implements OnInit {
 
         this.loadedFile = loadedFile;
         
-        // Set up Tributary specification according to file type
+        // Set up specification according to file type
         let specification: any;
-        let lastFive: string = this.fileName.slice(-5);
-        if (lastFive.toLowerCase() == '.xlsx') {
-            console.warn('xx xlsx')
+        let lastFour: string = this.fileName.slice(-4);
+    
+        if (lastFour.toLowerCase() == '.csv') {
+            console.warn('xx csv')
+
             specification = {
                 "source": {
-                    "inspector": "tributary.inspectors.spreadsheet:XlsxInspector",
+                    "connector": "tributary.connectors.spreadsheet:CsvInspector",
                     "specification": {
-                        "content": btoa(loadedFile.target.result)
+                        "content":  btoa(this.loadedFile.target.result),
+                        "headers": +this.headerRow,
+                        "skip_rows": []
                     }
                 }
             };
         } else {
-            let lastFour: string = this.fileName.slice(-4);
-        
-            if (lastFour.toLowerCase() == '.xls') {
-                console.warn('xx xls')
-
-                specification = {
-                    "source": {
-                        "inspector": "tributary.inspectors.spreadsheet:XlsInspector",
-                        "specification": {
-                            "content": btoa(loadedFile.target.result)
-                        }
-                    }
-                };
-            } else if (lastFour.toLowerCase() == '.ods') {
-                console.warn('xx ods')
-
-                specification = {
-                    "source": {
-                        "inspector": "tributary.inspectors.spreadsheet:OdsInspector",
-                        "specification": {
-                            "content": btoa(loadedFile.target.result)
-                        }
-                    }
-                };
-            } else {
-                this.errorMessage = 'Invalid file extension (must be .xlsx .xls .ods)';
-                return;
-            };
+            this.errorMessage = 'Invalid file extension (must be .csv)';
+            return;
         };
 
         this.globalVariableService.getTributaryInspect(specification).then(res => {
@@ -253,7 +231,6 @@ export class DataDirectFileCSVComponent implements OnInit {
                     "specification": {
                         "content":  btoa(this.loadedFile.target.result),
                         "headers": +this.headerRow,
-                        "sheet": index,
                         "skip_rows": []
                     }
                 }
