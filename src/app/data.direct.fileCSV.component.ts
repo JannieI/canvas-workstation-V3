@@ -47,7 +47,11 @@ export class DataDirectFileCSVComponent implements OnInit {
     canSave: boolean = false;
     errorMessage: string = "";
     fields: string[] = [];
+    fileColumns: any[] = [];
+    fileData: any = [];
+    fileDataFull: any = [];
     fileName: string = '';
+    files: string[] = [];
     headerRow: string = '0';
     loadedFile: any;
     newDescription: string = '';
@@ -55,10 +59,6 @@ export class DataDirectFileCSVComponent implements OnInit {
     reader = new FileReader();
     savedMessage: string = '';
     theFile: any;
-    fileColumns: any[] = [];
-    fileData: any = [];
-    fileDataFull: any = [];
-    files: string[] = [];
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
