@@ -112,7 +112,7 @@ export class DataDirectFileJSONComponent implements OnInit {
         this.reader.onload = (theFile) =>{ this.inspectFile(theFile) };
 
         // Read in the image file as a data URL.
-        this.reader.readAsBinaryString(this.theFile);
+        this.reader.readAsText(this.theFile);
     }
 
     inspectFile(loadedFile) {
@@ -228,9 +228,7 @@ export class DataDirectFileJSONComponent implements OnInit {
                 "source": {
                     "connector": "tributary.connectors.json:JsonConnector",
                     "specification": {
-                        "content":  this.loadedFile.target.result,
-                        "headers": +this.headerRow,
-                        "skip_rows": []
+                        "content":  this.loadedFile.target.result
                     }
                 }
             };
