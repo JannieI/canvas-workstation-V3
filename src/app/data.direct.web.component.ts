@@ -56,7 +56,7 @@ export class DataDirectWebComponent implements OnInit {
 
         // Known ones
         if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
-            this.clickClose('Close');
+            this.clickClose();
             return;
         };
 
@@ -190,11 +190,11 @@ export class DataDirectWebComponent implements OnInit {
         });
     }
 
-    clickClose(action: string) {
+    clickClose() {
         // Close the form, nothing saved
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-        this.formDataDirectWebClosed.emit(action);
+        this.formDataDirectWebClosed.emit(null);
 
     }
 
