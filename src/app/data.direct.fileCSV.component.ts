@@ -142,6 +142,7 @@ export class DataDirectFileCSVComponent implements OnInit {
         // Call Tributary
         this.globalVariableService.getTributaryInspect(specification).then(res => {
             this.files = [];
+            console.warn('xx res', res)
             res.forEach(row => {
                 this.files.push(row.name);
                 this.fileColumns.push(row.fields);
@@ -237,6 +238,7 @@ export class DataDirectFileCSVComponent implements OnInit {
         };
         
         this.globalVariableService.getTributaryData(specification).then(res => {
+            console.warn('xx res C', res)
 
             // Fill the data
             this.fileData = res.slice(0,10);

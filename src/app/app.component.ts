@@ -1198,6 +1198,7 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPostAction();
     
         this.showModalDataDirectFileCSV = false;
+
         // Open Transformations if so requested
         if (returnDS != null) {
             this.selectedDatasource = returnDS;
@@ -3160,16 +3161,18 @@ export class AppComponent implements OnInit {
     }
 
     clickMenuDataDirectFileCSV() {
-        // Open DATA form for a DS that comes from a CSV file.
+        // Open form to create a DS with data that comes from a CSV file.
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDirectFileCSV', '@Start');
 
         this.menuOptionClickPreAction();
-
+        
+        this.editingDS = false;
+        this.selectedDatasource = null;
         this.showModalDataDirectFileCSV = true;
     }
 
     clickMenuDataDirectFileSpreadsheet() {
-        // Open DATA form for a DS that comes from a Spreadsheet.
+        // Open form to create a DS with data that comes from a Spreadsheet.
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDirectFileSpreadsheet', '@Start');
 
         this.menuOptionClickPreAction();
