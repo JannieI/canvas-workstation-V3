@@ -376,7 +376,7 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
             };
             let updatedData: any = {
                 id: dataID,
-                data: this.worksheetData
+                data: this.worksheetDataFull
             };
 
             // Add Data, then dataset, then DS
@@ -454,7 +454,7 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
             };
             let newData: any = {
                 id: null,
-                data: this.worksheetData
+                data: this.worksheetDataFull
             };
 
             // Add Data, then dataset, then DS

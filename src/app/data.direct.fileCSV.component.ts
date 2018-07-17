@@ -320,7 +320,7 @@ export class DataDirectFileCSVComponent implements OnInit {
             };
             let updatedData: any = {
                 id: dataID,
-                data: this.fileData
+                data: this.fileDataFull
             };
 
             // Add Data, then dataset, then DS
@@ -398,7 +398,7 @@ export class DataDirectFileCSVComponent implements OnInit {
             };
             let newData: any = {
                 id: null,
-                data: this.fileData
+                data: this.fileDataFull
             };
 
             // Add Data, then dataset, then DS
