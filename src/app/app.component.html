@@ -373,6 +373,14 @@
                                 <button
                                     type="button"
                                     clrDropdownItem
+                                    title="Create a new Datasources from a Comma Separated Value TEXT file"
+                                    (click)="clickMenuDataDirectFileCSV()"
+                                    >
+                                    From CSV File
+                                </button>
+                                <button
+                                    type="button"
+                                    clrDropdownItem
                                     title="Create a new Datasources from a Spreadsheet"
                                     (click)="clickMenuDataDirectFileSpreadsheet()"
                                     >
@@ -4052,7 +4060,16 @@
     [selectedDatasource]="selectedDatasource"
     (formDataDirectFileClosed)="handleCloseDataDirectFile($event)">Load Data Direct From File ...
 </data-direct-file>
-handleCloseDataDirectFileSpreadsheet
+
+
+<!-- Modal: Data Direct From CSV -->
+<data-direct-fileCSV
+    class="formPopupDashboard"
+    *ngIf="showModalDataDirectFileCSV"
+    [editingDS]="editingDS"
+    [selectedDatasource]="selectedDatasource"
+    (formDataDirectFileCSVClosed)="handleCloseDataDirectFileCSV($event)">Load Data Direct From CSV ...
+</data-direct-fileCSV>
 
 
 <!-- Modal: Data Direct From Spreadsheet -->

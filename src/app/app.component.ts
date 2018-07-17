@@ -364,6 +364,7 @@ export class AppComponent implements OnInit {
     showModalDashboardPrint: boolean = false;
     showModalDataDirectFile: boolean = false;
     showModalDataDirectFileSpreadsheet: boolean = false;
+    showModalDataDirectFileCSV: boolean = false;
     showModalDataDirectQueryBuilder: boolean = false;
     showModalDataDirectSQLEditor: boolean = false;
     showModalDataDirectNoSQL: boolean = false;
@@ -1190,6 +1191,20 @@ export class AppComponent implements OnInit {
         };
     }    
    
+    handleCloseDataDirectFileCSV(returnDS: Datasource) {
+        // Handle close of Direct File CSV file load
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDirectFileCSV', '@Start');
+
+        this.menuOptionClickPostAction();
+    
+        this.showModalDataDirectFileCSV = false;
+        // Open Transformations if so requested
+        if (returnDS != null) {
+            this.selectedDatasource = returnDS;
+            this.showModalDataTransformation = true;
+        };
+    }
+       
     handleCloseDataDirectFileSpreadsheet(returnDS: Datasource) {
         // Handle close of Direct File Spreadsheet load
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDirectFileSpreadsheet', '@Start');
@@ -1469,6 +1484,8 @@ export class AppComponent implements OnInit {
             } else {
                 if (returnedDatasource.createMethod == 'directFile') {
                     this.showModalDataDirectFile = true;
+                } else if (returnedDatasource.createMethod == 'directFileCSV') {
+                    this.showModalDataDirectFileCSV = true;
                 } else if (returnedDatasource.createMethod == 'directFileSpreadsheet') {
                     this.showModalDataDirectFileSpreadsheet = true;
                 } else if (returnedDatasource.createMethod == 'directQueryBuilder') {
@@ -3142,8 +3159,17 @@ export class AppComponent implements OnInit {
         this.showModalDataDirectFile = true;
     }
 
+    clickMenuDataDirectFileCSV() {
+        // Open DATA form for a DS that comes from a CSV file.
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDirectFileCSV', '@Start');
+
+        this.menuOptionClickPreAction();
+
+        this.showModalDataDirectFileCSV = true;
+    }
+
     clickMenuDataDirectFileSpreadsheet() {
-        // Open DATA form for a DS that comes from a file.
+        // Open DATA form for a DS that comes from a Spreadsheet.
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDirectFileSpreadsheet', '@Start');
 
         this.menuOptionClickPreAction();
