@@ -3221,6 +3221,8 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
+        this.editingDS = false;
+        this.selectedDatasource = null;
         this.showModalDataDirectService = true;
     }
 
@@ -3230,6 +3232,8 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
+        this.editingDS = false;
+        this.selectedDatasource = null;
         this.showModalDataDirectWeb = true;
     }
 
