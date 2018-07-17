@@ -1499,9 +1499,7 @@ export class AppComponent implements OnInit {
                 this.globalVariableService.continueToTransformations = false;
                 this.showModalDataTransformation = true;
             } else {
-                if (returnedDatasource.createMethod == 'directFile') {
-                    this.showModalDataDirectFile = true;
-                } else if (returnedDatasource.createMethod == 'directFileCSV') {
+                if (returnedDatasource.createMethod == 'directFileCSV') {
                     this.showModalDataDirectFileCSV = true;
                 } else if (returnedDatasource.createMethod == 'directFileJSON') {
                     this.showModalDataDirectFileJSON = true;
@@ -3168,15 +3166,6 @@ export class AppComponent implements OnInit {
 
         this.showModalDataRefreshRepeat = true;
     }    
-
-    clickMenuDataDirectFile() {
-        // Open DATA form for a DS that comes from a file.
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDirectFile', '@Start');
-
-        this.menuOptionClickPreAction();
-
-        this.showModalDataDirectFile = true;
-    }
 
     clickMenuDataDirectFileCSV() {
         // Open form to create a DS with data that comes from a CSV file.
