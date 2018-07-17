@@ -1,0 +1,211 @@
+<div class="modal modalBox">
+    <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div modalContent>
+                <div class="gridOverall">
+                    <button type="button" class="closeButton" (click)="clickClose()">
+                        <b>X</b>
+                    </button>
+
+                    <div class="gridTitle">
+                        <b>
+                            <span *ngIf="!editingDS">Create a new </span>
+                            <span *ngIf="editingDS">Edit </span>
+                            Datasource
+                            <span *ngIf="editingDS"
+                                style="color:gray"
+                                >
+                                <span *ngIf="selectedDatasource">
+                                    {{ selectedDatasource.name }}
+                                </span>
+                                
+                            </span>
+                            obtained from a CSV File.
+                        </b>
+                        <clr-signpost>
+                            <clr-icon shape="info-circle"
+                                clrSignpostTrigger>
+                            </clr-icon>
+                                <clr-signpost-content *clrIfOpen
+                                [clrPosition]="'bottom-middle'">
+                                <h5 style="margin-top: 0; color:gray;">
+                                    Help
+                                </h5>
+                                <p style="margin-top: 0; color:gray;">
+                                    First select the spreadsheet with the Browse button. 
+                                    Valid file types are .xls, xlsx and .ods (Libre Office).
+                                    This will display a list of worksheets (tabs) inside the
+                                    selected file.  Click a Worksheet to show the fields (columns)
+                                    and a snippet of the data inside it.  Click Add / Save to 
+                                    permanently store the Datasource. Due to browser security, the 
+                                    folder where the file was read from cannot be recorded. 
+                                    Important: a copy will be made of the file, so it has to be 
+                                    reloaded for Canvas to register the latest changes to the file.
+                                    Click the X or press Escape to close this form.                                        
+                                </p>
+                            </clr-signpost-content>
+                        </clr-signpost>
+                    </div>
+
+                    <div class="gridDatasourceNameTitle">
+                        Name:
+                    </div>
+                    <div class="gridDatasourceName">
+                        <input type="text" [(ngModel)]="newName"
+                            id="formFields_7"
+                            >
+                            {{ datasourceName }}
+                    </div>
+
+                    <div class="gridDatasourceDescriptionTitle">
+                        Description:
+                    </div>
+                    <div class="gridDatasourceDescription">
+                        <input type="text" [(ngModel)]="newDescription"
+                            size="50"
+                            >
+                    </div>
+
+                    <div class="gridButtonBrowse">
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            (dblclick)="clickFileBrowse()"
+                            >
+                            Browse
+                        </button>
+                    </div>
+                    <div class="gridButtonBrowse">
+                        <input class="btn btn-primary"
+                            style="background-color:brown; border:none;color:white;opacity:0;"
+                            type="file"
+                            name="client-file"
+                            id="get-files"
+                            placeholder="Browse"
+                            multiple
+                            (change)="clickFileBrowse()"
+                            />
+                    </div>
+                    
+                    <div class="gridFileNameTitle">
+                        Filename:
+                    </div>
+                    <div class="gridFileName">
+                        <input type="text" [ngModel]="fileName"
+                            placeholder="stocks.csv"
+                            class="selectFile"
+                            >
+                    </div>
+
+                    <div class="gridHeaderRowTitle">
+                        Header Row Nr:
+                    </div>
+                    <div class="gridHeaderRow">
+                        <input type="number" [ngModel]="headerRow" 
+                            placeholder="Row number for the Headers"
+                            >
+                    </div>
+
+                    <div class="errorMessage">
+                        {{ errorMessage }}
+                    </div>
+                    <div class="savedMessage">
+                        {{ savedMessage }}
+                    </div>
+
+                    <div class="gridEditMessage" *ngIf="editingDS">
+                        <i>
+                            Note: data will be reloaded when you click Save.
+                        </i>
+                    </div>
+
+                    <div class="gridTableWorksheets">
+                        <clr-datagrid>
+                            
+                            <clr-dg-column [clrDgField]="userID">Worksheets</clr-dg-column>
+                            
+                            <clr-dg-row *ngFor="let row of worksheets; let i = index"
+                                [style.background-color]="(i == selectedWorksheetRowIndex)? '#123456' : 'white'"
+                                [style.color]="(i == selectedWorksheetRowIndex)? 'white' : 'gray'"
+                                (click)="clickWorksheet(i)"
+                            >
+                                <clr-dg-cell>
+                                    {{ row }}
+                                </clr-dg-cell>
+                            </clr-dg-row>
+    
+                        </clr-datagrid>
+                    </div>
+
+                    <div class="gridTableColumns">
+                        <clr-datagrid>
+                            <clr-dg-column [clrDgField]="userID">Columns</clr-dg-column>
+
+                            <clr-dg-row *ngFor="let row of fields">    
+                                <clr-dg-cell>
+                                    {{ row }}
+                                </clr-dg-cell>
+                            </clr-dg-row>
+
+                        </clr-datagrid>
+                    </div>
+
+                    <div class="gridTableData">
+                        <clr-datagrid>
+
+                            <clr-dg-column *ngFor="let row of fields">{{row}}</clr-dg-column>
+                            <clr-dg-row *ngFor="let row of worksheetData">
+
+                                <clr-dg-cell *ngFor="let col of fields; let i = index">
+                                        {{ row[col] }}
+                                </clr-dg-cell>
+                            </clr-dg-row>
+
+                            <clr-dg-footer>
+                                {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+                                of {{pagination.totalItems}} rows
+                                <clr-dg-pagination #pagination [clrDgPageSize]="10"></clr-dg-pagination>
+                            </clr-dg-footer>
+
+                        </clr-datagrid>
+                    </div>
+
+                    <div class="gridButtonCancel">
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            (click)="clickClose()"
+                            >
+                            Cancel
+                        </button>
+                    </div>
+                    <div class="gridButtonAdd">
+                        <button
+                            type="button"
+                            class="btn btn-primary"
+                            (click)="clickAdd()"
+                            [disabled]="!canSave"
+                            >
+                            <span *ngIf="!editingDS">Add</span>
+                            <span *ngIf="editingDS">Save</span>
+                        </button>
+                    </div>
+
+                    <div class="gridButtonTransformation">
+                        <button
+                            type="button"
+                            class="btn btn-link"
+                            (click)="clickAdd('Transformation')"
+                            [disabled]="!canSave"
+                            >
+                            <span *ngIf="!editingDS">Add</span>
+                            <span *ngIf="editingDS">Save</span>
+                            and open Transformations
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
