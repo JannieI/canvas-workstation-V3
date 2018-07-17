@@ -72,7 +72,6 @@ import { SlicerDeleteComponent }      from './slicer.delete.component';
 import { ShapeEditComponent }         from './shape.editor.component';
 import { ShapeDeleteComponent }       from './shape.delete.component';
 
-import { DataDirectFileComponent }    from './data.direct.file.component';
 import { DataDirectFileCSVComponent } from './data.direct.fileCSV.component';
 import { DataDirectFileJSONComponent }          from './data.direct.fileJSON.component';
 import { DataDirectFileSpreadsheetComponent }   from './data.direct.fileSpreadsheet.component';
@@ -181,7 +180,6 @@ import { StatusbarComponent }         from './statusbar.component';
         DashboardDataQualityComponent,
         DashboardUsagestatsComponent,
 
-        DataDirectFileComponent,
         DataDirectFileSpreadsheetComponent,
         DataDirectFileCSVComponent,
         DataDirectFileJSONComponent,
