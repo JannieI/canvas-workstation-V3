@@ -102,15 +102,15 @@
 
     .gridHeaderRowTitle {
         grid-column-start: 14;
-        grid-column-end: 16;
+        grid-column-end: 17;
         grid-row-start: 5;
         grid-row-end: 6;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
     .gridHeaderRow {
-        grid-column-start: 15;
-        grid-column-end: 21;
+        grid-column-start: 17;
+        grid-column-end: 19;
         grid-row-start: 5;
         grid-row-end: 6;
         margin: 2px 2px 2px 6px;

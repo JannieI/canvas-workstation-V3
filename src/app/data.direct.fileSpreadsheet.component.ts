@@ -90,6 +90,7 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
         this.worksheetColumns = [];
         this.worksheets = [];
         this.worksheetData = [];
+        this.fields = [];
         this.canSave = false;
 
         // TODO alert('Later: File component to browse ...')
