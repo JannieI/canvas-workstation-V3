@@ -362,7 +362,6 @@ export class AppComponent implements OnInit {
     showModalWidgetExport: boolean = false;
     showModalWidgetDelete: boolean = false;
     showModalDashboardPrint: boolean = false;
-    showModalDataDirectFile: boolean = false;
     showModalDataDirectFileSpreadsheet: boolean = false;
     showModalDataDirectFileCSV: boolean = false;
     showModalDataDirectFileJSON: boolean = false;
@@ -1178,20 +1177,6 @@ export class AppComponent implements OnInit {
         this.showModalWidgetDescription = false;
     }
 
-    handleCloseDataDirectFile(returnDS: Datasource) {
-        // Handle close of Direct File load
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDirectFile', '@Start');
-
-        this.menuOptionClickPostAction();
-    
-        this.showModalDataDirectFile = false;
-        // Open Transformations if so requested
-        if (returnDS != null) {
-            this.selectedDatasource = returnDS;
-            this.showModalDataTransformation = true;
-        };
-    }    
-   
     handleCloseDataDirectFileCSV(returnDS: Datasource) {
         // Handle close of Direct File CSV file load
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDirectFileCSV', '@Start');
