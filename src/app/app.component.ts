@@ -3197,9 +3197,10 @@ export class AppComponent implements OnInit {
         // Open DATA form for a DS that comes from a SQL using SQL statements.
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDirectSQLEditor', '@Start');
 
-
         this.menuOptionClickPreAction();
 
+        this.editingDS = false;
+        this.selectedDatasource = null;
         this.showModalDataDirectSQLEditor = true;
     }
 
