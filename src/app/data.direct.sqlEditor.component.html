@@ -147,7 +147,7 @@
                                     {{ row }}
                                 </clr-dg-column>
 
-                                <clr-dg-row *clrDgItems="let row of currentData">
+                                <clr-dg-row *clrDgItems="let row of fileData">
 
                                     <clr-dg-cell *ngFor="let col of dataFieldsSelected; let i = index">
                                             {{ row[col] }}

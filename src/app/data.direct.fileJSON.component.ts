@@ -120,11 +120,11 @@ export class DataDirectFileJSONComponent implements OnInit {
 
         // Remember for loading
         this.loadedFile = loadedFile;
-        
+
         // Set up specification for JSON file type
         let specification: any;
         let lastFive: string = this.fileName.slice(-5);
-    
+
         if (lastFive.toLowerCase() == '.json') {
             console.warn('xx json')
 
@@ -220,7 +220,7 @@ export class DataDirectFileJSONComponent implements OnInit {
         // Set up specification according to file type
         let specification: any;
         let lastFive: string = this.fileName.slice(-5);
-    
+
         if (lastFive.toLowerCase() == '.json') {
             console.warn('xx json')
 
@@ -236,7 +236,7 @@ export class DataDirectFileJSONComponent implements OnInit {
             this.errorMessage = 'Invalid file extension (must be .json)';
             return;
         };
-        
+
         this.globalVariableService.getTributaryData(specification).then(res => {
             console.warn('xx res C', res)
 
@@ -297,7 +297,7 @@ export class DataDirectFileJSONComponent implements OnInit {
             let ds: number[] = [];
             let dSetID: number = 1;
             for (var i = 0; i < this.globalVariableService.datasets.length; i++) {
-                if(this.globalVariableService.datasets[i].datasourceID == 
+                if(this.globalVariableService.datasets[i].datasourceID ==
                     this.selectedDatasource.id) {
                     ds.push(this.globalVariableService.datasets[i].id)
                 };
@@ -311,7 +311,7 @@ export class DataDirectFileJSONComponent implements OnInit {
                 };
             });
             let updatedDataset: Dataset = this.globalVariableService.datasets[datasetIndex];
-            
+
             let dataID: number = -1;
             let dataIndex: number = updatedDataset.url.indexOf('/');
             if (dataIndex >= 0) {

@@ -103,7 +103,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
                 serverType: 'PostgresSQL',
                 serverName: 'pellefant.db.elephantsql.com',
                 dataTableName: 'ftfhgfzh',
-                dataSQLStatement: 'select count(*) from table',
+                dataSQLStatement: 'select * from \"invoices\"',
                 dataNoSQLStatement: '',
                 dataNeo4jStatement: '',
                 dataGraphQLStatement: '',
@@ -137,29 +137,47 @@ export class DataDirectSQLEditorComponent implements OnInit {
             .filter(styp => styp.serverType == this.selectedDatasource.serverType)
             .map(styp => styp.driverName)[0];
 
-        // Set up specification
-        this.selectedDatasource.dataSQLStatement = this.selectedDatasource.dataSQLStatement.trim();
-        let specification: any = {
+        let specificationInspect: any = {
             "source": {
-                "connector": "tributary.connectors.sql:SqlConnector",
+                "inspector": "tributary.inspectors.sql:SqlInspector",
                 "specification": {
                     "drivername": driver,
                     "username": this.selectedDatasource.username,
                     "password": this.selectedDatasource.password,
                     "database": this.selectedDatasource.databaseName,
                     "host": this.selectedDatasource.serverName,
-                    "port": +this.selectedDatasource.port,
-                    "query": this.selectedDatasource.dataSQLStatement
+                    "port": +this.selectedDatasource.port
                 }
             }
         };
-        
-        this.globalVariableService.getTributaryData(specification).then(res => {
-            console.warn('xx res C', res)
-
-            // Fill the data
-            this.fileData = res.slice(0,10);
-            this.fileDataFull = res;
+        // Call Tributary
+        this.globalVariableService.getTributaryInspect(specificationInspect).then(res => {
+            console.warn('xx res I', res)
+            
+            // Set up specification
+            this.selectedDatasource.dataSQLStatement = this.selectedDatasource.dataSQLStatement.trim();
+            let specificationConnect: any = {
+                "source": {
+                    "connector": "tributary.connectors.sql:SqlConnector",
+                    "specification": {
+                        "drivername": driver,
+                        "username": this.selectedDatasource.username,
+                        "password": this.selectedDatasource.password,
+                        "database": this.selectedDatasource.databaseName,
+                        "host": this.selectedDatasource.serverName,
+                        "port": +this.selectedDatasource.port,
+                        "query": this.selectedDatasource.dataSQLStatement
+                    }
+                }
+            };
+            
+            this.globalVariableService.getTributaryData(specificationConnect).then(res => {
+                console.warn('xx res C', res)
+                
+                // Fill the data
+                this.fileData = res.slice(0,10);
+                this.fileDataFull = res;
+            });
         });
 
     }

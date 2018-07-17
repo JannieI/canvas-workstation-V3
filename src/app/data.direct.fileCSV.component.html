@@ -18,7 +18,7 @@
                                 <span *ngIf="selectedDatasource">
                                     {{ selectedDatasource.name }}
                                 </span>
-                                
+
                             </span>
                             obtained from a CSV File.
                         </b>
@@ -32,15 +32,15 @@
                                     Help
                                 </h5>
                                 <p style="margin-top: 0; color:gray;">
-                                    First select the CSV File (comma separated value) with 
+                                    First select the CSV File (comma separated value) with
                                     the Browse button. Only .csv files are accepted.
                                     This will display a list of files.  Click a File to show the fields (columns)
-                                    and a snippet of the data inside it.  Click Add / Save to 
-                                    permanently store the Datasource. Due to browser security, the 
-                                    folder where the file was read from cannot be recorded. 
-                                    Important: a copy will be made of the file, so it has to be 
+                                    and a snippet of the data inside it.  Click Add / Save to
+                                    permanently store the Datasource. Due to browser security, the
+                                    folder where the file was read from cannot be recorded.
+                                    Important: a copy will be made of the file, so it has to be
                                     reloaded for Canvas to register the latest changes to the file.
-                                    Click the X or press Escape to close this form.                                        
+                                    Click the X or press Escape to close this form.
                                 </p>
                             </clr-signpost-content>
                         </clr-signpost>
@@ -88,7 +88,7 @@
                             (change)="clickFileBrowse()"
                             />
                     </div>
-                    
+
                     <div class="gridFileNameTitle">
                         Filename:
                     </div>
@@ -104,7 +104,7 @@
                         Header Row Nr:
                     </div>
                     <div class="gridHeaderRow">
-                        <input type="number" [ngModel]="headerRow" 
+                        <input type="number" [ngModel]="headerRow"
                             placeholder="Row number for the Headers"
                             >
                     </div>
@@ -126,7 +126,7 @@
                         <clr-datagrid>
                             <clr-dg-column [clrDgField]="userID">Columns</clr-dg-column>
 
-                            <clr-dg-row *ngFor="let row of fields">    
+                            <clr-dg-row *ngFor="let row of fields">
                                 <clr-dg-cell>
                                     {{ row }}
                                 </clr-dg-cell>
@@ -142,7 +142,7 @@
                             <clr-dg-row *ngFor="let row of fileData">
 
                                 <clr-dg-cell *ngFor="let col of fields; let i = index">
-                                        {{ row[col] }}
+                                    {{ row[col] }}
                                 </clr-dg-cell>
                             </clr-dg-row>
 
