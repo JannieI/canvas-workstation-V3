@@ -26,6 +26,7 @@ import { TributaryServerType }        from './models';
 })
 export class DataDirectSQLEditorComponent implements OnInit {
 
+    @Input() editingDS: boolean;
     @Input() selectedDatasource: Datasource;
 
     @Output() formDataDirectSQLEditorClosed: EventEmitter<Datasource> = new EventEmitter();
@@ -233,7 +234,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
         // Construct DS and add to DB
         let today: Date = new Date();
 
-        if (this.selectedDatasource != null) {
+        if (this.editingDS) {
             this.selectedDatasource.editor = this.globalVariableService.currentUser.userID;
             this.selectedDatasource.dateEdited = today;
 
@@ -362,9 +363,6 @@ export class DataDirectSQLEditorComponent implements OnInit {
                 this.savedMessage = 'Datasource created';
             });
         };
-
-
-
 
     }
 
