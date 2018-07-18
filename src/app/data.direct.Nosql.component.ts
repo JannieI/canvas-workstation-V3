@@ -9,261 +9,15 @@ import { HostListener }               from '@angular/core';
 import { Input }                     from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
-import { Router }                     from '@angular/router';
 
 // Our Functions
 import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
 // Our Models
-import { DataTable }                  from './models';
-import { DataField }                  from './models';
+import { Dataset }                    from './models';
 import { Datasource }                 from './models';
-
-
-const constDataTables: DataTable[] = 
-[
-    {
-        id: 1,
-        connectionID: null,
-        nameDB: 'Invoices',
-        nameLocal: '',
-        type: 'Table',
-        description: '',
-        businessGlossary: '',
-        creator: '',
-        dateCreated: '',
-        editor: '',
-        dateEdited: '',
-    },
-    {
-        id: 2,
-        connectionID: null,
-        nameDB: 'Accounts',
-        nameLocal: '',
-        type: 'Table',
-        description: '',
-        businessGlossary: '',
-        creator: '',
-        dateCreated: '',
-        editor: '',
-        dateEdited: '',
-    }
-];
-const constDataFields: DataField[] = 
-[
-    {
-        id: 0,
-        tableID: 1,
-        nameDB: 'id',
-        nameLocal: '',
-        type: '',
-        format: '',
-        filterOperand: '',
-        filterValue: '',
-        calculation: '',
-        orderSequence: 0,
-        orderDirection: '',
-        description: '',
-        businessGlossary: '',
-        keyField: false,
-        explainedBy: '',
-        creator: '',
-        dateCreated: '',
-        editor: '',
-        dateEdited: '',
-        hidden: false
-    },
-    {
-        id: 2,
-        tableID: 1,
-        nameDB: 'InvoiceDate',
-        nameLocal: '',
-        type: '',
-        format: '',
-        filterOperand: '',
-        filterValue: '',
-        calculation: '',
-        orderSequence: 0,
-        orderDirection: '',
-        description: '',
-        businessGlossary: '',
-        keyField: false,
-        explainedBy: '',
-        creator: '',
-        dateCreated: '',
-        editor: '',
-        dateEdited: '',
-        hidden: false
-    },
-    {
-        id: 3,
-        tableID: 1,
-        nameDB: 'Total',
-        nameLocal: '',
-        type: '',
-        format: '',
-        filterOperand: '',
-        filterValue: '',
-        calculation: '',
-        orderSequence: 0,
-        orderDirection: '',
-        description: '',
-        businessGlossary: '',
-        keyField: false,
-        explainedBy: '',
-        creator: '',
-        dateCreated: '',
-        editor: '',
-        dateEdited: '',
-        hidden: false
-    },
-    {
-        id: 0,
-        tableID: 2,
-        nameDB: 'id',
-        nameLocal: '',
-        type: '',
-        format: '',
-        filterOperand: '',
-        filterValue: '',
-        calculation: '',
-        orderSequence: 0,
-        orderDirection: '',
-        description: '',
-        businessGlossary: '',
-        keyField: false,
-        explainedBy: '',
-        creator: '',
-        dateCreated: '',
-        editor: '',
-        dateEdited: '',
-        hidden: false
-    },
-    {
-        id: 2,
-        tableID: 2,
-        nameDB: 'TransactDate',
-        nameLocal: '',
-        type: '',
-        format: '',
-        filterOperand: '',
-        filterValue: '',
-        calculation: '',
-        orderSequence: 0,
-        orderDirection: '',
-        description: '',
-        businessGlossary: '',
-        keyField: false,
-        explainedBy: '',
-        creator: '',
-        dateCreated: '',
-        editor: '',
-        dateEdited: '',
-        hidden: false
-    },
-    {
-        id: 3,
-        tableID: 2,
-        nameDB: 'Amount',
-        nameLocal: '',
-        type: '',
-        format: '',
-        filterOperand: '',
-        filterValue: '',
-        calculation: '',
-        orderSequence: 0,
-        orderDirection: '',
-        description: '',
-        businessGlossary: '',
-        keyField: false,
-        explainedBy: '',
-        creator: '',
-        dateCreated: '',
-        editor: '',
-        dateEdited: '',
-        hidden: false
-    }
-
-];
-
-const constDataInvoices: any = 
-[
-    {
-        id: 0,
-        InvoiceDate: '2017/01/01',
-        Total: 20
-    },
-    {
-        id: 1,
-        InvoiceDate: '2017/01/01',
-        Total: 40
-    },
-    {
-        id: 2,
-        InvoiceDate: '2017/01/01',
-        Total: 50
-    },
-    {
-        id: 3,
-        InvoiceDate: '2017/01/01',
-        Total: 60
-    },
-    {
-        id: 4,
-        InvoiceDate: '2017/01/01',
-        Total: 80
-    },
-    {
-        id: 5,
-        InvoiceDate: '2017/01/01',
-        Total: 100
-    },
-    {
-        id: 6,
-        InvoiceDate: '2017/01/01',
-        Total: 120
-    }
-
-];
-const constDataAcounts: any = 
-[
-    {
-        id: 1,
-        TransactDate: '2017/01/01',
-        Amount: 1
-    },
-    {
-        id: 2,
-        TransactDate: '2017/01/01',
-        Amount: 2
-    },
-    {
-        id: 3,
-        TransactDate: '2017/01/01',
-        Amount: 3
-    },
-    {
-        id: 4,
-        TransactDate: '2017/01/01',
-        Amount: 4
-    },
-    {
-        id: 5,
-        TransactDate: '2017/01/01',
-        Amount: 5
-    },
-    {
-        id: 6,
-        TransactDate: '2017/01/01',
-        Amount: 6
-    },
-    {
-        id: 7,
-        TransactDate: '2017/01/01',
-        Amount: 7
-    }
-];
+import { TributaryServerType }        from './models';
 
 
 @Component({
@@ -273,6 +27,7 @@ const constDataAcounts: any =
 })
 export class DataDirectNoSQLComponent implements OnInit {
 
+    @Input() editingDS: boolean;
     @Input() selectedDatasource: Datasource;
     
     @Output() formDataDirectNoSQLEditorClosed: EventEmitter<Datasource> = new EventEmitter();
@@ -284,50 +39,49 @@ export class DataDirectNoSQLComponent implements OnInit {
 
         // Known ones
         if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
-            this.clickClose('Close');
+            this.clickClose();
             return;
         };
 
-    }
+    }  
 
-    connectionName: string = 'tributary.connectors.sql:SqlConnector';
-    currentData: any = [];
-    dataTables: DataTable[] = [];
-    dataFields: DataField[] = [];
-    dataFieldsFiltered: DataField[] = [];
-    dataFieldsSelected: string[];
+
+    canSave: boolean = false;
     errorMessage: string = "";
-    selectedTableID: number;
-    selectedFieldRowIndex: number = 0;
-    selectedFields: DataField[] = [];
-    selectedTableRowIndex: number = 0;
-    serverTypes: { serverType: string; driverName: string}[]
+    fileData: any = [];
+    fileDataFull: any = [];
+    reader = new FileReader();
+    savedMessage: string = '';
+    selectedFields: string = "BillingAddress,BillingCity,BillingCountry,BillingPostalCode,BillingState,CustomerId,InvoiceDate,InvoiceId,Total";
+    serverTypes: TributaryServerType[];
     showPreview: boolean = false;
-
-    // connections ->
+    spinner: boolean = false;
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
-        private router: Router,
 	) {}
 
 	ngOnInit() {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
+        // Set base info
+        this.serverTypes = this.globalVariableService.serverTypes;
+
         if (this.selectedDatasource == null) {
+            let today: Date = new Date();
             this.selectedDatasource = {
-                id: 0,
-                type: '',
+                id: null,
+                type: 'Server',
                 subType: '',
                 typeVersion: '',
-                name: 'New DS',
+                name: '',
                 username: 'ftfhgfzh',
                 password: 'L0Eph9ftbx0yh45aeDtgzsGKBa2ZNhfl',
-                description: 'Post Trade Data Vault',
-                createdBy: '',
-                createdOn: null,
+                description: '',
+                createdBy: this.globalVariableService.currentUser.userID,
+                createdOn: today,
                 createMethod: 'directNoSQL',
                 editor: '',
                 dateEdited: null,
@@ -355,108 +109,225 @@ export class DataDirectNoSQLComponent implements OnInit {
                 serverType: 'PostgresSQL',
                 serverName: 'pellefant.db.elephantsql.com',
                 dataTableName: 'ftfhgfzh',
-                dataSQLStatement: '',
+                dataSQLStatement: 'select * from \"invoices\"',
                 dataNoSQLStatement: '',
                 dataNeo4jStatement: '',
                 dataGraphQLStatement: '',
-                businessGlossary: '',
+                businessGlossary: 'Obtained using SQL Editor',
                 dataDictionary: ''
-                            
+
             };
         };
 
+
     }
-    
+
     clickGo() {
-        // Clicked Go: execute SQL typed in, and return results and errors
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickGo', '@Start');
+        // Load the File content
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickGo',           '@Start');
 
-    }
-         
-    filterFields(tableID: number) {
-        // Filter Fields on Selected Connection
-        this.globalFunctionService.printToConsole(this.constructor.name,'filterFields', '@Start');
+        // Reset
+        this.errorMessage = '';
+        this.showPreview = false;
+        this.canSave = false;
 
-        console.warn('xx id', tableID)
-        this.dataFieldsFiltered = this.dataFields.filter(df => {
-            if (df.tableID == tableID) {
-                return df;
-            };
-        });
+        // Show user
+        this.spinner = true;
 
-    }
-    
-    clickGetData() {
-        // Get the data
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickGetData', '@Start');
-        let data = 
-        {
+        // Get drivers
+        let driver: string = this.serverTypes
+            .filter(styp => styp.serverType == this.selectedDatasource.serverType)
+            .map(styp => styp.driverName)[0];
+
+        let specificationInspect: any = {
             "source": {
-                "connector": "tributary.connectors.sql:SqlConnector",
-                "drivername": "postgres",
-                "username": "ftfhgfzh",
-                "password": "L0Eph9ftbx0yh45aeDtgzsGKBa2ZNhfl",
-                "database": "ftfhgfzh",
-                "host": "pellefant.db.elephantsql.com",
-                "port": 5432,
-                "query": "select I.\"InvoiceDate\" as \"Date\", sum(I.\"Total\") as \"Amount\" from invoices I group by I.\"InvoiceDate\""
+                "inspector": "tributary.inspectors.sql:SqlInspector",
+                "specification": {
+                    "drivername": driver,
+                    "username": this.selectedDatasource.username,
+                    "password": this.selectedDatasource.password,
+                    "database": this.selectedDatasource.databaseName,
+                    "host": this.selectedDatasource.serverName,
+                    "port": +this.selectedDatasource.port
+                }
             }
-        }
+        };
+        // Call Tributary
+        this.globalVariableService.getTributaryInspect(specificationInspect).then(res => {
+            console.warn('xx res I', res)
 
-        this.globalVariableService.getTributaryData(data).then(res => {
-            console.warn('xx res', res, this.selectedDatasource)
+            // Set up specification
+            this.selectedDatasource.dataSQLStatement = this.selectedDatasource.dataSQLStatement.trim();
+            let specificationConnect: any = {
+                "source": {
+                    "connector": "tributary.connectors.sql:SqlConnector",
+                    "specification": {
+                        "drivername": driver,
+                        "username": this.selectedDatasource.username,
+                        "password": this.selectedDatasource.password,
+                        "database": this.selectedDatasource.databaseName,
+                        "host": this.selectedDatasource.serverName,
+                        "port": +this.selectedDatasource.port,
+                        "query": this.selectedDatasource.dataSQLStatement
+                    }
+                }
+            };
+
+            this.globalVariableService.getTributaryData(specificationConnect).then(res => {
+
+                // Fill the data
+                this.fileData = res.slice(0,10);
+                this.fileDataFull = res;
+                this.selectedDatasource.dataFields = this.selectedFields.split(",");
+
+                // Show the results
+                this.showPreview = true;
+                this.spinner = false;
+
+                // Can Add now
+                this.canSave = true;
+
+            })
+            .catch(err => {
+                this.spinner = false;
+                this.errorMessage = 'Error connecting to server: check login or permissions'
+                    + err.message;
+            });
+        })
+        .catch(err => {
+            console.warn('xx err', err)
+            this.spinner = false;
+            this.errorMessage = 'Error connecting to server: check login or permissions'
+                + err.message;
         });
 
-        if (this.selectedTableID == 1) {
-            this.currentData = constDataInvoices;
-        } else {
-            this.currentData = constDataAcounts;
-        };
-        
-        console.warn('xx this.currentData', this.currentData)
-        this.showPreview = true;
     }
 
-    clickRefresh() {
-        // Get the tables and fields from the DB
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickRefresh', '@Start');
-    
-        // Fill Table and Field Names
-        // TODO - remove hardcoding once received from DB
-        this.dataTables = constDataTables;
-        this.dataFields = constDataFields;
-
-        // Select the Tables, Fields
-        if (this.dataTables.length > 0) {
-            this.filterFields(this.dataTables[0].id);
-
-        } else {
-            this.filterFields(-1);
-        };
-    }
-
-    clickClose(action: string) {
-        //
+    clickClose() {
+        // Close the form, nothing saved
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
         this.formDataDirectNoSQLEditorClosed.emit(null);
 
     }
 
-    clickSave(action: string) {
-        // Close the form, and open Transformations form
+    clickAdd(action: string) {
+        // Add the DS, with data, to the DB
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
+
+        // Reset
+        this.errorMessage = '';
+        this.savedMessage = '';
+
+        // Save changes to the Datasource
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
-        console.warn('xx END sel ds', this.selectedDatasource)
+        // Validation
+        if (this.selectedDatasource.name == ''  ||  this.selectedDatasource.name == null) {
+            this.errorMessage = 'The name is compulsory';
+            return;
+        };
+        if (this.selectedDatasource.description == ''  ||  this.selectedDatasource.description == null) {
+            this.errorMessage = 'The description is compulsory';
+            return;
+        };
+
+        // Construct DS and add to DB
+        if (this.editingDS) {
+            let today: Date = new Date();
+            this.selectedDatasource.editor = this.globalVariableService.currentUser.userID;
+            this.selectedDatasource.dateEdited = today;
+
+            // Save DS to DB, but create a new dSet and new data records.
+            let ds: number[] = [];
+            let dSetID: number = 1;
+            for (var i = 0; i < this.globalVariableService.datasets.length; i++) {
+                if(this.globalVariableService.datasets[i].datasourceID ==
+                    this.selectedDatasource.id) {
+                    ds.push(this.globalVariableService.datasets[i].id)
+                };
+            };
+            if (ds.length > 0) {
+                dSetID = Math.max(...ds);
+            };
+            let datasetIndex: number = this.globalVariableService.datasets.findIndex(dSet => {
+                if (dSet.id == dSetID) {
+                    return dSet;
+                };
+            });
+            let updatedDataset: Dataset = this.globalVariableService.datasets[datasetIndex];
+
+            let dataID: number = -1;
+            let dataIndex: number = updatedDataset.url.indexOf('/');
+            if (dataIndex >= 0) {
+                dataID = +updatedDataset.url.substring(dataIndex + 1);
+            } else {
+                alert('Error in save Web - url has no / character');
+                return;
+            };
+            let updatedData: any = {
+                id: dataID,
+                data: this.fileDataFull
+            };
+
+            // Add Data, then dataset, then DS
+            this.globalVariableService.saveData(updatedData).then(resData => {
+
+                updatedDataset.url = 'data/' + dataID;
+                this.globalVariableService.saveDatasource(this.selectedDatasource).then(
+                    resDS => {
+                        updatedDataset.datasourceID = this.selectedDatasource.id;
+                        this.globalVariableService.saveDataset(updatedDataset);
+                });
+
+                // Indicate to the user
+                this.canSave = false;
+                this.savedMessage = 'Datasource updated';
+            });
+
+        } else {
+            // Add new one
+            let newdDataset: Dataset = {
+                id: null,
+                datasourceID: null,
+                sourceLocation: 'HTTP',
+                url: 'data',
+                folderName: '',
+                fileName: '',
+                data: null,
+                dataRaw: null
+            };
+            let newData: any = {
+                id: null,
+                data: this.fileDataFull
+            };
+
+            // Add Data, then dataset, then DS
+            this.globalVariableService.addData(newData).then(resData => {
+
+                newdDataset.url = 'data/' + resData.id.toString();
+                this.globalVariableService.addDatasource(this.selectedDatasource).then(resDS => {
+                    newdDataset.datasourceID = resDS.id;
+                    this.globalVariableService.addDataset(newdDataset);
+
+                });
+
+                // Indicate to the user
+                this.canSave = false;
+                this.savedMessage = 'Datasource created';
+            });
+        };
+
+        // Close form and open Transitions if requested
         if (action == 'Saved') {
             this.formDataDirectNoSQLEditorClosed.emit(null);
 
         } else {
             this.formDataDirectNoSQLEditorClosed.emit(this.selectedDatasource);
 
-        }
-
+        };
     }
+
 }
 
 

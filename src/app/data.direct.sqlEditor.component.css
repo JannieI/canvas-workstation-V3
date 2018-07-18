@@ -152,8 +152,8 @@
     .gridGoButton {
         grid-column-start: 8;
         grid-column-end: 9;
-        grid-row-start: 15;
-        grid-row-end: 16;
+        grid-row-start: 16;
+        grid-row-end: 17;
     }
 
     .gridSpinner {
