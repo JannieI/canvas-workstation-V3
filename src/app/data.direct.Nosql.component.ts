@@ -67,7 +67,14 @@ export class DataDirectNoSQLComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         // Set base info
-        this.serverTypes = this.globalVariableService.serverTypes;
+        // TODO - consider enhancing this.globalVariableService.serverTypes;
+        this.serverTypes = [
+            {
+                serverType: 'Mongo', 
+                driverName: 'mongo',
+                connector: 'tributary.connectors.mongodb:MongoDBConnector'
+            }
+        ];
 
         if (this.selectedDatasource == null) {
             let today: Date = new Date();
@@ -77,8 +84,8 @@ export class DataDirectNoSQLComponent implements OnInit {
                 subType: '',
                 typeVersion: '',
                 name: '',
-                username: 'ftfhgfzh',
-                password: 'L0Eph9ftbx0yh45aeDtgzsGKBa2ZNhfl',
+                username: '',
+                password: '',
                 description: '',
                 createdBy: this.globalVariableService.currentUser.userID,
                 createdOn: today,
@@ -104,21 +111,20 @@ export class DataDirectNoSQLComponent implements OnInit {
                 connectionID: 0,
                 dataTableID: 0,
                 nrWidgets: 0,
-                databaseName: 'ftfhgfzh',
-                port: '5432',
-                serverType: 'PostgresSQL',
-                serverName: 'pellefant.db.elephantsql.com',
-                dataTableName: 'ftfhgfzh',
-                dataSQLStatement: 'select * from \"invoices\"',
+                databaseName: '',
+                port: '',
+                serverType: 'Mongo',
+                serverName: '',
+                dataTableName: '',
+                dataSQLStatement: 'db.bios.find( { _id: 5 } )',
                 dataNoSQLStatement: '',
                 dataNeo4jStatement: '',
                 dataGraphQLStatement: '',
-                businessGlossary: 'Obtained using SQL Editor',
+                businessGlossary: 'Obtained using NoSQL Editor',
                 dataDictionary: ''
 
             };
         };
-
 
     }
 
@@ -139,11 +145,12 @@ export class DataDirectNoSQLComponent implements OnInit {
             .filter(styp => styp.serverType == this.selectedDatasource.serverType)
             .map(styp => styp.driverName)[0];
 
+        // TODO - At moment, Mongo does not have an Inspector
         let specificationInspect: any = {
             "source": {
                 "inspector": "tributary.inspectors.sql:SqlInspector",
                 "specification": {
-                    "drivername": driver,
+                    "collection": '',
                     "username": this.selectedDatasource.username,
                     "password": this.selectedDatasource.password,
                     "database": this.selectedDatasource.databaseName,
@@ -157,18 +164,18 @@ export class DataDirectNoSQLComponent implements OnInit {
             console.warn('xx res I', res)
 
             // Set up specification
-            this.selectedDatasource.dataSQLStatement = this.selectedDatasource.dataSQLStatement.trim();
+            this.selectedDatasource.dataNoSQLStatement = this.selectedDatasource.dataNoSQLStatement.trim();
             let specificationConnect: any = {
                 "source": {
                     "connector": "tributary.connectors.sql:SqlConnector",
                     "specification": {
-                        "drivername": driver,
+                        "collection": '',
                         "username": this.selectedDatasource.username,
                         "password": this.selectedDatasource.password,
                         "database": this.selectedDatasource.databaseName,
                         "host": this.selectedDatasource.serverName,
                         "port": +this.selectedDatasource.port,
-                        "query": this.selectedDatasource.dataSQLStatement
+                        "query": this.selectedDatasource.dataNoSQLStatement
                     }
                 }
             };

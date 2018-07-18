@@ -24,6 +24,7 @@
                                 </p>
                             </clr-signpost-content>
                         </clr-signpost>
+                        This form has not been tested ... it needs some work !
                     </div>
 
                     <div class="gridDatasourceNameTitle">
@@ -128,11 +129,11 @@
                     </textarea>
 
                     <div class="gridSQLTextTitle">
-                        <b>SQL Statement</b>
+                        <b>NoSQL Statement</b>
                     </div>
-                    <textarea class="gridSQLText" [(ngModel)]="selectedDatasource.dataSQLStatement"
+                    <textarea class="gridSQLText" [(ngModel)]="selectedDatasource.dataNoSQLStatement"
                         name="textArea"
-                        >SELECT COUNT(*) FROM table
+                        >db.bios.find( { _id: 5 } )
                     </textarea>
 
                     <div *ngIf="errorMessage!=''" class="gridErrorMessage">
