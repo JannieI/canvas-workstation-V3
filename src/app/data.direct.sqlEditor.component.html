@@ -142,14 +142,14 @@
                     <div class="gridData" *ngIf="showPreview">
                         <clr-datagrid class="gridPreviewData">
 
-                            <clr-dg-column *ngFor="let row of dataFieldsSelected"
+                            <clr-dg-column *ngFor="let row of fields"
                                 >
                                 {{ row }}
                             </clr-dg-column>
 
                             <clr-dg-row *clrDgItems="let row of fileData">
 
-                                <clr-dg-cell *ngFor="let col of dataFieldsSelected; let i = index">
+                                <clr-dg-cell *ngFor="let col of fields; let i = index">
                                         {{ row[col] }}
                                 </clr-dg-cell>
                             </clr-dg-row>

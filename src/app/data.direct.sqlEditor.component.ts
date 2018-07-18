@@ -46,11 +46,23 @@ export class DataDirectSQLEditorComponent implements OnInit {
 
     canSave: boolean = false;
     errorMessage: string = "";
+    fields: string[] = [
+        'BillingAddress',
+        'BillingCity',
+        'BillingCountry',
+        'BillingPostalCode',
+        'BillingState',
+        'CustomerId',
+        'InvoiceDate',
+        'InvoiceId',
+        'Total'
+    ];
     fileData: any = [];
     fileDataFull: any = [];
     reader = new FileReader();
     savedMessage: string = '';
     serverTypes: TributaryServerType[];
+    showPreview: boolean = false;
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -60,7 +72,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
 	ngOnInit() {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
-        
+
         // Set base info
         this.serverTypes = this.globalVariableService.serverTypes;
 
@@ -120,11 +132,10 @@ export class DataDirectSQLEditorComponent implements OnInit {
         // Load the File content
         this.globalFunctionService.printToConsole(this.constructor.name,'clickGo',           '@Start');
 
-        // Can Add now
-        this.canSave = true;
-
         // Reset
         this.errorMessage = '';
+        this.showPreview = false;
+        this.canSave = false;
 
         // Validation
         if (this.selectedDatasource.name == ''  ||  this.selectedDatasource.name == null) {
@@ -153,7 +164,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
         // Call Tributary
         this.globalVariableService.getTributaryInspect(specificationInspect).then(res => {
             console.warn('xx res I', res)
-            
+
             // Set up specification
             this.selectedDatasource.dataSQLStatement = this.selectedDatasource.dataSQLStatement.trim();
             let specificationConnect: any = {
@@ -170,13 +181,20 @@ export class DataDirectSQLEditorComponent implements OnInit {
                     }
                 }
             };
-            
+
             this.globalVariableService.getTributaryData(specificationConnect).then(res => {
-                console.warn('xx res C', res)
-                
+
                 // Fill the data
                 this.fileData = res.slice(0,10);
                 this.fileDataFull = res;
+
+                // Show the results
+                this.showPreview = true;
+
+                // Can Add now
+                this.canSave = true;
+
+                console.warn('xx res C', this.fileData, this.fields)
             })
             .catch(err => {
                 this.errorMessage = 'Error connecting to server: check login or permissions'
@@ -226,7 +244,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
             let ds: number[] = [];
             let dSetID: number = 1;
             for (var i = 0; i < this.globalVariableService.datasets.length; i++) {
-                if(this.globalVariableService.datasets[i].datasourceID == 
+                if(this.globalVariableService.datasets[i].datasourceID ==
                     this.selectedDatasource.id) {
                     ds.push(this.globalVariableService.datasets[i].id)
                 };
@@ -240,7 +258,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
                 };
             });
             let updatedDataset: Dataset = this.globalVariableService.datasets[datasetIndex];
-            
+
             let dataID: number = -1;
             let dataIndex: number = updatedDataset.url.indexOf('/');
             if (dataIndex >= 0) {
