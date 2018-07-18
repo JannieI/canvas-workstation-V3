@@ -131,16 +131,6 @@ export class DataDirectSQLEditorComponent implements OnInit {
         this.showPreview = false;
         this.canSave = false;
 
-        // Validation
-        if (this.selectedDatasource.name == ''  ||  this.selectedDatasource.name == null) {
-            this.errorMessage = 'The name is compulsory';
-            return;
-        };
-        if (this.selectedDatasource.description == ''  ||  this.selectedDatasource.description == null) {
-            this.errorMessage = 'The description is compulsory';
-            return;
-        };
-
         // Show user
         this.spinner = true;
 
