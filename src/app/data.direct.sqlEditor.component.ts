@@ -177,7 +177,12 @@ export class DataDirectSQLEditorComponent implements OnInit {
                 // Fill the data
                 this.fileData = res.slice(0,10);
                 this.fileDataFull = res;
+            })
+            .catch(err => {
+                this.errorMessage = 'Error connecting to server: check login or permissions'
+                    + err.substring(0,30);
             });
+            ;
         });
 
     }
