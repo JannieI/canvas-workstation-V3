@@ -180,9 +180,13 @@ export class DataDirectSQLEditorComponent implements OnInit {
             })
             .catch(err => {
                 this.errorMessage = 'Error connecting to server: check login or permissions'
-                    + err.substring(0,30);
+                    + err.message;
             });
-            ;
+        })
+        .catch(err => {
+            console.warn('xx err', err)
+            this.errorMessage = 'Error connecting to server: check login or permissions'
+                + err.message;
         });
 
     }
