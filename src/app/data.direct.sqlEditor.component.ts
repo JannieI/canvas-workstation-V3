@@ -54,6 +54,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
     selectedFields: string = "BillingAddress,BillingCity,BillingCountry,BillingPostalCode,BillingState,CustomerId,InvoiceDate,InvoiceId,Total";
     serverTypes: TributaryServerType[];
     showPreview: boolean = false;
+    spinner: boolean = false;
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -127,6 +128,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
         this.errorMessage = '';
         this.showPreview = false;
         this.canSave = false;
+        this.spinner = true;
 
         // Validation
         if (this.selectedDatasource.name == ''  ||  this.selectedDatasource.name == null) {
@@ -182,6 +184,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
 
                 // Show the results
                 this.showPreview = true;
+                this.spinner = false;
 
                 // Can Add now
                 this.canSave = true;
@@ -189,12 +192,14 @@ export class DataDirectSQLEditorComponent implements OnInit {
                 console.warn('xx res C', this.fileData, this.fields, this.selectedFields)
             })
             .catch(err => {
+                this.spinner = false;
                 this.errorMessage = 'Error connecting to server: check login or permissions'
                     + err.message;
             });
         })
         .catch(err => {
             console.warn('xx err', err)
+            this.spinner = false;
             this.errorMessage = 'Error connecting to server: check login or permissions'
                 + err.message;
         });

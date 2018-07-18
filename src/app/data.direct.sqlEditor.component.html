@@ -119,21 +119,6 @@
                             >
                     </div>
 
-                    <div *ngIf="errorMessage!=''" class="gridErrorMessage">
-                        {{ errorMessage }}
-                    </div>
-
-                    <div class="gridGoButton">
-                        <button
-                            type="button"
-                            class="btn btn-link"
-                            (click)="clickGo()"
-                            >
-                            Go
-                            <clr-icon shape="arrow right" size="12"></clr-icon>
-                        </button>
-                    </div>
-
                     <div class="gridFieldsTitle">
                         <b>Fields</b>
                     </div>
@@ -150,6 +135,25 @@
                         >SELECT COUNT(*) FROM table
                     </textarea>
 
+                    <div *ngIf="errorMessage!=''" class="gridErrorMessage">
+                        {{ errorMessage }}
+                    </div>
+
+                    <div class="gridGoButton">
+                        <button
+                            type="button"
+                            class="btn btn-link"
+                            (click)="clickGo()"
+                            >
+                            Go
+                            <clr-icon shape="arrow right" size="12"></clr-icon>
+                        </button>
+                    </div>
+
+                    <span class="spinner spinner-inline gridSpinner" *ngIf="spinner">
+                        Loading...
+                    </span>
+    
                     <div class="gridData" *ngIf="showPreview">
                         <clr-datagrid class="gridPreviewData">
 
@@ -184,7 +188,7 @@
                         </button>
                     </div>
 
-                    <div class="gridButtonSave">
+                    <div class="gridButtonSave" *ngIf="showPreview">
                         <button
                             type="button"
                             class="btn btn-primary"
@@ -194,7 +198,7 @@
                         </button>
                     </div>
 
-                    <div class="gridButtonTransformation">
+                    <div class="gridButtonTransformation" *ngIf="showPreview">
                         <button
                             type="button"
                             class="btn btn-link"
