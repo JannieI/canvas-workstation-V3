@@ -210,7 +210,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
 
     }
 
-    clickAdd() {
+    clickAdd(action: string) {
         // Add the DS, with data, to the DB
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
 
@@ -317,6 +317,14 @@ export class DataDirectSQLEditorComponent implements OnInit {
             });
         };
 
+        // Close form and open Transitions if requested
+        if (action == 'Saved') {
+            this.formDataDirectSQLEditorClosed.emit(null);
+
+        } else {
+            this.formDataDirectSQLEditorClosed.emit(this.selectedDatasource);
+
+        };
     }
 
 }
