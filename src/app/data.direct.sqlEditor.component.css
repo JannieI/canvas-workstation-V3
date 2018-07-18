@@ -112,28 +112,28 @@
         grid-row-end: 6;
     }
 
-    .gridUserTitle {
+    .gridUsernameTitle {
         grid-column-start: 1;
         grid-column-end: 2;
         grid-row-start: 7;
         grid-row-end: 8;
         margin-top: 5px;
     }
-    .gridUser {
+    .gridUsername {
         grid-column-start: 2;
         grid-column-end: 7;
         grid-row-start: 7;
         grid-row-end: 8;
     }
 
-    .gridPassTitle {
+    .gridPasswordTitle {
         grid-column-start: 7;
         grid-column-end: 9;
         grid-row-start: 7;
         grid-row-end: 8;
         margin-top: 5px;
     }
-    .gridPass {
+    .gridPassword {
         grid-column-start: 9;
         grid-column-end: 18;
         grid-row-start: 7;
