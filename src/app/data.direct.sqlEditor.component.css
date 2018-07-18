@@ -227,6 +227,7 @@
         grid-column-end: 12;
         grid-row-start: 25;
         grid-row-end: 26;
+        padding-top: 4px;
         text-align: left;
     }
 
@@ -243,5 +244,5 @@
         grid-column-end: 21;
         grid-row-start: 25;
         grid-row-end: 26;
-        padding-top: 6px;
+        padding-top: 4px;
     }

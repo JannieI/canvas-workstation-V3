@@ -47,7 +47,6 @@ export class DataDirectSQLEditorComponent implements OnInit {
 
     canSave: boolean = false;
     errorMessage: string = "";
-    fields: string[] = [];
     fileData: any = [];
     fileDataFull: any = [];
     reader = new FileReader();
@@ -178,7 +177,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
                 // Fill the data
                 this.fileData = res.slice(0,10);
                 this.fileDataFull = res;
-                this.fields = this.selectedFields.split(",");
+                this.selectedDatasource.dataFields = this.selectedFields.split(",");
 
                 // Show the results
                 this.showPreview = true;
@@ -187,7 +186,6 @@ export class DataDirectSQLEditorComponent implements OnInit {
                 // Can Add now
                 this.canSave = true;
 
-                console.warn('xx res C', this.fileData, this.fields, this.selectedFields)
             })
             .catch(err => {
                 this.spinner = false;
