@@ -156,24 +156,46 @@
         grid-row-end: 16;
     }
 
-    .gridFields {
+    .gridFieldsTitle {
         border: 1px solid gray;
         border-radius: 4px;
         grid-column-start: 1;
         grid-column-end: 8;
         grid-row-start: 9;
-        grid-row-end: 12;
+        grid-row-end: 10;
+        height: 100%;
+        overflow-y: scroll;
+        width: 100%;
+    }
+    .gridFields {
+        border: 1px solid gray;
+        border-radius: 4px;
+        grid-column-start: 1;
+        grid-column-end: 8;
+        grid-row-start: 10;
+        grid-row-end: 16;
         height: 100%;
         overflow-y: scroll;
         width: 100%;
     }
 
+    .gridSQLTextTitle {
+        border: 1px solid gray;
+        border-radius: 4px;
+        grid-column-start: 1;
+        grid-column-end: 8;
+        grid-row-start: 17;
+        grid-row-end: 18;
+        height: 100%;
+        overflow-y: scroll;
+        width: 100%;
+    }
     .gridSQLText {
         border: 1px solid gray;
         border-radius: 4px;
         grid-column-start: 1;
         grid-column-end: 8;
-        grid-row-start: 13;
+        grid-row-start: 18;
         grid-row-end: 25;
         height: 100%;
         overflow-y: scroll;

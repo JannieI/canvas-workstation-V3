@@ -51,7 +51,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
     fileDataFull: any = [];
     reader = new FileReader();
     savedMessage: string = '';
-    selectedFields: string = "'BillingAddress','BillingCity','BillingCountry','BillingPostalCode','BillingState','CustomerId','InvoiceDate','InvoiceId','Total'";
+    selectedFields: string = "BillingAddress,BillingCity,BillingCountry,BillingPostalCode,BillingState,CustomerId,InvoiceDate,InvoiceId,Total";
     serverTypes: TributaryServerType[];
     showPreview: boolean = false;
 
@@ -178,6 +178,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
                 // Fill the data
                 this.fileData = res.slice(0,10);
                 this.fileDataFull = res;
+                this.fields = this.selectedFields.split(",");
 
                 // Show the results
                 this.showPreview = true;
