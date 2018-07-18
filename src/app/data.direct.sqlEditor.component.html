@@ -37,6 +37,17 @@
                             >
                     </div>
 
+                    <div class="gridDescriptionTitle">
+                        <b>Description:</b>
+                    </div>
+                    <div class="gridDescription">
+                            <input [(ngModel)]="selectedDatasource.description"
+                            type="text"
+                            name="description"
+                            title="Description of the Datasource"
+                            >
+                    </div>
+    
                     <div class="gridServerTypeTitle">
                         <b>Type:</b>
                     </div>
@@ -108,17 +119,6 @@
                             >
                     </div>
 
-                    <div class="gridDescriptionTitle">
-                        <b>Description:</b>
-                    </div>
-                    <div class="gridDescription">
-                            <input [(ngModel)]="selectedDatasource.description"
-                            type="text"
-                            name="description"
-                            title="Description of the Datasource"
-                            >
-                    </div>
-
                     <div class="gridFieldsTitle">
                         <b>Fields</b>
                     </div>
@@ -157,14 +157,12 @@
                     <div class="gridData" *ngIf="showPreview">
                         <clr-datagrid class="gridPreviewData">
 
-                            <clr-dg-column *ngFor="let row of fields"
-                                >
+                            <clr-dg-column *ngFor="let row of selectedDatasource.dataFields">
                                 {{ row }}
                             </clr-dg-column>
 
                             <clr-dg-row *clrDgItems="let row of fileData">
-
-                                <clr-dg-cell *ngFor="let col of fields; let i = index">
+                                <clr-dg-cell *ngFor="let col of selectedDatasource.dataFields; let i = index">
                                         {{ row[col] }}
                                 </clr-dg-cell>
                             </clr-dg-row>
