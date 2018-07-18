@@ -143,10 +143,10 @@
 
     .gridErrorMessage {
         color: red;
-        grid-column-start: 10;
-        grid-column-end: 19;
-        grid-row-start: 15;
-        grid-row-end: 18;
+        grid-column-start: 13;
+        grid-column-end: 21;
+        grid-row-start: 7;
+        grid-row-end: 10;
     }
 
     .gridGoButton {

@@ -1237,13 +1237,19 @@ export class AppComponent implements OnInit {
 
     }
 
-    handleCloseDataDirectSQLEditor(action: string) {
+    handleCloseDataDirectSQLEditor(returnDS: Datasource) {
         // Handle close of Direct SQL Editor
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDirectSQLEditor', '@Start');
 
         this.menuOptionClickPostAction();
 
         this.showModalDataDirectSQLEditor = false;
+
+        // Open Transformations if so requested
+        if (returnDS != null) {
+            this.selectedDatasource = returnDS;
+            this.showModalDataTransformation = true;
+        };
     }
 
     handleCloseDataDirectNoSQL(returnDS: Datasource) {
