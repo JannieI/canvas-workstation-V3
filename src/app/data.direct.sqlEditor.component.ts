@@ -218,6 +218,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
 
         // Reset
         this.errorMessage = '';
+        this.savedMessage = '';
 
         // Save changes to the Datasource
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
@@ -231,8 +232,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
             this.errorMessage = 'The description is compulsory';
             return;
         };
-console.warn('xx ds', this.selectedDatasource)
-if (this.errorMessage != 'xxx') return;
+
         // Construct DS and add to DB
         if (this.editingDS) {
             let today: Date = new Date();

@@ -188,6 +188,10 @@
                         </button>
                     </div>
 
+                    <div *ngIf="savedMessage!=''" class="gridSavedMessage">
+                        {{ savedMessage }}
+                    </div>
+
                     <div class="gridButtonSave" *ngIf="showPreview">
                         <button
                             type="button"
