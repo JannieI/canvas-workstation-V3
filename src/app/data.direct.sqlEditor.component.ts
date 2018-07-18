@@ -70,17 +70,18 @@ export class DataDirectSQLEditorComponent implements OnInit {
         this.serverTypes = this.globalVariableService.serverTypes;
 
         if (this.selectedDatasource == null) {
+            let today: Date = new Date();
             this.selectedDatasource = {
-                id: 0,
-                type: '',
+                id: null,
+                type: 'Server',
                 subType: '',
                 typeVersion: '',
-                name: 'New DS',
+                name: '',
                 username: 'ftfhgfzh',
                 password: 'L0Eph9ftbx0yh45aeDtgzsGKBa2ZNhfl',
-                description: 'Post Trade Data Vault',
-                createdBy: '',
-                createdOn: null,
+                description: '',
+                createdBy: this.globalVariableService.currentUser.userID,
+                createdOn: today,
                 createMethod: 'directSQLEditor',
                 editor: '',
                 dateEdited: null,
@@ -112,7 +113,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
                 dataNoSQLStatement: '',
                 dataNeo4jStatement: '',
                 dataGraphQLStatement: '',
-                businessGlossary: '',
+                businessGlossary: 'Obtained using SQL Editor',
                 dataDictionary: ''
 
             };
@@ -230,11 +231,15 @@ export class DataDirectSQLEditorComponent implements OnInit {
             this.errorMessage = 'The name is compulsory';
             return;
         };
-
+        if (this.selectedDatasource.description == ''  ||  this.selectedDatasource.description == null) {
+            this.errorMessage = 'The description is compulsory';
+            return;
+        };
+console.warn('xx ds', this.selectedDatasource)
+if (this.errorMessage != 'xxx') return;
         // Construct DS and add to DB
-        let today: Date = new Date();
-
         if (this.editingDS) {
+            let today: Date = new Date();
             this.selectedDatasource.editor = this.globalVariableService.currentUser.userID;
             this.selectedDatasource.dateEdited = today;
 
@@ -287,52 +292,6 @@ export class DataDirectSQLEditorComponent implements OnInit {
 
         } else {
             // Add new one
-            let newDatasource: Datasource = {
-                id: null,
-                type: 'Server',
-                subType: '',
-                typeVersion:  '',
-                name: '',
-                username: '',
-                password: '',
-                description: '',
-                dataFieldIDs: [],
-                dataFields: [],
-                dataFieldTypes: [],
-                dataFieldLengths: [],
-                parameters: '',
-                createMethod: 'directSQLEditor',
-                createdBy: this.globalVariableService.currentUser.userID,
-                createdOn: today,
-                editor: '',
-                dateEdited: null,
-                refreshedBy: '',
-                refreshedOn: null,
-                folder: '',
-                fileName: '',
-                excelWorksheet: '',
-                transposeOnLoad: false,
-                startLineNr: 0,
-                csvSeparationCharacter: '',
-                csvQuotCharacter: '',
-                webUrl: '',
-                webTableIndex: '',
-                connectionID: null,
-                dataTableID: null,
-                businessGlossary: 'Obtained using SQL Editor',
-                dataDictionary: '',
-                databaseName: '',
-                port: '',
-                serverType: '',
-                serverName: '',
-                dataTableName: '',
-                dataSQLStatement: '',
-                dataNoSQLStatement: '',
-                dataNeo4jStatement: '',
-                dataGraphQLStatement: '',
-                nrWidgets: null
-            };
-
             let newdDataset: Dataset = {
                 id: null,
                 datasourceID: null,
@@ -352,7 +311,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
             this.globalVariableService.addData(newData).then(resData => {
 
                 newdDataset.url = 'data/' + resData.id.toString();
-                this.globalVariableService.addDatasource(newDatasource).then(resDS => {
+                this.globalVariableService.addDatasource(this.selectedDatasource).then(resDS => {
                     newdDataset.datasourceID = resDS.id;
                     this.globalVariableService.addDataset(newdDataset);
 
