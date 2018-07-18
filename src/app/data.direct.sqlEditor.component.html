@@ -134,6 +134,10 @@
                         </button>
                     </div>
 
+
+                    <textarea class="gridFields" [(ngModel)]="selectedFields"
+                        name="textArea">
+                    </textarea>
                     <textarea class="gridSQLText" [(ngModel)]="selectedDatasource.dataSQLStatement"
                         name="textArea"
                         >SELECT COUNT(*) FROM table

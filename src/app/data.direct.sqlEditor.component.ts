@@ -46,21 +46,12 @@ export class DataDirectSQLEditorComponent implements OnInit {
 
     canSave: boolean = false;
     errorMessage: string = "";
-    fields: string[] = [
-        'BillingAddress',
-        'BillingCity',
-        'BillingCountry',
-        'BillingPostalCode',
-        'BillingState',
-        'CustomerId',
-        'InvoiceDate',
-        'InvoiceId',
-        'Total'
-    ];
+    fields: string[] = [];
     fileData: any = [];
     fileDataFull: any = [];
     reader = new FileReader();
     savedMessage: string = '';
+    selectedFields: string = "'BillingAddress','BillingCity','BillingCountry','BillingPostalCode','BillingState','CustomerId','InvoiceDate','InvoiceId','Total'";
     serverTypes: TributaryServerType[];
     showPreview: boolean = false;
 
@@ -128,7 +119,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
 
     }
 
-    clickGo(index: number) {
+    clickGo() {
         // Load the File content
         this.globalFunctionService.printToConsole(this.constructor.name,'clickGo',           '@Start');
 
@@ -194,7 +185,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
                 // Can Add now
                 this.canSave = true;
 
-                console.warn('xx res C', this.fileData, this.fields)
+                console.warn('xx res C', this.fileData, this.fields, this.selectedFields)
             })
             .catch(err => {
                 this.errorMessage = 'Error connecting to server: check login or permissions'
