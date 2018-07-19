@@ -1511,6 +1511,8 @@ export class AppComponent implements OnInit {
                     this.showModalDataDirectFileJSON = true;
                 } else if (returnedDatasource.createMethod == 'directFileSpreadsheet') {
                     this.showModalDataDirectFileSpreadsheet = true;
+                } else if (returnedDatasource.createMethod == 'directGoogleSheets') {
+                    this.showModalDataDirectGoogleSheets = true;
                 } else if (returnedDatasource.createMethod == 'directQueryBuilder') {
                     this.showModalDataDirectQueryBuilder = true;
                 } else if (returnedDatasource.createMethod == 'directSQLEditor') {

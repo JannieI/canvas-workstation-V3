@@ -4090,6 +4090,16 @@
 </data-direct-fileSpreadsheet>
 
 
+<!-- Modal: Data Direct From GoogleSheets -->
+<data-direct-googlesheets
+    class="formPopupDashboard"
+    *ngIf="showModalDataDirectGoogleSheets"
+    [editingDS]="editingDS"
+    [selectedDatasource]="selectedDatasource"
+    (formDataDirectGoogleSheetsClosed)="handleCloseDataDirectGoogleSheets($event)">Load Data Direct From GoogleSheets ...
+</data-direct-googlesheets>
+
+
 <!-- Modal: Data Direct Query Builder -->
 <data-directQueryBuilder
     *ngIf="showModalDataDirectQueryBuilder"
