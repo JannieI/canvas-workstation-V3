@@ -224,6 +224,13 @@
         grid-row-end: 12;
     }
 
+    .gridSpinner {
+        grid-column-start: 16;
+        grid-column-end: 17;
+        grid-row-start: 18;
+        grid-row-end: 20;
+    }
+
     .gridPreviewData {
         border: 1px solid gray;
         border-radius: 4px;
