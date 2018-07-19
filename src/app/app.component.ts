@@ -363,6 +363,7 @@ export class AppComponent implements OnInit {
     showModalWidgetDelete: boolean = false;
     showModalDashboardPrint: boolean = false;
     showModalDataDirectFileSpreadsheet: boolean = false;
+    showModalDataDirectGoogleSheets: boolean = false;
     showModalDataDirectFileCSV: boolean = false;
     showModalDataDirectFileJSON: boolean = false;
     showModalDataDirectQueryBuilder: boolean = false;
@@ -1214,6 +1215,20 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPostAction();
     
         this.showModalDataDirectFileSpreadsheet = false;
+        // Open Transformations if so requested
+        if (returnDS != null) {
+            this.selectedDatasource = returnDS;
+            this.showModalDataTransformation = true;
+        };
+    }
+
+    handleCloseDataDirectGoogleSheets(returnDS: Datasource) {
+        // Handle close of Direct File Spreadsheet load
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDirectGoogleSheets', '@Start');
+
+        this.menuOptionClickPostAction();
+    
+        this.showModalDataDirectGoogleSheets = false;
         // Open Transformations if so requested
         if (returnDS != null) {
             this.selectedDatasource = returnDS;
@@ -3189,6 +3204,17 @@ export class AppComponent implements OnInit {
         this.editingDS = false;
         this.selectedDatasource = null;
         this.showModalDataDirectFileSpreadsheet = true;
+    }
+
+    clickMenuDataDirectGoogleSheets() {
+        // Open form to create a DS with data that comes from a Google Sheets Spreadsheet.
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDirectGoogleSheets', '@Start');
+
+        this.menuOptionClickPreAction();
+
+        this.editingDS = false;
+        this.selectedDatasource = null;
+        this.showModalDataDirectGoogleSheets = true;
     }
 
     clickMenuDataDirectQueryBuilder() {
