@@ -298,53 +298,23 @@ export class DataDirectQueryBuilderComponent implements OnInit {
             };
         };
 
+        // Remember table we started with
+        let localSelectedTableRowIndex = this.selectedTableRowIndex;
 
-
-
-                // Remember table we started with
-                let localSelectedTableRowIndex = this.selectedTableRowIndex;
-
-
-            let specificationInspect: any = {
-                "source": {
-                    "inspector": "tributary.inspectors.sql:SqlInspector",
-                    "specification": {
-                        "drivername": "postgresql",
-                        "username": "ftfhgfzh",
-                        "password": "L0Eph9ftbx0yh45aeDtgzsGKBa2ZNhfl",
-                        "database": "ftfhgfzh",
-                        "host": "pellefant.db.elephantsql.com",
-                        "port": 5432
-                    }
+        // Build Spec
+        let specificationInspect: any = {
+            "source": {
+                "inspector": "tributary.inspectors.sql:SqlInspector",
+                "specification": {
+                    "drivername": "postgresql",
+                    "username": "ftfhgfzh",
+                    "password": "L0Eph9ftbx0yh45aeDtgzsGKBa2ZNhfl",
+                    "database": "ftfhgfzh",
+                    "host": "pellefant.db.elephantsql.com",
+                    "port": 5432
                 }
-            };
-
-
-
-
-        // // Get drivers
-        // let driver: string = this.serverTypes
-        //     .filter(styp => styp.serverType == this.selectedDatasource.serverType)
-        //     .map(styp => styp.driverName)[0];
-
-        // let specificationInspect: any = {
-        //     "source": {
-        //         "inspector": "tributary.inspectors.sql:SqlInspector",
-        //         "specification": {
-        //             "drivername": driver,
-        //             "username": this.selectedDatasource.username,
-        //             "password": this.selectedDatasource.password,
-        //             "database": this.selectedDatasource.databaseName,
-        //             "host": this.selectedDatasource.serverName,
-        //             "port": +this.selectedDatasource.port
-        //         }
-        //     }
-        // };
-
-
-
-
-
+            }
+        };
 
         this.globalVariableService.getTributaryInspect(specificationInspect).then(res => {
 
