@@ -75,6 +75,7 @@ import { ShapeDeleteComponent }       from './shape.delete.component';
 import { DataDirectFileCSVComponent } from './data.direct.fileCSV.component';
 import { DataDirectFileJSONComponent }          from './data.direct.fileJSON.component';
 import { DataDirectFileSpreadsheetComponent }   from './data.direct.fileSpreadsheet.component';
+import { DataDirectGoogleSheetsComponent }      from './data.direct.googleSheets.component';
 import { DataDirectQueryBuilderComponent }      from './data.direct.queryBuilder.component';
 import { DataDirectSQLEditorComponent }         from './data.direct.sqlEditor.component';
 import { DataDirectNoSQLComponent }   from './data.direct.Nosql.component';
@@ -181,6 +182,7 @@ import { StatusbarComponent }         from './statusbar.component';
         DashboardUsagestatsComponent,
 
         DataDirectFileSpreadsheetComponent,
+        DataDirectGoogleSheetsComponent,
         DataDirectFileCSVComponent,
         DataDirectFileJSONComponent,
         DataDirectQueryBuilderComponent,

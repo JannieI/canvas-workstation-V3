@@ -75,7 +75,7 @@ export class DataDirectGoogleSheetsComponent implements OnInit {
     selectedTableRowIndex: number = -1;
     showPreview: boolean = false;
     tables: webTables[];
-    url: string = 'https://en.wikipedia.org/wiki/Iris_flower_data_set';
+    url: string = 'https://docs.google.com/spreadsheets/d/1xSMysMxnNhR8AXFuU-TWrgGe6TbsorZffNfwFlF85GA/edit#gid=0';
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -161,7 +161,7 @@ export class DataDirectGoogleSheetsComponent implements OnInit {
                 "connector": "tributary.connectors.spreadsheet:GSheetConnector",
                 "specification": {
                     "content": this.url,
-                    "index": index
+                    "headers": 0
                 }
             }
         };
