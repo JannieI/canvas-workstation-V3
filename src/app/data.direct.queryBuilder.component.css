@@ -41,7 +41,7 @@
         grid-row-start: 3;
         grid-row-end: 4;
     }
-    
+
     .gridServerTypeTitle {
         grid-column-start: 7;
         grid-column-end: 9;
@@ -54,7 +54,7 @@
         grid-row-start: 3;
         grid-row-end: 4;
     }
-    
+
     .gridServerNameTitle {
         grid-column-start: 14;
         grid-column-end: 15;
@@ -150,7 +150,7 @@
         grid-row-end: 7;
         margin-top: 12px;
     }
-    
+
     .gridTables {
         border: 1px solid gray;
         border-radius: 4px;
@@ -179,13 +179,13 @@
         }
 
         .dsCheckbox {
-            margin: 4px 0 0 0 !important;    
+            margin: 4px 0 0 0 !important;
         }
 
         .dsName {
             display: inline-block;
-            margin: -3px 0 0 0 !important;    
-            padding: 0 0 5px 0 !important;    
+            margin: -3px 0 0 0 !important;
+            padding: 0 0 5px 0 !important;
         }
 
         .widthTn {
@@ -223,7 +223,7 @@
         grid-row-start: 11;
         grid-row-end: 12;
     }
-  
+
     .gridPreviewData {
         border: 1px solid gray;
         border-radius: 4px;
@@ -234,7 +234,7 @@
         margin-left: 32x;
         width: 100%;
     }
-  
+
     .gridButtonCancel {
         grid-column-start: 6;
         grid-column-end: 8;
@@ -242,7 +242,7 @@
         grid-row-end: 26;
         text-align: left;
     }
-    
+
     .gridButtonSave {
         grid-column-start: 13;
         grid-column-end: 15;

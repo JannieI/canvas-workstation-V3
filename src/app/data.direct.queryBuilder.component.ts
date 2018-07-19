@@ -301,20 +301,50 @@ export class DataDirectQueryBuilderComponent implements OnInit {
                 let localSelectedTableRowIndex = this.selectedTableRowIndex;
 
 
-            let source: any =  {
-                "inspector": "tributary.inspectors.sql:SqlInspector",
-                "specification": {
-                    "drivername": "postgres",
-                    "username": "ftfhgfzh",
-                    "password": "L0Eph9ftbx0yh45aeDtgzsGKBa2ZNhfl",
-                    "database": "ftfhgfzh",
-                    "host": "pellefant.db.elephantsql.com",
-                    "port": 5432
+            let specificationInspect: any = {
+                "source": {
+                    "inspector": "tributary.inspectors.sql:SqlInspector",
+                    "specification": {
+                        "drivername": "postgresql",
+                        "username": "ftfhgfzh",
+                        "password": "L0Eph9ftbx0yh45aeDtgzsGKBa2ZNhfl",
+                        "database": "ftfhgfzh",
+                        "host": "pellefant.db.elephantsql.com",
+                        "port": 5432
+                    }
                 }
-            }
+            };
 
 
-        this.globalVariableService.getTributaryInspect(source).then(res => {
+
+
+        // // Get drivers
+        // let driver: string = this.serverTypes
+        //     .filter(styp => styp.serverType == this.selectedDatasource.serverType)
+        //     .map(styp => styp.driverName)[0];
+
+        // let specificationInspect: any = {
+        //     "source": {
+        //         "inspector": "tributary.inspectors.sql:SqlInspector",
+        //         "specification": {
+        //             "drivername": driver,
+        //             "username": this.selectedDatasource.username,
+        //             "password": this.selectedDatasource.password,
+        //             "database": this.selectedDatasource.databaseName,
+        //             "host": this.selectedDatasource.serverName,
+        //             "port": +this.selectedDatasource.port
+        //         }
+        //     }
+        // };
+
+
+
+
+
+
+        this.globalVariableService.getTributaryInspect(specificationInspect).then(res => {
+
+            console.warn('xx res', res)
             // Show if the user has not clicked another row - this result came back async
             if ( localSelectedTableRowIndex == this.selectedTableRowIndex) {
                 this.showPreview = true;
