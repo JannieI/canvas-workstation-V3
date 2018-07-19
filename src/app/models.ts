@@ -504,6 +504,12 @@ export class DataSchema {
             fieldName: string;  // FieldName
             fieldType: string;  // FieldType
         }[];
+    tableMetadata:
+        {
+            schema: string;     // ie Public
+            type: string;       // ie table
+        }[];
+
 }
 
 export class DataTable {

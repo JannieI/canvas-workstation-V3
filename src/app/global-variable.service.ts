@@ -8722,7 +8722,13 @@ export class GlobalVariableService {
                         fieldName: 'AcctDescription',
                         fieldType: 'any'
                     }
-                ]
+                ],
+                tableMetadata: [
+                    {
+                        schema: 'Public',
+                        type: 'table'
+                    }
+                ],
             },
             {
                 serverName: 'pellefant.db.elephantsql.com',
@@ -8741,7 +8747,14 @@ export class GlobalVariableService {
                         fieldName: 'Total',
                         fieldType: 'any'
                     }
-                ]
+                ],
+                tableMetadata: [
+                    {
+                        schema: 'Public',
+                        type: 'table'
+                    }
+                ],
+
             },
         ];
 
