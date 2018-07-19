@@ -189,6 +189,10 @@
                         {{ errorMessage }}
                     </div>
 
+                    <span class="spinner spinner-inline gridSpinner" *ngIf="spinner">
+                        Loading...
+                    </span>
+    
                     <div class="gridPreviewData" *ngIf="showPreview">
                         <clr-datagrid class="gridPreviewData">
 

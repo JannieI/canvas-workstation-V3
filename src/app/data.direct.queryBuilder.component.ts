@@ -119,6 +119,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
     selectedTableRowIndex: number = -1;
     serverTypes: TributaryServerType[]
     showPreview: boolean = false;
+    spinner: boolean = false;
 
     // driverName
 	constructor(
@@ -275,6 +276,9 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         // Get the tables and fields from the DB
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRefresh', '@Start');
 
+        // Show user
+        this.spinner = true;
+
         // Fill Table and Field Names
         this.dataSchemas = this.globalVariableService.getTributaryDirectDBSchema(
             this.selectedDatasource.serverName);
@@ -350,9 +354,11 @@ export class DataDirectQueryBuilderComponent implements OnInit {
                 this.showPreview = true;
                 this.helpMessage = 'Enter detail, then click Refresh to show the Tables.  Select one, then select the fields to display. Click Preview to see a portion of the data.';
             };
+            this.spinner = false;
 
         })
         .catch(err => {
+            this.spinner = false;
             this.errorMessage = err.message + '. ';
             this.helpMessage = '';
             if (err.status == 401) {
