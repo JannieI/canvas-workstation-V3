@@ -159,8 +159,8 @@
     .gridSpinner {
         grid-column-start: 15;
         grid-column-end: 16;
-        grid-row-start: 18;
-        grid-row-end: 20;
+        grid-row-start: 17;
+        grid-row-end: 18;
     }
 
     .gridSQLTextTitle {

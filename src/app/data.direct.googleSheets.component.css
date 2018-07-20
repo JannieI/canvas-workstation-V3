@@ -92,10 +92,10 @@
     }
 
     .gridSpinner {
-        grid-column-start: 15;
-        grid-column-end: 16;
-        grid-row-start: 18;
-        grid-row-end: 19;
+        grid-column-start: 12;
+        grid-column-end: 13;
+        grid-row-start: 16;
+        grid-row-end: 17;
     }
 
     .gridPreviewData {
