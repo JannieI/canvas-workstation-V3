@@ -4072,6 +4072,51 @@ export class GlobalVariableService {
         };
     }
 
+    findlastDashboardSnapshot(dashboardID: number): Promise<DashboardSnapshot> {
+        // Description: Gets all Sn for current D
+        // Params:
+        //   dashboardID
+        // Returns: this.getDashboardSnapshots array, unless:
+        //   If not cached or if dirty, get from File
+        console.log('%c    Global-Variables findlastDashboardSnapshot ...',
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+
+        // Refresh from source at start, or if dirty
+        if ( (this.dashboardSnapshots.length == 0)  ||  (this.isDirtyDashboardSnapshots) ) {
+            return new Promise<DashboardSnapshot>((resolve, reject) => {
+                this.getDashboardSnapshots()
+                    .then(data => {
+                        data = data.filter(
+                            i => i.dashboardID == dashboardID
+                        );
+                        let lastDashboardSnapshot: DashboardSnapshot = null;
+                        if (data.length > 0) {
+                            lastDashboardSnapshot = data[data.length - 1];
+                        };
+                        console.log('%c    Global-Variables findlastDashboardSnapshot 1',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                        lastDashboardSnapshot)
+                        resolve(lastDashboardSnapshot);
+                })
+             })
+        } else {
+            return new Promise<DashboardSnapshot>((resolve, reject) => {
+                let returnData: DashboardSnapshot[];
+                returnData = this.dashboardSnapshots.filter(
+                    i => i.dashboardID == dashboardID
+                );
+                let lastDashboardSnapshot: DashboardSnapshot = null;
+                if (returnData.length > 0) {
+                    lastDashboardSnapshot = returnData[returnData.length - 1];
+                };
+
+                console.log('%c    Global-Variables findlastDashboardSnapshot 2',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", dashboardID)
+                resolve(lastDashboardSnapshot);
+            });
+        };
+    }
+
     newDashboardSnapshot(
         snapshotName: string,
         snapshotComment: string,
