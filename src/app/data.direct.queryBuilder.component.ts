@@ -84,7 +84,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
 
         // Known ones
         if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
-            this.clickClose('Close');
+            this.clickClose();
             return;
         };
         if (
@@ -279,25 +279,6 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         // Show user
         this.spinner = true;
 
-        // Fill Table and Field Names
-        // this.dataSchemas = this.globalVariableService.getTributaryDirectDBSchema(
-        //     this.selectedDatasource.serverName);
-
-        // Select the Tables, Fields
-        // if (this.dataSchemas.length > 0) {
-        //     this.selectedTableRowIndex = 0;
-        //     if (this.dataSchemas.length > 0) {
-        //         this.dataFieldsFiltered = this.dataSchemas.filter(datsch => {
-        //             if (datsch.tableName == this.dataSchemas[0].tableName) {
-        //                 return datsch;
-        //             };
-        //         })[0].tableFields;
-
-        //     } else {
-        //         this.dataFieldsFiltered = [];
-        //     };
-        // };
-
         // Remember table we started with
         let localSelectedTableRowIndex = this.selectedTableRowIndex;
 
@@ -316,61 +297,61 @@ export class DataDirectQueryBuilderComponent implements OnInit {
             }
         };
 
-        this.globalVariableService.getTributaryInspect(specificationInspect).then(res => {
-            // Show if the user has not clicked another row - this result came back async
-            if ( localSelectedTableRowIndex == this.selectedTableRowIndex) {
-                this.showPreview = true;
-                this.helpMessage = 'Enter detail, then click Refresh to show the Tables.  Select one, then select the fields to display. Click Preview to see a portion of the data.';
-            };
-            this.spinner = false;
-
-            // Fill the tables
-            this.dataSchemas = [];
-            res.forEach(row => {
-
-                this.dataSchemas.push(
-                {
-                    serverName: this.selectedDatasource.serverName,
-                    tableName: row.name,
-                    tableDescription: row.name,
-                    tableFields: [],
-                    tableMetadata: []
-                });
-                row.fields.forEach(fld => {
-                    this.dataSchemas[this.dataSchemas.length - 1].tableFields.push(
-                        {
-                            fieldName: fld.name,
-                            fieldType: fld.dtype
-                        }
-                    )
-                });
-            });
-            if (this.dataSchemas.length > 0) {
-                this.selectedTableRowIndex = 0;
-                if (this.dataSchemas.length > 0) {
-                    this.dataFieldsFiltered = this.dataSchemas.filter(datsch => {
-                        if (datsch.tableName == this.dataSchemas[0].tableName) {
-                            return datsch;
-                        };
-                    })[0].tableFields;
-
-                } else {
-                    this.dataFieldsFiltered = [];
+        this.globalVariableService.getTributaryInspect(specificationInspect)
+            .then(res => {
+                // Show if the user has not clicked another row - this result came back async
+                if ( localSelectedTableRowIndex == this.selectedTableRowIndex) {
+                    this.showPreview = true;
+                    this.helpMessage = 'Enter detail, then click Refresh to show the Tables.  Select one, then select the fields to display. Click Preview to see a portion of the data.';
                 };
-            };
-        })
+                this.spinner = false;
 
-        .catch(err => {
-            this.spinner = false;
-            this.errorMessage = err.message + '. ';
-            this.helpMessage = '';
-            if (err.status == 401) {
-                this.errorMessage = 'Error: ' + 'Either you login has expired, or you dont have access to the Database. '
-                    + err.message;
-            } else {
-                this.errorMessage = err.message;
-            };
-        });
+                // Fill the tables
+                this.dataSchemas = [];
+                res.forEach(row => {
+
+                    this.dataSchemas.push(
+                    {
+                        serverName: this.selectedDatasource.serverName,
+                        tableName: row.name,
+                        tableDescription: row.name,
+                        tableFields: [],
+                        tableMetadata: []
+                    });
+                    row.fields.forEach(fld => {
+                        this.dataSchemas[this.dataSchemas.length - 1].tableFields.push(
+                            {
+                                fieldName: fld.name,
+                                fieldType: fld.dtype
+                            }
+                        )
+                    });
+                });
+                if (this.dataSchemas.length > 0) {
+                    this.selectedTableRowIndex = 0;
+                    if (this.dataSchemas.length > 0) {
+                        this.dataFieldsFiltered = this.dataSchemas.filter(datsch => {
+                            if (datsch.tableName == this.dataSchemas[0].tableName) {
+                                return datsch;
+                            };
+                        })[0].tableFields;
+
+                    } else {
+                        this.dataFieldsFiltered = [];
+                    };
+                };
+            })
+            .catch(err => {
+                this.spinner = false;
+                this.errorMessage = err.message + '. ';
+                this.helpMessage = '';
+                if (err.status == 401) {
+                    this.errorMessage = 'Error: ' + 'Either you login has expired, or you dont have access to the Database. '
+                        + err.message;
+                } else {
+                    this.errorMessage = err.message;
+                };
+            });
 
     }
 
@@ -397,33 +378,32 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         this.errorMessage = '';
         this.showPreview = false;
 
+        // Get drivers
+        let driver: string = this.serverTypes
+            .filter(styp => styp.serverType == this.selectedDatasource.serverType)
+            .map(styp => styp.driverName)[0];
+
         // Build source string
-        let selectServerType: TributaryServerType = this.serverTypes.find(tst =>
-            tst.serverType == this.selectedDatasource.serverType);
-        let source: TributarySource = this.globalVariableService.constructTributarySQLSource(
-            selectServerType.connector,
-            selectServerType.driverName,
-            this.selectedDatasource.username,
-            this.selectedDatasource.password,
-            this.selectedDatasource.databaseName,
-            this.selectedDatasource.serverName,
-            +this.selectedDatasource.port,
-            "select I.\"InvoiceDate\" as \"Date\", sum(I.\"Total\") as \"Amount\" from invoices I group by I.\"InvoiceDate\""
-        );
-        console.warn('xx source', source)
-        // {
-        //     "source": {
-        //         "connector": "tributary.connectors.sql:SqlConnector",
-        //         "drivername": "postgres",
-        //         "username": "ftfhgfzh",
-        //         "password": "L0Eph9ftbx0yh45aeDtgzsGKBa2ZNhfl",
-        //         "database": "ftfhgfzh",
-        //         "host": "pellefant.db.elephantsql.com",
-        //         "port": 5432,
-        //         "query": "select I.\"InvoiceDate\" as \"Date\", sum(I.\"Total\") as \"Amount\" from invoices I group by I.\"InvoiceDate\""
-        //     }
-        // }
-        this.globalVariableService.getTributaryData(source).then(res => {
+        this.selectedDatasource.dataSQLStatement = "select * from invoices";
+
+        let specificationConnect: any = {
+            "source": {
+                "connector": "tributary.connectors.sql:SqlConnector",
+                "specification": {
+                    "drivername": driver,
+                    "username": this.selectedDatasource.username,
+                    "password": this.selectedDatasource.password,
+                    "database": this.selectedDatasource.databaseName,
+                    "host": this.selectedDatasource.serverName,
+                    "port": +this.selectedDatasource.port,
+                    "query": this.selectedDatasource.dataSQLStatement
+                }
+            }
+        };
+        console.warn('xx source', specificationConnect)
+
+        // Get data from Tributary
+        this.globalVariableService.getTributaryData(specificationConnect).then(res => {
             // Show if the user has not clicked another row - this result came back async
             if ( localSelectedTableRowIndex == this.selectedTableRowIndex) {
                 this.showPreview = true;
@@ -432,6 +412,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
 
         })
         .catch(err => {
+            this.showPreview = true;
             this.errorMessage = err.message + '. ';
             this.helpMessage = '';
             if (err.status == 401) {
@@ -444,7 +425,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
 
     }
 
-    clickClose(action: string) {
+    clickClose() {
         // Close form, nothing saved
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
