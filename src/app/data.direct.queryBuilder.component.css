@@ -143,9 +143,18 @@
         grid-row-end: 7;
         margin-top: 12px;
     }
+
     .gridButtonPreview {
         grid-column-start: 16;
         grid-column-end: 18;
+        grid-row-start: 6;
+        grid-row-end: 7;
+        margin-top: 12px;
+    }
+
+    .gridDataRows {
+        grid-column-start: 19;
+        grid-column-end: 21;
         grid-row-start: 6;
         grid-row-end: 7;
         margin-top: 12px;

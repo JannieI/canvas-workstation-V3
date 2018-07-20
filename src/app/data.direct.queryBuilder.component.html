@@ -139,6 +139,10 @@
                         </button>
                     </div>
 
+                    <div class="gridDataRows" *ngIf="showPreview">
+                        {{ nrRows }} Rows
+                    </div>
+    
                     <div class="gridTables">
                         <clr-datagrid>
                             <clr-dg-placeholder>
@@ -193,7 +197,7 @@
                         Loading...
                     </span>
     
-                    <div class="gridPreviewData" *ngIf="xxxshowPreview">
+                    <div class="gridPreviewData" *ngIf="showPreview">
                         <clr-datagrid class="gridPreviewData">
 
                             <clr-dg-column *ngFor="let row of dataFieldsSelected"

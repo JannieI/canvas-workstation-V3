@@ -73,6 +73,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
     dataTables: DataTable[] = [];
     errorMessage: string = "";
     helpMessage: string = '';
+    nrRows: number = 0;
     selectedFieldRowIndex: number = 0;
     selectedFields: any[] = [];
     selectedTableRowIndex: number = -1;
@@ -338,9 +339,6 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         };
         this.helpMessage = 'Getting the data ...';
 
-        // Remember table we started with
-        let localSelectedTableRowIndex = this.selectedTableRowIndex;
-
         // Set array for preview headings
         this.dataFieldsSelected = this.selectedFields.map(f => f.fieldName);
 
@@ -376,6 +374,9 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         this.globalVariableService.getTributaryData(specificationConnect).then(res => {
             this.spinner = false;
             this.currentData = res;
+            this.helpMessage = '';
+            this.showPreview = true;
+            this.nrRows = res.length;
             this.currentDataSnippet = res.slice(0, 8);
 
         })
