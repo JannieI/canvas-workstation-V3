@@ -15,6 +15,7 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
 // Our Models
+import { DataConnection }             from './models';
 import { Datasource }                 from './models';
 import { DataTable }                  from './models';
 import { DataField }                  from './models';
@@ -279,6 +280,7 @@ export class DataManagedQueryBuilderComponent implements OnInit {
 
 
     connectionName: string = 'tributary.connectors.sql:SqlConnector';
+    dataConnections: DataConnection[];
     currentData: any[] = [];
     currentDataSnippet: any[] = [];
     dataFields: DataField[] = [];
@@ -312,6 +314,9 @@ export class DataManagedQueryBuilderComponent implements OnInit {
 
         // Set base info
         this.serverTypes = this.globalVariableService.serverTypes;
+        this.globalVariableService.getDataConnections().then(dc => {
+            this.dataConnections = dc.slice();
+        });
 
         if (!this.editingDS) {
         this.helpMessage = 'Enter detail, then click Refresh to show the Tables.  Select one, then select the fields to display. Click Preview to see a portion of the data.';
@@ -327,7 +332,7 @@ export class DataManagedQueryBuilderComponent implements OnInit {
                 description: 'Post Trade Data Vault',
                 createdBy: '',
                 createdOn:null,
-                createMethod: 'directQueryBuilder',
+                createMethod: 'managedQueryBuilder',
                 editor: '',
                 dateEdited: null,
                 refreshedBy: '',
@@ -346,14 +351,14 @@ export class DataManagedQueryBuilderComponent implements OnInit {
                 csvQuotCharacter: '',
                 webUrl: '',
                 webTableIndex: '',
-                connectionID: 0,
+                connectionID: 1,
                 dataTableID: 0,
                 nrWidgets: 0,
-                databaseName: 'ftfhgfzh',
-                port: '5432',
-                serverType: 'PostgresSQL',
-                serverName: 'pellefant.db.elephantsql.com',
-                dataTableName: 'ftfhgfzh',
+                databaseName: '',
+                port: '',
+                serverType: '',
+                serverName: '',
+                dataTableName: '',
                 dataSQLStatement: '',
                 dataNoSQLStatement: '',
                 dataNeo4jStatement: '',
@@ -680,7 +685,7 @@ export class DataManagedQueryBuilderComponent implements OnInit {
             description: this.selectedDatasource.description,
             createdBy: this.globalVariableService.currentUser.userID,
             createdOn: today,
-            createMethod: 'directQueryBuilder',
+            createMethod: 'managedQueryBuilder',
             editor: '',
             dateEdited: null,
             refreshedBy: this.globalVariableService.currentUser.userID,

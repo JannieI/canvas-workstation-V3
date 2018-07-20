@@ -4086,8 +4086,7 @@ export class GlobalVariableService {
             // Create new record
             let newSn: DashboardSnapshot = {
                 id: null,
-                dashboardID: this.currentDashboardInfo.value.
-                currentDashboardID,
+                dashboardID: this.currentDashboardInfo.value.currentDashboardID,
                 name: snapshotName,
                 snapshotType: snapshotType,
                 comment: snapshotComment,
@@ -8130,19 +8129,28 @@ export class GlobalVariableService {
                 dashboardIndex]
                 .name + ' ' + this.formatDate(today);
             let snapshotComment: string = 'Added automated Snapshot before first Action';
-            this.newDashboardSnapshot(snapshotName, snapshotComment,'BeforeFirstEdit'
-                ).then(res => {
-                    this.showStatusBarMessage(
-                        {
-                            message: 'Added automated Snapshot before first Action',
-                            uiArea: 'StatusBar',
-                            classfication: 'Info',
-                            timeout: 3000,
-                            defaultMessage: ''
-                        }
-                    );
 
-            });
+            // Determine if last snapshot for this D was an auto first
+            let lastDashboardSnapshot: DashboardSnapshot = this.findlastDashboardSnapshot(
+                this.currentDashboardInfo.value.currentDashboardID
+            );
+
+            // Add if last snap was not an auto
+            if (lastDashboardSnapshot.comment != snapshotComment) {
+                this.newDashboardSnapshot(snapshotName, snapshotComment,'BeforeFirstEdit')
+                    .then(res => {
+                        this.showStatusBarMessage(
+                            {
+                                message: 'Added automated Snapshot before first Action',
+                                uiArea: 'StatusBar',
+                                classfication: 'Info',
+                                timeout: 3000,
+                                defaultMessage: ''
+                            }
+                        );
+                        
+                    });
+            };
 
             this.firstAction = false;
         };
