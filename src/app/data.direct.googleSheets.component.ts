@@ -20,21 +20,6 @@ import { GlobalVariableService}       from './global-variable.service';
 import { Dataset }                    from './models';
 import { Datasource }                 from './models';
 
-interface webTables {
-	fields:
-		{
-			name: string;
-			dtype: string
-		}[];
-	meta:
-		{
-			has_body: boolean;
-			has_headers: boolean;
-			index: number;
-			attrs: {}
-		};
-	name: string;
-}
 
 @Component({
     selector: 'data-direct-googlesheets',
@@ -74,7 +59,6 @@ export class DataDirectGoogleSheetsComponent implements OnInit {
     savedMessage: string = '';
     selectedTableRowIndex: number = -1;
     showPreview: boolean = false;
-    tables: webTables[];
     url: string = 'https://docs.google.com/spreadsheets/d/1xSMysMxnNhR8AXFuU-TWrgGe6TbsorZffNfwFlF85GA/edit#gid=0';
 
 	constructor(
@@ -97,13 +81,12 @@ export class DataDirectGoogleSheetsComponent implements OnInit {
     }
 
     clickHttpGet() {
-        // User clicked Get with URL: read the web page and return list of tables
+        // User clicked Get with URL to Google Sheet
         this.globalFunctionService.printToConsole(this.constructor.name,'clickHttpGet', '@Start');
 
         // Reset
         this.showPreview = false;
         this.errorMessage = '';
-        this.tables = [];
         this.savedMessage = '';
 
         // Construct spec for Tributary
@@ -117,7 +100,7 @@ export class DataDirectGoogleSheetsComponent implements OnInit {
             }
         };
 
-        // Get a list of Tables (created with <table> tag) on the web page
+        // Get data in sheet
         this.globalVariableService.getTributaryData(source).then(res => {
             this.currentData = res;
 

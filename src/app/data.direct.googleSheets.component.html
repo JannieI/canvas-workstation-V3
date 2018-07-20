@@ -29,9 +29,9 @@
                                     Help
                                 </h5>
                                 <p style="margin-top: 0; color:gray;">
-                                    Obtain data from a web page.  Enter the url of your Google
-                                    Sheet spreadsheet, and click Get to obtain the data.  Enter
-                                    a name and description for the datasource,
+                                    Obtain data from a Google Sheet document.  Enter the url 
+                                    of your Google Sheet, and click Get to obtain the data.  
+                                    Enter a name and description for the datasource,
                                     and click Save to store it permanently.
                                     Click the X or press Escape to close this form.
                                 </p>
@@ -71,7 +71,7 @@
                             type="text"
                             name="url"
                             size="50"
-                            title="Url (address) of the data to be read, ie https://en.wikipedia.org/wiki/Iris_flower_data_set"
+                            title="Url (address) of the Google sheet to be read, ie https://docs.google.com/spreadsheets/d/1xSMysMxnNhR8AXFuU-TWrgGe6TbsorZffNfwFlF85GA/edit#gid=0"
                             [disabled]="editingDS"
                             >
                     </div>
@@ -88,13 +88,6 @@
 
                     <div class="gridErrorMessage">
                         {{ errorMessage }}
-                    </div>
-
-                    <div class="gridHelpMessage" *ngIf="!showPreview">
-                        <i>
-                            <p>Click the Get button to show a list of tables.</p>
-                            <p>Then click on a table to show the data here.</p>
-                        </i>
                     </div>
 
                     <div class="gridPreviewData" *ngIf="showPreview">
