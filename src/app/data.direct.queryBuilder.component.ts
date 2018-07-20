@@ -198,8 +198,11 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         // Get the tables and fields from the DB
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRefresh', '@Start');
 
-        // Show user
+        // Reset
+        this.showPreview = false;
+        this.helpMessage = '';
         this.spinner = true;
+        this.errorMessage = '';
 
         // Remember table we started with
         let localSelectedTableRowIndex = this.selectedTableRowIndex;
@@ -323,16 +326,11 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         // Get the data
         this.globalFunctionService.printToConsole(this.constructor.name,'clickPreview', '@Start');
 
-        // // Show if the user has not clicked another row - this result came back async
-        // if ( localSelectedTableRowIndex == this.selectedTableRowIndex) {
-        //     this.showPreview = true;
-        //     this.helpMessage = 'Enter detail, then click Refresh to show the Tables.  Select one, then select the fields to display. Click Preview to see a portion of the data.';
-        // };
-
         // Reset
         this.showPreview = false;
         this.helpMessage = '';
         this.spinner = true;
+        this.errorMessage = '';
 
         // No Fields, no data
         if (this.selectedFields.length == 0) {
@@ -343,10 +341,6 @@ export class DataDirectQueryBuilderComponent implements OnInit {
 
         // Set array for preview headings
         this.dataFieldsSelected = this.selectedFields.map(f => f.fieldName);
-
-        // Reset
-        this.errorMessage = '';
-        this.showPreview = false;
 
         // Get drivers
         let driver: string = this.serverTypes
@@ -362,7 +356,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
             };
             sqlFields = '"' + fld.fieldName + '"';
         });
-        console.warn('xx xx', sqlTable, this.selectedFields)
+        console.warn('xx xx', 'SELECT ' + sqlFields + ' FROM ' + sqlTable)
         this.selectedDatasource.dataSQLStatement = "select * from invoices";
         
         // Build source string
