@@ -72,6 +72,7 @@ export class DataDirectWebComponent implements OnInit {
     firstTimeEdit: boolean = false;
     newName: string = '';
     newDescription: string = '';
+    nrRows: number = 0;
     savedMessage: string = '';
     selectedTableRowIndex: number = -1;
     showPreview: boolean = false;
@@ -170,6 +171,7 @@ export class DataDirectWebComponent implements OnInit {
         this.globalVariableService.getTributaryData(source).then(res => {
             this.currentData = res;
             this.currentDataSnippet = res;
+            this.nrRows = res.length;
 
             // Show the preview data table
             this.showPreview = true;
