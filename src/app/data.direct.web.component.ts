@@ -64,6 +64,7 @@ export class DataDirectWebComponent implements OnInit {
 
     canSave: boolean = false;
     currentData: any[] = [];
+    currentDataSnippet: any[] = [];
     dataFieldsSelected: string[];
     datasources: Datasource[] = [];
     element: string = '';
@@ -168,6 +169,7 @@ export class DataDirectWebComponent implements OnInit {
 
         this.globalVariableService.getTributaryData(source).then(res => {
             this.currentData = res;
+            this.currentDataSnippet = res;
 
             // Show the preview data table
             this.showPreview = true;
