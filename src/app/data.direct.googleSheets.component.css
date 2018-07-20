@@ -67,9 +67,16 @@
         grid-row-start: 5;
         grid-row-end: 6;
     }
+
     .gridButtonGet {
         grid-column-start: 17;
         grid-column-end: 19;
+        grid-row-start: 5;
+        grid-row-end: 6;
+    }
+    .gridDataRows {
+        grid-column-start: 19;
+        grid-column-end: 21;
         grid-row-start: 5;
         grid-row-end: 6;
     }
