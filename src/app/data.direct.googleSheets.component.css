@@ -73,7 +73,9 @@
         grid-column-end: 19;
         grid-row-start: 4;
         grid-row-end: 5;
+        padding-top: 7px;
     }
+
     .gridDataRows {
         grid-column-start: 19;
         grid-column-end: 21;
