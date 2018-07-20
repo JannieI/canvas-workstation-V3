@@ -51,7 +51,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
     fileDataFull: any = [];
     reader = new FileReader();
     savedMessage: string = '';
-    selectedFields: string = "BillingAddress,BillingCity,BillingCountry,BillingPostalCode,BillingState,CustomerId,InvoiceDate,InvoiceId,Total";
+    // selectedFields: string = "BillingAddress,BillingCity,BillingCountry,BillingPostalCode,BillingState,CustomerId,InvoiceDate,InvoiceId,Total";
     serverTypes: TributaryServerType[];
     showPreview: boolean = false;
     spinner: boolean = false;
