@@ -109,55 +109,6 @@ export class DataDirectGoogleSheetsComponent implements OnInit {
         // Construct spec for Tributary
         let source: any = {
             "source": {
-                "inspector": "tributary.inspectors.web:WebTablesInspector",
-                "specification": {
-                    "content": this.url
-                }
-            }
-        };
-
-        // Get a list of Tables (created with <table> tag) on the web page
-        this.globalVariableService.getTributaryInspect(source)
-            .then(res => {
-                this.tables = res;
-
-                // Add Table Names where missing
-                for (var i = 0; i < this.tables.length; i++) {
-                    if (this.tables[i].name == null) {
-                        this.tables[i].name = 'Table ' + i;
-                    };
-                };
-
-                if (this.selectedDatasource != null) {
-                    if (!isNaN(+this.selectedDatasource.webTableIndex)) {
-                        this.clickSelectedDataTable(+this.selectedDatasource.webTableIndex);
-                        this.firstTimeEdit = false;
-                    };
-                };
-
-            })
-            .catch(err => {
-                this.errorMessage = err.message + '. ';
-                if (err.status == 401) {
-                    this.errorMessage = 'Error: ' + 'Either you login has expired, or you dont have access to the Database. ';
-                } else {
-                    this.errorMessage = err.message;
-                };
-            });
-
-        // Cannot save as yet
-        this.canSave = false;
-    }
-
-    clickSelectedDataTable(index: number) {
-        // Clicked a Table, so get the data for the selected table
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectedDataTable', '@Start');
-
-        // Set seletected index - used for highlighting row
-        this.selectedTableRowIndex = index;
-
-        let source: any = {
-            "source": {
                 "connector": "tributary.connectors.spreadsheet:GSheetConnector",
                 "specification": {
                     "content": this.url,
@@ -166,6 +117,7 @@ export class DataDirectGoogleSheetsComponent implements OnInit {
             }
         };
 
+        // Get a list of Tables (created with <table> tag) on the web page
         this.globalVariableService.getTributaryData(source).then(res => {
             this.currentData = res;
 
@@ -187,7 +139,18 @@ export class DataDirectGoogleSheetsComponent implements OnInit {
             this.canSave = true;
             this.savedMessage = '';
             console.warn('xx res', res.length, this.dataFieldsSelected)
-        });
+        })
+            .catch(err => {
+                this.errorMessage = err.message + '. ';
+                if (err.status == 401) {
+                    this.errorMessage = 'Error: ' + 'Either you login has expired, or you dont have access to the Database. ';
+                } else {
+                    this.errorMessage = err.message;
+                };
+            });
+
+        // Cannot save as yet
+        this.canSave = false;
     }
 
     clickClose() {
