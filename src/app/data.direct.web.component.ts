@@ -76,6 +76,7 @@ export class DataDirectWebComponent implements OnInit {
     savedMessage: string = '';
     selectedTableRowIndex: number = -1;
     showPreview: boolean = false;
+    spinner: boolean = false;
     tables: webTables[];
     url: string = 'https://en.wikipedia.org/wiki/Iris_flower_data_set';
 
@@ -157,6 +158,7 @@ export class DataDirectWebComponent implements OnInit {
 
         // Set seletected index - used for highlighting row
         this.selectedTableRowIndex = index;
+        this.spinner = true;
 
         let source: any = {
             "source": {
@@ -190,6 +192,7 @@ export class DataDirectWebComponent implements OnInit {
             // The User can save now
             this.canSave = true;
             this.savedMessage = '';
+            this.spinner = false;
             console.warn('xx res', res.length, this.dataFieldsSelected)
         });
     }

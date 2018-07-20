@@ -91,6 +91,13 @@
         grid-row-end: 7;
     }
 
+    .gridSpinner {
+        grid-column-start: 15;
+        grid-column-end: 16;
+        grid-row-start: 10;
+        grid-row-end: 12;
+    }
+
     .gridHelpMessage {
         grid-column-start: 5;
         grid-column-end: 20;

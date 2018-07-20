@@ -94,6 +94,10 @@
                         {{ errorMessage }}
                     </div>
 
+                    <span class="spinner spinner-inline gridSpinner" *ngIf="spinner">
+                        Loading...
+                    </span>
+    
                     <div class="gridHelpMessage" *ngIf="!showPreview">
                         <i>
                             <p>Click the Get button to show a list of tables.</p>
