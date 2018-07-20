@@ -77,6 +77,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
     selectedFieldRowIndex: number = 0;
     selectedFields: any[] = [];
     selectedTableRowIndex: number = -1;
+    selectedTableName: string = '';
     serverTypes: TributaryServerType[]
     showPreview: boolean = false;
     spinner: boolean = false;
@@ -294,6 +295,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
 
         // Set seletected index - used for highlighting row
         this.selectedTableRowIndex = index;
+        this.selectedTableName = tableName;
 
         // Select Fields in the table
         this.dataFieldsFiltered = this.dataSchemas.filter(datsch => {
@@ -351,9 +353,19 @@ export class DataDirectQueryBuilderComponent implements OnInit {
             .filter(styp => styp.serverType == this.selectedDatasource.serverType)
             .map(styp => styp.driverName)[0];
 
-        // Build source string
+        // Build SQL string
+        let sqlTable: string = this.selectedTableName;
+        let sqlFields: string = '';
+        this.selectedFields.forEach(fld => {
+            if (sqlFields != '') {
+                sqlFields = sqlFields + ', ';
+            };
+            sqlFields = '"' + fld.fieldName + '"';
+        });
+        console.warn('xx xx', sqlTable, this.selectedFields)
         this.selectedDatasource.dataSQLStatement = "select * from invoices";
-
+        
+        // Build source string
         let specificationConnect: any = {
             "source": {
                 "connector": "tributary.connectors.sql:SqlConnector",
@@ -368,7 +380,6 @@ export class DataDirectQueryBuilderComponent implements OnInit {
                 }
             }
         };
-        console.warn('xx source', specificationConnect)
 
         // Get data from Tributary
         this.globalVariableService.getTributaryData(specificationConnect).then(res => {
