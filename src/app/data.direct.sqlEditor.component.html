@@ -124,7 +124,7 @@
                     </div>
                     <textarea class="gridSQLText" [(ngModel)]="selectedDatasource.dataSQLStatement"
                         name="textArea"
-                        >SELECT COUNT(*) FROM table
+                        >SELECT "InvoiceDate", "BillingCity" FROM invoices
                     </textarea>
 
                     <div *ngIf="errorMessage!=''" class="gridErrorMessage">

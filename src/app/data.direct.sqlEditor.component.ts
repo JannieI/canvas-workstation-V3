@@ -108,7 +108,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
                 serverType: 'PostgresSQL',
                 serverName: 'pellefant.db.elephantsql.com',
                 dataTableName: 'ftfhgfzh',
-                dataSQLStatement: 'select * from \"invoices\"',
+                dataSQLStatement: 'SELECT "InvoiceDate", "BillingCity"  FROM invoices',
                 dataNoSQLStatement: '',
                 dataNeo4jStatement: '',
                 dataGraphQLStatement: '',

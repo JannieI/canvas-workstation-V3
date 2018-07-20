@@ -280,23 +280,23 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         this.spinner = true;
 
         // Fill Table and Field Names
-        this.dataSchemas = this.globalVariableService.getTributaryDirectDBSchema(
-            this.selectedDatasource.serverName);
+        // this.dataSchemas = this.globalVariableService.getTributaryDirectDBSchema(
+        //     this.selectedDatasource.serverName);
 
         // Select the Tables, Fields
-        if (this.dataSchemas.length > 0) {
-            this.selectedTableRowIndex = 0;
-            if (this.dataSchemas.length > 0) {
-                this.dataFieldsFiltered = this.dataSchemas.filter(datsch => {
-                    if (datsch.tableName == this.dataSchemas[0].tableName) {
-                        return datsch;
-                    };
-                })[0].tableFields;
+        // if (this.dataSchemas.length > 0) {
+        //     this.selectedTableRowIndex = 0;
+        //     if (this.dataSchemas.length > 0) {
+        //         this.dataFieldsFiltered = this.dataSchemas.filter(datsch => {
+        //             if (datsch.tableName == this.dataSchemas[0].tableName) {
+        //                 return datsch;
+        //             };
+        //         })[0].tableFields;
 
-            } else {
-                this.dataFieldsFiltered = [];
-            };
-        };
+        //     } else {
+        //         this.dataFieldsFiltered = [];
+        //     };
+        // };
 
         // Remember table we started with
         let localSelectedTableRowIndex = this.selectedTableRowIndex;
@@ -317,8 +317,6 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         };
 
         this.globalVariableService.getTributaryInspect(specificationInspect).then(res => {
-
-            console.warn('xx res', res)
             // Show if the user has not clicked another row - this result came back async
             if ( localSelectedTableRowIndex == this.selectedTableRowIndex) {
                 this.showPreview = true;
@@ -326,7 +324,42 @@ export class DataDirectQueryBuilderComponent implements OnInit {
             };
             this.spinner = false;
 
+            // Fill the tables
+            this.dataSchemas = [];
+            res.forEach(row => {
+
+                this.dataSchemas.push(
+                {
+                    serverName: this.selectedDatasource.serverName,
+                    tableName: row.name,
+                    tableDescription: row.name,
+                    tableFields: [],
+                    tableMetadata: []
+                });
+                row.fields.forEach(fld => {
+                    this.dataSchemas[this.dataSchemas.length - 1].tableFields.push(
+                        {
+                            fieldName: fld.name,
+                            fieldType: fld.dtype
+                        }
+                    )
+                });
+            });
+            if (this.dataSchemas.length > 0) {
+                this.selectedTableRowIndex = 0;
+                if (this.dataSchemas.length > 0) {
+                    this.dataFieldsFiltered = this.dataSchemas.filter(datsch => {
+                        if (datsch.tableName == this.dataSchemas[0].tableName) {
+                            return datsch;
+                        };
+                    })[0].tableFields;
+
+                } else {
+                    this.dataFieldsFiltered = [];
+                };
+            };
         })
+
         .catch(err => {
             this.spinner = false;
             this.errorMessage = err.message + '. ';
