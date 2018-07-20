@@ -98,7 +98,7 @@
                                 {{ row }}
                             </clr-dg-column>
 
-                            <clr-dg-row *clrDgItems="let row of currentData">
+                            <clr-dg-row *clrDgItems="let row of currentDataSnippet">
 
                                 <clr-dg-cell *ngFor="let col of dataFieldsSelected; let i = index">
                                         {{ row[col] }}

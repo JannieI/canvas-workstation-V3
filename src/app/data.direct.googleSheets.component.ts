@@ -49,6 +49,7 @@ export class DataDirectGoogleSheetsComponent implements OnInit {
 
     canSave: boolean = false;
     currentData: any[] = [];
+    currentDataSnippet: any[] = [];
     dataFieldsSelected: string[];
     datasources: Datasource[] = [];
     element: string = '';
@@ -103,6 +104,7 @@ export class DataDirectGoogleSheetsComponent implements OnInit {
         // Get data in sheet
         this.globalVariableService.getTributaryData(source).then(res => {
             this.currentData = res;
+            this.currentDataSnippet = res.slice(1, 8);
 
             // Show the preview data table
             this.showPreview = true;
