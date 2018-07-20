@@ -184,12 +184,6 @@ export class DataDirectQueryBuilderComponent implements OnInit {
                     this.dataFieldsSelected.push(this.selectedDatasource.dataFields[i]);
                 };
             };
-
-            // this.clickSelectedDatafield(1)
-            console.warn('xx dsIndex, this.selectedDatasource', dsIndex, this.selectedFields,
-            this.selectedDatasource)
-
-            //
         };
 
     }
@@ -226,7 +220,6 @@ export class DataDirectQueryBuilderComponent implements OnInit {
             .then(res => {
                 // Show if the user has not clicked another row - this result came back async
                 if ( localSelectedTableRowIndex == this.selectedTableRowIndex) {
-                    this.showPreview = true;
                     this.helpMessage = 'Enter detail, then click Refresh to show the Tables.  Select one, then select the fields to display. Click Preview to see a portion of the data.';
                 };
                 this.spinner = false;
@@ -256,6 +249,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
                 // Click first table
                 if (this.dataSchemas.length > 0) {
                     this.selectedTableRowIndex = 0;
+                    this.selectedTableName = this.dataSchemas[0].tableName;
                     if (this.dataSchemas.length > 0) {
                         this.dataFieldsFiltered = this.dataSchemas.filter(datsch => {
                             if (datsch.tableName == this.dataSchemas[0].tableName) {
@@ -290,7 +284,6 @@ export class DataDirectQueryBuilderComponent implements OnInit {
 
         // Reset selected Fields
         if (this.selectedTableRowIndex != index) {
-            console.warn('xx reset sel Flds')
             this.selectedFields = [];
             this.dataFieldsSelected = [];
             this.showPreview = false;
@@ -312,7 +305,6 @@ export class DataDirectQueryBuilderComponent implements OnInit {
     clickSelectedDatafield(index: number) {
         // Clicked a Field
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectedDatafield', '@Start');
-        console.warn('xx start', this.selectedFields, this.dataFieldsSelected)
 
         // Set seletected index - used for highlighting row
         this.selectedFieldRowIndex = index;
@@ -350,15 +342,16 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         // Build SQL string
         let sqlTable: string = this.selectedTableName;
         let sqlFields: string = '';
+        this.selectedDatasource.dataSQLStatement = "select * from invoices";
         this.selectedFields.forEach(fld => {
             if (sqlFields != '') {
                 sqlFields = sqlFields + ', ';
             };
-            sqlFields = '"' + fld.fieldName + '"';
+            sqlFields = sqlFields + '"' + fld.fieldName + '"';
         });
-        console.warn('xx xx', 'SELECT ' + sqlFields + ' FROM ' + sqlTable)
-        this.selectedDatasource.dataSQLStatement = "select * from invoices";
-        
+        this.selectedDatasource.dataSQLStatement = 'SELECT ' + sqlFields + ' FROM ' + sqlTable;
+        console.warn('xx',this.selectedDatasource.dataSQLStatement)
+
         // Build source string
         let specificationConnect: any = {
             "source": {
@@ -446,8 +439,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
             };
         });
 
-        console.warn('xx dataFields', this.selectedFields, dataFields, dataFieldLengths, dataFieldTypes)
-
+        // Make sure at least one field selected
         if (dataFields.length == 0) {
             this.showPreview = false;
             this.helpMessage = '';
