@@ -48,7 +48,6 @@ export class SlicerSingleComponent {
             };
             if (space >= 0  &&  space < px) {
                 this.slicerBorderWidth = +this.slicer.containerBorder.substring(space, px); 
-                console.warn('xx hier', this.slicerBorderWidth)
             };
         };
         this.slicerBorderWidth = this.slicerBorderWidth * 2;

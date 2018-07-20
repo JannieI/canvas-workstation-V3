@@ -302,7 +302,6 @@ export class DashboardScheduleEditComponent implements OnInit {
                     if (this.selectedRow == null) {
                         this.selectedRow = 0;
                         this.scheduleID = this.selectedDashboardSchedule.id;
-                        console.warn('xx hier')
                     };
                             
                 }

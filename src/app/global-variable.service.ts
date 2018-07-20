@@ -8176,26 +8176,26 @@ export class GlobalVariableService {
             let snapshotComment: string = 'Added automated Snapshot before first Action';
 
             // Determine if last snapshot for this D was an auto first
-            let lastDashboardSnapshot: DashboardSnapshot = this.findlastDashboardSnapshot(
+            this.findlastDashboardSnapshot(
                 this.currentDashboardInfo.value.currentDashboardID
-            );
-
-            // Add if last snap was not an auto
-            if (lastDashboardSnapshot.comment != snapshotComment) {
-                this.newDashboardSnapshot(snapshotName, snapshotComment,'BeforeFirstEdit')
-                    .then(res => {
-                        this.showStatusBarMessage(
-                            {
-                                message: 'Added automated Snapshot before first Action',
-                                uiArea: 'StatusBar',
-                                classfication: 'Info',
-                                timeout: 3000,
-                                defaultMessage: ''
-                            }
-                        );
-                        
-                    });
-            };
+            ).then(lss => {
+                // Add if last snap was not an auto
+                if (lss.comment != snapshotComment) {
+                    this.newDashboardSnapshot(snapshotName, snapshotComment,'BeforeFirstEdit')
+                        .then(res => {
+                            this.showStatusBarMessage(
+                                {
+                                    message: 'Added automated Snapshot before first Action',
+                                    uiArea: 'StatusBar',
+                                    classfication: 'Info',
+                                    timeout: 3000,
+                                    defaultMessage: ''
+                                }
+                            );
+                            
+                        });
+                };
+            });
 
             this.firstAction = false;
         };

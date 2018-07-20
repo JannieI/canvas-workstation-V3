@@ -419,7 +419,6 @@ import { GlobalVariableService }      from './global-variable.service';
         // Must slicer when not All were selected
         // TODO - fix this
         if (this.localWidget.slicerNumberToShow != 'All') {
-            console.warn('xx hier', this.localWidget.datasetID, this.localWidget.datasourceID, this.localWidget.datasetID)
             this.globalVariableService.currentDatasets.forEach(cd => {
                 if (cd.id == this.localWidget.datasetID) {
                     console.warn('xx len before', cd.data.length)

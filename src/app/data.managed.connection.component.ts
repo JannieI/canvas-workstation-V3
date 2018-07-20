@@ -174,7 +174,6 @@ export class DataManagedConnectionComponent implements OnInit {
                     if (this.selectedConnectionRowIndex == null) {
                         this.selectedConnectionRowIndex = 0;
                         this.connectionID = this.selectedConnection.id;
-                        console.warn('xx hier')
                     };
 
                     // Add locally

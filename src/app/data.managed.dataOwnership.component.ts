@@ -240,7 +240,6 @@ export class DataManageDataOwnershipComponent implements OnInit {
                     if (this.selectedDataOwnershipRowIndex == null) {
                         this.selectedDataOwnershipRowIndex = 0;
                         this.selectedDatasourceID = this.selectedDataOwnership.id;
-                        console.warn('xx hier')
                     };
 
                     // Add locally
