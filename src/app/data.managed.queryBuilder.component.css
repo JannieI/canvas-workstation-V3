@@ -1,6 +1,6 @@
 .modalBox {
-	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-	-shadow: 0 2px 2px 0 lightgray;
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    -shadow: 0 2px 2px 0 lightgray;
 }
 
 .gridOverall {
@@ -41,17 +41,20 @@
         grid-row-start: 3;
         grid-row-end: 4;
     }
+
     .gridDescriptionTitle {
         grid-column-start: 7;
         grid-column-end: 9;
         grid-row-start: 3;
         grid-row-end: 4;
+        margin-top: 5px;
     }
     .gridDescription {
         grid-column-start: 9;
-        grid-column-end: 21;
+        grid-column-end: 18;
         grid-row-start: 3;
         grid-row-end: 4;
+        margin-top: 5px;
     }
 
     .gridConnectionSelectTitle {
@@ -59,12 +62,15 @@
         grid-column-end: 2;
         grid-row-start: 5;
         grid-row-end: 6;
+        margin-top: 5px;
     }
+
     .gridConnectionSelect {
         grid-column-start: 2;
         grid-column-end: 7;
         grid-row-start: 5;
         grid-row-end: 6;
+        margin-top: 5px;
     }
 
     .gridUsernameTitle {
@@ -72,7 +78,6 @@
         grid-column-end: 9;
         grid-row-start: 5;
         grid-row-end: 6;
-        margin-top: 5px;
     }
     .gridUsername {
         grid-column-start: 9;
@@ -94,22 +99,39 @@
         grid-row-start: 5;
         grid-row-end: 6;
     }
-    
+
     .connectionString {
         grid-column-start: 1;
-        grid-column-end: 21;
+        grid-column-end: 14;
         grid-row-start: 7;
         grid-row-end: 8;
         margin-top: 5px;
     }
 
-    .gridErrorMessage {
-        grid-column-start: 2;
-        grid-column-end: 20;
-        grid-row-start: 8;
-        grid-row-end: 9;
+    .gridButtonRefresh {
+        grid-column-start: 14;
+        grid-column-end: 16;
+        grid-row-start: 7;
+        grid-row-end: 8;
+        margin-top: 12px;
     }
-    
+
+    .gridButtonPreview {
+        grid-column-start: 16;
+        grid-column-end: 18;
+        grid-row-start: 7;
+        grid-row-end: 8;
+        margin-top: 12px;
+    }
+
+    .gridDataRows {
+        grid-column-start: 19;
+        grid-column-end: 21;
+        grid-row-start: 7;
+        grid-row-end: 8;
+        margin-top: 4px;
+    }
+
     .gridTables {
         border: 1px solid gray;
         border-radius: 4px;
@@ -138,13 +160,13 @@
         }
 
         .dsCheckbox {
-            margin: 4px 0 0 0 !important;    
+            margin: 4px 0 0 0 !important;
         }
 
         .dsName {
             display: inline-block;
-            margin: -3px 0 0 0 !important;    
-            padding: 0 0 5px 0 !important;    
+            margin: -3px 0 0 0 !important;
+            padding: 0 0 5px 0 !important;
         }
 
         .widthTn {
@@ -160,13 +182,47 @@
         border: 1px solid gray;
         border-radius: 4px;
         grid-column-start: 7;
-        grid-column-end: 21;
+        grid-column-end: 12;
         grid-row-start: 9;
         grid-row-end: 25;
+        margin-left: 22x;
         overflow-y: scroll;
         width: 100%;
     }
- 
+
+    .gridHelpMessage {
+        color: rgb(194, 191, 191);
+        grid-column-start: 13;
+        grid-column-end: 21;
+        grid-row-start: 11;
+        grid-row-end: 12;
+    }
+    .gridErrorMessage {
+        color: red;
+        grid-column-start: 13;
+        grid-column-end: 21;
+        grid-row-start: 11;
+        grid-row-end: 12;
+    }
+
+    .gridSpinner {
+        grid-column-start: 16;
+        grid-column-end: 17;
+        grid-row-start: 18;
+        grid-row-end: 20;
+    }
+
+    .gridPreviewData {
+        border: 1px solid gray;
+        border-radius: 4px;
+        grid-column-start: 13;
+        grid-column-end: 21;
+        grid-row-start: 9;
+        grid-row-end: 25;
+        margin-left: 32x;
+        width: 100%;
+    }
+
     .gridButtonCancel {
         grid-column-start: 6;
         grid-column-end: 8;
@@ -174,7 +230,7 @@
         grid-row-end: 26;
         text-align: left;
     }
-    
+
     .gridButtonSave {
         grid-column-start: 13;
         grid-column-end: 15;

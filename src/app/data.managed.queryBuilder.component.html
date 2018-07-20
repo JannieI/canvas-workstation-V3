@@ -18,8 +18,8 @@
                                 <h5 style="margin-top: 0; color:gray;">
                                     Help
                                 </h5>
-                                <p style="margin-top: 0; color:gray;"> 
-                                    Add a Datasource from a SQL Database.  Identify the Connection,
+                                <p style="margin-top: 0; color:gray;">
+                                    Add a Datasource from a SQL Database.  Specify the Connection,
                                     Table and required fields.  Transformations are optional.  
                                     Click the X or press Escape to close this form.
                                 </p>
@@ -33,8 +33,9 @@
                     <div class="gridDatasourceName">
                         <input [(ngModel)]="selectedDatasource.name"
                             type="text"
-                            name="connectionName"
+                            name="name"
                             title="Name of the Datasource"
+                            autofocus
                             >
                     </div>
 
@@ -45,11 +46,10 @@
                             <input [(ngModel)]="selectedDatasource.description"
                             type="text"
                             name="description"
-                            size="60"
                             title="Description of the Datasource"
                             >
                     </div>
-        
+
                     <div class="gridConnectionSelectTitle">
                         <b>Connection:</b>
                     </div>
@@ -66,17 +66,13 @@
                         </select>
                     </div>
 
-                    <div class="connectionString">
-                        {{ connectionString }}
-                    </div>
-
                     <div class="gridUsernameTitle">
                         <b>Username:</b>
                     </div>
                     <div class="gridUsername">
                         <input [(ngModel)]="selectedDatasource.username"
                             type="text"
-                            name="usernameTitle"
+                            name="username"
                             title="Name of the connection"
                             >
                     </div>
@@ -92,31 +88,51 @@
                             >
                     </div>
 
-                    <div *ngIf="errorMessage!=''" class="gridErrorMessage">
-                        {{ errorMessage }}
+                    <div class="connectionString">
+                        {{ connectionString }}
+                    </div>
+    
+                    <div class="gridButtonRefresh">
+                        <button
+                            type="button"
+                            class="btn btn-link"
+                            (click)="clickRefresh()"
+                            >
+                            Refresh
+                        </button>
                     </div>
 
+                    <div class="gridButtonPreview">
+                        <button
+                            type="button"
+                            class="btn btn-link"
+                            (click)="clickPreview()"
+                            >
+                            Preview
+                        </button>
+                    </div>
+
+                    <div class="gridDataRows" *ngIf="showPreview">
+                        {{ nrRows }} Rows
+                    </div>
+    
                     <div class="gridTables">
                         <clr-datagrid>
                             <clr-dg-placeholder>
                                 No records ...
                             </clr-dg-placeholder>
 
-                            <clr-dg-column class="widthTn" [clrDgField]="nameDB">Name</clr-dg-column>
-                            <clr-dg-column class="widthTn" [clrDgField]="nameLocal">Local Name</clr-dg-column>
-                            <clr-dg-column class="widthTd" [clrDgField]="businessGlossary">Business Glossary</clr-dg-column>
-                            <clr-dg-column class="widthTd" [clrDgField]="id">ID</clr-dg-column>
+                            <clr-dg-column class="widthTn" [clrDgField]="tableName">Table Name</clr-dg-column>
+                            <clr-dg-column class="widthTn" [clrDgField]="tableDescription">Description</clr-dg-column>
 
                             <clr-dg-row
-                                *ngFor="let row of dataTablesFiltered; let i = index"
+                                *clrDgItems="let row of dataSchemas; let i = index"
                                 [style.background-color]="(i == selectedTableRowIndex)? '#123456' : 'white'"
                                 [style.color]="(i == selectedTableRowIndex)? 'white' : 'gray'"
-                                (click)="clickSelectedDataTable(i, row.id)"
+                                (click)="clickSelectedDataTable(i, row.tableName)"
                                 >
-                                <clr-dg-cell>{{ row.nameDB }}</clr-dg-cell>
-                                <clr-dg-cell>{{ row.nameLocal }}</clr-dg-cell>
-                                <clr-dg-cell>{{ row.businessGlossary }}</clr-dg-cell>
-                                <clr-dg-cell>{{ row.id }}</clr-dg-cell>
+                                <clr-dg-cell>{{ row.tableName }}</clr-dg-cell>
+                                <clr-dg-cell>{{ row.tableDescription }}</clr-dg-cell>
 
                             </clr-dg-row>
                         </clr-datagrid>
@@ -128,25 +144,53 @@
                                 No records ...
                             </clr-dg-placeholder>
 
-                            <clr-dg-column [clrDgField]="nameDB">name (DB)</clr-dg-column>
-                            <clr-dg-column [clrDgField]="nameLocal">name (Local)</clr-dg-column>
-                            <clr-dg-column [clrDgField]="type">type</clr-dg-column>
-                            <clr-dg-column [clrDgField]="format">format</clr-dg-column>
-                            <clr-dg-column [clrDgField]="businessGlossary">businessGlossary</clr-dg-column>
+                            <clr-dg-column [clrDgField]="nameDB">Field Name</clr-dg-column>
 
                             <clr-dg-row
                                 *clrDgItems="let row of dataFieldsFiltered; let i = index" [clrDgItem]="row"
                                 [style.background-color]="(i == selectedFieldRowIndex)? '#123456' : 'white'"
                                 [style.color]="(i == selectedFieldRowIndex)? 'white' : 'gray'"
-                                (click)="clickSelectedDatafield(i, row.id)"
+                                (click)="clickSelectedDatafield(i)"
                                 >
-                                <clr-dg-cell>{{ row.nameDB }}</clr-dg-cell>
-                                <clr-dg-cell>{{ row.nameLocal }}</clr-dg-cell>
-                                <clr-dg-cell>{{ row.type }}</clr-dg-cell>
-                                <clr-dg-cell>{{ row.format }}</clr-dg-cell>
-                                <clr-dg-cell>{{ row.businessGlossary }}</clr-dg-cell>
+                                <clr-dg-cell>{{ row.fieldName }}</clr-dg-cell>
 
                             </clr-dg-row>
+                        </clr-datagrid>
+                    </div>
+
+                    <div class="gridHelpMessage">
+                        {{ helpMessage }}
+                    </div>
+
+                    <div *ngIf="errorMessage!=''" class="gridErrorMessage">
+                        {{ errorMessage }}
+                    </div>
+
+                    <span class="spinner spinner-inline gridSpinner" *ngIf="spinner">
+                        Loading...
+                    </span>
+    
+                    <div class="gridPreviewData" *ngIf="showPreview">
+                        <clr-datagrid class="gridPreviewData">
+
+                            <clr-dg-column *ngFor="let row of dataFieldsSelected"
+                                >
+                                {{ row }}
+                            </clr-dg-column>
+
+                            <clr-dg-row *clrDgItems="let row of currentDataSnippet">
+
+                                <clr-dg-cell *ngFor="let col of dataFieldsSelected; let i = index">
+                                        {{ row[col] }}
+                                </clr-dg-cell>
+                            </clr-dg-row>
+
+                            <clr-dg-footer>
+                                {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+                                of {{pagination.totalItems}} rows
+                                <clr-dg-pagination #pagination [clrDgPageSize]="8"></clr-dg-pagination>
+                            </clr-dg-footer>
+
                         </clr-datagrid>
                     </div>
 
@@ -154,7 +198,7 @@
                             <button
                             type="button"
                             class="btn btn-secondary"
-                            (click)="clickClose('Close')"
+                            (click)="clickClose()"
                             >
                             Cancel
                         </button>
@@ -165,8 +209,14 @@
                             type="button"
                             class="btn btn-primary"
                             (click)="clickSave('Saved')"
+                            [disabled]="!showPreview"
                             >
-                            Add
+                            <span *ngIf="!editingDS">
+                                Add
+                            </span>
+                            <span *ngIf="editingDS">
+                                Save
+                            </span>
                         </button>
                     </div>
 
@@ -175,8 +225,15 @@
                             type="button"
                             class="btn btn-link"
                             (click)="clickSave('Transformation')"
+                            [disabled]="!showPreview"
                             >
-                            Add and open Transformations
+                            <span *ngIf="!editingDS">
+                                Add
+                            </span>
+                            <span *ngIf="editingDS">
+                                Save
+                            </span>
+                            and open Transformations
                         </button>
                     </div>
 
@@ -185,3 +242,4 @@
         </div>
     </div>
 </div>
+                        

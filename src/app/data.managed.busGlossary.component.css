@@ -43,7 +43,7 @@
         height: 100%;
         width: 100%;
     }
-    
+
     .gridButtonCancel {
         grid-column-start: 2;
         grid-column-end: 4;
@@ -89,6 +89,6 @@
         }
 
         .dsCheckbox {
-            margin: 4px 0 0 0 !important;    
+            margin: 4px 0 0 0 !important;
         }
 

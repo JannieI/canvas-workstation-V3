@@ -17,7 +17,7 @@ import { GlobalVariableService}       from './global-variable.service';
 
 // Models
 import { Datasource }                 from './models';
- 
+
 @Component({
     selector: 'data-managed-busGlossary',
     templateUrl: './data.managed.busGlossary.component.html',
@@ -55,9 +55,9 @@ export class DataManagedBusGlossaryComponent implements OnInit {
 	ngOnInit() {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
-        
+
         // Reset, else async too late and form load fails
-        this.selectedDatasource = 
+        this.selectedDatasource =
         {
             id: null,
             type: '',
@@ -107,7 +107,7 @@ export class DataManagedBusGlossaryComponent implements OnInit {
         this.globalVariableService.getDatasources().then(dc => {
             // Fill local Var
             this.datasources = dc.slice();
-            
+
             // Click on first one, if available
             if (this.datasources.length > 0) {
                 this.clickRow(0, this.datasources[0].id);
@@ -130,7 +130,7 @@ export class DataManagedBusGlossaryComponent implements OnInit {
             .findIndex(dc => dc.id == id);
         if (selectedDatasourceIndex >= 0) {
 
-            this.selectedDatasource = Object.assign({}, 
+            this.selectedDatasource = Object.assign({},
                 this.datasources[selectedDatasourceIndex]
             );
         } else {
@@ -138,7 +138,7 @@ export class DataManagedBusGlossaryComponent implements OnInit {
         };
 
     }
-    
+
     clickClose(action: string) {
         // Close the form, nothing saved
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
@@ -153,12 +153,12 @@ export class DataManagedBusGlossaryComponent implements OnInit {
 
         this.editing = false;
         this.clickRow(this.selectedDatasourcesRowIndex, this.selectedDatasourceID);
-        
+
         // // Re Fill the form
         // let datasourceIndex: number = this.datasources
         //     .findIndex(sch => sch.id == this.selectedDatasource.id);
         // if (datasourceIndex >= 0) {
-        //     this.selectedDatasource = Object.assign({}, 
+        //     this.selectedDatasource = Object.assign({},
         //         this.datasources[datasourceIndex]
         //     );
         // };
@@ -178,7 +178,7 @@ export class DataManagedBusGlossaryComponent implements OnInit {
             let datasourceIndex: number = this.datasources
                 .findIndex(ds => ds.id == this.selectedDatasource.id);
             if (datasourceIndex >= 0) {
-                this.datasources[datasourceIndex].businessGlossary = 
+                this.datasources[datasourceIndex].businessGlossary =
                     this.selectedDatasource.businessGlossary
             };
             this.globalVariableService.saveDatasource(this.selectedDatasource)
