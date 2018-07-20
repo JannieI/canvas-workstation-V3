@@ -158,6 +158,7 @@ export class DataDirectWebComponent implements OnInit {
 
         // Set seletected index - used for highlighting row
         this.selectedTableRowIndex = index;
+        this.showPreview = false;
         this.spinner = true;
 
         let source: any = {
