@@ -194,6 +194,11 @@ export class DataDirectWebComponent implements OnInit {
             this.savedMessage = '';
             this.spinner = false;
             console.warn('xx res', res.length, this.dataFieldsSelected)
+        })
+        .catch(err => {
+            this.spinner = false;
+            this.errorMessage = 'Error connecting to server: check login or permissions'
+                + err.message;
         });
     }
 
