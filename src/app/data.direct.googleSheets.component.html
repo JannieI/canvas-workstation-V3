@@ -86,6 +86,10 @@
                         </button>
                     </div>
 
+                    <span class="spinner spinner-inline gridSpinner" *ngIf="spinner">
+                        Loading...
+                    </span>
+    
                     <div class="gridDataRows" *ngIf="showPreview">
                         {{ nrRows }} Rows
                     </div>

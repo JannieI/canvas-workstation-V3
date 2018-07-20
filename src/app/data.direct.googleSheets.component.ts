@@ -61,6 +61,7 @@ export class DataDirectGoogleSheetsComponent implements OnInit {
     savedMessage: string = '';
     selectedTableRowIndex: number = -1;
     showPreview: boolean = false;
+    spinner: boolean = false;
     url: string = 'https://docs.google.com/spreadsheets/d/1xSMysMxnNhR8AXFuU-TWrgGe6TbsorZffNfwFlF85GA/edit#gid=0';
 
 	constructor(
@@ -90,6 +91,7 @@ export class DataDirectGoogleSheetsComponent implements OnInit {
         this.showPreview = false;
         this.errorMessage = '';
         this.savedMessage = '';
+        this.spinner = true;
 
         // Construct spec for Tributary
         let source: any = {
@@ -125,6 +127,7 @@ export class DataDirectGoogleSheetsComponent implements OnInit {
             // The User can save now
             this.canSave = true;
             this.savedMessage = '';
+            this.spinner = false;
             console.warn('xx res', res.length, this.dataFieldsSelected)
         })
             .catch(err => {
@@ -134,6 +137,7 @@ export class DataDirectGoogleSheetsComponent implements OnInit {
                 } else {
                     this.errorMessage = err.message;
                 };
+                this.spinner = false;
             });
 
         // Cannot save as yet
