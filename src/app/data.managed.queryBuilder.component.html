@@ -60,8 +60,8 @@
                             (change)="clickConnectionSelect($event)"
                             placeholder="Select previously stored Connection"
                             >
-                            <option *ngFor="let row of dataConnections">
-                                {{ row.connectionName }}
+                            <option *ngFor="let row of dataConnectionNames">
+                                {{ row }}
                             </option>
                         </select>
                     </div>

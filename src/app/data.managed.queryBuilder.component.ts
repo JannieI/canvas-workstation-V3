@@ -279,8 +279,9 @@ export class DataManagedQueryBuilderComponent implements OnInit {
 
 
 
-    connectionName: string = 'tributary.connectors.sql:SqlConnector';
+    connectionName: string = '';
     dataConnections: DataConnection[];
+    dataConnectionNames: string[] = [];
     currentData: any[] = [];
     currentDataSnippet: any[] = [];
     dataFields: DataField[] = [];
@@ -316,10 +317,13 @@ export class DataManagedQueryBuilderComponent implements OnInit {
         this.serverTypes = this.globalVariableService.serverTypes;
         this.globalVariableService.getDataConnections().then(dc => {
             this.dataConnections = dc.slice();
+            this.dataConnectionNames = this.dataConnections.map(con => con.connectionName);
+            this.dataConnectionNames = ['', ...this.dataConnectionNames];
+            console.warn('xx this.dataConnectionNames = ', this.dataConnectionNames )
         });
 
         if (!this.editingDS) {
-        this.helpMessage = 'Enter detail, then click Refresh to show the Tables.  Select one, then select the fields to display. Click Preview to see a portion of the data.';
+            this.helpMessage = 'Enter detail, then click Refresh to show the Tables.  Select one, then select the fields to display. Click Preview to see a portion of the data.';
 
             this.selectedDatasource = {
                 id: 0,
