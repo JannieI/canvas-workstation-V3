@@ -145,7 +145,6 @@ export class DataManagedSQLEditorComponent implements OnInit {
         // Show user
         this.spinner = true;
 
-
         // Get connection detail
         let connection: DataConnection[] = this.dataConnections.filter(
             con => con.connectionName == this.connectionName
@@ -221,7 +220,6 @@ export class DataManagedSQLEditorComponent implements OnInit {
                     }
                 }
             };
-
 
             this.globalVariableService.getTributaryData(specificationConnect).then(res => {
 
