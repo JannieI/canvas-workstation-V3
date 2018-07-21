@@ -637,23 +637,6 @@ export class DataManagedQueryBuilderComponent implements OnInit {
             }
         };
 
-
-        // Build source string
-        // let specificationConnect: any = {
-        //     "source": {
-        //         "connector": "tributary.connectors.sql:SqlConnector",
-        //         "specification": {
-        //             "drivername": driver,
-        //             "username": this.selectedDatasource.username,
-        //             "password": this.selectedDatasource.password,
-        //             "database": this.selectedDatasource.databaseName,
-        //             "host": this.selectedDatasource.serverName,
-        //             "port": +this.selectedDatasource.port,
-        //             "query": this.selectedDatasource.dataSQLStatement
-        //         }
-        //     }
-        // };
-
         // Get data from Tributary
         this.globalVariableService.getTributaryData(specificationConnect).then(res => {
             this.spinner = false;

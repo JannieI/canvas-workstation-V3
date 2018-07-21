@@ -20,7 +20,8 @@
                                 </h5>
                                 <p style="margin-top: 0; color:gray;">
                                     Add / Edit a Datasource from a SQL Database: identify the Connection,
-                                    type the SQL string, and see the results with GO.  Click the X or press Escape to close this form.
+                                    type the SQL string, and see the results with GO.  
+                                    Click the X or press Escape to close this form.
                                 </p>
                             </clr-signpost-content>
                         </clr-signpost>
@@ -34,6 +35,7 @@
                             type="text"
                             name="name"
                             title="Name of the Datasource"
+                            autofocus
                             >
                     </div>
 
@@ -48,53 +50,19 @@
                             >
                     </div>
 
-                    <div class="gridServerTypeTitle">
-                        <b>Type:</b>
+                    <div class="gridConnectionSelectTitle">
+                        <b>Connection:</b>
                     </div>
-                    <div class="select gridServerType">
+                    <div class="select gridConnectionSelect">
                         <select
-                            [(ngModel)]="selectedDatasource.serverType"
-                            name="serverType"
-                            (change)="clickTemplateDashboard($event)"
-                            placeholder="Select a Type of server, ie MySQL"
+                            [(ngModel)]="connectionName"
+                            name="connectionSelect"
+                            placeholder="Select previously stored Connection"
                             >
-                            <option *ngFor="let row of serverTypes">
-                                {{ row.serverType }}
+                            <option *ngFor="let row of dataConnectionNames">
+                                {{ row }}
                             </option>
                         </select>
-                    </div>
-
-                    <div class="gridServerNameTitle">
-                        <b>Server:</b>
-                    </div>
-                    <div class="gridServerName">
-                        <input [(ngModel)]="selectedDatasource.serverName"
-                            type="text"
-                            name="serverName"
-                            title="Name of the Server / Host"
-                            >
-                    </div>
-
-                    <div class="gridServerPortTitle">
-                        <b>Port:</b>
-                    </div>
-                    <div class="gridServerPort">
-                            <input [(ngModel)]="selectedDatasource.port"
-                            type="text"
-                            name="port"
-                            title="Name of the port on the DB Server"
-                            >
-                    </div>
-
-                    <div class="gridDatabaseTitle">
-                        <b>Database:</b>
-                    </div>
-                    <div class="gridDatabase">
-                            <input [(ngModel)]="selectedDatasource.databaseName"
-                            type="text"
-                            name="databaseName"
-                            title="Name of the Database or Host"
-                            >
                     </div>
 
                     <div class="gridUsernameTitle">
@@ -119,6 +87,10 @@
                             >
                     </div>
 
+                    <div class="connectionString">
+                        {{ connectionString }}
+                    </div>
+    
                     <div class="gridSQLTextTitle">
                         <b>SQL Statement</b>
                     </div>
