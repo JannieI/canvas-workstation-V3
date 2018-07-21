@@ -86,7 +86,7 @@ export class DataManagedSQLEditorComponent implements OnInit {
                 description: '',
                 createdBy: this.globalVariableService.currentUser.userID,
                 createdOn: today,
-                createMethod: 'directSQLEditor',
+                createMethod: 'managedSQLEditor',
                 editor: '',
                 dateEdited: null,
                 refreshedBy: '',
@@ -122,7 +122,6 @@ export class DataManagedSQLEditorComponent implements OnInit {
 
             };
         };
-
 
     }
 
@@ -178,7 +177,27 @@ export class DataManagedSQLEditorComponent implements OnInit {
         this.globalVariableService.getTributaryInspect(specificationInspect).then(res => {
             console.warn('xx res I', res)
 
-            // Set up specification
+            // Get connection detail
+            let connection: DataConnection[] = this.dataConnections.filter(
+                con => con.connectionName == this.connectionName 
+            );
+            let serverType: string = '';
+            let serverName: string = '';
+            let port: number = 0;
+            let database: string = '';
+            if (connection.length > 0) {
+                serverType = connection[0].serverType;
+                serverName = connection[0].serverName;
+                port = +connection[0].port;
+                database = connection[0].database;
+            };
+
+            // Get the driver
+            let driver: string = this.serverTypes
+                .filter(styp => styp.serverType == serverType)
+                .map(styp => styp.driverName)[0];
+            
+            // Build Spec
             this.selectedDatasource.dataSQLStatement = this.selectedDatasource.dataSQLStatement.trim();
             let specificationConnect: any = {
                 "source": {
@@ -187,13 +206,14 @@ export class DataManagedSQLEditorComponent implements OnInit {
                         "drivername": driver,
                         "username": this.selectedDatasource.username,
                         "password": this.selectedDatasource.password,
-                        "database": this.selectedDatasource.databaseName,
-                        "host": this.selectedDatasource.serverName,
-                        "port": +this.selectedDatasource.port,
+                        "database": database,
+                        "host": serverName,
+                        "port": port,
                         "query": this.selectedDatasource.dataSQLStatement
                     }
                 }
             };
+
 
             this.globalVariableService.getTributaryData(specificationConnect).then(res => {
 
