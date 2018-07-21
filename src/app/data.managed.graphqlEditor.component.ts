@@ -47,18 +47,6 @@ export class DataManagedGraphQLEditorComponent implements OnInit {
 
     }
 
-    graphQLquery: string = `
-            query {
-                all_users {
-                    id
-                    username
-                    groups {
-                        id
-                    }
-                }
-            }
-    `;
-
 
     canSave: boolean = false;
     connectionName: string = '';
@@ -133,10 +121,20 @@ export class DataManagedGraphQLEditorComponent implements OnInit {
                 serverType: 'PostgresSQL',
                 serverName: 'pellefant.db.elephantsql.com',
                 dataTableName: 'ftfhgfzh',
-                dataSQLStatement: 'SELECT "InvoiceDate", "BillingCity"  FROM invoices',
+                dataSQLStatement: '',
                 dataNoSQLStatement: '',
                 dataNeo4jStatement: '',
-                dataGraphQLStatement: '',
+                dataGraphQLStatement: `
+                    query {
+                        all_users {
+                            id
+                            username
+                            groups {
+                                id
+                            }
+                        }
+                    }
+                `,
                 dataOverlaySpecification: '',
                 businessGlossary: 'Obtained using SQL Editor',
                 dataDictionary: ''
@@ -218,7 +216,7 @@ export class DataManagedGraphQLEditorComponent implements OnInit {
                 .map(styp => styp.driverName)[0];
 
             // Build Spec
-            this.selectedDatasource.dataSQLStatement = this.selectedDatasource.dataSQLStatement.trim();
+            this.selectedDatasource.dataGraphQLStatement = this.selectedDatasource.dataGraphQLStatement.trim();
             let specificationConnect: any = {
                 "source": {
                     "connector": "tributary.connectors.sql:SqlConnector",
@@ -229,7 +227,7 @@ export class DataManagedGraphQLEditorComponent implements OnInit {
                         "database": database,
                         "host": serverName,
                         "port": port,
-                        "query": this.selectedDatasource.dataSQLStatement
+                        "query": this.selectedDatasource.dataGraphQLStatement
                     }
                 }
             };

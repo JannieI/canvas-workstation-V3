@@ -8,7 +8,7 @@
                         <b>X</b>
                     </button>
                     <div class="gridTitle">
-                        <b>SQL Editor</b>
+                        <b>GraphQL Editor</b>
                         <clr-signpost>
                             <clr-icon shape="info-circle"
                                 clrSignpostTrigger>
@@ -19,7 +19,7 @@
                                     Help
                                 </h5>
                                 <p style="margin-top: 0; color:gray;">
-                                    Add / Edit a Datasource from a SQL Database using the SQL Editor: 
+                                    Add / Edit a Datasource from a SQL Database using the GraphQL Editor: 
                                     identify the Connection, type the SQL string, and see the results 
                                     by clicking the GO button.  
                                     Click the X or press Escape to close this form.
@@ -95,9 +95,17 @@
                     <div class="gridSQLTextTitle">
                         <b>SQL Statement</b>
                     </div>
-                    <textarea class="gridSQLText" [(ngModel)]="selectedDatasource.dataSQLStatement"
+                    <textarea class="gridSQLText" [(ngModel)]="selectedDatasource.dataGraphQLStatement"
                         name="textArea"
-                        >SELECT "InvoiceDate", "BillingCity" FROM invoices
+                        >query {
+                            all_users {
+                                id
+                                username
+                                groups {
+                                    id
+                                }
+                            }
+                        }
                     </textarea>
 
                     <div *ngIf="errorMessage!=''" class="gridErrorMessage">
