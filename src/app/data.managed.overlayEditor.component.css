@@ -41,43 +41,33 @@
         grid-row-start: 3;
         grid-row-end: 4;
     }
-    
-    .gridConnectionSelectTitle {
+
+    .gridDescriptionTitle {
         grid-column-start: 7;
         grid-column-end: 9;
         grid-row-start: 3;
         grid-row-end: 4;
+        margin-top: 5px;
     }
-    .gridConnectionSelect {
+    .gridDescription {
         grid-column-start: 9;
-        grid-column-end: 13;
+        grid-column-end: 18;
         grid-row-start: 3;
         grid-row-end: 4;
-    }
-    
-    .gridServerTypeTitle {
-        grid-column-start: 14;
-        grid-column-end: 15;
-        grid-row-start: 3;
-        grid-row-end: 4;
-    }
-    .gridServerType {
-        grid-column-start: 15;
-        grid-column-end: 20;
-        grid-row-start: 3;
-        grid-row-end: 4;
+        margin-top: 5px;
     }
 
-    .gridServerNameTitle {
+    .gridConnectionSelectTitle {
         grid-column-start: 1;
         grid-column-end: 2;
         grid-row-start: 5;
         grid-row-end: 6;
         margin-top: 5px;
     }
-    .gridServerName {
+
+    .gridConnectionSelect {
         grid-column-start: 2;
-        grid-column-end: 7;
+        grid-column-end: 6;
         grid-row-start: 5;
         grid-row-end: 6;
         margin-top: 5px;
@@ -88,7 +78,6 @@
         grid-column-end: 9;
         grid-row-start: 5;
         grid-row-end: 6;
-        margin-top: 5px;
     }
     .gridUsername {
         grid-column-start: 9;
@@ -111,60 +100,53 @@
         grid-row-end: 6;
     }
 
-    .gridAuthenticationTitle {
+    .connectionString {
         grid-column-start: 1;
-        grid-column-end: 3;
-        grid-row-start: 7;
-        grid-row-end: 8;
-        margin-top: 5px;
-    }
-    .gridAuthentication {
-        grid-column-start: 3;
-        grid-column-end: 7;
-        grid-row-start: 7;
-        grid-row-end: 8;
-        margin: 5px 0 0 12px;
-    }
-
-    .gridDescriptionTitle {
-        grid-column-start: 7;
-        grid-column-end: 9;
-        grid-row-start: 7;
-        grid-row-end: 8;
-        margin-top: 5px;
-    }
-    .gridDescription {
-        grid-column-start: 9;
-        grid-column-end: 18;
+        grid-column-end: 14;
         grid-row-start: 7;
         grid-row-end: 8;
         margin-top: 5px;
     }
 
     .gridErrorMessage {
-        grid-column-start: 2;
-        grid-column-end: 20;
-        grid-row-start: 8;
-        grid-row-end: 9;
+        color: red;
+        grid-column-start: 13;
+        grid-column-end: 21;
+        grid-row-start: 7;
+        grid-row-end: 10;
     }
-    
+
     .gridGoButton {
         grid-column-start: 8;
         grid-column-end: 9;
-        grid-row-start: 15;
-        grid-row-end: 16;
+        grid-row-start: 16;
+        grid-row-end: 17;
     }
 
-    .gridOverlayText {
+    .gridSpinner {
+        grid-column-start: 15;
+        grid-column-end: 16;
+        grid-row-start: 17;
+        grid-row-end: 18;
+    }
+
+    .gridSQLTextTitle {
+        grid-column-start: 1;
+        grid-column-end: 8;
+        grid-row-start: 9;
+        grid-row-end: 10;
+        height: 100%;
+        width: 100%;
+    }
+    .gridSQLText {
         border: 1px solid gray;
         border-radius: 4px;
         grid-column-start: 1;
         grid-column-end: 8;
-        grid-row-start: 9;
+        grid-row-start: 10;
         grid-row-end: 25;
         height: 100%;
         overflow-y: scroll;
-        text-align: left;
         width: 100%;
     }
 
@@ -177,7 +159,7 @@
         grid-row-end: 25;
         width: 100%;
     }
- 
+
     .gridButtonCancel {
         grid-column-start: 6;
         grid-column-end: 8;
@@ -185,7 +167,16 @@
         grid-row-end: 26;
         text-align: left;
     }
-    
+
+    .gridSavedMessage {
+        grid-column-start: 9;
+        grid-column-end: 12;
+        grid-row-start: 25;
+        grid-row-end: 26;
+        padding-top: 4px;
+        text-align: left;
+    }
+
     .gridButtonSave {
         grid-column-start: 13;
         grid-column-end: 15;
@@ -197,8 +188,7 @@
     .gridButtonTransformation {
         grid-column-start: 15;
         grid-column-end: 21;
-        grid-row-start: 24;
-        grid-row-end: 25;
-        margin-top: 12px;
+        grid-row-start: 25;
+        grid-row-end: 26;
+        padding-top: 4px;
     }
-    
