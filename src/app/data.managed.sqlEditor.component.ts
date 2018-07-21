@@ -9,15 +9,15 @@ import { HostListener }               from '@angular/core';
 import { Input }                      from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
-import { Router }                     from '@angular/router';
 
 // Our Functions
 import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
 // Our Models
-import { Dataset }                    from './models';
+import { DataConnection }             from './models';
 import { Datasource }                 from './models';
+import { Dataset }                    from './models';
 import { TributaryServerType }        from './models';
 
 
@@ -48,6 +48,9 @@ export class DataManagedSQLEditorComponent implements OnInit {
 
 
     canSave: boolean = false;
+    connectionName: string = '';
+    dataConnections: DataConnection[];
+    dataConnectionNames: string[] = [];
     errorMessage: string = "";
     fileData: any = [];
     fileDataFull: any = [];
@@ -135,11 +138,28 @@ export class DataManagedSQLEditorComponent implements OnInit {
         // Show user
         this.spinner = true;
 
-        // Get drivers
-        let driver: string = this.serverTypes
-            .filter(styp => styp.serverType == this.selectedDatasource.serverType)
-            .map(styp => styp.driverName)[0];
 
+        // Get connection detail
+        let connection: DataConnection[] = this.dataConnections.filter(
+            con => con.connectionName == this.connectionName 
+        );
+        let serverType: string = '';
+        let serverName: string = '';
+        let port: number = 0;
+        let database: string = '';
+        if (connection.length > 0) {
+            serverType = connection[0].serverType;
+            serverName = connection[0].serverName;
+            port = +connection[0].port;
+            database = connection[0].database;
+        };
+
+        // Get the driver
+        let driver: string = this.serverTypes
+            .filter(styp => styp.serverType == serverType)
+            .map(styp => styp.driverName)[0];
+        
+        // Build Spec
         let specificationInspect: any = {
             "source": {
                 "inspector": "tributary.inspectors.sql:SqlInspector",
@@ -147,12 +167,13 @@ export class DataManagedSQLEditorComponent implements OnInit {
                     "drivername": driver,
                     "username": this.selectedDatasource.username,
                     "password": this.selectedDatasource.password,
-                    "database": this.selectedDatasource.databaseName,
-                    "host": this.selectedDatasource.serverName,
-                    "port": +this.selectedDatasource.port
+                    "database": database,
+                    "host": serverName,
+                    "port": port
                 }
             }
-        };       
+        };
+    
         // Call Tributary
         this.globalVariableService.getTributaryInspect(specificationInspect).then(res => {
             console.warn('xx res I', res)
