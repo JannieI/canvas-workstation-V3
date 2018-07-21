@@ -150,7 +150,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
                     "port": +this.selectedDatasource.port
                 }
             }
-        };
+        };       
         // Call Tributary
         this.globalVariableService.getTributaryInspect(specificationInspect).then(res => {
             console.warn('xx res I', res)

@@ -464,7 +464,7 @@ export class DataManagedQueryBuilderComponent implements OnInit {
                     "password": this.selectedDatasource.password,
                     "database": database,
                     "host": serverName,
-                    "port": port
+                    "port": +port
                 }
             }
         };
