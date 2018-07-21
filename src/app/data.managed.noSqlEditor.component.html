@@ -8,7 +8,7 @@
                         <b>X</b>
                     </button>
                     <div class="gridTitle">
-                        <b>SQL Editor</b>
+                        <b>NoSQL Editor</b>
                         <clr-signpost>
                             <clr-icon shape="info-circle"
                                 clrSignpostTrigger>
@@ -19,8 +19,8 @@
                                     Help
                                 </h5>
                                 <p style="margin-top: 0; color:gray;">
-                                    Add / Edit a Datasource from a SQL Database using the SQL Editor: 
-                                    identify the Connection, type the SQL string, and see the results 
+                                    Add / Edit a Datasource from a NoSQL Database using the Editor: 
+                                    identify the Connection, type the NoSQL string, and see the results 
                                     by clicking the GO button.  
                                     Click the X or press Escape to close this form.
                                 </p>
@@ -95,7 +95,7 @@
                     <div class="gridSQLTextTitle">
                         <b>NoSQL Query</b>
                     </div>
-                    <textarea class="gridSQLText" [(ngModel)]="selectedDatasource.dataSQLStatement"
+                    <textarea class="gridSQLText" [(ngModel)]="selectedDatasource.dataNoSQLStatement"
                         name="textArea"
                         >
                     </textarea>

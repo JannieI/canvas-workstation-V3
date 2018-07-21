@@ -120,8 +120,8 @@ export class DataManagedNoSQLEditorComponent implements OnInit {
                 serverType: 'PostgresSQL',
                 serverName: 'pellefant.db.elephantsql.com',
                 dataTableName: 'ftfhgfzh',
-                dataSQLStatement: 'SELECT "InvoiceDate", "BillingCity"  FROM invoices',
-                dataNoSQLStatement: '',
+                dataSQLStatement: '',
+                dataNoSQLStatement: 'db.inventory.find( { status: { $in: [ "A", "D" ] } } )',
                 dataNeo4jStatement: '',
                 dataGraphQLStatement: '',
                 dataOverlaySpecification: '',
@@ -166,7 +166,7 @@ export class DataManagedNoSQLEditorComponent implements OnInit {
             .map(styp => styp.driverName)[0];
 
         // Build Spec
-        this.selectedDatasource.dataSQLStatement = this.selectedDatasource.dataSQLStatement.trim();
+        this.selectedDatasource.dataNoSQLStatement = this.selectedDatasource.dataNoSQLStatement.trim();
         let specificationConnect: any = {
             "source": {
                 "connector": "tributary.connectors.mongodb:MongoDBConnector",
@@ -177,7 +177,7 @@ export class DataManagedNoSQLEditorComponent implements OnInit {
                     "database": database,
                     "host": serverName,
                     "port": port,
-                    "query": this.selectedDatasource.dataSQLStatement
+                    "query": this.selectedDatasource.dataNoSQLStatement
                 }
             }
         };
