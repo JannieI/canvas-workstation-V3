@@ -52,6 +52,7 @@ export class DataManagedOverlayEditorComponent implements OnInit {
     connectionName: string = '';
     dataConnections: DataConnection[];
     dataConnectionNames: string[] = [];
+    dataOverlaySpecification: string = '';
     errorMessage: string = "";
     fileData: any = [];
     fileDataFull: any = [];
@@ -140,6 +141,7 @@ export class DataManagedOverlayEditorComponent implements OnInit {
             };
         };
 
+        this.dataOverlaySpecification = JSON.stringify(this.selectedDatasource.dataOverlaySpecification);
     }
 
     clickGo() {
