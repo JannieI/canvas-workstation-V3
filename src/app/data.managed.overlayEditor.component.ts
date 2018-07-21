@@ -188,7 +188,7 @@ export class DataManagedOverlayEditorComponent implements OnInit {
                     "database": database,
                     "host": serverName,
                     "port": port,
-                    "query": this.selectedDatasource.dataOverlaySpecification
+                    "query": this.dataOverlaySpecification
                 }
             }
         };
