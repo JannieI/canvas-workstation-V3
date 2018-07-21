@@ -94,7 +94,7 @@ export class DataManagedGraphQLEditorComponent implements OnInit {
                 description: '',
                 createdBy: this.globalVariableService.currentUser.userID,
                 createdOn: today,
-                createMethod: 'managedSQLEditor',
+                createMethod: 'managedGraphQLEditor',
                 editor: '',
                 dateEdited: null,
                 refreshedBy: '',

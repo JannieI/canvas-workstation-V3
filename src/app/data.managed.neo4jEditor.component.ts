@@ -377,7 +377,7 @@ export class DataManagedNeo4jEditorComponent implements OnInit {
             });
         };
 
-        // Close form and open Transitions if requested
+        // Close form and managedSQLEditoropen Transitions if requested
         if (action == 'Saved') {
             this.formDataManagedNeo4jEditorClosed.emit(null);
 
