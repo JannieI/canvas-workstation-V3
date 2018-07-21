@@ -440,12 +440,12 @@ export class DataManagedQueryBuilderComponent implements OnInit {
         );
         let serverType: string = '';
         let serverName: string = '';
-        let port: string = '';
+        let port: number = 0;
         let database: string = '';
         if (connection.length > 0) {
             serverType = connection[0].serverType;
             serverName = connection[0].serverName;
-            port = connection[0].port;
+            port = +connection[0].port;
             database = connection[0].database;
         };
 
@@ -464,7 +464,7 @@ export class DataManagedQueryBuilderComponent implements OnInit {
                     "password": this.selectedDatasource.password,
                     "database": database,
                     "host": serverName,
-                    "port": +port
+                    "port": port
                 }
             }
         };
@@ -587,11 +587,6 @@ export class DataManagedQueryBuilderComponent implements OnInit {
         // Set array for preview headings
         this.dataFieldsSelected = this.selectedFields.map(f => f.fieldName);
 
-        // Get drivers
-        let driver: string = this.serverTypes
-            .filter(styp => styp.serverType == this.selectedDatasource.serverType)
-            .map(styp => styp.driverName)[0];
-
         // Build SQL string
         let sqlTable: string = this.selectedTableName;
         let sqlFields: string = '';
@@ -605,7 +600,28 @@ export class DataManagedQueryBuilderComponent implements OnInit {
         this.selectedDatasource.dataSQLStatement = 'SELECT ' + sqlFields + ' FROM ' + sqlTable;
         console.warn('xx',this.selectedDatasource.dataSQLStatement)
 
-        // Build source string
+
+        // Get connection detail
+        let connection: DataConnection[] = this.dataConnections.filter(
+            con => con.connectionName == this.connectionName 
+        );
+        let serverType: string = '';
+        let serverName: string = '';
+        let port: number = 0;
+        let database: string = '';
+        if (connection.length > 0) {
+            serverType = connection[0].serverType;
+            serverName = connection[0].serverName;
+            port = +connection[0].port;
+            database = connection[0].database;
+        };
+
+        // Get the driver
+        let driver: string = this.serverTypes
+            .filter(styp => styp.serverType == serverType)
+            .map(styp => styp.driverName)[0];
+        
+        // Build Spec
         let specificationConnect: any = {
             "source": {
                 "connector": "tributary.connectors.sql:SqlConnector",
@@ -613,13 +629,30 @@ export class DataManagedQueryBuilderComponent implements OnInit {
                     "drivername": driver,
                     "username": this.selectedDatasource.username,
                     "password": this.selectedDatasource.password,
-                    "database": this.selectedDatasource.databaseName,
-                    "host": this.selectedDatasource.serverName,
-                    "port": +this.selectedDatasource.port,
+                    "database": database,
+                    "host": serverName,
+                    "port": port,
                     "query": this.selectedDatasource.dataSQLStatement
                 }
             }
         };
+
+
+        // Build source string
+        // let specificationConnect: any = {
+        //     "source": {
+        //         "connector": "tributary.connectors.sql:SqlConnector",
+        //         "specification": {
+        //             "drivername": driver,
+        //             "username": this.selectedDatasource.username,
+        //             "password": this.selectedDatasource.password,
+        //             "database": this.selectedDatasource.databaseName,
+        //             "host": this.selectedDatasource.serverName,
+        //             "port": +this.selectedDatasource.port,
+        //             "query": this.selectedDatasource.dataSQLStatement
+        //         }
+        //     }
+        // };
 
         // Get data from Tributary
         this.globalVariableService.getTributaryData(specificationConnect).then(res => {
