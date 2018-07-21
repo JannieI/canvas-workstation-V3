@@ -147,7 +147,7 @@ export class DataManagedSQLEditorComponent implements OnInit {
 
         // Get connection detail
         let connection: DataConnection[] = this.dataConnections.filter(
-            con => con.connectionName == this.connectionName 
+            con => con.connectionName == this.connectionName
         );
         let serverType: string = '';
         let serverName: string = '';
@@ -164,7 +164,7 @@ export class DataManagedSQLEditorComponent implements OnInit {
         let driver: string = this.serverTypes
             .filter(styp => styp.serverType == serverType)
             .map(styp => styp.driverName)[0];
-        
+
         // Build Spec
         let specificationInspect: any = {
             "source": {
@@ -179,14 +179,14 @@ export class DataManagedSQLEditorComponent implements OnInit {
                 }
             }
         };
-    
+
         // Call Tributary
         this.globalVariableService.getTributaryInspect(specificationInspect).then(res => {
             console.warn('xx res I', res)
 
             // Get connection detail
             let connection: DataConnection[] = this.dataConnections.filter(
-                con => con.connectionName == this.connectionName 
+                con => con.connectionName == this.connectionName
             );
             let serverType: string = '';
             let serverName: string = '';
@@ -203,7 +203,7 @@ export class DataManagedSQLEditorComponent implements OnInit {
             let driver: string = this.serverTypes
                 .filter(styp => styp.serverType == serverType)
                 .map(styp => styp.driverName)[0];
-            
+
             // Build Spec
             this.selectedDatasource.dataSQLStatement = this.selectedDatasource.dataSQLStatement.trim();
             let specificationConnect: any = {
