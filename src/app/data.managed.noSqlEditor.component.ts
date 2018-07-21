@@ -166,99 +166,52 @@ export class DataManagedNoSQLEditorComponent implements OnInit {
             .map(styp => styp.driverName)[0];
 
         // Build Spec
-        let specificationInspect: any = {
+        this.selectedDatasource.dataSQLStatement = this.selectedDatasource.dataSQLStatement.trim();
+        let specificationConnect: any = {
             "source": {
-                "inspector": "tributary.inspectors.sql:SqlInspector",
+                "connector": "tributary.connectors.mongodb:MongoDBConnector",
                 "specification": {
                     "drivername": driver,
                     "username": this.selectedDatasource.username,
                     "password": this.selectedDatasource.password,
                     "database": database,
                     "host": serverName,
-                    "port": port
+                    "port": port,
+                    "query": this.selectedDatasource.dataSQLStatement
                 }
             }
         };
 
-        // Call Tributary
-        this.globalVariableService.getTributaryInspect(specificationInspect).then(res => {
-            console.warn('xx res I', res)
+        this.globalVariableService.getTributaryData(specificationConnect).then(res => {
 
-            // Get connection detail
-            let connection: DataConnection[] = this.dataConnections.filter(
-                con => con.connectionName == this.connectionName
-            );
-            let serverType: string = '';
-            let serverName: string = '';
-            let port: number = 0;
-            let database: string = '';
-            if (connection.length > 0) {
-                serverType = connection[0].serverType;
-                serverName = connection[0].serverName;
-                port = +connection[0].port;
-                database = connection[0].database;
-            };
+            // Fill the data
+            this.fileData = res.slice(0,10);
+            this.fileDataFull = res;
+            // this.selectedDatasource.dataFields = this.selectedFields.split(",");
 
-            // Get the driver
-            let driver: string = this.serverTypes
-                .filter(styp => styp.serverType == serverType)
-                .map(styp => styp.driverName)[0];
+            // Construct a list of field name / column headings from the data
+            this.selectedDatasource.dataFields = [];
 
-            // Build Spec
-            this.selectedDatasource.dataSQLStatement = this.selectedDatasource.dataSQLStatement.trim();
-            let specificationConnect: any = {
-                "source": {
-                    "connector": "tributary.connectors.sql:SqlConnector",
-                    "specification": {
-                        "drivername": driver,
-                        "username": this.selectedDatasource.username,
-                        "password": this.selectedDatasource.password,
-                        "database": database,
-                        "host": serverName,
-                        "port": port,
-                        "query": this.selectedDatasource.dataSQLStatement
-                    }
+            if (res.length > 0) {
+                console.warn('xx res[0]', res[0])
+                for(var key in res[0]) {
+                    console.warn('xx key', key)
+                    this.selectedDatasource.dataFields.push(key);
                 }
             };
+            // Show the results
+            this.showPreview = true;
+            this.spinner = false;
 
-            this.globalVariableService.getTributaryData(specificationConnect).then(res => {
+            // Can Add now
+            this.canSave = true;
 
-                // Fill the data
-                this.fileData = res.slice(0,10);
-                this.fileDataFull = res;
-                // this.selectedDatasource.dataFields = this.selectedFields.split(",");
-
-                // Construct a list of field name / column headings from the data
-                this.selectedDatasource.dataFields = [];
-
-                if (res.length > 0) {
-                    console.warn('xx res[0]', res[0])
-                    for(var key in res[0]) {
-                        console.warn('xx key', key)
-                        this.selectedDatasource.dataFields.push(key);
-                    }
-                };
-                // Show the results
-                this.showPreview = true;
-                this.spinner = false;
-
-                // Can Add now
-                this.canSave = true;
-
-            })
-            .catch(err => {
-                this.spinner = false;
-                this.errorMessage = 'Error connecting to server: check login or permissions'
-                    + err.message;
-            });
         })
         .catch(err => {
-            console.warn('xx err', err)
             this.spinner = false;
             this.errorMessage = 'Error connecting to server: check login or permissions'
                 + err.message;
         });
-
     }
 
     clickClose() {

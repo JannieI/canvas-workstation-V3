@@ -93,11 +93,11 @@
                     </div>
     
                     <div class="gridSQLTextTitle">
-                        <b>SQL Statement</b>
+                        <b>NoSQL Query</b>
                     </div>
                     <textarea class="gridSQLText" [(ngModel)]="selectedDatasource.dataSQLStatement"
                         name="textArea"
-                        >SELECT "InvoiceDate", "BillingCity" FROM invoices
+                        >
                     </textarea>
 
                     <div *ngIf="errorMessage!=''" class="gridErrorMessage">
