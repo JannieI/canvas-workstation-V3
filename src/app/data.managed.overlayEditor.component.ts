@@ -121,11 +121,19 @@ export class DataManagedOverlayEditorComponent implements OnInit {
                 serverType: 'PostgresSQL',
                 serverName: 'pellefant.db.elephantsql.com',
                 dataTableName: 'ftfhgfzh',
-                dataSQLStatement: 'SELECT "InvoiceDate", "BillingCity"  FROM invoices',
+                dataSQLStatement: '',
                 dataNoSQLStatement: '',
                 dataNeo4jStatement: '',
                 dataGraphQLStatement: '',
-                dataOverlaySpecification: '',
+                dataOverlaySpecification: {
+                    "fields": [
+                        "InvoiceDate"
+                    ],
+                    "options": {
+                        "distinct": true,
+                        "limit": 5
+                    }
+                },
                 businessGlossary: 'Obtained using SQL Editor',
                 dataDictionary: ''
 
