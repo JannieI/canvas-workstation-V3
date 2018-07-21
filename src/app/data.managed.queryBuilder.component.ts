@@ -138,6 +138,7 @@ export class DataManagedQueryBuilderComponent implements OnInit {
                 dataNoSQLStatement: '',
                 dataNeo4jStatement: '',
                 dataGraphQLStatement: '',
+                dataOverlaySpecification: '',
                 businessGlossary: '',
                 dataDictionary: ''
 
@@ -533,6 +534,7 @@ export class DataManagedQueryBuilderComponent implements OnInit {
             dataNoSQLStatement: this.selectedDatasource.dataNoSQLStatement,
             dataNeo4jStatement: this.selectedDatasource.dataNeo4jStatement,
             dataGraphQLStatement: this.selectedDatasource.dataGraphQLStatement,
+            dataOverlaySpecification: this.selectedDatasource.dataOverlaySpecification,
             businessGlossary: this.selectedDatasource.businessGlossary,
             dataDictionary: this.selectedDatasource.dataDictionary
 

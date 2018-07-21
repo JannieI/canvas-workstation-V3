@@ -120,6 +120,7 @@ export class DataDirectNoSQLComponent implements OnInit {
                 dataNoSQLStatement: '',
                 dataNeo4jStatement: '',
                 dataGraphQLStatement: '',
+                dataOverlaySpecification: '',
                 businessGlossary: 'Obtained using NoSQL Editor',
                 dataDictionary: ''
 

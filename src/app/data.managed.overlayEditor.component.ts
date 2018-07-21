@@ -94,7 +94,7 @@ export class DataManagedOverlayEditorComponent implements OnInit {
                 description: '',
                 createdBy: this.globalVariableService.currentUser.userID,
                 createdOn: today,
-                createMethod: 'managedSQLEditor',
+                createMethod: 'managedOverlayEditor',
                 editor: '',
                 dateEdited: null,
                 refreshedBy: '',
@@ -125,6 +125,7 @@ export class DataManagedOverlayEditorComponent implements OnInit {
                 dataNoSQLStatement: '',
                 dataNeo4jStatement: '',
                 dataGraphQLStatement: '',
+                dataOverlaySpecification: '',
                 businessGlossary: 'Obtained using SQL Editor',
                 dataDictionary: ''
 

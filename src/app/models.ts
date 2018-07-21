@@ -414,6 +414,7 @@ export class Datasource {
     dataNoSQLStatement: string;         // NoSQL Statement to extract data with
     dataNeo4jStatement: string;         // Cypher Statement to extract data with
     dataGraphQLStatement: string;       // GraphQL Statement to extract data with
+    dataOverlaySpecification: string;   // Overlay Specification to extract data with
 
     // Updated at runtime
     nrWidgets: number;                  // Nr of Ws linked to this DS (at the moment)

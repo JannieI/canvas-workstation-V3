@@ -385,6 +385,7 @@ export class DataDirectFileJSONComponent implements OnInit {
                 dataNoSQLStatement: '',
                 dataNeo4jStatement: '',
                 dataGraphQLStatement: '',
+                dataOverlaySpecification: '',
                 nrWidgets: null
             };
 

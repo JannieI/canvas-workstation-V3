@@ -112,6 +112,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
                 dataNoSQLStatement: '',
                 dataNeo4jStatement: '',
                 dataGraphQLStatement: '',
+                dataOverlaySpecification: '',
                 businessGlossary: 'Obtained using SQL Editor',
                 dataDictionary: ''
 

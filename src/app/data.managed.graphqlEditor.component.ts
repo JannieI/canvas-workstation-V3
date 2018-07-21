@@ -130,6 +130,7 @@ export class DataManagedGraphQLEditorComponent implements OnInit {
                 dataNoSQLStatement: '',
                 dataNeo4jStatement: '',
                 dataGraphQLStatement: '',
+                dataOverlaySpecification: '',
                 businessGlossary: '',
                 dataDictionary: ''
             };
