@@ -57,7 +57,6 @@
                         <select
                             [(ngModel)]="connectionName"
                             name="connectionSelect"
-                            (change)="clickConnectionSelect($event)"
                             placeholder="Select previously stored Connection"
                             >
                             <option *ngFor="let row of dataConnectionNames">

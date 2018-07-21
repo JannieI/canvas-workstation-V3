@@ -390,6 +390,12 @@ export class DataManagedQueryBuilderComponent implements OnInit {
                 };
             };
 
+            // Select the selection
+            let connection: DataConnection = this.dataConnections[this.selectedDatasource.connectionID] 
+                || null;
+            if (connection != null) {
+                this.connectionName = connection.connectionName;
+            };
 
             // Click Table, which will filter Fields
             let dsIndex: number = this.dataSchemas.findIndex(
@@ -428,17 +434,37 @@ export class DataManagedQueryBuilderComponent implements OnInit {
         // Remember table we started with
         let localSelectedTableRowIndex = this.selectedTableRowIndex;
 
+        // Get connection detail
+        let connection: DataConnection[] = this.dataConnections.filter(
+            con => con.connectionName == this.connectionName 
+        );
+        let serverType: string = '';
+        let serverName: string = '';
+        let port: string = '';
+        let database: string = '';
+        if (connection.length > 0) {
+            serverType = connection[0].serverType;
+            serverName = connection[0].serverName;
+            port = connection[0].port;
+            database = connection[0].database;
+        };
+
+        // Get the driver
+        let driver: string = this.serverTypes
+            .filter(styp => styp.serverType == serverType)
+            .map(styp => styp.driverName)[0];
+        
         // Build Spec
         let specificationInspect: any = {
             "source": {
                 "inspector": "tributary.inspectors.sql:SqlInspector",
                 "specification": {
-                    "drivername": "postgresql",
-                    "username": "ftfhgfzh",
-                    "password": "L0Eph9ftbx0yh45aeDtgzsGKBa2ZNhfl",
-                    "database": "ftfhgfzh",
-                    "host": "pellefant.db.elephantsql.com",
-                    "port": 5432
+                    "drivername": driver,
+                    "username": this.selectedDatasource.username,
+                    "password": this.selectedDatasource.password,
+                    "database": database,
+                    "host": serverName,
+                    "port": port
                 }
             }
         };
