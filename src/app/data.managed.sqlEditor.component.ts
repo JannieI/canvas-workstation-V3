@@ -72,6 +72,13 @@ export class DataManagedSQLEditorComponent implements OnInit {
 
         // Set base info
         this.serverTypes = this.globalVariableService.serverTypes;
+        this.serverTypes = this.globalVariableService.serverTypes;
+        this.globalVariableService.getDataConnections().then(dc => {
+            this.dataConnections = dc.slice();
+            this.dataConnectionNames = this.dataConnections.map(con => con.connectionName);
+            this.dataConnectionNames = ['', ...this.dataConnectionNames];
+            console.warn('xx this.dataConnectionNames = ', this.dataConnectionNames )
+        });
 
         if (this.selectedDatasource == null) {
             let today: Date = new Date();
