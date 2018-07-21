@@ -18,10 +18,9 @@
                                 <h5 style="margin-top: 0; color:gray;">
                                     Help
                                 </h5>
-                                <p style="margin-top: 0; color:gray;"> 
-                                    Add a Datasource from a SQL Database: identify the Connection,
-                                    type the SQL string, and see the results with GO.  
-                                    Click the X or press Escape to close this form.
+                                <p style="margin-top: 0; color:gray;">
+                                    Add / Edit a Datasource from a SQL Database: identify the Connection,
+                                    type the SQL string, and see the results with GO.  Click the X or press Escape to close this form.
                                 </p>
                             </clr-signpost-content>
                         </clr-signpost>
@@ -31,50 +30,80 @@
                         <b>Name:</b>
                     </div>
                     <div class="gridDatasourceName">
-                        <input [(ngModel)]="datasourceName"
+                        <input [(ngModel)]="selectedDatasource.name"
                             type="text"
-                            name="connectionName"
+                            name="name"
                             title="Name of the Datasource"
                             >
                     </div>
 
-                    <div class="gridConnectionSelectTitle">
-                        <b>Connection:</b>
+                    <div class="gridDescriptionTitle">
+                        <b>Description:</b>
                     </div>
-                    <div class="select gridConnectionSelect">
-                        <select
-                            [(ngModel)]="connectionName"
-                            name="connectionSelect"
-                            (change)="clickConnectionSelect($event)"
-                            placeholder="Select previously stored Connection"
+                    <div class="gridDescription">
+                            <input [(ngModel)]="selectedDatasource.description"
+                            type="text"
+                            name="description"
+                            title="Description of the Datasource"
                             >
-                            <option *ngFor="let row of dataConnections">
-                                {{ row.connectionName }}
-                            </option>
-                        </select>
                     </div>
 
                     <div class="gridServerTypeTitle">
                         <b>Type:</b>
                     </div>
-                    <div class="gridServerType">
-                        {{ serverType }} 
+                    <div class="select gridServerType">
+                        <select
+                            [(ngModel)]="selectedDatasource.serverType"
+                            name="serverType"
+                            (change)="clickTemplateDashboard($event)"
+                            placeholder="Select a Type of server, ie MySQL"
+                            >
+                            <option *ngFor="let row of serverTypes">
+                                {{ row.serverType }}
+                            </option>
+                        </select>
                     </div>
 
                     <div class="gridServerNameTitle">
                         <b>Server:</b>
                     </div>
                     <div class="gridServerName">
-                        {{ serverName }}
+                        <input [(ngModel)]="selectedDatasource.serverName"
+                            type="text"
+                            name="serverName"
+                            title="Name of the Server / Host"
+                            >
+                    </div>
+
+                    <div class="gridServerPortTitle">
+                        <b>Port:</b>
+                    </div>
+                    <div class="gridServerPort">
+                            <input [(ngModel)]="selectedDatasource.port"
+                            type="text"
+                            name="port"
+                            title="Name of the port on the DB Server"
+                            >
+                    </div>
+
+                    <div class="gridDatabaseTitle">
+                        <b>Database:</b>
+                    </div>
+                    <div class="gridDatabase">
+                            <input [(ngModel)]="selectedDatasource.databaseName"
+                            type="text"
+                            name="databaseName"
+                            title="Name of the Database or Host"
+                            >
                     </div>
 
                     <div class="gridUsernameTitle">
                         <b>Username:</b>
                     </div>
                     <div class="gridUsername">
-                        <input [(ngModel)]="usernameTitle"
+                        <input [(ngModel)]="selectedDatasource.username"
                             type="text"
-                            name="usernameTitle"
+                            name="username"
                             title="Name of the connection"
                             >
                     </div>
@@ -83,31 +112,25 @@
                         <b>Password:</b>
                     </div>
                     <div class="gridPassword">
-                        <input [(ngModel)]="password"
+                        <input [(ngModel)]="selectedDatasource.password"
                             type="password"
                             name="password"
                             title="User Password"
                             >
                     </div>
 
-                    <div class="gridAuthenticationTitle">
-                        <b>Authentication:</b>
+                    <div class="gridSQLTextTitle">
+                        <b>SQL Statement</b>
                     </div>
-                    <div class="gridAuthentication">
-                        {{ authentication }}
-                    </div>
-
-                    <div class="gridDescriptionTitle">
-                        <b>Description:</b>
-                    </div>
-                    <div class="gridDescription">
-                        {{ description }}
-                    </div>
+                    <textarea class="gridSQLText" [(ngModel)]="selectedDatasource.dataSQLStatement"
+                        name="textArea"
+                        >SELECT "InvoiceDate", "BillingCity" FROM invoices
+                    </textarea>
 
                     <div *ngIf="errorMessage!=''" class="gridErrorMessage">
                         {{ errorMessage }}
                     </div>
-                    
+
                     <div class="gridGoButton">
                         <button
                             type="button"
@@ -119,50 +142,32 @@
                         </button>
                     </div>
 
-                    <textarea class="gridSQLText">SELECT * FROM [table]</textarea>
+                    <span class="spinner spinner-inline gridSpinner" *ngIf="spinner">
+                        Loading...
+                    </span>
 
-                    <clr-tabs class="gridData">
-                        <clr-tab>
-                            <button clrTabLink>Data</button>
-                            <ng-template [(clrIfActive)]="data">
-                                <clr-tab-content>
+                    <div class="gridData" *ngIf="showPreview">
+                        <clr-datagrid class="gridPreviewData">
 
-                                    <clr-datagrid [(clrDgSelected)]="selectedFields">
-                                        <clr-dg-placeholder>
-                                            Show Data here ...
-                                        </clr-dg-placeholder>
-            
-                                        <clr-dg-column [clrDgField]="nameDB">name (DB)</clr-dg-column>
-                                        <clr-dg-column [clrDgField]="nameLocal">name (Local)</clr-dg-column>
-                                        <clr-dg-column [clrDgField]="type">type</clr-dg-column>
-                                        <clr-dg-column [clrDgField]="format">format</clr-dg-column>
-                                        <clr-dg-column [clrDgField]="businessGlossary">businessGlossary</clr-dg-column>
-            
-                                        <clr-dg-row
-                                            *clrDgItems="let row of dataFieldsFiltered; let i = index" [clrDgItem]="row"
-                                            >
-                                            <clr-dg-cell>{{ row.nameDB }}</clr-dg-cell>
-                                            <clr-dg-cell>{{ row.nameLocal }}</clr-dg-cell>
-                                            <clr-dg-cell>{{ row.type }}</clr-dg-cell>
-                                            <clr-dg-cell>{{ row.format }}</clr-dg-cell>
-                                            <clr-dg-cell>{{ row.businessGlossary }}</clr-dg-cell>
-            
-                                        </clr-dg-row>
-                                    </clr-datagrid>
-                                </clr-tab-content>
-                            </ng-template>
-                        </clr-tab>
+                            <clr-dg-column *ngFor="let row of selectedDatasource.dataFields">
+                                {{ row }}
+                            </clr-dg-column>
 
-                        <clr-tab>
-                            <button clrTabLink>Errors</button>
-                            <ng-template [(clrIfActive)]="errors">
-                                <clr-tab-content>
-                                    <textarea rows="5">No errors so far ...</textarea>
-                                </clr-tab-content>
-                            </ng-template>
-                        </clr-tab>
-                    </clr-tabs>
-                
+                            <clr-dg-row *clrDgItems="let row of fileData">
+                                <clr-dg-cell *ngFor="let col of selectedDatasource.dataFields; let i = index">
+                                        {{ row[col] }}
+                                </clr-dg-cell>
+                            </clr-dg-row>
+
+                            <clr-dg-footer>
+                                {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+                                of {{pagination.totalItems}} rows
+                                <clr-dg-pagination #pagination [clrDgPageSize]="8"></clr-dg-pagination>
+                            </clr-dg-footer>
+
+                        </clr-datagrid>
+                    </div>
+
                     <div class="gridButtonCancel">
                             <button
                             type="button"
@@ -173,26 +178,30 @@
                         </button>
                     </div>
 
-                    <div class="gridButtonSave">
+                    <div *ngIf="savedMessage!=''" class="gridSavedMessage">
+                        {{ savedMessage }}
+                    </div>
+
+                    <div class="gridButtonSave" *ngIf="showPreview">
                         <button
                             type="button"
                             class="btn btn-primary"
-                            (click)="clickSave('Saved')"
+                            (click)="clickAdd('Saved')"
                             >
                             Add
                         </button>
                     </div>
 
-                    <div class="gridButtonTransformation">
+                    <div class="gridButtonTransformation" *ngIf="showPreview">
                         <button
                             type="button"
                             class="btn btn-link"
-                            (click)="clickSave('Transformation')"
+                            (click)="clickAdd('Transformation')"
                             >
                             Add and open Transformations
                         </button>
                     </div>
-        
+
                 </div>
             </form>
         </div>
