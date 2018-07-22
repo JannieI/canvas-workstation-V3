@@ -6,7 +6,7 @@
 .gridOverall {
     display: grid;
     grid-template-columns: repeat(14, 1fr);
-    grid-template-rows: repeat(18, 1rem);
+    grid-template-rows: repeat(20, 1rem);
     margin-top: 2px;
 }
     .closeButton {
@@ -160,7 +160,7 @@
         text-align: left;
     }
     
-    .gridButtonCancel {
+    .gridDesription {
         grid-column-start: 4;
         grid-column-end: 6;
         grid-row-start: 17;
@@ -168,11 +168,19 @@
         text-align: left;
     }
 
+    .gridButtonCancel {
+        grid-column-start: 4;
+        grid-column-end: 6;
+        grid-row-start: 19;
+        grid-row-end: 20;
+        text-align: left;
+    }
+
     .gridButtonSave {
         grid-column-start: 10;
         grid-column-end: 12;
-        grid-row-start: 17;
-        grid-row-end: 18;
+        grid-row-start: 19;
+        grid-row-end: 20;
         text-align: left;
     }
 
