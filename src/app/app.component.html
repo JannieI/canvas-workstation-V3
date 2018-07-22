@@ -1794,7 +1794,7 @@
 
     <!-- ****************************  WIDGETS & RELATED FORMS ***************************** -->
 
-    <div class="widgetContainerX" *ngFor="let row of currentWidgets; let i = index"
+    <div class="widgetContainer" *ngFor="let row of currentWidgets; let i = index"
         [style.background-color]="row.containerBackgroundColor"
         [style.border]="row.containerBorder"
         [style.border-radius]="row.containerBorderRadius"
@@ -1812,7 +1812,7 @@
         >
 
         <!-- Drag Handles -->
-        <div class="widgetContainerXTopLeftHandle" *ngIf="editMode"
+        <div class="widgetContainerTopLeftHandle" *ngIf="editMode"
             [style.background-color]="row.isSelected? '#929699' : 'transparent'"
             (mousedown)="clickResizeWidgetDown($event, i)"
             (dragend)="clickResizeWidgetUp($event, i, true, false, false, true)"
@@ -1820,7 +1820,7 @@
             [style.z-index]="row.containerZindex+1"
             >
         </div>
-        <div class="widgetContainerXTopHandle" *ngIf="editMode"
+        <div class="widgetContainerTopHandle" *ngIf="editMode"
             [style.background-color]="row.isSelected? '#929699' : 'transparent'"
             (mousedown)="clickResizeWidgetDown($event, i)"
             (dragend)="clickResizeWidgetUp($event, i, true, false, false, false)"
@@ -1828,7 +1828,7 @@
             [style.z-index]="row.containerZindex+1"
             >
         </div>
-        <div class="widgetContainerXTopRightHandle" *ngIf="editMode"
+        <div class="widgetContainerTopRightHandle" *ngIf="editMode"
             [style.background-color]="row.isSelected? '#929699' : 'transparent'"
             (mousedown)="clickResizeWidgetDown($event, i)"
             (dragend)="clickResizeWidgetUp($event, i, true, true, false, false)"
@@ -1836,7 +1836,7 @@
             [style.z-index]="row.containerZindex+1"
             >
         </div>
-        <div class="widgetContainerXRightTopHandle" *ngIf="editMode"
+        <div class="widgetContainerRightTopHandle" *ngIf="editMode"
             [style.background-color]="row.isSelected? '#929699' : 'transparent'"
             (mousedown)="clickResizeWidgetDown($event, i)"
             (dragend)="clickResizeWidgetUp($event, i, true, true, false, false)"
@@ -1844,7 +1844,7 @@
             [style.z-index]="row.containerZindex+1"
             >
         </div>
-        <div class="widgetContainerXRightHandle" *ngIf="editMode"
+        <div class="widgetContainerRightHandle" *ngIf="editMode"
             [style.background-color]="row.isSelected? '#929699' : 'transparent'"
             (mousedown)="clickResizeWidgetDown($event, i)"
             (dragend)="clickResizeWidgetUp($event, i, false, true, false, false)"
@@ -1852,7 +1852,7 @@
             [style.z-index]="row.containerZindex+1"
             >
         </div>
-        <div class="widgetContainerXRightBottomHandle" *ngIf="editMode"
+        <div class="widgetContainerRightBottomHandle" *ngIf="editMode"
             [style.background-color]="row.isSelected? '#929699' : 'transparent'"
             (mousedown)="clickResizeWidgetDown($event, i)"
             (dragend)="clickResizeWidgetUp($event, i, false, true, true, false)"
@@ -1860,7 +1860,7 @@
             [style.z-index]="row.containerZindex+1"
             >
         </div>
-        <div class="widgetContainerXBottomRightHandle" *ngIf="editMode"
+        <div class="widgetContainerBottomRightHandle" *ngIf="editMode"
             [style.background-color]="row.isSelected? '#929699' : 'transparent'"
             (mousedown)="clickResizeWidgetDown($event, i)"
             (dragend)="clickResizeWidgetUp($event, i, false, true, true, false)"
@@ -1868,7 +1868,7 @@
             [style.z-index]="row.containerZindex+1"
             >
         </div>
-        <div class="widgetContainerXBottomLeftHandle" *ngIf="editMode"
+        <div class="widgetContainerBottomLeftHandle" *ngIf="editMode"
             [style.background-color]="row.isSelected? '#929699' : 'transparent'"
             (mousedown)="clickResizeWidgetDown($event, i)"
             (dragend)="clickResizeWidgetUp($event, i, false, false, true, true)"
@@ -1876,7 +1876,7 @@
             [style.z-index]="row.containerZindex+1"
             >
         </div>
-        <div class="widgetContainerXBottomHandle" *ngIf="editMode"
+        <div class="widgetContainerBottomHandle" *ngIf="editMode"
             [style.background-color]="row.isSelected? '#929699' : 'transparent'"
             (mousedown)="clickResizeWidgetDown($event, i)"
             (dragend)="clickResizeWidgetUp($event, i, false, false, true, false)"
@@ -1884,7 +1884,7 @@
             [style.z-index]="row.containerZindex+1"
             >
         </div>
-        <div class="widgetContainerXLeftBottomHandle" *ngIf="editMode"
+        <div class="widgetContainerLeftBottomHandle" *ngIf="editMode"
             [style.background-color]="row.isSelected? '#929699' : 'transparent'"
             (mousedown)="clickResizeWidgetDown($event, i)"
             (dragend)="clickResizeWidgetUp($event, i, false, false, true, true)"
@@ -1892,7 +1892,7 @@
             [style.z-index]="row.containerZindex+1"
             >
         </div>
-        <div class="widgetContainerXLeftHandle" *ngIf="editMode"
+        <div class="widgetContainerLeftHandle" *ngIf="editMode"
             [style.background-color]="row.isSelected? '#929699' : 'transparent'"
             (mousedown)="clickResizeWidgetDown($event, i)"
             (dragend)="clickResizeWidgetUp($event, i, false, false, false, true)"
@@ -1900,7 +1900,7 @@
             [style.z-index]="row.containerZindex+1"
             >
         </div>
-        <div class="widgetContainerXLeftTopHandle" *ngIf="editMode"
+        <div class="widgetContainerLeftTopHandle" *ngIf="editMode"
             [style.background-color]="row.isSelected? '#929699' : 'transparent'"
             (mousedown)="clickResizeWidgetDown($event, i)"
             (dragend)="clickResizeWidgetUp($event, i, true, false, false, true)"
@@ -2952,7 +2952,7 @@
     </div>
 
     <!-- Template Widgets -->
-    <div class="widgetContainerX" *ngFor="let row of templateWidgets; let i = index"
+    <div class="widgetContainer" *ngFor="let row of templateWidgets; let i = index"
         [style.background-color]="row.containerBackgroundColor"
         [style.border]="row.containerBorder"
         [style.border-radius]="row.containerBorderRadius"

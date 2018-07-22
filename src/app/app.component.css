@@ -109,7 +109,7 @@
 }
 
 /* Widget */
-.widgetContainerX {
+.widgetContainer {
     display: inline-block;
     display: grid;
     margin: 0;
@@ -120,11 +120,11 @@
     position: absolute;
     padding: 0;
     }
-    .widgetContainerX:hover {
+    .widgetContainer:hover {
         border: 1px dotted gray !important;
         box-shadow: 8px 8px gray;
     }
-    .widgetContainerX:focus {
+    .widgetContainer:focus {
         border: 1px dotted gray;
     }
 
@@ -255,7 +255,7 @@
         }
 
     /* Style for Resize Handles */
-    .widgetContainerXTopLeftHandle {
+    .widgetContainerTopLeftHandle {
         background-color: #3f4041;
         cursor: nwse-resize;
         grid-column-start: 1;
@@ -265,7 +265,7 @@
         margin: 0;
         padding: 0;
     }
-    .widgetContainerXTopHandle {
+    .widgetContainerTopHandle {
         background-color: #3f4041;
         cursor: n-resize;
         grid-column-start: 6;
@@ -275,7 +275,7 @@
         margin: 0;
         padding: 0;
     }
-    .widgetContainerXTopRightHandle {
+    .widgetContainerTopRightHandle {
         background-color: #3f4041;
         cursor: nesw-resize;
         grid-column-start: 10;
@@ -285,7 +285,7 @@
         margin: 0;
         padding: 0;
     }
-    .widgetContainerXRightTopHandle {
+    .widgetContainerRightTopHandle {
         background-color: #3f4041;
         cursor: nesw-resize;
         grid-column-start: 11;
@@ -295,7 +295,7 @@
         margin: 0;
         padding: 0;
     }
-    .widgetContainerXRightHandle {
+    .widgetContainerRightHandle {
         background-color: #3f4041;
         cursor: e-resize;
         grid-column-start: 11;
@@ -305,7 +305,7 @@
         margin: 0;
         padding: 0;
     }
-    .widgetContainerXRightBottomHandle {
+    .widgetContainerRightBottomHandle {
         background-color: #3f4041;
         cursor: nwse-resize;
         grid-column-start: 11;
@@ -315,7 +315,7 @@
         margin: 0;
         padding: 0;
     }
-    .widgetContainerXBottomRightHandle {
+    .widgetContainerBottomRightHandle {
         background-color: #3f4041;
         cursor: nwse-resize;
         grid-column-start: 11;
@@ -325,7 +325,7 @@
         margin: 0;
         padding: 0;
     }
-    .widgetContainerXBottomHandle {
+    .widgetContainerBottomHandle {
         background-color: #3f4041;
         cursor: s-resize;
         grid-column-start: 6;
@@ -335,7 +335,7 @@
         margin: 0;
         padding: 0;
     }
-    .widgetContainerXBottomLeftHandle {
+    .widgetContainerBottomLeftHandle {
         background-color: #3f4041;
         cursor: nesw-resize;
         grid-column-start: 1;
@@ -345,7 +345,7 @@
         margin: 0;
         padding: 0;
     }
-    .widgetContainerXLeftBottomHandle {
+    .widgetContainerLeftBottomHandle {
         background-color: #3f4041;
         cursor: nesw-resize;
         grid-column-start: 1;
@@ -355,7 +355,7 @@
         margin: 0;
         padding: 0;
     }
-    .widgetContainerXLeftHandle {
+    .widgetContainerLeftHandle {
         background-color: #3f4041;
         cursor: w-resize;
         grid-column-start: 1;
@@ -365,7 +365,7 @@
         margin: 0;
         padding: 0;
     }
-    .widgetContainerXLeftTopHandle {
+    .widgetContainerLeftTopHandle {
         background-color: #3f4041;
         cursor: nwse-resize;
         grid-column-start: 1;
