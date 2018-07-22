@@ -280,9 +280,9 @@ const widgetTemplate: Widget =
         "refreshFrequency": 1,
         "widgetRefreshedOn": "",
         "widgetRefreshedBy": "",
-        "widgetCreatedOn": "",
+        "widgetCreatedOn": null,
         "widgetCreatedBy": "",
-        "widgetUpdatedOn": "",
+        "widgetUpdatedOn": null,
         "widgetUpdatedBy": ""
     }
 
@@ -6688,7 +6688,7 @@ export class GlobalVariableService {
         this.canvasMessages.forEach(msg => {
             msg.recipients.forEach(rec => {
                 if (rec.userID == userID) {
-                    rec.readOn = this.formatDate(today);
+                    rec.readOn = today;
                 };
             });
         });

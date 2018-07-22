@@ -172,12 +172,12 @@ export class CollaborateMessageContentComponent implements OnInit {
             [
                 {
                     userID: string;
-                    readOn: string;     // dateTime read, null if not read
+                    readOn: Date;     // dateTime read, null if not read
                 }
             ] = [
                     {
                         userID: '',
-                        readOn: ''
+                        readOn: null
                     }
                 ];
 
@@ -200,7 +200,7 @@ export class CollaborateMessageContentComponent implements OnInit {
                     } else {
                         recipients.push({
                             userID: this.users[i].userID,
-                            readOn: ''
+                            readOn: null
                         });
                     };
                 };

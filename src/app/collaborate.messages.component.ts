@@ -129,7 +129,7 @@ export class CollaborateMessagesComponent implements OnInit {
                 this.canvasMessages = this.canvasMessages.filter(m => {
                     let isFound: boolean = false;
                     m.recipients.forEach(r => {
-                        if (r.readOn == '') {
+                        if (r.readOn == null) {
                             isFound = true;
                         };
                     });
@@ -256,7 +256,7 @@ export class CollaborateMessagesComponent implements OnInit {
         let messageIndex: number = this.canvasMessages.findIndex(msg => msg.id == id);
         if (messageIndex >= 0) {
             this.canvasMessages[messageIndex].recipients.forEach(rec => {
-                if (rec.readOn != '') {
+                if (rec.readOn != null) {
                     readCount = readCount + 1;
                 };
             });

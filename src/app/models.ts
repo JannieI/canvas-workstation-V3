@@ -205,7 +205,7 @@ export class CanvasMessage {
     recipients: [               // Original list of Users, groups are split into users @time
         {
             userID: string;
-            readOn: string;     // dateTime read, null if not read
+            readOn: Date;     // dateTime read, null if not read
         }
     ];
     toGroups: string[];         // Original list of Groups
@@ -935,9 +935,9 @@ export class Widget {
     refreshFrequency: number;           // Nr of seconds if RefreshMode = Repeatedly
     widgetRefreshedOn: string;          // Data Refreshed on
     widgetRefreshedBy: string;          // Date Refreshed by
-    widgetCreatedOn: string;            // Created on
+    widgetCreatedOn: Date;              // Created on
     widgetCreatedBy: string;            // Created by
-    widgetUpdatedOn: string;            // Updated on
+    widgetUpdatedOn: Date;              // Updated on
     widgetUpdatedBy: string;            // Updated by
 
 }
