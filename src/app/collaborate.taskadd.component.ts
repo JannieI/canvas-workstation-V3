@@ -59,9 +59,9 @@ export class CollaborateTaskAddComponent implements OnInit {
     selectedPrecedingTaskID: number;
     selectedLinkedDashboard: string;
     selectedTaskComments: string = '';
-    selectedStartDate: string = '';
-    selectedDeadlineDate: string = '';
-    selectedEndDate: string = '';
+    selectedStartDate: Date = null;
+    selectedDeadlineDate: Date = null;
+    selectedEndDate: Date = null;
     selectedDurationDays: string = '';
     taskIDs: number[] = [];
     userNames: string[] = [];
