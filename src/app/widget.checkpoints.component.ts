@@ -145,7 +145,7 @@ export class WidgetCheckpointsComponent implements OnInit {
             name: this.checkpointName,
             widgetSpec: JSON.parse(JSON.stringify(this.selectedWidget)),
             creator: this.globalVariableService.currentUser.userID,
-            createdOn: this.globalVariableService.formatDate(today)
+            createdOn: today
         };
 
         // Add locally, globally and to DB (with new ID)

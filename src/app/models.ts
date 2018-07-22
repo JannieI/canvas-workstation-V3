@@ -953,7 +953,7 @@ export class WidgetCheckpoint {
     name: string;                       // Name of Checkpoint
     widgetSpec: any;                    // json spec of W
     creator: string;                    // UserID
-    createdOn: string;                  // DateTime of creation
+    createdOn: Date;                    // DateTime of creation
 }
 
 // TODO - temporary, to be removed later
