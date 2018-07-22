@@ -613,7 +613,7 @@ export class Dashboard {
     editor: string;
     dateEdited: Date;
     refresher: string;
-    dateRefreshed: string;
+    dateRefreshed: Date;
 
     // 2nd normal form - calculated at DB level
     nrWidgets: number;
@@ -711,7 +711,7 @@ export class DashboardSchedule {
     startsOn: Date;                     // Date
     endsNever: boolean;                 // True means never ends
     endsAfter: number;                  // n times, ie 2 means it will run twice
-    endsOn: string;                     // Date
+    endsOn: Dashboard;                     // Date
 }
 
 export class DashboardScheduleLog {

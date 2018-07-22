@@ -314,7 +314,7 @@ const dashboardTemplate: Dashboard =
         editor: '',
         dateEdited: null,
         refresher: '',
-        dateRefreshed: '',
+        dateRefreshed: null,
         nrWidgets: 0,
         nrShapes: 0,
         nrRecords: 0,

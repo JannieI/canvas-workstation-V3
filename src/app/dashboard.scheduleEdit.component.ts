@@ -278,7 +278,7 @@ export class DashboardScheduleEditComponent implements OnInit {
                 &&
                     (this.selectedDashboardSchedule.endsOn == null
                     ||
-                    this.selectedDashboardSchedule.endsOn == '')
+                    this.selectedDashboardSchedule.endsOn == null)
                 ) {
                 this.errorMessage = 'Must end Never, On or After';
                 return;
