@@ -125,7 +125,7 @@ export class CurrentDashboardInfo {
     currentDashboardTabIndex: number = 0;   // Index in [T]
     widgetsToRefresh: number[] = [];        // Optional list of W to refresh, [] = All
     refreshingRoutine: string;              // Component-Function that called to refresh
-    refreshDateTime: string;
+    refreshDateTime: Date;                  // When D was last refreshed
 }
 
 export class PaletteButtonsSelected {

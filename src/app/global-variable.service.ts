@@ -7700,7 +7700,7 @@ export class GlobalVariableService {
             currentDashboardTabID: y,
             currentDashboardTabIndex: x,
             refreshingRoutine: refreshingRoutine,
-            refreshDateTime: dt.toString(),
+            refreshDateTime: dt,
             widgetsToRefresh
         });
 

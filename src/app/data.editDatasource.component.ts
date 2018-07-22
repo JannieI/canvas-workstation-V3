@@ -17,6 +17,17 @@ import { GlobalVariableService }      from './global-variable.service';
 import { Datasource }                 from './models';
 import { Widget }                     from './models';
 
+interface ClrDatagridStringFilterInterface<T> {
+    accepts(item: T, search: string): boolean;
+}
+
+class FilterDatasourceName implements ClrDatagridStringFilterInterface<Datasource> {
+    accepts(datasource: Datasource, search: string):boolean {
+        return "" + datasource.name == search
+            || datasource.name.toLowerCase().indexOf(search) >= 0;
+    }
+}
+
 
 @Component({
     selector: 'data-editDatasource',
@@ -44,7 +55,9 @@ export class DataEditDatasourceComponent implements OnInit {
             &&  
             (!event.shiftKey) 
            ) {
-            this.clickContinue();
+               if (this.selectedRowIndex!=null) {
+                   this.clickContinue();
+               };
             return;
         };
         if (event.code == 'End'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
@@ -62,6 +75,7 @@ export class DataEditDatasourceComponent implements OnInit {
 
     datasources: Datasource[];
     errorMessage: string = "";
+    filterName = new FilterDatasourceName();
     selectedRowIndex: number = null;
     selectedDatasource: Datasource;
 
