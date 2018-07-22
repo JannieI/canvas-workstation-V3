@@ -201,9 +201,9 @@ export class CollaborateTaskAddComponent implements OnInit {
             endDate: this.selectedEndDate,
             durationDays: +this.selectedDurationDays,
             editedBy: '',
-            editedOn: '',
+            editedOn: null,
             createdBy: this.globalVariableService.currentUser.userID,
-            createdOn: this.globalVariableService.formatDate(today),
+            createdOn: today
         };
 
         this.globalVariableService.addCanvasTask(newTask);
