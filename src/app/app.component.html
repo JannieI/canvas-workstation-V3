@@ -2045,14 +2045,14 @@
                 <b>{{ row.titleText }}</b>
 
                 <!-- Hyperlink -->
-                <div class="widgetXJumpLink" *ngIf="row.hyperlinkDashboardID
+                <span class="widgetXJumpLink" *ngIf="row.hyperlinkDashboardID
                      && row.hyperlinkDashboardTabID"
                     >
                     <clr-icon shape="arrow right" *ngIf="row.hyperlinkDashboardID"
                         (click)="actionmenuJumpToLinked(row.hyperlinkDashboardID, row.hyperlinkDashboardTabID)"
                         >
                     </clr-icon>
-                </div>
+                </span>
 
             </div>
 
@@ -2991,14 +2991,14 @@
                 <b>{{ row.titleText }}</b>
 
                 <!-- Hyperlink -->
-                <div class="widgetXJumpLink" *ngIf="row.hyperlinkDashboardID
+                <span class="widgetXJumpLink" *ngIf="row.hyperlinkDashboardID
                      && row.hyperlinkDashboardTabID"
                     >
                     <clr-icon shape="arrow right" *ngIf="row.hyperlinkDashboardID"
                         (click)="actionmenuJumpToLinked(row.hyperlinkDashboardID, row.hyperlinkDashboardTabID)"
                         >
                     </clr-icon>
-                </div>
+                </span>
 
             </div>
 
