@@ -46,10 +46,10 @@ export class CollaborateMessagesComponent implements OnInit {
     messageUnRead: boolean = false;
     newMessage: boolean = false;
     recipient: string = '';
-    sendBefore: string = '';
+    sendBefore: Date = null;
     sender: string = '';
-    sentAfter: string = '';
-    subject: string = '';
+    sentAfter: Date = null;
+    subject: string = null;
 
     messageAction: string;
     existingMessagge: CanvasMessage;
@@ -64,7 +64,7 @@ export class CollaborateMessagesComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.sentAfter = this.globalVariableService.currentUser.lastLogin;
+        this.sentAfter = new Date(this.globalVariableService.currentUser.lastLogin);
 
         this.clickFilter(false);
 
@@ -93,10 +93,10 @@ export class CollaborateMessagesComponent implements OnInit {
         // Toggle Last Login value on form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickLastLogin', '@Start');
 
-        if (this.sentAfter == '') {
-            this.sentAfter = this.globalVariableService.currentUser.lastLogin;
+        if (this.sentAfter == null) {
+            this.sentAfter = new Date(this.globalVariableService.currentUser.lastLogin);
         } else {
-            this.sentAfter = '';
+            this.sentAfter = null;
         };
 
     }
@@ -146,12 +146,12 @@ export class CollaborateMessagesComponent implements OnInit {
                     m => m.subject.toLowerCase().includes(this.subject.toLowerCase())
                 );
             };
-            if (this.sentAfter != '') {
+            if (this.sentAfter != null) {
                 this.canvasMessages = this.canvasMessages.filter(
                     m => m.sentOn >= this.sentAfter
                 );
             };
-            if (this.sendBefore != '') {
+            if (this.sendBefore != null) {
                 this.canvasMessages = this.canvasMessages.filter(
                     m => m.sentOn <= this.sendBefore
                 );

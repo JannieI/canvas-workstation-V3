@@ -213,7 +213,7 @@ export class CollaborateMessageContentComponent implements OnInit {
             id: null,
             threadID: this.existingMessagge==null? null : this.existingMessagge.threadID,
             sender: this.globalVariableService.currentUser.userID,
-            sentOn: this.globalVariableService.formatDate(today),
+            sentOn: today,
             recipients: recipients,
             toGroups: [],
             subject: this.subject,

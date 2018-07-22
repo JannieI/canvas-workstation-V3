@@ -201,7 +201,7 @@ export class CanvasMessage {
     id: number;                 // Unique ID
     threadID: number;           // Optional thread - to keep converstations together (later use)
     sender: string;             // UserID who sent message, could also be System (for Alerts)
-    sentOn: string;             // DateTime message was sent
+    sentOn: Date;               // DateTime message was sent
     recipients: [               // Original list of Users, groups are split into users @time
         {
             userID: string;
