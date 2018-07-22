@@ -88,7 +88,7 @@ export class CanvasAction {
     newWidget: any;                         // Full W after action
 
     createor: string;                       // UserID who created action
-    created: string;                        // DateTime action was created
+    created: Date;                          // DateTime action was created
 }
 
 export class CanvasAuditTrail {
@@ -253,7 +253,7 @@ export class CanvasUser {
     isSuperuser: boolean;                   // Systems supervisor - has ALL powers
     isStaff: boolean;                       // Is a staff member (and not Guest)
     isActive: boolean;                      // When False, cannot work on system (ie left company)  
-    dateJoined: string;
+    dateJoined: Date;
     lastLogin: string;
     colorScheme: string;                    // Color scheme for Canvas - for later use
     startupDashboardID: number;             // Optional Dashboard ID to show at startup

@@ -8230,7 +8230,7 @@ export class GlobalVariableService {
                 oldWidget: oldWidget == null? null : Object.assign({}, oldWidget),
                 newWidget: newWidget == null? null : Object.assign({}, newWidget),
                 createor: this.currentUser.userID,
-                created: this.formatDate(today)
+                created: today
             });
         } else {
             this.actions.forEach(ac => {

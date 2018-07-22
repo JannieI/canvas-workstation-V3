@@ -518,7 +518,7 @@ export class AppComponent implements OnInit {
 
                         // Determine if any actions since session login
                         let temp: CanvasAction[] = this.globalVariableService.actions.filter(act =>
-                            act.created > this.globalVariableService.sessionDateTimeLoggedin
+                            act.created > new Date(this.globalVariableService.sessionDateTimeLoggedin)
                             &&
                             act.createor == this.globalVariableService.currentUser.userID
                         );
