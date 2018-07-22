@@ -169,7 +169,7 @@ export class DashboardCommentsComponent implements OnInit {
             widgetID: this.selectedWidgetID,
             comment: this.commentText,
             creator: this.globalVariableService.currentUser.userID,
-            createdOn: dt.toString()
+            createdOn: dt
         };
 
         // Globally and locally

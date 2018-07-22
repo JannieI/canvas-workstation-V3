@@ -236,7 +236,7 @@ export class CanvasComment {
     widgetID: number;                       // Optional Widget linked
     comment: string;                        // Comment Text
     creator: string;                        // UserID
-    createdOn: string;                      // DateTime
+    createdOn: Date;                        // DateTime
 }
 
 export class CanvasUser {
