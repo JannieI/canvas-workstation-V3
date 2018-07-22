@@ -159,9 +159,9 @@ export class DataManageDataOwnershipComponent implements OnInit {
             type: '',
             description: '',
             createdBy: '',
-            createdOn: '',
+            createdOn: null,
             updatedBy: '',
-            updatedOn: '',
+            updatedOn: null,
             datasourceName: ''
         };
     }

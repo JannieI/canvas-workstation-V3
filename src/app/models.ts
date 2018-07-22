@@ -343,9 +343,9 @@ export class DataOwnership {
     type: string;                           // User-defined ownership role, ie Owner, Steward, etc
     description;                            // Description of the responsibilities
     createdBy: string;                      // UserID who created the record
-    createdOn: string;                      // Date record was created
+    createdOn: Date;                        // Date record was created
     updatedBy: string;                      // UserID who last updated the record
-    updatedOn: string;                      // Last Date when record was updated
+    updatedOn: Date;                        // Last Date when record was updated
 
     // @RunTime
     datasourceName: string;                 // Name of the linked DS
