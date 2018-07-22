@@ -18,6 +18,17 @@ import { GlobalVariableService}       from './global-variable.service';
 // Models
 import { Dashboard }                  from './models';
 
+interface ClrDatagridStringFilterInterface<T> {
+    accepts(item: T, search: string): boolean;
+}
+
+class FilterName implements ClrDatagridStringFilterInterface<Dashboard> {
+    accepts(dashboard: Dashboard, search: string):boolean {
+        return "" + dashboard.name == search
+            || dashboard.name.toLowerCase().indexOf(search) >= 0;
+    }
+}
+
 @Component({
     selector: 'dashboard-bulk-delete',
     templateUrl: './dashboard.deleteBulk.component.html',
@@ -42,6 +53,7 @@ export class DashboardDeleteBulkComponent implements OnInit {
 
     dashboards: Dashboard[];
     errorMessage: string = '';
+    filterName = new FilterName();
     selectedRow: number = 0;
 
 	constructor(

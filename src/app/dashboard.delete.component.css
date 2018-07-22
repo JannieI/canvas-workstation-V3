@@ -161,8 +161,8 @@
     }
     
     .gridDesription {
-        grid-column-start: 4;
-        grid-column-end: 6;
+        grid-column-start: 1;
+        grid-column-end: 15;
         grid-row-start: 17;
         grid-row-end: 18;
         text-align: left;
