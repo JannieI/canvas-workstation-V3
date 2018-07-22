@@ -28,7 +28,12 @@ class FilterName implements ClrDatagridStringFilterInterface<Dashboard> {
             || dashboard.name.toLowerCase().indexOf(search) >= 0;
     }
 }
-
+class FilterDescription implements ClrDatagridStringFilterInterface<Dashboard> {
+    accepts(dashboard: Dashboard, search: string):boolean {
+        return "" + dashboard.description == search
+            || dashboard.description.toLowerCase().indexOf(search) >= 0;
+    }
+}
 @Component({
     selector: 'dashboard-bulk-delete',
     templateUrl: './dashboard.deleteBulk.component.html',
@@ -54,6 +59,7 @@ export class DashboardDeleteBulkComponent implements OnInit {
     dashboards: Dashboard[];
     errorMessage: string = '';
     filterName = new FilterName();
+    filterDescription = new FilterDescription();
     selectedRow: number = 0;
 
 	constructor(
