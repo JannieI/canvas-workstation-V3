@@ -524,9 +524,9 @@ export class DataTable {
 
     // Creation, update and refresh
     creator: string;            // Created By
-    dateCreated: string;        // Created On
+    dateCreated: Date;          // Created On
     editor: string;             // Last Edited By
-    dateEdited: string;         // Last Edited On
+    dateEdited: Date;           // Last Edited On
 }
 
 export class DataField {
@@ -548,9 +548,9 @@ export class DataField {
 
     // Creation, update and refresh
     creator: string;            // Created By
-    dateCreated: string;        // Created On
+    dateCreated: Date;          // Created On
     editor: string;             // Last Edited By
-    dateEdited: string;         // Last Edited On
+    dateEdited: Date;           // Last Edited On
 
     // At Runtime
     hidden: boolean;            // True if hidden at runtime
