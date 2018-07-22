@@ -186,8 +186,18 @@ export class DataDirectNoSQLComponent implements OnInit {
                 // Fill the data
                 this.fileData = res.slice(0,10);
                 this.fileDataFull = res;
-                this.selectedDatasource.dataFields = this.selectedFields.split(",");
 
+                // Construct a list of field name / column headings from the data
+                this.selectedDatasource.dataFields = [];
+
+                if (res.length > 0) {
+                    console.warn('xx res[0]', res[0])
+                    for(var key in res[0]) {
+                        console.warn('xx key', key)
+                        this.selectedDatasource.dataFields.push(key);
+                    }
+                };
+                
                 // Show the results
                 this.showPreview = true;
                 this.spinner = false;

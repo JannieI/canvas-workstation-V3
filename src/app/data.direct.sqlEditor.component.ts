@@ -178,7 +178,6 @@ export class DataDirectSQLEditorComponent implements OnInit {
                 // Fill the data
                 this.fileData = res.slice(0,10);
                 this.fileDataFull = res;
-                // this.selectedDatasource.dataFields = this.selectedFields.split(",");
 
                 // Construct a list of field name / column headings from the data
                 this.selectedDatasource.dataFields = [];
@@ -190,6 +189,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
                         this.selectedDatasource.dataFields.push(key);
                     }
                 };
+
                 // Show the results
                 this.showPreview = true;
                 this.spinner = false;

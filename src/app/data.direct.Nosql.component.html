@@ -48,7 +48,7 @@
                             title="Description of the Datasource"
                             >
                     </div>
-    
+
                     <div class="gridServerTypeTitle">
                         <b>Type:</b>
                     </div>
@@ -120,14 +120,6 @@
                             >
                     </div>
 
-                    <div class="gridFieldsTitle">
-                        <b>Fields</b>
-                    </div>
-                    <textarea class="gridFields" [(ngModel)]="selectedFields"
-                        name="textFields">
-                        BillingAddress,BillingCity,BillingCountry,BillingPostalCode,BillingState,CustomerId,InvoiceDate,InvoiceId,Total
-                    </textarea>
-
                     <div class="gridSQLTextTitle">
                         <b>NoSQL Statement</b>
                     </div>
@@ -154,7 +146,7 @@
                     <span class="spinner spinner-inline gridSpinner" *ngIf="spinner">
                         Loading...
                     </span>
-    
+
                     <div class="gridData" *ngIf="showPreview">
                         <clr-datagrid class="gridPreviewData">
 
@@ -216,4 +208,3 @@
         </div>
     </div>
 </div>
-    
