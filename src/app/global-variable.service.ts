@@ -158,7 +158,7 @@ const widgetTemplate: Widget =
         "description": "New Widget from Template",
         "annotation": '',
         "annotationLastUserID": "",
-        "annotationLastUpdated": "",
+        "annotationLastUpdated": null,
         "visualGrammar": "Vega-Lite",
         "version": 1,
         "isSelected": false,

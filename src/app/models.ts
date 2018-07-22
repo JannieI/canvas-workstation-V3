@@ -711,7 +711,7 @@ export class DashboardSchedule {
     startsOn: Date;                     // Date
     endsNever: boolean;                 // True means never ends
     endsAfter: number;                  // n times, ie 2 means it will run twice
-    endsOn: Dashboard;                     // Date
+    endsOn: Date;                       // Date
 }
 
 export class DashboardScheduleLog {
@@ -737,7 +737,7 @@ export class DashboardPermission {
     canAddDatasource: boolean;          // True if can Add a DS to this D
     canGrantAccess: boolean;            // Can Delete a D
     grantor: string;                    // UserId who granted permission
-    grantedOn: string;                  // Date and time created or last updated
+    grantedOn: Date;                    // Date and time created or last updated
 }
 
 export class DashboardSubscription {
@@ -774,7 +774,7 @@ export class Widget {
     description: string;
     annotation: string;                 // Optional annotation per W, deeper info about W
     annotationLastUserID: string;       // Last UserID who updated this annotation
-    annotationLastUpdated: string;      // Last date-time this annotation was updated
+    annotationLastUpdated: Date;        // Last date-time this annotation was updated
     visualGrammar: string;              // Gramar for graphs, default = Vega
     version: number;
 

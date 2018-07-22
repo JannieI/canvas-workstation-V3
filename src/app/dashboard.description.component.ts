@@ -76,11 +76,11 @@ export class DashboardDescriptionComponent implements OnInit {
     dashboardState: string;
     dashboardVersion: number;
     dashboardCreator: string;
-    dashboardCreated: string;
+    dashboardCreated: Date;
     dashboardEditor: string;
-    dashboardEdited: string;
+    dashboardEdited: Date;
     dashboardRefresher: string;
-    dashboardRefreshed: string;
+    dashboardRefreshed: Date;
     dashboardAccessType: string;
     errorMessage: string = '';
     selectedColour: string;
@@ -147,9 +147,9 @@ export class DashboardDescriptionComponent implements OnInit {
         this.dashboardState = this.selectedDashboard.state;
         this.dashboardVersion = this.selectedDashboard.version;
         this.dashboardCreator = this.selectedDashboard.creator;
-        this.dashboardCreated = this.selectedDashboard.dateCreated.toString();
+        this.dashboardCreated = this.selectedDashboard.dateCreated;
         this.dashboardEditor = this.selectedDashboard.editor;
-        this.dashboardEdited = this.selectedDashboard.dateEdited.toString();
+        this.dashboardEdited = this.selectedDashboard.dateEdited;
         this.dashboardRefresher = this.selectedDashboard.refresher;
         this.dashboardRefreshed = this.selectedDashboard.dateRefreshed;
         this.dashboardAccessType = this.selectedDashboard.accessType;
