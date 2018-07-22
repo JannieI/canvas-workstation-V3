@@ -331,9 +331,9 @@ export class DataQualityIssue {
     description;                            // Description of the issue
     nrIssues: number;                       // Optional Nr of issue, can be rounded
     loggedBy: string;                       // UserID who logged the issue
-    loggedOn: string;                       // Date Issue was logged
+    loggedOn: Date;                         // Date Issue was logged
     solvedBy: string;                       // UserID who solved the issue
-    solvedOn: string;                       // Date issue was marked as solved
+    solvedOn: Date;                         // Date issue was marked as solved
 }
 
 export class DataOwnership {

@@ -134,9 +134,9 @@ export class DataManageDataQualityComponent implements OnInit {
             description: '',
             nrIssues: 0,
             loggedBy: '',
-            loggedOn: '',
+            loggedOn: null,
             solvedBy: '',
-            solvedOn: ''
+            solvedOn: null
         };
     }
     
