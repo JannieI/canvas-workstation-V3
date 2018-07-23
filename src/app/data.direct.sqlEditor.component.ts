@@ -15,6 +15,7 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
 // Our Models
+import { DataSchema }                 from './models';
 import { Dataset }                    from './models';
 import { Datasource }                 from './models';
 import { TributaryServerType }        from './models';
@@ -46,6 +47,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
 
 
     canSave: boolean = false;
+    dataSchemas: DataSchema[] = [];
     errorMessage: string = "";
     fileData: any = [];
     fileDataFull: any = [];
@@ -151,12 +153,35 @@ export class DataDirectSQLEditorComponent implements OnInit {
                     "port": +this.selectedDatasource.port
                 }
             }
-        };       
-        // Call Tributary
+        };
+        // Call Tributary Inspector
         this.globalVariableService.getTributaryInspect(specificationInspect).then(res => {
-            console.warn('xx res I', res)
 
-            // Set up specification
+            // Fill the tables and Fields
+            this.dataSchemas = [];
+            res.forEach(row => {
+
+                this.dataSchemas.push(
+                {
+                    serverName: this.selectedDatasource.serverName,
+                    tableName: row.name,
+                    tableDescription: row.name,
+                    tableFields: [],
+                    tableMetadata: []
+                });
+                row.fields.forEach(fld => {
+                    this.dataSchemas[this.dataSchemas.length - 1].tableFields.push(
+                        {
+                            fieldName: fld.name,
+                            fieldType: fld.dtype
+                        }
+                    )
+                });
+            });
+            console.warn('xx res I', res, this.dataSchemas)
+
+
+            // Set up specification for Connector
             this.selectedDatasource.dataSQLStatement = this.selectedDatasource.dataSQLStatement.trim();
             let specificationConnect: any = {
                 "source": {
@@ -173,6 +198,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
                 }
             };
 
+            // Get Tributary data
             this.globalVariableService.getTributaryData(specificationConnect).then(res => {
 
                 // Fill the data

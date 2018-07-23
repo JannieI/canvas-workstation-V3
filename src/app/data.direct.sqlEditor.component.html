@@ -119,6 +119,22 @@
                             >
                     </div>
 
+                    <div class="gridTablesTitle">
+                        <b>Tables</b>
+                    </div>
+                    <div class="select gridTables">
+                        <select
+                            [(ngModel)]="selectedTable"
+                            name="serverType"
+                            (change)="clickSelectTable($event)"
+                            placeholder="Tables in the DB"
+                            >
+                            <option *ngFor="let row of dataSchemas">
+                                {{ row.tableName }}
+                            </option>
+                        </select>
+                    </div>
+    
                     <div class="gridSQLTextTitle">
                         <b>SQL Statement</b>
                     </div>
