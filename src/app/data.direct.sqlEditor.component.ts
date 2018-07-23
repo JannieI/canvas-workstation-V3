@@ -241,6 +241,72 @@ export class DataDirectSQLEditorComponent implements OnInit {
 
     }
 
+    clickExplore() {
+        // Load the Tables and Fields, using the Tributary Inspector
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickExplore',           '@Start');
+
+        // Reset
+        this.errorMessage = '';
+        this.showPreview = false;
+        this.canSave = false;
+
+        // Show user
+        this.spinner = true;
+
+        // Get drivers
+        let driver: string = this.serverTypes
+            .filter(styp => styp.serverType == this.selectedDatasource.serverType)
+            .map(styp => styp.driverName)[0];
+
+        let specificationInspect: any = {
+            "source": {
+                "inspector": "tributary.inspectors.sql:SqlInspector",
+                "specification": {
+                    "drivername": driver,
+                    "username": this.selectedDatasource.username,
+                    "password": this.selectedDatasource.password,
+                    "database": this.selectedDatasource.databaseName,
+                    "host": this.selectedDatasource.serverName,
+                    "port": +this.selectedDatasource.port
+                }
+            }
+        };
+        // Call Tributary Inspector
+        this.globalVariableService.getTributaryInspect(specificationInspect).then(res => {
+
+            // Fill the tables and Fields
+            this.dataSchemas = [];
+            res.forEach(row => {
+
+                this.dataSchemas.push(
+                {
+                    serverName: this.selectedDatasource.serverName,
+                    tableName: row.name,
+                    tableDescription: row.name,
+                    tableFields: [],
+                    tableMetadata: []
+                });
+                row.fields.forEach(fld => {
+                    this.dataSchemas[this.dataSchemas.length - 1].tableFields.push(
+                        {
+                            fieldName: fld.name,
+                            fieldType: fld.dtype
+                        }
+                    )
+                });
+            });
+            console.warn('xx res I', res, this.dataSchemas)
+
+        })
+        .catch(err => {
+            console.warn('xx err', err)
+            this.spinner = false;
+            this.errorMessage = 'Error connecting to server: check login or permissions'
+                + err.message;
+        });
+
+    }
+
     clickSelectTable(ev: any) {
         // User selected a table, fill the fields for it
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectTable', '@Start');
