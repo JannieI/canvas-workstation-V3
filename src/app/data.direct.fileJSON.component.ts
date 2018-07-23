@@ -396,8 +396,8 @@ export class DataDirectFileJSONComponent implements OnInit {
                 url: 'data',
                 folderName: '',
                 fileName: '',
-                data: null,
-                dataRaw: null
+                data: this.fileDataFull,
+                dataRaw: this.fileDataFull
             };
             let newData: any = {
                 id: null,
@@ -419,9 +419,6 @@ export class DataDirectFileJSONComponent implements OnInit {
                 this.savedMessage = 'Datasource created';
             });
         };
-
-
-
 
     }
 }
