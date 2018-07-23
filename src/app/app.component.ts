@@ -6417,9 +6417,14 @@ export class AppComponent implements OnInit {
         this.endY = ev.y;
 
         // Move the Palette
-            this.paletteLeft = this.paletteLeft - this.startX + this.endX;
-            this.paletteTop = this.paletteTop - this.startY + this.endY;
-        }
+        this.paletteLeft = this.paletteLeft - this.startX + this.endX;
+        this.paletteTop = this.paletteTop - this.startY + this.endY;
+
+        // Save to DB
+        this.globalVariableService.currentUser.lastPaletteLeft = this.paletteLeft;
+        this.globalVariableService.currentUser.lastPaletteTop = this.paletteTop;
+        this.globalVariableService.saveCanvasUser(this.globalVariableService.currentUser)
+    }
 
     showRecentDashboard(index: number) {
         // Open a Recently used D
