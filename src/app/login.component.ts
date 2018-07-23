@@ -100,7 +100,6 @@ export class LoginComponent implements OnInit {
                 this.errorMessage = 'Login failed';
                 return;
             } else {
-                console.warn('xx tkn', res)
                 let tkn: Token = JSON.parse(localStorage.getItem('eazl-token'));
                 console.warn('xx tkn', tkn.token, tkn.user)
 

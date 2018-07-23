@@ -502,6 +502,14 @@ export class AppComponent implements OnInit {
                 .filter(u => u.userID == 'JannieI')[0];
             console.log('Welcome ' + this.globalVariableService.currentUser.userID);
 
+            // Set palette position
+            if (this.globalVariableService.currentUser.lastPaletteLeft != null) {
+                this.paletteLeft = this.globalVariableService.currentUser.lastPaletteLeft;
+            };
+            if (this.globalVariableService.currentUser.lastPaletteTop != null) {
+                this.paletteTop = this.globalVariableService.currentUser.lastPaletteTop;
+            };
+
             let today = new Date();
             this.globalVariableService.sessionDateTimeLoggedin = 
                 this.globalVariableService.formatDate(today);
