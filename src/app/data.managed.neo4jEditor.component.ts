@@ -353,8 +353,8 @@ export class DataManagedNeo4jEditorComponent implements OnInit {
                 url: 'data',
                 folderName: '',
                 fileName: '',
-                data: null,
-                dataRaw: null
+                data: this.fileDataFull,
+                dataRaw: this.fileDataFull
             };
             let newData: any = {
                 id: null,
