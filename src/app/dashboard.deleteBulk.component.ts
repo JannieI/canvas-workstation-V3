@@ -1,7 +1,7 @@
 /*
  * Visualise page, to view / present Dashboards previously created
  */
- 
+
 // Angular
 import { Component }                  from '@angular/core';
 import { EventEmitter }               from '@angular/core';
@@ -66,7 +66,7 @@ export class DashboardDeleteBulkComponent implements OnInit {
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
 	) {}
- 
+
     ngOnInit() {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
@@ -77,11 +77,11 @@ export class DashboardDeleteBulkComponent implements OnInit {
                 if (n1.name > n2.name) {
                     return 1;
                 };
-            
+
                 if (n1.name < n2.name) {
                     return -1;
                 };
-            
+
                 return 0;
             });
     }
@@ -105,14 +105,14 @@ export class DashboardDeleteBulkComponent implements OnInit {
 
         // TODO - remove later on!!
         if (
-            (id < 9  || id == 40  ||  id == 41)  
-            &&  
+            (id < 9  || id == 40  ||  id == 41)
+            &&
             this.globalVariableService.currentDashboardInfo.value.currentDashboardState == 'Complete'
             ) {
             alert('Dont delete Complete version of ids 1-8, 40, 41 while testing !')
             return;
         };
-        
+
         this.errorMessage = '';
 
         // Cant delete CurrentD here -> goto Delete option
@@ -126,7 +126,7 @@ export class DashboardDeleteBulkComponent implements OnInit {
         this.globalVariableService.deleteDashboardInfo(id);
 
     }
- 
+
     clickRow(index: number) {
         // Show selected record
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');

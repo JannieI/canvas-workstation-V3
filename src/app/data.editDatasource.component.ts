@@ -27,6 +27,12 @@ class FilterDatasourceName implements ClrDatagridStringFilterInterface<Datasourc
             || datasource.name.toLowerCase().indexOf(search) >= 0;
     }
 }
+class FilterDescription implements ClrDatagridStringFilterInterface<Datasource> {
+    accepts(dashboard: Datasource, search: string):boolean {
+        return "" + dashboard.description == search
+            || dashboard.description.toLowerCase().indexOf(search) >= 0;
+    }
+}
 
 
 @Component({
@@ -48,12 +54,12 @@ export class DataEditDatasourceComponent implements OnInit {
             this.clickClose();
             return;
         };
-        if ( 
+        if (
             (event.code == 'Enter'  ||  event.code == 'NumpadEnter')
-            &&  
-            (!event.ctrlKey)  
-            &&  
-            (!event.shiftKey) 
+            &&
+            (!event.ctrlKey)
+            &&
+            (!event.shiftKey)
            ) {
                if (this.selectedRowIndex!=null) {
                    this.clickContinue();
@@ -76,6 +82,7 @@ export class DataEditDatasourceComponent implements OnInit {
     datasources: Datasource[];
     errorMessage: string = "";
     filterName = new FilterDatasourceName();
+    filterDescription = new FilterDescription();
     selectedRowIndex: number = null;
     selectedDatasource: Datasource;
 
@@ -119,7 +126,7 @@ export class DataEditDatasourceComponent implements OnInit {
 
         // Select this row
         this.selectedRowIndex = index;
-        
+
         // Indicate how to continue when back in App, and close this form
         this.globalVariableService.continueToTransformations = true;
         this.clickContinue();
