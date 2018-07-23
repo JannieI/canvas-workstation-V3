@@ -135,6 +135,21 @@
                         </select>
                     </div>
     
+                    <div class="gridFieldsTitle">
+                        <b>Fields</b>
+                    </div>
+                    <div class="select gridFields">
+                        <select
+                            [(ngModel)]="selectedField"
+                            name="serverType"
+                            placeholder="Fields in the selected Table"
+                            >
+                            <option *ngFor="let row of fieldsInTable">
+                                {{ row }}
+                            </option>
+                        </select>
+                    </div>
+
                     <div class="gridSQLTextTitle">
                         <b>SQL Statement</b>
                     </div>

@@ -49,11 +49,13 @@ export class DataDirectSQLEditorComponent implements OnInit {
     canSave: boolean = false;
     dataSchemas: DataSchema[] = [];
     errorMessage: string = "";
+    fieldsInTable: string[];
     fileData: any = [];
     fileDataFull: any = [];
     reader = new FileReader();
     savedMessage: string = '';
-    // selectedFields: string = "BillingAddress,BillingCity,BillingCountry,BillingPostalCode,BillingState,CustomerId,InvoiceDate,InvoiceId,Total";
+    selectedTable: string = '';
+    selectedField: string = '';
     serverTypes: TributaryServerType[];
     showPreview: boolean = false;
     spinner: boolean = false;
@@ -243,9 +245,14 @@ export class DataDirectSQLEditorComponent implements OnInit {
         // User selected a table, fill the fields for it
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectTable', '@Start');
 
-        let fields: string[] = this.dataSchemas.filter(dsch => dsch.tableName == ev)[0]
-            .tableFields.map(tf => tf.fieldName);
-        console.warn('xx fields', fields)
+        this.fieldsInTable = [];
+        let selectedDataSchema: DataSchema[] = this.dataSchemas.filter(dsch => dsch.tableName == ev);
+        console.warn('xx selectedDataSchema',selectedDataSchema )
+
+        if (selectedDataSchema.length > 0) {
+            this.fieldsInTable = selectedDataSchema[0].tableFields.map(tf => tf.fieldName);
+        };
+        console.warn('xx this.fieldsInTable',this.fieldsInTable )
     }
 
     clickClose() {
