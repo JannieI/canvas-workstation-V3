@@ -450,8 +450,8 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
                 url: 'data',
                 folderName: '',
                 fileName: '',
-                data: null,
-                dataRaw: null
+                data: this.worksheetDataFull,
+                dataRaw: this.worksheetDataFull
             };
             let newData: any = {
                 id: null,
