@@ -343,8 +343,8 @@ export class DataDirectWebComponent implements OnInit {
                 url: 'data',
                 folderName: '',
                 fileName: '',
-                data: null,
-                dataRaw: null
+                data: this.currentData,
+                dataRaw: this.currentData
             };
             let newData: any = {
                 id: null,
