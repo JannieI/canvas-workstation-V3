@@ -105,31 +105,32 @@ export class DataDirectGoogleSheetsComponent implements OnInit {
         };
 
         // Get data in sheet
-        this.globalVariableService.getTributaryData(source).then(res => {
-            this.currentData = res;
-            this.currentDataSnippet = res.slice(1, 8);
-            this.nrRows = res.length;
+        this.globalVariableService.getTributaryData(source)
+            .then(res => {
+                this.currentData = res;
+                this.currentDataSnippet = res.slice(1, 8);
+                this.nrRows = res.length;
 
-            // Show the preview data table
-            this.showPreview = true;
+                // Show the preview data table
+                this.showPreview = true;
 
-            // Construct a list of field name / column headings from the data
-            this.dataFieldsSelected = [];
+                // Construct a list of field name / column headings from the data
+                this.dataFieldsSelected = [];
 
-            if (res.length > 0) {
-                console.warn('xx res[0]', res[0])
-                for(var key in res[0]) {
-                    console.warn('xx key', key)
-                    this.dataFieldsSelected.push(key);
-                }
-            };
+                if (res.length > 0) {
+                    console.warn('xx res[0]', res[0])
+                    for(var key in res[0]) {
+                        console.warn('xx key', key)
+                        this.dataFieldsSelected.push(key);
+                    }
+                };
 
-            // The User can save now
-            this.canSave = true;
-            this.savedMessage = '';
-            this.spinner = false;
-            console.warn('xx res', res.length, this.dataFieldsSelected)
-        })
+                // The User can save now
+                this.canSave = true;
+                this.savedMessage = '';
+                this.spinner = false;
+                console.warn('xx res', res.length, this.dataFieldsSelected)
+            })
             .catch(err => {
                 this.errorMessage = err.message + '. ';
                 if (err.status == 401) {
@@ -138,10 +139,11 @@ export class DataDirectGoogleSheetsComponent implements OnInit {
                     this.errorMessage = err.message;
                 };
                 this.spinner = false;
+
+                // Cannot save as yet
+                this.canSave = false;
             });
 
-        // Cannot save as yet
-        this.canSave = false;
     }
 
     clickClose() {
@@ -184,7 +186,7 @@ export class DataDirectGoogleSheetsComponent implements OnInit {
             let ds: number[] = [];
             let dSetID: number = 1;
             for (var i = 0; i < this.globalVariableService.datasets.length; i++) {
-                if(this.globalVariableService.datasets[i].datasourceID == 
+                if(this.globalVariableService.datasets[i].datasourceID ==
                     this.selectedDatasource.id) {
                     ds.push(this.globalVariableService.datasets[i].id)
                 };
@@ -198,7 +200,7 @@ export class DataDirectGoogleSheetsComponent implements OnInit {
                 };
             });
             let updatedDataset: Dataset = this.globalVariableService.datasets[datasetIndex];
-            
+
             let dataID: number = -1;
             let dataIndex: number = updatedDataset.url.indexOf('/');
             if (dataIndex >= 0) {

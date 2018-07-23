@@ -763,7 +763,7 @@ const graphWidth: number = 420;
         );
 
         if (dSetIndex < 0) {
-            
+
             if (this.isBusyRetrievingData) {
                 this.errorMessage = 'Still retrieving the actual data for this DS';
                 return;
@@ -774,22 +774,22 @@ const graphWidth: number = 420;
             this.globalVariableService.addCurrentDatasource(datasourceID).then(res => {
 
                 // Reset
-                this.isBusyRetrievingData = false                
+                this.isBusyRetrievingData = false
                 this.currentDatasources = this.globalVariableService.datasources.slice();
 
                 // Tell user
-                this.errorMessage = 'Data retrieved - click row again to continue';                
+                this.errorMessage = 'Data retrieved - click row again to continue';
 
             });
 
             // Stop Synch execution
             return;
         };
- 
+
         // Load local arrays for ngFor
         let dsIndex: number = this.currentDatasources.findIndex(ds => ds.id == datasourceID);
         console.warn('xx dSetIndex', dSetIndex)
-        
+
         if (dsIndex >= 0) {
             this.dataFieldNames = this.currentDatasources[dsIndex].dataFields;
             this.dataFieldLengths = this.currentDatasources[dsIndex].dataFieldLengths;
