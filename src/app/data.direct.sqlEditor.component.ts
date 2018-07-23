@@ -143,65 +143,26 @@ export class DataDirectSQLEditorComponent implements OnInit {
             .filter(styp => styp.serverType == this.selectedDatasource.serverType)
             .map(styp => styp.driverName)[0];
 
-        let specificationInspect: any = {
+        // Set up specification for Connector
+        this.selectedDatasource.dataSQLStatement = this.selectedDatasource.dataSQLStatement.trim();
+        let specificationConnect: any = {
             "source": {
-                "inspector": "tributary.inspectors.sql:SqlInspector",
+                "connector": "tributary.connectors.sql:SqlConnector",
                 "specification": {
                     "drivername": driver,
                     "username": this.selectedDatasource.username,
                     "password": this.selectedDatasource.password,
                     "database": this.selectedDatasource.databaseName,
                     "host": this.selectedDatasource.serverName,
-                    "port": +this.selectedDatasource.port
+                    "port": +this.selectedDatasource.port,
+                    "query": this.selectedDatasource.dataSQLStatement
                 }
             }
         };
-        // Call Tributary Inspector
-        this.globalVariableService.getTributaryInspect(specificationInspect).then(res => {
 
-            // Fill the tables and Fields
-            this.dataSchemas = [];
-            res.forEach(row => {
-
-                this.dataSchemas.push(
-                {
-                    serverName: this.selectedDatasource.serverName,
-                    tableName: row.name,
-                    tableDescription: row.name,
-                    tableFields: [],
-                    tableMetadata: []
-                });
-                row.fields.forEach(fld => {
-                    this.dataSchemas[this.dataSchemas.length - 1].tableFields.push(
-                        {
-                            fieldName: fld.name,
-                            fieldType: fld.dtype
-                        }
-                    )
-                });
-            });
-            console.warn('xx res I', res, this.dataSchemas)
-
-
-            // Set up specification for Connector
-            this.selectedDatasource.dataSQLStatement = this.selectedDatasource.dataSQLStatement.trim();
-            let specificationConnect: any = {
-                "source": {
-                    "connector": "tributary.connectors.sql:SqlConnector",
-                    "specification": {
-                        "drivername": driver,
-                        "username": this.selectedDatasource.username,
-                        "password": this.selectedDatasource.password,
-                        "database": this.selectedDatasource.databaseName,
-                        "host": this.selectedDatasource.serverName,
-                        "port": +this.selectedDatasource.port,
-                        "query": this.selectedDatasource.dataSQLStatement
-                    }
-                }
-            };
-
-            // Get Tributary data
-            this.globalVariableService.getTributaryData(specificationConnect).then(res => {
+        // Get Tributary data
+        this.globalVariableService.getTributaryData(specificationConnect)
+            .then(res => {
 
                 // Fill the data
                 this.fileData = res.slice(0,10);
@@ -231,13 +192,6 @@ export class DataDirectSQLEditorComponent implements OnInit {
                 this.errorMessage = 'Error connecting to server: check login or permissions'
                     + err.message;
             });
-        })
-        .catch(err => {
-            console.warn('xx err', err)
-            this.spinner = false;
-            this.errorMessage = 'Error connecting to server: check login or permissions'
-                + err.message;
-        });
 
     }
 
@@ -295,6 +249,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
                     )
                 });
             });
+            this.spinner = false;
             console.warn('xx res I', res, this.dataSchemas)
 
         })
@@ -312,13 +267,15 @@ export class DataDirectSQLEditorComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectTable', '@Start');
 
         this.fieldsInTable = [];
-        let selectedDataSchema: DataSchema[] = this.dataSchemas.filter(dsch => dsch.tableName == ev);
-        console.warn('xx selectedDataSchema',selectedDataSchema )
+        let selectedDataSchema: DataSchema[] = this.dataSchemas.filter(
+            dsch => dsch.tableName == ev.target.value
+        );
+        console.warn('xx selectedDataSchema',selectedDataSchema, this.dataSchemas, ev.target.value )
 
         if (selectedDataSchema.length > 0) {
             this.fieldsInTable = selectedDataSchema[0].tableFields.map(tf => tf.fieldName);
         };
-        console.warn('xx this.fieldsInTable',this.fieldsInTable )
+        console.warn('xx this.fieldsInTable',ev, this.selectedTable, this.fieldsInTable )
     }
 
     clickClose() {
