@@ -275,6 +275,8 @@ export class CanvasUser {
     dashboardCanGrantAccessRole: boolean;   // Role can change access to a Dashboard
     dashboardCanAddDatasourceRole: boolean; // Role can change add DS to a Dashboard
     canManageGroupRole: boolean;            // Role can add/delete users to Group
+    lastPaletteHeight: number;              // Last value saved
+    lastPaletteWidth: number;               // Last value saved
     preferencePaletteHorisontal: boolean;                   // T/F - Palette Horisontal (else Vertial)
     preferenceAutoSync: boolean;                            // T/F - can auto sync
     preferenceShowOpenStartupMessage: boolean;              // T/F - show open startup msg

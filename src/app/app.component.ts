@@ -39,9 +39,6 @@ import { compile }                    from 'vega-lite';
 import { parse }                      from 'vega';
 import { View }                       from 'vega';
 import * as dl                        from 'datalib';
-import { load }                       from 'datalib';
-import { BoxPlotStyle }               from 'vega-lite/build/src/compositemark/boxplot';
-import { Action }                     from 'rxjs/scheduler/Action';
 import { StatusbarComponent }         from './statusbar.component';
 
 // WS
