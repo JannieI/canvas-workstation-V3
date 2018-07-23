@@ -264,9 +264,6 @@ export class DataDirectFileCSVComponent implements OnInit {
         // Reset
         this.errorMessage = '';
 
-        // Save changes to the Datasource
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
-
         // Validation
         this.errorMessage = '';
         if (this.newName == '') {
@@ -398,8 +395,8 @@ export class DataDirectFileCSVComponent implements OnInit {
                 url: 'data',
                 folderName: '',
                 fileName: '',
-                data: null,
-                dataRaw: null
+                data: this.fileDataFull,
+                dataRaw: this.fileDataFull
             };
             let newData: any = {
                 id: null,
