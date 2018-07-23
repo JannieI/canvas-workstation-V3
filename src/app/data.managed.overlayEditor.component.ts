@@ -52,7 +52,6 @@ export class DataManagedOverlayEditorComponent implements OnInit {
     connectionName: string = '';
     dataConnections: DataConnection[];
     dataConnectionNames: string[] = [];
-    dataOverlaySpecification: string = '';
     errorMessage: string = "";
     fileData: any = [];
     fileDataFull: any = [];
@@ -126,22 +125,13 @@ export class DataManagedOverlayEditorComponent implements OnInit {
                 dataNoSQLStatement: '',
                 dataNeo4jStatement: '',
                 dataGraphQLStatement: '',
-                dataOverlaySpecification: {
-                    "fields": [
-                        "InvoiceDate"
-                    ],
-                    "options": {
-                        "distinct": true,
-                        "limit": 5
-                    }
-                },
+                dataOverlaySpecification: "albums",
                 businessGlossary: 'Obtained using SQL Editor',
                 dataDictionary: ''
 
             };
         };
 
-        this.dataOverlaySpecification = JSON.stringify(this.selectedDatasource.dataOverlaySpecification);
     }
 
     clickGo() {
@@ -177,10 +167,9 @@ export class DataManagedOverlayEditorComponent implements OnInit {
             .map(styp => styp.driverName)[0];
 
         // Build Spec
-        this.selectedDatasource.dataSQLStatement = this.selectedDatasource.dataSQLStatement.trim();
         let specificationConnect: any = {
             "source": {
-                "connector": "tributary.connectors.overlay:OverlayConnector",
+                "connector":"tributary.connectors.overlay:OverlayConnector",
                 "specification": {
                     "drivername": driver,
                     "username": this.selectedDatasource.username,
@@ -188,11 +177,18 @@ export class DataManagedOverlayEditorComponent implements OnInit {
                     "database": database,
                     "host": serverName,
                     "port": port,
-                    "query": this.dataOverlaySpecification
+                    "source": this.selectedDatasource.dataOverlaySpecification,
+                    "source_type": "table",
+                    "specification": {
+                        "options": {
+                            "limit": 5
+                        }
+                    }
                 }
             }
-        };
+        }
 
+        console.warn('xx specificationConnect', specificationConnect)
         this.globalVariableService.getTributaryData(specificationConnect).then(res => {
 
             // Fill the data

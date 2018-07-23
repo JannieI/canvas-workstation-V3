@@ -162,6 +162,8 @@ This document describes items for later versions of Canvas.
     Data:
     -----
     1. Make sure terminology is consitent: Datasource -> Transform -> Dataset
+    2. Make an ODBC connector - Bradley.
+    3. Have TestConnectivity method - can TEST connection
     4. I used FieldNames (string) in ie Pivot - is that okay?
     5. Design (technically) how Datasets, pivotRow, pivotCol, pivotResult, pivotAgg, Fields,    FieldsMetaData, Combinations, CombinationDetails will work, given that these can change over   time, has to be fast enough (cannot all live in memory) and has to integrate with Vega ...
     6. Check Definition of DS = source, location, authentication, F, Tr, Pv etc.  Dataset is just   the data, with an ID / url to find it.
