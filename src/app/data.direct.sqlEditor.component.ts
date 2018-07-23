@@ -239,6 +239,15 @@ export class DataDirectSQLEditorComponent implements OnInit {
 
     }
 
+    clickSelectTable(ev: any) {
+        // User selected a table, fill the fields for it
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectTable', '@Start');
+
+        let fields: string[] = this.dataSchemas.filter(dsch => dsch.tableName == ev)[0]
+            .tableFields.map(tf => tf.fieldName);
+        console.warn('xx fields', fields)
+    }
+
     clickClose() {
         // Close the form, nothing saved
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
