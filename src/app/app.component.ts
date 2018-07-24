@@ -2038,6 +2038,18 @@ export class AppComponent implements OnInit {
             
             // Toggle mode
             this.globalVariableService.editMode.next(!this.editMode);
+
+            // Update EditMode in D-Recent
+            console.warn('xx Heyha Rec 1', this.globalVariableService.dashboardsRecent)
+            let localIndex: number = this.globalVariableService.dashboardsRecent.findIndex(
+                u => u.dashboardID == this.globalVariableService.currentDashboardInfo.value.currentDashboardID
+            );
+            if (localIndex >= 0) {
+                this.globalVariableService.dashboardsRecent[localIndex].editMode = !this.editMode;
+                this.globalVariableService.saveDashboardRecent(
+                    this.globalVariableService.dashboardsRecent[localIndex]);
+            };
+            
         } else {
         
             let dashboardIndex: number = this.globalVariableService.dashboards.findIndex(
@@ -2085,7 +2097,17 @@ export class AppComponent implements OnInit {
                 } else {
                     this.globalVariableService.editMode.next(true);
                 };
-                
+
+                // Update EditMode in D-Recent
+                console.warn('xx Heyha Rec 2', this.globalVariableService.dashboardsRecent)
+                let localIndex: number = this.globalVariableService.dashboardsRecent.findIndex(
+                    u => u.dashboardID == this.globalVariableService.currentDashboardInfo.value.currentDashboardID
+                );
+                if (localIndex >= 0) {
+                    this.globalVariableService.dashboardsRecent[localIndex].editMode = !this.editMode;
+                    this.globalVariableService.saveDashboardRecent(
+                        this.globalVariableService.dashboardsRecent[localIndex]);
+                };                    
             };
         };
 
