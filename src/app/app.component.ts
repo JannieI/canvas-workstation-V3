@@ -2040,12 +2040,11 @@ export class AppComponent implements OnInit {
             this.globalVariableService.editMode.next(!this.editMode);
 
             // Update EditMode in D-Recent
-            console.warn('xx Heyha Rec 1', this.globalVariableService.dashboardsRecent)
             let localIndex: number = this.globalVariableService.dashboardsRecent.findIndex(
                 u => u.dashboardID == this.globalVariableService.currentDashboardInfo.value.currentDashboardID
             );
             if (localIndex >= 0) {
-                this.globalVariableService.dashboardsRecent[localIndex].editMode = !this.editMode;
+                this.globalVariableService.dashboardsRecent[localIndex].editMode = false;
                 this.globalVariableService.saveDashboardRecent(
                     this.globalVariableService.dashboardsRecent[localIndex]);
             };
@@ -2104,7 +2103,7 @@ export class AppComponent implements OnInit {
                     u => u.dashboardID == this.globalVariableService.currentDashboardInfo.value.currentDashboardID
                 );
                 if (localIndex >= 0) {
-                    this.globalVariableService.dashboardsRecent[localIndex].editMode = !this.editMode;
+                    this.globalVariableService.dashboardsRecent[localIndex].editMode = true;
                     this.globalVariableService.saveDashboardRecent(
                         this.globalVariableService.dashboardsRecent[localIndex]);
                 };                    

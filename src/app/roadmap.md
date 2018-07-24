@@ -351,6 +351,8 @@ This document describes items for later versions of Canvas.
 ## Later versions
     To consider for LATER versions:
 
+    Data:
+    - reconsider Transpose option for pre-loading.  May be useful for some datasets, but clearly not for SQL, etc.  And doubt if json files would need that.  Can this be useful?
     Widget Action Menu:
     - decide what other menu options to add here
     - decide if all these must be on Main menu and Palette, ie Edit Title (currently not on)

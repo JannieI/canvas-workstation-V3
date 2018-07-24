@@ -17,13 +17,13 @@
                             <h5 style="margin-top: 0; color:gray;">
                                 Help
                             </h5>
-                            <p style="margin-top: 0; color:gray;"> 
-                                Manage your palette button bar (displayed when you are in 
+                            <p style="margin-top: 0; color:gray;">
+                                Manage your palette button bar (displayed when you are in
                                 EditMode to change Widgets). Each menu option is represented
                                 by a button, and the buttons are colour coded per main menu option.
                                 The list on the left hand are all available buttons, while the right
                                 hand list shows the ones that have been selected.  Use the arrows to
-                                change your selected buttons.  Click the reset button to restore the 
+                                change your selected buttons.  Click the reset button to restore the
                                 original selection of buttons (which you can then modify afterwards).
                                 Click the X or press Escape to close this form.
                             </p>
@@ -32,7 +32,7 @@
                 </div>
 
                 <div class="gridAvailableTitle">
-                    Available
+                    <b>Available</b>
                 </div>
                 <div class="gridAvailable">
                     <nav>
@@ -62,7 +62,7 @@
                 </div>
 
                 <div class="gridSelectedTitle" *ngIf="paletteButtonsSelected">
-                    Selected: {{ paletteButtonsSelected.length }}
+                    <b>Selected</b>: {{ paletteButtonsSelected.length }} buttons
                 </div>
                 <div class="gridSelected">
                     <nav>
