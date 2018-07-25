@@ -6959,7 +6959,7 @@ export class AppComponent implements OnInit {
         } else {
             // this.stuckCount = 0;
         };
-        if (this.stuckCount == 4) {
+        if (this.stuckCount >= 4) {
             this.showPopupMessage = true;
         } else {
             this.showPopupMessage = false;
@@ -7297,6 +7297,7 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickGotIt', '@Start');
 
         this.showPopupMessage = false;
+        // this.globalVariableService.saveCanvasUser(this.globalVariableService.currentUser)
         // this.stuckCount = 0;
     }
 
