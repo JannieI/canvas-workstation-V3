@@ -5683,6 +5683,15 @@ export class GlobalVariableService {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
                     .then(data => {
+                        data = data.sort( (obj1,obj2) => {
+                            if (obj1.sortOrderSelected > obj2.sortOrderSelected) {
+                                return 1;
+                            };
+                            if (obj1.sortOrderSelected < obj2.sortOrderSelected) {
+                                return -1;
+                            };
+                            return 0;
+                        });
                         this.currentPaletteButtonsSelected.next(data);
 
                         this.isDirtyPaletteButtonsSelected = false;
