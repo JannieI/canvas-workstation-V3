@@ -205,7 +205,7 @@ export class UserPaletteButtonBarComponent implements OnInit {
                     }
                 );
             };
-        };
+        };  
 
         // Sort the altered list
         this.paletteButtons.sort( (obj1,obj2) => {
@@ -270,11 +270,10 @@ export class UserPaletteButtonBarComponent implements OnInit {
 
         // Save alter ones to DB
         let paletteIndex: number; 
-        console.warn('xx chIDs', changedIDs)
+
         for (var i = 0; i < changedIDs.length; i++) {
             paletteIndex = this.paletteButtonsSelected.findIndex(
                 ps => ps.id == changedIDs[i] );
-            console.warn('xx log', i, paletteIndex)
             if (paletteIndex >= 0) {
                 this.globalVariableService.savePaletteButtonsSelected(
                     this.paletteButtonsSelected[paletteIndex]
@@ -306,6 +305,8 @@ export class UserPaletteButtonBarComponent implements OnInit {
             return;
         };
 
+        let changedIDs: number[] = [];
+
         // Swop sort order with predecessor. Note: sorting happend on sortOrderSelected, which is
         // only calced at Runtime, and null in DB
         for (var i = 0; i < this.paletteButtonsSelected.length - 1; i++) {
@@ -327,18 +328,32 @@ export class UserPaletteButtonBarComponent implements OnInit {
 
                     this.paletteButtonsSelected[k].sortOrderSelected =
                         this.paletteButtonsSelected[k].sortOrderSelected + 1;
-
+                        changedIDs.push(this.paletteButtonsSelected[k].id);
                 };
 
                 // Decrement unselected below
                 this.paletteButtonsSelected[i + nrSel].sortOrderSelected =
                     this.paletteButtonsSelected[i + nrSel].sortOrderSelected - nrSel;
+                changedIDs.push(this.paletteButtonsSelected[i + nrSel].id);
 
                 // Set Pointer
                 i = i + nrSel;
 
             };
         };
+
+        // Save alter ones to DB
+        let paletteIndex: number; 
+
+        for (var i = 0; i < changedIDs.length; i++) {
+            paletteIndex = this.paletteButtonsSelected.findIndex(
+                ps => ps.id == changedIDs[i] );
+            if (paletteIndex >= 0) {
+                this.globalVariableService.savePaletteButtonsSelected(
+                    this.paletteButtonsSelected[paletteIndex]
+                );                
+            };
+        };     
 
         // Sort the altered list
         this.paletteButtonsSelected.sort( (obj1,obj2) => {
