@@ -114,11 +114,10 @@ export class UserPaletteButtonBarComponent implements OnInit {
         let maxSortOrderSelectedSelectedIDs: number[] = [];
         let maxSortOrderSelectedSelectedID: number = 0;
         this.globalVariableService.currentPaletteButtonsSelected.value.forEach(pbs =>
-            maxSortOrderSelectedSelectedIDs.push (pbs.id)
+            maxSortOrderSelectedSelectedIDs.push (pbs.sortOrderSelected)
         );
         maxSortOrderSelectedSelectedID = Math.max(...maxSortOrderSelectedSelectedIDs);
 
-        
         for (var i = 0; i < this.paletteButtons.length; i++) {
 
             if (this.paletteButtons[i].isSelected) {
@@ -192,34 +191,62 @@ export class UserPaletteButtonBarComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDelete', '@Start');
 
         // Get selected in Selected, and add to Selected
-        let availID: number[] = [];
-        for (var i = 0; i < this.paletteButtonsSelected.length; i++) {
+        // let availID: number[] = [];
+        // for (var i = 0; i < this.paletteButtonsSelected.length; i++) {
 
-            if (this.paletteButtonsSelected[i].isSelected) {
-                availID.push(this.paletteButtonsSelected[i].id);
-                this.paletteButtons.push(this.paletteButtonsSelected[i]);
-            };
-        };
+        //     if (this.paletteButtonsSelected[i].isSelected) {
+        //         availID.push(this.paletteButtonsSelected[i].id);
+
+        //         // Create new record
+                
+        //     };
+        // };
 
         // Unselect all from target
-        this.paletteButtons.forEach(ps => {
-            ps.isSelected = false
-            ps.sortOrderSelected = null
-        });
+        // this.paletteButtons.forEach(ps => {
+        //     ps.isSelected = false
+        //     ps.sortOrderSelected = null
+        // });
 
-        // Delete the selected one, reverse order
+        // Delete the selected one and Add to Available ones, reverse order
         for (var i = this.paletteButtonsSelected.length - 1; i >= 0; i--) {
-            if(availID.indexOf(this.paletteButtonsSelected[i].id) >= 0) {
-                this.paletteButtonsSelected.splice(i, 1);
-            };
+            if (this.paletteButtonsSelected[i].isSelected) {
 
+                // Add to Available
+                let newPaletteButton: PaletteButtonBar = 
+                {
+                    id: this.paletteButtonsSelected[i].id,
+                    mainmenuItem: this.paletteButtonsSelected[i].mainmenuItem,
+                    menuText: this.paletteButtonsSelected[i].menuText,
+                    shape: this.paletteButtonsSelected[i].shape,
+                    size: this.paletteButtonsSelected[i].size,
+                    class: this.paletteButtonsSelected[i].class,
+                    backgroundColor: this.paletteButtonsSelected[i].backgroundColor,
+                    accesskey: this.paletteButtonsSelected[i].accesskey,
+                    sortOrder: this.paletteButtonsSelected[i].sortOrder,
+                    sortOrderSelected: null,
+                    isDefault: this.paletteButtonsSelected[i].isDefault,
+                    functionName: this.paletteButtonsSelected[i].functionName,
+                    params: this.paletteButtonsSelected[i].params,
+                    tooltipContent: this.paletteButtonsSelected[i].tooltipContent,
+                    isSelected: false
+                };
+                this.paletteButtons.push(newPaletteButton);
+
+                // Delete from Selected
+                this.globalVariableService.deletePaletteButtonsSelected(
+                    this.paletteButtonsSelected[i].id).then(res => {
+                        this.paletteButtonsSelected.splice(i, 1);
+                    }
+                );
+            };
         };
 
         // Reset Selection Sort Order
-        for (var i = 0; i < this.paletteButtonsSelected.length; i++) {
-            this.paletteButtonsSelected[i].isSelected = false
-            this.paletteButtonsSelected[i].sortOrderSelected = i + 1;
-        };
+        // for (var i = 0; i < this.paletteButtonsSelected.length; i++) {
+        //     this.paletteButtonsSelected[i].isSelected = false
+        //     this.paletteButtonsSelected[i].sortOrderSelected = i + 1;
+        // };
 
         // Sort the altered list
         this.paletteButtons.sort( (obj1,obj2) => {
