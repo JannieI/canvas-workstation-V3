@@ -1102,7 +1102,6 @@ export class GlobalVariableService {
 
                         dashboardTabsResult.forEach(t => {
                             if (t.dashboardID == addedD.id) {
-                                console.warn('xx loop tabs', t, dashboardTabsResult)
                                 this.widgets.forEach(w => {
                                     if (w.dashboardID == dashboardID
                                         &&
@@ -1115,7 +1114,6 @@ export class GlobalVariableService {
                                         newW.originalID = w.id;
                                         // TODO - fix for multi-Tabbed Ws
                                         newW.dashboardTabIDs = [t.id];
-                                        console.warn('xx newW', newW)
                                         promiseArrayW.push(this.addWidget(newW));
 
                                     };
@@ -1147,7 +1145,6 @@ export class GlobalVariableService {
                                             // TODO - fix for multi-Tabbed Ws
                                             newChk.widgetSpec.dashboardTabIDs = w.dashboardTabIDs;
 
-                                            console.warn('xx newChk', newChk)
                                             promiseArrayChk.push(this.addWidgetCheckpoint(newChk));
                                         };
                                     });
@@ -1200,7 +1197,6 @@ export class GlobalVariableService {
                                             newP.canDeleteRight = false;
                                             newP.canGrantAccess = false;
 
-                                            console.warn('xx newP', newP)
                                             promiseArrayP.push(this.addDashboardPermission(newP));
                                         };
 
@@ -1445,7 +1441,6 @@ export class GlobalVariableService {
         let draftTabs: DashboardTab[] = this.dashboardTabs.filter(
             t => t.dashboardID == draftID
         );
-        console.warn('xx ids', draftID, originalID)
 
         // The following are moved (added to the original version), removing any links
         // to the Draft version:
@@ -1508,7 +1503,6 @@ export class GlobalVariableService {
         // - Tags
         let newTag: string = '';
         this.dashboardTags.forEach(tag => {
-            console.warn('xx ids', draftID, originalID)
             if (tag.dashboardID == draftID) {
                 newTag = tag.tag;
                 this.dashboardTags.forEach(ot =>{
@@ -1939,7 +1933,7 @@ export class GlobalVariableService {
         // Returns: this.currentDashboards array, unless:
         //   If not cached or if dirty, get from File
         console.log('%c    Global-Variables getCurrentDashboards ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", dashboardID);
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {dashboardID});
 
         // Refresh from source at start, or if dirty
         if (
@@ -2233,7 +2227,6 @@ export class GlobalVariableService {
                     let promiseArray = [];
                     
                     this.currentDashboardTabs.forEach(t => {
-                        console.warn('xx del t', dashboardTabDisplayOrder, t)
                         if (t.displayOrder > dashboardTabDisplayOrder) {
                             t.displayOrder = t.displayOrder - 1;
                         };
@@ -4333,24 +4326,6 @@ export class GlobalVariableService {
                         this.isDirtyDatasources = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
 
-                        // this.datasources.forEach(ds => {
-                            // console.warn('xx ds bug', ds)
-                            // TODO - remove this, currently datalib reads array as string 'a,b,c'
-                            // let f: string = ds.dataFields.toString();
-                            // let fN: string[] = f.split(',');
-                            // ds.dataFields = fN;
-                            // let t: string = ds.dataFieldTypes.toString();
-                            // let fT: string[] = t.split(',');
-                            // ds.dataFieldTypes = fT;
-                            // let l: string[] = ds.dataFieldLengths.toString().split(',');
-                            // let fL: number[] = [];
-                            // for (var i = 0; i < l.length; i++) {
-                            //     fL.push(+l[i]);
-                            // };
-                            // ds.dataFieldLengths = fL;
-                        // });
-
-
                         console.log('%c    Global-Variables getDatasources 1',
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.datasources)
                         resolve(this.datasources);
@@ -5257,16 +5232,12 @@ export class GlobalVariableService {
         console.log('%c    Global-Variables deleteDatasourcePermission ...',
         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", id);
 
-        console.warn('xx GV Perms pre', this.datasourcePermissions, this.currentDatasourcePermissions)
-
         this.datasourcePermissions = this.datasourcePermissions.filter(
             dsp => dsp.id != id
         );
         this.currentDatasourcePermissions = this.currentDatasourcePermissions.filter(
             dsp => dsp.id != id
         );
-
-        console.warn('xx GV Perms', this.datasourcePermissions, this.currentDatasourcePermissions)
     }
 
     getDatasourcePivots(): Promise<DatasourcePivot[]> {
