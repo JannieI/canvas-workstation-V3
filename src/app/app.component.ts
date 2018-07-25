@@ -7299,8 +7299,9 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickGotIt', '@Start');
 
         this.showPopupMessage = false;
-        // this.globalVariableService.saveCanvasUser(this.globalVariableService.currentUser)
-        // this.stuckCount = 0;
+
+        this.globalVariableService.currentUser.lastAppShowPopupMessageGotIt = true;
+        this.globalVariableService.saveCanvasUser(this.globalVariableService.currentUser)
     }
 
     clickMenuWidgetDuplicate(widgetType: string) {

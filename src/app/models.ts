@@ -277,7 +277,7 @@ export class CanvasUser {
     canManageGroupRole: boolean;            // Role can add/delete users to Group
     lastPaletteLeft: number;                // Last value saved
     lastPaletteTop: number;                 // Last value saved
-    lastAppShowPopupMessageGotIt: number;   // Last value saved
+    lastAppShowPopupMessageGotIt: boolean;  // Last value saved
     preferencePaletteHorisontal: boolean;                   // T/F - Palette Horisontal (else Vertial)
     preferenceAutoSync: boolean;                            // T/F - can auto sync
     preferenceShowOpenStartupMessage: boolean;              // T/F - show open startup msg
