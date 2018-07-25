@@ -398,43 +398,43 @@ export class UserPaletteButtonBarComponent implements OnInit {
         this.clickAdd();
     }
 
-    clickSave(action: string) {
-        // Save data, and Close the form
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
+    // clickSave(action: string) {
+    //     // Save data, and Close the form
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
-        // Load set of original and current IDs
-        let originalIDs: number [] = [];
-        let currentIDs: number [] = [];
-        this.globalVariableService.currentPaletteButtonsSelected.value.forEach(spb => {
-            originalIDs.push(spb.id);
-        });
-        this.paletteButtonsSelected.forEach(spb => {
-            currentIDs.push(spb.id);
-        });
+    //     // Load set of original and current IDs
+    //     let originalIDs: number [] = [];
+    //     let currentIDs: number [] = [];
+    //     this.globalVariableService.currentPaletteButtonsSelected.value.forEach(spb => {
+    //         originalIDs.push(spb.id);
+    //     });
+    //     this.paletteButtonsSelected.forEach(spb => {
+    //         currentIDs.push(spb.id);
+    //     });
 
-        // Delete the original no longer in current
-        originalIDs.forEach(opb => {
-            if (currentIDs.indexOf(opb) < 0) {
-                this.globalVariableService.deletePaletteButtonsSelected(opb);
-            };
-        });
+    //     // Delete the original no longer in current
+    //     originalIDs.forEach(opb => {
+    //         if (currentIDs.indexOf(opb) < 0) {
+    //             this.globalVariableService.deletePaletteButtonsSelected(opb);
+    //         };
+    //     });
 
-        // Unselect all
-        this.paletteButtonsSelected.forEach(pbs => pbs.isSelected = false)
+    //     // Unselect all
+    //     this.paletteButtonsSelected.forEach(pbs => pbs.isSelected = false)
 
-        // Add current and not in origina
-        currentIDs.forEach(opb => {
-            if (originalIDs.indexOf(opb) < 0) {
-                let currentIndex: number = this.paletteButtonsSelected.findIndex(
-                    b => b.id == opb
-                );
-                this.globalVariableService.addPaletteButtonsSelected(
-                    this.paletteButtonsSelected[currentIndex]
-                );
-            };
-        });
+    //     // Add current and not in origina
+    //     currentIDs.forEach(opb => {
+    //         if (originalIDs.indexOf(opb) < 0) {
+    //             let currentIndex: number = this.paletteButtonsSelected.findIndex(
+    //                 b => b.id == opb
+    //             );
+    //             this.globalVariableService.addPaletteButtonsSelected(
+    //                 this.paletteButtonsSelected[currentIndex]
+    //             );
+    //         };
+    //     });
 
-		this.formUserWidgetButtonBarClosed.emit(action);
-    }
+	// 	this.formUserWidgetButtonBarClosed.emit(action);
+    // }
 
 }
