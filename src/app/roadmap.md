@@ -29,6 +29,7 @@ This document describes items for later versions of Canvas.
     -Accelator keys: accesskey="h".  Make consistent approach for all, taking into account that browser has own set.  Try to make it dynamic, ie use can define it!
     - Consider Zoom - can use scale(0.6) from CSS, but then need to properly understand layout of main page.  Also, Google, etc already has a zoom, so what's the point.  Remove from menu if not needed
     - everything must be accessable IN 3 CLICKS
+    - neaten first time user for all forms: maybe more GotIt help messages that shows up only once, and disappears after GotIt was clicked.  Key example: first time EditMode is used, the user needs to understand Save and Discard.
     - every form must load in LESS THAN 3 SECS
     - Google Sheets says 'All changes saved' after each change.  Should we do the same, ie after each resize or drag-n-drop?
     - verify that we cater for casual to sophisticated user
@@ -36,6 +37,13 @@ This document describes items for later versions of Canvas.
     - make all drag-n-drop and similar to Microsoft interface.
     - test: a new user must be able to build a D in 5 minutes, and a person must be ready with max 1hr training session.  Remember, no one reads the manual!  Final test, give it to highschool kids!!
     - go through Liz doc on Driv (GDG) on design principles and review all forms
+    - consider hard max limits: cannot read more than 10000 rows from Excel, etc ?
+
+    System:
+    ------
+    - determine limits, ie 1.2 GB of RAM, HDisc requirements, etc
+    - set max on data, ie max 2bn rows from db, max 10000 rows in browser, etc
+    - do some performance benchmarks: if 1000 lines csv file, takes 3 seconds to load, etc
 
 
     JSON-Server Timeout:
@@ -211,7 +219,8 @@ This document describes items for later versions of Canvas.
     - Give hints/advice on W as to type of graph, insights, etc.
     - filter in W, not only via Slicer, using Vega
     - where to store pictures for Ws - on a server??
-    1. Easy to drill in and out of dates - year - month - day, etc
+    - Easy to drill in and out of dates - year - month - day, etc
+    - consider filter and W: thus DS remains unchanged, but W has subset of data in graphData.  This can be =, <= etc on data, or limits (top 10). This must work in conjunction with sorting.
 
 
 
@@ -358,12 +367,17 @@ This document describes items for later versions of Canvas.
     - decide if all these must be on Main menu and Palette, ie Edit Title (currently not on)
     - decide if different actions per W Type, ie Slicer has some that Shape does not have
     - consider recorded actions: make title bg color = xxx, color = yyy (company default)
+    - consider COPY of DS: can then amend the second one, ie do Transformations
 
+    Eazl:
+    ----
+    - consider a REST API for Eazl Accounts => other users can add, delete stuff ...
+    
     Data Confidentiallity
     ---------------------
     - consider including this.  For example, confidential data cannot be exported outside of Canvas, cannot export graph or even make a screen snapshot of it.  Or at the very least warn that data is confidential.
     - next level is content aware: cannot email Absa's margin data to Stadard Bank... Not sure how we do this, and if it is even possible.
-    
+
     Pilot Installation:
     - Install at user as pilot, may Liaan ...
 

@@ -608,7 +608,7 @@ export class DataTransformationComponent implements OnInit {
 
                     // Refresh previous row
                     let newID: number = dtr.id;
-                    let newIndex: number = this.datasourceTransformations.findIndex(d => 
+                    let newIndex: number = this.datasourceTransformations.findIndex(d =>
                         d.id == newID);
                     this.clickRow(newIndex, newID);
 
