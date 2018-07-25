@@ -344,6 +344,9 @@ export class UserPaletteButtonBarComponent implements OnInit {
         // Refill Available, Empty Selected
         this.paletteButtons = this.paletteButtonsOriginal;
         this.paletteButtonsSelected = [];
+        for (var i = 0; i < this.paletteButtonsSelected.length; i++) {
+            this.paletteButtonsSelected[i].sortOrderSelected = i;
+        };
 
         // Move all the defaults across
         for (var i = 0; i < this.paletteButtons.length; i++) {
