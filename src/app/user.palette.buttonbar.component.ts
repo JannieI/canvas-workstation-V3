@@ -104,21 +104,30 @@ export class UserPaletteButtonBarComponent implements OnInit {
         let availID: number[] = [];
 
         // TODO - do this better with a DB
-        let maxIDs: number[] = [];
-        let maxID: number = 0;
+        let maxCurrentPaletteButtonsSelectedIDs: number[] = [];
+        let maxCurrentPaletteButtonsSelectedID: number = 0;
         this.globalVariableService.currentPaletteButtonsSelected.value.forEach(pbs =>
-            maxIDs.push (pbs.id)
+            maxCurrentPaletteButtonsSelectedIDs.push (pbs.id)
         );
-        maxID = Math.max(...maxIDs);
+        maxCurrentPaletteButtonsSelectedID = Math.max(...maxCurrentPaletteButtonsSelectedIDs);
 
+        let maxSortOrderSelectedSelectedIDs: number[] = [];
+        let maxSortOrderSelectedSelectedID: number = 0;
+        this.globalVariableService.currentPaletteButtonsSelected.value.forEach(pbs =>
+            maxSortOrderSelectedSelectedIDs.push (pbs.id)
+        );
+        maxSortOrderSelectedSelectedID = Math.max(...maxSortOrderSelectedSelectedIDs);
+
+        
         for (var i = 0; i < this.paletteButtons.length; i++) {
 
             if (this.paletteButtons[i].isSelected) {
                 availID.push(this.paletteButtons[i].id);
-                maxID = maxID + 1;
+                maxCurrentPaletteButtonsSelectedID = maxCurrentPaletteButtonsSelectedID + 1;
+                maxSortOrderSelectedSelectedID = maxSortOrderSelectedSelectedID + 1;
                 this.paletteButtonsSelected.push(
                     {
-                        id: maxID,
+                        id: maxCurrentPaletteButtonsSelectedID,
                         userID: this.globalVariableService.currentUser.userID,
                         paletteButtonBarID: this.paletteButtons[i].id,
                         mainmenuItem: this.paletteButtons[i].mainmenuItem,
@@ -129,7 +138,7 @@ export class UserPaletteButtonBarComponent implements OnInit {
                         backgroundColor: this.paletteButtons[i].backgroundColor,
                         accesskey: this.paletteButtons[i].accesskey,
                         sortOrder: this.paletteButtons[i].sortOrder,
-                        sortOrderSelected: this.paletteButtons[i].sortOrderSelected,
+                        sortOrderSelected: maxSortOrderSelectedSelectedID,  // this.paletteButtons[i].sortOrderSelected,
                         isDefault: this.paletteButtons[i].isDefault,
                         functionName: this.paletteButtons[i].functionName,
                         params: this.paletteButtons[i].params,
@@ -141,10 +150,10 @@ export class UserPaletteButtonBarComponent implements OnInit {
         };
 
         // Reset Selection Sort Order
-        for (var i = 0; i < this.paletteButtonsSelected.length; i++) {
-            this.paletteButtonsSelected[i].isSelected = false
-            this.paletteButtonsSelected[i].sortOrderSelected = i + 1;
-        };
+        // for (var i = 0; i < this.paletteButtonsSelected.length; i++) {
+        //     this.paletteButtonsSelected[i].isSelected = false
+        //     this.paletteButtonsSelected[i].sortOrderSelected = i + 1;
+        // };
 
         // Delete the selected one from the Available list, in reverse order
         for (var i = this.paletteButtons.length - 1; i >= 0; i--) {
@@ -155,15 +164,15 @@ export class UserPaletteButtonBarComponent implements OnInit {
         };
 
         // Sort the altered list
-        this.paletteButtonsSelected.sort( (obj1,obj2) => {
-            if (obj1.sortOrderSelected > obj2.sortOrderSelected) {
-                return 1;
-            };
-            if (obj1.sortOrderSelected < obj2.sortOrderSelected) {
-                return -1;
-            };
-            return 0;
-        });
+        // this.paletteButtonsSelected.sort( (obj1,obj2) => {
+        //     if (obj1.sortOrderSelected > obj2.sortOrderSelected) {
+        //         return 1;
+        //     };
+        //     if (obj1.sortOrderSelected < obj2.sortOrderSelected) {
+        //         return -1;
+        //     };
+        //     return 0;
+        // });
 
     }
 
