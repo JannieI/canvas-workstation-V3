@@ -391,7 +391,7 @@ export class UserPaletteButtonBarComponent implements OnInit {
                 );
             };
         });
-        
+
 		this.formUserWidgetButtonBarClosed.emit(action);
     }
 

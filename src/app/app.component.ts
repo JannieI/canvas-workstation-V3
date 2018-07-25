@@ -563,15 +563,7 @@ export class AppComponent implements OnInit {
             };
 
             this.globalVariableService.currentPaletteButtonsSelected.subscribe(i => {
-                this.paletteButtons = i.sort( (obj1,obj2) => {
-                    if (obj1.sortOrderSelected > obj2.sortOrderSelected) {
-                        return 1;
-                    };
-                    if (obj1.sortOrderSelected < obj2.sortOrderSelected) {
-                        return -1;
-                    };
-                    return 0;
-                });
+                this.paletteButtons = i.slice();
 
                 // Synch BehSubj that hold orientation
                 this.globalVariableService.preferencePaletteHorisontal.next(
