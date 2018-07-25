@@ -6959,10 +6959,12 @@ export class AppComponent implements OnInit {
         } else {
             // this.stuckCount = 0;
         };
-        if (this.stuckCount >= 4) {
-            this.showPopupMessage = true;
-        } else {
-            this.showPopupMessage = false;
+        if (!this.globalVariableService.currentUser.lastAppShowPopupMessageGotIt) {
+            if (this.stuckCount >= 4) {
+                this.showPopupMessage = true;
+            } else {
+                this.showPopupMessage = false;
+            };
         };
 
     }
