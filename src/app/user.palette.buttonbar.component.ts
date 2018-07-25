@@ -158,12 +158,6 @@ export class UserPaletteButtonBarComponent implements OnInit {
             };
         };
 
-        // Reset Selection Sort Order
-        // for (var i = 0; i < this.paletteButtonsSelected.length; i++) {
-        //     this.paletteButtonsSelected[i].isSelected = false
-        //     this.paletteButtonsSelected[i].sortOrderSelected = i + 1;
-        // };
-
         // Delete the selected one from the Available list, in reverse order
         for (var i = this.paletteButtons.length - 1; i >= 0; i--) {
             if(availID.indexOf(this.paletteButtons[i].id) >= 0) {
@@ -172,41 +166,12 @@ export class UserPaletteButtonBarComponent implements OnInit {
 
         };
 
-        // Sort the altered list
-        // this.paletteButtonsSelected.sort( (obj1,obj2) => {
-        //     if (obj1.sortOrderSelected > obj2.sortOrderSelected) {
-        //         return 1;
-        //     };
-        //     if (obj1.sortOrderSelected < obj2.sortOrderSelected) {
-        //         return -1;
-        //     };
-        //     return 0;
-        // });
-
     }
 
     clickDelete() {
         // Add all selected on Selected list to Available list, and unselect original
         // Then sort the altered list
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDelete', '@Start');
-
-        // Get selected in Selected, and add to Selected
-        // let availID: number[] = [];
-        // for (var i = 0; i < this.paletteButtonsSelected.length; i++) {
-
-        //     if (this.paletteButtonsSelected[i].isSelected) {
-        //         availID.push(this.paletteButtonsSelected[i].id);
-
-        //         // Create new record
-                
-        //     };
-        // };
-
-        // Unselect all from target
-        // this.paletteButtons.forEach(ps => {
-        //     ps.isSelected = false
-        //     ps.sortOrderSelected = null
-        // });
 
         // Delete the selected one and Add to Available ones, reverse order
         for (var i = this.paletteButtonsSelected.length - 1; i >= 0; i--) {
@@ -241,12 +206,6 @@ export class UserPaletteButtonBarComponent implements OnInit {
                 );
             };
         };
-
-        // Reset Selection Sort Order
-        // for (var i = 0; i < this.paletteButtonsSelected.length; i++) {
-        //     this.paletteButtonsSelected[i].isSelected = false
-        //     this.paletteButtonsSelected[i].sortOrderSelected = i + 1;
-        // };
 
         // Sort the altered list
         this.paletteButtons.sort( (obj1,obj2) => {
