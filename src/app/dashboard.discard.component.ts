@@ -101,7 +101,4 @@ export class DashboardDiscardComponent implements OnInit {
         }
     }
 
-    clickGotIt() {
-        this.globalVariableService.isFirstTimeDashboardDiscard.next(false);
-    }
 }

@@ -359,6 +359,11 @@ This document describes items for later versions of Canvas.
     - decide if different actions per W Type, ie Slicer has some that Shape does not have
     - consider recorded actions: make title bg color = xxx, color = yyy (company default)
 
+    Data Confidentiallity
+    ---------------------
+    - consider including this.  For example, confidential data cannot be exported outside of Canvas, cannot export graph or even make a screen snapshot of it.  Or at the very least warn that data is confidential.
+    - next level is content aware: cannot email Absa's margin data to Stadard Bank... Not sure how we do this, and if it is even possible.
+    
     Pilot Installation:
     - Install at user as pilot, may Liaan ...
 
@@ -501,6 +506,11 @@ This document describes items for later versions of Canvas.
     - Consider depricating gv.currentWidgets, gv = global.variables.  THINK !  Can 1) make  app.currentWidget = gv.currentWidget, ByRef.  Test that this always updates.  2) always refresh  gv.currentWidget  3) delete gv.currentWidget - check where uses and how.  THEN: consider all currentXXX, where XXX = Objects to follow the same methodology.
 
     SQL Editor
-    ----
+    ----------
     - add SQL editor (maybe third party plug-in) = full-blown thing
     - at least show tables and fields in a dropdown ...
+
+    Usage (of data)
+    ---------------
+    Closely monitor usage of data (who accessed what and when).  Then consider (very carefully) a payment plan for data usage - simply like a data vendor ...
+

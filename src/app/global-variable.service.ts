@@ -8188,21 +8188,23 @@ export class GlobalVariableService {
             this.findlastDashboardSnapshot(
                 this.currentDashboardInfo.value.currentDashboardID
             ).then(lss => {
-                // Add if last snap was not an auto
-                if (lss.comment != snapshotComment) {
-                    this.newDashboardSnapshot(snapshotName, snapshotComment,'BeforeFirstEdit')
-                        .then(res => {
-                            this.showStatusBarMessage(
-                                {
-                                    message: 'Added automated Snapshot before first Action',
-                                    uiArea: 'StatusBar',
-                                    classfication: 'Info',
-                                    timeout: 3000,
-                                    defaultMessage: ''
-                                }
-                            );
-                            
-                        });
+                // Add if last snap was not an auto (null returned if no last snapshot)
+                if (lss != null) {
+                    if (lss.comment != snapshotComment) {
+                        this.newDashboardSnapshot(snapshotName, snapshotComment,'BeforeFirstEdit')
+                            .then(res => {
+                                this.showStatusBarMessage(
+                                    {
+                                        message: 'Added automated Snapshot before first Action',
+                                        uiArea: 'StatusBar',
+                                        classfication: 'Info',
+                                        timeout: 3000,
+                                        defaultMessage: ''
+                                    }
+                                );
+                                
+                            });
+                    };
                 };
             });
 
