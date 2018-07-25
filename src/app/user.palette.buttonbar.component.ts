@@ -249,12 +249,13 @@ export class UserPaletteButtonBarComponent implements OnInit {
                     };
                 };
 
-                // Decrease those in this batch
+                // Decrease sort index of those in this batch, unselect and remember them
                 for (var k = i; k < (i + nrSel); k++) {
 
                     this.paletteButtonsSelected[k].sortOrderSelected =
                         this.paletteButtonsSelected[k].sortOrderSelected - 1;
-                        changedIDs.push(this.paletteButtonsSelected[k].id);
+                    this.paletteButtonsSelected[k].isSelected = false;
+                    changedIDs.push(this.paletteButtonsSelected[k].id);
                 };
 
                 // Increment original unselected
@@ -323,12 +324,13 @@ export class UserPaletteButtonBarComponent implements OnInit {
                     };
                 };
 
-                // Increase those in this batch
+                // Increase sort index of those in this batch, unselect and remember them
                 for (var k = i; k < (i + nrSel); k++) {
 
                     this.paletteButtonsSelected[k].sortOrderSelected =
                         this.paletteButtonsSelected[k].sortOrderSelected + 1;
-                        changedIDs.push(this.paletteButtonsSelected[k].id);
+                    this.paletteButtonsSelected[k].isSelected = false;
+                    changedIDs.push(this.paletteButtonsSelected[k].id);
                 };
 
                 // Decrement unselected below
