@@ -122,10 +122,15 @@ export class UserPaletteButtonBarComponent implements OnInit {
         for (var i = 0; i < this.paletteButtons.length; i++) {
 
             if (this.paletteButtons[i].isSelected) {
+                // Remember this ID - to delete it from Available later
                 availID.push(this.paletteButtons[i].id);
+
+                // Increment numbers
                 maxCurrentPaletteButtonsSelectedID = maxCurrentPaletteButtonsSelectedID + 1;
                 maxSortOrderSelectedSelectedID = maxSortOrderSelectedSelectedID + 1;
-                this.paletteButtonsSelected.push(
+                
+                // Create new record
+                let newPaletteButton: PaletteButtonsSelected = 
                     {
                         id: maxCurrentPaletteButtonsSelectedID,
                         userID: this.globalVariableService.currentUser.userID,
@@ -144,8 +149,13 @@ export class UserPaletteButtonBarComponent implements OnInit {
                         params: this.paletteButtons[i].params,
                         tooltipContent: this.paletteButtons[i].tooltipContent,
                         isSelected: this.paletteButtons[i].isSelected
-                    }
+                    };
+
+                // Add to DB, and local Array
+                this.globalVariableService.addPaletteButtonsSelected(newPaletteButton).then(
+                    res => this.paletteButtonsSelected.push(res)
                 );
+
             };
         };
 
