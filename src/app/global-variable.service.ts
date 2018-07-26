@@ -2185,12 +2185,11 @@ export class GlobalVariableService {
                         this.dashboardTabs[localIndex] = data;
                     };
 
-
-                    console.log('saveDashboardTab SAVED', res)
+                    console.log('saveDashboardTab SAVED', {res})
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error saveDashboardTab FAILED', err);;
+                    console.log('Error saveDashboardTab FAILED', {err});;
                     reject(err);
                 }
             )
@@ -2201,7 +2200,7 @@ export class GlobalVariableService {
         // Description: Deletes a DashboardTab
         // Returns: 'Deleted' or error message
         console.log('%c    Global-Variables deleteDashboardTab ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", id);
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
 
         let url: string = 'dashboardTabs';
         this.filePath = './assets/data.dashboardTabs.json';
@@ -2246,12 +2245,12 @@ export class GlobalVariableService {
                     this.allWithAsync(...promiseArray)
                         .then(res => {
 
-                        console.log('deleteDashboardTab DELETED id: ', id)
+                        console.log('deleteDashboardTab DELETED id: ', {id})
                         resolve('Deleted');
                     });
                 },
                 err => {
-                    console.log('Error deleteDashboardTab FAILED', err);;
+                    console.log('Error deleteDashboardTab FAILED', {err});;
                     reject(err);
                 }
             )
@@ -2274,7 +2273,8 @@ export class GlobalVariableService {
                             i => (i.isSample)
                         );
                         console.log('%c    Global-Variables getDashboardSamples 1',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", data)
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                            {data})
                         resolve(data);
 
                 })
@@ -2285,7 +2285,7 @@ export class GlobalVariableService {
                     i => (i.isSample)
                 )
                 console.log('%c    Global-Variables getDashboardSamples 2',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", data)
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data})
                 resolve(data);
             });
         };
@@ -2300,7 +2300,7 @@ export class GlobalVariableService {
         // - this.dashboardsRecent (array in Global Vars)
         // - dashboardsRecentBehSubject (.next)
         console.log('%c    Global-Variables getDashboardsRecent ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {userID});
 
         let url: string = 'dashboardsRecent';
         this.filePath = './assets/data.dashboardsRecent.json';
@@ -2351,7 +2351,7 @@ export class GlobalVariableService {
 
                 this.isDirtyDashboardsRecent = false;
                 console.log('%c    Global-Variables dashboardsRecent 1',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", temp)
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {temp})
                 resolve(temp);
             });
         });
@@ -2360,7 +2360,7 @@ export class GlobalVariableService {
     dashboardIndexInRecentList(dashboardID: number): number {
         // Returns index of first D in the Recent list. Else -1
         console.log('%c    Global-Variables dashboardIndexInRecentList ...',
-        "color: black; background: lightgray; font-size: 10px");
+            "color: black; background: lightgray; font-size: 10px", {dashboardID});
 
         // Determine index in Recent list
         let index: number = this.dashboardsRecent.findIndex(dR =>
@@ -2372,7 +2372,8 @@ export class GlobalVariableService {
     dashboardTabIndexInRecentList(dashboardID: number, dashboardTabID: number): number {
         // Returns index of first D, T in the Recent list.  Else -1
         console.log('%c    Global-Variables dashboardTabIndexInRecentList ...',
-        "color: black; background: lightgray; font-size: 10px");
+            "color: black; background: lightgray; font-size: 10px", 
+            {dashboardID}, {dashboardTabID});
 
         // Determine index in Recent list
         let index: number = this.dashboardsRecent.findIndex(dR =>
@@ -2391,7 +2392,8 @@ export class GlobalVariableService {
         // - if D there but T change, call SAVE
         // - if D & T there, do nothing
         console.log('%c    Global-Variables amendDashboardRecent ...',
-        "color: black; background: lightgray; font-size: 10px", dashboardID, dashboardTabID);
+            "color: black; background: lightgray; font-size: 10px", 
+            {dashboardID}, {dashboardTabID});
 
         // TODO - fix this timing issue, as I have no idea why this is happening here
         // this.sleep(2000);
@@ -2446,7 +2448,7 @@ export class GlobalVariableService {
         // - this.dashboardsRecent
         // - this.dashboardsRecentBehSubject.next()
         console.log('%c    Global-Variables addDashboardRecent ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
 
         let url: string = 'dashboardsRecent';
         this.filePath = './assets/data.dashboardsRecent.json';
@@ -2476,11 +2478,11 @@ export class GlobalVariableService {
 
                     this.dashboardsRecentBehSubject.next(this.dashboardsRecent);
 
-                    console.log('dashboardsRecent ADDED', res, this.dashboardsRecent)
+                    console.log('dashboardsRecent ADDED', {res}, this.dashboardsRecent)
                     resolve(temp);
                 },
                 err => {
-                    console.log('Error dashboardsRecent FAILED', err);;
+                    console.log('Error dashboardsRecent FAILED', {err});;
                     reject(err);
                 }
             )
@@ -2491,7 +2493,7 @@ export class GlobalVariableService {
         // Description: Saves DashboardRecent
         // Returns: 'Saved' or error message
         console.log('%c    Global-Variables saveDashboardRecent ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
 
         let url: string = 'dashboardsRecent';
         this.filePath = './assets/data.dashboardsRecent.json';
@@ -2518,11 +2520,11 @@ export class GlobalVariableService {
                     this.dashboardsRecent = temp;
                     this.dashboardsRecentBehSubject.next(this.dashboardsRecent);
 
-                    console.log('saveDashboardRecent SAVED', res)
+                    console.log('saveDashboardRecent SAVED', {res})
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error saveDashboardRecent FAILED', err);;
+                    console.log('Error saveDashboardRecent FAILED', {err});;
                     reject(err);
                 }
             )
