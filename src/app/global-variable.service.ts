@@ -2537,7 +2537,7 @@ export class GlobalVariableService {
         // - this.dashboardsRecentBehSubject.next()
         // Returns 'Deleted' or error message
         console.log('%c    Global-Variables deleteDashboardRecent ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id);
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
 
         let url: string = 'dashboardsRecent';
         this.filePath = './assets/data.dashboardsRecent.json';
@@ -2557,11 +2557,11 @@ export class GlobalVariableService {
 
                     this.dashboardsRecentBehSubject.next(this.dashboardsRecent);
 
-                    console.log('deleteDashboardRecent DELETED id: ', {id)
+                    console.log('deleteDashboardRecent DELETED id: ', {id})
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('Error deleteDashboardRecent FAILED', {err);;
+                    console.log('Error deleteDashboardRecent FAILED', {err});;
                     reject(err);
                 }
             )
@@ -2572,7 +2572,7 @@ export class GlobalVariableService {
         // Description: Gets DataConnections, WITHOUT data
         // Returns: this.dataConnection
         console.log('%c    Global-Variables getDataConnections ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         let url: string = 'dataConnections';
         this.filePath = './asConnections/data.dataConnections.json';
@@ -2606,7 +2606,7 @@ export class GlobalVariableService {
         // Description: Adds a new DataConnection
         // Returns: Added Data or error message
         console.log('%c    Global-Variables addDataConnection ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data.id);
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
 
         let url: string = 'DataConnections';
         this.filePath = './assets/data.DataConnections.json';
@@ -2623,12 +2623,12 @@ export class GlobalVariableService {
                     // Update Global vars to make sure they remain in sync
                     this.dataConnections.push(JSON.parse(JSON.stringify(data)));
 
-                    console.log('addDataConnection ADDED', {data, this.dataConnections)
+                    console.log('addDataConnection ADDED', {data}, this.dataConnections)
 
                     resolve(data);
                 },
                 err => {
-                    console.log('Error addDataConnection FAILED', {err);;
+                    console.log('Error addDataConnection FAILED', {err});;
                     reject(err);
                 }
             )
@@ -2639,7 +2639,7 @@ export class GlobalVariableService {
         // Description: Saves DataConnection
         // Returns: 'Saved' or error message
         console.log('%c    Global-Variables saveDataConnection ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data);
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
 
         let url: string = 'DataConnections';
         this.filePath = './assets/data.DataConnections.json';
@@ -2659,11 +2659,11 @@ export class GlobalVariableService {
                     );
                     this.dataConnections[localIndex] = data;
 
-                    console.log('saveDataConnection SAVED', {res)
+                    console.log('saveDataConnection SAVED', {res})
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error saveDataConnection FAILED', {err);;
+                    console.log('Error saveDataConnection FAILED', {err});;
                     reject(err);
                 }
             )
@@ -2674,7 +2674,7 @@ export class GlobalVariableService {
         // Description: Deletes a DataConnections
         // Returns: 'Deleted' or error message
         console.log('%c    Global-Variables deleteDataConnection ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id);
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
 
         let url: string = 'DataConnections';
         this.filePath = './assets/data.DataConnections.json';
@@ -2692,11 +2692,11 @@ export class GlobalVariableService {
                         dsp => dsp.id != id
                     );
 
-                    console.log('deleteDataConnection DELETED id: ', {id)
+                    console.log('deleteDataConnection DELETED id: ', {id})
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('Error deleteDataConnection FAILED', {err);;
+                    console.log('Error deleteDataConnection FAILED', {err});;
                     reject(err);
                 }
             )
@@ -2741,7 +2741,7 @@ export class GlobalVariableService {
         // Description: Adds a new DatasourceTransformation
         // Returns: Added Data or error message
         console.log('%c    Global-Variables addDatasourceTransformation ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data);
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
 
         let url: string = 'datasourceTransformations';
         this.filePath = './assets/data.datasourceTransformations.json';
@@ -2758,13 +2758,13 @@ export class GlobalVariableService {
                     // Update Global vars to make sure they remain in sync
                     this.datasourceTransformations.push(JSON.parse(JSON.stringify(data)));
 
-                    console.log('addDatasourceTransformation ADDED', {data, 
+                    console.log('addDatasourceTransformation ADDED', {data}, 
                         this.datasourceTransformations)
 
                     resolve(data);
                 },
                 err => {
-                    console.log('Error addDatasourceTransformation FAILED', {err);;
+                    console.log('Error addDatasourceTransformation FAILED', {err});;
                     reject(err);
                 }
             )
@@ -2775,7 +2775,7 @@ export class GlobalVariableService {
         // Description: Saves DatasourceTransformation
         // Returns: 'Saved' or error message
         console.log('%c    Global-Variables saveDatasourceTransformation ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data);
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
 
         let url: string = 'datasourceTransformations';
         this.filePath = './assets/data.datasourceTransformations.json';
@@ -2795,11 +2795,11 @@ export class GlobalVariableService {
                     );
                     this.datasourceTransformations[localIndex] = data;
 
-                    console.log('saveDatasourceTransformation SAVED', {res)
+                    console.log('saveDatasourceTransformation SAVED', {res})
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error saveDatasourceTransformation FAILED', {err);;
+                    console.log('Error saveDatasourceTransformation FAILED', {err});;
                     reject(err);
                 }
             )
@@ -2810,7 +2810,7 @@ export class GlobalVariableService {
         // Description: Deletes a DatasourceTransformations
         // Returns: 'Deleted' or error message
         console.log('%c    Global-Variables deleteDatasourceTransformation ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id);
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
 
         let url: string = 'datasourceTransformations';
         this.filePath = './assets/data.datasourceTransformations.json';
@@ -2828,11 +2828,11 @@ export class GlobalVariableService {
                         dsp => dsp.id != id
                     );
 
-                    console.log('deleteDatasourceTransformation DELETED id: ', {id)
+                    console.log('deleteDatasourceTransformation DELETED id: ', {id})
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('Error deleteDatasourceTransformation FAILED', {err);;
+                    console.log('Error deleteDatasourceTransformation FAILED', {err});;
                     reject(err);
                 }
             )
@@ -2946,7 +2946,7 @@ export class GlobalVariableService {
         // Returns: dataset
         console.log('%c    Global-Variables getCurrentDataset ...',
             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
-            {datasourceID, datasetID);
+            {datasourceID}, {datasetID});
 
         let url: string = 'dataset';
         this.filePath = './assets/data.datasets.json';
@@ -3025,8 +3025,8 @@ export class GlobalVariableService {
 
                     console.log('%c    Global-Variables getCurrentDataset 1 from ',
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
-                        {dsSourceLocation, ' for DS-id = ', {datasourceID, '.  Added dSet: ',
-                        {newdSet, ', and currentDatasets = ', this.currentDatasets)
+                        {dsSourceLocation}, ' for DS-id = ', {datasourceID}, '.  Added dSet: ',
+                        {newdSet}, ', and currentDatasets = ', this.currentDatasets)
                     resolve(newdSet);
                 });
             };
@@ -3060,8 +3060,8 @@ export class GlobalVariableService {
 
                         console.log('%c    Global-Variables getCurrentDataset 1 from ',
                             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
-                            {dsSourceLocation, ' for DS-id = ', {datasourceID, '.  Added dSet: ',
-                            {newdSet, ', and currentDatasets = ', this.currentDatasets)
+                            {dsSourceLocation}, ' for DS-id = ', {datasourceID}, '.  Added dSet: ',
+                            {newdSet}, ', and currentDatasets = ', this.currentDatasets)
                         resolve(newdSet);
                     }
                 );
@@ -3095,8 +3095,8 @@ export class GlobalVariableService {
 
                         console.log('%c    Global-Variables getCurrentDataset 1 from ',
                             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
-                            {dsSourceLocation, ' for DS-id  = ', {datasourceID, '.  Added dSet: ',
-                            {newdSet, ', and currentDatasets = ', this.currentDatasets)
+                            {dsSourceLocation}, ' for DS-id  = ', {datasourceID}, '.  Added dSet: ',
+                            {newdSet}, ', and currentDatasets = ', this.currentDatasets)
                         resolve(newdSet);
                     }
                 );
@@ -3108,7 +3108,7 @@ export class GlobalVariableService {
         // Description: Adds a new Dataset
         // Returns: Added Data or error message
         console.log('%c    Global-Variables addDataset ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data);
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
 
         // let url: string = data.url;
         // this.filePath = data.folderName + data.fileName;
@@ -3128,12 +3128,12 @@ export class GlobalVariableService {
                     this.datasets.push(JSON.parse(JSON.stringify(res)));
                     this.currentDatasets.push(JSON.parse(JSON.stringify(res)));
 
-                    console.log('addDataset ADDED', {res, this.datasets, this.currentDatasets)
+                    console.log('addDataset ADDED', {res}, this.datasets, this.currentDatasets)
 
                     resolve(res);
                 },
                 err => {
-                    console.log('Error addDataset FAILED', {err);;
+                    console.log('Error addDataset FAILED', {err});;
                     reject(err);
                 }
             )
@@ -3144,7 +3144,7 @@ export class GlobalVariableService {
         // Description: Saves Dataset
         // Returns: 'Saved' or error message
         console.log('%c    Global-Variables saveDataset ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data);
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
 
         let url: string = 'datasets';
         this.filePath = './assets/data.Datasets.json';
@@ -3169,11 +3169,11 @@ export class GlobalVariableService {
                     );
                     this.currentDatasets[localCurrentIndex] = data;
 
-                    console.log('saveDataset SAVED', {res)
+                    console.log('saveDataset SAVED', {res})
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error saveDataset FAILED', {err);;
+                    console.log('Error saveDataset FAILED', {err});;
                     reject(err);
                 }
             )
@@ -3184,7 +3184,7 @@ export class GlobalVariableService {
         // Description: Deletes a Dataset
         // Returns: 'Deleted' or error message
         console.log('%c    Global-Variables deleteDataset ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", id);
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
 
         let url: string = 'datasets';
         this.filePath = './assets/data.Datasets.json';
@@ -3205,11 +3205,11 @@ export class GlobalVariableService {
                         dSet => dSet.id != id
                     );
 
-                    console.log('deleteDataset DELETED id: ', id)
+                    console.log('deleteDataset DELETED id: ', {id})
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('Error deleteDataset FAILED', err);;
+                    console.log('Error deleteDataset FAILED', {err});;
                     reject(err);
                 }
             )
@@ -3220,7 +3220,7 @@ export class GlobalVariableService {
         // Description: Gets Datasets, WITHOUT data
         // Returns: this.dataset
         console.log('%c    Global-Variables getData ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", id);
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
 
         let url: string = 'data/' + id.toString();
         this.filePath = './assets/data.datasets.json';
@@ -3237,7 +3237,8 @@ export class GlobalVariableService {
                         // this.isDirtyDatasets = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getData',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", res)
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                            {res})
                         resolve(res.data);
                     });
             // } else {
@@ -3252,7 +3253,7 @@ export class GlobalVariableService {
         // Description: Adds DATA used in a new Dataset
         // Returns: Added Data or error message
         console.log('%c    Global-Variables addData  ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", data.id);
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
 
         // let url: string = data.url;
         // this.filePath = data.folderName + data.fileName;
@@ -3268,12 +3269,12 @@ export class GlobalVariableService {
             .subscribe(
                 res => {
 
-                    console.log('addData ADDED', res, this.datasets, this.currentDatasets)
+                    console.log('addData ADDED', {res}, this.datasets, this.currentDatasets)
 
                     resolve(res);
                 },
                 err => {
-                    console.log('Error addData FAILED', err);;
+                    console.log('Error addData FAILED', {err});;
                     reject(err);
                 }
             )
@@ -3284,7 +3285,7 @@ export class GlobalVariableService {
         // Description: Saves Data
         // Returns: 'Saved' or error message
         console.log('%c    Global-Variables saveData ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
 
         let url: string = 'data';
         this.filePath = './assets/data.Datas.json';
@@ -3300,11 +3301,11 @@ export class GlobalVariableService {
 
                     // No local to Replace
 
-                    console.log('saveData SAVED', res)
+                    console.log('saveData SAVED', {res})
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error saveData FAILED', err);;
+                    console.log('Error saveData FAILED', {err});;
                     reject(err);
                 }
             )
@@ -3315,7 +3316,7 @@ export class GlobalVariableService {
         // Description: Deletes given Data
         // Returns: 'Deleted' or error message
         console.log('%c    Global-Variables deleteData ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", id);
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
 
         let url: string = 'data';
         this.filePath = './assets/data.data.json';
@@ -3329,11 +3330,11 @@ export class GlobalVariableService {
             .subscribe(
                 data => {
 
-                    console.log('deleteData DELETED id: ', id)
+                    console.log('deleteData DELETED id: ', {id})
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('Error deleteData FAILED', err);;
+                    console.log('Error deleteData FAILED', {err});;
                     reject(err);
                 }
             )
@@ -3346,7 +3347,7 @@ export class GlobalVariableService {
         // Note: Objects and arrays are passed by reference. Primitive values like number,
         // string, boolean are passed by value.  Thus, original object (dSet) is modified here.
         console.log('%c    Global-Variables filterSlicer ...',
-        "color: black; background: lightgray; font-size: 10px");
+            "color: black; background: lightgray; font-size: 10px", {dataSet});
 
         this.currentWidgets.forEach(w => {
             console.warn('xx strt graphData', w.graphUrl, w.graphData);
@@ -3453,7 +3454,7 @@ export class GlobalVariableService {
         // Returns: this.dashboardSchedules array, unless:
         //   If not cached or if dirty, get from File
         console.log('%c    Global-Variables getDashboardSchedules ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         let url: string = 'dashboardSchedules';
         this.filePath = './assets/data.dashboardSchedules.json';
@@ -3465,17 +3466,17 @@ export class GlobalVariableService {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
                     .then(data => {
-                        console.log('getDashboardSchedules data', data)
+                        console.log('getDashboardSchedules data', {data})
                         this.dashboardSchedules = data;
                         this.isDirtyDashboardSchedules = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getDashboardSchedules 1',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
                         resolve(this.dashboardSchedules);
                     });
             } else {
                 console.log('%c    Global-Variables getDashboardSchedules 2',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
                 resolve(this.dashboardSchedules);
             }
         });
@@ -3489,7 +3490,7 @@ export class GlobalVariableService {
         // Returns: this.currentDashboardSchedules array, unless:
         //   If not cached or if dirty, get from File
         console.log('%c    Global-Variables getCurrentDashboardSchedules ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {dashboardID});
 
         // Refresh from source at start, or if dirty
         if ( (this.dashboardSchedules.length == 0)  ||  (this.isDirtyDashboardSchedules) ) {
@@ -3501,8 +3502,8 @@ export class GlobalVariableService {
                         );
                         this.currentDashboardSchedules = data;
                         console.log('%c    Global-Variables getCurrentDashboardSchedules 1',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            dashboardID, data)
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                            {dashboardID}, {data})
                         resolve(this.currentDashboardSchedules);
                 })
              })
@@ -3514,8 +3515,8 @@ export class GlobalVariableService {
                 );
                 this.currentDashboardSchedules = returnData;
                 console.log('%c    Global-Variables getCurrentDashboardSchedules 2',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                    dashboardID, returnData)
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                    {dashboardID}, {returnData})
                 resolve(this.currentDashboardSchedules);
             });
         };
@@ -3525,7 +3526,7 @@ export class GlobalVariableService {
         // Description: Adds a new DashboardSchedule
         // Returns: Added Data or error message
         console.log('%c    Global-Variables addDashboardSchedule ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", data.id);
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
 
         let url: string = 'dashboardSchedules';
         this.filePath = './assets/data.dashboardSchedules.json';
@@ -3543,13 +3544,13 @@ export class GlobalVariableService {
                     this.dashboardSchedules.push(JSON.parse(JSON.stringify(data)));
                     this.currentDashboardSchedules.push(JSON.parse(JSON.stringify(data)));
 
-                    console.log('addDashboardSchedule ADDED', data,
+                    console.log('addDashboardSchedule ADDED', {data},
                         this.currentDashboardSchedules, this.dashboardSchedules)
 
                     resolve(data);
                 },
                 err => {
-                    console.log('Error addDashboardSchedule FAILED', err);;
+                    console.log('Error addDashboardSchedule FAILED', {err});;
                     reject(err);
                 }
             )
@@ -3560,7 +3561,7 @@ export class GlobalVariableService {
         // Description: Saves DashboardSchedule
         // Returns: 'Saved' or error message
         console.log('%c    Global-Variables saveDashboardSchedule ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
 
         let url: string = 'dashboardSchedules';
         this.filePath = './assets/data.dashboardSchedules.json';
@@ -3580,11 +3581,11 @@ export class GlobalVariableService {
                     );
                     this.dashboardSchedules[localIndex] = data;
 
-                    console.log('saveDashboardSchedule SAVED', res)
+                    console.log('saveDashboardSchedule SAVED', {res})
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error saveDashboardSchedule FAILED', err);;
+                    console.log('Error saveDashboardSchedule FAILED', {err});;
                     reject(err);
                 }
             )
