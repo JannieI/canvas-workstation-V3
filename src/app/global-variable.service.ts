@@ -828,7 +828,8 @@ export class GlobalVariableService {
         // dashboardTabID = -1 if unknown, so get first T
         // Returns True if all worked, False if something went wrong
         console.log('%c    Global-Variables refreshCurrentDashboardInfo D,T id = ',
-        "color: black; background: lightgray; font-size: 10px", dashboardID, dashboardTabID)
+            "color: black; background: lightgray; font-size: 10px", 
+            {dashboardID}, {dashboardTabID})
 
         // Load the current Dashboard, and Optional template.  The dependants are stakced
         // in a Promise chain, to ensure we have all or nothing ...
@@ -888,7 +889,7 @@ export class GlobalVariableService {
         // Refreshes all info related to current DS, but NOT currentDatasources
         // Returns True if all worked, False if something went wrong
         console.log('%c    Global-Variables refreshCurrentDatasourceInfo D,T id = ',
-        "color: black; background: lightgray; font-size: 10px", datasourceID)
+        "color: black; background: lightgray; font-size: 10px", {datasourceID})
 
         // Get lates dSet for give DSid
         // TODO - decide if lates / -1 is best choice here
@@ -928,7 +929,8 @@ export class GlobalVariableService {
     refreshAllInfo(dashboardID: number, dashboardTabID: number) {
         // Refreshes all info related to current D
         console.log('%c    Global-Variables refreshAllInfo D,T id = ',
-        "color: black; background: lightgray; font-size: 10px", dashboardID, dashboardTabID)
+            "color: black; background: lightgray; font-size: 10px", 
+            {dashboardID}, {dashboardTabID})
 
         console.log('refreshAllInfo FIX DS ids that are hardcoded ...')
         // Load Dashboard Themes
@@ -1006,7 +1008,8 @@ export class GlobalVariableService {
                         this.isDirtyDashboards = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getDashboards 1',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.dashboards)
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                            this.dashboards)
                         resolve(this.dashboards);
                     });
             } else {
@@ -1028,7 +1031,7 @@ export class GlobalVariableService {
         // - name, state: optional values for the new copy
         // - To make a draft: originalD.state = Complete, state = Draft
         console.log('%c    Global-Variables copyDashboard D,T id = ',
-        "color: black; background: lightgray; font-size: 10px", dashboardID)
+        "color: black; background: lightgray; font-size: 10px", {dashboardID})
 
         // Duplicate the D and all related info
         return new Promise<Dashboard>((resolve, reject) => {
@@ -1217,7 +1220,7 @@ export class GlobalVariableService {
     letDashboard(dashboardID: number = null): Dashboard {
         // Returns the given D from the internal arrays
         console.log('%c    Global-Variables letDashboard ...',
-        "color: black; background: lightgray; font-size: 10px", dashboardID);
+        "color: black; background: lightgray; font-size: 10px", {dashboardID});
 
         // Set to current if none provided
         if (dashboardID == null) {
@@ -1431,7 +1434,8 @@ export class GlobalVariableService {
         // - the AuditTrails are kept against the Draft
 
         console.log('%c    Global-Variables saveDraftDashboard ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+            {deleteSnapshots});
 
         // Set to current
         let draftID = this.currentDashboardInfo.value.currentDashboardID;
@@ -1667,7 +1671,7 @@ export class GlobalVariableService {
     deleteDashboardInfo(dashboardID: number) {
         // Deletes D with all related Entities
         console.log('%c    Global-Variables deleteDashboardInfo ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", dashboardID);
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {dashboardID});
 
         // TODO - update all from DB ?
         // Remove where D used as template
@@ -1813,7 +1817,7 @@ export class GlobalVariableService {
         // Description: Adds a new Dashboard
         // Returns: Added Data or error message
         console.log('%c    Global-Variables addDashboard ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", data.id);
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
 
         let url: string = 'dashboards';
         this.filePath = './assets/data.dashboards.json';
@@ -1834,12 +1838,12 @@ export class GlobalVariableService {
                     this.dashboards.push(JSON.parse(JSON.stringify(data)));
                     this.currentDashboards.push(JSON.parse(JSON.stringify(data)));
 
-                    console.log('addDashboard ADDED', data, this.dashboards)
+                    console.log('addDashboard ADDED', {data}, this.dashboards)
 
                     resolve(data);
                 },
                 err => {
-                    console.log('Error addDashboard FAILED', err);;
+                    console.log('Error addDashboard FAILED', {err});;
                     reject(err);
                 }
             )
@@ -1850,7 +1854,7 @@ export class GlobalVariableService {
         // Description: Saves Dashboard
         // Returns: 'Saved' or error message
         console.log('%c    Global-Variables saveDashboard ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",{data});
 
         let url: string = 'dashboards';
         this.filePath = './assets/data.dashboards.json';
@@ -1879,11 +1883,11 @@ export class GlobalVariableService {
                     };
 
 
-                    console.log('saveDashboard SAVED', res)
+                    console.log('saveDashboard SAVED', {res})
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error saveDashboard FAILED', err);;
+                    console.log('Error saveDashboard FAILED', {err});;
                     reject(err);
                 }
             )
@@ -1894,7 +1898,8 @@ export class GlobalVariableService {
         // Description: Deletes a Dashboard
         // Returns: 'Deleted' or error message
         console.log('%c    Global-Variables deleteDashboard ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", id);
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+            {id});
 
         let url: string = 'dashboards';
         this.filePath = './assets/data.dashboards.json';
@@ -1915,11 +1920,11 @@ export class GlobalVariableService {
                         dsp => dsp.id != id
                     );
 
-                    console.log('deleteDashboard DELETED id: ', id)
+                    console.log('deleteDashboard DELETED id: ', {id})
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('Error deleteDashboard FAILED', err);;
+                    console.log('Error deleteDashboard FAILED', {err});;
                     reject(err);
                 }
             )
@@ -1974,7 +1979,8 @@ export class GlobalVariableService {
                         // this.currentDashboards.next(currentDashboards);
 
                         console.log('%c    Global-Variables getCurrentDashboards 1',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", dashboardID, this.currentDashboards)
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                            {dashboardID}, this.currentDashboards)
                         resolve(this.currentDashboards);
 
                 })
@@ -2009,7 +2015,8 @@ export class GlobalVariableService {
                 };
 
                 console.log('%c    Global-Variables getCurrentDashboards 2',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", dashboardID, this.currentDashboards)
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                    {dashboardID}, this.currentDashboards)
                 resolve(this.currentDashboards);
             });
         };
@@ -2037,7 +2044,8 @@ export class GlobalVariableService {
                         this.isDirtyDashboardTabs = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getDashboardTabs 1',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.dashboardTabs)
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                        this.dashboardTabs)
                         resolve(this.dashboardTabs);
                     });
             } else {
@@ -2057,7 +2065,7 @@ export class GlobalVariableService {
         //   If not cached or if dirty, get from File
         console.log('%c    Global-Variables getCurrentDashboardTabs ...',
             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-            dashboardID);
+            {dashboardID});
 
             // Refresh from source at start, or if dirty
         if ( (this.dashboardTabs.length == 0)  ||  (this.isDirtyDashboardTabs) ) {
@@ -2079,7 +2087,8 @@ export class GlobalVariableService {
                         });
 
                         console.log('%c    Global-Variables getCurrentDashboardTabs 1',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", dashboardID, this.currentDashboardTabs)
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                            {dashboardID}, this.currentDashboardTabs)
                         resolve(this.currentDashboardTabs);
 
                 })
@@ -2102,7 +2111,8 @@ export class GlobalVariableService {
 
                 this.currentDashboardTabs = returnData;
                 console.log('%c    Global-Variables getCurrentDashboardTabs 2',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", dashboardID, this.currentDashboardTabs)
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                    {dashboardID}, this.currentDashboardTabs)
                 resolve(this.currentDashboardTabs);
             });
         };
@@ -2113,7 +2123,7 @@ export class GlobalVariableService {
         // Description: Adds a new DashboardTab
         // Returns: Added Data or error message
         console.log('%c    Global-Variables addDashboardTab ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", data.id);
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
 
         let url: string = 'dashboardTabs';
         this.filePath = './assets/data.dashboardTabs.json';
@@ -2131,12 +2141,12 @@ export class GlobalVariableService {
                     this.dashboardTabs.push(JSON.parse(JSON.stringify(data)));
                     this.currentDashboardTabs.push(JSON.parse(JSON.stringify(data)));
 
-                    console.log('addDashboardTab ADDED', data, this.dashboardTabs)
+                    console.log('addDashboardTab ADDED', {data}, this.dashboardTabs)
 
                     resolve(data);
                 },
                 err => {
-                    console.log('Error addDashboardTab FAILED', err);;
+                    console.log('Error addDashboardTab FAILED', {err});;
                     reject(err);
                 }
             )
@@ -2147,7 +2157,7 @@ export class GlobalVariableService {
         // Description: Saves DashboardTab
         // Returns: 'Saved' or error message
         console.log('%c    Global-Variables saveDashboardTab ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
 
         let url: string = 'dashboardTabs';
         this.filePath = './assets/data.dashboardTabs.json';
