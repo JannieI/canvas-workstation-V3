@@ -6116,12 +6116,12 @@ export class GlobalVariableService {
                     this.widgets.push(JSON.parse(JSON.stringify(data)));
                     this.currentWidgets.push(JSON.parse(JSON.stringify(data)));
 
-                    console.log('addWidget ADDED', data, this.widgets)
+                    console.log('addWidget ADDED', {data, this.widgets)
 
                     resolve(data);
                 },
                 err => {
-                    console.log('Error addWidget FAILED', err);;
+                    console.log('Error addWidget FAILED', {err);;
                     reject(err);
                 }
             )
@@ -6133,7 +6133,7 @@ export class GlobalVariableService {
         // Returns: 'Deleted' or error message
         // NOTE: this permananently deletes a W, from arrays and DB.
         console.log('%c    Global-Variables deleteWidget ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", id);
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id);
 
         let url: string = 'widgets';
         this.filePath = './assets/data.widgets.json';
@@ -6161,11 +6161,12 @@ export class GlobalVariableService {
                         };
                     });
 
-                    console.log('deleteWidget DELETED id: ', id, this.widgetCheckpoints, this.currentWidgetCheckpoints)
+                    console.log('deleteWidget DELETED id: ', {id, this.widgetCheckpoints, 
+                            this.currentWidgetCheckpoints)
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('Error deleteWidget FAILED', err);;
+                    console.log('Error deleteWidget FAILED', {err);;
                     reject(err);
                 }
             )
@@ -6176,7 +6177,7 @@ export class GlobalVariableService {
         // Description: Saves Widget
         // Returns: 'Saved' or error message
         console.log('%c    Global-Variables saveWidget ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data);
 
         let url: string = 'widgets';
         this.filePath = './assets/data.widgets.json';
@@ -6232,11 +6233,11 @@ export class GlobalVariableService {
                     //     };
                     // };
 
-                    console.log('saveWidget SAVED', res)
+                    console.log('saveWidget SAVED', {res)
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error saveWidget FAILED', err);;
+                    console.log('Error saveWidget FAILED', {err);;
                     reject(err);
                 }
             )
@@ -6248,7 +6249,7 @@ export class GlobalVariableService {
         // Returns: this.datasets, currentDataset array
         // NB: this assumes [W] and [datasets] are available !!
         console.log('%c    Global-Variables getWidgetsInfo ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         // Empty the necessary
         let dsCurrIDs: number[] = [];       // Current Dataset IDs
@@ -6325,10 +6326,10 @@ export class GlobalVariableService {
                     // });
 
                     console.log('%c    Global-Variables getWidgetsInfo 1 True',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
                     resolve(true);
                 },
-                rejectionReason => console.log('reason:', rejectionReason) // reason: rejected!
+                rejectionReason => console.log('reason:', {rejectionReason) // reason: rejected!
             );
         });
     }
@@ -6336,7 +6337,7 @@ export class GlobalVariableService {
     allWithAsync = (...listOfPromises) => {
         // Resolve all promises in array
         console.log('%c    Global-Variables allWithAsync ...',
-        "color: black; background: lightgray; font-size: 10px");
+            "color: black; background: lightgray; font-size: 10px");
 
         return new Promise(async (resolve, reject) => {
             let results = []
@@ -6356,7 +6357,7 @@ export class GlobalVariableService {
         // Returns: this.backgroundcolors array, unless:
         //   If not cached or if dirty, get from File
         console.log('%c    Global-Variables getBackgroundColors ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         let url: string = 'canvasBackgroundcolors';
         this.filePath = './assets/settings.backgroundcolors.json';
@@ -6373,12 +6374,14 @@ export class GlobalVariableService {
                         this.isDirtyBackgroundColors = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getBackgroundColors 1',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.backgroundcolors)
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                            this.backgroundcolors)
                         resolve(this.backgroundcolors);
                     });
             } else {
                 console.log('%c    Global-Variables getBackgroundColors 2',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.backgroundcolors)
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                    this.backgroundcolors)
                 resolve(this.backgroundcolors);
             }
         });
@@ -6390,7 +6393,8 @@ export class GlobalVariableService {
         // Returns: this.canvasTasks array, unless:
         //   If not cached or if dirty, get from File
         console.log('%c    Global-Variables getCanvasTasks ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.canvasTasks.length);
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+            this.canvasTasks.length);
 
         let url: string = 'canvasTasks';
         this.filePath = './assets/settings.canvasTasks.json';
@@ -6407,12 +6411,14 @@ export class GlobalVariableService {
                         this.isDirtyCanvasTasks = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getCanvasTasks 1',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.canvasTasks)
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                            this.canvasTasks)
                         resolve(this.canvasTasks);
                     });
             } else {
                 console.log('%c    Global-Variables getCanvasTasks 2',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.canvasTasks)
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                    this.canvasTasks)
                 resolve(this.canvasTasks);
             }
         });
@@ -6423,7 +6429,7 @@ export class GlobalVariableService {
         // Description: Adds a new canvasTask
         // Returns: Added Data or error message
         console.log('%c    Global-Variables addCanvasTask ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", data.id);
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data);
 
         let url: string = 'canvasTasks';
         this.filePath = './assets/data.CanvasTasks.json';
@@ -6440,12 +6446,13 @@ export class GlobalVariableService {
                     // Update Global vars to make sure they remain in sync
                     this.canvasTasks.push(JSON.parse(JSON.stringify(res)));
 
-                    console.log('addCanvasTask ADDED', res, this.canvasTasks, this.canvasTasks)
+                    console.log('addCanvasTask ADDED', {res, this.canvasTasks, 
+                        this.canvasTasks)
 
                     resolve(res);
                 },
                 err => {
-                    console.log('Error addCanvasTask FAILED', err);;
+                    console.log('Error addCanvasTask FAILED', {err);;
                     reject(err);
                 }
             )
@@ -6456,7 +6463,7 @@ export class GlobalVariableService {
         // Description: Saves CanvasTask
         // Returns: 'Saved' or error Task
         console.log('%c    Global-Variables saveCanvasTask ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data);
 
         let url: string = 'canvasTasks';
         this.filePath = './assets/data.canvasTasks.json';
@@ -6476,11 +6483,11 @@ export class GlobalVariableService {
                     );
                     this.canvasTasks[localIndex] = data;
 
-                    console.log('saveCanvasTask SAVED', data)
+                    console.log('saveCanvasTask SAVED', {data)
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error saveCanvasTask FAILED', err);;
+                    console.log('Error saveCanvasTask FAILED', {err);;
                     reject(err);
                 }
             )
@@ -6492,7 +6499,8 @@ export class GlobalVariableService {
         // Returns: this.canvasComments array, unless:
         //   If not cached or if dirty, get from File
         console.log('%c    Global-Variables getCanvasComments ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.canvasComments.length);
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+            {this.canvasComments.length);
 
         let url: string = 'canvasComments';
         this.filePath = './assets/settings.canvasComments.json';
@@ -6509,12 +6517,14 @@ export class GlobalVariableService {
                         this.isDirtyCanvasComments = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getCanvasComments 1',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.canvasComments)
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                            this.canvasComments)
                         resolve(this.canvasComments);
                     });
             } else {
                 console.log('%c    Global-Variables getCanvasComments 2',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.canvasComments)
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                    this.canvasComments)
                 resolve(this.canvasComments);
             }
         });
@@ -6525,7 +6535,7 @@ export class GlobalVariableService {
         // Description: Adds a new canvasComment
         // Returns: Added Data or error message
         console.log('%c    Global-Variables addCanvasComment ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", data.id);
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data);
 
         let url: string = 'canvasComments';
         this.filePath = './assets/data.CanvasComments.json';
@@ -6551,12 +6561,13 @@ export class GlobalVariableService {
                     // Update Global vars to make sure they remain in sync
                     this.canvasComments.push(JSON.parse(JSON.stringify(res)));
 
-                    console.log('addCanvasComment ADDED', res, this.canvasComments, this.canvasComments)
+                    console.log('addCanvasComment ADDED', {res, this.canvasComments, 
+                        this.canvasComments)
 
                     resolve(res);
                 },
                 err => {
-                    console.log('Error addCanvasComment FAILED', err);;
+                    console.log('Error addCanvasComment FAILED', {err);;
                     reject(err);
                 }
             )
@@ -6567,7 +6578,7 @@ export class GlobalVariableService {
         // Description: Saves CanvasComment
         // Returns: 'Saved' or error Comment
         console.log('%c    Global-Variables saveCanvasComment ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data);
 
         let url: string = 'canvasComments';
         this.filePath = './assets/data.canvasComments.json';
@@ -6587,11 +6598,11 @@ export class GlobalVariableService {
                     );
                     this.canvasComments[localIndex] = data;
 
-                    console.log('saveCanvasComment SAVED', data)
+                    console.log('saveCanvasComment SAVED', {data)
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error saveCanvasComment FAILED', err);;
+                    console.log('Error saveCanvasComment FAILED', {err);;
                     reject(err);
                 }
             )
