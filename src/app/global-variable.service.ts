@@ -6116,12 +6116,12 @@ export class GlobalVariableService {
                     this.widgets.push(JSON.parse(JSON.stringify(data)));
                     this.currentWidgets.push(JSON.parse(JSON.stringify(data)));
 
-                    console.log('addWidget ADDED', {data, this.widgets)
+                    console.log('addWidget ADDED', {data}, this.widgets)
 
                     resolve(data);
                 },
                 err => {
-                    console.log('Error addWidget FAILED', {err);;
+                    console.log('Error addWidget FAILED', {err});;
                     reject(err);
                 }
             )
@@ -6133,7 +6133,7 @@ export class GlobalVariableService {
         // Returns: 'Deleted' or error message
         // NOTE: this permananently deletes a W, from arrays and DB.
         console.log('%c    Global-Variables deleteWidget ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id);
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
 
         let url: string = 'widgets';
         this.filePath = './assets/data.widgets.json';
@@ -6161,12 +6161,12 @@ export class GlobalVariableService {
                         };
                     });
 
-                    console.log('deleteWidget DELETED id: ', {id, this.widgetCheckpoints, 
+                    console.log('deleteWidget DELETED id: ', {id}, this.widgetCheckpoints, 
                             this.currentWidgetCheckpoints)
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('Error deleteWidget FAILED', {err);;
+                    console.log('Error deleteWidget FAILED', {err});;
                     reject(err);
                 }
             )
@@ -6177,7 +6177,7 @@ export class GlobalVariableService {
         // Description: Saves Widget
         // Returns: 'Saved' or error message
         console.log('%c    Global-Variables saveWidget ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data);
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
 
         let url: string = 'widgets';
         this.filePath = './assets/data.widgets.json';
@@ -6233,11 +6233,11 @@ export class GlobalVariableService {
                     //     };
                     // };
 
-                    console.log('saveWidget SAVED', {res)
+                    console.log('saveWidget SAVED', {res})
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error saveWidget FAILED', {err);;
+                    console.log('Error saveWidget FAILED', {err});;
                     reject(err);
                 }
             )
@@ -6329,7 +6329,7 @@ export class GlobalVariableService {
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
                     resolve(true);
                 },
-                rejectionReason => console.log('reason:', {rejectionReason) // reason: rejected!
+                rejectionReason => console.log('reason:', {rejectionReason}) // reason: rejected!
             );
         });
     }
@@ -6429,7 +6429,7 @@ export class GlobalVariableService {
         // Description: Adds a new canvasTask
         // Returns: Added Data or error message
         console.log('%c    Global-Variables addCanvasTask ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data);
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
 
         let url: string = 'canvasTasks';
         this.filePath = './assets/data.CanvasTasks.json';
@@ -6446,13 +6446,13 @@ export class GlobalVariableService {
                     // Update Global vars to make sure they remain in sync
                     this.canvasTasks.push(JSON.parse(JSON.stringify(res)));
 
-                    console.log('addCanvasTask ADDED', {res, this.canvasTasks, 
+                    console.log('addCanvasTask ADDED', {res}, this.canvasTasks, 
                         this.canvasTasks)
 
                     resolve(res);
                 },
                 err => {
-                    console.log('Error addCanvasTask FAILED', {err);;
+                    console.log('Error addCanvasTask FAILED', {err});;
                     reject(err);
                 }
             )
@@ -6463,7 +6463,7 @@ export class GlobalVariableService {
         // Description: Saves CanvasTask
         // Returns: 'Saved' or error Task
         console.log('%c    Global-Variables saveCanvasTask ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data);
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
 
         let url: string = 'canvasTasks';
         this.filePath = './assets/data.canvasTasks.json';
@@ -6483,11 +6483,11 @@ export class GlobalVariableService {
                     );
                     this.canvasTasks[localIndex] = data;
 
-                    console.log('saveCanvasTask SAVED', {data)
+                    console.log('saveCanvasTask SAVED', {data})
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error saveCanvasTask FAILED', {err);;
+                    console.log('Error saveCanvasTask FAILED', {err});;
                     reject(err);
                 }
             )
@@ -6500,7 +6500,7 @@ export class GlobalVariableService {
         //   If not cached or if dirty, get from File
         console.log('%c    Global-Variables getCanvasComments ...',
             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
-            {this.canvasComments.length);
+            this.canvasComments.length);
 
         let url: string = 'canvasComments';
         this.filePath = './assets/settings.canvasComments.json';
@@ -6535,7 +6535,7 @@ export class GlobalVariableService {
         // Description: Adds a new canvasComment
         // Returns: Added Data or error message
         console.log('%c    Global-Variables addCanvasComment ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data);
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
 
         let url: string = 'canvasComments';
         this.filePath = './assets/data.CanvasComments.json';
@@ -6561,13 +6561,13 @@ export class GlobalVariableService {
                     // Update Global vars to make sure they remain in sync
                     this.canvasComments.push(JSON.parse(JSON.stringify(res)));
 
-                    console.log('addCanvasComment ADDED', {res, this.canvasComments, 
+                    console.log('addCanvasComment ADDED', {res}, this.canvasComments, 
                         this.canvasComments)
 
                     resolve(res);
                 },
                 err => {
-                    console.log('Error addCanvasComment FAILED', {err);;
+                    console.log('Error addCanvasComment FAILED', {err});;
                     reject(err);
                 }
             )
@@ -6578,7 +6578,7 @@ export class GlobalVariableService {
         // Description: Saves CanvasComment
         // Returns: 'Saved' or error Comment
         console.log('%c    Global-Variables saveCanvasComment ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data);
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
 
         let url: string = 'canvasComments';
         this.filePath = './assets/data.canvasComments.json';
@@ -6598,11 +6598,11 @@ export class GlobalVariableService {
                     );
                     this.canvasComments[localIndex] = data;
 
-                    console.log('saveCanvasComment SAVED', {data)
+                    console.log('saveCanvasComment SAVED', {data})
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error saveCanvasComment FAILED', {err);;
+                    console.log('Error saveCanvasComment FAILED', {err});;
                     reject(err);
                 }
             )
@@ -6613,7 +6613,7 @@ export class GlobalVariableService {
         // Description: Deletes a canvasComments
         // Returns: 'Deleted' or error message
         console.log('%c    Global-Variables deleteCanvasComment ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", id);
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
 
         let url: string = 'canvasComments';
         this.filePath = './assets/data.CanvasComments.json';
@@ -6640,11 +6640,11 @@ export class GlobalVariableService {
                         com => com.id != id
                     );
 
-                    console.log('deleteCanvasComment DELETED id: ', id)
+                    console.log('deleteCanvasComment DELETED id: ', {id})
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('Error deleteCanvasComment FAILED', err);;
+                    console.log('Error deleteCanvasComment FAILED', {err});;
                     reject(err);
                 }
             )
@@ -6656,7 +6656,8 @@ export class GlobalVariableService {
         // Returns: this.canvasMessages array, unless:
         //   If not cached or if dirty, get from File
         console.log('%c    Global-Variables getCanvasMessages ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.canvasMessages.length);
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+            this.canvasMessages.length);
 
         let url: string = 'canvasMessages';
         this.filePath = './assets/settings.canvasMessages.json';
@@ -6673,12 +6674,14 @@ export class GlobalVariableService {
                         this.isDirtyCanvasMessages = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getCanvasMessages 1',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.canvasMessages)
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                            this.canvasMessages)
                         resolve(this.canvasMessages);
                     });
             } else {
                 console.log('%c    Global-Variables getCanvasMessages 2',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.canvasMessages)
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                    this.canvasMessages)
                 resolve(this.canvasMessages);
             }
         });
@@ -6689,7 +6692,7 @@ export class GlobalVariableService {
         // Description: Adds a new CanvasMessage
         // Returns: Added Data or error message
         console.log('%c    Global-Variables addCanvasMessage ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
 
         let url: string = 'canvasMessages';
         this.filePath = './assets/data.canvasMessages.json';
@@ -6711,7 +6714,7 @@ export class GlobalVariableService {
                     resolve(res);
                 },
                 err => {
-                    console.log('Error addCanvasMessage FAILED', err);;
+                    console.log('Error addCanvasMessage FAILED', {err});;
                     reject(err);
                 }
             )
@@ -6722,7 +6725,7 @@ export class GlobalVariableService {
         // Description: Saves CanvasMessage
         // Returns: 'Saved' or error message
         console.log('%c    Global-Variables saveCanvasMessage ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
 
         let url: string = 'canvasMessages';
         this.filePath = './assets/data.canvasMessages.json';
@@ -6742,11 +6745,11 @@ export class GlobalVariableService {
                     );
                     this.canvasMessages[localIndex] = data;
 
-                    console.log('saveCanvasMessage SAVED', data)
+                    console.log('saveCanvasMessage SAVED', {data})
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error saveCanvasMessage FAILED', err);;
+                    console.log('Error saveCanvasMessage FAILED', {err});;
                     reject(err);
                 }
             )
@@ -6757,7 +6760,7 @@ export class GlobalVariableService {
         // Marks all messages for this userID as read - typically done when Messages form
         // is closed, or at logout.
         console.log('%c    Global-Variables addCanvasMessage ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {userID});
 
         // TODO - this must be done via the DB: for now, only glob-var array
         let today = new Date();
@@ -6774,7 +6777,7 @@ export class GlobalVariableService {
         // Description: Deletes a canvasMessages
         // Returns: 'Deleted' or error message
         console.log('%c    Global-Variables deleteCanvasMessage ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", id);
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
 
         let url: string = 'canvasMessages';
         this.filePath = './assets/data.CanvasMessages.json';
@@ -6792,11 +6795,11 @@ export class GlobalVariableService {
                         msg => msg.id != id
                     );
 
-                    console.log('deleteCanvasMessage DELETED id: ', id)
+                    console.log('deleteCanvasMessage DELETED id: ', {id})
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('Error deleteCanvasMessage FAILED', err);;
+                    console.log('Error deleteCanvasMessage FAILED', {err});;
                     reject(err);
                 }
             )
@@ -6808,7 +6811,8 @@ export class GlobalVariableService {
         // Returns: this.widgetCheckpoints array, unless:
         //   If not cached or if dirty, get from File
         console.log('%c    Global-Variables getWidgetCheckpoints ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.widgetCheckpoints.length);
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+            this.widgetCheckpoints.length);
 
         let url: string = 'widgetCheckpoints';
         this.filePath = './assets/settings.widgetCheckpoints.json';
@@ -6825,12 +6829,14 @@ export class GlobalVariableService {
                         this.isDirtyWidgetCheckpoints = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getWidgetCheckpoints 1',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.widgetCheckpoints)
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                            this.widgetCheckpoints)
                         resolve(this.widgetCheckpoints);
                     });
             } else {
                 console.log('%c    Global-Variables getWidgetCheckpoints 2',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.widgetCheckpoints)
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                    this.widgetCheckpoints)
                 resolve(this.widgetCheckpoints);
             }
         });
@@ -6842,7 +6848,8 @@ export class GlobalVariableService {
         // Returns: this.currentWidgetCheckpoints array, unless:
         //   If not cached or if dirty, get from File
         console.log('%c    Global-Variables getCurrentWidgetCheckpoints ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+            {dashboardID});
 
         // Refresh from source at start, or if dirty
         if ( (this.widgetCheckpoints.length == 0)  ||  (this.isDirtyWidgetCheckpoints) ) {
@@ -6854,7 +6861,8 @@ export class GlobalVariableService {
                         );
                         this.currentWidgetCheckpoints = data;
                         console.log('%c    Global-Variables getCurrentWidgetCheckpoints 1',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", dashboardID, data)
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                            {dashboardID}, {data})
                         resolve(this.currentWidgetCheckpoints);
 
                 })
@@ -6867,7 +6875,8 @@ export class GlobalVariableService {
                 );
                 this.currentWidgetCheckpoints = returnData;
                 console.log('%c    Global-Variables getCurrentWidgetCheckpoints 2',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", dashboardID, returnData)
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                    {dashboardID}, {returnData})
                 resolve(this.currentWidgetCheckpoints);
             });
         };
@@ -6878,7 +6887,7 @@ export class GlobalVariableService {
         // Description: Adds a new WidgetCheckpoint
         // Returns: Added Data or error message
         console.log('%c    Global-Variables addWidgetCheckpoint ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", data.id);
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
 
         let url: string = 'widgetCheckpoints';
         this.filePath = './assets/data.widgetCheckpoints.json';
@@ -6896,12 +6905,13 @@ export class GlobalVariableService {
                     this.widgetCheckpoints.push(JSON.parse(JSON.stringify(data)));
                     this.currentWidgetCheckpoints.push(JSON.parse(JSON.stringify(data)));
 
-                    console.log('addWidgetCheckpoint ADDED', data, this.currentWidgetCheckpoints, this.widgetCheckpoints)
+                    console.log('addWidgetCheckpoint ADDED', {data}, 
+                        this.currentWidgetCheckpoints, this.widgetCheckpoints)
 
                     resolve(data);
                 },
                 err => {
-                    console.log('Error addWidgetCheckpoint FAILED', err);;
+                    console.log('Error addWidgetCheckpoint FAILED', {err});;
                     reject(err);
                 }
             )
@@ -6912,7 +6922,7 @@ export class GlobalVariableService {
         // Description: Deletes a WidgetCheckpoints
         // Returns: 'Deleted' or error message
         console.log('%c    Global-Variables deleteWidgetCheckpoint ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", id);
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
 
         let url: string = 'widgetCheckpoints';
         this.filePath = './assets/data.widgetCheckpoints.json';
@@ -6934,11 +6944,11 @@ export class GlobalVariableService {
                         chk => chk.id != id
                     );
 
-                    console.log('deleteWidgetCheckpoint DELETED id: ', id)
+                    console.log('deleteWidgetCheckpoint DELETED id: ', {id})
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('Error deleteWidgetCheckpoint FAILED', err);;
+                    console.log('Error deleteWidgetCheckpoint FAILED', {err});;
                     reject(err);
                 }
             )
@@ -6949,7 +6959,7 @@ export class GlobalVariableService {
         // Description: Saves Widget Checkpoint
         // Returns: 'Saved' or error message
         console.log('%c    Global-Variables saveWidgetCheckpoint ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", data);
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
 
         let url: string = 'widgetCheckpoints';
         this.filePath = './assets/data.widgetCheckpoints.json';
@@ -6969,11 +6979,11 @@ export class GlobalVariableService {
                     );
                     this.widgetCheckpoints[localIndex] = data;
 
-                    console.log('saveWidgetCheckpoint SAVED')
+                    console.log('saveWidgetCheckpoint SAVED', {res})
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error saveWidgetCheckpoint FAILED');;
+                    console.log('Error saveWidgetCheckpoint FAILED', {err});;
                     reject(err);
                 }
             )
@@ -6983,12 +6993,12 @@ export class GlobalVariableService {
     getTree<T>(url: string, options?: any, dashboardID?: number, datasourceID?: number): Promise<any> {
         // Generic GET data, later to be replaced with http
         console.log('%c    Global-Variables get ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {url});
 
         return new Promise((resolve, reject) => {
             // Get from source - files for now ...
             var tree = dl.json(this.filePath, {data: 'data'})
-                    console.log('currentData', tree);
+                    console.log('currentData', {tree});
                     // TODO - fix reading [] with dl !!!
                     resolve(tree);
             }
@@ -7000,7 +7010,7 @@ export class GlobalVariableService {
         // Returns: this.users array, unless:
         //   If not cached or if dirty, get from File
         console.log('%c    Global-Variables getCanvasUsers ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         let url: string = 'canvasUsers';
         this.filePath = './assets/data.canvasUsers.json';
@@ -7016,12 +7026,14 @@ export class GlobalVariableService {
                         this.isDirtyUsers = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getCanvasUsers 1',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.canvasUsers)
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                            this.canvasUsers)
                         resolve(this.canvasUsers);
                     });
             } else {
                 console.log('%c    Global-Variables getCanvasUsers 2',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.canvasUsers)
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                    this.canvasUsers)
                 resolve(this.canvasUsers);
             }
         });
@@ -7032,7 +7044,7 @@ export class GlobalVariableService {
         // Checks if userID exists.  If not, return false.
         // If so, set currentUser object and return true
         console.log('%c    Global-Variables validateUser ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {userID});
 
         // TODO - do in more safe way with DB, Auth0, etc
         return new Promise<boolean>((resolve, reject) => {
@@ -7053,7 +7065,7 @@ export class GlobalVariableService {
         // Description: Saves CanvasUser
         // Returns: 'Saved' or error message
         console.log('%c    Global-Variables saveCanvasUser ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
 
         let url: string = 'canvasUsers';
         this.filePath = './assets/data.canvasUsers.json';
