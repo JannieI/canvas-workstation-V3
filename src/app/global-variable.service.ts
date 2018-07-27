@@ -7085,11 +7085,11 @@ export class GlobalVariableService {
                     );
                     this.canvasUsers[localIndex] = data;
 
-                    console.log('saveCanvasUser SAVED', res)
+                    console.log('saveCanvasUser SAVED', {res})
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error saveCanvasUser FAILED', err);;
+                    console.log('Error saveCanvasUser FAILED', {err});;
                     reject(err);
                 }
             )
@@ -7101,7 +7101,8 @@ export class GlobalVariableService {
         // Returns: this.canvasAuditTrails array, unless:
         //   If not cached or if dirty, get from File
         console.log('%c    Global-Variables getCanvasAuditTrails ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.canvasAuditTrails.length);
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+            this.canvasAuditTrails.length);
 
         let url: string = 'canvasAuditTrails';
         this.filePath = './assets/settings.canvasAuditTrails.json';
@@ -7118,12 +7119,14 @@ export class GlobalVariableService {
                         this.isDirtyCanvasAuditTrails = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getCanvasAuditTrails 1',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.canvasAuditTrails)
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                            this.canvasAuditTrails)
                         resolve(this.canvasAuditTrails);
                     });
             } else {
                 console.log('%c    Global-Variables getCanvasAuditTrails 2',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.canvasAuditTrails)
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                    this.canvasAuditTrails)
                 resolve(this.canvasAuditTrails);
             }
         });
@@ -7134,7 +7137,7 @@ export class GlobalVariableService {
         // Description: Adds a new canvasAuditTrail
         // Returns: Added Data or error message
         console.log('%c    Global-Variables addCanvasAuditTrail ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", data.id);
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
 
         let url: string = 'canvasAuditTrails';
         this.filePath = './assets/data.CanvasAuditTrails.json';
@@ -7151,12 +7154,13 @@ export class GlobalVariableService {
                     // Update Global vars to make sure they remain in sync
                     this.canvasAuditTrails.push(JSON.parse(JSON.stringify(res)));
 
-                    console.log('addCanvasAuditTrail ADDED', res, this.canvasAuditTrails, this.canvasAuditTrails)
+                    console.log('addCanvasAuditTrail ADDED', {res}, this.canvasAuditTrails, 
+                        this.canvasAuditTrails)
 
                     resolve(res);
                 },
                 err => {
-                    console.log('Error addCanvasAuditTrail FAILED', err);;
+                    console.log('Error addCanvasAuditTrail FAILED', {err});;
                     reject(err);
                 }
             )
@@ -7166,7 +7170,8 @@ export class GlobalVariableService {
     get<T>(url: string, options?: any, dashboardID?: number, datasourceID?: number): Promise<any> {
         // Generic GET data, later to be replaced with http
         console.log('%c    Global-Variables get (url, filePath) ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", url, this.filePath);
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {url}, 
+                this.filePath);
 
         // TODO - cleaner switch to http?
         // if (this.filePath == './assets/data.widgets.json') {
@@ -7306,7 +7311,7 @@ export class GlobalVariableService {
     connectLocalDB<T>(): Promise<string | Object> {
         // Connect to the local DB, ie nanaSQL
         console.log('%c    Global-Variables connectLocalDB',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         return new Promise((resolve, reject) => {
 
@@ -7558,7 +7563,7 @@ export class GlobalVariableService {
             .connect()
             .then(db => {
                 console.log('%c    Global-Variables connectLocalDB',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", db)
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {db})
                 resolve(db)
 
             })
@@ -7568,14 +7573,16 @@ export class GlobalVariableService {
     getLocal<T>(table: string, params?: any): Promise<any> {
         // Generic retrieval of data from localDB
         console.log('%c    Global-Variables getLocal for table, params...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", table, params);
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+            {table}, {params});
 
         return new Promise((resolve, reject) => {
 
             nSQL(table).query('select').exec()
             .then( result => {
                 console.log('%c    Global-Variables getLocal result',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", result) // <= arrayid:1, name:"bill", age: 20}]
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                    {result}) // <= arrayid:1, name:"bill", age: 20}]
                 resolve(result)
             })
 
@@ -7595,7 +7602,7 @@ export class GlobalVariableService {
     saveLocal<T>(table: string, row: any): Promise<any> {
         // Generic saving of row to a table in the localDB
         console.log('%c    Global-Variables saveLocal for table...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", table);
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {table});
         return new Promise((resolve, reject) => {
 
             nSQL(table).query('upsert', row).exec().then(res => {
@@ -7707,7 +7714,9 @@ export class GlobalVariableService {
         // It does assume that we have a currentDashboardInfo object if Previous/Next are
         // parameters.
         console.log('%c    Global-Variables refreshCurrentDashboard ...',
-        "color: black; background: lightgray; font-size: 10px");
+            "color: black; background: lightgray; font-size: 10px", 
+            {refreshingRoutine}, {dashboardID}, {dashboardTabID}, {tabToShow}, 
+            {widgetsToRefresh});
 
         // TODO - add Permissions, either here or automatically in DB !!!
 
@@ -7799,7 +7808,7 @@ export class GlobalVariableService {
         // oldDashboard
         // - changedDashboard = new D, with changed properties
         console.log('%c    Global-Variables ... dashboardMoveInfo',
-        "color: black; background: lightgray; font-size: 10px", newDashboardID);
+            "color: black; background: lightgray; font-size: 10px", {newDashboardID});
 
         let returnDashboard: Dashboard = {
             id:  newDashboardID,
@@ -7845,7 +7854,7 @@ export class GlobalVariableService {
     widgetReplace(changedWidget: Widget) {
         // Replaces (ByVal) the global W and currentW
         console.log('%c    Global-Variables ... widgetReplace',
-        "color: black; background: lightgray; font-size: 10px", changedWidget.id);
+        "   color: black; background: lightgray; font-size: 10px", {changedWidget});
 
         // TODO - this is not DRY - there must be a better way!!
         this.widgets.forEach(w => {
@@ -8135,18 +8144,18 @@ export class GlobalVariableService {
     sleep(milliseconds: number) {
         // Sleep for a while
         console.log('%c    Global-Variables sleep ...',
-        "color: black; background: lightgray; font-size: 10px", milliseconds);
+            "color: black; background: lightgray; font-size: 10px", {milliseconds});
         var start: number = new Date().getTime();
-        console.log('  start', start, new Date().getTime())
+        console.log('  start', {start}, new Date().getTime())
         for (var counter = 0; counter < 3600001; counter++) {
             let mod:number = counter%60000;
             // TODO - remove this console.log BUT at moment sleep increments counter * 60000
-            console.log(counter, mod);
+            console.log({counter}, {mod});
             if (mod == 0) {
-                console.log ('   Minutes elapsed ', counter, mod )
+                console.log ('   Minutes elapsed ', {counter}, {mod} )
             }
             if ((new Date().getTime() - start) > milliseconds){
-                console.log('  end', start, new Date().getTime())
+                console.log('  end', {start}, new Date().getTime())
 
                 break;
             }
@@ -8163,7 +8172,8 @@ export class GlobalVariableService {
         // - height, width are optional dimensions.  If provided, it will overrule
         //   those values in spec
         console.log('%c    Global-Variables createVegaLiteSpec ...',
-        "color: black; background: lightgray; font-size: 10px");
+            "color: black; background: lightgray; font-size: 10px",
+            {widget}, {height}, {width});
 
         let vlSpecsNew: dl.spec.TopLevelExtendedSpec = this.vlTemplate;
         if (widget.graphUrl != "") {
@@ -8248,7 +8258,8 @@ export class GlobalVariableService {
      ): number {
         let actID: number = 1;
         console.log('%c    Global-Variables actionUpsert ...',
-            "color: black; background: lightgray; font-size: 10px", logToDB, oldWidget,newWidget
+            "color: black; background: lightgray; font-size: 10px", {logToDB}, 
+            {oldWidget}, {newWidget}
         );
 
         // Make snapshot when start changing
@@ -8405,7 +8416,7 @@ export class GlobalVariableService {
     alignToGripPoint(inputValue: number) {
         // This routine recalcs a value to a gridpoint IF snapping is enabled
         console.log('%c    Global-Variables alignToGripPoint ...',
-        "color: black; background: lightgray; font-size: 10px", inputValue);
+            "color: black; background: lightgray; font-size: 10px", {inputValue});
 
         if (this.canvasSettings.snapToGrid) {
             if ( (inputValue % this.canvasSettings.gridSize) >= (this.canvasSettings.gridSize / 2)) {
@@ -8423,7 +8434,7 @@ export class GlobalVariableService {
         ): void {
         // Shows a message in the right area, ie StatusBar
         console.log('%c    Global-Variables showStatusBarMessage ...',
-        "color: black; background: lightgray; font-size: 10px");
+            "color: black; background: lightgray; font-size: 10px", {statusBarMessage});
 
         // Pop message in right area
         if (statusBarMessage.uiArea == 'StatusBar') {
@@ -8439,7 +8450,8 @@ export class GlobalVariableService {
         // It will return an array of datagridColumns to use in the ca-datagrid
         // for a given array of data and a set of columns to show,
         console.log('%c    Global-Variables createDatagridColumns ...',
-        "color: black; background: lightgray; font-size: 10px");
+            "color: black; background: lightgray; font-size: 10px", 
+            {dataRow}, {showFields}, {visibleFields});
 
         // No data provided
         if (dataRow == null  ||  dataRow == undefined) {
@@ -8514,7 +8526,7 @@ export class GlobalVariableService {
         //   It is NOT case sensitive, and only applicable to accessType = 'AccessList'
 
         console.log('%c    Global-Variables dashboardPermissionCheck ...',
-        "color: black; background: lightgray; font-size: 10px", id);
+            "color: black; background: lightgray; font-size: 10px", {id});
 
         // Assume no access
         let hasAccess: boolean = false;
@@ -8602,7 +8614,7 @@ export class GlobalVariableService {
     dashboardPermissionList(id: number): string[] {
         // Returns Array of Permissions for the current user to the given D.
         console.log('%c    Global-Variables dashboardPermissionCheck ...',
-        "color: black; background: lightgray; font-size: 10px", id);
+            "color: black; background: lightgray; font-size: 10px", {id});
 
         // Assume no access
         let accessList: string[] = [];
@@ -8695,7 +8707,7 @@ export class GlobalVariableService {
     formatDate(date) {
          // Formats a given date into YYYY/MM/DD HH:MM:SS
          console.log('%c    Global-Variables formatDate ...',
-         "color: black; background: lightgray; font-size: 10px", date);
+            "color: black; background: lightgray; font-size: 10px", {date});
 
          let d = new Date(date);
          let month = '' + (d.getMonth() + 1);
@@ -8721,7 +8733,8 @@ export class GlobalVariableService {
         // If not a valid user, return false.
         // If so, set currentUser object and return true
         console.log('%c    Global-Variables login ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+            {username}, {password});
         
         return new Promise<boolean>((resolve, reject) => {
 
@@ -8735,7 +8748,7 @@ export class GlobalVariableService {
                 resolve(true);
             },
             err => {
-                console.log('Error login FAILED', err);;
+                console.log('Error login FAILED', {err});;
                 resolve(false);
             });
         });
@@ -8745,7 +8758,7 @@ export class GlobalVariableService {
         // Description: Gets data from the Tributary Server
         // Returns: Added Data or error message
         console.log('%c    Global-Variables getTributaryData ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", source);
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {source});
 
         let url: string = 'https://eazl-rest.xyz/eazl/canvas/enqueue/';
         this.filePath = './assets/data.dashboards.json';
@@ -8762,12 +8775,12 @@ export class GlobalVariableService {
             .subscribe(
                 res => {
 
-                    console.log('Tributary Data', res)
+                    console.log('Tributary Data', {res})
 
                     resolve(res);
                 },
                 err => {
-                    console.log('Error Get Tributary Data FAILED', err);;
+                    console.log('Error Get Tributary Data FAILED', {err});;
                     reject(err);
                 }
             )
@@ -8778,7 +8791,8 @@ export class GlobalVariableService {
         // Description: Gets data from the Tributary Server
         // Returns: Added Data or error message
         console.log('%c    Global-Variables getTributaryData ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", graphQLquery);
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+            {graphQLquery});
 
         let url: string = 'https://eazl-rest.xyz/eazl/accounts/graphql/';
         this.filePath = './assets/data.dashboards.json';
@@ -8795,12 +8809,12 @@ export class GlobalVariableService {
             .subscribe(
                 res => {
 
-                    console.log('Tributary Data', res)
+                    console.log('Tributary Data', {res})
 
                     resolve(res);
                 },
                 err => {
-                    console.log('Error Get Tributary Inspect FAILED', err);;
+                    console.log('Error Get Tributary Inspect FAILED', {err});;
                     reject(err);
                 }
             )
@@ -8811,7 +8825,7 @@ export class GlobalVariableService {
         // Description: Gets data from the Tributary Server
         // Returns: Added Data or error message
         console.log('%c    Global-Variables getTributaryData ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", source);
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {source});
 
         let url: string = 'https://eazl-rest.xyz/eazl/canvas/inspect/';
         this.filePath = './assets/data.dashboards.json';
@@ -8828,12 +8842,12 @@ export class GlobalVariableService {
             .subscribe(
                 res => {
 
-                    console.log('Tributary Data', res)
+                    console.log('Tributary Data', {res})
 
                     resolve(res);
                 },
                 err => {
-                    console.log('Error Get Tributary Inspect FAILED', err);;
+                    console.log('Error Get Tributary Inspect FAILED', {err});;
                     reject(err);
                 }
             )
@@ -8844,7 +8858,8 @@ export class GlobalVariableService {
         // Description: Returns schema of a given DB via Tributary Server
         // Returns: Added Data or error message
         console.log('%c    Global-Variables getTributaryDirectDBSchema ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", serverName);
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+            {serverName});
         
         // TODO - Remove once Tributary can do discovery
         let tributarySchemas: DataSchema[] = [
@@ -8920,7 +8935,9 @@ export class GlobalVariableService {
         query: string): TributarySource {
         // Description: constructs a Tributary Source object from the given parameters
         console.log('%c    Global-Variables constructTributarySQLSource ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", host);
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+            {connector}, {drivername}, {username}, {password}, {database}, {host}, {port}, 
+            {query});
         
         let tributarySource: TributarySource = {
             "source": {
