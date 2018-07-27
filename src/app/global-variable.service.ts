@@ -4953,12 +4953,14 @@ export class GlobalVariableService {
                         this.isDirtyDataOwnership = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getDataOwnerships 1',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.dataOwnerships)
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                            this.dataOwnerships)
                         resolve(this.dataOwnerships);
                     });
             } else {
                 console.log('%c    Global-Variables getDataOwnerships 2',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.dataOwnerships)
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                    this.dataOwnerships)
                 resolve(this.dataOwnerships);
             }
         });
@@ -4969,7 +4971,8 @@ export class GlobalVariableService {
         // Returns: this.dataOwnerships.value array, unless:
         //   If not cached or if dirty, get from File
         console.log('%c    Global-Variables getCurrentDataOwnerships ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+            {datasourceID);
 
         let url: string = 'dataOwnerships';
         this.filePath = './assets/data.dataOwnerships.json';
@@ -4983,8 +4986,8 @@ export class GlobalVariableService {
                         );
                         this.currentDataOwnerships = data;
                         console.log('%c    Global-Variables getDataOwnershipss 1',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            datasourceID, data)
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                            {datasourceID, {data)
                         resolve(this.currentDataOwnerships);
                 })
              })
@@ -4996,7 +4999,8 @@ export class GlobalVariableService {
                 );
                 this.currentDataOwnerships = returnData;
                 console.log('%c    Global-Variables getDataOwnershipss 2',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", datasourceID, returnData)
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                    {datasourceID, returnData)
                 resolve(this.currentDataOwnerships);
             });
         };
@@ -5006,7 +5010,7 @@ export class GlobalVariableService {
         // Description: Adds a new Ownership, if it does not exist
         // Returns: Added Data or error message
         console.log('%c    Global-Variables addDataOwnership ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", data.id);
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data);
 
         let url: string = 'dataOwnerships';
         this.filePath = './assets/data.dataOwnerships.json';
@@ -5029,13 +5033,13 @@ export class GlobalVariableService {
                         this.currentDataOwnerships.push(newDS);
                     };
 
-                    console.log('addDataOwnership ADDED', res,
+                    console.log('addDataOwnership ADDED', {res,
                         this.currentDataOwnerships, this.dataOwnerships)
 
                     resolve(res);
                 },
                 err => {
-                    console.log('Error addDataOwnership FAILED', err);;
+                    console.log('Error addDataOwnership FAILED', {err);;
                     reject(err);
                 }
             )
@@ -5046,7 +5050,7 @@ export class GlobalVariableService {
         // Description: Saves DataOwnership
         // Returns: 'Saved' or error message
         console.log('%c    Global-Variables saveDataOwnership ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data);
 
         let url: string = 'dataOwnerships';
         this.filePath = './assets/data.dataOwnerships.json';
@@ -5066,11 +5070,11 @@ export class GlobalVariableService {
                     );
                     this.dataOwnerships[localIndex] = data;
 
-                    console.log('saveDataOwnership SAVED', res)
+                    console.log('saveDataOwnership SAVED', {res)
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error saveDataOwnership FAILED', err);;
+                    console.log('Error saveDataOwnership FAILED', {err);;
                     reject(err);
                 }
             )
@@ -5081,7 +5085,7 @@ export class GlobalVariableService {
         // Description: Deletes a DataOwnerships
         // Returns: 'Deleted' or error message
         console.log('%c    Global-Variables deleteDataOwnership ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", id);
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id);
 
         let url: string = 'dataOwnerships';
         this.filePath = './assets/data.dataOwnerships.json';
@@ -5102,11 +5106,11 @@ export class GlobalVariableService {
                         dsp => dsp.id != id
                     );
 
-                    console.log('deleteDataOwnership DELETED id: ', id)
+                    console.log('deleteDataOwnership DELETED id: ', {id)
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('Error deleteDataOwnership FAILED', err);;
+                    console.log('Error deleteDataOwnership FAILED', {err);;
                     reject(err);
                 }
             )
@@ -5118,7 +5122,7 @@ export class GlobalVariableService {
         // Returns: this.datasourcePermissions array, unless:
         //   If not cached or if dirty, get from File
         console.log('%c    Global-Variables getDatasourcePermissions ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         let url: string = 'datasourcePermissions';
         this.filePath = './assets/data.datasourcePermissions.json';
@@ -5148,12 +5152,14 @@ export class GlobalVariableService {
                         this.isDirtyDatasourcePermissions = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getDatasourcePermissions 1',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.datasourcePermissions)
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                            this.datasourcePermissions)
                         resolve(this.datasourcePermissions);
                     });
             } else {
                 console.log('%c    Global-Variables getDatasourcePermissions 2',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.datasourcePermissions)
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                    this.datasourcePermissions)
                 resolve(this.datasourcePermissions);
             }
         });
@@ -5164,7 +5170,8 @@ export class GlobalVariableService {
         // Returns: this.datasourcePermissions.value array, unless:
         //   If not cached or if dirty, get from File
         console.log('%c    Global-Variables getCurrentDatasourcePermissions ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+            {datasourceID);
 
         let url: string = 'datasourcePermissions';
         this.filePath = './assets/data..datasourcePermissions.json';
@@ -5178,7 +5185,8 @@ export class GlobalVariableService {
                         );
                         this.currentDatasourcePermissions = data;
                         console.log('%c    Global-Variables getDatasourcePermissions 1',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", datasourceID, data)
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                            {datasourceID, data)
                         resolve(this.currentDatasourcePermissions);
                 })
              })
@@ -5190,7 +5198,8 @@ export class GlobalVariableService {
                 );
                 this.currentDatasourcePermissions = returnData;
                 console.log('%c    Global-Variables getDatasourcePermissions 2',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", datasourceID)
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                    {datasourceID)
                 resolve(this.currentDatasourcePermissions);
             });
         };
@@ -5202,7 +5211,7 @@ export class GlobalVariableService {
         // Description: Adds a new Ownership, if it does not exist
         // Returns: Added Data or error message
         console.log('%c    Global-Variables addDatasourcePermission ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", data.id);
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data);
 
         let url: string = 'datasourcePermissions';
         this.filePath = './assets/data.datasourcePermissions.json';
@@ -5225,13 +5234,13 @@ export class GlobalVariableService {
                         this.currentDatasourcePermissions.push(newDS);
                     };
 
-                    console.log('addDatasourcePermission ADDED', res,
+                    console.log('addDatasourcePermission ADDED', {res,
                         this.currentDatasourcePermissions, this.datasourcePermissions)
 
                     resolve(res);
                 },
                 err => {
-                    console.log('Error addDatasourcePermission FAILED', err);;
+                    console.log('Error addDatasourcePermission FAILED', {err);;
                     reject(err);
                 }
             )
@@ -5242,7 +5251,7 @@ export class GlobalVariableService {
         // Description: Saves DatasourcePermission
         // Returns: 'Saved' or error message
         console.log('%c    Global-Variables saveDatasourcePermission ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data);
 
         let url: string = 'datasourcePermissions';
         this.filePath = './assets/data.datasourcePermissions.json';
@@ -5271,11 +5280,11 @@ export class GlobalVariableService {
                     };
 
 
-                    console.log('saveDatasourcePermission SAVED', res)
+                    console.log('saveDatasourcePermission SAVED', {res)
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error saveDatasourcePermission FAILED', err);;
+                    console.log('Error saveDatasourcePermission FAILED', {err);;
                     reject(err);
                 }
             )
@@ -5286,7 +5295,7 @@ export class GlobalVariableService {
     deleteDatasourcePermission(id: number) {
         // Remove a record from the global and current DatasourcePermissions
         console.log('%c    Global-Variables deleteDatasourcePermission ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", id);
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id);
 
         this.datasourcePermissions = this.datasourcePermissions.filter(
             dsp => dsp.id != id
@@ -5301,7 +5310,7 @@ export class GlobalVariableService {
         // Returns: this.datasourcePivots array, unless:
         //   If not cached or if dirty, get from File
         console.log('%c    Global-Variables getDatasourcePivots ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         let url: string = 'datasourcePivots';
         this.filePath = './assets/data.datasourcePivots.json';
@@ -5317,12 +5326,14 @@ export class GlobalVariableService {
                         this.isDirtyDatasourcePivots = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getDatasourcePivots 1',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.datasourcePivots)
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                            this.datasourcePivots)
                         resolve(this.datasourcePivots);
                     });
             } else {
                 console.log('%c    Global-Variables getDatasourcePivots 2',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.datasourcePivots)
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                    this.datasourcePivots)
                 resolve(this.datasourcePivots);
             }
         });
@@ -5333,7 +5344,8 @@ export class GlobalVariableService {
         // Returns: this.datasourcePivots.value array, unless:
         //   If not cached or if dirty, get from File
         console.log('%c    Global-Variables getCurrentDatasourcePivots ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+            {datasourceID);
 
         let url: string = 'datasourcePivots';
         this.filePath = './assets/data..datasourcePivots.json';
@@ -5347,7 +5359,8 @@ export class GlobalVariableService {
                         );
                         this.currentDatasourcePivots = data;
                         console.log('%c    Global-Variables getDatasourcePivots 1',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", datasourceID, data)
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                            {datasourceID, {data)
                         resolve(this.currentDatasourcePivots);
                 })
              })
@@ -5359,7 +5372,8 @@ export class GlobalVariableService {
                 );
                 this.currentDatasourcePivots = returnData;
                 console.log('%c    Global-Variables getDatasourcePivots 2',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", datasourceID, returnData)
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                    {datasourceID, {returnData)
                 resolve(this.currentDatasourcePivots);
             });
         };
@@ -5371,7 +5385,7 @@ export class GlobalVariableService {
         // Returns: this.canvasSettings object, unless:
         //   If not cached or if dirty, get from File
         console.log('%c    Global-Variables getSystemSettings ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         let url: string = 'canvasSettings';
         this.filePath = './assets/data.canvasSettings.json';
@@ -5412,12 +5426,14 @@ export class GlobalVariableService {
                         this.isDirtyCanvasSettings = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getSystemSettings 1',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.canvasSettings)
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                            this.canvasSettings)
                         resolve(this.canvasSettings);
                     });
             } else {
                 console.log('%c    Global-Variables getSystemSettings 2',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.canvasSettings)
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                    this.canvasSettings)
                 resolve(this.canvasSettings);
             }
         });
@@ -5428,7 +5444,7 @@ export class GlobalVariableService {
         // Description: Saves system settings
         // Returns: 'Saved' or error message
         console.log('%c    Global-Variables saveSystemSettings ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data);
 
         let url: string = 'canvasSettings';
         this.filePath = './assets/data.canvasSettings.json';
@@ -5443,11 +5459,11 @@ export class GlobalVariableService {
                 res => {
 
                     this.canvasSettings = JSON.parse(JSON.stringify(res));
-                    console.log('saveSystemSettings SAVED')
+                    console.log('saveSystemSettings SAVED', {res)
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error saveSystemSettings FAILED');;
+                    console.log('Error saveSystemSettings FAILED', {err);;
                     reject(err);
                 }
             )
@@ -5459,7 +5475,7 @@ export class GlobalVariableService {
         // Returns: this.dashboardSubscriptions object, unless:
         //   If not cached or if dirty, get from File
         console.log('%c    Global-Variables getDashboardSubscription ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         let url: string = 'dashboardSubscriptions';
         this.filePath = './assets/data.dashboardSubscriptions.json';
@@ -5476,12 +5492,14 @@ export class GlobalVariableService {
                         this.isDirtyDashboardSubscription = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getDashboardSubscription 1',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.dashboardSubscriptions)
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                            this.dashboardSubscriptions)
                         resolve(this.dashboardSubscriptions);
                     });
             } else {
                 console.log('%c    Global-Variables getDashboardSubscription 2',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.dashboardSubscriptions)
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                    this.dashboardSubscriptions)
                 resolve(this.dashboardSubscriptions);
             }
         });
@@ -5493,7 +5511,8 @@ export class GlobalVariableService {
         // Returns: this.currentDashboardSubscription object, unless:
         //   If not cached or if dirty, get from File
         console.log('%c    Global-Variables getDashboardSubscription ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+            {dashboardID);
 
         let url: string = 'dashboardSubscriptions';
         this.filePath = './assets/data.dashboardSubscriptions.json';
@@ -5514,12 +5533,14 @@ export class GlobalVariableService {
                         this.isDirtyDashboardSubscription = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getDashboardSubscription 1',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.currentDashboardSubscriptions)
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                            this.currentDashboardSubscriptions)
                         resolve(this.currentDashboardSubscriptions);
                     });
             } else {
                 console.log('%c    Global-Variables getDashboardSubscription 2',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", this.currentDashboardSubscriptions)
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                    this.currentDashboardSubscriptions)
                 resolve(this.currentDashboardSubscriptions);
             }
         });
@@ -5530,7 +5551,7 @@ export class GlobalVariableService {
         // Description: Saves DashboardSubscription
         // Returns: 'Saved' or error message
         console.log('%c    Global-Variables saveDashboardSubscription ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data);
 
         let url: string = 'dashboardSubscriptions';
         this.filePath = './assets/data.dashboardSubscriptions.json';
