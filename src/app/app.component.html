@@ -2042,8 +2042,14 @@
                 </span>
 
                 <!-- Title Text -->
-                <b>{{ row.titleText }}</b>
-
+                <b>{{ widgetTitleEdit }}</b>
+                <!-- <b>
+                    <input class="widgetTitleEdit" 
+                        [(ngModel)]="row.titleText"
+                        type="text" 
+                        [disabled]="true"
+                        >
+                </b> -->
                 <!-- Hyperlink -->
                 <span class="widgetXJumpLink" *ngIf="row.hyperlinkDashboardID
                      && row.hyperlinkDashboardTabID"

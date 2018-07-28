@@ -167,6 +167,13 @@
                 padding: 0;
             }
 
+            .widgetTitleEdit {
+                background-color: white;
+                color: black;
+                padding: 0px;
+                margin: 0px;
+            }
+
         .widgetXGraph {
             /* border: 1px dotted gray; */
             display: inline-block;
