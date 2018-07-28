@@ -75,12 +75,13 @@
 
 .widgetFullScreenGraph {
     display: inline-block;
-    margin: 30px auto auto auto;
+    margin-left: 25%;
+    margin-top: 30px;
 }
 
 .widgetFullScreenClose {
     float: left;
-    margin: 8px 8px 20px 8px;
+    margin: 8px 8px 8px 28px;
 }
 
 .widgetFullScreenButton {
