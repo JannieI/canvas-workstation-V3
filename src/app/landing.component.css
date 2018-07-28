@@ -31,3 +31,7 @@ a:hover{
 .lefthandCol {
 	padding-left: 40px;
 }
+
+.newTag {
+	color: red;
+}
