@@ -6200,6 +6200,27 @@ export class AppComponent implements OnInit {
         };
     }
 
+    clickMenuPaletteWidgetTitle() {
+        // Edit Title of selected W
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuPaletteWidgetTitle', '@Start');
+
+        // Only one can be selected
+        if (!this.checkForOnlyOneWidget()) {
+            this.clickMenuWidgetDuplicate('Graph');
+        }
+
+        this.menuOptionClickPreAction();
+
+        // Indicate edit W and open Editor, which will work with selected W
+        this.currentWidgets.forEach(w => {
+            if (w.isSelected) {
+                this.selectedWidget = w;
+            };
+        });
+
+        this.showTitleForm = true;
+    }
+    
 
 
 
@@ -6361,7 +6382,7 @@ export class AppComponent implements OnInit {
 
     actionmenuWidgetEditTitle(ev: MouseEvent, index: number, id: number) {
         // Register mouse down event when resize starts
-        this.globalFunctionService.printToConsole(this.constructor.name,'contextmenuWidgetEditTitle', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'actionmenuWidgetEditTitle', '@Start');
 
         this.menuOptionClickPreAction();
 
@@ -7410,6 +7431,7 @@ export class AppComponent implements OnInit {
         // Call function in Var from Customised portion of Palette
         this.globalFunctionService.printToConsole(this.constructor.name,'paletteFunctionCall', '@Start');
 
+        console.warn('Called ', {methodName}, {methodParam})
         // Call the method with the given params
         if(this[methodName]) {
             // method exists on the component
