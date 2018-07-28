@@ -35,9 +35,11 @@ This document describes items for later versions of Canvas.
     - verify that we cater for casual to sophisticated user
     - go through system and make sure things are done consistently
     - make all drag-n-drop and similar to Microsoft interface.
-    - test: a new user must be able to build a D in 5 minutes, and a person must be ready with max 1hr training session.  Remember, no one reads the manual!  Final test, give it to highschool kids!!
+    - test: a new user must be able to build a D in 5 minutes, and a person must be ready with max 1hr training session.  Remember, no one reads the manual!  Final test, give it to highschool kids!!  
+    - test with newBee - can they do graph on D with minimal guidance?
     - go through Liz doc on Driv (GDG) on design principles and review all forms
     - consider hard max limits: cannot read more than 10000 rows from Excel, etc ?
+    - make it easier to see where to input data: maybe gray background ... Is this really necesary?  Make baie certain as this is baie work ...
 
     System:
     ------
@@ -94,7 +96,7 @@ This document describes items for later versions of Canvas.
 
     Testing:
     --------
-    - test everything with 1000 - ie Dashboards, Widgets per D, etc - to check performance and to see it form layout (ie grids sizes) will copy with large volume
+    - test everything with 1000 - ie 1000 Dashboards in system, 1000 Widgets per D, etc - to check performance and to see it form layout (ie grids sizes) will copy with large volume
     - Test on different configs: screen resolution, 2 screens
     - Test on different devices, ie Tablet and Phone
     Multi-T display: show nr of Tabs where a W is displayed in header as a badge
@@ -176,14 +178,14 @@ This document describes items for later versions of Canvas.
     5. Design (technically) how Datasets, pivotRow, pivotCol, pivotResult, pivotAgg, Fields,    FieldsMetaData, Combinations, CombinationDetails will work, given that these can change over   time, has to be fast enough (cannot all live in memory) and has to integrate with Vega ...
     6. Check Definition of DS = source, location, authentication, F, Tr, Pv etc.  Dataset is just   the data, with an ID / url to find it.
     7. Discover DBs, ie IP, etc (Bradley)
-    8. When removing a Dataset, it validates that not used in a Widget, Shape or Combination. If so,     then cannot be removed.  If removed, all resultsets stored for it must be removed as well, or  not?
-    9. Data Quality issues: add place to add detail values.  An overall statement can say all data  has an issue, but a specific one must identify the column(s) and row(s) affected, thus given     the IDs or key values.
-    10.Similtaneous update of LOCAL and GLOBAL vars!  Ie: app sends [widgets] to widget component,  which is the local widgets.  Who and where are Global widgets synced !!!!????  Maybe use     observables where the local ones just subscribe to the global ones.  Anyway, make this method   standard across app.
+    8. When removing a Dataset, it validates that not used in a Widget, Shape or Combination. If so, then cannot be removed.  If removed, all resultsets stored for it must be removed as well, or  not?
+    9. Data Quality issues: add place to add detail values.  An overall statement can say all data  has an issue, but a specific one must identify the column(s) and row(s) affected, thus given the IDs or key values.
+    10.Similtaneous update of LOCAL and GLOBAL vars!  Ie: app sends [widgets] to widget component, which is the local widgets.  Who and where are Global widgets synced !!!!????  Maybe use observables where the local ones just subscribe to the global ones.  Anyway, make this method standard across app.
     11.Determine which transformations live on server and which on client, and whether some/all
        lives on both.
     12.Remember usage - and can sort by popular ones or show it for all relevant objects
     13.Allow own profile pic upload!
-    14.How do we treat sensitive data - that may not be seen by DBA.  Keep it in Excel and reload   each time ...
+    14.How do we treat sensitive data - that may not be seen by DBA.  Keep it in Excel and reload each time ...
     - Add Named-Transformations: have a CRUD form where user specifies a name, and a list of transformations to be performed with it.  Maybe give a start DS -> can only work if the requested DS has this layout, plus has field types, etc to calc and also know it will work.  Seems best solution to have a start DS.
 
     Data types and field lengths:
@@ -195,6 +197,12 @@ This document describes items for later versions of Canvas.
     16.After Ws were linked to a DS: if do a Tr, then validate that W are still okay (ie a W field  may not exist any longer in DS)
 
 
+
+    Authentication:
+    ---------------
+    - cater for Microsoft AD
+    - cater for single sign-on - somehow
+    - add Auth0, Google, Facebook
 
     Widget Editor - Adv:
     --------------------
@@ -285,12 +293,16 @@ This document describes items for later versions of Canvas.
     17.Considering opening message per D (might even be per user as well), that will display each time D is opened.  How is it entered, who enters / deletes / edits it, and how is it displayed - modal (another one!), popup and for how long, and how is it closed, and how does it look to fit in?
 
 
-    Sample Ds:
-    ----------
+    Sample D: use this to demo Canvas features (brag)
+    ---------
     - Sample 1: personal finance, budget, expenses, etc
     - Sample 2: elaborate to-do list
     - Sample 3: buying a house: loan projections, to-do list of steps, pictures of house, share with friends, time-line of progress, gannt chart in Vega!
 
+
+    Sample (standard) DS: useful data available
+    - Consider where to store, tag as sample => cannot alter and delete?
+    - Reserve Bank CPI
 
 
     Templates:
@@ -368,6 +380,11 @@ This document describes items for later versions of Canvas.
     - decide if different actions per W Type, ie Slicer has some that Shape does not have
     - consider recorded actions: make title bg color = xxx, color = yyy (company default)
     - consider COPY of DS: can then amend the second one, ie do Transformations
+    - load file: add predefined filters, so that only THIS data is loaded.  Thus, less loaded into Canvas.  Consider how to define this, ie columnName='...' - can this then be done before / after preview ?  Make visual.
+    - load file: add limit, max nr of lines loaded.  And warn when this has been reached.
+    - load file: where to add data types?  
+    - load file: where to add validation and action, ie Col = 'Sales Amount' is a decimal, and if not so, ignore row / fail?
+    - load file: add all-or-nothing option: all good, else fail.  If false, will load what is valid and just ignore rest?
 
     Eazl:
     ----
