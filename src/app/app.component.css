@@ -73,11 +73,20 @@
     z-index: 110;
 }
 
-.widgetFullScreenClose {
-    float: right;
-    margin: 3px;
+.widgetFullScreenGraph {
+    display: inline-block;
+    margin: 30px auto auto auto;
 }
 
+.widgetFullScreenClose {
+    float: left;
+    margin: 8px 8px 20px 8px;
+}
+
+.widgetFullScreenButton {
+    float: right;
+    margin: 8px 18px 8px 8px;
+}
 
 /* Palette */
 .palette {

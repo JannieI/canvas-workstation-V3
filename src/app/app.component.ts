@@ -3862,16 +3862,13 @@ export class AppComponent implements OnInit {
         // Rescale and limit amount of detail on the graph
         localWidget.containerLeft = 50;
         localWidget.containerTop = 50;
-        localWidget.containerHeight = 650;
-        localWidget.graphHeight = 600;
-        localWidget.containerWidth = 850;
-        localWidget.graphWidth = 800;
+        localWidget.containerHeight = 530;
+        localWidget.graphHeight = 500;
+        localWidget.containerWidth = 600;
+        localWidget.graphWidth = 550;
         localWidget.containerBoxshadow = 'none';
         localWidget.containerBorder = 'none';
         localWidget.isSelected = false;
-        localWidget.graphTitle = '';
-        localWidget.graphXaxisTitle = '';
-        localWidget.graphYaxisTitle = '';
         localWidget.containerBorder = '';
         localWidget.containerBackgroundcolor = 'white';
 
@@ -3879,17 +3876,6 @@ export class AppComponent implements OnInit {
 
         let specification = compile(definition).spec;
         this.view = new View(parse(specification));
-
-        // KEEP - code to Download a Vega Graph !!!
-        // this.view.toImageURL('png').then(function(url) {
-        //     console.warn('xx Wow!!')
-        //     var link = document.createElement('a');
-        //     link.setAttribute('href', url);
-        //     link.setAttribute('target', '_blank');
-        //     link.setAttribute('download', 'vega-export.png');
-        //     link.dispatchEvent(new MouseEvent('click'));
-        //   }).catch(function(error) { /* error handling */ });
-        //   console.warn('xx after toIm !!')
 
         this.view.renderer('svg')
             .initialize(this.widgetFullDOM.nativeElement)

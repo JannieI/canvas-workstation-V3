@@ -361,7 +361,7 @@ export class DashboardRenameComponent implements OnInit {
                 };
             });
             this.globalVariableService.dashboardsRecent.forEach(dR => {
-                if (dR.id == this.selectedDashboardID) {
+                if (dR.dashboardID == this.selectedDashboardID) {
                     dR.nameAtRunTime = this.newName;
                 };
             });
