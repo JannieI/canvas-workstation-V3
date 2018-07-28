@@ -9,8 +9,9 @@
 	-shadow: 0 2px 2px 0 lightgray;
 }
 
+/* landingPageBackgroundImage1 has lisence methinks */
 .modalContent {
-	background-image: url("../images/landingPageBackgroundImage1.jpg");
+	background-image: url("../images/landingPageBackgroundImageLunarEclise.jpg");
 	background-position: center; 
 	background-size: cover;
 	color: white;
