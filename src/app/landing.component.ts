@@ -29,6 +29,7 @@ export class LandingComponent implements OnInit {
 
 	// sampleDashboards: Dashboard[] = this.globalVariableService.dashboardsSamples;
 	dashboardsRecent: DashboardRecent[];
+	experiencedUser: boolean = true;
 	sampleDashboards: Dashboard[];
 	showModel: boolean = true;
 

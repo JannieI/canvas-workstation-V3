@@ -39,3 +39,30 @@ a:hover{
 .messagesTag {
 	color: yellow;
 }
+
+.experiencedUser {
+	display: grid;
+	grid-template-columns: repeat(21, 1fr);
+    grid-template-rows: repeat(21, 1rem);
+}
+	.gridTitle {
+		font-size: 0.75rem;
+		grid-column-start: 1;
+		grid-column-end: 18;
+		grid-row-start: 1;
+		grid-row-end: 2;
+		margin-left: 30px;
+		text-align: left;
+	}
+	.gridCreateDashboard {
+		grid-column-start: 1;
+		grid-column-end: 18;
+		grid-row-start: 3;
+		grid-row-end: 4;
+	}
+	.gridRest {
+		grid-column-start: 1;
+		grid-column-end: 18;
+		grid-row-start: 5;
+		grid-row-end: 19;
+	}

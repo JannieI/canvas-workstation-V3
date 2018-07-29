@@ -1,7 +1,7 @@
 <div class="modal modalBox">
 	<div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
 		<div class="modal-content modalContent">
-			<div class="row">
+			<div class="row" *ngIf="experiencedUser">
 				<div class="col-xs-6 lefthandCol" >
 					<div>
 						<h3>Start</h3>
@@ -46,7 +46,7 @@
 						</div>
 						<div>
 							<i>
-								Extended Search 
+								Extended Search
 								<span class="newTag">New !</span>
 							</i>
 						</div>
@@ -54,7 +54,7 @@
 						<div>
 							<i class="messagesTag">You have 2 new messages</i>
 						</div>
-				</div>
+					</div>
 
 				</div>
 
@@ -70,7 +70,7 @@
 							</span>
 						</a>
 					</div>
-					
+
 					<h3>Recent Dashboards</h3>
 					<div *ngFor="let row of dashboardsRecent; let i=index">
 						<a
@@ -81,7 +81,7 @@
 								>
 							</clr-icon>
 							<span (click)="clickOpenRecentDashboard(
-											row.dashboardID, 
+											row.dashboardID,
 											row.dashboardTabID,
 											row.editMode,
 											i
@@ -89,8 +89,8 @@
 								>
 								{{row.nameAtRunTime}} ({{ row.stateAtRunTime }})
 								<clr-icon *ngIf="row.editMode"
-									shape="pencil" 
-									class="selectIcon1" 
+									shape="pencil"
+									class="selectIcon1"
 									size="10"
 									(dblclick)="dblclickDelete(i, row.id)"
 									>
@@ -101,20 +101,66 @@
 					</div>
 					<br>
 				</div>
-			</div>
 
-
-			<div>
-				<h3>Get in touch</h3>
 				<div>
-					<i>
-						If you
-						<clr-icon shape="heart" class="is-solid"></clr-icon>
-						Canvas or just want to get in touch we'd love to hear your thoughts
-						<a href="mailto:info@clarityanalytics.xyz">info@clarityanalytics.xyz</a>
-					</i>
+					<h3>Get in touch</h3>
+					<div>
+						<i>
+							If you
+							<clr-icon shape="heart" class="is-solid"></clr-icon>
+							Canvas or just want to get in touch we'd love to hear your thoughts
+							<a href="mailto:info@clarityanalytics.xyz">info@clarityanalytics.xyz</a>
+						</i>
+					</div>
 				</div>
 			</div>
+
+			<div class="row experiencedUser" *ngIf="!experiencedUser">
+				<div class="gridTitle">
+					Welcome to Canvas!
+				</div>
+				<div class="gridCreateDashboard">
+					<a (click)="clickOpenNewDashboard()">Create a new Dashboard</a>
+				</div>
+
+				<div class="gridRest">
+
+					<div *ngIf="dashboardsRecent">
+
+						<h3>Or select a Recent Dashboards</h3>
+						<div *ngFor="let row of dashboardsRecent; let i=index">
+							<a
+								class="nav-link"
+								>
+								<clr-icon shape="trash"
+									(dblclick)="dblclickDeleteRecent(row.id)"
+									>
+								</clr-icon>
+								<span (click)="clickOpenRecentDashboard(
+												row.dashboardID,
+												row.dashboardTabID,
+												row.editMode,
+												i
+											)"
+									>
+									{{row.nameAtRunTime}} ({{ row.stateAtRunTime }})
+									<clr-icon *ngIf="row.editMode"
+										shape="pencil"
+										class="selectIcon1"
+										size="10"
+										(dblclick)="dblclickDelete(i, row.id)"
+										>
+									</clr-icon>
+
+								</span>
+							</a>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+
 
 
 		</div>
