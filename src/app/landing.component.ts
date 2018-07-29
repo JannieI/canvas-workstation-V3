@@ -29,6 +29,7 @@ export class LandingComponent implements OnInit {
 
 	// sampleDashboards: Dashboard[] = this.globalVariableService.dashboardsSamples;
 	dashboardsRecent: DashboardRecent[];
+	gotIt: boolean = false;
 	isFirstTimeUser: boolean = false;
 	sampleDashboards: Dashboard[];
 	showModel: boolean = true;
@@ -216,14 +217,14 @@ export class LandingComponent implements OnInit {
 	}
 
 	clickClose(action: string) {
-        //
+        // Close this form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
 		this.formLandingClosed.emit(action);
 	}
 
 	clickOpenExisting() {
-        //
+        // Open form to select an existing D to open
         this.globalFunctionService.printToConsole(this.constructor.name,'clickOpenExisting', '@Start');
 
 		this.globalVariableService.openDashboardFormOnStartup = true;
@@ -232,10 +233,16 @@ export class LandingComponent implements OnInit {
 	}
 
 	clickOpenNewDashboard() {
-        //
+        // Open form to create a new D
         this.globalFunctionService.printToConsole(this.constructor.name,'clickOpenNewDashboard', '@Start');
 
 		this.formLandingClosed.emit('New');
+	}
+
+	clickGotIt(ev: any) {
+        // Alter first time user-ness
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickGotIt', '@Start');
+		console.warn('xx', ev.srcElement.checked)
 	}
 
 }

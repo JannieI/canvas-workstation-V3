@@ -137,7 +137,7 @@
 				</div>
 
 				<div *ngIf="dashboardsRecent" class="gridRecentTitle">
-					Or select a Recent Dashboards
+					Or select a recent Dashboard
 				</div>
 				<div *ngIf="dashboardsRecent" class="gridRecentArea">
 					<div *ngFor="let row of dashboardsRecent; let i=index">
@@ -196,7 +196,7 @@
 	
 				<div class="gridGotIt">
 					<i>Next time, take off the training wheels</i> 
-					<input type="checkbox" (click)="clickGotIt()">
+					<input type="checkbox" (click)="clickGotIt($event)">
 				</div>
 			</div>
 
