@@ -401,6 +401,10 @@ This document describes items for later versions of Canvas.
     Tabs:
     - can we hide T - will show in T list with hidden tick, can uncheck?
 
+    Reports:
+    --------
+    - consider a Marked Up report, created with Markup language and data.  Can get complicated!
+    
     Widgets:
     - Decide to get a W from another D - only show those where the user has access to the DS
     - Decide if check/tick is shown on related Sl when a W is clicked.  The treeview is good enough methinks
