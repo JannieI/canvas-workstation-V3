@@ -6387,6 +6387,22 @@ export class AppComponent implements OnInit {
         this.showTitleForm = true;
     }
 
+    actionmenuWidgetFlipToTable(id: number) {
+        // Change type to Graph for a Table
+        this.globalFunctionService.printToConsole(this.constructor.name,'actionmenuWidgetFlipToTable', '@Start');
+
+        this.menuOptionClickPreAction();
+
+        // Indicate edit W and open Editor, which will work with selected W
+        this.currentWidgets.forEach(w => {
+            if (w.id == id) {
+                    w.widgetType = 'Table'
+            };
+        });
+
+        this.showTitleForm = true;
+    }
+
     actionmenuWidgetCopyImage(ev: MouseEvent, index: number, id: number) {
         // Opens W full screen)
         this.globalFunctionService.printToConsole(this.constructor.name,'actionmenuWidgetCopyImage', '@Start');
