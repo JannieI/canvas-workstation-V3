@@ -1,7 +1,7 @@
 <div class="modal modalBox">
 	<div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
 		<div class="modal-content modalContent">
-			<div class="row" *ngIf="experiencedUser">
+			<div class="row" *ngIf="isFirstTimeUser">
 				<div class="col-xs-6 lefthandCol" >
 					<div>
 						<h3>Start</h3>
@@ -115,7 +115,7 @@
 				</div>
 			</div>
 
-			<div class="row experiencedUser" *ngIf="!experiencedUser">
+			<div class="row isFirstTimeUser" *ngIf="!isFirstTimeUser">
 				<div class="gridTitle">
 					Welcome to Canvas!
 				</div>

@@ -29,7 +29,7 @@ export class LandingComponent implements OnInit {
 
 	// sampleDashboards: Dashboard[] = this.globalVariableService.dashboardsSamples;
 	dashboardsRecent: DashboardRecent[];
-	experiencedUser: boolean = false;
+	isFirstTimeUser: boolean = false;
 	sampleDashboards: Dashboard[];
 	showModel: boolean = true;
 
@@ -134,6 +134,7 @@ export class LandingComponent implements OnInit {
 		});
 
 		// Load System Settings
+		this.isFirstTimeUser = this.globalVariableService.currentUser.isFirstTimeUser;
 		this.globalVariableService.getSystemSettings().then(i => {
 		});
 	}
