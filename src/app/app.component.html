@@ -2042,7 +2042,7 @@
                 </span>
 
                 <!-- Title Text -->
-                <b>{{ widgetTitleEdit }}</b>
+                <b>{{ row.titleText }}</b>
                 <!-- <b>
                     <input class="widgetTitleEdit" 
                         [(ngModel)]="row.titleText"
@@ -2949,6 +2949,21 @@
                         (click)="actionmenuWidgetEditTitle($event, i, row.id)"
                         >
                         Edit Title
+                    </button>
+
+                    <button class="dropdown-item" *ngIf="row.widgetType == 'Graph'"
+                        type="button"
+                        clrDropdownItem
+                        (click)="actionmenuWidgetFlipToTable(row.id)"
+                        >
+                        Flip to Table
+                    </button>
+                    <button class="dropdown-item" *ngIf="row.widgetType == 'Table'"
+                        type="button"
+                        clrDropdownItem
+                        (click)="actionmenuWidgetFlipToGraph(row.id)"
+                        >
+                        Flip to Graph
                     </button>
 
                 </clr-dropdown-menu>

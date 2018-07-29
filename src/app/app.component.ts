@@ -6376,6 +6376,11 @@ export class AppComponent implements OnInit {
         this.currentWidgets.forEach(w => {
             if (w.id == id) {
                 this.selectedWidget = w;
+                if (w.widgetType == 'Table') {
+                    w.widgetType = 'Graph'
+                } else {
+                    w.widgetType = 'Table'
+                };
             };
         });
 
