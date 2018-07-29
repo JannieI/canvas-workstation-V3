@@ -115,13 +115,25 @@
 				</div>
 			</div>
 
-			<div class="row isFirstTimeUser" *ngIf="isFirstTimeUser">
+			<div class="row experiencedUser" *ngIf="isFirstTimeUser">
 				<div class="gridTitle">
-					Welcome to Canvas!
+					<b>Welcome to Canvas!</b>
 				</div>
 
 				<div class="gridCreateDashboard">
 					<a (click)="clickOpenNewDashboard()">1. Create a new Dashboard</a>
+				</div>
+				<div class="gridCreateDashboardButton">
+					<button
+						type="button"
+						class="btn btn-link"
+						(click)="clickOpenNewDashboard()"
+						>
+						<i>
+							New
+						</i>
+					</button>
+
 				</div>
 
 				<div *ngIf="dashboardsRecent" class="gridRecentTitle">
@@ -143,7 +155,9 @@
 											i
 										)"
 								>
-								{{row.nameAtRunTime}} ({{ row.stateAtRunTime }})
+								<i style="color: rgb(117, 117, 211);">
+									{{row.nameAtRunTime}} ({{ row.stateAtRunTime }})
+								</i>
 								<clr-icon *ngIf="row.editMode"
 									shape="pencil"
 									class="selectIcon1"
@@ -162,8 +176,8 @@
 				</div>
 				<div class="gridAddDataImage">
 					<img
-						[style.height.px]="110"
-						[style.width.px]="110"
+						[style.height.px]="90"
+						[style.width.px]="90"
 						src="../images/CanvasHelpMenuData.png"
 					>
 
@@ -174,8 +188,8 @@
 				</div>
 				<div class="gridAddWidgetImage">
 					<img
-						[style.height.px]="110"
-						[style.width.px]="110"
+						[style.height.px]="90"
+						[style.width.px]="90"
 						src="../images/CanvsHelpMenuAddGraph.png"
 					>
 				</div>
