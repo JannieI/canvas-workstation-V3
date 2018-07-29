@@ -58,6 +58,9 @@ export class LandingComponent implements OnInit {
 			this.globalVariableService.getDashboardSamples().then(sD => {
 				this.sampleDashboards = sD;
 
+				// Set user stuffies
+				this.isFirstTimeUser = this.globalVariableService.currentUser.isFirstTimeUser;
+		
 				// Recent D
 				this.globalVariableService.getDashboardsRecent(
 					this.globalVariableService.currentUser.userID
@@ -134,9 +137,7 @@ export class LandingComponent implements OnInit {
 		});
 
 		// Load System Settings
-		this.isFirstTimeUser = this.globalVariableService.currentUser.isFirstTimeUser;
-		this.globalVariableService.getSystemSettings().then(i => {
-		});
+		this.globalVariableService.getSystemSettings();
 	}
 
 	ngOnInit() {
