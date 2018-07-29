@@ -46,23 +46,56 @@ a:hover{
     grid-template-rows: repeat(21, 1rem);
 }
 	.gridTitle {
-		font-size: 0.75rem;
-		grid-column-start: 1;
-		grid-column-end: 18;
-		grid-row-start: 1;
-		grid-row-end: 2;
-		margin-left: 30px;
-		text-align: left;
+        font-size: 1.1rem;
+		grid-column-start: 6;
+		grid-column-end: 14;
+		grid-row-start: 3;
+		grid-row-end: 3;
+		text-align: center;
 	}
 	.gridCreateDashboard {
-		grid-column-start: 1;
-		grid-column-end: 18;
-		grid-row-start: 3;
-		grid-row-end: 4;
+        font-size: 0.9rem;
+		grid-column-start: 2;
+		grid-column-end: 11;
+		grid-row-start: 5;
+		grid-row-end: 6;
 	}
-	.gridRest {
-		grid-column-start: 1;
+	.gridRecentTitle {
+        font-size: 0.9rem;
+		grid-column-start: 9;
 		grid-column-end: 18;
 		grid-row-start: 5;
+		grid-row-end: 6;
+	}
+	.gridRecentArea {
+		grid-column-start: 16;
+		grid-column-end: 21;
+		grid-row-start: 5;
+		grid-row-end: 12;
+	}
+	.gridAddData {
+        font-size: 0.9rem;
+		grid-column-start: 2;
+		grid-column-end: 18;
+		grid-row-start: 10;
+		grid-row-end: 16;
+	}
+	.gridAddDataImage {
+		grid-column-start: 10;
+		grid-column-end: 18;
+		grid-row-start: 10;
+		grid-row-end: 16;
+	}
+	.gridAddWidget {
+        font-size: 0.9rem;
+		grid-column-start: 2;
+		grid-column-end: 18;
+		grid-row-start: 16;
+		grid-row-end: 19;
+	}
+	.gridAddWidgetImage {
+		grid-column-start: 11;
+		grid-column-end: 18;
+		grid-row-start: 16;
 		grid-row-end: 19;
 	}
