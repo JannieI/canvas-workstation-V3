@@ -242,7 +242,9 @@ export class LandingComponent implements OnInit {
 	clickGotIt(ev: any) {
         // Alter first time user-ness
         this.globalFunctionService.printToConsole(this.constructor.name,'clickGotIt', '@Start');
-		console.warn('xx', ev.srcElement.checked)
+
+		this.globalVariableService.currentUser.isFirstTimeUser = !ev.srcElement.checked;
+		this.globalVariableService.saveCanvasUser(this.globalVariableService.currentUser);
 	}
 
 }
