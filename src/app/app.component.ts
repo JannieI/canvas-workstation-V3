@@ -6376,11 +6376,6 @@ export class AppComponent implements OnInit {
         this.currentWidgets.forEach(w => {
             if (w.id == id) {
                 this.selectedWidget = w;
-                if (w.widgetType == 'Table') {
-                    w.widgetType = 'Graph'
-                } else {
-                    w.widgetType = 'Table'
-                };
             };
         });
 
@@ -6396,11 +6391,11 @@ export class AppComponent implements OnInit {
         // Indicate edit W and open Editor, which will work with selected W
         this.currentWidgets.forEach(w => {
             if (w.id == id) {
-                    w.widgetType = 'Table'
+                w.widgetType = 'Table'
             };
         });
 
-        this.showTitleForm = true;
+        this.menuOptionClickPostAction();
     }
 
     actionmenuWidgetFlipToGraph(id: number) {
@@ -6412,12 +6407,11 @@ export class AppComponent implements OnInit {
         // Indicate edit W and open Editor, which will work with selected W
         this.currentWidgets.forEach(w => {
             if (w.id == id) {
-                    w.widgetType = 'Graph'
+                w.widgetType = 'Graph'
             };
         });
 
-        this.showTitleForm = true;
-    }
+        this.menuOptionClickPostAction();    }
 
     actionmenuWidgetCopyImage(ev: MouseEvent, index: number, id: number) {
         // Opens W full screen)
