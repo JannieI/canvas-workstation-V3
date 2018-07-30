@@ -9,10 +9,15 @@ This document describes items for later versions of Canvas.
     ---------
     Add Tooltips to all - decide if CSS title is okay, as it looks different to Clarity tooltip   for icons - See where and how to use tooltips on buttons (ie HTML title="" or via Clarity).  Be   consistent!!
 
-    Outstanding:
+    Outstanding Forms:
     ------------
     - Usage Stats form
     - Data Qual form
+    - Print
+    - Theme
+    - Tablist
+    - Direct Service
+    - Managed Service
 
 
 
@@ -55,11 +60,6 @@ This document describes items for later versions of Canvas.
 
     - consider if we need SAVE AS functionality
 
-    Create DS via File:
-    -------------------
-    - consider multiple files, in which case to loop over files Array
-    - consider drag and drop from external places - see example in 
-        https://www.html5rocks.com/en/tutorials/file/dndfiles/
 
     PDF / IMAGE:
     ------------
@@ -187,6 +187,8 @@ This document describes items for later versions of Canvas.
     13.Allow own profile pic upload!
     14.How do we treat sensitive data - that may not be seen by DBA.  Keep it in Excel and reload each time ...
     - Add Named-Transformations: have a CRUD form where user specifies a name, and a list of transformations to be performed with it.  Maybe give a start DS -> can only work if the requested DS has this layout, plus has field types, etc to calc and also know it will work.  Seems best solution to have a start DS.
+    - export to csv, Excel, etc
+
 
     Data types and field lengths:
     --------------------------------
@@ -404,7 +406,7 @@ This document describes items for later versions of Canvas.
     Reports:
     --------
     - consider a Marked Up report, created with Markup language and data.  Can get complicated!
-    
+
     Widgets:
     - Decide to get a W from another D - only show those where the user has access to the DS
     - Decide if check/tick is shown on related Sl when a W is clicked.  The treeview is good enough methinks
@@ -431,7 +433,6 @@ This document describes items for later versions of Canvas.
     Tooltip:
     - Show a Viz on the tooltip - this could be our explain ... !
     Landing page:
-    - Incorporate tasks into Landing page?
     Menu functions:
     - Consider copy + paste for Slicer, Shape and Table.  For now, I think it is okay
     - Consider cut as well, cut = copy + delete ...
@@ -489,11 +490,12 @@ This document describes items for later versions of Canvas.
     - PBI can change type of W after created, ie Table to Matrix
     - How to incorporate fancy W types, ie half circle with needle / doughnut / etc ...
     - add video as shape
-    - make it easier to add co logo, ie Add logo menu option.
     - ArrowThin is not inside the W container => difficult to drag and drop, hangs over others, difficult to place, looks funny.  Also, the Arrow header is not always the same colour as the line.  Make more sophisticated to set tail (line) length -> so line length = 0 makes it s simple arrow head, or Triangle.  Also dimentions for head size - height and width.  Can these be done with a mouse ?
     - consider triangle as a new shape - not sure it is needed, or if can be done via thin arrows
     - are thin Arrows just Arrows without the body??
     - Arrow: make dynamic!  For both size and rotation, taking into account that it has to land inside the W container at all times, and preferably left top corner for easy placements.  Also, consider shrinking W container, ie with *ngIf on title and other grid areas ...
+    - make it easier to add co logo, ie Add logo menu option.
+
 
     Draw Mode (Shapes):
     -------------------
@@ -527,13 +529,32 @@ This document describes items for later versions of Canvas.
     --------
     - make Palette button sizes dynamic - small, medium, large, and make this a user setting.  Make sure div around it is also sized dynamically.
     ButtonBars: Decide on what to do with Widget- and Shape-ButtonBars and 2 forms - AFTER UI and functionality has been decided.  Maybe remove them, or only allow for order ... For now,palette cannot be changed.
-    - expand palette / menus: add regularly used tasks, ie add a circle (with one click)
-    - generalise this: user can record task!!  For example, add arrow, gray with black border at 45 degrees = recorded and add as a button !!!
+    - expand palette / menus: add regularly used tasks/actions, ie add a circle (with one click)
+    - generalise this: user can record task/actions!!  For example, add arrow, gray with black border at 45 degrees = recorded and add as a button !!!
     - make icons draggable - like Ubuntu palette on left !
+    - relook at toolbar colour
+    - consider palette per Widget (Jaco)
 
     Themes:
     -------
     - consider light, etc themes, see https://medium.com/@amcdnl/theming-angular-with-css-variables-3c78a5b20b24
+
+
+    Tasks (enhance form and functionality):
+    ------
+    - Incorporate tasks into Landing page?
+    - notify when not done (by deadline)
+    - easy to see outstanding tasks
+    - email / notify when a task ends, starts
+    - powerful filters
+    - can just give deadline (optional start, duration)
+    
+    Messages (enhance form and functionality):
+    --------
+    - sort with latest first
+    - give more sort and filter - ie all per user, topic
+    - consider tags / keywords.  Also, is there a central keyword store?  For example, the same keyboards / tags used for Dashboards and Widgets and Messages?
+    - easy to show / access unread ~ use of inbox as todo list in Google
 
     Global Variables:
     -----------------
@@ -549,3 +570,16 @@ This document describes items for later versions of Canvas.
     ---------------
     Closely monitor usage of data (who accessed what and when).  Then consider (very carefully) a payment plan for data usage - simply like a data vendor ...
 
+
+    Tributary:
+    ----------
+    - consider a much larger project, say with a visual GUI to show processes / transformations
+    - consider: get the SQL for an Overlay query, might be useful
+
+    Create DS via File:
+    -------------------
+    - consider multiple files, in which case to loop over files Array
+    - consider drag and drop from external places - see example in 
+        https://www.html5rocks.com/en/tutorials/file/dndfiles/
+
+    
