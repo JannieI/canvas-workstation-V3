@@ -282,27 +282,13 @@ export class DataDirectSQLEditorComponent implements OnInit {
         // Export the file, and close the file
         this.globalFunctionService.printToConsole(this.constructor.name,'clickExport', '@Start');
 
-        // Reset
-        this.errorMessage = '';
-
-        let fileName = 'SQL statement';
-
         // Export
-        var obj = JSON.stringify(this.selectedDatasource.dataSQLStatement);
-        this.saveText(JSON.stringify(obj), fileName);
-
-    }
-
-    saveText(text, filename){
-        // Actual Export of selected DS to a file by creating <a> tag
-        this.globalFunctionService.printToConsole(this.constructor.name,'saveText',           '@Start');
-
         var a = document.createElement('a');
-        a.setAttribute('href', 'data:text/json;charset=utf-u,'+encodeURIComponent(text));
-        a.setAttribute('download', filename);
+        a.setAttribute('href', 'data:text/json;charset=utf-u,'+encodeURIComponent(this.selectedDatasource.dataSQLStatement));
+        a.setAttribute('download', 'Canvas SQL statement');
         a.click()
-    }
 
+    }
 
     clickClose() {
         // Close the form, nothing saved
