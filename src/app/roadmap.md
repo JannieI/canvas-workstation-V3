@@ -45,6 +45,7 @@ This document describes items for later versions of Canvas.
     - go through Liz doc on Driv (GDG) on design principles and review all forms
     - consider hard max limits: cannot read more than 10000 rows from Excel, etc ?
     - make it easier to see where to input data: maybe gray background ... Is this really necesary?  Make baie certain as this is baie work ...
+    - look at Windi.com, Wahoo ? to see how to make it easy
 
     System:
     ------
@@ -120,16 +121,16 @@ This document describes items for later versions of Canvas.
 
     Refactoring / tech debt / necessary improvements:
     -------------------------------------------------
-    - review and check: isable IN 3 CLICKSt should NEVER be allowed to edit the DB itself - there must be a UI function for changsable IN 3 CLICKSing things.  And always by the users, with rights if necessary.
-    - Consider array.splisable IN 3 CLICKSce() instead of current deep copy - is more TS-like ...  Review ALL deep    copies - try sable IN 3 CLICKSJSONify or source.map(Object) - remember that Sl Object. did not deep copy!!sable IN 3 CLICKS
-    - Add RouteGuard on 'sable IN 3 CLICKSClarity Analytics', before going to web site ...
+    - review and check: it should NEVER be allowed to edit the DB itself - there must be a UI function for changing things.  And always by the users, with rights if necessary.
+    - Consider array.splice() instead of current deep copy - is more TS-like ...  Review ALL deep copies - try JSONify or source.map(Object) - remember that Sl Object. did not deep copy!!
+    - Add RouteGuard on 'Clarity Analytics', before going to web site ...
     BUG/ISSUE: multi-tab Slicers and Ws only refresh on the first one - when are the others done?  To do them while hidden makes no sence - should we have a dirty flag, and filterSlicer on tab change??
-    - ContainerFontSize - consider dropping it, and have a font size for Title, Shape-Text, etc.      Else it gets confusing ...
-    - Consider not increasing stuckCount in App if an item is selected/deselected. This does mean   to pass event back from slicer.single component.
-    On Duplicate of W: make sure Comments, Links, etc is also duplicated in DB (or not??)
-    Expand: add Refresh button, for when change nr lines to show.  Also, 100 -> 1000
+    - ContainerFontSize - consider dropping it, and have a font size for Title, Shape-Text, etc. Else it gets confusing ...
+    - Consider not increasing stuckCount in App if an item is selected/deselected. This does mean to pass event back from slicer.single component.
+    - On Duplicate of W: make sure Comments, Links, etc is also duplicated in DB (or not??)
+    - Expand: add Refresh button, for when change nr lines to show.  Also, 100 -> 1000
      + Dont show top if no Dataset - rather appropriate Unexpected Error msg
-    Resize does not snap sable IN 3 CLICKSto grid - is this philosophy correct?  If it does snap, remember to change the graphW & -H as well
+    - Resize does not snap to grid - is this philosophy correct?  If it does snap, remember to change the graphW & -H as well
     - FIX nrDataQualityIssues at DB level: join and fill the value, so that Canvas dont need to do any manipulation
     - in Open D we list those 'Due on' a date.  This can only be done when we calculate the due date given the schedule - remember the Omega complexity with this.
     
@@ -176,7 +177,7 @@ This document describes items for later versions of Canvas.
     3. Have TestConnectivity method - can TEST connection
     4. I used FieldNames (string) in ie Pivot - is that okay?
     5. Design (technically) how Datasets, pivotRow, pivotCol, pivotResult, pivotAgg, Fields,    FieldsMetaData, Combinations, CombinationDetails will work, given that these can change over   time, has to be fast enough (cannot all live in memory) and has to integrate with Vega ...
-    6. Check Definition of DS = source, location, authentication, F, Tr, Pv etc.  Dataset is just   the data, with an ID / url to find it.
+    6. Check Definition of DS = source, location, authentication, F, Tr, Pv etc.  Dataset is just the data, with an ID / url to find it.
     7. Discover DBs, ie IP, etc (Bradley)
     8. When removing a Dataset, it validates that not used in a Widget, Shape or Combination. If so, then cannot be removed.  If removed, all resultsets stored for it must be removed as well, or  not?
     9. Data Quality issues: add place to add detail values.  An overall statement can say all data  has an issue, but a specific one must identify the column(s) and row(s) affected, thus given the IDs or key values.
@@ -191,13 +192,20 @@ This document describes items for later versions of Canvas.
 
 
     Data types and field lengths:
-    --------------------------------
+    -----------------------------
     - Define Canvas datatype = TS ones?  Define Canvas data types: which module creates this for   data and where?  Are all numbers equal?
     - where defined, by what means, and how are they used?  Is it display side only?  Can the user  change it?  What if an actual field is wider than the stated length - will it truncate   displayed data?  Does numbers have a length?
     - How are dates stored in DB vs localDB vs arrays?  How do we format dates onto the form?  How  is locale used?
     - How does types tranform into Vega field types, ie on Editor?
     16.After Ws were linked to a DS: if do a Tr, then validate that W are still okay (ie a W field  may not exist any longer in DS)
 
+    Data Permisions:
+    ---------------
+    - what default permissions of a new DS
+    - can we have the same private/public/access list as on a Dashboard?
+    - is it okay to share DS in EditMode and ViewMode?
+    - make sure these permissions are respected within each Widget
+    - make sure these respected in Delete DS
 
 
     Authentication:
@@ -295,8 +303,8 @@ This document describes items for later versions of Canvas.
     17.Considering opening message per D (might even be per user as well), that will display each time D is opened.  How is it entered, who enters / deletes / edits it, and how is it displayed - modal (another one!), popup and for how long, and how is it closed, and how does it look to fit in?
 
 
-    Sample D: use this to demo Canvas features (brag)
-    ---------
+    Samples: use this to demo Canvas features (brag)
+    --------
     - Sample 1: personal finance, budget, expenses, etc
     - Sample 2: elaborate to-do list
     - Sample 3: buying a house: loan projections, to-do list of steps, pictures of house, share with friends, time-line of progress, gannt chart in Vega!
@@ -387,12 +395,13 @@ This document describes items for later versions of Canvas.
     - load file: where to add data types?  
     - load file: where to add validation and action, ie Col = 'Sales Amount' is a decimal, and if not so, ignore row / fail?
     - load file: add all-or-nothing option: all good, else fail.  If false, will load what is valid and just ignore rest?
+    - pre-build all DS from existing DB -> quick and easy to start
 
     Eazl:
     ----
     - consider a REST API for Eazl Accounts => other users can add, delete stuff ...
     
-    Data Confidentiallity
+    Data Confidentiallity:
     ---------------------
     - consider including this.  For example, confidential data cannot be exported outside of Canvas, cannot export graph or even make a screen snapshot of it.  Or at the very least warn that data is confidential.
     - next level is content aware: cannot email Absa's margin data to Stadard Bank... Not sure how we do this, and if it is even possible.
@@ -406,8 +415,11 @@ This document describes items for later versions of Canvas.
     Reports:
     --------
     - consider a Marked Up report, created with Markup language and data.  Can get complicated!
+    - the idea would be to have tech-users create reports
+
 
     Widgets:
+    -------
     - Decide to get a W from another D - only show those where the user has access to the DS
     - Decide if check/tick is shown on related Sl when a W is clicked.  The treeview is good enough methinks
     - Consider Table Checkpoint - not sure if it is that useful, as one can filter, etc on table, or redesign ... And the purpose of a table is to look at data for a while methinks
@@ -534,22 +546,24 @@ This document describes items for later versions of Canvas.
     - make icons draggable - like Ubuntu palette on left !
     - relook at toolbar colour
     - consider palette per Widget (Jaco)
+    - group related things together, see Google
+    - if more than 1 widget type has same function, make ONE on palette menu (thus icon is used once), and figure out inside what fn to call depending on type
 
     Themes:
     -------
     - consider light, etc themes, see https://medium.com/@amcdnl/theming-angular-with-css-variables-3c78a5b20b24
 
 
-    Tasks (enhance form and functionality):
-    ------
-    - Incorporate tasks into Landing page?
+    Tasks: (enhance form and functionality)
+    -----
+        - Incorporate tasks into Landing page?
     - notify when not done (by deadline)
     - easy to see outstanding tasks
     - email / notify when a task ends, starts
     - powerful filters
     - can just give deadline (optional start, duration)
     
-    Messages (enhance form and functionality):
+    Messages: (enhance form and functionality)
     --------
     - sort with latest first
     - give more sort and filter - ie all per user, topic
@@ -561,14 +575,21 @@ This document describes items for later versions of Canvas.
     - Consider which ones to keep in vars, which to load from DB each time
     - Consider depricating gv.currentWidgets, gv = global.variables.  THINK !  Can 1) make  app.currentWidget = gv.currentWidget, ByRef.  Test that this always updates.  2) always refresh  gv.currentWidget  3) delete gv.currentWidget - check where uses and how.  THEN: consider all currentXXX, where XXX = Objects to follow the same methodology.
 
-    SQL Editor
+    SQL Editor:
     ----------
     - add SQL editor (maybe third party plug-in) = full-blown thing
     - at least show tables and fields in a dropdown ...
 
-    Usage (of data)
-    ---------------
-    Closely monitor usage of data (who accessed what and when).  Then consider (very carefully) a payment plan for data usage - simply like a data vendor ...
+    Usage: (of data)
+    ------
+    - Closely monitor usage of data (who accessed what and when).  Then consider (very carefully) a payment plan for data usage - simply like a data vendor ...
+    - owners
+    - DBs accessed
+    - #rows extracted
+    - who used what when
+    - where in schedules
+    - permissions (who has or has not)
+    - link to Business Glossary
 
 
     Tributary:
