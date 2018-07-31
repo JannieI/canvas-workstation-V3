@@ -80,7 +80,7 @@
                 <div class="gridButtonSave">
                     <button
                         type="button"
-                        class="btn btn-secondary"
+                        class="btn btn-primary"
                         (click)="clickSave()"
                         >
                         Save
@@ -775,6 +775,8 @@
                         </li>
                     </ul>
                     <ol *ngIf="localWidget.shapeBulletsOrdered"
+                        [style.color]="localWidget.shapeTextColour"
+                        [style.list-style-type]="localWidget.shapeBulletStyleType"
                         [style.margin-left.px]="30"
                         [style.margin-top.px]="30"
                         [style.font-family]="localWidget.shapeFontFamily"

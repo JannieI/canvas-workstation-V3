@@ -5,6 +5,14 @@ This document describes items for later versions of Canvas.
 ## Due in v2 (just not shown on forms)
 
 **UI / ideas**
+
+    Easier (UI):
+    -----------
+    - must easily spot messages on StatusBar
+    - must immediately know when in EditMode.
+    - make EditMode and Save easier for beginners
+    - dbl click to edit title
+
     Tooltips:
     ---------
     Add Tooltips to all - decide if CSS title is okay, as it looks different to Clarity tooltip   for icons - See where and how to use tooltips on buttons (ie HTML title="" or via Clarity).  Be   consistent!!
@@ -25,7 +33,9 @@ This document describes items for later versions of Canvas.
     --------------------------
     - GO BACK TO SIMPLICITY !!!  Review regular on how to make it easier and faster.  If like SPSS where everything sits behinds a menu item, then too difficult.  Simplify (Ivan)
     - Review whether as beautiful as Simplus
-    - Relook at ALL forms for consistent layout, look and feel, INcluding the popups like the W     title
+    - Relook at ALL forms for consistent layout, look and feel, INcluding the popups like the W title
+    - be able to make a Dashboard in 5 mins
+    - organise menu per tasks?  
     - Add 'X' top left on all, so that it can close if screen is too small and the save button  overflow beyond the screen
     - Keep Help Message on top of forms uniform - always look and feel the same.  Also, make sure   there is a preference to switch it back on manually.
     Standard unit of measure: maybe save all as rem, and user can select px, rem, etc?
@@ -46,6 +56,11 @@ This document describes items for later versions of Canvas.
     - consider hard max limits: cannot read more than 10000 rows from Excel, etc ?
     - make it easier to see where to input data: maybe gray background ... Is this really necesary?  Make baie certain as this is baie work ...
     - look at Windi.com, Wahoo ? to see how to make it easy
+
+    Bookmarks:
+    ---------
+    - consider bookmark(s), gives filters at a point in time.  Can send this to other users, and will open with these filters applied.
+    - can this be used in a presentation, ie Bookmark1 = Overall, Bookmark2 = drill down
 
     System:
     ------
@@ -233,12 +248,13 @@ This document describes items for later versions of Canvas.
     - Look at embeding widgets -> export Vega spec + embed line, user puts it in his html ...?
     - Serias work to be done - learning Vega and adding ALL features !!!
     - Add other Viz to W Editor (data page) - ie Layered Graphs, Trellis, etc.  These need new templates, and a new UI. For a GAUGE, see https://gist.github.com/anilkpatro/0cf0503b581556a14aab
-    For KPI charts, see https://www.zoho.com/reports/help/dashboard/kpi-widgets.html
+    For KPI charts, see https://www.zoho.com/reports/help/dashboard/kpi-widgets.html.  Must include target, and progress (either % with green/red arrow since last month or graph ytd) and level of achievement (ie combo graph with line as target)
     - Give hints/advice on W as to type of graph, insights, etc.
     - filter in W, not only via Slicer, using Vega
     - where to store pictures for Ws - on a server??
     - Easy to drill in and out of dates - year - month - day, etc
     - consider filter and W: thus DS remains unchanged, but W has subset of data in graphData.  This can be =, <= etc on data, or limits (top 10). This must work in conjunction with sorting.
+    - add Drill Down / Drill Through: this is critical.  Drill down is a capability that takes the user from a more general view of the data to a more specific one at the click of a mouse. For example, a report that shows sales revenue by state can allow the user to select a state, click on it and see sales revenue by county or city within that state. It is called “drill down” because it is a feature that allows the user to go deeper into more specific layers of the data or information being analyzed.  Further levels of drill down can be set up within the report–practically as many as supported by the data. In our example, the drill-down can go from country to state to city to zip code to specific location of stores or individual sales reps. Typically, the look and feel of each level of the report is similar–what changes is the granularity of the data.  Instead of taking the user to a more granular level of the data, drill through takes him to a report that is relevant to the data being analyzed, also at the click of a mouse. For example, a tabular report that shows sales revenue by state can allow the user to click on it and reveal an analysis grid of the same data, or a heat map representing the data in visual form. It is called “drill through” because it is a feature that allows the user to pass from one report to another while still analyzing the same set of data.
 
 
 
@@ -382,7 +398,12 @@ This document describes items for later versions of Canvas.
 ## Later versions
     To consider for LATER versions:
 
+    Renderers:
+    ---------
+    - have different renderers, other than browser (for same Dashboard)!
+
     Data:
+    ----
     - reconsider Transpose option for pre-loading.  May be useful for some datasets, but clearly not for SQL, etc.  And doubt if json files would need that.  Can this be useful?
     Widget Action Menu:
     - decide what other menu options to add here
@@ -396,10 +417,15 @@ This document describes items for later versions of Canvas.
     - load file: where to add validation and action, ie Col = 'Sales Amount' is a decimal, and if not so, ignore row / fail?
     - load file: add all-or-nothing option: all good, else fail.  If false, will load what is valid and just ignore rest?
     - pre-build all DS from existing DB -> quick and easy to start
+    - consider import of Excel tables
+    - consider import from Powerpoint and Word tables ... 
+
 
     Eazl:
     ----
     - consider a REST API for Eazl Accounts => other users can add, delete stuff ...
+    - consider Guest login - can do 1 private Dashboard, access to files ?  Is this useful?
+
     
     Data Confidentiallity:
     ---------------------
@@ -423,9 +449,12 @@ This document describes items for later versions of Canvas.
     - Decide to get a W from another D - only show those where the user has access to the DS
     - Decide if check/tick is shown on related Sl when a W is clicked.  The treeview is good enough methinks
     - Consider Table Checkpoint - not sure if it is that useful, as one can filter, etc on table, or redesign ... And the purpose of a table is to look at data for a while methinks
-
+    - consider auto-calculated values, ie hover and show SUM of data.  Not sure how to do this, and if useful
+    - make Checkpoints more visible, may o o 0 o at bottom to show how many and where we are?
+    - consider dataQual triangle, -> link icons in same spot each time? 
 
     Treeview: 
+    --------
     - drag and drop W onto different Tabs
     - Delete icon to delete here (name ~ title may not be clear)
     - click and goto tab where W lives
@@ -436,9 +465,11 @@ This document describes items for later versions of Canvas.
     - Consider multi-W actions, ie to move ALL selected objects - remember complexity since Sl and W sits in different components ...  Also, the current code is specific to ONE
 
     Performance:
+    -----------
     - try to improve performance - trackedByFn ...
 
     UI:
+    --
     - Have verticle and horisontal hairlines when moving W - experiment a bit
     - Make Observable from keystrokes in app component - then debounce to make it less??  See BK mouse wheel scroll ...
     - Consider to Warn user if 2 Sl on the same dataset for the same field - not sure it is needed
@@ -454,6 +485,7 @@ This document describes items for later versions of Canvas.
     - consider custom (big) cursor for presentations - see https://alligator.io/css/cursor-property/  2018/06/07: just could not get it going...
 
     Comments:
+    --------
     - given DataQuality, etc, decide if we keep Comments !  What is use case?
     - only per D, or per W as well?
     - add filter on Sender/Receiver
@@ -569,6 +601,8 @@ This document describes items for later versions of Canvas.
     - give more sort and filter - ie all per user, topic
     - consider tags / keywords.  Also, is there a central keyword store?  For example, the same keyboards / tags used for Dashboards and Widgets and Messages?
     - easy to show / access unread ~ use of inbox as todo list in Google
+    - link to Company platform, ie Skype?
+    - make messages visible, ie hover shows latest collaborations
 
     Global Variables:
     -----------------
@@ -596,6 +630,8 @@ This document describes items for later versions of Canvas.
     ----------
     - consider a much larger project, say with a visual GUI to show processes / transformations
     - consider: get the SQL for an Overlay query, might be useful
+    - get SQL back from an Overlay query -> show on screen so user can see
+    - consider data filters - then we have to store this and include in SQL Where clause ...
 
     Create DS via File:
     -------------------
@@ -603,4 +639,13 @@ This document describes items for later versions of Canvas.
     - consider drag and drop from external places - see example in 
         https://www.html5rocks.com/en/tutorials/file/dndfiles/
 
+    Auto create of Dashboards:
+    -------------------------
+    - consider converting an excel spreadheet into a Dashboard, automatically.  With graphs and all.  Of kors, we need a use case for this.
     
+    Business Glossary:
+    -----------------
+    - tag Tables, Fields
+    - tag data in context
+    - tag Dashboards, Widgets
+    - flexible and customisable
