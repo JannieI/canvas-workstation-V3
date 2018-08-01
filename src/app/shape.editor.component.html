@@ -772,9 +772,9 @@
                             <clr-icon shape="trash"
                                 (dblclick)="dblclickBulletDelete(i, row)">
                             </clr-icon>
-                            <clr-icon shape="pencil"
+                            <!-- <clr-icon shape="pencil"
                                 (click)="clickBulletEdit(i)">
-                            </clr-icon>
+                            </clr-icon> -->
                             <span *ngIf="i==editLineNr">
                                 <input type="text"
                                     placeholder="true, false"
@@ -782,7 +782,8 @@
                                     > 
                             </span>
                             
-                            <span *ngIf="editLineNr==-1">
+                            <span *ngIf="editLineNr==-1"
+                                (click="clickBulletTextEdit">
                                 {{ row.text }}
                             </span>
 

@@ -48,8 +48,12 @@ export class ShapeEditComponent implements OnInit {
             &&
             (!event.shiftKey)
            ) {
-            this.clickSave();
-            return;
+               if (this.editLineNr == -1) {
+                   this.clickSave();
+                   return;
+                } else {
+                    this.editLineNr = -1;
+                };
         };
 
     }
@@ -414,7 +418,7 @@ export class ShapeEditComponent implements OnInit {
 
     }
 
-    clickBulletEdit(index: number) {
+    clickBulletTextEdit(index: number) {
         // Set row nr in bullet list to edit
         this.globalFunctionService.printToConsole(this.constructor.name,'clickBulletEdit', '@Start');
 
