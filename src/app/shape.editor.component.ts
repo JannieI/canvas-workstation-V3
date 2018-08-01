@@ -72,6 +72,7 @@ export class ShapeEditComponent implements OnInit {
     hasAutoFocusValue: boolean = false;
     hasAutoFocusBrackets: boolean = false;
     editBulletItem: boolean = false;
+    editLineNr: number = -1;
     localWidget: Widget;                            // W to modify, copied from selected
     selectedColour: string;
     selectedTabIndex: number;
@@ -411,6 +412,13 @@ export class ShapeEditComponent implements OnInit {
         this.bulletText = '';
         this.editBulletItem = false;
 
+    }
+
+    clickBulletEdit(index: number) {
+        // Set row nr in bullet list to edit
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickBulletEdit', '@Start');
+
+        this.editLineNr = index;
 
     }
 

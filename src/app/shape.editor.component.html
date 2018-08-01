@@ -763,6 +763,7 @@
                         [style.font-family]="localWidget.shapeFontFamily"
                         [style.font-size.px]="localWidget.shapeFontSize"
                         [style.text-align]="left"
+                        [style.overflow-y]="scroll"
                         >
                         <li *ngFor="let row of localWidget.shapeBullet; let i = index"
                             [style.margin-bottom.px]="localWidget.shapeBulletMarginBottom"
@@ -771,20 +772,30 @@
                             <clr-icon shape="trash"
                                 (dblclick)="dblclickBulletDelete(i, row)">
                             </clr-icon>
-                            <input type="text"
-                                placeholder="true, false"
-                                [(ngModel)]="row.text"
-                                > 
+                            <clr-icon shape="pencil"
+                                (click)="clickBulletEdit(i)">
+                            </clr-icon>
+                            <span *ngIf="i==editLineNr">
+                                <input type="text"
+                                    placeholder="true, false"
+                                    [(ngModel)]="row.text"
+                                    > 
+                            </span>
+                            
+                            <span *ngIf="editLineNr==-1">
+                                {{ row.text }}
+                            </span>
+
                         </li>
                     </ul>
                     <ol *ngIf="localWidget.shapeBulletsOrdered"
                         [style.color]="localWidget.shapeTextColour"
-                        [style.list-style-type]="localWidget.shapeBulletStyleType"
                         [style.margin-left.px]="30"
                         [style.margin-top.px]="30"
                         [style.font-family]="localWidget.shapeFontFamily"
                         [style.font-size.px]="localWidget.shapeFontSize"
                         [style.text-align]="left"
+                        [style.overflow-y]="scroll"
                         >
                         <li *ngFor="let row of localWidget.shapeBullet; let i = index"
                             [style.margin-bottom.px]="localWidget.shapeBulletMarginBottom"
