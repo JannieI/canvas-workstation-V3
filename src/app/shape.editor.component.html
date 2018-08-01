@@ -783,14 +783,14 @@
                         [style.font-size.px]="localWidget.shapeFontSize"
                         [style.text-align]="left"
                         >
-                        <li *ngFor="let row of localWidget.shapeBullets; let i = index"
+                        <li *ngFor="let row of localWidget.shapeBullet; let i = index"
                             [style.margin-bottom.px]="localWidget.shapeBulletMarginBottom"
                             (click)="clickBulletEdit(i, row)"
                             >
                             <clr-icon shape="times"
-                                (click)="clickBulletDelete(i, row)">
+                                (click)="dblclickBulletDelete(i, row)">
                             </clr-icon>
-                            {{ row }}
+                            {{ row.text }}
                         </li>
                     </ol>
                 </div>
@@ -1310,11 +1310,9 @@
                     </button>
                     <div class="gridBulletsOrdered">
                         <b>Ordered?:</b>
-                        <div class="checkbox">
-                            <input type="checkbox"
-                                [(ngModel)]="localWidget.shapeBulletsOrdered"
-                                >
-                        </div>
+                        <input type="checkbox"
+                            [(ngModel)]="localWidget.shapeBulletsOrdered"
+                            >
 <!--         
                         <input type="text"
                             placeholder="true, false"
