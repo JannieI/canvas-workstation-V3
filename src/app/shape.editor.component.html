@@ -67,7 +67,7 @@
                         <label for="checkTitle">Has Title</label>
                     </div>
                 </div>
-
+    
                 <div class="gridButtonCancel">
                     <button
                         type="button"
@@ -771,7 +771,10 @@
                             <clr-icon shape="trash"
                                 (dblclick)="dblclickBulletDelete(i, row)">
                             </clr-icon>
-                            {{ row.text }}
+                            <input type="text"
+                                placeholder="true, false"
+                                [(ngModel)]="row.text"
+                                > 
                         </li>
                     </ul>
                     <ol *ngIf="localWidget.shapeBulletsOrdered"
