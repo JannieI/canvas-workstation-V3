@@ -1310,10 +1310,16 @@
                     </button>
                     <div class="gridBulletsOrdered">
                         <b>Ordered?:</b>
+                        <div class="checkbox">
+                            <input type="checkbox"
+                                [(ngModel)]="localWidget.shapeBulletsOrdered"
+                                >
+                        </div>
+<!--         
                         <input type="text"
                             placeholder="true, false"
                             [(ngModel)]="localWidget.shapeBulletsOrdered"
-                            >
+                            > -->
                     </div>
 
                     <div class="gridBulletsColourTitle">
