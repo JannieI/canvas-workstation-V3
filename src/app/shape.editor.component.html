@@ -775,10 +775,20 @@
                                 (click)="clickBulletEdit(i)">
                             </clr-icon> -->
                             <span *ngIf="i==editLineNr">
-                                <input type="text"
+                                <i>
+                                <textarea type="text" rows="4"
                                     placeholder="true, false"
                                     [(ngModel)]="row.text"
                                     > 
+                                    <clr-icon shape="floppy"
+                                        (click)="clickBulletEditSave(i)">
+                                    </clr-icon>
+                                </textarea>
+                                <clr-icon shape="floppy" 
+                                    style="color: black;float: right; margin-right: 15px;"
+                                    (click)="clickBulletEditSave(i)">
+                                </clr-icon>
+                               </i>
                             </span>
                             
                             <span *ngIf="editLineNr==-1  ||  i!=editLineNr"
