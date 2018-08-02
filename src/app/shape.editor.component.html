@@ -755,6 +755,16 @@
                 </div>
 
                 <div class="gridShape" *ngIf="showBullets">
+                    <div class="gridBulletsInput">
+                        <b>New:</b>
+                        <input [(ngModel)]="bulletText">
+                    </div>
+
+                    <button type="button" class="btn btn-link gridBulletsButton">
+                        <span *ngIf="editBulletItem" (click)="clickBulletUpdate()">Update</span>
+                        <span *ngIf="!editBulletItem" (click)="clickBulletAdd()">Add</span>
+                    </button>
+        
                     <ul *ngIf="!localWidget.shapeBulletsOrdered"
                         [style.color]="localWidget.shapeTextColour"
                         [style.list-style-type]="localWidget.shapeBulletStyleType"
@@ -1421,11 +1431,6 @@
                         <input type="checkbox"
                             [(ngModel)]="localWidget.shapeBulletsOrdered"
                             >
-<!--         
-                        <input type="text"
-                            placeholder="true, false"
-                            [(ngModel)]="localWidget.shapeBulletsOrdered"
-                            > -->
                     </div>
 
                     <div class="gridBulletsColourTitle">
@@ -1451,15 +1456,6 @@
                         Picker
                     </button>
 
-                    <div class="gridBulletsInput">
-                        <b>New:</b>
-                        <input [(ngModel)]="bulletText">
-                    </div>
-
-                    <button type="button" class="btn btn-link gridBulletsButton">
-                        <span *ngIf="editBulletItem" (click)="clickBulletUpdate()">Update</span>
-                        <span *ngIf="!editBulletItem" (click)="clickBulletAdd()">Add</span>
-                    </button>
                 </div>
 
                 <div class="gridShapeProperties" *ngIf="showValue">
