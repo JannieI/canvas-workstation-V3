@@ -771,25 +771,52 @@
                             <clr-icon shape="trash"
                                 (dblclick)="dblclickBulletDelete(i, row)">
                             </clr-icon>
-                            <!-- <clr-icon shape="pencil"
+                            <clr-icon shape="arrow right" *ngIf="row.linkedTabID!=null"
+                                >
+                            </clr-icon>
+                           <!-- <clr-icon shape="pencil"
                                 (click)="clickBulletEdit(i)">
                             </clr-icon> -->
-                            <span *ngIf="i==editLineNr">
+                            <div *ngIf="i==editLineNr"
+                                style="color: black; margin-bottom: 15px;"
+                                >
                                 <i>
-                                <textarea type="text" rows="4"
-                                    placeholder="true, false"
-                                    [(ngModel)]="row.text"
-                                    > 
-                                    <clr-icon shape="floppy"
-                                        (click)="clickBulletEditSave(i)">
-                                    </clr-icon>
-                                </textarea>
-                                <clr-icon shape="floppy" 
-                                    style="color: black;float: right; margin-right: 15px;"
-                                    (click)="clickBulletEditSave(i)">
-                                </clr-icon>
-                               </i>
-                            </span>
+                                    <textarea type="text" rows="4"
+                                        placeholder="true, false"
+                                        [(ngModel)]="row.text"
+                                        style="font-style: italic;"
+                                        > 
+                                    </textarea>
+                                   
+                                    <span>
+                                        Linked Tab:
+                                    </span>
+                                    <div class="select">
+                                        <select
+                                            [(ngModel)]="bulletSelectedTab"
+                                            (change)="clickSelectBulletsTab($event)"
+                                            >
+                                            <option *ngFor="let tab of dashboardTabList">
+                                                {{ tab }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    
+                                    <div>
+                                        <button type="button" 
+                                            class="btn btn-link gridBulletsButton"
+                                            style="color: black;float: right; 
+                                                margin-right: 15px; margin-bottom: 15px;"
+                                            (click)="clickBulletEditSave(i)"
+                                            >
+                                            <clr-icon shape="floppy" 
+                                                >
+                                            </clr-icon>
+                                            Done Editing
+                                        </button>
+                                    </div>                    
+                                </i>
+                            </div>
                             
                             <span *ngIf="editLineNr==-1  ||  i!=editLineNr"
                                 (click)="clickBulletTextEdit(i)">

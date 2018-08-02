@@ -462,9 +462,33 @@ export class ShapeEditComponent implements OnInit {
         // Save Edited item from bullet list
         this.globalFunctionService.printToConsole(this.constructor.name,'clickBulletEditSave', '@Start');
 
+        // None selected
+        if (this.bulletSelectedTab == 'None') {
+            this.localWidget.shapeBullet[index].linkedTabID = null;
+        } else {
+            // Get sequence nr = index + 1
+            let openBracket: number = this.bulletSelectedTab.indexOf('(');
+            let closeBracket: number = this.bulletSelectedTab.indexOf(')');
+            let tabSequenceNr = +this.bulletSelectedTab.substring(openBracket + 1, closeBracket);
+
+            // Store ID associated with that sequence nr
+            if (tabSequenceNr < 0) {
+                this.localWidget.shapeBullet[index].linkedTabID = null;
+            } else {
+                this.localWidget.shapeBullet[index].linkedTabID =
+                    this.globalVariableService.currentDashboardTabs[tabSequenceNr - 1].id;
+            };
+
+            // Store bullet text
+            this.localWidget.shapeBullet[index].text = this.bulletText;
+        };
+
+        // Stop editing
         this.editLineNr = -1;
+        console.warn('xx this.localWidget.shapeBullet', this.localWidget.shapeBullet)
+
     }
-    
+
     clickBulletUpdate() {
         // Update item in the bullet list
         this.globalFunctionService.printToConsole(this.constructor.name,'clickBulletUpdate', '@Start');
