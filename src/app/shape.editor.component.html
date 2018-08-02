@@ -767,7 +767,6 @@
                         >
                         <li *ngFor="let row of localWidget.shapeBullet; let i = index"
                             [style.margin-bottom.px]="localWidget.shapeBulletMarginBottom"
-                            (click)="clickBulletEdit(i, row)"
                             >
                             <clr-icon shape="trash"
                                 (dblclick)="dblclickBulletDelete(i, row)">
@@ -782,7 +781,7 @@
                                     > 
                             </span>
                             
-                            <span *ngIf="editLineNr==-1"
+                            <span *ngIf="editLineNr==-1  ||  i!=editLineNr"
                                 (click)="clickBulletTextEdit(i)">
                                 {{ row.text }}
                             </span>
