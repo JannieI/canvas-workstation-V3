@@ -496,8 +496,8 @@ console.warn('xx index', index, this.bulletSelectedTab)
                     this.globalVariableService.currentDashboardTabs[tabSequenceNr - 1].id;
             };
 
-            // Store bullet text
-            this.localWidget.shapeBullet[index].text = this.bulletText;
+            // // Store bullet text
+            // this.localWidget.shapeBullet[index].text = this.bulletText;
         };
 
         // Stop editing
