@@ -426,6 +426,24 @@ export class ShapeEditComponent implements OnInit {
         // Remember old content, in case we roll back
         this.oldText = text;
 
+        // Set the linked dropdown
+        if (this.localWidget.shapeBullet[index].linkedTabID == null) {
+            this.bulletSelectedTab = 'None';
+        } else {
+            let tID: number = this.localWidget.shapeBullet[index].linkedTabID;
+            let gvIndex: number = this.globalVariableService.currentDashboardTabs.findIndex(t =>
+                t.id == tID);
+
+            // If this ID exists, show it with the correct sequence number (index + 1)
+            if (gvIndex == -1) {
+                this.bulletSelectedTab = 'None';
+            } else {
+
+                this.bulletSelectedTab = this.globalVariableService.currentDashboardTabs
+                    [gvIndex].name + ' (' + (gvIndex + 1).toString() + ')';
+            };
+        };
+
         // Set line to Edit
         this.editLineNr = index;
 
@@ -478,7 +496,7 @@ export class ShapeEditComponent implements OnInit {
     clickBulletEditSave(index: number) {
         // Save Edited item from bullet list
         this.globalFunctionService.printToConsole(this.constructor.name,'clickBulletEditSave', '@Start');
-console.warn('xx index', index, this.bulletSelectedTab)
+
         // None selected
         if (this.bulletSelectedTab == 'None') {
             this.localWidget.shapeBullet[index].linkedTabID = null;
