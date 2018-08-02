@@ -788,7 +788,7 @@
                                 style="color: black; margin-bottom: 15px;"
                                 >
                                 <i>
-                                    <span>
+                                    <span style="float: right; margin-right: 15px;">
                                         Linked Tab:
                                     </span>
                                     <div class="select">
@@ -820,6 +820,70 @@
                     </ul>
                     <ol *ngIf="localWidget.shapeBulletsOrdered"
                         [style.color]="localWidget.shapeTextColour"
+                        [style.list-style-type]="1"
+                        [style.margin-left.px]="30"
+                        [style.margin-top.px]="30"
+                        [style.font-family]="localWidget.shapeFontFamily"
+                        [style.font-size.px]="localWidget.shapeFontSize"
+                        [style.text-align]="left"
+                        [style.overflow-y]="scroll"
+                        >
+                        <li *ngFor="let row of localWidget.shapeBullet; let i = index"
+                            [style.margin-bottom.px]="localWidget.shapeBulletMarginBottom"
+                            >
+                            <clr-icon shape="trash"
+                                (dblclick)="dblclickBulletDelete(i, row)">
+                            </clr-icon>
+                            <clr-icon shape="arrow right" *ngIf="row.linkedTabID!=null">
+                            </clr-icon>
+                            <clr-icon *ngIf="i==editLineNr"
+                                shape="refresh"
+                                (click)="clickBulletEditCancel(i)"
+                                >
+                            </clr-icon>
+                            <clr-icon *ngIf="i==editLineNr"
+                                shape="floppy"
+                                (click)="clickBulletEditSave(i)"
+                                >
+                            </clr-icon>
+
+                            <span *ngIf="i==editLineNr"
+                                style="color: black; margin-bottom: 15px;"
+                                >
+                                <i>
+                                    <span style="float: right; margin-right: 15px;">
+                                        Linked Tab:
+                                    </span>
+                                    <div class="select">
+                                        <select
+                                            [(ngModel)]="bulletSelectedTab"
+                                            (change)="clickSelectBulletsTab($event)"
+                                            >
+                                            <option *ngFor="let tab of dashboardTabList">
+                                                {{ tab }}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <textarea type="text" rows="3"
+                                        placeholder="true, false"
+                                        [(ngModel)]="row.text"
+                                        style="font-style: italic;"
+                                        > 
+                                    </textarea>
+                                                                        
+                                </i>
+                            </span>
+                            
+                            <span *ngIf="editLineNr==-1  ||  i!=editLineNr"
+                                (click)="clickBulletTextEdit(i, row.text)">
+                                {{ row.text }}
+                            </span>
+
+                        </li>
+                    </ol>
+
+                    <!-- <ol *ngIf="localWidget.shapeBulletsOrdered"
+                        [style.color]="localWidget.shapeTextColour"
                         [style.margin-left.px]="30"
                         [style.margin-top.px]="30"
                         [style.font-family]="localWidget.shapeFontFamily"
@@ -836,7 +900,7 @@
                             </clr-icon>
                             {{ row.text }}
                         </li>
-                    </ol>
+                    </ol> -->
                 </div>
 
                 <div class="gridShape" *ngIf="showValue">
