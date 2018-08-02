@@ -1452,18 +1452,8 @@
                     </button>
 
                     <div class="gridBulletsInput">
-                        <b>Item:</b>
+                        <b>New:</b>
                         <input [(ngModel)]="bulletText">
-                    </div>
-                    <div class="select gridBulletsTab">
-                        <select
-                            [(ngModel)]="bulletSelectedTab"
-                            (change)="clickSelectBulletsTab($event)"
-                            >
-                            <option *ngFor="let row of dashboardTabList">
-                                {{ row }}
-                            </option>
-                        </select>
                     </div>
 
                     <button type="button" class="btn btn-link gridBulletsButton">
