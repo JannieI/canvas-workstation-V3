@@ -755,20 +755,18 @@
                 </div>
 
                 <div class="gridShape" *ngIf="showBullets">
-                    <div class="gridBulletsInput">
+                    <span class="gridBulletsInput">
                         <b>New:</b>
                         <input [(ngModel)]="bulletText">
-                    </div>
-
-                    <button type="button" class="btn btn-link gridBulletsButton">
-                        <span *ngIf="editBulletItem" (click)="clickBulletUpdate()">Update</span>
-                        <span *ngIf="!editBulletItem" (click)="clickBulletAdd()">Add</span>
-                    </button>
+                        <button type="button" class="btn btn-link gridBulletsButton">
+                            <span (click)="clickBulletAdd()">Add</span>
+                        </button>
+                    </span>
         
                     <ul *ngIf="!localWidget.shapeBulletsOrdered"
                         [style.color]="localWidget.shapeTextColour"
                         [style.list-style-type]="localWidget.shapeBulletStyleType"
-                        [style.margin-left.px]="30"
+                        [style.margin-left.px]="10"
                         [style.margin-top.px]="30"
                         [style.font-family]="localWidget.shapeFontFamily"
                         [style.font-size.px]="localWidget.shapeFontSize"
@@ -831,7 +829,7 @@
                     <ol *ngIf="localWidget.shapeBulletsOrdered"
                         [style.color]="localWidget.shapeTextColour"
                         [style.list-style-type]="1"
-                        [style.margin-left.px]="30"
+                        [style.margin-left.px]="10"
                         [style.margin-top.px]="30"
                         [style.font-family]="localWidget.shapeFontFamily"
                         [style.font-size.px]="localWidget.shapeFontSize"
