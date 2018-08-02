@@ -75,7 +75,6 @@ export class ShapeEditComponent implements OnInit {
     hasAutoFocusBullets: boolean = false;
     hasAutoFocusValue: boolean = false;
     hasAutoFocusBrackets: boolean = false;
-    editBulletItem: boolean = false;
     editLineNr: number = -1;
     localWidget: Widget;                            // W to modify, copied from selected
     oldText: string = '';
@@ -415,7 +414,6 @@ export class ShapeEditComponent implements OnInit {
 
         this.localWidget.shapeBullet.splice(index,1);
         this.bulletText = '';
-        this.editBulletItem = false;
 
     }
 
@@ -447,38 +445,6 @@ export class ShapeEditComponent implements OnInit {
         // Set line to Edit
         this.editLineNr = index;
 
-    }
-
-    clickBulletEdit(index: number, item: string) {
-        // Edit item from bullet list
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickBulletEdit', '@Start');
-
-        // Remember inddex in [w.Bullets]
-        this.bulletIndex = index;
-
-        // Show text of bullet on form
-        this.bulletText = this.localWidget.shapeBullet[index].text;
-
-        // Take the id of the selected bullet, and get its position in [gvTabs]
-        if (this.localWidget.shapeBullet[index].linkedTabID == null) {
-            this.bulletSelectedTab = 'None';
-        } else {
-            let tID: number = this.localWidget.shapeBullet[index].linkedTabID;
-            let gvIndex: number = this.globalVariableService.currentDashboardTabs.findIndex(t =>
-                t.id == tID);
-
-            // If this ID exists, show it with the correct sequence number (index + 1)
-            if (gvIndex == -1) {
-                this.bulletSelectedTab = 'None';
-            } else {
-
-                this.bulletSelectedTab = this.globalVariableService.currentDashboardTabs
-                    [gvIndex].name + ' (' + (gvIndex + 1).toString() + ')';
-            };
-        };
-
-        // Set editting
-        this.editBulletItem = true;
     }
 
     clickBulletEditCancel(index: number) {
@@ -521,38 +487,6 @@ export class ShapeEditComponent implements OnInit {
         // Stop editing
         this.editLineNr = -1;
         console.warn('xx this.localWidget.shapeBullet', this.localWidget.shapeBullet)
-
-    }
-
-    clickBulletUpdate() {
-        // Update item in the bullet list
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickBulletUpdate', '@Start');
-
-        // None selected
-        if (this.bulletSelectedTab == 'None') {
-            this.localWidget.shapeBullet[this.bulletIndex].linkedTabID = null;
-        } else {
-            // Get sequence nr = index + 1
-            let openBracket: number = this.bulletSelectedTab.indexOf('(');
-            let closeBracket: number = this.bulletSelectedTab.indexOf(')');
-            let tabSequenceNr = +this.bulletSelectedTab.substring(openBracket + 1, closeBracket);
-
-            // Store ID associated with that sequence nr
-            if (tabSequenceNr < 0) {
-                this.localWidget.shapeBullet[this.bulletIndex].linkedTabID = null;
-            } else {
-                this.localWidget.shapeBullet[this.bulletIndex].linkedTabID =
-                    this.globalVariableService.currentDashboardTabs[tabSequenceNr - 1].id;
-            };
-
-            // Store bullet text
-            this.localWidget.shapeBullet[this.bulletIndex].text = this.bulletText;
-        };
-
-        // Out of editting
-        this.bulletSelectedTab = 'None';
-        this.bulletText = '';
-        this.editBulletItem = false;
 
     }
 
