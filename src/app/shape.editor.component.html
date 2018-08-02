@@ -771,17 +771,24 @@
                             <clr-icon shape="trash"
                                 (dblclick)="dblclickBulletDelete(i, row)">
                             </clr-icon>
-                            <clr-icon shape="arrow right" *ngIf="row.linkedTabID!=null"
+                            <clr-icon shape="arrow right" *ngIf="row.linkedTabID!=null">
+                            </clr-icon>
+                            <clr-icon *ngIf="i==editLineNr"
+                                shape="refresh"
+                                (click)="clickBulletEditCancel(i)"
                                 >
                             </clr-icon>
-                           <!-- <clr-icon shape="pencil"
-                                (click)="clickBulletEdit(i)">
-                            </clr-icon> -->
-                            <div *ngIf="i==editLineNr"
+                            <clr-icon *ngIf="i==editLineNr"
+                                shape="floppy"
+                                (click)="clickBulletEditSave(i)"
+                                >
+                            </clr-icon>
+
+                            <span *ngIf="i==editLineNr"
                                 style="color: black; margin-bottom: 15px;"
                                 >
                                 <i>
-                                    <textarea type="text" rows="4"
+                                    <textarea type="text" rows="3"
                                         placeholder="true, false"
                                         [(ngModel)]="row.text"
                                         style="font-style: italic;"
@@ -801,25 +808,12 @@
                                             </option>
                                         </select>
                                     </div>
-                                    
-                                    <div>
-                                        <button type="button" 
-                                            class="btn btn-link gridBulletsButton"
-                                            style="color: black;float: right; 
-                                                margin-right: 15px; margin-bottom: 15px;"
-                                            (click)="clickBulletEditSave(i)"
-                                            >
-                                            <clr-icon shape="floppy" 
-                                                >
-                                            </clr-icon>
-                                            Done Editing
-                                        </button>
-                                    </div>                    
+                                        
                                 </i>
-                            </div>
+                            </span>
                             
                             <span *ngIf="editLineNr==-1  ||  i!=editLineNr"
-                                (click)="clickBulletTextEdit(i)">
+                                (click)="clickBulletTextEdit(i, row.text)">
                                 {{ row.text }}
                             </span>
 

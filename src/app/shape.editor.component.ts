@@ -60,7 +60,7 @@ export class ShapeEditComponent implements OnInit {
 
     backgroundcolors: CSScolor[];
     bulletIndex: number = 0;                    // Index (position) in [w.Bullets]
-    bulletSelectedTab: string;                  // Clicked on Bullets -> Tabname (sequence nr)
+    bulletSelectedTab: string = 'None';         // Clicked on Bullets -> Tabname (sequence nr)
     bulletText: string = '';                    // Clicked on Bullets -> Bullet Text
     callingRoutine: string = '';
     colourPickerClosed: boolean = false;
@@ -78,6 +78,7 @@ export class ShapeEditComponent implements OnInit {
     editBulletItem: boolean = false;
     editLineNr: number = -1;
     localWidget: Widget;                            // W to modify, copied from selected
+    oldText: string = '';
     selectedColour: string;
     selectedTabIndex: number;
     showArrow: boolean = false;
@@ -418,10 +419,14 @@ export class ShapeEditComponent implements OnInit {
 
     }
 
-    clickBulletTextEdit(index: number) {
+    clickBulletTextEdit(index: number, text: string) {
         // Set row nr in bullet list to edit
         this.globalFunctionService.printToConsole(this.constructor.name,'clickBulletTextEdit', '@Start');
 
+        // Remember old content, in case we roll back
+        this.oldText = text;
+
+        // Set line to Edit
         this.editLineNr = index;
 
     }
@@ -461,7 +466,7 @@ export class ShapeEditComponent implements OnInit {
     clickBulletEditSave(index: number) {
         // Save Edited item from bullet list
         this.globalFunctionService.printToConsole(this.constructor.name,'clickBulletEditSave', '@Start');
-
+console.warn('xx index', index, this.bulletSelectedTab)
         // None selected
         if (this.bulletSelectedTab == 'None') {
             this.localWidget.shapeBullet[index].linkedTabID = null;
