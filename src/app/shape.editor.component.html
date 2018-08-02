@@ -783,7 +783,7 @@
                             </span>
                             
                             <span *ngIf="editLineNr==-1"
-                                (click="clickBulletTextEdit">
+                                (click)="clickBulletTextEdit(i)">
                                 {{ row.text }}
                             </span>
 

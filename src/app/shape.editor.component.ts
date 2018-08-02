@@ -420,7 +420,7 @@ export class ShapeEditComponent implements OnInit {
 
     clickBulletTextEdit(index: number) {
         // Set row nr in bullet list to edit
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickBulletEdit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickBulletTextEdit', '@Start');
 
         this.editLineNr = index;
 
