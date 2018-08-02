@@ -501,34 +501,18 @@ export class ShapeEditComponent implements OnInit {
             };
         };
 
-        // None selected
-        let selectedTabID: number;
-        if (this.bulletSelectedTab == 'None'  ||  this.bulletSelectedTab == undefined) {
-            selectedTabID = null;
-        } else {
-            // Get sequence nr
-            let openBracket: number = this.bulletSelectedTab.indexOf('(');
-            let closeBracket: number = this.bulletSelectedTab.indexOf(')');
-            let tabSequenceNr = +this.bulletSelectedTab.substring(openBracket + 1, closeBracket);
-
-            // Add to Bullets Array
-            if (tabSequenceNr < 0) {
-                selectedTabID = null;
-            } else {
-                selectedTabID = this.globalVariableService.currentDashboardTabs
-                    [tabSequenceNr - 1].id;
-            };
-        };
-
         // Add to Bullets
         this.localWidget.shapeBullet.push(
             {
                 text: this.bulletText,
-                linkedTabID: selectedTabID,
+                linkedTabID: null,
                 color: '',
                 jumpedColor: ''
             }
         );
+
+        // Reset
+        this.bulletText = '';
     }
 
     clickSelectBulletsTab(ev: any) {
