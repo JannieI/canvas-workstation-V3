@@ -467,9 +467,14 @@ export class ShapeEditComponent implements OnInit {
         // Save Edited item from bullet list
         this.globalFunctionService.printToConsole(this.constructor.name,'clickBulletEditCancel', '@Start');
 
+        // Reset text
         this.localWidget.shapeBullet[index].text = this.oldText;
+
+        // Stop editing
+        this.editLineNr = -1;
+
     }
-    
+
     clickBulletEditSave(index: number) {
         // Save Edited item from bullet list
         this.globalFunctionService.printToConsole(this.constructor.name,'clickBulletEditSave', '@Start');
