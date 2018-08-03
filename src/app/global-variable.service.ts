@@ -4020,6 +4020,7 @@ export class GlobalVariableService {
                         {data})
                         resolve(this.canvasGroups);
                     })
+                    .catch(err => reject(err));
             } else {
                 console.log('%c    Global-Variables getCanvasGroups 2',
                     "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
