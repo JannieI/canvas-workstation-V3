@@ -160,7 +160,7 @@
             display: inline-block;
             height: 24px;
         }
-            .widgetXJumpLink {
+            .widgetJumpLink {
                 background-color: transparent;
                 font-size: 0.7rem;
                 margin: 0;
@@ -179,7 +179,7 @@
             display: inline-block;
         }
             /* svg */
-            .widgetXShapeArrow {
+            .widgetShapeArrow {
                 margin: 0;
                 padding-left: 5px;
                 padding-top: 5px;
