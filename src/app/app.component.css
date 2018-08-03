@@ -138,7 +138,7 @@
         border: 1px dotted gray;
     }
 
-    .widgetXRelatedInfoMenu {
+    .widgetRelatedInfoMenu {
         display: inline-block;
         grid-column-start: 2;
         grid-column-end: 3;
@@ -185,7 +185,7 @@
                 padding-top: 5px;
                 position: relative;
             }
-        .widgetXCheckpoint {
+        .widgetCheckpoint {
             display: grid;
 
             /*                     1   2    3    4    5    6    7    8  */
@@ -196,7 +196,7 @@
             padding: 0;
             width: 100%;
         }
-            .widgetXCheckpointLeft {
+            .widgetCheckpointLeft {
                 color: blue;
                 font-size: 0.5rem;
                 grid-column-start: 2;
@@ -206,7 +206,7 @@
                 margin: 0;
                 padding: 0;
             }
-            .widgetXCheckpointCenter {
+            .widgetCheckpointCenter {
                 background-color: transparent;
                 font-size: 0.7rem;
                 grid-column-start: 3;
@@ -216,7 +216,7 @@
                 margin: 0;
                 padding: 0;
             }
-            .widgetXCheckpointShowCheckpoint {
+            .widgetCheckpointShowCheckpoint {
                 background-color: #bbb;
                 border-radius: 50%;
                 display: inline-block;
@@ -227,7 +227,7 @@
                 height: 12px;
                 width: 12px;
             }
-            .widgetXCheckpointShowWidget {
+            .widgetCheckpointShowWidget {
                 background-color: blue;
                 border-radius: 50%;
                 display: inline-block;
@@ -240,7 +240,7 @@
                 padding: 0;
                 width: 12px;
             }
-            .widgetXCheckpointAnimate {
+            .widgetCheckpointAnimate {
                 color: gray;
                 font-size: 0.5rem;
                 grid-column-start: 4;
@@ -250,7 +250,7 @@
                 margin: 0;
                 padding: 0;
             }
-            .widgetXCheckpointRight {
+            .widgetCheckpointRight {
                 color: blue;
                 font-size: 0.5rem;
                 grid-column-start: 6;
@@ -261,7 +261,7 @@
                 padding: 0;
             }
 
-        .widgetXActionMenu {
+        .widgetActionMenu {
             display: inline-block;
             grid-column-start: 11;
             grid-column-end: 12;

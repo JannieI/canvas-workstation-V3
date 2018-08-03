@@ -1911,7 +1911,7 @@
         </div>
 
         <!-- W related info menu -->
-        <div class="widgetXRelatedInfoMenu" *ngIf="row.widgetType=='Graph'"
+        <div class="widgetRelatedInfoMenu" *ngIf="row.widgetType=='Graph'"
             [style.color]="row.titleColor"
             [style.z-index]="row.containerZindex"
             >
@@ -2821,9 +2821,9 @@
             </div>
 
             <!-- Checkpoint -->
-            <div class="widgetXCheckpoint" *ngIf="row.lastCheckpoint >= 0"
+            <div class="widgetCheckpoint" *ngIf="row.lastCheckpoint >= 0"
                 >
-                <div class="widgetXCheckpointLeft" *ngIf="row.showCheckpoints"
+                <div class="widgetCheckpointLeft" *ngIf="row.showCheckpoints"
                     (click)="clickNavCheckpoint(
                         i,
                         row.dashboardID,
@@ -2839,31 +2839,31 @@
                 </div>
 
                 <div *ngIf="!row.showCheckpoints"
-                    class="widgetXCheckpointCenter"
+                    class="widgetCheckpointCenter"
                     (click)="clickToggleShowCheckpoint(
                         i,
                         row.dashboardID,
                         row.id,
                         row.showCheckpoints)"
                     >
-                    <span class="widgetXCheckpointShowCheckpoint">
+                    <span class="widgetCheckpointShowCheckpoint">
                     </span>
                 </div>
 
                 <div *ngIf="row.showCheckpoints"
-                    class="widgetXCheckpointCenter"
+                    class="widgetCheckpointCenter"
                     (click)="clickToggleShowCheckpoint(
                         i,
                         row.dashboardID,
                         row.id,
                         row.showCheckpoints)"
                     >
-                    <span class="widgetXCheckpointShowWidget">
+                    <span class="widgetCheckpointShowWidget">
                     </span>
                 </div>
 
                 <div  *ngIf="row.showCheckpoints"
-                    class="widgetXCheckpointAnimate"
+                    class="widgetCheckpointAnimate"
                     (click)="clickAnimateCheckpoint(
                         i,
                         row.dashboardID,
@@ -2879,7 +2879,7 @@
                 </div>
 
                 <div *ngIf="row.showCheckpoints  &&  (row.currentCheckpoint < row.lastCheckpoint)"
-                    class="widgetXCheckpointRight"
+                    class="widgetCheckpointRight"
                     (click)="clickNavCheckpoint(
                         i,
                         row.dashboardID,
@@ -2898,7 +2898,7 @@
         </div>
 
         <!-- W action menu -->
-        <div class="widgetXActionMenu" *ngIf="row.widgetType=='Graph'
+        <div class="widgetActionMenu" *ngIf="row.widgetType=='Graph'
             || row.widgetType=='Table'
             || (row.widgetType=='Slicer'  && row.containerHasTitle)
             || (row.widgetType=='Shape'  &&  row.widgetSubType=='Value')"
