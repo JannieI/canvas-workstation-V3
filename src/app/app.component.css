@@ -148,7 +148,7 @@
         padding: 0;
     }
 
-    .widgetX {
+    .widget {
         display: inline-block;
         grid-column-start: 1;
         grid-column-end: 12;
@@ -174,7 +174,7 @@
                 margin: 0px;
             }
 
-        .widgetXGraph {
+        .widgetGraph {
             /* border: 1px dotted gray; */
             display: inline-block;
         }

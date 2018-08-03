@@ -1994,7 +1994,7 @@
         </div>
 
         <!-- Widget Content -->
-        <div class="widgetX">
+        <div class="widget">
 
             <!-- Title Container -->
             <div class="widgetTitle" *ngIf="row.containerHasTitle"
@@ -2064,7 +2064,7 @@
             </div>
 
             <!-- Graph Object -->
-            <div class="widgetXGraph" *ngIf="row.widgetType=='Graph'  &&  !row.showCheckpoints">
+            <div class="widgetGraph" *ngIf="row.widgetType=='Graph'  &&  !row.showCheckpoints">
                 <widget-single
                     #widgetDOMX
                     [widget]="row"
@@ -2073,7 +2073,7 @@
             </div>
 
             <!-- Slicer Object -->
-            <div class="widgetX" *ngIf="row.widgetType=='Slicer'"
+            <div class="widget" *ngIf="row.widgetType=='Slicer'"
                 (click)="clickWidgetSlicer($event, i, row.id)"
                 >
                 <slicer-single
@@ -2083,7 +2083,7 @@
             </div>
 
             <!-- Table Object -->
-            <div class="widgetX" *ngIf="row.widgetType=='Table'">
+            <div class="widget" *ngIf="row.widgetType=='Table'">
                 <table-single
                     [table]="row"
                     >
@@ -2091,7 +2091,7 @@
             </div>
 
             <!-- Shape Circle Object -->
-            <div class="widgetX" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Circle'">
+            <div class="widget" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Circle'">
                 <svg [style.height]="row.containerHeight-2"
                     [style.width]="row.containerWidth-2"
                     [style.margin.px]="2"
@@ -2108,7 +2108,7 @@
             </div>
 
             <!-- Shape Ellipse Object -->
-            <div class="widgetX" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Ellipse'">
+            <div class="widget" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Ellipse'">
                 <svg [style.height]="row.containerHeight-2"
                     [style.width]="row.containerWidth-2"
                     [style.margin.px]="0"
@@ -2126,7 +2126,7 @@
             </div>
 
             <!-- Shape Rectangle Object -->
-            <div class="widgetX" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Rectangle'">
+            <div class="widget" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Rectangle'">
                 <svg
                 [style.height.px]="row.containerHeight-2"
                     [style.width.px]="row.containerWidth-2"
@@ -2146,7 +2146,7 @@
             </div>
 
             <!-- Shape Text Object -->
-            <div class="widgetX" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Text'"
+            <div class="widget" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Text'"
 
                 [style.height.px]="1"
                 [style.color]="row.shapeTextColour"
@@ -2177,7 +2177,7 @@
             <!-- x increase   ?                   up + right-top      right               down+right -->
             <!-- y increase   ?                   down + right        down                left -->
 
-            <div class="widgetX" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Brackets'">
+            <div class="widget" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Brackets'">
                 <svg height="150" width="150" *ngIf="row.shapeSize==1
                     &&
                     row.shapeRotation==0"
@@ -2305,7 +2305,7 @@
             </div>
 
             <!-- Shape Arrow Object -->
-            <div class="widgetX" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Arrow'">
+            <div class="widget" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Arrow'">
                 <!-- TODO - Makey this DYNAMIC !!!  -->
                 <svg class="widgetShapeArrow" *ngIf="row.shapeSize==1
                         &&
@@ -2721,7 +2721,7 @@
             </div>
 
             <!-- Shape ArrowThin Object -->
-            <div class="widgetX" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='ArrowThin'">
+            <div class="widget" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='ArrowThin'">
                 <svg [style.height.px]="row.containerHeight"
                     [style.width.px]="row.containerWidth"
                     [style.marginTop.px]="-25"
@@ -2750,7 +2750,7 @@
             </div>
 
             <!-- Shape Image Object -->
-            <div class="widgetX" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Image'">
+            <div class="widget" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Image'">
                 <img [style.height.px]="row.containerHeight-10"
                     [style.width.px]="row.containerWidth-10"
                     [style.marginTop.px]="0"
@@ -2762,7 +2762,7 @@
             </div>
 
             <!-- Shape Bullets Object -->
-            <div class="widgetX" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Bullets'">
+            <div class="widget" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Bullets'">
                 <ul  *ngIf="!row.shapeBulletsOrdered"
                     [style.list-style-type]="row.shapeBulletStyleType"
                     >
@@ -2795,7 +2795,7 @@
             </div>
 
             <!-- Shape Value Object -->
-            <div class="widgetX" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Value'">
+            <div class="widget" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Value'">
                 <div
                     [style.width.px]="row.containerWidth"
                     [style.background-color]="row.containerBackgroundColor"
@@ -2812,7 +2812,7 @@
             </div>
 
             <!-- Graph Checkpoint -->
-            <div class="widgetX" *ngIf="row.widgetType=='Graph'  &&  row.showCheckpoints">
+            <div class="widget" *ngIf="row.widgetType=='Graph'  &&  row.showCheckpoints">
                 <widget-single
                     #widgetDOM
                     [widget]="row"
@@ -2990,7 +2990,7 @@
         >
 
         <!-- Widget Content -->
-        <div class="widgetX">
+        <div class="widget">
 
             <!-- Title Container -->
             <div class="widgetTitle" *ngIf="row.containerHasTitle"
@@ -3025,7 +3025,7 @@
             </div>
 
             <!-- Graph Object -->
-            <div class="widgetXGraph" *ngIf="row.widgetType=='Graph'">
+            <div class="widgetGraph" *ngIf="row.widgetType=='Graph'">
                 <widget-single
                     #widgetDOMX
                     [widget]="row"
@@ -3034,7 +3034,7 @@
             </div>
 
             <!-- Slicer Object -->
-            <div class="widgetX" *ngIf="row.widgetType=='Slicer'"
+            <div class="widget" *ngIf="row.widgetType=='Slicer'"
                 (click)="clickWidgetSlicer($event, i, row.id)"
                 >
                 <slicer-single
@@ -3044,7 +3044,7 @@
             </div>
 
             <!-- Table Object -->
-            <div class="widgetX" *ngIf="row.widgetType=='Table'">
+            <div class="widget" *ngIf="row.widgetType=='Table'">
                 <table-single
                     [table]="row"
                     >
@@ -3052,7 +3052,7 @@
             </div>
 
             <!-- Shape Circle Object -->
-            <div class="widgetX" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Circle'">
+            <div class="widget" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Circle'">
                 <svg [style.height]="row.containerHeight-2"
                     [style.width]="row.containerWidth-2"
                     [style.margin.px]="2"
@@ -3069,7 +3069,7 @@
             </div>
 
             <!-- Shape Ellipse Object -->
-            <div class="widgetX" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Ellipse'">
+            <div class="widget" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Ellipse'">
                 <svg [style.height]="row.containerHeight-2"
                     [style.width]="row.containerWidth-2"
                     [style.margin.px]="0"
@@ -3087,7 +3087,7 @@
             </div>
 
             <!-- Shape Rectangle Object -->
-            <div class="widgetX" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Rectangle'">
+            <div class="widget" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Rectangle'">
                 <svg
                 [style.height.px]="row.containerHeight-2"
                     [style.width.px]="row.containerWidth-2"
@@ -3107,7 +3107,7 @@
             </div>
 
             <!-- Shape Text Object -->
-            <div class="widgetX" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Text'"
+            <div class="widget" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Text'"
 
                 [style.height.px]="1"
                 [style.color]="row.shapeTextColour"
@@ -3138,7 +3138,7 @@
             <!-- x increase   ?                   up + right-top      right               down+right -->
             <!-- y increase   ?                   down + right        down                left -->
 
-            <div class="widgetX" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Brackets'">
+            <div class="widget" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Brackets'">
                 <svg height="150" width="150" *ngIf="row.shapeSize==1
                     &&
                     row.shapeRotation==0"
@@ -3266,7 +3266,7 @@
             </div>
 
             <!-- Shape Arrow Object -->
-            <div class="widgetX" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Arrow'">
+            <div class="widget" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Arrow'">
                 <!-- TODO - Makey this DYNAMIC !!!  -->
                 <svg class="widgetShapeArrow" *ngIf="row.shapeSize==1
                         &&
@@ -3682,7 +3682,7 @@
             </div>
 
             <!-- Shape ArrowThin Object -->
-            <div class="widgetX" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='ArrowThin'">
+            <div class="widget" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='ArrowThin'">
                 <svg [style.height.px]="row.containerHeight"
                     [style.width.px]="row.containerWidth"
                     [style.marginTop.px]="-25"
@@ -3711,7 +3711,7 @@
             </div>
 
             <!-- Shape Image Object -->
-            <div class="widgetX" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Image'">
+            <div class="widget" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Image'">
                 <img [style.height.px]="row.containerHeight-10"
                     [style.width.px]="row.containerWidth-10"
                     [style.marginTop.px]="0"
@@ -3723,7 +3723,7 @@
             </div>
 
             <!-- Shape Bullets Object -->
-            <div class="widgetX" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Bullets'">
+            <div class="widget" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Bullets'">
                 <ul  *ngIf="!row.shapeBulletsOrdered"
                     [style.list-style-type]="row.shapeBulletStyleType"
                     >
@@ -3756,7 +3756,7 @@
             </div>
 
             <!-- Shape Value Object -->
-            <div class="widgetX" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Value'">
+            <div class="widget" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Value'">
                 <div
                     [style.width.px]="row.containerWidth"
                     [style.background-color]="row.containerBackgroundColor"
