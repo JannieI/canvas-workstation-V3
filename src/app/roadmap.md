@@ -402,6 +402,12 @@ This document describes items for later versions of Canvas.
     ---------
     - have different renderers, other than browser (for same Dashboard)!
 
+    Imeage:
+    ------
+    - add image via File input box - Tributary gives back url?
+    - scale on Sh Editor, and add drag handles to size here
+    - picture overlaps the WidgetContainer in App.html - looks funny
+    
     Data:
     ----
     - reconsider Transpose option for pre-loading.  May be useful for some datasets, but clearly not for SQL, etc.  And doubt if json files would need that.  Can this be useful?
@@ -452,6 +458,7 @@ This document describes items for later versions of Canvas.
     - consider auto-calculated values, ie hover and show SUM of data.  Not sure how to do this, and if useful
     - make Checkpoints more visible, may o o 0 o at bottom to show how many and where we are?
     - consider dataQual triangle, -> link icons in same spot each time? 
+    - consider: if click in open space, deselect all selected Widgets.  Make sure this works in conjuction with clicking on the menu or palette or statusbar ...
 
     Treeview: 
     --------

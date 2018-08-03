@@ -29,6 +29,7 @@ export class LandingComponent implements OnInit {
 
 	// sampleDashboards: Dashboard[] = this.globalVariableService.dashboardsSamples;
 	dashboardsRecent: DashboardRecent[];
+	errorMessage: string = '';
 	gotIt: boolean = false;
 	isFirstTimeUser: boolean = false;
 	sampleDashboards: Dashboard[];
@@ -64,76 +65,82 @@ export class LandingComponent implements OnInit {
 		
 				// Recent D
 				this.globalVariableService.getDashboardsRecent(
-					this.globalVariableService.currentUser.userID
-					).then(recD => {
-					this.dashboardsRecent = recD.slice(0, 5);
+					this.globalVariableService.currentUser.userID)
+					.then(recD => {
+						this.dashboardsRecent = recD.slice(0, 5);
 
-					// Palette buttons for current user
-					this.globalVariableService.getPaletteButtonsSelected().then(pBsel =>
-						{
+						// Palette buttons for current user
+						this.globalVariableService.getPaletteButtonsSelected().then(pBsel =>
+							{
 
-							// User has no Buttons selected, which will be the case for new users
-							if (pBsel.length == 0) {
-								// Load the default ones
-								this.globalVariableService.getPaletteButtonBar().then(pb => {
-									let promiseArray = [];
+								// User has no Buttons selected, which will be the case for new users
+								if (pBsel.length == 0) {
+									// Load the default ones
+									this.globalVariableService.getPaletteButtonBar().then(pb => {
+										let promiseArray = [];
 
-									pb.forEach(p => {
-										if (p.isDefault) {
-											let newButton: PaletteButtonsSelected = {
-													id: null,
-													userID: this.globalVariableService.currentUser.userID,
-													paletteButtonBarID: p.id,
-													mainmenuItem: p.mainmenuItem,
-													menuText: p.menuText,
-													shape: p.shape,
-													size: p.size,
-													class: p.class,
-													backgroundColor: p.backgroundColor,
-													accesskey: p.accesskey,
-													sortOrder: p.sortOrder,
-													sortOrderSelected: p.sortOrderSelected,
-													isDefault: p.isDefault,
-													functionName: p.functionName,
-													params: p.params,
-													tooltipContent: p.tooltipContent,
-													isSelected: p.isSelected
+										pb.forEach(p => {
+											if (p.isDefault) {
+												let newButton: PaletteButtonsSelected = {
+														id: null,
+														userID: this.globalVariableService.currentUser.userID,
+														paletteButtonBarID: p.id,
+														mainmenuItem: p.mainmenuItem,
+														menuText: p.menuText,
+														shape: p.shape,
+														size: p.size,
+														class: p.class,
+														backgroundColor: p.backgroundColor,
+														accesskey: p.accesskey,
+														sortOrder: p.sortOrder,
+														sortOrderSelected: p.sortOrderSelected,
+														isDefault: p.isDefault,
+														functionName: p.functionName,
+														params: p.params,
+														tooltipContent: p.tooltipContent,
+														isSelected: p.isSelected
+												};
+												promiseArray.push(
+													this.globalVariableService.addPaletteButtonsSelected(newButton)
+												);
 											};
-											promiseArray.push(
-												this.globalVariableService.addPaletteButtonsSelected(newButton)
+										});
+
+										this.globalVariableService.allWithAsync(...promiseArray)
+											.then(resolvedData => {
+
+											// Inform subscribers
+											this.globalVariableService.currentPaletteButtonsSelected.next(
+												this.globalVariableService.currentPaletteButtonsSelected.value
 											);
-										};
+										});
+
+										// // Inform subscribers
+										this.globalVariableService.dashboardsRecentBehSubject.next(recD);
 									});
+								} else {
+									pBsel = pBsel.filter(
+										s => s.userID == this.globalVariableService.currentUser.userID
+									);
 
-									this.globalVariableService.allWithAsync(...promiseArray)
-										.then(resolvedData => {
-
-										// Inform subscribers
-										this.globalVariableService.currentPaletteButtonsSelected.next(
-											this.globalVariableService.currentPaletteButtonsSelected.value
-										);
-									});
-
-									// // Inform subscribers
+									// Inform subscribers
+									this.globalVariableService.currentPaletteButtonsSelected
+										.next(pBsel);
 									this.globalVariableService.dashboardsRecentBehSubject.next(recD);
-								});
-							} else {
-								pBsel = pBsel.filter(
-									s => s.userID == this.globalVariableService.currentUser.userID
-								);
 
-								// Inform subscribers
-								this.globalVariableService.currentPaletteButtonsSelected
-									.next(pBsel);
-								this.globalVariableService.dashboardsRecentBehSubject.next(recD);
+								};
 
-							};
+								// Store for app to use
 
-							// Store for app to use
-
-						}
-					);
-				});
+							}
+						);
+					})
+					.catch(err => {
+						this.errorMessage = 'Error reading Database: ';
+					});
+			})
+			.catch(err => {
+				this.errorMessage = 'Error reading Database: ';
 			});
 		});
 
