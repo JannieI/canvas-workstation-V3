@@ -115,9 +115,8 @@ export class DashboardDescriptionComponent implements OnInit {
                 return 0;
             });
             dashboards.forEach(d => {
-                if (d.state = 'Complete') {
-                    this.dashboardList.push(d.name + ' (' + d.id.toString() + ') ' + d.state);
-                };
+                // List of ngFor (needs ID at later stage, state is useful for user)
+                this.dashboardList.push(d.name + ' (' + d.id.toString() + ') ' + d.state);
 
                 // Fill Initial
                 if (this.selectedDashboard.templateDashboardID != null
