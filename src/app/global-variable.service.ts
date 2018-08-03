@@ -1011,7 +1011,8 @@ export class GlobalVariableService {
                             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
                             this.dashboards)
                         resolve(this.dashboards);
-                    });
+                    })
+                    .catch(err => reject(err));
             } else {
                 console.log('%c    Global-Variables getDashboards 2',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
