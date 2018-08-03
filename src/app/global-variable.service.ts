@@ -2100,6 +2100,7 @@ export class GlobalVariableService {
                 returnData = this.dashboardTabs.filter(
                         i => i.dashboardID == dashboardID
                 );
+                this.currentDashboardTabs = returnData;
                 this.currentDashboardTabs = this.currentDashboardTabs.sort( (obj1,obj2) => {
                     if (obj1.displayOrder > obj2.displayOrder) {
                         return 1;
@@ -2110,7 +2111,6 @@ export class GlobalVariableService {
                     return 0;
                 });
 
-                this.currentDashboardTabs = returnData;
                 console.log('%c    Global-Variables getCurrentDashboardTabs 2',
                     "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
                     {dashboardID}, this.currentDashboardTabs)

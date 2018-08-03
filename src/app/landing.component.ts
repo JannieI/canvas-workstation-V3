@@ -29,7 +29,7 @@ export class LandingComponent implements OnInit {
 
 	// sampleDashboards: Dashboard[] = this.globalVariableService.dashboardsSamples;
 	dashboardsRecent: DashboardRecent[];
-	errorMessage: string = 'aaaaaaaaaaaaaaa';
+	errorMessage: string = '';
 	gotIt: boolean = false;
 	isFirstTimeUser: boolean = false;
 	sampleDashboards: Dashboard[];
@@ -59,7 +59,7 @@ export class LandingComponent implements OnInit {
 			// Sample Dashboards
 			this.globalVariableService.getDashboardSamples().then(sD => {
 				this.sampleDashboards = sD;
-console.warn('xx sD', sD)
+
 				// Set user stuffies
 				this.isFirstTimeUser = this.globalVariableService.currentUser.isFirstTimeUser;
 		
