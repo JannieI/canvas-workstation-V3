@@ -6,7 +6,6 @@ import { HostListener }               from '@angular/core';
 import { Input }                      from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
-import { Renderer }                   from '@angular/core';
 import { ViewChild }                  from '@angular/core';
 
 // Our models
@@ -54,16 +53,21 @@ export class ShapeDeleteComponent implements OnInit {
 
     @ViewChild('dragWidget', {read: ElementRef}) dragWidget: ElementRef;  //Vega graph
 
+    widgetText: string = '';
+
+
     constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
-        private renderer: Renderer,
     ) {}
 
     ngOnInit() {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
-
+        
+        if (this.selectedWidget.widgetSubType == 'Text') {
+            this.widgetText = this.selectedWidget.shapeText;
+        };
     }
 
   	clickClose() {

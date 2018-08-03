@@ -19,13 +19,21 @@
                                 Help
                             </h5>
                             <p style="margin-top: 0; color:gray;">
-                                    This form deletes the selected Shape.  Select <b>Edit -> Undo</b>
+                                    This form deletes the selected Shape.  
+                                    Select <b>Edit -> Undo</b>
                                     on the main menu to undo the action if necessary.
                                     Click the X or press Escape to close this form.
                             </p>
                         </clr-signpost-content>
                     </clr-signpost>
                 </div>
+
+                <dir class="gridWidgetID">
+                    The Widget is of type {{ selectedWidget.widgetType }}
+                    , sub type
+                    {{ selectedWidget.widgetSubType }}.
+                    {{ widgetText }}
+                </dir>
 
                 <div class = "gridConfirmation">
                     <label>Are you sure you want to delete the selected Shape?</label>

@@ -38,6 +38,14 @@
         text-align: left;
     }
 
+    .gridWidgetID {
+        grid-column-start: 1;
+        grid-column-end: 12;
+        grid-row-start: 8;
+        grid-row-end: 9;
+        text-align: left;
+    }
+
     .gridConfirmation {
         grid-column-start: 1;
         grid-column-end: 12;
