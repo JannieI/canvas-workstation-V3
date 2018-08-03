@@ -107,23 +107,23 @@ export class DashboardDescriptionComponent implements OnInit {
                 if (n1.name > n2.name) {
                     return 1;
                 };
-    
+
                 if (n1.name < n2.name) {
                     return -1;
                 };
-    
+
                 return 0;
             });
             dashboards.forEach(d => {
                 if (d.state = 'Complete') {
-                    this.dashboardList.push(d.name + ' (' + d.id.toString() + ')');
+                    this.dashboardList.push(d.name + ' (' + d.id.toString() + ') ' + d.state);
                 };
-                
+
                 // Fill Initial
-                if (this.selectedDashboard.templateDashboardID != null  
+                if (this.selectedDashboard.templateDashboardID != null
                     &&
                     this.selectedDashboard.templateDashboardID == d.id) {
-                    this.selectedTemplateDashboard = d.name + ' (' + d.id.toString() + ')';
+                    this.selectedTemplateDashboard = d.name + ' (' + d.id.toString() + ') ' + d.state;
                 };
             });
 
@@ -174,7 +174,7 @@ export class DashboardDescriptionComponent implements OnInit {
 
         // Get setup info
         this.backgroundcolors = this.globalVariableService.backgroundcolors.slice();
-        
+
     }
 
     clickTemplateDashboard(ev:any, id: number) {
@@ -189,11 +189,12 @@ export class DashboardDescriptionComponent implements OnInit {
             let openBracket: number = selectedDashboardString.indexOf('(');
             let closeBracket: number = selectedDashboardString.indexOf(')');
             this.selectedDashboardId = +selectedDashboardString.substring(openBracket + 1, closeBracket);
-            
+
             this.dashboardTemplateID = this.selectedDashboardId;
         } else {
             this.dashboardTemplateID = null;
         };
+        console.warn('xx this.dashboardTemplateID', this.dashboardTemplateID)
     }
 
     clickClose(action: string) {
@@ -253,7 +254,7 @@ export class DashboardDescriptionComponent implements OnInit {
         this.selectedDashboard.refresher = this.dashboardRefresher;
         this.selectedDashboard.dateRefreshed = this.dashboardRefreshed;
         this.selectedDashboard.accessType = this.dashboardAccessType;
-        
+
         // Update global D
         this.globalVariableService.saveDashboard(this.selectedDashboard);
 
@@ -279,7 +280,7 @@ export class DashboardDescriptionComponent implements OnInit {
         );
 		this.formDashboardDescriptionClosed.emit(action);
     }
-          
+
     clickSelectBgColor(ev: any) {
         // Select Background Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBgColor', '@Start');
@@ -295,5 +296,5 @@ export class DashboardDescriptionComponent implements OnInit {
         this.callingRoutine = 'BgColour';
         this.colourPickerClosed = true;
     }
-      
+
 }
