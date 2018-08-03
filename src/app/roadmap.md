@@ -290,6 +290,11 @@ This document describes items for later versions of Canvas.
     - pivot functionality
     - group headers and rows
 
+    Error Handling:
+    --------------
+    - nice message at all points, ie when DB not available on landing page
+    - central logging and handling
+    - error bubbling strategy
 
     Dashboard:
     ----------

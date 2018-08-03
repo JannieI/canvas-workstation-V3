@@ -1792,6 +1792,7 @@
 
 
 
+    
     <!-- ****************************  WIDGETS & RELATED FORMS ***************************** -->
 
     <div class="widgetContainer" *ngFor="let row of currentWidgets; let i = index"
@@ -2752,8 +2753,8 @@
             <div class="widgetX" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Image'">
                 <img [style.height.px]="row.containerHeight-10"
                     [style.width.px]="row.containerWidth-10"
-                    [style.marginTop.px]="-25"
-                    [style.marginLeft.px]="-9"
+                    [style.marginTop.px]="0"
+                    [style.marginLeft.px]="0"
                     [src]="row.shapeImageUrl"
                     >
                     <!-- <iframe width="420" height="345" src="https://www.youtube.com/embed/tgbNymZ7vqY">
@@ -3713,8 +3714,8 @@
             <div class="widgetX" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Image'">
                 <img [style.height.px]="row.containerHeight-10"
                     [style.width.px]="row.containerWidth-10"
-                    [style.marginTop.px]="-25"
-                    [style.marginLeft.px]="-9"
+                    [style.marginTop.px]="0"
+                    [style.marginLeft.px]="0"
                     [src]="row.shapeImageUrl"
                     >
                     <!-- <iframe width="420" height="345" src="https://www.youtube.com/embed/tgbNymZ7vqY">
