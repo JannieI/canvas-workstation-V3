@@ -2277,7 +2277,8 @@ export class GlobalVariableService {
                             {data})
                         resolve(data);
 
-                })
+                    })
+                    .catch(err => reject(err))
             })
         } else {
             return new Promise<Dashboard[]>((resolve, reject) => {
@@ -4018,7 +4019,7 @@ export class GlobalVariableService {
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                         {data})
                         resolve(this.canvasGroups);
-                    });
+                    })
             } else {
                 console.log('%c    Global-Variables getCanvasGroups 2',
                     "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")

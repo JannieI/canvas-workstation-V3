@@ -61,8 +61,8 @@
 				<div class="col-xs-6 lefthandCol">
 
 					<h3>Sample Dashboards</h3>
-					<div class="errorMessage" *ngIf="errorMessage">
-
+					<div class="errorMessage">
+						{{ errorMessage }}
 					</div>
 					<div *ngFor="let row of sampleDashboards">
 						<a
