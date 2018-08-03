@@ -10,9 +10,10 @@ import { Renderer }                   from '@angular/core';
 import { ViewChild }                  from '@angular/core';
 
 // Our models
+import { Widget }                     from './models';
 
 // Our Services
-import { GlobalFunctionService } 		  from './global-function.service';
+import { GlobalFunctionService }      from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
 // Functions
@@ -25,7 +26,7 @@ import { GlobalVariableService }      from './global-variable.service';
 })
 export class ShapeDeleteComponent implements OnInit {
 
-    @Input() currentShapeSpec: any;
+    @Input() selectedWidget: Widget;
     @Output() formShapeDeleteClosed: EventEmitter<string> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
