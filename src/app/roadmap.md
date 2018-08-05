@@ -556,6 +556,8 @@ This document describes items for later versions of Canvas.
     - are thin Arrows just Arrows without the body??
     - Arrow: make dynamic!  For both size and rotation, taking into account that it has to land inside the W container at all times, and preferably left top corner for easy placements.  Also, consider shrinking W container, ie with *ngIf on title and other grid areas ...
     - make it easier to add co logo, ie Add logo menu option.
+    - have polygon - 6 sided doughnut as shape
+    - have pentagon as shape - can divide background in 2 colours with a slant
 
 
     Draw Mode (Shapes):
@@ -666,3 +668,9 @@ This document describes items for later versions of Canvas.
     - tag data in context
     - tag Dashboards, Widgets
     - flexible and customisable
+
+    Product Design:
+    --------------
+    - do we do data virtualization???  If so, get best practice and key points
+    - ask Joya for unique marketing method, ie not billboards
+    - title of TIBCO person: Senior Solutions Engineer ...
