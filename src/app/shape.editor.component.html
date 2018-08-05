@@ -26,7 +26,7 @@
                             <h5 style="margin-top: 0; color:gray;">
                                 Help
                             </h5>
-                            <p style="margin-top: 0; color:gray;"> 
+                            <p style="margin-top: 0; color:gray;">
                                 This form allows for the adding of a new Shape, or the editing
                                 of an existing Shape.  The fields on the left side of the form
                                 will change depending on the type of Shape selected at the top.
@@ -67,7 +67,7 @@
                         <label for="checkTitle">Has Title</label>
                     </div>
                 </div>
-    
+
                 <div class="gridButtonCancel">
                     <button
                         type="button"
@@ -762,7 +762,7 @@
                             <span (click)="clickBulletAdd()">Add</span>
                         </button>
                     </span>
-        
+
                     <ul *ngIf="!localWidget.shapeBulletsOrdered"
                         [style.color]="localWidget.shapeTextColour"
                         [style.list-style-type]="localWidget.shapeBulletStyleType"
@@ -813,12 +813,12 @@
                                         placeholder="true, false"
                                         [(ngModel)]="row.text"
                                         style="font-style: italic;"
-                                        > 
+                                        >
                                     </textarea>
-                                                                        
+
                                 </i>
                             </span>
-                            
+
                             <span *ngIf="editLineNr==-1  ||  i!=editLineNr"
                                 (click)="clickBulletTextEdit(i, row.text)">
                                 {{ row.text }}
@@ -876,12 +876,12 @@
                                         placeholder="true, false"
                                         [(ngModel)]="row.text"
                                         style="font-style: italic;"
-                                        > 
+                                        >
                                     </textarea>
-                                                                        
+
                                 </i>
                             </span>
-                            
+
                             <span *ngIf="editLineNr==-1  ||  i!=editLineNr"
                                 (click)="clickBulletTextEdit(i, row.text)">
                                 {{ row.text }}

@@ -56,6 +56,11 @@ This document describes items for later versions of Canvas.
     - consider hard max limits: cannot read more than 10000 rows from Excel, etc ?
     - make it easier to see where to input data: maybe gray background ... Is this really necesary?  Make baie certain as this is baie work ...
     - look at Windi.com, Wahoo ? to see how to make it easy
+    - look at gartner quadrant for dv. Explore, visualize, transform, compute, compose
+    - create a video / bitmap
+    - consume all files in a folder !!  Can also poll folder to update when they change !!!
+    - infer xsd from XML files. Tranform XML to SQL db table And show mapping. Publish to make it accessable by other consumers like spotfire. Which reads it as a db table, or to other bi consumers. Can combine XML to other data
+    - can read Ems, Jms ... ??
 
     Bookmarks:
     ---------
