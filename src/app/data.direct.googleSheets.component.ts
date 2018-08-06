@@ -77,6 +77,7 @@ export class DataDirectGoogleSheetsComponent implements OnInit {
         if (this.selectedDatasource != null) {
             this.newName = this.selectedDatasource.name;
             this.newDescription = this.selectedDatasource.description;
+            this.newCacheResults = this.selectedDatasource.cacheResults;
             this.url = this.selectedDatasource.webUrl;
             this.firstTimeEdit = true;
             this.clickHttpGet();
@@ -177,6 +178,7 @@ export class DataDirectGoogleSheetsComponent implements OnInit {
             // Mark the changes
             this.selectedDatasource.name = this.newName;
             this.selectedDatasource.description = this.newDescription;
+            this.selectedDatasource.cacheResults = this.newCacheResults;
             this.selectedDatasource.webUrl = this.url;
             this.selectedDatasource.webTableIndex = this.selectedTableRowIndex.toString();
             this.selectedDatasource.editor = this.globalVariableService.currentUser.userID;
