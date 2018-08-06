@@ -123,8 +123,12 @@ export class DataDirectSQLEditorComponent implements OnInit {
                 dataDictionary: ''
 
             };
+        } else {
+            this.clickExplore();
+            if (this.dataSchemas.length > 0) {
+                this.clickSelectTable(this.dataSchemas[0].tableName);
+            };
         };
-
 
     }
 
