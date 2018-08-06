@@ -136,17 +136,32 @@
         margin-top: 5px;
     }
 
-    .gridButtonRefresh {
+    .gridDatasourceIsCachedTitle {
         grid-column-start: 14;
         grid-column-end: 16;
+        grid-row-start: 7;
+        grid-row-end: 8;
+        margin-top: 5px;
+    }
+    .gridDatasourceIsCached {
+        grid-column-start: 16;
+        grid-column-end: 17;
+        grid-row-start: 7;
+        grid-row-end: 8;
+        margin-top: 5px;
+    }
+
+    .gridButtonRefresh {
+        grid-column-start: 17;
+        grid-column-end: 19;
         grid-row-start: 6;
         grid-row-end: 7;
         margin-top: 12px;
     }
 
     .gridButtonPreview {
-        grid-column-start: 16;
-        grid-column-end: 18;
+        grid-column-start: 19;
+        grid-column-end: 21;
         grid-row-start: 6;
         grid-row-end: 7;
         margin-top: 12px;

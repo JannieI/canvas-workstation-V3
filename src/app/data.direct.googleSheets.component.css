@@ -90,18 +90,19 @@
     }
 
     .gridDataRows {
-        grid-column-start: 18;
-        grid-column-end: 21;
+        grid-column-start: 15;
+        grid-column-end: 17;
         grid-row-start: 6;
         grid-row-end: 7;
+        margin-top: 6px;
     }
 
     .gridErrorMessage {
         color: red;
         grid-column-start: 1;
         grid-column-end: 21;
-        grid-row-start: 6;
-        grid-row-end: 7;
+        grid-row-start: 7;
+        grid-row-end: 8;
     }
 
     .gridSpinner {
