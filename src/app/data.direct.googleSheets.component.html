@@ -29,8 +29,8 @@
                                     Help
                                 </h5>
                                 <p style="margin-top: 0; color:gray;">
-                                    Obtain data from a Google Sheet document.  Enter the url 
-                                    of your Google Sheet, and click Get to obtain the data.  
+                                    Obtain data from a Google Sheet document.  Enter the url
+                                    of your Google Sheet, and click Get to obtain the data.
                                     Enter a name and description for the datasource,
                                     and click Save to store it permanently.
                                     Click the X or press Escape to close this form.
@@ -63,6 +63,17 @@
                             >
                     </div>
 
+                    <div class="gridDatasourceIsCachedTitle">
+                        <b>Cache?:</b>
+                    </div>
+                    <div class="gridDatasourceIsCached">
+                        <input [(ngModel)]="newCacheResults"
+                        type="checkbox"
+                        name="dashboardQArequired"
+                        title="Cached results for this Datasource (T/F)"
+                        >
+                    </div>
+
                     <div class="gridUrlTitle">
                         <b>Url:</b>
                     </div>
@@ -89,11 +100,11 @@
                     <span class="spinner spinner-inline gridSpinner" *ngIf="spinner">
                         Loading...
                     </span>
-    
+
                     <div class="gridDataRows" *ngIf="showPreview">
                         {{ nrRows }} Rows
                     </div>
-                    
+
                     <div class="gridErrorMessage">
                         {{ errorMessage }}
                     </div>
@@ -152,4 +163,3 @@
         </div>
     </div>
 </div>
-    

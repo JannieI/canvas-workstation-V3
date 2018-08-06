@@ -57,6 +57,7 @@ export class DataDirectGoogleSheetsComponent implements OnInit {
     firstTimeEdit: boolean = false;
     newName: string = '';
     newDescription: string = '';
+    newCacheResults: boolean = true;
     nrRows: number = 0;
     savedMessage: string = '';
     selectedTableRowIndex: number = -1;
@@ -246,7 +247,7 @@ export class DataDirectGoogleSheetsComponent implements OnInit {
                 dataFieldTypes: [],
                 dataFieldLengths: [],
                 parameters: '',
-                cacheResults: true,
+                cacheResults: this.newCacheResults,
                 cacheStorageID: null,
                 createMethod: 'directGoogleSheets',
                 createdBy: this.globalVariableService.currentUser.userID,
