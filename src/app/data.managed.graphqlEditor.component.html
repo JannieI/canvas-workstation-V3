@@ -51,6 +51,17 @@
                             >
                     </div>
 
+                    <div class="gridDatasourceIsCachedTitle">
+                        <b>Cache?:</b>
+                    </div>
+                    <div class="gridDatasourceIsCached">
+                        <input [(ngModel)]="selectedDatasource.cacheResults"
+                        type="checkbox"
+                        name="dashboardQArequired"
+                        title="Cached results for this Datasource (T/F)"
+                        >
+                    </div>
+
                     <div class="gridConnectionSelectTitle">
                         <b>Connection:</b>
                     </div>
