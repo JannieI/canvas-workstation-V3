@@ -93,6 +93,7 @@ This document describes items for later versions of Canvas.
     - view Thumbnails of all T - can selected ala PowerPoint
     - Have popup thumbnails of D on Landing page
     - Use thumbnails to select a W from another D - have thumbnails are on/off option for performance perhaps
+    - got is working (sort of) with: http://www.shanegibney.com/shanegibney/angular2-and-jspdf-file-generation/
 
     https://stackoverflow.com/questions/35138424/how-do-i-download-a-file-with-angular2
     To download and show PDF files, a very similar code snipped is like below:

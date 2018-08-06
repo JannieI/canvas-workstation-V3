@@ -299,17 +299,6 @@ export class CanvasGroup {
 }
 
 // Data
-export class Dataset {
-    id: number;
-    datasourceID: number;
-    sourceLocation: string;                 // Where data lives: file, localDB, MSSQL, etc
-    url: string;                            // URL for http request
-    folderName: string;                     // Optional folder name where data is stored
-    fileName: string;                       // Optional file name where data is stored
-    data: any;                              // Filtered data as json
-    dataRaw: any;                           // Unfiltered data as json
-}
-
 export class Combination {
     combinationID: number;
     dashboardID: number;
@@ -362,6 +351,17 @@ export class DatasourcePivot {
     aggregateFieldName: string;
     aggregateType: string;              // Sum, Average, etc
     refreshAlways: boolean;             // If True, will refresh after each change to rows, cols, etc
+}
+
+export class Dataset {
+    id: number;
+    datasourceID: number;
+    sourceLocation: string;                 // Where data lives: file, localDB, MSSQL, etc
+    url: string;                            // URL for http request
+    folderName: string;                     // Optional folder name where data is stored
+    fileName: string;                       // Optional file name where data is stored
+    data: any;                              // Filtered data as json
+    dataRaw: any;                           // Unfiltered data as json
 }
 
 export class Datasource {

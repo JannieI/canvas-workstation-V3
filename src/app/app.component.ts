@@ -7672,6 +7672,7 @@ export class AppComponent implements OnInit {
             this.globalVariableService.currentUser.preferencePaletteHorisontal
         );
     }
+
 }
 
 // Naming conventions
