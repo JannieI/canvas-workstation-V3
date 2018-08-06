@@ -356,6 +356,8 @@ export class DataDirectFileJSONComponent implements OnInit {
                 dataFieldTypes: [],
                 dataFieldLengths: [],
                 parameters: '',
+                cacheResults: true,
+                cacheStorageID: null,
                 createMethod: 'directFileJSON',
                 createdBy: this.globalVariableService.currentUser.userID,
                 createdOn: today,

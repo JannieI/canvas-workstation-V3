@@ -355,6 +355,9 @@ export class DataDirectFileCSVComponent implements OnInit {
                 dataFieldTypes: [],
                 dataFieldLengths: [],
                 parameters: '',
+                cacheResults: true,
+                cacheStorageID: null,
+            
                 createMethod: 'directFileCSV',
                 createdBy: this.globalVariableService.currentUser.userID,
                 createdOn: today,

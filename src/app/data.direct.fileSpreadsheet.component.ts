@@ -410,6 +410,8 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
                 dataFieldTypes: [],
                 dataFieldLengths: [],
                 parameters: '',
+                cacheResults: true,
+                cacheStorageID: null,
                 createMethod: 'directFileSpreadsheet',
                 createdBy: this.globalVariableService.currentUser.userID,
                 createdOn: today,
