@@ -103,6 +103,8 @@ export class DataManagedNoSQLEditorComponent implements OnInit {
                 dataFieldTypes: [''],
                 dataFieldLengths: [0],
                 parameters: '',
+                cacheResults: true,
+                cacheStorageID: null,
                 folder: '',
                 fileName: '',
                 excelWorksheet: '',

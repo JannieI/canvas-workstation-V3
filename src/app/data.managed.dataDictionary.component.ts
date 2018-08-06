@@ -80,6 +80,8 @@ export class DataManagedDataDictionaryComponent implements OnInit {
             dataFieldTypes: null,
             dataFieldLengths: null,
             parameters: '',
+            cacheResults: true,
+            cacheStorageID: null,
             folder: '',
             fileName: '',
             excelWorksheet: '',
