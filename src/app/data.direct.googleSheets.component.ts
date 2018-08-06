@@ -246,6 +246,8 @@ export class DataDirectGoogleSheetsComponent implements OnInit {
                 dataFieldTypes: [],
                 dataFieldLengths: [],
                 parameters: '',
+                cacheResults: true,
+                cacheStorageID: null,
                 createMethod: 'directGoogleSheets',
                 createdBy: this.globalVariableService.currentUser.userID,
                 createdOn: today,
