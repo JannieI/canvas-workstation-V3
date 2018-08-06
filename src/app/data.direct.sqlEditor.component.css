@@ -141,12 +141,27 @@
         margin-top: 5px;
     }
 
-    .gridButtonExplore {
-        grid-column-start: 16;
-        grid-column-end: 18;
+    .gridDatasourceIsCachedTitle {
+        grid-column-start: 14;
+        grid-column-end: 16;
         grid-row-start: 7;
         grid-row-end: 8;
         margin-top: 5px;
+    }
+    .gridDatasourceIsCached {
+        grid-column-start: 16;
+        grid-column-end: 17;
+        grid-row-start: 7;
+        grid-row-end: 8;
+        margin-top: 5px;
+    }
+
+    .gridButtonExplore {
+        grid-column-start: 18;
+        grid-column-end: 20;
+        grid-row-start: 6;
+        grid-row-end: 7;
+        margin-top: 12px;
     }
 
     .gridErrorMessage {
@@ -233,21 +248,6 @@
         grid-row-start: 9;
         grid-row-end: 25;
         width: 100%;
-    }
-
-    .gridDatasourceIsCachedTitle {
-        grid-column-start: 14;
-        grid-column-end: 16;
-        grid-row-start: 7;
-        grid-row-end: 8;
-        margin-top: 5px;
-    }
-    .gridDatasourceIsCached {
-        grid-column-start: 16;
-        grid-column-end: 17;
-        grid-row-start: 7;
-        grid-row-end: 8;
-        margin-top: 5px;
     }
 
     .gridButtonExport {

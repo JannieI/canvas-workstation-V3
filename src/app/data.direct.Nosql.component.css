@@ -141,6 +141,21 @@
         margin-top: 5px;
     }
 
+    .gridDatasourceIsCachedTitle {
+        grid-column-start: 14;
+        grid-column-end: 16;
+        grid-row-start: 7;
+        grid-row-end: 8;
+        margin-top: 5px;
+    }
+    .gridDatasourceIsCached {
+        grid-column-start: 16;
+        grid-column-end: 17;
+        grid-row-start: 7;
+        grid-row-end: 8;
+        margin-top: 5px;
+    }
+
     .gridErrorMessage {
         color: red;
         grid-column-start: 13;
