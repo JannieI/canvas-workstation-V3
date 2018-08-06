@@ -125,9 +125,6 @@ export class DataDirectSQLEditorComponent implements OnInit {
             };
         } else {
             this.clickExplore();
-            if (this.dataSchemas.length > 0) {
-                this.clickSelectTable(this.dataSchemas[0].tableName);
-            };
         };
 
     }
@@ -255,6 +252,15 @@ export class DataDirectSQLEditorComponent implements OnInit {
                     )
                 });
             });
+
+            // Fill the fields
+            if (this.dataSchemas.length > 0) {
+                // this.clickSelectTable(this.dataSchemas[0].tableName);
+                this.fieldsInTable = this.dataSchemas[0].tableFields.map(tf => tf.fieldName);
+                console.warn('xx this.dataSchemas', this.dataSchemas)
+            };
+
+            // Reset
             this.spinner = false;
             console.warn('xx res I', res, this.dataSchemas)
 
