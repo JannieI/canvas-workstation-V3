@@ -57,6 +57,21 @@
         margin-top: 5px;
     }
 
+    .gridDatasourceIsCachedTitle {
+        grid-column-start: 14;
+        grid-column-end: 15;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        margin-top: 5px;
+    }
+    .gridDatasourceIsCached {
+        grid-column-start: 15;
+        grid-column-end: 16;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        margin-top: 5px;
+    }
+
     .gridConnectionSelectTitle {
         grid-column-start: 1;
         grid-column-end: 2;
