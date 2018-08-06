@@ -20,7 +20,7 @@
                                 </h5>
                                 <p style="margin-top: 0; color:gray;">
                                     Add a Datasource from a SQL Database.  Specify the Connection,
-                                    Table and required fields.  Transformations are optional.  
+                                    Table and required fields.  Transformations are optional.
                                     Click the X or press Escape to close this form.
                                 </p>
                             </clr-signpost-content>
@@ -101,7 +101,7 @@
                     <div class="connectionString">
                         {{ connectionString }}
                     </div>
-    
+
                     <div class="gridButtonRefresh">
                         <button
                             type="button"
@@ -125,7 +125,7 @@
                     <div class="gridDataRows" *ngIf="showPreview">
                         {{ nrRows }} Rows
                     </div>
-    
+
                     <div class="gridTables">
                         <clr-datagrid>
                             <clr-dg-placeholder>
@@ -179,7 +179,7 @@
                     <span class="spinner spinner-inline gridSpinner" *ngIf="spinner">
                         Loading...
                     </span>
-    
+
                     <div class="gridPreviewData" *ngIf="showPreview">
                         <clr-datagrid class="gridPreviewData">
 
@@ -252,4 +252,3 @@
         </div>
     </div>
 </div>
-                        
