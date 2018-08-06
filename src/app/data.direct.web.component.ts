@@ -303,6 +303,8 @@ export class DataDirectWebComponent implements OnInit {
                 dataFieldTypes: [],
                 dataFieldLengths: [],
                 parameters: '',
+                cacheResults: true,
+                cacheStorageID: null,
                 createMethod: 'directWeb',
                 createdBy: this.globalVariableService.currentUser.userID,
                 createdOn: today,
