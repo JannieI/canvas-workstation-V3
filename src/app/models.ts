@@ -379,6 +379,10 @@ export class Datasource {
     dataFieldLengths: number[];         // Max field lengths, same order as dataFields
     parameters: string;                 // Parameters to pass into SQL query
 
+    // Caching info
+    cacheResults: boolean = true;       // True if results must be cached. Each Tr is decided deparately
+    cacheStorageID: number;             // s-id of cached results, if cacheResults == true
+
     // Create and Edit info
     createMethod: string;               // Method how DS was created, ie DirectFile, ..., ManagedSQLEditor
     createdBy: string;                  // Creator
