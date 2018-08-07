@@ -89,14 +89,14 @@ export class DataDirectSQLEditorComponent implements OnInit {
                 editor: '',
                 dateEdited: null,
                 refreshedBy: '',
-                refreshedOn: null,
+                refreshedServerOn: null,
                 dataFieldIDs: [0],
                 dataFields: [''],
                 dataFieldTypes: [''],
                 dataFieldLengths: [0],
                 parameters: '',
-                cacheResults: true,
-                cacheStorageID: null,
+                cacheResultsOnServer: true,
+                cacheServerStorageID: null,
                 folder: '',
                 fileName: '',
                 excelWorksheet: '',
@@ -127,6 +127,8 @@ export class DataDirectSQLEditorComponent implements OnInit {
             this.clickExplore();
         };
 
+        console.warn('xx dates', 
+    this.globalVariableService.dateDiff(new Date(), new Date('2018-08-09'), 'day'))
     }
 
     clickGo() {

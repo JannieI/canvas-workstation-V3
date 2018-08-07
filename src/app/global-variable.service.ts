@@ -8959,7 +8959,7 @@ export class GlobalVariableService {
         return tributarySource;
     };
 
-    dateAdd(date, interval, units) {
+    dateAdd(date: Date, interval: string, units: number) {
         // Adds an element to a data, similar to ADDDATE SQL-style
         //  - date  Date to start with
         //  - interval  One of: year, quarter, month, week, day, hour, minute, second
@@ -8971,7 +8971,7 @@ export class GlobalVariableService {
             {date}, {interval}, {units});
 
         // Get the original
-        var ret = new Date(date); //don't change original date
+        var ret: Date = new Date(date); //don't change original date
 
         var checkRollover = function() { if(ret.getDate() != date.getDate()) ret.setDate(0);};
         switch(interval.toLowerCase()) {
@@ -8985,10 +8985,11 @@ export class GlobalVariableService {
             case 'second' :  ret.setTime(ret.getTime() + units*1000);  break;
             default       :  ret = undefined;  break;
         };
+        
         return ret;
     }
 
-    dateDiff(fromDate, toDate, interval): number {
+    dateDiff(fromDate: Date, toDate: Date, interval: string): number {
         // Returns the difference between two dates in the given interval, similar to DATEDIFF SQL-style
         //  - fromDate  From Date
         //  - toDate  To Date
@@ -9006,21 +9007,23 @@ export class GlobalVariableService {
         if (toDate == null) {
             toDate = new Date();
         };
-        let to = new Date(toDate); //don't change original dates
-        let diffMs = (toDate - fromDate); // milliseconds between two dates
+        let diffDays: number = toDate.getDate() - fromDate.getDate(); // milliseconds between two dates
+        let diffTime: number = toDate.getTime() - fromDate.getTime(); // milliseconds between two dates
+        console.log('xx gv diffMs', diffDays, diffTime)
         let ret: number = undefined;
         switch(interval.toLowerCase()) {
-            case 'year'        : ret = diffMs / (365 * 86400000); 
-            case 'quarter'     : ret = diffMs / (120 * 86400000); 
-            case 'month'       : ret = diffMs / (30 * 86400000); 
-            case 'week'        : ret = diffMs / (7 * 86400000) ; 
-            case 'day'         : ret = diffMs / 86400000;  
-            case 'hour'        : ret = diffMs / 3600000;
-            case 'minute'      : ret = diffMs / 60000;
-            case 'second'      : ret = diffMs / 1000;
-            case 'millisecond' : ret = diffMs;
+            case 'year'        : ret = diffDays / 365; 
+            case 'quarter'     : ret = diffDays / 120; 
+            case 'month'       : ret = diffDays / 30; 
+            case 'week'        : ret = diffDays / 7 ; 
+            case 'day'         : ret = diffDays;  
+            case 'hour'        : ret = diffTime / 3600000;
+            case 'minute'      : ret = diffTime / 60000;
+            case 'second'      : ret = diffTime / 1000;
+            case 'millisecond' : ret = diffTime;
             default       	   : ret = undefined;
-        }
+        };
+
         return ret;
     }
 }
