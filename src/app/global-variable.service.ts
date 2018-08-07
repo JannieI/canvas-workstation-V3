@@ -8967,8 +8967,8 @@ export class GlobalVariableService {
         //  Example: dateAdd(new Date(), 'minute', 30)  //returns 30 minutes from now
         // Returns: Amended Date
         console.log('%c    Global-Variables getTributaryDirectDBSchema ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
-        {date}, {interval}, {units});
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+            {date}, {interval}, {units});
 
         // Get the original
         var ret = new Date(date); //don't change original date
@@ -8988,4 +8988,39 @@ export class GlobalVariableService {
         return ret;
     }
 
+    dateDiff(fromDate, toDate, interval): number {
+        // Returns the difference between two dates in the given interval, similar to DATEDIFF SQL-style
+        //  - fromDate  From Date
+        //  - toDate  To Date
+        //  - interval  One of: year, quarter, month, week, day, hour, minute, second
+        //  Example: dateAdd(new Date(), 'minute', 30)  //returns 30 minutes from now
+        // Returns: Amended Date
+        console.log('%c    Global-Variables getTributaryDirectDBSchema ...',
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+            {fromDate}, {toDate}, {interval});
+
+        // Cater for bad input
+        if (fromDate == null) {
+            fromDate = new Date();
+        };
+        if (toDate == null) {
+            toDate = new Date();
+        };
+        let to = new Date(toDate); //don't change original dates
+        let diffMs = (toDate - fromDate); // milliseconds between two dates
+        let ret: number = undefined;
+        switch(interval.toLowerCase()) {
+            case 'year'        : ret = diffMs / (365 * 86400000); 
+            case 'quarter'     : ret = diffMs / (120 * 86400000); 
+            case 'month'       : ret = diffMs / (30 * 86400000); 
+            case 'week'        : ret = diffMs / (7 * 86400000) ; 
+            case 'day'         : ret = diffMs / 86400000;  
+            case 'hour'        : ret = diffMs / 3600000;
+            case 'minute'      : ret = diffMs / 60000;
+            case 'second'      : ret = diffMs / 1000;
+            case 'millisecond' : ret = diffMs;
+            default       	   : ret = undefined;
+        }
+        return ret;
+    }
 }
