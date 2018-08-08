@@ -7181,7 +7181,7 @@ export class GlobalVariableService {
     }
 
     getStatusBarMessageLogs(userID: string): Promise<StatusBarMessageLog[]> {
-        // Description: Gets all Canvas AuditTrails
+        // Description: Gets all StatusBarMessageLogs
         // Returns: this.statusBarMessageLogss array, unless:
         //   If not cached or if dirty, get from File
         console.log('%c    Global-Variables getstatusBarMessageLogss ...',
@@ -7342,6 +7342,8 @@ export class GlobalVariableService {
                     finalUrl = 'http://localhost:3000/' + url;
                 } else if (url == 'datasets') {
                     finalUrl = 'http://localhost:3000/' + url;
+                } else if (url == 'statusBarMessageLogs') {
+                    finalUrl = 'http://localhost:3002/' + url;
                 } else if (url == 'canvasAuditTrails') {
                     finalUrl = 'http://localhost:3002/' + url;
                 } else if (url == 'paletteButtonBars') {
