@@ -3046,6 +3046,9 @@ export class GlobalVariableService {
                             sourceLocation: 'file',
                             folderName: folderName,
                             fileName: fileName,
+                            cacheServerStorageID: null,
+                            cacheLocalStorageID: null,
+                            isLocalDirty: null,
                             data: dataFile,
                             dataRaw: dataFile
                         };
@@ -3081,6 +3084,9 @@ export class GlobalVariableService {
                             sourceLocation: 'HTTP',
                             folderName: folderName,
                             fileName: fileName,
+                            cacheServerStorageID: null,
+                            cacheLocalStorageID: null,
+                            isLocalDirty: null,
                             data: dataFile.data,
                             dataRaw: dataFile.data
                         };
