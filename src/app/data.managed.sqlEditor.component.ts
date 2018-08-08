@@ -104,12 +104,9 @@ export class DataManagedSQLEditorComponent implements OnInit {
                 dataFieldLengths: [0],
                 parameters: '',
                 cacheResultsOnServer: true,
-                cacheServerStorageID: null,
                 unRefreshable: true,
                 nrCacheCopies: 999,
                 cacheResultsLocal: false,
-                cacheLocalStorageID: null,
-                isLocalDirty: null,
                 oldnessMaxPeriodInterval: '',
                 oldnessMaxPeriodUnits: 0,
                 oldnessRelatedDate: '',
@@ -364,6 +361,9 @@ export class DataManagedSQLEditorComponent implements OnInit {
                 url: 'data',
                 folderName: '',
                 fileName: '',
+                cacheServerStorageID: null,
+                cacheLocalStorageID: null,
+                isLocalDirty: null,
                 data: this.fileDataFull,
                 dataRaw: this.fileDataFull
             };
