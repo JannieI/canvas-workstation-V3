@@ -389,10 +389,10 @@ export class Datasource {
     // Caching info
     cacheResultsOnServer: boolean;      // True if results may be cached on server. Each Tr is decided deparately
     unRefreshable: boolean;             // Can create once, but cannot 
-    cacheServerStorageID: number;       // s-id on Server of cached results
+    cacheServerStorageID: string;       // s-id on Server of cached results
     nrCacheCopies: number;              // Nr Cache copies kept, 0 means none
     cacheResultsLocal: boolean;         // True if Local results must be cached
-    cacheLocalStorageID: number;        // s-id Locally of cached results
+    cacheLocalStorageID: string;        // s-id Locally of cached results
     isLocalDirty: boolean;              // True means must get from server (cannot use local)
 
     // Optional Max Oldness allowed - must be fresher than given 
