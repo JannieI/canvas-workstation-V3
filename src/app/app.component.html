@@ -254,7 +254,7 @@
                                     Rename
                                 </button>
 
-                                <div class="dropdown-divider"></div>                               
+                                <div class="dropdown-divider"></div>
                                 <button type="button"
                                     clrDropdownItem
                                     title="Discard changes to the current Dashboard"
@@ -458,7 +458,7 @@
                         </clr-dropdown>
 
                         <clr-dropdown>
-    
+
                             <button
                                 type="button"
                                 class="btn btn-link btn-sm"
@@ -570,9 +570,9 @@
                                 </clr-dropdown>
                             </clr-dropdown-menu>
                         </clr-dropdown>
-        
+
                         <div class="dropdown-divider"></div>
-                        
+
                         <button
                             type="button"
                             class="btn btn-link btn-sm"
@@ -604,9 +604,9 @@
                         </button>
 
                         <div class="dropdown-divider"></div>
-                        
+
                         <clr-dropdown>
-    
+
                             <button
                                 type="button"
                                 class="btn btn-link btn-sm"
@@ -660,7 +660,7 @@
                                 </clr-dropdown>
                             </clr-dropdown-menu>
                         </clr-dropdown>
-        
+
                         <button
                             type="button"
                             class="btn btn-link btn-sm"
@@ -703,7 +703,7 @@
                                     Repeat
                                 </button>
                             </clr-dropdown-menu>
-                        </clr-dropdown> 
+                        </clr-dropdown>
 
                         <div class="dropdown-divider"></div>
                         <button
@@ -809,8 +809,8 @@
                                     >
                                     Comments
                                 </button>
-                                <button type="button" 
-                                    clrDropdownItem 
+                                <button type="button"
+                                    clrDropdownItem
                                     (click)="clickMenuWidgetLinks()"
                                     >
                                     Links
@@ -829,7 +829,7 @@
                                 Data related
                             </button>
                             <clr-dropdown-menu clrPosition="right-top" *clrIfOpen>
-                                
+
                                 <button type="button"
                                     clrDropdownItem
                                     (click)="clickMenuWidgetBusinessGlossary()"
@@ -1644,7 +1644,7 @@
                         >
                         My Profile
                     </button>
-                    
+
                     <button type="button"
                         clrDropdownItem
                         (click)="clickMenuUserPreferences()"
@@ -1801,7 +1801,7 @@
 
 
 
-    
+
     <!-- ****************************  WIDGETS & RELATED FORMS ***************************** -->
 
     <div class="widgetContainer" *ngFor="let row of currentWidgets; let i = index"
@@ -2041,7 +2041,7 @@
                         </clr-signpost-content>
                     </clr-signpost>
                 </span>
-                
+
                 <!-- Data Quality Issues -->
                 <span style="display: inline-block" *ngIf="row.nrDataQualityIssues>0">
                     <clr-icon shape="exclamation-triangle"
@@ -2054,9 +2054,9 @@
                 <!-- Title Text -->
                 <b>{{ row.titleText }}</b>
                 <!-- <b>
-                    <input class="widgetTitleEdit" 
+                    <input class="widgetTitleEdit"
                         [(ngModel)]="row.titleText"
-                        type="text" 
+                        type="text"
                         [disabled]="true"
                         >
                 </b> -->
@@ -3820,7 +3820,7 @@
 
 <div class="popupMessage" *ngIf="showPopupMessage">
     In order to change the dashboard (ie. edit, move, duplicate, etc), you have to be in
-    EditMode.  This is on the <b>Edit</b> menu option.  Note that it is only possible to 
+    EditMode.  This is on the <b>Edit</b> menu option.  Note that it is only possible to
     edit if you have the appropriate role, and correct rights to the Dashboard.
     <b>Got it</b> <input type="checkbox" (click)="clickGotIt()">
 </div>
@@ -3839,14 +3839,14 @@
 
 
 <!-- Palette -->
-<div class="paletteIcon" 
+<div class="paletteIcon"
     [style.left.px]="paletteLeft+2"
     [style.top.px]="paletteTop+2"
     >
     <clr-icon
         (click)="togglePaletteHorisontal()"
-        shape="angle right" 
-        size="9" 
+        shape="angle right"
+        size="9"
         >
     </clr-icon>
 </div>
@@ -3861,7 +3861,7 @@
     (dragend)="clickPaletteDragEnd($event)"
     draggable="true"
     >
-    
+
     <span *ngFor="let row of paletteButtons; let i = index"
         role="tooltip"
         aria-haspopup="true"

@@ -5953,7 +5953,7 @@ export class AppComponent implements OnInit {
 
         this.globalVariableService.dontDisturb = !this.globalVariableService.dontDisturb;
         this.dontDisturb = this.globalVariableService.dontDisturb;
-        
+        console.warn('xx this.dontDisturb', this.dontDisturb)
         this.menuOptionClickPostAction();
     }
 
