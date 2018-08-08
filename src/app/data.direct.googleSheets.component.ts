@@ -250,12 +250,9 @@ export class DataDirectGoogleSheetsComponent implements OnInit {
                 dataFieldLengths: [],
                 parameters: '',
                 cacheResultsOnServer: this.newCacheResults,
-                cacheServerStorageID: null,
                 unRefreshable: true,
                 nrCacheCopies: 999,
                 cacheResultsLocal: false,
-                cacheLocalStorageID: null,
-                isLocalDirty: null,
                 oldnessMaxPeriodInterval: '',
                 oldnessMaxPeriodUnits: 0,
                 oldnessRelatedDate: '',
@@ -301,6 +298,9 @@ export class DataDirectGoogleSheetsComponent implements OnInit {
                 url: 'data',
                 folderName: '',
                 fileName: '',
+                cacheServerStorageID: null,
+                cacheLocalStorageID: null,
+                isLocalDirty: null,
                 data: this.currentData,
                 dataRaw: this.currentData
             };
