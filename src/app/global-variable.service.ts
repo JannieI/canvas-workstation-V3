@@ -608,6 +608,7 @@ export class GlobalVariableService {
     canvasTasks: CanvasTask[] = [];
     canvasComments: CanvasComment[] = [];
     canvasAuditTrails: CanvasAuditTrail[] = [];
+    statusBarMessageLogs: StatusBarMessageLog[] = [];
     canvasMessages: CanvasMessage[] = [];
     widgetCheckpoints: WidgetCheckpoint[] = [];
     currentWidgetCheckpoints: WidgetCheckpoint[] = [];
@@ -779,6 +780,7 @@ export class GlobalVariableService {
     isDirtyCanvasGroups: boolean = true;
     isDirtyUsers: boolean = true;
     isDirtyCanvasAuditTrails: boolean = true;
+    isDirtystatusBarMessageLogs: boolean = true;
     isDirtyDataFields: boolean = true;
     isDirtyDataTables: boolean = true;
     isDirtyDataConnections: boolean = true;
@@ -7178,15 +7180,51 @@ export class GlobalVariableService {
         });
     }
 
-    getStatusBarMessageLogs(userID: string)
-    addStatusBarMessageLog(data: CanvasAuditTrail): Promise<any> {
-        // Description: Adds a new canvasAuditTrail
+    getStatusBarMessageLogs(userID: string): Promise<StatusBarMessageLog[]> {
+        // Description: Gets all Canvas AuditTrails
+        // Returns: this.statusBarMessageLogss array, unless:
+        //   If not cached or if dirty, get from File
+        console.log('%c    Global-Variables getstatusBarMessageLogss ...',
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+            this.statusBarMessageLogs.length);
+
+        let url: string = 'statusBarMessageLogs';
+        this.filePath = './assets/statusBarMessageLogs.json';
+
+        return new Promise<StatusBarMessageLog[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if ( (this.statusBarMessageLogs.length == 0)  ||  (this.isDirtystatusBarMessageLogs) ) {
+                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
+                this.get(url)
+                    .then(data => {
+                        this.statusBarMessageLogs = data;
+
+                        this.isDirtystatusBarMessageLogs = false;
+                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
+                        console.log('%c    Global-Variables getstatusBarMessageLogss 1',
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                            this.statusBarMessageLogs)
+                        resolve(this.statusBarMessageLogs);
+                    });
+            } else {
+                console.log('%c    Global-Variables getstatusBarMessageLogss 2',
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                    this.statusBarMessageLogs)
+                resolve(this.statusBarMessageLogs);
+            }
+        });
+
+    }
+
+    addStatusBarMessageLog(data: StatusBarMessageLog): Promise<any> {
+        // Description: Adds a new statusBarMessageLogs
         // Returns: Added Data or error message
-        console.log('%c    Global-Variables addCanvasAuditTrail ...',
+        console.log('%c    Global-Variables addstatusBarMessageLogs ...',
             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
 
-        let url: string = 'canvasAuditTrails';
-        this.filePath = './assets/data.CanvasAuditTrails.json';
+        let url: string = 'statusBarMessageLogs';
+        this.filePath = './assets/data.statusBarMessageLogs.json';
 
         return new Promise<any>((resolve, reject) => {
 
@@ -7198,15 +7236,15 @@ export class GlobalVariableService {
                 res => {
 
                     // Update Global vars to make sure they remain in sync
-                    this.canvasAuditTrails.push(JSON.parse(JSON.stringify(res)));
+                    this.statusBarMessageLogs.push(JSON.parse(JSON.stringify(res)));
 
-                    console.log('addCanvasAuditTrail ADDED', {res}, this.canvasAuditTrails,
-                        this.canvasAuditTrails)
+                    console.log('addstatusBarMessageLogs ADDED', {res}, this.statusBarMessageLogs,
+                        this.statusBarMessageLogs)
 
                     resolve(res);
                 },
                 err => {
-                    console.log('Error addCanvasAuditTrail FAILED', {err});;
+                    console.log('Error addstatusBarMessageLogs FAILED', {err});;
                     reject(err);
                 }
             )
