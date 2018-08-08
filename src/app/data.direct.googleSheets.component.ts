@@ -252,7 +252,7 @@ export class DataDirectGoogleSheetsComponent implements OnInit {
                 cacheResultsOnServer: this.newCacheResults,
                 cacheServerStorageID: null,
                 unRefreshable: true,
-                singleCache: false,
+                nrCacheCopies: 999,
                 cacheResultsLocal: false,
                 cacheLocalStorageID: null,
                 isLocalDirty: null,

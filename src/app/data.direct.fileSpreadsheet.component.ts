@@ -413,7 +413,7 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
                 cacheResultsOnServer: true,
                 cacheServerStorageID: null,
                 unRefreshable: true,
-                singleCache: false,
+                nrCacheCopies: 999,
                 cacheResultsLocal: false,
                 cacheLocalStorageID: null,
                 isLocalDirty: null,

@@ -555,15 +555,15 @@ export class GlobalVariableService {
     widgetTemplate: Widget = widgetTemplate;
     dashboardTemplate: Dashboard = dashboardTemplate;
     dashboardTabTemplate: DashboardTab = dashboardTabTemplate;
-    serverTypes: TributaryServerType[] = 
+    serverTypes: TributaryServerType[] =
     [
         {
-            serverType: 'MySQL', 
+            serverType: 'MySQL',
             driverName: 'mysql',
             connector: 'tributary.connectors.sql:SqlConnector'
         },
         {
-            serverType: 'PostgresSQL', 
+            serverType: 'PostgresSQL',
             driverName: 'postgresql',
             connector: 'tributary.connectors.sql:SqlConnector'
         },
@@ -828,7 +828,7 @@ export class GlobalVariableService {
         // dashboardTabID = -1 if unknown, so get first T
         // Returns True if all worked, False if something went wrong
         console.log('%c    Global-Variables refreshCurrentDashboardInfo D,T id = ',
-            "color: black; background: lightgray; font-size: 10px", 
+            "color: black; background: lightgray; font-size: 10px",
             {dashboardID}, {dashboardTabID})
 
         // Load the current Dashboard, and Optional template.  The dependants are stakced
@@ -929,7 +929,7 @@ export class GlobalVariableService {
     refreshAllInfo(dashboardID: number, dashboardTabID: number) {
         // Refreshes all info related to current D
         console.log('%c    Global-Variables refreshAllInfo D,T id = ',
-            "color: black; background: lightgray; font-size: 10px", 
+            "color: black; background: lightgray; font-size: 10px",
             {dashboardID}, {dashboardTabID})
 
         console.log('refreshAllInfo FIX DS ids that are hardcoded ...')
@@ -1008,7 +1008,7 @@ export class GlobalVariableService {
                         this.isDirtyDashboards = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getDashboards 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                             this.dashboards)
                         resolve(this.dashboards);
                     })
@@ -1435,7 +1435,7 @@ export class GlobalVariableService {
         // - the AuditTrails are kept against the Draft
 
         console.log('%c    Global-Variables saveDraftDashboard ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
             {deleteSnapshots});
 
         // Set to current
@@ -1899,7 +1899,7 @@ export class GlobalVariableService {
         // Description: Deletes a Dashboard
         // Returns: 'Deleted' or error message
         console.log('%c    Global-Variables deleteDashboard ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
             {id});
 
         let url: string = 'dashboards';
@@ -1980,7 +1980,7 @@ export class GlobalVariableService {
                         // this.currentDashboards.next(currentDashboards);
 
                         console.log('%c    Global-Variables getCurrentDashboards 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                             {dashboardID}, this.currentDashboards)
                         resolve(this.currentDashboards);
 
@@ -2016,7 +2016,7 @@ export class GlobalVariableService {
                 };
 
                 console.log('%c    Global-Variables getCurrentDashboards 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                     {dashboardID}, this.currentDashboards)
                 resolve(this.currentDashboards);
             });
@@ -2045,7 +2045,7 @@ export class GlobalVariableService {
                         this.isDirtyDashboardTabs = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getDashboardTabs 1',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                         this.dashboardTabs)
                         resolve(this.dashboardTabs);
                     });
@@ -2088,7 +2088,7 @@ export class GlobalVariableService {
                         });
 
                         console.log('%c    Global-Variables getCurrentDashboardTabs 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                             {dashboardID}, this.currentDashboardTabs)
                         resolve(this.currentDashboardTabs);
 
@@ -2112,7 +2112,7 @@ export class GlobalVariableService {
                 });
 
                 console.log('%c    Global-Variables getCurrentDashboardTabs 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                     {dashboardID}, this.currentDashboardTabs)
                 resolve(this.currentDashboardTabs);
             });
@@ -2235,7 +2235,7 @@ export class GlobalVariableService {
 
                     // Update displayOrder for the rest
                     let promiseArray = [];
-                    
+
                     this.currentDashboardTabs.forEach(t => {
                         if (t.displayOrder > dashboardTabDisplayOrder) {
                             t.displayOrder = t.displayOrder - 1;
@@ -2274,7 +2274,7 @@ export class GlobalVariableService {
                             i => (i.isSample)
                         );
                         console.log('%c    Global-Variables getDashboardSamples 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                             {data})
                         resolve(data);
 
@@ -2374,7 +2374,7 @@ export class GlobalVariableService {
     dashboardTabIndexInRecentList(dashboardID: number, dashboardTabID: number): number {
         // Returns index of first D, T in the Recent list.  Else -1
         console.log('%c    Global-Variables dashboardTabIndexInRecentList ...',
-            "color: black; background: lightgray; font-size: 10px", 
+            "color: black; background: lightgray; font-size: 10px",
             {dashboardID}, {dashboardTabID});
 
         // Determine index in Recent list
@@ -2394,7 +2394,7 @@ export class GlobalVariableService {
         // - if D there but T change, call SAVE
         // - if D & T there, do nothing
         console.log('%c    Global-Variables amendDashboardRecent ...',
-            "color: black; background: lightgray; font-size: 10px", 
+            "color: black; background: lightgray; font-size: 10px",
             {dashboardID}, {dashboardTabID});
 
         // TODO - fix this timing issue, as I have no idea why this is happening here
@@ -2596,7 +2596,7 @@ export class GlobalVariableService {
                     });
             } else {
                 console.log('%c    Global-Variables getDataConnection 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                     this.dataConnections)
                 resolve(this.dataConnections);
             }
@@ -2725,13 +2725,13 @@ export class GlobalVariableService {
                         this.isDirtyDatasourceTransformations = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getDatasourceTransformation 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                             this.datasourceTransformations)
                         resolve(this.datasourceTransformations);
                     });
             } else {
                 console.log('%c    Global-Variables getDatasourceTransformation 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                     this.datasourceTransformations)
                 resolve(this.datasourceTransformations);
             }
@@ -2760,7 +2760,7 @@ export class GlobalVariableService {
                     // Update Global vars to make sure they remain in sync
                     this.datasourceTransformations.push(JSON.parse(JSON.stringify(data)));
 
-                    console.log('addDatasourceTransformation ADDED', {data}, 
+                    console.log('addDatasourceTransformation ADDED', {data},
                         this.datasourceTransformations)
 
                     resolve(data);
@@ -2861,13 +2861,13 @@ export class GlobalVariableService {
                         this.isDirtyDataTables = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getDataTable 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                             this.dataTables)
                         resolve(this.dataTables);
                     });
             } else {
                 console.log('%c    Global-Variables getDataTable 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                     this.dataTables)
                 resolve(this.dataTables);
             }
@@ -2895,13 +2895,13 @@ export class GlobalVariableService {
                         this.isDirtyDataFields = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getDataField 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                             this.dataFields)
                         resolve(this.dataFields);
                     });
             } else {
                 console.log('%c    Global-Variables getDataField 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                     this.dataFields)
                 resolve(this.dataFields);
             }
@@ -2929,13 +2929,13 @@ export class GlobalVariableService {
                         this.isDirtyDatasets = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getDataset 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                             this.datasets)
                         resolve(this.datasets);
                     });
             } else {
                 console.log('%c    Global-Variables getDataset 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                     this.datasets)
                 resolve(this.datasets);
             }
@@ -2947,7 +2947,7 @@ export class GlobalVariableService {
         // Description: Gets a Dataset, and inserts it once into this.currentDatasets
         // Returns: dataset
         console.log('%c    Global-Variables getCurrentDataset ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
             {datasourceID}, {datasetID});
 
         let url: string = 'dataset';
@@ -3026,7 +3026,7 @@ export class GlobalVariableService {
                     };
 
                     console.log('%c    Global-Variables getCurrentDataset 1 from ',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                         {dsSourceLocation}, ' for DS-id = ', {datasourceID}, '.  Added dSet: ',
                         {newdSet}, ', and currentDatasets = ', this.currentDatasets)
                     resolve(newdSet);
@@ -3061,7 +3061,7 @@ export class GlobalVariableService {
                         };
 
                         console.log('%c    Global-Variables getCurrentDataset 1 from ',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                             {dsSourceLocation}, ' for DS-id = ', {datasourceID}, '.  Added dSet: ',
                             {newdSet}, ', and currentDatasets = ', this.currentDatasets)
                         resolve(newdSet);
@@ -3096,7 +3096,7 @@ export class GlobalVariableService {
                         };
 
                         console.log('%c    Global-Variables getCurrentDataset 1 from ',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                             {dsSourceLocation}, ' for DS-id  = ', {datasourceID}, '.  Added dSet: ',
                             {newdSet}, ', and currentDatasets = ', this.currentDatasets)
                         resolve(newdSet);
@@ -3239,7 +3239,7 @@ export class GlobalVariableService {
                         // this.isDirtyDatasets = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getData',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                             {res})
                         resolve(res.data);
                     });
@@ -3492,7 +3492,7 @@ export class GlobalVariableService {
         // Returns: this.currentDashboardSchedules array, unless:
         //   If not cached or if dirty, get from File
         console.log('%c    Global-Variables getCurrentDashboardSchedules ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
             {dashboardID});
 
         // Refresh from source at start, or if dirty
@@ -3739,7 +3739,7 @@ export class GlobalVariableService {
                 );
                 this.currentDashboardTags = returnData;
                 console.log('%c    Global-Variables getCurrentDashboardTags 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                     {dashboardID})
                 resolve(this.currentDashboardTags);
             });
@@ -3883,7 +3883,7 @@ export class GlobalVariableService {
                 );
                 this.currentDashboardPermissions =returnData;
                 console.log('%c    Global-Variables getCurrentDashboardPermissions 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                     {dashboardID})
                 resolve(this.currentDashboardPermissions);
             });
@@ -4053,7 +4053,7 @@ export class GlobalVariableService {
                         this.isDirtyDashboardSnapshots = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getDashboardSnapshots 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                             this.dashboardSnapshots)
                         resolve(this.dashboardSnapshots);
                     });
@@ -4099,7 +4099,7 @@ export class GlobalVariableService {
                 );
                 this.currentDashboardSnapshots = returnData;
                 console.log('%c    Global-Variables getCurrentDashboardSnapshots 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                     {dashboardID})
                 resolve(this.currentDashboardSnapshots);
             });
@@ -4146,7 +4146,7 @@ export class GlobalVariableService {
                 };
 
                 console.log('%c    Global-Variables findlastDashboardSnapshot 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                     {dashboardID})
                 resolve(lastDashboardSnapshot);
             });
@@ -4279,7 +4279,7 @@ export class GlobalVariableService {
                         this.isDirtyDashboardThemes = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getDashboardThemes 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                             this.dashboardThemes)
                         resolve(this.dashboardThemes);
                     });
@@ -4320,7 +4320,7 @@ export class GlobalVariableService {
                             };
                         };
                         console.log('%c    Global-Variables getDashboardTemplates 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                             {returnData})
                         resolve(returnData);
                     });
@@ -4343,7 +4343,7 @@ export class GlobalVariableService {
                     };
                 };
                 console.log('%c    Global-Variables getDashboardTemplates 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                     {returnData})
                 resolve(returnData);
 
@@ -4374,7 +4374,7 @@ export class GlobalVariableService {
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
 
                         console.log('%c    Global-Variables getDatasources 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                             this.datasources)
                         resolve(this.datasources);
                     });
@@ -4463,7 +4463,7 @@ export class GlobalVariableService {
                 this.currentDatasources = returnData;
                 this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                 console.log('%c    Global-Variables getCurrentDatasources 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                     {dashboardID}, this.currentDatasources);
                 resolve(this.currentDatasources);
             }
@@ -4531,7 +4531,7 @@ export class GlobalVariableService {
 
             // DS exists in gv datasources, but not in currentDatasources
             if (globalDSIndex >= 0  &&  globalCurrentDSIndex < 0) {
-                
+
                 // Add DS to currentDS
                 localDatasource = this.datasources[globalDSIndex];
                 this.currentDatasources.push(localDatasource);
@@ -4546,7 +4546,7 @@ export class GlobalVariableService {
 
                 // Dset exists in gv datasets, but not in currentDatasets
                 if (globalDsetIndex >= 0  &&  globalCurrentDsetIndex < 0) {
-                    
+
                     // Get latest dSet-ID
                     let ds: number[] = [];
                     let dSetID: number = -1;
@@ -4561,15 +4561,15 @@ export class GlobalVariableService {
 
                         // Get dSet with Data
                         this.getCurrentDataset(datasourceID, dSetID).then(res => {
-                            
+
                         resolve(res);
-                            
+
                         });
                     };
                 };
             };
         });
-        
+
     }
 
     saveDatasource(data: Datasource): Promise<string> {
@@ -4656,7 +4656,7 @@ export class GlobalVariableService {
     deleteCurrentDatasource(id: number) {
         // Delete current DS
         console.log('%c    Global-Variables deleteCurrentDatasource',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
             {id}, this.currentDatasources)
 
         let index: number = -1;
@@ -4670,7 +4670,7 @@ export class GlobalVariableService {
         };
 
         console.log('%c    Global-Variables deleteCurrentDatasource end',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
             this.currentDatasources)
 
     }
@@ -4696,7 +4696,7 @@ export class GlobalVariableService {
                         this.isDirtyTransformations = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getTransformations 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",  
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                             {data})
                         resolve(this.transformations);
                     });
@@ -4728,7 +4728,7 @@ export class GlobalVariableService {
                         // );
                         this.currentTransformations = data;
                         console.log('%c    Global-Variables getTransformations 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                             {datasourceID}, {data})
                         resolve(this.currentTransformations);
                 })
@@ -4742,7 +4742,7 @@ export class GlobalVariableService {
                 // );
                 this.currentTransformations = returnData;
                 console.log('%c    Global-Variables getTransformations 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                     {datasourceID}, {returnData})
                 resolve(this.currentTransformations);
             });
@@ -4770,13 +4770,13 @@ export class GlobalVariableService {
                         this.isDirtyDataQualityIssues = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getDataQualityIssues 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                             this.dataQualityIssues)
                         resolve(this.dataQualityIssues);
                     });
             } else {
                 console.log('%c    Global-Variables getDataQualityIssues 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                     this.dataQualityIssues)
                 resolve(this.dataQualityIssues);
             }
@@ -4816,7 +4816,7 @@ export class GlobalVariableService {
                 );
                 this.currentDataQualityIssues = returnData;
                 console.log('%c    Global-Variables getDataQualityIssuess 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                     {datasourceID}, returnData)
                 resolve(this.currentDataQualityIssues);
             });
@@ -4827,7 +4827,7 @@ export class GlobalVariableService {
         // Description: Adds a new QualityIssue, if it does not exist
         // Returns: Added Data or error message
         console.log('%c    Global-Variables addDataQualityIssue ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
             {data});
 
         let url: string = 'dataQualityIssues';
@@ -4934,7 +4934,7 @@ export class GlobalVariableService {
             )
         });
     }
-    
+
     getDataOwnerships(): Promise<DataOwnership[]> {
         // Description: Gets all dQual
         // Returns: this.DataOwnerships array, unless:
@@ -4956,13 +4956,13 @@ export class GlobalVariableService {
                         this.isDirtyDataOwnership = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getDataOwnerships 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                             this.dataOwnerships)
                         resolve(this.dataOwnerships);
                     });
             } else {
                 console.log('%c    Global-Variables getDataOwnerships 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                     this.dataOwnerships)
                 resolve(this.dataOwnerships);
             }
@@ -5002,7 +5002,7 @@ export class GlobalVariableService {
                 );
                 this.currentDataOwnerships = returnData;
                 console.log('%c    Global-Variables getDataOwnershipss 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                     {datasourceID}, {returnData})
                 resolve(this.currentDataOwnerships);
             });
@@ -5155,13 +5155,13 @@ export class GlobalVariableService {
                         this.isDirtyDatasourcePermissions = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getDatasourcePermissions 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                             this.datasourcePermissions)
                         resolve(this.datasourcePermissions);
                     });
             } else {
                 console.log('%c    Global-Variables getDatasourcePermissions 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                     this.datasourcePermissions)
                 resolve(this.datasourcePermissions);
             }
@@ -5188,7 +5188,7 @@ export class GlobalVariableService {
                         );
                         this.currentDatasourcePermissions = data;
                         console.log('%c    Global-Variables getDatasourcePermissions 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                             {datasourceID}, {data})
                         resolve(this.currentDatasourcePermissions);
                 })
@@ -5201,7 +5201,7 @@ export class GlobalVariableService {
                 );
                 this.currentDatasourcePermissions = returnData;
                 console.log('%c    Global-Variables getDatasourcePermissions 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                     {datasourceID})
                 resolve(this.currentDatasourcePermissions);
             });
@@ -5329,13 +5329,13 @@ export class GlobalVariableService {
                         this.isDirtyDatasourcePivots = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getDatasourcePivots 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                             this.datasourcePivots)
                         resolve(this.datasourcePivots);
                     });
             } else {
                 console.log('%c    Global-Variables getDatasourcePivots 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                     this.datasourcePivots)
                 resolve(this.datasourcePivots);
             }
@@ -5362,7 +5362,7 @@ export class GlobalVariableService {
                         );
                         this.currentDatasourcePivots = data;
                         console.log('%c    Global-Variables getDatasourcePivots 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                             {datasourceID}, {data})
                         resolve(this.currentDatasourcePivots);
                 })
@@ -5375,7 +5375,7 @@ export class GlobalVariableService {
                 );
                 this.currentDatasourcePivots = returnData;
                 console.log('%c    Global-Variables getDatasourcePivots 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                     {datasourceID}, {returnData})
                 resolve(this.currentDatasourcePivots);
             });
@@ -5429,13 +5429,13 @@ export class GlobalVariableService {
                         this.isDirtyCanvasSettings = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getSystemSettings 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                             this.canvasSettings)
                         resolve(this.canvasSettings);
                     });
             } else {
                 console.log('%c    Global-Variables getSystemSettings 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                     this.canvasSettings)
                 resolve(this.canvasSettings);
             }
@@ -5495,13 +5495,13 @@ export class GlobalVariableService {
                         this.isDirtyDashboardSubscription = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getDashboardSubscription 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                             this.dashboardSubscriptions)
                         resolve(this.dashboardSubscriptions);
                     });
             } else {
                 console.log('%c    Global-Variables getDashboardSubscription 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                     this.dashboardSubscriptions)
                 resolve(this.dashboardSubscriptions);
             }
@@ -5536,13 +5536,13 @@ export class GlobalVariableService {
                         this.isDirtyDashboardSubscription = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getDashboardSubscription 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                             this.currentDashboardSubscriptions)
                         resolve(this.currentDashboardSubscriptions);
                     });
             } else {
                 console.log('%c    Global-Variables getDashboardSubscription 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                     this.currentDashboardSubscriptions)
                 resolve(this.currentDashboardSubscriptions);
             }
@@ -5637,7 +5637,7 @@ export class GlobalVariableService {
                         filter(sub => sub.id != id);
                     this.currentDashboardSubscriptions = this.currentDashboardSubscriptions.
                         filter(sub => sub.id != id);
-                    console.log('deleteDashboardSubscription DELETED', {id}, {data}, 
+                    console.log('deleteDashboardSubscription DELETED', {id}, {data},
                         this.dashboardSubscriptions, this.currentDashboardSubscriptions)
                     resolve('Deleted');
                 },
@@ -5671,13 +5671,13 @@ export class GlobalVariableService {
                         this.isDirtyPaletteButtonBar = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getPaletteButtonBar 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                             this.currentPaletteButtonBar)
                         resolve(this.currentPaletteButtonBar);
                     });
             } else {
                 console.log('%c    Global-Variables getPaletteButtonBar 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                     this.currentPaletteButtonBar)
                 resolve(this.currentPaletteButtonBar);
             }
@@ -5896,7 +5896,7 @@ export class GlobalVariableService {
         //   If not cached or if dirty, get from File
 
         console.log('%c    Global-Variables getWidgets ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
             this.widgets.length);
 
         let url: string = 'widgets';
@@ -6027,13 +6027,13 @@ export class GlobalVariableService {
                         this.isDirtyWidgets = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getWidgets 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                             this.widgets)
                         resolve(this.widgets);
                     });
             } else {
                 console.log('%c    Global-Variables getWidgets 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                     this.widgets)
                 resolve(this.widgets);
             }
@@ -6070,7 +6070,7 @@ export class GlobalVariableService {
                         this.currentWidgets = data;
 
                         console.log('%c    Global-Variables getCurrentWidgets 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                             this.currentWidgets)
                         resolve(this.currentWidgets);
                 })
@@ -6088,7 +6088,7 @@ export class GlobalVariableService {
 
                 this.currentWidgets = data;
                 console.log('%c    Global-Variables getCurrentWidgets 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                     {dashboardID}, {dashboardTabID},  this.currentWidgets, this.widgets)
                 resolve(this.currentWidgets);
 
@@ -6164,7 +6164,7 @@ export class GlobalVariableService {
                         };
                     });
 
-                    console.log('deleteWidget DELETED id: ', {id}, this.widgetCheckpoints, 
+                    console.log('deleteWidget DELETED id: ', {id}, this.widgetCheckpoints,
                             this.currentWidgetCheckpoints)
                     resolve('Deleted');
                 },
@@ -6377,13 +6377,13 @@ export class GlobalVariableService {
                         this.isDirtyBackgroundColors = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getBackgroundColors 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                             this.backgroundcolors)
                         resolve(this.backgroundcolors);
                     });
             } else {
                 console.log('%c    Global-Variables getBackgroundColors 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                     this.backgroundcolors)
                 resolve(this.backgroundcolors);
             }
@@ -6396,7 +6396,7 @@ export class GlobalVariableService {
         // Returns: this.canvasTasks array, unless:
         //   If not cached or if dirty, get from File
         console.log('%c    Global-Variables getCanvasTasks ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
             this.canvasTasks.length);
 
         let url: string = 'canvasTasks';
@@ -6414,13 +6414,13 @@ export class GlobalVariableService {
                         this.isDirtyCanvasTasks = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getCanvasTasks 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                             this.canvasTasks)
                         resolve(this.canvasTasks);
                     });
             } else {
                 console.log('%c    Global-Variables getCanvasTasks 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                     this.canvasTasks)
                 resolve(this.canvasTasks);
             }
@@ -6449,7 +6449,7 @@ export class GlobalVariableService {
                     // Update Global vars to make sure they remain in sync
                     this.canvasTasks.push(JSON.parse(JSON.stringify(res)));
 
-                    console.log('addCanvasTask ADDED', {res}, this.canvasTasks, 
+                    console.log('addCanvasTask ADDED', {res}, this.canvasTasks,
                         this.canvasTasks)
 
                     resolve(res);
@@ -6502,7 +6502,7 @@ export class GlobalVariableService {
         // Returns: this.canvasComments array, unless:
         //   If not cached or if dirty, get from File
         console.log('%c    Global-Variables getCanvasComments ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
             this.canvasComments.length);
 
         let url: string = 'canvasComments';
@@ -6520,13 +6520,13 @@ export class GlobalVariableService {
                         this.isDirtyCanvasComments = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getCanvasComments 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                             this.canvasComments)
                         resolve(this.canvasComments);
                     });
             } else {
                 console.log('%c    Global-Variables getCanvasComments 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                     this.canvasComments)
                 resolve(this.canvasComments);
             }
@@ -6564,7 +6564,7 @@ export class GlobalVariableService {
                     // Update Global vars to make sure they remain in sync
                     this.canvasComments.push(JSON.parse(JSON.stringify(res)));
 
-                    console.log('addCanvasComment ADDED', {res}, this.canvasComments, 
+                    console.log('addCanvasComment ADDED', {res}, this.canvasComments,
                         this.canvasComments)
 
                     resolve(res);
@@ -6659,7 +6659,7 @@ export class GlobalVariableService {
         // Returns: this.canvasMessages array, unless:
         //   If not cached or if dirty, get from File
         console.log('%c    Global-Variables getCanvasMessages ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
             this.canvasMessages.length);
 
         let url: string = 'canvasMessages';
@@ -6677,13 +6677,13 @@ export class GlobalVariableService {
                         this.isDirtyCanvasMessages = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getCanvasMessages 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                             this.canvasMessages)
                         resolve(this.canvasMessages);
                     });
             } else {
                 console.log('%c    Global-Variables getCanvasMessages 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                     this.canvasMessages)
                 resolve(this.canvasMessages);
             }
@@ -6814,7 +6814,7 @@ export class GlobalVariableService {
         // Returns: this.widgetCheckpoints array, unless:
         //   If not cached or if dirty, get from File
         console.log('%c    Global-Variables getWidgetCheckpoints ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
             this.widgetCheckpoints.length);
 
         let url: string = 'widgetCheckpoints';
@@ -6832,13 +6832,13 @@ export class GlobalVariableService {
                         this.isDirtyWidgetCheckpoints = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getWidgetCheckpoints 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                             this.widgetCheckpoints)
                         resolve(this.widgetCheckpoints);
                     });
             } else {
                 console.log('%c    Global-Variables getWidgetCheckpoints 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                     this.widgetCheckpoints)
                 resolve(this.widgetCheckpoints);
             }
@@ -6864,7 +6864,7 @@ export class GlobalVariableService {
                         );
                         this.currentWidgetCheckpoints = data;
                         console.log('%c    Global-Variables getCurrentWidgetCheckpoints 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                             {dashboardID}, {data})
                         resolve(this.currentWidgetCheckpoints);
 
@@ -6878,7 +6878,7 @@ export class GlobalVariableService {
                 );
                 this.currentWidgetCheckpoints = returnData;
                 console.log('%c    Global-Variables getCurrentWidgetCheckpoints 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                     {dashboardID}, {returnData})
                 resolve(this.currentWidgetCheckpoints);
             });
@@ -6908,7 +6908,7 @@ export class GlobalVariableService {
                     this.widgetCheckpoints.push(JSON.parse(JSON.stringify(data)));
                     this.currentWidgetCheckpoints.push(JSON.parse(JSON.stringify(data)));
 
-                    console.log('addWidgetCheckpoint ADDED', {data}, 
+                    console.log('addWidgetCheckpoint ADDED', {data},
                         this.currentWidgetCheckpoints, this.widgetCheckpoints)
 
                     resolve(data);
@@ -7029,13 +7029,13 @@ export class GlobalVariableService {
                         this.isDirtyUsers = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getCanvasUsers 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                             this.canvasUsers)
                         resolve(this.canvasUsers);
                     });
             } else {
                 console.log('%c    Global-Variables getCanvasUsers 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                     this.canvasUsers)
                 resolve(this.canvasUsers);
             }
@@ -7104,7 +7104,7 @@ export class GlobalVariableService {
         // Returns: this.canvasAuditTrails array, unless:
         //   If not cached or if dirty, get from File
         console.log('%c    Global-Variables getCanvasAuditTrails ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
             this.canvasAuditTrails.length);
 
         let url: string = 'canvasAuditTrails';
@@ -7122,13 +7122,13 @@ export class GlobalVariableService {
                         this.isDirtyCanvasAuditTrails = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getCanvasAuditTrails 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                             this.canvasAuditTrails)
                         resolve(this.canvasAuditTrails);
                     });
             } else {
                 console.log('%c    Global-Variables getCanvasAuditTrails 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                     this.canvasAuditTrails)
                 resolve(this.canvasAuditTrails);
             }
@@ -7157,7 +7157,7 @@ export class GlobalVariableService {
                     // Update Global vars to make sure they remain in sync
                     this.canvasAuditTrails.push(JSON.parse(JSON.stringify(res)));
 
-                    console.log('addCanvasAuditTrail ADDED', {res}, this.canvasAuditTrails, 
+                    console.log('addCanvasAuditTrail ADDED', {res}, this.canvasAuditTrails,
                         this.canvasAuditTrails)
 
                     resolve(res);
@@ -7173,7 +7173,7 @@ export class GlobalVariableService {
     get<T>(url: string, options?: any, dashboardID?: number, datasourceID?: number): Promise<any> {
         // Generic GET data, later to be replaced with http
         console.log('%c    Global-Variables get (url, filePath) ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {url}, 
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {url},
                 this.filePath);
 
         // TODO - cleaner switch to http?
@@ -7576,7 +7576,7 @@ export class GlobalVariableService {
     getLocal<T>(table: string, params?: any): Promise<any> {
         // Generic retrieval of data from localDB
         console.log('%c    Global-Variables getLocal for table, params...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
             {table}, {params});
 
         return new Promise((resolve, reject) => {
@@ -7584,7 +7584,7 @@ export class GlobalVariableService {
             nSQL(table).query('select').exec()
             .then( result => {
                 console.log('%c    Global-Variables getLocal result',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                     {result}) // <= arrayid:1, name:"bill", age: 20}]
                 resolve(result)
             })
@@ -7717,8 +7717,8 @@ export class GlobalVariableService {
         // It does assume that we have a currentDashboardInfo object if Previous/Next are
         // parameters.
         console.log('%c    Global-Variables refreshCurrentDashboard ...',
-            "color: black; background: lightgray; font-size: 10px", 
-            {refreshingRoutine}, {dashboardID}, {dashboardTabID}, {tabToShow}, 
+            "color: black; background: lightgray; font-size: 10px",
+            {refreshingRoutine}, {dashboardID}, {dashboardTabID}, {tabToShow},
             {widgetsToRefresh});
 
         // TODO - add Permissions, either here or automatically in DB !!!
@@ -8261,7 +8261,7 @@ export class GlobalVariableService {
      ): number {
         let actID: number = 1;
         console.log('%c    Global-Variables actionUpsert ...',
-            "color: black; background: lightgray; font-size: 10px", {logToDB}, 
+            "color: black; background: lightgray; font-size: 10px", {logToDB},
             {oldWidget}, {newWidget}
         );
 
@@ -8295,7 +8295,7 @@ export class GlobalVariableService {
                                         defaultMessage: ''
                                     }
                                 );
-                                
+
                             });
                     };
                 };
@@ -8326,7 +8326,7 @@ export class GlobalVariableService {
                 dashboardTabID: dashboardTabID,
                 widgetID: oldWidget == null? null : oldWidget.id,
                 objectType: objectType,
-                actionType: actionType, 
+                actionType: actionType,
                 action: action,
                 description: description,
                 undoID: undoID,
@@ -8453,7 +8453,7 @@ export class GlobalVariableService {
         // It will return an array of datagridColumns to use in the ca-datagrid
         // for a given array of data and a set of columns to show,
         console.log('%c    Global-Variables createDatagridColumns ...',
-            "color: black; background: lightgray; font-size: 10px", 
+            "color: black; background: lightgray; font-size: 10px",
             {dataRow}, {showFields}, {visibleFields});
 
         // No data provided
@@ -8727,10 +8727,10 @@ export class GlobalVariableService {
     }
 
 
-    
+
     // Eazl, Tributary stuffies
     // ***********************************************************************
-    // TODO - to be replaced by actual Eazl 
+    // TODO - to be replaced by actual Eazl
     login(username: string, password: string): Promise<boolean> {
         // Login, and return a token which is stored in LocalStorage.  Also, set global User
         // If not a valid user, return false.
@@ -8738,11 +8738,11 @@ export class GlobalVariableService {
         console.log('%c    Global-Variables login ...',
             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
             {username}, {password});
-        
+
         return new Promise<boolean>((resolve, reject) => {
 
             // Get a Token
-            this.http.post<Token>('https://eazl-rest.xyz/eazl/accounts/obtain-token/', 
+            this.http.post<Token>('https://eazl-rest.xyz/eazl/accounts/obtain-token/',
                 {username, password}).subscribe(token => {
 
                 // Store locally
@@ -8756,7 +8756,7 @@ export class GlobalVariableService {
             });
         });
     };
-    
+
     getTributaryData(source: any): Promise<any> {
         // Description: Gets data from the Tributary Server
         // Returns: Added Data or error message
@@ -8794,7 +8794,7 @@ export class GlobalVariableService {
         // Description: Gets data from the Tributary Server
         // Returns: Added Data or error message
         console.log('%c    Global-Variables getTributaryData ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
             {graphQLquery});
 
         let url: string = 'https://eazl-rest.xyz/eazl/accounts/graphql/';
@@ -8861,9 +8861,9 @@ export class GlobalVariableService {
         // Description: Returns schema of a given DB via Tributary Server
         // Returns: Added Data or error message
         console.log('%c    Global-Variables getTributaryDirectDBSchema ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
             {serverName});
-        
+
         // TODO - Remove once Tributary can do discovery
         let tributarySchemas: DataSchema[] = [
             {
@@ -8922,7 +8922,7 @@ export class GlobalVariableService {
         let tributarySchema: DataSchema[] = tributarySchemas.filter(
             trib => trib.serverName == serverName
         );
-        
+
         // Return requested schema
         return tributarySchema;
     }
@@ -8938,10 +8938,10 @@ export class GlobalVariableService {
         query: string): TributarySource {
         // Description: constructs a Tributary Source object from the given parameters
         console.log('%c    Global-Variables constructTributarySQLSource ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
-            {connector}, {drivername}, {username}, {password}, {database}, {host}, {port}, 
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+            {connector}, {drivername}, {username}, {password}, {database}, {host}, {port},
             {query});
-        
+
         let tributarySource: TributarySource = {
             "source": {
                 "connector": connector,
@@ -8967,7 +8967,7 @@ export class GlobalVariableService {
         //  Example: dateAdd(new Date(), 'minute', 30)  //returns 30 minutes from now
         // Returns: Amended Date
         console.log('%c    Global-Variables getTributaryDirectDBSchema ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
             {date}, {interval}, {units});
 
         // Get the original
@@ -8985,7 +8985,7 @@ export class GlobalVariableService {
             case 'second' :  ret.setTime(ret.getTime() + units*1000);  break;
             default       :  ret = undefined;  break;
         };
-        
+
         return ret;
     }
 
@@ -8997,10 +8997,10 @@ export class GlobalVariableService {
         //  Example: dateAdd(new Date(), 'minute', 30)  //returns 30 minutes from now
         // Returns: Amended Date
         console.log('%c    Global-Variables getTributaryDirectDBSchema ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
             {fromDate}, {toDate}, {interval});
 
-        // Cater for bad input
+        // Cater for missing input
         if (fromDate == null) {
             fromDate = new Date();
         };
@@ -9009,18 +9009,19 @@ export class GlobalVariableService {
         };
         let diffDays: number = toDate.getDate() - fromDate.getDate(); // milliseconds between two dates
         let diffTime: number = toDate.getTime() - fromDate.getTime(); // milliseconds between two dates
-        console.log('xx gv diffMs', diffDays, diffTime)
-        let ret: number = undefined;
+        let diff: number = +toDate - +fromDate; // milliseconds between two dates
+        console.log('xx gv diffMs', diffDays, diffTime, diff / 86400000)
+        let ret: number = -1;
         switch(interval.toLowerCase()) {
-            case 'year'        : ret = diffDays / 365; 
-            case 'quarter'     : ret = diffDays / 120; 
-            case 'month'       : ret = diffDays / 30; 
-            case 'week'        : ret = diffDays / 7 ; 
-            case 'day'         : ret = diffDays;  
-            case 'hour'        : ret = diffTime / 3600000;
-            case 'minute'      : ret = diffTime / 60000;
-            case 'second'      : ret = diffTime / 1000;
-            case 'millisecond' : ret = diffTime;
+            case 'year'        : ret = diffDays / 365;  break;
+            case 'quarter'     : ret = diffDays / 120;  break;
+            case 'month'       : ret = diffDays / 30;  break;
+            case 'week'        : ret = diffDays / 7 ;  break;
+            case 'day'         : ret = diffTime / 86400000;  break;
+            case 'hour'        : ret = diffTime / 3600000;  break;
+            case 'minute'      : ret = diffTime / 60000;  break;
+            case 'second'      : ret = diffTime / 1000;  break;
+            case 'millisecond' : ret = diffTime;  break;
             default       	   : ret = undefined;
         };
 
