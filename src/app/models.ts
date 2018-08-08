@@ -181,7 +181,7 @@ export class CanvasTask {
     activityType: string;                   // Type of Task (or Activity)
     taskStatus: string;                     // Status, ie Draft, Completed
     assignedToUserID: string;               // UserID to whom this was assigned
-    
+
     precedingTaskID: number;                // Optional task on which this one depends
     linkedDashboardID: number;              // Optional D-ID linked to this task
     taskComments: string[];                 // Immutable array of comments / feedback (userID, dt, text)
@@ -252,7 +252,7 @@ export class CanvasUser {
     groups: string[];
     isSuperuser: boolean;                   // Systems supervisor - has ALL powers
     isStaff: boolean;                       // Is a staff member (and not Guest)
-    isActive: boolean;                      // When False, cannot work on system (ie left company)  
+    isActive: boolean;                      // When False, cannot work on system (ie left company)
     dateJoined: Date;
     lastLogin: string;
     colorScheme: string;                    // Color scheme for Canvas - for later use
@@ -295,7 +295,7 @@ export class CanvasUser {
 
 export class CanvasGroup {
     id: number;                             // Unique Group ID
-    name: string;                           // Group name    
+    name: string;                           // Group name
 }
 
 // Data
@@ -356,12 +356,15 @@ export class DatasourcePivot {
 export class Dataset {
     id: number;
     datasourceID: number;
-    sourceLocation: string;                 // Where data lives: file, localDB, MSSQL, etc
-    url: string;                            // URL for http request
-    folderName: string;                     // Optional folder name where data is stored
-    fileName: string;                       // Optional file name where data is stored
-    data: any;                              // Filtered data as json
-    dataRaw: any;                           // Unfiltered data as json
+    sourceLocation: string;             // Where data lives: file, localDB, MSSQL, etc
+    url: string;                        // URL for http request
+    folderName: string;                 // Optional folder name where data is stored
+    fileName: string;                   // Optional file name where data is stored
+    cacheServerStorageID: string;       // s-id on Server of cached results
+    cacheLocalStorageID: string;        // s-id Locally of cached results
+    isLocalDirty: boolean;              // True means must get from server (cannot use local)
+    data: any;                          // Filtered data as json
+    dataRaw: any;                       // Unfiltered data as json
 }
 
 export class Datasource {
@@ -369,7 +372,7 @@ export class Datasource {
     type: string;                       // Type of source, ie File, Server, Web, Service
     subType: string;                    // Subtype, ie Excel/ CSV for File, PostgreSQL/ Mongo for Server
     typeVersion: string;                // Version of source, ie Excel 2016
-    name: string;                       // Name of Datasource 
+    name: string;                       // Name of Datasource
     username: string;                   // Username to log into server (if not via AD)
     password: string;                   // Password to log into server
     description: string;                // Description of the DS
@@ -388,14 +391,11 @@ export class Datasource {
 
     // Caching info
     cacheResultsOnServer: boolean;      // True if results may be cached on server. Each Tr is decided deparately
-    unRefreshable: boolean;             // Can create once, but cannot 
-    cacheServerStorageID: string;       // s-id on Server of cached results
-    nrCacheCopies: number;              // Nr Cache copies kept, 0 means none
+    unRefreshable: boolean;             // Can create once, but cannot
     cacheResultsLocal: boolean;         // True if Local results must be cached
-    cacheLocalStorageID: string;        // s-id Locally of cached results
-    isLocalDirty: boolean;              // True means must get from server (cannot use local)
+    nrCacheCopies: number;              // Nr Cache copies kept, 0 means none
 
-    // Optional Max Oldness allowed - must be fresher than given 
+    // Optional Max Oldness allowed - must be fresher than given
     oldnessMaxPeriodInterval: string;   // Ie. second, minute, hour, day, month, year
     oldnessMaxPeriodUnits: number;      // Must be fresher than say 8 hour
     oldnessRelatedDate: string;         // Ie. today, yesterday, previousWorkingDay, weekStart, monthStart, yearStart
@@ -408,7 +408,7 @@ export class Datasource {
 
     // Location and authentication
     folder: string;                     // Folder from which the data was loaded
-    fileName: string;                   // Filename from which the data was loaded                   
+    fileName: string;                   // Filename from which the data was loaded
     excelWorksheet: string;             // Excel Worksheet name from which the data was loaded
     transposeOnLoad: boolean;           // True to transpose data before loading (X <-> Y)
     startLineNr: number;                // 1 = first = default
@@ -465,8 +465,8 @@ export class Transformation {
     category: string;                   // Category, ie based on a Column, etc
     // NB: the name has to be unique: used so in code + else confusing to user
     name: string;                       // Name of transformation, ie FillBlank
-    description: string;                // Description of transformation 
-    
+    description: string;                // Description of transformation
+
     // Parameter info
     nrParameters: number;               // Nr of parameters, to make sure all array below the same length
     parameterPlaceholder: string[];     // Placeholder info, ie Fill in nr of characters ...
@@ -476,8 +476,8 @@ export class Transformation {
     parameterType: string[];            // Type of field (string, numeric, boolean).  Blank means any
 }
 
-export class TributaryServerType { 
-    serverType: string;             // Type of Server, ie PostgresSQL 
+export class TributaryServerType {
+    serverType: string;             // Type of Server, ie PostgresSQL
     driverName: string;             // Tributary driver string, ie postgres
     connector: string               // Tributary connector, ie tributary.connectors.sql:SqlConnector
 }
@@ -920,12 +920,12 @@ export class Widget {
     slicerType: string;                 // Type of Slicer, ie List, Bin
 
     // Shape
-    shapeBullet: 
-        { 
-            text: string; 
-            linkedTabID: number; 
-            color: string; 
-            jumpedColor: string 
+    shapeBullet:
+        {
+            text: string;
+            linkedTabID: number;
+            color: string;
+            jumpedColor: string
         }[];                            // Bullets, with info
     shapeBulletStyleType: string;       // List marker: disc, circle, square, none
     shapeBulletsOrdered: boolean;       // True if the list is ordered
@@ -992,7 +992,7 @@ export class Token {
         date_joined: string;
         profile: string;
         url: string;
-    
+
     };
 
 }
