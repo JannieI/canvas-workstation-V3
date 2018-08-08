@@ -8445,9 +8445,26 @@ export class GlobalVariableService {
         console.log('%c    Global-Variables showStatusBarMessage ...',
             "color: black; background: lightgray; font-size: 10px", {statusBarMessage});
 
-        // Pop message in right area
-        if (statusBarMessage.uiArea == 'StatusBar') {
-            this.statusBarMessage.next(statusBarMessage);
+        // Add to DB
+        let newStatusBarMessageLog: StatusBarMessageLog = {
+            logDateTime: new Date(),
+            userID: this.currentUser.userID,
+            message:statusBar.message,
+            uiArea: statusBar.uiArea,
+            classfication: statusBar.classfication,
+            timeout: statusBar.timeout,
+            defaultMessage: statusBar.defaultMessage
+        };
+
+        this.addStatusBarMessageLog(newStatusBarMessageLog);
+        
+        // No messages during dont disturb
+        if (!this.dontDisturb) {
+
+            // Pop message in right area
+            if (statusBarMessage.uiArea == 'StatusBar') {
+                this.statusBarMessage.next(statusBarMessage);
+            };
         };
     }
 
