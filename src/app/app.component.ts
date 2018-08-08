@@ -280,6 +280,7 @@ export class AppComponent implements OnInit {
     currentWidgets: Widget[] = [];
     currentWidgetsOriginals: Widget[] = [];
     currentWidgetDashboardTabIDs: number[] = [];  // Of current W
+    dontDisturb: boolean = false;
     draggableWidgets: number[] = [];
     editMode: boolean;
     editingDS: boolean;
@@ -5941,6 +5942,18 @@ export class AppComponent implements OnInit {
 
         this.showModalCollaborateTasksNew = true;
 
+        this.menuOptionClickPostAction();
+    }
+
+    clickMenuViewDontDisturb() {
+        // Toggle Dont Disturb
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewDontDisturb', '@Start');
+
+        this.menuOptionClickPreAction();
+
+        this.globalVariableService.dontDisturb = !this.globalVariableService.dontDisturb;
+        this.dontDisturb = this.globalVariableService.dontDisturb;
+        
         this.menuOptionClickPostAction();
     }
 

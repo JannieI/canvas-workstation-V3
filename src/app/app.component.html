@@ -1607,7 +1607,16 @@
                         >
                         Add Task
                     </button>
-                </clr-dropdown-menu>
+                    <div class="dropdown-divider"></div>
+                    <button type="button"
+                        clrDropdownItem
+                        (click)="clickMenuViewDontDisturb()"
+                        title="Toggles a background grid"
+                        >
+                        Dont Disturb
+                        <clr-icon shape="check" size="12" *ngIf="dontDisturb"></clr-icon>
+                    </button>
+            </clr-dropdown-menu>
             </clr-dropdown>
 
             <clr-dropdown class="dropdown">
