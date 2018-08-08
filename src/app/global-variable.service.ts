@@ -47,6 +47,7 @@ import { FieldMetadata }              from './models';
 import { PaletteButtonBar }           from './models';
 import { PaletteButtonsSelected }     from './models';
 import { StatusBarMessage }           from './models';
+import { StatusBarMessageLog }        from './models';
 import { Transformation }             from './models';
 import { TributaryServerType }        from './models';
 import { TributarySource }            from './models';
@@ -691,7 +692,6 @@ export class GlobalVariableService {
     selectedWidgetIDs: number[] = [];
 
     // Session
-    firstAction: boolean = true;               // True if 1st action per D
     actions: CanvasAction[] = [];
     colourPickerClosed = new BehaviorSubject<
         {
@@ -707,6 +707,8 @@ export class GlobalVariableService {
     dashboardsRecentBehSubject = new BehaviorSubject<DashboardRecent[]>([]);  // Recently used Dashboards
     datasourceToEditID = new BehaviorSubject<number>(null);
     dsIDs: number[] = [];           // Dataset IDs
+    dontDisturb: boolean = false;   // True means dont disturb display
+    firstAction: boolean = true;               // True if 1st action per D
     getSource: string = 'Test';     // Where to read/write: File, Test (JSON Server), Eazl
     loggedIntoServer = new BehaviorSubject<boolean>(true);
     menuActionResize = new BehaviorSubject<boolean>(false);
@@ -7176,6 +7178,41 @@ export class GlobalVariableService {
         });
     }
 
+    getStatusBarMessageLogs(userID: string)
+    addStatusBarMessageLog(data: CanvasAuditTrail): Promise<any> {
+        // Description: Adds a new canvasAuditTrail
+        // Returns: Added Data or error message
+        console.log('%c    Global-Variables addCanvasAuditTrail ...',
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+
+        let url: string = 'canvasAuditTrails';
+        this.filePath = './assets/data.CanvasAuditTrails.json';
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.post('http://localhost:3002/' + url, data, {headers})
+            .subscribe(
+                res => {
+
+                    // Update Global vars to make sure they remain in sync
+                    this.canvasAuditTrails.push(JSON.parse(JSON.stringify(res)));
+
+                    console.log('addCanvasAuditTrail ADDED', {res}, this.canvasAuditTrails,
+                        this.canvasAuditTrails)
+
+                    resolve(res);
+                },
+                err => {
+                    console.log('Error addCanvasAuditTrail FAILED', {err});;
+                    reject(err);
+                }
+            )
+        });
+    }
+
     get<T>(url: string, options?: any, dashboardID?: number, datasourceID?: number): Promise<any> {
         // Generic GET data, later to be replaced with http
         console.log('%c    Global-Variables get (url, filePath) ...',
@@ -8449,15 +8486,15 @@ export class GlobalVariableService {
         let newStatusBarMessageLog: StatusBarMessageLog = {
             logDateTime: new Date(),
             userID: this.currentUser.userID,
-            message:statusBar.message,
-            uiArea: statusBar.uiArea,
-            classfication: statusBar.classfication,
-            timeout: statusBar.timeout,
-            defaultMessage: statusBar.defaultMessage
+            message:statusBarMessage.message,
+            uiArea: statusBarMessage.uiArea,
+            classfication: statusBarMessage.classfication,
+            timeout: statusBarMessage.timeout,
+            defaultMessage: statusBarMessage.defaultMessage
         };
 
         this.addStatusBarMessageLog(newStatusBarMessageLog);
-        
+
         // No messages during dont disturb
         if (!this.dontDisturb) {
 
