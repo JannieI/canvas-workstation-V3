@@ -110,6 +110,16 @@ export class CanvasAuditTrail {
     changedOn: Date;                        // Date Time of log, when changes was made
 }
 
+export class StatusBarMessageLog {
+    logDateTime: Date;                      // When message was logged
+    userID: string;                         // User for which message was logged
+    message: string;                        // Text to display
+    uiArea: string;                         // Specific UI area to affect, ie StatusBar
+    classfication: string;                  // Info, Warning, Error
+    timeout: number;                        // Duration to stay in ms, default = 3000
+    defaultMessage: string;                 // Optional Message to display after timeout
+}
+
 export class StatusBarMessage {
     message: string;                        // Text to display
     uiArea: string;                         // Specific UI area to affect, ie StatusBar
