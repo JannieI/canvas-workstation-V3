@@ -1362,15 +1362,23 @@ export class AppComponent implements OnInit {
     }
 
     handleCloseDataDatasourceScheduleEdit(action: string) {
-        // Handle close of Datasource Usage
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDatasourceUsage', '@Start');
+        // Handle close of Datasource Schedule Edit
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDatasourceScheduleEdit', '@Start');
 
         this.menuOptionClickPostAction();
 
-        this.showModalDataUsage = false;
+        this.showModalDataScheduleEdit = false;
     }
 
-    handleCloseDataDatasourceSchedule
+    handleCloseDataDatasourceSchedule(action: string) {
+        // Handle close of Datasource Schedules
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDatasourceSchedule', '@Start');
+
+        this.menuOptionClickPostAction();
+
+        this.showModalDataSchedule = false;
+    }
+
     handleCloseDataDatasourceRefreshOnce(action: string) {
         // Handle close of Datasource RefreshOnce
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDatasourceRefreshOnce', '@Start');
