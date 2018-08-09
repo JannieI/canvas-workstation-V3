@@ -708,7 +708,7 @@ export class GlobalVariableService {
     dashboardsRecentBehSubject = new BehaviorSubject<DashboardRecent[]>([]);  // Recently used Dashboards
     datasourceToEditID = new BehaviorSubject<number>(null);
     dsIDs: number[] = [];           // Dataset IDs
-    dontDisturb: boolean = false;   // True means dont disturb display
+    dontDisturb = new BehaviorSubject<boolean>(false);   // True means dont disturb display
     firstAction: boolean = true;               // True if 1st action per D
     getSource: string = 'Test';     // Where to read/write: File, Test (JSON Server), Eazl
     loggedIntoServer = new BehaviorSubject<boolean>(true);

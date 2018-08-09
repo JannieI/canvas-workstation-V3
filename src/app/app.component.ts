@@ -5951,8 +5951,9 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
-        this.globalVariableService.dontDisturb = !this.globalVariableService.dontDisturb;
-        this.dontDisturb = this.globalVariableService.dontDisturb;
+        this.dontDisturb = !this.globalVariableService.dontDisturb.value;
+        this.globalVariableService.dontDisturb.next(
+            !this.globalVariableService.dontDisturb.value);
         console.warn('xx this.dontDisturb', this.dontDisturb)
         this.menuOptionClickPostAction();
     }
