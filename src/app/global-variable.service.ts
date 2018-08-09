@@ -3796,6 +3796,41 @@ export class GlobalVariableService {
         });
     }
 
+    saveDatasourceSchedule(data: DatasourceSchedule): Promise<string> {
+        // Description: Saves DatasourceSchedule
+        // Returns: 'Saved' or error message
+        console.log('%c    Global-Variables saveDatasourceSchedule ...',
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+
+        let url: string = 'datasourceSchedules';
+        this.filePath = './assets/data.datasourceSchedules.json';
+
+        return new Promise<string>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.put('http://localhost:3000/' + url + '/' + data.id, data, {headers})
+            .subscribe(
+                res => {
+
+                    // Replace local
+                    let localIndex: number = this.datasourceSchedules.findIndex(d =>
+                        d.id == data.id
+                    );
+                    this.datasourceSchedules[localIndex] = data;
+
+                    console.log('saveDatasourceSchedule SAVED', {res})
+                    resolve('Saved');
+                },
+                err => {
+                    console.log('Error saveDatasourceSchedule FAILED', {err});;
+                    reject(err);
+                }
+            )
+        });
+    }
+
 
 
 
