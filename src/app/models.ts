@@ -449,6 +449,41 @@ export class Datasource {
     nrWidgets: number;                  // Nr of Ws linked to this DS (at the moment)
 }
 
+export class DatasourceSchedule {
+    id: number;
+    datasourceID: number;
+    name: string;
+    description: string;
+    repeatFrequency: string;            // Occurs: Daily, Weekly, Monthly, Yearly
+    repeatsEvery: number;               // Repeats every x of Frequency, ie 2 = every 2nd Month
+    weeklyMonday: boolean;              // For Weekly: occurs on this weekday
+    weeklyTuesday: boolean;             // For Weekly: occurs on this weekday
+    weeklyWednesday: boolean;           // For Weekly: occurs on this weekday
+    weeklyThursday: boolean;            // For Weekly: occurs on this weekday
+    weeklyFriday: boolean;              // For Weekly: occurs on this weekday
+    weeklySaturday: boolean;            // For Weekly: occurs on this weekday
+    weeklySunday: boolean;              // For Weekly: occurs on this weekday
+    monthlyOn: number;                  // For Monthly: Occurs on this Day of month, ie 13th
+    yearlyJanuary: boolean;             // For Yearly: Occurs in this month
+    yearlyFebruary: boolean;            // For Yearly: Occurs in this month
+    yearlyMarch: boolean;               // For Yearly: Occurs in this month
+    yearlyApril: boolean;               // For Yearly: Occurs in this month
+    yearlyMay: boolean;                 // For Yearly: Occurs in this month
+    yearlyJune: boolean;                // For Yearly: Occurs in this month
+    yearlyJuly: boolean;                // For Yearly: Occurs in this month
+    yearlyAugust: boolean;              // For Yearly: Occurs in this month
+    yearlySeptember: boolean;           // For Yearly: Occurs in this month
+    yearlyOctober: boolean;             // For Yearly: Occurs in this month
+    yearlyNovember: boolean;            // For Yearly: Occurs in this month
+    yearlyDecember: boolean;            // For Yearly: Occurs in this month
+    startsOn: Date;                     // Date
+    endsNever: boolean;                 // True means never ends
+    endsAfter: number;                  // n times, ie 2 means it will run twice
+    endsOn: Date;                       // Date
+}
+
+
+
 export class DatasourcePermission {
     id: number;                         // Unique ID
     datasourceID: number;               // FK to DS
