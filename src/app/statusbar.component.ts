@@ -70,6 +70,7 @@ export class StatusbarComponent {
 
         // Dont Disturb
         this.globalVariableService.dontDisturb.subscribe(ddb => this.dontDisturb = ddb)
+
         // Nr of Ws in group
         this.globalVariableService.widgetGroup.subscribe(wg => {
             if (wg.length == 0) {

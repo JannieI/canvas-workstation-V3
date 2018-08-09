@@ -490,6 +490,9 @@ export class AppComponent implements OnInit {
         // Get Users and Groups, async
         this.globalVariableService.getCanvasGroups();
 
+        // Dont Disturb
+        this.globalVariableService.dontDisturb.subscribe(ddb => this.dontDisturb = ddb)
+
         // Current user
         this.globalVariableService.currentUserID.subscribe(usr => {
             this.currentUserID = usr;
