@@ -16,8 +16,8 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService}       from './global-variable.service';
 
 // Models
-import { Dashboard }                  from './models';
-import { DashboardSchedule }          from './models';
+import { Datasource }                 from './models';
+import { DatasourceSchedule }         from './models';
 
 @Component({
     selector: 'data-datasourceSchedule',
@@ -41,8 +41,8 @@ export class DataDatasourceScheduleComponent implements OnInit {
 
     }
 
-    currentDashboardSchedules: DashboardSchedule[];
-    dashboards: Dashboard[];
+    currentDatasourceSchedules: DatasourceSchedule[];
+    datasources: Datasource[];
     selectedRow: number = 0;
 
 
@@ -55,10 +55,10 @@ export class DataDatasourceScheduleComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.dashboards = this.globalVariableService.dashboards.slice();
-        this.globalVariableService.getCurrentDashboardSchedules(
-            this.globalVariableService.currentDashboardInfo.value.currentDashboardID).then
-              (i => this.currentDashboardSchedules = i);
+        this.datasources = this.globalVariableService.datasources.slice();
+        this.globalVariableService.getCurrentDatasourceSchedules(
+            this.globalVariableService.currentDatasourceInfo.value.currentDashboardID).then
+              (i => this.currentDatasourceSchedules = i);
     }
 
     clickClose(action: string) {

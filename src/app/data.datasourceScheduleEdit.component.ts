@@ -101,11 +101,11 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
         this.errorMessage = '';
 
         // Fill the form
-        let dashboardScheduleIndex: number = this.globalVariableService.dashboardSchedules
+        let datasourceScheduleIndex: number = this.globalVariableService.datasourceSchedules
             .findIndex(sch => sch.id == id);
-        if (dashboardScheduleIndex >= 0) {
+        if (datasourceScheduleIndex >= 0) {
             this.selectedDatasourceSchedule = Object.assign({},
-                this.globalVariableService.dashboardSchedules[dashboardScheduleIndex]
+                this.globalVariableService.datasourceSchedules[datasourceScheduleIndex]
             );
         };
 
@@ -166,11 +166,11 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
         this.clickRow(this.selectedRow, this.scheduleID);
 
         // Re Fill the form
-        let dashboardScheduleIndex: number = this.currentDatasourceSchedules
+        let datasourceScheduleIndex: number = this.currentDatasourceSchedules
             .findIndex(sch => sch.id == this.selectedDatasourceSchedule.id);
-        if (dashboardScheduleIndex >= 0) {
+        if (datasourceScheduleIndex >= 0) {
             this.selectedDatasourceSchedule = Object.assign({},
-                this.currentDatasourceSchedules[dashboardScheduleIndex]
+                this.currentDatasourceSchedules[datasourceScheduleIndex]
             );
         };
 
@@ -305,10 +305,10 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
 
         // Save the changes
         if (this.editing) {
-            let dashboardScheduleIndex: number = this.currentDatasourceSchedules
+            let datasourceScheduleIndex: number = this.currentDatasourceSchedules
                 .findIndex(sch => sch.id == this.selectedDatasourceSchedule.id);
-            if (dashboardScheduleIndex >= 0) {
-                this.currentDatasourceSchedules[dashboardScheduleIndex] =
+            if (datasourceScheduleIndex >= 0) {
+                this.currentDatasourceSchedules[datasourceScheduleIndex] =
                     Object.assign({}, this.selectedDatasourceSchedule);
             };
             this.globalVariableService.saveDatasourceSchedule(this.selectedDatasourceSchedule)

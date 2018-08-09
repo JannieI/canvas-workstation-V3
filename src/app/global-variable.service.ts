@@ -3722,7 +3722,7 @@ export class GlobalVariableService {
 
     }
 
-    getCurrentDatasourceSchedules(datasourceID: number): Promise<DatasourceSchedule[]> {
+    getCurrentDatasourceSchedules(datasourceID: number = null): Promise<DatasourceSchedule[]> {
         // Description: Gets all Sch for current D
         // Params:
         //   datasourceID
@@ -3737,9 +3737,11 @@ export class GlobalVariableService {
             return new Promise<DatasourceSchedule[]>((resolve, reject) => {
                 this.getDatasourceSchedules()
                     .then(data => {
-                        data = data.filter(
-                            i => i.datasourceID == datasourceID
-                        );
+                        if (datasourceID != null) {
+                            data = data.filter(
+                                i => i.datasourceID == datasourceID
+                            );
+                        };
                         this.currentDatasourceSchedules = data;
                         console.log('%c    Global-Variables getCurrentDatasourceSchedules 1',
                             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
@@ -3749,10 +3751,12 @@ export class GlobalVariableService {
              })
         } else {
             return new Promise<DatasourceSchedule[]>((resolve, reject) => {
-                let returnData: DatasourceSchedule[];
-                returnData = this.datasourceSchedules.filter(
-                    i => i.datasourceID == datasourceID
-                );
+                let returnData: DatasourceSchedule[] = this.datasourceSchedules;
+                if (datasourceID != null) {
+                    returnData = returnData.filter(i => {
+                         i.datasourceID == datasourceID
+                    });
+                };
                 this.currentDatasourceSchedules = returnData;
                 console.log('%c    Global-Variables getCurrentDatasourceSchedules 2',
                     "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
