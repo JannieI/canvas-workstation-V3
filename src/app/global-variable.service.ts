@@ -32,6 +32,8 @@ import { DashboardTemplate }          from './models';
 import { DashboardTheme }             from './models';
 import { DataConnection }             from './models';
 import { DatasourceTransformation }   from './models';
+import { DatasourceSchedule }         from './models';
+import { DatasourceScheduleLog }      from './models';
 import { DataField }                  from './models';
 import { DatagridColumn }             from './models';
 import { DataSchema }                 from './models';
@@ -629,6 +631,7 @@ export class GlobalVariableService {
     widgets: Widget[] = [];
 
     datasources: Datasource[] = [];
+    datasourceSchedules: DatasourceSchedule[] = [];
     transformations: Transformation[] = [];
     dataQualityIssues: DataQualityIssue[] = [];
     dataOwnerships: DataOwnership[] = [];
@@ -768,6 +771,7 @@ export class GlobalVariableService {
     isDirtyDatasourcePermissions: boolean = true;
     isDirtyDatasourcePivots: boolean = true;
     isDirtyDatasets: boolean = true;
+    isDirtyDatasourceSchedules: boolean = true;
     isDirtyBackgroundColors: boolean = true;
     isDirtyCanvasTasks: boolean = true;
     isDirtyCanvasComments: boolean = true;
@@ -3681,6 +3685,49 @@ export class GlobalVariableService {
         });
 
     }
+
+    getDatasourceSchedules(): Promise<DatasourceSchedule[]> {
+        // Description: Gets all DS Sch
+        // Returns: this.datasourceSchedules array, unless:
+        //   If not cached or if dirty, get from File
+        console.log('%c    Global-Variables getDatasourceSchedules ...',
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+
+        let url: string = 'datasourceSchedules';
+        this.filePath = './assets/data.datasourceSchedules.json';
+
+        return new Promise<DatasourceSchedule[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if ( (this.datasourceSchedules.length == 0)  ||  (this.isDirtyDatasourceSchedules) ) {
+                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
+                this.get(url)
+                    .then(data => {
+                        this.datasourceSchedules = data;
+                        this.isDirtyDatasourceSchedules = false;
+                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
+                        console.log('%c    Global-Variables getDatasourceSchedules 1',
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                            {data})
+                        resolve(this.datasourceSchedules);
+                    });
+            } else {
+                console.log('%c    Global-Variables getDatasourceSchedules 2',
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
+                resolve(this.datasourceSchedules);
+            }
+        });
+
+    }
+
+
+
+
+
+
+
+
+
 
     getDashboardTags(): Promise<DashboardTag[]> {
         // Description: Gets all Sch
