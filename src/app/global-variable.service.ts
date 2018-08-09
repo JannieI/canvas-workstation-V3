@@ -3761,6 +3761,41 @@ export class GlobalVariableService {
         };
     }
 
+    addDatasourceSchedule(data: DatasourceSchedule): Promise<any> {
+        // Description: Adds a new DatasourceSchedule
+        // Returns: Added Data or error message
+        console.log('%c    Global-Variables addDatasourceSchedule ...',
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+
+        let url: string = 'datasourceSchedules';
+        this.filePath = './assets/data.datasourceSchedules.json';
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.post('http://localhost:3000/' + url, data, {headers})
+            .subscribe(
+                data => {
+
+                    // Update Global vars to make sure they remain in sync
+                    this.datasourceSchedules.push(JSON.parse(JSON.stringify(data)));
+                    this.currentDatasourceSchedules.push(JSON.parse(JSON.stringify(data)));
+
+                    console.log('addDatasourceSchedule ADDED', {data},
+                        this.currentDatasourceSchedules, this.datasourceSchedules)
+
+                    resolve(data);
+                },
+                err => {
+                    console.log('Error addDatasourceSchedule FAILED', {err});;
+                    reject(err);
+                }
+            )
+        });
+    }
+
 
 
 
