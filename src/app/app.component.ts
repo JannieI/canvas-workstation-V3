@@ -373,6 +373,8 @@ export class AppComponent implements OnInit {
     showModalDataOverview: boolean = false;
     showModalCombinationAppend: boolean = false;
     showModalDataUsage: boolean = false;
+    showModalDataScheduleEdit: boolean = false;
+    showModalDataSchedule: boolean = false;
     showModalDataRefreshOnce: boolean = false;
     showModalDataRefreshRepeat: boolean = false;
     showModalDataManagedQueryBuilder: boolean = false;
@@ -3186,7 +3188,14 @@ export class AppComponent implements OnInit {
         this.showModalDataScheduleEdit = true;
     }
 
-    clickMenuDatasourceSchedule()
+    clickMenuDatasourceSchedule() {
+        // Show DS Schedules
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDatasourceSchedule', '@Start');
+
+        this.menuOptionClickPreAction();
+
+        this.showModalDataSchedule = true;
+    }
 
     clickMenuDatasourceRefreshOnce() {
         // Refresh selected DS Once off
