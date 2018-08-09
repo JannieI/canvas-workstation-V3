@@ -35,6 +35,7 @@ export class StatusbarComponent {
     currentDashboardTabs: DashboardTab[];
     dashboardDescription: string;
     dashboardTabDescription: string;
+    dontDisturb: boolean = false;
     editMode: boolean = false;
     editModeSubscription: Subscription;
     loggedIntoServerText: string;
@@ -67,6 +68,8 @@ export class StatusbarComponent {
                  }
         );
 
+        // Dont Disturb
+        this.globalVariableService.dontDisturb.subscribe(ddb => this.dontDisturb = ddb)
         // Nr of Ws in group
         this.globalVariableService.widgetGroup.subscribe(wg => {
             if (wg.length == 0) {

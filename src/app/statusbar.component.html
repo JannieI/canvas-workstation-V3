@@ -139,7 +139,14 @@
         >
       {{ statusBarMessageText }}
     </span>
-
+    
+    <span *ngIf="dontDisturb"  class="statusBarText statusBarTextBorder"
+        title="Show when DONT DISTURB is on"
+        style="width: 51vw; color: red;"
+        (click)="clickToggleDontDisturb()"
+        >
+        DONT DISTURB
+    </span>
 </div>
 
 
