@@ -3776,7 +3776,7 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post('http://localhost:3000/' + url, data, {headers})
+            this.http.post('http://localhost:3001/' + url, data, {headers})
             .subscribe(
                 data => {
 
@@ -3811,7 +3811,7 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.put('http://localhost:3000/' + url + '/' + data.id, data, {headers})
+            this.http.put('http://localhost:3001/' + url + '/' + data.id, data, {headers})
             .subscribe(
                 res => {
 
@@ -3846,7 +3846,7 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
+            this.http.delete('http://localhost:3001/' + url + '/' + id, {headers})
             .subscribe(
                 data => {
 
@@ -7558,6 +7558,8 @@ export class GlobalVariableService {
                 } else if (url == 'dataConnections') {
                     finalUrl = 'http://localhost:3001/' + url;
                 } else if (url == 'dataTables') {
+                    finalUrl = 'http://localhost:3001/' + url;
+                } else if (url == 'datasourceScheduleLog') {
                     finalUrl = 'http://localhost:3001/' + url;
                 } else if (url == 'dataFields') {
                     finalUrl = 'http://localhost:3001/' + url;
