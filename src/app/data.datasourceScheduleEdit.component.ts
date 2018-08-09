@@ -74,13 +74,11 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        let dashboard: Datasource = this.globalVariableService.letDashboard(
-            this.globalVariableService.currentDashboardInfo.value.currentDashboardID
-        );
-        this.datasourceName = dashboard.name;
+        let datasource: Datasource = this.globalVariableService.datasources[0];
+        this.datasourceName = datasource.name;
         this.clearRecord();
 
-        this.globalVariableService.getcurrentDatasourceSchedules(
+        this.globalVariableService.getCurrentDatasourceSchedules(
             this.globalVariableService.currentDashboardInfo.value.currentDashboardID).then
               (i => {
                   this.currentDatasourceSchedules = i;
@@ -119,7 +117,6 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
 
         this.selectedDatasourceSchedule = {
             id: null,
-            dashboardID: null,
             datasourceID: null,
             name: null,
             description: null,
@@ -293,9 +290,9 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
         if (this.adding) {
             // this.currentDatasourceSchedules.push(this.selectedDatasourceSchedules);
             this.selectedDatasourceSchedule.id = null;
-            this.selectedDatasourceSchedule.dashboardID =
+            this.selectedDatasourceSchedule.datasourceID =
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
-            this.globalVariableService.addDashboardSchedule(this.selectedDatasourceSchedule).then(
+            this.globalVariableService.addDatasourceSchedule(this.selectedDatasourceSchedule).then(
                 res => {
                     if (this.selectedRow == null) {
                         this.selectedRow = 0;
@@ -314,7 +311,7 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
                 this.currentDatasourceSchedules[dashboardScheduleIndex] =
                     Object.assign({}, this.selectedDatasourceSchedule);
             };
-            this.globalVariableService.saveDashboardSchedule(this.selectedDatasourceSchedule)
+            this.globalVariableService.saveDatasourceSchedule(this.selectedDatasourceSchedule)
         };
 
         // Reset

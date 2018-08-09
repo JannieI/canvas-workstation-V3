@@ -3909,13 +3909,6 @@ export class GlobalVariableService {
 
     }
 
-
-
-
-
-
-
-
     getDashboardTags(): Promise<DashboardTag[]> {
         // Description: Gets all Sch
         // Returns: this.dashboardTagsget array, unless:
