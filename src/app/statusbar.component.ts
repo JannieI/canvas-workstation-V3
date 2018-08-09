@@ -493,6 +493,16 @@ export class StatusbarComponent {
         this.showNewTab = false;
         this.showDashboardTabDescription = false;
     }
+
+    clickToggleDontDisturb() {
+        //Toggle the DontDisturb status
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickToggleDontDisturb', '@Start');
+
+        this.dontDisturb = !this.globalVariableService.dontDisturb.value;
+        this.globalVariableService.dontDisturb.next(
+            !this.globalVariableService.dontDisturb.value);
+    }
+
 }
 
 
