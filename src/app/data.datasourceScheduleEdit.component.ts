@@ -16,8 +16,8 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService}       from './global-variable.service';
 
 // Models
-import { Dashboard }                  from './models';
-import { DashboardSchedule }          from './models';
+import { Datasource }                  from './models';
+import { DatasourceSchedule }          from './models';
 
 @Component({
     selector: 'data-datasourceScheduleEdit',
@@ -56,14 +56,13 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
     }
 
     adding: boolean = false;
-    currentDashboardSchedules: DashboardSchedule[] = [];
-    dashboardName: string = '';
-    dashboardState: string = '';
+    currentDatasourceSchedules: DatasourceSchedule[] = [];
+    datasourceName: string = '';
     editing: boolean = false;
     errorMessage: string = '';
     scheduleID: number = null;
     selectedRow: number = null;
-    selectedDashboardSchedule: DashboardSchedule;
+    selectedDatasourceSchedule: DatasourceSchedule;
 
 
 	constructor(
@@ -75,19 +74,18 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        let dashboard: Dashboard = this.globalVariableService.letDashboard(
+        let dashboard: Datasource = this.globalVariableService.letDashboard(
             this.globalVariableService.currentDashboardInfo.value.currentDashboardID
         );
-        this.dashboardName = dashboard.name;
-        this.dashboardState = dashboard.state;
+        this.datasourceName = dashboard.name;
         this.clearRecord();
 
-        this.globalVariableService.getCurrentDashboardSchedules(
+        this.globalVariableService.getcurrentDatasourceSchedules(
             this.globalVariableService.currentDashboardInfo.value.currentDashboardID).then
               (i => {
-                  this.currentDashboardSchedules = i;
-                  if (this.currentDashboardSchedules.length > 0) {
-                    this.clickRow(0, this.currentDashboardSchedules[0].id);
+                  this.currentDatasourceSchedules = i;
+                  if (this.currentDatasourceSchedules.length > 0) {
+                    this.clickRow(0, this.currentDatasourceSchedules[0].id);
                   };
         });
     }
@@ -96,7 +94,7 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
         // Click Row
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
 
-        console.warn('xx selD Sch', this.selectedDashboardSchedule)
+        console.warn('xx selD Sch', this.selectedDatasourceSchedule)
         // Set the row index
         this.selectedRow = index;
         this.adding = false;
@@ -108,7 +106,7 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
         let dashboardScheduleIndex: number = this.globalVariableService.dashboardSchedules
             .findIndex(sch => sch.id == id);
         if (dashboardScheduleIndex >= 0) {
-            this.selectedDashboardSchedule = Object.assign({},
+            this.selectedDatasourceSchedule = Object.assign({},
                 this.globalVariableService.dashboardSchedules[dashboardScheduleIndex]
             );
         };
@@ -119,7 +117,7 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
         // Clear single record
         this.globalFunctionService.printToConsole(this.constructor.name,'clearRecord', '@Start');
 
-        this.selectedDashboardSchedule = {
+        this.selectedDatasourceSchedule = {
             id: null,
             dashboardID: null,
             datasourceID: null,
@@ -171,11 +169,11 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
         this.clickRow(this.selectedRow, this.scheduleID);
 
         // Re Fill the form
-        let dashboardScheduleIndex: number = this.currentDashboardSchedules
-            .findIndex(sch => sch.id == this.selectedDashboardSchedule.id);
+        let dashboardScheduleIndex: number = this.currentDatasourceSchedules
+            .findIndex(sch => sch.id == this.selectedDatasourceSchedule.id);
         if (dashboardScheduleIndex >= 0) {
-            this.selectedDashboardSchedule = Object.assign({},
-                this.currentDashboardSchedules[dashboardScheduleIndex]
+            this.selectedDatasourceSchedule = Object.assign({},
+                this.currentDatasourceSchedules[dashboardScheduleIndex]
             );
         };
 
@@ -194,114 +192,114 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
         // Validation
         this.errorMessage = '';
 
-        if (this.selectedDashboardSchedule.repeatFrequency == null
+        if (this.selectedDatasourceSchedule.repeatFrequency == null
             ||
-            this.selectedDashboardSchedule.repeatFrequency == '') {
+            this.selectedDatasourceSchedule.repeatFrequency == '') {
                 this.errorMessage = 'Select a Frequency';
                 return;
         };
 
-        if (this.selectedDashboardSchedule.repeatsEvery == null
+        if (this.selectedDatasourceSchedule.repeatsEvery == null
             ||
-            this.selectedDashboardSchedule.repeatsEvery == 0) {
+            this.selectedDatasourceSchedule.repeatsEvery == 0) {
                 this.errorMessage = 'Fill in Every ';
                 return;
         };
 
-        if (this.selectedDashboardSchedule.repeatFrequency == 'Weekly') {
-            if (!this.selectedDashboardSchedule.weeklyMonday
+        if (this.selectedDatasourceSchedule.repeatFrequency == 'Weekly') {
+            if (!this.selectedDatasourceSchedule.weeklyMonday
                 &&
-                !this.selectedDashboardSchedule.weeklyTuesday
+                !this.selectedDatasourceSchedule.weeklyTuesday
                 &&
-                !this.selectedDashboardSchedule.weeklyWednesday
+                !this.selectedDatasourceSchedule.weeklyWednesday
                 &&
-                !this.selectedDashboardSchedule.weeklyThursday
+                !this.selectedDatasourceSchedule.weeklyThursday
                 &&
-                !this.selectedDashboardSchedule.weeklyFriday
+                !this.selectedDatasourceSchedule.weeklyFriday
                 &&
-                !this.selectedDashboardSchedule.weeklySaturday
+                !this.selectedDatasourceSchedule.weeklySaturday
                 &&
-                !this.selectedDashboardSchedule.weeklySunday) {
+                !this.selectedDatasourceSchedule.weeklySunday) {
                     this.errorMessage = 'Chose at least one weekday';
                     return;
             };
         };
 
-        if (this.selectedDashboardSchedule.repeatFrequency == 'Monthly') {
-            if (this.selectedDashboardSchedule.monthlyOn == 0
+        if (this.selectedDatasourceSchedule.repeatFrequency == 'Monthly') {
+            if (this.selectedDatasourceSchedule.monthlyOn == 0
             ||
-            this.selectedDashboardSchedule.monthlyOn == null) {
+            this.selectedDatasourceSchedule.monthlyOn == null) {
                 this.errorMessage = 'Fill in day of month';
                 return;
             };
         };
 
-        if (this.selectedDashboardSchedule.repeatFrequency == 'Yearly') {
-            if (!this.selectedDashboardSchedule.yearlyJanuary
+        if (this.selectedDatasourceSchedule.repeatFrequency == 'Yearly') {
+            if (!this.selectedDatasourceSchedule.yearlyJanuary
                 &&
-                !this.selectedDashboardSchedule.yearlyFebruary
+                !this.selectedDatasourceSchedule.yearlyFebruary
                 &&
-                !this.selectedDashboardSchedule.yearlyMarch
+                !this.selectedDatasourceSchedule.yearlyMarch
                 &&
-                !this.selectedDashboardSchedule.yearlyApril
+                !this.selectedDatasourceSchedule.yearlyApril
                 &&
-                !this.selectedDashboardSchedule.yearlyMay
+                !this.selectedDatasourceSchedule.yearlyMay
                 &&
-                !this.selectedDashboardSchedule.yearlyJune
+                !this.selectedDatasourceSchedule.yearlyJune
                 &&
-                !this.selectedDashboardSchedule.yearlyJuly
+                !this.selectedDatasourceSchedule.yearlyJuly
                 &&
-                !this.selectedDashboardSchedule.yearlyAugust
+                !this.selectedDatasourceSchedule.yearlyAugust
                 &&
-                !this.selectedDashboardSchedule.yearlySeptember
+                !this.selectedDatasourceSchedule.yearlySeptember
                 &&
-                !this.selectedDashboardSchedule.yearlyOctober
+                !this.selectedDatasourceSchedule.yearlyOctober
                 &&
-                !this.selectedDashboardSchedule.yearlyNovember
+                !this.selectedDatasourceSchedule.yearlyNovember
                 &&
-                !this.selectedDashboardSchedule.yearlyDecember) {
+                !this.selectedDatasourceSchedule.yearlyDecember) {
                     this.errorMessage = 'Check a month';
                     return;
             };
         };
 
-        if (this.selectedDashboardSchedule.startsOn == null) {
+        if (this.selectedDatasourceSchedule.startsOn == null) {
                 this.errorMessage = 'Enter start date';
                 return;
         };
 
-        if (!this.selectedDashboardSchedule.endsNever)
+        if (!this.selectedDatasourceSchedule.endsNever)
             if (
-                    (this.selectedDashboardSchedule.endsAfter == null
+                    (this.selectedDatasourceSchedule.endsAfter == null
                     ||
-                    this.selectedDashboardSchedule.endsAfter == 0)
+                    this.selectedDatasourceSchedule.endsAfter == 0)
                 &&
-                    (this.selectedDashboardSchedule.endsOn == null
+                    (this.selectedDatasourceSchedule.endsOn == null
                     ||
-                    this.selectedDashboardSchedule.endsOn == null)
+                    this.selectedDatasourceSchedule.endsOn == null)
                 ) {
                 this.errorMessage = 'Must end Never, On or After';
                 return;
         };
 
-        if (this.selectedDashboardSchedule.name == null
+        if (this.selectedDatasourceSchedule.name == null
             ||
-            this.selectedDashboardSchedule.name == '') {
+            this.selectedDatasourceSchedule.name == '') {
                 this.errorMessage = 'Enter a Schedule name';
                 return;
         };
 
         // Add to local and DB
         if (this.adding) {
-            // this.currentDashboardSchedules.push(this.selectedDashboardSchedules);
-            this.selectedDashboardSchedule.id = null;
-            this.selectedDashboardSchedule.dashboardID =
+            // this.currentDatasourceSchedules.push(this.selectedDatasourceSchedules);
+            this.selectedDatasourceSchedule.id = null;
+            this.selectedDatasourceSchedule.dashboardID =
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
-            this.globalVariableService.addDashboardSchedule(this.selectedDashboardSchedule).then(
+            this.globalVariableService.addDashboardSchedule(this.selectedDatasourceSchedule).then(
                 res => {
                     if (this.selectedRow == null) {
                         this.selectedRow = 0;
-                        this.scheduleID = this.selectedDashboardSchedule.id;
+                        this.scheduleID = this.selectedDatasourceSchedule.id;
                     };
 
                 }
@@ -310,13 +308,13 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
 
         // Save the changes
         if (this.editing) {
-            let dashboardScheduleIndex: number = this.currentDashboardSchedules
-                .findIndex(sch => sch.id == this.selectedDashboardSchedule.id);
+            let dashboardScheduleIndex: number = this.currentDatasourceSchedules
+                .findIndex(sch => sch.id == this.selectedDatasourceSchedule.id);
             if (dashboardScheduleIndex >= 0) {
-                this.currentDashboardSchedules[dashboardScheduleIndex] =
-                    Object.assign({}, this.selectedDashboardSchedule);
+                this.currentDatasourceSchedules[dashboardScheduleIndex] =
+                    Object.assign({}, this.selectedDatasourceSchedule);
             };
-            this.globalVariableService.saveDashboardSchedule(this.selectedDashboardSchedule)
+            this.globalVariableService.saveDashboardSchedule(this.selectedDatasourceSchedule)
         };
 
         // Reset
@@ -331,7 +329,7 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
         // Start editing selected Schedule
         this.globalFunctionService.printToConsole(this.constructor.name,'clickEdit', '@Start');
 
-        if (this.currentDashboardSchedules.length > 0) {
+        if (this.currentDatasourceSchedules.length > 0) {
             this.editing = true;
         };
         this.errorMessage = '';
@@ -354,7 +352,7 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
 
         this.clearRecord();
         this.globalVariableService.deleteDashboardSchedule(id).then(res => {
-            this.currentDashboardSchedules = this.globalVariableService.currentDashboardSchedules
+            this.currentDatasourceSchedules = this.globalVariableService.currentDatasourceSchedules
         });
 
         this.selectedRow = null;
