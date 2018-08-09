@@ -26,7 +26,7 @@ import { DashboardSchedule }          from './models';
 })
 export class DataDatasourceScheduleEditComponent implements OnInit {
 
-    @Output() formDashboardScheduleEditClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formDataDatasourceScheduleEditClosed: EventEmitter<string> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
@@ -158,7 +158,7 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
         // Close form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-		this.formDashboardScheduleEditClosed.emit(action);
+		this.formDataDatasourceScheduleEditClosed.emit(action);
     }
 
     clickCancel() {
