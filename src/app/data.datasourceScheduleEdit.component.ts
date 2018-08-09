@@ -20,11 +20,11 @@ import { Dashboard }                  from './models';
 import { DashboardSchedule }          from './models';
 
 @Component({
-    selector: 'dashboard-scheduleEdit',
-    templateUrl: './dashboard.scheduleEdit.component.html',
-    styleUrls: ['./dashboard.scheduleEdit.component.css']
+    selector: 'data-datasourceScheduleEdit',
+    templateUrl: './data.datasourceScheduleEdit.component.html',
+    styleUrls: ['./data.datasourceScheduleEdit.component.css']
 })
-export class DashboardScheduleEditComponent implements OnInit {
+export class DataDatasourceScheduleEditComponent implements OnInit {
 
     @Output() formDashboardScheduleEditClosed: EventEmitter<string> = new EventEmitter();
 

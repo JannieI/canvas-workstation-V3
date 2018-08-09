@@ -1,0 +1,542 @@
+.modalBox {
+	background-color: rgba(0,0,0,0.4);
+	-shadow: 0 2px 2px 0 lightgray;
+}
+
+.gridOverall {
+    display: grid;
+    grid-template-columns: repeat(21, 1fr);
+    grid-template-rows: repeat(21, 1rem);
+}
+
+    .closeButton {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        text-align: left;
+    }
+    .gridTitle {
+        font-size: 0.75rem;
+        grid-column-start: 1;
+        grid-column-end: 18;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        margin-left: 30px;
+        text-align: left;
+    }
+
+    .gridRepeatFrequencyTitle {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridRepeatFrequency {
+        grid-column-start: 3;
+        grid-column-end: 9;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+
+    .gridErrorMessage {
+        color: red;
+        grid-column-start: 18;
+        grid-column-end: 23;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+
+    .gridRepeatsEveryTitle {
+        grid-column-start: 10;
+        grid-column-end: 13;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridRepeatsEvery {
+        grid-column-start: 13;
+        grid-column-end: 19;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+
+    .gridWeeklyMondayTitle {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 4;
+        grid-row-end: 5;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridWeeklyMonday {
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: 4;
+        grid-row-end: 5;
+        margin: 2px 2px 2px 12px;
+        text-align: left;
+    }
+
+    .gridWeeklyTuesdayTitle {
+        grid-column-start: 4;
+        grid-column-end: 5;
+        grid-row-start: 4;
+        grid-row-end: 5;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridWeeklyTuesday {
+        grid-column-start: 5;
+        grid-column-end: 6;
+        grid-row-start: 4;
+        grid-row-end: 5;
+        margin: 2px 2px 2px 12px;
+        text-align: left;
+    }
+
+    .gridWeeklyWednesdayTitle {
+        grid-column-start: 7;
+        grid-column-end: 8;
+        grid-row-start: 4;
+        grid-row-end: 5;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridWeeklyWednesday {
+        grid-column-start: 8;
+        grid-column-end: 9;
+        grid-row-start: 4;
+        grid-row-end: 5;
+        margin: 2px 2px 12px;
+        text-align: left;
+    }
+
+    .gridWeeklyThursdayTitle {
+        grid-column-start: 10;
+        grid-column-end: 11;
+        grid-row-start: 4;
+        grid-row-end: 5;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridWeeklyThursday {
+        grid-column-start: 11;
+        grid-column-end: 12;
+        grid-row-start: 4;
+        grid-row-end: 5;
+        margin: 2px 2px 2px 12px;
+        text-align: left;
+    }
+
+    .gridWeeklyFridayTitle {
+        grid-column-start: 13;
+        grid-column-end: 14;
+        grid-row-start: 4;
+        grid-row-end: 5;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridWeeklyFriday {
+        grid-column-start: 14;
+        grid-column-end: 15;
+        grid-row-start: 4;
+        grid-row-end: 5;
+        margin: 2px 2px 2px 12px;
+        text-align: left;
+    }
+
+    .gridWeeklySaturdayTitle {
+        grid-column-start: 16;
+        grid-column-end: 17;
+        grid-row-start: 4;
+        grid-row-end: 5;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridWeeklySaturday {
+        grid-column-start: 17;
+        grid-column-end: 18;
+        grid-row-start: 4;
+        grid-row-end: 5;
+        margin: 2px 2px 2px 12px;
+        text-align: left;
+    }
+
+    .gridWeeklySundayTitle {
+        grid-column-start: 19;
+        grid-column-end: 20;
+        grid-row-start: 4;
+        grid-row-end: 5;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridWeeklySunday {
+        grid-column-start: 20;
+        grid-column-end: 21;
+        grid-row-start: 4;
+        grid-row-end: 5;
+        margin: 2px 2px 2px 12px;
+        text-align: left;
+    }
+
+    .gridMonthlyOnTitle {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 4;
+        grid-row-end: 5;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridMonthlyOn {
+        grid-column-start: 3;
+        grid-column-end: 4;
+        grid-row-start: 4;
+        grid-row-end: 5;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+
+    .gridYearlyJanuaryTitle {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 4;
+        grid-row-end: 5;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridYearlyJanuary {
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: 4;
+        grid-row-end: 5;
+        margin: 2px 2px 2px 12px;
+        text-align: left;
+    }
+
+    .gridYearlyFebruaryTitle {
+        grid-column-start: 4;
+        grid-column-end: 5;
+        grid-row-start: 4;
+        grid-row-end: 5;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridYearlyFebruary {
+        grid-column-start: 5;
+        grid-column-end: 6;
+        grid-row-start: 4;
+        grid-row-end: 5;
+        margin: 2px 2px 2px 12px;
+        text-align: left;
+    }
+
+    .gridYearlyMarchTitle {
+        grid-column-start: 7;
+        grid-column-end: 8;
+        grid-row-start: 4;
+        grid-row-end: 5;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridYearlyMarch {
+        grid-column-start: 8;
+        grid-column-end: 9;
+        grid-row-start: 4;
+        grid-row-end: 5;
+        margin: 2px 2px 2px 12px;
+        text-align: left;
+    }
+
+    .gridYearlyAprilTitle {
+        grid-column-start: 10;
+        grid-column-end: 11;
+        grid-row-start: 4;
+        grid-row-end: 5;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridYearlyApril {
+        grid-column-start: 11;
+        grid-column-end: 12;
+        grid-row-start: 4;
+        grid-row-end: 5;
+        margin: 2px 2px 2px 12px;
+        text-align: left;
+    }
+
+    .gridYearlyMayTitle {
+        grid-column-start: 14;
+        grid-column-end: 15;
+        grid-row-start: 4;
+        grid-row-end: 5;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridYearlyMay {
+        grid-column-start: 15;
+        grid-column-end: 16;
+        grid-row-start: 4;
+        grid-row-end: 5;
+        margin: 2px 2px 2px 12px;
+        text-align: left;
+    }
+
+    .gridYearlyJuneTitle {
+        grid-column-start: 17;
+        grid-column-end: 18;
+        grid-row-start: 4;
+        grid-row-end: 5;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridYearlyJune {
+        grid-column-start: 18;
+        grid-column-end: 19;
+        grid-row-start: 4;
+        grid-row-end: 5;
+        margin: 2px 2px 2px 12px;
+        text-align: left;
+    }
+
+    .gridYearlyJulyTitle {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 5;
+        grid-row-end: 6;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridYearlyJuly {
+        grid-column-start: 2;
+        grid-column-end: 3;
+        grid-row-start: 5;
+        grid-row-end: 6;
+        margin: 2px 2px 2px 12px;
+        text-align: left;
+    }
+
+    .gridYearlyAugustTitle {
+        grid-column-start: 4;
+        grid-column-end: 5;
+        grid-row-start: 5;
+        grid-row-end: 6;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridYearlyAugust {
+        grid-column-start: 5;
+        grid-column-end: 6;
+        grid-row-start: 5;
+        grid-row-end: 6;
+        margin: 2px 2px 2px 12px;
+        text-align: left;
+    }
+
+    .gridYearlySeptemberTitle {
+        grid-column-start: 7;
+        grid-column-end: 8;
+        grid-row-start: 5;
+        grid-row-end: 6;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridYearlySeptember {
+        grid-column-start: 8;
+        grid-column-end: 9;
+        grid-row-start: 5;
+        grid-row-end: 6;
+        margin: 2px 2px 2px 12px;
+        text-align: left;
+    }
+
+    .gridYearlyOctoberTitle {
+        grid-column-start: 10;
+        grid-column-end: 11;
+        grid-row-start: 5;
+        grid-row-end: 6;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridYearlyOctober {
+        grid-column-start: 11;
+        grid-column-end: 12;
+        grid-row-start: 5;
+        grid-row-end: 6;
+        margin: 2px 2px 2px 12px;
+        text-align: left;
+    }
+
+    .gridYearlyNovemberTitle {
+        grid-column-start: 14;
+        grid-column-end: 15;
+        grid-row-start: 5;
+        grid-row-end: 6;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridYearlyNovember {
+        grid-column-start: 15;
+        grid-column-end: 16;
+        grid-row-start: 5;
+        grid-row-end: 6;
+        margin: 2px 2px 2px 12px;
+        text-align: left;
+    }
+
+    .gridYearlyDecemberTitle {
+        grid-column-start: 17;
+        grid-column-end: 18;
+        grid-row-start: 5;
+        grid-row-end: 6;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridYearlyDecember {
+        grid-column-start: 18;
+        grid-column-end: 19;
+        grid-row-start: 5;
+        grid-row-end: 6;
+        margin: 2px 2px 2px 12px;
+        text-align: left;
+    }
+
+    .gridRepeatsForTitle {
+        grid-column-start: 10;
+        grid-column-end: 13;
+        grid-row-start: 6;
+        grid-row-end: 7;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridRepeatsFor {
+        grid-column-start: 13;
+        grid-column-end: 19;
+        grid-row-start: 6;
+        grid-row-end: 7;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+
+    .gridStartsOnTitle {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 6;
+        grid-row-end: 7;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridStartsOn {
+        grid-column-start: 3;
+        grid-column-end: 9;
+        grid-row-start: 6;
+        grid-row-end: 7;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+
+    .gridNeverEndsTitle {
+        grid-column-start: 10;
+        grid-column-end: 13;
+        grid-row-start: 6;
+        grid-row-end: 7;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridNeverEnds {
+        grid-column-start: 13;
+        grid-column-end: 19;
+        grid-row-start: 6;
+        grid-row-end: 7;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+
+    .gridEndsAfterTitle {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 8;
+        grid-row-end: 9;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridEndsAfter {
+        grid-column-start: 3;
+        grid-column-end: 9;
+        grid-row-start: 8;
+        grid-row-end: 9;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+
+    .gridEndsOnTitle {
+        grid-column-start: 10;
+        grid-column-end: 13;
+        grid-row-start: 8;
+        grid-row-end: 9;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridEndsOn {
+        grid-column-start: 13;
+        grid-column-end: 19;
+        grid-row-start: 8;
+        grid-row-end: 9;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+
+    .gridScheduleNameTitle {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 10;
+        grid-row-end: 11;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridScheduleName {
+        grid-column-start: 3;
+        grid-column-end: 9;
+        grid-row-start: 10;
+        grid-row-end: 11;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+
+    .gridButtonCancel {
+        grid-column-start: 10;
+        grid-column-end: 13;
+        grid-row-start: 10;
+        grid-row-end: 11;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridButtonAdd {
+        grid-column-start: 14;
+        grid-column-end: 16;
+        grid-row-start: 10;
+        grid-row-end: 11;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+
+    .gridSchedules {
+        grid-column-start: 1;
+        grid-column-end: 41;
+        grid-row-start: 12;
+        grid-row-end: 19;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }

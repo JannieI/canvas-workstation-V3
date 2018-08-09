@@ -106,6 +106,7 @@ import { DataDictionaryComponent }    from './data.dictionary.component';
 import { DataBusinessGlossaryComponent }        from './data.businessGlossary.component';
 import { DataSummaryComponent }       from './data.summary.component';
 import { DataDatasourceUsageComponent }         from './data.datasourceUsage.component';
+import { DataDatasourceScheduleEditComponent }  from './data.datasourceScheduleEdit.component';
 import { DataRefreshOnceComponent }   from './data.refresh.once.component';
 import { DataRefreshRepeatComponent }   from './data.refresh.repeat.component';
 import { DataDeleteDatasourceComponent }        from './data.deleteDatasource.component';
@@ -214,6 +215,7 @@ import { StatusbarComponent }         from './statusbar.component';
         DataManagedBusGlossaryComponent,
         DataDatasourceOverviewComponent,
         DataDatasourceUsageComponent,
+        DataDatasourceScheduleEditComponent,
         DataRefreshOnceComponent,
         DataRefreshRepeatComponent,
         DataDeleteDatasourceComponent,
