@@ -7563,6 +7563,8 @@ export class GlobalVariableService {
                     finalUrl = 'http://localhost:3001/' + url;
                 } else if (url == 'dataTables') {
                     finalUrl = 'http://localhost:3001/' + url;
+                } else if (url == 'datasourceSchedules') {
+                    finalUrl = 'http://localhost:3001/' + url;
                 } else if (url == 'datasourceScheduleLog') {
                     finalUrl = 'http://localhost:3001/' + url;
                 } else if (url == 'dataFields') {

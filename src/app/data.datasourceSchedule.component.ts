@@ -56,9 +56,7 @@ export class DataDatasourceScheduleComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         this.datasources = this.globalVariableService.datasources.slice();
-        this.globalVariableService.getCurrentDatasourceSchedules(
-            this.globalVariableService.currentDatasourceInfo.value.currentDashboardID).then
-              (i => this.currentDatasourceSchedules = i);
+        this.globalVariableService.getCurrentDatasourceSchedules();
     }
 
     clickClose(action: string) {
