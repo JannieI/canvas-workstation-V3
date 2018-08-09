@@ -3177,6 +3177,17 @@ export class AppComponent implements OnInit {
         this.showModalDataUsage = true;
     }
 
+    clickMenuDatasourceScheduleEdit() {
+        // Edit Schedule for DS
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDatasourceScheduleEdit', '@Start');
+
+        this.menuOptionClickPreAction();
+
+        this.showModalDataScheduleEdit = true;
+    }
+
+    clickMenuDatasourceSchedule()
+
     clickMenuDatasourceRefreshOnce() {
         // Refresh selected DS Once off
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDatasourceRefreshOnce', '@Start');
