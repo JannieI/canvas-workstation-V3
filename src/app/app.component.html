@@ -4314,6 +4314,20 @@
 </data-datasourceUsage>
 
 
+<!-- Modal: Datasource Schedule Edit -->
+<data-datasourceScheduleEdit
+    *ngIf="showModalDataScheduleEdit"
+    (formDataDatasourceScheduleEditClosed)="handleCloseDataDatasourceScheduleEdit($event)">Load Datasource Schedule Edit ...
+</data-datasourceScheduleEdit>
+
+
+<!-- Modal: Datasource Schedule -->
+<data-datasourceSchedule
+    *ngIf="showModalDataSchedule"
+    (formDataDatasourceScheduleClosed)="handleCloseDataDatasourceSchedule($event)">Load Datasource Schedule ...
+</data-datasourceSchedule>
+
+
 <!-- Modal: Datasource Refresh Once -->
 <data-refresh-once
     *ngIf="showModalDataRefreshOnce"

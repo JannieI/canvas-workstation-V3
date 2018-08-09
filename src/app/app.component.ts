@@ -1361,6 +1361,16 @@ export class AppComponent implements OnInit {
         this.showModalDataUsage = false;
     }
 
+    handleCloseDataDatasourceScheduleEdit(action: string) {
+        // Handle close of Datasource Usage
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDatasourceUsage', '@Start');
+
+        this.menuOptionClickPostAction();
+
+        this.showModalDataUsage = false;
+    }
+
+    handleCloseDataDatasourceSchedule
     handleCloseDataDatasourceRefreshOnce(action: string) {
         // Handle close of Datasource RefreshOnce
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDatasourceRefreshOnce', '@Start');
