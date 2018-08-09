@@ -678,6 +678,36 @@
                                 type="button"
                                 class="btn btn-link btn-sm"
                                 clrDropdownTrigger
+                                title="Submenu with more options"
+                                >
+                                Schedules
+                            </button>
+                            <clr-dropdown-menu clrPosition="right-top" *clrIfOpen>
+
+                                <button type="button"
+                                    clrDropdownItem
+                                    title="Manage scheduled runs for this Datasource"
+                                    (click)="clickMenuDatasourceScheduleEdit()"
+                                    >
+                                    Manage
+                                </button>
+                                <button
+                                    type="button"
+                                    clrDropdownItem
+                                    title="Shows all scheduled runs"
+                                    (click)="clickMenuDatasourceSchedule()"
+                                    >
+                                    Show All
+                                </button>
+                            </clr-dropdown-menu>
+                        </clr-dropdown>
+
+
+                        <clr-dropdown>
+                            <button
+                                type="button"
+                                class="btn btn-link btn-sm"
+                                clrDropdownTrigger
                                 title="Refresh Datasources"
                                 >
                                 Refresh

@@ -623,7 +623,7 @@ export class Dashboard {
 
     // Overall properties
     password: string;
-    refreshMode: string;            // Manual, OnOpen, Repeatedly
+    refreshMode: string;            // OnDemand, OnOpen, Repeatedly
     refreshTimer: number;           // Nr seconds to repeat, if refreshMode = Repeatedly
     defaultTabID: number;
     defaultExportFileType: string;
