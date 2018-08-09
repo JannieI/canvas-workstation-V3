@@ -7605,7 +7605,7 @@ export class GlobalVariableService {
                 {key: 'shapeBullets', 				type: 'string'},
                 {key: 'shapeBulletStyleType', 		type: 'int'},
                 {key: 'shapeBulletsOrdered', 		type: 'bool'},
-                {key: 'shapeBulletMarginBottom', 		type: 'int'},
+                {key: 'shapeBulletMarginBottom', 	type: 'int'},
                 {key: 'shapeOpacity', 				type: 'int'},
                 {key: 'shapeRotation', 				type: 'int'},
                 {key: 'shapeSize', 				    type: 'int'},

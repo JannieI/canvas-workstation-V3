@@ -596,7 +596,7 @@ export class Field {
     order: string;
 }
 
-export class FieldMetadata{
+export class FieldMetadata {
     id: number;
     datasourceID: number;
     name: string;
@@ -623,8 +623,8 @@ export class Dashboard {
 
     // Overall properties
     password: string;
-    refreshMode: string;
-    refreshTimer: number;
+    refreshMode: string;            // Manual, OnOpen, Repeatedly
+    refreshTimer: number;           // Nr seconds to repeat, if refreshMode = Repeatedly
     defaultTabID: number;
     defaultExportFileType: string;
     url: string;
@@ -960,8 +960,8 @@ export class Widget {
     shapeValue: string;                 // Value to display
 
     // Created, updated and refreshed
-    refreshMode: string;                // Manual, OnOpen, Repeatedly
-    refreshFrequency: number;           // Nr of seconds if RefreshMode = Repeatedly
+    refreshMode: string;                // For later use: Manual, OnOpen, Repeatedly
+    refreshFrequency: number;           // For later use: Nr of seconds if RefreshMode = Repeatedly
     widgetRefreshedOn: string;          // Data Refreshed on
     widgetRefreshedBy: string;          // Date Refreshed by
     widgetCreatedOn: Date;              // Created on
