@@ -632,6 +632,7 @@ export class GlobalVariableService {
 
     datasources: Datasource[] = [];
     datasourceSchedules: DatasourceSchedule[] = [];
+    datasourceScheduleLog: DatasourceScheduleLog[] = [];
     currentDatasourceSchedules: DatasourceSchedule[] = [];
     transformations: Transformation[] = [];
     dataQualityIssues: DataQualityIssue[] = [];
@@ -3867,6 +3868,46 @@ export class GlobalVariableService {
         });
     }
 
+    getDatasourceScheduleLog(
+        datasourceID: number = null,
+        sentAfter: Date = null,
+        sentBefore: Date = null): Promise<DatasourceScheduleLog[]> {
+        // Description: Gets the Schedule Log for a single DS or requested range
+        // Returns: this.datasourceScheduleLog array
+        // NOTE: this routine does NOT use cached or if dirty (goes to DB each time)
+        console.log('%c    Global-Variables getDatasourceScheduleLog ...',
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+            {datasourceID} , {sentAfter}, {sentBefore})
+
+        let url: string = 'datasourceScheduleLog';
+        this.filePath = './assets/data.datasourceScheduleLog.json';
+
+        return new Promise<DatasourceScheduleLog[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
+            this.get(url)
+                .then(data => {
+                    // TODO - perform on DB side
+                    if (datasourceID != null) {
+                        data = data.filter(dsl => dsl.datasourceID == datasourceID);
+                    };
+                    if (sentAfter != null) {
+                        data = data.filter(dsl => dsl.sentOn >= sentAfter);
+                    };
+                    if (sentBefore != null) {
+                        data = data.filter(dsl => dsl.sentOn <= sentBefore);
+                    };
+                    this.datasourceScheduleLog = data;
+                    this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
+                    console.log('%c    Global-Variables getDatasourceScheduleLog 1',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                        {data})
+                    resolve(this.datasourceScheduleLog);
+                });
+        });
+
+    }
 
 
 
