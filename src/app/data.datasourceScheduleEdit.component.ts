@@ -78,8 +78,7 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
         this.datasourceName = datasource.name;
         this.clearRecord();
 
-        this.globalVariableService.getCurrentDatasourceSchedules(
-            this.globalVariableService.currentDashboardInfo.value.currentDashboardID).then
+        this.globalVariableService.getCurrentDatasourceSchedules().then
               (i => {
                   this.currentDatasourceSchedules = i;
                   if (this.currentDatasourceSchedules.length > 0) {

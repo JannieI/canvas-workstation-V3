@@ -57,7 +57,7 @@ export class DashboardOpenComponent implements OnInit {
     dashboardSchedules: DashboardSchedule[] = [];
     dashboardTags: DashboardTag[] =[];
     datasources: Datasource[] = [];
-    errorMessage: string = '';       
+    errorMessage: string = '';
     filteredDashboardIDs: number[] = [];
     filterDashboardName: string = '';
     filterSchedulesSendTo: string = '';
@@ -125,7 +125,7 @@ export class DashboardOpenComponent implements OnInit {
 
         // Filter Name
         if (this.filterDashboardName != '') {
-            this.dashboards = this.dashboardsOriginal.filter(d => 
+            this.dashboards = this.dashboardsOriginal.filter(d =>
                 d.name.toLowerCase().includes(this.filterDashboardName.toLowerCase())
             );
         };
@@ -152,7 +152,7 @@ export class DashboardOpenComponent implements OnInit {
         this.globalVariableService.getCanvasAuditTrails().then( res => {
             this.canvasAuditTrails = res;
         });
-        
+
         // Get Tags in advance
         this.globalVariableService.getDashboardTags().then(res =>
             this.dashboardTags = res);
@@ -243,8 +243,8 @@ export class DashboardOpenComponent implements OnInit {
             let dueOn: Date = new Date(this.filterSchedulesDueOn);
             this.dashboards.forEach(d => {
                 this.dashboardSchedules.forEach(sch => {
-                    if (sch.dashboardID == d.id  
-                        &&  
+                    if (sch.dashboardID == d.id
+                        &&
                         sch.startsOn >= dueOn
                         ) {
                             if (this.filteredDashboardIDs.indexOf(d.id) < 0) {
@@ -345,7 +345,7 @@ export class DashboardOpenComponent implements OnInit {
                 this.errorMessage = 'Still retrieving Schedule Log ...';
                 return;
             };
-            let dIDs: number[] = this.canvasAuditTrails.filter(aud => 
+            let dIDs: number[] = this.canvasAuditTrails.filter(aud =>
                 aud.userID.toLowerCase() == this.filterOpenedByUserID.toLowerCase()
                 &&
                 aud.objectType == 'Dashboard'
@@ -367,7 +367,7 @@ export class DashboardOpenComponent implements OnInit {
             };
 
             let afterDate: Date = new Date(this.filterOpenedAfterDate);
-            let dIDs: number[] = this.canvasAuditTrails.filter(aud => 
+            let dIDs: number[] = this.canvasAuditTrails.filter(aud =>
                 new Date(aud.changedOn) >= afterDate
                 &&
                 aud.objectType == 'Dashboard'
@@ -537,7 +537,7 @@ export class DashboardOpenComponent implements OnInit {
                 this.formDashboardOpenClosed.emit('View');
             });
         } else {
-                
+
             this.globalVariableService.refreshCurrentDashboard(
                 'openDashboard-clickOpenEdit', dashboardID, -1, ''
             );
