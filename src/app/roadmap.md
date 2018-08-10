@@ -418,7 +418,12 @@ This document describes items for later versions of Canvas.
     - add image via File input box - Tributary gives back url?
     - scale on Sh Editor, and add drag handles to size here
     - picture overlaps the WidgetContainer in App.html - looks funny
-    
+
+
+    Dashboard:
+    ----------
+    - relook at D export: maybe export Widgets too, plus data or at least points to data.  Amend Import to: show structure and what is valid, and if user proceeds: read Widgets to, create new records in DB, similar to ADD D and ADD W
+
     Data:
     ----
     - reconsider Transpose option for pre-loading.  May be useful for some datasets, but clearly not for SQL, etc.  And doubt if json files would need that.  Can this be useful?

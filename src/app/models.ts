@@ -113,6 +113,7 @@ export class CanvasAuditTrail {
 export class StatusBarMessageLog {
     logDateTime: Date;                      // When message was logged
     userID: string;                         // User for which message was logged
+    dashboardID: number;                    // Optional Dashboard open when message received
     message: string;                        // Text to display
     uiArea: string;                         // Specific UI area to affect, ie StatusBar
     classfication: string;                  // Info, Warning, Error
@@ -309,11 +310,13 @@ export class CanvasGroup {
 }
 
 export class WebSocketMessage {
-    constructor(
-        public sender: string,
-        public content: string,
-        public isBroadcast = false,
-    ) { }
+    sender: string;                         // UserID who sent it, Eazl = backend
+    content: string;                        // Message text
+    isBroadcast = false;                    // ?
+    messageType: boolean;                   // Type of message, ie objectDirty, Message, etc
+    objectName: string;                     // Affected data, ie Datasource, Users
+    objectID: number;                       // Record affected, ie Datasource ID
+    severity: string;                       // How severy is badness, critical = refresh immediatetly
 }
 
 // Data

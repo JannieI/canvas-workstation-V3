@@ -8761,6 +8761,7 @@ export class GlobalVariableService {
         let newStatusBarMessageLog: StatusBarMessageLog = {
             logDateTime: new Date(),
             userID: this.currentUser.userID,
+            dashboardID: this.currentDashboardInfo.value.currentDashboardID,
             message:statusBarMessage.message,
             uiArea: statusBarMessage.uiArea,
             classfication: statusBarMessage.classfication,
