@@ -1646,6 +1646,13 @@
                         Dont Disturb
                         <clr-icon shape="check" size="12" *ngIf="dontDisturb"></clr-icon>
                     </button>
+                    <button type="button"
+                        clrDropdownItem
+                        (click)="clickMenuViewSystemMessages()"
+                        title="System generated messages"
+                        >
+                        System Messages
+                    </button>
             </clr-dropdown-menu>
             </clr-dropdown>
 
@@ -4689,6 +4696,14 @@
     *ngIf="showModalCollaborateTasksNew"
     (formCollaborateTaskAddClosed)="handleCloseCollaborateTaskAdd($event)">Load Task Add ...
 </collaborate-taskadd>
+
+
+<!-- Modal: System Messages -->
+<collaborate-system-messages
+    class="formPopupDashboard"
+    *ngIf="showModalCollaborateSystemMessages"
+    (formCollaborateSystemMessagesClosed)="handleCloseCollaborateSystemMessages($event)">Load System Messages ...
+</collaborate-system-messages>
 
 
 <!-- Modal: Tasks -->

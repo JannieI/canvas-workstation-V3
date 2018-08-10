@@ -5993,6 +5993,17 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPostAction();
     }
 
+    clickMenuViewSystemMessages() {
+        // Toggle Dont Disturb
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewDontDisturb', '@Start');
+
+        this.menuOptionClickPreAction();
+
+        this.showModalCollaborateSystemMessages = true;
+
+        this.menuOptionClickPostAction();
+    }
+
     clickMenuCollaborateSendMessageAdd() {
         // Send a Canvas Message
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuCollaborateSendMessage', '@Start');

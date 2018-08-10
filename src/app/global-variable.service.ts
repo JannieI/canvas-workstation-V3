@@ -8762,6 +8762,7 @@ export class GlobalVariableService {
             logDateTime: new Date(),
             userID: this.currentUser.userID,
             dashboardID: this.currentDashboardInfo.value.currentDashboardID,
+            dashboardName: null,
             message:statusBarMessage.message,
             uiArea: statusBarMessage.uiArea,
             classfication: statusBarMessage.classfication,
