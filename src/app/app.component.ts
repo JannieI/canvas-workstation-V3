@@ -2227,6 +2227,7 @@ export class AppComponent implements OnInit {
                             };
                         });
                     };
+                 
                     if (this.globalVariableService.currentWidgetCheckpoints.length > 0) {
                         this.globalVariableService.currentWidgetCheckpoints.forEach(chk => {
                             if (chk.widgetID == filteredActions[0].oldWidget.id) {
@@ -2234,6 +2235,7 @@ export class AppComponent implements OnInit {
                             };
                         });
                     };
+
                     if (this.globalVariableService.widgetCheckpoints.length > 0) {
                         this.globalVariableService.widgetCheckpoints.forEach(chk => {
                             if (chk.widgetID == filteredActions[0].oldWidget.id) {
@@ -2242,11 +2244,21 @@ export class AppComponent implements OnInit {
                             };
                         });
                     };
+                    console.warn('xx 1')
 
-                    // Save to DB
-                    this.globalVariableService.saveWidget(filteredActions[0].oldWidget);
+                    // Add (previous action was a Delete) / Save to DB
+                    if (filteredActions[0].action = 'Delete') {
+                        console.warn('xx 2')
+                        this.globalVariableService.addWidget(filteredActions[0].oldWidget);
+                    } else {
+                        console.warn('xx 3')
+                        this.globalVariableService.saveWidget(filteredActions[0].oldWidget);
+                    };
+                    console.warn('xx 4')
 
                     this.globalVariableService.changedWidget.next(filteredActions[0].oldWidget);
+                    console.warn('xx 6')
+
                 };
             };
 
