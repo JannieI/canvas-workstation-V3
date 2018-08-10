@@ -18,7 +18,7 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService}       from './global-variable.service';
 
 // Models
-import { CanvasAuditTrail }           from './models';
+import { StatusBarMessage }           from './models';
 
 @Component({
     selector: 'collaborate-system-messages',
@@ -43,7 +43,7 @@ export class CollaborateSystemMessagesComponent implements OnInit {
 
     }
 
-    canvasAuditTrail: CanvasAuditTrail[];
+    statusBarMessages: StatusBarMessage[];
     selectedRow: number = 0;
 
     constructor(
@@ -55,10 +55,12 @@ export class CollaborateSystemMessagesComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.globalVariableService.getCanvasAuditTrails().then (cau => {
+        this.globalVariableService.getStatusBarMessageLogs(
+            this.globalVariableService.currentUser.userID
+        ).then (sbm => {
 
             // Set the data for the grid
-            this.canvasAuditTrail = cau;
+            this.statusBarMessages = sbm;
 
         });
 
