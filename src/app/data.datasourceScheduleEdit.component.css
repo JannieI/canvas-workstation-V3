@@ -515,6 +515,23 @@
         text-align: left;
     }
 
+    .gridScheduleDescriptionTitle {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 12;
+        grid-row-end: 13;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridScheduleDescription {
+        grid-column-start: 3;
+        grid-column-end: 9;
+        grid-row-start: 12;
+        grid-row-end: 13;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+
     .gridDatasourceTitle {
         grid-column-start: 10;
         grid-column-end: 13;
@@ -535,16 +552,16 @@
     .gridButtonCancel {
         grid-column-start: 18;
         grid-column-end: 20;
-        grid-row-start: 10;
-        grid-row-end: 11;
+        grid-row-start: 12;
+        grid-row-end: 13;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
     .gridButtonAdd {
         grid-column-start: 20;
         grid-column-end: 22;
-        grid-row-start: 10;
-        grid-row-end: 11;
+        grid-row-start: 12;
+        grid-row-end: 13;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
@@ -552,7 +569,7 @@
     .gridSchedules {
         grid-column-start: 1;
         grid-column-end: 41;
-        grid-row-start: 12;
+        grid-row-start: 13;
         grid-row-end: 19;
         margin: 2px 2px 2px 2px;
         text-align: left;

@@ -331,12 +331,12 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
                 index + 2, this.selectedDatasource.length - 1
             );
         };
-console.warn('xx this.datasourceID', this.datasourceID)
+        this.selectedDatasourceSchedule.datasourceID = this.datasourceID;
+        console.warn('xx this.datasourceID', this.datasourceID)
         // Add to local and DB
         if (this.adding) {
             // this.currentDatasourceSchedules.push(this.selectedDatasourceSchedules);
             this.selectedDatasourceSchedule.id = null;
-            this.selectedDatasourceSchedule.datasourceID = this.datasourceID;
             this.globalVariableService.addDatasourceSchedule(this.selectedDatasourceSchedule).then(
                 res => {
                     if (this.selectedRow == null) {

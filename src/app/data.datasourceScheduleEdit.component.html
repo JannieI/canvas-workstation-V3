@@ -436,6 +436,23 @@
                     </div>
                 </div>
 
+                <div class="gridScheduleDescriptionTitle">
+                    <b>Description:</b>
+                </div>
+                <div class="gridScheduleDescription">
+                        <input [(ngModel)]="selectedDatasourceSchedule.description"
+                        type="text"
+                        name="name"
+                        placeholder="Description of the Schedule"
+                        #nameVar="ngModel"
+                        required
+                        minlength="2"
+                        maxlength="500"
+                        [style.color]="!nameVar.valid  &&  editing ? 'red' : 'gray'"
+                        [disabled]="!editing  &&  !adding"
+                        >
+                </div>
+
                 <div class="gridButtonCancel" *ngIf="editing  ||  adding">
                     <button
                         type="button"
