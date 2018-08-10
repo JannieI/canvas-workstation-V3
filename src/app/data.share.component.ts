@@ -47,6 +47,7 @@ export class DatasourceShareComponent implements OnInit {
     canEdit: boolean = false;
     canAdd: boolean = false;
     canDelete: boolean = false;
+    canRefresh: boolean = false;
     datasourcePermissions: DatasourcePermission[];
     datasources: Datasource[];
     errorMessage: string = '';
@@ -214,7 +215,7 @@ export class DatasourceShareComponent implements OnInit {
         // Add a new Permission
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
 
-        // Reset 
+        // Reset
         this.errorMessage = '';
 
         // Validation
@@ -259,7 +260,8 @@ export class DatasourceShareComponent implements OnInit {
                 canView: this.canView,
                 canEdit: this.canEdit,
                 canAdd: this.canAdd,
-                canDelete: this.canDelete             
+                canDelete: this.canDelete,
+                canRefresh: this.canRefresh
         };
         this.globalVariableService.addDatasourcePermission(newDatasourcePermision).then(
             res => this.datasourcePermissions.push(res)

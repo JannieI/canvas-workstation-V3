@@ -503,6 +503,7 @@ export class DatasourcePermission {
     canEdit: boolean;                   // Can Edit a DS, ie do a transformation
     canAdd: boolean;                    // Can Add a new DS, ie DB table or a file
     canDelete: boolean;                 // Can Delete a DS (Definition, not the Data)
+    canRefresh: boolean;                 // Can Refresh a DS (Data, not Definition)
 }
 
 export class DatasourceTransformation {
