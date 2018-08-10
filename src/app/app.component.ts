@@ -2193,12 +2193,18 @@ export class AppComponent implements OnInit {
         filteredActions = ourActions.filter(act => act.id == maxActID);
 
         if (filteredActions[0].undoID == null) {
+            console.warn('xx filteredActions[0]', filteredActions[0])
             // Previous was not an UNDO, so just reverse it
+            let widgetID: number = null;
+            if (filteredActions[0].newWidget != null) {
+                widgetID = filteredActions[0].newWidget.id
+            };
+
             this.globalVariableService.actionUpsert(
                 null,
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
-                filteredActions[0].newWidget.id,
+                widgetID,
                 'Widget',
                 'Edit',
                 'Undo',
