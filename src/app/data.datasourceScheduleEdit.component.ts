@@ -65,7 +65,7 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
     scheduleID: number = null;
     selectedRow: number = null;
     selectedDatasourceSchedule: DatasourceSchedule;
-    selectedDataDatasource: string = '';
+    selectedDatasource: string = '';
 
 
 	constructor(
@@ -123,7 +123,21 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
             this.selectedDatasourceSchedule = Object.assign({},
                 this.globalVariableService.datasourceSchedules[datasourceScheduleIndex]
             );
+
+            let datasourceIndex: number = this.globalVariableService.datasources.findIndex(
+                ds => ds.id == this.globalVariableService.datasourceSchedules[
+                      datasourceScheduleIndex].datasourceID
+            );
+
+            if (datasourceIndex >= 0) {
+                this.selectedDatasource = this.globalVariableService.datasources[datasourceIndex]
+                    .name + ' (' + this.globalVariableService.datasources[datasourceIndex].id + ')';
+
+            } else {
+                this.selectedDatasource = '';
+            };
         };
+        console.warn('xx this selDS', this.selectedDatasource)     
 
     }
 
@@ -193,6 +207,7 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
         // Reset
         this.selectedRow = null;
         this.scheduleID = null;
+        this.selectedDatasource = '';
 
     }
 
@@ -205,9 +220,9 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
         // Validation
         this.errorMessage = '';
         
-        if (this.selectedDataDatasource == null
+        if (this.selectedDatasource == null
             ||
-            this.selectedDataDatasource == '') {
+            this.selectedDatasource == '') {
                 this.errorMessage = 'Select a Datasource';
                 return;
         };
@@ -309,21 +324,19 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
                 return;
         };
 
-
-        let index: number = this.selectedDataDatasource.indexOf(' (');
+        let index: number = this.selectedDatasource.indexOf(' (');
         if (index >= 0) {
-            this.datasourceName = this.selectedDataDatasource.substring(0, index);
-            this.datasourceID = +this.selectedDataDatasource.substring(
-                index + 2, this.selectedDataDatasource.length - 1
+            this.datasourceName = this.selectedDatasource.substring(0, index);
+            this.datasourceID = +this.selectedDatasource.substring(
+                index + 2, this.selectedDatasource.length - 1
             );
         };
-
+console.warn('xx this.datasourceID', this.datasourceID)
         // Add to local and DB
         if (this.adding) {
             // this.currentDatasourceSchedules.push(this.selectedDatasourceSchedules);
             this.selectedDatasourceSchedule.id = null;
-            this.selectedDatasourceSchedule.datasourceID =
-                this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
+            this.selectedDatasourceSchedule.datasourceID = this.datasourceID;
             this.globalVariableService.addDatasourceSchedule(this.selectedDatasourceSchedule).then(
                 res => {
                     if (this.selectedRow == null) {
