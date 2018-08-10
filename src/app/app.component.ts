@@ -405,6 +405,7 @@ export class AppComponent implements OnInit {
     showModalCollaborateSendEmail: boolean = false;
     showModalCollaborateMessages: boolean = false;
     showModalCollaborateTasksNew: boolean = false;
+    showModalCollaborateSystemMessages: boolean = false;
     showModalCollaborateActivities: boolean = false;
     showModalCollaborateTasks: boolean = false;
     showModalLanding: boolean;
@@ -1867,6 +1868,15 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPostAction();
 
         this.showModalCollaborateTasksNew = false;
+    }
+
+    handleCloseCollaborateSystemMessages(action: string) {
+        // Close Add Task form
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseCollaborateSystemMessages', '@Start');
+
+        this.menuOptionClickPostAction();
+
+        this.showModalCollaborateSystemMessages = false;
     }
 
     handleCloseCollaborateActivities(action: string) {
