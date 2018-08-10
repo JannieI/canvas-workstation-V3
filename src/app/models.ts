@@ -308,6 +308,14 @@ export class CanvasGroup {
     name: string;                           // Group name
 }
 
+export class WebSocketMessage {
+    constructor(
+        public sender: string,
+        public content: string,
+        public isBroadcast = false,
+    ) { }
+}
+
 // Data
 export class Combination {
     combinationID: number;

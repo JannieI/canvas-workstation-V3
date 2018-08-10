@@ -29,6 +29,7 @@ import { Dataset }                    from './models'
 import { Datasource }                 from './models'
 import { Field }                      from './models'
 import { PaletteButtonBar }           from './models'
+import { WebSocketMessage }           from './models'
 import { Widget }                     from './models'
 import { WidgetCheckpoint }           from './models';
 
@@ -44,13 +45,6 @@ import { StatusbarComponent }         from './statusbar.component';
 // WS
 import { WebSocketSubject }           from 'rxjs/observable/dom/WebSocketSubject';
 
-export class Message {
-    constructor(
-        public sender: string,
-        public content: string,
-        public isBroadcast = false,
-    ) { }
-}
 
 // Constants
 const vlTemplate: dl.spec.TopLevelExtendedSpec =
@@ -453,13 +447,13 @@ export class AppComponent implements OnInit {
     templateWidgets: Widget[] = [];
 
  
-    public serverMessages = new Array<Message>();
+    public serverMessages = new Array<WebSocketMessage>();
 
     public sender: string = '';
     public content: string;
     public isBroadcast = false;
     public clientMessage = '';
-    private socket$: WebSocketSubject<Message>;
+    private socket$: WebSocketSubject<WebSocketMessage>;
 
     subscriptionSnapshot: Subscription;
     subscriptionAnimation: Subscription;
