@@ -8771,9 +8771,9 @@ export class GlobalVariableService {
         };
 
         this.addStatusBarMessageLog(newStatusBarMessageLog);
-
+console.warn('xx this.dontDisturb', this.dontDisturb.value)
         // No messages during dont disturb
-        if (!this.dontDisturb) {
+        if (!this.dontDisturb.value) {
 
             // Pop message in right area
             if (statusBarMessage.uiArea == 'StatusBar') {

@@ -188,10 +188,10 @@ export class StatusbarComponent {
     clickMoveTabUp(index: number) {
         // Reorder Tabs - move this one up in order
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMoveTabUp', '@Start');
-        
+
         // Switch off T selection
         this.tabOrdering = true;
-        
+
         // Current order
         let currentTabDisplayOrder: number = this.currentDashboardTabs[index].displayOrder;
         console.warn('xx Before currentTabDisplayOrder',  currentTabDisplayOrder)

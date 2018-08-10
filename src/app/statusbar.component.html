@@ -10,7 +10,7 @@
     <span class="statusBarText statusBarTextBorder"
         title="Click to show Tab List"
         style="width: 47vw;"
-        (click)="clickListTabs()" 
+        (click)="clickListTabs()"
           >
         Tabs :
     </span>
@@ -139,7 +139,7 @@
         >
       {{ statusBarMessageText }}
     </span>
-    
+
     <span *ngIf="dontDisturb"  class="statusBarText statusBarTextBorder"
         title="Show when DONT DISTURB is on"
         style="width: 51vw; color: red;"
@@ -164,7 +164,7 @@
             size="12"
             (click)="clickMoveTabDown(i)">
         </clr-icon>
-        <span 
+        <span
             [style.background-color]="row.backgroundColor"
             [style.color]="row.color"
             >
