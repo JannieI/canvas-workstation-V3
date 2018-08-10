@@ -515,7 +515,7 @@
         text-align: left;
     }
 
-    .gridButtonCancel {
+    .gridDatasourceTitle {
         grid-column-start: 10;
         grid-column-end: 13;
         grid-row-start: 10;
@@ -523,9 +523,26 @@
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
+    .gridDatasource {
+        grid-column-start: 13;
+        grid-column-end: 17;
+        grid-row-start: 10;
+        grid-row-end: 11;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+
+    .gridButtonCancel {
+        grid-column-start: 17;
+        grid-column-end: 19;
+        grid-row-start: 10;
+        grid-row-end: 11;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
     .gridButtonAdd {
-        grid-column-start: 14;
-        grid-column-end: 16;
+        grid-column-start: 19;
+        grid-column-end: 21;
         grid-row-start: 10;
         grid-row-end: 11;
         margin: 2px 2px 2px 2px;

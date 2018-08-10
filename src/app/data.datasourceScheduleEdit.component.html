@@ -422,6 +422,20 @@
                         >
                 </div>
 
+                <div class="gridDatasourceTitle">
+                    <b>Datasource:</b>
+                </div>
+                <div class="gridDatasource">
+                    <div class="select">
+                        <select [(ngModel)]="selectedDataDatasource"
+                            >
+                            <option *ngFor="let row of datasources; let i = index">
+                                {{ row.name }}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                
                 <div class="gridButtonCancel" *ngIf="editing  ||  adding">
                     <button
                         type="button"
