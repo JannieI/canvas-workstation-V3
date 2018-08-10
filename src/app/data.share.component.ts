@@ -203,6 +203,25 @@ export class DatasourceShareComponent implements OnInit {
         };
     }
 
+    clickToggleRefresh(id: number, $event) {
+        // User dblclicked Refresh - so toggle it
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickToggleRefresh', '@Start');
+
+        let index: number = -1;
+        for(var i = 0; i < this.datasourcePermissions.length; i++) {
+            if (this.datasourcePermissions[i].id == id) {
+                this.datasourcePermissions[i].canRefresh = ! this.datasourcePermissions[i].canRefresh;
+                index = i;
+            };
+        };
+
+        if (index != -1) {
+            this.globalVariableService.saveDatasourcePermission(
+                this.datasourcePermissions[index])
+                ;
+        };
+    }
+
     dblclickDeletePermission(id: number, index: number) {
         // Delete the selected Permission
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDeletePermission', '@Start');
