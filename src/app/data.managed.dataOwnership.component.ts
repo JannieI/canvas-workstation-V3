@@ -19,7 +19,7 @@ import { GlobalVariableService}       from './global-variable.service';
 // Models
 import { Dashboard }                  from './models';
 import { DataOwnership }           from './models';
- 
+
 @Component({
     selector: 'data-managed-dataOwnership',
     templateUrl: './data.managed.dataOwnership.component.html',
@@ -47,7 +47,7 @@ export class DataManageDataOwnershipComponent implements OnInit {
     dataOwnerships: DataOwnership[] = [];
     datasourceID: number;
     datasourceName: string;
-    datasourceNames: string[] = [];    
+    datasourceNames: string[] = [];
     editing: boolean = false;
     errorMessage: string = "";
     selectedDatasourceID: number = null;
@@ -66,7 +66,7 @@ export class DataManageDataOwnershipComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         this.clearRecord();
-        
+
         // Get Datasource list
         this.globalVariableService.datasources.forEach(ds => {
             this.datasourceNames.push(ds.name + ' (' + ds.id + ')');
@@ -96,10 +96,10 @@ export class DataManageDataOwnershipComponent implements OnInit {
         });
 
         this.globalVariableService.getDataOwnerships().then(dc => {
-            
+
             // Fill local Var
             this.dataOwnerships = dc.slice();
-            
+
             // Append RunTime datasourceName
             this.dataOwnerships.forEach(dow => {
                 this.globalVariableService.datasources.forEach(ds => {
@@ -139,7 +139,7 @@ export class DataManageDataOwnershipComponent implements OnInit {
             this.selectedLinkedDatasource = this.globalVariableService.datasources[datasourceIndex]
                 .name + ' (' + this.globalVariableService.datasources[datasourceIndex].id + ')';
 
-            this.selectedDataOwnership = Object.assign({}, 
+            this.selectedDataOwnership = Object.assign({},
                 this.dataOwnerships[selectedDatasourceIndex]
             );
         } else {
@@ -165,7 +165,7 @@ export class DataManageDataOwnershipComponent implements OnInit {
             datasourceName: ''
         };
     }
-    
+
     clickClose(action: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
@@ -182,12 +182,12 @@ export class DataManageDataOwnershipComponent implements OnInit {
         this.adding = false;
         this.errorMessage = '';
         this.clickRow(this.selectedDataOwnershipRowIndex, this.selectedDatasourceID);
-        
+
         // Re Fill the form
         let datasourceIndex: number = this.dataOwnerships
             .findIndex(sch => sch.id == this.selectedDataOwnership.id);
         if (datasourceIndex >= 0) {
-            this.selectedDataOwnership = Object.assign({}, 
+            this.selectedDataOwnership = Object.assign({},
                 this.dataOwnerships[datasourceIndex]
             );
         };
@@ -244,7 +244,7 @@ export class DataManageDataOwnershipComponent implements OnInit {
 
                     // Add locally
                     this.dataOwnerships.push(this.selectedDataOwnership);
-                            
+
                 }
             );
         };
@@ -256,7 +256,7 @@ export class DataManageDataOwnershipComponent implements OnInit {
             let datasourceIndex: number = this.dataOwnerships
                 .findIndex(sch => sch.id == this.selectedDataOwnership.id);
             if (datasourceIndex >= 0) {
-                this.dataOwnerships[datasourceIndex] = 
+                this.dataOwnerships[datasourceIndex] =
                     Object.assign({}, this.selectedDataOwnership);
             };
             this.globalVariableService.saveDataOwnership(this.selectedDataOwnership)
@@ -298,7 +298,7 @@ export class DataManageDataOwnershipComponent implements OnInit {
         this.clearRecord();
         this.globalVariableService.deleteDataOwnership(id).then(res => {
             this.dataOwnerships = this.globalVariableService.dataOwnerships
-        }); 
+        });
 
         this.selectedDataOwnershipRowIndex = null;
         this.selectedDatasourceID = null;

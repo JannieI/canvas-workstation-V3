@@ -57,12 +57,15 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
 
     adding: boolean = false;
     currentDatasourceSchedules: DatasourceSchedule[] = [];
+    datasourceID: number;
     datasourceName: string = '';
+    datasourceNames: string[] = [];
     editing: boolean = false;
     errorMessage: string = '';
     scheduleID: number = null;
     selectedRow: number = null;
     selectedDatasourceSchedule: DatasourceSchedule;
+    selectedDataDatasource: string = '';
 
 
 	constructor(
@@ -73,6 +76,20 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
     ngOnInit() {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
+        // Get Datasource list
+        this.globalVariableService.datasources.forEach(ds => {
+            this.datasourceNames.push(ds.name + ' (' + ds.id + ')');
+        });
+        this.datasourceNames = this.datasourceNames.sort( (obj1,obj2) => {
+            if (obj1 > obj2) {
+                return 1;
+            };
+            if (obj1 < obj2) {
+                return -1;
+            };
+            return 0;
+        });
 
         let datasource: Datasource = this.globalVariableService.datasources[0];
         this.datasourceName = datasource.name;
@@ -187,6 +204,13 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
 
         // Validation
         this.errorMessage = '';
+        
+        if (this.selectedDataDatasource == null
+            ||
+            this.selectedDataDatasource == '') {
+                this.errorMessage = 'Select a Datasource';
+                return;
+        };
 
         if (this.selectedDatasourceSchedule.repeatFrequency == null
             ||
@@ -283,6 +307,15 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
             this.selectedDatasourceSchedule.name == '') {
                 this.errorMessage = 'Enter a Schedule name';
                 return;
+        };
+
+
+        let index: number = this.selectedDataDatasource.indexOf(' (');
+        if (index >= 0) {
+            this.datasourceName = this.selectedDataDatasource.substring(0, index);
+            this.datasourceID = +this.selectedDataDatasource.substring(
+                index + 2, this.selectedDataDatasource.length - 1
+            );
         };
 
         // Add to local and DB

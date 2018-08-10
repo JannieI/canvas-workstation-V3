@@ -429,13 +429,13 @@
                     <div class="select">
                         <select [(ngModel)]="selectedDataDatasource"
                             >
-                            <option *ngFor="let row of datasources; let i = index">
-                                {{ row.name }}
+                            <option *ngFor="let row of datasourceNames; let i = index">
+                                {{ row }}
                             </option>
                         </select>
                     </div>
                 </div>
-                
+
                 <div class="gridButtonCancel" *ngIf="editing  ||  adding">
                     <button
                         type="button"
