@@ -126,6 +126,19 @@
                         >
                 </div>
 
+                <div class="gridCanRefreshTitle">
+                    Can Refresh:
+                </div>
+                <div class="gridCanRefresh">
+                    <input [(ngModel)]="canRefresh"
+                        type="checkbox"
+                        name="canRefresh"
+                        #snapToGridVar="ngModel"
+                        title="The specified User/Group Can Refresh this Datasource (T/F)"
+                        [style.color]="!snapToGridVar.valid ? 'red' : 'gray'"
+                        >
+                </div>
+
                 <div class = "gridButtonAdd">
                     <button
                         type="button"
