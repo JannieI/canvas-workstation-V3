@@ -41,7 +41,7 @@
                         <clr-dg-column [clrDgField]="dashboardTabID">timeout</clr-dg-column>
                         <clr-dg-column [clrDgField]="dashboardTabID">defaultMessage</clr-dg-column>
                        
-                        <clr-dg-row *clrDgItems="let row of canvasAuditTrail;
+                        <clr-dg-row *clrDgItems="let row of statusBarMessages;
                             let i = index"
                             [style.background-color]="(i == selectedRow)? '#123456' : 'white'"
                             [style.color]="(i == selectedRow)? 'white' : 'gray'"

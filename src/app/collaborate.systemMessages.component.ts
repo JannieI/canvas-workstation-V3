@@ -4,12 +4,10 @@
 
 // Angular
 import { Component }                  from '@angular/core';
-import { ElementRef }                 from '@angular/core';
 import { EventEmitter }               from '@angular/core';
 import { HostListener }               from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
-import { ViewChild }                  from '@angular/core';
 
 // Our Functions
 import { GlobalFunctionService } 	  from './global-function.service';
@@ -28,7 +26,6 @@ import { StatusBarMessage }           from './models';
 export class CollaborateSystemMessagesComponent implements OnInit {
 
     @Output() formCollaborateSystemMessagesClosed: EventEmitter<string> = new EventEmitter();
-    @ViewChild('widgetDOM') widgetDOM: ElementRef;
 
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
@@ -60,7 +57,7 @@ export class CollaborateSystemMessagesComponent implements OnInit {
         ).then (sbm => {
 
             // Set the data for the grid
-            this.statusBarMessages = sbm;
+            this.statusBarMessages = sbm.slice(100);
 
         });
 

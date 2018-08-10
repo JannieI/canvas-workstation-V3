@@ -6005,7 +6005,7 @@ export class AppComponent implements OnInit {
 
     clickMenuViewSystemMessages() {
         // Toggle Dont Disturb
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewDontDisturb', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuViewSystemMessages', '@Start');
 
         this.menuOptionClickPreAction();
 
