@@ -121,6 +121,7 @@ import { CollaborateAuditTrailComponent }       from './collaborate.auditTrail.c
 import { CollaborateSendMessageComponent }      from './collaborate.sendmessage.component';
 import { CollaborateSendEmailComponent }        from './collaborate.sendemail.component';
 import { CollaborateMessageContentComponent }   from './collaborate.messageContent.component';
+import { CollaborateSystemMessagesComponent }   from './collaborate.systemMessages.component';
 
 import { UserPaletteButtonBarComponent}         from './user.palette.buttonbar.component';
 import { LoginComponent}              from './login.component';
@@ -253,6 +254,7 @@ import { StatusbarComponent }         from './statusbar.component';
         CollaborateSendMessageComponent,
         CollaborateSendEmailComponent,
         CollaborateMessageContentComponent,
+        CollaborateSystemMessagesComponent,
 
         MyProfileComponent,
         PreferencesComponent,
