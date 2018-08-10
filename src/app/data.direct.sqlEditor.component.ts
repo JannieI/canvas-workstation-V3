@@ -340,7 +340,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
             return;
         };
 
-        // Construct DS and add to DB
+        // Construct DS and save / add to DB
         if (this.editingDS) {
             let today: Date = new Date();
             this.selectedDatasource.editor = this.globalVariableService.currentUser.userID;
