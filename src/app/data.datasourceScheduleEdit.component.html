@@ -444,11 +444,11 @@
                         type="text"
                         name="name"
                         placeholder="Description of the Schedule"
-                        #nameVar="ngModel"
+                        #descriptionVar="ngModel"
                         required
                         minlength="2"
                         maxlength="500"
-                        [style.color]="!nameVar.valid  &&  editing ? 'red' : 'gray'"
+                        [style.color]="!descriptionVar.valid  &&  editing ? 'red' : 'gray'"
                         [disabled]="!editing  &&  !adding"
                         >
                 </div>

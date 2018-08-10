@@ -562,7 +562,7 @@
         grid-column-end: 22;
         grid-row-start: 12;
         grid-row-end: 13;
-        margin: 2px 2px 2px 2px;
+        margin: 0px 2px 2px 2px;
         text-align: left;
     }
 
@@ -571,6 +571,6 @@
         grid-column-end: 41;
         grid-row-start: 13;
         grid-row-end: 19;
-        margin: 2px 2px 2px 2px;
+        margin: 0px 2px 2px 2px;
         text-align: left;
     }
