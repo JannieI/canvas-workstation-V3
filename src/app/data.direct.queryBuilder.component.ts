@@ -144,7 +144,7 @@ console.warn('xx START this.selectedDatasource', this.selectedDatasource)
                 port: '5432',
                 serverType: 'PostgresSQL',
                 serverName: 'pellefant.db.elephantsql.com',
-                dataTableName: 'ftfhgfzh',
+                dataTableName: '',
                 dataSQLStatement: '',
                 dataNoSQLStatement: '',
                 dataNeo4jStatement: '',
@@ -246,41 +246,13 @@ console.warn('xx START this.selectedDatasource', this.selectedDatasource)
                         refreshRow = -1;
                     };
                 };
-console.warn('xx refreshTableName row', this.selectedDatasource.dataTableName, refreshRow)
+
                 if (refreshRow >= 0) {
                     // this.showPreview = true;
                     this.selectedTableRowIndex = refreshRow;
                     this.clickSelectedDataTable(refreshRow, this.dataSchemas[this.selectedTableRowIndex].tableName);
 
-                    // // Build the selected fields
-                    // for (let i = 0; i < this.selectedDatasource.dataFields.length; i++) {
-                    //     this.selectedFields.push(
-                    //         {
-                    //             fieldName: this.selectedDatasource.dataFields[i],
-                    //             fieldType: this.selectedDatasource.dataFieldTypes[i]
-                    //         }
-                    //     );
-                    //     this.dataFieldsSelected.push(this.selectedDatasource.dataFields[i]);
-                    // };
                 };
-
-
-
-                // Click first / selected table
-                // if (this.dataSchemas.length > 0) {
-                //     this.selectedTableRowIndex = refreshRow;
-                //     this.selectedTableName = this.dataSchemas[refreshRow].tableName;
-                //     if (this.dataSchemas.length > 0) {
-                //         this.dataFieldsFiltered = this.dataSchemas.filter(datsch => {
-                //             if (datsch.tableName == this.dataSchemas[refreshRow].tableName) {
-                //                 return datsch;
-                //             };
-                //         })[0].tableFields;
-
-                //     } else {
-                //         this.dataFieldsFiltered = [];
-                //     };
-                // };
             })
             .catch(err => {
                 this.spinner = false;
@@ -319,20 +291,25 @@ console.warn('xx refreshTableName row', this.selectedDatasource.dataTableName, r
                 return datsch;
             };
         })[0].tableFields;
-
+        
+        // Build the selected fields
+        for (let i = 0; i < this.selectedDatasource.dataFields.length; i++) {
+            this.selectedFields.push(
+                {
+                    fieldName: this.selectedDatasource.dataFields[i],
+                    fieldType: this.selectedDatasource.dataFieldTypes[i]
+                }
+            );
+            this.dataFieldsSelected.push(this.selectedDatasource.dataFields[i]);
+        };
     }
 
     clickSelectedDatafield(index: number) {
-        // Clicked a Field
+        // Clicked a Field row
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectedDatafield', '@Start');
 
         // Set seletected index - used for highlighting row
         this.selectedFieldRowIndex = index;
-
-        // Set array for preview headings
-        // this.dataFieldsSelected = this.selectedFields.map(f => f.fieldName);
-
-        // console.warn('xx selectedFields', this.selectedFields)
     }
 
     clickPreview() {
