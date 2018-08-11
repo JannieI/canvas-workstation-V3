@@ -320,8 +320,9 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         this.selectedFieldRowIndex = index;
 
         // Set array for preview headings
-        this.dataFieldsSelected = this.selectedFields.map(f => f.fieldName);
+        // this.dataFieldsSelected = this.selectedFields.map(f => f.fieldName);
 
+        // console.warn('xx selectedFields', this.selectedFields)
     }
 
     clickPreview() {
@@ -333,6 +334,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         this.helpMessage = '';
         this.spinner = true;
         this.errorMessage = '';
+        console.warn('xx selectedFields', this.selectedFields)
 
         // No Fields, no data
         if (this.selectedFields.length == 0) {
