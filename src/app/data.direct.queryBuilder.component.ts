@@ -158,38 +158,14 @@ export class DataDirectQueryBuilderComponent implements OnInit {
 
             this.helpMessage = 'Amend the above info if needed, then click Refresh and select the Table & Fields.  Else, click Preview to see a portion of the data.';
 
-            // Get the Schema from Tributary
-            this.dataSchemas = [];
-            // this.dataSchemas = this.globalVariableService.getTributaryDirectDBSchema(
-            //     this.selectedDatasource.serverName);
-
-
-
-            // Click Table, which will filter Fields
-            let dsIndex: number = this.dataSchemas.findIndex(
-                dsch => dsch.tableName == this.selectedDatasource.dataTableName
-            );
-            if (dsIndex >= 0) {
-                // this.showPreview = true;
-                this.selectedTableRowIndex = dsIndex;
-                this.clickSelectedDataTable(dsIndex, this.dataSchemas[this.selectedTableRowIndex].tableName);
-
-                // Build the selected fields
-                for (let i = 0; i < this.selectedDatasource.dataFields.length; i++) {
-                    this.selectedFields.push(
-                        {
-                            fieldName: this.selectedDatasource.dataFields[i],
-                            fieldType: this.selectedDatasource.dataFieldTypes[i]
-                        }
-                    );
-                    this.dataFieldsSelected.push(this.selectedDatasource.dataFields[i]);
-                };
-            };
+            // Get the Schema from Tributary, and refresh
+            this.clickRefresh(this.selectedDatasource.dataTableName);
+            
         };
 
     }
 
-    clickRefresh(refreshRow: number = 0) {
+    clickRefresh(refreshTableName: string = '') {
         // Get the tables and fields from the DB
         // Click the first / selected table row
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRefresh', '@Start');
@@ -199,6 +175,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
         this.helpMessage = '';
         this.spinner = true;
         this.errorMessage = '';
+        let refreshRow: number = 0
 
         // Remember table we started with
         let localSelectedTableRowIndex = this.selectedTableRowIndex;
@@ -258,22 +235,52 @@ export class DataDirectQueryBuilderComponent implements OnInit {
                         };
                     };
                 };
-                
-                // Click first / selected table
-                if (this.dataSchemas.length > 0) {
-                    this.selectedTableRowIndex = refreshRow;
-                    this.selectedTableName = this.dataSchemas[refreshRow].tableName;
-                    if (this.dataSchemas.length > 0) {
-                        this.dataFieldsFiltered = this.dataSchemas.filter(datsch => {
-                            if (datsch.tableName == this.dataSchemas[refreshRow].tableName) {
-                                return datsch;
-                            };
-                        })[0].tableFields;
 
-                    } else {
-                        this.dataFieldsFiltered = [];
+                // Find index Table, which will filter Fields
+                if (refreshTableName != '') {
+                    refreshRow = this.dataSchemas.findIndex(
+                        dsch => dsch.tableName == refreshTableName
+                    );
+                } else {
+                    if (this.dataSchemas.length == 0) {
+                        refreshRow = -1;
                     };
                 };
+
+                if (refreshRow >= 0) {
+                    // this.showPreview = true;
+                    this.selectedTableRowIndex = refreshRow;
+                    this.clickSelectedDataTable(refreshRow, this.dataSchemas[this.selectedTableRowIndex].tableName);
+
+                    // // Build the selected fields
+                    // for (let i = 0; i < this.selectedDatasource.dataFields.length; i++) {
+                    //     this.selectedFields.push(
+                    //         {
+                    //             fieldName: this.selectedDatasource.dataFields[i],
+                    //             fieldType: this.selectedDatasource.dataFieldTypes[i]
+                    //         }
+                    //     );
+                    //     this.dataFieldsSelected.push(this.selectedDatasource.dataFields[i]);
+                    // };
+                };
+
+
+
+                // Click first / selected table
+                // if (this.dataSchemas.length > 0) {
+                //     this.selectedTableRowIndex = refreshRow;
+                //     this.selectedTableName = this.dataSchemas[refreshRow].tableName;
+                //     if (this.dataSchemas.length > 0) {
+                //         this.dataFieldsFiltered = this.dataSchemas.filter(datsch => {
+                //             if (datsch.tableName == this.dataSchemas[refreshRow].tableName) {
+                //                 return datsch;
+                //             };
+                //         })[0].tableFields;
+
+                //     } else {
+                //         this.dataFieldsFiltered = [];
+                //     };
+                // };
             })
             .catch(err => {
                 this.spinner = false;
