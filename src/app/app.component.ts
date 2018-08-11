@@ -285,8 +285,8 @@ export class AppComponent implements OnInit {
     isBusyResizing: boolean = false;
     isFirstTimeUser: boolean = false;
     combinationType: string;                    // Type passed to Combinations form
-    minWidgetContainerHeight: number = 96;      // Smallest that W Container can get
-    minWidgetContainerWidth: number = 108;      // Smallest that W Container can get
+    minWidgetContainerHeight: number = 16;      // Smallest that W Container can get
+    minWidgetContainerWidth: number = 16;       // Smallest that W Container can get
     minGraphHeight: number = 1;                 // Smallest that Graph can get
     minGraphWidth: number = 1;                  // Smallest that Graph can get
     modalFormOpen: boolean = false;
