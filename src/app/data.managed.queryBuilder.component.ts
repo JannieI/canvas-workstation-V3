@@ -184,6 +184,7 @@ export class DataManagedQueryBuilderComponent implements OnInit {
         this.helpMessage = '';
         this.spinner = true;
         this.errorMessage = '';
+        let refreshRow: number = 0
 
         // Remember table we started with
         let localSelectedTableRowIndex = this.selectedTableRowIndex;
@@ -253,21 +254,35 @@ export class DataManagedQueryBuilderComponent implements OnInit {
                     });
                 });
 
-                // Click first table
-                if (this.dataSchemas.length > 0) {
-                    this.selectedTableRowIndex = 0;
-                    this.selectedTableName = this.dataSchemas[0].tableName;
-                    if (this.dataSchemas.length > 0) {
-                        this.dataFieldsFiltered = this.dataSchemas.filter(datsch => {
-                            if (datsch.tableName == this.dataSchemas[0].tableName) {
-                                return datsch;
-                            };
-                        })[0].tableFields;
+                // Cater for missing field types
+                if (this.selectedDatasource.dataFields.length >
+                    this.selectedDatasource.dataFieldTypes.length) {
 
-                    } else {
-                        this.dataFieldsFiltered = [];
+                    for (let i = 1; i <= this.selectedDatasource.dataFields.length; i++) {
+                        if (this.selectedDatasource.dataFieldTypes.length < i) {
+                            this.selectedDatasource.dataFieldTypes.push('any');
+                        };
                     };
                 };
+
+                // Find index Table, which will filter Fields
+                if (this.selectedDatasource.dataTableName != '') {
+                    refreshRow = this.dataSchemas.findIndex(
+                        dsch => dsch.tableName == this.selectedDatasource.dataTableName
+                    );
+                } else {
+                    if (this.dataSchemas.length == 0) {
+                        refreshRow = -1;
+                    };
+                };
+
+                if (refreshRow >= 0) {
+                    // this.showPreview = true;
+                    this.selectedTableRowIndex = refreshRow;
+                    this.clickSelectedDataTable(refreshRow, this.dataSchemas[this.selectedTableRowIndex].tableName);
+
+                };
+
             })
             .catch(err => {
                 this.spinner = false;
