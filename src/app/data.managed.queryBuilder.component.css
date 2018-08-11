@@ -216,8 +216,8 @@
         color: red;
         grid-column-start: 13;
         grid-column-end: 21;
-        grid-row-start: 11;
-        grid-row-end: 12;
+        grid-row-start: 18;
+        grid-row-end: 19;
     }
 
     .gridSpinner {
