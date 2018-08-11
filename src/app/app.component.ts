@@ -434,8 +434,6 @@ export class AppComponent implements OnInit {
     statusBarCancelRefresh: boolean = false;
     statusBarRunning: boolean = false;
     stuckCount: number = 0;
-    titleFormLeft: number = 50;
-    titleFormTop: number = 50;
     widgetDimenstions: {
         width: number;
         height: number;
