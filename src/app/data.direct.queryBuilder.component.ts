@@ -159,8 +159,9 @@ export class DataDirectQueryBuilderComponent implements OnInit {
             this.helpMessage = 'Amend the above info if needed, then click Refresh and select the Table & Fields.  Else, click Preview to see a portion of the data.';
 
             // Get the Schema from Tributary
-            this.dataSchemas = this.globalVariableService.getTributaryDirectDBSchema(
-                this.selectedDatasource.serverName);
+            this.dataSchemas = [];
+            // this.dataSchemas = this.globalVariableService.getTributaryDirectDBSchema(
+            //     this.selectedDatasource.serverName);
 
             // Cater for missing field types
             if (this.selectedDatasource.dataFields.length >
@@ -172,7 +173,6 @@ export class DataDirectQueryBuilderComponent implements OnInit {
                     };
                 };
             };
-
 
             // Click Table, which will filter Fields
             let dsIndex: number = this.dataSchemas.findIndex(
