@@ -1839,9 +1839,71 @@
 
 
 
+
+
+
+
+
+
+
+
+    <div class="widgetContainerTEST" *ngFor="let row of currentWidgets; let i = index"
+        [style.background-color]="row.containerBackgroundColor"
+        [style.border]="row.containerBorder"
+        [style.border-radius]="row.containerBorderRadius"
+        [style.box-shadow]="row.containerBoxshadow"
+        [style.font-size.px]="row.containerFontsize"
+        [style.height.px]="row.containerHeight"
+        [style.left.px]="row.containerLeft"
+        [style.top.px]="row.containerTop"
+        [style.width.px]="row.containerWidth"
+        [style.z-index]="row.containerZindex"
+        (click)="clickWidget($event, i, row.id)"
+        (dragstart)="clickWidgetContainerDragStart($event, i)"
+        (dragend)="clickWidgetContainerDragEnd($event, row.id)"
+        draggable="true"
+        >
+
+        <!-- Drag Handles -->
+        <div class="widgetContainerTopLeftHandleTEST" *ngIf="row.isSelected"
+            [style.z-index]="row.containerZindex+1"
+            (mousedown)="clickResizeWidgetDown($event, i)"
+            (dragend)="clickResizeWidgetUp($event, i, true, false, false, true)"
+            draggable="true"
+            >
+        </div>
+
+        <!-- Shape Text Object -->
+        <div class="widgetTEST" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Text'"
+            [style.color]="row.shapeTextColour"
+            [style.font-style]="row.shapeIsItalic? 'italic' : 'normal'"
+            [style.font-weight]="row.shapeIsBold? 'bold' : 'normal'"
+            [style.font-family]="row.shapeFontFamily"
+            [style.font-size.px]="row.shapeFontSize"
+            [style.text-align]="row.shapeTextAlign"
+            >
+            {{ row.shapeText }}
+
+        </div>
+    
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <!-- ****************************  WIDGETS & RELATED FORMS ***************************** -->
 
-    <div class="widgetContainer" *ngFor="let row of currentWidgets; let i = index"
+    <div class="widgetContainer" *ngFor="let row of currentWidgetsX; let i = index"
         [style.background-color]="row.containerBackgroundColor"
         [style.border]="row.containerBorder"
         [style.border-radius]="row.containerBorderRadius"

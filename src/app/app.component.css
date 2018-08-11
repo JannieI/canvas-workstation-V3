@@ -119,6 +119,69 @@
 }
 
 /* Widget */
+
+
+
+
+
+
+
+
+
+
+
+/* TEST */
+
+.widgetContainerTEST {
+    display: inline-block;
+    display: grid;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+}
+.widgetContainerTopLeftHandleTEST {
+    background-color: #3f4041;
+    cursor: nwse-resize;
+    display: inline-block;
+    height: 6px;
+    left: 0%;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 0%;
+    width: 3px;
+}
+
+.widgetTEST {
+    display: inline-block;
+    height: 100%;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    white-space: normal;
+    width: 100%;
+}
+
+/* TEST END */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .widgetContainer {
     display: inline-block;
     display: grid;
