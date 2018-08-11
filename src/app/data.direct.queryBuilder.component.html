@@ -167,7 +167,7 @@
                             <clr-dg-column class="widthTn" [clrDgField]="tableName">Table Name</clr-dg-column>
                             <clr-dg-column class="widthTn" [clrDgField]="tableDescription">Description</clr-dg-column>
 
-                            <clr-dg-row
+                            <clr-dg-row 
                                 *clrDgItems="let row of dataSchemas; let i = index"
                                 [style.background-color]="(i == selectedTableRowIndex)? '#123456' : 'white'"
                                 [style.color]="(i == selectedTableRowIndex)? 'white' : 'gray'"
@@ -189,7 +189,8 @@
                             <clr-dg-column [clrDgField]="nameDB">Field Name</clr-dg-column>
 
                             <clr-dg-row
-                                *clrDgItems="let row of dataFieldsFiltered; let i = index" [clrDgItem]="row"
+                                *clrDgItems="let row of dataFieldsFiltered; let i = index" 
+                                [clrDgItem]="row"
                                 [style.background-color]="(i == selectedFieldRowIndex)? '#123456' : 'white'"
                                 [style.color]="(i == selectedFieldRowIndex)? 'white' : 'gray'"
                                 (click)="clickSelectedDatafield(i)"

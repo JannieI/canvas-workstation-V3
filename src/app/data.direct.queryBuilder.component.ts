@@ -198,7 +198,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
 
     }
 
-    clickRefresh() {
+    clickRefresh(refreshRow: number = 0) {
         // Get the tables and fields from the DB
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRefresh', '@Start');
 
@@ -256,13 +256,13 @@ export class DataDirectQueryBuilderComponent implements OnInit {
                     });
                 });
 
-                // Click first table
+                // Click first / selected table
                 if (this.dataSchemas.length > 0) {
-                    this.selectedTableRowIndex = 0;
-                    this.selectedTableName = this.dataSchemas[0].tableName;
+                    this.selectedTableRowIndex = refreshRow;
+                    this.selectedTableName = this.dataSchemas[refreshRow].tableName;
                     if (this.dataSchemas.length > 0) {
                         this.dataFieldsFiltered = this.dataSchemas.filter(datsch => {
-                            if (datsch.tableName == this.dataSchemas[0].tableName) {
+                            if (datsch.tableName == this.dataSchemas[refreshRow].tableName) {
                                 return datsch;
                             };
                         })[0].tableFields;
