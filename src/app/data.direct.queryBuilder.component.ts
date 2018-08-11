@@ -91,7 +91,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
 	ngOnInit() {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
-
+console.warn('xx START this.selectedDatasource', this.selectedDatasource)
         // Set base info
         this.serverTypes = this.globalVariableService.serverTypes;
 
@@ -159,13 +159,13 @@ export class DataDirectQueryBuilderComponent implements OnInit {
             this.helpMessage = 'Amend the above info if needed, then click Refresh and select the Table & Fields.  Else, click Preview to see a portion of the data.';
 
             // Get the Schema from Tributary, and refresh
-            this.clickRefresh(this.selectedDatasource.dataTableName);
+            this.clickRefresh();
             
         };
 
     }
 
-    clickRefresh(refreshTableName: string = '') {
+    clickRefresh() {
         // Get the tables and fields from the DB
         // Click the first / selected table row
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRefresh', '@Start');
@@ -237,16 +237,16 @@ export class DataDirectQueryBuilderComponent implements OnInit {
                 };
 
                 // Find index Table, which will filter Fields
-                if (refreshTableName != '') {
+                if (this.selectedDatasource.dataTableName != '') {
                     refreshRow = this.dataSchemas.findIndex(
-                        dsch => dsch.tableName == refreshTableName
+                        dsch => dsch.tableName == this.selectedDatasource.dataTableName
                     );
                 } else {
                     if (this.dataSchemas.length == 0) {
                         refreshRow = -1;
                     };
                 };
-
+console.warn('xx refreshTableName row', this.selectedDatasource.dataTableName, refreshRow)
                 if (refreshRow >= 0) {
                     // this.showPreview = true;
                     this.selectedTableRowIndex = refreshRow;
