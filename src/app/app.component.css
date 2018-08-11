@@ -143,42 +143,43 @@
         background-color: #3f4041;
         cursor: nwse-resize;
         display: inline-block;
-        height: 6px;
+        height: 3px;
         left: 0%;
         margin: 0;
         padding: 0;
         position: absolute;
         top: 0%;
-        width: 3px;
+        width: 6px;
     }
     .widgetContainerTopHandleTEST {
         background-color: #3f4041;
         cursor: n-resize;
         display: inline-block;
-        height: 6px;
-        left: 0%;
+        height: 3px;
+        left: 50%;
         margin: 0;
         padding: 0;
+        position: absolute;
         top: 0%;
-        width: 3px;
+        width: 6px;
     }
     .widgetContainerTopRightHandleTEST {
         background-color: #3f4041;
         cursor: nesw-resize;
         display: inline-block;
-        height: 6px;
-        left: 0%;
+        height: 3px;
+        left: 100%;
         margin: 0;
         padding: 0;
         top: 0%;
-        width: 3px;
+        width: 6px;
     }
     .widgetContainerRightTopHandleTEST {
         background-color: #3f4041;
         cursor: nesw-resize;
         display: inline-block;
         height: 6px;
-        left: 0%;
+        left: 100%;
         margin: 0;
         padding: 0;
         top: 0%;
@@ -189,10 +190,10 @@
         cursor: e-resize;
         display: inline-block;
         height: 6px;
-        left: 0%;
+        left: 100%;
         margin: 0;
         padding: 0;
-        top: 0%;
+        top: 50%;
         width: 3px;
     }
     .widgetContainerRightBottomHandleTEST {
@@ -200,44 +201,44 @@
         cursor: nwse-resize;
         display: inline-block;
         height: 6px;
-        left: 0%;
+        left: 100%;
         margin: 0;
         padding: 0;
-        top: 0%;
+        top: 100%;
         width: 3px;
     }
     .widgetContainerBottomRightHandleTEST {
         background-color: #3f4041;
         cursor: nwse-resize;
         display: inline-block;
-        height: 6px;
-        left: 0%;
+        height: 3px;
+        left: 100%;
         margin: 0;
         padding: 0;
-        top: 0%;
-        width: 3px;
+        top: 100%;
+        width: 6px;
     }
     .widgetContainerBottomHandleTEST {
         background-color: #3f4041;
         cursor: s-resize;
         display: inline-block;
-        height: 6px;
-        left: 0%;
+        height: 3px;
+        left: 50%;
         margin: 0;
         padding: 0;
-        top: 0%;
-        width: 3px;
+        top: 100%;
+        width: 6px;
     }
     .widgetContainerBottomLeftHandleTEST {
         background-color: #3f4041;
         cursor: nesw-resize;
         display: inline-block;
-        height: 6px;
+        height: 3px;
         left: 0%;
         margin: 0;
         padding: 0;
-        top: 0%;
-        width: 3px;
+        top: 100%;
+        width: 6px;
     }
     .widgetContainerLeftBottomHandleTEST {
         background-color: #3f4041;
@@ -247,7 +248,7 @@
         left: 0%;
         margin: 0;
         padding: 0;
-        top: 0%;
+        top: 100%;
         width: 3px;
     }
     .widgetContainerLeftHandleTEST {
@@ -258,7 +259,7 @@
         left: 0%;
         margin: 0;
         padding: 0;
-        top: 0%;
+        top: 50%;
         width: 3px;
     }
     .widgetContainerLeftTopHandleTEST {
