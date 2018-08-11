@@ -91,7 +91,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
 	ngOnInit() {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
-console.warn('xx START this.selectedDatasource', this.selectedDatasource)
+
         // Set base info
         this.serverTypes = this.globalVariableService.serverTypes;
 
