@@ -163,16 +163,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
             // this.dataSchemas = this.globalVariableService.getTributaryDirectDBSchema(
             //     this.selectedDatasource.serverName);
 
-            // Cater for missing field types
-            if (this.selectedDatasource.dataFields.length >
-                this.selectedDatasource.dataFieldTypes.length) {
 
-                for (let i = 1; i <= this.selectedDatasource.dataFields.length; i++) {
-                    if (this.selectedDatasource.dataFieldTypes.length < i) {
-                        this.selectedDatasource.dataFieldTypes.push('any');
-                    };
-                };
-            };
 
             // Click Table, which will filter Fields
             let dsIndex: number = this.dataSchemas.findIndex(
@@ -200,6 +191,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
 
     clickRefresh(refreshRow: number = 0) {
         // Get the tables and fields from the DB
+        // Click the first / selected table row
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRefresh', '@Start');
 
         // Reset
@@ -256,6 +248,17 @@ export class DataDirectQueryBuilderComponent implements OnInit {
                     });
                 });
 
+                // Cater for missing field types
+                if (this.selectedDatasource.dataFields.length >
+                    this.selectedDatasource.dataFieldTypes.length) {
+
+                    for (let i = 1; i <= this.selectedDatasource.dataFields.length; i++) {
+                        if (this.selectedDatasource.dataFieldTypes.length < i) {
+                            this.selectedDatasource.dataFieldTypes.push('any');
+                        };
+                    };
+                };
+                
                 // Click first / selected table
                 if (this.dataSchemas.length > 0) {
                     this.selectedTableRowIndex = refreshRow;
