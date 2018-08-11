@@ -1872,6 +1872,83 @@
             draggable="true"
             >
         </div>
+        <div class="widgetContainerTopHandleTEST" *ngIf="row.isSelected"
+            [style.z-index]="row.containerZindex+1"
+            (mousedown)="clickResizeWidgetDown($event, i)"
+            (dragend)="clickResizeWidgetUp($event, i, true, false, false, false)"
+            draggable="true"
+            >
+        </div>
+        <div class="widgetContainerTopRightHandleTEST" *ngIf="row.isSelected"
+            [style.z-index]="row.containerZindex+1"
+            (mousedown)="clickResizeWidgetDown($event, i)"
+            (dragend)="clickResizeWidgetUp($event, i, true, true, false, false)"
+            draggable="true"
+            >
+        </div>
+        <div class="widgetContainerRightTopHandleTEST" *ngIf="row.isSelected"
+            [style.z-index]="row.containerZindex+1"
+            (mousedown)="clickResizeWidgetDown($event, i)"
+            (dragend)="clickResizeWidgetUp($event, i, true, true, false, false)"
+            draggable="true"
+            >
+        </div>
+        <div class="widgetContainerRightHandleTEST" *ngIf="row.isSelected"
+            [style.z-index]="row.containerZindex+1"
+            (mousedown)="clickResizeWidgetDown($event, i)"
+            (dragend)="clickResizeWidgetUp($event, i, false, true, false, false)"
+            draggable="true"
+            >
+        </div>
+        <div class="widgetContainerRightBottomHandleTEST" *ngIf="row.isSelected"
+            [style.z-index]="row.containerZindex+1"
+            (mousedown)="clickResizeWidgetDown($event, i)"
+            (dragend)="clickResizeWidgetUp($event, i, false, true, true, false)"
+            draggable="true"
+            >
+        </div>
+        <div class="widgetContainerBottomRightHandleTEST" *ngIf="row.isSelected"
+            [style.z-index]="row.containerZindex+1"
+            (mousedown)="clickResizeWidgetDown($event, i)"
+            (dragend)="clickResizeWidgetUp($event, i, false, true, true, false)"
+            draggable="true"
+            >
+        </div>
+        <div class="widgetContainerBottomLeftHandleTEST" *ngIf="row.isSelected"
+            [style.z-index]="row.containerZindex+1"
+            (mousedown)="clickResizeWidgetDown($event, i)"
+            (dragend)="clickResizeWidgetUp($event, i, false, false, true, true)"
+            draggable="true"
+            >
+        </div>
+        <div class="widgetContainerBottomHandleTEST" *ngIf="row.isSelected"
+            [style.z-index]="row.containerZindex+1"
+            (mousedown)="clickResizeWidgetDown($event, i)"
+            (dragend)="clickResizeWidgetUp($event, i, false, false, true, false)"
+            draggable="true"
+            >
+        </div>
+        <div class="widgetContainerLeftBottomHandleTEST" *ngIf="row.isSelected"
+            [style.z-index]="row.containerZindex+1"
+            (mousedown)="clickResizeWidgetDown($event, i)"
+            (dragend)="clickResizeWidgetUp($event, i, false, false, true, true)"
+            draggable="true"
+            >
+        </div>
+        <div class="widgetContainerLeftHandleTEST" *ngIf="row.isSelected"
+            [style.z-index]="row.containerZindex+1"
+            (mousedown)="clickResizeWidgetDown($event, i)"
+            (dragend)="clickResizeWidgetUp($event, i, false, false, false, true)"
+            draggable="true"
+            >
+        </div>
+        <div class="widgetContainerLeftTopHandleTEST" *ngIf="row.isSelected"
+            [style.z-index]="row.containerZindex+1"
+            (mousedown)="clickResizeWidgetDown($event, i)"
+            (dragend)="clickResizeWidgetUp($event, i, true, false, false, true)"
+            draggable="true"
+            >
+        </div>
 
         <!-- Shape Text Object -->
         <div class="widgetTEST" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Text'"
