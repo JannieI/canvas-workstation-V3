@@ -188,12 +188,7 @@ export class AppComponent implements OnInit {
             return;
         };
         if (event.code == 'PageUp'  &&  (!event.ctrlKey)  &&  (!event.shiftKey) ) {
-            this.globalVariableService.refreshCurrentDashboard(
-                'app-keyEvent',
-                this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
-                0,
-                'Previous'
-            );
+            this.dashboardPageUp();
             return;
         };
 
@@ -746,7 +741,7 @@ export class AppComponent implements OnInit {
 
     // ***********************  HANDLE RETURN AFTER MODAL FORM CLOSES ************************ //
     dashboardPageDown() {
-        // Move to next 
+        // Move to next Tab
         this.globalFunctionService.printToConsole(this.constructor.name,'dashboardPageDown', '@Start');
 
         this.globalVariableService.refreshCurrentDashboard(
@@ -757,6 +752,19 @@ export class AppComponent implements OnInit {
         );
     }
 
+    dashboardPageUp() {
+        // Move to previous Tab 
+        this.globalFunctionService.printToConsole(this.constructor.name,'dashboardPageUp', '@Start');
+
+        this.globalVariableService.refreshCurrentDashboard(
+            'app-keyEvent',
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+            0,
+            'Previous'
+        );
+    }
+
+        
 
 
 
