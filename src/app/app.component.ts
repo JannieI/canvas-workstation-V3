@@ -740,7 +740,17 @@ export class AppComponent implements OnInit {
 
 
     // ***********************  HANDLE RETURN AFTER MODAL FORM CLOSES ************************ //
+    dashboardPageFirst() {
+        // Move to First Tab
+        this.globalFunctionService.printToConsole(this.constructor.name,'dashboardPageFirst', '@Start');
 
+        this.globalVariableService.refreshCurrentDashboard(
+            'app-keyEvent',
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+            0,
+            'First'
+        );
+    }
 
     dashboardPageDown() {
         // Move to next Tab
@@ -765,7 +775,8 @@ export class AppComponent implements OnInit {
             'Previous'
         );
     }
-    dashboardPageLast()
+
+
         
 
 
