@@ -1733,18 +1733,18 @@ export class GlobalVariableService {
 
             this.http.post('http://localhost:3000/' + url, data, {headers})
             .subscribe(
-                data => {
+                res => {
 
                     // Clear all related info
                     this.clearDashboardInfo();
 
                     // Update Global vars to make sure they remain in sync
-                    this.dashboards.push(JSON.parse(JSON.stringify(data)));
-                    this.currentDashboards.push(JSON.parse(JSON.stringify(data)));
+                    this.dashboards.push(JSON.parse(JSON.stringify(res)));
+                    this.currentDashboards.push(JSON.parse(JSON.stringify(res)));
 
-                    console.log('addDashboard ADDED', {data}, this.dashboards)
+                    console.log('addDashboard ADDED', {res}, this.dashboards)
 
-                    resolve(data);
+                    resolve(res);
                 },
                 err => {
                     console.log('Error addDashboard FAILED', {err});;
