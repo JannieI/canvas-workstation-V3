@@ -7597,26 +7597,28 @@ export class AppComponent implements OnInit {
         this.globalVariableService.firstAction = true;
 
         // Add to Audit Trail
-        this.globalVariableService.actionUpsert(
-            null,
-            this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
-            this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
-            null,
-            'Dashboard',
-            'Open',
-            '',
-            'App dashboardOpenActions',
-            null,
-            null,
-            null,
-            null,
-            true
-        );    
+        if (this.globalVariableService.currentDashboardInfo.value != null) {
+            this.globalVariableService.actionUpsert(
+                null,
+                this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                null,
+                'Dashboard',
+                'Open',
+                '',
+                'App dashboardOpenActions',
+                null,
+                null,
+                null,
+                null,
+                true
+            );    
+        };
     }
 
     clearDashboard() {
         // Clears all the vars for the current D
-        this.globalFunctionService.printToConsole(this.constructor.name,'dashboardOpenActions', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clearDashboard', '@Start');
 
         this.currentDashboardName = '';
         this.currentDashboardTabIndex = 0;

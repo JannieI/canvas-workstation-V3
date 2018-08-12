@@ -970,7 +970,7 @@ export class GlobalVariableService {
                 } else {
                     newD.originalID = null;
                 };
-
+console.warn('xx newD before ADD', newD)
                 this.addDashboard(newD).then (addedD => {
 
                     let promiseArrayT = [];
@@ -1019,6 +1019,8 @@ export class GlobalVariableService {
                                         newW.originalID = w.id;
                                         // TODO - fix for multi-Tabbed Ws
                                         newW.dashboardTabIDs = [t.id];
+
+                                        console.warn('xx newW', addedD.id, newW)
                                         promiseArrayW.push(this.addWidget(newW));
 
                                     };
