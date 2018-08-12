@@ -5799,8 +5799,8 @@ export class GlobalVariableService {
             if (this.isDirtyPaletteButtonBar) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
-                    .then(data => {
-                        this.currentPaletteButtonBar = data;
+                    .then(res => {
+                        this.currentPaletteButtonBar = res;
 
                         this.isDirtyPaletteButtonBar = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
@@ -5870,8 +5870,8 @@ export class GlobalVariableService {
             if (this.isDirtyPaletteButtonsSelected) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
-                    .then(data => {
-                        data = data.sort( (obj1,obj2) => {
+                    .then(res => {
+                        res = res.sort( (obj1,obj2) => {
                             if (obj1.sortOrderSelected > obj2.sortOrderSelected) {
                                 return 1;
                             };
@@ -5880,7 +5880,7 @@ export class GlobalVariableService {
                             };
                             return 0;
                         });
-                        this.currentPaletteButtonsSelected.next(data);
+                        this.currentPaletteButtonsSelected.next(res);
 
                         this.isDirtyPaletteButtonsSelected = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
@@ -6042,9 +6042,9 @@ export class GlobalVariableService {
             if ( (this.widgets.length == 0)  ||  (this.isDirtyWidgets) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
-                    .then(data => {
+                    .then(res => {
 
-                        this.widgets = data;
+                        this.widgets = res;
 
                         // TODO - fix hardcoding, issue with datalib jsonTree
                         this.widgets.forEach(w => {
@@ -6191,17 +6191,17 @@ export class GlobalVariableService {
         if ( (this.widgets.length == 0)  ||  (this.isDirtyWidgets) ) {
             return new Promise<Widget[]>((resolve, reject) => {
                 this.getWidgets()
-                    .then(data => {
+                    .then(res => {
 
                         // Filter the widgets
                         // TODO - use i.dashboardTabIDs.indexOf(dashboardTabID) >= 0 once datalib
                         // reads arrays correctly.  That should be the only change ...
-                        data = data.filter(
+                        res = res.filter(
                             i => (i.dashboardID == dashboardID)
                                  &&
                                  (i.dashboardTabIDs.indexOf(dashboardTabID) >= 0)
                         );
-                        this.currentWidgets = data;
+                        this.currentWidgets = res;
 
                         console.log('%c    Global-Variables getCurrentWidgets 1',
                             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
@@ -6247,15 +6247,15 @@ export class GlobalVariableService {
 
             this.http.post('http://localhost:3005/' + url, data, {headers})
             .subscribe(
-                data => {
+                res => {
 
                     // Update Global vars to make sure they remain in sync
-                    this.widgets.push(JSON.parse(JSON.stringify(data)));
-                    this.currentWidgets.push(JSON.parse(JSON.stringify(data)));
+                    this.widgets.push(JSON.parse(JSON.stringify(res)));
+                    this.currentWidgets.push(JSON.parse(JSON.stringify(res)));
 
-                    console.log('addWidget ADDED', {data}, this.widgets)
+                    console.log('addWidget ADDED', {res}, this.widgets)
 
-                    resolve(data);
+                    resolve(res);
                 },
                 err => {
                     console.log('Error addWidget FAILED', {err});;
@@ -6282,7 +6282,7 @@ export class GlobalVariableService {
 
             this.http.delete('http://localhost:3005/' + url + '/' + id, {headers})
             .subscribe(
-                data => {
+                res => {
 
                     this.widgets = this.widgets.filter(
                         w => w.id != id
@@ -6505,8 +6505,8 @@ export class GlobalVariableService {
             if ( (this.backgroundcolors.length == 0)  ||  (this.isDirtyBackgroundColors) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
-                    .then(data => {
-                        this.backgroundcolors = data;
+                    .then(res => {
+                        this.backgroundcolors = res;
 
                         this.isDirtyBackgroundColors = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
@@ -6542,8 +6542,8 @@ export class GlobalVariableService {
             if ( (this.canvasTasks.length == 0)  ||  (this.isDirtyCanvasTasks) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
-                    .then(data => {
-                        this.canvasTasks = data;
+                    .then(res => {
+                        this.canvasTasks = res;
 
                         this.isDirtyCanvasTasks = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
@@ -6648,8 +6648,8 @@ export class GlobalVariableService {
             if ( (this.canvasComments.length == 0)  ||  (this.isDirtyCanvasComments) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
-                    .then(data => {
-                        this.canvasComments = data;
+                    .then(res => {
+                        this.canvasComments = res;
 
                         this.isDirtyCanvasComments = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
@@ -6926,7 +6926,7 @@ export class GlobalVariableService {
 
             this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
             .subscribe(
-                data => {
+                res => {
 
                     this.canvasMessages = this.canvasMessages.filter(
                         msg => msg.id != id
@@ -6960,8 +6960,8 @@ export class GlobalVariableService {
             if ( (this.widgetCheckpoints.length == 0)  ||  (this.isDirtyWidgetCheckpoints) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
-                    .then(data => {
-                        this.widgetCheckpoints = data.filter(d => (!d.parentWidgetIsDeleted) );
+                    .then(res => {
+                        this.widgetCheckpoints = res.filter(d => (!d.parentWidgetIsDeleted) );
 
                         this.isDirtyWidgetCheckpoints = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
