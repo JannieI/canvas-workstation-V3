@@ -1793,16 +1793,17 @@
                     type="button"
                     class="btn btn-link btn-sm"
                     clrDropdownItem
-                    title="Show the first Dashboard in the presentation"
+                    title="Shows the first Dashboard Tab"
+                    (click)="dashboardPageFirst()"
                     >
                     <clr-icon shape="step-forward down" size="20"></clr-icon>
-                    First Dashboard
+                    First Tab
                 </button>
                 <button
                     type="button"
                     class="btn btn-secondary btn-sm"
                     clrDropdownItem
-                    title="Jump to the Next Dashboard Tab"
+                    title="Jumps to the Next Dashboard Tab"
                     (click)="dashboardPageDown()"
                     >
                     <clr-icon shape="fast-forward" size="20"></clr-icon>
@@ -1812,7 +1813,7 @@
                     type="button"
                     class="btn btn-secondary btn-sm"
                     clrDropdownItem
-                    title="Return to the Previous Dashboard"
+                    title="Returns to the Previous Dashboard Tab"
                     (click)="dashboardPageUp()"
                     >
                     <clr-icon shape="rewind" size="20"></clr-icon>
@@ -1822,26 +1823,18 @@
                     type="button"
                     class="btn btn-secondary btn-sm"
                     clrDropdownItem
-                    title="Show the Last Dashboard in the presentation"
+                    title="Shows the Last Dashboard Tab"
+                    (click)="dashboardPageLast()"
                     >
                     <clr-icon shape="step-forward" size="20"></clr-icon>
-                    Last Dashboard
-                </button>
-                <button
-                    type="button"
-                    class="btn btn-secondary btn-sm"
-                    clrDropdownItem
-                    title="Print all the Dashboards in presentation format"
-                    >
-                    <clr-icon shape="printer" size="20"></clr-icon>
-                    Print ...
+                    Last Tab
                 </button>
                 <button
                     type="button"
                     class="btn btn-secondary btn-sm"
                     clrDropdownItem
                     (click)="clickShowMenu()"
-                    title="Show the main menu"
+                    title="Shows the main menu"
                     >
                     <clr-icon shape="times" size="20"></clr-icon>
                     Show Menu
