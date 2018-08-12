@@ -1553,7 +1553,7 @@ export class GlobalVariableService {
                 };
             });
 
-            // Remove Draft D
+            // Remove Draft D from DB - we still have draftDashboard in memory
             this.deleteDashboard(draftID);
 
             // Perform all the promises

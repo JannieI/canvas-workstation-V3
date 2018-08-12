@@ -1182,6 +1182,20 @@
                         </button>
                         <button type="button"
                             clrDropdownItem
+                            (click)="clickMenuWidgetCopy()"
+                            title="Copy selected Shape"
+                            >
+                            Copy
+                        </button>
+                        <button type="button"
+                            clrDropdownItem
+                            (click)="clickMenuWidgetPaste()"
+                            title="Paste previously copied Shape"
+                            >
+                            Paste
+                        </button>
+                        <button type="button"
+                            clrDropdownItem
                             (click)="clickMenuPaletteDuplicate()"
                             title="Duplicate selected Shape"
                             >
