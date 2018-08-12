@@ -904,8 +904,8 @@ export class GlobalVariableService {
             if ( (this.dashboards.length == 0)  ||  (this.isDirtyDashboards) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
-                    .then(data => {
-                        this.dashboards = data;
+                    .then(res => {
+                        this.dashboards = res;
                         this.isDirtyDashboards = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getDashboards 1',
@@ -6992,14 +6992,14 @@ export class GlobalVariableService {
         if ( (this.widgetCheckpoints.length == 0)  ||  (this.isDirtyWidgetCheckpoints) ) {
             return new Promise<WidgetCheckpoint[]>((resolve, reject) => {
                 this.getWidgetCheckpoints()
-                    .then(data => {
-                        data = data.filter(
+                    .then(res => {
+                        res = res.filter(
                             i => i.dashboardID == dashboardID
                         );
-                        this.currentWidgetCheckpoints = data;
+                        this.currentWidgetCheckpoints = res;
                         console.log('%c    Global-Variables getCurrentWidgetCheckpoints 1',
                             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            {dashboardID}, {data})
+                            {dashboardID}, {res})
                         resolve(this.currentWidgetCheckpoints);
 
                 })
@@ -7036,16 +7036,16 @@ export class GlobalVariableService {
 
             this.http.post('http://localhost:3000/' + url, data, {headers})
             .subscribe(
-                data => {
+                res => {
 
                     // Update Global vars to make sure they remain in sync
-                    this.widgetCheckpoints.push(JSON.parse(JSON.stringify(data)));
-                    this.currentWidgetCheckpoints.push(JSON.parse(JSON.stringify(data)));
+                    this.widgetCheckpoints.push(JSON.parse(JSON.stringify(res)));
+                    this.currentWidgetCheckpoints.push(JSON.parse(JSON.stringify(res)));
 
-                    console.log('addWidgetCheckpoint ADDED', {data},
+                    console.log('addWidgetCheckpoint ADDED', {res},
                         this.currentWidgetCheckpoints, this.widgetCheckpoints)
 
-                    resolve(data);
+                    resolve(res);
                 },
                 err => {
                     console.log('Error addWidgetCheckpoint FAILED', {err});;
@@ -7071,7 +7071,7 @@ export class GlobalVariableService {
 
             this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
             .subscribe(
-                data => {
+                res => {
 
                     // Update vars
                     this.widgetCheckpoints = this.widgetCheckpoints.filter(
@@ -7158,8 +7158,8 @@ export class GlobalVariableService {
             if ( (this.canvasUsers.length == 0)  ||  (this.isDirtyUsers) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
-                    .then(data => {
-                        this.canvasUsers = data;
+                    .then(res => {
+                        this.canvasUsers = res;
                         this.isDirtyUsers = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getCanvasUsers 1',
@@ -7250,8 +7250,8 @@ export class GlobalVariableService {
             if ( (this.canvasAuditTrails.length == 0)  ||  (this.isDirtyCanvasAuditTrails) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
-                    .then(data => {
-                        this.canvasAuditTrails = data;
+                    .then(res => {
+                        this.canvasAuditTrails = res;
 
                         this.isDirtyCanvasAuditTrails = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
@@ -7321,8 +7321,8 @@ export class GlobalVariableService {
             if ( (this.statusBarMessageLogs.length == 0)  ||  (this.isDirtystatusBarMessageLogs) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
-                    .then(data => {
-                        this.statusBarMessageLogs = data;
+                    .then(res => {
+                        this.statusBarMessageLogs = res;
 
                         this.isDirtystatusBarMessageLogs = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
