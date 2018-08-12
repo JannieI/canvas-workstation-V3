@@ -4372,7 +4372,7 @@ export class GlobalVariableService {
 
             this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
             .subscribe(
-                data => {
+                res => {
 
                     this.dashboardSnapshots = this.dashboardSnapshots.filter(
                         dsp => dsp.id != id
@@ -4408,8 +4408,8 @@ export class GlobalVariableService {
             if ( (this.dashboardThemes.length == 0)  ||  (this.isDirtyDashboardThemes) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
-                    .then(data => {
-                        this.dashboardThemes = data;
+                    .then(res => {
+                        this.dashboardThemes = res;
                         this.isDirtyDashboardThemes = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getDashboardThemes 1',
@@ -4437,19 +4437,19 @@ export class GlobalVariableService {
         if ( this.dashboards == []  ||  (this.isDirtyDashboards) ) {
             return new Promise<Dashboard[]>((resolve, reject) => {
                 this.getDashboards()
-                    .then(data => {
+                    .then(res => {
                         let arrTemplateIDs: number[] = [];
-                        for (var i = 0; i < data.length; i++) {
-                            if (data[i].templateDashboardID != 0  &&
-                                data[i].templateDashboardID != null) {
-                                arrTemplateIDs.push(data[i].templateDashboardID)
+                        for (var i = 0; i < res.length; i++) {
+                            if (res[i].templateDashboardID != 0  &&
+                                res[i].templateDashboardID != null) {
+                                arrTemplateIDs.push(res[i].templateDashboardID)
                             };
                         };
                         let returnData: Dashboard[] = [];
                         if (arrTemplateIDs.length > 0) {
-                            for (var i = 0; i < data.length; i++) {
-                                if (arrTemplateIDs.indexOf(data[i].id) != -1) {
-                                    returnData.push(data[i]);
+                            for (var i = 0; i < res.length; i++) {
+                                if (arrTemplateIDs.indexOf(res[i].id) != -1) {
+                                    returnData.push(res[i]);
                                 };
                             };
                         };
@@ -4502,8 +4502,8 @@ export class GlobalVariableService {
             if ( (this.datasources.length == 0)  ||  (this.isDirtyDatasources) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
-                    .then(data => {
-                        this.datasources = data;
+                    .then(res => {
+                        this.datasources = res;
                         this.isDirtyDatasources = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
 
@@ -4766,7 +4766,7 @@ export class GlobalVariableService {
 
             this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
             .subscribe(
-                data => {
+                res => {
 
                     this.datasources = this.datasources.filter(
                         dsp => dsp.id != id
@@ -4825,13 +4825,13 @@ export class GlobalVariableService {
             if ( (this.transformations.length == 0)  ||  (this.isDirtyTransformations) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
-                    .then(data => {
-                        this.transformations = data;
+                    .then(res => {
+                        this.transformations = res;
                         this.isDirtyTransformations = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getTransformations 1',
                             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            {data})
+                            {res})
                         resolve(this.transformations);
                     });
             } else {
@@ -4856,14 +4856,14 @@ export class GlobalVariableService {
         if ( (this.currentTransformations.length == 0)  ||  (this.isDirtyTransformations) ) {
             return new Promise<Transformation[]>((resolve, reject) => {
                 this.getTransformations()
-                    .then(data => {
+                    .then(res => {
                         // data = data.filter(
                         //     i => i.datasourceID == datasourceID
                         // );
-                        this.currentTransformations = data;
+                        this.currentTransformations = res;
                         console.log('%c    Global-Variables getTransformations 1',
                             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            {datasourceID}, {data})
+                            {datasourceID}, {res})
                         resolve(this.currentTransformations);
                 })
              })
@@ -4899,8 +4899,8 @@ export class GlobalVariableService {
             if ( (this.dataQualityIssues.length == 0)  ||  (this.isDirtyDataQualityIssues) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
-                    .then(data => {
-                        this.dataQualityIssues = data;
+                    .then(res => {
+                        this.dataQualityIssues = res;
                         this.isDirtyDataQualityIssues = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getDataQualityIssues 1',
@@ -4931,14 +4931,14 @@ export class GlobalVariableService {
         if ( (this.currentDataQualityIssues.length == 0)  ||  (this.isDirtyDataQualityIssues) ) {
             return new Promise<DataQualityIssue[]>((resolve, reject) => {
                 this.getDataQualityIssues()
-                    .then(data => {
-                        data = data.filter(
+                    .then(res => {
+                        res = res.filter(
                             i => i.datasourceID == datasourceID
                         );
-                        this.currentDataQualityIssues = data;
+                        this.currentDataQualityIssues = res;
                         console.log('%c    Global-Variables getDataQualityIssuess 1',
                             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            {datasourceID}, {data})
+                            {datasourceID}, {res})
                         resolve(this.currentDataQualityIssues);
                 })
              })
