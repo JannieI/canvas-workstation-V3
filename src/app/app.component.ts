@@ -776,7 +776,17 @@ export class AppComponent implements OnInit {
         );
     }
 
+    dashboardPageLast() {
+        // Move to previous Tab 
+        this.globalFunctionService.printToConsole(this.constructor.name,'dashboardPageLast', '@Start');
 
+        this.globalVariableService.refreshCurrentDashboard(
+            'app-keyEvent',
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+            0,
+            'Last'
+        );
+    }
         
 
 
