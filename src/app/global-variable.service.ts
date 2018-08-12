@@ -1815,7 +1815,7 @@ export class GlobalVariableService {
 
             this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
             .subscribe(
-                data => {
+                res => {
 
                     this.dashboards = this.dashboards.filter(
                         dsp => dsp.id != id
@@ -1852,7 +1852,7 @@ export class GlobalVariableService {
             ) {
             return new Promise<Dashboard[]>((resolve, reject) => {
                 this.getDashboards()
-                    .then(data => {
+                    .then(res => {
 
                         // Load the current Dashboard, and Optional template
                         // let currentDashboards: Dashboard[] = [];
@@ -1943,8 +1943,8 @@ export class GlobalVariableService {
             if ( (this.dashboardTabs.length == 0)  ||  (this.isDirtyDashboardTabs) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
-                    .then(data => {
-                        this.dashboardTabs = data;
+                    .then(res => {
+                        this.dashboardTabs = res;
                         this.isDirtyDashboardTabs = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getDashboardTabs 1',
@@ -1975,11 +1975,11 @@ export class GlobalVariableService {
         if ( (this.dashboardTabs.length == 0)  ||  (this.isDirtyDashboardTabs) ) {
             return new Promise<DashboardTab[]>((resolve, reject) => {
                 this.getDashboardTabs()
-                    .then(data => {
-                        data = data.filter(
+                    .then(res => {
+                        res = res.filter(
                             i => i.dashboardID == dashboardID
                         );
-                        this.currentDashboardTabs = data;
+                        this.currentDashboardTabs = res;
                         this.currentDashboardTabs = this.currentDashboardTabs.sort( (obj1,obj2) => {
                             if (obj1.displayOrder > obj2.displayOrder) {
                                 return 1;
@@ -2039,15 +2039,15 @@ export class GlobalVariableService {
 
             this.http.post('http://localhost:3000/' + url, data, {headers})
             .subscribe(
-                data => {
+                res => {
 
                     // Update Global vars to make sure they remain in sync
-                    this.dashboardTabs.push(JSON.parse(JSON.stringify(data)));
-                    this.currentDashboardTabs.push(JSON.parse(JSON.stringify(data)));
+                    this.dashboardTabs.push(JSON.parse(JSON.stringify(res)));
+                    this.currentDashboardTabs.push(JSON.parse(JSON.stringify(res)));
 
-                    console.log('addDashboardTab ADDED', {data}, this.dashboardTabs)
+                    console.log('addDashboardTab ADDED', {res}, this.dashboardTabs)
 
-                    resolve(data);
+                    resolve(res);
                 },
                 err => {
                     console.log('Error addDashboardTab FAILED', {err});;
@@ -2116,7 +2116,7 @@ export class GlobalVariableService {
 
             this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
             .subscribe(
-                data => {
+                res => {
 
                     // Reset the displayOrder of the Rest
                     let dashboardTabIndex: number = this.dashboardTabs.findIndex(t =>
