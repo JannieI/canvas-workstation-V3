@@ -5049,7 +5049,7 @@ export class GlobalVariableService {
 
             this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
             .subscribe(
-                data => {
+                res => {
 
                     this.dataQualityIssues = this.dataQualityIssues.filter(
                         dsp => dsp.id != id
@@ -5085,8 +5085,8 @@ export class GlobalVariableService {
             if ( (this.dataOwnerships.length == 0)  ||  (this.isDirtyDataOwnership) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
-                    .then(data => {
-                        this.dataOwnerships = data;
+                    .then(res => {
+                        this.dataOwnerships = res;
                         this.isDirtyDataOwnership = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getDataOwnerships 1',
@@ -5117,14 +5117,14 @@ export class GlobalVariableService {
         if ( (this.currentDataOwnerships.length == 0)  ||  (this.isDirtyDataOwnership) ) {
             return new Promise<DataOwnership[]>((resolve, reject) => {
                 this.getDataOwnerships()
-                    .then(data => {
-                        data = data.filter(
+                    .then(res => {
+                        res = res.filter(
                             i => i.datasourceID == datasourceID
                         );
-                        this.currentDataOwnerships = data;
+                        this.currentDataOwnerships = res;
                         console.log('%c    Global-Variables getDataOwnershipss 1',
                             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            {datasourceID}, {data})
+                            {datasourceID}, {res})
                         resolve(this.currentDataOwnerships);
                 })
              })
@@ -5234,7 +5234,7 @@ export class GlobalVariableService {
 
             this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
             .subscribe(
-                data => {
+                res => {
 
                     this.dataOwnerships = this.dataOwnerships.filter(
                         dsp => dsp.id != id
@@ -5270,10 +5270,10 @@ export class GlobalVariableService {
             if ( (this.datasourcePermissions.length == 0)  ||  (this.isDirtyDatasourcePermissions) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
-                    .then(data => {
+                    .then(res => {
 
                         // Fill in @RunTime info
-                        data.forEach(d => {
+                        res.forEach(d => {
                             this.datasources.forEach(ds => {
                                 if (ds.id == d.datasourceID) {
                                     d.name = ds.name;
@@ -5285,7 +5285,7 @@ export class GlobalVariableService {
                                 };
                             });
                         });
-                        this.datasourcePermissions = data;
+                        this.datasourcePermissions = res;
                         this.isDirtyDatasourcePermissions = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getDatasourcePermissions 1',
@@ -5316,14 +5316,14 @@ export class GlobalVariableService {
         if ( (this.currentDatasourcePermissions.length == 0)  ||  (this.isDirtyDatasourcePermissions) ) {
             return new Promise<DatasourcePermission[]>((resolve, reject) => {
                 this.getDatasourcePermissions()
-                    .then(data => {
-                        data = data.filter(
+                    .then(res => {
+                        res = res.filter(
                             i => i.datasourceID == datasourceID
                         );
-                        this.currentDatasourcePermissions = data;
+                        this.currentDatasourcePermissions = res;
                         console.log('%c    Global-Variables getDatasourcePermissions 1',
                             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            {datasourceID}, {data})
+                            {datasourceID}, {res})
                         resolve(this.currentDatasourcePermissions);
                 })
              })
@@ -5458,8 +5458,8 @@ export class GlobalVariableService {
             if ( (this.datasourcePivots.length == 0)  ||  (this.isDirtyDatasourcePivots) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
-                    .then(data => {
-                        this.datasourcePivots = data;
+                    .then(res => {
+                        this.datasourcePivots = res;
                         this.isDirtyDatasourcePivots = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getDatasourcePivots 1',
@@ -5490,14 +5490,14 @@ export class GlobalVariableService {
         if ( (this.currentDatasourcePivots.length == 0)  ||  (this.isDirtyDatasourcePivots) ) {
             return new Promise<DatasourcePivot[]>((resolve, reject) => {
                 this.getDatasourcePivots()
-                    .then(data => {
-                        data = data.filter(
+                    .then(res => {
+                        res = res.filter(
                             i => i.datasourceID == datasourceID
                         );
-                        this.currentDatasourcePivots = data;
+                        this.currentDatasourcePivots = res;
                         console.log('%c    Global-Variables getDatasourcePivots 1',
                             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            {datasourceID}, {data})
+                            {datasourceID}, {res})
                         resolve(this.currentDatasourcePivots);
                 })
              })
@@ -5533,25 +5533,25 @@ export class GlobalVariableService {
             if (this.isDirtyCanvasSettings) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
-                    .then(data => {
-                        this.canvasSettings = data;
+                    .then(res => {
+                        this.canvasSettings = res;
 
                         // Load global Vars
                         // TODO - create glob vars when needed, or delete totally
-                        this.canvasSettings.companyName = data.companyName;
-                        this.canvasSettings.companyLogo = data.companyLogo;
-                        this.canvasSettings.dashboardTemplate = data.dashboardTemplate;
-                        this.canvasSettings.maxTableLength = +data.maxTableLength;
-                        this.canvasSettings.widgetsMinZindex = +data.widgetsMinZindex;
-                        this.canvasSettings.widgetsMaxZindex = +data.widgetsMaxZindex;
-                        this.canvasSettings.gridSize = +data.gridSize;
-                        this.canvasSettings.snapToGrid = data.snapToGrid;
-                        this.canvasSettings.printDefault = data.printDefault;
-                        this.canvasSettings.printSize = data.printSize;
-                        this.canvasSettings.printLayout = data.printLayout;
-                        this.canvasSettings.notInEditModeMsg = data.notInEditModeMsg;
-                        this.canvasSettings.noQueryRunningMessage = data.noQueryRunningMessage;
-                        this.canvasSettings.queryRunningMessage = data.queryRunningMessage;
+                        this.canvasSettings.companyName = res.companyName;
+                        this.canvasSettings.companyLogo = res.companyLogo;
+                        this.canvasSettings.dashboardTemplate = res.dashboardTemplate;
+                        this.canvasSettings.maxTableLength = +res.maxTableLength;
+                        this.canvasSettings.widgetsMinZindex = +res.widgetsMinZindex;
+                        this.canvasSettings.widgetsMaxZindex = +res.widgetsMaxZindex;
+                        this.canvasSettings.gridSize = +res.gridSize;
+                        this.canvasSettings.snapToGrid = res.snapToGrid;
+                        this.canvasSettings.printDefault = res.printDefault;
+                        this.canvasSettings.printSize = res.printSize;
+                        this.canvasSettings.printLayout = res.printLayout;
+                        this.canvasSettings.notInEditModeMsg = res.notInEditModeMsg;
+                        this.canvasSettings.noQueryRunningMessage = res.noQueryRunningMessage;
+                        this.canvasSettings.queryRunningMessage = res.queryRunningMessage;
 
                         // Sanitize
                         if (this.canvasSettings.gridSize > 100
@@ -5623,8 +5623,8 @@ export class GlobalVariableService {
             if (this.isDirtyDashboardSubscription) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
-                    .then(data => {
-                        this.dashboardSubscriptions = data;
+                    .then(res => {
+                        this.dashboardSubscriptions = res;
 
                         this.isDirtyDashboardSubscription = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
@@ -5660,12 +5660,12 @@ export class GlobalVariableService {
             if (this.isDirtyDashboardSubscription) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.getDashboardSubscriptions()
-                    .then(data => {
-                        data = data.filter(
+                    .then(res => {
+                        res = res.filter(
                             i => i.dashboardID == dashboardID
                         );
 
-                        this.currentDashboardSubscriptions = data;
+                        this.currentDashboardSubscriptions = res;
 
                         this.isDirtyDashboardSubscription = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
@@ -5735,11 +5735,11 @@ export class GlobalVariableService {
 
             this.http.post('http://localhost:3000/' + url, data, {headers})
             .subscribe(
-                data => {
-                    this.dashboardSubscriptions.push(JSON.parse(JSON.stringify(data)));
-                    this.currentDashboardSubscriptions.push(JSON.parse(JSON.stringify(data)));
-                    console.log('addDashboardSubscription ADDED', {data})
-                    resolve(data);
+                res => {
+                    this.dashboardSubscriptions.push(JSON.parse(JSON.stringify(res)));
+                    this.currentDashboardSubscriptions.push(JSON.parse(JSON.stringify(res)));
+                    console.log('addDashboardSubscription ADDED', {res})
+                    resolve(res);
                 },
                 err => {
                     console.log('Error addDashboardSubscription FAILED', {err});;
@@ -5765,13 +5765,13 @@ export class GlobalVariableService {
 
             this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
             .subscribe(
-                data => {
+                res => {
 
                     this.dashboardSubscriptions = this.dashboardSubscriptions.
                         filter(sub => sub.id != id);
                     this.currentDashboardSubscriptions = this.currentDashboardSubscriptions.
                         filter(sub => sub.id != id);
-                    console.log('deleteDashboardSubscription DELETED', {id}, {data},
+                    console.log('deleteDashboardSubscription DELETED', {id}, {res},
                         this.dashboardSubscriptions, this.currentDashboardSubscriptions)
                     resolve('Deleted');
                 },
