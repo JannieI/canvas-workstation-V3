@@ -3930,7 +3930,7 @@ export class GlobalVariableService {
 
             this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
             .subscribe(
-                data => {
+                res => {
 
                     this.dashboardTags = this.dashboardTags.filter(
                         dsp => dsp.id != id
@@ -3966,13 +3966,13 @@ export class GlobalVariableService {
             if ( (this.dashboardPermissions.length == 0)  ||  (this.isDirtyDashboardPermissions) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
-                    .then(data => {
-                        this.dashboardPermissions = data;
+                    .then(res => {
+                        this.dashboardPermissions = res;
                         this.isDirtyDashboardPermissions = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getDashboardPermissions 1',
                             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            {data})
+                            {res})
                         resolve(this.dashboardPermissions);
                     });
             } else {
@@ -3998,14 +3998,14 @@ export class GlobalVariableService {
         if ( (this.dashboardPermissions.length == 0)  ||  (this.isDirtyDashboardPermissions) ) {
             return new Promise<DashboardPermission[]>((resolve, reject) => {
                 this.getDashboardPermissions()
-                    .then(data => {
-                        data = data.filter(
+                    .then(res => {
+                        res = res.filter(
                             i => i.dashboardID == dashboardID
                         );
-                        this.currentDashboardPermissions =data;
+                        this.currentDashboardPermissions =res;
                         console.log('%c    Global-Variables getCurrentDashboardPermissions 1',
                             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            {dashboardID}, {data})
+                            {dashboardID}, {res})
                         resolve(this.currentDashboardPermissions);
                 })
              })
@@ -4040,16 +4040,16 @@ export class GlobalVariableService {
 
             this.http.post('http://localhost:3000/' + url, data, {headers})
             .subscribe(
-                data => {
+                res => {
 
                     // Update Global vars to make sure they remain in sync
-                    this.dashboardPermissions.push(JSON.parse(JSON.stringify(data)));
-                    this.currentDashboardPermissions.push(JSON.parse(JSON.stringify(data)));
+                    this.dashboardPermissions.push(JSON.parse(JSON.stringify(res)));
+                    this.currentDashboardPermissions.push(JSON.parse(JSON.stringify(res)));
 
-                    console.log('addDashboardPermission ADDED', {data},
+                    console.log('addDashboardPermission ADDED', {res},
                         this.currentDashboardPermissions, this.dashboardPermissions)
 
-                    resolve(data);
+                    resolve(res);
                 },
                 err => {
                     console.log('Error addDashboardPermission FAILED', {err});;
@@ -4110,7 +4110,7 @@ export class GlobalVariableService {
 
             this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
             .subscribe(
-                data => {
+                res => {
 
                     this.dashboardPermissions = this.dashboardPermissions.filter(
                         dsp => dsp.id != id
@@ -4146,13 +4146,13 @@ export class GlobalVariableService {
             if ( (this.canvasGroups.length == 0)  ||  (this.isDirtyCanvasGroups) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
-                    .then(data => {
-                        this.canvasGroups = data;
+                    .then(res => {
+                        this.canvasGroups = res;
                         this.isDirtyCanvasGroups = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getCanvasGroups 1',
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                        {data})
+                        {res})
                         resolve(this.canvasGroups);
                     })
                     .catch(err => reject(err));
@@ -4182,8 +4182,8 @@ export class GlobalVariableService {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
 
                 this.get(url)
-                    .then(data => {
-                        this.dashboardSnapshots = data;
+                    .then(res => {
+                        this.dashboardSnapshots = res;
                         this.isDirtyDashboardSnapshots = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getDashboardSnapshots 1',
@@ -4214,14 +4214,14 @@ export class GlobalVariableService {
         if ( (this.dashboardSnapshots.length == 0)  ||  (this.isDirtyDashboardSnapshots) ) {
             return new Promise<DashboardSnapshot[]>((resolve, reject) => {
                 this.getDashboardSnapshots()
-                    .then(data => {
-                        data = data.filter(
+                    .then(res => {
+                        res = res.filter(
                             i => i.dashboardID == dashboardID
                         );
-                        this.currentDashboardSnapshots = data;
+                        this.currentDashboardSnapshots = res;
                         console.log('%c    Global-Variables getCurrentDashboardSnapshots 1',
                             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            {dashboardID}, {data})
+                            {dashboardID}, {res})
                         resolve(this.currentDashboardSnapshots);
                 })
              })
@@ -4254,13 +4254,13 @@ export class GlobalVariableService {
         if ( (this.dashboardSnapshots.length == 0)  ||  (this.isDirtyDashboardSnapshots) ) {
             return new Promise<DashboardSnapshot>((resolve, reject) => {
                 this.getDashboardSnapshots()
-                    .then(data => {
-                        data = data.filter(
+                    .then(res => {
+                        res = res.filter(
                             i => i.dashboardID == dashboardID
                         );
                         let lastDashboardSnapshot: DashboardSnapshot = null;
-                        if (data.length > 0) {
-                            lastDashboardSnapshot = data[data.length - 1];
+                        if (res.length > 0) {
+                            lastDashboardSnapshot = res[res.length - 1];
                         };
                         console.log('%c    Global-Variables findlastDashboardSnapshot 1',
                             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
@@ -4337,16 +4337,16 @@ export class GlobalVariableService {
 
             this.http.post('http://localhost:3000/' + url, data, {headers})
             .subscribe(
-                data => {
+                res => {
 
                     // Update Global vars to make sure they remain in sync
-                    this.dashboardSnapshots.push(JSON.parse(JSON.stringify(data)));
-                    this.currentDashboardSnapshots.push(JSON.parse(JSON.stringify(data)));
+                    this.dashboardSnapshots.push(JSON.parse(JSON.stringify(res)));
+                    this.currentDashboardSnapshots.push(JSON.parse(JSON.stringify(res)));
 
-                    console.log('addDashboardSnapshot ADDED', {data},
+                    console.log('addDashboardSnapshot ADDED', {res},
                         this.currentDashboardSnapshots, this.dashboardSnapshots)
 
-                    resolve(data);
+                    resolve(res);
                 },
                 err => {
                     console.log('Error addDashboardSnapshot FAILED', {err});;
