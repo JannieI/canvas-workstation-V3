@@ -2172,14 +2172,14 @@ export class GlobalVariableService {
         if ( (this.dashboards.length == 0)  ||  (this.isDirtyDashboards) ) {
             return new Promise<Dashboard[]>((resolve, reject) => {
                 this.getDashboards()
-                    .then(data => {
-                        data = data.filter(
+                    .then(res => {
+                        res = res.filter(
                             i => (i.isSample)
                         );
                         console.log('%c    Global-Variables getDashboardSamples 1',
                             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            {data})
-                        resolve(data);
+                            {res})
+                        resolve(res);
 
                     })
                     .catch(err => reject(err))
@@ -2488,8 +2488,8 @@ export class GlobalVariableService {
             if ( (this.dataConnections.length == 0)  ||  (this.isDirtyDataConnections) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
-                    .then(data => {
-                        this.dataConnections = data;
+                    .then(res => {
+                        this.dataConnections = res;
                         this.isDirtyDataConnections = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getDataConnection 1',
@@ -2523,14 +2523,14 @@ export class GlobalVariableService {
 
             this.http.post('http://localhost:3001/' + url, data, {headers})
             .subscribe(
-                data => {
+                res => {
 
                     // Update Global vars to make sure they remain in sync
-                    this.dataConnections.push(JSON.parse(JSON.stringify(data)));
+                    this.dataConnections.push(JSON.parse(JSON.stringify(res)));
 
-                    console.log('addDataConnection ADDED', {data}, this.dataConnections)
+                    console.log('addDataConnection ADDED', {res}, this.dataConnections)
 
-                    resolve(data);
+                    resolve(res);
                 },
                 err => {
                     console.log('Error addDataConnection FAILED', {err});;
@@ -2591,7 +2591,7 @@ export class GlobalVariableService {
 
             this.http.delete('http://localhost:3001/' + url + '/' + id, {headers})
             .subscribe(
-                data => {
+                res => {
 
                     this.dataConnections = this.dataConnections.filter(
                         dsp => dsp.id != id
@@ -2623,8 +2623,8 @@ export class GlobalVariableService {
             if ( (this.datasourceTransformations.length == 0)  ||  (this.isDirtyDatasourceTransformations) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
-                    .then(data => {
-                        this.datasourceTransformations = data;
+                    .then(res => {
+                        this.datasourceTransformations = res;
                         this.isDirtyDatasourceTransformations = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getDatasourceTransformation 1',
@@ -2658,15 +2658,15 @@ export class GlobalVariableService {
 
             this.http.post('http://localhost:3000/' + url, data, {headers})
             .subscribe(
-                data => {
+                res => {
 
                     // Update Global vars to make sure they remain in sync
-                    this.datasourceTransformations.push(JSON.parse(JSON.stringify(data)));
+                    this.datasourceTransformations.push(JSON.parse(JSON.stringify(res)));
 
-                    console.log('addDatasourceTransformation ADDED', {data},
+                    console.log('addDatasourceTransformation ADDED', {res},
                         this.datasourceTransformations)
 
-                    resolve(data);
+                    resolve(res);
                 },
                 err => {
                     console.log('Error addDatasourceTransformation FAILED', {err});;
@@ -2727,7 +2727,7 @@ export class GlobalVariableService {
 
             this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
             .subscribe(
-                data => {
+                res => {
 
                     this.datasourceTransformations = this.datasourceTransformations.filter(
                         dsp => dsp.id != id
