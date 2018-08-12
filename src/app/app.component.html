@@ -1802,19 +1802,21 @@
                     type="button"
                     class="btn btn-secondary btn-sm"
                     clrDropdownItem
-                    title="Jump to the Next Dashboard"
+                    title="Jump to the Next Dashboard Tab"
+                    (click)="dashboardPageDown()"
                     >
                     <clr-icon shape="fast-forward" size="20"></clr-icon>
-                    Next Dashboard
+                    Next Tab
                 </button>
                 <button
                     type="button"
                     class="btn btn-secondary btn-sm"
                     clrDropdownItem
                     title="Return to the Previous Dashboard"
+                    (click)="dashboardPageUp()"
                     >
                     <clr-icon shape="rewind" size="20"></clr-icon>
-                    Previous Dashboard
+                    Previous Tab
                 </button>
                 <button
                     type="button"
