@@ -2135,7 +2135,7 @@ export class AppComponent implements OnInit {
                         
 
                     } else {
-                        console.warn ('xx COPY !!', localDashboard)
+
                         this.globalVariableService.copyDashboard(
                             localDashboard.id, null, 'Draft'
                         ).then(res => {

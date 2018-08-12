@@ -961,7 +961,9 @@ export class GlobalVariableService {
                 // Draft can only be edited by its creator
                 if (state == 'Draft') {
                     newD.accessType = 'Private';
-                };
+                    newD.editor = this.currentUser.userID;
+                    newD.dateEdited = today;
+                    };
 
                 newD.draftID = null;
                 if (this.dashboards[dashboardIndex].state == 'Complete'
@@ -970,7 +972,7 @@ export class GlobalVariableService {
                 } else {
                     newD.originalID = null;
                 };
-console.warn('xx newD before ADD', newD)
+
                 this.addDashboard(newD).then (addedD => {
 
                     let promiseArrayT = [];
@@ -1020,7 +1022,6 @@ console.warn('xx newD before ADD', newD)
                                         // TODO - fix for multi-Tabbed Ws
                                         newW.dashboardTabIDs = [t.id];
 
-                                        console.warn('xx newW', addedD.id, newW)
                                         promiseArrayW.push(this.addWidget(newW));
 
                                     };
@@ -1028,7 +1029,6 @@ console.warn('xx newD before ADD', newD)
                             };
                         });
                         this.allWithAsync(...promiseArrayW).then(resolvedData => {
-                            console.warn('xx after allSync W', resolvedData)
 
                             // Checkpoints
                             let promiseArrayChk = [];
