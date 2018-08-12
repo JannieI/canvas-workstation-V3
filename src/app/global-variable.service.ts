@@ -2759,8 +2759,8 @@ export class GlobalVariableService {
             if ( (this.dataTables.length == 0)  ||  (this.isDirtyDataTables) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
-                    .then(data => {
-                        this.dataTables = data;
+                    .then(res => {
+                        this.dataTables = res;
                         this.isDirtyDataTables = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getDataTable 1',
@@ -2793,8 +2793,8 @@ export class GlobalVariableService {
             if ( (this.dataFields.length == 0)  ||  (this.isDirtyDataFields) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
-                    .then(data => {
-                        this.dataFields = data;
+                    .then(res => {
+                        this.dataFields = res;
                         this.isDirtyDataFields = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getDataField 1',
@@ -2827,8 +2827,8 @@ export class GlobalVariableService {
             if ( (this.datasets.length == 0)  ||  (this.isDirtyDatasets) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
-                    .then(data => {
-                        this.datasets = data;
+                    .then(res => {
+                        this.datasets = res;
                         this.isDirtyDatasets = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getDataset 1',
@@ -2915,8 +2915,8 @@ export class GlobalVariableService {
             if (dsSourceLocation == 'localDB') {
 
                 this.getLocal('Dataset')
-                .then(data => {
-                    let newdSet: Dataset = data;
+                .then(res => {
+                    let newdSet: Dataset = res;
 
                     // // Add to datasets (contains all data) - once
                     // if (dSetIDs.indexOf(datasetID) < 0) {
@@ -3107,7 +3107,7 @@ export class GlobalVariableService {
 
             this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
             .subscribe(
-                data => {
+                res => {
 
                     this.datasets = this.datasets.filter(
                         dSet => dSet.id != id
@@ -3239,7 +3239,7 @@ export class GlobalVariableService {
 
             this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
             .subscribe(
-                data => {
+                res => {
 
                     console.log('deleteData DELETED id: ', {id})
                     resolve('Deleted');
@@ -3376,13 +3376,13 @@ export class GlobalVariableService {
             if ( (this.dashboardSchedules.length == 0)  ||  (this.isDirtyDashboardSchedules) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
-                    .then(data => {
-                        this.dashboardSchedules = data;
+                    .then(res => {
+                        this.dashboardSchedules = res;
                         this.isDirtyDashboardSchedules = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getDashboardSchedules 1',
                             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            {data})
+                            {res})
                         resolve(this.dashboardSchedules);
                     });
             } else {
@@ -3408,14 +3408,14 @@ export class GlobalVariableService {
         if ( (this.dashboardSchedules.length == 0)  ||  (this.isDirtyDashboardSchedules) ) {
             return new Promise<DashboardSchedule[]>((resolve, reject) => {
                 this.getDashboardSchedules()
-                    .then(data => {
-                        data = data.filter(
+                    .then(res => {
+                        res = res.filter(
                             i => i.dashboardID == dashboardID
                         );
-                        this.currentDashboardSchedules = data;
+                        this.currentDashboardSchedules = res;
                         console.log('%c    Global-Variables getCurrentDashboardSchedules 1',
                             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            {dashboardID}, {data})
+                            {dashboardID}, {res})
                         resolve(this.currentDashboardSchedules);
                 })
              })
@@ -3450,16 +3450,16 @@ export class GlobalVariableService {
 
             this.http.post('http://localhost:3000/' + url, data, {headers})
             .subscribe(
-                data => {
+                res => {
 
                     // Update Global vars to make sure they remain in sync
-                    this.dashboardSchedules.push(JSON.parse(JSON.stringify(data)));
-                    this.currentDashboardSchedules.push(JSON.parse(JSON.stringify(data)));
+                    this.dashboardSchedules.push(JSON.parse(JSON.stringify(res)));
+                    this.currentDashboardSchedules.push(JSON.parse(JSON.stringify(res)));
 
-                    console.log('addDashboardSchedule ADDED', {data},
+                    console.log('addDashboardSchedule ADDED', {res},
                         this.currentDashboardSchedules, this.dashboardSchedules)
 
-                    resolve(data);
+                    resolve(res);
                 },
                 err => {
                     console.log('Error addDashboardSchedule FAILED', {err});;
@@ -3520,7 +3520,7 @@ export class GlobalVariableService {
 
             this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
             .subscribe(
-                data => {
+                res => {
 
                     this.dashboardSchedules = this.dashboardSchedules.filter(
                         dsp => dsp.id != id
@@ -3559,22 +3559,22 @@ export class GlobalVariableService {
             // Refresh from source at start, or if dirty
             this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
             this.get(url)
-                .then(data => {
+                .then(res => {
                     // TODO - perform on DB side
                     if (dashboardID != null) {
-                        data = data.filter(dsl => dsl.dashboardID == dashboardID);
+                        res = res.filter(dsl => dsl.dashboardID == dashboardID);
                     };
                     if (sentAfter != null) {
-                        data = data.filter(dsl => dsl.sentOn >= sentAfter);
+                        res = res.filter(dsl => dsl.sentOn >= sentAfter);
                     };
                     if (sentBefore != null) {
-                        data = data.filter(dsl => dsl.sentOn <= sentBefore);
+                        res = res.filter(dsl => dsl.sentOn <= sentBefore);
                     };
-                    this.dashboardScheduleLog = data;
+                    this.dashboardScheduleLog = res;
                     this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                     console.log('%c    Global-Variables getDashboardScheduleLog 1',
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                        {data})
+                        {res})
                     resolve(this.dashboardScheduleLog);
                 });
         });
@@ -3597,13 +3597,13 @@ export class GlobalVariableService {
             if ( (this.datasourceSchedules.length == 0)  ||  (this.isDirtyDatasourceSchedules) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
                 this.get(url)
-                    .then(data => {
-                        this.datasourceSchedules = data;
+                    .then(res => {
+                        this.datasourceSchedules = res;
                         this.isDirtyDatasourceSchedules = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         console.log('%c    Global-Variables getDatasourceSchedules 1',
                             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            {data})
+                            {res})
                         resolve(this.datasourceSchedules);
                     });
             } else {
