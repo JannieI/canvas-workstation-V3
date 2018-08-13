@@ -549,7 +549,7 @@ This document describes items for later versions of Canvas.
     - add triangle, or make arrow more sophisticated = no line (! triangle), no arrowhead
     - make rotation of arrow with mouse - drag it around!
     - size with svg markerWidth and -Height
-    - Can / should other Shapes (ie TEXT) also rotate with transform="rotate(30 20,40)"??
+    - Can / should other Shapes (ie TEXT, LINE) also rotate with transform="rotate(30 20,40)"??
     - Can / should Shapes have radial / linear blur inside??
     - Consider Shape = Line - easy to do, not sure where and how used (rather use arrow)?
     - Add emojis !?  See https://www.w3schools.com/charsets/ref_utf_misc_symbols.asp 
@@ -560,7 +560,11 @@ This document describes items for later versions of Canvas.
     - ArrowThin is not inside the W container => difficult to drag and drop, hangs over others, difficult to place, looks funny.  Also, the Arrow header is not always the same colour as the line.  Make more sophisticated to set tail (line) length -> so line length = 0 makes it s simple arrow head, or Triangle.  Also dimentions for head size - height and width.  Can these be done with a mouse ?
     - consider triangle as a new shape - not sure it is needed, or if can be done via thin arrows
     - are thin Arrows just Arrows without the body??
-    - Arrow: make dynamic!  For both size and rotation, taking into account that it has to land inside the W container at all times, and preferably left top corner for easy placements.  Also, consider shrinking W container, ie with *ngIf on title and other grid areas ...
+    - Arrow: make dynamic!  For both size and rotation, taking into account that it has to land inside the W container at all times, and preferably left top corner for easy placements.  Also, consider shrinking W container, ie with *ngIf on title and other grid areas ...  Look at:
+        . https://www.w3schools.com/css/css3_2dtransforms.asp
+        . https://learn.shayhowe.com/advanced-html-css/css-transforms/
+        . https://robots.thoughtbot.com/transitions-and-transforms
+        . https://www.w3schools.com/cssref/tryit.asp?filename=trycss3_transform-origin
     - make it easier to add co logo, ie Add logo menu option.
     - have polygon - 6 sided doughnut as shape
     - have pentagon as shape - can divide background in 2 colours with a slant

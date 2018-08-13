@@ -7127,21 +7127,6 @@ export class GlobalVariableService {
         });
     }
 
-    getTree<T>(url: string, options?: any, dashboardID?: number, datasourceID?: number): Promise<any> {
-        // Generic GET data, later to be replaced with http
-        console.log('%c    Global-Variables get ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {url});
-
-        return new Promise((resolve, reject) => {
-            // Get from source - files for now ...
-            var tree = dl.json(this.filePath, {data: 'data'})
-                    console.log('currentData', {tree});
-                    // TODO - fix reading [] with dl !!!
-                    resolve(tree);
-            }
-        );
-    }
-
     getCanvasUsers(): Promise<CanvasUser[]> {
         // Description: Gets all Canvas Users
         // Returns: this.users array, unless:
