@@ -20,16 +20,20 @@
 
     .multiTabMenuHeader {
         grid-column-start: 2;
+        /* autoprefixer: off */
         grid-column-end: 12;
         grid-row-start: 2;
+        /* autoprefixer: off */
         grid-row-end: 12;
         text-align: left;
     }
 
     .multiTabOption {
         grid-column-start: 3;
+        /* autoprefixer: off */
         grid-column-end: 12;
         grid-row-start: 4;
+        /* autoprefixer: off */
         grid-row-end: 12;
         text-align: left;
     }
