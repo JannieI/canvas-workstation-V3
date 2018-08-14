@@ -20,16 +20,20 @@
         border: none;
         cursor: pointer;
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 2;
         grid-row-start: 1;
+        /* autoprefixer: off */
         grid-row-end: 2;
         text-align: left;
     }
     .gridTitle {
         font-size: 0.75rem;
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 18;
         grid-row-start: 1;
+        /* autoprefixer: off */
         grid-row-end: 2;
         margin-left: 30px;
         text-align: left;
@@ -37,31 +41,39 @@
 
     .gridDashboardNameTitle {
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 2;
         grid-row-start: 3;
+        /* autoprefixer: off */
         grid-row-end: 4;
         text-align: left;
     }
 
     .gridDashboardName {
         grid-column-start: 2;
+        /* autoprefixer: off */
         grid-column-end: 13;
         grid-row-start: 3;
+        /* autoprefixer: off */
         grid-row-end: 4;
         text-align: left;
     }
 
     .gridButtonFilter {
         grid-column-start: 9;
+        /* autoprefixer: off */
         grid-column-end: 13;
         grid-row-start: 2;
+        /* autoprefixer: off */
         grid-row-end: 3;
         text-align: left;
     }
     .gridButtonSearch {
         grid-column-start: 13;
+        /* autoprefixer: off */
         grid-column-end: 15;
         grid-row-start: 2;
+        /* autoprefixer: off */
         grid-row-end: 3;
         text-align: left;
     }
@@ -69,15 +81,19 @@
     .gridErrorMessage {
         color: red;
         grid-column-start: 2;
+        /* autoprefixer: off */
         grid-column-end: 19;
         grid-row-start: 2;
+        /* autoprefixer: off */
         grid-row-end: 3;
         text-align: left;
     }
     .gridTable {
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 21;
         grid-row-start: 4;
+        /* autoprefixer: off */
         grid-row-end: 25;
         text-align: left;
     }
@@ -91,8 +107,10 @@
         grid-template-columns: repeat(20, 1fr);
         grid-template-rows: repeat(28, 0.8rem);
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 21;
         grid-row-start: 1;
+        /* autoprefixer: off */
         grid-row-end: 29;
         padding: 10px;
         text-align: left;
@@ -101,357 +119,455 @@
 
         .filterHeading {
             grid-column-start: 1;
+            /* autoprefixer: off */
             grid-column-end: 21;
             grid-row-start: 1;
+            /* autoprefixer: off */
             grid-row-end: 2;
             text-align: center;
         }
         
         .filterSchedulesTitle {
             grid-column-start: 1;
+            /* autoprefixer: off */
             grid-column-end: 5;
             grid-row-start: 3;
+            /* autoprefixer: off */
             grid-row-end: 4;
             text-align: left;
         }
         .filterSchedulesSendToTitle {
             grid-column-start: 2;
+            /* autoprefixer: off */
             grid-column-end: 4;
             grid-row-start: 4;
+            /* autoprefixer: off */
             grid-row-end: 5;
             text-align: left;
         }
         .filterSchedulesSendTo {
             grid-column-start: 4;
+            /* autoprefixer: off */
             grid-column-end: 10;
             grid-row-start: 4;
+            /* autoprefixer: off */
             grid-row-end: 5;
             text-align: left;
         }
         .filterSchedulesDueOnTitle {
             grid-column-start: 10;
+            /* autoprefixer: off */
             grid-column-end: 14;
             grid-row-start: 4;
+            /* autoprefixer: off */
             grid-row-end: 5;
             text-align: left;
         }
         .filterSchedulesDueOn {
             grid-column-start: 14;
+            /* autoprefixer: off */
             grid-column-end: 20;
             grid-row-start: 4;
+            /* autoprefixer: off */
             grid-row-end: 5;
             text-align: left;
         }
         .filterSchedulesSentAfterTitle {
             grid-column-start: 2;
+            /* autoprefixer: off */
             grid-column-end: 4;
             grid-row-start: 5;
+            /* autoprefixer: off */
             grid-row-end: 6;
             text-align: left;
         }
         .filterSchedulesSentAfter {
             grid-column-start: 4;
+            /* autoprefixer: off */
             grid-column-end: 10;
             grid-row-start: 5;
+            /* autoprefixer: off */
             grid-row-end: 6;
             text-align: left;
         }
         .filterSchedulesSentBeforeTitle {
             grid-column-start: 10;
+            /* autoprefixer: off */
             grid-column-end: 14;
             grid-row-start: 5;
+            /* autoprefixer: off */
             grid-row-end: 6;
             text-align: left;
         }
         .filterSchedulesSentBefore {
             grid-column-start: 14;
+            /* autoprefixer: off */
             grid-column-end: 20;
             grid-row-start: 5;
+            /* autoprefixer: off */
             grid-row-end: 6;
             text-align: left;
         }
 
         .filterSharedTitle {
             grid-column-start: 1;
+            /* autoprefixer: off */
             grid-column-end: 5;
             grid-row-start: 7;
+            /* autoprefixer: off */
             grid-row-end: 8;
             text-align: left;
         }
         .filterSharedByUserIDTitle {
             grid-column-start: 2;
+            /* autoprefixer: off */
             grid-column-end: 4;
             grid-row-start: 8;
+            /* autoprefixer: off */
             grid-row-end: 9;
             text-align: left;
         }
         .filterSharedByUserID {
             grid-column-start: 4;
+            /* autoprefixer: off */
             grid-column-end: 10;
             grid-row-start: 8;
+            /* autoprefixer: off */
             grid-row-end: 9;
             text-align: left;
         }
         .filterSharedWithUserIDTitle {
             grid-column-start: 10;
+            /* autoprefixer: off */
             grid-column-end: 14;
             grid-row-start: 8;
+            /* autoprefixer: off */
             grid-row-end: 9;
             text-align: left;
         }
         .filterSharedWithUserID {
             grid-column-start: 14;
+            /* autoprefixer: off */
             grid-column-end: 20;
             grid-row-start: 8;
+            /* autoprefixer: off */
             grid-row-end: 9;
             text-align: left;
         }
         .filterSharedWithGroupTitle {
             grid-column-start: 2;
+            /* autoprefixer: off */
             grid-column-end: 4;
             grid-row-start: 9;
+            /* autoprefixer: off */
             grid-row-end: 10;
             text-align: left;
         }
         .filterSharedWithGroup {
             grid-column-start: 4;
+            /* autoprefixer: off */
             grid-column-end: 10;
             grid-row-start: 9;
+            /* autoprefixer: off */
             grid-row-end: 10;
             text-align: left;
         }
 
         .filterOpenedTitle {
             grid-column-start: 1;
+            /* autoprefixer: off */
             grid-column-end: 5;
             grid-row-start: 11;
+            /* autoprefixer: off */
             grid-row-end: 12;
             text-align: left;
         }
         .filterOpenedByUserIDTitle {
             grid-column-start: 2;
+            /* autoprefixer: off */
             grid-column-end: 4;
             grid-row-start: 12;
+            /* autoprefixer: off */
             grid-row-end: 13;
             text-align: left;
         }
         .filterOpenedByUserID {
             grid-column-start: 4;
+            /* autoprefixer: off */
             grid-column-end: 10;
             grid-row-start: 12;
+            /* autoprefixer: off */
             grid-row-end: 13;
             text-align: left;
         }
         .filterOpenedAfterDateTitle {
             grid-column-start: 10;
+            /* autoprefixer: off */
             grid-column-end: 14;
             grid-row-start: 12;
+            /* autoprefixer: off */
             grid-row-end: 13;
             text-align: left;
         }
         .filterOpenedAfterDate {
             grid-column-start: 14;
+            /* autoprefixer: off */
             grid-column-end: 20;
             grid-row-start: 12;
+            /* autoprefixer: off */
             grid-row-end: 13;
             text-align: left;
         }
         
         .filterCreatedTitle {
             grid-column-start: 1;
+            /* autoprefixer: off */
             grid-column-end: 5;
             grid-row-start: 14;
+            /* autoprefixer: off */
             grid-row-end: 15;
             text-align: left;
         }
         .filterCreatedByTitle {
             grid-column-start: 2;
+            /* autoprefixer: off */
             grid-column-end: 4;
             grid-row-start: 15;
+            /* autoprefixer: off */
             grid-row-end: 16;
             text-align: left;
         }
         .filterCreatedBy {
             grid-column-start: 4;
+            /* autoprefixer: off */
             grid-column-end: 10;
             grid-row-start: 15;
+            /* autoprefixer: off */
             grid-row-end: 16;
             text-align: left;
         }
         .filterCreatedAfterTitle {
             grid-column-start: 10;
+            /* autoprefixer: off */
             grid-column-end: 14;
             grid-row-start: 15;
+            /* autoprefixer: off */
             grid-row-end: 16;
             text-align: left;
         }
         .filterCreatedAfter {
             grid-column-start: 14;
+            /* autoprefixer: off */
             grid-column-end: 20;
             grid-row-start: 15;
+            /* autoprefixer: off */
             grid-row-end: 16;
             text-align: left;
         }
 
         .filterDataTitle {
             grid-column-start: 1;
+            /* autoprefixer: off */
             grid-column-end: 5;
             grid-row-start: 17;
+            /* autoprefixer: off */
             grid-row-end: 18;
             text-align: left;
         }
         .filterDataDatasourceTitle {
             grid-column-start: 2;
+            /* autoprefixer: off */
             grid-column-end: 4;
             grid-row-start: 18;
+            /* autoprefixer: off */
             grid-row-end: 19;
             text-align: left;
         }
         .filterDataDatasource {
             grid-column-start: 4;
+            /* autoprefixer: off */
             grid-column-end: 10;
             grid-row-start: 18;
+            /* autoprefixer: off */
             grid-row-end: 19;
             text-align: left;
         }
         .filterDataFieldTitle {
             grid-column-start: 10;
+            /* autoprefixer: off */
             grid-column-end: 14;
             grid-row-start: 18;
+            /* autoprefixer: off */
             grid-row-end: 19;
             text-align: left;
         }
         .filterDataField {
             grid-column-start: 14;
+            /* autoprefixer: off */
             grid-column-end: 20;
             grid-row-start: 18;
+            /* autoprefixer: off */
             grid-row-end: 19;
             text-align: left;
         }
 
         .filterOtherTitle {
             grid-column-start: 1;
+            /* autoprefixer: off */
             grid-column-end: 5;
             grid-row-start: 20;
+            /* autoprefixer: off */
             grid-row-end: 21;
             text-align: left;
         }
 
         .filterStateTitle {
             grid-column-start: 2;
+            /* autoprefixer: off */
             grid-column-end: 4;
             grid-row-start: 21;
+            /* autoprefixer: off */
             grid-row-end: 22;
             text-align: left;
         }
 
         .filterState {
             grid-column-start: 4;
+            /* autoprefixer: off */
             grid-column-end: 10;
             grid-row-start: 21;
+            /* autoprefixer: off */
             grid-row-end: 22;
             text-align: left;
         }
         .filterTagTitle {
             grid-column-start: 10;
+            /* autoprefixer: off */
             grid-column-end: 14;
             grid-row-start: 21;
+            /* autoprefixer: off */
             grid-row-end: 22;
             text-align: left;
         }
         .filterTag {
             grid-column-start: 14;
+            /* autoprefixer: off */
             grid-column-end: 20;
             grid-row-start: 21;
+            /* autoprefixer: off */
             grid-row-end: 22;
             text-align: left;
         }
         .filterMyFavTitle {
             grid-column-start: 2;
+            /* autoprefixer: off */
             grid-column-end: 4;
             grid-row-start: 22;
+            /* autoprefixer: off */
             grid-row-end: 23;
             padding-top: 3px;
             text-align: left;
         }
         .filterMyFav {
             grid-column-start: 4;
+            /* autoprefixer: off */
             grid-column-end: 10;
             grid-row-start: 22;
+            /* autoprefixer: off */
             grid-row-end: 23;
             text-align: left;
         }
 
         .filterModifiedTitle {
             grid-column-start: 1;
+            /* autoprefixer: off */
             grid-column-end: 5;
             grid-row-start: 24;
+            /* autoprefixer: off */
             grid-row-end: 25;
             text-align: left;
         }
         .filterModifiedAfterTitle {
             grid-column-start: 2;
+            /* autoprefixer: off */
             grid-column-end: 4;
             grid-row-start: 25;
+            /* autoprefixer: off */
             grid-row-end: 26;
             text-align: left;
         }
         .filterModifiedAfter {
             grid-column-start: 4;
+            /* autoprefixer: off */
             grid-column-end: 10;
             grid-row-start: 25;
+            /* autoprefixer: off */
             grid-row-end: 26;
             text-align: left;
         }
         .filterModifiedBeforeTitle {
             grid-column-start: 10;
+            /* autoprefixer: off */
             grid-column-end: 14;
             grid-row-start: 25;
+            /* autoprefixer: off */
             grid-row-end: 26;
             text-align: left;
         }
         .filterModifiedBefore {
             grid-column-start: 14;
+            /* autoprefixer: off */
             grid-column-end: 20;
             grid-row-start: 25;
+            /* autoprefixer: off */
             grid-row-end: 26;
             text-align: left;
         }
         .filterModifiedByUserIDTitle {
             grid-column-start: 2;
+            /* autoprefixer: off */
             grid-column-end: 4;
             grid-row-start: 26;
+            /* autoprefixer: off */
             grid-row-end: 27;
             text-align: left;
         }
         .filterModifiedByUserID {
             grid-column-start: 4;
+            /* autoprefixer: off */
             grid-column-end: 10;
             grid-row-start: 26;
+            /* autoprefixer: off */
             grid-row-end: 27;
             text-align: left;
         }
 
         .filterButtonClose {
             grid-column-start: 10;
+            /* autoprefixer: off */
             grid-column-end: 12;
             grid-row-start: 26;
+            /* autoprefixer: off */
             grid-row-end: 27;
             text-align: left;
         }
 
         .filterButtonClear {
             grid-column-start: 14;
+            /* autoprefixer: off */
             grid-column-end: 16;
             grid-row-start: 26;
+            /* autoprefixer: off */
             grid-row-end: 27;
             text-align: left;
         }
 
         .filterButtonApply {
             grid-column-start: 18;
+            /* autoprefixer: off */
             grid-column-end: 20;
             grid-row-start: 26;
+            /* autoprefixer: off */
             grid-row-end: 27;
             text-align: left;
         }
