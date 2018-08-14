@@ -29,16 +29,20 @@
         border: none;
         cursor: pointer;
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 2;
         grid-row-start: 1;
+        /* autoprefixer: off */
         grid-row-end: 2;
         text-align: left;
     }
     .gridTitle {
         font-size: 0.75rem;
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 21;
         grid-row-start: 1;
+        /* autoprefixer: off */
         grid-row-end: 2;
         margin-left: 30px;
         text-align: left;
@@ -46,25 +50,31 @@
 
     .gridShapeTypes {
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 8;
         grid-row-start: 2;
+        /* autoprefixer: off */
         grid-row-end: 3;
         padding: 12px 5px 10px 10px;
         text-align: left;
     }
     .hasTitle {
         grid-column-start: 9;
+        /* autoprefixer: off */
         grid-column-end: 11;
         grid-row-start: 2;
         padding-top: 12px;
+        /* autoprefixer: off */
         grid-row-end: 3;
     }
 
     .gridShape {
         border-left: 1px solid black;
         grid-column-start: 12;
+        /* autoprefixer: off */
         grid-column-end: 21;
         grid-row-start: 3;
+        /* autoprefixer: off */
         grid-row-end: 19;
         overflow-y: scroll;
     }
@@ -85,8 +95,10 @@
         border-radius: 4px;
         display: inline-block;
         grid-column-start: 6;
+        /* autoprefixer: off */
         grid-column-end: 15;
         grid-row-start: 6;
+        /* autoprefixer: off */
         grid-row-end: 12;
         height: 260px;
         margin: 0px;
@@ -100,8 +112,10 @@
         grid-template-columns: repeat(10, 1fr);
         grid-template-rows: repeat(14, 0.8rem);
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 12;
         grid-row-start: 4;
+        /* autoprefixer: off */
         grid-row-end: 18;
         margin-bottom: 0;
         text-align: left;
@@ -110,24 +124,30 @@
     /* Circle */
     .gridCircleLineColourTitle {
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 3;
         grid-row-start: 1;
+        /* autoprefixer: off */
         grid-row-end: 2;
         padding-left: 15px;
         padding-top: 6px;
     }
     .gridCircleLineColour {
         grid-column-start: 3;
+        /* autoprefixer: off */
         grid-column-end: 8;
         grid-row-start: 1;
+        /* autoprefixer: off */
         grid-row-end: 2;
         padding-left: 15px;
         padding-top: 6px;
     }
     .gridCircleLineColourPicker {
         grid-column-start: 9;
+        /* autoprefixer: off */
         grid-column-end: 11;
         grid-row-start: 1;
+        /* autoprefixer: off */
         grid-row-end: 2;
         padding-left: 15px;
         padding-top: 6px;
@@ -135,8 +155,10 @@
 
     .gridCircleThickness {
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 11;
         grid-row-start: 3;
+        /* autoprefixer: off */
         grid-row-end: 4;
         padding-left: 15px;
         padding-top: 6px;
@@ -144,24 +166,30 @@
 
     .gridCircleFillColourTitle {
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 3;
         grid-row-start: 5;
+        /* autoprefixer: off */
         grid-row-end: 6;
         padding-left: 15px;
         padding-top: 6px;
     }
     .gridCircleFillColour {
         grid-column-start: 3;
+        /* autoprefixer: off */
         grid-column-end: 8;
         grid-row-start: 5;
+        /* autoprefixer: off */
         grid-row-end: 6;
         padding-left: 15px;
         padding-top: 6px;
     }
     .gridCircleFillColourPicker {
         grid-column-start: 9;
+        /* autoprefixer: off */
         grid-column-end: 11;
         grid-row-start: 5;
+        /* autoprefixer: off */
         grid-row-end: 6;
         padding-left: 15px;
         padding-top: 6px;
@@ -170,24 +198,30 @@
     /* Ellipse */
     .gridEllipseLineColourTitle {
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 3;
         grid-row-start: 1;
+        /* autoprefixer: off */
         grid-row-end: 2;
         padding-left: 15px;
         padding-top: 6px;
     }
     .gridEllipseLineColour {
         grid-column-start: 3;
+        /* autoprefixer: off */
         grid-column-end: 8;
         grid-row-start: 1;
+        /* autoprefixer: off */
         grid-row-end: 2;
         padding-left: 15px;
         padding-top: 6px;
     }
     .gridEllipseLineColourPicker {
         grid-column-start: 9;
+        /* autoprefixer: off */
         grid-column-end: 11;
         grid-row-start: 1;
+        /* autoprefixer: off */
         grid-row-end: 2;
         padding-left: 15px;
         padding-top: 6px;
@@ -195,8 +229,10 @@
 
     .gridEllipseThickness {
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 11;
         grid-row-start: 3;
+        /* autoprefixer: off */
         grid-row-end: 4;
         padding-left: 15px;
         padding-top: 6px;
@@ -204,24 +240,30 @@
 
     .gridEllipseFillColourTitle {
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 3;
         grid-row-start: 5;
+        /* autoprefixer: off */
         grid-row-end: 6;
         padding-left: 15px;
         padding-top: 6px;
     }
     .gridEllipseFillColour {
         grid-column-start: 3;
+        /* autoprefixer: off */
         grid-column-end: 8;
         grid-row-start: 5;
+        /* autoprefixer: off */
         grid-row-end: 6;
         padding-left: 15px;
         padding-top: 6px;
     }
     .gridEllipseFillColourPicker {
         grid-column-start: 9;
+        /* autoprefixer: off */
         grid-column-end: 11;
         grid-row-start: 5;
+        /* autoprefixer: off */
         grid-row-end: 6;
         padding-left: 15px;
         padding-top: 6px;
@@ -230,24 +272,30 @@
     /* Rectangle */
     .gridRectangleLineColourTitle {
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 3;
         grid-row-start: 1;
+        /* autoprefixer: off */
         grid-row-end: 2;
         padding-left: 15px;
         padding-top: 6px;
     }
     .gridRectangleLineColour {
         grid-column-start: 3;
+        /* autoprefixer: off */
         grid-column-end: 8;
         grid-row-start: 1;
+        /* autoprefixer: off */
         grid-row-end: 2;
         padding-left: 15px;
         padding-top: 6px;
     }
     .gridRectangleLineColourPicker {
         grid-column-start: 9;
+        /* autoprefixer: off */
         grid-column-end: 11;
         grid-row-start: 1;
+        /* autoprefixer: off */
         grid-row-end: 2;
         padding-left: 15px;
         padding-top: 6px;
@@ -255,8 +303,10 @@
 
     .gridRectangleThickness {
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 11;
         grid-row-start: 3;
+        /* autoprefixer: off */
         grid-row-end: 4;
         padding-left: 15px;
         padding-top: 6px;
@@ -264,24 +314,30 @@
 
     .gridRectangleFillColourTitle {
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 3;
         grid-row-start: 5;
+        /* autoprefixer: off */
         grid-row-end: 6;
         padding-left: 15px;
         padding-top: 6px;
     }
     .gridRectangleFillColour {
         grid-column-start: 3;
+        /* autoprefixer: off */
         grid-column-end: 8;
         grid-row-start: 5;
+        /* autoprefixer: off */
         grid-row-end: 6;
         padding-left: 15px;
         padding-top: 6px;
     }
     .gridRectangleFillColourPicker {
         grid-column-start: 9;
+        /* autoprefixer: off */
         grid-column-end: 11;
         grid-row-start: 5;
+        /* autoprefixer: off */
         grid-row-end: 6;
         padding-left: 15px;
         padding-top: 6px;
@@ -289,16 +345,20 @@
  
     .gridRectangleOpacity {
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 11;
         grid-row-start: 7;
+        /* autoprefixer: off */
         grid-row-end: 8;
         padding-left: 15px;
         padding-top: 6px;
     }
     .gridRectangleCorners {
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 11;
         grid-row-start: 9;
+        /* autoprefixer: off */
         grid-row-end: 10;
         padding-left: 15px;
         padding-top: 6px;
@@ -307,16 +367,20 @@
     /* Text */
     .gridTextString {
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 9;
         grid-row-start: 1;
+        /* autoprefixer: off */
         grid-row-end: 2;
         padding-left: 15px;
         padding-top: 6px;
     }
     .gridTextStringClear {
         grid-column-start: 9;
+        /* autoprefixer: off */
         grid-column-end: 12;
         grid-row-start: 1;
+        /* autoprefixer: off */
         grid-row-end: 2;
         padding-left: 2px;
         padding-top: 6px;
@@ -324,48 +388,60 @@
 
     .gridTextFontSize {
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 11;
         grid-row-start: 3;
+        /* autoprefixer: off */
         grid-row-end: 4;
         padding-left: 15px;
         padding-top: 6px;
     }
     .gridTextFontFamily {
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 11;
         grid-row-start: 5;
+        /* autoprefixer: off */
         grid-row-end: 6;
         padding-left: 15px;
         padding-top: 6px;
     }
     .gridTextBold {
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 5;
         grid-row-start: 7;
+        /* autoprefixer: off */
         grid-row-end: 8;
         padding-left: 15px;
         padding-top: 6px;
     }
     .gridTextItalic {
         grid-column-start: 5;
+        /* autoprefixer: off */
         grid-column-end: 11;
         grid-row-start: 7;
+        /* autoprefixer: off */
         grid-row-end: 8;
         padding-left: 15px;
         padding-top: 6px;
     }
     .gridTextAlignTitle {
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 3;
         grid-row-start: 9;
+        /* autoprefixer: off */
         grid-row-end: 10;
         padding-left: 15px;
         padding-top: 6px;
     }
     .gridTextAlign {
         grid-column-start: 3;
+        /* autoprefixer: off */
         grid-column-end: 7;
         grid-row-start: 9;
+        /* autoprefixer: off */
         grid-row-end: 10;
         padding-left: 15px;
         padding-top: 6px;
@@ -373,40 +449,50 @@
 
     .gridTextColourTitle {
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 3;
         grid-row-start: 11;
+        /* autoprefixer: off */
         grid-row-end: 12;
         padding-left: 15px;
         padding-top: 6px;
     }
     .gridTextColour {
         grid-column-start: 3;
+        /* autoprefixer: off */
         grid-column-end: 8;
         grid-row-start: 11;
+        /* autoprefixer: off */
         grid-row-end: 12;
         padding-top: 6px;
     }
     .gridTextColourPicker {
         border: 1px solid gray;
         grid-column-start: 9;
+        /* autoprefixer: off */
         grid-column-end: 11;
         grid-row-start: 11;
+        /* autoprefixer: off */
         grid-row-end: 12;
     }
 
     /* Arrow */
     .gridArrowDirectionTitle {
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 4;
         grid-row-start: 1;
+        /* autoprefixer: off */
         grid-row-end: 2;
         padding-left: 15px;
         padding-top: 6px;
     }
     .gridArrowDirection {
         grid-column-start: 3;
+        /* autoprefixer: off */
         grid-column-end: 8;
         grid-row-start: 1;
+        /* autoprefixer: off */
         grid-row-end: 2;
         padding-left: 15px;
         padding-top: 6px;
@@ -414,64 +500,80 @@
 
     .gridArrowFillColourTitle {
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 3;
         grid-row-start: 3;
+        /* autoprefixer: off */
         grid-row-end: 4;
         padding-left: 15px;
         padding-top: 6px;
     }
     .gridArrowFillColour {
         grid-column-start: 3;
+        /* autoprefixer: off */
         grid-column-end: 8;
         grid-row-start: 3;
+        /* autoprefixer: off */
         grid-row-end: 4;
         padding-left: 15px;
         padding-top: 6px;
     }
     .gridArrowFillColourPicker {
         grid-column-start: 9;
+        /* autoprefixer: off */
         grid-column-end: 11;
         grid-row-start: 3;
+        /* autoprefixer: off */
         grid-row-end: 4;
         padding-left: 15px;
         padding-top: 6px;
     }
     .gridArrowLineColourTitle {
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 3;
         grid-row-start: 5;
+        /* autoprefixer: off */
         grid-row-end: 6;
         padding-left: 15px;
         padding-top: 6px;
     }
     .gridArrowLineColour {
         grid-column-start: 3;
+        /* autoprefixer: off */
         grid-column-end: 8;
         grid-row-start: 5;
+        /* autoprefixer: off */
         grid-row-end: 6;
         padding-left: 15px;
         padding-top: 6px;
     }
     .gridArrowLineColourPicker {
         grid-column-start: 9;
+        /* autoprefixer: off */
         grid-column-end: 11;
         grid-row-start: 5;
+        /* autoprefixer: off */
         grid-row-end: 6;
         padding-left: 15px;
         padding-top: 6px;
     }
     .gridArrowSizeTitle {
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 3;
         grid-row-start: 7;
+        /* autoprefixer: off */
         grid-row-end: 8;
         padding-left: 15px;
         padding-top: 6px;
     }
     .gridArrowSize {
         grid-column-start: 3;
+        /* autoprefixer: off */
         grid-column-end: 8;
         grid-row-start: 7;
+        /* autoprefixer: off */
         grid-row-end: 8;
         padding-left: 15px;
         padding-top: 6px;
@@ -480,56 +582,70 @@
     /* Bracket */
     .gridBracketDirectionTitle {
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 4;
         grid-row-start: 1;
+        /* autoprefixer: off */
         grid-row-end: 2;
         padding-left: 15px;
         padding-top: 6px;
     }
     .gridBracketDirection {
         grid-column-start: 3;
+        /* autoprefixer: off */
         grid-column-end: 8;
         grid-row-start: 1;
+        /* autoprefixer: off */
         grid-row-end: 2;
         padding-left: 15px;
         padding-top: 6px;
     }
     .gridBracketLineColourTitle {
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 3;
         grid-row-start: 3;
+        /* autoprefixer: off */
         grid-row-end: 4;
         padding-left: 15px;
         padding-top: 6px;
     }
     .gridBracketLineColour {
         grid-column-start: 3;
+        /* autoprefixer: off */
         grid-column-end: 8;
         grid-row-start: 3;
+        /* autoprefixer: off */
         grid-row-end: 4;
         padding-left: 15px;
         padding-top: 6px;
     }
     .gridBracketLineColourPicker {
         grid-column-start: 9;
+        /* autoprefixer: off */
         grid-column-end: 11;
         grid-row-start: 3;
+        /* autoprefixer: off */
         grid-row-end: 4;
         padding-left: 15px;
         padding-top: 6px;
     }
     .gridBracketSizeTitle {
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 3;
         grid-row-start: 5;
+        /* autoprefixer: off */
         grid-row-end: 6;
         padding-left: 15px;
         padding-top: 6px;
     }
     .gridBracketSize {
         grid-column-start: 3;
+        /* autoprefixer: off */
         grid-column-end: 8;
         grid-row-start: 5;
+        /* autoprefixer: off */
         grid-row-end: 6;
         padding-left: 15px;
         padding-top: 6px;
@@ -538,32 +654,40 @@
     /* ArrowThin */
     .gridArrowThinArea {
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 11;
         grid-row-start: 1;
+        /* autoprefixer: off */
         grid-row-end: 2;
         padding-left: 15px;
         padding-top: 6px;
     }
     .gridArrowThinColourTitle {
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 3;
         grid-row-start: 3;
+        /* autoprefixer: off */
         grid-row-end: 4;
         padding-left: 15px;
         padding-top: 6px;
     }
     .gridArrowThinColour {
         grid-column-start: 3;
+        /* autoprefixer: off */
         grid-column-end: 8;
         grid-row-start: 3;
+        /* autoprefixer: off */
         grid-row-end: 4;
         padding-left: 15px;
         padding-top: 6px;
     }
     .gridArrowThinColourPicker {
         grid-column-start: 9;
+        /* autoprefixer: off */
         grid-column-end: 11;
         grid-row-start: 3;
+        /* autoprefixer: off */
         grid-row-end: 4;
         padding-left: 15px;
         padding-top: 6px;
@@ -572,8 +696,10 @@
     /* Image */
     .gridImage {
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 11;
         grid-row-start: 1;
+        /* autoprefixer: off */
         grid-row-end: 2;
         padding-left: 15px;
         padding-top: 6px;
@@ -582,32 +708,40 @@
     /* Bullets */
     .gridBulletsFontSize {
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 11;
         grid-row-start: 1;
+        /* autoprefixer: off */
         grid-row-end: 2;
         padding-left: 15px;
         padding-top: 6px;
     }
     .gridBulletsFontFamily {
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 11;
         grid-row-start: 3;
+        /* autoprefixer: off */
         grid-row-end: 4;
         padding-left: 15px;
         padding-top: 6px;
     }
     .gridBulletsItemMarker {
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 11;
         grid-row-start: 5;
+        /* autoprefixer: off */
         grid-row-end: 6;
         padding-left: 15px;
         padding-top: 6px;
     }
     .gridBulletsIncrease {
         grid-column-start: 7;
+        /* autoprefixer: off */
         grid-column-end: 9;
         grid-row-start: 5;
+        /* autoprefixer: off */
         grid-row-end: 6;
         margin-left: 0;
         margin-right: 0;
@@ -617,8 +751,10 @@
     }
     .gridBulletsDecrease {
         grid-column-start: 9;
+        /* autoprefixer: off */
         grid-column-end: 14;
         grid-row-start: 5;
+        /* autoprefixer: off */
         grid-row-end: 6;
         margin-left: 0;
         margin-right: 0;
@@ -628,8 +764,10 @@
     }
     .gridBulletsOrdered {
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 11;
         grid-row-start: 7;
+        /* autoprefixer: off */
         grid-row-end: 8;
         padding-left: 15px;
         padding-top: 6px;
@@ -637,24 +775,30 @@
 
     .gridBulletsColourTitle {
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 3;
         grid-row-start: 9;
+        /* autoprefixer: off */
         grid-row-end: 10;
         padding-left: 15px;
         padding-top: 6px;
     }
     .gridBulletsColour {
         grid-column-start: 3;
+        /* autoprefixer: off */
         grid-column-end: 8;
         grid-row-start: 9;
+        /* autoprefixer: off */
         grid-row-end: 10;
         padding-left: 15px;
         padding-top: 6px;
     }
     .gridBulletsColourPicker {
         grid-column-start: 9;
+        /* autoprefixer: off */
         grid-column-end: 11;
         grid-row-start: 9;
+        /* autoprefixer: off */
         grid-row-end: 10;
         padding-left: 15px;
         padding-top: 6px;
@@ -662,8 +806,10 @@
 
     .gridBulletsInput {
         grid-column-start: 12;
+        /* autoprefixer: off */
         grid-column-end: 18;
         grid-row-start: 3;
+        /* autoprefixer: off */
         grid-row-end: 4;
         padding-left: 15px;
         padding-top: 6px;
@@ -671,8 +817,10 @@
 
     .gridBulletsButton {
         grid-column-start: 18;
+        /* autoprefixer: off */
         grid-column-end: 20;
         grid-row-start: 2;
+        /* autoprefixer: off */
         grid-row-end: 3;
         padding-left: 15px;
     }
@@ -680,40 +828,50 @@
     /* Value */
     .gridValueInDS {
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 11;
         grid-row-start: 1;
+        /* autoprefixer: off */
         grid-row-end: 2;
         padding-left: 15px;
         padding-top: 6px;
     }
     .gridValueFontSize {
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 11;
         grid-row-start: 4;
+        /* autoprefixer: off */
         grid-row-end: 5;
         padding-left: 15px;
         padding-top: 6px;
     }
     .gridValueFontFamily {
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 11;
         grid-row-start: 6;
+        /* autoprefixer: off */
         grid-row-end: 7;
         padding-left: 15px;
         padding-top: 6px;
     }
     .gridValueBold {
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 11;
         grid-row-start: 8;
+        /* autoprefixer: off */
         grid-row-end: 9;
         padding-left: 15px;
         padding-top: 6px;
     }
     .gridValueItalic {
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 11;
         grid-row-start: 10;
+        /* autoprefixer: off */
         grid-row-end: 11;
         padding-left: 15px;
         padding-top: 6px;
@@ -721,24 +879,30 @@
 
     .gridValueLineColourTitle {
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 3;
         grid-row-start: 12;
+        /* autoprefixer: off */
         grid-row-end: 13;
         padding-left: 15px;
         padding-top: 6px;
     }
     .gridValueLineColour {
         grid-column-start: 3;
+        /* autoprefixer: off */
         grid-column-end: 8;
         grid-row-start: 12;
+        /* autoprefixer: off */
         grid-row-end: 13;
         padding-left: 15px;
         padding-top: 6px;
     }
     .gridValueLineColourPicker {
         grid-column-start: 9;
+        /* autoprefixer: off */
         grid-column-end: 11;
         grid-row-start: 12;
+        /* autoprefixer: off */
         grid-row-end: 13;
         padding-left: 15px;
         padding-top: 6px;
@@ -747,16 +911,20 @@
     /* Ending */
     .gridButtonCancel {
         grid-column-start: 6;
+        /* autoprefixer: off */
         grid-column-end: 8;
         grid-row-start: 20;
+        /* autoprefixer: off */
         grid-row-end: 21;
         margin-bottom: 15px;
     }
 
     .gridButtonSave {
         grid-column-start: 13;
+        /* autoprefixer: off */
         grid-column-end: 15;
         grid-row-start: 20;
+        /* autoprefixer: off */
         grid-row-end: 21;
         margin-bottom: 15px;
     }
