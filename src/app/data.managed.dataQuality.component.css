@@ -14,16 +14,20 @@
         border: none;
         cursor: pointer;
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 2;
         grid-row-start: 1;
+        /* autoprefixer: off */
         grid-row-end: 2;
         text-align: left;
     }
     .gridTitle {
         font-size: 0.75rem;
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 21;
         grid-row-start: 1;
+        /* autoprefixer: off */
         grid-row-end: 2;
         margin-left: 30px;
         text-align: left;
@@ -31,161 +35,207 @@
 
     .gridNameTitle {
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 2;
         grid-row-start: 3;
+        /* autoprefixer: off */
         grid-row-end: 4;
     }
     .gridName {
         grid-column-start: 2;
+        /* autoprefixer: off */
         grid-column-end: 7;
         grid-row-start: 3;
+        /* autoprefixer: off */
         grid-row-end: 4;
     }
     
     .gridDescriptionTitle {
         grid-column-start: 7;
+        /* autoprefixer: off */
         grid-column-end: 8;
         grid-row-start: 3;
+        /* autoprefixer: off */
         grid-row-end: 4;
         margin-top: 5px;
     }
     .gridDescription {
         grid-column-start: 8;
+        /* autoprefixer: off */
         grid-column-end: 14;
         grid-row-start: 3;
+        /* autoprefixer: off */
         grid-row-end: 4;
     }
 
     .gridStatusTitle {
         grid-column-start: 14;
+        /* autoprefixer: off */
         grid-column-end: 15;
         grid-row-start: 3;
+        /* autoprefixer: off */
         grid-row-end: 4;
     }
     .gridStatus {
         grid-column-start: 15;
+        /* autoprefixer: off */
         grid-column-end: 18;
         grid-row-start: 3;
+        /* autoprefixer: off */
         grid-row-end: 4;
     }
 
     .gridTypeTitle {
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 2;
         grid-row-start: 5;
+        /* autoprefixer: off */
         grid-row-end: 6;
         margin-top: 5px;
     }
     .gridType {
         grid-column-start: 2;
+        /* autoprefixer: off */
         grid-column-end: 7;
         grid-row-start: 5;
+        /* autoprefixer: off */
         grid-row-end: 6;
     }
 
     .gridDatasourceTitle {
         grid-column-start: 7;
+        /* autoprefixer: off */
         grid-column-end: 8;
         grid-row-start: 5;
+        /* autoprefixer: off */
         grid-row-end: 6;
         margin-top: 5px;
     }
     .gridDatasource {
         grid-column-start: 8;
+        /* autoprefixer: off */
         grid-column-end: 13;
         grid-row-start: 5;
+        /* autoprefixer: off */
         grid-row-end: 6;
     }
 
     .gridNrIssuesTitle {
         grid-column-start: 14;
+        /* autoprefixer: off */
         grid-column-end: 15;
         grid-row-start: 5;
+        /* autoprefixer: off */
         grid-row-end: 6;
         margin-top: 5px;
     }
     .gridNrIssues {
         grid-column-start: 15;
+        /* autoprefixer: off */
         grid-column-end: 21;
         grid-row-start: 5;
+        /* autoprefixer: off */
         grid-row-end: 6;
     }
 
     .gridLoggedByTitle {
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 2;
         grid-row-start: 7;
+        /* autoprefixer: off */
         grid-row-end: 8;
         margin-top: 5px;
     }
     .gridLoggedBy {
         grid-column-start: 2;
+        /* autoprefixer: off */
         grid-column-end: 7;
         grid-row-start: 7;
+        /* autoprefixer: off */
         grid-row-end: 8;
     }
 
     .gridLoggedOnTitle {
         grid-column-start: 7;
+        /* autoprefixer: off */
         grid-column-end: 8;
         grid-row-start: 7;
+        /* autoprefixer: off */
         grid-row-end: 8;
         margin-top: 5px;
     }
     .gridLoggedOn {
         grid-column-start: 8;
+        /* autoprefixer: off */
         grid-column-end: 14;
         grid-row-start: 7;
+        /* autoprefixer: off */
         grid-row-end: 8;
     }
 
     .gridSolvedByTitle {
         grid-column-start: 14;
+        /* autoprefixer: off */
         grid-column-end: 15;
         grid-row-start: 7;
+        /* autoprefixer: off */
         grid-row-end: 8;
         margin-top: 5px;
     }
     .gridSolvedBy {
         grid-column-start: 15;
+        /* autoprefixer: off */
         grid-column-end: 21;
         grid-row-start: 7;
+        /* autoprefixer: off */
         grid-row-end: 8;
     }
 
     .gridSolvedOnTitle {
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 2;
         grid-row-start: 9;
+        /* autoprefixer: off */
         grid-row-end: 10;
         margin-top: 5px;
     }
     .gridSolvedOn {
         grid-column-start: 2;
+        /* autoprefixer: off */
         grid-column-end: 7;
         grid-row-start: 9;
+        /* autoprefixer: off */
         grid-row-end: 10;
     }
 
     .gridErrorMessage {
         grid-column-start: 10;
+        /* autoprefixer: off */
         grid-column-end: 20;
         grid-row-start: 9;
+        /* autoprefixer: off */
         grid-row-end: 10;
     }
     
     .gridButtonCancel {
         grid-column-start: 2;
+        /* autoprefixer: off */
         grid-column-end: 4;
         grid-row-start: 10;
+        /* autoprefixer: off */
         grid-row-end: 11;
         margin: 8px 2px 2px 2px;
         text-align: left;
     }
     .gridButtonAdd {
         grid-column-start: 6;
+        /* autoprefixer: off */
         grid-column-end: 8;
         grid-row-start: 10;
+        /* autoprefixer: off */
         grid-row-end: 11;
         margin: 8px 2px 2px 2px;
         text-align: left;
@@ -195,8 +245,10 @@
         border: 1px solid gray;
         border-radius: 4px;
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 21;
         grid-row-start: 13;
+        /* autoprefixer: off */
         grid-row-end: 25;
         overflow-y: scroll;
         width: 100%;
