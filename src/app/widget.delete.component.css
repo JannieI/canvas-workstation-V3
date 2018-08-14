@@ -8,8 +8,10 @@
     border: none;
     cursor: pointer;
     grid-column-start: 1;
+    /* autoprefixer: off */
     grid-column-end: 2;
     grid-row-start: 1;
+    /* autoprefixer: off */
     grid-row-end: 2;
     text-align: left;
 }
@@ -23,8 +25,10 @@
 
     .gridTitle {
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 21;
         grid-row-start: 1;
+        /* autoprefixer: off */
         grid-row-end: 2;
         margin-left: 30px;
         text-align: left;
@@ -32,32 +36,40 @@
 
     .widget {
         grid-column-start: 2;
+        /* autoprefixer: off */
         grid-column-end: 18;
         grid-row-start: 3;
+        /* autoprefixer: off */
         grid-row-end: 18;
         margin-left: 50px;
     }
 
     .gridConfirmation {
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 12;
         grid-row-start: 19;
+        /* autoprefixer: off */
         grid-row-end: 20;
         text-align: left;
     }
 
     .gridButtonCancel {
         grid-column-start: 2;
+        /* autoprefixer: off */
         grid-column-end: 4;
         grid-row-start: 20;
+        /* autoprefixer: off */
         grid-row-end: 21;
         margin-top: 1rem;
     }
 
     .gridButtonDelete {
         grid-column-start: 6;
+        /* autoprefixer: off */
         grid-column-end: 8;
         grid-row-start: 20;
+        /* autoprefixer: off */
         grid-row-end: 21;
         margin-top: 1rem;
     }
