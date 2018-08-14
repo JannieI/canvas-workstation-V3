@@ -14,16 +14,20 @@
         border: none;
         cursor: pointer;
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 2;
         grid-row-start: 1;
+        /* autoprefixer: off */
         grid-row-end: 2;
         text-align: left;
     }
     .gridTitle {
         font-size: 0.75rem;
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 21;
         grid-row-start: 1;
+        /* autoprefixer: off */
         grid-row-end: 2;
         margin-left: 30px;
         text-align: left;
@@ -31,127 +35,163 @@
 
     .gridDatasourceNameTitle {
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 2;
         grid-row-start: 3;
+        /* autoprefixer: off */
         grid-row-end: 4;
     }
     .gridDatasourceName {
         grid-column-start: 2;
+        /* autoprefixer: off */
         grid-column-end: 7;
         grid-row-start: 3;
+        /* autoprefixer: off */
         grid-row-end: 4;
     }
 
     .gridDescriptionTitle {
         grid-column-start: 7;
+        /* autoprefixer: off */
         grid-column-end: 9;
         grid-row-start: 3;
+        /* autoprefixer: off */
         grid-row-end: 4;
     }
     .gridDescription {
         grid-column-start: 9;
+        /* autoprefixer: off */
         grid-column-end: 13;
         grid-row-start: 3;
+        /* autoprefixer: off */
         grid-row-end: 4;
     }
 
     .gridServerTypeTitle {
         grid-column-start: 14;
+        /* autoprefixer: off */
         grid-column-end: 16;
         grid-row-start: 3;
+        /* autoprefixer: off */
         grid-row-end: 4;
     }
     .gridServerType {
         grid-column-start: 16;
+        /* autoprefixer: off */
         grid-column-end: 20;
         grid-row-start: 3;
+        /* autoprefixer: off */
         grid-row-end: 4;
     }
 
     .gridServerNameTitle {
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 2;
         grid-row-start: 5;
+        /* autoprefixer: off */
         grid-row-end: 6;
         margin-top: 5px;
     }
     .gridServerName {
         grid-column-start: 2;
+        /* autoprefixer: off */
         grid-column-end: 7;
         grid-row-start: 5;
+        /* autoprefixer: off */
         grid-row-end: 6;
         margin-top: 5px;
     }
 
     .gridServerPortTitle {
         grid-column-start: 7;
+        /* autoprefixer: off */
         grid-column-end: 9;
         grid-row-start: 5;
+        /* autoprefixer: off */
         grid-row-end: 6;
         margin-top: 5px;
     }
     .gridServerPort {
         grid-column-start: 9;
+        /* autoprefixer: off */
         grid-column-end: 14;
         grid-row-start: 5;
+        /* autoprefixer: off */
         grid-row-end: 6;
         margin-top: 5px;
     }
 
     .gridDatabaseTitle {
         grid-column-start: 14;
+        /* autoprefixer: off */
         grid-column-end: 16;
         grid-row-start: 5;
+        /* autoprefixer: off */
         grid-row-end: 6;
         margin-top: 5px;
     }
     .gridDatabase {
         grid-column-start: 16;
+        /* autoprefixer: off */
         grid-column-end: 21;
         grid-row-start: 5;
+        /* autoprefixer: off */
         grid-row-end: 6;
     }
 
     .gridUsernameTitle {
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 2;
         grid-row-start: 7;
+        /* autoprefixer: off */
         grid-row-end: 8;
         margin-top: 5px;
     }
     .gridUsername {
         grid-column-start: 2;
+        /* autoprefixer: off */
         grid-column-end: 7;
         grid-row-start: 7;
+        /* autoprefixer: off */
         grid-row-end: 8;
     }
 
     .gridPasswordTitle {
         grid-column-start: 7;
+        /* autoprefixer: off */
         grid-column-end: 9;
         grid-row-start: 7;
+        /* autoprefixer: off */
         grid-row-end: 8;
         margin-top: 5px;
     }
     .gridPassword {
         grid-column-start: 9;
+        /* autoprefixer: off */
         grid-column-end: 18;
         grid-row-start: 7;
+        /* autoprefixer: off */
         grid-row-end: 8;
         margin-top: 5px;
     }
 
     .gridDatasourceIsCachedTitle {
         grid-column-start: 14;
+        /* autoprefixer: off */
         grid-column-end: 16;
         grid-row-start: 7;
+        /* autoprefixer: off */
         grid-row-end: 8;
         margin-top: 5px;
     }
     .gridDatasourceIsCached {
         grid-column-start: 16;
+        /* autoprefixer: off */
         grid-column-end: 17;
         grid-row-start: 7;
+        /* autoprefixer: off */
         grid-row-end: 8;
         margin-top: 5px;
     }
@@ -159,29 +199,37 @@
     .gridErrorMessage {
         color: red;
         grid-column-start: 13;
+        /* autoprefixer: off */
         grid-column-end: 21;
         grid-row-start: 8;
+        /* autoprefixer: off */
         grid-row-end: 11;
     }
 
     .gridGoButton {
         grid-column-start: 8;
+        /* autoprefixer: off */
         grid-column-end: 9;
         grid-row-start: 16;
+        /* autoprefixer: off */
         grid-row-end: 17;
     }
 
     .gridSpinner {
         grid-column-start: 15;
+        /* autoprefixer: off */
         grid-column-end: 16;
         grid-row-start: 18;
+        /* autoprefixer: off */
         grid-row-end: 20;
     }
 
     .gridSQLTextTitle {
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 8;
         grid-row-start: 9;
+        /* autoprefixer: off */
         grid-row-end: 10;
         height: 100%;
         width: 100%;
@@ -190,8 +238,10 @@
         border: 1px solid gray;
         border-radius: 4px;
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 8;
         grid-row-start: 10;
+        /* autoprefixer: off */
         grid-row-end: 25;
         height: 100%;
         overflow-y: scroll;
@@ -202,24 +252,30 @@
         border: 1px solid gray;
         border-radius: 4px;
         grid-column-start: 9;
+        /* autoprefixer: off */
         grid-column-end: 21;
         grid-row-start: 9;
+        /* autoprefixer: off */
         grid-row-end: 25;
         width: 100%;
     }
 
     .gridButtonCancel {
         grid-column-start: 6;
+        /* autoprefixer: off */
         grid-column-end: 8;
         grid-row-start: 25;
+        /* autoprefixer: off */
         grid-row-end: 26;
         text-align: left;
     }
 
     .gridSavedMessage {
         grid-column-start: 9;
+        /* autoprefixer: off */
         grid-column-end: 12;
         grid-row-start: 25;
+        /* autoprefixer: off */
         grid-row-end: 26;
         padding-top: 4px;
         text-align: left;
@@ -227,16 +283,20 @@
 
     .gridButtonSave {
         grid-column-start: 13;
+        /* autoprefixer: off */
         grid-column-end: 15;
         grid-row-start: 25;
+        /* autoprefixer: off */
         grid-row-end: 26;
         text-align: left;
     }
 
     .gridButtonTransformation {
         grid-column-start: 15;
+        /* autoprefixer: off */
         grid-column-end: 21;
         grid-row-start: 25;
+        /* autoprefixer: off */
         grid-row-end: 26;
         padding-top: 4px;
     }
