@@ -14,16 +14,20 @@
         border: none;
         cursor: pointer;
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 2;
         grid-row-start: 1;
+        /* autoprefixer: off */
         grid-row-end: 2;
         text-align: left;
     }
     .gridTitle {
         font-size: 0.75rem;
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 18;
         grid-row-start: 1;
+        /* autoprefixer: off */
         grid-row-end: 2;
         margin-left: 30px;
         text-align: left;
@@ -32,16 +36,20 @@
     .gridToUsersTitle {
         font-size: 0.65rem;
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 18;
         grid-row-start: 3;
+        /* autoprefixer: off */
         grid-row-end: 4;
         text-align: left;
     }
 
     .gridToUsers {
         grid-column-start: 4;
+        /* autoprefixer: off */
         grid-column-end: 18;
         grid-row-start: 3;
+        /* autoprefixer: off */
         grid-row-end: 4;
         margin-left: 20px;
         text-align: left;
@@ -50,16 +58,20 @@
     .gridToGroupsTitle {
         font-size: 0.65rem;
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 18;
         grid-row-start: 5;
+        /* autoprefixer: off */
         grid-row-end: 6;
         text-align: left;
     }
 
     .gridToGroups {
         grid-column-start: 4;
+        /* autoprefixer: off */
         grid-column-end: 18;
         grid-row-start: 5;
+        /* autoprefixer: off */
         grid-row-end: 6;
         margin-left: 20px;
         text-align: left;
@@ -68,16 +80,20 @@
     .gridSubjectTitle {
         font-size: 0.65rem;
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 18;
         grid-row-start: 7;
+        /* autoprefixer: off */
         grid-row-end: 8;
         text-align: left;
     }
 
     .gridSubject {
         grid-column-start: 4;
+        /* autoprefixer: off */
         grid-column-end: 7;
         grid-row-start: 7;
+        /* autoprefixer: off */
         grid-row-end: 8;
         margin-left: 20px;
         text-align: left;
@@ -86,16 +102,20 @@
     .gridBodyTitle {
         font-size: 0.65rem;
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 18;
         grid-row-start: 9;
+        /* autoprefixer: off */
         grid-row-end: 10;
         text-align: left;
     }
 
     .gridBody {
         grid-column-start: 4;
+        /* autoprefixer: off */
         grid-column-end: 7;
         grid-row-start: 9;
+        /* autoprefixer: off */
         grid-row-end: 10;
         margin-left: 20px;
         text-align: left;
@@ -104,16 +124,20 @@
     .gridLinkTitle {
         font-size: 0.65rem;
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 18;
         grid-row-start: 11;
+        /* autoprefixer: off */
         grid-row-end: 12;
         text-align: left;
     }
 
     .gridLink {
         grid-column-start: 7;
+        /* autoprefixer: off */
         grid-column-end: 8;
         grid-row-start: 11;
+        /* autoprefixer: off */
         grid-row-end: 12;
         margin-left: 20px;
         text-align: left;
@@ -122,8 +146,10 @@
     .gridErrorMessage {
         color: red;
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 14;
         grid-row-start: 13;
+        /* autoprefixer: off */
         grid-row-end: 14;
         margin-left: 20px;
         text-align: left;
@@ -131,16 +157,20 @@
 
     .gridButtonCancel {
         grid-column-start: 4;
+        /* autoprefixer: off */
         grid-column-end: 6;
         grid-row-start: 14;
+        /* autoprefixer: off */
         grid-row-end: 15;
         text-align: left;
     }
 
     .gridButtonSend {
         grid-column-start: 10;
+        /* autoprefixer: off */
         grid-column-end: 13;
         grid-row-start: 14;
+        /* autoprefixer: off */
         grid-row-end: 15;
         text-align: left;
     }
