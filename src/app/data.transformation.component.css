@@ -14,16 +14,20 @@
         border: none;
         cursor: pointer;
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 2;
         grid-row-start: 1;
+        /* autoprefixer: off */
         grid-row-end: 2;
         text-align: left;
     }
     .gridTitle {
         font-size: 0.75rem;
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 21;
         grid-row-start: 1;
+        /* autoprefixer: off */
         grid-row-end: 2;
         margin-left: 30px;
         text-align: left;
@@ -32,16 +36,20 @@
     .gridParameter1Title {
         font-size: 12px;
         grid-column-start: 7;
+        /* autoprefixer: off */
         grid-column-end: 9;
         grid-row-start: 4;
+        /* autoprefixer: off */
         grid-row-end: 5;
         margin-top: 5px;
         margin-left: 12px;
     }
     .gridParameter1 {
         grid-column-start: 8;
+        /* autoprefixer: off */
         grid-column-end: 13;
         grid-row-start: 4;
+        /* autoprefixer: off */
         grid-row-end: 5;
         margin-top: 5px;
         margin-left: 12px;
@@ -50,14 +58,18 @@
     .gridParameter2Title {
         font-size: 12px;
         grid-column-start: 14;
+        /* autoprefixer: off */
         grid-column-end: 15;
         grid-row-start: 4;
+        /* autoprefixer: off */
         grid-row-end: 5;
     }
     .gridParameter2 {
         grid-column-start: 15;
+        /* autoprefixer: off */
         grid-column-end: 20;
         grid-row-start: 4;
+        /* autoprefixer: off */
         grid-row-end: 5;
         margin-left: 2px;
     }
@@ -65,16 +77,20 @@
     .gridParameter3Title {
         font-size: 12px;
         grid-column-start: 7;
+        /* autoprefixer: off */
         grid-column-end: 9;
         grid-row-start: 6;
+        /* autoprefixer: off */
         grid-row-end: 7;
         margin-top: 5px;
         margin-left: 12px;
     }
     .gridParameter3 {
         grid-column-start: 8;
+        /* autoprefixer: off */
         grid-column-end: 13;
         grid-row-start: 6;
+        /* autoprefixer: off */
         grid-row-end: 7;
         margin-top: 5px;
         margin-left: 12px;
@@ -83,15 +99,19 @@
     .gridParameter4Title {
         font-size: 12px;
         grid-column-start: 14;
+        /* autoprefixer: off */
         grid-column-end: 15;
         grid-row-start: 6;
+        /* autoprefixer: off */
         grid-row-end: 7;
         margin-top: 5px;
     }
     .gridParameter4 {
         grid-column-start: 15;
+        /* autoprefixer: off */
         grid-column-end: 21;
         grid-row-start: 6;
+        /* autoprefixer: off */
         grid-row-end: 7;
         margin-top: 5px;
         margin-left: 2px;
@@ -100,16 +120,20 @@
     .gridParameter5Title {
         font-size: 12px;
         grid-column-start: 7;
+        /* autoprefixer: off */
         grid-column-end: 9;
         grid-row-start: 8;
+        /* autoprefixer: off */
         grid-row-end: 9;
         margin-top: 5px;
         margin-left: 12px;
     }
     .gridParameter5 {
         grid-column-start: 8;
+        /* autoprefixer: off */
         grid-column-end: 13;
         grid-row-start: 8;
+        /* autoprefixer: off */
         grid-row-end: 9;
         margin-top: 5px;
         margin-left: 12px;
@@ -118,15 +142,19 @@
     .gridParameter6Title {
         font-size: 12px;
         grid-column-start: 14;
+        /* autoprefixer: off */
         grid-column-end: 15;
         grid-row-start: 8;
+        /* autoprefixer: off */
         grid-row-end: 9;
         margin-top: 5px;
     }
     .gridParameter6 {
         grid-column-start: 15;
+        /* autoprefixer: off */
         grid-column-end: 19;
         grid-row-start: 8;
+        /* autoprefixer: off */
         grid-row-end: 9;
         margin-top: 5px;
         margin-left: 2px;
@@ -134,16 +162,20 @@
 
     .gridTransformationButtonCancel {
         grid-column-start: 19;
+        /* autoprefixer: off */
         grid-column-end: 21;
         grid-row-start: 4;
+        /* autoprefixer: off */
         grid-row-end: 5;
         margin-top: 5px;
         margin-left: 12px;
     }
     .gridTransformationButtonSave {
         grid-column-start: 19;
+        /* autoprefixer: off */
         grid-column-end: 21;
         grid-row-start: 7;
+        /* autoprefixer: off */
         grid-row-end: 8;
         margin-top: 5px;
         margin-left: 12px;
@@ -152,8 +184,10 @@
     .gridErrorMessage {
         color: red;
         grid-column-start: 8;
+        /* autoprefixer: off */
         grid-column-end: 20;
         grid-row-start: 9;
+        /* autoprefixer: off */
         grid-row-end: 10;
         margin-left: 12px;
     }
@@ -162,8 +196,10 @@
         border: 1px solid gray;
         border-radius: 4px;
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 7;
         grid-row-start: 4;
+        /* autoprefixer: off */
         grid-row-end: 25;
         height: 100%;
         overflow-y: scroll;
@@ -173,23 +209,29 @@
 
     .gridTransformationButtonAdd {
         grid-column-start: 1;
+        /* autoprefixer: off */
         grid-column-end: 3;
         grid-row-start: 26;
+        /* autoprefixer: off */
         grid-row-end: 27;
         margin-left: 22px;
     }
     .gridTransformationSelect {
         grid-column-start: 3;
+        /* autoprefixer: off */
         grid-column-end: 6;
         grid-row-start: 26;
+        /* autoprefixer: off */
         grid-row-end: 27;
         margin-left: 12px;
         z-index: 100;
     }
     .gridTransformationSignpost {
         grid-column-start: 6;
+        /* autoprefixer: off */
         grid-column-end: 7;
         grid-row-start: 26;
+        /* autoprefixer: off */
         grid-row-end: 27;
         margin-left: 2px;
     }
@@ -198,8 +240,10 @@
         border: 1px solid gray;
         border-radius: 4px;
         grid-column-start: 7;
+        /* autoprefixer: off */
         grid-column-end: 21;
         grid-row-start: 10;
+        /* autoprefixer: off */
         grid-row-end: 25;
         height: 100%;
         overflow-y: scroll;
