@@ -61,6 +61,7 @@ This document describes items for later versions of Canvas.
     - consume all files in a folder !!  Can also poll folder to update when they change !!!
     - infer xsd from XML files. Tranform XML to SQL db table And show mapping. Publish to make it accessable by other consumers like spotfire. Which reads it as a db table, or to other bi consumers. Can combine XML to other data
     - can read Ems, Jms ... ??
+    - expose Canvas to existing users as private preview and log keystrokes => knows what they are using, and how long something takes!!
 
     Bookmarks:
     ---------
@@ -340,6 +341,8 @@ This document describes items for later versions of Canvas.
     Sample (standard) DS: useful data available
     - Consider where to store, tag as sample => cannot alter and delete?
     - Reserve Bank CPI
+    - Support desk!  Usual, ie calls per week, calls per agent, etc.  BUT, have a capturing tool ~ Canvas menu.  When a call is closed: click on menu option, add: issue + text, new dev requested + text, support needed by user + text.  This can produce powerful graphs on the three dimensions, each with nr of users per menu option.  This can be used to improve training, and new dev: the hotspots should be easily visible = area that must be fixed or enhanced or simplied to give the best bang for the next sprint.  Running the data over a timeline and marking the change as an event, one can easily see if the change has worked, and trends (ie what is getting worse / better).  I want to use this for Clarity on Canvas.
+
 
 
     Templates:

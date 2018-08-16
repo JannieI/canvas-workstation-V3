@@ -8,7 +8,7 @@ import { EventEmitter }               from '@angular/core';
 import { HostListener }               from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
- 
+
 // Our Functions
 import { GlobalFunctionService } 	  from './global-function.service';
 
@@ -17,14 +17,14 @@ import { GlobalVariableService}       from './global-variable.service';
 
 // Models
 import { CanvasMessage }           from './models';
- 
+
 @Component({
     selector: 'collaborate-messages',
     templateUrl: './collaborate.messages.component.html',
     styleUrls: ['./collaborate.messages.component.css']
 })
 export class CollaborateMessagesComponent implements OnInit {
- 
+
     @Output() formCollaborateMessagesClosed: EventEmitter<string> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
@@ -39,7 +39,7 @@ export class CollaborateMessagesComponent implements OnInit {
         };
 
     }
-    
+
     body: string = '';
     canvasMessages: CanvasMessage[] = [];
     errorMessage: string = '';
@@ -73,7 +73,7 @@ export class CollaborateMessagesComponent implements OnInit {
     clickSystem() {
         // Fill SYSTEM value into form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSystem', '@Start');
-        
+
         this.sender = 'SYSTEM';
     }
 
@@ -100,7 +100,7 @@ export class CollaborateMessagesComponent implements OnInit {
         };
 
     }
-    
+
     clickFilter(showNewMessage: boolean) {
         // Toggle filter on / off
         this.globalFunctionService.printToConsole(this.constructor.name,'clickFilter', '@Start');
@@ -167,7 +167,7 @@ export class CollaborateMessagesComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickJumpToLinked', '@Start');
 
         this.errorMessage = '';
-        
+
         let messagesFound: CanvasMessage[] = this.canvasMessages.filter(msg => msg.id == id);
 
         if (messagesFound.length == 0) {
@@ -186,7 +186,7 @@ export class CollaborateMessagesComponent implements OnInit {
         );
 
 		this.formCollaborateMessagesClosed.emit('Closed');
-        
+
     }
 
     clickReply(id: number) {
@@ -194,7 +194,7 @@ export class CollaborateMessagesComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickReply', '@Start');
 
         this.errorMessage = '';
-        
+
         this.messageAction = 'reply'
         let messageIndex: number = this.canvasMessages.findIndex(msg => msg.id == id);
         if (messageIndex >= 0) {
@@ -211,7 +211,7 @@ export class CollaborateMessagesComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickForward', '@Start');
 
         this.errorMessage = '';
-        
+
         this.messageAction = 'forward'
         let messageIndex: number = this.canvasMessages.findIndex(msg => msg.id == id);
         if (messageIndex >= 0) {
@@ -226,10 +226,10 @@ export class CollaborateMessagesComponent implements OnInit {
     handleReplyForward(ev: any) {
         // Forward a message
         this.globalFunctionService.printToConsole(this.constructor.name,'handleReplyForward', '@Start');
-        
+
         this.clickFilter(false);
         this.messageAction = '';
-        
+
     }
 
     clickCopyText(id: number) {
@@ -251,7 +251,7 @@ export class CollaborateMessagesComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRecall', '@Start');
 
         this.errorMessage = '';
-        
+
         let readCount: number = 0;
         let messageIndex: number = this.canvasMessages.findIndex(msg => msg.id == id);
         if (messageIndex >= 0) {
