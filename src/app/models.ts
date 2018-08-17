@@ -996,15 +996,15 @@ export class Widget {
         }[];                            // Bullets, with info
     shapeBulletStyleType: string;       // List marker: disc, circle, square, none
     shapeBulletsOrdered: boolean;       // True if the list is ordered
-    shapeBulletMarginBottom: number;       // Margin-Top in px
+    shapeBulletMarginBottom: number;    // Margin-Top in px
     shapeCorner: number;                // Corner size in px, ie 15
     shapeFill: string;                  // Fill / inside (ie of circle, colour of text, etc)
     shapeFontFamily: string;            // Font, ie Aria, Sans Serif
     shapeFontSize: number;              // Size of font in px, ie 12
-    shapeLineHeight: string;            // Line Height: normal, 1.6, 80%
     shapeImageUrl: string;              // URL of the Image
     shapeIsBold: boolean;               // True if text is bold
     shapeIsItalic: boolean;             // True if text is italic
+    shapeLineHeight: string;            // Line Height: normal, 1.6, 80%
     shapeOpacity: number;               // Opacity, between 0 and 1, ie of rectangle
     shapeRotation: number;              // Nr of degrees to rotate a Shape
     shapeSize: number;                  // Size of shape, used in scale(). For now: 0-9
@@ -1012,7 +1012,8 @@ export class Widget {
     shapeStrokeWidth: string;           // Line thickness in px
     shapeSvgHeight: number;             // Height of SVG element
     shapeSvgWidth: number;              // Width of SVG element
-    shapeText: string;                  // Text in textbox
+    shapeText: string;                  // Text in textbox - WITH formula, ie #pagenr
+    shapeTextDisplay: string;           // Text in textbox - translated, ie 1
     shapeTextAlign: string;             // Align text Left, Center, Right
     shapeTextColour: string;            // Text colour
     shapeValue: string;                 // Value to display

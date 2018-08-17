@@ -276,6 +276,7 @@ const widgetTemplate: Widget =
         "shapeSvgHeight": 30,
         "shapeSvgWidth": 30,
         "shapeText": "",
+        "shapeTextDisplay": "",
         "shapeTextAlign": 'Left',
         "shapeTextColour": "",
         "shapeValue": "",
@@ -6079,18 +6080,19 @@ export class GlobalVariableService {
                             };
 
                             // // Constants in Text and Bullets
-                            // let today = new Date();
-                            // if (w.widgetType == 'Shape') {
-                            //     if (w.widgetSubType == 'Text') {
-                            //         w.shapeText.replace('#date', this.formatDate(today, 'date'));
-                            //         w.shapeText.replace('#pagenr', '1');
-                            //     };
-                            //     // if (w.widgetSubType == 'Bullets') {
-                            //     //     w.shapeBullet.forEach(sb => {
-                            //     //         sb.text
-                            //     //     });
-                            //     // };
-                            // };
+                            let today = new Date();
+                            if (w.widgetType == 'Shape') {
+                                if (w.widgetSubType == 'Text') {
+                                    w.shapeTextDisplay = w.shapeText;
+                                    w.shapeTextDisplay.replace('#date', this.formatDate(today, 'date'));
+                                    w.shapeTextDisplay.replace('#pagenr', '1');
+                                };
+                                // if (w.widgetSubType == 'Bullets') {
+                                //     w.shapeBullet.forEach(sb => {
+                                //         sb.text
+                                //     });
+                                // };
+                            };
 
                             // TODO - this does NOT work in datalib: if the first dashboardTabIDs
                             // = "a,b,c", then all works.  Else, it gives a big number 1046785...
@@ -7720,6 +7722,7 @@ export class GlobalVariableService {
                 {key: 'shapeSvgWidth', 			    type: 'int'},
                 {key: 'shapeFill', 					type: 'string'},
                 {key: 'shapeText', 					type: 'string'},
+                {key: 'shapeTextDisplay',			type: 'string'},
                 {key: 'shapeTextAlign',				type: 'string'},
                 {key: 'shapeTextColour', 			type: 'string'},
                 {key: 'shapeValue', 				type: 'string'},
@@ -8182,6 +8185,7 @@ export class GlobalVariableService {
                 w.shapeSvgWidth = changedWidget.shapeSvgWidth;
                 w.shapeFill = changedWidget.shapeFill;
                 w.shapeText = changedWidget.shapeText;
+                w.shapeTextDisplay = changedWidget.shapeTextDisplay;
                 w.shapeTextAlign = changedWidget.shapeTextAlign;
                 w.shapeTextColour = changedWidget.shapeTextColour;
                 w.shapeValue = changedWidget.shapeValue;
@@ -8324,6 +8328,7 @@ export class GlobalVariableService {
                 w.shapeSvgWidth = changedWidget.shapeSvgWidth;
                 w.shapeFill = changedWidget.shapeFill;
                 w.shapeText = changedWidget.shapeText;
+                w.shapeTextDisplay = changedWidget.shapeTextDisplay;
                 w.shapeTextAlign = changedWidget.shapeTextAlign;
                 w.shapeTextColour = changedWidget.shapeTextColour;
                 w.shapeValue = changedWidget.shapeValue;

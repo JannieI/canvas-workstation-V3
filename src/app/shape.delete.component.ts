@@ -58,7 +58,6 @@ export class ShapeDeleteComponent implements OnInit {
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
-        private globalVariableService: GlobalVariableService,
     ) {}
 
     ngOnInit() {
