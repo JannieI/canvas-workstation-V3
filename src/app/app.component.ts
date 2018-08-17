@@ -142,7 +142,7 @@ export class AppComponent implements OnInit {
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
         event.preventDefault();
-
+        console.log('xx key pressed: ', event.code)
         if (event.code == 'Escape'  &&  (!event.ctrlKey)  &&  (!event.shiftKey)  ) {
 
             if (this.showWidgetFullScreenWidth > 0) {
@@ -183,12 +183,16 @@ export class AppComponent implements OnInit {
             this.clickMenuPaletteDelete();
             return;
         };
+        if (event.code == 'Home'  &&  (event.ctrlKey)  &&  (!event.shiftKey) ) {
+            this.dashboardPageFirst();
+            return;
+        };
         if (event.code == 'PageDown'  &&  (!event.ctrlKey)  &&  (!event.shiftKey) ) {
             this.dashboardPageDown();
             return;
         };
-        if (event.code == 'PageUp'  &&  (!event.ctrlKey)  &&  (!event.shiftKey) ) {
-            this.dashboardPageUp();
+        if (event.code == 'End'  &&  (event.ctrlKey)  &&  (!event.shiftKey) ) {
+            this.dashboardPageLast();
             return;
         };
 
