@@ -7,7 +7,7 @@
                     <button type="button" class="closeButton" (click)="clickClose()">
                         <b>X</b>
                     </button>
-    
+
                     <div class="colourpicker" *ngIf="colourPickerClosed">
                         <colour-picker
                             [callingRoutine]="callingRoutine"
@@ -27,10 +27,10 @@
                                 <h5 style="margin-top: 0; color:gray;">
                                     Help
                                 </h5>
-                                <p style="margin-top: 0; color:gray;"> 
+                                <p style="margin-top: 0; color:gray;">
                                     This form specifies the properties of the container around
                                     the Widget.  The image on the right shows how the changes
-                                    will appear.  
+                                    will appear.
                                     Click the X or press Escape to close this form.
                                 </p>
                             </clr-signpost-content>
@@ -45,7 +45,7 @@
                         [style.border-radius]="localWidget.containerBorderRadius"
                         [style.box-shadow]="localWidget.containerBoxshadow"
                         [style.font-size.px]="localWidget.containerFontsize"
-                        
+
                         >
                         <br>
                         <br>
@@ -66,7 +66,7 @@
 
                     <div class="gridBackgroundcolorTitle">
                         Bg Colour:
-                    </div>  
+                    </div>
                     <div class="select gridBackgroundcolor">
                         <select [(ngModel)]="localWidget.containerBackgroundcolor"
                             name="containerBackgroundcolor"
@@ -89,7 +89,7 @@
 
                     <div class="gridLinecolorTitle">
                         Border Colour:
-                    </div>  
+                    </div>
                     <div class="select gridLinecolor">
                         <select [(ngModel)]="lineColor"
                             (change)="clickSelectLineColor($event)"
@@ -112,7 +112,7 @@
 
                     <div class="gridLineSizeTitle">
                         Border Size:
-                    </div>  
+                    </div>
                     <div class="select gridLineSize">
                         <select [(ngModel)]="lineSize"
                             name="lineSize"
@@ -137,10 +137,10 @@
                             >
                     </div>
 
-                    <div class="griBoxShadowTitle">
+                    <div class="gridBoxShadowTitle">
                         Box Shadow:
                     </div>
-                    <div class="griBoxShadow">
+                    <div class="gridBoxShadow">
                         <input [(ngModel)]="localWidget.containerBoxshadow"
                             type="text"
                             name="containerBoxshadow"
@@ -148,10 +148,10 @@
                             >
                     </div>
 
-                    <div class="griFontSizeTitle">
+                    <div class="gridFontSizeTitle">
                         FontSize:
                     </div>
-                    <div class="griFontSize">
+                    <div class="gridFontSize">
                         <input [(ngModel)]="localWidget.containerFontsize"
                             type="number"
                             name="containerFontsize"
@@ -161,6 +161,38 @@
                             max="48"
                             size="5"
                             [style.color]="!containerFontsizeVar.valid ? 'red' : 'gray'"
+                            >
+                    </div>
+
+                    <div class="gridTopTitle">
+                        Top:
+                    </div>
+                    <div class="gridTop">
+                        <input [(ngModel)]="localWidget.containerTop"
+                            type="number"
+                            name="containerTop"
+                            #containerTopVar="ngModel"
+                            placeholder="4-48 pt"
+                            min="4"
+                            max="48"
+                            size="5"
+                            [style.color]="!containerTopVar.valid ? 'red' : 'gray'"
+                            >
+                    </div>
+
+                    <div class="gridLeftTitle">
+                        Left:
+                    </div>
+                    <div class="gridLeft">
+                        <input [(ngModel)]="localWidget.containerLeft"
+                            type="number"
+                            name="containerLeft"
+                            #containerLeftVar="ngModel"
+                            placeholder="4-48 pt"
+                            min="4"
+                            max="48"
+                            size="5"
+                            [style.color]="!containerLeftVar.valid ? 'red' : 'gray'"
                             >
                     </div>
 

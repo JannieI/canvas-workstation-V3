@@ -70,8 +70,8 @@ export class WidgetContainerComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         // Deconstruct border
-        if (this.selectedWidget.containerBorder != '' 
-            && 
+        if (this.selectedWidget.containerBorder != ''
+            &&
             this.selectedWidget.containerBorder != 'none') {
                 let space: number = this.selectedWidget.containerBorder.indexOf(' ');
                 if (space > 0) {
@@ -118,12 +118,12 @@ export class WidgetContainerComponent implements OnInit {
 
         // Get setup info
         this.backgroundcolors = this.globalVariableService.backgroundcolors.slice();
- 
+
         // Deep copy
         this.localWidget = Object.assign({}, this.selectedWidget);
 
     }
-    
+
     clickSelectBgColorPicker(ev: any) {
         // Open the Colour Picker for Background Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBgColorPicker', '@Start');

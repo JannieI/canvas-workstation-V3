@@ -136,12 +136,13 @@ export class CollaborateMessagesComponent implements OnInit {
                     return isFound;
                 });
             };
-            if (this.body != ''  &&  this.body != null) {
+            if (this.body != '') {
                 this.canvasMessages = this.canvasMessages.filter(
                     m => m.body.toLowerCase().includes(this.body.toLowerCase())
                 );
             };
-            if (this.subject != ''  &&  this.subject != null) {
+            console.warn('xx subj', this.subject)
+            if (this.subject != '') {
                 this.canvasMessages = this.canvasMessages.filter(
                     m => m.subject.toLowerCase().includes(this.subject.toLowerCase())
                 );
