@@ -196,6 +196,38 @@
                             >
                     </div>
 
+                    <div class="gridHeightTitle">
+                        Height:
+                    </div>
+                    <div class="gridHeight">
+                        <input [(ngModel)]="localWidget.containerHeight"
+                            type="number"
+                            name="containerHeight"
+                            #containerHeightVar="ngModel"
+                            placeholder="4-48 pt"
+                            min="4"
+                            max="48"
+                            size="5"
+                            [style.color]="!containerHeightVar.valid ? 'red' : 'gray'"
+                            >
+                    </div>
+
+                    <div class="gridWidthTitle">
+                        Width:
+                    </div>
+                    <div class="gridWidth">
+                        <input [(ngModel)]="localWidget.containerWidth"
+                            type="number"
+                            name="containerWidth"
+                            #containerWidthVar="ngModel"
+                            placeholder="4-48 pt"
+                            min="4"
+                            max="48"
+                            size="5"
+                            [style.color]="!containerWidthVar.valid ? 'red' : 'gray'"
+                            >
+                    </div>
+
                     <div class="gridButtonCancel">
                         <button
                             type="button"

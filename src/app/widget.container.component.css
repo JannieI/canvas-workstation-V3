@@ -24,7 +24,7 @@
 .gridOverall {
     display: grid;
     grid-template-columns: repeat(20, 1fr);
-    grid-template-rows: repeat(21, 0.8rem);
+    grid-template-rows: repeat(23, 0.8rem);
     margin-top: 2px;
 }
     .closeButton {
@@ -250,13 +250,55 @@
         padding-top: 6px;
     }
 
+    .gridHeightTitle {
+        grid-column-start: 1;
+        /* autoprefixer: off */
+        grid-column-end: 4;
+        grid-row-start: 18;
+        /* autoprefixer: off */
+        grid-row-end: 19;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+    .gridHeight {
+        grid-column-start: 4;
+        /* autoprefixer: off */
+        grid-column-end: 5;
+        grid-row-start: 18;
+        /* autoprefixer: off */
+        grid-row-end: 19;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+
+    .gridWidthTitle {
+        grid-column-start: 8;
+        /* autoprefixer: off */
+        grid-column-end: 10;
+        grid-row-start: 18;
+        /* autoprefixer: off */
+        grid-row-end: 19;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+    .gridWidth {
+        grid-column-start: 10;
+        /* autoprefixer: off */
+        grid-column-end: 11;
+        grid-row-start: 18;
+        /* autoprefixer: off */
+        grid-row-end: 19;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+
     .gridButtonCancel {
         grid-column-start: 6;
         /* autoprefixer: off */
         grid-column-end: 8;
-        grid-row-start: 19;
+        grid-row-start: 21;
         /* autoprefixer: off */
-        grid-row-end: 20;
+        grid-row-end: 22;
         margin-bottom: 15px;
     }
 
@@ -264,9 +306,9 @@
         grid-column-start: 13;
         /* autoprefixer: off */
         grid-column-end: 15;
-        grid-row-start: 19;
+        grid-row-start: 21;
         /* autoprefixer: off */
-        grid-row-end: 20;
+        grid-row-end: 22;
         margin-bottom: 15px;
     }
 
