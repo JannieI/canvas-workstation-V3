@@ -368,7 +368,7 @@
     .gridTextStringTitle {
         grid-column-start: 1;
         /* autoprefixer: off */
-        grid-column-end: 3;
+        grid-column-end: 4;
         grid-row-start: 1;
         /* autoprefixer: off */
         grid-row-end: 2;
@@ -399,7 +399,7 @@
     .gridTextFontSizeTitle {
         grid-column-start: 1;
         /* autoprefixer: off */
-        grid-column-end: 3;
+        grid-column-end: 4;
         grid-row-start: 3;
         /* autoprefixer: off */
         grid-row-end: 4;
@@ -449,7 +449,7 @@
         padding-top: 6px;
     }
     .gridTextItalic {
-        grid-column-start: 4;
+        grid-column-start: 3;
         /* autoprefixer: off */
         grid-column-end: 11;
         grid-row-start: 7;
@@ -462,7 +462,7 @@
     .gridTextAlignTitle {
         grid-column-start: 1;
         /* autoprefixer: off */
-        grid-column-end: 3;
+        grid-column-end: 4;
         grid-row-start: 9;
         /* autoprefixer: off */
         grid-row-end: 10;
@@ -483,7 +483,7 @@
     .gridTextColourTitle {
         grid-column-start: 1;
         /* autoprefixer: off */
-        grid-column-end: 3;
+        grid-column-end: 4;
         grid-row-start: 11;
         /* autoprefixer: off */
         grid-row-end: 12;
@@ -497,13 +497,14 @@
         grid-row-start: 11;
         /* autoprefixer: off */
         grid-row-end: 12;
+        padding-left: 15px;
         padding-top: 6px;
     }
 
     .gridTextLineHeightTitle {
         grid-column-start: 1;
         /* autoprefixer: off */
-        grid-column-end: 3;
+        grid-column-end: 4;
         grid-row-start: 13;
         /* autoprefixer: off */
         grid-row-end: 13;
@@ -511,12 +512,13 @@
         padding-top: 6px;
     }
     .gridTextLineHeight {
-        grid-column-start: 4;
+        grid-column-start: 3;
         /* autoprefixer: off */
         grid-column-end: 8;
         grid-row-start: 13;
         /* autoprefixer: off */
         grid-row-end: 14;
+        padding-left: 15px;
         padding-top: 6px;
     }
 
