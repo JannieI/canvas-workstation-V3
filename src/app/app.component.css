@@ -648,3 +648,7 @@
     z-index: 100;
 }
 
+.presentationButton {
+    margin: 10px;
+    z-index: 100;
+}
