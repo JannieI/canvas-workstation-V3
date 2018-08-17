@@ -1113,8 +1113,10 @@
                 </div>
 
                 <div class="gridShapeProperties" *ngIf="showText">
-                    <div class="gridTextString">
+                    <div class="gridTextStringTitle">
                         <b>Text input:</b>
+                    </div>
+                    <div class="gridTextString">
                         <input type="text"
                             placeholder="The brown fox ..."
                             [(ngModel)]="localWidget.shapeText"
@@ -1129,15 +1131,20 @@
                         Clear
                     </button>
 
-                    <div class="gridTextFontSize">
+                    <div class="gridTextFontSizeTitle">
                         <b>Font Size:</b>
+                    </div>
+                    <div class="gridTextFontSize">
                         <input type="text"
                             placeholder="50 (in px)"
                             [(ngModel)]="localWidget.shapeFontSize"
                             >
                     </div>
-                    <div class="gridTextFontFamily">
+
+                    <div class="gridTextFontFamilyTitle">
                         <b>Font Family:</b>
+                    </div>
+                    <div class="gridTextFontFamily">
                         <input type="text"
                             placeholder="Arial, serif"
                             [(ngModel)]="localWidget.shapeFontFamily"

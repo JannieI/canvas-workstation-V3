@@ -365,8 +365,18 @@
     }
     
     /* Text */
-    .gridTextString {
+    .gridTextStringTitle {
         grid-column-start: 1;
+        /* autoprefixer: off */
+        grid-column-end: 3;
+        grid-row-start: 1;
+        /* autoprefixer: off */
+        grid-row-end: 2;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+    .gridTextString {
+        grid-column-start: 3;
         /* autoprefixer: off */
         grid-column-end: 9;
         grid-row-start: 1;
@@ -386,8 +396,18 @@
         padding-top: 6px;
     }
 
-    .gridTextFontSize {
+    .gridTextFontSizeTitle {
         grid-column-start: 1;
+        /* autoprefixer: off */
+        grid-column-end: 3;
+        grid-row-start: 3;
+        /* autoprefixer: off */
+        grid-row-end: 4;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+    .gridTextFontSize {
+        grid-column-start: 3;
         /* autoprefixer: off */
         grid-column-end: 11;
         grid-row-start: 3;
@@ -396,8 +416,19 @@
         padding-left: 15px;
         padding-top: 6px;
     }
-    .gridTextFontFamily {
+
+    .gridTextFontFamilyTitle {
         grid-column-start: 1;
+        /* autoprefixer: off */
+        grid-column-end: 3;
+        grid-row-start: 5;
+        /* autoprefixer: off */
+        grid-row-end: 6;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+    .gridTextFontFamily {
+        grid-column-start: 3;
         /* autoprefixer: off */
         grid-column-end: 11;
         grid-row-start: 5;
@@ -406,10 +437,11 @@
         padding-left: 15px;
         padding-top: 6px;
     }
+
     .gridTextBold {
         grid-column-start: 1;
         /* autoprefixer: off */
-        grid-column-end: 5;
+        grid-column-end: 4;
         grid-row-start: 7;
         /* autoprefixer: off */
         grid-row-end: 8;
@@ -417,7 +449,7 @@
         padding-top: 6px;
     }
     .gridTextItalic {
-        grid-column-start: 5;
+        grid-column-start: 4;
         /* autoprefixer: off */
         grid-column-end: 11;
         grid-row-start: 7;
@@ -426,10 +458,11 @@
         padding-left: 15px;
         padding-top: 6px;
     }
+    
     .gridTextAlignTitle {
         grid-column-start: 1;
         /* autoprefixer: off */
-        grid-column-end: 3;
+        grid-column-end: 4;
         grid-row-start: 9;
         /* autoprefixer: off */
         grid-row-end: 10;
@@ -437,7 +470,7 @@
         padding-top: 6px;
     }
     .gridTextAlign {
-        grid-column-start: 3;
+        grid-column-start: 4;
         /* autoprefixer: off */
         grid-column-end: 7;
         grid-row-start: 9;
@@ -450,7 +483,7 @@
     .gridTextColourTitle {
         grid-column-start: 1;
         /* autoprefixer: off */
-        grid-column-end: 3;
+        grid-column-end: 4;
         grid-row-start: 11;
         /* autoprefixer: off */
         grid-row-end: 12;
@@ -458,7 +491,7 @@
         padding-top: 6px;
     }
     .gridTextColour {
-        grid-column-start: 3;
+        grid-column-start: 4;
         /* autoprefixer: off */
         grid-column-end: 8;
         grid-row-start: 11;
@@ -470,7 +503,7 @@
     .gridTextLineHeightTitle {
         grid-column-start: 1;
         /* autoprefixer: off */
-        grid-column-end: 3;
+        grid-column-end: 4;
         grid-row-start: 13;
         /* autoprefixer: off */
         grid-row-end: 14;
@@ -478,7 +511,7 @@
         padding-top: 6px;
     }
     .gridTextLineHeight {
-        grid-column-start: 3;
+        grid-column-start: 4;
         /* autoprefixer: off */
         grid-column-end: 8;
         grid-row-start: 13;
