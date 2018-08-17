@@ -6077,20 +6077,19 @@ export class GlobalVariableService {
                                 w.lastCheckpoint = -1;
                             };
 
-                            // Constants in Text and Bullets
-                            let today = new Date();
-                            if (w.widgetType == 'Shape') {
-                                if (w.widgetSubType == 'Text') {
-                                    w.shapeText.replace('#date', this.formatDate(today));
-                                };
-                                if (w.widgetSubType == 'Bullets') {
-
-                                    w.shapeBullet.forEach(sb => {
-                                        sb.text
-                                    });
-
-                                };
-                            };
+                            // // Constants in Text and Bullets
+                            // let today = new Date();
+                            // if (w.widgetType == 'Shape') {
+                            //     if (w.widgetSubType == 'Text') {
+                            //         w.shapeText.replace('#date', this.formatDate(today, 'date'));
+                            //         w.shapeText.replace('#pagenr', '1');
+                            //     };
+                            //     // if (w.widgetSubType == 'Bullets') {
+                            //     //     w.shapeBullet.forEach(sb => {
+                            //     //         sb.text
+                            //     //     });
+                            //     // };
+                            // };
 
                             // TODO - this does NOT work in datalib: if the first dashboardTabIDs
                             // = "a,b,c", then all works.  Else, it gives a big number 1046785...

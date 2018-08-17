@@ -467,13 +467,14 @@
         padding-top: 6px;
     }
     .gridTextColourPicker {
-        border: 1px solid gray;
         grid-column-start: 9;
         /* autoprefixer: off */
         grid-column-end: 11;
         grid-row-start: 11;
         /* autoprefixer: off */
         grid-row-end: 12;
+        padding-left: 15px;
+        padding-top: 6px;
     }
 
     /* Arrow */

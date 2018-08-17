@@ -3051,3 +3051,602 @@ tslint.json, code is 90, comment is 0, blank is 10.
 typings.json, code is 5, comment is 0, blank is 0.
 yarn.lock, code is 5422, comment is 0, blank is 1037.
 ===============================================================================
+===============================================================================
+EXTENSION NAME : linecount
+EXTENSION VERSION : 0.1.7
+-------------------------------------------------------------------------------
+count time : 2018-08-17 20:05:43
+count workspace : /home/jannie/Projects/canvas-workstation
+total files : 587
+total code lines : 1915859
+total comment lines : 9573
+total blank lines : 12333
+
+.angulardoc.json, code is 4, comment is 0, blank is 0.
+.editorconfig, code is 15, comment is 3, blank is 4.
+.gitignore, code is 11, comment is 1, blank is 0.
+.travis.yml, code is 16, comment is 0, blank is 3.
+angular-cli.json, code is 65, comment is 0, blank is 3.
+CODE_OF_CONDUCT.md, code is 4, comment is 0, blank is 2.
+CONTRIBUTING.md, code is 43, comment is 4, blank is 22.
+e2e/app.e2e-spec.ts, code is 12, comment is 0, blank is 5.
+e2e/app.po.ts, code is 9, comment is 0, blank is 4.
+e2e/tsconfig.json, code is 23, comment is 0, blank is 3.
+karma.conf.js, code is 45, comment is 2, blank is 1.
+logo.png, it is a binary file.
+out/Linecount 2017-12-31.ods, it is a binary file.
+out/Linecount 2018-02-04.ods, it is a binary file.
+out/Linecount 2018-03-04.ods, it is a binary file.
+out/Linecount 2018-03-19.ods, it is a binary file.
+out/Linecount 2018-04-13.ods, it is a binary file.
+out/Linecount 2018-05-13.ods, it is a binary file.
+out/Linecount 2018-06-13.ods, it is a binary file.
+out/Linecount 2018-07-15.ods, it is a binary file.
+package.json, code is 63, comment is 0, blank is 0.
+protractor.config.js, code is 23, comment is 2, blank is 3.
+README.md, code is 82, comment is 7, blank is 33.
+src/app/app.component.css, code is 539, comment is 51, blank is 60.
+src/app/app.component.html, code is 4087, comment is 204, blank is 427.
+src/app/app.component.ts, code is 5284, comment is 855, blank is 1703.
+src/app/app.module.ts, code is 248, comment is 11, blank is 40.
+src/app/app.routing.ts, code is 12, comment is 5, blank is 6.
+src/app/authguard.service.ts, code is 34, comment is 13, blank is 15.
+src/app/ca.datagrid.component.css, code is 18, comment is 0, blank is 4.
+src/app/ca.datagrid.component.html, code is 48, comment is 17, blank is 11.
+src/app/ca.datagrid.component.ts, code is 63, comment is 35, blank is 24.
+src/app/collaborate.auditTrail.component.css, code is 37, comment is 6, blank is 4.
+src/app/collaborate.auditTrail.component.html, code is 72, comment is 0, blank is 10.
+src/app/collaborate.auditTrail.component.ts, code is 48, comment is 12, blank is 20.
+src/app/collaborate.messageContent.component.css, code is 132, comment is 30, blank is 14.
+src/app/collaborate.messageContent.component.html, code is 119, comment is 0, blank is 15.
+src/app/collaborate.messageContent.component.ts, code is 195, comment is 22, blank is 43.
+src/app/collaborate.messages.component.css, code is 54, comment is 122, blank is 12.
+src/app/collaborate.messages.component.html, code is 210, comment is 0, blank is 7.
+src/app/collaborate.messages.component.ts, code is 207, comment is 24, blank is 61.
+src/app/collaborate.sendemail.component.css, code is 91, comment is 20, blank is 11.
+src/app/collaborate.sendemail.component.html, code is 80, comment is 0, blank is 11.
+src/app/collaborate.sendemail.component.ts, code is 63, comment is 11, blank is 17.
+src/app/collaborate.sendmessage.component.css, code is 8, comment is 0, blank is 1.
+src/app/collaborate.sendmessage.component.html, code is 15, comment is 0, blank is 2.
+src/app/collaborate.sendmessage.component.ts, code is 40, comment is 10, blank is 15.
+src/app/collaborate.systemMessages.component.css, code is 37, comment is 6, blank is 4.
+src/app/collaborate.systemMessages.component.html, code is 63, comment is 0, blank is 10.
+src/app/collaborate.systemMessages.component.ts, code is 47, comment is 12, blank is 20.
+src/app/collaborate.taskadd.component.css, code is 232, comment is 54, blank is 19.
+src/app/collaborate.taskadd.component.html, code is 184, comment is 0, blank is 17.
+src/app/collaborate.taskadd.component.ts, code is 166, comment is 17, blank is 33.
+src/app/collaborate.tasks.component.css, code is 136, comment is 30, blank is 11.
+src/app/collaborate.tasks.component.html, code is 212, comment is 8, blank is 25.
+src/app/collaborate.tasks.component.ts, code is 152, comment is 24, blank is 38.
+src/app/colour.picker.component.css, code is 12, comment is 0, blank is 1.
+src/app/colour.picker.component.html, code is 154, comment is 0, blank is 1.
+src/app/colour.picker.component.ts, code is 52, comment is 7, blank is 19.
+src/app/dashboard.comments.component.css, code is 57, comment is 10, blank is 5.
+src/app/dashboard.comments.component.html, code is 98, comment is 0, blank is 10.
+src/app/dashboard.comments.component.ts, code is 134, comment is 23, blank is 34.
+src/app/dashboard.dataquality.component.css, code is 36, comment is 6, blank is 3.
+src/app/dashboard.dataquality.component.html, code is 48, comment is 0, blank is 1.
+src/app/dashboard.dataquality.component.ts, code is 77, comment is 13, blank is 18.
+src/app/dashboard.delete.component.css, code is 171, comment is 40, blank is 17.
+src/app/dashboard.delete.component.html, code is 143, comment is 0, blank is 14.
+src/app/dashboard.delete.component.ts, code is 146, comment is 16, blank is 26.
+src/app/dashboard.deleteBulk.component.css, code is 44, comment is 8, blank is 4.
+src/app/dashboard.deleteBulk.component.html, code is 78, comment is 0, blank is 9.
+src/app/dashboard.deleteBulk.component.ts, code is 94, comment is 16, blank is 26.
+src/app/dashboard.description.component.css, code is 283, comment is 67, blank is 21.
+src/app/dashboard.description.component.html, code is 260, comment is 0, blank is 20.
+src/app/dashboard.description.component.ts, code is 224, comment is 28, blank is 47.
+src/app/dashboard.discard.component.css, code is 50, comment is 10, blank is 3.
+src/app/dashboard.discard.component.html, code is 57, comment is 0, blank is 6.
+src/app/dashboard.discard.component.ts, code is 65, comment is 16, blank is 23.
+src/app/dashboard.export.component.css, code is 72, comment is 16, blank is 5.
+src/app/dashboard.export.component.html, code is 72, comment is 0, blank is 8.
+src/app/dashboard.export.component.ts, code is 67, comment is 13, blank is 22.
+src/app/dashboard.help.component.css, code is 52, comment is 6, blank is 7.
+src/app/dashboard.help.component.html, code is 84, comment is 0, blank is 13.
+src/app/dashboard.help.component.ts, code is 38, comment is 8, blank is 14.
+src/app/dashboard.new.component.css, code is 120, comment is 26, blank is 8.
+src/app/dashboard.new.component.html, code is 113, comment is 0, blank is 10.
+src/app/dashboard.new.component.ts, code is 164, comment is 30, blank is 45.
+src/app/dashboard.open.component.css, code is 437, comment is 116, blank is 20.
+src/app/dashboard.open.component.html, code is 325, comment is 1, blank is 21.
+src/app/dashboard.open.component.ts, code is 430, comment is 41, blank is 83.
+src/app/dashboard.print.component.css, code is 99, comment is 24, blank is 7.
+src/app/dashboard.print.component.html, code is 95, comment is 0, blank is 8.
+src/app/dashboard.print.component.ts, code is 54, comment is 8, blank is 16.
+src/app/dashboard.rename.component.css, code is 191, comment is 44, blank is 14.
+src/app/dashboard.rename.component.html, code is 236, comment is 0, blank is 15.
+src/app/dashboard.rename.component.ts, code is 278, comment is 38, blank is 61.
+src/app/dashboard.save.component.css, code is 87, comment is 18, blank is 8.
+src/app/dashboard.save.component.html, code is 70, comment is 0, blank is 5.
+src/app/dashboard.save.component.ts, code is 66, comment is 15, blank is 20.
+src/app/dashboard.saveas.component.css, code is 57, comment is 12, blank is 4.
+src/app/dashboard.saveas.component.html, code is 68, comment is 0, blank is 6.
+src/app/dashboard.saveas.component.ts, code is 54, comment is 12, blank is 18.
+src/app/dashboard.schedule.component.css, code is 36, comment is 6, blank is 3.
+src/app/dashboard.schedule.component.html, code is 100, comment is 0, blank is 9.
+src/app/dashboard.schedule.component.ts, code is 49, comment is 11, blank is 18.
+src/app/dashboard.scheduleEdit.component.css, code is 525, comment is 128, blank is 34.
+src/app/dashboard.scheduleEdit.component.html, code is 510, comment is 0, blank is 22.
+src/app/dashboard.scheduleEdit.component.ts, code is 284, comment is 26, blank is 53.
+src/app/dashboard.share.component.css, code is 120, comment is 26, blank is 5.
+src/app/dashboard.share.component.html, code is 206, comment is 0, blank is 8.
+src/app/dashboard.share.component.ts, code is 227, comment is 27, blank is 54.
+src/app/dashboard.snapshots.component.css, code is 71, comment is 14, blank is 5.
+src/app/dashboard.snapshots.component.html, code is 113, comment is 0, blank is 7.
+src/app/dashboard.snapshots.component.ts, code is 152, comment is 45, blank is 37.
+src/app/dashboard.subscribe.component.css, code is 60, comment is 12, blank is 4.
+src/app/dashboard.subscribe.component.html, code is 132, comment is 0, blank is 14.
+src/app/dashboard.subscribe.component.ts, code is 255, comment is 36, blank is 64.
+src/app/dashboard.tab.component.css, code is 136, comment is 30, blank is 8.
+src/app/dashboard.tab.component.html, code is 136, comment is 0, blank is 12.
+src/app/dashboard.tab.component.ts, code is 167, comment is 21, blank is 43.
+src/app/dashboard.tags.component.css, code is 97, comment is 22, blank is 13.
+src/app/dashboard.tags.component.html, code is 122, comment is 0, blank is 8.
+src/app/dashboard.tags.component.ts, code is 162, comment is 37, blank is 51.
+src/app/dashboard.template.component.css, code is 77, comment is 16, blank is 6.
+src/app/dashboard.template.component.html, code is 78, comment is 0, blank is 10.
+src/app/dashboard.template.component.ts, code is 80, comment is 17, blank is 25.
+src/app/dashboard.theme.component.css, code is 55, comment is 8, blank is 6.
+src/app/dashboard.theme.component.html, code is 62, comment is 0, blank is 9.
+src/app/dashboard.theme.component.ts, code is 41, comment is 8, blank is 15.
+src/app/dashboard.treeview.component.css, code is 39, comment is 6, blank is 3.
+src/app/dashboard.treeview.component.html, code is 60, comment is 0, blank is 8.
+src/app/dashboard.treeview.component.ts, code is 153, comment is 21, blank is 31.
+src/app/dashboard.usagestats.component.css, code is 37, comment is 6, blank is 2.
+src/app/dashboard.usagestats.component.html, code is 45, comment is 0, blank is 5.
+src/app/dashboard.usagestats.component.ts, code is 45, comment is 12, blank is 18.
+src/app/data.businessGlossary.component.css, code is 53, comment is 6, blank is 6.
+src/app/data.businessGlossary.component.html, code is 54, comment is 0, blank is 3.
+src/app/data.businessGlossary.component.ts, code is 51, comment is 14, blank is 26.
+src/app/data.combination.append.component.css, code is 93, comment is 16, blank is 8.
+src/app/data.combination.append.component.html, code is 103, comment is 0, blank is 10.
+src/app/data.combination.append.component.ts, code is 157, comment is 26, blank is 41.
+src/app/data.combination.component.css, code is 161, comment is 36, blank is 12.
+src/app/data.combination.component.html, code is 157, comment is 0, blank is 20.
+src/app/data.combination.component.ts, code is 95, comment is 19, blank is 37.
+src/app/data.datasourceOverview.component.css, code is 527, comment is 142, blank is 63.
+src/app/data.datasourceOverview.component.html, code is 367, comment is 5, blank is 57.
+src/app/data.datasourceOverview.component.ts, code is 196, comment is 94, blank is 73.
+src/app/data.datasourceSchedule.component.css, code is 36, comment is 6, blank is 3.
+src/app/data.datasourceSchedule.component.html, code is 98, comment is 0, blank is 9.
+src/app/data.datasourceSchedule.component.ts, code is 48, comment is 11, blank is 18.
+src/app/data.datasourceScheduleEdit.component.css, code is 541, comment is 132, blank is 35.
+src/app/data.datasourceScheduleEdit.component.html, code is 522, comment is 0, blank is 23.
+src/app/data.datasourceScheduleEdit.component.ts, code is 318, comment is 27, blank is 58.
+src/app/data.datasourceUsage.component.css, code is 58, comment is 10, blank is 5.
+src/app/data.datasourceUsage.component.html, code is 74, comment is 0, blank is 11.
+src/app/data.datasourceUsage.component.ts, code is 70, comment is 16, blank is 29.
+src/app/data.deleteDatasource.component.css, code is 47, comment is 8, blank is 4.
+src/app/data.deleteDatasource.component.html, code is 72, comment is 0, blank is 6.
+src/app/data.deleteDatasource.component.ts, code is 75, comment is 15, blank is 29.
+src/app/data.dictionary.component.css, code is 37, comment is 6, blank is 2.
+src/app/data.dictionary.component.html, code is 9, comment is 0, blank is 2.
+src/app/data.dictionary.component.ts, code is 45, comment is 12, blank is 18.
+src/app/data.direct.export.component.css, code is 83, comment is 16, blank is 7.
+src/app/data.direct.export.component.html, code is 80, comment is 0, blank is 10.
+src/app/data.direct.export.component.ts, code is 68, comment is 16, blank is 30.
+src/app/data.direct.fileCSV.component.css, code is 187, comment is 40, blank is 12.
+src/app/data.direct.fileCSV.component.html, code is 176, comment is 0, blank is 20.
+src/app/data.direct.fileCSV.component.ts, code is 327, comment is 45, blank is 69.
+src/app/data.direct.fileJSON.component.css, code is 187, comment is 40, blank is 12.
+src/app/data.direct.fileJSON.component.html, code is 176, comment is 0, blank is 20.
+src/app/data.direct.fileJSON.component.ts, code is 326, comment is 46, blank is 67.
+src/app/data.direct.fileSpreadsheet.component.css, code is 197, comment is 42, blank is 12.
+src/app/data.direct.fileSpreadsheet.component.html, code is 187, comment is 0, blank is 24.
+src/app/data.direct.fileSpreadsheet.component.ts, code is 378, comment is 44, blank is 74.
+src/app/data.direct.googleSheets.component.css, code is 133, comment is 36, blank is 14.
+src/app/data.direct.googleSheets.component.html, code is 147, comment is 0, blank is 18.
+src/app/data.direct.googleSheets.component.ts, code is 256, comment is 28, blank is 45.
+src/app/data.direct.import.component.css, code is 101, comment is 20, blank is 8.
+src/app/data.direct.import.component.html, code is 86, comment is 0, blank is 7.
+src/app/data.direct.import.component.ts, code is 114, comment is 25, blank is 38.
+src/app/data.direct.Nosql.component.css, code is 223, comment is 60, blank is 19.
+src/app/data.direct.Nosql.component.html, code is 197, comment is 0, blank is 24.
+src/app/data.direct.Nosql.component.ts, code is 273, comment is 34, blank is 56.
+src/app/data.direct.queryBuilder.component.css, code is 265, comment is 64, blank is 26.
+src/app/data.direct.queryBuilder.component.html, code is 253, comment is 0, blank is 34.
+src/app/data.direct.queryBuilder.component.ts, code is 430, comment is 49, blank is 73.
+src/app/data.direct.service.component.css, code is 111, comment is 30, blank is 9.
+src/app/data.direct.service.component.html, code is 109, comment is 0, blank is 9.
+src/app/data.direct.service.component.ts, code is 61, comment is 51, blank is 34.
+src/app/data.direct.sqlEditor.component.css, code is 269, comment is 72, blank is 23.
+src/app/data.direct.sqlEditor.component.html, code is 254, comment is 0, blank is 28.
+src/app/data.direct.sqlEditor.component.ts, code is 329, comment is 44, blank is 71.
+src/app/data.direct.web.component.css, code is 138, comment is 37, blank is 15.
+src/app/data.direct.web.component.html, code is 159, comment is 0, blank is 22.
+src/app/data.direct.web.component.ts, code is 301, comment is 31, blank is 51.
+src/app/data.editDatasource.component.css, code is 50, comment is 10, blank is 4.
+src/app/data.editDatasource.component.html, code is 93, comment is 0, blank is 7.
+src/app/data.editDatasource.component.ts, code is 106, comment is 19, blank is 34.
+src/app/data.managed.busGlossary.component.css, code is 86, comment is 14, blank is 8.
+src/app/data.managed.busGlossary.component.html, code is 93, comment is 0, blank is 6.
+src/app/data.managed.busGlossary.component.ts, code is 142, comment is 34, blank is 39.
+src/app/data.managed.connection.component.css, code is 193, comment is 48, blank is 17.
+src/app/data.managed.connection.component.html, code is 216, comment is 0, blank is 15.
+src/app/data.managed.connection.component.ts, code is 158, comment is 28, blank is 54.
+src/app/data.managed.dataDictionary.component.css, code is 95, comment is 16, blank is 8.
+src/app/data.managed.dataDictionary.component.html, code is 99, comment is 0, blank is 7.
+src/app/data.managed.dataDictionary.component.ts, code is 146, comment is 34, blank is 36.
+src/app/data.managed.dataOwnership.component.css, code is 128, comment is 28, blank is 12.
+src/app/data.managed.dataOwnership.component.html, code is 169, comment is 0, blank is 10.
+src/app/data.managed.dataOwnership.component.ts, code is 215, comment is 32, blank is 61.
+src/app/data.managed.dataQuality.component.css, code is 206, comment is 52, blank is 18.
+src/app/data.managed.dataQuality.component.html, code is 237, comment is 0, blank is 17.
+src/app/data.managed.dataQuality.component.ts, code is 188, comment is 27, blank is 58.
+src/app/data.managed.graphqlEditor.component.css, code is 191, comment is 50, blank is 18.
+src/app/data.managed.graphqlEditor.component.html, code is 179, comment is 0, blank is 22.
+src/app/data.managed.graphqlEditor.component.ts, code is 317, comment is 38, blank is 59.
+src/app/data.managed.neo4jEditor.component.css, code is 191, comment is 50, blank is 18.
+src/app/data.managed.neo4jEditor.component.html, code is 171, comment is 0, blank is 22.
+src/app/data.managed.neo4jEditor.component.ts, code is 307, comment is 38, blank is 59.
+src/app/data.managed.noSqlEditor.component.css, code is 191, comment is 50, blank is 18.
+src/app/data.managed.noSqlEditor.component.html, code is 171, comment is 0, blank is 22.
+src/app/data.managed.noSqlEditor.component.ts, code is 268, comment is 34, blank is 54.
+src/app/data.managed.overlayEditor.component.css, code is 191, comment is 50, blank is 18.
+src/app/data.managed.overlayEditor.component.html, code is 178, comment is 31, blank is 25.
+src/app/data.managed.overlayEditor.component.ts, code is 275, comment is 34, blank is 55.
+src/app/data.managed.queryBuilder.component.css, code is 238, comment is 54, blank is 25.
+src/app/data.managed.queryBuilder.component.html, code is 222, comment is 0, blank is 32.
+src/app/data.managed.queryBuilder.component.ts, code is 456, comment is 52, blank is 84.
+src/app/data.managed.sqlEditor.component.css, code is 191, comment is 50, blank is 18.
+src/app/data.managed.sqlEditor.component.html, code is 171, comment is 0, blank is 22.
+src/app/data.managed.sqlEditor.component.ts, code is 306, comment is 38, blank is 59.
+src/app/data.refresh.once.component.css, code is 45, comment is 8, blank is 3.
+src/app/data.refresh.once.component.html, code is 70, comment is 0, blank is 11.
+src/app/data.refresh.once.component.ts, code is 143, comment is 27, blank is 49.
+src/app/data.refresh.repeat.component.css, code is 60, comment is 14, blank is 6.
+src/app/data.refresh.repeat.component.html, code is 63, comment is 0, blank is 7.
+src/app/data.refresh.repeat.component.ts, code is 58, comment is 51, blank is 34.
+src/app/data.share.component.css, code is 190, comment is 44, blank is 16.
+src/app/data.share.component.html, code is 231, comment is 0, blank is 19.
+src/app/data.share.component.ts, code is 222, comment is 24, blank is 53.
+src/app/data.summary.component.css, code is 37, comment is 6, blank is 2.
+src/app/data.summary.component.html, code is 47, comment is 0, blank is 5.
+src/app/data.summary.component.ts, code is 45, comment is 12, blank is 18.
+src/app/data.transformation.component.css, code is 196, comment is 44, blank is 12.
+src/app/data.transformation.component.html, code is 217, comment is 0, blank is 23.
+src/app/data.transformation.component.ts, code is 498, comment is 80, blank is 96.
+src/app/global-function.service.ts, code is 46, comment is 11, blank is 13.
+src/app/global-variable.service.ts, code is 6678, comment is 1258, blank is 1291.
+src/app/groups.component.css, code is 47, comment is 8, blank is 5.
+src/app/groups.component.html, code is 80, comment is 6, blank is 12.
+src/app/groups.component.ts, code is 70, comment is 11, blank is 25.
+src/app/help.component.css, code is 7, comment is 0, blank is 1.
+src/app/help.component.html, code is 11, comment is 0, blank is 6.
+src/app/help.component.ts, code is 63, comment is 5, blank is 10.
+src/app/index.ts, code is 2, comment is 0, blank is 0.
+src/app/Installation Notes.md, code is 220, comment is 6, blank is 49.
+src/app/landing.component.css, code is 110, comment is 21, blank is 9.
+src/app/landing.component.html, code is 102, comment is 0, blank is 7.
+src/app/landing.component.ts, code is 172, comment is 36, blank is 49.
+src/app/login.component.css, code is 102, comment is 22, blank is 9.
+src/app/login.component.html, code is 90, comment is 0, blank is 9.
+src/app/login.component.ts, code is 89, comment is 20, blank is 31.
+src/app/logout.component.css, code is 61, comment is 12, blank is 5.
+src/app/logout.component.html, code is 56, comment is 0, blank is 6.
+src/app/logout.component.ts, code is 68, comment is 14, blank is 22.
+src/app/models.ts, code is 899, comment is 650, blank is 109.
+src/app/mypermissions.component.css, code is 39, comment is 6, blank is 3.
+src/app/mypermissions.component.html, code is 127, comment is 0, blank is 12.
+src/app/mypermissions.component.ts, code is 78, comment is 14, blank is 24.
+src/app/myprofile.component.css, code is 125, comment is 28, blank is 11.
+src/app/myprofile.component.html, code is 189, comment is 12, blank is 15.
+src/app/myprofile.component.ts, code is 83, comment is 55, blank is 31.
+src/app/pipe.filter.component.ts, code is 13, comment is 3, blank is 2.
+src/app/preferences.component.css, code is 187, comment is 44, blank is 20.
+src/app/preferences.component.html, code is 164, comment is 0, blank is 22.
+src/app/preferences.component.ts, code is 153, comment is 19, blank is 30.
+src/app/roadmap.md, code is 233, comment is 8, blank is 43.
+src/app/shape.delete.component.css, code is 64, comment is 14, blank is 9.
+src/app/shape.delete.component.html, code is 58, comment is 0, blank is 6.
+src/app/shape.delete.component.ts, code is 59, comment is 9, blank is 19.
+src/app/shape.editor.component.css, code is 715, comment is 180, blank is 37.
+src/app/shape.editor.component.html, code is 1362, comment is 45, blank is 72.
+src/app/shape.editor.component.ts, code is 596, comment is 114, blank is 159.
+src/app/slicer.delete.component.css, code is 57, comment is 12, blank is 8.
+src/app/slicer.delete.component.html, code is 51, comment is 0, blank is 5.
+src/app/slicer.delete.component.ts, code is 56, comment is 9, blank is 17.
+src/app/slicer.editor.component.css, code is 104, comment is 18, blank is 12.
+src/app/slicer.editor.component.html, code is 247, comment is 0, blank is 27.
+src/app/slicer.editor.component.ts, code is 371, comment is 79, blank is 87.
+src/app/slicer.single.component.css, code is 19, comment is 0, blank is 2.
+src/app/slicer.single.component.html, code is 59, comment is 0, blank is 3.
+src/app/slicer.single.component.ts, code is 105, comment is 21, blank is 26.
+src/app/statusbar.component.css, code is 84, comment is 2, blank is 8.
+src/app/statusbar.component.html, code is 207, comment is 6, blank is 21.
+src/app/statusbar.component.ts, code is 367, comment is 56, blank is 87.
+src/app/systemsettings.component.css, code is 212, comment is 50, blank is 24.
+src/app/systemsettings.component.html, code is 240, comment is 0, blank is 24.
+src/app/systemsettings.component.ts, code is 119, comment is 12, blank is 19.
+src/app/table.delete.component.css, code is 57, comment is 12, blank is 8.
+src/app/table.delete.component.html, code is 51, comment is 0, blank is 5.
+src/app/table.delete.component.ts, code is 56, comment is 9, blank is 17.
+src/app/table.editor.component.css, code is 173, comment is 34, blank is 20.
+src/app/table.editor.component.html, code is 256, comment is 0, blank is 36.
+src/app/table.editor.component.ts, code is 251, comment is 99, blank is 91.
+src/app/table.single.component.css, code is 57, comment is 22, blank is 16.
+src/app/table.single.component.html, code is 39, comment is 0, blank is 11.
+src/app/table.single.component.ts, code is 60, comment is 17, blank is 19.
+src/app/test.delay.directive.ts, code is 18, comment is 0, blank is 2.
+src/app/test.ngif.directive.ts, code is 14, comment is 0, blank is 3.
+src/app/user.palette.buttonbar.component.css, code is 124, comment is 29, blank is 18.
+src/app/user.palette.buttonbar.component.html, code is 145, comment is 9, blank is 5.
+src/app/user.palette.buttonbar.component.ts, code is 268, comment is 89, blank is 84.
+src/app/users.component.css, code is 69, comment is 17, blank is 8.
+src/app/users.component.html, code is 80, comment is 3, blank is 11.
+src/app/users.component.ts, code is 64, comment is 11, blank is 23.
+src/app/widget.annotations.component.css, code is 62, comment is 12, blank is 7.
+src/app/widget.annotations.component.html, code is 60, comment is 0, blank is 6.
+src/app/widget.annotations.component.ts, code is 59, comment is 12, blank is 20.
+src/app/widget.checkpoints.component.css, code is 71, comment is 14, blank is 10.
+src/app/widget.checkpoints.component.html, code is 104, comment is 5, blank is 13.
+src/app/widget.checkpoints.component.ts, code is 172, comment is 24, blank is 46.
+src/app/widget.container.component.css, code is 242, comment is 56, blank is 17.
+src/app/widget.container.component.html, code is 237, comment is 0, blank is 18.
+src/app/widget.container.component.ts, code is 149, comment is 26, blank is 42.
+src/app/widget.delete.component.css, code is 56, comment is 12, blank is 9.
+src/app/widget.delete.component.html, code is 56, comment is 0, blank is 8.
+src/app/widget.delete.component.ts, code is 73, comment is 10, blank is 20.
+src/app/widget.description.component.css, code is 124, comment is 28, blank is 7.
+src/app/widget.description.component.html, code is 103, comment is 0, blank is 11.
+src/app/widget.description.component.ts, code is 38, comment is 10, blank is 16.
+src/app/widget.editor.component Pre-Adv.css, code is 259, comment is 32, blank is 34.
+src/app/widget.editor.component Pre-Adv.html, code is 404, comment is 0, blank is 51.
+src/app/widget.editor.component Pre-Adv.ts, code is 603, comment is 127, blank is 173.
+src/app/widget.editor.component.css, code is 259, comment is 32, blank is 34.
+src/app/widget.editor.component.html, code is 404, comment is 0, blank is 51.
+src/app/widget.editor.component.ts, code is 603, comment is 127, blank is 173.
+src/app/widget.expand.component.css, code is 45, comment is 8, blank is 3.
+src/app/widget.expand.component.html, code is 49, comment is 0, blank is 4.
+src/app/widget.expand.component.ts, code is 57, comment is 10, blank is 19.
+src/app/widget.export.component.css, code is 81, comment is 16, blank is 9.
+src/app/widget.export.component.html, code is 68, comment is 0, blank is 10.
+src/app/widget.export.component.ts, code is 79, comment is 11, blank is 24.
+src/app/widget.links.component.css, code is 106, comment is 18, blank is 10.
+src/app/widget.links.component.html, code is 114, comment is 0, blank is 18.
+src/app/widget.links.component.ts, code is 137, comment is 29, blank is 45.
+src/app/widget.refresh.component.css, code is 17, comment is 0, blank is 2.
+src/app/widget.refresh.component.html, code is 37, comment is 0, blank is 1.
+src/app/widget.refresh.component.ts, code is 47, comment is 11, blank is 17.
+src/app/widget.single.component.css, code is 28, comment is 7, blank is 5.
+src/app/widget.single.component.html, code is 5, comment is 0, blank is 0.
+src/app/widget.single.component.ts, code is 137, comment is 31, blank is 28.
+src/app/widget.tablist.component.css, code is 34, comment is 4, blank is 5.
+src/app/widget.tablist.component.html, code is 33, comment is 0, blank is 4.
+src/app/widget.tablist.component.ts, code is 75, comment is 20, blank is 22.
+src/app/widget.title.component.css, code is 236, comment is 54, blank is 18.
+src/app/widget.title.component.html, code is 205, comment is 0, blank is 16.
+src/app/widget.title.component.ts, code is 157, comment is 22, blank is 44.
+src/assets/data.canvasSettings.json, code is 19, comment is 0, blank is 0.
+src/assets/data.canvasUsers.json, code is 106, comment is 0, blank is 0.
+src/assets/data.dashboardPermissions.json, code is 26, comment is 0, blank is 0.
+src/assets/data.dashboards.json, code is 258, comment is 0, blank is 31.
+src/assets/data.dashboardSchedules.json, code is 77, comment is 0, blank is 0.
+src/assets/data.dashboardSnapshots.json, code is 14, comment is 0, blank is 0.
+src/assets/data.dashboardsRecent.json, code is 40, comment is 0, blank is 1.
+src/assets/data.dashboardSubscriptions.json, code is 35, comment is 0, blank is 0.
+src/assets/data.dashboardTabs.json, code is 80, comment is 0, blank is 0.
+src/assets/data.dashboardTags.json, code is 22, comment is 0, blank is 0.
+src/assets/data.dashboardThemes.json, code is 7, comment is 0, blank is 0.
+src/assets/data.dataQualityIssues.json, code is 41, comment is 0, blank is 0.
+src/assets/data.dataset1.json, code is 562, comment is 0, blank is 0.
+src/assets/data.dataset2.json, code is 562, comment is 0, blank is 0.
+src/assets/data.dataset3.json, code is 11, comment is 0, blank is 0.
+src/assets/data.dataset4.json, code is 4468, comment is 0, blank is 0.
+src/assets/data.dataset5.json, code is 72, comment is 0, blank is 0.
+src/assets/data.dataset6.json, code is 38, comment is 0, blank is 0.
+src/assets/data.dataset7.json, code is 4468, comment is 0, blank is 0.
+src/assets/data.dataset8.json, code is 22, comment is 0, blank is 0.
+src/assets/data.dataset9.csv, code is 561, comment is 0, blank is 0.
+src/assets/data.datasets.json, code is 312, comment is 0, blank is 0.
+src/assets/data.datasourceFilters.json, code is 16, comment is 0, blank is 0.
+src/assets/data.datasourcePermissions.json, code is 32, comment is 0, blank is 0.
+src/assets/data.datasourcePivots.json, code is 20, comment is 0, blank is 0.
+src/assets/data.datasources.json, code is 870, comment is 0, blank is 27.
+src/assets/data.groups.json, code is 8, comment is 0, blank is 0.
+src/assets/data.luno.json, code is 162, comment is 0, blank is 0.
+src/assets/data.paletteButtonBars.json, code is 2518, comment is 0, blank is 0.
+src/assets/data.paletteButtonsSelecteds.json, code is 2518, comment is 0, blank is 0.
+src/assets/data.transformations.json, code is 164, comment is 0, blank is 16.
+src/assets/data.userPreferences.json, code is 13, comment is 0, blank is 0.
+src/assets/data.widgetCheckpoint.json, code is 10177, comment is 0, blank is 0.
+src/assets/data.widgets.json, code is 3690, comment is 0, blank is 57.
+src/assets/datasource.sharePrices OLD.json, code is 37, comment is 0, blank is 2.
+src/assets/datasource.sharePrices.json, code is 0, comment is 0, blank is 0.
+src/assets/settings.backgroundcolors.json, code is 747, comment is 0, blank is 0.
+src/assets/settings.canvasActivities.json, code is 12, comment is 0, blank is 0.
+src/assets/settings.canvasAlerts.json, code is 30, comment is 0, blank is 0.
+src/assets/settings.canvasComments.json, code is 42, comment is 0, blank is 0.
+src/assets/settings.canvasMessages.json, code is 38, comment is 0, blank is 0.
+src/assets/test.db, it is a binary file.
+src/assets/vega-datasets/anscombe.json, code is 46, comment is 0, blank is 3.
+src/assets/vega-datasets/cars.json, code is 4468, comment is 0, blank is 0.
+src/assets/vega-datasets/flare.json, code is 1481, comment is 0, blank is 0.
+src/assets/vega-datasets/flights-2k.json, code is 1, comment is 0, blank is 0.
+src/assets/vega-datasets/github.csv, code is 956, comment is 0, blank is 0.
+src/assets/vega-datasets/jobs.json, code is 53552, comment is 0, blank is 0.
+src/assets/vega-datasets/movies.json, code is 3203, comment is 0, blank is 0.
+src/assets/vega-datasets/population.json, code is 570, comment is 0, blank is 0.
+src/assets/vega-datasets/seattle-weather.csv, code is 1462, comment is 0, blank is 0.
+src/assets/vega-datasets/stocks.csv, code is 561, comment is 0, blank is 0.
+src/assets/vega-datasets/stocks1.csv, code is 5601, comment is 0, blank is 0.
+src/assets/vega-datasets/stocks2.csv, code is 56001, comment is 0, blank is 0.
+src/assets/vega-datasets/stocks3.csv, code is 168001, comment is 0, blank is 0.
+src/assets/vega-datasets/stocks4.csv, code is 504001, comment is 0, blank is 0.
+src/assets/vega-datasets/stocks5.csv, code is 1008001, comment is 0, blank is 0.
+src/assets/vega-datasets/unemployment-across-industries.json, code is 1, comment is 0, blank is 0.
+src/assets/vega-datasets/unemployment.tsv, code is 3219, comment is 0, blank is 0.
+src/assets/vega-datasets/us-10m.json, code is 1, comment is 0, blank is 0.
+src/environments/environment.prod.ts, code is 3, comment is 0, blank is 0.
+src/environments/environment.ts, code is 3, comment is 4, blank is 1.
+src/favicon.ico, it is a binary file.
+src/images/arrow-scroll-icon.png, it is a binary file.
+src/images/arrow.svg, code is 12, comment is 0, blank is 0.
+src/images/Avatar1.png, it is a binary file.
+src/images/Avatar2.png, it is a binary file.
+src/images/BackgroundDots.png, it is a binary file.
+src/images/BarChart.png, it is a binary file.
+src/images/BoltIcon.png, it is a binary file.
+src/images/BubbleChart.png, it is a binary file.
+src/images/CA_CA-Logo.png, it is a binary file.
+src/images/CanvasHelpMenuData.png, it is a binary file.
+src/images/CanvsHelpMenuAddGraph.png, it is a binary file.
+src/images/ChartBarLine.png, it is a binary file.
+src/images/ChartBinnedScatter.png, it is a binary file.
+src/images/ChartBoxPlot.png, it is a binary file.
+src/images/ChartCandleStick.png, it is a binary file.
+src/images/ChartConfidence.png, it is a binary file.
+src/images/ChartDivergingStackedBar.png, it is a binary file.
+src/images/ChartFalkensee.png, it is a binary file.
+src/images/ChartHistogram.png, it is a binary file.
+src/images/ChartRangedDot.png, it is a binary file.
+src/images/ChartStackedArea.png, it is a binary file.
+src/images/ChartStackedBar.png, it is a binary file.
+src/images/ChartSteam.png, it is a binary file.
+src/images/ChartTableBubble.png, it is a binary file.
+src/images/ChartTableHeat.png, it is a binary file.
+src/images/ChartTrellisBar.png, it is a binary file.
+src/images/CheckIcon.png, it is a binary file.
+src/images/CheckIcon2.png, it is a binary file.
+src/images/CircleIcon.png, it is a binary file.
+src/images/CircleIcon2.png, it is a binary file.
+src/images/clarity_logo.svg, code is 17, comment is 1, blank is 1.
+src/images/Cloud Image.png, it is a binary file.
+src/images/CodeIcon.png, it is a binary file.
+src/images/colormap old.png, it is a binary file.
+src/images/colormap.png, it is a binary file.
+src/images/ColumnChart.png, it is a binary file.
+src/images/cursor.cur, it is a binary file.
+src/images/cursor.svg, code is 10, comment is 0, blank is 0.
+src/images/cursor1.svg, code is 8, comment is 0, blank is 0.
+src/images/Data.png, it is a binary file.
+src/images/Database Image.jpeg, it is a binary file.
+src/images/Database Image.jpg, it is a binary file.
+src/images/Database Image.png, it is a binary file.
+src/images/Eazl Image.png, it is a binary file.
+src/images/Excel Image.jpeg, it is a binary file.
+src/images/Excel Image.jpg, it is a binary file.
+src/images/ExcelImage.png, it is a binary file.
+src/images/Explore.png, it is a binary file.
+src/images/FileOpen.png, it is a binary file.
+src/images/GraphHorisontal.png, it is a binary file.
+src/images/GraphIcon.png, it is a binary file.
+src/images/GraphIcon2.png, it is a binary file.
+src/images/gridBlock.png, it is a binary file.
+src/images/Grids.png, it is a binary file.
+src/images/InfoIcon.png, it is a binary file.
+src/images/Intersection.png, it is a binary file.
+src/images/landingPageBackgroundImage.jpg, it is a binary file.
+src/images/landingPageBackgroundImage1.jpg, it is a binary file.
+src/images/landingPageBackgroundImage10.jpeg, it is a binary file.
+src/images/landingPageBackgroundImage10.jpg, it is a binary file.
+src/images/landingPageBackgroundImage11.jpeg, it is a binary file.
+src/images/landingPageBackgroundImage11.jpg, it is a binary file.
+src/images/landingPageBackgroundImage12.jpeg, it is a binary file.
+src/images/landingPageBackgroundImage12.jpg, it is a binary file.
+src/images/landingPageBackgroundImage13.jpeg, it is a binary file.
+src/images/landingPageBackgroundImage13.jpg, it is a binary file.
+src/images/landingPageBackgroundImage14.jpeg, it is a binary file.
+src/images/landingPageBackgroundImage14.jpg, it is a binary file.
+src/images/landingPageBackgroundImage15.jpeg, it is a binary file.
+src/images/landingPageBackgroundImage15.jpg, it is a binary file.
+src/images/landingPageBackgroundImage16.jpeg, it is a binary file.
+src/images/landingPageBackgroundImage16.jpg, it is a binary file.
+src/images/landingPageBackgroundImage17.jpeg, it is a binary file.
+src/images/landingPageBackgroundImage17.jpg, it is a binary file.
+src/images/landingPageBackgroundImage18.jpeg, it is a binary file.
+src/images/landingPageBackgroundImage18.jpg, it is a binary file.
+src/images/landingPageBackgroundImage19.jpeg, it is a binary file.
+src/images/landingPageBackgroundImage19.jpg, it is a binary file.
+src/images/landingPageBackgroundImage2.jpg, it is a binary file.
+src/images/landingPageBackgroundImage20.jpeg, it is a binary file.
+src/images/landingPageBackgroundImage20.jpg, it is a binary file.
+src/images/landingPageBackgroundImage21.jpeg, it is a binary file.
+src/images/landingPageBackgroundImage21.jpg, it is a binary file.
+src/images/landingPageBackgroundImage22.jpeg, it is a binary file.
+src/images/landingPageBackgroundImage22.jpg, it is a binary file.
+src/images/landingPageBackgroundImage23.jpeg, it is a binary file.
+src/images/landingPageBackgroundImage23.jpg, it is a binary file.
+src/images/landingPageBackgroundImage24.jpeg, it is a binary file.
+src/images/landingPageBackgroundImage24.jpg, it is a binary file.
+src/images/landingPageBackgroundImage25.jpeg, it is a binary file.
+src/images/landingPageBackgroundImage25.jpg, it is a binary file.
+src/images/landingPageBackgroundImage26.jpeg, it is a binary file.
+src/images/landingPageBackgroundImage26.jpg, it is a binary file.
+src/images/landingPageBackgroundImage27.jpeg, it is a binary file.
+src/images/landingPageBackgroundImage27.jpg, it is a binary file.
+src/images/landingPageBackgroundImage28.jpeg, it is a binary file.
+src/images/landingPageBackgroundImage28.jpg, it is a binary file.
+src/images/landingPageBackgroundImage29.jpeg, it is a binary file.
+src/images/landingPageBackgroundImage29.jpg, it is a binary file.
+src/images/landingPageBackgroundImage3.jpg, it is a binary file.
+src/images/landingPageBackgroundImage30.png, it is a binary file.
+src/images/landingPageBackgroundImage31.jpeg, it is a binary file.
+src/images/landingPageBackgroundImage31.jpg, it is a binary file.
+src/images/landingPageBackgroundImage32.jpeg, it is a binary file.
+src/images/landingPageBackgroundImage32.jpg, it is a binary file.
+src/images/landingPageBackgroundImage33.jpeg, it is a binary file.
+src/images/landingPageBackgroundImage33.jpg, it is a binary file.
+src/images/landingPageBackgroundImage34.jpeg, it is a binary file.
+src/images/landingPageBackgroundImage34.jpg, it is a binary file.
+src/images/landingPageBackgroundImage35.jpeg, it is a binary file.
+src/images/landingPageBackgroundImage35.jpg, it is a binary file.
+src/images/landingPageBackgroundImage36.jpeg, it is a binary file.
+src/images/landingPageBackgroundImage36.jpg, it is a binary file.
+src/images/landingPageBackgroundImage37.jpeg, it is a binary file.
+src/images/landingPageBackgroundImage37.jpg, it is a binary file.
+src/images/landingPageBackgroundImage38.jpeg, it is a binary file.
+src/images/landingPageBackgroundImage39.png, it is a binary file.
+src/images/landingPageBackgroundImage4.jpg, it is a binary file.
+src/images/landingPageBackgroundImage40.jpeg, it is a binary file.
+src/images/landingPageBackgroundImage41.jpeg, it is a binary file.
+src/images/landingPageBackgroundImage42.jpeg, it is a binary file.
+src/images/landingPageBackgroundImage43.png, it is a binary file.
+src/images/landingPageBackgroundImage44.jpeg, it is a binary file.
+src/images/landingPageBackgroundImage45.jpeg, it is a binary file.
+src/images/landingPageBackgroundImage46.jpeg, it is a binary file.
+src/images/landingPageBackgroundImage47.jpeg, it is a binary file.
+src/images/landingPageBackgroundImage48.jpeg, it is a binary file.
+src/images/landingPageBackgroundImage49.jpeg, it is a binary file.
+src/images/landingPageBackgroundImage5.jpeg, it is a binary file.
+src/images/landingPageBackgroundImage5.jpg, it is a binary file.
+src/images/landingPageBackgroundImage6.jpeg, it is a binary file.
+src/images/landingPageBackgroundImage6.jpg, it is a binary file.
+src/images/landingPageBackgroundImage7.jpeg, it is a binary file.
+src/images/landingPageBackgroundImage7.jpg, it is a binary file.
+src/images/landingPageBackgroundImage8.jpeg, it is a binary file.
+src/images/landingPageBackgroundImage8.jpg, it is a binary file.
+src/images/landingPageBackgroundImage9.jpeg, it is a binary file.
+src/images/landingPageBackgroundImage9.jpg, it is a binary file.
+src/images/landingPageBackgroundImageLunarEclise.jpg, it is a binary file.
+src/images/landingPageBackgroundImageLunarEclise1.jpeg, it is a binary file.
+src/images/landingPageBackgroundImageLunarEclise2.jpeg, it is a binary file.
+src/images/LineChart.png, it is a binary file.
+src/images/Lunar Eclise 2.jpg, it is a binary file.
+src/images/Lunar-Eclipse-Blood-Moon-Core-Shadow-Eclipse-2428965.jpg, it is a binary file.
+src/images/Minus.png, it is a binary file.
+src/images/PaletteIcon.png, it is a binary file.
+src/images/PaperClipIcon.png, it is a binary file.
+src/images/PieChart.png, it is a binary file.
+src/images/PlusIcon.png, it is a binary file.
+src/images/PowerBIScreenshot.png, it is a binary file.
+src/images/Present.png, it is a binary file.
+src/images/Properties.png, it is a binary file.
+src/images/QualityIcon.png, it is a binary file.
+src/images/RefreshIcon.png, it is a binary file.
+src/images/Sample Dashboard EU.png, it is a binary file.
+src/images/ScatterChart.png, it is a binary file.
+src/images/Tabs.png, it is a binary file.
+src/images/Widget.png, it is a binary file.
+src/index.html, code is 13, comment is 0, blank is 0.
+src/main.ts, code is 9, comment is 0, blank is 3.
+src/polyfills.ts, code is 16, comment is 2, blank is 4.
+src/styles.css, code is 9, comment is 1, blank is 1.
+src/test.ts, code is 22, comment is 6, blank is 4.
+src/tsconfig.json, code is 23, comment is 9, blank is 2.
+src/typings.d.ts, code is 0, comment is 2, blank is 0.
+tslint.json, code is 90, comment is 0, blank is 10.
+typings.json, code is 5, comment is 0, blank is 0.
+yarn.lock, code is 5422, comment is 0, blank is 1037.
+===============================================================================

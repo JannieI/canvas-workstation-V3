@@ -551,6 +551,21 @@ export class ShapeEditComponent implements OnInit {
             this.localWidget.titleText = 'Value';
         };
 
+        // Constants in Text and Bullets
+        // let today = new Date();
+        // if (this.localWidget.widgetType == 'Shape') {
+        //     if (this.localWidget.widgetSubType == 'Text') {
+        //         this.localWidget.shapeText.replace(
+        //             '#date', this.globalVariableService.formatDate(today, 'date'));
+        //         this.localWidget.shapeText.replace('#pagenr', '1');
+        //     };
+        //     // if (w.widgetSubType == 'Bullets') {
+        //     //     w.shapeBullet.forEach(sb => {
+        //     //         sb.text
+        //     //     });
+        //     // };
+        // };
+
         if (this.newWidget) {
 
             this.localWidget.dashboardTabIDs.push(
