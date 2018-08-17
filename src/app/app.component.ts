@@ -187,6 +187,10 @@ export class AppComponent implements OnInit {
             this.dashboardPageFirst();
             return;
         };
+        if (event.code == 'PageUp'  &&  (!event.ctrlKey)  &&  (!event.shiftKey) ) {
+            this.dashboardPageUp();
+            return;
+        };
         if (event.code == 'PageDown'  &&  (!event.ctrlKey)  &&  (!event.shiftKey) ) {
             this.dashboardPageDown();
             return;
