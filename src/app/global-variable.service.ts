@@ -6037,6 +6037,7 @@ export class GlobalVariableService {
 
         let url: string = 'widgets';
         this.filePath = './assets/data.widgets.json';
+        let today = new Date();
 
         return new Promise<Widget[]>((resolve, reject) => {
 
@@ -6080,12 +6081,14 @@ export class GlobalVariableService {
                             };
 
                             // // Constants in Text and Bullets
-                            let today = new Date();
                             if (w.widgetType == 'Shape') {
                                 if (w.widgetSubType == 'Text') {
-                                    w.shapeTextDisplay = w.shapeText;
-                                    w.shapeTextDisplay.replace('#date', this.formatDate(today, 'date'));
-                                    w.shapeTextDisplay.replace('#pagenr', '1');
+                                    w.shapeTextDisplay = w.shapeText + '....';
+                                    w.shapeTextDisplay = 
+                                        w.shapeTextDisplay.replace(/#date/g, this.formatDate(today, 'date'));
+                                    w.shapeTextDisplay = 
+                                        w.shapeTextDisplay.replace(/#pagenr/g, '1');
+                                    console.warn('xx shapeTextDisplay', w.shapeTextDisplay, this.formatDate(today, 'date'))
                                 };
                                 // if (w.widgetSubType == 'Bullets') {
                                 //     w.shapeBullet.forEach(sb => {
