@@ -8930,8 +8930,13 @@ export class GlobalVariableService {
         return accessList;
     }
 
-    formatDate(date, format: string = 'date') {
-         // Formats a given date into YYYY/MM/DD HH:MM:SS
+    formatDate(date: Date, returnFormat: string = 'dateTime') {
+         // Formats a given date into requested format
+         // - date: date to format
+         // - returnFormat: format to return 
+         //   = date (YYYY/MM/DD) - Default
+         //   = time (HH:MM:SS)
+         //   = dateTime (YYYY/MM/DD HH:MM:SS)
          console.log('%c    Global-Variables formatDate ...',
             "color: black; background: lightgray; font-size: 10px", {date});
 
@@ -8946,6 +8951,14 @@ export class GlobalVariableService {
         if (month.length < 2) month = '0' + month;
         if (day.length < 2) day = '0' + day;
 
+        if (returnFormat == 'date') {
+            return [year, month, day].join('/');
+        };
+        if (returnFormat == 'time') {
+            return hour + ':' + minute + ':' + second;
+        };
+
+        // Default
         return [year, month, day].join('/') + ' ' + hour + ':' + minute + ':' + second;
     }
 
