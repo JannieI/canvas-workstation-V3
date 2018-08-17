@@ -137,6 +137,7 @@
                     [style.font-weight]="localWidget.shapeIsBold? 'bold' : 'normal'"
                     [style.font-family]="localWidget.shapeFontFamily"
                     [style.font-size.px]="localWidget.shapeFontSize"
+                    [style.line-height]="localWidget.shapeLineHeight"
                     [style.text-align]="left"
                     style="display: block; padding: 5px; line-height: 150%;"
 
@@ -1198,7 +1199,7 @@
                     <div class="gridTextLineHeight">
                         <input type="text"
                             placeholder="Line height: normal, 1.6, 80%"
-                            [(ngModel)]="localWidget.shapeFontSize"
+                            [(ngModel)]="localWidget.shapeLineHeight"
                             >
                     </div>
 

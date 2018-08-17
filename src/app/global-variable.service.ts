@@ -263,6 +263,7 @@ const widgetTemplate: Widget =
         "shapeCorner": 15,
         "shapeFill": "",
         "shapeFontSize": 24,
+        "shapeLineHeight": "normal",
         "shapeFontFamily": "",
         "shapeImageUrl": "",
         "shapeIsBold": true,
@@ -7731,6 +7732,7 @@ export class GlobalVariableService {
                 {key: 'shapeSize', 				    type: 'int'},
                 {key: 'shapeCorner', 				type: 'int'},
                 {key: 'shapeFontSize', 				type: 'int'},
+                {key: 'shapeLineHeight', 			type: 'string'},
                 {key: 'shapeFontFamily', 			type: 'string'},
                 {key: 'shapeIsBold', 				type: 'bool'},
                 {key: 'shapeIsItalic', 				type: 'bool'},
@@ -8191,6 +8193,7 @@ export class GlobalVariableService {
                 w.shapeSize = changedWidget.shapeSize;
                 w.shapeCorner = changedWidget.shapeCorner;
                 w.shapeFontSize = changedWidget.shapeFontSize;
+                w.shapeLineHeight = changedWidget.shapeLineHeight;
                 w.shapeFontFamily = changedWidget.shapeFontFamily;
                 w.shapeIsBold = changedWidget.shapeIsBold;
                 w.shapeIsItalic = changedWidget.shapeIsItalic;
@@ -8332,6 +8335,7 @@ export class GlobalVariableService {
                 w.shapeSize = changedWidget.shapeSize;
                 w.shapeCorner = changedWidget.shapeCorner;
                 w.shapeFontSize = changedWidget.shapeFontSize;
+                w.shapeLineHeight = changedWidget.shapeLineHeight;
                 w.shapeFontFamily = changedWidget.shapeFontFamily;
                 w.shapeIsBold = changedWidget.shapeIsBold;
                 w.shapeIsItalic = changedWidget.shapeIsItalic;
