@@ -6077,12 +6077,20 @@ export class GlobalVariableService {
                                 w.lastCheckpoint = -1;
                             };
 
-                            // Get bullets
-                            // // TODO - fix when using DB
-                            // if (w.widgetType == 'Shape') {
-                            //     let b: string = w.shapeBullets.toString();
-                            //     w.shapeBullets = b.split(',');
-                            // };
+                            // Constants in Text and Bullets
+                            let today = new Date();
+                            if (w.widgetType == 'Shape') {
+                                if (w.widgetSubType == 'Text') {
+                                    w.shapeText.replace('#date', this.formatDate(today));
+                                };
+                                if (w.widgetSubType == 'Bullets') {
+
+                                    w.shapeBullet.forEach(sb => {
+                                        sb.text
+                                    });
+
+                                };
+                            };
 
                             // TODO - this does NOT work in datalib: if the first dashboardTabIDs
                             // = "a,b,c", then all works.  Else, it gives a big number 1046785...
@@ -8922,7 +8930,7 @@ export class GlobalVariableService {
         return accessList;
     }
 
-    formatDate(date) {
+    formatDate(date, format: string = 'date') {
          // Formats a given date into YYYY/MM/DD HH:MM:SS
          console.log('%c    Global-Variables formatDate ...',
             "color: black; background: lightgray; font-size: 10px", {date});
