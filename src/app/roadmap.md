@@ -577,6 +577,7 @@ This document describes items for later versions of Canvas.
     - have polygon - 6 sided doughnut as shape
     - have pentagon as shape - can divide background in 2 colours with a slant
     - #pagenr and #pages in Template: it takes the page Nr from the template, and not the main Dashboard.  Consider changing it.
+    - consider HTML or MarkDown inside text boxes and bullets.  Consider the benefit.
     
 
     Draw Mode (Shapes):

@@ -7765,8 +7765,8 @@ console.warn('xx containerBackgroundColor', index, this.currentWidgets[index].co
         };
 
         // Nothing to do - not copied before
-        if ((this.widgetDimenstions.width = 0)
-            ||  (this.widgetDimenstions.height = 0) ) {
+        if ((this.widgetDimenstions.width == 0)
+            ||  (this.widgetDimenstions.height == 0) ) {
                 this.showMessage(
                     'No Dimensions copied previously',
                     'StatusBar',
