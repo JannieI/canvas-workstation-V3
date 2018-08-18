@@ -9,7 +9,6 @@ import { ElementRef }                 from '@angular/core';
 import { HostListener }               from '@angular/core';
 import { Inject }                     from "@angular/core";
 import { OnInit }                     from '@angular/core';
-import { Renderer }                   from '@angular/core';
 import { Router }                     from '@angular/router';
 import { ViewChild }                  from '@angular/core';
 import { Subscription }               from "rxjs";
@@ -4248,7 +4247,7 @@ export class AppComponent implements OnInit {
         if (this.clipboardWidget.dashboardID != this.globalVariableService.
             currentDashboardInfo.value.currentDashboardID) {
             this.showMessage(
-                'Previous copy for different Dashboard',
+                'Copied from a different Dashboard',
                 'StatusBar',
                 'Warning',
                 3000,
@@ -7511,8 +7510,9 @@ console.warn('xx containerBackgroundColor', index, this.currentWidgets[index].co
 
             if (w.isSelected) {
 
-                // Make a (new) duplicate
-                this.duplicateSingleWidget(w);
+                // Make a (new) duplicate of a Deep copy
+                this.clipboardWidget = Object.assign({}, w)
+                this.duplicateSingleWidget(this.clipboardWidget);
 
                 this.showMessage(
                     'Widget copied',
@@ -7547,7 +7547,8 @@ console.warn('xx containerBackgroundColor', index, this.currentWidgets[index].co
         copiedWidget.id = null;
         copiedWidget.dashboardID = this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
         copiedWidget.dashboardTabID = this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID;
-
+console.warn('xx originalWidget copiedWidget',
+originalWidget, copiedWidget)
         // Assume this is a NEW W, so forget about tabs that original belongs
         copiedWidget.dashboardTabIDs = [copiedWidget.dashboardTabID];
         copiedWidget.isSelected = false;

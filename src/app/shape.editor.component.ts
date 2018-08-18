@@ -549,7 +549,7 @@ export class ShapeEditComponent implements OnInit {
         };
 
         // Replace keywords in the text
-        this.localWidget.shapeTextDisplay = 
+        this.localWidget.shapeTextDisplay =
             this.globalVariableService.calcShapeTextDisplay(this.localWidget.shapeText);
 
         if (this.newWidget) {
