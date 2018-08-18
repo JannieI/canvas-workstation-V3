@@ -378,7 +378,7 @@
     .gridTextString {
         grid-column-start: 3;
         /* autoprefixer: off */
-        grid-column-end: 9;
+        grid-column-end: 10;
         grid-row-start: 1;
         /* autoprefixer: off */
         grid-row-end: 2;
@@ -797,7 +797,7 @@
     .gridBulletsItemMarker {
         grid-column-start: 3;
         /* autoprefixer: off */
-        grid-column-end: 11;
+        grid-column-end: 7;
         grid-row-start: 5;
         /* autoprefixer: off */
         grid-row-end: 6;
