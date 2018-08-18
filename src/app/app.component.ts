@@ -7858,8 +7858,18 @@ console.warn('xx containerBackgroundColor', index, this.currentWidgets[index].co
             return;
         };
 
-        // this.dashboardStartX = ev.x;
-        // this.dashboardStartY = ev.y
+        // Unselect all Ws
+        this.clickMenuEditSelectAllNone('None');
+
+        // Select Ws within the range
+        this.currentWidgets.forEach(w => {
+            if (w.containerTop >= this.dashboardStartY  && 
+                w.containerTop <= this.dashboardEndY  &&
+                w.containerLeft >= this.dashboardStartX  &&
+                w.containerLeft <= this.dashboardEndX) {
+                    w.isSelected = true;
+            };
+        });
 
         console.warn('xx UP',
         this.dashboardStartX,
