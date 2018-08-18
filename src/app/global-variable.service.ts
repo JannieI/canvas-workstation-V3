@@ -6435,6 +6435,14 @@ export class GlobalVariableService {
             // Construct array with correct datasetIDs
             this.currentWidgets.forEach(w => {
 
+                // Constants in Text and Bullets
+                if (w.widgetType == 'Shape') {
+                    if (w.widgetSubType == 'Text') {
+                        w.shapeTextDisplay = 
+                            this.calcShapeTextDisplay(w.shapeText);
+                    };
+                };
+
                 // Only get data from Graphs and Text boxes
                 // if ( (w.widgetType == 'Graph'  ||  w.widgetType == 'Shape')  &&
                 //     (w.datasourceID >= 0) ) {
