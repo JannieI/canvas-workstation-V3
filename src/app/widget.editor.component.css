@@ -176,6 +176,16 @@
         margin: 0;
         padding: 0 0 0 10px;
     }
+    .hasContextMenus {
+        grid-column-start: 17;
+        /* autoprefixer: off */
+        grid-column-end: 19;
+        grid-row-start: 6;
+        /* autoprefixer: off */
+        grid-row-end: 7;
+        margin: 0;
+        padding: 0 0 0 15px;
+    }
 
     .graphArea {
         border: 1px solid gray;
