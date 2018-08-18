@@ -6082,15 +6082,8 @@ export class GlobalVariableService {
                             // Constants in Text and Bullets
                             if (w.widgetType == 'Shape') {
                                 if (w.widgetSubType == 'Text') {
-                                    w.shapeTextDisplay = w.shapeText + '....';
-                                    w.shapeTextDisplay = w.shapeTextDisplay
-                                        .replace(/#date/g, this.formatDate(today, 'date'));
-                                    w.shapeTextDisplay = w.shapeTextDisplay
-                                        .replace(/#pagenr/g, selectedTabIndex.toString());
-                                    w.shapeTextDisplay = w.shapeTextDisplay
-                                        .replace(/#pages/g, pages.toString());
-                    
-                                    console.warn('xx shapeTextDisplay', w.shapeTextDisplay, this.formatDate(today, 'date'))
+                                    w.shapeTextDisplay = 
+                                        this.calcShapeTextDisplay(w.shapeText);
                                 };
                             };
 
@@ -9202,11 +9195,11 @@ export class GlobalVariableService {
         return ret;
     }
 
-    calcTextVariables(shapeText: string): string {
+    calcShapeTextDisplay(shapeText: string): string {
         // Description: Transforms the .shapeText property to .shapeTextDisplay using
         // keywords like #pagenr, #pages, #date
         // Returns: Added Data or error message
-        console.log('%c    Global-Variables getTributaryData ...',
+        console.log('%c    Global-Variables calcShapeTextDisplay ...',
             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {shapeText});
 
             let today = new Date();

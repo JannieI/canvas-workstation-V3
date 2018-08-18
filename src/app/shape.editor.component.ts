@@ -548,26 +548,9 @@ export class ShapeEditComponent implements OnInit {
             this.localWidget.titleText = 'Value';
         };
 
-        // Constants in Text and Bullets
-        let today = new Date();
-        let pages: number = this.globalVariableService.currentDashboardTabs.length;
-        let selectedTabIndex: number = this.globalVariableService.currentDashboardInfo
-            .value.currentDashboardTabIndex;
-        selectedTabIndex = selectedTabIndex + 1;
-
-        if (this.localWidget.widgetType == 'Shape') {
-            if (this.localWidget.widgetSubType == 'Text') {
-                this.localWidget.shapeTextDisplay = this.localWidget.shapeText + '....';
-                this.localWidget.shapeTextDisplay = this.localWidget.shapeText;
-                this.localWidget.shapeTextDisplay = this.localWidget.shapeTextDisplay
-                    .replace(/#date/g, this.globalVariableService.formatDate(today, 'date'));
-                this.localWidget.shapeTextDisplay = this.localWidget.shapeTextDisplay
-                    .replace(/#pagenr/g, selectedTabIndex.toString());
-                this.localWidget.shapeTextDisplay = this.localWidget.shapeTextDisplay
-                    .replace(/#pages/g, pages.toString());
-                console.warn('xx shapeTextDisplay', this.localWidget.shapeTextDisplay, this.globalVariableService.formatDate(today, 'date'))
-            };
-        };
+        // Replace keywords in the text
+        this.localWidget.shapeTextDisplay = 
+            this.globalVariableService.calcShapeTextDisplay(this.localWidget.shapeText);
 
         if (this.newWidget) {
 
