@@ -7788,6 +7788,7 @@ console.warn('xx containerBackgroundColor', index, this.currentWidgets[index].co
                 w.containerWidth = this.widgetDimenstions.width;
                 w.containerHeight = this.widgetDimenstions.height;
 
+                this.globalVariableService.saveWidget(w);
                 this.showMessage(
                     'Widget Dimensions pasted',
                     'StatusBar',
