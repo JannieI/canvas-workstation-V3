@@ -483,7 +483,7 @@ export class StatusbarComponent {
         // Delete a Tab
         this.globalFunctionService.printToConsole(this.constructor.name,'clickTabDuplicate', '@Start');
 
-        console.warn('xx tab index', this.globalVariableService.currentDashboardInfo.value.currentDashboardTabIndex)
+        console.warn('xx tab index', this.globalVariableService.currentDashboardInfo.value.currentDashboardTabIndex, this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID, this.globalVariableService.currentWidgets)
         if (this.globalVariableService.currentDashboardInfo.value.currentDashboardTabIndex >= 0) {
 
             let duplicateTab: DashboardTab = Object.assign({},this.globalVariableService
@@ -497,14 +497,20 @@ export class StatusbarComponent {
 
             // Add to DB
             this.globalVariableService.addDashboardTab(duplicateTab).then(res => {
-                
+                let newTabID: number = res.id;
+                console.warn('xx new ID', newTabID)
                 // Duplicate the Widgets
                 this.globalVariableService.currentWidgets.forEach(w => {
+                    console.warn('xx ids', w.dashboardTabID, this.globalVariableService
+                    .currentDashboardInfo.value.currentDashboardID)
                     if (w.dashboardTabID == this.globalVariableService
-                        .currentDashboardInfo.value.currentDashboardID) {
-console.warn('xx copy w', w.shapeText)
-                        let clipboardWidget = Object.assign({}, w);
-                        clipboardWidget.dashboardTabID = res.dashboardTabID;
+                        .currentDashboardInfo.value.currentDashboardTabID) {
+                        
+                        // Create Deep copy with necessary info
+                        let clipboardWidget = Object.assign({}, w);                        
+                        clipboardWidget.dashboardTabID = newTabID;
+                        clipboardWidget.dashboardTabIDs = [];
+                        clipboardWidget.dashboardTabIDs.push(newTabID);
                 
                         this.globalVariableService.duplicateSingleWidget(clipboardWidget);
                 
