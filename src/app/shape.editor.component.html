@@ -1422,12 +1422,18 @@
                             [(ngModel)]="localWidget.shapeFontFamily"
                             >
                     </div>
-                    <div class="gridBulletsItemMarker">
+                    <div class="select gridBulletsItemMarker">
                         <b>Item Marker:</b>
-                        <input type="text"
-                            placeholder="disc, circle, square, none"
+                        <select
                             [(ngModel)]="localWidget.shapeBulletStyleType"
+                            (change)="clickSelectBulletsMarker($event)"
                             >
+                            <option>None</option>
+                            <option>Circle</option>
+                            <option>Disc</option>
+                            <option>Square</option>
+                        </select>
+
                     </div>
                     <button
                         type="button"

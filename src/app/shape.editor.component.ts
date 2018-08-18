@@ -774,6 +774,13 @@ export class ShapeEditComponent implements OnInit {
         };
     }
 
+    clickSelectBulletsMarker(ev: any) {
+        // Select Bullet Marker
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBulletsMarker', '@Start');
+
+        this.localWidget.shapeBulletStyleType = ev.target.value;
+    }
+
     clickSelectArrowLineColorPicker(ev: any) {
         // Open the Colour Picker for Arrow Line Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectArrowLineColorPicker', '@Start');
