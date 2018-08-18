@@ -505,15 +505,22 @@ export class StatusbarComponent {
                     .currentDashboardInfo.value.currentDashboardID)
                     if (w.dashboardTabID == this.globalVariableService
                         .currentDashboardInfo.value.currentDashboardTabID) {
-                        
+
                         // Create Deep copy with necessary info
-                        let clipboardWidget = Object.assign({}, w);                        
+                        let clipboardWidget = Object.assign({}, w);
+                        clipboardWidget.id = null
                         clipboardWidget.dashboardTabID = newTabID;
                         clipboardWidget.dashboardTabIDs = [];
                         clipboardWidget.dashboardTabIDs.push(newTabID);
-                
-                        this.globalVariableService.duplicateSingleWidget(clipboardWidget);
-                
+                        clipboardWidget.isSelected = false;
+
+                        // Add to DB
+                        this.globalVariableService.addWidget(clipboardWidget).then(res => {
+                            clipboardWidget.id = res.id;
+
+                            this.globalVariableService.changedWidget.next(clipboardWidget);
+                        });
+
                     };
                 })
                 this.globalVariableService.refreshCurrentDashboard(
@@ -534,7 +541,7 @@ export class StatusbarComponent {
                 }
             );
         }
-                
+
          // Close popup form
          this.showDashboardTabDescription = false;
      }
