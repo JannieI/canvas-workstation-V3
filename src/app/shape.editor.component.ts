@@ -552,19 +552,19 @@ export class ShapeEditComponent implements OnInit {
         };
 
         // Constants in Text and Bullets
-        // let today = new Date();
-        // if (this.localWidget.widgetType == 'Shape') {
-        //     if (this.localWidget.widgetSubType == 'Text') {
-        //         this.localWidget.shapeText.replace(
-        //             '#date', this.globalVariableService.formatDate(today, 'date'));
-        //         this.localWidget.shapeText.replace('#pagenr', '1');
-        //     };
-        //     // if (w.widgetSubType == 'Bullets') {
-        //     //     w.shapeBullet.forEach(sb => {
-        //     //         sb.text
-        //     //     });
-        //     // };
-        // };
+        let today = new Date();
+        if (this.localWidget.widgetType == 'Shape') {
+            if (this.localWidget.widgetSubType == 'Text') {
+                this.localWidget.shapeTextDisplay = this.localWidget.shapeText + '....';
+                this.localWidget.shapeTextDisplay = this.localWidget.shapeText;
+                this.localWidget.shapeTextDisplay = 
+                    this.localWidget.shapeTextDisplay.replace
+                    (/#date/g, this.globalVariableService.formatDate(today, 'date'));
+                this.localWidget.shapeTextDisplay = 
+                    this.localWidget.shapeTextDisplay.replace(/#pagenr/g, '1');
+                console.warn('xx shapeTextDisplay', this.localWidget.shapeTextDisplay, this.globalVariableService.formatDate(today, 'date'))
+            };
+        };
 
         if (this.newWidget) {
 

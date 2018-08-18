@@ -6080,7 +6080,7 @@ export class GlobalVariableService {
                                 w.lastCheckpoint = -1;
                             };
 
-                            // // Constants in Text and Bullets
+                            // Constants in Text and Bullets
                             if (w.widgetType == 'Shape') {
                                 if (w.widgetSubType == 'Text') {
                                     w.shapeTextDisplay = w.shapeText + '....';
@@ -6090,11 +6090,6 @@ export class GlobalVariableService {
                                         w.shapeTextDisplay.replace(/#pagenr/g, '1');
                                     console.warn('xx shapeTextDisplay', w.shapeTextDisplay, this.formatDate(today, 'date'))
                                 };
-                                // if (w.widgetSubType == 'Bullets') {
-                                //     w.shapeBullet.forEach(sb => {
-                                //         sb.text
-                                //     });
-                                // };
                             };
 
                             // TODO - this does NOT work in datalib: if the first dashboardTabIDs
