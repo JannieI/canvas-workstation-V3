@@ -218,7 +218,7 @@ export class ShapeEditComponent implements OnInit {
             this.localWidget.shapeStrokeWidth = '1';
             this.localWidget.shapeSvgHeight = 60;
             this.localWidget.shapeSvgWidth = 60;
-            this.localWidget.shapeText = 'The brown fox is tired';
+            this.localWidget.shapeText = 'Enter text, keywords: #pagenr, #pages, #date';
             this.localWidget.shapeTextAlign = 'Left';
 
         } else {
@@ -377,7 +377,7 @@ export class ShapeEditComponent implements OnInit {
         if (shapeType == 'Text') {
             this.showText = true;
             if (this.localWidget.shapeText == null) {
-                this.localWidget.shapeText = 'The brown fox is tired';
+                this.localWidget.shapeText = 'Enter text, keywords: #pagenr, #pages, #date';
             };
         };
         if (shapeType == 'Arrow') {

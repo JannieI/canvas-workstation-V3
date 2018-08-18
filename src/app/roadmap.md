@@ -533,6 +533,7 @@ This document describes items for later versions of Canvas.
     - look at market: do segmentation, non-customers that can use Canvas, think of different market needs.  Also, look at different user profiles: info-worker, project manager, consultants, team members, board.  Review competition, and be clear about differentiators.
     - consider RIGHT CLICK menu (Ihsane) - this is a lot of work, so first test if users wants it.  Also, think about old hover menu I had long ago ...
     - consider if it is possible to show changes easily and visually, similar to mark-up in a Word doc!
+    - consider increase / decrease in the distance between multiple selected Widgets, both horisontally and vertically.  Is this needed ?
 
     Styles:
     -------
