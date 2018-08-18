@@ -6037,11 +6037,6 @@ export class GlobalVariableService {
 
         let url: string = 'widgets';
         this.filePath = './assets/data.widgets.json';
-        let today = new Date();
-        let pages: number = this.currentDashboardTabs.length;
-        let selectedTabIndex: number = this.currentDashboardInfo
-            .value.currentDashboardTabIndex;
-        selectedTabIndex = selectedTabIndex + 1;
 
         return new Promise<Widget[]>((resolve, reject) => {
 
@@ -6091,7 +6086,7 @@ export class GlobalVariableService {
                                     w.shapeTextDisplay = w.shapeTextDisplay
                                         .replace(/#date/g, this.formatDate(today, 'date'));
                                     w.shapeTextDisplay = w.shapeTextDisplay
-                                        .replace(/#pagenr/g, '1');
+                                        .replace(/#pagenr/g, selectedTabIndex.toString());
                                     w.shapeTextDisplay = w.shapeTextDisplay
                                         .replace(/#pages/g, pages.toString());
                     
@@ -9205,5 +9200,31 @@ export class GlobalVariableService {
         };
 
         return ret;
+    }
+
+    calcTextVariables(shapeText: string): string {
+        // Description: Transforms the .shapeText property to .shapeTextDisplay using
+        // keywords like #pagenr, #pages, #date
+        // Returns: Added Data or error message
+        console.log('%c    Global-Variables getTributaryData ...',
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {shapeText});
+
+            let today = new Date();
+            let pages: number = this.currentDashboardTabs.length;
+            let selectedTabIndex: number = this.currentDashboardInfo
+                .value.currentDashboardTabIndex;
+            selectedTabIndex = selectedTabIndex + 1;
+            let shapeTextDisplay = shapeText;
+            shapeTextDisplay = shapeTextDisplay
+                .replace(/#date/g, this.formatDate(today, 'date'));
+            shapeTextDisplay = shapeTextDisplay
+                .replace(/#pagenr/g, selectedTabIndex.toString());
+            shapeTextDisplay = shapeTextDisplay
+                .replace(/#pages/g, pages.toString());
+
+            console.warn('xx shapeText shapeTextDisplay',shapeText ,shapeTextDisplay)
+
+            // Return
+            return shapeTextDisplay;
     }
 }
