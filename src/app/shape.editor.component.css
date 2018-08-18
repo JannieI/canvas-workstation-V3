@@ -783,8 +783,19 @@
         padding-left: 15px;
         padding-top: 6px;
     }
-    .gridBulletsItemMarker {
+
+    .gridBulletsItemMarkerTitle {
         grid-column-start: 1;
+        /* autoprefixer: off */
+        grid-column-end: 4;
+        grid-row-start: 5;
+        /* autoprefixer: off */
+        grid-row-end: 6;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+    .gridBulletsItemMarker {
+        grid-column-start: 3;
         /* autoprefixer: off */
         grid-column-end: 11;
         grid-row-start: 5;
