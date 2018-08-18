@@ -7823,6 +7823,12 @@ console.warn('xx containerBackgroundColor', index, this.currentWidgets[index].co
         // Toggles Palette - horisontal / vertical
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboard', '@Start');
         
+        // Exit if busy with mouse down and up
+        if (this.dashboardStartX != this.dashboardEndX  ||
+            this.dashboardStartY != this.dashboardEndY) {
+            return;
+        };
+
         // Unselect all Ws
         this.clickMenuEditSelectAllNone('None');
     }
@@ -7834,8 +7840,34 @@ console.warn('xx containerBackgroundColor', index, this.currentWidgets[index].co
         // Store X & Y
         this.dashboardStartX = ev.x;
         this.dashboardStartY = ev.y
+        this.dashboardEndX = 0;
+        this.dashboardEndY = 0;
+    }
+
+    mouseupDashboard(ev: any) {
+        // Toggles Palette - horisontal / vertical
+        this.globalFunctionService.printToConsole(this.constructor.name,'mouseupDashboard', '@Start');
+        
+        // Store X & Y
         this.dashboardEndX = ev.x;
         this.dashboardEndY = ev.y;
+
+        // Exit if clicked one spot
+        if (this.dashboardStartX == this.dashboardEndX  &&
+            this.dashboardStartY == this.dashboardEndY) {
+            return;
+        };
+
+        // this.dashboardStartX = ev.x;
+        // this.dashboardStartY = ev.y
+
+        console.warn('xx UP',
+        this.dashboardStartX,
+        this.dashboardStartY,
+        this.dashboardEndX,
+        this.dashboardEndY
+        )
+
     }
 }
 

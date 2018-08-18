@@ -3985,7 +3985,10 @@
         [style.background-color]="currentDashboardBackgroundColor"
         >
         <div  class="content-area" 
-            (click)="clickDashboard($event)">
+            (click)="clickDashboard($event)"
+            (mousedown)="mousedownDashboard($event)"
+            (mouseup)="mouseupDashboard($event)"
+            >
             <router-outlet ></router-outlet>
         </div>
     </div>
