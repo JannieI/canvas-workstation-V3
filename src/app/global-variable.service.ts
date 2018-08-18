@@ -6172,6 +6172,18 @@ export class GlobalVariableService {
                 console.log('%c    Global-Variables getWidgets 2',
                     "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                     this.widgets)
+
+                this.widgets.forEach(w => {
+
+                    // Constants in Text and Bullets
+                    if (w.widgetType == 'Shape') {
+                        if (w.widgetSubType == 'Text') {
+                            w.shapeTextDisplay = 
+                                this.calcShapeTextDisplay(w.shapeText);
+                        };
+                    };
+                });
+
                 resolve(this.widgets);
             }
         });
@@ -6232,6 +6244,16 @@ export class GlobalVariableService {
                     &&
                     (i.dashboardTabIDs.indexOf(dashboardTabID) >= 0)
                 )
+
+                // Constants in Text and Bullets
+                this.currentWidgets.forEach(w => {
+                    if (w.widgetType == 'Shape') {
+                        if (w.widgetSubType == 'Text') {
+                            w.shapeTextDisplay = 
+                                this.calcShapeTextDisplay(w.shapeText);
+                        };
+                    };
+                });
 
                 this.currentWidgets = data;
                 console.log('%c    Global-Variables getCurrentWidgets 2',

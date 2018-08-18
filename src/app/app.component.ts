@@ -460,7 +460,6 @@ export class AppComponent implements OnInit {
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
         @Inject(DOCUMENT) private document: Document,
-        private renderer: Renderer,
         private router: Router,
     ) {
         this.socket$ = WebSocketSubject.create('ws://localhost:8999');
