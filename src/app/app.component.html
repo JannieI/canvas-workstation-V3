@@ -2109,7 +2109,7 @@
         </div>
 
         <!-- W related info menu -->
-        <div class="widgetRelatedInfoMenu" *ngIf="row.widgetType=='Graph'"
+        <div class="widgetRelatedInfoMenu" *ngIf="row.widgetType=='Graph'  &&  row.containerHasContextMenus"
             [style.color]="row.titleColor"
             [style.z-index]="row.containerZindex"
             >
@@ -3098,10 +3098,11 @@
         </div>
 
         <!-- W action menu -->
-        <div class="widgetActionMenu" *ngIf="row.widgetType=='Graph'
+        <div class="widgetActionMenu" *ngIf="(row.widgetType=='Graph'
             || row.widgetType=='Table'
             || (row.widgetType=='Slicer'  && row.containerHasTitle)
-            || (row.widgetType=='Shape'  &&  row.widgetSubType=='Value')"
+            || (row.widgetType=='Shape'  &&  row.widgetSubType=='Value') )
+            &&  row.containerHasContextMenus"
             [style.color]="row.titleColor"
             [style.z-index]="row.containerZindex"
             >
