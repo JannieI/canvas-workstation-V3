@@ -621,6 +621,13 @@ export class ShapeEditComponent implements OnInit {
         this.colourPickerClosed = true;
     }
 
+    clickSelectTextAlign(ev: any) {
+        // Select Text Colour
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectTextAlign', '@Start');
+
+        this.localWidget.shapeTextAlign = ev.target.value;
+    }
+
     clickSelectTextColor(ev: any) {
         // Select Text Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectTextColor', '@Start');
