@@ -482,7 +482,6 @@ export class ShapeEditComponent implements OnInit {
 
         // Stop editing
         this.editLineNr = -1;
-        console.warn('xx this.localWidget.shapeBullet', this.localWidget.shapeBullet)
 
     }
 
@@ -553,6 +552,12 @@ export class ShapeEditComponent implements OnInit {
             this.localWidget.dashboardTabIDs.push(
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID
             );
+
+            // Set calculated start Width and Height
+            console.warn('xx this.localWidget.shapeText.length', this.localWidget.shapeText.length, this.localWidget.fontSize)
+            this.localWidget.containerWidth = this.localWidget.shapeText.length 
+                * this.localWidget.fontSize / 2;
+            this.localWidget.containerHeight = 8 + this.localWidget.fontSize;
 
             this.globalVariableService.addWidget(this.localWidget).then(res => {
 

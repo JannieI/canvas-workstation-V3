@@ -639,25 +639,23 @@ export class AppComponent implements OnInit {
                             .then(j => {
 
                                 let dashboardIndex: number = this.globalVariableService.dashboards.findIndex(d => d.id == this.globalVariableService.currentDashboardInfo.value.currentDashboardID);
-                                console.warn('xx dashboardIndex', dashboardIndex, this.globalVariableService.dashboards)
+
                                 if (dashboardIndex >= 0) {
                                     this.currentDashboardBackgroundColor = this.globalVariableService.dashboards[dashboardIndex].backgroundColor;
                                     let templateDashboardID: number = this.globalVariableService.dashboards[dashboardIndex].templateDashboardID; 
-                                    console.warn('xx templateDashboardID', templateDashboardID, 'D index =', dashboardIndex, this.globalVariableService.dashboards )
+
                                     if (templateDashboardID != null  &&  templateDashboardID > 0) {
                                         // Load Template
                                         this.templateWidgets = this.globalVariableService.widgets.filter(w => 
                                             w.dashboardID == templateDashboardID
                                         );
 
-                                        console.warn('xx templateWidgets', this.templateWidgets)
                                     } else {
                                         this.templateWidgets = [];
                                     };
 
                                 };
 
-                                console.warn('xx this.globalVariableService.currentDashboardInfo.value', this.globalVariableService.currentDashboardInfo.value)
                                 this.refreshGraphs = false;
 
                                 // Cater for -1, ie First T
@@ -2149,7 +2147,7 @@ export class AppComponent implements OnInit {
                         this.globalVariableService.copyDashboard(
                             localDashboard.id, null, 'Draft'
                         ).then(res => {
-                            console.warn('xx res', res)
+
                             this.globalVariableService.refreshCurrentDashboard(
                                 'app-clickMenuEditMode', res.id, -1, ''
                             );
@@ -2172,7 +2170,6 @@ export class AppComponent implements OnInit {
                 };
 
                 // Update EditMode in D-Recent
-                console.warn('xx Heyha Rec 2', this.globalVariableService.dashboardsRecent)
                 let localIndex: number = this.globalVariableService.dashboardsRecent.findIndex(
                     u => u.dashboardID == this.globalVariableService.currentDashboardInfo.value.currentDashboardID
                 );
@@ -2298,20 +2295,15 @@ export class AppComponent implements OnInit {
                             };
                         });
                     };
-                    console.warn('xx 1')
 
                     // Add (previous action was a Delete) / Save to DB
                     if (filteredActions[0].action = 'Delete') {
-                        console.warn('xx 2')
                         this.globalVariableService.addWidget(filteredActions[0].oldWidget);
                     } else {
-                        console.warn('xx 3')
                         this.globalVariableService.saveWidget(filteredActions[0].oldWidget);
                     };
-                    console.warn('xx 4')
 
                     this.globalVariableService.changedWidget.next(filteredActions[0].oldWidget);
-                    console.warn('xx 6')
 
                 };
             };
@@ -6072,7 +6064,7 @@ export class AppComponent implements OnInit {
         this.dontDisturb = !this.globalVariableService.dontDisturb.value;
         this.globalVariableService.dontDisturb.next(
             !this.globalVariableService.dontDisturb.value);
-        console.warn('xx this.dontDisturb', this.dontDisturb)
+
         this.menuOptionClickPostAction();
     }
 
@@ -6897,7 +6889,7 @@ export class AppComponent implements OnInit {
     clickWidget(ev: MouseEvent, index: number, id: number) {
         // Click W object
         this.globalFunctionService.printToConsole(this.constructor.name,'clickWidget', '@Start');
-console.warn('xx containerBackgroundColor', index, this.currentWidgets[index].containerBackgroundcolor)
+
         // Sl item was clicked, so nothing further to do on the W container
         if (this.clickedSlicerItem) {
             this.clickedSlicerItem = false;
@@ -7201,7 +7193,7 @@ console.warn('xx containerBackgroundColor', index, this.currentWidgets[index].co
         // Restore the Original (when moving out of showCheckpoint mode)
         if (showCheckpoints) {
             this.currentWidgetsOriginals.forEach(wo => {
-                console.warn('xx wo.showCheckpoints', wo.showCheckpoints, this.currentWidgetsOriginals)
+
                 if (wo.dashboardID == dashboardID  &&  wo.id == id) {
                     wo.showCheckpoints = false;
                     this.globalVariableService.changedWidget.next(wo);
@@ -7691,7 +7683,6 @@ console.warn('xx containerBackgroundColor', index, this.currentWidgets[index].co
     setPaletteHeightAndWidth() {
         // Sets the Height and Width of the Palette according to the user pref
         this.globalFunctionService.printToConsole(this.constructor.name,'setPaletteHeightAndWidth', '@Start');
-        console.warn('xx this.globalVariableService.currentUser.preferencePaletteHorisontal', this.globalVariableService.currentUser.preferencePaletteHorisontal)
 
         if (this.globalVariableService.currentUser.preferencePaletteHorisontal){
             // Horisontal
@@ -7809,7 +7800,6 @@ console.warn('xx containerBackgroundColor', index, this.currentWidgets[index].co
     togglePaletteHorisontal() {
         // Toggles Palette - horisontal / vertical
         this.globalFunctionService.printToConsole(this.constructor.name,'togglePaletteHorisontal', '@Start');
-        console.warn('xx this.globalVariableService.currentUser.preferencePaletteHorisontal', this.globalVariableService.currentUser.preferencePaletteHorisontal)
 
         // TODO - this must be written to DB for user
         this.globalVariableService.currentUser.preferencePaletteHorisontal =
@@ -7870,13 +7860,6 @@ console.warn('xx containerBackgroundColor', index, this.currentWidgets[index].co
                     w.isSelected = true;
             };
         });
-
-        console.warn('xx UP',
-        this.dashboardStartX,
-        this.dashboardStartY,
-        this.dashboardEndX,
-        this.dashboardEndY
-        )
 
     }
 }
