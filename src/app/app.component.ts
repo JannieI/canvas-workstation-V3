@@ -4261,7 +4261,8 @@ export class AppComponent implements OnInit {
 
         this.clipboardWidget.dashboardTabID = this.globalVariableService.
             currentDashboardInfo.value.currentDashboardTabID;
-
+        this.clipboardWidget.shapeTextDisplay = this.globalVariableService
+            .calcShapeTextDisplay(this.clipboardWidget.shapeText);
         this.globalVariableService.duplicateSingleWidget(this.clipboardWidget);
 
         this.menuOptionClickPostAction();
