@@ -483,21 +483,52 @@ export class StatusbarComponent {
         // Delete a Tab
         this.globalFunctionService.printToConsole(this.constructor.name,'clickTabDuplicate', '@Start');
 
-        let duplicateTab: DashboardTab = Object.assign({},this.globalVariableService
-            .currentDashboardTabs[
-            this.globalVariableService.currentDashboardInfo.value.currentDashboardTabIndex
-        ]);
-        duplicateTab.name = duplicateTab.name + ' COPY';
-        this.globalVariableService.addDashboardTab(duplicateTab).then(res => {
- 
-             this.globalVariableService.refreshCurrentDashboard(
-                 'statusbar-clickTabDelete',
-                 this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
-                 0,
-                 'Last'
-             );
-         })
- 
+        console.warn('xx tab index', this.globalVariableService.currentDashboardInfo.value.currentDashboardTabIndex)
+        if (this.globalVariableService.currentDashboardInfo.value.currentDashboardTabIndex >= 0) {
+
+            let duplicateTab: DashboardTab = Object.assign({},this.globalVariableService
+                .currentDashboardTabs[
+                    this.globalVariableService.currentDashboardInfo.value.currentDashboardTabIndex
+            ]);
+
+            // Reset some info
+            duplicateTab.id = null;
+            duplicateTab.name = duplicateTab.name + ' COPY';
+
+            // Add to DB
+            this.globalVariableService.addDashboardTab(duplicateTab).then(res => {
+                
+                // Duplicate the Widgets
+                this.globalVariableService.currentWidgets.forEach(w => {
+                    if (w.dashboardTabID == this.globalVariableService
+                        .currentDashboardInfo.value.currentDashboardID) {
+console.warn('xx copy w', w.shapeText)
+                        let clipboardWidget = Object.assign({}, w);
+                        clipboardWidget.dashboardTabID = res.dashboardTabID;
+                
+                        this.globalVariableService.duplicateSingleWidget(clipboardWidget);
+                
+                    };
+                })
+                this.globalVariableService.refreshCurrentDashboard(
+                    'statusbar-clickTabDelete',
+                    this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                    0,
+                    'Last'
+                );
+            })
+        } else {
+            this.globalVariableService.showStatusBarMessage(
+                {
+                    message: 'Erro: Tab does not exist in TabList',
+                    uiArea: 'StatusBar',
+                    classfication: 'Error',
+                    timeout: 3000,
+                    defaultMessage: ''
+                }
+            );
+        }
+                
          // Close popup form
          this.showDashboardTabDescription = false;
      }

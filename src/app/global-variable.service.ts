@@ -6416,6 +6416,62 @@ export class GlobalVariableService {
         });
     }
 
+    duplicateSingleWidget(originalWidget: Widget) {
+        // Duplicate the given Widget
+        console.log('%c    Global-Variables duplicateSingleWidget ...',
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {originalWidget});
+
+        // Find latest copy #
+        let copyPosition: number = 1;
+        for (var i = 0; i < 21; i++) {
+            this.currentWidgets.forEach(w => {
+                if ( w.titleText.includes(' (copy ' + i.toString() + ')') ) {
+                    copyPosition = i + 1;
+                };
+            });
+        };
+
+        // Make a deep copy
+        let copiedWidget: Widget = Object.assign({}, originalWidget);
+
+        copiedWidget.id = null;
+        copiedWidget.dashboardID = this.currentDashboardInfo.value.currentDashboardID;
+        copiedWidget.dashboardTabID = this.currentDashboardInfo.value.currentDashboardTabID;
+console.warn('xx originalWidget copiedWidget',
+originalWidget, copiedWidget)
+        // Assume this is a NEW W, so forget about tabs that original belongs
+        copiedWidget.dashboardTabIDs = [copiedWidget.dashboardTabID];
+        copiedWidget.isSelected = false;
+        copiedWidget.containerLeft = 120;
+        copiedWidget.containerTop = 120;
+        copiedWidget.titleText = copiedWidget.titleText + ' (copy ' +
+            copyPosition.toString() + ')';
+
+        // Add to all and current W
+        this.addWidget(copiedWidget).then(res => {
+            copiedWidget.id = res.id;
+
+            this.changedWidget.next(copiedWidget);
+
+            // Add to Action log
+            this.actionUpsert(
+                null,
+                this.currentDashboardInfo.value.currentDashboardID,
+                this.currentDashboardInfo.value.currentDashboardTabID,
+                copiedWidget.id,
+                'Widget',
+                'Edit',
+                'Duplicate',
+                'App clickMenuWidgetDuplicate',
+                null,
+                null,
+                null,
+                copiedWidget
+            );
+        });
+
+    }
+
     getWidgetsInfo(): Promise<boolean> {
         // Description: Gets data and other info for [W]
         // Returns: this.datasets, currentDataset array

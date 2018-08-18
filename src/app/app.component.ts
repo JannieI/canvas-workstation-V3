@@ -4262,7 +4262,7 @@ export class AppComponent implements OnInit {
         this.clipboardWidget.dashboardTabID = this.globalVariableService.
             currentDashboardInfo.value.currentDashboardTabID;
 
-        this.duplicateSingleWidget(this.clipboardWidget);
+        this.globalVariableService.duplicateSingleWidget(this.clipboardWidget);
 
         this.menuOptionClickPostAction();
     }
@@ -7512,7 +7512,7 @@ console.warn('xx containerBackgroundColor', index, this.currentWidgets[index].co
 
                 // Make a (new) duplicate of a Deep copy
                 this.clipboardWidget = Object.assign({}, w)
-                this.duplicateSingleWidget(this.clipboardWidget);
+                this.globalVariableService.duplicateSingleWidget(this.clipboardWidget);
 
                 this.showMessage(
                     'Widget copied',
@@ -7527,60 +7527,60 @@ console.warn('xx containerBackgroundColor', index, this.currentWidgets[index].co
         this.menuOptionClickPostAction();
     }
 
-    duplicateSingleWidget(originalWidget: Widget) {
-        // Duplicate the given Widget
-        this.globalFunctionService.printToConsole(this.constructor.name,'duplicateSingleWidget', '@Start');
+//     duplicateSingleWidget(originalWidget: Widget) {
+//         // Duplicate the given Widget
+//         this.globalFunctionService.printToConsole(this.constructor.name,'duplicateSingleWidget', '@Start');
 
-        // Find latest copy #
-        let copyPosition: number = 1;
-        for (var i = 0; i < 21; i++) {
-            this.currentWidgets.forEach(w => {
-                if ( w.titleText.includes(' (copy ' + i.toString() + ')') ) {
-                    copyPosition = i + 1;
-                };
-            });
-        };
+//         // Find latest copy #
+//         let copyPosition: number = 1;
+//         for (var i = 0; i < 21; i++) {
+//             this.currentWidgets.forEach(w => {
+//                 if ( w.titleText.includes(' (copy ' + i.toString() + ')') ) {
+//                     copyPosition = i + 1;
+//                 };
+//             });
+//         };
 
-        // Make a deep copy
-        let copiedWidget: Widget = Object.assign({}, originalWidget);
+//         // Make a deep copy
+//         let copiedWidget: Widget = Object.assign({}, originalWidget);
 
-        copiedWidget.id = null;
-        copiedWidget.dashboardID = this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
-        copiedWidget.dashboardTabID = this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID;
-console.warn('xx originalWidget copiedWidget',
-originalWidget, copiedWidget)
-        // Assume this is a NEW W, so forget about tabs that original belongs
-        copiedWidget.dashboardTabIDs = [copiedWidget.dashboardTabID];
-        copiedWidget.isSelected = false;
-        copiedWidget.containerLeft = 120;
-        copiedWidget.containerTop = 120;
-        copiedWidget.titleText = copiedWidget.titleText + ' (copy ' +
-            copyPosition.toString() + ')';
+//         copiedWidget.id = null;
+//         copiedWidget.dashboardID = this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
+//         copiedWidget.dashboardTabID = this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID;
+// console.warn('xx originalWidget copiedWidget',
+// originalWidget, copiedWidget)
+//         // Assume this is a NEW W, so forget about tabs that original belongs
+//         copiedWidget.dashboardTabIDs = [copiedWidget.dashboardTabID];
+//         copiedWidget.isSelected = false;
+//         copiedWidget.containerLeft = 120;
+//         copiedWidget.containerTop = 120;
+//         copiedWidget.titleText = copiedWidget.titleText + ' (copy ' +
+//             copyPosition.toString() + ')';
 
-        // Add to all and current W
-        this.globalVariableService.addWidget(copiedWidget).then(res => {
-            copiedWidget.id = res.id;
+//         // Add to all and current W
+//         this.globalVariableService.addWidget(copiedWidget).then(res => {
+//             copiedWidget.id = res.id;
 
-            this.globalVariableService.changedWidget.next(copiedWidget);
+//             this.globalVariableService.changedWidget.next(copiedWidget);
 
-            // Add to Action log
-            this.globalVariableService.actionUpsert(
-                null,
-                this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
-                this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
-                copiedWidget.id,
-                'Widget',
-                'Edit',
-                'Duplicate',
-                'App clickMenuWidgetDuplicate',
-                null,
-                null,
-                null,
-                copiedWidget
-            );
-        });
+//             // Add to Action log
+//             this.globalVariableService.actionUpsert(
+//                 null,
+//                 this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+//                 this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+//                 copiedWidget.id,
+//                 'Widget',
+//                 'Edit',
+//                 'Duplicate',
+//                 'App clickMenuWidgetDuplicate',
+//                 null,
+//                 null,
+//                 null,
+//                 copiedWidget
+//             );
+//         });
 
-    }
+//     }
 
     paletteFunctionCall(methodName: string, methodParam) {
         // Call function in Var from Customised portion of Palette
