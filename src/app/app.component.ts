@@ -273,6 +273,10 @@ export class AppComponent implements OnInit {
     currentWidgetDashboardTabIDs: number[] = [];  // Of current W
     dontDisturb: boolean = false;
     draggableWidgets: number[] = [];
+    dashboardStartX: number;
+    dashboardStartY: number;
+    dashboardEndX: number;
+    dashboardEndY: number;
     editMode: boolean;
     editingDS: boolean;
     hasDashboard: boolean = false;
@@ -7815,12 +7819,23 @@ console.warn('xx containerBackgroundColor', index, this.currentWidgets[index].co
         );
     }
 
-    clickDashboard(ev: any) {
+    clickDashboard() {
         // Toggles Palette - horisontal / vertical
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboard', '@Start');
         
         // Unselect all Ws
         this.clickMenuEditSelectAllNone('None');
+    }
+
+    mousedownDashboard(ev: any) {
+        // Toggles Palette - horisontal / vertical
+        this.globalFunctionService.printToConsole(this.constructor.name,'mousedownDashboard', '@Start');
+        
+        // Store X & Y
+        this.dashboardStartX = ev.x;
+        this.dashboardStartY = ev.y
+        this.dashboardEndX = ev.x;
+        this.dashboardEndY = ev.y;
     }
 }
 
