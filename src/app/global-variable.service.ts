@@ -6038,6 +6038,10 @@ export class GlobalVariableService {
         let url: string = 'widgets';
         this.filePath = './assets/data.widgets.json';
         let today = new Date();
+        let pages: number = this.currentDashboardTabs.length;
+        let selectedTabIndex: number = this.currentDashboardInfo
+            .value.currentDashboardTabIndex;
+        selectedTabIndex = selectedTabIndex + 1;
 
         return new Promise<Widget[]>((resolve, reject) => {
 
@@ -6084,10 +6088,13 @@ export class GlobalVariableService {
                             if (w.widgetType == 'Shape') {
                                 if (w.widgetSubType == 'Text') {
                                     w.shapeTextDisplay = w.shapeText + '....';
-                                    w.shapeTextDisplay = 
-                                        w.shapeTextDisplay.replace(/#date/g, this.formatDate(today, 'date'));
-                                    w.shapeTextDisplay = 
-                                        w.shapeTextDisplay.replace(/#pagenr/g, '1');
+                                    w.shapeTextDisplay = w.shapeTextDisplay
+                                        .replace(/#date/g, this.formatDate(today, 'date'));
+                                    w.shapeTextDisplay = w.shapeTextDisplay
+                                        .replace(/#pagenr/g, '1');
+                                    w.shapeTextDisplay = w.shapeTextDisplay
+                                        .replace(/#pages/g, pages.toString());
+                    
                                     console.warn('xx shapeTextDisplay', w.shapeTextDisplay, this.formatDate(today, 'date'))
                                 };
                             };
