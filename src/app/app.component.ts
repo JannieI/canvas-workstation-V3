@@ -7815,6 +7815,13 @@ console.warn('xx containerBackgroundColor', index, this.currentWidgets[index].co
         );
     }
 
+    clickDashboard(ev: any) {
+        // Toggles Palette - horisontal / vertical
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboard', '@Start');
+        
+        // Unselect all Ws
+        this.clickMenuEditSelectAllNone('None');
+    }
 }
 
 // Naming conventions

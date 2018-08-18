@@ -3984,7 +3984,8 @@
         [style.background-image]="showGrid? 'url(../images/gridBlock.png)' : (currentDashboardBackgroundImage? 'url(../images/' + currentDashboardBackgroundImage + ')' : '')"
         [style.background-color]="currentDashboardBackgroundColor"
         >
-        <div  class="content-area" >
+        <div  class="content-area" 
+            (click)="clickDashboard($event)">
             <router-outlet ></router-outlet>
         </div>
     </div>
