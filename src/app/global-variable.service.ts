@@ -6206,6 +6206,16 @@ export class GlobalVariableService {
                         );
                         this.currentWidgets = res;
 
+                        // Constants in Text and Bullets
+                        this.currentWidgets.forEach(w => {
+                            if (w.widgetType == 'Shape') {
+                                if (w.widgetSubType == 'Text') {
+                                    w.shapeTextDisplay = 
+                                        this.calcShapeTextDisplay(w.shapeText);
+                                };
+                            };
+                        });
+
                         console.log('%c    Global-Variables getCurrentWidgets 1',
                             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                             this.currentWidgets)
