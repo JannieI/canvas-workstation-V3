@@ -478,6 +478,10 @@ This document describes items for later versions of Canvas.
     - make Checkpoints more visible, may o o 0 o at bottom to show how many and where we are?
     - consider dataQual triangle, -> link icons in same spot each time? 
     - consider: if click in open space, deselect all selected Widgets.  Make sure this works in conjuction with clicking on the menu or palette or statusbar ...
+    - consider bulk delete - all those selected.  This is soo dangerous.  Alternatively consider Delete All W (on current Tab) as a menu option: clear and easy ...
+    - consider Ctrl-X = CUT = Delete current and Copy it.  Can for example use the Del Form to confirm - do we need a confirmation ?
+    - container: consider 100% height / width option => fills parent div element.
+
 
     Treeview: 
     --------
@@ -571,7 +575,8 @@ This document describes items for later versions of Canvas.
     - make it easier to add co logo, ie Add logo menu option.
     - have polygon - 6 sided doughnut as shape
     - have pentagon as shape - can divide background in 2 colours with a slant
-
+    - #pagenr and #pages in Template: it takes the page Nr from the template, and not the main Dashboard.  Consider changing it.
+    
 
     Draw Mode (Shapes):
     -------------------

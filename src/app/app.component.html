@@ -1857,7 +1857,7 @@
 <!-- TEST START -->
 
     <div class="widgetContainerTEST" *ngFor="let row of currentWidgetsXXX; let i = index"
-        [style.background-color]="row.containerBackgroundColor"
+        [style.background-color]="row.containerBackgroundcolor"
         [style.border]="row.containerBorder"
         [style.border-radius]="row.containerBorderRadius"
         [style.box-shadow]="row.containerBoxshadow"
@@ -1994,7 +1994,7 @@
     <!-- ****************************  WIDGETS & RELATED FORMS ***************************** -->
 
     <div class="widgetContainer" *ngFor="let row of currentWidgets; let i = index"
-        [style.background-color]="row.containerBackgroundColor"
+        [style.background-color]="row.containerBackgroundcolor"
         [style.border]="row.containerBorder"
         [style.border-radius]="row.containerBorderRadius"
         [style.box-shadow]="row.containerBoxshadow"
@@ -2266,6 +2266,7 @@
                 <widget-single
                     #widgetDOMX
                     [widget]="row"
+                    style="margin: 0; padding: 0; white-space: normal; background-color: transparent;"
                     >
                 </widget-single>
             </div>
@@ -2346,16 +2347,16 @@
             <!-- Shape Text Object -->
             <div class="widget" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Text'"
 
-                [style.height.px]="1"
                 [style.color]="row.shapeTextColour"
                 [style.font-style]="row.shapeIsItalic? 'italic' : 'normal'"
                 [style.font-weight]="row.shapeIsBold? 'bold' : 'normal'"
                 [style.font-family]="row.shapeFontFamily"
                 [style.font-size.px]="row.shapeFontSize"
+                [style.height.px]="1"
                 [style.line-height]="row.shapeLineHeight"
-                [style.width.px]="row.containerWidth"
                 [style.text-align]="row.shapeTextAlign"
-                style="margin: 0; padding: 0; white-space: normal;"
+                [style.width.px]="row.containerWidth"
+                style="margin: 0; padding: 0; white-space: normal; background-color: transparent;"
                 >
                 {{ row.shapeTextDisplay }}
                 <!-- <svg width="300" height="300">
@@ -2997,7 +2998,7 @@
             <div class="widget" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Value'">
                 <div
                     [style.width.px]="row.containerWidth"
-                    [style.background-color]="row.containerBackgroundColor"
+                    [style.background-color]="row.containerBackgroundcolor"
                     [style.font-size.px]="row.shapeFontSize"
                     [style.font-style]="'italic'"
                     [style.font-weight]="'bold'"
@@ -3174,7 +3175,7 @@
 
     <!-- Template Widgets -->
     <div class="widgetContainer" *ngFor="let row of templateWidgets; let i = index"
-        [style.background-color]="row.containerBackgroundColor"
+        [style.background-color]="row.containerBackgroundcolor"
         [style.border]="row.containerBorder"
         [style.border-radius]="row.containerBorderRadius"
         [style.box-shadow]="row.containerBoxshadow"
@@ -3959,7 +3960,7 @@
             <div class="widget" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='Value'">
                 <div
                     [style.width.px]="row.containerWidth"
-                    [style.background-color]="row.containerBackgroundColor"
+                    [style.background-color]="row.containerBackgroundcolor"
                     [style.font-size.px]="row.shapeFontSize"
                     [style.font-style]="'italic'"
                     [style.font-weight]="'bold'"

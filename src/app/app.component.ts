@@ -6893,7 +6893,7 @@ export class AppComponent implements OnInit {
     clickWidget(ev: MouseEvent, index: number, id: number) {
         // Click W object
         this.globalFunctionService.printToConsole(this.constructor.name,'clickWidget', '@Start');
-
+console.warn('xx containerBackgroundColor', index, this.currentWidgets[index].containerBackgroundcolor)
         // Sl item was clicked, so nothing further to do on the W container
         if (this.clickedSlicerItem) {
             this.clickedSlicerItem = false;
