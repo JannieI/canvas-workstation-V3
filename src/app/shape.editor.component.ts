@@ -203,6 +203,7 @@ export class ShapeEditComponent implements OnInit {
             this.localWidget.containerBackgroundcolor = 'transparent';
             this.localWidget.containerBorder = 'none';
             this.localWidget.containerBorderRadius = '';
+            this.localWidget.containerHasContextMenus = false;
             this.localWidget.containerHasTitle = false;
             this.localWidget.containerHeight = 220;
             this.localWidget.containerWidth = 200;
@@ -362,11 +363,6 @@ export class ShapeEditComponent implements OnInit {
         this.showBullets = false;
         this.showValue = false;
         this.showBrackets = false;
-
-        // Reset defaults, making sure localWidget exists
-        // if (this.localWidget) {
-        //     this.localWidget.containerHasTitle = false;
-        // };
 
         if (shapeType == 'Circle') {
             this.showCircle = true;

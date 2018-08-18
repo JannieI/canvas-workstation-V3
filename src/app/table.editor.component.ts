@@ -56,6 +56,7 @@ import { GlobalVariableService }      from './global-variable.service';
 
     clickedButtonAggregateNo: boolean = false;
     colField: string = 'Drag a field here ...';
+    containerHasContextMenus: boolean = true;
     containerHasTitle: boolean = true;
     currentData: any = [];
     currentDatasources: Datasource[] = null;               // Current DS for the selected W
@@ -123,6 +124,7 @@ import { GlobalVariableService }      from './global-variable.service';
             };
 
             // Get local vars - easier for ngFor
+            this.containerHasContextMenus = this.localWidget.containerHasContextMenus;
             this.containerHasTitle = this.localWidget.containerHasTitle;
 
             // this.dataFieldNames = this.currentDatasources[0].dataFields;
@@ -160,6 +162,7 @@ import { GlobalVariableService }      from './global-variable.service';
         // Closes the form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
+        this.localWidget.containerHasContextMenus = this.containerHasContextMenus;
         this.localWidget.containerHasTitle = this.containerHasTitle;
         
         // Set width, depending on ColorField change

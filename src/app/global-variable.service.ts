@@ -192,6 +192,7 @@ const widgetTemplate: Widget =
         "containerFontsize": 12,
         "containerHeight": 320,
         "containerLeft": 10,
+        "containerHasContextMenus": false,
         "containerHasTitle": false,
         "containerTop": 80,
         "containerWidth": 410,
@@ -7741,6 +7742,7 @@ originalWidget, copiedWidget)
                 {key: 'containerFontsize', 			type: 'int'},
                 {key: 'containerHeight', 			type: 'int'},
                 {key: 'containerLeft', 				type: 'int'},
+                {key: 'containerHasContextMenus', 	type: 'bool'},
                 {key: 'containerHasTitle', 		    type: 'bool'},
                 {key: 'containerTop', 				type: 'int'},
                 {key: 'containerWidth', 			type: 'int'},
@@ -8204,6 +8206,7 @@ originalWidget, copiedWidget)
                 w.containerFontsize = changedWidget.containerFontsize;
                 w.containerHeight = changedWidget.containerHeight;
                 w.containerLeft = changedWidget.containerLeft;
+                w.containerHasContextMenus = changedWidget.containerHasContextMenus;
                 w.containerHasTitle = changedWidget.containerHasTitle;
                 w.containerTop = changedWidget.containerTop;
                 w.containerWidth = changedWidget.containerWidth;
@@ -8347,6 +8350,7 @@ originalWidget, copiedWidget)
                 w.containerFontsize = changedWidget.containerFontsize;
                 w.containerHeight = changedWidget.containerHeight;
                 w.containerLeft = changedWidget.containerLeft;
+                w.containerHasContextMenus = changedWidget.containerHasContextMenus;
                 w.containerHasTitle = changedWidget.containerHasTitle;
                 w.containerTop = changedWidget.containerTop;
                 w.containerWidth = changedWidget.containerWidth;

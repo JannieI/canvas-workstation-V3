@@ -56,6 +56,7 @@ import { GlobalVariableService }      from './global-variable.service';
     dataFieldTypes: string[] = [];
     dataValues: {isSelected: boolean; fieldValue: string;}[] = [];
     dataBins: {isSelected: boolean; name: string; fromValue: number; toValue: number}[] = [];
+    containerHasContextMenus: boolean = true;
     containerHasTitle: boolean = true;
     containerslicerAddRest: boolean = false;
     localWidget: Widget;                            // W to modify, copied from selected
@@ -112,6 +113,7 @@ import { GlobalVariableService }      from './global-variable.service';
             this.localWidget = Object.assign({}, this.selectedWidget);
             this.dataFields = this.localWidget.dataFields;
             this.dataFieldTypes = this.localWidget.dataFieldTypes;
+            this.containerHasContextMenus = this.localWidget.containerHasContextMenus;
             this.containerHasTitle = this.localWidget.containerHasTitle;
             this.containerslicerAddRest = this.localWidget.slicerAddRest;
 
@@ -381,6 +383,7 @@ import { GlobalVariableService }      from './global-variable.service';
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
         // Set Slicer related data
+        this.localWidget.containerHasContextMenus = this.containerHasContextMenus;
         this.localWidget.containerHasTitle = this.containerHasTitle;
         this.localWidget.slicerAddRest = this.containerslicerAddRest;
         this.localWidget.slicerBins = [];

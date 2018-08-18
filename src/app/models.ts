@@ -907,6 +907,7 @@ export class Widget {
     containerFontsize: number;
     containerHeight: number;
     containerLeft: number;
+    containerHasContextMenus: boolean = true;  // True to display context menu at top of W
     containerHasTitle: boolean;         // True to display Title at top of container
     containerTop: number;
     containerWidth: number;
