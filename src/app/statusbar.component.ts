@@ -479,6 +479,26 @@ export class StatusbarComponent {
         this.showDashboardTabDescription = false;
     }
 
+
+    clickTabDelete() {
+        // Delete a Tab
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTabDelete', '@Start');
+        this.globalVariableService.deleteDashboardTab(
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID
+         ).then(res => {
+ 
+             this.globalVariableService.refreshCurrentDashboard(
+                 'statusbar-clickTabDelete',
+                 this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                 0,
+                 'Previous'
+             );
+         })
+ 
+         // Close popup form
+         this.showDashboardTabDescription = false;
+     }
+     
     handleCloseDashboardTab(changedTab: DashboardTab) {
         // Handle Close Tab form
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardTab', '@Start');

@@ -7558,8 +7558,6 @@ originalWidget, copiedWidget)
             copyPosition.toString() + ')';
 
         // Add to all and current W
-        // this.globalVariableService.widgets.push(copiedWidget);
-        // this.globalVariableService.currentWidgets.push(copiedWidget);
         this.globalVariableService.addWidget(copiedWidget).then(res => {
             copiedWidget.id = res.id;
 
