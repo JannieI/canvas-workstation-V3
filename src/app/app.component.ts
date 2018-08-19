@@ -6203,31 +6203,54 @@ export class AppComponent implements OnInit {
 
 
     // ***********************  CLICK PALETTE (specific) MENU OPTIONS ************************ //
-    clickMenuPaletteEdit(widgetID: number = null, widgetIndex: number = null, canSave: boolean = true) {
+    clickMenuPaletteEdit(
+        widgetID: number = null, 
+        widgetIndex: number = null, 
+        canSave: boolean = true,
+        graphType: string = '') {
         // Clicked the Edit option on palette - decide what to do
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuPaletteEdit', '@Start');
 
-        // Decide which way
-        if (this.checkForOnlyOneWidget('Graph', true)) {
-            this.clickMenuWidgetEdit();
-        } else {
-            if (this.checkForOnlyOneWidget('Slicer', true)) {
-                this.clickMenuSlicerEdit();
+        // Graph type has been supplied
+        if (graphType == 'Graph') {
+            this.clickMenuWidgetEdit(widgetID);
+            return;
+        };
+        if (graphType == 'Slicer') {
+            this.clickMenuSlicerEdit(widgetID);
+            return;
+        };
+        if (graphType == 'Table') {
+            this.clickMenuTableEdit(widgetID);
+            return;
+        };
+        if (graphType == 'Shape') {
+            this.clickMenuShapeEdit(widgetID);
+            return;
+        };
+        if (graphType == '') {
+            // Decide which way
+            if (this.checkForOnlyOneWidget('Graph', true)) {
+                this.clickMenuWidgetEdit();
             } else {
-                if (this.checkForOnlyOneWidget('Table', true)) {
-                    this.clickMenuTableEdit();
+                if (this.checkForOnlyOneWidget('Slicer', true)) {
+                    this.clickMenuSlicerEdit();
                 } else {
-                    if (this.checkForOnlyOneWidget('Shape', true)) {
-                        this.clickMenuShapeEdit();
+                    if (this.checkForOnlyOneWidget('Table', true)) {
+                        this.clickMenuTableEdit();
                     } else {
-                        // Lost
-                        this.showMessage(
-                            'Select a single graph, slicer, table or shape',
-                            'StatusBar',
-                            'Warning',
-                            3000,
-                            ''
-                        );
+                        if (this.checkForOnlyOneWidget('Shape', true)) {
+                            this.clickMenuShapeEdit();
+                        } else {
+                            // Lost
+                            this.showMessage(
+                                'Select a single graph, slicer, table or shape',
+                                'StatusBar',
+                                'Warning',
+                                3000,
+                                ''
+                            );
+                        };
                     };
                 };
             };
