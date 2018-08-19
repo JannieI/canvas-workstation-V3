@@ -7821,6 +7821,10 @@ export class AppComponent implements OnInit {
 
         // Unselect all Ws
         this.clickMenuEditSelectAllNone('None');
+        this.dashboardStartX = 0; 
+        this.dashboardEndX = 0;
+        this.dashboardStartY = 0; 
+        this.dashboardEndY = 0;
     }
 
     mousedownDashboard(ev: any) {

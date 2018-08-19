@@ -554,10 +554,10 @@ export class ShapeEditComponent implements OnInit {
             );
 
             // Set calculated start Width and Height
-            console.warn('xx this.localWidget.shapeText.length', this.localWidget.shapeText.length, this.localWidget.fontSize)
-            this.localWidget.containerWidth = this.localWidget.shapeText.length 
-                * this.localWidget.fontSize / 2;
+            this.localWidget.containerWidth = this.localWidget.shapeTextDisplay.length 
+                * this.localWidget.fontSize;
             this.localWidget.containerHeight = 8 + this.localWidget.fontSize;
+            console.warn('xx this.localWidget.shapeText.length', this.localWidget.shapeText.length, this.localWidget.fontSize, this.localWidget.containerWidth)
 
             this.globalVariableService.addWidget(this.localWidget).then(res => {
 
