@@ -3620,19 +3620,39 @@ export class AppComponent implements OnInit {
         // Indicate edit W and open Editor, which will work with selected W
         if (widgetIndex == null) {
 
-            // Can only edit one W at a time, so ignore if multiple selected
-            if (!this.checkForOnlyOneWidget()) {
-                return
-            };
-            if (!this.checkForOnlyOneWidget('Graph')) {
-                return
-            };
 
-            this.currentWidgets.forEach(w => {
-                if (w.isSelected  &&  w.widgetType == 'Graph') {
-                    this.selectedWidget = w;
+            if (widgetID == null) {
+
+                // Can only edit one W at a time, so ignore if multiple selected
+                if (!this.checkForOnlyOneWidget()) {
+                    return
                 };
-            });
+                if (!this.checkForOnlyOneWidget('Graph')) {
+                    return
+                };
+
+                this.currentWidgets.forEach(w => {
+                    if (w.isSelected  &&  w.widgetType == 'Graph') {
+                        this.selectedWidget = w;
+                    };
+                });
+                            
+            } else {
+                let widgetIndex: number = this.currentWidgets.findIndex(w => w.id == widgetID);
+                if (widgetIndex < 0) {
+                    this.showMessage(
+                        'Widget does not exist in list',
+                        'StatusBar',
+                        'Error',
+                        3000,
+                        ''
+                    );
+        
+                } else {
+                    this.selectedWidget = this.currentWidgets[widgetIndex];
+                }
+            };
+            
         } else {
             this.selectedWidget = this.currentWidgets[widgetIndex];
         };
