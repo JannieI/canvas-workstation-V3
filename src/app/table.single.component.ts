@@ -32,6 +32,7 @@ export class TableSingleComponent {
     currentDatasources: Datasource[] = null;               // Current DS for the selected W
     dataFieldNames: string[] = [];
     dataFieldLengths: number[] = [];
+    hasTitle: boolean;
     nrRecords: number = 0;
     pageSize: number = 10;
 
@@ -46,7 +47,7 @@ export class TableSingleComponent {
     }
     ngOnInit() {
         // Initialise
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit...', '@Start');
 
         // Get latest dSet for the selected DS
         let ds: number[]=[];
@@ -70,6 +71,8 @@ export class TableSingleComponent {
 
         // Totals
         this.nrRecords = this.currentData.length;
+        this.hasTitle = this.table.containerHasTitle;
+        console.warn('xx hasTit', this.hasTitle)
 
         // Get DS
         this.currentDatasources = this.globalVariableService.currentDatasources

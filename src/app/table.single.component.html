@@ -20,9 +20,9 @@
                 </clr-dg-cell>
             </clr-dg-row>
 
-            <clr-dg-footer>
+            <clr-dg-footer *ngIf="hasTitle">
                 
-                <span *ngIf="nrRecords">
+                <span *ngIf="nrRecords>
                     Showing 
                     <span *ngIf="!allowEdit" (dblclick)="allowEdit=!allowEdit"> 
                         {{ nrRecords }} 

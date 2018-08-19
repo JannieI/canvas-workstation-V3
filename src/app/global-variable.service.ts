@@ -9315,8 +9315,6 @@ originalWidget, copiedWidget)
             shapeTextDisplay = shapeTextDisplay
                 .replace(/#pages/g, pages.toString());
 
-            console.warn('xx shapeText shapeTextDisplay',shapeText ,shapeTextDisplay)
-
             // Return
             return shapeTextDisplay;
     }
