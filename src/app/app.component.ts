@@ -4504,11 +4504,28 @@ export class AppComponent implements OnInit {
             return;
         };
 
-        if (!this.checkForOnlyOneWidget()) {
-            return;
-        };
-        if (!this.checkForOnlyOneWidget('Table')) {
-            return;
+        if (widgetID == null) {
+            if (!this.checkForOnlyOneWidget()) {
+                return;
+            };
+            if (!this.checkForOnlyOneWidget('Table')) {
+                return;
+            };
+   
+        } else {
+            let widgetIndex: number = this.currentWidgets.findIndex(w => w.id == widgetID);
+            if (widgetIndex < 0) {
+                this.showMessage(
+                    'Widget does not exist in list',
+                    'StatusBar',
+                    'Error',
+                    3000,
+                    ''
+                );
+    
+            } else {
+                this.selectedWidget = this.currentWidgets[widgetIndex];
+            }
         };
 
         this.menuOptionClickPreAction();
