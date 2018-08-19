@@ -668,14 +668,6 @@ export class AppComponent implements OnInit {
                                     .currentDashboardTabID == -1) {
                                         if (this.globalVariableService.
                                             currentDashboardTabs.length > 0) {
-
-    console.warn('xx GV TabID Tabs TabIdx', this.globalVariableService.currentDashboardInfo
-    .value.currentDashboardTabID, this.globalVariableService.
-    currentDashboardTabs, this.globalVariableService.currentDashboardInfo
-        .value.currentDashboardTabIndex)
-
-
-
                                         this.globalVariableService.currentDashboardInfo
                                             .value.currentDashboardTabID = this.globalVariableService.
                                             currentDashboardTabs[this.globalVariableService.currentDashboardInfo

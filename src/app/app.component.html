@@ -108,6 +108,13 @@
                                     clrDropdownItem
                                     (click)="showRecentDashboard(i)">
                                     {{ i + 1 }} {{ row.nameAtRunTime }} ( {{row.stateAtRunTime}} )
+                                    <clr-icon *ngIf="row.editMode"
+                                        shape="pencil"
+                                        class="selectIcon1"
+                                        size="10"
+                                        (dblclick)="dblclickDelete(i, row.id)"
+                                        >
+                                    </clr-icon>
                                 </button>
 
                             </clr-dropdown-menu>
