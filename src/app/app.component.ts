@@ -5110,21 +5110,39 @@ export class AppComponent implements OnInit {
         };
 
         // Make sure we have only one, then delete it
-        if (!this.checkForOnlyOneWidget()) {
-            return;
-        };
-        if (!this.checkForOnlyOneWidget('Shape')) {
-            return;
-        };
+        if (widgetID == null) {
 
-        this.menuOptionClickPreAction();
-
-        this.newWidget = false;
-        this.currentWidgets.forEach(w => {
-            if (w.isSelected  &&  w.widgetType == 'Shape') {
-                this.selectedWidget = w;
+            if (!this.checkForOnlyOneWidget()) {
+                return;
             };
-        });
+            if (!this.checkForOnlyOneWidget('Shape')) {
+                return;
+            };
+
+            this.newWidget = false;
+            this.currentWidgets.forEach(w => {
+                if (w.isSelected  &&  w.widgetType == 'Shape') {
+                    this.selectedWidget = w;
+                };
+            });
+                
+        } else {
+            let widgetIndex: number = this.currentWidgets.findIndex(w => w.id == widgetID);
+            if (widgetIndex < 0) {
+                this.showMessage(
+                    'Widget does not exist in list',
+                    'StatusBar',
+                    'Error',
+                    3000,
+                    ''
+                );
+    
+            } else {
+                this.selectedWidget = this.currentWidgets[widgetIndex];
+            }
+        };
+        
+        this.menuOptionClickPreAction();
 
         // Check if Locked
         if (this.selectedWidget.isLocked) {
