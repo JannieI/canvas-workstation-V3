@@ -2012,6 +2012,7 @@
         [style.width.px]="row.containerWidth"
         [style.z-index]="row.containerZindex"
         (click)="clickWidget($event, i, row.id)"
+        (dblclick)="clickMenuPaletteEdit(row.id, null, true, row.widgetType)"
         (dragstart)="clickWidgetContainerDragStart($event, i)"
         (dragend)="clickWidgetContainerDragEnd($event, row.id)"
         draggable="true"

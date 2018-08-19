@@ -6207,28 +6207,28 @@ export class AppComponent implements OnInit {
         widgetID: number = null, 
         widgetIndex: number = null, 
         canSave: boolean = true,
-        graphType: string = '') {
+        widgetType: string = '') {
         // Clicked the Edit option on palette - decide what to do
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuPaletteEdit', '@Start');
 
         // Graph type has been supplied
-        if (graphType == 'Graph') {
+        if (widgetType == 'Graph') {
             this.clickMenuWidgetEdit(widgetID);
             return;
         };
-        if (graphType == 'Slicer') {
+        if (widgetType == 'Slicer') {
             this.clickMenuSlicerEdit(widgetID);
             return;
         };
-        if (graphType == 'Table') {
+        if (widgetType == 'Table') {
             this.clickMenuTableEdit(widgetID);
             return;
         };
-        if (graphType == 'Shape') {
+        if (widgetType == 'Shape') {
             this.clickMenuShapeEdit(widgetID);
             return;
         };
-        if (graphType == '') {
+        if (widgetType == '') {
             // Decide which way
             if (this.checkForOnlyOneWidget('Graph', true)) {
                 this.clickMenuWidgetEdit();
