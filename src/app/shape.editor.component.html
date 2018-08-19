@@ -142,7 +142,8 @@
                     style="display: block; padding: 5px; line-height: 150%;"
 
                     >
-                    {{ localWidget.shapeText }}
+                    <!-- {{ localWidget.shapeText }} -->
+
                     <!-- <svg width="300" height="300">
                         <text
                             x="20"
@@ -153,6 +154,25 @@
                             {{ localWidget.shapeText }}
                         </text>
                     </svg> -->
+                    
+                    <div class="gridTextBox">
+                        <textarea rows="9"
+                            [style.color]="localWidget.shapeTextColour"
+                            [style.font-style]="localWidget.shapeIsItalic? 'italic' : 'normal'"
+                            [style.font-weight]="localWidget.shapeIsBold? 'bold' : 'normal'"
+                            [style.font-family]="localWidget.shapeFontFamily"
+                            [style.font-size.px]="localWidget.shapeFontSize"
+                            [style.line-height]="localWidget.shapeLineHeight"
+                            [style.text-align]="left"
+                            style="display: block; padding: 5px; line-height: 150%;"
+        
+                            placeholder="The brown fox ..."
+                            [(ngModel)]="localWidget.shapeText"
+                            [autofocus]="hasAutoFocusText"
+                            >
+                        </textarea> 
+                    </div>
+
                 </div>
 
                 <div class="gridShape" *ngIf="showBrackets"
@@ -1126,6 +1146,7 @@
                             [autofocus]="hasAutoFocusText"
                             >
                     </div>
+
                     <button
                         type="button"
                         class="btn btn-link btn-sm gridTextStringClear"

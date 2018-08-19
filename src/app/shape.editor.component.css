@@ -3,7 +3,7 @@
 	-shadow: 0 2px 2px 0 lightgray;
 }
 
-.showColour { 
+.showColour {
     /* background-color: firebrick; */
     border: 1px solid black;
     display: inline-block;
@@ -86,7 +86,7 @@
         padding-top: 5px;
         position: relative;
         top: 50%;
-        
+
     }
 
     .colourpicker {
@@ -106,7 +106,7 @@
         width: 280px;
         z-index: 100;
     }
-    
+
     .gridShapeProperties {
         display: grid;
         grid-template-columns: repeat(10, 1fr);
@@ -120,7 +120,7 @@
         margin-bottom: 0;
         text-align: left;
     }
- 
+
     /* Circle */
     .gridCircleLineColourTitle {
         grid-column-start: 1;
@@ -194,7 +194,7 @@
         padding-left: 15px;
         padding-top: 6px;
     }
- 
+
     /* Ellipse */
     .gridEllipseLineColourTitle {
         grid-column-start: 1;
@@ -342,7 +342,7 @@
         padding-left: 15px;
         padding-top: 6px;
     }
- 
+
     .gridRectangleOpacity {
         grid-column-start: 1;
         /* autoprefixer: off */
@@ -363,7 +363,7 @@
         padding-left: 15px;
         padding-top: 6px;
     }
-    
+
     /* Text */
     .gridTextStringTitle {
         grid-column-start: 1;
@@ -382,6 +382,16 @@
         grid-row-start: 1;
         /* autoprefixer: off */
         grid-row-end: 2;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+    .gridTextBox {
+        grid-column-start: 12;
+        /* autoprefixer: off */
+        grid-column-end: 21;
+        grid-row-start: 12;
+        /* autoprefixer: off */
+        grid-row-end: 18;
         padding-left: 15px;
         padding-top: 6px;
     }
