@@ -1,7 +1,7 @@
 <div #tableDOM class="table"
     [style.z-index]="100"
     (click)="clickTable()"
-    [style.height.px]="table.containerHeight-52"
+    [style.height.px]="table.containerHeight-12"
     [style.width.px]="table.containerWidth-2"
     >
     <div class="tableHolder"
@@ -22,7 +22,7 @@
 
             <clr-dg-footer *ngIf="hasTitle">
                 
-                <span *ngIf="nrRecords>
+                <span *ngIf="nrRecords">
                     Showing 
                     <span *ngIf="!allowEdit" (dblclick)="allowEdit=!allowEdit"> 
                         {{ nrRecords }} 

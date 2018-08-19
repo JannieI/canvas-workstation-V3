@@ -515,6 +515,10 @@ This document describes items for later versions of Canvas.
     - Telegram interface with bot ...
     - consider custom (big) cursor for presentations - see https://alligator.io/css/cursor-property/  2018/06/07: just could not get it going...
 
+    Tables:
+    ------
+    - allow to set pagination nr (currently defaults to 10)
+
     Comments:
     --------
     - given DataQuality, etc, decide if we keep Comments !  What is use case?

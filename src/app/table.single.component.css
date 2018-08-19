@@ -48,11 +48,10 @@
 }
 
 .datagrid-foot {
-    background-color: transparent;
     border: transparent;
     font-size: 0.45rem !important;
-    height: 24px;
-    padding-top: 2px;
+    height: 24px !important;
+    padding-top: 2px !important;
     position: absolute !important;
     right: 0 !important;
     /* TODO - Reset height & top if Widget Grid in app.html changes !   OR, non-hard-code*/
