@@ -3183,6 +3183,7 @@
     </div>
 
     <!-- Template Widgets -->
+    <!-- NB - All click events, etc removed.   -->
     <div class="widgetContainer" *ngFor="let row of templateWidgets; let i = index"
         [style.background-color]="row.containerBackgroundcolor"
         [style.border]="row.containerBorder"
@@ -3195,7 +3196,7 @@
         [style.width.px]="row.containerWidth"
         [style.z-index]="10"
         [style.opacity]="editMode? 0.5 : 1"
-        (click)="clickTemplateWidget()"
+        draggable="false"
         >
 
         <!-- Widget Content -->
@@ -3221,16 +3222,6 @@
                 <!-- Title Text -->
                 <b>{{ row.titleText }}</b>
 
-                <!-- Hyperlink -->
-                <span class="widgetJumpLink" *ngIf="row.hyperlinkDashboardID
-                     && row.hyperlinkDashboardTabID"
-                    >
-                    <clr-icon shape="arrow right" *ngIf="row.hyperlinkDashboardID"
-                        (click)="actionmenuJumpToLinked(row.hyperlinkDashboardID, row.hyperlinkDashboardTabID)"
-                        >
-                    </clr-icon>
-                </span>
-
             </div>
 
             <!-- Graph Object -->
@@ -3244,7 +3235,6 @@
 
             <!-- Slicer Object -->
             <div class="widget" *ngIf="row.widgetType=='Slicer'"
-                (click)="clickWidgetSlicer($event, i, row.id)"
                 >
                 <slicer-single
                     [slicer]="row"
@@ -3944,9 +3934,6 @@
                         [style.margin-bottom.px]="row.shapeBulletMarginBottom"
                         >
                         {{ bullet.text }}
-                        <clr-icon shape="arrow right" *ngIf="bullet.linkedTabID"
-                            (click)="clickBulletJump(bullet.linkedTabID)">
-                        </clr-icon>
                     </li>
                 </ul>
                 <ol  *ngIf="row.shapeBulletsOrdered"
@@ -3958,9 +3945,6 @@
                         [style.margin-bottom.px]="row.shapeBulletMarginBottom"
                         >
                         {{ bullet.text }}
-                        <clr-icon shape="arrow right" *ngIf="bullet.linkedTabID"
-                            (click)="clickBulletDelete(i, row)">
-                        </clr-icon>
                     </li>
                 </ol>
             </div>

@@ -7961,6 +7961,13 @@ export class AppComponent implements OnInit {
                 w.containerLeft <= this.dashboardEndX) {
                     w.isSelected = true;
             };
+            // Reverse selection
+            if (w.containerTop <= this.dashboardStartY  && 
+                w.containerTop >= this.dashboardEndY  &&
+                w.containerLeft <= this.dashboardStartX  &&
+                w.containerLeft >= this.dashboardEndX) {
+                    w.isSelected = true;
+            };
         });
 
     }
