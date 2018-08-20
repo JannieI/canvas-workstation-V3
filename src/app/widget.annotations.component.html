@@ -7,7 +7,7 @@
                         <button type="button" class="closeButton" (click)="clickClose()">
                             <b>X</b>
                         </button>
-            
+
                         <div class="gridTitle">
                             <b>Annotations:</b>
                             <clr-signpost>
@@ -19,24 +19,24 @@
                                     <h5 style="margin-top: 0; color:gray;">
                                         Help
                                     </h5>
-                                    <p style="margin-top: 0; color:gray;"> 
-                                        Amend the annotation for the selected Widget. When a 
+                                    <p style="margin-top: 0; color:gray;">
+                                        Amend the annotation for the selected Widget. When a
                                         Widget has been annotated, a small icon in its title
                                         will indicate this.  Clicking on this icon will show
-                                        the annotation text (with an indication of when it was 
-                                        last edited by whom).  Annotations are optional.  
+                                        the annotation text (with an indication of when it was
+                                        last edited by whom).  Annotations are optional.
                                         Click the X or press Escape to close this form.
                                     </p>
                                 </clr-signpost-content>
                             </clr-signpost>
                         </div>
-    
+
                         <div class="gridAnnotationTitle">
                             <b>Annotation:</b>
                         </div>
-    
+
                         <div class="gridAnnotation">
-                            <textarea [(ngModel)]="annotation" 
+                            <textarea [(ngModel)]="annotation"
                                 rows="5"
                                 >
                             </textarea>
@@ -50,7 +50,7 @@
                             </button>
                         </div>
                         <div class="gridButtonSave">
-                            
+
                             <button class="btn btn-primary textLine"
                                 type="button"
                                 (click)="clickSave()"
@@ -58,10 +58,9 @@
                                 Save
                             </button>
                         </div>
-    
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    

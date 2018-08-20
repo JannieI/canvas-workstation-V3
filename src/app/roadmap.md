@@ -701,3 +701,9 @@ This document describes items for later versions of Canvas.
     - do we do data virtualization???  If so, get best practice and key points
     - ask Joya for unique marketing method, ie not billboards
     - title of TIBCO person: Senior Solutions Engineer ...
+
+    New Events:
+    - generic place to store events, say Date, Category, DS-id (optional), Code, Description, Capturer/Source, CaptureDateTime. With form to capture and view.
+    - can then either graph this (ie nr of type XXX new events), or join to DS data on DS-id, or just show on a timeline with other data (say as a small marker on each day where there were News Events of a certain type)
+    - this can be very cool - need to make sure we do it well though.
+

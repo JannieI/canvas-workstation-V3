@@ -2090,11 +2090,13 @@
                             clrSignpostTrigger>
                         </clr-icon>
                             <clr-signpost-content *clrIfOpen>
-                            <h4 style="margin-top: 0; color:gray;">Annotation</h4>
+                            <h4 style="margin-top: 0; color:gray;">
+                                <b>Annotation</b>
+                            </h4>
                             <p style="margin-top: 0; color:gray;"> {{ row.annotation }}
                             </p>
                             <span *ngIf="row.annotationLastUserID"
-                                [style.color]="'gray'"
+                                style="color:gray; font-size: 12px; font-style:italic;"
                                 >
                                 ( {{ row.annotationLastUserID }} - {{ row.annotationLastUpdated }} )
                             </span>

@@ -83,7 +83,7 @@ export class WidgetAnnotationsComponent implements OnInit {
         this.selectedWidget.annotationLastUserID = this.globalVariableService.currentUser.userID;
         this.selectedWidget.annotationLastUpdated = today;
         this.globalVariableService.saveWidget(this.selectedWidget);
-        
+
 		this.formWidgetAnnotationsClosed.emit();
 
     }
