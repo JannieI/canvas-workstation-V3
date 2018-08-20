@@ -2133,10 +2133,6 @@ export class GlobalVariableService {
                         deletedDashboardTabDisplayOrder = 
                             this.dashboardTabs[deletedDashboardTabIndex].displayOrder;
                     };
-                    let deletedDashboardTabIndex: number = this.dashboardTabs.findIndex(t =>
-                        t.dashboardID == deletedDashboardIndex  &&  
-                        t.displayOrder < deletedDashboardTabDisplayOrder
-                    );
 
                     // Update local Arrays for ALL Tabs (currentTabs will be re-Getted)
                     this.dashboardTabs = this.dashboardTabs.filter(
