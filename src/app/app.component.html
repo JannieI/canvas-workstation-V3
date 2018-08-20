@@ -312,6 +312,19 @@
                                     >
                                     Show All
                                 </button>
+
+                                <div class="dropdown-divider"></div>
+                                <button type="button"
+                                    clrDropdownItem
+                                    (click)="clickMenuDashboardSubscribe()"
+                                    title="Manage Subscriptions"
+                                    [style.color]="!currentUserID? 'lightgray' : '#565656'"
+                                    [disabled] = "!currentUserID"
+                                    >
+                                    Subscribe
+                                </button>
+        
+
                             </clr-dropdown-menu>
                         </clr-dropdown>
 
@@ -1721,16 +1734,6 @@
                         [disabled] = "!currentUserID"
                         >
                         My Permissions
-                    </button>
-
-                    <button type="button"
-                        clrDropdownItem
-                        (click)="clickMenuDashboardSubscribe()"
-                        title="Manage Subscriptions"
-                        [style.color]="!currentUserID? 'lightgray' : '#565656'"
-                        [disabled] = "!currentUserID"
-                        >
-                        Subscribe
                     </button>
 
                     <button type="button"
