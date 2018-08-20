@@ -458,6 +458,7 @@ export class AppComponent implements OnInit {
     subscriptionSnapshot: Subscription;
     subscriptionAnimation: Subscription;
     view: any;
+    article_count: string = 'start'
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -481,6 +482,11 @@ export class AppComponent implements OnInit {
     ngOnInit() {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
+        // var type = 'article';
+        // this[type+'_count'] = 1000;  // in a function we use "this";
+        // alert(this.article_count);
+
 
         // Get Users and Groups, async
         this.globalVariableService.getCanvasGroups();

@@ -439,6 +439,21 @@ export class StatusbarComponent {
             return;
         };
 
+        // Cannot delete only Tab
+        if (this.globalVariableService.currentDashboardTabs.length == 1) {
+            this.globalVariableService.showStatusBarMessage(
+                {
+                    message: 'Cannot delete only Tab in Dashboard',
+                    uiArea: 'StatusBar',
+                    classfication: 'Warning',
+                    timeout: 3000,
+                    defaultMessage: ''
+                }
+            );
+            return;
+
+        };
+
         // Can only delete Tab if it has no W on it
         let nrWperT: number = 0;
         nrWperT = this.globalVariableService.widgets.filter(w => {
