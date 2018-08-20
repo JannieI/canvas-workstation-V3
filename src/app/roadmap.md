@@ -416,8 +416,8 @@ This document describes items for later versions of Canvas.
     ---------
     - have different renderers, other than browser (for same Dashboard)!
 
-    Imeage:
-    ------
+    Image:
+    -----
     - add image via File input box - Tributary gives back url?
     - scale on Sh Editor, and add drag handles to size here
     - picture overlaps the WidgetContainer in App.html - looks funny
@@ -482,6 +482,7 @@ This document describes items for later versions of Canvas.
     - consider Ctrl-X = CUT = Delete current and Copy it.  Can for example use the Del Form to confirm - do we need a confirmation ?
     - container: consider 100% height / width option => fills parent div element.
     - consider Shift-Delete = needs no confirmation - good idea?
+    - consider selection of geo data on a map using a polygon - maybe via a 3rd party package
 
 
     Treeview: 

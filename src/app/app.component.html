@@ -165,6 +165,14 @@
                                     >
                                     Descripton
                                 </button>
+                                <button
+                                    type="button"
+                                    clrDropdownItem
+                                    title="View Data Quality issues for this Dashboard"
+                                    (click)="clickMenuDashboardDetailDataQuality()"
+                                    >
+                                    Data Quality
+                                </button>
                                 <button type="button"
                                     clrDropdownItem
                                     title="Mark/UnMark this Dashboard as a favourite"
@@ -176,14 +184,6 @@
                                         size="12"
                                         *ngIf="showFavouriteDashboard">
                                     </clr-icon>
-                                </button>
-                                <button
-                                    type="button"
-                                    clrDropdownItem
-                                    title="View Data Quality issues for this Dashboard"
-                                    (click)="clickMenuDashboardDetailDataQuality()"
-                                    >
-                                    Data Quality
                                 </button>
                                 <button
                                     type="button"
