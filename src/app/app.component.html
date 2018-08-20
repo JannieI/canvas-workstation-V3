@@ -149,6 +149,15 @@
                                 Details
                             </button>
                             <clr-dropdown-menu clrPosition="right-top" *clrIfOpen>
+
+                                <button
+                                    type="button"
+                                    clrDropdownItem
+                                    title="See and add Comments for this Dashboard"
+                                    (click)="clickMenuDashboardDetailComments()"
+                                    >
+                                    Comments
+                                </button>
                                 <button type="button"
                                     clrDropdownItem
                                     title="Edit Dashboard Description details"
@@ -171,22 +180,6 @@
                                 <button
                                     type="button"
                                     clrDropdownItem
-                                    title="Manage tags for this Dashboard"
-                                    (click)="clickMenuDashboardDetailTags()"
-                                    >
-                                    Tags
-                                </button>
-                                <button
-                                    type="button"
-                                    clrDropdownItem
-                                    title="See and add Comments for this Dashboard"
-                                    (click)="clickMenuDashboardDetailComments()"
-                                    >
-                                    Comments
-                                </button>
-                                <button
-                                    type="button"
-                                    clrDropdownItem
                                     title="View Data Quality issues for this Dashboard"
                                     (click)="clickMenuDashboardDetailDataQuality()"
                                     >
@@ -195,10 +188,10 @@
                                 <button
                                     type="button"
                                     clrDropdownItem
-                                    title="Manage Dashboard theme"
-                                    (click)="clickMenuDashboardDetailTheme()"
+                                    title="Manage tags for this Dashboard"
+                                    (click)="clickMenuDashboardDetailTags()"
                                     >
-                                    Theme
+                                    Tags
                                 </button>
                                 <button
                                     type="button"
@@ -207,6 +200,14 @@
                                     (click)="clickMenuDashboardDetailTemplate()"
                                     >
                                     Template
+                                </button>
+                                <button
+                                    type="button"
+                                    clrDropdownItem
+                                    title="Manage Dashboard theme"
+                                    (click)="clickMenuDashboardDetailTheme()"
+                                    >
+                                    Theme
                                 </button>
                                 <button
                                     type="button"
