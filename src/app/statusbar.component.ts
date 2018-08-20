@@ -189,6 +189,11 @@ export class StatusbarComponent {
         // Reorder Tabs - move this one up in order
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMoveTabUp', '@Start');
 
+        // Nothing to do if only One Tab
+        if (this.currentDashboardTabs.length == 1) {
+            return;
+        };
+
         // Switch off T selection
         this.tabOrdering = true;
 
@@ -236,6 +241,11 @@ export class StatusbarComponent {
     clickMoveTabDown(index: number) {
         // Reorder Tabs - move this one down in order
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMoveTabDown', '@Start');
+
+        // Nothing to do if only One Tab
+        if (this.currentDashboardTabs.length == 1) {
+            return;
+        };
 
         this.tabOrdering = true;
 

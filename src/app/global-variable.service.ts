@@ -336,7 +336,7 @@ const dashboardTabTemplate: DashboardTab =
         dashboardID: 0,
         name: 'First',
         description: '',
-        displayOrder: 0,
+        displayOrder: 0,            // Note: this must start at 0
         backgroundColor: '',
         color: ''
 
@@ -2133,6 +2133,10 @@ export class GlobalVariableService {
                         deletedDashboardTabDisplayOrder = 
                             this.dashboardTabs[deletedDashboardTabIndex].displayOrder;
                     };
+                    let deletedDashboardTabIndex: number = this.dashboardTabs.findIndex(t =>
+                        t.dashboardID == deletedDashboardIndex  &&  
+                        t.displayOrder < deletedDashboardTabDisplayOrder
+                    );
 
                     // Update local Arrays for ALL Tabs (currentTabs will be re-Getted)
                     this.dashboardTabs = this.dashboardTabs.filter(
