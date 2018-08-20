@@ -2121,29 +2121,33 @@ export class GlobalVariableService {
             .subscribe(
                 res => {
 
-                    // Reset the displayOrder of the Rest
-                    let dashboardTabIndex: number = this.dashboardTabs.findIndex(t =>
+                    // Get info from the deleted one
+                    let deletedDashboardIndex: number = this.currentDashboardInfo.value
+                        .currentDashboardID;
+                    let deletedDashboardTabIndex: number = this.dashboardTabs.findIndex(t =>
                         t.id == id
                     );
-                    let dashboardTabDisplayOrder: number = this.dashboardTabs.length + 1;
-                    if (dashboardTabIndex >= 0) {
-                        dashboardTabDisplayOrder = this.dashboardTabs[dashboardTabIndex]
-                            .displayOrder;
+                    let deletedDashboardTabDisplayOrder: number = 
+                        this.dashboardTabs.length + 1;
+                    if (deletedDashboardTabIndex >= 0) {
+                        deletedDashboardTabDisplayOrder = 
+                            this.dashboardTabs[deletedDashboardTabIndex].displayOrder;
                     };
 
-                    // Update local Arrays
+                    // Update local Arrays for ALL Tabs (currentTabs will be re-Getted)
                     this.dashboardTabs = this.dashboardTabs.filter(
                         t => t.id != id
                     );
-                    this.currentDashboardTabs = this.currentDashboardTabs.filter(
-                        t => t.id != id
-                    );
+                    // this.currentDashboardTabs = this.currentDashboardTabs.filter(
+                    //     t => t.id != id
+                    // );
 
                     // Update displayOrder for the rest
                     let promiseArray = [];
 
-                    this.currentDashboardTabs.forEach(t => {
-                        if (t.displayOrder > dashboardTabDisplayOrder) {
+                    this.dashboardTabs.forEach(t => {
+                        if (t.dashboardID == deletedDashboardIndex  &&
+                            t.displayOrder > deletedDashboardTabDisplayOrder) {
                             t.displayOrder = t.displayOrder - 1;
                         };
                         promiseArray.push(this.saveDashboardTab(t));
@@ -2152,8 +2156,11 @@ export class GlobalVariableService {
                     this.allWithAsync(...promiseArray)
                         .then(res => {
 
-                        console.log('deleteDashboardTab DELETED id: ', {id})
-                        resolve('Deleted');
+                        this.getCurrentDashboardTabs(deletedDashboardIndex).then(t => {
+
+                            console.log('deleteDashboardTab DELETED id: ', {id})
+                            resolve('Deleted');
+                        });
                     });
                 },
                 err => {

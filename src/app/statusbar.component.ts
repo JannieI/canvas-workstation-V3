@@ -443,7 +443,7 @@ export class StatusbarComponent {
         if (this.globalVariableService.currentDashboardTabs.length == 1) {
             this.globalVariableService.showStatusBarMessage(
                 {
-                    message: 'Cannot delete only Tab in Dashboard',
+                    message: 'Cannot delete the only Tab in Dashboard',
                     uiArea: 'StatusBar',
                     classfication: 'Warning',
                     timeout: 3000,
