@@ -126,6 +126,8 @@ export class SystemSettingsComponent implements OnInit {
             notInEditModeMsg: this.notInEditModeMsg,
             noQueryRunningMessage: this.noQueryRunningMessage,
             queryRunningMessage: this.queryRunningMessage,
+            cleanCacheOnLogin: false,
+            cleanCacheOnLogout: false
         };
 
         // Save globally, and in DB

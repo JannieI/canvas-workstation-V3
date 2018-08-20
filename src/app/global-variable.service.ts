@@ -447,7 +447,10 @@ export class GlobalVariableService {
         printLayout: '',
         notInEditModeMsg: 'Not in Edit Mode (see Edit menu Option)',
         noQueryRunningMessage: 'No Query',
-        queryRunningMessage: 'Query running...'
+        queryRunningMessage: 'Query running...',
+        cleanCacheOnLogin: false,
+        cleanCacheOnLogout: false
+    
     }
 
     vlTemplate: dl.spec.TopLevelExtendedSpec = vlTemplate;

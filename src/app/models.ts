@@ -67,6 +67,8 @@ export class CanvasSettings {
     notInEditModeMsg: string;               // Not-In-EditMode Message to display on StatusBar
     noQueryRunningMessage: string;          // No-Query-Running Message to display on StatusBar
     queryRunningMessage: string;            // Query-Running Message to display on StatusBar
+    cleanCacheOnLogin: boolean;             // True to clean cache at login
+    cleanCacheOnLogout: boolean;            // True to clean cache at logout
 
 }
 
