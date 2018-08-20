@@ -269,33 +269,58 @@ export class StatusbarComponent {
 
         this.tabOrdering = true;
 
-        // Current order
+        // Current index and order
+        let currentTabIndex: number = index;
         let currentTabDisplayOrder: number = this.currentDashboardTabs[index].displayOrder;
-        console.warn('xx Before currentTabDisplayOrder',  currentTabDisplayOrder)
 
-        // If first, move to end.  Else, Swap with prior one
-        this.currentDashboardTabs.forEach(t => {
-            if (currentTabDisplayOrder == this.currentDashboardTabs.length) {
-                if (t.displayOrder == this.currentDashboardTabs.length) {
-                    t.displayOrder = 1;
-                    console.warn('xx 1 after t.displayOrder',  t.displayOrder)
-                } else {
-                    t.displayOrder = t.displayOrder + 1;
-                    console.warn('xx 2 after t.displayOrder',  t.displayOrder)
-                };
-            } else {
-                if (t.displayOrder == (currentTabDisplayOrder + 1) ) {
-                    t.displayOrder = t. displayOrder - 1;
-                } else {
-                    if (t.displayOrder == currentTabDisplayOrder) {
-                        t.displayOrder = t. displayOrder + 1;
-                    };
-                };
-            };
+        // Get next index and order; wrap around if necessary
+        let nextTabIndex: number = 0;
+        if (currentTabIndex < this.currentDashboardTabs.length - 1) {
+            nextTabIndex = currentTabIndex + 1;
+        };
+        let nextTabDisplayOrder: number = 
+            this.currentDashboardTabs[nextTabIndex].displayOrder;
+          
+        // Swap DisplayOrders
+        this.currentDashboardTabs[currentTabIndex].displayOrder = nextTabDisplayOrder;
+        this.currentDashboardTabs[nextTabIndex].displayOrder = currentTabDisplayOrder;
 
-            // Save to DB
-            this.globalVariableService.saveDashboardTab(t);
-        });
+        // Save to DB
+        this.globalVariableService.saveDashboardTab(
+            this.currentDashboardTabs[currentTabIndex]
+        );
+        this.globalVariableService.saveDashboardTab(
+            this.currentDashboardTabs[nextTabIndex]
+        );
+        console.warn('xx Calced ', currentTabIndex, currentTabDisplayOrder, nextTabIndex, nextTabDisplayOrder)
+
+        // // Current order
+        // let currentTabDisplayOrder: number = this.currentDashboardTabs[index].displayOrder;
+        // console.warn('xx Before currentTabDisplayOrder',  currentTabDisplayOrder)
+
+        // // If first, move to end.  Else, Swap with prior one
+        // this.currentDashboardTabs.forEach(t => {
+        //     if (currentTabDisplayOrder == this.currentDashboardTabs.length) {
+        //         if (t.displayOrder == this.currentDashboardTabs.length) {
+        //             t.displayOrder = 1;
+        //             console.warn('xx 1 after t.displayOrder',  t.displayOrder)
+        //         } else {
+        //             t.displayOrder = t.displayOrder + 1;
+        //             console.warn('xx 2 after t.displayOrder',  t.displayOrder)
+        //         };
+        //     } else {
+        //         if (t.displayOrder == (currentTabDisplayOrder + 1) ) {
+        //             t.displayOrder = t. displayOrder - 1;
+        //         } else {
+        //             if (t.displayOrder == currentTabDisplayOrder) {
+        //                 t.displayOrder = t. displayOrder + 1;
+        //             };
+        //         };
+        //     };
+
+        //     // Save to DB
+        //     this.globalVariableService.saveDashboardTab(t);
+        // });
 
         // Sort
         this.currentDashboardTabs = this.currentDashboardTabs.sort( (obj1,obj2) => {
