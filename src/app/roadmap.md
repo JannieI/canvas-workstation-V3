@@ -483,6 +483,7 @@ This document describes items for later versions of Canvas.
     - container: consider 100% height / width option => fills parent div element.
     - consider Shift-Delete = needs no confirmation - good idea?
     - consider selection of geo data on a map using a polygon - maybe via a 3rd party package
+    - dot on rectangle - move to change border-radius (see LibreOffice Impress) ?
 
 
     Treeview: 
