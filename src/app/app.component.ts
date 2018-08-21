@@ -12,7 +12,7 @@ import { OnInit }                     from '@angular/core';
 import { Router }                     from '@angular/router';
 import { ViewChild }                  from '@angular/core';
 import { Subscription }               from "rxjs";
-import { TimerObservable }            from "rxjs/observable/TimerObservable";
+import { timer }                      from "rxjs";
 
 // Own Services
 import { GlobalVariableService }      from './global-variable.service';
@@ -42,7 +42,7 @@ import * as dl                        from 'datalib';
 import { StatusbarComponent }         from './statusbar.component';
 
 // WS
-import { WebSocketSubject }           from 'rxjs/observable/dom/WebSocketSubject';
+import { WebSocketSubject }           from 'rxjs/webSocket';
 
 
 // Constants
@@ -522,8 +522,8 @@ export class AppComponent implements OnInit {
             let userMins: number = this.globalVariableService.currentUser.preferenceDefaultSnapshotMins;
             if (userMins > 0) {
                 let mins: number = userMins * 60 * 1000;
-                let timer = TimerObservable.create(mins, mins);
-                this.subscriptionSnapshot = timer.subscribe(t => {
+                let localTimer = timer(mins, mins);
+                this.subscriptionSnapshot = localTimer.subscribe(t => {
                     if (this.editMode) {
 
                         // Determine if any actions since session login
@@ -7438,8 +7438,8 @@ export class AppComponent implements OnInit {
         //     n++;
         // });
 
-        let timer = TimerObservable.create(3000, 3000);
-        this.subscriptionAnimation = timer.subscribe(t => {
+        let localTimer = timer(3000, 3000);
+        this.subscriptionAnimation = localTimer.subscribe(t => {
             if (n <= lastCheckpoint) {
                 this.clickNavCheckpoint(
                     index,

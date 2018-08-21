@@ -12,7 +12,7 @@ import { GlobalFunctionService }      from './global-function.service';
 
 // Our Models
 import { DashboardTab }               from './models'
-import { Subscription }               from 'rxjs/Subscription';
+import { Subscription }               from 'rxjs';
 
 
 @Component({

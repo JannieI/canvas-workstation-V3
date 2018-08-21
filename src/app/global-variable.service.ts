@@ -1,5 +1,5 @@
 // Service to provide global variables
-import { BehaviorSubject }            from 'rxjs/BehaviorSubject';
+import { BehaviorSubject }            from 'rxjs';
 import { Injectable }                 from '@angular/core';
 import { HttpClient }                 from '@angular/common/http';
 import { HttpErrorResponse }          from '@angular/common/http';

@@ -13,8 +13,7 @@ import { ROUTING }                    from "./app.routing";
 import { HttpClientModule }           from '@angular/common/http';
 
 // Clarity Framework
-import { ClarityModule }              from 'clarity-angular';
-
+import { ClarityModule }              from '@clr/angular';
 // Own Components
 import { CaDatagridComponent }        from './ca.datagrid.component';
 import { ColourPickerComponent }      from './colour.picker.component';

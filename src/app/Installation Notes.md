@@ -271,25 +271,55 @@
 
 # 3. Upgrade from ng5 -> ng6 (2018-08-21)
     
-    ## Ng 5 -> 6
-        (used https://update.angular.io/)
-        Used SUDO for -g
+    Follow this doc CAREFULLY:
+    https://loiane.com/2018/05/upgrading-to-angular-v6/
 
-        Upgraded node: - see https://www.hostingadvice.com/how-to/update-node-js-latest-version/
-            Did (v7 -> 10):
+    
+        Upgraded node to v8+: - see https://www.hostingadvice.com/how-to/update-node-js-latest-version/
+
+        1. Did (v7 -> 10) with:
             sudo npm cache clean -f
             sudo npm install -g n
             sudo n stable
 
-        Re-Installed Vega
-        Re-Installed Vega-Lite
-        Re-Installed datalib (typings live in https://github.com/Clarity-Analytics/typings)
-        Re-Installed Pouch with: 
-            npm install pouchdb --save
-            npm install @types/pouchdb --save-dev
-        Re-Install nanoSQL
+        This was bad - rather get the latest LTS version.  So, had to:
+            sudo npm cache clean -f
+            sudo npm install -g n
+            sudo n 8.11.4
+            See: https://www.abeautifulsite.net/how-to-upgrade-or-downgrade-nodejs-using-npm
+
+        ISSUE: Node v10 is not supported by SQLITE !
+
+        Run ng upgrade -d to see that all is good.
+        Used ncu to see what is out of date, and then ncu -u to update them.
+
+        Deleted Node_Modules folder, and ran npm i.
+
+        Isses:
+        1. SQLITE3 did not work with Node v10 - downgraded Node and all was good
+        2. TS was wrong version.  Delete packages-lock.json, install
+
+        Re-Installed Vega: `npm install vega-lite --save`
+        Re-Installed Vega-Lite: `npm install vega-lite --save`
+        Re-Installed datalib (typings live in https://github.com/Clarity-Analytics/typings):
+            `npm install datalib --save`
+            
+            ## Install datalib typing
+            Clone Clarity Analytics Git repo **typings** in node_modules/@types (the .ts file must be in a subfolder called *datalib* )
+            Note: ensure that tsconfig.json points to this folder:
+                ...
+                "typeRoots": [
+                    "node_modules/@types"
+                ],
+                ...
+        Re-Install nanoSQL: `npm install nano-sql --save`
 
         Amend/Removed dl in get, getTree, convertArrayToPivot
+
+        NB: install Clarity using the docs!
+        npm install @clr/icons @clr/angular @clr/ui @webcomponents/custom-elements@1.0.0 --save
+
+        npm update ...
 
         Had to install more than once.  Also did nmc - see https://loiane.com/2018/05/upgrading-to-angular-v6/
         Changed rxjs to v6 (mostly imports, and TimerObservable -> timer)
