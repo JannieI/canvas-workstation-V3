@@ -297,8 +297,9 @@
 
         Isses:
         1. SQLITE3 did not work with Node v10 - downgraded Node and all was good
-        2. TS was wrong version.  Delete packages-lock.json, install
-
+        2. TS was wrong version - struggled quite a bit with it.  Delete packages-lock.json, install right version and uninstall incorrect version.  Remember to consider local vs global packages, and also packages.json.  
+        3. Lots of issues with Clarity.  Eventually read the docs, and it was easy.  They changed the npm instruction, node_modules folder, etc.
+        4. At some stage, reinstalled some packages (not sure if it was needed):
         Re-Installed Vega: `npm install vega-lite --save`
         Re-Installed Vega-Lite: `npm install vega-lite --save`
         Re-Installed datalib (typings live in https://github.com/Clarity-Analytics/typings):
@@ -314,15 +315,6 @@
                 ...
         Re-Install nanoSQL: `npm install nano-sql --save`
 
-        Amend/Removed dl in get, getTree, convertArrayToPivot
-
-        NB: install Clarity using the docs!
-        npm install @clr/icons @clr/angular @clr/ui @webcomponents/custom-elements@1.0.0 --save
-
-        npm update ...
-
-        Had to install more than once.  Also did nmc - see https://loiane.com/2018/05/upgrading-to-angular-v6/
-        Changed rxjs to v6 (mostly imports, and TimerObservable -> timer)
 
     ## Dexie
 
