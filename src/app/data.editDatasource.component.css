@@ -17,7 +17,6 @@
         /* autoprefixer: off */
         grid-column-end: 2;
         grid-row-start: 1;
-        /* autoprefixer: off */
         grid-row-end: 2;
         text-align: left;
     }
@@ -27,7 +26,6 @@
         /* autoprefixer: off */
         grid-column-end: 18;
         grid-row-start: 1;
-        /* autoprefixer: off */
         grid-row-end: 2;
         margin-left: 30px;
         text-align: left;
@@ -40,7 +38,6 @@
         /* autoprefixer: off */
         grid-column-end: 21;
         grid-row-start: 3;
-        /* autoprefixer: off */
         grid-row-end: 19;
         overflow-y: scroll;
     }
@@ -50,7 +47,6 @@
         /* autoprefixer: off */
         grid-column-end: 8;
         grid-row-start: 20;
-        /* autoprefixer: off */
         grid-row-end: 21;
     }
 
@@ -59,6 +55,5 @@
         /* autoprefixer: off */
         grid-column-end: 15;
         grid-row-start: 20;
-        /* autoprefixer: off */
         grid-row-end: 21;
     }
