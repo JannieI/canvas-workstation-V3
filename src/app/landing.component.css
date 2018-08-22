@@ -55,7 +55,6 @@ a:hover{
 		/* autoprefixer: off */
 		grid-column-end: 14;
 		grid-row-start: 2;
-		/* autoprefixer: off */
 		grid-row-end: 3;
 		text-align: center;
 	}
@@ -65,7 +64,6 @@ a:hover{
 		/* autoprefixer: off */
 		grid-column-end: 11;
 		grid-row-start: 5;
-		/* autoprefixer: off */
 		grid-row-end: 6;
 	}
 	.gridCreateDashboardButton {
@@ -74,7 +72,6 @@ a:hover{
 		/* autoprefixer: off */
 		grid-column-end: 9;
 		grid-row-start: 4;
-		/* autoprefixer: off */
 		grid-row-end: 5;
 		margin-left: 12px;
 		margin-top: 12px;
@@ -85,7 +82,6 @@ a:hover{
 		/* autoprefixer: off */
 		grid-column-end: 18;
 		grid-row-start: 5;
-		/* autoprefixer: off */
 		grid-row-end: 6;
 	}
 	.gridRecentArea {
@@ -93,7 +89,6 @@ a:hover{
 		/* autoprefixer: off */
 		grid-column-end: 21;
 		grid-row-start: 5;
-		/* autoprefixer: off */
 		grid-row-end: 12;
 	}
 	.gridAddData {
@@ -102,7 +97,6 @@ a:hover{
 		/* autoprefixer: off */
 		grid-column-end: 18;
 		grid-row-start: 10;
-		/* autoprefixer: off */
 		grid-row-end: 16;
 	}
 	.gridAddDataImage {
@@ -110,7 +104,6 @@ a:hover{
 		/* autoprefixer: off */
 		grid-column-end: 18;
 		grid-row-start: 10;
-		/* autoprefixer: off */
 		grid-row-end: 16;
 	}
 	.gridAddWidget {
@@ -119,7 +112,6 @@ a:hover{
 		/* autoprefixer: off */
 		grid-column-end: 18;
 		grid-row-start: 16;
-		/* autoprefixer: off */
 		grid-row-end: 19;
 	}
 	.gridAddWidgetImage {
@@ -127,7 +119,6 @@ a:hover{
 		/* autoprefixer: off */
 		grid-column-end: 18;
 		grid-row-start: 16;
-		/* autoprefixer: off */
 		grid-row-end: 19;
 	}
 	.gridGotIt {
@@ -135,6 +126,5 @@ a:hover{
 		/* autoprefixer: off */
 		grid-column-end: 22;
 		grid-row-start: 20;
-		/* autoprefixer: off */
 		grid-row-end: 21;
 	}
