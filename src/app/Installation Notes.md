@@ -317,5 +317,9 @@
 
 
     ## Dexie
+        http://dexie.org/docs/Typescript
 
     ## agGrid
+        https://www.ag-grid.com/angular-getting-started/
+        Re-Installed datalib (as types were not found)
+        

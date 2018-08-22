@@ -14,6 +14,10 @@ import { HttpClientModule }           from '@angular/common/http';
 
 // Clarity Framework
 import { ClarityModule }              from '@clr/angular';
+
+// ag-Grid
+import { AgGridModule }               from 'ag-grid-angular';
+
 // Own Components
 import { CaDatagridComponent }        from './ca.datagrid.component';
 import { ColourPickerComponent }      from './colour.picker.component';
@@ -276,6 +280,7 @@ import { StatusbarComponent }         from './statusbar.component';
 
     ],
     imports: [
+        AgGridModule.withComponents([]),
         BrowserAnimationsModule,
         BrowserModule,
         FormsModule,

@@ -38,85 +38,36 @@ import { WidgetSingleComponent }      from './widget.single.component';
 import { compile }                    from 'vega-lite';
 import { parse }                      from 'vega';
 import { View }                       from 'vega';
-import * as dl                        from 'datalib';
 import { StatusbarComponent }         from './statusbar.component';
 
 // WS
 import { WebSocketSubject }           from 'rxjs/webSocket';
 
+// Dexie
+import Dexie from 'dexie';
+
+class MyAppDatabase extends Dexie {
+    // Declare implicit table properties.
+    // (just to inform Typescript. Instanciated by Dexie in stores() method)
+    contacts: Dexie.Table<IContact, number>; // number = type of the primkey
+    //...other tables goes here...
+
+    constructor () {
+        super("MyAppDatabase");
+        this.version(1).stores({
+            contacts: '++id, first, last',
+            //...other tables goes here...
+        });
+    }
+}
+
+interface IContact {
+    id?: number,
+    first: string,
+    last: string
+}
 
 // Constants
-const vlTemplate: dl.spec.TopLevelExtendedSpec =
-{
-    "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
-
-    // Properties for top-level specification (e.g., standalone single view specifications)
-    "background": "",
-    "padding": "",
-    // "autosize": "",          NB - add these only if needed, blank causes no graph display
-    // "config": "",            NB - add these only if needed, blank causes no graph display
-
-    // Properties for any specifications
-    "title":
-        {
-            "text": "",
-            "anchor": "",
-            "offset": "",
-            "orient": "",
-            "style": ""
-        },
-    "name": "",
-    "transform": "",
-
-    "description": "",
-    "data": "",
-    "mark":
-        {
-            "type": "",  //bar circle square tick line area point rule text
-            "style": "",
-            "clip": ""
-        },
-    "encoding":
-        {
-            "x":
-                {
-                    "aggregate": "",
-                    "field": "",
-                    "type": "ordinal",
-                    "bin": "",
-                    "timeUnit": "",
-                    "axis":
-                    {
-                        "title": ""
-                    },
-                    "scale": "",
-                    "legend": "",
-                    "format": "",
-                    "stack": "",
-                    "sort": "",
-                    "condition": ""
-                },
-            "y":
-                {
-                    "aggregate": "",
-                    "field": "",
-                    "type": "quantitative",
-                    "bin": "",
-                    "timeUnit": "",
-                    "axis":
-                        {
-                            "title": ""
-                        },
-                    "scale": "",
-                    "legend": "",
-                    "format": "",
-                    "stack": "",
-                    "sort": "",
-                    "condition": ""
-                    }
-        }
-};
-
 export enum KEY_CODE {
     LEFT_ARROW = 37,
     UP_ARROW = 38,
@@ -446,7 +397,18 @@ export class AppComponent implements OnInit {
     zoomFactor: string = 'scale(1)';
     templateWidgets: Widget[] = [];
 
- 
+    columnDefs = [
+        {headerName: 'Make', field: 'make' },
+        {headerName: 'Model', field: 'model' },
+        {headerName: 'Price', field: 'price'}
+    ];
+
+    rowData = [
+        { make: 'Toyota', model: 'Celica', price: 35000 },
+        { make: 'Ford', model: 'Mondeo', price: 32000 },
+        { make: 'Porsche', model: 'Boxter', price: 72000 }
+    ];
+
     public serverMessages = new Array<WebSocketMessage>();
 
     public sender: string = '';
@@ -486,7 +448,10 @@ export class AppComponent implements OnInit {
         // var type = 'article';
         // this[type+'_count'] = 1000;  // in a function we use "this";
         // alert(this.article_count);
-
+        
+        var db = new Dexie("MyAppDatabase");
+        db.version(1).stores({contacts: 'id, first, last'});
+        db.table("contacts").put({first: "First name", last: "Last name"});
 
         // Get Users and Groups, async
         this.globalVariableService.getCanvasGroups();

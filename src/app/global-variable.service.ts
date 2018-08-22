@@ -59,13 +59,13 @@ import { WidgetCheckpoint }           from './models';
 import { Token }                      from './models';
 
 // External
-import * as dl                        from 'datalib';
+// import * as dl                        from 'datalib';
 
 // Functions
 import { nSQL } from "nano-sql";
 
 // Vega template
-const vlTemplate: dl.spec.TopLevelExtendedSpec =
+const vlTemplate: any =
     {
         "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
 
@@ -453,7 +453,7 @@ export class GlobalVariableService {
     
     }
 
-    vlTemplate: dl.spec.TopLevelExtendedSpec = vlTemplate;
+    vlTemplate: any = vlTemplate;
     widgetTemplate: Widget = widgetTemplate;
     dashboardTemplate: Dashboard = dashboardTemplate;
     dashboardTabTemplate: DashboardTab = dashboardTabTemplate;
@@ -7604,16 +7604,17 @@ originalWidget, copiedWidget)
         if (this.getSource == 'File') {
             return new Promise((resolve, reject) => {
                 // Get from source - files for now ...
-                dl.json({url: this.filePath}, {children: 'graphSpecification'}, (err, currentData) => {
-                    if (err) {
-                        reject(err)
-                    } else {
-                        if (options == 'metadata') {}
-                        resolve(currentData);
-                    }
-                    });
-                }
-            );
+                resolve(null);
+                // dl.json({url: this.filePath}, {children: 'graphSpecification'}, (err, currentData) => {
+                //     if (err) {
+                //         reject(err)
+                //     } else {
+                //         if (options == 'metadata') {}
+                //         resolve(currentData);
+                //     }
+                //     });
+                // }
+            });
         };
     }
 
@@ -8483,7 +8484,7 @@ originalWidget, copiedWidget)
     createVegaLiteSpec(
         widget: Widget,
         height: number = 0,
-        width: number = 0): dl.spec.TopLevelExtendedSpec {
+        width: number = 0): any {
         // Creates a Vega-Lite spec for a given Widget from a standard template
         // - widget is the W for which the graph is created, and contains all the
         //   required detail
@@ -8493,7 +8494,7 @@ originalWidget, copiedWidget)
             "color: black; background: lightgray; font-size: 10px",
             {widget}, {height}, {width});
 
-        let vlSpecsNew: dl.spec.TopLevelExtendedSpec = this.vlTemplate;
+        let vlSpecsNew: any = this.vlTemplate;
         if (widget.graphUrl != "") {
             vlSpecsNew['data'] = {"url": widget.graphUrl};
         } else {
