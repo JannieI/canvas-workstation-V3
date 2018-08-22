@@ -322,4 +322,11 @@
     ## agGrid
         https://www.ag-grid.com/angular-getting-started/
         Re-Installed datalib (as types were not found)
-        
+        Still not finding typeings for Datalib - uninstalled it (had to do several times)
+        Had to keep in tsconfig.json:
+        ...
+        "typeRoots": [
+            "node_modules/@types"
+        ]
+        ...
+
