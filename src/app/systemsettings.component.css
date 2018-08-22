@@ -17,7 +17,6 @@
         /* autoprefixer: off */
         grid-column-end: 2;
         grid-row-start: 1;
-        /* autoprefixer: off */
         grid-row-end: 2;
         text-align: left;
     }
@@ -27,7 +26,6 @@
         /* autoprefixer: off */
         grid-column-end: 18;
         grid-row-start: 1;
-        /* autoprefixer: off */
         grid-row-end: 2;
         margin-left: 30px;
         text-align: left;
@@ -39,7 +37,6 @@
         /* autoprefixer: off */
         grid-column-end: 18;
         grid-row-start: 3;
-        /* autoprefixer: off */
         grid-row-end: 4;
         text-align: left;
     }
@@ -49,7 +46,6 @@
             /* autoprefixer: off */
             grid-column-end: 6;
             grid-row-start: 4;
-            /* autoprefixer: off */
             grid-row-end: 5;
             margin-left: 20px;
             text-align: left;
@@ -60,7 +56,6 @@
             /* autoprefixer: off */
             grid-column-end: 12;
             grid-row-start: 4;
-            /* autoprefixer: off */
             grid-row-end: 5;
             margin-left: 20px;
             text-align: left;
@@ -71,7 +66,6 @@
             /* autoprefixer: off */
             grid-column-end: 18;
             grid-row-start: 4;
-            /* autoprefixer: off */
             grid-row-end: 5;
             margin-left: 20px;
             text-align: left;
@@ -83,7 +77,6 @@
         /* autoprefixer: off */
         grid-column-end: 18;
         grid-row-start: 6;
-        /* autoprefixer: off */
         grid-row-end: 7;
         text-align: left;
     }
@@ -93,7 +86,6 @@
             /* autoprefixer: off */
             grid-column-end: 6;
             grid-row-start: 7;
-            /* autoprefixer: off */
             grid-row-end: 8;
             margin-left: 20px;
             text-align: left;
@@ -104,7 +96,6 @@
             /* autoprefixer: off */
             grid-column-end: 12;
             grid-row-start: 7;
-            /* autoprefixer: off */
             grid-row-end: 8;
             margin-left: 20px;
             text-align: left;
@@ -115,7 +106,6 @@
             /* autoprefixer: off */
             grid-column-end: 18;
             grid-row-start: 7;
-            /* autoprefixer: off */
             grid-row-end: 8;
             margin-left: 20px;
             text-align: left;
@@ -127,7 +117,6 @@
         /* autoprefixer: off */
         grid-column-end: 18;
         grid-row-start: 9;
-        /* autoprefixer: off */
         grid-row-end: 12;
         text-align: left;
     }
@@ -137,7 +126,6 @@
             /* autoprefixer: off */
             grid-column-end: 6;
             grid-row-start: 10;
-            /* autoprefixer: off */
             grid-row-end: 11;
             margin-left: 20px;
             text-align: left;
@@ -149,7 +137,6 @@
         /* autoprefixer: off */
         grid-column-end: 18;
         grid-row-start: 12;
-        /* autoprefixer: off */
         grid-row-end: 13;
         text-align: left;
     }
@@ -159,7 +146,6 @@
             /* autoprefixer: off */
             grid-column-end: 6;
             grid-row-start: 13;
-            /* autoprefixer: off */
             grid-row-end: 14;
             margin-left: 20px;
             text-align: left;
@@ -170,7 +156,6 @@
             /* autoprefixer: off */
             grid-column-end: 12;
             grid-row-start: 13;
-            /* autoprefixer: off */
             grid-row-end: 14;
             margin-left: 20px;
             text-align: left;
@@ -181,7 +166,6 @@
             /* autoprefixer: off */
             grid-column-end: 18;
             grid-row-start: 13;
-            /* autoprefixer: off */
             grid-row-end: 14;
             margin-bottom: 0;
             margin-left: 20px;
@@ -194,7 +178,6 @@
         /* autoprefixer: off */
         grid-column-end: 18;
         grid-row-start: 15;
-        /* autoprefixer: off */
         grid-row-end: 16;
         text-align: left;
     }
@@ -204,7 +187,6 @@
             /* autoprefixer: off */
             grid-column-end: 6;
             grid-row-start: 16;
-            /* autoprefixer: off */
             grid-row-end: 17;
             margin-left: 20px;
             text-align: left;
@@ -215,7 +197,6 @@
             /* autoprefixer: off */
             grid-column-end: 12;
             grid-row-start: 16;
-            /* autoprefixer: off */
             grid-row-end: 19;
             margin-left: 20px;
             text-align: left;
@@ -227,7 +208,6 @@
         /* autoprefixer: off */
         grid-column-end: 18;
         grid-row-start: 18;
-        /* autoprefixer: off */
         grid-row-end: 19;
         text-align: left;
     }
@@ -237,7 +217,6 @@
             /* autoprefixer: off */
             grid-column-end: 6;
             grid-row-start: 19;
-            /* autoprefixer: off */
             grid-row-end: 20;
             margin-left: 20px;
             text-align: left;
@@ -248,7 +227,6 @@
             /* autoprefixer: off */
             grid-column-end: 12;
             grid-row-start: 19;
-            /* autoprefixer: off */
             grid-row-end: 20;
             margin-left: 20px;
             text-align: left;
@@ -259,7 +237,6 @@
             /* autoprefixer: off */
             grid-column-end: 18;
             grid-row-start: 19;
-            /* autoprefixer: off */
             grid-row-end: 20;
             margin-left: 20px;
             text-align: left;
@@ -270,7 +247,6 @@
         /* autoprefixer: off */
         grid-column-end: 7;
         grid-row-start: 22;
-        /* autoprefixer: off */
         grid-row-end: 23;
         text-align: left;
     }
@@ -280,7 +256,6 @@
         /* autoprefixer: off */
         grid-column-end: 14;
         grid-row-start: 22;
-        /* autoprefixer: off */
         grid-row-end: 23;
         text-align: left;
     }
