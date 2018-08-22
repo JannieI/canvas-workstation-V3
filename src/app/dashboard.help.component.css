@@ -35,7 +35,6 @@
         /* autoprefixer: off */
         grid-column-end: 3;
         grid-row-start: 1;
-        /* autoprefixer: off */
         grid-row-end: 2;
         text-align: left;
     }
@@ -44,7 +43,6 @@
         /* autoprefixer: off */
         grid-column-end: 15;
         grid-row-start: 1;
-        /* autoprefixer: off */
         grid-row-end: 2;
         margin: 2px 2px 2px 2px;
         text-align: left;
@@ -55,7 +53,6 @@
         /* autoprefixer: off */
         grid-column-end: 15;
         grid-row-start: 2;
-        /* autoprefixer: off */
         grid-row-end: 21;
         margin: 10px 2px 2px 12px;
         text-align: left;
