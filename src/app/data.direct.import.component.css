@@ -23,7 +23,6 @@
         /* autoprefixer: off */
         grid-column-end: 2;
         grid-row-start: 1;
-        /* autoprefixer: off */
         grid-row-end: 2;
         text-align: left;
     }
@@ -33,7 +32,6 @@
         /* autoprefixer: off */
         grid-column-end: 21;
         grid-row-start: 1;
-        /* autoprefixer: off */
         grid-row-end: 2;
         margin-left: 30px;
         text-align: left;
@@ -44,7 +42,6 @@
         /* autoprefixer: off */
         grid-column-end: 2;
         grid-row-start: 3;
-        /* autoprefixer: off */
         grid-row-end: 4;
         margin: 2px 2px 2px 22px;
         text-align: left;
@@ -54,7 +51,6 @@
         /* autoprefixer: off */
         grid-column-end: 7;
         grid-row-start: 3;
-        /* autoprefixer: off */
         grid-row-end: 4;
         margin: 2px 2px 2px 22px;
         text-align: left;
@@ -65,7 +61,6 @@
         /* autoprefixer: off */
         grid-column-end: 9;
         grid-row-start: 3;
-        /* autoprefixer: off */
         grid-row-end: 4;
         margin: 2px 2px 2px 22px;
         text-align: left;
@@ -75,7 +70,6 @@
         /* autoprefixer: off */
         grid-column-end: 21;
         grid-row-start: 3;
-        /* autoprefixer: off */
         grid-row-end: 4;
         margin: 2px 2px 2px 22px;
         text-align: left;
@@ -86,7 +80,6 @@
         /* autoprefixer: off */
         grid-column-end: 8;
         grid-row-start: 5;
-        /* autoprefixer: off */
         grid-row-end: 6;
         margin: 2px 2px 2px 2px;
         text-align: left;
@@ -100,7 +93,6 @@
         /* autoprefixer: off */
         grid-column-end: 15;
         grid-row-start: 5;
-        /* autoprefixer: off */
         grid-row-end: 6;
         text-align: left;
     }
@@ -111,7 +103,6 @@
         /* autoprefixer: off */
         grid-column-end: 21;
         grid-row-start: 4;
-        /* autoprefixer: off */
         grid-row-end: 5;
         margin: 2px 2px 2px 22px;
         text-align: left;
@@ -122,7 +113,6 @@
         /* autoprefixer: off */
         grid-column-end: 21;
         grid-row-start: 10;
-        /* autoprefixer: off */
         grid-row-end: 21;
         margin: 2px 2px 2px 2px;
         text-align: left;
