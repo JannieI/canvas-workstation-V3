@@ -20,7 +20,6 @@
         /* autoprefixer: off */
         grid-column-end: 2;
         grid-row-start: 1;
-        /* autoprefixer: off */
         grid-row-end: 2;
         text-align: left;
     }
@@ -30,7 +29,6 @@
         /* autoprefixer: off */
         grid-column-end: 18;
         grid-row-start: 1;
-        /* autoprefixer: off */
         grid-row-end: 2;
         margin-left: 30px;
         text-align: left;
@@ -41,7 +39,6 @@
         /* autoprefixer: off */
         grid-column-end: 4;
         grid-row-start: 3;
-        /* autoprefixer: off */
         grid-row-end: 4;
         margin: 2px 2px 2px 2px;
         text-align: left;
@@ -51,7 +48,6 @@
         /* autoprefixer: off */
         grid-column-end: 8;
         grid-row-start: 3;
-        /* autoprefixer: off */
         grid-row-end: 4;
         margin: 2px 2px 2px 2px;
         text-align: left;
@@ -61,7 +57,6 @@
         /* autoprefixer: off */
         grid-column-end: 10;
         grid-row-start: 2;
-        /* autoprefixer: off */
         grid-row-end: 3;
         margin: 12px 2px 2px 20px;
         text-align: left;
@@ -72,7 +67,6 @@
         /* autoprefixer: off */
         grid-column-end: 19;
         grid-row-start: 4;
-        /* autoprefixer: off */
         grid-row-end: 5;
         margin: 2px 2px 2px 20px;
         text-align: left;
@@ -82,7 +76,6 @@
         /* autoprefixer: off */
         grid-column-end: 10;
         grid-row-start: 5;
-        /* autoprefixer: off */
         grid-row-end: 6;
         margin: 20px 2px 2px 20px;
         text-align: left;
@@ -93,7 +86,6 @@
         /* autoprefixer: off */
         grid-column-end: 19;
         grid-row-start: 5;
-        /* autoprefixer: off */
         grid-row-end: 6;
         margin: 2px 2px 2px 40px;
         text-align: left;
@@ -103,7 +95,6 @@
         /* autoprefixer: off */
         grid-column-end: 6;
         grid-row-start: 6;
-        /* autoprefixer: off */
         grid-row-end: 7;
         margin: 6px 2px 2px 60px;
         text-align: left;
@@ -113,7 +104,6 @@
         /* autoprefixer: off */
         grid-column-end: 7;
         grid-row-start: 6;
-        /* autoprefixer: off */
         grid-row-end: 7;
         margin: 6px 2px 2px 20px;
         text-align: left;
@@ -123,7 +113,6 @@
         /* autoprefixer: off */
         grid-column-end: 12;
         grid-row-start: 6;
-        /* autoprefixer: off */
         grid-row-end: 7;
         margin: 6px 2px 2px 20px;
         text-align: left;
@@ -133,7 +122,6 @@
         /* autoprefixer: off */
         grid-column-end: 14;
         grid-row-start: 6;
-        /* autoprefixer: off */
         grid-row-end: 7;
         margin: 2px 2px 2px 20px;
         text-align: left;
@@ -144,7 +132,6 @@
         /* autoprefixer: off */
         grid-column-end: 19;
         grid-row-start: 7;
-        /* autoprefixer: off */
         grid-row-end: 22;
         margin: 6px 2px 2px 2px;
         text-align: left;
