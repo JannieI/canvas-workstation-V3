@@ -17,7 +17,6 @@
         /* autoprefixer: off */
         grid-column-end: 2;
         grid-row-start: 1;
-        /* autoprefixer: off */
         grid-row-end: 2;
         text-align: left;
     }
@@ -27,7 +26,6 @@
         /* autoprefixer: off */
         grid-column-end: 21;
         grid-row-start: 1;
-        /* autoprefixer: off */
         grid-row-end: 2;
         margin-left: 30px;
         text-align: left;
@@ -38,7 +36,6 @@
         /* autoprefixer: off */
         grid-column-end: 3;
         grid-row-start: 3;
-        /* autoprefixer: off */
         grid-row-end: 4;
     }
     .gridDatasourceName {
@@ -46,7 +43,6 @@
         /* autoprefixer: off */
         grid-column-end: 10;
         grid-row-start: 3;
-        /* autoprefixer: off */
         grid-row-end: 4;
     }
 
@@ -55,7 +51,6 @@
         /* autoprefixer: off */
         grid-column-end: 13;
         grid-row-start: 3;
-        /* autoprefixer: off */
         grid-row-end: 4;
     }
     .gridDatasourceDescription {
@@ -63,7 +58,6 @@
         /* autoprefixer: off */
         grid-column-end: 21;
         grid-row-start: 3;
-        /* autoprefixer: off */
         grid-row-end: 4;
     }
 
@@ -72,7 +66,6 @@
         /* autoprefixer: off */
         grid-column-end: 17;
         grid-row-start: 5;
-        /* autoprefixer: off */
         grid-row-end: 6;
     }
     .gridDatasourceIsCached {
@@ -80,7 +73,6 @@
         /* autoprefixer: off */
         grid-column-end: 18;
         grid-row-start: 5;
-        /* autoprefixer: off */
         grid-row-end: 6;
     }
 
@@ -89,7 +81,6 @@
         /* autoprefixer: off */
         grid-column-end: 3;
         grid-row-start: 5;
-        /* autoprefixer: off */
         grid-row-end: 6;
     }
     .gridUrl {
@@ -97,7 +88,6 @@
         /* autoprefixer: off */
         grid-column-end: 16;
         grid-row-start: 5;
-        /* autoprefixer: off */
         grid-row-end: 6;
     }
 
@@ -106,7 +96,6 @@
         /* autoprefixer: off */
         grid-column-end: 21;
         grid-row-start: 4;
-        /* autoprefixer: off */
         grid-row-end: 5;
         padding-top: 7px;
     }
@@ -116,7 +105,6 @@
         /* autoprefixer: off */
         grid-column-end: 17;
         grid-row-start: 6;
-        /* autoprefixer: off */
         grid-row-end: 7;
         margin-top: 6px;
     }
@@ -127,7 +115,6 @@
         /* autoprefixer: off */
         grid-column-end: 21;
         grid-row-start: 7;
-        /* autoprefixer: off */
         grid-row-end: 8;
     }
 
@@ -136,7 +123,6 @@
         /* autoprefixer: off */
         grid-column-end: 13;
         grid-row-start: 16;
-        /* autoprefixer: off */
         grid-row-end: 17;
     }
 
@@ -147,7 +133,6 @@
         /* autoprefixer: off */
         grid-column-end: 20;
         grid-row-start: 8;
-        /* autoprefixer: off */
         grid-row-end: 25;
         margin-left: 20px;
         width: 100%;
@@ -158,7 +143,6 @@
         /* autoprefixer: off */
         grid-column-end: 6;
         grid-row-start: 25;
-        /* autoprefixer: off */
         grid-row-end: 26;
     }
 
@@ -167,7 +151,6 @@
         /* autoprefixer: off */
         grid-column-end: 15;
         grid-row-start: 25;
-        /* autoprefixer: off */
         grid-row-end: 26;
     }
 
@@ -176,7 +159,6 @@
         /* autoprefixer: off */
         grid-column-end: 21;
         grid-row-start: 25;
-        /* autoprefixer: off */
         grid-row-end: 26;
         margin-top: 6px;
     }
