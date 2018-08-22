@@ -17,7 +17,6 @@
         /* autoprefixer: off */
         grid-column-end: 2;
         grid-row-start: 1;
-        /* autoprefixer: off */
         grid-row-end: 2;
         text-align: left;
     }
@@ -27,7 +26,6 @@
         /* autoprefixer: off */
         grid-column-end: 21;
         grid-row-start: 1;
-        /* autoprefixer: off */
         grid-row-end: 2;
         margin-left: 30px;
         text-align: left;
@@ -38,7 +36,6 @@
         /* autoprefixer: off */
         grid-column-end: 4;
         grid-row-start: 3;
-        /* autoprefixer: off */
         grid-row-end: 4;
     }
     .gridBusinessGlossary {
@@ -46,7 +43,6 @@
         /* autoprefixer: off */
         grid-column-end: 21;
         grid-row-start: 3;
-        /* autoprefixer: off */
         grid-row-end: 4;
         height: 100%;
         width: 100%;
@@ -57,7 +53,6 @@
         /* autoprefixer: off */
         grid-column-end: 4;
         grid-row-start: 7;
-        /* autoprefixer: off */
         grid-row-end: 8;
         margin: 8px 2px 2px 2px;
         text-align: left;
@@ -67,7 +62,6 @@
         /* autoprefixer: off */
         grid-column-end: 8;
         grid-row-start: 7;
-        /* autoprefixer: off */
         grid-row-end: 8;
         margin: 8px 2px 2px 2px;
         text-align: left;
@@ -80,7 +74,6 @@
         /* autoprefixer: off */
         grid-column-end: 21;
         grid-row-start: 10;
-        /* autoprefixer: off */
         grid-row-end: 27;
         overflow-y: scroll;
         width: 100%;
