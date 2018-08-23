@@ -95,7 +95,7 @@ export class WidgetContainerComponent implements OnInit {
         };
         console.warn('xx ls', this.lineSize, this.lineColor)
         // Manage colour picker
-        this.globalVariableService.colourPickerClosed.subscribe(clp => {
+        this.colourPickerSubscription = this.globalVariableService.colourPickerClosed.subscribe(clp => {
 
             if (this.localWidget != undefined  &&  clp != null) {
 

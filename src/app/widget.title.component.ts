@@ -94,7 +94,7 @@ export class WidgetTitleComponent implements OnInit {
         };
 
         // Manage colour picker
-        this.globalVariableService.colourPickerClosed.subscribe(clp => {
+        this.colourPickerSubscription = this.globalVariableService.colourPickerClosed.subscribe(clp => {
 
             if (this.localWidget != undefined  &&  clp != null) {
 
@@ -136,7 +136,7 @@ export class WidgetTitleComponent implements OnInit {
 
         this.colourPickerSubscription.unsubscribe();
     }
-    
+
     clickSelectBgColor(ev: any) {
         // Select Background Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBgColor', '@Start');

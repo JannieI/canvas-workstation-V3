@@ -108,7 +108,7 @@ export class ShapeEditComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         // Manage colour picker
-        this.globalVariableService.colourPickerClosed.subscribe(clp => {
+        this.colourPickerSubscription = this.globalVariableService.colourPickerClosed.subscribe(clp => {
 
             if (this.localWidget != undefined  &&  clp != null) {
 
