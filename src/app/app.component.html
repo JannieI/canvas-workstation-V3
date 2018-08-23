@@ -1191,17 +1191,17 @@
                         <div class="dropdown-divider"></div>
                         <button type="button"
                             clrDropdownItem
+                            (click)="clickMenuShapeComments()"
+                            title="Comments for selected Shape"
+                            >
+                            Comments
+                        </button>
+                        <button type="button"
+                            clrDropdownItem
                             (click)="clickMenuWidgetContainer('Shape')"
                             title="Change container properties for selected Shape"
                             >
                             Container
-                        </button>
-                        <button type="button"
-                            clrDropdownItem
-                            (click)="clickMenuWidgetLockUnlock()"
-                            title="Toggle Lock/UnLock for the selected Shape"
-                            >
-                            Lock/UnLock
                         </button>
                         <button type="button"
                             clrDropdownItem
@@ -1212,32 +1212,10 @@
                         </button>
                         <button type="button"
                             clrDropdownItem
-                            (click)="clickMenuWidgetPaste()"
-                            title="Paste previously copied Shape"
-                            >
-                            Paste
-                        </button>
-                        <button type="button"
-                            clrDropdownItem
                             (click)="clickMenuPaletteDuplicate()"
                             title="Duplicate selected Shape"
                             >
                             Duplicate
-                        </button>
-
-                        <button type="button"
-                            clrDropdownItem
-                            (click)="clickMenuWidgetTablist()"
-                            title="Manage Tabs to which selected Shape belongs"
-                            >
-                            Tablist
-                        </button>
-                        <button type="button"
-                            clrDropdownItem
-                            (click)="clickMenuShapeComments()"
-                            title="Comments for selected Shape"
-                            >
-                            Comments
                         </button>
                         <button type="button"
                             clrDropdownItem
@@ -1246,6 +1224,28 @@
                             >
                             Hyperlinks
                         </button>
+                        <button type="button"
+                            clrDropdownItem
+                            (click)="clickMenuWidgetLockUnlock()"
+                            title="Toggle Lock/UnLock for the selected Shape"
+                            >
+                            Lock/UnLock
+                        </button>
+                        <button type="button"
+                            clrDropdownItem
+                            (click)="clickMenuWidgetPaste()"
+                            title="Paste previously copied Shape"
+                            >
+                            Paste
+                        </button>
+                        <button type="button"
+                            clrDropdownItem
+                            (click)="clickMenuWidgetTablist()"
+                            title="Manage Tabs to which selected Shape belongs"
+                            >
+                            Tablist
+                        </button>
+
                         <div class="dropdown-divider"></div>
                         <button type="button"
                             clrDropdownItem
