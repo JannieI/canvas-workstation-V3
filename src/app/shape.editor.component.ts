@@ -287,14 +287,14 @@ export class ShapeEditComponent implements OnInit {
     }
 
     ngOnDestroy() {
-        // Cleanup just before Angular destroys the directive/component. 
+        // Cleanup just before Angular destroys the directive/component.
         // Unsubscribe Observables and detach event handlers to avoid memory leaks.
         // Called just before Angular destroys the directive/component.
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnDestroy', '@Start');
 
         this.colourPickerSubscription.unsubscribe();
     }
-    
+
     clickClose() {
         // Close the form, nothing saved
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
@@ -571,6 +571,25 @@ export class ShapeEditComponent implements OnInit {
                 this.localWidget.containerWidth = this.localWidget.shapeTextDisplay.length
                     * this.localWidget.shapeFontSize / 2;
                 this.localWidget.containerHeight = 8 + this.localWidget.shapeFontSize;
+            };
+
+            // Estimate size of Bullets
+            if (this.localWidget.widgetSubType == 'Bullets') {
+                let maxTextLength: number = 3;
+                this.localWidget.shapeBullet.forEach(sb => {
+                    if (sb.text.length > maxTextLength) {
+                        maxTextLength = sb.text.length;
+                    };
+                });
+                if (maxTextLength > 50) {
+                    maxTextLength = 50;
+                };
+
+                this.localWidget.containerWidth = 35 + (maxTextLength
+                    * this.localWidget.shapeFontSize / 2);
+                this.localWidget.containerHeight = this.localWidget.shapeBullet.length *
+                    (8 + this.localWidget.shapeFontSize);
+
             };
 
             this.globalVariableService.addWidget(this.localWidget).then(res => {
