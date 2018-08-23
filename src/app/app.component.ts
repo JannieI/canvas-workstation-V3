@@ -4881,7 +4881,7 @@ export class AppComponent implements OnInit {
         if (!this.checkForOnlyOneWidget()) {
             return;
         };
-        if (!this.checkForOnlyOneWidget('Slicer')) {
+        if (!this.checkForOnlyOneWidget('Graph')) {
             return;
         };
 
@@ -4890,7 +4890,7 @@ export class AppComponent implements OnInit {
         // Set the selected W id
         this.currentWidgets.forEach(w => {
             if (w.isSelected) {
-                this.selectedWidgetID = w.id;
+                this.selectedWidget = w;
             }
         })
 
@@ -5250,6 +5250,42 @@ export class AppComponent implements OnInit {
         this.showModalWidgetHyperlinks = true;
     }
 
+    clickMenuShapeEditTitle() {
+        // Edit title of selected Shape
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuShapeEditTitle', '@Start');
+
+        // Make sure we have only one Shape selected
+        if (!this.checkForOnlyOneWidget()) {
+            return;
+        };
+        if (!this.checkForOnlyOneWidget('Shape')) {
+            return;
+        };
+
+        // Set the selected W
+        this.currentWidgets.forEach(w => {
+            if (w.isSelected) {
+                this.selectedWidget = w;
+            }
+        })
+
+        // Only SubType = Value can have titles
+        if (this.selectedWidget.widgetSubType != 'Value') {
+            this.showMessage(
+                'Only Value shapes has a title',
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+
+        this.menuOptionClickPreAction();
+
+        this.showTitleForm = true;        
+    }
+    
     clickMenuShapeDelete() {
         // Delete a Shape
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuShapeDelete', '@Start');

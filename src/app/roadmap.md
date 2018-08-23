@@ -485,7 +485,7 @@ This document describes items for later versions of Canvas.
     - consider selection of geo data on a map using a polygon - maybe via a 3rd party package
     - dot on rectangle - move to change border-radius (see LibreOffice Impress) ?
     - add -> hyperlink inside TEXT box, thus can have Back Button.  Think: just to a tab, or to a D too?
-
+    - widget Title: consider adding bold and italic
 
     Treeview: 
     --------
