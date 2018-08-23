@@ -337,6 +337,7 @@
                             Print
                         </button>
 
+                        <div class="dropdown-divider"></div>
                         <button
                             type="button"
                             clrDropdownItem
@@ -1704,60 +1705,12 @@
                         (click)="clickMenuEditMode()"
                         title="Enable EditMode to make changes"
                         >
-                        {{ currentUserID? currentUserID : 'Not logged in' }}
-                    </button>
-                    <a clrDropdownItem (click)="clickMenuUserLogin()">Login</a>
-
-                    <button type="button"
-                        clrDropdownItem
-                        (click)="clickMenuUserMyProfile()"
-                        title="Show my profile"
-                        [style.color]="!currentUserID? 'lightgray' : '#565656'"
-                        [disabled] = "!currentUserID"
-                        >
-                        My Profile
+                        <i>
+                            {{ currentUserID? currentUserID : 'Not logged in' }}
+                        </i>
                     </button>
 
-                    <button type="button"
-                        clrDropdownItem
-                        (click)="clickMenuUserPreferences()"
-                        title="Show my Preferences"
-                        [style.color]="!currentUserID? 'lightgray' : '#565656'"
-                        [disabled] = "!currentUserID"
-                        >
-                        Preferences
-                    </button>
-
-                    <button type="button"
-                        clrDropdownItem
-                        (click)="clickMenuUserMyPermissions()"
-                        title="Show my Permissions"
-                        [style.color]="!currentUserID? 'lightgray' : '#565656'"
-                        [disabled] = "!currentUserID"
-                        >
-                        My Permissions
-                    </button>
-
-                    <button type="button"
-                        clrDropdownItem
-                        (click)="clickMenuUserPaletteButtonBar()"
-                        title="Manage Palette ButtonBar"
-                        [style.color]="!currentUserID? 'lightgray' : '#565656'"
-                        [disabled] = "!currentUserID"
-                        >
-                        Palette ButtonBar
-                    </button>
-
-                    <button type="button"
-                        clrDropdownItem
-                        (click)="clickMenuUsers()"
-                        title="Show Users with its groups"
-                        [style.color]="!currentUserID? 'lightgray' : '#565656'"
-                        [disabled] = "!currentUserID"
-                        >
-                        Users
-                    </button>
-
+                    <div class="dropdown-divider"></div>
                     <button type="button"
                         clrDropdownItem
                         (click)="clickMenuGroups()"
@@ -1767,7 +1720,51 @@
                         >
                         Groups
                     </button>
-
+                    <button type="button"
+                        clrDropdownItem
+                        (click)="clickMenuUserMyPermissions()"
+                        title="Show my Permissions"
+                        [style.color]="!currentUserID? 'lightgray' : '#565656'"
+                        [disabled] = "!currentUserID"
+                        >
+                        My Permissions
+                    </button>
+                    <button type="button"
+                        clrDropdownItem
+                        (click)="clickMenuUserMyProfile()"
+                        title="Show my profile"
+                        [style.color]="!currentUserID? 'lightgray' : '#565656'"
+                        [disabled] = "!currentUserID"
+                        >
+                        My Profile
+                    </button>
+                    <button type="button"
+                        clrDropdownItem
+                        (click)="clickMenuUserPaletteButtonBar()"
+                        title="Manage Palette ButtonBar"
+                        [style.color]="!currentUserID? 'lightgray' : '#565656'"
+                        [disabled] = "!currentUserID"
+                        >
+                        Palette ButtonBar
+                    </button>
+                    <button type="button"
+                        clrDropdownItem
+                        (click)="clickMenuUserPreferences()"
+                        title="Show my Preferences"
+                        [style.color]="!currentUserID? 'lightgray' : '#565656'"
+                        [disabled] = "!currentUserID"
+                        >
+                        Preferences
+                    </button>
+                    <button type="button"
+                        clrDropdownItem
+                        (click)="clickMenuUsers()"
+                        title="Show Users with its groups"
+                        [style.color]="!currentUserID? 'lightgray' : '#565656'"
+                        [disabled] = "!currentUserID"
+                        >
+                        Users
+                    </button>
                     <button type="button"
                         clrDropdownItem
                         (click)="clickMenuUserSystemSettings()"
@@ -1778,12 +1775,23 @@
                         System Settings
                     </button>
 
+                    <div class="dropdown-divider"></div>
                     <button type="button"
                         clrDropdownItem
-                        (click)="clickMenuUserLogout()"
                         title="Log out of Canvas"
                         [style.color]="!currentUserID? 'lightgray' : '#565656'"
                         [disabled] = "!currentUserID"
+                        (click)="clickMenuUserLogin()"
+                        >
+                        Login
+                    </button>
+
+                    <button type="button"
+                        clrDropdownItem
+                        title="Log out of Canvas"
+                        [style.color]="!currentUserID? 'lightgray' : '#565656'"
+                        [disabled] = "!currentUserID"
+                        (click)="clickMenuUserLogout()"
                         >
                         Log out
                     </button>
@@ -1854,22 +1862,6 @@
             </clr-dropdown-menu>
         </clr-dropdown>
     </div>
-
-
-
-
-    <!-- TEST -->
-
-    <!-- <ag-grid-angular 
-        style="width: 500px; height: 500px;" 
-        class="ag-theme-balham"
-        [rowData]="rowData" 
-        [columnDefs]="columnDefs"
-        >
-    </ag-grid-angular> -->
-
-    <!-- END TEST -->
-
 
 
 

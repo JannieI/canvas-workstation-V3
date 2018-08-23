@@ -16,16 +16,46 @@
                             <h5 style="margin-top: 0; color:gray;">
                                 Help
                             </h5>
-                            <p style="margin-top: 0; color:gray;"> 
-                                This form shows all the related Data Quality Issues raised.  
+                            <p style="margin-top: 0; color:gray;">
+                                This form shows all the related Data Quality Issues raised.
                                 Click the X or press Escape to close this form.
                             </p>
                         </clr-signpost-content>
                     </clr-signpost>
                 </div>
+                
+
+                <button (click)="getSelectedRows()">Get Selected Rows</button>
 
                 <div class="gridTable">
-                    <ca-datagrid 
+                    <ag-grid-angular 
+                        #agGrid
+                        style="width: 500px; height: 500px; overflow: scroll;" 
+                        class="ag-theme-balham"
+                        [alwaysShowStatusBar]="true"
+                        [columnDefs]="columnDefs1"
+                        [enableColResize]="true"
+                        [enableFilter]="true"
+                        [enableSorting]="true"
+                        [enableStatusBar]="true"
+                        [multiSortKey]="multiSortKey"
+                        [pagination]="true"
+                        [paginationAutoPageSize]="true"
+                        [paginationPageSize]="paginationPageSize"
+                        [pinnedTopRowData]="pinnedTopRowData"
+                        [pinnedBottomRowData]="pinnedBottomRowData"
+                        [rowData]="datagridData" 
+                        [rowSelection]="multiple"
+                        [showToolPanel]="true"
+                        [suppressColumnMoveAnimation]="false"
+                        [suppressDragLeaveHidesColumns]="true"
+                        >
+                    </ag-grid-angular>
+                </div>
+
+
+                <!-- <div class="gridTable">
+                    <ca-datagrid
                         [datagridColumns]="datagridColumns"
                         [datagridData]="datagridData"
                         [datagridPagination]="datagridPagination"
@@ -42,7 +72,7 @@
                         [datagridCanExportData]="datagridCanExportData"
                         >
                     </ca-datagrid>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

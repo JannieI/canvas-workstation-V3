@@ -321,12 +321,19 @@
 
     ## agGrid
         https://www.ag-grid.com/angular-getting-started/
-        Re-Installed datalib (as types were not found)
-        Still not finding typeings for Datalib - uninstalled it (had to do several times)
-        Had to keep in tsconfig.json:
+
+
+    Issue with datalib, as types were not found:
+        Had to keep these lines in tsconfig.json:
         ...
         "typeRoots": [
             "node_modules/@types"
         ]
         ...
+
+    Issue with auto file change detection:
+        Consider that, when having large number of files, there is a Limit at INotify Watches on Linux. So increasing the watches limit to 512K for example can solve this.
+
+        sudo sysctl fs.inotify.max_user_watches=524288
+        sudo sysctl -p --system
 

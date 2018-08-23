@@ -39,4 +39,5 @@
         grid-row-start: 3;
         grid-row-end: 15;
         text-align: left;
+        overflow-y: hidden;
     }
