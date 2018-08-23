@@ -4874,7 +4874,29 @@ export class AppComponent implements OnInit {
         this.showModalWidgetDescription = true;
     }
 
+    clickMenuWidgetEditTitle() {
+        // Edit title for the selected Slicer
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetEditTitle', '@Start');
 
+        if (!this.checkForOnlyOneWidget()) {
+            return;
+        };
+        if (!this.checkForOnlyOneWidget('Slicer')) {
+            return;
+        };
+
+        this.menuOptionClickPreAction();
+
+        // Set the selected W id
+        this.currentWidgets.forEach(w => {
+            if (w.isSelected) {
+                this.selectedWidgetID = w.id;
+            }
+        })
+
+        this.showTitleForm = true;
+
+    }
 
     clickMenuSlicerComments() {
         // Manage comments for the selected Slicer
