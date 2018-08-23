@@ -366,7 +366,7 @@ export class AppComponent implements OnInit {
     showModalWidgetEditor: boolean = false;
     showModalWidgetExpand: boolean = false;
     showModalWidgetExport: boolean = false;
-    showModalWidgetLinks: boolean = false;
+    showModalWidgetHyperlinks: boolean = false;
     showModalWidgetRefresh: boolean = false;
     showModalWidgetTablist: boolean = false;
     showModalUserSystemSettings: boolean = false;
@@ -1693,7 +1693,7 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPostAction();
 
-        this.showModalWidgetLinks = false;
+        this.showModalWidgetHyperlinks = false;
     }
 
     handleCloseWidgetRefresh(action: string) {
@@ -4019,7 +4019,7 @@ export class AppComponent implements OnInit {
             };
         });
 
-        this.showModalWidgetLinks = true;
+        this.showModalWidgetHyperlinks = true;
     }
 
     clickMenuWidgetRefresh() {
@@ -5223,7 +5223,7 @@ export class AppComponent implements OnInit {
 
         this.menuOptionClickPreAction();
 
-        this.showModalWidgetLinks = true;
+        this.showModalWidgetHyperlinks = true;
     }
 
     clickMenuShapeDelete() {
