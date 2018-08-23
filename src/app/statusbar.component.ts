@@ -524,7 +524,8 @@ export class StatusbarComponent {
                         .currentDashboardInfo.value.currentDashboardTabID) {
 
                         // Create Deep copy with necessary info
-                        let clipboardWidget = Object.assign({}, w);
+                        // let clipboardWidget = Object.assign({}, w);
+                        let clipboardWidget = JSON.parse(JSON.stringify(w));
                         clipboardWidget.id = null
                         clipboardWidget.dashboardTabID = newTabID;
                         clipboardWidget.dashboardTabIDs = [];
