@@ -205,9 +205,10 @@ export class AppComponent implements OnInit {
     }
 
     canSave: boolean = true;
+    combinationType: string;                    // Type passed to Combinations form
+    companyName: string = '';
     clickedSlicerItem: boolean = false;
     clipboardWidget: Widget;
-    companyName: string = '';
     currentDashboardName: string = '';
     currentDatasources: Datasource[];
     currentShapeSpec: any;          // TODO - fill this var !!  not working at moment
@@ -224,32 +225,33 @@ export class AppComponent implements OnInit {
     currentWidgetDashboardTabIDs: number[] = [];  // Of current W
     dontDisturb: boolean = false;
     draggableWidgets: number[] = [];
-    dashboardStartX: number;
-    dashboardStartY: number;
     dashboardEndX: number;
     dashboardEndY: number;
-    editMode: boolean;
+    dashboardStartX: number;
+    dashboardStartY: number;
     editingDS: boolean;
+    editMenuText: string;
+    editMode: boolean;
+    endX: number;
+    endY: number;
+    fields: Field[];
     hasDashboard: boolean = false;
     hasDatasources: boolean = true;             // TODO - consider removing this totally
-    editMenuText: string;
-    fields: Field[];
     isBusyResizing: boolean = false;
     isFirstTimeUser: boolean = false;
-    combinationType: string;                    // Type passed to Combinations form
     minWidgetContainerHeight: number = 16;      // Smallest that W Container can get
     minWidgetContainerWidth: number = 16;       // Smallest that W Container can get
     minGraphHeight: number = 1;                 // Smallest that Graph can get
     minGraphWidth: number = 1;                  // Smallest that Graph can get
     modalFormOpen: boolean = false;
-    moveStartX: number;
-    moveStartY: number;
     moveEndX: number;
     moveEndY: number;
-    moveOffsetX: number;
-    moveOffsetY: number;
     moveLastX: number = 0;
     moveLastY: number = 0;
+    moveOffsetX: number;
+    moveOffsetY: number;
+    moveStartX: number;
+    moveStartY: number;
     newWidget: boolean = false;
     newWidgetContainerLeft: number = 0;
     newWidgetContainerTop: number = 0;
@@ -261,131 +263,133 @@ export class AppComponent implements OnInit {
     paletteWidth = 39;                          // Palette dimensions in px
 	recentDashboards: DashboardRecent[];
     refreshGraphs: boolean = false;
-    selectedDatasource: Datasource;
-    selectedDashboard: Dashboard;
     selectDatasetID: number;
     selectDatasourceID: number;
+    selectedDatasource: Datasource;
+    selectedDashboard: Dashboard;
+    selectedDatasourceID: number;       // DS of selecte W, -1 for D
     selectedWidget: Widget;
     selectedWidgetID: number;
-    selectWidgetIndex: number;
-    selectedDatasourceID: number;       // DS of selecte W, -1 for D
-    showGrid: boolean;
+    selectedWidgetIndex: number;
     showDatasourcePopup: boolean = false;
+    showFavouriteDashboard: boolean = false;
+    showGrid: boolean;
+    showMainMenu: boolean = true;
+    showModalBusinessGlossary: boolean = false;
+    showModalCombinationAppend: boolean = false;
+    showModalCollaborateAuditTrail: boolean = false;
+    showModalCollaborateMessages: boolean = false;
+    showModalCollaborateSendEmail: boolean = false;
+    showModalCollaborateSendMessage: boolean = false;
+    showModalCollaborateSystemMessages: boolean = false;
+    showModalCollaborateTasksNew: boolean = false;
+    showModalCollaborateActivities: boolean = false;
+    showModalCollaborateTasks: boolean = false;
     showModalDashboardNew: boolean = false;
-    showModalDashboardOpen: boolean = false;
-    showModalDashboardSave: boolean = false;
-    showModalDashboardSaveAs: boolean = false;
-    showModalDashboardExport: boolean = false;
-    showModalDashboardSnapshots: boolean = false;
-    showModalDashboardShare: boolean = false;
-    showModalDashboardDiscard: boolean = false;
-    showModalDashboardLogin: boolean = false;
-    showModalDashboardLogout: boolean = false;
     showModalDashboardComments: boolean = false;
     showModalDashboardDataQuality: boolean = false;
-    showModalDashboardRename: boolean = false;
-    showModalDashboardDescription: boolean = false;
-    showModalDashboardTags
-    showModalDashboardTheme: boolean = false;
-    showModalDashboardTemplate: boolean = false;
-    showModalDashboardSchedule: boolean = false;
-    showModalDashboardScheduleEdit: boolean = false;
     showModalDashboardDelete: boolean = false;
     showModalDashboardDeleteBulk: boolean = false;
-    showModalDashboardTreeview: boolean = false;
-    showModalDashboardSubscribe: boolean = false;
-    showModalDashboardUsageStats: boolean = false;
-    showMainMenu: boolean = true;
-    showModalWidgetAnnotations: boolean = false;
-    showModalWidgetContainer: boolean = false;
-    showModalWidgetCheckpoints: boolean = false;
-    showModalWidgetLinks: boolean = false;
-    showModalWidgetRefresh: boolean = false;
-    showModalWidgetExpand: boolean = false;
-    showModalWidgetExport: boolean = false;
-    showModalWidgetDelete: boolean = false;
+    showModalDashboardDescription: boolean = false;
+    showModalDashboardDiscard: boolean = false;
+    showModalDashboardExport: boolean = false;
+    showModalDashboardLogin: boolean = false;
+    showModalDashboardLogout: boolean = false;
+    showModalDashboardOpen: boolean = false;
     showModalDashboardPrint: boolean = false;
-    showModalDataDirectFileSpreadsheet: boolean = false;
-    showModalDataDirectGoogleSheets: boolean = false;
+    showModalDashboardRename: boolean = false;
+    showModalDashboardSave: boolean = false;
+    showModalDashboardSaveAs: boolean = false;
+    showModalDashboardSchedule: boolean = false;
+    showModalDashboardScheduleEdit: boolean = false;
+    showModalDashboardShare: boolean = false;
+    showModalDashboardSnapshots: boolean = false;
+    showModalDashboardSubscribe: boolean = false;
+    showModalDashboardTags
+    showModalDashboardTemplate: boolean = false;
+    showModalDashboardTheme: boolean = false;
+    showModalDashboardTreeview: boolean = false;
+    showModalDashboardUsageStats: boolean = false;
+    showModalDataCombination: boolean = false;
+    showModalDataDeleteDatasource: boolean = false;
+    showModalDataDictionary: boolean = false;
+    showModalDataDirectExport: boolean = false;
     showModalDataDirectFileCSV: boolean = false;
     showModalDataDirectFileJSON: boolean = false;
-    showModalDataDirectQueryBuilder: boolean = false;
-    showModalDataDirectSQLEditor: boolean = false;
-    showModalDataDirectNoSQL: boolean = false;
-    showModalDataDirectService: boolean = false;
-    showModalDataDirectWeb: boolean = false;
+    showModalDataDirectFileSpreadsheet: boolean = false;
+    showModalDataDirectGoogleSheets: boolean = false;
     showModalDataDirectImport: boolean = false;
-    showModalDataDirectExport: boolean = false;
-    showModalDataOverview: boolean = false;
-    showModalCombinationAppend: boolean = false;
-    showModalDataUsage: boolean = false;
-    showModalDataScheduleEdit: boolean = false;
-    showModalDataSchedule: boolean = false;
-    showModalDataRefreshOnce: boolean = false;
-    showModalDataRefreshRepeat: boolean = false;
-    showModalDataManagedQueryBuilder: boolean = false;
-    showModalDataManagedSQLEditor: boolean = false;
-    showModalDataManagedGraphQLEditor: boolean = false;
-    showModalDataManagedNoSQLEditor: boolean = false;
-    showModalDataManagedNeo4jEditor: boolean = false;
-    showModalDataManagedOverlayEditor: boolean = false;
-    showModalDataTransformation: boolean = false;
+    showModalDataDirectNoSQL: boolean = false;
+    showModalDataDirectQueryBuilder: boolean = false;
+    showModalDataDirectService: boolean = false;
+    showModalDataDirectSQLEditor: boolean = false;
+    showModalDataDirectWeb: boolean = false;
     showModalDataEditDatasource: boolean = false;
     showModalDataManagedConnection: boolean = false;
-    showModalSlicerEditor: boolean = false;
-    showModalWidgetTablist: boolean = false;
-    showModalWidgetDescription: boolean = false;
-    showModalTableEditor: boolean = false;
-    showModalManagedDataDataQuality: boolean = false;
-    showModalManagedDataOwnership: boolean = false;
+    showModalDataManagedGraphQLEditor: boolean = false;
+    showModalDataManagedNeo4jEditor: boolean = false;
+    showModalDataManagedNoSQLEditor: boolean = false;
+    showModalDataManagedOverlayEditor: boolean = false;
+    showModalDataManagedQueryBuilder: boolean = false;
+    showModalDataManagedSQLEditor: boolean = false;
+    showModalDataOverview: boolean = false;
+    showModalDataRefreshOnce: boolean = false;
+    showModalDataRefreshRepeat: boolean = false;
+    showModalDataScheduleEdit: boolean = false;
+    showModalDataShare: boolean = false;
+    showModalDataSchedule: boolean = false;
+    showModalDataSummary: boolean = false;
+    showModalDataTransformation: boolean = false;
+    showModalDataUsage: boolean = false;
+    showModalLanding: boolean;
     showModalManageBussGlossary: boolean = false;
     showModalManagedDataDataDictionary: boolean = false;
-    showModalDataCombination: boolean = false;
-    showModalDataShare: boolean = false;
-    showModalDataDictionary: boolean = false;
-    showModalBusinessGlossary: boolean = false;
-    showModalDataSummary: boolean = false;
-    showModalDataDeleteDatasource: boolean = false;
+    showModalManagedDataDataQuality: boolean = false;
+    showModalManagedDataOwnership: boolean = false;
+    showModalTableEditor: boolean = false;
+    showModalSlicerEditor: boolean = false;
+    showModalGroups: boolean = false;
     showModalShapeEdit: boolean = false;
     showModalShapeDelete: boolean = false;
     showModalTableDelete: boolean = false;
     showModalSlicerDelete: boolean = false;
-    showFavouriteDashboard: boolean = false;
-    showModalWidgetEditor: boolean = false;
-    showModalCollaborateAuditTrail: boolean = false;
-    showModalCollaborateSendMessage: boolean = false;
-    showModalCollaborateSendEmail: boolean = false;
-    showModalCollaborateMessages: boolean = false;
-    showModalCollaborateTasksNew: boolean = false;
-    showModalCollaborateSystemMessages: boolean = false;
-    showModalCollaborateActivities: boolean = false;
-    showModalCollaborateTasks: boolean = false;
-    showModalLanding: boolean;
-    showModalUserMyProfile: boolean = false;
-    showModalUserPreferences: boolean = false;
     showModalUserMyPermissions: boolean = false;
+    showModalUserMyProfile: boolean = false;
     showModalUserPaletteButtonBar: boolean = false;
+    showModalUserPreferences: boolean = false;
     showModalUsers: boolean = false;
-    showModalGroups: boolean = false;
+    showModalWidgetAnnotations: boolean = false;
+    showModalWidgetCheckpoints: boolean = false;
+    showModalWidgetContainer: boolean = false;
+    showModalWidgetDelete: boolean = false;
+    showModalWidgetDescription: boolean = false;
+    showModalWidgetEditor: boolean = false;
+    showModalWidgetExpand: boolean = false;
+    showModalWidgetExport: boolean = false;
+    showModalWidgetLinks: boolean = false;
+    showModalWidgetRefresh: boolean = false;
+    showModalWidgetTablist: boolean = false;
     showModalUserSystemSettings: boolean = false;
     showPalette: boolean = true;
     showPopupMessage: boolean = false;
     showTitleForm: boolean = false;
+    snapToGrid: boolean = true;
     showWidgetContextMenu: boolean = false;
     showWidgetFullScreen: boolean = true;
-    showWidgetFullScreenWidth: number = 0;
-    showWidgetFullScreenHeight: number = 0;
     showWidgetFullScreenBorder: string = '';
-    showWidgetFullScreenX: string = '';             // Will be set when menu option called
     showWidgetFullScreenCopy: string = '';          // Will be set when menu option called
-    snapToGrid: boolean = true;
+    showWidgetFullScreenHeight: number = 0;
+    showWidgetFullScreenWidth: number = 0;
+    showWidgetFullScreenX: string = '';             // Will be set when menu option called
     startX: number;
     startY: number;
-    endX: number;
-    endY: number;
     statusBarCancelRefresh: boolean = false;
     statusBarRunning: boolean = false;
+    subscriptionSnapshot: Subscription;
+    subscriptionAnimation: Subscription;
     stuckCount: number = 0;
+    templateWidgets: Widget[] = [];
+    view: View;
     widgetDimenstions: {
         width: number;
         height: number;
@@ -395,21 +399,15 @@ export class AppComponent implements OnInit {
         };
     widgetGroup: number[] = [];
     zoomFactor: string = 'scale(1)';
-    templateWidgets: Widget[] = [];
 
-
+    // WS Stuffies
     public serverMessages = new Array<WebSocketMessage>();
-
     public sender: string = '';
     public content: string;
     public isBroadcast = false;
     public clientMessage = '';
     private socket$: WebSocketSubject<WebSocketMessage>;
 
-    subscriptionSnapshot: Subscription;
-    subscriptionAnimation: Subscription;
-    view: any;
-    article_count: string = 'start'
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -4262,7 +4260,7 @@ export class AppComponent implements OnInit {
 
         this.currentWidgets.forEach(w => {
             if (w.isSelected) {
-                this.selectWidgetIndex = w.id;
+                this.selectedWidgetIndex = w.id;
                 this.selectDatasetID = w.datasetID;
                 this.selectDatasourceID = w.datasourceID;
             };
@@ -4559,7 +4557,7 @@ export class AppComponent implements OnInit {
 
         this.currentWidgets.forEach(w => {
             if (w.isSelected) {
-                this.selectWidgetIndex = w.id;
+                this.selectedWidgetIndex = w.id;
                 this.selectDatasetID = w.datasetID;
                 this.selectDatasourceID = w.datasourceID;
             };
@@ -4934,7 +4932,7 @@ export class AppComponent implements OnInit {
 
         this.currentWidgets.forEach(w => {
             if (w.isSelected) {
-                this.selectWidgetIndex = w.id;
+                this.selectedWidgetIndex = w.id;
                 this.selectDatasetID = w.datasetID;
                 this.selectDatasourceID = w.datasourceID;
             };
