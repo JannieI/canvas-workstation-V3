@@ -209,8 +209,10 @@ export class WidgetContainerComponent implements OnInit {
             this.localWidget.containerBorder = this.lineSize
         };
 
-        // Replace the W
-        this.globalVariableService.widgetReplace(this.localWidget);
+        // Replace the W - DB and local vars
+        this.globalVariableService.saveWidget(this.localWidget).then(res => {
+            this.globalVariableService.widgetReplace(this.localWidget);
+        });
 
         // Tell user
         this.globalVariableService.showStatusBarMessage(
