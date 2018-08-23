@@ -22,9 +22,9 @@ import { DashboardTab }               from './models';
 import { Widget }                     from './models';
 
 @Component({
-    selector: 'widget-links',
-    templateUrl: './widget.links.component.html',
-    styleUrls: ['./widget.links.component.css']
+    selector: 'widget-hyperlinks',
+    templateUrl: './widget.hyperlinks.component.html',
+    styleUrls: ['./widget.hyperlinks.component.css']
 })
 export class WidgetLinksComponent implements OnInit {
 

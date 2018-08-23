@@ -53,7 +53,7 @@ import { DashboardUsagestatsComponent }        from './dashboard.usagestats.comp
 
 import { WidgetEditorComponent }      from './widget.editor.component';
 import { WidgetCheckpointsComponent } from './widget.checkpoints.component';
-import { WidgetLinksComponent }       from './widget.links.component';
+import { WidgetLinksComponent }       from './widget.hyperlinks.component';
 import { WidgetExpandComponent }      from './widget.expand.component';
 import { WidgetExportComponent }      from './widget.export.component';
 import { WidgetDeleteComponent }      from './widget.delete.component';
