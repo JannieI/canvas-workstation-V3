@@ -229,7 +229,8 @@ export class ShapeEditComponent implements OnInit {
         } else {
 
             // Deep copy
-            this.localWidget = Object.assign({}, this.selectedWidget);
+            // this.localWidget = Object.assign({}, this.selectedWidget);
+            this.localWidget = JSON.parse(JSON.stringify(this.selectedWidget));
 
             // Refresh the form with the sub type
             this.selectShape(this.localWidget.widgetSubType);
