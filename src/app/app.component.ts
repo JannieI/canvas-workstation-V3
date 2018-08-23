@@ -563,7 +563,8 @@ export class AppComponent implements OnInit {
                 // this.gv.currentWidgets, which Angular does not register that it has changed
 
                 // Deep copy
-                let newW: Widget = Object.assign({}, w);
+                // let newW: Widget = Object.assign({}, w);
+                let newW: Widget = JSON.parse(JSON.stringify(w));
 
                 // Delete W if it in our stash
                 for (var i = 0; i < this.currentWidgets.length; i++) {
@@ -7101,7 +7102,9 @@ export class AppComponent implements OnInit {
         this.menuOptionClickPreAction();
 
         // Deep copy existing W
-        let oldWidget: Widget = Object.assign({}, this.currentWidgets[index]);
+        // let oldWidget: Widget = Object.assign({}, this.currentWidgets[index]);
+        let oldWidget: Widget = JSON.parse(JSON.stringify(this.currentWidgets[index]));
+            
         let gvIndex: number = -1;
         gvIndex = this.globalVariableService.currentWidgets.findIndex(w =>
             w.id == this.currentWidgets[index].id
@@ -7626,7 +7629,8 @@ export class AppComponent implements OnInit {
             if (w.isSelected) {
 
                 // Make a (new) duplicate of a Deep copy
-                this.clipboardWidget = Object.assign({}, w)
+                // this.clipboardWidget = Object.assign({}, w)
+                this.clipboardWidget = JSON.parse(JSON.stringify(w));;
                 this.globalVariableService.duplicateSingleWidget(this.clipboardWidget);
 
                 this.showMessage(
