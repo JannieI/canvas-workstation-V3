@@ -863,9 +863,9 @@
                                 </button>
                                 <button type="button"
                                     clrDropdownItem
-                                    (click)="clickMenuWidgetLinks()"
+                                    (click)="clickMenuWidgetHyperlinks()"
                                     >
-                                    Links
+                                    Hyperlinks
                                 </button>
                             </clr-dropdown-menu>
                         </clr-dropdown>
@@ -1241,10 +1241,10 @@
                         </button>
                         <button type="button"
                             clrDropdownItem
-                            (click)="clickMenuShapeLinks()"
-                            title="Manage links on selected Shape"
+                            (click)="clickMenuShapeHyperLinks()"
+                            title="Manage hyperlinks on selected Shape"
                             >
-                            Links
+                            Hyperlinks
                         </button>
                         <div class="dropdown-divider"></div>
                         <button type="button"
@@ -4527,11 +4527,11 @@
 </widget-checkpoints>
 
 
-<!-- Modal: Widget links -->
+<!-- Modal: Widget Hyperlinks -->
 <widget-links
     *ngIf="showModalWidgetLinks"
     [selectedWidget]="selectedWidget"
-    (formWidgetLinksClosed)="handleCloseWidgetLinks($event)">Load Widget Links ...
+    (formWidgetLinksClosed)="handleCloseWidgetLinks($event)">Load Widget Hyperlinks ...
 </widget-links>
 
 

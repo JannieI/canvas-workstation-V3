@@ -3975,9 +3975,9 @@ export class AppComponent implements OnInit {
             .finalize();
     }
 
-    clickMenuWidgetLinks() {
+    clickMenuWidgetHyperlinks() {
         // Add links to the selected W
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetLinks', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetHyperlinks', '@Start');
 
         // Permissions
         if (!this.globalVariableService.currentUser.dashboardCanEditRole
@@ -5195,9 +5195,9 @@ export class AppComponent implements OnInit {
         this.showModalDashboardComments = true;
 
     }
-    clickMenuShapeLinks() {
-        // Manage links for the selected Shape
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuShapeLinks', '@Start');
+    clickMenuShapeHyperLinks() {
+        // Manage hyperlinks for the selected Shape
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuShapeHyperLinks', '@Start');
 
         // Must have access to this D
         if (!this.globalVariableService.dashboardPermissionCheck(
