@@ -15,7 +15,9 @@ import { GlobalFunctionService } 	  from './global-function.service';
 // Our Services
 import { GlobalVariableService }      from './global-variable.service';
 
-// Models
+// Other
+import { Subscription }               from 'rxjs';
+
 
 
 @Component({
@@ -51,6 +53,7 @@ export class DashboardDiscardComponent implements OnInit {
     }
 
     isFirstTimeDashboardDiscard: boolean;
+    isFirstTimeDashboardDiscardSubscription: Subscription;
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -61,8 +64,9 @@ export class DashboardDiscardComponent implements OnInit {
         // Delete the current D
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.globalVariableService.isFirstTimeDashboardDiscard.subscribe(
-            i => this.isFirstTimeDashboardDiscard = i
+        this.isFirstTimeDashboardDiscardSubscription = 
+            this.globalVariableService.isFirstTimeDashboardDiscard.subscribe(
+               i => this.isFirstTimeDashboardDiscard = i
         )
     }
 
@@ -72,7 +76,7 @@ export class DashboardDiscardComponent implements OnInit {
         // Called just before Angular destroys the directive/component.
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnDestroy', '@Start');
 
-        // this.globalVariableService.isFirstTimeDashboardDiscard.unsubscribe();
+        this.isFirstTimeDashboardDiscardSubscription.unsubscribe();
     }
     
     clickClose(action: string) {
