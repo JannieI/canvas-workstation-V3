@@ -329,6 +329,8 @@ This document describes items for later versions of Canvas.
        these comments??  Think carefully here.
     16.Consider popup status messages, like VSCode to be more visible - maybe not needed.
     17.Considering opening message per D (might even be per user as well), that will display each time D is opened.  How is it entered, who enters / deletes / edits it, and how is it displayed - modal (another one!), popup and for how long, and how is it closed, and how does it look to fit in?
+    - have group of D (better name ...) of severalDs = used on filtering when Open D.  Maybe called bookmarks?
+    - have D views on a D = set of filters and settings applied. Currently this is just another Snapshot ...  Make it easy to switch, and then attach a VIEW to a message ...
 
 
     Samples: use this to demo Canvas features (brag)

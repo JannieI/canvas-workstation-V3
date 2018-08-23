@@ -6373,13 +6373,12 @@ export class GlobalVariableService {
         };
 
         // Make a deep copy
-        let copiedWidget: Widget = Object.assign({}, originalWidget);
+        let copiedWidget: Widget = JSON.parse(JSON.stringify(originalWidget));
 
         copiedWidget.id = null;
         copiedWidget.dashboardID = this.currentDashboardInfo.value.currentDashboardID;
         copiedWidget.dashboardTabID = this.currentDashboardInfo.value.currentDashboardTabID;
-console.warn('xx originalWidget copiedWidget',
-originalWidget, copiedWidget)
+
         // Assume this is a NEW W, so forget about tabs that original belongs
         copiedWidget.dashboardTabIDs = [copiedWidget.dashboardTabID];
         copiedWidget.isSelected = false;
