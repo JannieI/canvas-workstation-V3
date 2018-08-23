@@ -29,7 +29,7 @@ import { Widget }                     from './models';
 export class WidgetLinksComponent implements OnInit {
 
     @Input() selectedWidget: Widget;
-    @Output() formWidgetLinksClosed: EventEmitter<Widget> = new EventEmitter();
+    @Output() formWidgetHyperlinksClosed: EventEmitter<Widget> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
@@ -107,7 +107,7 @@ export class WidgetLinksComponent implements OnInit {
 
         console.log('clickClose')
 
-		this.formWidgetLinksClosed.emit(this.selectedWidget);
+		this.formWidgetHyperlinksClosed.emit(this.selectedWidget);
     }
 
     clickUnlink() {
