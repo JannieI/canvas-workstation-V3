@@ -13,6 +13,9 @@ import { DashboardTab }               from './models';
 import { GlobalFunctionService }      from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
  
+// Other
+import { Subscription }               from 'rxjs';
+
 
 @Component({
     selector: 'dashboard-tab',
@@ -58,6 +61,8 @@ export class DashboardTabComponent {
     backgroundcolors: CSScolor[];
     callingRoutine: string = '';
     colourPickerClosed: boolean = false;
+    colourPickerSubscription: Subscription;
+
     lineColor: string = 'none';
     selectedColour: string;
 
@@ -86,7 +91,7 @@ export class DashboardTabComponent {
         };
 
         // Manage colour picker
-        this.globalVariableService.colourPickerClosed.subscribe(clp => {
+        this.colourPickerSubscription = this.globalVariableService.colourPickerClosed.subscribe(clp => {
 
             if (clp != null) {
 
@@ -116,6 +121,15 @@ export class DashboardTabComponent {
                 
     }
    
+    ngOnDestroy() {
+        // Cleanup just before Angular destroys the directive/component.
+        // Unsubscribe Observables and detach event handlers to avoid memory leaks.
+        // Called just before Angular destroys the directive/component.
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnDestroy', '@Start');
+
+        this.colourPickerSubscription.unsubscribe();
+    }
+
     clickSelectBgColor(ev: any) {
         // Select Background Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBgColor', '@Start');
