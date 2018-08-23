@@ -59,7 +59,7 @@
                     </span>
                 </div>
 
-                <div class="hasTitle">
+                <div class="hasTitle" *ngIf="showValue">
                     <div class="checkbox">
                         <input type="checkbox" id="checkTitle"
                             [(ngModel)]="localWidget.containerHasTitle"
