@@ -20,6 +20,9 @@ import { GlobalVariableService}       from './global-variable.service';
 import { CSScolor }                   from './models';
 import { Dashboard }                  from './models';
 
+// Other
+import { Subscription }               from 'rxjs';
+
 @Component({
     selector: 'dashboard-description',
     templateUrl: './dashboard.description.component.html',
@@ -56,6 +59,7 @@ export class DashboardDescriptionComponent implements OnInit {
     backgroundcolors: CSScolor[];
     callingRoutine: string = '';
     colourPickerClosed: boolean = false;
+    colourPickerSubscription: Subscription;
     dashboardList: string[] = ['None'];
     dashboards: Dashboard[];
     dashboardName: string;
@@ -154,7 +158,7 @@ export class DashboardDescriptionComponent implements OnInit {
         this.dashboardAccessType = this.selectedDashboard.accessType;
 
         // Manage colour picker
-        this.globalVariableService.colourPickerClosed.subscribe(clp => {
+        this.colourPickerSubscription = this.globalVariableService.colourPickerClosed.subscribe(clp => {
 
             if (clp != null) {
 
@@ -174,6 +178,13 @@ export class DashboardDescriptionComponent implements OnInit {
         // Get setup info
         this.backgroundcolors = this.globalVariableService.backgroundcolors.slice();
 
+    }
+
+    ngOnDestroy() {
+        // Clean up before component is destroyed
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnDestroy', '@Start');
+
+        this.colourPickerSubscription.unsubscribe;
     }
 
     clickTemplateDashboard(ev:any, id: number) {

@@ -5282,10 +5282,12 @@ export class AppComponent implements OnInit {
         };
 
         this.menuOptionClickPreAction();
-
+        
+        // Assume we want to have a title either way
+        this.selectedWidget.containerHasTitle = true;
         this.showTitleForm = true;        
     }
-    
+
     clickMenuShapeDelete() {
         // Delete a Shape
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuShapeDelete', '@Start');
