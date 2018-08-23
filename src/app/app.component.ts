@@ -4874,6 +4874,8 @@ export class AppComponent implements OnInit {
         this.showModalWidgetDescription = true;
     }
 
+
+
     clickMenuSlicerComments() {
         // Manage comments for the selected Slicer
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuSlicerComments', '@Start');

@@ -394,8 +394,6 @@ export class ShapeEditComponent implements OnInit {
         };
         if (shapeType == 'Value') {
             this.showValue = true;
-            this.localWidget.containerHasTitle = true;
-            // TODO - get this value from the DB ...
             this.localWidget.shapeText = 'R234m';
         };
         if (shapeType == 'Brackets') {
