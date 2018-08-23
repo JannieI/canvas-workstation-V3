@@ -18,6 +18,9 @@ import { GlobalVariableService}       from './global-variable.service';
 // Models
 import { Dashboard }                  from './models';
 
+// Other
+import { Subscription }               from 'rxjs';
+
 @Component({
     selector: 'dashboard-save',
     templateUrl: './dashboard.save.component.html',
@@ -53,6 +56,7 @@ export class DashboardSaveComponent implements OnInit {
     deleteSnapshots: boolean = true;
     isFirstTimeDashboardSave: boolean;
     dashboards: Dashboard[];
+    dashboardsSubscription: Subscription;
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -64,7 +68,7 @@ export class DashboardSaveComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         this.dashboards = this.globalVariableService.dashboards.slice();
-        this.globalVariableService.isFirstTimeDashboardSave.subscribe(
+        this.dashboardsSubscription = this.globalVariableService.isFirstTimeDashboardSave.subscribe(
             i => this.isFirstTimeDashboardSave = i
         )
     }
@@ -75,7 +79,7 @@ export class DashboardSaveComponent implements OnInit {
         // Called just before Angular destroys the directive/component.
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnDestroy', '@Start');
 
-        // this.globalVariableService.isFirstTimeDashboardSave.unsubscribe();
+        this.dashboardsSubscription.unsubscribe();
     }
 
     clickClose(action: string) {
