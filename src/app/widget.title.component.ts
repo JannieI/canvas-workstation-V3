@@ -15,6 +15,9 @@ import { Widget }                     from './models'
 import { GlobalFunctionService } 		  from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
+// Other
+import { Subscription }               from 'rxjs';
+
 
 @Component({
     selector: 'widget-title',
@@ -52,6 +55,7 @@ export class WidgetTitleComponent implements OnInit {
     backgroundcolors: CSScolor[];
     callingRoutine: string = '';
     colourPickerClosed: boolean = false;
+    colourPickerSubscription: Subscription;
     lineColor: string = 'none';
     lineSize: string = 'none';
     localWidget: Widget;                            // W to modify, copied from selected
@@ -124,6 +128,15 @@ export class WidgetTitleComponent implements OnInit {
 
     }
 
+    ngOnDestroy() {
+        // Cleanup just before Angular destroys the directive/component. 
+        // Unsubscribe Observables and detach event handlers to avoid memory leaks.
+        // Called just before Angular destroys the directive/component.
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnDestroy', '@Start');
+
+        this.colourPickerSubscription.unsubscribe();
+    }
+    
     clickSelectBgColor(ev: any) {
         // Select Background Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBgColor', '@Start');
