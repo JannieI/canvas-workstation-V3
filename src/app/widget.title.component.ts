@@ -120,7 +120,8 @@ export class WidgetTitleComponent implements OnInit {
         });
 
         // Deep copy
-        this.localWidget = Object.assign({}, this.selectedWidget);
+        // this.localWidget = Object.assign({}, this.selectedWidget);
+        this.localWidget = JSON.parse(JSON.stringify(this.selectedWidget));
         console.warn('xx col', this.localWidget.titleBackgroundColor, this.localWidget.titleColor )
 
         // Get setup info

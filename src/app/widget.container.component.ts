@@ -124,7 +124,8 @@ export class WidgetContainerComponent implements OnInit {
         this.backgroundcolors = this.globalVariableService.backgroundcolors.slice();
 
         // Deep copy
-        this.localWidget = Object.assign({}, this.selectedWidget);
+        // this.localWidget = Object.assign({}, this.selectedWidget);
+        this.localWidget = JSON.parse(JSON.stringify(this.selectedWidget));
 
     }
 
