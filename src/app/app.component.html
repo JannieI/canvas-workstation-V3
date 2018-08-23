@@ -924,20 +924,6 @@
 
                         <button type="button"
                             clrDropdownItem
-                            (click)="clickMenuWidgetLockUnlock()"
-                            title="Toggle Lock/UnLock for the selected Widget"
-                            >
-                            Lock/UnLock
-                        </button>
-                        <button type="button"
-                            clrDropdownItem
-                            (click)="clickMenuPaletteDuplicate()"
-                            title="Duplicate selected Widget"
-                            >
-                            Duplicate
-                        </button>
-                        <button type="button"
-                            clrDropdownItem
                             (click)="clickMenuWidgetCopy()"
                             title="Copy selected Widget"
                             >
@@ -945,10 +931,10 @@
                         </button>
                         <button type="button"
                             clrDropdownItem
-                            (click)="clickMenuWidgetPaste()"
-                            title="Paste previously copied Widget"
+                            (click)="clickMenuPaletteDuplicate()"
+                            title="Duplicate selected Widget"
                             >
-                            Paste
+                            Duplicate
                         </button>
                         <button type="button"
                             clrDropdownItem
@@ -963,6 +949,20 @@
                             title="Export Dataset for selected Widget"
                             >
                             Export
+                        </button>
+                        <button type="button"
+                            clrDropdownItem
+                            (click)="clickMenuWidgetLockUnlock()"
+                            title="Toggle Lock/UnLock for the selected Widget"
+                            >
+                            Lock/UnLock
+                        </button>
+                        <button type="button"
+                            clrDropdownItem
+                            (click)="clickMenuWidgetPaste()"
+                            title="Paste previously copied Widget"
+                            >
+                            Paste
                         </button>
                         
                         <div class="dropdown-divider"></div>
