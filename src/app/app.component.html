@@ -1001,20 +1001,8 @@
                             >
                             Edit Table
                         </button>
-                        <button type="button"
-                            clrDropdownItem
-                            (click)="clickMenuWidgetLockUnlock()"
-                            title="Toggle Lock/UnLock for the selected Table"
-                            >
-                            Lock/UnLock
-                        </button>
-                        <button type="button"
-                            clrDropdownItem
-                            (click)="clickMenuPaletteDuplicate()"
-                            title="Duplicate selected Table"
-                            >
-                            Duplicate
-                        </button>
+
+                        <div class="dropdown-divider"></div>
                         <button type="button"
                             clrDropdownItem
                             (click)="clickMenuTableComments()"
@@ -1031,17 +1019,17 @@
                         </button>
                         <button type="button"
                             clrDropdownItem
-                            (click)="clickMenuWidgetTablist()"
-                            title="Manage Tabs to which selected Table belongs"
-                            >
-                            Tablist
-                        </button>
-                        <button type="button"
-                            clrDropdownItem
                             (click)="clickMenuTableDataQuality()"
                             title="Data quality issues for selected Table"
                             >
                             Data Quality
+                        </button>
+                        <button type="button"
+                            clrDropdownItem
+                            (click)="clickMenuPaletteDuplicate()"
+                            title="Duplicate selected Table"
+                            >
+                            Duplicate
                         </button>
                         <button type="button"
                             clrDropdownItem
@@ -1056,6 +1044,20 @@
                             title="Export Dataset for selected Table"
                             >
                             Export
+                        </button>
+                        <button type="button"
+                            clrDropdownItem
+                            (click)="clickMenuWidgetLockUnlock()"
+                            title="Toggle Lock/UnLock for the selected Table"
+                            >
+                            Lock/UnLock
+                        </button>
+                        <button type="button"
+                            clrDropdownItem
+                            (click)="clickMenuWidgetTablist()"
+                            title="Manage Tabs to which selected Table belongs"
+                            >
+                            Tablist
                         </button>
                         <div class="dropdown-divider"></div>
                         <button type="button"
