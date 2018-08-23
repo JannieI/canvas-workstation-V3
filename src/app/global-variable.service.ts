@@ -488,84 +488,68 @@ export class GlobalVariableService {
 
     ];
 
-    // System-wide related variables, set at Installation - for later use
-    // systemConfigurationID: number = -1;
-    // backendName: string = 'Eazl';
-    // backendUrl: string = '';                                    // RESTi url, set in SystemConfig
-    // defaultDaysToKeepResultSet: number = 1;                     // Optional, set in SystemConfig
-    // frontendName: string = 'Canvas';
-    // maxRowsDataReturned: number = 1000000;                      // Optional, set in SystemConfig
-    // maxRowsPerWidgetGraph: number = 1;                          // Optional, set in SystemConfig
-    // systemTitle: string = 'Canvas';
-    // averageWarningRuntime: number = 0;
-    // defaultWidgetConfiguration: string = '';
-    // dashboardIDStartup: number = null;
-    // defaultReportFilters: string = '';
-    // environment: string = '';
-    // frontendColorScheme: string = '';
-
-    // Permanent data - later to come from http
-    backgroundcolors: CSScolor[] = [];
-    canvasTasks: CanvasTask[] = [];
-    canvasComments: CanvasComment[] = [];
-    canvasAuditTrails: CanvasAuditTrail[] = [];
-    statusBarMessageLogs: StatusBarMessageLog[] = [];
-    canvasMessages: CanvasMessage[] = [];
-    widgetCheckpoints: WidgetCheckpoint[] = [];
-    currentWidgetCheckpoints: WidgetCheckpoint[] = [];
     filePath: string;
 
-    dashboards: Dashboard[] = [];
-    canvasUsers: CanvasUser[] = [];
+    // Permanent data
+    backgroundcolors: CSScolor[] = [];
+    canvasAuditTrails: CanvasAuditTrail[] = [];
+    canvasComments: CanvasComment[] = [];
     canvasGroups: CanvasGroup[] = [];
-    dashboardTabs: DashboardTab[] = [];
-    dashboardSchedules: DashboardSchedule[] = [];
-    dashboardScheduleLog: DashboardScheduleLog[] = [];
-    dashboardTags: DashboardTag[] = [];
+    canvasMessages: CanvasMessage[] = [];
+    canvasTasks: CanvasTask[] = [];
+    canvasUsers: CanvasUser[] = [];
     dashboardPermissions: DashboardPermission[] = [];
+    dashboards: Dashboard[] = [];
+    dashboardScheduleLog: DashboardScheduleLog[] = [];
+    dashboardSchedules: DashboardSchedule[] = [];
     dashboardSnapshots: DashboardSnapshot[] = [];
     dashboardSubscriptions: DashboardSubscription[] = [];
+    dashboardTabs: DashboardTab[] = [];
+    dashboardTags: DashboardTag[] = [];
     dashboardThemes: DashboardTheme[] = [];
     dashboardTemplates: DashboardTemplate[] = [];
-    widgets: Widget[] = [];
-
     datasources: Datasource[] = [];
     datasourceSchedules: DatasourceSchedule[] = [];
     datasourceScheduleLog: DatasourceScheduleLog[] = [];
-    currentDatasourceSchedules: DatasourceSchedule[] = [];
-    transformations: Transformation[] = [];
-    dataQualityIssues: DataQualityIssue[] = [];
+    dataConnections: DataConnection[] = [];
+    dataFields: DataField[] = [];
     dataOwnerships: DataOwnership[] = [];
+    dataQualityIssues: DataQualityIssue[] = [];
+    datasets: any = [];                                 // List of dSets, NO data
     datasourcePermissions: DatasourcePermission[] = [];
     datasourcePivots: DatasourcePivot[] = [];
-    transformationsFormat: Transformation[] = transformationsFormat;
-    datasets: any = [];                                 // List of dSets, NO data
-    dataConnections: DataConnection[] = [];
     datasourceTransformations: DatasourceTransformation[] = [];
     dataTables: DataTable[] = [];
-    dataFields: DataField[] = [];
     finalFields: any = finalFields;
+    statusBarMessageLogs: StatusBarMessageLog[] = [];
+    transformations: Transformation[] = [];
+    transformationsFormat: Transformation[] = transformationsFormat;
+    widgetCheckpoints: WidgetCheckpoint[] = [];
+    widgets: Widget[] = [];
+
 
 
     // Data for CURRENT Dashboard and Datasources: only some models are loaded
     currentCanvasGroups: CanvasGroup[] = [];
-    currentDatasources: Datasource[] = [];
-    currentTransformations: Transformation[] = [];
-    currentDataQualityIssues: DataQualityIssue[] = [];
-    currentDataOwnerships: DataOwnership[] = [];
-    currentDatasourcePermissions: DatasourcePermission[] = [];
-    currentDatasourcePivots: DatasourcePivot[] = [];
-    currentDatasets: any = [];                          // Used in current D, with data
     currentDashboards: Dashboard[] = [];
-    currentDashboardTabs: DashboardTab[] = [];
-    currentWidgets: Widget[] = [];
-    currentDashboardSchedules: DashboardSchedule[] = [];
-    currentDashboardTags: DashboardTag[] = [];
-    currentPaletteButtonBar: PaletteButtonBar[];
     currentDashboardPermissions: DashboardPermission[] = [];
+    currentDashboardSchedules: DashboardSchedule[] = [];
     currentDashboardSnapshots: DashboardSnapshot[] = [];
     currentDashboardSubscriptions: DashboardSubscription[] = [];
+    currentDashboardTabs: DashboardTab[] = [];
+    currentDashboardTags: DashboardTag[] = [];
+    currentDatasets: any = [];                          // Used in current D, with data
+    currentDataOwnerships: DataOwnership[] = [];
+    currentDataQualityIssues: DataQualityIssue[] = [];
+    currentDatasources: Datasource[] = [];
+    currentDatasourcePermissions: DatasourcePermission[] = [];
+    currentDatasourcePivots: DatasourcePivot[] = [];
+    currentDatasourceSchedules: DatasourceSchedule[] = [];
+    currentPaletteButtonBar: PaletteButtonBar[];
+    currentTransformations: Transformation[] = [];
     changedWidget = new BehaviorSubject<Widget>(null);    // W that must be changed
+    currentWidgetCheckpoints: WidgetCheckpoint[] = [];
+    currentWidgets: Widget[] = [];
 
     // TODO - this is trigger a rename of the D on statusbar - must be better way
     currentDashboardName = new BehaviorSubject<string>('');
@@ -586,8 +570,7 @@ export class GlobalVariableService {
     isFirstTimeDashboardDiscard = new BehaviorSubject<boolean>(true);
     isFirstTimeWidgetLinked = new BehaviorSubject<boolean>(true);
     isFirstTimeDataCombination = new BehaviorSubject<boolean>(true);
-    // Menu-related
-    // showMainMenu = new BehaviorSubject<boolean>(true);
+
     // Opening forms
     openDashboardFormOnStartup: boolean = false;
     hasDatasources = new BehaviorSubject<boolean>(false);   // Used to set menu
@@ -603,23 +586,24 @@ export class GlobalVariableService {
             cancelled: boolean
         }
     >(null);
+    continueToTransformations: boolean = false;         // True after Edit DS -> Open Transformations form
     currentPaletteButtonsSelected= new BehaviorSubject<PaletteButtonsSelected[]>([]);
     currentUser: CanvasUser;
     currentUserID = new BehaviorSubject<string>('');
     dashboardsRecent: DashboardRecent[] = [];
     dashboardsRecentBehSubject = new BehaviorSubject<DashboardRecent[]>([]);  // Recently used Dashboards
     datasourceToEditID = new BehaviorSubject<number>(null);
-    dsIDs: number[] = [];           // Dataset IDs
     dontDisturb = new BehaviorSubject<boolean>(false);   // True means dont disturb display
+    dsIDs: number[] = [];           // Dataset IDs
     firstAction: boolean = true;               // True if 1st action per D
     getSource: string = 'Test';     // Where to read/write: File, Test (JSON Server), Eazl
     loggedIntoServer = new BehaviorSubject<boolean>(true);
     menuActionResize = new BehaviorSubject<boolean>(false);
+    sessionDateTimeLoggedin: string = '';
     sessionDebugging: boolean = true;
     sessionLogging: boolean = false;
     templateInUse = new BehaviorSubject<boolean>(false);
     widgetGroup = new BehaviorSubject<number[]>([]);
-    // userID: string = 'JannieI';  // TODO - unHardCode
 
 
     // StatusBar
@@ -628,100 +612,46 @@ export class GlobalVariableService {
     statusBarMessage = new BehaviorSubject<StatusBarMessage>(null)
 
     dataGetFromSwitch = new BehaviorSubject<string>('File');
-    // refreshDashboard = new BehaviorSubject<boolean>(false);      // True to refresh the D now
-
-    // Current User
-    // canvasUser = new BehaviorSubject<CanvasUser>(null);
-    // isAuthenticatedOnEazl: boolean = false;        // True if authenticated
-
-    // This session
-    // showSystemConfigButtons: boolean = true;       // Menu option called = True: SystemConfiguration, False: System Info
-    sessionDateTimeLoggedin: string = '';
-    continueToTransformations: boolean = false;         // True after Edit DS -> Open Transformations form
-    // sessionDashboardTabID: number = null;          // Tab ID to load when form opens, -1 = none
-    // sessionLoadOnOpenDashboardID: number = null;   // Dashboard to load when form opens, 0 = none
-    // sessionLoadOnOpenDashboardName: string = '';   // Dashboard to load when form opens, '' = none
-
-    // At startup
-    // startupDashboardID: number = 0;                             // Dashboard to load @start, 0 = none
-    // startupDashboardTabID: number = 0;                          // Tab ID to load @start, -1 = none
-    // startupMessageToShow: string = '';                          // Message to show at start
-
-    // Environment
-    // testEnvironmentName: string = '';                           // Spaces = in PROD
 
     // Dirtiness of system (local) data: True if dirty (all dirty at startup)
-    isDirtyDashboards: boolean = true;
-    isDirtyDashboardTabs: boolean = true;
-    isDirtyDashboardsRecent: boolean = true;
-    isDirtyWidgets: boolean = true;
-    isDirtyShapes: boolean = true;
-    isDirtySlicers: boolean = true;
-    isDirtyDashboardSchedules: boolean = true;
-    isDirtyDashboardTags: boolean = true;
-    isDirtyDashboardPermissions: boolean = true;
-    isDirtyDashboardSnapshots: boolean = true;
-    isDirtyDashboardSubscription: boolean = true;
-    isDirtyDashboardThemes: boolean = true;
-    isDirtyDatasources: boolean = true;
-    isDirtyTransformations: boolean = true;
-    isDirtyDataQualityIssues: boolean = true;
-    isDirtyDataOwnership: boolean = true;
-    isDirtyDatasourcePermissions: boolean = true;
-    isDirtyDatasourcePivots: boolean = true;
-    isDirtyDatasets: boolean = true;
-    isDirtyDatasourceSchedules: boolean = true;
     isDirtyBackgroundColors: boolean = true;
-    isDirtyCanvasTasks: boolean = true;
     isDirtyCanvasComments: boolean = true;
+    isDirtyCanvasGroups: boolean = true;
     isDirtyCanvasMessages: boolean = true;
     isDirtyCanvasSettings: boolean = true;
-    isDirtyPaletteButtonBar: boolean = true;
-    isDirtyUserPaletteButtonBar: boolean = true;
-    isDirtyPaletteButtonsSelected: boolean = true;
-    isDirtyWidgetCheckpoints: boolean = true;
-    isDirtyCanvasGroups: boolean = true;
-    isDirtyUsers: boolean = true;
+    isDirtyCanvasTasks: boolean = true;
     isDirtyCanvasAuditTrails: boolean = true;
-    isDirtystatusBarMessageLogs: boolean = true;
-    isDirtyDataFields: boolean = true;
-    isDirtyDataTables: boolean = true;
+    isDirtyDashboardPermissions: boolean = true;
+    isDirtyDashboards: boolean = true;
+    isDirtyDashboardsRecent: boolean = true;
+    isDirtyDashboardSchedules: boolean = true;
+    isDirtyDashboardSnapshots: boolean = true;
+    isDirtyDashboardSubscription: boolean = true;
+    isDirtyDashboardTabs: boolean = true;
+    isDirtyDashboardTags: boolean = true;
+    isDirtyDashboardThemes: boolean = true;
     isDirtyDataConnections: boolean = true;
+    isDirtyDataFields: boolean = true;
+    isDirtyDataOwnership: boolean = true;
+    isDirtyDataQualityIssues: boolean = true;
+    isDirtyDatasets: boolean = true;
+    isDirtyDatasourcePermissions: boolean = true;
+    isDirtyDatasourcePivots: boolean = true;
+    isDirtyDatasources: boolean = true;
+    isDirtyDataTables: boolean = true;
+    isDirtyDatasourceSchedules: boolean = true;
     isDirtyDatasourceTransformations: boolean = true;
+    isDirtyPaletteButtonBar: boolean = true;
+    isDirtyPaletteButtonsSelected: boolean = true;
+    isDirtyShapes: boolean = true;
+    isDirtySlicers: boolean = true;
+    isDirtystatusBarMessageLogs: boolean = true;
+    isDirtyTransformations: boolean = true;
+    isDirtyUserPaletteButtonBar: boolean = true;
+    isDirtyUsers: boolean = true;
+    isDirtyWidgetCheckpoints: boolean = true;
+    isDirtyWidgets: boolean = true;
 
-    // Settings that can be set via UI for next time, from then on it will change
-    // as the user uses them, and used the next time (a Widget is created)
-    // lastContainerFontSize: SelectedItem =
-    //     {
-    //         id: 1,
-    //         name: '1'
-    //     };
-    // lastColor: SelectedItemColor =
-    //     {
-    //         id: 'black',
-    //         name: 'black',
-    //         code: '#000000'
-    //     };
-    // lastBoxShadow: SelectedItem =new Promise<boolean>((resolve, reject) => {
-    //     {
-    //         id:1,
-    //         name: ''
-    //     };
-    // lastBorder: SelectedItem =
-    //     {
-    //         id:1,
-    //         name: '1px solid black'
-    //     };
-    // lastBackgroundColor: SelectedItemColor =
-    //     {
-    //         id: 'white',
-    //         name: 'white',
-    //         code: '#FFFFFF'
-    //     };
-    // lastWidgetHeight: number = 300;
-    // lastWidgetWidth: number = 400;
-    // lastWidgetLeft: number = 25;
-    // lastWidgetTop: number = 80;
 
 
     constructor(
