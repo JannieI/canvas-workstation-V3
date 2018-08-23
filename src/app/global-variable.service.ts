@@ -930,7 +930,8 @@ export class GlobalVariableService {
                     this.dashboardTabs.forEach(t => {
                         if (t.dashboardID == dashboardID) {
                             // Deep copy
-                            let newT: DashboardTab = Object.assign({}, t);
+                            // let newT: DashboardTab = Object.assign({}, t);
+                            let newT: DashboardTab = JSON.parse(JSON.stringify(t));
                             newT.id = null;
                             newT.dashboardID = addedD.id;
                             newT.originalID = t.id;
@@ -950,7 +951,8 @@ export class GlobalVariableService {
                                         &&
                                         w.dashboardTabIDs.indexOf(t.originalID) >= 0) {
                                         // Deep copy
-                                        let newW: Widget = Object.assign({}, w);
+                                        // let newW: Widget = Object.assign({}, w);
+                                        let newW: Widget = JSON.parse(JSON.stringify(w));
                                         newW.id = null;
                                         newW.dashboardID = addedD.id;
                                         newW.dashboardTabID = t.id;
@@ -976,7 +978,8 @@ export class GlobalVariableService {
                                         if (chk.dashboardID == dashboardID
                                             && chk.widgetID == w.originalID) {
                                             // Deep copy
-                                            let newChk: WidgetCheckpoint = Object.assign({}, chk);
+                                            // let newChk: WidgetCheckpoint = Object.assign({}, chk);
+                                            let newChk: WidgetCheckpoint = JSON.parse(JSON.stringify(chk));
                                             newChk.id = null;
                                             newChk.dashboardID = addedD.id;
                                             newChk.widgetID = w.id;
@@ -1030,7 +1033,8 @@ export class GlobalVariableService {
                                         if (p.dashboardID == dashboardID) {
 
                                             // Deep copy
-                                            let newP: DashboardPermission = Object.assign({}, p);
+                                            // let newP: DashboardPermission = Object.assign({}, p);
+                                            let newP: DashboardPermission = JSON.parse(JSON.stringify(p));
                                             newP.id = null;
                                             newP.dashboardID = addedD.id;
                                             if (newP.userID != this.currentUser.userID) {
