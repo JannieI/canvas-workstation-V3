@@ -20,6 +20,10 @@ import { Widget }                     from './models';
 import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
+// Other
+import { Subscription }               from 'rxjs';
+
+
 @Component({
     selector: 'shape-edit',
     templateUrl: './shape.editor.component.html',
@@ -64,6 +68,7 @@ export class ShapeEditComponent implements OnInit {
     bulletText: string = '';                    // Clicked on Bullets -> Bullet Text
     callingRoutine: string = '';
     colourPickerClosed: boolean = false;
+    colourPickerSubscription: Subscription;
     dashboardTabList: string[];
     hasAutoFocusCircle: boolean = false;
     hasAutoFocusEllipse: boolean = false;
@@ -280,6 +285,15 @@ export class ShapeEditComponent implements OnInit {
 
     }
 
+    ngOnDestroy() {
+        // Cleanup just before Angular destroys the directive/component. 
+        // Unsubscribe Observables and detach event handlers to avoid memory leaks.
+        // Called just before Angular destroys the directive/component.
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngOnDestroy', '@Start');
+
+        this.colourPickerSubscription.unsubscribe();
+    }
+    
     clickClose() {
         // Close the form, nothing saved
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
