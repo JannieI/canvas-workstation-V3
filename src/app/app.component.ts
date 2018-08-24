@@ -26,7 +26,6 @@ import { Dashboard }                  from './models'
 import { DashboardRecent }            from './models'
 import { Dataset }                    from './models'
 import { Datasource }                 from './models'
-import { Field }                      from './models'
 import { PaletteButtonBar }           from './models'
 import { WebSocketMessage }           from './models'
 import { Widget }                     from './models'
@@ -237,7 +236,6 @@ export class AppComponent implements OnInit {
     editMode: boolean;                          // True = EditMode, False = ViewMode
     endX: number;                               // Position for dragging
     endY: number;                               // Position for dragging
-    fields: Field[];
     hasDashboard: boolean = false;
     hasDatasources: boolean = true;             // TODO - consider removing this totally
     hasDatasourcesSubscription: Subscription;   // Observable

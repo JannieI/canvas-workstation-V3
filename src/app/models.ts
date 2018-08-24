@@ -45,7 +45,6 @@ export class DatagridInput {
     datagridCanExportData: boolean;               // True if the data may be exported
     datagridEmptyMessage: string;                 // Message to display if the grid is empty
     datagridShowFields: string;                   // Array of Fields names to include in the data
-    // Note: fields not in datagridShowFields does not exist
     datagridVisibleFields: string[];              // List of avaialble field names to make visible in grid
 }
 
@@ -644,17 +643,6 @@ export class DataField {
 
     // At Runtime
     hidden: boolean;            // True if hidden at runtime
-}
-
-export class Field {
-    id: number;
-    datasourceID: number;
-    name: string;
-    type: string;
-    format: string;
-    filter: string;
-    calc: string;
-    order: string;
 }
 
 export class Dashboard {
