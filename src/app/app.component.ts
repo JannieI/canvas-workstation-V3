@@ -204,13 +204,13 @@ export class AppComponent implements OnInit {
 
     }
 
-    canSave: boolean = true;
-    changedWidgetSubscription: Subscription;
+    canSave: boolean = true;                    // False when Explore menu option on Graph
+    changedWidgetSubscription: Subscription;    // Observable
     combinationType: string;                    // Type passed to Combinations form
     companyName: string = '';
     clickedSlicerItem: boolean = false;
     clipboardWidget: Widget;
-    currentDashboardInfoSubscription: Subscription;
+    currentDashboardInfoSubscription: Subscription;    // Observable
     currentDashboardName: string = '';
     currentDatasources: Datasource[];
     currentShapeSpec: any;          // TODO - fill this var !!  not working at moment
@@ -233,14 +233,14 @@ export class AppComponent implements OnInit {
     dashboardStartY: number;
     editingDS: boolean;
     editMenuText: string;
-    editModeSubscription: Subscription;
-    editMode: boolean;
-    endX: number;
-    endY: number;
+    editModeSubscription: Subscription;         // Observable
+    editMode: boolean;                          // True = EditMode, False = ViewMode
+    endX: number;                               // Position for dragging
+    endY: number;                               // Position for dragging
     fields: Field[];
     hasDashboard: boolean = false;
     hasDatasources: boolean = true;             // TODO - consider removing this totally
-    hasDatasourcesSubscription: Subscription;
+    hasDatasourcesSubscription: Subscription;   // Observable
     isBusyResizing: boolean = false;
     isFirstTimeUser: boolean = false;
     minWidgetContainerHeight: number = 16;      // Smallest that W Container can get
@@ -248,8 +248,8 @@ export class AppComponent implements OnInit {
     minGraphHeight: number = 1;                 // Smallest that Graph can get
     minGraphWidth: number = 1;                  // Smallest that Graph can get
     modalFormOpen: boolean = false;
-    moveEndX: number;
-    moveEndY: number;
+    moveEndX: number;                           // Position for dragging
+    moveEndY: number;                           // Position for dragging
     moveLastX: number = 0;
     moveLastY: number = 0;
     moveOffsetX: number;
@@ -278,7 +278,7 @@ export class AppComponent implements OnInit {
     showDatasourcePopup: boolean = false;
     showFavouriteDashboard: boolean = false;
     showGrid: boolean;
-    showGridSubscription: Subscription;
+    showGridSubscription: Subscription;    // Observable
     showMainMenu: boolean = true;
     showModalBusinessGlossary: boolean = false;
     showModalCombinationAppend: boolean = false;
@@ -376,7 +376,7 @@ export class AppComponent implements OnInit {
     showModalWidgetTablist: boolean = false;
     showModalUserSystemSettings: boolean = false;
     showPalette: boolean = true;
-    showPaletteSubscription: Subscription;
+    showPaletteSubscription: Subscription;          // Observable
     showPopupMessage: boolean = false;
     showTitleForm: boolean = false;
     snapToGrid: boolean = true;
@@ -387,15 +387,15 @@ export class AppComponent implements OnInit {
     showWidgetFullScreenHeight: number = 0;
     showWidgetFullScreenWidth: number = 0;
     showWidgetFullScreenX: string = '';             // Will be set when menu option called
-    startX: number;
-    startY: number;
+    startX: number;                                 // Position for dragging
+    startY: number;                                 // Position for dragging
     statusBarCancelRefresh: boolean = false;
     statusBarRunning: boolean = false;
-    subscriptionSnapshot: Subscription;
-    subscriptionAnimation: Subscription;
-    stuckCount: number = 0;
-    templateWidgets: Widget[] = [];
-    view: View;
+    subscriptionSnapshot: Subscription;             // Observable
+    subscriptionAnimation: Subscription;            // Observable
+    stuckCount: number = 0;                         // Give help if stuck for too long
+    templateWidgets: Widget[] = [];                 // Array of W in the Template D
+    view: View;                                     // Vega
     widgetDimenstions: {
         width: number;
         height: number;
