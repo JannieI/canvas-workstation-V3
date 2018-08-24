@@ -576,6 +576,7 @@ export class ShapeEditComponent implements OnInit {
             // Estimate size of Bullets
             if (this.localWidget.widgetSubType == 'Bullets') {
                 let maxTextLength: number = 3;
+                let nrLines: number = this.localWidget.shapeBullet.length;
                 this.localWidget.shapeBullet.forEach(sb => {
                     if (sb.text.length > maxTextLength) {
                         maxTextLength = sb.text.length;
@@ -583,11 +584,12 @@ export class ShapeEditComponent implements OnInit {
                 });
                 if (maxTextLength > 50) {
                     maxTextLength = 50;
+                    nrLines = nrLines + 1;
                 };
 
                 this.localWidget.containerWidth = 35 + (maxTextLength
                     * this.localWidget.shapeFontSize / 2);
-                this.localWidget.containerHeight = this.localWidget.shapeBullet.length *
+                this.localWidget.containerHeight = nrLines * 
                     (8 + this.localWidget.shapeFontSize);
 
             };

@@ -527,8 +527,6 @@ export class GlobalVariableService {
     widgetCheckpoints: WidgetCheckpoint[] = [];
     widgets: Widget[] = [];
 
-
-
     // Data for CURRENT Dashboard and Datasources: only some models are loaded
     currentCanvasGroups: CanvasGroup[] = [];
     currentDashboards: Dashboard[] = [];
@@ -551,10 +549,8 @@ export class GlobalVariableService {
     currentWidgetCheckpoints: WidgetCheckpoint[] = [];
     currentWidgets: Widget[] = [];
 
-    // TODO - this is trigger a rename of the D on statusbar - must be better way
     currentDashboardName = new BehaviorSubject<string>('');
     currentDashboardInfo = new BehaviorSubject<CurrentDashboardInfo>(null);      // Null when not defined
-    // widgetsToRefresh = new BehaviorSubject<number[]>([]);            // Array of Wids to refresh
 
     // Global vars that guide all interactions
     // ***************************************

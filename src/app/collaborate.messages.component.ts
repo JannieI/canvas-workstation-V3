@@ -141,8 +141,7 @@ export class CollaborateMessagesComponent implements OnInit {
                     m => m.body.toLowerCase().includes(this.body.toLowerCase())
                 );
             };
-            console.warn('xx subj', this.subject)
-            if (this.subject != '') {
+            if (this.subject != ''  &&  this.subject != null) {
                 this.canvasMessages = this.canvasMessages.filter(
                     m => m.subject.toLowerCase().includes(this.subject.toLowerCase())
                 );
