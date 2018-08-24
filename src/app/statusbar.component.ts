@@ -32,13 +32,16 @@ export class StatusbarComponent {
     @Input() statusBarCancelRefresh: string;
     @Input() templateInUse: string;
 
+    currentDashboardInfoSubscription: Subscription;
     currentDashboardTabs: DashboardTab[];
     dashboardDescription: string;
     dashboardTabDescription: string;
     dontDisturb: boolean = false;
+    dontDisturbSubscription: Subscription;
     editMode: boolean = false;
     editModeSubscription: Subscription;
     loggedIntoServerText: string;
+    loggedIntoServerSubscription: Subscription;
     menuActionResize: boolean;
     newTab: boolean = true;                     // True if Add, False if Edit existing
     showDashboardDescription: boolean = false;
@@ -48,8 +51,11 @@ export class StatusbarComponent {
     state: string = '';
     statusBarMessageText: string = '';
     statusBarMessageColour: string = 'rgb(197, 194, 194)';
+    statusBarMessageSubscription: Subscription;
     tabOrdering: boolean = false;
+    templateInUseSubscription: Subscription;
     widgetGroupText: string;
+    widgetGroupSubscription: Subscription;
 
 
     constructor(
@@ -69,10 +75,11 @@ export class StatusbarComponent {
         );
 
         // Dont Disturb
-        this.globalVariableService.dontDisturb.subscribe(ddb => this.dontDisturb = ddb)
+        this.dontDisturbSubscription = this.globalVariableService.dontDisturb.subscribe(
+            ddb => this.dontDisturb = ddb)
 
         // Nr of Ws in group
-        this.globalVariableService.widgetGroup.subscribe(wg => {
+        this.widgetGroupSubscription = this.globalVariableService.widgetGroup.subscribe(wg => {
             if (wg.length == 0) {
                 this.widgetGroupText = '';
             } else {
@@ -81,21 +88,23 @@ export class StatusbarComponent {
         });
 
         // Adjust Local / Server
-        this.globalVariableService.loggedIntoServer.subscribe(i => {
-            if (i) {
-                this.loggedIntoServerText = 'Server';
-            } else {
-                this.loggedIntoServerText = 'Local';
-            };
+        this.loggedIntoServerSubscription = this.globalVariableService.loggedIntoServer
+            .subscribe(i => {
+                if (i) {
+                    this.loggedIntoServerText = 'Server';
+                } else {
+                    this.loggedIntoServerText = 'Local';
+                };
         });
 
         // Adjust for templates
-        this.globalVariableService.templateInUse.subscribe(i => {
-            if (i) {
-                this.templateInUse = 'Tmpl Used '
-            } else {
-                this.templateInUse = ''
-            };
+        this.templateInUseSubscription = this.globalVariableService.templateInUse
+            .subscribe(i => {
+                if (i) {
+                    this.templateInUse = 'Tmpl Used '
+                } else {
+                    this.templateInUse = ''
+                };
         });
 
         // Change name if changed via rename
@@ -107,8 +116,8 @@ export class StatusbarComponent {
             }
         )
         // Close any open popups when a new D is opened
-        this.globalVariableService.currentDashboardInfo.subscribe(
-            i => {
+        this.currentDashboardInfoSubscription = this.globalVariableService
+            .currentDashboardInfo.subscribe(i => {
                 this.showDashboardDescription = false;
                 this.showDashboardTabDescription = false;
                 this.showNewTab = false;
@@ -119,8 +128,8 @@ export class StatusbarComponent {
 
             }
         );
-        this.globalVariableService.statusBarMessage.subscribe(i =>
-            {
+        this.statusBarMessageSubscription = this.globalVariableService.statusBarMessage
+            .subscribe(i => {
                 var self = this;
                 if (i != null) {
                     this.statusBarMessageText = i.message;
@@ -156,12 +165,12 @@ export class StatusbarComponent {
 
         // Throws an error on second Slicer selection who wants to pass a message ...
         this.editModeSubscription.unsubscribe();
-        console.warn('xx unsubsribed')
-        // this.globalVariableService.widgetGroup.unsubscribe();
-        // this.globalVariableService.loggedIntoServer.unsubscribe();
-        // this.globalVariableService.templateInUse.unsubscribe();
-        // this.globalVariableService.currentDashboardInfo.unsubscribe();
-        // this.globalVariableService.statusBarMessage.unsubscribe();
+        this.dontDisturbSubscription.unsubscribe();
+        this.widgetGroupSubscription.unsubscribe();
+        this.loggedIntoServerSubscription.unsubscribe();
+        this.templateInUseSubscription.unsubscribe();
+        this.currentDashboardInfoSubscription.unsubscribe();
+        this.statusBarMessageSubscription.unsubscribe();
     }
 
     clickDashboardDescription() {
