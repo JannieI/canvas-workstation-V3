@@ -212,7 +212,7 @@ export class WidgetContainerComponent implements OnInit {
 
         // Replace the W - DB and local vars
         this.globalVariableService.saveWidget(this.localWidget).then(res => {
-            this.globalVariableService.widgetReplace(this.localWidget);
+            // this.globalVariableService.widgetReplace(this.localWidget);
         });
 
         // Tell user
