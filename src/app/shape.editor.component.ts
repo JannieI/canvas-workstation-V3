@@ -560,39 +560,39 @@ export class ShapeEditComponent implements OnInit {
         this.localWidget.shapeTextDisplay =
             this.globalVariableService.calcShapeTextDisplay(this.localWidget.shapeText);
 
+        // Set calculated start Width and Height for Text
+        if (this.localWidget.widgetSubType == 'Text') {
+            this.localWidget.containerWidth = this.localWidget.shapeTextDisplay.length
+                * this.localWidget.shapeFontSize / 2;
+            this.localWidget.containerHeight = 8 + this.localWidget.shapeFontSize;
+        };
+
+        // Estimate size of Bullets
+        if (this.localWidget.widgetSubType == 'Bullets') {
+            let maxTextLength: number = 3;
+            let nrLines: number = this.localWidget.shapeBullet.length;
+            this.localWidget.shapeBullet.forEach(sb => {
+                if (sb.text.length > maxTextLength) {
+                    maxTextLength = sb.text.length;
+                };
+            });
+            if (maxTextLength > 50) {
+                maxTextLength = 50;
+                nrLines = nrLines + 1;
+            };
+
+            this.localWidget.containerWidth = 35 + (maxTextLength
+                * this.localWidget.shapeFontSize / 2);
+            this.localWidget.containerHeight = nrLines * 
+                (8 + this.localWidget.shapeFontSize);
+
+        };
+
         if (this.newWidget) {
 
             this.localWidget.dashboardTabIDs.push(
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID
             );
-
-            // Set calculated start Width and Height for Text
-            if (this.localWidget.widgetSubType == 'Text') {
-                this.localWidget.containerWidth = this.localWidget.shapeTextDisplay.length
-                    * this.localWidget.shapeFontSize / 2;
-                this.localWidget.containerHeight = 8 + this.localWidget.shapeFontSize;
-            };
-
-            // Estimate size of Bullets
-            if (this.localWidget.widgetSubType == 'Bullets') {
-                let maxTextLength: number = 3;
-                let nrLines: number = this.localWidget.shapeBullet.length;
-                this.localWidget.shapeBullet.forEach(sb => {
-                    if (sb.text.length > maxTextLength) {
-                        maxTextLength = sb.text.length;
-                    };
-                });
-                if (maxTextLength > 50) {
-                    maxTextLength = 50;
-                    nrLines = nrLines + 1;
-                };
-
-                this.localWidget.containerWidth = 35 + (maxTextLength
-                    * this.localWidget.shapeFontSize / 2);
-                this.localWidget.containerHeight = nrLines * 
-                    (8 + this.localWidget.shapeFontSize);
-
-            };
 
             this.globalVariableService.addWidget(this.localWidget).then(res => {
 
