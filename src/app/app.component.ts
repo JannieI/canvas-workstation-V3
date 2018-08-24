@@ -444,7 +444,7 @@ export class AppComponent implements OnInit {
         
         var db = new Dexie("MyAppDatabase");
         db.version(1).stores({contacts: 'id, first, last'});
-        db.table("contacts").put({first: "First name", last: "Last name"});
+        // db.table("contacts").put({first: "First name", last: "Last name"});
 
         // Get Users and Groups, async
         this.globalVariableService.getCanvasGroups();

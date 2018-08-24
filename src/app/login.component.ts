@@ -37,12 +37,12 @@ export class LoginComponent implements OnInit {
             this.clickClose('Close');
             return;
         };
-        if ( 
+        if (
             (event.code == 'Enter'  ||  event.code == 'NumpadEnter')
-            &&  
-            (!event.ctrlKey)  
-            &&  
-            (!event.shiftKey) 
+            &&
+            (!event.ctrlKey)
+            &&
+            (!event.shiftKey)
            ) {
             this.clickLogin();
             return;

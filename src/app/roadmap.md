@@ -488,6 +488,7 @@ This document describes items for later versions of Canvas.
     - dot on rectangle - move to change border-radius (see LibreOffice Impress) ?
     - add -> hyperlink inside TEXT box, thus can have Back Button.  Think: just to a tab, or to a D too?
     - widget Title: consider adding bold and italic
+    - consider if putting Templates (for D, W, etc) and CanvasSettings, TributaryTypes, etc in DB makes sense.  Disadvantage is speed, not sure there is a real advantage.
 
     Treeview: 
     --------

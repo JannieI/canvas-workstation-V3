@@ -62,7 +62,7 @@ export class LandingComponent implements OnInit {
 
 				// Set user stuffies
 				this.isFirstTimeUser = this.globalVariableService.currentUser.isFirstTimeUser;
-		
+
 				// Recent D
 				this.globalVariableService.getDashboardsRecent(
 					this.globalVariableService.currentUser.userID)
@@ -196,7 +196,7 @@ export class LandingComponent implements OnInit {
 			);
 				return;
 		};
- 
+
 		this.globalVariableService.editMode.next(editMode)
         this.globalVariableService.refreshCurrentDashboard(
 			'landing-clickOpenRecentDashboard', dashboardID, dashboardTabID, ''

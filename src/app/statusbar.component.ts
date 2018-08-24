@@ -206,9 +206,9 @@ export class StatusbarComponent {
         if (currentTabIndex > 0) {
             previousTabIndex = currentTabIndex - 1;
         };
-        let previousTabDisplayOrder: number = 
+        let previousTabDisplayOrder: number =
             this.currentDashboardTabs[previousTabIndex].displayOrder;
-          
+
         // Swap DisplayOrders
         this.currentDashboardTabs[currentTabIndex].displayOrder = previousTabDisplayOrder;
         this.currentDashboardTabs[previousTabIndex].displayOrder = currentTabDisplayOrder;
@@ -254,9 +254,9 @@ export class StatusbarComponent {
         if (currentTabIndex < this.currentDashboardTabs.length - 1) {
             nextTabIndex = currentTabIndex + 1;
         };
-        let nextTabDisplayOrder: number = 
+        let nextTabDisplayOrder: number =
             this.currentDashboardTabs[nextTabIndex].displayOrder;
-          
+
         // Swap DisplayOrders
         this.currentDashboardTabs[currentTabIndex].displayOrder = nextTabDisplayOrder;
         this.currentDashboardTabs[nextTabIndex].displayOrder = currentTabDisplayOrder;

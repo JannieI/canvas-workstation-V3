@@ -450,7 +450,7 @@ export class GlobalVariableService {
         queryRunningMessage: 'Query running...',
         cleanCacheOnLogin: false,
         cleanCacheOnLogout: false
-    
+
     }
 
     vlTemplate: dl.spec.TopLevelExtendedSpec = vlTemplate;
@@ -2060,10 +2060,10 @@ export class GlobalVariableService {
                     let deletedDashboardTabIndex: number = this.dashboardTabs.findIndex(t =>
                         t.id == id
                     );
-                    let deletedDashboardTabDisplayOrder: number = 
+                    let deletedDashboardTabDisplayOrder: number =
                         this.dashboardTabs.length + 1;
                     if (deletedDashboardTabIndex >= 0) {
-                        deletedDashboardTabDisplayOrder = 
+                        deletedDashboardTabDisplayOrder =
                             this.dashboardTabs[deletedDashboardTabIndex].displayOrder;
                     };
 
@@ -6023,7 +6023,7 @@ export class GlobalVariableService {
                             // Constants in Text and Bullets
                             if (w.widgetType == 'Shape') {
                                 if (w.widgetSubType == 'Text') {
-                                    w.shapeTextDisplay = 
+                                    w.shapeTextDisplay =
                                         this.calcShapeTextDisplay(w.shapeText);
                                 };
                             };
@@ -6119,7 +6119,7 @@ export class GlobalVariableService {
                     // Constants in Text and Bullets
                     if (w.widgetType == 'Shape') {
                         if (w.widgetSubType == 'Text') {
-                            w.shapeTextDisplay = 
+                            w.shapeTextDisplay =
                                 this.calcShapeTextDisplay(w.shapeText);
                         };
                     };
@@ -6163,7 +6163,7 @@ export class GlobalVariableService {
                         this.currentWidgets.forEach(w => {
                             if (w.widgetType == 'Shape') {
                                 if (w.widgetSubType == 'Text') {
-                                    w.shapeTextDisplay = 
+                                    w.shapeTextDisplay =
                                         this.calcShapeTextDisplay(w.shapeText);
                                 };
                             };
@@ -6190,7 +6190,7 @@ export class GlobalVariableService {
                 this.currentWidgets.forEach(w => {
                     if (w.widgetType == 'Shape') {
                         if (w.widgetSubType == 'Text') {
-                            w.shapeTextDisplay = 
+                            w.shapeTextDisplay =
                                 this.calcShapeTextDisplay(w.shapeText);
                         };
                     };
@@ -6434,7 +6434,7 @@ export class GlobalVariableService {
                 // Constants in Text and Bullets
                 if (w.widgetType == 'Shape') {
                     if (w.widgetSubType == 'Text') {
-                        w.shapeTextDisplay = 
+                        w.shapeTextDisplay =
                             this.calcShapeTextDisplay(w.shapeText);
                     };
                 };
@@ -8098,18 +8098,18 @@ export class GlobalVariableService {
         "   color: black; background: lightgray; font-size: 10px", {changedWidget});
 
         // Make a Deep Copy and fill Global Vars
-        let widgetIndex: number = this.widgets.findIndex(w => 
+        let widgetIndex: number = this.widgets.findIndex(w =>
             w.id == changedWidget.id
         );
         if (widgetIndex >= 0) {
-            this.widgets[widgetIndex] = 
+            this.widgets[widgetIndex] =
                 JSON.parse(JSON.stringify(changedWidget));
         };
-        let currentWidgetIndex: number = this.currentWidgets.findIndex(w => 
+        let currentWidgetIndex: number = this.currentWidgets.findIndex(w =>
             w.id == changedWidget.id
         );
         if (currentWidgetIndex >= 0) {
-            this.currentWidgets[currentWidgetIndex] = 
+            this.currentWidgets[currentWidgetIndex] =
             JSON.parse(JSON.stringify(changedWidget));
         };
 
@@ -8701,7 +8701,7 @@ export class GlobalVariableService {
     formatDate(date: Date, returnFormat: string = 'dateTime') {
          // Formats a given date into requested format
          // - date: date to format
-         // - returnFormat: format to return 
+         // - returnFormat: format to return
          //   = date (YYYY/MM/DD) - Default
          //   = time (HH:MM:SS)
          //   = dateTime (YYYY/MM/DD HH:MM:SS)
