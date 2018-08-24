@@ -583,7 +583,7 @@ export class ShapeEditComponent implements OnInit {
 
             this.localWidget.containerWidth = 35 + (maxTextLength
                 * this.localWidget.shapeFontSize / 2);
-            this.localWidget.containerHeight = nrLines * 
+            this.localWidget.containerHeight = nrLines *
                 (8 + this.localWidget.shapeFontSize);
 
         };

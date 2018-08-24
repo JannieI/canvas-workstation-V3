@@ -131,7 +131,7 @@
                     </svg>
                 </div>
 
-                <div class="gridShape" *ngIf="showText"
+                <div class="gridShape" *ngIf="showText"                
                     [style.color]="localWidget.shapeTextColour"
                     [style.font-style]="localWidget.shapeIsItalic? 'italic' : 'normal'"
                     [style.font-weight]="localWidget.shapeIsBold? 'bold' : 'normal'"
@@ -154,9 +154,10 @@
                             {{ localWidget.shapeText }}
                         </text>
                     </svg> -->
-                    
+
                     <div class="gridTextBox">
                         <textarea rows="9"
+                            [style.background-color]="localWidget.containerBackgroundcolor"
                             [style.color]="localWidget.shapeTextColour"
                             [style.font-style]="localWidget.shapeIsItalic? 'italic' : 'normal'"
                             [style.font-weight]="localWidget.shapeIsBold? 'bold' : 'normal'"
@@ -165,12 +166,12 @@
                             [style.line-height]="localWidget.shapeLineHeight"
                             [style.text-align]="left"
                             style="display: block; padding: 5px; line-height: 150%;"
-        
+
                             placeholder="The brown fox ..."
                             [(ngModel)]="localWidget.shapeText"
                             [autofocus]="hasAutoFocusText"
                             >
-                        </textarea> 
+                        </textarea>
                     </div>
 
                 </div>
