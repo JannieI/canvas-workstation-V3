@@ -570,7 +570,7 @@ export class AppComponent implements OnInit {
             if (w != null) {
                 // Note: amend this.currentWidgets as it is a ByRef to
                 // this.gv.currentWidgets, which Angular does not register that it has changed
-
+console.warn('xx APP start', this.globalVariableService.currentWidgets)
                 // Deep copy
                 // let newW: Widget = Object.assign({}, w);
                 let newW: Widget = JSON.parse(JSON.stringify(w));

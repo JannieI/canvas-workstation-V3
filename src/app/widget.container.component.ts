@@ -93,7 +93,7 @@ export class WidgetContainerComponent implements OnInit {
                     };
                 };
         };
-        console.warn('xx ls', this.lineSize, this.lineColor)
+        console.warn('xx start Wcont', this.globalVariableService.currentWidgets)
         // Manage colour picker
         this.colourPickerSubscription = this.globalVariableService.colourPickerClosed.subscribe(clp => {
 
@@ -212,7 +212,7 @@ export class WidgetContainerComponent implements OnInit {
 
         // Replace the W - DB and local vars
         this.globalVariableService.saveWidget(this.localWidget).then(res => {
-            // this.globalVariableService.widgetReplace(this.localWidget);
+            this.globalVariableService.widgetReplace(this.localWidget);
         });
 
         // Tell user
