@@ -44,7 +44,6 @@ import { DataOwnership}               from './models';
 import { DatasourcePermission}        from './models';
 import { DatasourcePivot }            from './models';
 import { Field }                      from './models';
-import { FieldMetadata }              from './models';
 import { PaletteButtonBar }           from './models';
 import { PaletteButtonsSelected }     from './models';
 import { StatusBarMessage }           from './models';

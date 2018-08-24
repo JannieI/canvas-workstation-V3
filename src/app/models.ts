@@ -657,16 +657,6 @@ export class Field {
     order: string;
 }
 
-export class FieldMetadata {
-    id: number;
-    datasourceID: number;
-    name: string;
-    type: string;
-    description: string;
-    keyField: boolean;
-    explainedBy: string
-}
-
 export class Dashboard {
 
     // Identification and description
