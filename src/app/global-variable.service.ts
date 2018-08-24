@@ -8102,6 +8102,8 @@ export class GlobalVariableService {
             if (w.id == changedWidget.id) {
                 // TODO - Make a deep copy / error free, less work copy
                 w = JSON.parse(JSON.stringify(changedWidget));
+        console.warn('xx chgW', w.id, w.containerBackgroundcolor, changedWidget.containerBackgroundcolor)
+
                 // w.widgetType = changedWidget.widgetType;
                 // w.widgetSubType = changedWidget.widgetSubType;
                 // w.dashboardID = changedWidget.dashboardID;
@@ -8247,6 +8249,7 @@ export class GlobalVariableService {
             if (w.id == changedWidget.id) {
                 // TODO - Make a deep copy / error free, less work copy
                 w = JSON.parse(JSON.stringify(changedWidget));
+                console.warn('xx chgW', w.id, w.containerBackgroundcolor, changedWidget.containerBackgroundcolor)
                 // w.widgetType = changedWidget.widgetType;
                 // w.widgetSubType = changedWidget.widgetSubType;
                 // w.dashboardID = changedWidget.dashboardID;
@@ -8388,6 +8391,8 @@ export class GlobalVariableService {
                 // w.widgetUpdatedBy = changedWidget.widgetUpdatedBy;
             };
         });
+
+        console.warn('xx chgW', this.currentWidgets, this.widgets)
     }
 
     sleep(milliseconds: number) {

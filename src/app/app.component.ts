@@ -205,10 +205,12 @@ export class AppComponent implements OnInit {
     }
 
     canSave: boolean = true;
+    changedWidgetSubscription: Subscription;
     combinationType: string;                    // Type passed to Combinations form
     companyName: string = '';
     clickedSlicerItem: boolean = false;
     clipboardWidget: Widget;
+    currentDashboardInfoSubscription: Subscription;
     currentDashboardName: string = '';
     currentDatasources: Datasource[];
     currentShapeSpec: any;          // TODO - fill this var !!  not working at moment
@@ -231,12 +233,14 @@ export class AppComponent implements OnInit {
     dashboardStartY: number;
     editingDS: boolean;
     editMenuText: string;
+    editModeSubscription: Subscription;
     editMode: boolean;
     endX: number;
     endY: number;
     fields: Field[];
     hasDashboard: boolean = false;
     hasDatasources: boolean = true;             // TODO - consider removing this totally
+    hasDatasourcesSubscription: Subscription;
     isBusyResizing: boolean = false;
     isFirstTimeUser: boolean = false;
     minWidgetContainerHeight: number = 16;      // Smallest that W Container can get
@@ -274,6 +278,7 @@ export class AppComponent implements OnInit {
     showDatasourcePopup: boolean = false;
     showFavouriteDashboard: boolean = false;
     showGrid: boolean;
+    showGridSubscription: Subscription;
     showMainMenu: boolean = true;
     showModalBusinessGlossary: boolean = false;
     showModalCombinationAppend: boolean = false;
@@ -371,6 +376,7 @@ export class AppComponent implements OnInit {
     showModalWidgetTablist: boolean = false;
     showModalUserSystemSettings: boolean = false;
     showPalette: boolean = true;
+    showPaletteSubscription: Subscription;
     showPopupMessage: boolean = false;
     showTitleForm: boolean = false;
     snapToGrid: boolean = true;
@@ -536,15 +542,17 @@ export class AppComponent implements OnInit {
             });
         });
 
-        this.globalVariableService.showPalette.subscribe(i => this.showPalette = i);
-        this.globalVariableService.showGrid.subscribe(i => this.showGrid = i);
+        this.showPaletteSubscription = this.globalVariableService.showPalette.subscribe(
+            i => this.showPalette = i);
+        this.showGridSubscription = this.globalVariableService.showGrid.subscribe(
+            i => this.showGrid = i);
         this.showModalLanding = this.globalVariableService.showModalLanding.value;
 
-        this.globalVariableService.hasDatasources.subscribe(
+        this.hasDatasourcesSubscription = this.globalVariableService.hasDatasources.subscribe(
             i => this.hasDatasources = i
         );
 
-        this.globalVariableService.editMode.subscribe(
+        this.editModeSubscription = this.globalVariableService.editMode.subscribe(
             i => {
                     this.editMode = i;
                     if (!i) {this.editMenuText = 'Edit Mode'}
@@ -557,7 +565,8 @@ export class AppComponent implements OnInit {
         });
 
         // This refreshes one W
-        this.globalVariableService.changedWidget.subscribe(w => {
+        this.changedWidgetSubscription = this.globalVariableService.changedWidget.subscribe(
+            w => {
             if (w != null) {
                 // Note: amend this.currentWidgets as it is a ByRef to
                 // this.gv.currentWidgets, which Angular does not register that it has changed
@@ -580,12 +589,12 @@ export class AppComponent implements OnInit {
                     this.currentWidgets.push(newW);
                 };
 
-                console.warn('xx app changedWidget replaced', w, this.currentWidgets)
+                console.warn('xx app changedWidget replaced', w, this.currentWidgets, this.globalVariableService.widgets, this.globalVariableService.currentWidgets)
             };
         });
 
         // This refreshes the whole D, with W and related info
-        this.globalVariableService.currentDashboardInfo.subscribe(
+        this.currentDashboardInfoSubscription = this.globalVariableService.currentDashboardInfo.subscribe(
             i => {
                 if (i) {
 
@@ -695,12 +704,12 @@ export class AppComponent implements OnInit {
         // Called just before Angular destroys the directive/component.
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnDestroy', '@Start');
 
-        this.globalVariableService.showGrid.unsubscribe();
-        this.globalVariableService.showPalette.unsubscribe();
-        this.globalVariableService.hasDatasources.unsubscribe();
-        this.globalVariableService.editMode.unsubscribe();
-        this.globalVariableService.changedWidget.unsubscribe();
-        this.globalVariableService.currentDashboardInfo.unsubscribe();
+        this.showGridSubscription.unsubscribe();
+        this.showPaletteSubscription.unsubscribe();
+        this.hasDatasourcesSubscription.unsubscribe();
+        this.editModeSubscription.unsubscribe();
+        this.changedWidgetSubscription.unsubscribe();
+        this.currentDashboardInfoSubscription.unsubscribe();
         this.subscriptionSnapshot.unsubscribe();
         this.subscriptionAnimation.unsubscribe();
     }
