@@ -64,22 +64,25 @@ interface IContact {
     id?: number,
     first: string,
     last: string,
-    dashboard: string
+    dashboard: Dashboard
 }
+
+
 
 export class Contact implements IContact {
     id: number;
     first: string;
     last: string;
-    dashboard: string;
+    dashboard: Dashboard;
     
-    constructor(first: string, last: string, dashboard: string, id?:number) {
+    constructor(first: string, last: string, dashboard: Dashboard, id?:number) {
       this.first = first;
       this.last = last;
       this.dashboard = dashboard;
       if (id) this.id = id;
     }
 }
+
 
 
 
@@ -430,6 +433,8 @@ export class AppComponent implements OnInit {
     public clientMessage = '';
     private socket$: WebSocketSubject<WebSocketMessage>;
 
+
+    dexieDB: any[];
 
     // rubberbandShow: boolean = false;
     // rubberbandHeight: number = 100;
@@ -6141,15 +6146,43 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickHelpTutorials', '@Start')
         // this.globalVariableService.dashboards[0].name
 
+        // Define DB
         var db = new Dexie("MyAppDatabase");
         db.version(1).stores({contacts: 'id, first, last'});
-        db.table("contacts").put({
-            first:"First name", last: "Last name", dashboard:"dashboardName", id:2}
-        ).then(res => {
-            console.log('xx res', res);
+
+        // Clear var
+        this.dexieDB = [];
+
+        // Clear DB
+        db.table("contacts").clear().then(result => console.log('xx CLEARED DB', result));
+
+        // Load Ds
+        for (var i = 0; i < 1000; i++) {
             
-        });
-    
+            db.table("contacts").put(
+                {
+                    first: "First name", 
+                    last: "Last name", 
+                    dashboard: this.globalVariableService.dashboards[0], 
+                    id: i
+                }
+            ).then(res => {
+                // console.log('xx res', res);
+                
+            });
+        };
+
+        // Load var
+        for (var i = 0; i < 1000; i++) {
+            this.dexieDB.push(
+                {
+                    first: "First name", 
+                    last: "Last name", 
+                    dashboard: this.globalVariableService.dashboards[0], 
+                    id: i
+                }
+            )
+        };
     }
 
 
