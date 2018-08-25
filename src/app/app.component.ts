@@ -63,8 +63,26 @@ class MyAppDatabase extends Dexie {
 interface IContact {
     id?: number,
     first: string,
-    last: string
+    last: string,
+    dashboard: string
 }
+
+export class Contact implements IContact {
+    id: number;
+    first: string;
+    last: string;
+    dashboard: string;
+    
+    constructor(first: string, last: string, dashboard: string, id?:number) {
+      this.first = first;
+      this.last = last;
+      this.dashboard = dashboard;
+      if (id) this.id = id;
+    }
+}
+
+
+
 
 // Constants
 export enum KEY_CODE {
@@ -6108,7 +6126,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
     // ***********************  CLICK HELP MENU OPTIONS ************************ //
 
     clickMenuHelpDemo() {
-        //
+        // Help: Demo
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuHelpDemo', '@Start');
 
         this.menuOptionClickPreAction();
@@ -6117,6 +6135,25 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
         this.menuOptionClickPostAction();
     }
+
+    clickHelpTutorials() {
+        // Help: Demo
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickHelpTutorials', '@Start')
+        // this.globalVariableService.dashboards[0].name
+
+        var db = new Dexie("MyAppDatabase");
+        db.version(1).stores({contacts: 'id, first, last'});
+        db.table("contacts").put({
+            first:"First name", last: "Last name", dashboard:"dashboardName", id:2}
+        ).then(res => {
+            console.log('xx res', res);
+            
+        });
+    
+    }
+
+
+
 
 
 
