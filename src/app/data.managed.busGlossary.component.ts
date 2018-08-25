@@ -140,9 +140,12 @@ export class DataManagedBusGlossaryComponent implements OnInit {
             .findIndex(dc => dc.id == id);
         if (selectedDatasourceIndex >= 0) {
 
-            this.selectedDatasource = Object.assign({},
+            // this.selectedDatasource = Object.assign({},
+            //     this.datasources[selectedDatasourceIndex]
+            // );
+            this.selectedDatasource = JSON.parse(JSON.stringify(
                 this.datasources[selectedDatasourceIndex]
-            );
+            ));
         } else {
             this.selectedDatasource = null;
         };

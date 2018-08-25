@@ -18,7 +18,7 @@ import { GlobalVariableService}       from './global-variable.service';
 
 // Models
 import { Datasource }                 from './models';
- 
+
 @Component({
     selector: 'data-managed-dataDictionary',
     templateUrl: './data.managed.dataDictionary.component.html',
@@ -56,9 +56,9 @@ export class DataManagedDataDictionaryComponent implements OnInit {
 	ngOnInit() {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
-        
+
         // Reset, else async too late and form load fails
-        this.selectedDatasource = 
+        this.selectedDatasource =
         {
             id: null,
             type: '',
@@ -119,7 +119,7 @@ export class DataManagedDataDictionaryComponent implements OnInit {
             // Fill local Var
             this.datasources = dc.slice();
             console.warn('xx this.datasources.length', this.datasources.length)
-            
+
             // Click on first one, if available
             if (this.datasources.length > 0) {
                 this.clickRow(0, this.datasources[0].id);
@@ -142,15 +142,18 @@ export class DataManagedDataDictionaryComponent implements OnInit {
             .findIndex(dc => dc.id == id);
         if (selectedDatasourceIndex >= 0) {
 
-            this.selectedDatasource = Object.assign({}, 
+            // this.selectedDatasource = Object.assign({},
+            //     this.datasources[selectedDatasourceIndex]
+            // );
+            this.selectedDatasource = JSON.parse(JSON.stringify(
                 this.datasources[selectedDatasourceIndex]
-            );
+            ));
         } else {
             this.selectedDatasource = null;
         };
 console.warn('xx this.selectedDatasource ', this.selectedDatasource )
     }
-    
+
     clickClose(action: string) {
         // Close the form, nothing saved
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
@@ -165,12 +168,12 @@ console.warn('xx this.selectedDatasource ', this.selectedDatasource )
 
         this.editing = false;
         this.clickRow(this.selectedDatasourcesRowIndex, this.selectedDatasourceID);
-        
+
         // // Re Fill the form
         // let datasourceIndex: number = this.datasources
         //     .findIndex(sch => sch.id == this.selectedDatasource.id);
         // if (datasourceIndex >= 0) {
-        //     this.selectedDatasource = Object.assign({}, 
+        //     this.selectedDatasource = Object.assign({},
         //         this.datasources[datasourceIndex]
         //     );
         // };
@@ -190,7 +193,7 @@ console.warn('xx this.selectedDatasource ', this.selectedDatasource )
             let datasourceIndex: number = this.datasources
                 .findIndex(ds => ds.id == this.selectedDatasource.id);
             if (datasourceIndex >= 0) {
-                this.datasources[datasourceIndex].dataDictionary = 
+                this.datasources[datasourceIndex].dataDictionary =
                     this.selectedDatasource.dataDictionary
             };
             this.globalVariableService.saveDatasource(this.selectedDatasource)

@@ -17,7 +17,7 @@ import { GlobalVariableService }      from './global-variable.service';
 import { DataConnection }             from './models';
 
 
-@Component({ 
+@Component({
     selector: 'data-managed-connection',
     templateUrl: './data.managed.connection.component.html',
     styleUrls:  ['./data.managed.connection.component.css']
@@ -59,7 +59,7 @@ export class DataManagedConnectionComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         this.clearRecord();
-        
+
         this.globalVariableService.getDataConnections().then(dc => {
             this.dataConnections = dc.slice();
             if (this.dataConnections.length > 0) {
@@ -93,9 +93,12 @@ export class DataManagedConnectionComponent implements OnInit {
         let connectionIndex: number = this.dataConnections
             .findIndex(dc => dc.id == id);
         if (connectionIndex >= 0) {
-            this.selectedConnection = Object.assign({}, 
+            // this.selectedConnection = Object.assign({},
+            //     this.dataConnections[connectionIndex]
+            // );
+            this.selectedConnection = JSON.parse(JSON.stringify(
                 this.dataConnections[connectionIndex]
-            );
+            ));
         };
         console.warn('xx END selectedConnection', this.selectedConnection)
 
@@ -116,7 +119,7 @@ export class DataManagedConnectionComponent implements OnInit {
             description: ''
         };
     }
-    
+
     clickClose(action: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
@@ -133,14 +136,17 @@ export class DataManagedConnectionComponent implements OnInit {
         this.adding = false;
         this.errorMessage = '';
         this.clickRow(this.selectedConnectionRowIndex, this.connectionID);
-        
+
         // Re Fill the form
         let dataconnectionIndex: number = this.dataConnections
             .findIndex(sch => sch.id == this.selectedConnection.id);
         if (dataconnectionIndex >= 0) {
-            this.selectedConnection = Object.assign({}, 
+            // this.selectedConnection = Object.assign({},
+            //     this.dataConnections[dataconnectionIndex]
+            // );
+            this.selectedConnection = JSON.parse(JSON.stringify(
                 this.dataConnections[dataconnectionIndex]
-            );
+            ));
         };
 
         // Reset
@@ -178,7 +184,7 @@ export class DataManagedConnectionComponent implements OnInit {
 
                     // Add locally
                     this.dataConnections.push(this.selectedConnection);
-                            
+
                 }
             );
         };
@@ -188,8 +194,10 @@ export class DataManagedConnectionComponent implements OnInit {
             let dataconnectionIndex: number = this.dataConnections
                 .findIndex(sch => sch.id == this.selectedConnection.id);
             if (dataconnectionIndex >= 0) {
-                this.dataConnections[dataconnectionIndex] = 
-                    Object.assign({}, this.selectedConnection);
+                // this.dataConnections[dataconnectionIndex] =
+                //     Object.assign({}, this.selectedConnection);
+                this.dataConnections[dataconnectionIndex] =
+                    JSON.parse(JSON.stringify(this.selectedConnection));
             };
             this.globalVariableService.saveDataConnection(this.selectedConnection)
         };
@@ -230,7 +238,7 @@ export class DataManagedConnectionComponent implements OnInit {
         this.clearRecord();
         this.globalVariableService.deleteDataConnection(id).then(res => {
             this.dataConnections = this.globalVariableService.dataConnections
-        }); 
+        });
 
         this.selectedConnectionRowIndex = null;
         this.connectionID = null;
