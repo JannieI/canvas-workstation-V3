@@ -512,10 +512,14 @@ export class StatusbarComponent {
         console.warn('xx tab index', this.globalVariableService.currentDashboardInfo.value.currentDashboardTabIndex, this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID, this.globalVariableService.currentWidgets)
         if (this.globalVariableService.currentDashboardInfo.value.currentDashboardTabIndex >= 0) {
 
-            let duplicateTab: DashboardTab = Object.assign({},this.globalVariableService
-                .currentDashboardTabs[
-                    this.globalVariableService.currentDashboardInfo.value.currentDashboardTabIndex
-            ]);
+            // let duplicateTab: DashboardTab = Object.assign({},this.globalVariableService
+            //     .currentDashboardTabs[
+            //         this.globalVariableService.currentDashboardInfo.value.currentDashboardTabIndex
+            // ]);
+            let duplicateTab: DashboardTab =JSON.parse(JSON.stringify(
+                this.globalVariableService.currentDashboardTabs[
+                this.globalVariableService.currentDashboardInfo.value.currentDashboardTabIndex
+            ]));
 
             // Reset some info
             duplicateTab.id = null;
