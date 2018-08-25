@@ -75,7 +75,7 @@ export class DashboardTagsComponent implements OnInit {
             // Get a unique list of tags
             let availableTagText = new Set(dt.map(t => t.tag));
             let availableTagTextArray = Array.from(availableTagText);
-            
+
             for (let i = 0; i < dt.length; i++) {
 
                 if (availableTagTextArray.indexOf(dt[i].tag) >= 0) {
@@ -83,7 +83,7 @@ export class DashboardTagsComponent implements OnInit {
                     availableTagTextArray = availableTagTextArray.slice(1);
                 };
             };
- 
+
             // Sort the available tags
             this.availableDashboardTags.sort( (obj1,obj2) => {
                 if (obj1.tag > obj2.tag) {
@@ -116,7 +116,7 @@ export class DashboardTagsComponent implements OnInit {
     clickAddNew() {
         // Add text for a new tag
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAddNew', '@Start');
-        
+
         // Nothing to do
         if (this.newTag == ''  ||  this.newTag == null  ||  this.newTag == undefined) {
             return;
@@ -130,7 +130,7 @@ export class DashboardTagsComponent implements OnInit {
         if (isFound) {
             return;
         };
-        
+
         // TODO - do this better with a DB
         let maxIDs: number[] = [];
         let maxID: number = 0;
@@ -175,7 +175,7 @@ export class DashboardTagsComponent implements OnInit {
         // let maxID: number = 0;
         // this.globalVariableService.currentDashboardTags.forEach(pbs =>
         //     maxIDs.push (pbs.id)
-        // ); 
+        // );
         // maxID = Math.max(...maxIDs);
 
         // maxID = maxID + 1;
@@ -201,7 +201,7 @@ export class DashboardTagsComponent implements OnInit {
         this.globalVariableService.deleteDashboardTag(id).then(res => {
             this.selectedDashboardTags.splice(index, 1);
         });
-        
+
     }
 
     clickClose(action: string) {
@@ -215,14 +215,15 @@ export class DashboardTagsComponent implements OnInit {
         // Save data, and Close the form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
+        // TODO - this can of course be done more cleverly and eliquently and fasta
         // Delete all Tags for this D
         for (let i = this.globalVariableService.dashboardTags.length - 1; i >= 0; i--) {
-            if (this.globalVariableService.dashboardTags[i].dashboardID == 
+            if (this.globalVariableService.dashboardTags[i].dashboardID ==
                 this.selectedDashboard.id) {
                     this.globalVariableService.deleteDashboardTag(
                         this.globalVariableService.dashboardTags[i].id
                     );
-                    this.globalVariableService.dashboardTags.splice(i, 1)
+                    // this.globalVariableService.dashboardTags.splice(i, 1)
             };
         };
 

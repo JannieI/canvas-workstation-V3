@@ -413,6 +413,13 @@ export class AppComponent implements OnInit {
     private socket$: WebSocketSubject<WebSocketMessage>;
 
 
+    // rubberbandShow: boolean = false;
+    // rubberbandHeight: number = 100;
+    // rubberbandWidth: number = 100;
+    // rubberbandLeft: number = 100;
+    // rubberbandTop: number = 100;
+
+
     constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
@@ -7915,7 +7922,22 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         this.dashboardStartY = ev.y
         this.dashboardEndX = 0;
         this.dashboardEndY = 0;
+
+        // Start Rubberband
+        // this.rubberbandShow = true;
+        // this.rubberbandHeight = 20;
+        // this.rubberbandWidth = 20;
+        // this.rubberbandLeft = ev.x;
+        // this.rubberbandTop = ev.y;
     }
+
+    // mousemoveDashboard(ev: any) {
+    //     // Toggles Palette - horisontal / vertical
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'mousemoveDashboard', '@Start');
+
+    //     // Store X & Y
+    //     console.warn('xx', ev.x, ev.y);
+    // }
 
     mouseupDashboard(ev: any) {
         // Toggles Palette - horisontal / vertical
@@ -7930,6 +7952,14 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
             this.dashboardStartY == this.dashboardEndY) {
             return;
         };
+
+
+        // Start Rubberband
+        // this.rubberbandShow = false;
+        // this.rubberbandHeight = 0;
+        // this.rubberbandWidth = 0;
+        // this.rubberbandLeft = 0;
+        // this.rubberbandTop = 0;
 
         // Unselect all Ws
         this.clickMenuEditSelectAllNone('None');

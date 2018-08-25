@@ -451,6 +451,7 @@ export class GlobalVariableService {
 
     }
 
+    // Templates and Constants
     vlTemplate: dl.spec.TopLevelExtendedSpec = vlTemplate;
     widgetTemplate: Widget = widgetTemplate;
     dashboardTemplate: Dashboard = dashboardTemplate;
@@ -489,6 +490,7 @@ export class GlobalVariableService {
     filePath: string;
 
     // Permanent data
+    actions: CanvasAction[] = [];
     backgroundcolors: CSScolor[] = [];
     canvasAuditTrails: CanvasAuditTrail[] = [];
     canvasComments: CanvasComment[] = [];
@@ -572,7 +574,6 @@ export class GlobalVariableService {
     selectedWidgetIDs: number[] = [];
 
     // Session
-    actions: CanvasAction[] = [];
     colourPickerClosed = new BehaviorSubject<
         {
             callingRoutine: string;

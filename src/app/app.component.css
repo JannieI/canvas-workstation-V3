@@ -437,3 +437,13 @@
     margin: 10px;
     z-index: 100;
 }
+
+
+/* TEST */
+.rubberband {
+    background-color: transparent;
+    border: 1px solid gray;
+    margin: 0;
+    position: absolute;
+    padding: 0;
+}

@@ -428,6 +428,7 @@ This document describes items for later versions of Canvas.
     Dashboard:
     ----------
     - relook at D export: maybe export Widgets too, plus data or at least points to data.  Amend Import to: show structure and what is valid, and if user proceeds: read Widgets to, create new records in DB, similar to ADD D and ADD W
+    - show rubberband when selecting with mouse on D: mouse down and up @View controls size of pre-created Div
 
     Data:
     ----
