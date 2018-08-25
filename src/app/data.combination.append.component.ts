@@ -8,7 +8,6 @@ import { EventEmitter }               from '@angular/core';
 import { HostListener }               from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
-import { Router }                     from '@angular/router';
 
 // Our Functions
 import { GlobalFunctionService } 	  from './global-function.service';
@@ -72,16 +71,15 @@ export class DataCombinationAppendComponent implements OnInit {
 	constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
-        private router: Router,
 	) {}
 
 	ngOnInit() {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        let widgetIDs: number[] = [];
+        let currentWidgetIDs: number[] = [];
         this.globalVariableService.currentWidgets.forEach(w => {
-            widgetIDs.push(w.datasourceID);
+            currentWidgetIDs.push(w.datasourceID);
         });
         this.globalVariableService.currentDatasources.forEach(cds => {
             this.currentDSids.push(cds.id);
@@ -90,7 +88,7 @@ export class DataCombinationAppendComponent implements OnInit {
         // Load from global variables
         this.datasources = this.globalVariableService.datasources.slice();
         this.datasources.forEach(ds => {
-            if (widgetIDs.indexOf(ds.id) >= 0) {
+            if (currentWidgetIDs.indexOf(ds.id) >= 0) {
                 ds.hasWidget = true;
             } else {
                 ds.hasWidget = false;

@@ -54,14 +54,6 @@ This document describes items for later versions of Canvas.
     - test with newBee - can they do graph on D with minimal guidance?
     - go through Liz doc on Driv (GDG) on design principles and review all forms
     - consider hard max limits: cannot read more than 10000 rows from Excel, etc ?
-    - make it easier to see where to input data: maybe gray background ... Is this really necesary?  Make baie certain as this is baie work ...
-    - look at Windi.com, Wahoo ? to see how to make it easy
-    - look at gartner quadrant for dv. Explore, visualize, transform, compute, compose
-    - create a video / bitmap
-    - consume all files in a folder !!  Can also poll folder to update when they change !!!
-    - infer xsd from XML files. Tranform XML to SQL db table And show mapping. Publish to make it accessable by other consumers like spotfire. Which reads it as a db table, or to other bi consumers. Can combine XML to other data
-    - can read Ems, Jms ... ??
-    - expose Canvas to existing users as private preview and log keystrokes => knows what they are using, and how long something takes!!
 
     Bookmarks:
     ---------
@@ -429,6 +421,14 @@ This document describes items for later versions of Canvas.
     ----------
     - relook at D export: maybe export Widgets too, plus data or at least points to data.  Amend Import to: show structure and what is valid, and if user proceeds: read Widgets to, create new records in DB, similar to ADD D and ADD W
     - show rubberband when selecting with mouse on D: mouse down and up @View controls size of pre-created Div
+    - make it easier to see where to input data: maybe gray background ... Is this really necesary?  Make baie certain as this is baie work ...
+    - look at Windi.com, Wahoo ? to see how to make it easy
+    - look at gartner quadrant for dv. Explore, visualize, transform, compute, compose
+    - create a video / bitmap
+    - consume all files in a folder !!  Can also poll folder to update when they change !!!
+    - infer xsd from XML files. Tranform XML to SQL db table And show mapping. Publish to make it accessable by other consumers like spotfire. Which reads it as a db table, or to other bi consumers. Can combine XML to other data
+    - can read Ems, Jms ... ??
+    - expose Canvas to existing users as private preview and log keystrokes => knows what they are using, and how long something takes!!
 
     Data:
     ----
@@ -464,6 +464,7 @@ This document describes items for later versions of Canvas.
     - Install at user as pilot, may Liaan ...
 
     Tabs:
+    ----
     - can we hide T - will show in T list with hidden tick, can uncheck?
 
     Reports:

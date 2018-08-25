@@ -6458,7 +6458,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         };
     }
 
-    clickMenuPaletteWidgetTitle() {
+    clickMenuPaletteWidgetTitle(widgetID: number = null) {
         // Edit Title of selected W
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuPaletteWidgetTitle', '@Start');
 
