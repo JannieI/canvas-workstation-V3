@@ -2148,7 +2148,9 @@
                 </span>
 
                 <!-- Title Text -->
-                <span class="widgetTitleText">
+                <span class="widgetTitleText"
+                    (click)="clickMenuPaletteWidgetTitle(row.id)"
+                    >
                     <b>{{ row.titleText }}</b>
                 </span>
                 <!-- <b>

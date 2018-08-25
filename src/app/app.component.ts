@@ -6462,19 +6462,38 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         // Edit Title of selected W
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuPaletteWidgetTitle', '@Start');
 
-        // Only one can be selected
-        if (!this.checkForOnlyOneWidget()) {
-            this.clickMenuWidgetDuplicate('Graph');
-        }
+        // ID provided
+        if (widgetID != null) {
+            let selectedWidgetIndex: number = this.currentWidgets.findIndex(w =>
+                w.id == widgetID
+            );
+            if (selectedWidgetIndex < 0) {
+                this.showMessage(
+                    'Widget does not exist',
+                    'StatusBar',
+                    'Error',
+                    3000,
+                    ''
+                );
+                return;
+            }
+            this.selectedWidget = this.currentWidgets[selectedWidgetIndex];
+        } else {
 
-        this.menuOptionClickPreAction();
-
-        // Indicate edit W and open Editor, which will work with selected W
-        this.currentWidgets.forEach(w => {
-            if (w.isSelected) {
-                this.selectedWidget = w;
-            };
-        });
+            // Only one can be selected
+            if (!this.checkForOnlyOneWidget()) {
+                this.clickMenuWidgetDuplicate('Graph');
+            }
+            
+            this.menuOptionClickPreAction();
+            
+            // Indicate edit W and open Editor, which will work with selected W
+            this.currentWidgets.forEach(w => {
+                if (w.isSelected) {
+                    this.selectedWidget = w;
+                };
+            });
+        };
 
         this.showTitleForm = true;
     }
