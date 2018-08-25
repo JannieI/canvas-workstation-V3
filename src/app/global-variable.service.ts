@@ -874,7 +874,8 @@ export class GlobalVariableService {
 
                 // Create new D, and fill in where possible
                 let today = new Date();
-                let newD = Object.assign({}, this.dashboards[dashboardIndex]);
+                // let newD = Object.assign({}, this.dashboards[dashboardIndex]);
+                let newD = JSON.parse(JSON.stringify(this.dashboards[dashboardIndex]));
                 newD.id = null;
                 newD.creator = this.currentUser.userID;
                 newD.dateCreated = today;
@@ -8301,8 +8302,8 @@ export class GlobalVariableService {
                 description: description,
                 undoID: undoID,
                 redoID: redoID,
-                oldWidget: oldWidget == null? null : Object.assign({}, oldWidget),
-                newWidget: newWidget == null? null : Object.assign({}, newWidget),
+                oldWidget: oldWidget == null? null : JSON.parse(JSON.stringify(oldWidget)),
+                newWidget: newWidget == null? null : JSON.parse(JSON.stringify(newWidget)),
                 createor: this.currentUser.userID,
                 created: today
             });
@@ -8314,10 +8315,12 @@ export class GlobalVariableService {
                     if (undoID != null) {ac.undoID = undoID};
                     if (redoID != null) {ac.redoID = redoID};
                     if (oldWidget != null) {
-                        ac.oldWidget =  Object.assign({}, oldWidget)
+                        // ac.oldWidget =  Object.assign({}, oldWidget)
+                        ac.oldWidget =  JSON.parse(JSON.stringify(oldWidget))
                     };
                     if (newWidget != null) {
-                        ac.newWidget = Object.assign({}, newWidget)
+                        // ac.newWidget = Object.assign({}, newWidget)
+                        ac.newWidget = JSON.parse(JSON.stringify(newWidget))
                     };
                     actID = id;
                 };
@@ -8530,7 +8533,8 @@ export class GlobalVariableService {
         let dashboard: Dashboard;
         this.dashboards.forEach(d => {
             if (d.id == id) {
-                dashboard = Object.assign({}, d);
+                // dashboard = Object.assign({}, d);
+                dashboard = JSON.parse(JSON.stringify(d));
             };
         });
 
@@ -8617,7 +8621,8 @@ export class GlobalVariableService {
         let dashboard: Dashboard;
         this.dashboards.forEach(d => {
             if (d.id == id) {
-                dashboard = Object.assign({}, d);
+                // dashboard = Object.assign({}, d);
+                dashboard = JSON.parse(JSON.stringify(d));
             };
         });
 
