@@ -6,12 +6,6 @@ This document describes items for later versions of Canvas.
 
 **UI / ideas**
 
-    Easier (UI):
-    -----------
-    - must easily spot messages on StatusBar
-    - must immediately know when in EditMode.
-    - make EditMode and Save easier for beginners
-    - dbl click to edit title
 
     Tooltips:
     ---------
@@ -29,84 +23,80 @@ This document describes items for later versions of Canvas.
 
 
 
-     Overall design and layout
-    --------------------------
+     Ease of use / Simplicity
+    -------------------------
     - GO BACK TO SIMPLICITY !!!  Review regular on how to make it easier and faster.  If like SPSS where everything sits behinds a menu item, then too difficult.  Simplify (Ivan)
     - Review whether as beautiful as Simplus
     - Relook at ALL forms for consistent layout, look and feel, INcluding the popups like the W title
+    - everything must be accessable IN 3 CLICKS
     - be able to make a Dashboard in 5 mins
-    - organise menu per tasks?  
     - Add 'X' top left on all, so that it can close if screen is too small and the save button  overflow beyond the screen
     - Keep Help Message on top of forms uniform - always look and feel the same.  Also, make sure   there is a preference to switch it back on manually.
     Standard unit of measure: maybe save all as rem, and user can select px, rem, etc?
-    - Use style.css for standard items, ie class="helpMessage"
-    - Standardize date format shown - as selected by the user, stored as settings
-    -Accelator keys: accesskey="h".  Make consistent approach for all, taking into account that browser has own set.  Try to make it dynamic, ie use can define it!
-    - Consider Zoom - can use scale(0.6) from CSS, but then need to properly understand layout of main page.  Also, Google, etc already has a zoom, so what's the point.  Remove from menu if not needed
-    - everything must be accessable IN 3 CLICKS
     - neaten first time user for all forms: maybe more GotIt help messages that shows up only once, and disappears after GotIt was clicked.  Key example: first time EditMode is used, the user needs to understand Save and Discard.
-    - every form must load in LESS THAN 3 SECS
     - Google Sheets says 'All changes saved' after each change.  Should we do the same, ie after each resize or drag-n-drop?
     - verify that we cater for casual to sophisticated user
-    - go through system and make sure things are done consistently
-    - make all drag-n-drop and similar to Microsoft interface.
     - test: a new user must be able to build a D in 5 minutes, and a person must be ready with max 1hr training session.  Remember, no one reads the manual!  Final test, give it to highschool kids!!  
     - test with newBee - can they do graph on D with minimal guidance?
+    - must easily spot messages on StatusBar
+    - must immediately know when in EditMode.
+    - make EditMode and Save easier for beginners
+
+    UI, Layout, menu options:
+    ------------------------
+    - Use style.css for standard items, ie class="helpMessage"
+    - Standardize date format shown - as selected by the user, stored as settings
+    - Consider Zoom - can use scale(0.6) from CSS, but then need to properly understand layout of main page.  Also, Google, etc already has a zoom, so what's the point.  Remove from menu if not needed
+    - every form must load in LESS THAN 3 SECS
+    - go through system and make sure things are done consistently
+    - make all drag-n-drop and similar to Microsoft interface.
     - go through Liz doc on Driv (GDG) on design principles and review all forms
+
+
+    System, Limits:
+    --------------
     - consider hard max limits: cannot read more than 10000 rows from Excel, etc ?
-
-    Bookmarks:
-    ---------
-    - consider bookmark(s), gives filters at a point in time.  Can send this to other users, and will open with these filters applied.
-    - can this be used in a presentation, ie Bookmark1 = Overall, Bookmark2 = drill down
-
-    System:
-    ------
     - determine limits, ie 1.2 GB of RAM, HDisc requirements, etc
     - set max on data, ie max 2bn rows from db, max 10000 rows in browser, etc
     - do some performance benchmarks: if 1000 lines csv file, takes 3 seconds to load, etc
-
-
-    JSON-Server Timeout:
-    --------------------
-    - if BULK DELETE in quick succesion, gets http error: ERR_CONNECTION_REFUSED.  Assume it is because json-server gets flooded, but this has to be tested with real server.
-
-
-    - consider if we need SAVE AS functionality
+    - Need way to browse large volumes of data without killing browser - server must calc and warn user, plus also do pagination in the background. Also, data manipulation must be pushed onto the server as far as possible.
+    Warning:
+    - when a W is rendered and some fields dont exist, error occured, display a warning image +     message inside W.  User can edit this, fix the fields and save
+    - before saving a W, Canvas checks that the fields are valid, that it renders, etc and warns if not (but allows to save) - how does this fit in with auto-save policy?
 
 
     PDF / IMAGE:
     ------------
     - can save Dashboard as pdf - see https://github.com/MrRio/jsPDF.
-    Rather: https://stackoverflow.com/questions/38996376/generate-pdf-file-from-html-using-angular2-typescript,  or  https://stackoverflow.com/questions/42900319/how-to-convert-html-to-pdf-in-angular2  or  https://www.npmjs.com/package/jspdf
-    - can send as Email Attachment (in pdf or pic). To do this via Gmail, use its API - see https://www.sitepoint.com/sending-emails-gmail-javascript-api/
-    - can copy whole D as image - can paste somewhere, or print and put on wall
-    - view pdf docs insides forms: see https://www.npmjs.com/package/ng2-pdf-viewer
-    - make sure we can have hybrid DS - cloud and local and server in one D
-    - view Thumbnails of all T - can selected ala PowerPoint
-    - Have popup thumbnails of D on Landing page
-    - Use thumbnails to select a W from another D - have thumbnails are on/off option for performance perhaps
-    - got is working (sort of) with: http://www.shanegibney.com/shanegibney/angular2-and-jspdf-file-generation/
+        Rather: https://stackoverflow.com/questions/38996376/generate-pdf-file-from-html-using-angular2-typescript,  or  https://stackoverflow.com/questions/42900319/how-to-convert-html-to-pdf-in-angular2  or  https://www.npmjs.com/package/jspdf
+        - can send as Email Attachment (in pdf or pic). To do this via Gmail, use its API - see https://www.sitepoint.com/sending-emails-gmail-javascript-api/
+        - can copy whole D as image - can paste somewhere, or print and put on wall
+        - view pdf docs insides forms: see https://www.npmjs.com/package/ng2-pdf-viewer
+        - make sure we can have hybrid DS - cloud and local and server in one D
+        - view Thumbnails of all T - can selected ala PowerPoint
+        - Have popup thumbnails of D on Landing page
+        - Use thumbnails to select a W from another D - have thumbnails are on/off option for performance perhaps
+        - got is working (sort of) with: http://www.shanegibney.com/shanegibney/angular2-and-jspdf-file-generation/
 
-    https://stackoverflow.com/questions/35138424/how-do-i-download-a-file-with-angular2
-    To download and show PDF files, a very similar code snipped is like below:
-        private downloadFile(data: Response): void {
-            let blob = new Blob([data.blob()], { type: "application/pdf" });
-            let url = window.URL.createObjectURL(blob);
-            window.open(url);
-        }
+        https://stackoverflow.com/questions/35138424/how-do-i-download-a-file-with-angular2
+        To download and show PDF files, a very similar code snipped is like below:
+            private downloadFile(data: Response): void {
+                let blob = new Blob([data.blob()], { type: "application/pdf" });
+                let url = window.URL.createObjectURL(blob);
+                window.open(url);
+            }
 
-        public showFile(fileEndpointPath: string): void {
-            let reqOpt: RequestOptions = this.getAcmOptions();  //  getAcmOptions is our helper method. Change this line according to request headers you need.
-            reqOpt.responseType = ResponseContentType.Blob;
-            this.http
-            .get(fileEndpointPath, reqOpt)
-            .subscribe(
-                data => this.downloadFile(data),
-                error => alert("Error downloading file!"),
-                () => console.log("OK!")
-            );
-        }
+            public showFile(fileEndpointPath: string): void {
+                let reqOpt: RequestOptions = this.getAcmOptions();  //  getAcmOptions is our helper method. Change this line according to request headers you need.
+                reqOpt.responseType = ResponseContentType.Blob;
+                this.http
+                .get(fileEndpointPath, reqOpt)
+                .subscribe(
+                    data => this.downloadFile(data),
+                    error => alert("Error downloading file!"),
+                    () => console.log("OK!")
+                );
+            }
 
 
     Testing:
@@ -126,8 +116,6 @@ This document describes items for later versions of Canvas.
     ----------------------
     - Users, groups, permissions: add DS permissions, Private Dashboards?, Public Dashboards?, etc to form 'My Permissions'
     - Where does UI sit - in Dashboard or separate.  Consider Standalone vs Network
-    - Global var with userLoggedIn
-    - What and how is cached locally - and how refreshed?  Ie BackgroundColours should be stored locally and only updated if and when needed.
     - Finalise group membership / roles
     - Add UserID to ALL data and code -> where needed ...
     - It must be impossible to lock out all users - admin keeps access and at least one is kept.  Also, if a W is locked and the owner on leave, someone must be able to unlock it.
@@ -152,7 +140,6 @@ This document describes items for later versions of Canvas.
 
     Tributary:
     ----------
-    - Read more - see Pentaho ETL / Data Integration for features.
     - Combinations must also be done here
     - Add token management forms: forgot password, refresh token ...
 
@@ -167,10 +154,6 @@ This document describes items for later versions of Canvas.
     API: Have flexible field selection: ie ..."fields": [A, B, F]
     Setting min Grid width - wait for Clarity Bug fix
 
-    - Need way to browse large volumes of data without killing browser - server must calc and warn user, plus also do pagination in the background. Also, data manipulation must be pushed onto the server as far as possible.
-    Warning:
-    - when a W is rendered and some fields dont exist, error occured, display a warning image +     message inside W.  User can edit this, fix the fields and save
-    - before saving a W, Canvas checks that the fields are valid, that it renders, etc and warns if not (but allows to save) - how does this fit in with auto-save policy?
 
     Local DB:
     ---------
@@ -181,13 +164,10 @@ This document describes items for later versions of Canvas.
     - refreshed via WS from DB
     - also used for auto-save: all the steps are saved here, and synced to server at specified  interval (setting on client)
 
-    Should we de-select all Ws when we change Tabs, or load a new D?  If not, may be confusing but handy.  If do, where do we do it - GlobVar functions, or in App component (and update Globals back, which does not make sense)
-
 
     Data:
     -----
     1. Make sure terminology is consitent: Datasource -> Transform -> Dataset
-    2. Make an ODBC connector - Bradley.
     3. Have TestConnectivity method - can TEST connection
     4. I used FieldNames (string) in ie Pivot - is that okay?
     5. Design (technically) how Datasets, pivotRow, pivotCol, pivotResult, pivotAgg, Fields,    FieldsMetaData, Combinations, CombinationDetails will work, given that these can change over   time, has to be fast enough (cannot all live in memory) and has to integrate with Vega ...
@@ -196,8 +176,6 @@ This document describes items for later versions of Canvas.
     8. When removing a Dataset, it validates that not used in a Widget, Shape or Combination. If so, then cannot be removed.  If removed, all resultsets stored for it must be removed as well, or  not?
     9. Data Quality issues: add place to add detail values.  An overall statement can say all data  has an issue, but a specific one must identify the column(s) and row(s) affected, thus given the IDs or key values.
     10.Similtaneous update of LOCAL and GLOBAL vars!  Ie: app sends [widgets] to widget component, which is the local widgets.  Who and where are Global widgets synced !!!!????  Maybe use observables where the local ones just subscribe to the global ones.  Anyway, make this method standard across app.
-    11.Determine which transformations live on server and which on client, and whether some/all
-       lives on both.
     12.Remember usage - and can sort by popular ones or show it for all relevant objects
     13.Allow own profile pic upload!
     14.How do we treat sensitive data - that may not be seen by DBA.  Keep it in Excel and reload each time ...
@@ -207,8 +185,8 @@ This document describes items for later versions of Canvas.
 
     Data types and field lengths:
     -----------------------------
-    - Define Canvas datatype = TS ones?  Define Canvas data types: which module creates this for   data and where?  Are all numbers equal?
-    - where defined, by what means, and how are they used?  Is it display side only?  Can the user  change it?  What if an actual field is wider than the stated length - will it truncate   displayed data?  Does numbers have a length?
+    - Define Canvas datatype = TS ones?  Define Canvas data types: which module creates this for data and where?  Are all numbers equal?
+    - where defined, by what means, and how are they used?  Is it display side only?  Can the user  change it?  What if an actual field is wider than the stated length - will it truncate displayed data?  Does numbers have a length?
     - How are dates stored in DB vs localDB vs arrays?  How do we format dates onto the form?  How  is locale used?
     - How does types tranform into Vega field types, ie on Editor?
     16.After Ws were linked to a DS: if do a Tr, then validate that W are still okay (ie a W field  may not exist any longer in DS)
@@ -254,6 +232,9 @@ This document describes items for later versions of Canvas.
     - Easy to drill in and out of dates - year - month - day, etc
     - consider filter and W: thus DS remains unchanged, but W has subset of data in graphData.  This can be =, <= etc on data, or limits (top 10). This must work in conjunction with sorting.
     - add Drill Down / Drill Through: this is critical.  Drill down is a capability that takes the user from a more general view of the data to a more specific one at the click of a mouse. For example, a report that shows sales revenue by state can allow the user to select a state, click on it and see sales revenue by county or city within that state. It is called “drill down” because it is a feature that allows the user to go deeper into more specific layers of the data or information being analyzed.  Further levels of drill down can be set up within the report–practically as many as supported by the data. In our example, the drill-down can go from country to state to city to zip code to specific location of stores or individual sales reps. Typically, the look and feel of each level of the report is similar–what changes is the granularity of the data.  Instead of taking the user to a more granular level of the data, drill through takes him to a report that is relevant to the data being analyzed, also at the click of a mouse. For example, a tabular report that shows sales revenue by state can allow the user to click on it and reveal an analysis grid of the same data, or a heat map representing the data in visual form. It is called “drill through” because it is a feature that allows the user to pass from one report to another while still analyzing the same set of data.
+    - Easy way to compare data: graph shows revenue per month for this year.  What was figure
+       for March last year, or compare all to last year ... NB
+    - Also, easy way to jump to previous period:  loaded at start with data ??
 
 
 
@@ -297,12 +278,9 @@ This document describes items for later versions of Canvas.
 
     Dashboard:
     ----------
-    2. Open: all Ds using a given Template
-    4. Easy way to compare data: graph shows revenue per month for this year.  What was figure
-       for March last year, or compare all to last year ... NB
-    5. Also, easy way to jump to previous period:  loaded at start with data ??
-    6. Startup D: should this be settable as a pref, or should we always display the Landing page?
-    7 .Show Grid - currently a .png -> how to make this dynamic ?
+    - Open: all Ds using a given Template
+    - Startup D: should this be settable as a pref, or should we always display the Landing page?
+    - Show Grid - currently a .png -> how to make this dynamic ?
     8 .Save keeps all snapshots and undo actions, forever.  Thus, can see how things looked like at any point in the past.  It must be clearly marked for the user.  Must also be able to search the list, and see a list of undo actions.  Also, do we discard all undo actions when a snapshot is taken, or not.  Think clearly about it.
       Important: NO undo on forms, ie Comments.  Must be done through Add/Edit/Delete
       buttons and logic on form.
@@ -313,16 +291,6 @@ This document describes items for later versions of Canvas.
     12.Set editMode per Recent - must be same mode as last saved
     13.Set editMode @startup as user pref ?  How will this work if a D is opened read-only
     14.Consider quick access to EditMode - maybe dblClick 'ViewOnly' on StatusBar
-    15.Decision required on philosophy: do we restore / remove Comments, etc with
-       each snapshot !?  If yes, then all in synch.  But, can get confusing if a
-       user added a Comment to the latest, then another user restores an earlier
-       snapshot and his Comments are GONE! Also, if now add comments to older
-       snapshot, and another user restores to a later snapshot, what happens to
-       these comments??  Think carefully here.
-    16.Consider popup status messages, like VSCode to be more visible - maybe not needed.
-    17.Considering opening message per D (might even be per user as well), that will display each time D is opened.  How is it entered, who enters / deletes / edits it, and how is it displayed - modal (another one!), popup and for how long, and how is it closed, and how does it look to fit in?
-    - have group of D (better name ...) of severalDs = used on filtering when Open D.  Maybe called bookmarks?
-    - have D views on a D = set of filters and settings applied. Currently this is just another Snapshot ...  Make it easy to switch, and then attach a VIEW to a message ...
 
 
     Samples: use this to demo Canvas features (brag)
@@ -429,6 +397,17 @@ This document describes items for later versions of Canvas.
     - infer xsd from XML files. Tranform XML to SQL db table And show mapping. Publish to make it accessable by other consumers like spotfire. Which reads it as a db table, or to other bi consumers. Can combine XML to other data
     - can read Ems, Jms ... ??
     - expose Canvas to existing users as private preview and log keystrokes => knows what they are using, and how long something takes!!
+    -Accelator keys: accesskey="h".  Make consistent approach for all, taking into account that browser has own set.  Try to make it dynamic, ie use can define it!
+    - Decision required on philosophy: do we restore / remove Comments, etc with
+       each snapshot !?  If yes, then all in synch.  But, can get confusing if a
+       user added a Comment to the latest, then another user restores an earlier
+       snapshot and his Comments are GONE! Also, if now add comments to older
+       snapshot, and another user restores to a later snapshot, what happens to
+       these comments??  Think carefully here.
+    - Consider popup status messages, like VSCode to be more visible - maybe not needed.
+    - Considering opening message per D (might even be per user as well), that will display each time D is opened.  How is it entered, who enters / deletes / edits it, and how is it displayed - modal (another one!), popup and for how long, and how is it closed, and how does it look to fit in?
+    - have group of D (better name ...) of severalDs = used on filtering when Open D.  Maybe called bookmarks?
+    - have D views on a D = set of filters and settings applied. Currently this is just another Snapshot ...  Make it easy to switch, and then attach a VIEW to a message ...
 
     Data:
     ----
@@ -515,10 +494,12 @@ This document describes items for later versions of Canvas.
     Tooltip:
     - Show a Viz on the tooltip - this could be our explain ... !
     Landing page:
-    Menu functions:
-    - Consider copy + paste for Slicer, Shape and Table.  For now, I think it is okay
-    - Consider cut as well, cut = copy + delete ...
-    External contact:
+    - Menu functions:
+        - Consider copy + paste for Slicer, Shape and Table.  For now, I think it is okay
+        - Consider cut as well, cut = copy + delete ...
+        - relook at the menu layout.  One suggestion was to organise menus per tasks.  Or, at the very least have a Tasks menu option: user tasks on here?
+
+    -External contact:
     - Use cell phone to do things easily - ie ask time off, manager approves and data stored as record - EASY and integrated and No forms
     - Telegram interface with bot ...
     - consider custom (big) cursor for presentations - see https://alligator.io/css/cursor-property/  2018/06/07: just could not get it going...
@@ -714,3 +695,12 @@ This document describes items for later versions of Canvas.
     - can then either graph this (ie nr of type XXX new events), or join to DS data on DS-id, or just show on a timeline with other data (say as a small marker on each day where there were News Events of a certain type)
     - this can be very cool - need to make sure we do it well though.
 
+
+    Bookmarks:
+    ---------
+    - consider bookmark(s), gives filters at a point in time.  Can send this to other users, and will open with these filters applied.
+    - can this be used in a presentation, ie Bookmark1 = Overall, Bookmark2 = drill down
+
+    Tributary:
+    ----------
+    - Read more - see Pentaho ETL / Data Integration for features.

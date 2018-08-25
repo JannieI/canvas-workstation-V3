@@ -602,6 +602,13 @@ export class StatusbarComponent {
             !this.globalVariableService.dontDisturb.value);
     }
 
+    clickToggleEditMode() {
+        //Toggle EditMode
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickToggleEditMode', '@Start');
+
+        this.globalVariableService.editMode.next(!this.globalVariableService.editMode.value);
+    }
+
 }
 
 

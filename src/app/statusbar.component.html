@@ -86,8 +86,9 @@
         >
         Refreshed: 08:31
     </span>
-    <span [ngSwitch]="editMode" class="statusBarText"
+    <span [ngSwitch]="editMode" class="statusBarText statusBarTextBorder"
         style="width: 66vw;"
+        (click)="clickToggleEditMode()"
         >
         <b    *ngSwitchCase="true" title="Changes can be done in Edit Mode">Edit Mode </b>
         <span *ngSwitchDefault title="View only mode means no changes can be made">View-Only     </span>
