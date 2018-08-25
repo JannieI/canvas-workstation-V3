@@ -40,7 +40,7 @@ This document describes items for later versions of Canvas.
     - test with newBee - can they do graph on D with minimal guidance?
     - must easily spot messages on StatusBar
     - must immediately know when in EditMode.
-    - make EditMode and Save easier for beginners
+    - make EditMode and Save easier for beginners - via docs and what else?
 
     UI, Layout, menu options:
     ------------------------
@@ -202,8 +202,6 @@ This document describes items for later versions of Canvas.
 
     Authentication:
     ---------------
-    - cater for Microsoft AD
-    - cater for single sign-on - somehow
     - add Auth0, Google, Facebook
 
     Widget Editor - Adv:
@@ -704,3 +702,8 @@ This document describes items for later versions of Canvas.
     Tributary:
     ----------
     - Read more - see Pentaho ETL / Data Integration for features.
+
+    Authentication:
+    ---------------
+    - cater for Microsoft AD
+    - cater for single sign-on - somehow
