@@ -120,9 +120,12 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
         let datasourceScheduleIndex: number = this.globalVariableService.datasourceSchedules
             .findIndex(sch => sch.id == id);
         if (datasourceScheduleIndex >= 0) {
-            this.selectedDatasourceSchedule = Object.assign({},
+            // this.selectedDatasourceSchedule = Object.assign({},
+            //     this.globalVariableService.datasourceSchedules[datasourceScheduleIndex]
+            // );
+            this.selectedDatasourceSchedule = JSON.parse(JSON.stringify(
                 this.globalVariableService.datasourceSchedules[datasourceScheduleIndex]
-            );
+            ));
 
             let datasourceIndex: number = this.globalVariableService.datasources.findIndex(
                 ds => ds.id == this.globalVariableService.datasourceSchedules[
@@ -137,7 +140,7 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
                 this.selectedDatasource = '';
             };
         };
-        console.warn('xx this selDS', this.selectedDatasource)     
+        console.warn('xx this selDS', this.selectedDatasource)
 
     }
 
@@ -199,9 +202,12 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
         let datasourceScheduleIndex: number = this.currentDatasourceSchedules
             .findIndex(sch => sch.id == this.selectedDatasourceSchedule.id);
         if (datasourceScheduleIndex >= 0) {
-            this.selectedDatasourceSchedule = Object.assign({},
+            // this.selectedDatasourceSchedule = Object.assign({},
+            //     this.currentDatasourceSchedules[datasourceScheduleIndex]
+            // );
+            this.selectedDatasourceSchedule = JSON.parse(JSON.stringify(
                 this.currentDatasourceSchedules[datasourceScheduleIndex]
-            );
+            ));
         };
 
         // Reset
@@ -219,7 +225,7 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
 
         // Validation
         this.errorMessage = '';
-        
+
         if (this.selectedDatasource == null
             ||
             this.selectedDatasource == '') {
@@ -353,8 +359,10 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
             let datasourceScheduleIndex: number = this.currentDatasourceSchedules
                 .findIndex(sch => sch.id == this.selectedDatasourceSchedule.id);
             if (datasourceScheduleIndex >= 0) {
+                // this.currentDatasourceSchedules[datasourceScheduleIndex] =
+                //     Object.assign({}, this.selectedDatasourceSchedule);
                 this.currentDatasourceSchedules[datasourceScheduleIndex] =
-                    Object.assign({}, this.selectedDatasourceSchedule);
+                    JSON.parse(JSON.stringify(this.selectedDatasourceSchedule));
             };
             this.globalVariableService.saveDatasourceSchedule(this.selectedDatasourceSchedule)
         };
