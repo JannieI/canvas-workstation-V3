@@ -17,7 +17,7 @@ import { GlobalVariableService}       from './global-variable.service';
 
 // Models
 import { DataQualityIssue }           from './models';
- 
+
 @Component({
     selector: 'data-managed-dataQuality',
     templateUrl: './data.managed.dataQuality.component.html',
@@ -64,7 +64,7 @@ export class DataManageDataQualityComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         this.clearRecord();
-        
+
         // Get Datasource list
         this.globalVariableService.datasources.forEach(ds => {
             this.datasourceNames.push(ds.name + ' (' + ds.id + ')');
@@ -78,9 +78,9 @@ export class DataManageDataQualityComponent implements OnInit {
             };
             return 0;
         });
-        
+
         this.globalVariableService.getDataQualityIssues().then(dc => {
-            
+
             this.dataQualityIssues = dc.slice();
             if (this.dataQualityIssues.length > 0) {
                 this.clickRow(0, this.dataQualityIssues[0].id);
@@ -112,9 +112,12 @@ export class DataManageDataQualityComponent implements OnInit {
                 .name + ' (' + this.globalVariableService.datasources[datasourceIndex].id + ')';
             console.warn('xx ds', this.selectedLinkedDatasource, datasourceIndex, this.selectedLinkedDatasource)
 
-            this.selectedDataQualityIssue = Object.assign({}, 
+            // this.selectedDataQualityIssue = Object.assign({},
+            //     this.dataQualityIssues[selectedDatasourceIndex]
+            // );
+            this.selectedDataQualityIssue = JSON.parse(JSON.stringify(
                 this.dataQualityIssues[selectedDatasourceIndex]
-            );
+            ));
         } else {
             this.selectedLinkedDatasource = '';
         };
@@ -139,7 +142,7 @@ export class DataManageDataQualityComponent implements OnInit {
             solvedOn: null
         };
     }
-    
+
     clickClose(action: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
@@ -156,14 +159,17 @@ export class DataManageDataQualityComponent implements OnInit {
         this.adding = false;
         this.errorMessage = '';
         this.clickRow(this.selectedDataQualityIssueRowIndex, this.selectedDatasourceID);
-        
+
         // Re Fill the form
         let datasourceIndex: number = this.dataQualityIssues
             .findIndex(sch => sch.id == this.selectedDataQualityIssue.id);
         if (datasourceIndex >= 0) {
-            this.selectedDataQualityIssue = Object.assign({}, 
+            // this.selectedDataQualityIssue = Object.assign({},
+            //     this.dataQualityIssues[datasourceIndex]
+            // );
+            this.selectedDataQualityIssue = JSON.parse(JSON.stringify(
                 this.dataQualityIssues[datasourceIndex]
-            );
+            ));
         };
 
         // Reset
@@ -210,7 +216,7 @@ export class DataManageDataQualityComponent implements OnInit {
 
                     // Add locally
                     this.dataQualityIssues.push(this.selectedDataQualityIssue);
-                            
+
                 }
             );
         };
@@ -220,8 +226,10 @@ export class DataManageDataQualityComponent implements OnInit {
             let datasourceIndex: number = this.dataQualityIssues
                 .findIndex(sch => sch.id == this.selectedDataQualityIssue.id);
             if (datasourceIndex >= 0) {
-                this.dataQualityIssues[datasourceIndex] = 
-                    Object.assign({}, this.selectedDataQualityIssue);
+                // this.dataQualityIssues[datasourceIndex] =
+                //     Object.assign({}, this.selectedDataQualityIssue);
+                this.dataQualityIssues[datasourceIndex] =
+                    JSON.parse(JSON.stringify(this.selectedDataQualityIssue));
             };
             this.selectedDataQualityIssue.datasourceID = this.datasourceID;
             this.globalVariableService.saveDataQualityIssue(this.selectedDataQualityIssue)
@@ -263,7 +271,7 @@ export class DataManageDataQualityComponent implements OnInit {
         this.clearRecord();
         this.globalVariableService.deleteDataQualityIssue(id).then(res => {
             this.dataQualityIssues = this.globalVariableService.dataQualityIssues
-        }); 
+        });
 
         this.selectedDataQualityIssueRowIndex = null;
         this.selectedDatasourceID = null;

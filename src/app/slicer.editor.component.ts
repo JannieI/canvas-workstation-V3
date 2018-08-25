@@ -110,7 +110,8 @@ import { GlobalVariableService }      from './global-variable.service';
             this.localWidget.widgetType = 'Slicer';
         } else {
 
-            this.localWidget = Object.assign({}, this.selectedWidget);
+            // this.localWidget = Object.assign({}, this.selectedWidget);
+            this.localWidget = JSON.parse(JSON.stringify(this.selectedWidget));
             this.dataFields = this.localWidget.dataFields;
             this.dataFieldTypes = this.localWidget.dataFieldTypes;
             this.containerHasContextMenus = this.localWidget.containerHasContextMenus;

@@ -139,9 +139,12 @@ export class DataManageDataOwnershipComponent implements OnInit {
             this.selectedLinkedDatasource = this.globalVariableService.datasources[datasourceIndex]
                 .name + ' (' + this.globalVariableService.datasources[datasourceIndex].id + ')';
 
-            this.selectedDataOwnership = Object.assign({},
+            // this.selectedDataOwnership = Object.assign({},
+            //     this.dataOwnerships[selectedDatasourceIndex]
+            // );
+            this.selectedDataOwnership = JSON.parse(JSON.stringify(
                 this.dataOwnerships[selectedDatasourceIndex]
-            );
+            ));
         } else {
             this.selectedLinkedDatasource = '';
         };
@@ -187,9 +190,12 @@ export class DataManageDataOwnershipComponent implements OnInit {
         let datasourceIndex: number = this.dataOwnerships
             .findIndex(sch => sch.id == this.selectedDataOwnership.id);
         if (datasourceIndex >= 0) {
-            this.selectedDataOwnership = Object.assign({},
+            // this.selectedDataOwnership = Object.assign({},
+            //     this.dataOwnerships[datasourceIndex]
+            // );
+            this.selectedDataOwnership = JSON.parse(JSON.stringify(
                 this.dataOwnerships[datasourceIndex]
-            );
+            ));
         };
 
         // Reset
@@ -256,8 +262,10 @@ export class DataManageDataOwnershipComponent implements OnInit {
             let datasourceIndex: number = this.dataOwnerships
                 .findIndex(sch => sch.id == this.selectedDataOwnership.id);
             if (datasourceIndex >= 0) {
+                // this.dataOwnerships[datasourceIndex] =
+                //     Object.assign({}, this.selectedDataOwnership);
                 this.dataOwnerships[datasourceIndex] =
-                    Object.assign({}, this.selectedDataOwnership);
+                    JSON.parse(JSON.stringify(this.selectedDataOwnership));
             };
             this.globalVariableService.saveDataOwnership(this.selectedDataOwnership)
         };
