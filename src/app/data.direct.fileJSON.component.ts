@@ -153,6 +153,9 @@ export class DataDirectFileJSONComponent implements OnInit {
             if (this.files.length > 0) {
                 this.loadFileContent(0);
             };
+        })
+        .catch(err => {
+            this.errorMessage = err.message;
         });
     }
 

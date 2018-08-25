@@ -51,18 +51,18 @@
     }
 
     .gridButtonCancel {
-        grid-column-start: 2;
+        grid-column-start: 3;
         /* autoprefixer: off */
-        grid-column-end: 4;
+        grid-column-end: 5;
         grid-row-start: 20;
         grid-row-end: 21;
         margin-top: 1rem;
     }
 
     .gridButtonDelete {
-        grid-column-start: 6;
+        grid-column-start: 8;
         /* autoprefixer: off */
-        grid-column-end: 8;
+        grid-column-end: 10;
         grid-row-start: 20;
         grid-row-end: 21;
         margin-top: 1rem;
