@@ -439,7 +439,7 @@ export class AppComponent implements OnInit {
         // var type = 'article';
         // this[type+'_count'] = 1000;  // in a function we use "this";
         // alert(this.article_count);
-        
+
         var db = new Dexie("MyAppDatabase");
         db.version(1).stores({contacts: 'id, first, last'});
         // db.table("contacts").put({first: "First name", last: "Last name"});
@@ -472,7 +472,7 @@ export class AppComponent implements OnInit {
             };
 
             let today = new Date();
-            this.globalVariableService.sessionDateTimeLoggedin = 
+            this.globalVariableService.sessionDateTimeLoggedin =
                 this.globalVariableService.formatDate(today);
             // Snapshot at user defined interval: preferenceDefaultSnapshotMins = 0 => none
             let userMins: number = this.globalVariableService.currentUser.preferenceDefaultSnapshotMins;
@@ -504,7 +504,7 @@ export class AppComponent implements OnInit {
                                 let snapshotComment: string = 'Automated Snapshot after ' +
                                     (mins / 60000).toString() + ' mins';
                                 this.globalVariableService.newDashboardSnapshot(
-                                    snapshotName, 
+                                    snapshotName,
                                     snapshotComment,
                                     'AutoFrequency').then(res => {
                                         this.showMessage(
@@ -518,7 +518,7 @@ export class AppComponent implements OnInit {
 
                                 });
                             };
-                        };                        
+                        };
                     };
                 });
             };
@@ -608,11 +608,11 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
                                 if (dashboardIndex >= 0) {
                                     this.currentDashboardBackgroundColor = this.globalVariableService.dashboards[dashboardIndex].backgroundColor;
-                                    let templateDashboardID: number = this.globalVariableService.dashboards[dashboardIndex].templateDashboardID; 
+                                    let templateDashboardID: number = this.globalVariableService.dashboards[dashboardIndex].templateDashboardID;
 
                                     if (templateDashboardID != null  &&  templateDashboardID > 0) {
                                         // Load Template
-                                        this.templateWidgets = this.globalVariableService.widgets.filter(w => 
+                                        this.templateWidgets = this.globalVariableService.widgets.filter(w =>
                                             w.dashboardID == templateDashboardID
                                         );
 
@@ -744,7 +744,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
     }
 
     dashboardPageUp() {
-        // Move to previous Tab 
+        // Move to previous Tab
         this.globalFunctionService.printToConsole(this.constructor.name,'dashboardPageUp', '@Start');
 
         this.globalVariableService.refreshCurrentDashboard(
@@ -756,7 +756,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
     }
 
     dashboardPageLast() {
-        // Move to previous Tab 
+        // Move to previous Tab
         this.globalFunctionService.printToConsole(this.constructor.name,'dashboardPageLast', '@Start');
 
         this.globalVariableService.refreshCurrentDashboard(
@@ -766,7 +766,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
             'Last'
         );
     }
-        
+
 
 
 
@@ -939,7 +939,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
         this.showModalDashboardSchedule = false;
     }
-    
+
     handleCloseDashboardScheduleEdit(action: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardScheduleEdit', '@Start');
@@ -1203,7 +1203,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDirectFileCSV', '@Start');
 
         this.menuOptionClickPostAction();
-    
+
         this.showModalDataDirectFileCSV = false;
 
         // Open Transformations if so requested
@@ -1212,13 +1212,13 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
             this.showModalDataTransformation = true;
         };
     }
-        
+
     handleCloseDataDirectFileJSON(returnDS: Datasource) {
         // Handle close of Direct File JSON file load
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDirectFileJSON', '@Start');
 
         this.menuOptionClickPostAction();
-    
+
         this.showModalDataDirectFileJSON = false;
 
         // Open Transformations if so requested
@@ -1233,7 +1233,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDirectFileSpreadsheet', '@Start');
 
         this.menuOptionClickPostAction();
-    
+
         this.showModalDataDirectFileSpreadsheet = false;
         // Open Transformations if so requested
         if (returnDS != null) {
@@ -1247,7 +1247,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDirectGoogleSheets', '@Start');
 
         this.menuOptionClickPostAction();
-    
+
         this.showModalDataDirectGoogleSheets = false;
         // Open Transformations if so requested
         if (returnDS != null) {
@@ -1255,7 +1255,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
             this.showModalDataTransformation = true;
         };
     }
-    
+
     handleCloseDataDirectQueryBuilder(returnDS: Datasource) {
         // Handle Close of Direct SQL Query Builder
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDirectQueryBuilder', '@Start');
@@ -1331,7 +1331,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
             this.showModalDataTransformation = true;
         };
     }
-    
+
     handleCloseDataDirectImport(action: string) {
         // Handle close of Direct Import of DS
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDirectImport', '@Start');
@@ -1369,7 +1369,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
         this.showModalDataOverview = false;
     }
-    
+
     handleCloseDataDatasourceUsage(action: string) {
         // Handle close of Datasource Usage
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDatasourceUsage', '@Start');
@@ -1405,7 +1405,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
         this.showModalDataRefreshOnce = false;
     }
-    
+
     handleCloseDataDatasourceRefreshRepeat(action: string) {
         // Handle close of Datasource RefreshRepeat
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDatasourceRefreshRepeat', '@Start');
@@ -1414,7 +1414,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
         this.showModalDataRefreshRepeat = false;
     }
-    
+
     handleCloseDataManagedConnection(action: string) {
         // Handle Close of SQL Query Builder
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataManagedConnection', '@Start');
@@ -1454,7 +1454,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
             this.showModalDataTransformation = true;
         };
     }
-    
+
     handleCloseDataManagedGraphQLEditor(returnDS: Datasource) {
         // Handle Close of GraphQL Editor
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataManagedGraphQLEditor', '@Start');
@@ -1469,7 +1469,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
             this.showModalDataTransformation = true;
         };
     }
-    
+
     handleCloseDataManagedNoSQLEditor(returnDS: Datasource) {
         // Handle Close of NoSQL Editor
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataManagedNoSQLEditor', '@Start');
@@ -1484,7 +1484,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
             this.showModalDataTransformation = true;
         };
     }
-    
+
     handleCloseDataManagedNeo4jEditor(returnDS: Datasource) {
         // Handle Close of Neo4j Editor
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataManagedNeo4jEditor', '@Start');
@@ -1514,7 +1514,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
             this.showModalDataTransformation = true;
         };
     }
-        
+
     handleCloseDataTransformation(action: string) {
         // Handle Close of Overlay Editor
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataTransformation', '@Start');
@@ -1523,7 +1523,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
         this.showModalDataTransformation = false;
     }
-        
+
     handleCloseDataEditDatasource(returnedDatasource: Datasource) {
         // Handle Close of Edit Datasource
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataEditDatasource', '@Start');
@@ -1532,7 +1532,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
         // Close the Edit Selection form
         this.showModalDataEditDatasource = false;
-        
+
         // Open relevant form
         if (returnedDatasource != null) {
             this.editingDS = true;
@@ -1578,7 +1578,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                         3000,
                         ''
                     );
-        
+
                 };
 
             };
@@ -2078,7 +2078,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         // Switch off all selections if going to View Mode
         if (this.editMode) {
             this.clickMenuEditSelectAllNone('None');
-            
+
             // Toggle mode
             this.globalVariableService.editMode.next(!this.editMode);
 
@@ -2091,9 +2091,9 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                 this.globalVariableService.saveDashboardRecent(
                     this.globalVariableService.dashboardsRecent[localIndex]);
             };
-            
+
         } else {
-        
+
             let dashboardIndex: number = this.globalVariableService.dashboards.findIndex(
                 d => d.id == this.globalVariableService.currentDashboardInfo.value
                     .currentDashboardID
@@ -2111,7 +2111,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                             'app-clickMenuEditMode', localDashboard.draftID, -1, ''
                         );
                         this.globalVariableService.editMode.next(true);
-                        
+
 
                     } else {
 
@@ -2125,7 +2125,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
                             let today = new Date();
                             let snapshotName: string = this.globalVariableService.dashboards[
-                                dashboardIndex].name + ' ' 
+                                dashboardIndex].name + ' '
                                 + this.globalVariableService.formatDate(today);
                             this.globalVariableService.newDashboardSnapshot(
                                 snapshotName, 'Starting Edit Mode','StartEditMode'
@@ -2148,7 +2148,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                     this.globalVariableService.dashboardsRecent[localIndex].editMode = true;
                     this.globalVariableService.saveDashboardRecent(
                         this.globalVariableService.dashboardsRecent[localIndex]);
-                };                    
+                };
             };
         };
 
@@ -2249,7 +2249,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                             };
                         });
                     };
-                 
+
                     if (this.globalVariableService.currentWidgetCheckpoints.length > 0) {
                         this.globalVariableService.currentWidgetCheckpoints.forEach(chk => {
                             if (chk.widgetID == filteredActions[0].oldWidget.id) {
@@ -2609,7 +2609,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
     clickDashboardShare() {
         // Share a D - set the Access Type (ie Private) and Access List
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboardShare', '@Start');
-        
+
         // TODO - is this correct ??
         // Can only be done for state = Complete
         if (this.globalVariableService.currentDashboardInfo.value.currentDashboardState
@@ -2686,7 +2686,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
             d => d.id == this.globalVariableService.currentDashboardInfo.value.currentDashboardID
         );
         if (dashboardIndex >= 0) {
-            if (this.globalVariableService.currentDashboards[dashboardIndex].state 
+            if (this.globalVariableService.currentDashboards[dashboardIndex].state
                 != 'Draft') {
                     this.showMessage(
                         'Can only save a Dashboard with State Draft',
@@ -2727,7 +2727,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
             d => d.id == this.globalVariableService.currentDashboardInfo.value.currentDashboardID
         );
         if (dashboardIndex >= 0) {
-            if (this.globalVariableService.currentDashboards[dashboardIndex].state 
+            if (this.globalVariableService.currentDashboards[dashboardIndex].state
                 != 'Complete') {
                     this.showMessage(
                         'Can only save a Dashboard with Complete Draft',
@@ -2765,7 +2765,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
         this.menuOptionClickPreAction();
 
-        this.showModalDashboardExport = true;        
+        this.showModalDashboardExport = true;
     }
 
     clickDashboardSnapshots() {
@@ -3123,7 +3123,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
 
     // ***********************  CLICK DATA MENU OPTIONS ************************ //
-   
+
     clickMenuDataManagedConnection() {
         // SQL Query Builder, constructed by selecting Table and Fields
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataManagedConnection', '@Start');
@@ -3168,7 +3168,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
         this.showModalDataManagedNoSQLEditor = true;
     }
-    
+
     clickMenuDataManagedNeo4jEditor() {
         // Ne04j Editor
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataManagedNeo4jEditor', '@Start');
@@ -3186,7 +3186,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
         this.showModalDataManagedOverlayEditor = true;
     }
-    
+
     clickMenuDataTransformation() {
         // Overlay Editor
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataTransformation', '@Start');
@@ -3198,7 +3198,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         // let dataFields: = ...
         this.showModalDataTransformation = true;
     }
-        
+
     clickMenuDataEditDatasource() {
         // Overlay Editor
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataEditDatasource', '@Start');
@@ -3261,7 +3261,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         this.menuOptionClickPreAction();
 
         this.showModalDataRefreshOnce = true;
-    }    
+    }
 
     clickMenuDatasourceRefreshRepeat() {
         // Refresh selected DS Repeat off
@@ -3270,14 +3270,14 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         this.menuOptionClickPreAction();
 
         this.showModalDataRefreshRepeat = true;
-    }    
+    }
 
     clickMenuDataDirectFileCSV() {
         // Open form to create a DS with data that comes from a CSV file.
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDirectFileCSV', '@Start');
 
         this.menuOptionClickPreAction();
-        
+
         this.editingDS = false;
         this.selectedDatasource = null;
         this.showModalDataDirectFileCSV = true;
@@ -3288,7 +3288,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDirectFileJSON', '@Start');
 
         this.menuOptionClickPreAction();
-        
+
         this.editingDS = false;
         this.selectedDatasource = null;
         this.showModalDataDirectFileJSON = true;
@@ -3404,7 +3404,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         this.showModalManagedDataDataDictionary = true;
 
     }
-    
+
     clickMenuDataManagedDataOwnership(){
         // Manage Ownership for a DS
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataManagedDataOwnership', '@Start');
@@ -3453,7 +3453,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
         this.showModalDataDictionary = true;
     }
-    
+
     clickMenuBusinessGlossary() {
         // Shows Data Dictionary
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuBusinessGlossary', '@Start');
@@ -3604,7 +3604,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                         this.selectedWidget = w;
                     };
                 });
-                            
+
             } else {
                 let widgetIndex: number = this.currentWidgets.findIndex(w => w.id == widgetID);
                 if (widgetIndex < 0) {
@@ -3615,12 +3615,12 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                         3000,
                         ''
                     );
-        
+
                 } else {
                     this.selectedWidget = this.currentWidgets[widgetIndex];
                 }
             };
-            
+
         } else {
             this.selectedWidget = this.currentWidgets[widgetIndex];
         };
@@ -4481,7 +4481,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
             if (!this.checkForOnlyOneWidget('Table')) {
                 return;
             };
-   
+
         } else {
             let widgetIndex: number = this.currentWidgets.findIndex(w => w.id == widgetID);
             if (widgetIndex < 0) {
@@ -4492,7 +4492,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                     3000,
                     ''
                 );
-    
+
             } else {
                 this.selectedWidget = this.currentWidgets[widgetIndex];
             }
@@ -4778,7 +4778,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
             if (!this.checkForOnlyOneWidget('Slicer')) {
                 return;
             };
-                
+
         } else {
             let widgetIndex: number = this.currentWidgets.findIndex(w => w.id == widgetID);
             if (widgetIndex < 0) {
@@ -4789,7 +4789,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                     3000,
                     ''
                 );
-    
+
             } else {
                 this.selectedWidget = this.currentWidgets[widgetIndex];
             }
@@ -5173,7 +5173,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                     this.selectedWidget = w;
                 };
             });
-                
+
         } else {
             let widgetIndex: number = this.currentWidgets.findIndex(w => w.id == widgetID);
             if (widgetIndex < 0) {
@@ -5184,12 +5184,12 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                     3000,
                     ''
                 );
-    
+
             } else {
                 this.selectedWidget = this.currentWidgets[widgetIndex];
             }
         };
-        
+
         this.menuOptionClickPreAction();
 
         // Check if Locked
@@ -5294,10 +5294,10 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         };
 
         this.menuOptionClickPreAction();
-        
+
         // Assume we want to have a title either way
         this.selectedWidget.containerHasTitle = true;
-        this.showTitleForm = true;        
+        this.showTitleForm = true;
     }
 
     clickMenuShapeDelete() {
@@ -6308,8 +6308,8 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
     // ***********************  CLICK PALETTE (specific) MENU OPTIONS ************************ //
     clickMenuPaletteEdit(
-        widgetID: number = null, 
-        widgetIndex: number = null, 
+        widgetID: number = null,
+        widgetIndex: number = null,
         canSave: boolean = true,
         widgetType: string = '') {
         // Clicked the Edit option on palette - decide what to do
@@ -6471,7 +6471,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
         this.showTitleForm = true;
     }
-    
+
 
 
 
@@ -7115,7 +7115,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         // Deep copy existing W
         // let oldWidget: Widget = Object.assign({}, this.currentWidgets[index]);
         let oldWidget: Widget = JSON.parse(JSON.stringify(this.currentWidgets[index]));
-            
+
         let gvIndex: number = -1;
         gvIndex = this.globalVariableService.currentWidgets.findIndex(w =>
             w.id == this.currentWidgets[index].id
@@ -7300,10 +7300,10 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         // Toggle to show Checkpoints or not
         this.globalFunctionService.printToConsole(this.constructor.name,'clickToggleShowCheckpoint', '@Start');
 
-        // How it works:  when loading a W at RunTime, each W.checkpointIDs[] is set to the 
-        // IDs of all its previously stored Checkpoints.  It also stores 
-        // currentCheckpoint = 0, which is the index in checkpointIDs while browsing, and 
-        // lastCheckpoint which is the index in checkpointIDs of the last ID.  This is a 
+        // How it works:  when loading a W at RunTime, each W.checkpointIDs[] is set to the
+        // IDs of all its previously stored Checkpoints.  It also stores
+        // currentCheckpoint = 0, which is the index in checkpointIDs while browsing, and
+        // lastCheckpoint which is the index in checkpointIDs of the last ID.  This is a
         // hack to simplify moving between checkpoint (0 -> lastCheckpoint in checkpointIDs).
         // It is important to note these are indices, not ids.  There is a fourth field,
         // showCheckpoints, which is set to True when while browsing Checkpoints.
@@ -7740,7 +7740,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                 null,
                 null,
                 true
-            );    
+            );
         };
     }
 
@@ -7891,7 +7891,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
     clickDashboard() {
         // Toggles Palette - horisontal / vertical
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDashboard', '@Start');
-        
+
         // Exit if busy with mouse down and up
         if (this.dashboardStartX != this.dashboardEndX  ||
             this.dashboardStartY != this.dashboardEndY) {
@@ -7900,16 +7900,16 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
         // Unselect all Ws
         this.clickMenuEditSelectAllNone('None');
-        this.dashboardStartX = 0; 
+        this.dashboardStartX = 0;
         this.dashboardEndX = 0;
-        this.dashboardStartY = 0; 
+        this.dashboardStartY = 0;
         this.dashboardEndY = 0;
     }
 
     mousedownDashboard(ev: any) {
         // Toggles Palette - horisontal / vertical
         this.globalFunctionService.printToConsole(this.constructor.name,'mousedownDashboard', '@Start');
-        
+
         // Store X & Y
         this.dashboardStartX = ev.x;
         this.dashboardStartY = ev.y
@@ -7920,7 +7920,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
     mouseupDashboard(ev: any) {
         // Toggles Palette - horisontal / vertical
         this.globalFunctionService.printToConsole(this.constructor.name,'mouseupDashboard', '@Start');
-        
+
         // Store X & Y
         this.dashboardEndX = ev.x;
         this.dashboardEndY = ev.y;
@@ -7935,20 +7935,39 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         this.clickMenuEditSelectAllNone('None');
 
         // Select Ws within the range
+        let insideX: boolean = false;
+        let insideY: boolean = false;
         this.currentWidgets.forEach(w => {
-            if (w.containerTop >= this.dashboardStartY  && 
-                w.containerTop <= this.dashboardEndY  &&
-                w.containerLeft >= this.dashboardStartX  &&
-                w.containerLeft <= this.dashboardEndX) {
-                    w.isSelected = true;
+            insideX = false;
+            insideY = false;
+            if (
+                    (w.containerLeft >= this.dashboardStartX  &&
+                     w.containerLeft <= this.dashboardEndX
+                    )
+                    ||
+                    (w.containerLeft <= this.dashboardStartX  &&
+                     w.containerLeft >= this.dashboardEndX
+                    )
+                ) {
+                    insideX = true;
             };
-            // Reverse selection
-            if (w.containerTop <= this.dashboardStartY  && 
-                w.containerTop >= this.dashboardEndY  &&
-                w.containerLeft <= this.dashboardStartX  &&
-                w.containerLeft >= this.dashboardEndX) {
-                    w.isSelected = true;
+
+            if (
+                    (w.containerTop >= this.dashboardStartY  &&
+                     w.containerTop <= this.dashboardEndY
+                    )
+                    ||
+                    (w.containerTop <= this.dashboardStartY  &&
+                     w.containerTop >= this.dashboardEndY
+                    )
+                ) {
+                    insideY = true;
             };
+
+            if (insideX  &&  insideY) {
+                w.isSelected = true;
+            };
+
         });
 
     }
