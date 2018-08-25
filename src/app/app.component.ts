@@ -663,9 +663,11 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                                 // Loop on All/Indicated Ws
                                 this.currentWidgets = [];
                                 for (var i = 0; i < this.globalVariableService.currentWidgets.length; i++) {
-                                    let w: Widget = Object.assign({},
-                                        this.globalVariableService.currentWidgets[i]);
-                                    w.isSelected = false;
+                                    // let w: Widget = Object.assign({},
+                                    //     this.globalVariableService.currentWidgets[i]);
+                                    let w: Widget = JSON.parse(JSON.stringify(
+                                        this.globalVariableService.currentWidgets[i]));
+                                        w.isSelected = false;
                                     this.currentWidgets.push(w)
                                 }
                                 console.warn('xx app end', this.currentWidgets);
@@ -3956,7 +3958,8 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         this.showWidgetFullScreenX = 'X';
         this.showWidgetFullScreenCopy = 'Copy Image';
 
-        let localWidget = Object.assign({}, this.selectedWidget);
+        // let localWidget = Object.assign({}, this.selectedWidget);
+        let localWidget = JSON.parse(JSON.stringify(this.selectedWidget));
 
         // Rescale and limit amount of detail on the graph
         localWidget.containerLeft = 50;
@@ -4158,7 +4161,8 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         this.currentWidgets.forEach(w => {
 
             if (w.isSelected) {
-                this.clipboardWidget = Object.assign({}, w);
+                // this.clipboardWidget = Object.assign({}, w);
+                this.clipboardWidget = JSON.parse(JSON.stringify(w));
 
                 this.showMessage(
                     'Widget copied',
@@ -7547,7 +7551,8 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                     &&  this.currentWidgets[i].widgetType == widgetType)
                 ) {
 
-                deleteWidget = Object.assign({}, this.currentWidgets[i]);
+                // deleteWidget = Object.assign({}, this.currentWidgets[i]);
+                deleteWidget = JSON.parse(JSON.stringify(this.currentWidgets[i]));
                 datasetID = this.currentWidgets[i].datasetID;
                 delIDs.push(this.currentWidgets[i].id);
                 this.currentWidgets.splice(i,1);

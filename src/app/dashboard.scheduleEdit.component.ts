@@ -108,9 +108,12 @@ export class DashboardScheduleEditComponent implements OnInit {
         let dashboardScheduleIndex: number = this.globalVariableService.dashboardSchedules
             .findIndex(sch => sch.id == id);
         if (dashboardScheduleIndex >= 0) {
-            this.selectedDashboardSchedule = Object.assign({},
+            // this.selectedDashboardSchedule = Object.assign({},
+            //     this.globalVariableService.dashboardSchedules[dashboardScheduleIndex]
+            // );
+            this.selectedDashboardSchedule = JSON.parse(JSON.stringify(
                 this.globalVariableService.dashboardSchedules[dashboardScheduleIndex]
-            );
+            ));
         };
 
     }
@@ -174,9 +177,12 @@ export class DashboardScheduleEditComponent implements OnInit {
         let dashboardScheduleIndex: number = this.currentDashboardSchedules
             .findIndex(sch => sch.id == this.selectedDashboardSchedule.id);
         if (dashboardScheduleIndex >= 0) {
-            this.selectedDashboardSchedule = Object.assign({},
+            // this.selectedDashboardSchedule = Object.assign({},
+            //     this.currentDashboardSchedules[dashboardScheduleIndex]
+            // );
+            this.selectedDashboardSchedule = JSON.parse(JSON.stringify(
                 this.currentDashboardSchedules[dashboardScheduleIndex]
-            );
+            ));
         };
 
         // Reset
@@ -313,8 +319,10 @@ export class DashboardScheduleEditComponent implements OnInit {
             let dashboardScheduleIndex: number = this.currentDashboardSchedules
                 .findIndex(sch => sch.id == this.selectedDashboardSchedule.id);
             if (dashboardScheduleIndex >= 0) {
+                // this.currentDashboardSchedules[dashboardScheduleIndex] =
+                //     Object.assign({}, this.selectedDashboardSchedule);
                 this.currentDashboardSchedules[dashboardScheduleIndex] =
-                    Object.assign({}, this.selectedDashboardSchedule);
+                JSON.parse(JSON.stringify(this.selectedDashboardSchedule));
             };
             this.globalVariableService.saveDashboardSchedule(this.selectedDashboardSchedule)
         };
