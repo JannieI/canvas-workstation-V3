@@ -140,7 +140,8 @@ const graphWidth: number = 420;
             };
         } else {
 
-            this.localWidget = Object.assign({}, this.selectedWidget);
+            // this.localWidget = Object.assign({}, this.selectedWidget);
+            this.localWidget = JSON.parse(JSON.stringify(this.selectedWidget));
 
             // TODO - handle properly and close form
             if (this.localWidget.datasourceID == 0) {
