@@ -136,6 +136,12 @@ This document describes items for later versions of Canvas.
     - Resize does not snap to grid - is this philosophy correct?  If it does snap, remember to change the graphW & -H as well
     - FIX nrDataQualityIssues at DB level: join and fill the value, so that Canvas dont need to do any manipulation
     - in Open D we list those 'Due on' a date.  This can only be done when we calculate the due date given the schedule - remember the Omega complexity with this.
+    - Snapshot.clickRestore accesses global vars directly: revisit whole routine and see if can be done better: DS, dSet, WChkPnt, D, T, W.
+        - some other places with the same issue:
+        * WidgetCheckPoint: app.Undo
+        * Widget: app.deleteWidget
+        * current dSet: dataRefresh.clickDS, slicerSingle.clickSlicer
+        * currentW: app (20+ times), SlicerEd.clickSave & clickSlicerItem
     
 
 
@@ -164,6 +170,12 @@ This document describes items for later versions of Canvas.
     - stores all currentD info, users, etc
     - refreshed via WS from DB
     - also used for auto-save: all the steps are saved here, and synced to server at specified  interval (setting on client)
+    - speed test with Dexie with Dashboards stored:
+        * memory variable 0 - 3 ms, once 6 ms for 10K Ds
+        * 10: 11 - 177 ms, avg 55 ms
+        *100: 99 - 136, avg 120 ms
+        * 1000 405 - 575, avg 505 ms
+        * 10 000: avg 8 secs 200ms.  Note: clearing the DB took 10.5 MINS - 12.5 MINS !
 
 
     Data:

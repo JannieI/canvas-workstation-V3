@@ -6,7 +6,6 @@ import { HostListener }               from '@angular/core';
 import { Input }                      from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
-import { Renderer }                   from '@angular/core';
 import { ViewChild }                  from '@angular/core';
 
 // Our models
@@ -60,7 +59,6 @@ export class WidgetDeleteComponent implements OnInit {
     constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
-        private renderer: Renderer,
     ) {}
 
     ngOnInit() {

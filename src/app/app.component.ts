@@ -6144,54 +6144,95 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickHelpTutorials', '@Start')
         // this.globalVariableService.dashboards[0].name
 
+        // Set test var
+        let runText: boolean = false;
+
         // Define DB
         var db = new Dexie("MyAppDatabase");
-        db.version(1).stores({contacts: 'id, first, last'});
 
-        // Clear var
-        this.dexieDB = [];
+        // // Delete DB
+        // db.table("contacts").delete().catch(err => console.warn('xx Del failed', err);
+        // )
+        // console.log('xx Deleted DB'); 
 
-        // Clear DB
-        db.table("contacts").clear().then(result => {
-            console.log('xx CLEARED DB', result);
+        Dexie.exists("MyAppDatabase").then(function(exists) {
+            if (exists) {
+                console.log("Database exists");
+                // Open DB
+                db.open()
+                    .then(res => {
+                        console.log('xx Opened DB', res);
+                    })
+                    .catch((error) => {
+                        console.log('xx Error in Open DB', error);
+                    });
+                 
+            } else {
+                console.log("Database doesn't exist");
+                var db = new Dexie('my-database');
+                db.version(1).stores({contacts: 'id, first, last'});
+                db.open();
+                console.log('xx Opened NEW DB'); 
 
-            // Msg
-            console.log('xx Start')
+            }
+        }).catch(function (error) {
+            console.error("Oops, an error occurred when trying to check database existance");
+        });
 
-            // Load Ds
-            for (var i = 0; i < 10; i++) {
-                
-                db.table("contacts").put(
-                    {
-                        first: "First name", 
-                        last: "Last name", 
-                        dashboard: this.globalVariableService.dashboards[0], 
-                        id: i
-                    }
-                ).then(res => {
-                    // console.log('xx res', res);
+
+
+        // Query DB
+        db.table("contacts")
+            .where('id').aboveOrEqual(2)
+            .toArray(res => console.warn('xx res', res) )
+        console.log('xx End WHERE'); 
+
+        if (runText) {
+            // Clear var
+            this.dexieDB = [];
+
+            // Clear DB
+            db.table("contacts").clear().then(result => {
+                console.log('xx CLEARED DB', result);
+
+                // Msg
+                console.log('xx Start')
+
+                // Load Ds
+                for (var i = 0; i < 1; i++) {
                     
-                });
-            };
+                    db.table("contacts").put(
+                        {
+                            first: "First name", 
+                            last: "Last name", 
+                            dashboard: this.globalVariableService.dashboards[0], 
+                            id: i
+                        }
+                    ).then(res => {
+                        // console.log('xx res', res);
+                        
+                    });
+                };
 
-            // Msg
-            console.log('xx after Dexie, before Var')
+                // Msg
+                console.log('xx after Dexie, before Var')
 
-            // Load var
-            for (var i = 0; i < 10; i++) {
-                this.dexieDB.push(
-                    {
-                        first: "First name", 
-                        last: "Last name", 
-                        dashboard: this.globalVariableService.dashboards[0], 
-                        id: i
-                    }
-                )
-            };
+                // Load var
+                for (var i = 0; i < 10; i++) {
+                    this.dexieDB.push(
+                        {
+                            first: "First name", 
+                            last: "Last name", 
+                            dashboard: this.globalVariableService.dashboards[0], 
+                            id: i
+                        }
+                    )
+                };
 
-            // Msg
-            console.log('xx End')
-        })
+                // Msg
+                console.log('xx End')
+            });
+        };
     }
 
 
