@@ -19,6 +19,7 @@ import { GlobalVariableService}       from './global-variable.service';
 // Models
 import { CSScolor }                   from './models';
 import { Dashboard }                  from './models';
+import { DashboardRecent }            from './models';
 
 // Other
 import { Subscription }               from 'rxjs';
@@ -279,6 +280,23 @@ export class DashboardDescriptionComponent implements OnInit {
         };
 
         // Update recent list
+        let newRecentIndex: DashboardRecent = this.globalVariableService.dashboardsRecent
+            .findIndex(dR => dR.dashboardID == this.selectedDashboard.id);
+        if (newRecentIndex >= 0) {
+            let newRecent: DashboardRecent = this.globalVariableService.dashboardsRecent[newRecentIndex];
+            newRecentIndex.nameAtRunTime = this.dashboardName
+            this.globalVariableService.saveDashboardRecent(newRecent)
+        }
+        let newRecent: DashboardRecent = {
+            id: null,
+            userID: this.currentUser.userID,
+            dashboardID: dashboardID,
+            dashboardTabID: dashboardTabID,
+            editMode: this.editMode.value,
+            accessed: new Date(this.formatDate(today)),
+            stateAtRunTime: 'Draft',
+            nameAtRunTime: ''
+        };
         this.globalVariableService.dashboardsRecent.forEach(dR => {
             if (dR.dashboardID == this.selectedDashboard.id) {
                 dR.nameAtRunTime = this.dashboardName;

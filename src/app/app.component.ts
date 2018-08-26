@@ -6154,35 +6154,46 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         this.dexieDB = [];
 
         // Clear DB
-        db.table("contacts").clear().then(result => console.log('xx CLEARED DB', result));
+        db.table("contacts").clear().then(result => {
+            console.log('xx CLEARED DB', result);
 
-        // Load Ds
-        for (var i = 0; i < 1000; i++) {
-            
-            db.table("contacts").put(
-                {
-                    first: "First name", 
-                    last: "Last name", 
-                    dashboard: this.globalVariableService.dashboards[0], 
-                    id: i
-                }
-            ).then(res => {
-                // console.log('xx res', res);
+            // Msg
+            console.log('xx Start')
+
+            // Load Ds
+            for (var i = 0; i < 10; i++) {
                 
-            });
-        };
+                db.table("contacts").put(
+                    {
+                        first: "First name", 
+                        last: "Last name", 
+                        dashboard: this.globalVariableService.dashboards[0], 
+                        id: i
+                    }
+                ).then(res => {
+                    // console.log('xx res', res);
+                    
+                });
+            };
 
-        // Load var
-        for (var i = 0; i < 1000; i++) {
-            this.dexieDB.push(
-                {
-                    first: "First name", 
-                    last: "Last name", 
-                    dashboard: this.globalVariableService.dashboards[0], 
-                    id: i
-                }
-            )
-        };
+            // Msg
+            console.log('xx after Dexie, before Var')
+
+            // Load var
+            for (var i = 0; i < 10; i++) {
+                this.dexieDB.push(
+                    {
+                        first: "First name", 
+                        last: "Last name", 
+                        dashboard: this.globalVariableService.dashboards[0], 
+                        id: i
+                    }
+                )
+            };
+
+            // Msg
+            console.log('xx End')
+        })
     }
 
 

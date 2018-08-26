@@ -2359,17 +2359,23 @@ export class GlobalVariableService {
                     let localIndex: number = this.dashboardsRecent.findIndex(u =>
                         u.id == data.id
                     );
-                    this.dashboardsRecent[localIndex] = data;
 
-                    // Change order - last accessed one must be at top
-                    let temp: DashboardRecent[] = [ this.dashboardsRecent[localIndex] ].concat(
-                        this.dashboardsRecent.filter(dR => dR.id != data.id)
-                    );
-                    this.dashboardsRecent = temp;
-                    this.dashboardsRecentBehSubject.next(this.dashboardsRecent);
+                    if(localIndex>= 0) {
 
-                    console.log('saveDashboardRecent SAVED', {res})
-                    resolve('Saved');
+                        this.dashboardsRecent[localIndex] = data;
+                        
+                        // Change order - last accessed one must be at top
+                        let temp: DashboardRecent[] = [ this.dashboardsRecent[localIndex] ].concat(
+                            this.dashboardsRecent.filter(dR => dR.id != data.id)
+                        );
+                        this.dashboardsRecent = temp;
+                        this.dashboardsRecentBehSubject.next(this.dashboardsRecent);
+                        
+                        console.log('saveDashboardRecent SAVED', {res})
+                        resolve('Saved');
+                    } else {
+                        resolve('Failed: id not in globalVariables.dashboardsRecent');
+                    };
                 },
                 err => {
                     console.log('Error saveDashboardRecent FAILED', {err});;
