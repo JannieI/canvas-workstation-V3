@@ -489,8 +489,7 @@ export class AppComponent implements OnInit {
         // TODO - fix hard coding, must be done via Login
         this.globalVariableService.getCanvasUsers().then(res => {
             this.globalVariableService.currentUserID.next('JannieI');
-            this.globalVariableService.currentUser = this.globalVariableService.canvasUsers
-                .filter(u => u.userID == 'JannieI')[0];
+            this.globalVariableService.setCurrentCanvasUser('JannieI');
             console.log('Welcome ' + this.globalVariableService.currentUser.userID);
 
             // Set palette position
