@@ -279,7 +279,7 @@ export class DashboardDescriptionComponent implements OnInit {
         };
 
         // Update recent list
-        this.globalVariableService.touchupDashboardRecent(
+        this.globalVariableService.touchupDashboardRecentVar(
             this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
             this.dashboardName
         );

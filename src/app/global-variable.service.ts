@@ -2291,8 +2291,12 @@ export class GlobalVariableService {
 
     }
 
-    touchupDashboardRecent(dashboardID:number, dashboardName: string) {
+    touchupDashboardRecentVar(dashboardID:number, dashboardName: string) {
         // Description: Touchup DashboardRecent by changing selected fields
+        // NOTE: it does NOT change position in the global variable.
+        // It is typically used:
+        // - change current D Desc => position remains unchanged
+        // - D Rename => position should not be affected
         console.log('%c    Global-Variables touchupDashboardRecent ...',
             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px"
             , {dashboardID}, {dashboardName});
@@ -2302,7 +2306,7 @@ export class GlobalVariableService {
         
         if (newRecentIndex >= 0) {
             this.dashboardsRecent[newRecentIndex].nameAtRunTime = dashboardName;
-            this.saveDashboardRecent(this.dashboardsRecent[newRecentIndex]);
+            this.saveDashboardRecent(this.dashboardsRecent[newRecentIndex], false);
         };
 
     }
@@ -2353,7 +2357,7 @@ export class GlobalVariableService {
         });
     }
 
-    saveDashboardRecent(data: DashboardRecent): Promise<string> {
+    saveDashboardRecent(data: DashboardRecent, updateOrder: boolean = false): Promise<string> {
         // Description: Saves DashboardRecent
         // Returns: 'Saved' or error message
         console.log('%c    Global-Variables saveDashboardRecent ...',

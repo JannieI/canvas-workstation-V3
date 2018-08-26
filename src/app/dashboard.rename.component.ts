@@ -360,11 +360,17 @@ export class DashboardRenameComponent implements OnInit {
                     this.globalVariableService.currentDashboardName.next(this.newName);
                 };
             });
-            this.globalVariableService.dashboardsRecent.forEach(dR => {
-                if (dR.dashboardID == this.selectedDashboardID) {
-                    dR.nameAtRunTime = this.newName;
-                };
-            });
+
+            // Update Name in Recent list
+            this.globalVariableService.touchupDashboardRecentVar(
+                this.selectedDashboardID,
+                this.newName
+            );
+            // this.globalVariableService.dashboardsRecent.forEach(dR => {
+            //     if (dR.dashboardID == this.selectedDashboardID) {
+            //         dR.nameAtRunTime = this.newName;
+            //     };
+            // });
 
             this.selectedDashboardIndex = -1;
             this.selectedDashboardID = -1;
