@@ -2291,6 +2291,21 @@ export class GlobalVariableService {
 
     }
 
+    touchupDashboardRecent(dashboardID:number, dashboardName: string) {
+        // Description: Touchup DashboardRecent by changing selected fields
+        console.log('%c    Global-Variables touchupDashboardRecent ...',
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px"
+            , {dashboardID}, {dashboardName});
+
+        let newRecentIndex: number = this.dashboardsRecent
+        .findIndex(dR => dR.dashboardID == dashboardID);
+        if (newRecentIndex >= 0) {
+            this.dashboardsRecent[newRecentIndex].nameAtRunTime = dashboardName;
+            this.saveDashboardRecent(this.dashboardsRecent[newRecentIndex]);
+        };
+
+    }
+
     addDashboardRecent(data: DashboardRecent): Promise<any> {
         // Adds a D to the Recent list, and update:
         // - this.dashboardsRecent
@@ -2341,7 +2356,7 @@ export class GlobalVariableService {
         // Description: Saves DashboardRecent
         // Returns: 'Saved' or error message
         console.log('%c    Global-Variables saveDashboardRecent ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
 
         let url: string = 'dashboardsRecent';
         this.filePath = './assets/data.dashboardsRecent.json';
