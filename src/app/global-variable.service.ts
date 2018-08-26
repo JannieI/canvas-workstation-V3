@@ -7229,6 +7229,15 @@ export class GlobalVariableService {
 
     }
 
+    setCurrentCanvasUser(userID: string){
+        // Description: set the Global currentUser variable to the logged in User
+        // Returns: 'Setted', else 'Error: userID does not exist in canvasUsers'
+        console.log('%c    Global-Variables setCurrentCanvasUser ...',
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+
+        this.currentUser = this.canvasUsers.filter(u => u.userID == userID)[0];
+
+    }
     validateUser(userID: string): Promise<boolean> {
         // Checks if userID exists.  If not, return false.
         // If so, set currentUser object and return true

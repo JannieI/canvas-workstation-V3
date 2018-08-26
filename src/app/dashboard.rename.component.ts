@@ -209,6 +209,7 @@ export class DashboardRenameComponent implements OnInit {
                 }
             });
         };
+        
         if (this.filterSharedByMe) {
 
             // List of D ids from P, where I was grantor
@@ -336,7 +337,6 @@ export class DashboardRenameComponent implements OnInit {
 
         // Respect access
         this.errorMessage = '';
-        let hasAccess: boolean = false;
 
         // No Access
         if (!this.globalVariableService.dashboardPermissionCheck(
