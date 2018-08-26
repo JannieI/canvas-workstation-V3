@@ -6145,39 +6145,49 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         // this.globalVariableService.dashboards[0].name
 
         // Set test var
-        let runText: boolean = false;
+        let runText: boolean = true;
 
         // Define DB
         var db = new Dexie("MyAppDatabase");
-
+        db.version(1).stores({contacts: 'id, first, last'});
+        db.open()
+            .then(res => {
+                console.log('xx Opened DB', res);
+            })
+            .catch((error) => {
+                console.log('xx Error in Open DB', error);
+            });
+        
         // // Delete DB
         // db.table("contacts").delete().catch(err => console.warn('xx Del failed', err);
         // )
         // console.log('xx Deleted DB'); 
 
-        Dexie.exists("MyAppDatabase").then(function(exists) {
-            if (exists) {
-                console.log("Database exists");
-                // Open DB
-                db.open()
-                    .then(res => {
-                        console.log('xx Opened DB', res);
-                    })
-                    .catch((error) => {
-                        console.log('xx Error in Open DB', error);
-                    });
+        // Dexie.exists("MyAppDatabase").then(function(exists) {
+        //     if (exists) {
+        //         console.log("Database exists");
+        //         // Open DB
+        //         db.version(1).stores({contacts: 'id, first, last'});
+        //         db.open()
+        //             .then(res => {
+        //                 console.log('xx Opened DB', res);
+        //             })
+        //             .catch((error) => {
+        //                 console.log('xx Error in Open DB', error);
+        //             });
                  
-            } else {
-                console.log("Database doesn't exist");
-                var db = new Dexie('my-database');
-                db.version(1).stores({contacts: 'id, first, last'});
-                db.open();
-                console.log('xx Opened NEW DB'); 
+        //     } else {
+        //         console.log("Database doesn't exist");
+        //         var db = new Dexie('MyAppDatabase');
+        //         db.version(1).stores({contacts: 'id, first, last'});
+        //         db.open();
+        //         console.log('xx Opened NEW DB'); 
 
-            }
-        }).catch(function (error) {
-            console.error("Oops, an error occurred when trying to check database existance");
-        });
+        //     }
+        // })
+        // .catch(function (error) {
+        //     console.error("Oops, an error occurred when trying to check database existance");
+        // });
 
 
 
@@ -6199,7 +6209,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                 console.log('xx Start')
 
                 // Load Ds
-                for (var i = 0; i < 1; i++) {
+                for (var i = 0; i < 10; i++) {
                     
                     db.table("contacts").put(
                         {
@@ -6209,7 +6219,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                             id: i
                         }
                     ).then(res => {
-                        // console.log('xx res', res);
+                        console.log('xx res', res);
                         
                     });
                 };
