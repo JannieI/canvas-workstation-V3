@@ -159,7 +159,7 @@ export class PreferencesComponent implements OnInit {
         // Save data and Close form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
-        this.globalVariableService.setCurrentCanvasUser(
+        this.globalVariableService.updateCurrentUserProperties(
             {
                 preferencePaletteHorisontal: this.preferencePaletteHorisontal,
                 preferenceAutoSync: this.preferenceAutoSync,
@@ -173,7 +173,7 @@ export class PreferencesComponent implements OnInit {
                 preferenceDefaultPrinter: this.preferenceDefaultPrinter,
                 preferenceDefaultPageSize: this.preferenceDefaultPageSize,
                 preferenceDefaultPageLayout: this.preferenceDefaultPageLayout,
-                preferenceDefaultSnapshotMins: this.preferenceDefaultSnapshotMins;
+                preferenceDefaultSnapshotMins: this.preferenceDefaultSnapshotMins
             }
         );
 

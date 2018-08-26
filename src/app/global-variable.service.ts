@@ -7257,11 +7257,23 @@ export class GlobalVariableService {
         this.currentUser.dashboardCanAddDatasourceRole = false;
         this.currentUser.canManageGroupRole = false;
     }
-    
+
     updateCurrentUserProperties(parameters: 
         {
             isFirstTimeUser?: boolean,
-            preferencePaletteHorisontal?: boolean
+            preferencePaletteHorisontal?: boolean,
+            preferenceAutoSync?: boolean,
+            preferenceShowOpenStartupMessage?: boolean,
+            preferenceShowOpenDataCombinationMessage?: boolean,
+            preferenceShowViewStartupMessage?: boolean,
+            preferenceShowDiscardStartupMessage?: boolean,
+            preferenceDefaultTemplateID?: number,
+            preferenceDefaultDateformat?: string,
+            preferenceDefaultFolder?: string,
+            preferenceDefaultPrinter?: string,
+            preferenceDefaultPageSize?: string,
+            preferenceDefaultPageLayout?: string,
+            preferenceDefaultSnapshotMins?: number
         }
         ) {
         // Description: update properties in the the Global currentUser variable
@@ -7271,12 +7283,46 @@ export class GlobalVariableService {
             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         if (parameters.isFirstTimeUser != null) {
-            console.warn('xx chg isFirstTim')
             this.currentUser.isFirstTimeUser = parameters.isFirstTimeUser;
         };
         if (parameters.preferencePaletteHorisontal != null) {
-            console.warn('xx chg preferencePaletteHorisontal')
             this.currentUser.preferencePaletteHorisontal = parameters.preferencePaletteHorisontal;
+        };
+        if (parameters.preferenceAutoSync != null) {
+            this.currentUser.preferenceAutoSync = parameters.preferenceAutoSync;
+        };
+        if (parameters.preferenceShowOpenStartupMessage != null) {
+            this.currentUser.preferenceShowOpenStartupMessage = parameters.preferenceShowOpenStartupMessage;
+        };
+        if (parameters.preferenceShowOpenDataCombinationMessage != null) {
+            this.currentUser.preferenceShowOpenDataCombinationMessage = parameters.preferenceShowOpenDataCombinationMessage;
+        };
+        if (parameters.preferenceShowViewStartupMessage != null) {
+            this.currentUser.preferenceShowViewStartupMessage = parameters.preferenceShowViewStartupMessage;
+        };
+        if (parameters.preferenceShowDiscardStartupMessage != null) {
+            this.currentUser.preferenceShowDiscardStartupMessage = parameters.preferenceShowDiscardStartupMessage;
+        };
+        if (parameters.preferenceDefaultTemplateID != null) {
+            this.currentUser.preferenceDefaultTemplateID = parameters.preferenceDefaultTemplateID;
+        };
+        if (parameters.preferenceDefaultDateformat != null) {
+            this.currentUser.preferenceDefaultDateformat = parameters.preferenceDefaultDateformat;
+        };
+        if (parameters.preferenceDefaultFolder != null) {
+            this.currentUser.preferenceDefaultFolder = parameters.preferenceDefaultFolder;
+        };
+        if (parameters.preferenceDefaultPrinter != null) {
+            this.currentUser.preferenceDefaultPrinter = parameters.preferenceDefaultPrinter;
+        };
+        if (parameters.preferenceDefaultPageSize != null) {
+            this.currentUser.preferenceDefaultPageSize = parameters.preferenceDefaultPageSize;
+        };
+        if (parameters.preferenceDefaultPageLayout != null) {
+            this.currentUser.preferenceDefaultPageLayout = parameters.preferenceDefaultPageLayout;
+        };
+        if (parameters.preferenceDefaultSnapshotMins != null) {
+            this.currentUser.preferenceDefaultSnapshotMins = parameters.preferenceDefaultSnapshotMins;
         };
         
     }
