@@ -490,7 +490,6 @@ export class AppComponent implements OnInit {
         this.globalVariableService.getCanvasUsers().then(res => {
             this.globalVariableService.currentUserID.next('JannieI');
             this.globalVariableService.setCurrentCanvasUser('JannieI');
-            console.log('Welcome ' + this.globalVariableService.currentUser.userID);
 
             // Set palette position
             if (this.globalVariableService.currentUser.lastPaletteLeft != null) {
@@ -6144,6 +6143,11 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         // Help: Demo
         this.globalFunctionService.printToConsole(this.constructor.name,'clickHelpTutorials', '@Start')
         // this.globalVariableService.dashboards[0].name
+
+        console.warn('xx this.globalVariableService.currentUser.isFirstTimeUser', this.globalVariableService.currentUser);
+
+        this.globalVariableService.updateCurrentUserProperties({isFirstTimeUser: false});
+        console.warn('xx AFTR TRUE', this.globalVariableService.currentUser);
 
         // Define DB
         var db = new Dexie("MyAppDatabase");

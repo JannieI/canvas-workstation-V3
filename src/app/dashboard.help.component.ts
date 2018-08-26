@@ -38,7 +38,7 @@ export class DashboardHelpComponent implements OnInit {
         };
 
     }
-    
+
 	constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
@@ -52,9 +52,10 @@ export class DashboardHelpComponent implements OnInit {
 
 		this.formDashboardHelpClosed.emit(action);
     }
- 
+
     clickGotIt() {
-        this.globalVariableService.currentUser.isFirstTimeUser = false;
+        this.globalVariableService.updateCurrentUserProperties({isFirstTimeUser: false});
+        // this.globalVariableService.currentUser.isFirstTimeUser = false;
 		this.formDashboardHelpClosed.emit('GotIt');
     }
 }

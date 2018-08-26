@@ -7233,10 +7233,24 @@ export class GlobalVariableService {
         // Description: set the Global currentUser variable to the logged in User
         // Returns: 'Setted', else 'Error: userID does not exist in canvasUsers'
         console.log('%c    Global-Variables setCurrentCanvasUser ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {userID});
 
         this.currentUser = this.canvasUsers.filter(u => u.userID == userID)[0];
 
+    }
+
+    updateCurrentUserProperties(parameters: 
+        {isFirstTimeUser?: boolean}
+        ) {
+        // Description: update properties in the the Global currentUser variable
+        // NOTE: This does NOT update the DB or any other Variable
+        // Returns: 'Setted', else 'Error: userID does not exist in canvasUsers'
+        console.log('%c    Global-Variables updateCurrentUserProperties ...',
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+
+        if (parameters.isFirstTimeUser != null) {
+            this.currentUser.isFirstTimeUser = parameters.isFirstTimeUser;
+        };
     }
     validateUser(userID: string): Promise<boolean> {
         // Checks if userID exists.  If not, return false.
