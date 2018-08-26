@@ -283,11 +283,6 @@ export class DashboardDescriptionComponent implements OnInit {
             this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
             this.dashboardName
         );
-        // this.globalVariableService.dashboardsRecent.forEach(dR => {
-        //     if (dR.dashboardID == this.selectedDashboard.id) {
-        //         dR.nameAtRunTime = this.dashboardName;
-        //     };
-        // });
 
         // Tell user
         this.globalVariableService.showStatusBarMessage(

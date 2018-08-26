@@ -20,6 +20,7 @@ This document describes items for later versions of Canvas.
     - Tablist
     - Direct Service
     - Managed Service
+    - Combinations
 
 
 

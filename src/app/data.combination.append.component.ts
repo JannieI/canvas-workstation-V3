@@ -77,6 +77,12 @@ export class DataCombinationAppendComponent implements OnInit {
         // Initialise
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
+
+        // TODO 
+        // NB - fix the code where this.globalVariableService.VARIABLE is updated directly
+        // from this code
+        // TODO
+
         let currentWidgetIDs: number[] = [];
         this.globalVariableService.currentWidgets.forEach(w => {
             currentWidgetIDs.push(w.datasourceID);

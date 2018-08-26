@@ -348,18 +348,24 @@ export class DashboardRenameComponent implements OnInit {
         // Replace, and exit renameMode
         if (this.selectedDashboardIndex != -1  ||  this.selectedDashboardID != -1) {
             this.filteredDashboards[this.selectedDashboardIndex].name = this.newName;
+
+            // Update DB, global vars
             this.globalVariableService.dashboards.forEach(d => {
                 if (d.id == this.selectedDashboardID) {
                     d.name = this.newName;
                     this.globalVariableService.saveDashboard(d);
                 };
             });
-            this.globalVariableService.currentDashboards.forEach(d => {
-                if (d.id == this.selectedDashboardID) {
-                    d.name = this.newName;
-                    this.globalVariableService.currentDashboardName.next(this.newName);
-                };
-            });
+            
+            // Propagate D name
+            this.globalVariableService.currentDashboardName.next(this.newName);
+
+            // this.globalVariableService.currentDashboards.forEach(d => {
+            //     if (d.id == this.selectedDashboardID) {
+            //         d.name = this.newName;
+            //         this.globalVariableService.currentDashboardName.next(this.newName);
+            //     };
+            // });
 
             // Update Name in Recent list
             this.globalVariableService.touchupDashboardRecentVar(
