@@ -2293,6 +2293,8 @@ export class GlobalVariableService {
 
     touchupDashboardRecentVar(dashboardID:number, dashboardName: string) {
         // Description: Touchup DashboardRecent by changing selected fields
+        // NOTE: It does NOT change the DB -> this is only updating the local variable.
+        // - Next time one reads the list from the DB, it will be filled correctly
         // NOTE: it does NOT change position in the global variable.
         // It is typically used:
         // - change current D Desc => position remains unchanged
@@ -2306,7 +2308,7 @@ export class GlobalVariableService {
         
         if (newRecentIndex >= 0) {
             this.dashboardsRecent[newRecentIndex].nameAtRunTime = dashboardName;
-            this.saveDashboardRecent(this.dashboardsRecent[newRecentIndex], false);
+            // this.saveDashboardRecent(this.dashboardsRecent[newRecentIndex],);
         };
 
     }
@@ -2357,7 +2359,7 @@ export class GlobalVariableService {
         });
     }
 
-    saveDashboardRecent(data: DashboardRecent, updateOrder: boolean = false): Promise<string> {
+    saveDashboardRecent(data: DashboardRecent): Promise<string> {
         // Description: Saves DashboardRecent
         // Returns: 'Saved' or error message
         console.log('%c    Global-Variables saveDashboardRecent ...',
