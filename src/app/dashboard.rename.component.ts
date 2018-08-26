@@ -79,7 +79,17 @@ export class DashboardRenameComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.filteredDashboards = this.globalVariableService.dashboards.slice();
+        this.filteredDashboards = this.globalVariableService.dashboards
+            .slice()
+            .sort( (obj1,obj2) => {
+                if (obj1.name > obj2.name) {
+                    return 1;
+                };
+                if (obj1.name < obj2.name) {
+                    return -1;
+                };
+                return 0;
+            });
     }
 
     clickClose(action: string) {
