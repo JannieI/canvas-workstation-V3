@@ -2298,7 +2298,8 @@ export class GlobalVariableService {
             , {dashboardID}, {dashboardName});
 
         let newRecentIndex: number = this.dashboardsRecent
-        .findIndex(dR => dR.dashboardID == dashboardID);
+            .findIndex(dR => dR.dashboardID == dashboardID);
+        
         if (newRecentIndex >= 0) {
             this.dashboardsRecent[newRecentIndex].nameAtRunTime = dashboardName;
             this.saveDashboardRecent(this.dashboardsRecent[newRecentIndex]);

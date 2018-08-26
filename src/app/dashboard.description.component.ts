@@ -279,11 +279,15 @@ export class DashboardDescriptionComponent implements OnInit {
         };
 
         // Update recent list
-        this.globalVariableService.dashboardsRecent.forEach(dR => {
-            if (dR.dashboardID == this.selectedDashboard.id) {
-                dR.nameAtRunTime = this.dashboardName;
-            };
-        });
+        this.globalVariableService.touchupDashboardRecent(
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+            this.dashboardName
+        );
+        // this.globalVariableService.dashboardsRecent.forEach(dR => {
+        //     if (dR.dashboardID == this.selectedDashboard.id) {
+        //         dR.nameAtRunTime = this.dashboardName;
+        //     };
+        // });
 
         // Tell user
         this.globalVariableService.showStatusBarMessage(
