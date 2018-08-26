@@ -6144,11 +6144,6 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickHelpTutorials', '@Start')
         // this.globalVariableService.dashboards[0].name
 
-        console.warn('xx this.globalVariableService.currentUser.isFirstTimeUser', this.globalVariableService.currentUser);
-
-        this.globalVariableService.updateCurrentUserProperties({isFirstTimeUser: false});
-        console.warn('xx AFTR TRUE', this.globalVariableService.currentUser);
-
         // Define DB
         var db = new Dexie("MyAppDatabase");
         db.version(1).stores({contacts: 'id, first, last'});
@@ -7991,9 +7986,16 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         this.globalFunctionService.printToConsole(this.constructor.name,'togglePaletteHorisontal', '@Start');
 
         // TODO - this must be written to DB for user
-        this.globalVariableService.currentUser.preferencePaletteHorisontal =
-            !this.globalVariableService.currentUser.preferencePaletteHorisontal;
-        this.globalVariableService.preferencePaletteHorisontal.next(
+        this.globalVariableService.updateCurrentUserProperties(
+            {
+                preferencePaletteHorisontal: !this.globalVariableService.currentUser.preferencePaletteHorisontal
+            }
+        );
+        // this.globalVariableService.currentUser.preferencePaletteHorisontal =
+        //     !this.globalVariableService.currentUser.preferencePaletteHorisontal;
+
+
+            this.globalVariableService.preferencePaletteHorisontal.next(
             this.globalVariableService.currentUser.preferencePaletteHorisontal
         );
     }

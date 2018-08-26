@@ -7240,7 +7240,10 @@ export class GlobalVariableService {
     }
 
     updateCurrentUserProperties(parameters: 
-        {isFirstTimeUser?: boolean}
+        {
+            isFirstTimeUser?: boolean,
+            preferencePaletteHorisontal?: boolean
+        }
         ) {
         // Description: update properties in the the Global currentUser variable
         // NOTE: This does NOT update the DB or any other Variable
@@ -7249,8 +7252,14 @@ export class GlobalVariableService {
             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
 
         if (parameters.isFirstTimeUser != null) {
+            console.warn('xx chg isFirstTim')
             this.currentUser.isFirstTimeUser = parameters.isFirstTimeUser;
         };
+        if (parameters.preferencePaletteHorisontal != null) {
+            console.warn('xx chg preferencePaletteHorisontal')
+            this.currentUser.preferencePaletteHorisontal = parameters.preferencePaletteHorisontal;
+        };
+        
     }
     validateUser(userID: string): Promise<boolean> {
         // Checks if userID exists.  If not, return false.
