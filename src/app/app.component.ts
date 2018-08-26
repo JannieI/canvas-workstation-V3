@@ -7995,7 +7995,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         //     !this.globalVariableService.currentUser.preferencePaletteHorisontal;
 
 
-            this.globalVariableService.preferencePaletteHorisontal.next(
+        this.globalVariableService.preferencePaletteHorisontal.next(
             this.globalVariableService.currentUser.preferencePaletteHorisontal
         );
     }

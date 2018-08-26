@@ -7239,6 +7239,25 @@ export class GlobalVariableService {
 
     }
 
+    clearCurrentUser() {
+        // Description: reset the Global currentUser variable 
+        console.log('%c    Global-Variables clearCurrentUser ...',
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+
+        this.currentUser.userID = '';
+        this.currentUser.isSuperuser = false;
+        this.currentUser.isStaff = false;
+        this.currentUser.groups = [];
+        this.currentUser.dashboardCanViewRole = false;
+        this.currentUser.dashboardCanSaveRole = false;
+        this.currentUser.dashboardCanGrantAccessRole = false;
+        this.currentUser.dashboardCanEditRole = false;
+        this.currentUser.dashboardCanDeleteRole = false;
+        this.currentUser.dashboardCanCreateRole = false;
+        this.currentUser.dashboardCanAddDatasourceRole = false;
+        this.currentUser.canManageGroupRole = false;
+    }
+    
     updateCurrentUserProperties(parameters: 
         {
             isFirstTimeUser?: boolean,
