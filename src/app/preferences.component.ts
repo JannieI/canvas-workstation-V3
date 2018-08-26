@@ -159,6 +159,24 @@ export class PreferencesComponent implements OnInit {
         // Save data and Close form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
+        this.globalVariableService.setCurrentCanvasUser(
+            {
+                preferencePaletteHorisontal: this.preferencePaletteHorisontal,
+                preferenceAutoSync: this.preferenceAutoSync,
+                preferenceShowOpenStartupMessage: this.preferenceShowOpenStartupMessage,
+                preferenceShowOpenDataCombinationMessage: this.preferenceShowOpenDataCombinationMessage,
+                preferenceShowViewStartupMessage: this.preferenceShowViewStartupMessage,
+                preferenceShowDiscardStartupMessage: this.preferenceShowDiscardStartupMessage,
+                preferenceDefaultTemplateID: this.preferenceDefaultTemplateID,
+                preferenceDefaultDateformat: this.preferenceDefaultDateformat,
+                preferenceDefaultFolder: this.preferenceDefaultFolder,
+                preferenceDefaultPrinter: this.preferenceDefaultPrinter,
+                preferenceDefaultPageSize: this.preferenceDefaultPageSize,
+                preferenceDefaultPageLayout: this.preferenceDefaultPageLayout,
+                preferenceDefaultSnapshotMins: this.preferenceDefaultSnapshotMins;
+            }
+        );
+
         this.globalVariableService.currentUser.preferencePaletteHorisontal = this.preferencePaletteHorisontal,
         this.globalVariableService.currentUser.preferenceAutoSync = this.preferenceAutoSync,
         this.globalVariableService.currentUser.preferenceShowOpenStartupMessage = this.preferenceShowOpenStartupMessage,
