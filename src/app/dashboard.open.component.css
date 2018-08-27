@@ -418,7 +418,6 @@
             grid-column-end: 4;
             grid-row-start: 22;
             grid-row-end: 23;
-            padding-top: 3px;
             text-align: left;
         }
         .filterMyFav {
@@ -427,8 +426,28 @@
             grid-column-end: 10;
             grid-row-start: 22;
             grid-row-end: 23;
+            padding-top: 3px;
             text-align: left;
         }
+
+        .filterTemplateTitle {
+            grid-column-start: 10;
+            /* autoprefixer: off */
+            grid-column-end: 14;
+            grid-row-start: 22;
+            grid-row-end: 23;
+            text-align: left;
+        }
+        .filterTemplate {
+            grid-column-start: 14;
+            /* autoprefixer: off */
+            grid-column-end: 20;
+            grid-row-start: 22;
+            grid-row-end: 23;
+            padding-top: 3px;
+            text-align: left;
+        }
+
 
         .filterModifiedTitle {
             grid-column-start: 1;

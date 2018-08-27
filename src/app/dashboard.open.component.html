@@ -292,6 +292,20 @@
                             >
                     </div>
 
+                    <div class="filterTemplateTitle">
+                        <b>Use Template:</b>
+                    </div>
+                    <div class="filterTemplate">
+                        <div class="select">
+                            <select [(ngModel)]="filterSharedWithGroup"
+                                >
+                                <option *ngFor="let row of groups; let i = index">
+                                    {{ row.name }}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+    
                     <div class="filterModifiedTitle">
                         <b>Modified:</b>
                     </div>

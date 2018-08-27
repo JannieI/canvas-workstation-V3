@@ -435,6 +435,7 @@ export class AppComponent implements OnInit {
 
 
     dexieDB: any[];
+    testIndexDB: boolean = false;
 
     // rubberbandShow: boolean = false;
     // rubberbandHeight: number = 100;
@@ -6145,7 +6146,10 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         // this.globalVariableService.dashboards[0].name
 
         // Set test var
-        let runText: boolean = true;
+
+        if (!window.indexedDB) {
+            window.alert("Your browser doesn't support a stable version of IndexedDB. Such and such feature will not be available.");
+        }
 
         // Define DB
         var db = new Dexie("MyAppDatabase");
@@ -6189,7 +6193,8 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         //     console.error("Oops, an error occurred when trying to check database existance");
         // });
 
-
+        // let keys: number[] = [1, 2, 7]
+        // db.table("contacts").bulkDelete(keys)
 
         // Query DB
         db.table("contacts")
@@ -6197,7 +6202,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
             .toArray(res => console.warn('xx res', res) )
         console.log('xx End WHERE'); 
 
-        if (runText) {
+        if (this.testIndexDB) {
             // Clear var
             this.dexieDB = [];
 
@@ -6209,7 +6214,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                 console.log('xx Start')
 
                 // Load Ds
-                for (var i = 0; i < 10; i++) {
+                for (var i = 0; i < 10000; i++) {
                     
                     db.table("contacts").put(
                         {
@@ -6228,7 +6233,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                 console.log('xx after Dexie, before Var')
 
                 // Load var
-                for (var i = 0; i < 10; i++) {
+                for (var i = 0; i < 10000; i++) {
                     this.dexieDB.push(
                         {
                             first: "First name", 

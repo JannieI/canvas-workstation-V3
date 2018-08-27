@@ -54,17 +54,6 @@ This document describes items for later versions of Canvas.
     - go through Liz doc on Driv (GDG) on design principles and review all forms
 
 
-    System, Limits:
-    --------------
-    - consider hard max limits: cannot read more than 10000 rows from Excel, etc ?
-    - determine limits, ie 1.2 GB of RAM, HDisc requirements, etc
-    - set max on data, ie max 2bn rows from db, max 10000 rows in browser, etc
-    - do some performance benchmarks: if 1000 lines csv file, takes 3 seconds to load, etc
-    - Need way to browse large volumes of data without killing browser - server must calc and warn user, plus also do pagination in the background. Also, data manipulation must be pushed onto the server as far as possible.
-    Warning:
-    - when a W is rendered and some fields dont exist, error occured, display a warning image +     message inside W.  User can edit this, fix the fields and save
-    - before saving a W, Canvas checks that the fields are valid, that it renders, etc and warns if not (but allows to save) - how does this fit in with auto-save policy?
-
 
     PDF / IMAGE:
     ------------
@@ -124,8 +113,6 @@ This document describes items for later versions of Canvas.
 
     Refactoring / tech debt / necessary improvements:
     -------------------------------------------------
-    - review and check: it should NEVER be allowed to edit the DB itself - there must be a UI function for changing things.  And always by the users, with rights if necessary.
-    - Consider array.splice() instead of current deep copy - is more TS-like ...  Review ALL deep copies - try JSONify or source.map(Object) - remember that Sl Object. did not deep copy!!
     - Add RouteGuard on 'Clarity Analytics', before going to web site ...
     BUG/ISSUE: multi-tab Slicers and Ws only refresh on the first one - when are the others done?  To do them while hidden makes no sence - should we have a dirty flag, and filterSlicer on tab change??
     - ContainerFontSize - consider dropping it, and have a font size for Title, Shape-Text, etc. Else it gets confusing ...
@@ -136,12 +123,8 @@ This document describes items for later versions of Canvas.
     - Resize does not snap to grid - is this philosophy correct?  If it does snap, remember to change the graphW & -H as well
     - FIX nrDataQualityIssues at DB level: join and fill the value, so that Canvas dont need to do any manipulation
     - in Open D we list those 'Due on' a date.  This can only be done when we calculate the due date given the schedule - remember the Omega complexity with this.
-    - Snapshot.clickRestore accesses global vars directly: revisit whole routine and see if can be done better: DS, dSet, WChkPnt, D, T, W.
-        - some other places with the same issue:
-        * WidgetCheckPoint: app.Undo
-        * Widget: app.deleteWidget
-        * current dSet: dataRefresh.clickDS, slicerSingle.clickSlicer
-        * currentW: app (20+ times), SlicerEd.clickSave & clickSlicerItem
+
+
     
 
 
@@ -164,6 +147,14 @@ This document describes items for later versions of Canvas.
 
     Local DB:
     ---------
+    - review and check: it should NEVER be allowed to edit the DB itself - there must be a UI function for changing things.  And always by the users, with rights if necessary.
+    - Consider array.splice() instead of current deep copy - is more TS-like ...  Review ALL deep copies - try JSONify or source.map(Object) - remember that Sl Object. did not deep copy!!
+    - Snapshot.clickRestore accesses global vars directly: revisit whole routine and see if can be done better: DS, dSet, WChkPnt, D, T, W.
+        - some other places with the same issue:
+        * WidgetCheckPoint: app.Undo
+        * Widget: app.deleteWidget
+        * current dSet: dataRefresh.clickDS, slicerSingle.clickSlicer
+        * currentW: app (20+ times), SlicerEd.clickSave & clickSlicerItem
     - how to add a table without deleting the IndexDB manually ??
     Caching:
     - option to switch caching on or not at the server level and local level (if server allows it)
@@ -384,6 +375,19 @@ This document describes items for later versions of Canvas.
 
 ## Later versions
     To consider for LATER versions:
+
+
+    System, Limits:
+    --------------
+    - consider hard max limits: cannot read more than 10000 rows from Excel, etc ?
+    - determine limits, ie 1.2 GB of RAM, HDisc requirements, etc
+    - set max on data, ie max 2bn rows from db, max 10000 rows in browser, etc
+    - do some performance benchmarks: if 1000 lines csv file, takes 3 seconds to load, etc
+    - Need way to browse large volumes of data without killing browser - server must calc and warn user, plus also do pagination in the background. Also, data manipulation must be pushed onto the server as far as possible.
+    Warning:
+    - when a W is rendered and some fields dont exist, error occured, display a warning image +     message inside W.  User can edit this, fix the fields and save
+    - before saving a W, Canvas checks that the fields are valid, that it renders, etc and warns if not (but allows to save) - how does this fit in with auto-save policy?
+
 
     Renderers:
     ---------
