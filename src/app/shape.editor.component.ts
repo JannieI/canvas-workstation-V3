@@ -564,7 +564,7 @@ export class ShapeEditComponent implements OnInit {
         if (this.localWidget.widgetSubType == 'Text') {
             this.localWidget.containerWidth = this.localWidget.shapeTextDisplay.length
                 * this.localWidget.shapeFontSize / 2;
-            this.localWidget.containerHeight = 8 + this.localWidget.shapeFontSize;
+            this.localWidget.containerHeight = 8 + +this.localWidget.shapeFontSize;
         };
 
         // Estimate size of Bullets
