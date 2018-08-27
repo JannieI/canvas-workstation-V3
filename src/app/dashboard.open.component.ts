@@ -481,7 +481,7 @@ export class DashboardOpenComponent implements OnInit {
             });
 
         };
-        
+
         if (this.filterModifiedAfter != '') {
             let dateAfter: Date = new Date(this.filterModifiedAfter);
             this.dashboards = this.dashboards.filter(d => {
@@ -521,6 +521,13 @@ export class DashboardOpenComponent implements OnInit {
     clickOpenView(dashboardID: number) {
         // Open a Dashboard in ViewOnly Mode
         this.globalFunctionService.printToConsole(this.constructor.name,'clickOpenView', '@Start');
+
+        // No Access
+        if (!this.globalVariableService.dashboardPermissionCheck(
+            dashboardID, 'canviewandcanedit')) {
+                this.errorMessage = 'Insufficient Permission';
+                return;
+        };
 
         this.globalVariableService.editMode.next(false);
 
@@ -583,10 +590,10 @@ export class DashboardOpenComponent implements OnInit {
             let openBracket: number = selectedDashboardString.indexOf('(');
             let closeBracket: number = selectedDashboardString.indexOf(')');
             this.selectedDashboardId = +selectedDashboardString.substring(openBracket + 1, closeBracket);
-            
+
         } else {
             this.selectedDashboardId = null;
         };
-        
+
     }
 }

@@ -55,8 +55,6 @@ This document describes items for later versions of Canvas.
 
 
 
-
-
     Testing:
     --------
     - test everything with 1000 - ie 1000 Dashboards in system, 1000 Widgets per D, etc - to check performance and to see it form layout (ie grids sizes) will copy with large volume
@@ -91,8 +89,6 @@ This document describes items for later versions of Canvas.
     - Resize does not snap to grid - is this philosophy correct?  If it does snap, remember to change the graphW & -H as well
     - FIX nrDataQualityIssues at DB level: join and fill the value, so that Canvas dont need to do any manipulation
     - in Open D we list those 'Due on' a date.  This can only be done when we calculate the due date given the schedule - remember the Omega complexity with this.
-
-
     
 
 
