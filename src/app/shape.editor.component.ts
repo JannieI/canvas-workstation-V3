@@ -575,16 +575,16 @@ export class ShapeEditComponent implements OnInit {
                 if (sb.text.length > maxTextLength) {
                     maxTextLength = sb.text.length;
                 };
+                if (maxTextLength > 50) {
+                    maxTextLength = 50;
+                    nrLines = nrLines + 1;
+                };
             });
-            if (maxTextLength > 50) {
-                maxTextLength = 50;
-                nrLines = nrLines + 1;
-            };
 
             this.localWidget.containerWidth = 35 + (maxTextLength
                 * this.localWidget.shapeFontSize / 2);
-            this.localWidget.containerHeight = nrLines *
-                (8 + this.localWidget.shapeFontSize);
+            this.localWidget.containerHeight = +nrLines * 
+                (8 + +this.localWidget.shapeFontSize);
 
         };
 
