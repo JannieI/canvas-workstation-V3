@@ -156,9 +156,20 @@ export class CollaborateMessagesComponent implements OnInit {
                     m => m.sentOn <= this.sendBefore
                 );
             };
+
+            // Sort
+            this.canvasMessages.sort( (obj1, obj2) => {
+                if (obj1.sentOn > obj2.sentOn) { 
+                    return 1;
+                };
+                if (obj1.sentOn > obj2.sentOn) { 
+                    return -1;
+                };
+                return 0;
+            });
         });
 
-        // Show/hide new messag form
+        // Show/hide new message form
         this.newMessage = showNewMessage;
     }
 

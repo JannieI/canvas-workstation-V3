@@ -248,9 +248,7 @@ This document describes items for later versions of Canvas.
 
     Dashboard:
     ----------
-    - Open: all Ds using a given Template
     - Show Grid - currently a .png -> how to make this dynamic ?
-    8 .Save keeps all snapshots and undo actions, forever.  Thus, can see how things looked like at any point in the past.  It must be clearly marked for the user.  Must also be able to search the list, and see a list of undo actions.  Also, do we discard all undo actions when a snapshot is taken, or not.  Think clearly about it.
       Important: NO undo on forms, ie Comments.  Must be done through Add/Edit/Delete
       buttons and logic on form.
     9 .Import: check security, particularly for the Datasource.  Also, is the access rights
@@ -389,6 +387,8 @@ This document describes items for later versions of Canvas.
     - Considering opening message per D (might even be per user as well), that will display each time D is opened.  How is it entered, who enters / deletes / edits it, and how is it displayed - modal (another one!), popup and for how long, and how is it closed, and how does it look to fit in?
     - have group of D (better name ...) of severalDs = used on filtering when Open D.  Maybe called bookmarks?
     - have D views on a D = set of filters and settings applied. Currently this is just another Snapshot ...  Make it easy to switch, and then attach a VIEW to a message ...
+    - Save keeps all snapshots and undo actions, forever.  Thus, can see how things looked like at any point in the past.  It must be clearly marked for the user.  Must also be able to search the list, and see a list of undo actions.  Also, do we discard all undo actions when a snapshot is taken, or not.  Think clearly about it.
+
 
     Data:
     ----
@@ -603,21 +603,13 @@ This document describes items for later versions of Canvas.
 
     Tasks: (enhance form and functionality)
     -----
-        - Incorporate tasks into Landing page?
+    - Incorporate tasks into Landing page?
     - notify when not done (by deadline)
     - easy to see outstanding tasks
     - email / notify when a task ends, starts
     - powerful filters
     - can just give deadline (optional start, duration)
     
-    Messages: (enhance form and functionality)
-    --------
-    - sort with latest first
-    - give more sort and filter - ie all per user, topic
-    - consider tags / keywords.  Also, is there a central keyword store?  For example, the same keyboards / tags used for Dashboards and Widgets and Messages?
-    - easy to show / access unread ~ use of inbox as todo list in Google
-    - link to Company platform, ie Skype?
-    - make messages visible, ie hover shows latest collaborations
 
     Global Variables:
     -----------------
@@ -725,3 +717,12 @@ This document describes items for later versions of Canvas.
                     () => console.log("OK!")
                 );
             }
+
+
+    Messages: (enhance form and functionality)
+    --------
+    - give more sort and filter - ie all per user, topic
+    - consider tags / keywords.  Also, is there a central keyword store?  For example, the same keyboards / tags used for Dashboards and Widgets and Messages?
+    - easy to show / access unread ~ use of inbox as todo list in Google
+    - link to Company platform, ie Skype?
+    - make messages visible, ie hover shows latest collaborations
