@@ -111,7 +111,7 @@ export class CollaborateMessagesComponent implements OnInit {
 
             if (this.sender != '') {
                 this.canvasMessages = this.canvasMessages.filter(
-                    m => m.sender == this.sender
+                    m => m.sender.indexOf(this.sender) >= 0
                 );
             };
             if (this.recipient != '') {
@@ -159,10 +159,10 @@ export class CollaborateMessagesComponent implements OnInit {
 
             // Sort
             this.canvasMessages.sort( (obj1, obj2) => {
-                if (obj1.sentOn > obj2.sentOn) { 
+                if (new Date(obj1.sentOn) > new Date(obj2.sentOn)) { 
                     return 1;
                 };
-                if (obj1.sentOn > obj2.sentOn) { 
+                if (new Date(obj1.sentOn) > new Date(obj2.sentOn)) { 
                     return -1;
                 };
                 return 0;
