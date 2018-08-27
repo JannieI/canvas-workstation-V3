@@ -84,20 +84,20 @@ export class PreferencesComponent implements OnInit {
                 if (n1.name > n2.name) {
                     return 1;
                 };
-    
+
                 if (n1.name < n2.name) {
                     return -1;
                 };
-    
+
                 return 0;
             });
             dashboards.forEach(d => {
                 if (d.state = 'Complete') {
                     this.dashboardList.push(d.name + ' (' + d.id.toString() + ')');
                 };
-                
+
                 // Fill Initial
-                if (this.preferenceDefaultTemplateID != null  
+                if (this.preferenceDefaultTemplateID != null
                     &&
                     this.preferenceDefaultTemplateID == d.id) {
                     this.selectedTemplateDashboard = d.name + ' (' + d.id.toString() + ')';
@@ -133,7 +133,7 @@ export class PreferencesComponent implements OnInit {
             let openBracket: number = selectedDashboardString.indexOf('(');
             let closeBracket: number = selectedDashboardString.indexOf(')');
             this.selectedDashboardId = +selectedDashboardString.substring(openBracket + 1, closeBracket);
-            
+
             this.preferenceDefaultTemplateID = this.selectedDashboardId;
         } else {
             this.preferenceDefaultTemplateID = null;

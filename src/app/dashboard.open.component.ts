@@ -50,6 +50,7 @@ export class DashboardOpenComponent implements OnInit {
     }
 
     canvasAuditTrails: CanvasAuditTrail[] = [];
+    dashboardList: string[] = ['None'];
     dashboardsOriginal: Dashboard[];
     dashboardPermission: DashboardPermission[];
     dashboards: Dashboard[];
@@ -80,6 +81,7 @@ export class DashboardOpenComponent implements OnInit {
     filterModifiedByUserID: string = '';
     groups: CanvasGroup[] = [];
     records: number = 15;
+    selectedDashboardId: number;
     selectedRow: number = 0;
     selectedTemplateDashboard: string;
     showAdvancedFilters: boolean = false;
@@ -101,6 +103,13 @@ export class DashboardOpenComponent implements OnInit {
 
         // Get DSs
         this.datasources = this.globalVariableService.datasources.slice();
+
+        // Template list
+        this.globalVariableService.dashboards.forEach(d => {
+            if (d.state = 'Complete') {
+                this.dashboardList.push(d.name + ' (' + d.id.toString() + ')');
+            };
+        });
 
         // Get Ds
         this.dashboardsOriginal = this.globalVariableService.dashboards.slice()
@@ -566,9 +575,8 @@ export class DashboardOpenComponent implements OnInit {
             let closeBracket: number = selectedDashboardString.indexOf(')');
             this.selectedDashboardId = +selectedDashboardString.substring(openBracket + 1, closeBracket);
             
-            this.preferenceDefaultTemplateID = this.selectedDashboardId;
         } else {
-            this.preferenceDefaultTemplateID = null;
+            this.selectedDashboardId = null;
         };
     }
 }
