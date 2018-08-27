@@ -111,14 +111,14 @@ export class CollaborateMessagesComponent implements OnInit {
 
             if (this.sender != '') {
                 this.canvasMessages = this.canvasMessages.filter(
-                    m => m.sender.indexOf(this.sender) >= 0
+                    m => m.sender.toLowerCase().indexOf(this.sender.toLowerCase()) >= 0
                 );
             };
             if (this.recipient != '') {
                 this.canvasMessages = this.canvasMessages.filter(m => {
                     let isFound: boolean = false;
                     m.recipients.forEach(r => {
-                        if (r.userID == this.recipient) {
+                        if (r.userID.toLowerCase().indexOf(this.recipient.toLowerCase()) >= 0) {
                             isFound = true;
                         };
                     });
@@ -157,7 +157,7 @@ export class CollaborateMessagesComponent implements OnInit {
                 );
             };
 
-            // Sort
+            // Sort Desc
             this.canvasMessages.sort(
                 (a, b) => new Date(b.sentOn).getTime() - new Date(a.sentOn).getTime()
             );
