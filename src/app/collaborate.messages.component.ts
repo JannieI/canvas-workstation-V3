@@ -158,15 +158,10 @@ export class CollaborateMessagesComponent implements OnInit {
             };
 
             // Sort
-            this.canvasMessages.sort( (obj1, obj2) => {
-                if (new Date(obj1.sentOn) > new Date(obj2.sentOn)) { 
-                    return 1;
-                };
-                if (new Date(obj1.sentOn) > new Date(obj2.sentOn)) { 
-                    return -1;
-                };
-                return 0;
-            });
+            this.canvasMessages.sort(
+                (a, b) => new Date(b.sentOn).getTime() - new Date(a.sentOn).getTime()
+            );
+
         });
 
         // Show/hide new message form
