@@ -6153,10 +6153,115 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
         // Define DB
         var db = new Dexie("MyAppDatabase");
+
+        // Listening to Deletions and Version Changes
+        // db.on("versionchange", function(event) {
+        //     if (confirm ("Another page tries to upgrade the database to version " +
+        //                   event.newVersion + ". Accept?")) {
+        //       // Refresh current webapp so that it starts working with newer DB schema.
+        //       window.location.reload();
+        //     } else {
+        //       // Will let user finish its work in this window and
+        //       // block the other window from upgrading.
+        //       return false;
+        //     }
+        //   });
+
         db.version(1).stores({contacts: 'id, first, last'});
         db.open()
             .then(res => {
                 console.log('xx Opened DB', res);
+                // Count
+                db.table("contacts").count(res => {
+                    console.warn('xx count 1 at START', {res});
+                });
+
+                // Query DB
+                db.table("contacts")
+                    .where('id').belowOrEqual(2)
+                    .toArray(res => console.warn('xx res', res) ).then(data => {
+                        console.log('xx End WHERE', {data}); 
+
+                    })
+
+                if (this.testIndexDB) {
+
+                    console.warn('xx testIndexDB', this.testIndexDB);
+                    
+                    // Clear var
+                    this.dexieDB = [];
+
+                    // Delete DB
+                    // db.close()
+                    // db.delete().then(() => {
+                    //     console.log("Database successfully deleted");
+                    //     var db = new Dexie("MyAppDatabase");
+                    //     db.version(1).stores({contacts: 'id, first, last'});
+                    // db.open()
+                    // .then(res => {
+
+
+                    // // Clear DB
+                    db.table("contacts").clear().then(result => {
+                        console.log('xx CLEARED DB', result);
+
+                
+                            // }).catch((err) => {
+                            //     console.error("Could not delete database");
+                            // }).finally(() => {
+                            //     // Do what should be done next...
+                            // });
+
+                        // Msg
+                        console.log('xx Start')
+
+                        // Load Ds individually
+                        for (var i = 0; i < 0; i++) {
+                            
+                            db.table("contacts").put(
+                                {
+                                    first: "First name", 
+                                    last: "Last name", 
+                                    dashboard: this.globalVariableService.dashboards[0], 
+                                    id: i
+                                }
+                            ).then(res => {
+                                // console.log('xx res', res);
+                                
+                            });
+                        };
+
+                        // Msg
+                        console.log('xx after Dexie, before Var')
+
+                        // Load var
+                        for (var i = 0; i < 10000; i++) {
+                            this.dexieDB.push(
+                                {
+                                    first: "First name", 
+                                    last: "Last name", 
+                                    dashboard: this.globalVariableService.dashboards[0], 
+                                    id: i
+                                }
+                            )
+                        };
+
+                        // Load DB with bulkPut
+                        db.table("contacts").bulkPut(this.dexieDB).then(res => {
+                            console.warn('xx End BulkPut');
+
+                            // Count
+                            db.table("contacts").count(res => {
+                                console.warn('xx count 3 at END', res);
+                            });
+                        });
+                        
+
+                        // Msg
+                        console.log('xx End')
+                    });
+                // });
+                };                
             })
             .catch((error) => {
                 console.log('xx Error in Open DB', error);
@@ -6196,58 +6301,12 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         // let keys: number[] = [1, 2, 7]
         // db.table("contacts").bulkDelete(keys)
 
-        // Query DB
-        db.table("contacts")
-            .where('id').aboveOrEqual(2)
-            .toArray(res => console.warn('xx res', res) )
-        console.log('xx End WHERE'); 
+        // Count
+        // db.table("contacts").count(res => {
+        //     console.warn('xx count 2 at START', res);
+        // })
 
-        if (this.testIndexDB) {
-            // Clear var
-            this.dexieDB = [];
 
-            // Clear DB
-            db.table("contacts").clear().then(result => {
-                console.log('xx CLEARED DB', result);
-
-                // Msg
-                console.log('xx Start')
-
-                // Load Ds
-                for (var i = 0; i < 10000; i++) {
-                    
-                    db.table("contacts").put(
-                        {
-                            first: "First name", 
-                            last: "Last name", 
-                            dashboard: this.globalVariableService.dashboards[0], 
-                            id: i
-                        }
-                    ).then(res => {
-                        console.log('xx res', res);
-                        
-                    });
-                };
-
-                // Msg
-                console.log('xx after Dexie, before Var')
-
-                // Load var
-                for (var i = 0; i < 10000; i++) {
-                    this.dexieDB.push(
-                        {
-                            first: "First name", 
-                            last: "Last name", 
-                            dashboard: this.globalVariableService.dashboards[0], 
-                            id: i
-                        }
-                    )
-                };
-
-                // Msg
-                console.log('xx End')
-            });
-        };
     }
 
 
