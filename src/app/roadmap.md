@@ -55,38 +55,6 @@ This document describes items for later versions of Canvas.
 
 
 
-    PDF / IMAGE:
-    ------------
-    - can save Dashboard as pdf - see https://github.com/MrRio/jsPDF.
-        Rather: https://stackoverflow.com/questions/38996376/generate-pdf-file-from-html-using-angular2-typescript,  or  https://stackoverflow.com/questions/42900319/how-to-convert-html-to-pdf-in-angular2  or  https://www.npmjs.com/package/jspdf
-        - can send as Email Attachment (in pdf or pic). To do this via Gmail, use its API - see https://www.sitepoint.com/sending-emails-gmail-javascript-api/
-        - can copy whole D as image - can paste somewhere, or print and put on wall
-        - view pdf docs insides forms: see https://www.npmjs.com/package/ng2-pdf-viewer
-        - make sure we can have hybrid DS - cloud and local and server in one D
-        - view Thumbnails of all T - can selected ala PowerPoint
-        - Have popup thumbnails of D on Landing page
-        - Use thumbnails to select a W from another D - have thumbnails are on/off option for performance perhaps
-        - got is working (sort of) with: http://www.shanegibney.com/shanegibney/angular2-and-jspdf-file-generation/
-
-        https://stackoverflow.com/questions/35138424/how-do-i-download-a-file-with-angular2
-        To download and show PDF files, a very similar code snipped is like below:
-            private downloadFile(data: Response): void {
-                let blob = new Blob([data.blob()], { type: "application/pdf" });
-                let url = window.URL.createObjectURL(blob);
-                window.open(url);
-            }
-
-            public showFile(fileEndpointPath: string): void {
-                let reqOpt: RequestOptions = this.getAcmOptions();  //  getAcmOptions is our helper method. Change this line according to request headers you need.
-                reqOpt.responseType = ResponseContentType.Blob;
-                this.http
-                .get(fileEndpointPath, reqOpt)
-                .subscribe(
-                    data => this.downloadFile(data),
-                    error => alert("Error downloading file!"),
-                    () => console.log("OK!")
-                );
-            }
 
 
     Testing:
@@ -281,7 +249,6 @@ This document describes items for later versions of Canvas.
     Dashboard:
     ----------
     - Open: all Ds using a given Template
-    - Startup D: should this be settable as a pref, or should we always display the Landing page?
     - Show Grid - currently a .png -> how to make this dynamic ?
     8 .Save keeps all snapshots and undo actions, forever.  Thus, can see how things looked like at any point in the past.  It must be clearly marked for the user.  Must also be able to search the list, and see a list of undo actions.  Also, do we discard all undo actions when a snapshot is taken, or not.  Think clearly about it.
       Important: NO undo on forms, ie Comments.  Must be done through Add/Edit/Delete
@@ -317,7 +284,6 @@ This document describes items for later versions of Canvas.
        in Template only, and user cannot use them.  If the user needs that Datasource, he can
        add it, in which case it will be duplicated, one invisible.
     4. If this gets too complicated, only use Shapes on Templates.
-    5. Ensure Templates are on different layers / z-index
     6. When a T is changed, the user is warned which Ds use it - he can see their names and maybe   even open them.
     7. When and where is DS & data loaded?  
     8. Is it same per Tab?  The D will have many tabs, which tabs of Template is used where, or just first one on all D tabs?
@@ -724,3 +690,38 @@ This document describes items for later versions of Canvas.
     ---------------
     - cater for Microsoft AD
     - cater for single sign-on - somehow
+
+
+
+    PDF / IMAGE:
+    ------------
+    - can save Dashboard as pdf - see https://github.com/MrRio/jsPDF.
+        Rather: https://stackoverflow.com/questions/38996376/generate-pdf-file-from-html-using-angular2-typescript,  or  https://stackoverflow.com/questions/42900319/how-to-convert-html-to-pdf-in-angular2  or  https://www.npmjs.com/package/jspdf
+        - can send as Email Attachment (in pdf or pic). To do this via Gmail, use its API - see https://www.sitepoint.com/sending-emails-gmail-javascript-api/
+        - can copy whole D as image - can paste somewhere, or print and put on wall
+        - view pdf docs insides forms: see https://www.npmjs.com/package/ng2-pdf-viewer
+        - make sure we can have hybrid DS - cloud and local and server in one D
+        - view Thumbnails of all T - can selected ala PowerPoint
+        - Have popup thumbnails of D on Landing page
+        - Use thumbnails to select a W from another D - have thumbnails are on/off option for performance perhaps
+        - got is working (sort of) with: http://www.shanegibney.com/shanegibney/angular2-and-jspdf-file-generation/
+
+        https://stackoverflow.com/questions/35138424/how-do-i-download-a-file-with-angular2
+        To download and show PDF files, a very similar code snipped is like below:
+            private downloadFile(data: Response): void {
+                let blob = new Blob([data.blob()], { type: "application/pdf" });
+                let url = window.URL.createObjectURL(blob);
+                window.open(url);
+            }
+
+            public showFile(fileEndpointPath: string): void {
+                let reqOpt: RequestOptions = this.getAcmOptions();  //  getAcmOptions is our helper method. Change this line according to request headers you need.
+                reqOpt.responseType = ResponseContentType.Blob;
+                this.http
+                .get(fileEndpointPath, reqOpt)
+                .subscribe(
+                    data => this.downloadFile(data),
+                    error => alert("Error downloading file!"),
+                    () => console.log("OK!")
+                );
+            }

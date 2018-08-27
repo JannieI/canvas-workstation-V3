@@ -295,15 +295,17 @@
                     <div class="filterTemplateTitle">
                         <b>Use Template:</b>
                     </div>
-                    <div class="filterTemplate">
-                        <div class="select">
-                            <select [(ngModel)]="filterSharedWithGroup"
-                                >
-                                <option *ngFor="let row of groups; let i = index">
-                                    {{ row.name }}
-                                </option>
-                            </select>
-                        </div>
+                    <div class="select filterTemplate">
+                        <select
+                            [(ngModel)]="selectedTemplateDashboard"
+                            name="dashboardTemplate"
+                            (change)="clickTemplateDashboard($event)"
+                            placeholder="Show Dashboard using this Template"
+                            >
+                            <option *ngFor="let row of dashboardList">
+                                {{ row }}
+                            </option>
+                        </select>
                     </div>
     
                     <div class="filterModifiedTitle">

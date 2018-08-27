@@ -81,6 +81,7 @@ export class DashboardOpenComponent implements OnInit {
     groups: CanvasGroup[] = [];
     records: number = 15;
     selectedRow: number = 0;
+    selectedTemplateDashboard: string;
     showAdvancedFilters: boolean = false;
     showTypeDashboard: boolean = false;
 
@@ -550,5 +551,24 @@ export class DashboardOpenComponent implements OnInit {
         // Show groups
         this.globalFunctionService.printToConsole(this.constructor.name,'clickRow', '@Start');
         this.selectedRow = index;
+    }
+
+    clickTemplateDashboard(ev:any, id: number) {
+        // Close the form, nothing saved
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickTemplateDashboard', '@Start');
+
+        let selectedDashboardString: string = ev.target.value;
+
+        if (selectedDashboardString != 'None') {
+
+            // Get D info
+            let openBracket: number = selectedDashboardString.indexOf('(');
+            let closeBracket: number = selectedDashboardString.indexOf(')');
+            this.selectedDashboardId = +selectedDashboardString.substring(openBracket + 1, closeBracket);
+            
+            this.preferenceDefaultTemplateID = this.selectedDashboardId;
+        } else {
+            this.preferenceDefaultTemplateID = null;
+        };
     }
 }
