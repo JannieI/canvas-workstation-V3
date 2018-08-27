@@ -303,7 +303,6 @@ export class DashboardOpenComponent implements OnInit {
             });
 
         };
-        console.warn('xx AFTER filterSchedulesSentBefore', this.dashboards)
 
         if (this.filterSharedByUserID != '') {
             let dIDs: number[] = this.globalVariableService.dashboardPermissions
@@ -473,6 +472,16 @@ export class DashboardOpenComponent implements OnInit {
             });
 
         };
+
+        if (this.selectedDashboardId != null) {
+            this.dashboards = this.dashboards.filter(d => {
+                if (d.templateDashboardID == this.selectedDashboardId) {
+                    return d;
+                };
+            });
+
+        };
+        
         if (this.filterModifiedAfter != '') {
             let dateAfter: Date = new Date(this.filterModifiedAfter);
             this.dashboards = this.dashboards.filter(d => {
@@ -578,5 +587,6 @@ export class DashboardOpenComponent implements OnInit {
         } else {
             this.selectedDashboardId = null;
         };
+        
     }
 }
