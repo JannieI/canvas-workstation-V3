@@ -46,9 +46,9 @@ export class CollaborateMessagesComponent implements OnInit {
     messageUnRead: boolean = false;
     newMessage: boolean = false;
     recipient: string = '';
-    sendBefore: Date = null;
+    sendBefore: string = '';
     sender: string = '';
-    sentAfter: Date = null;
+    sentAfter: string = '';
     subject: string = null;
 
     messageAction: string;
@@ -64,7 +64,7 @@ export class CollaborateMessagesComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.sentAfter = new Date(this.globalVariableService.currentUser.lastLogin);
+        this.sentAfter = new Date(this.globalVariableService.currentUser.lastLogin).toDateString();
 
         this.clickFilter(false);
 
@@ -93,10 +93,10 @@ export class CollaborateMessagesComponent implements OnInit {
         // Toggle Last Login value on form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickLastLogin', '@Start');
 
-        if (this.sentAfter == null) {
-            this.sentAfter = new Date(this.globalVariableService.currentUser.lastLogin);
+        if (this.sentAfter == '') {
+            this.sentAfter = new Date(this.globalVariableService.currentUser.lastLogin).toDateString();
         } else {
-            this.sentAfter = null;
+            this.sentAfter = '';
         };
 
     }
@@ -146,14 +146,14 @@ export class CollaborateMessagesComponent implements OnInit {
                     m => m.subject.toLowerCase().includes(this.subject.toLowerCase())
                 );
             };
-            if (this.sentAfter != null) {
+            if (this.sentAfter != '') {
                 this.canvasMessages = this.canvasMessages.filter(
-                    m => m.sentOn >= this.sentAfter
+                    m => new Date(m.sentOn).getTime() >= new Date(this.sentAfter).getTime()
                 );
             };
-            if (this.sendBefore != null) {
+            if (this.sendBefore != '') {
                 this.canvasMessages = this.canvasMessages.filter(
-                    m => m.sentOn <= this.sendBefore
+                    m => new Date(m.sentOn).getTime() <= new Date(this.sendBefore).getTime()
                 );
             };
 
