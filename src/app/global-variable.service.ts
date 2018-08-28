@@ -1796,22 +1796,41 @@ export class GlobalVariableService {
                             i => i.id == dashboardID
                         );
 
+                        let hasAccess: boolean = false;
                         if (this.currentDashboards.length > 0) {
                             if (this.currentDashboards[0].templateDashboardID != 0
                                 &&
                                 this.currentDashboards[0].templateDashboardID != null) {
-                                let templateDashboard: Dashboard[] = null;
 
-                                templateDashboard = this.dashboards.filter(
-                                    i => i.id == this.currentDashboards[0].templateDashboardID
-                                );
+                                hasAccess = false;
+                                if (this.dashboardPermissionCheck(
+                                    this.currentDashboards[0].templateDashboardID, 
+                                    'canviewright')) {
+                                        hasAccess = true;
+                                };
+                                if (this.dashboardPermissionCheck(
+                                    this.currentDashboards[0].templateDashboardID, 
+                                    'canviewandcanedit')) {
+                                        hasAccess = true;
+                                };
 
-                                if (templateDashboard == null) {
-                                    alert('Dashboard template id does not exist in Dashboards Array')
+                                if (hasAccess) {
+
+                                    let templateDashboard: Dashboard[] = null;
+                                    
+                                    templateDashboard = this.dashboards.filter(
+                                        i => i.id == this.currentDashboards[0].templateDashboardID
+                                    );
+                                    
+                                    if (templateDashboard == null) {
+                                        alert('Dashboard template id does not exist in Dashboards Array')
+                                    } else {
+                                        this.currentDashboards.push(templateDashboard[0]);
+                                        this.templateInUse.next(true);
+                                    }
                                 } else {
-                                    this.currentDashboards.push(templateDashboard[0]);
-                                    this.templateInUse.next(true);
-                                }
+                                    this.templateInUse.next(false);    
+                                };
                             } else {
                                 this.templateInUse.next(false);
                             };
