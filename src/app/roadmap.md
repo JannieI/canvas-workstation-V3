@@ -552,6 +552,7 @@ This document describes items for later versions of Canvas.
     - #pagenr and #pages in Template: it takes the page Nr from the template, and not the main Dashboard.  Consider changing it.
     - consider HTML or MarkDown inside text boxes and bullets.  Consider the benefit.
     - Bullets: move up and down arrows to arrange the points
+    - Text: add StrikeThrough to bold, italics.  SuperScript and SubScript ??
     
 
     Draw Mode (Shapes):

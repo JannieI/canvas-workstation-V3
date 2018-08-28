@@ -521,9 +521,17 @@ export class StatusbarComponent {
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardTabIndex
             ]));
 
-            // Reset some info
+            // Reset some info.  For now, the Tab is added at the end of the list
             duplicateTab.id = null;
             duplicateTab.name = duplicateTab.name + ' COPY';
+            let maxDisplayOrder: number = 1;
+            for (var i = 0; i < this.currentDashboardTabs.length; i++) {
+                if (this.currentDashboardTabs[i].displayOrder > maxDisplayOrder) {
+                    maxDisplayOrder = this.currentDashboardTabs[i].displayOrder;
+                };
+            };
+            maxDisplayOrder = maxDisplayOrder + 1;
+            duplicateTab.displayOrder = maxDisplayOrder;
 
             // Add to DB
             this.globalVariableService.addDashboardTab(duplicateTab).then(res => {
