@@ -403,6 +403,8 @@ This document describes items for later versions of Canvas.
     - pre-build all DS from existing DB -> quick and easy to start
     - consider import of Excel tables
     - consider import from Powerpoint and Word tables ... 
+    - consider integration with a ERD tool like Erwin, see:
+    https://erwin.com/products/data-modeler/#
 
 
     Eazl:
@@ -605,6 +607,8 @@ This document describes items for later versions of Canvas.
     - email / notify when a task ends, starts
     - powerful filters
     - can just give deadline (optional start, duration)
+    - consider integration with Jira - create tasks in Canvas and add then automatically to Jira! It is more popular than Trello.  See:
+    https://developer.atlassian.com/server/jira/platform/jira-rest-api-examples/
     
 
     Global Variables:

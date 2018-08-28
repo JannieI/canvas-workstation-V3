@@ -542,6 +542,13 @@ export class DashboardOpenComponent implements OnInit {
         // Open a Dashboard in EditMode
         this.globalFunctionService.printToConsole(this.constructor.name,'clickOpenEdit', '@Start');
 
+        // No Access
+        if (!this.globalVariableService.dashboardPermissionCheck(
+            dashboardID, 'canviewandcanedit')) {
+                this.errorMessage = 'Insufficient Permission';
+                return;
+        };
+        
         // Only Editor can open his Draft
         if (this.dashboards[index].state == 'Draft'
             &&
