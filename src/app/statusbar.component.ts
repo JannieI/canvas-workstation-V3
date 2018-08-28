@@ -187,6 +187,7 @@ export class StatusbarComponent {
         // Show the list of Tabs
         this.globalFunctionService.printToConsole(this.constructor.name,'clickListTabs', '@Start');
 
+        // NB: this must execute before MoveUp and MoveDown as local currentDT loaded here
         this.currentDashboardTabs = this.globalVariableService.currentDashboardTabs.slice();
         this.showTabList = true;
         this.showDashboardDescription = false;
@@ -288,7 +289,6 @@ export class StatusbarComponent {
             };
             return 0;
         });
-
 
     }
 
@@ -506,16 +506,12 @@ export class StatusbarComponent {
     }
 
     clickTabDuplicate() {
-        // Delete a Tab
+        // Duplicate a Tab
         this.globalFunctionService.printToConsole(this.constructor.name,'clickTabDuplicate', '@Start');
 
         console.warn('xx tab index', this.globalVariableService.currentDashboardInfo.value.currentDashboardTabIndex, this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID, this.globalVariableService.currentWidgets)
         if (this.globalVariableService.currentDashboardInfo.value.currentDashboardTabIndex >= 0) {
 
-            // let duplicateTab: DashboardTab = Object.assign({},this.globalVariableService
-            //     .currentDashboardTabs[
-            //         this.globalVariableService.currentDashboardInfo.value.currentDashboardTabIndex
-            // ]);
             let duplicateTab: DashboardTab =JSON.parse(JSON.stringify(
                 this.globalVariableService.currentDashboardTabs[
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardTabIndex
@@ -525,9 +521,9 @@ export class StatusbarComponent {
             duplicateTab.id = null;
             duplicateTab.name = duplicateTab.name + ' COPY';
             let maxDisplayOrder: number = 1;
-            for (var i = 0; i < this.currentDashboardTabs.length; i++) {
-                if (this.currentDashboardTabs[i].displayOrder > maxDisplayOrder) {
-                    maxDisplayOrder = this.currentDashboardTabs[i].displayOrder;
+            for (var i = 0; i < this.globalVariableService.currentDashboardTabs.length; i++) {
+                if (this.globalVariableService.currentDashboardTabs[i].displayOrder > maxDisplayOrder) {
+                    maxDisplayOrder = this.globalVariableService.currentDashboardTabs[i].displayOrder;
                 };
             };
             maxDisplayOrder = maxDisplayOrder + 1;
