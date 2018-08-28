@@ -69,6 +69,51 @@ export class LandingComponent implements OnInit {
 					.then(recD => {
 						this.dashboardsRecent = recD.slice(0, 5);
 
+						console.warn('xx BEFORE filter', this.dashboardsRecent);
+						
+						// Determine access - different rights can achive View or Edit access
+						let accessIDs: number[] = [];
+						for (var i = 0; i < this.dashboardsRecent.length; i++) {
+							if (this.dashboardsRecent[i].editMode) {
+								
+								if (this.globalVariableService.dashboardPermissionCheck(
+								
+									this.dashboardsRecent[i].dashboardID, 'caneditright')) {
+										accessIDs.push(this.dashboardsRecent[i].dashboardID);
+								};
+									
+								if (this.globalVariableService.dashboardPermissionCheck(
+							
+									this.dashboardsRecent[i].dashboardID, 'canviewandcanedit')) {
+										accessIDs.push(this.dashboardsRecent[i].dashboardID);
+								};
+										
+								if (this.globalVariableService.dashboardPermissionCheck(
+						
+									this.dashboardsRecent[i].dashboardID, 'caneditandcandelete')) {
+										accessIDs.push(this.dashboardsRecent[i].dashboardID);
+								};
+							} else {
+								
+								if (this.globalVariableService.dashboardPermissionCheck(
+									
+									this.dashboardsRecent[i].dashboardID, 'canviewright')) {
+										accessIDs.push(this.dashboardsRecent[i].dashboardID);
+								};
+								
+								if (this.globalVariableService.dashboardPermissionCheck(
+									
+									this.dashboardsRecent[i].dashboardID, 'canviewandcanedit')) {
+										accessIDs.push(this.dashboardsRecent[i].dashboardID);
+								};
+							};
+						};
+
+						this.dashboardsRecent.filter(
+							dR => accessIDs.indexOf(dR.dashboardID) >= 0
+						);
+						console.warn('xx AFTER filter', this.dashboardsRecent);
+
 						// Palette buttons for current user
 						this.globalVariableService.getPaletteButtonsSelected().then(pBsel =>
 							{

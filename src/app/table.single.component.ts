@@ -72,7 +72,6 @@ export class TableSingleComponent {
         // Totals
         this.nrRecords = this.currentData.length;
         this.hasTitle = this.table.containerHasTitle;
-        console.warn('xx hasTit', this.hasTitle)
 
         // Get DS
         this.currentDatasources = this.globalVariableService.currentDatasources
