@@ -728,3 +728,7 @@ This document describes items for later versions of Canvas.
     - easy to show / access unread ~ use of inbox as todo list in Google
     - link to Company platform, ie Skype?
     - make messages visible, ie hover shows latest collaborations
+
+    Dashboard Permissions:
+    ---------------------
+    - currently cannot grant permissions to Draft, which is Private.  Re-Consider this: should draft be Shared, Scheduled, etc?  And what happens to permissions when saved back - should it revert back to previous permissions for the Complete version, or inherit the next version (dont think so, as this means one has to wiggle this a bit ...)

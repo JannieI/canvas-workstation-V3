@@ -8703,17 +8703,15 @@ export class GlobalVariableService {
                 hasAccess = true;
         };
         if (dashboard.accessType.toLowerCase() == 'accesslist') {
-            console.log('xx accesslist START', this.dashboardPermissions);
+
             this.dashboardPermissions.forEach(dp => {
-                console.log('xx dp.id', dp.id);
+
                 if (dp.dashboardID == dashboard.id) {
-                    console.log('xx dp.dashboardID', dp.dashboardID);
+
                     if (dp.userID != null) {
-                        console.log('xx ids',dp.userID.toLowerCase(),  userID.toLowerCase());
                         
                         if (dp.userID.toLowerCase() == userID.toLowerCase()) {
                             if (accessRequired == 'canviewright'  &&  dp.canViewRight) {
-                                console.log('xx hier !')
                                 hasAccess = true;
                             };
                             if (accessRequired == 'caneditright'  &&  dp.canEditRight) {
@@ -8748,10 +8746,37 @@ export class GlobalVariableService {
                     if (dp.groupName != null) {
                         if (this.currentUser.groups.
                             map(x => x.toLowerCase()).indexOf(dp.groupName.toLowerCase()) >= 0) {
-                                if (dp.canViewRight  ||  dp.canEditRight) {
+                                if (accessRequired == 'canviewright'  &&  dp.canViewRight) {
                                     hasAccess = true;
                                 };
-                        };
+                                if (accessRequired == 'caneditright'  &&  dp.canEditRight) {
+                                    hasAccess = true;
+                                };
+                                if (accessRequired == 'candsaveright'  &&  dp.canSaveRight) {
+                                    hasAccess = true;
+                                };
+                                if (accessRequired == 'candeleteright'  &&  dp.canDeleteRight) {
+                                    hasAccess = true;
+                                };
+                                if (accessRequired == 'canadddatasource'  &&  dp.canAddDatasource) {
+                                    hasAccess = true;
+                                };
+                                if (accessRequired == 'cangrantaccess'  &&  dp.canGrantAccess) {
+                                    hasAccess = true;
+                                };
+                                if (accessRequired == 'canvieworcanedit'  &&  (dp.canViewRight  ||  dp.canEditRight) ) {
+                                    hasAccess = true;
+                                };
+                                if (accessRequired == 'canviewandcanedit'  &&  (dp.canViewRight  &&  dp.canEditRight) ) {
+                                    hasAccess = true;
+                                };
+                                if (accessRequired == 'caneditorcandelete'  &&  (dp.canEditRight  ||  dp.canDeleteRight) ) {
+                                    hasAccess = true;
+                                };
+                                if (accessRequired == 'caneditandcandelete'  &&  (dp.canEditRight  &&  dp.canDeleteRight) ) {
+                                    hasAccess = true;
+                                };
+                            };
                     };
                 };
             });
