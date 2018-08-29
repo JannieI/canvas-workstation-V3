@@ -337,6 +337,12 @@ export class DashboardShareComponent implements OnInit {
         // User dblclicked Grant Access - so toggle it
         this.globalFunctionService.printToConsole(this.constructor.name,'clickToggleGrantAccess', '@Start');
 
+        if (!this.globalVariableService.dashboardPermissionCheck(
+            this.selectedDashboard.id, 'cangrantaccess') ) {
+                this.errorMessage = 'You cannot Grant access to others';
+                return;
+        };
+
         let index: number = -1;
         for(var i = 0; i < this.dashboardPermissions.length; i++) {
             if (this.dashboardPermissions[i].id == id) {
