@@ -574,6 +574,7 @@ This document describes items for later versions of Canvas.
     - if some W selected, say 1 in group of 4.  If move, does group also move?
     - better indication that groups are used, and maybe some help when Ws are group - say one- time help popup.
     - also decide: should Group/ UnGroup save to DB or not?  It could be considered a once off thing, that must not affect other users when they open it.
+    - currently: put Widgets A, B into a group and unselect.  When select Widget C, then the group will also become selected, so A, B, C selected.  This could make sense - think about the use case and consider changing it.
 
 
     Speaker notes:
