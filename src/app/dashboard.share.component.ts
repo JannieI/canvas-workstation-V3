@@ -110,9 +110,9 @@ export class DashboardShareComponent implements OnInit {
                  (this.userID != ''  &&  dp.userID == this.userID)
                  ||
                  (this.groupName != ''
-                  &&
-                  dp.groupName.toLowerCase() == this.groupName.toLowerCase()
-                )
+                    &&
+                    dp.groupName.toLowerCase() == this.groupName.toLowerCase()
+                 )
                 ) {
                      isFound = true;
             };
@@ -155,12 +155,12 @@ export class DashboardShareComponent implements OnInit {
             let index: number = -1;
             for(var i = 0; i < this.dashboardPermissions.length; i++) {
                 if (this.dashboardPermissions[i].id == id) {
-                    this.dashboardPermissions[i].canViewRight = ! this.dashboardPermissions[i].canViewRight;
                     index = i;
                 };
             };
-
-            this.dashboardPermissions.splice(index, 1);
+            if (index >= 0) {
+                this.dashboardPermissions.splice(index, 1);
+            };
         });
 
     }
