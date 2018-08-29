@@ -85,6 +85,12 @@ export class DashboardShareComponent implements OnInit {
         // Save the change, and Close the form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
+        if (!this.globalVariableService.dashboardPermissionCheck(
+            this.selectedDashboard.id, 'cangrantaccess') ) {
+                this.errorMessage = 'You cannot Grant access to others';
+                return;
+        };
+
         this.selectedDashboard.accessType = this.accessType;
         this.globalVariableService.saveDashboard(this.selectedDashboard);
 
