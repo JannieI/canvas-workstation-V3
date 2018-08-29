@@ -193,6 +193,10 @@ export class DashboardShareComponent implements OnInit {
             if (this.dashboardPermissions[i].id == id) {
                 this.dashboardPermissions[i].canViewRight = ! this.dashboardPermissions[i].canViewRight;
                 index = i;
+
+                // Update Grantor and -On
+                this.dashboardPermissions[i].grantor = this.globalVariableService.currentUser.userID;
+                this.dashboardPermissions[i].grantedOn = new Date();
             };
         };
 
@@ -201,10 +205,6 @@ export class DashboardShareComponent implements OnInit {
                 this.dashboardPermissions[index])
                 ;
         };
-
-        // Update Grantor and -On
-        this.dashboardPermissions[i].grantor = this.globalVariableService.currentUser.userID;
-        this.dashboardPermissions[i].grantedOn = new Date();
     }
 
     clickToggleEdit(id: number, $event) {
@@ -216,6 +216,10 @@ export class DashboardShareComponent implements OnInit {
             if (this.dashboardPermissions[i].id == id) {
                 this.dashboardPermissions[i].canEditRight = ! this.dashboardPermissions[i].canEditRight;
                 index = i;
+
+                // Update Grantor and -On
+                this.dashboardPermissions[i].grantor = this.globalVariableService.currentUser.userID;
+                this.dashboardPermissions[i].grantedOn = new Date();
             };
         };
 
