@@ -151,6 +151,12 @@ export class DashboardShareComponent implements OnInit {
         // Delete clicked permission
         this.globalFunctionService.printToConsole(this.constructor.name,'dblclickDelete', '@Start');
 
+        if (!this.globalVariableService.dashboardPermissionCheck(
+            this.selectedDashboard.id, 'cangrantaccess') ) {
+                this.errorMessage = 'You cannot Grant access to others';
+                return;
+        };
+
         // Delete locally, globally and DB
         this.globalVariableService.deleteDashboardPermission(id).then(res => {
             let index: number = -1;
