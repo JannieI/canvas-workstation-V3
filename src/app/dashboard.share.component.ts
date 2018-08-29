@@ -95,6 +95,12 @@ export class DashboardShareComponent implements OnInit {
         // Add UserID and GroupName to the grid, and clear
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
 
+        if (!this.globalVariableService.dashboardPermissionCheck(
+            this.selectedDashboard.id, 'cangrantaccess') ) {
+                this.errorMessage = 'You cannot Grant access to others';
+                return;
+        };
+
         // Validation
         if (this.userID == ''  &&  this.groupName == '') {
             this.errorMessage = 'Please fill in either a UserID or a Group Name'
