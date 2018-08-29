@@ -262,6 +262,10 @@ export class DashboardShareComponent implements OnInit {
             if (this.dashboardPermissions[i].id == id) {
                 this.dashboardPermissions[i].canDeleteRight = ! this.dashboardPermissions[i].canDeleteRight;
                 index = i;
+
+                // Update Grantor and -On
+                this.dashboardPermissions[i].grantor = this.globalVariableService.currentUser.userID;
+                this.dashboardPermissions[i].grantedOn = new Date();
             };
         };
 
