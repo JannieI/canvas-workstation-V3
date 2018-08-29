@@ -188,6 +188,14 @@ export class DashboardShareComponent implements OnInit {
         // User dblclicked View - so toggle it
         this.globalFunctionService.printToConsole(this.constructor.name,'clickToggleView', '@Start');
 
+        if (!this.globalVariableService.dashboardPermissionCheck(
+            this.selectedDashboard.id, 'cangrantaccess') ) {
+                this.errorMessage = 'You cannot Grant access to others';
+                return;
+        };
+        
+        // Can only do this if user has Grant Access
+        // Toggle access
         let index: number = -1;
         for(var i = 0; i < this.dashboardPermissions.length; i++) {
             if (this.dashboardPermissions[i].id == id) {
@@ -210,6 +218,12 @@ export class DashboardShareComponent implements OnInit {
     clickToggleEdit(id: number, $event) {
         // User dblclicked Edit - so toggle it
         this.globalFunctionService.printToConsole(this.constructor.name,'clickToggleEdit', '@Start');
+
+        if (!this.globalVariableService.dashboardPermissionCheck(
+            this.selectedDashboard.id, 'cangrantaccess') ) {
+                this.errorMessage = 'You cannot Grant access to others';
+                return;
+        };
 
         let index: number = -1;
         for(var i = 0; i < this.dashboardPermissions.length; i++) {
