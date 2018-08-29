@@ -67,7 +67,8 @@ export class DashboardShareComponent implements OnInit {
 
         this.globalVariableService.getCanvasGroups().then( res => {
             this.accessType = this.selectedDashboard.accessType;
-            this.dashboardPermissions = this.globalVariableService.dashboardPermissions.slice();
+            this.dashboardPermissions = this.globalVariableService.dashboardPermissions
+                .filter(dP => dP.dashboardID == this.selectedDashboard.id);
             this.groups = res;
         });
 
