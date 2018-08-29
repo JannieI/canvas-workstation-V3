@@ -85,6 +85,8 @@ export class DashboardShareComponent implements OnInit {
         // Save the change, and Close the form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
+        this.errorMessage = '';
+
         if (!this.globalVariableService.dashboardPermissionCheck(
             this.selectedDashboard.id, 'cangrantaccess') ) {
                 this.errorMessage = 'You cannot Grant access to others';
@@ -100,6 +102,8 @@ export class DashboardShareComponent implements OnInit {
     clickAdd() {
         // Add UserID and GroupName to the grid, and clear
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
+
+        this.errorMessage = '';
 
         if (!this.globalVariableService.dashboardPermissionCheck(
             this.selectedDashboard.id, 'cangrantaccess') ) {
@@ -163,6 +167,8 @@ export class DashboardShareComponent implements OnInit {
         // Delete clicked permission
         this.globalFunctionService.printToConsole(this.constructor.name,'dblclickDelete', '@Start');
 
+        this.errorMessage = '';
+
         if (!this.globalVariableService.dashboardPermissionCheck(
             this.selectedDashboard.id, 'cangrantaccess') ) {
                 this.errorMessage = 'You cannot Grant access to others';
@@ -206,12 +212,14 @@ export class DashboardShareComponent implements OnInit {
         // User dblclicked View - so toggle it
         this.globalFunctionService.printToConsole(this.constructor.name,'clickToggleView', '@Start');
 
+        this.errorMessage = '';
+
         if (!this.globalVariableService.dashboardPermissionCheck(
             this.selectedDashboard.id, 'cangrantaccess') ) {
                 this.errorMessage = 'You cannot Grant access to others';
                 return;
         };
-        
+
         // Can only do this if user has Grant Access
         // Toggle access
         let index: number = -1;
@@ -236,6 +244,8 @@ export class DashboardShareComponent implements OnInit {
     clickToggleEdit(id: number, $event) {
         // User dblclicked Edit - so toggle it
         this.globalFunctionService.printToConsole(this.constructor.name,'clickToggleEdit', '@Start');
+
+        this.errorMessage = '';
 
         if (!this.globalVariableService.dashboardPermissionCheck(
             this.selectedDashboard.id, 'cangrantaccess') ) {
@@ -266,6 +276,8 @@ export class DashboardShareComponent implements OnInit {
         // User dblclicked Save - so toggle it
         this.globalFunctionService.printToConsole(this.constructor.name,'clickToggleSave', '@Start');
 
+        this.errorMessage = '';
+
         if (!this.globalVariableService.dashboardPermissionCheck(
             this.selectedDashboard.id, 'cangrantaccess') ) {
                 this.errorMessage = 'You cannot Grant access to others';
@@ -294,6 +306,8 @@ export class DashboardShareComponent implements OnInit {
     clickToggleDelete(id: number, $event) {
         // User dblclicked Delete - so toggle it
         this.globalFunctionService.printToConsole(this.constructor.name,'clickToggleDelete', '@Start');
+
+        this.errorMessage = '';
 
         if (!this.globalVariableService.dashboardPermissionCheck(
             this.selectedDashboard.id, 'cangrantaccess') ) {
@@ -325,6 +339,8 @@ export class DashboardShareComponent implements OnInit {
         // User dblclicked AddDS - so toggle it
         this.globalFunctionService.printToConsole(this.constructor.name,'clickToggleAddDS', '@Start');
 
+        this.errorMessage = '';
+
         if (!this.globalVariableService.dashboardPermissionCheck(
             this.selectedDashboard.id, 'cangrantaccess') ) {
                 this.errorMessage = 'You cannot Grant access to others';
@@ -354,6 +370,8 @@ export class DashboardShareComponent implements OnInit {
     clickToggleGrantAccess(id: number, $event) {
         // User dblclicked Grant Access - so toggle it
         this.globalFunctionService.printToConsole(this.constructor.name,'clickToggleGrantAccess', '@Start');
+
+        this.errorMessage = '';
 
         if (!this.globalVariableService.dashboardPermissionCheck(
             this.selectedDashboard.id, 'cangrantaccess') ) {
