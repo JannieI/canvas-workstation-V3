@@ -8658,7 +8658,10 @@ export class GlobalVariableService {
 
     }
 
-    dashboardPermissionCheck(id: number, accessRequired: string = 'CanViewOrCanEdit'): boolean {
+    dashboardPermissionCheck(
+        dashboardID: number, 
+        accessRequired: string = 'CanViewOrCanEdit'
+        ): boolean {
         // Checks if the current user has access to the given D.
         // - accessRequired = type of access requested.  Can be basic (CanView, CanEdit,
         //   etc), or composite : string = CanViewOrCanEdit, CanViewAndCanEdit,
@@ -8666,7 +8669,7 @@ export class GlobalVariableService {
         //   It is NOT case sensitive, and only applicable to accessType = 'AccessList'
 
         console.log('%c    Global-Variables dashboardPermissionCheck ...',
-            "color: black; background: lightgray; font-size: 10px", {id});
+            "color: black; background: lightgray; font-size: 10px", {dashboardID}, {accessRequired});
 
         // Assume no access
         let hasAccess: boolean = false;
@@ -8677,7 +8680,7 @@ export class GlobalVariableService {
 
         let dashboard: Dashboard;
         this.dashboards.forEach(d => {
-            if (d.id == id) {
+            if (d.id == dashboardID) {
                 // dashboard = Object.assign({}, d);
                 dashboard = JSON.parse(JSON.stringify(d));
             };
@@ -8700,11 +8703,17 @@ export class GlobalVariableService {
                 hasAccess = true;
         };
         if (dashboard.accessType.toLowerCase() == 'accesslist') {
+            console.log('xx accesslist START', this.dashboardPermissions);
             this.dashboardPermissions.forEach(dp => {
+                console.log('xx dp.id', dp.id);
                 if (dp.dashboardID == dashboard.id) {
+                    console.log('xx dp.dashboardID', dp.dashboardID);
                     if (dp.userID != null) {
+                        console.log('xx ids',dp.userID.toLowerCase(),  userID.toLowerCase());
+                        
                         if (dp.userID.toLowerCase() == userID.toLowerCase()) {
                             if (accessRequired == 'canviewright'  &&  dp.canViewRight) {
+                                console.log('xx hier !')
                                 hasAccess = true;
                             };
                             if (accessRequired == 'caneditright'  &&  dp.canEditRight) {
@@ -8749,6 +8758,7 @@ export class GlobalVariableService {
         };
 
         // Return
+        console.log('  Access type, result: ', dashboard.accessType, {hasAccess})
         return hasAccess;
     }
 
