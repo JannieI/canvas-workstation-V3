@@ -109,10 +109,10 @@ export class LandingComponent implements OnInit {
 							};
 						};
 
-						this.dashboardsRecent.filter(
+						this.dashboardsRecent = this.dashboardsRecent.filter(
 							dR => accessIDs.indexOf(dR.dashboardID) >= 0
 						);
-						console.warn('xx AFTER filter', this.dashboardsRecent);
+						console.warn('xx AFTER filter', this.dashboardsRecent, accessIDs);
 
 						// Palette buttons for current user
 						this.globalVariableService.getPaletteButtonsSelected().then(pBsel =>
