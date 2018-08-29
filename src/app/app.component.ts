@@ -7758,7 +7758,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         let datasetID: number = -1;
 
         // Delete the local one
-        let delIDs: number[] = [];
+        // let delIDs: number[] = [];
         let deleteWidget: Widget;
 
         for (var i = 0; i < this.currentWidgets.length; i++) {
@@ -7774,7 +7774,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                 // deleteWidget = Object.assign({}, this.currentWidgets[i]);
                 deleteWidget = JSON.parse(JSON.stringify(this.currentWidgets[i]));
                 datasetID = this.currentWidgets[i].datasetID;
-                delIDs.push(this.currentWidgets[i].id);
+                // delIDs.push(this.currentWidgets[i].id);
                 this.currentWidgets.splice(i,1);
             };
         };
@@ -7782,16 +7782,16 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         // Delete W + Chkpnts from the DB and global ones
         this.globalVariableService.deleteWidget(deleteWidget.id);
 
-        for (var i = 0; i < this.globalVariableService.widgets.length; i++) {
-            if (delIDs.indexOf(this.globalVariableService.widgets[i].id) >= 0) {
-                this.globalVariableService.widgets.splice(i,1)
-            };
-        };
-        for (var i = 0; i < this.globalVariableService.currentWidgets.length; i++) {
-            if (delIDs.indexOf(this.globalVariableService.currentWidgets[i].id) >= 0) {
-                this.globalVariableService.currentWidgets.splice(i,1)
-            };
-        };
+        // for (var i = 0; i < this.globalVariableService.widgets.length; i++) {
+        //     if (delIDs.indexOf(this.globalVariableService.widgets[i].id) >= 0) {
+        //         this.globalVariableService.widgets.splice(i,1)
+        //     };
+        // };
+        // for (var i = 0; i < this.globalVariableService.currentWidgets.length; i++) {
+        //     if (delIDs.indexOf(this.globalVariableService.currentWidgets[i].id) >= 0) {
+        //         this.globalVariableService.currentWidgets.splice(i,1)
+        //     };
+        // };
 
         // Filter the data in the dSets to which the Sl points.
         // In addition, apply all Sl that relates to each one
