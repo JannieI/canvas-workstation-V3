@@ -310,6 +310,10 @@ export class DashboardShareComponent implements OnInit {
             if (this.dashboardPermissions[i].id == id) {
                 this.dashboardPermissions[i].canGrantAccess = ! this.dashboardPermissions[i].canGrantAccess;
                 index = i;
+
+                // Update Grantor and -On
+                this.dashboardPermissions[i].grantor = this.globalVariableService.currentUser.userID;
+                this.dashboardPermissions[i].grantedOn = new Date();
             };
         };
 
