@@ -201,6 +201,10 @@ export class DashboardShareComponent implements OnInit {
                 this.dashboardPermissions[index])
                 ;
         };
+
+        // Update Grantor and -On
+        this.dashboardPermissions[i].grantor = this.globalVariableService.currentUser.userID;
+        this.dashboardPermissions[i].grantedOn = new Date();
     }
 
     clickToggleEdit(id: number, $event) {
