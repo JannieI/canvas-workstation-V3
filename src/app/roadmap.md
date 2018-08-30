@@ -533,7 +533,16 @@ This document describes items for later versions of Canvas.
     - links (to web and other D, T)
     - write text vertically !
     - have UPPERCASE / Sentence Case options
-    - add triangle, or make arrow more sophisticated = no line (! triangle), no arrowhead
+    - add triangle, or make arrow more sophisticated = no line (! triangle), no arrowhead:
+      With plain CSS:
+        <div class="triangle"></div>
+        .triangle {
+            width: 0;
+            height: 0;
+            border-top: 20px solid #333;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+        }
     - make rotation of arrow with mouse - drag it around!
     - size with svg markerWidth and -Height
     - Can / should other Shapes (ie TEXT, LINE) also rotate with transform="rotate(30 20,40)"??
@@ -561,7 +570,7 @@ This document describes items for later versions of Canvas.
     - Improve borders: current with 4, 1 per side so that one can have a Box with a thin gray border and one side a blue line
     - Text: add StrikeThrough to bold, italics. With Ctrl-B, etc.  SuperScript and SubScript ?
     - TextBox (new shape): 
-        - Ideally a third party control, that writes to HTML and Canvas then puts this into the InnetHTML 
+        - Ideally a third party control, that writes to HTML and Canvas then puts this into the InnetHTML: <div [innerHtml]="getSymbol()"></div> 
         - can edit individual strings inside the one textbox
         - can have text at top, and bullet below it
         - different font sizes
@@ -581,6 +590,14 @@ This document describes items for later versions of Canvas.
     - Time keeping ...
     - Insert clip art ...
     - Text: capitalisation, ie Short Demo ??  Really, really needed?
+    - Text: truncate option:
+        <p class="truncate-text">If I exceed one line's width, I will be truncated.</p>
+        .truncate-text {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            width: 200px;
+        }
     
 
     Draw Mode (Shapes):

@@ -6213,6 +6213,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
         let foundDataCachingTable: boolean = true;
         // Count
+        let localDataCachingTable: string;
         this.dbDataCachingTable.table("localDataCachingTable").count(res => {
             console.warn('xx count at START', res);
         });

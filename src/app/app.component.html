@@ -1894,8 +1894,10 @@
 
 
 <!-- TEST -->
+
 <!-- <div> <input type="text" [(ngModel)]="testIndexDB">    </div> -->
 
+<!-- TEST ENDs -->
 
     <!-- ****************************  WIDGETS & RELATED FORMS ***************************** -->
 
@@ -2269,9 +2271,10 @@
                 [style.line-height]="row.shapeLineHeight"
                 [style.text-align]="row.shapeTextAlign"
                 [style.width.px]="row.containerWidth"
+                [innerHtml]="row.shapeTextDisplay"
                 style="margin: 0; padding: 0; white-space: normal; background-color: transparent;"
                 >
-                {{ row.shapeTextDisplay }}
+                <!-- {{ row.shapeTextDisplay }} -->
                 <!-- <svg width="300" height="300">
                     <text
                         x="20"
