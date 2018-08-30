@@ -6230,8 +6230,38 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         this.menuOptionClickPostAction();
     }
 
+    clickHelpGettingStarted() {
+        // Help: Getting Started
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickHelpTutorials', '@Start')
+    }
+
+    clickHelpGetData() {
+        // Help: Get Data
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickHelpTutorials', '@Start')
+
+    }
+
+    clickHelpCreateDashboard() {
+        // Help: Create Dashboard
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickHelpTutorials', '@Start')
+
+    }
+
+    clickHelpCreateWidget() {
+        // Help: Create Widget
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickHelpTutorials', '@Start')
+
+    }
+
+    clickHelpTransformData() {
+    // Help: Transform Data
+    this.globalFunctionService.printToConsole(this.constructor.name,'clickHelpTutorials', '@Start')
+
+    }
+
     clickHelpDocumentation() {
         // Help: Documentation
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickHelpTutorials', '@Start')
 
         let foundDataCachingTable: boolean = true;
         // Count
@@ -6259,8 +6289,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                 if (!foundDataCachingTable) {
                     this.dbDataCachingTable.table("localDataCachingTable").put(
                         {
-                            key: 'datasources',
-                            datasourceID: null,
+                            table: 'datasources',
                             serverCacheable: true,
                             serverLastUpdatedDateTime: new Date(),
                             serverExpiryDateTime: new Date(),
