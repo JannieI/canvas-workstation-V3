@@ -112,17 +112,14 @@ This document describes items for later versions of Canvas.
     Local DB:
     ---------
     - review and check: it should NEVER be allowed to edit the DB itself - there must be a UI function for changing things.  And always by the users, with rights if necessary.
-    - Consider array.splice() instead of current deep copy - is more TS-like ...  Review ALL deep copies - try JSONify or source.map(Object) - remember that Sl Object. did not deep copy!!
     - Snapshot.clickRestore accesses global vars directly: revisit whole routine and see if can be done better: DS, dSet, WChkPnt, D, T, W.
         - some other places with the same issue:
         * WidgetCheckPoint: app.Undo
-        * Widget: app.deleteWidget
         * current dSet: dataRefresh.clickDS, slicerSingle.clickSlicer
         * currentW: app (20+ times), SlicerEd.clickSave & clickSlicerItem
     - how to add a table without deleting the IndexDB manually ??
     Caching:
     - option to switch caching on or not at the server level and local level (if server allows it)
-    - stores all currentD info, users, etc
     - refreshed via WS from DB
     - also used for auto-save: all the steps are saved here, and synced to server at specified  interval (setting on client)
     - speed test with Dexie with Dashboards stored:
@@ -449,6 +446,7 @@ This document describes items for later versions of Canvas.
     - add -> hyperlink inside TEXT box, thus can have Back Button.  Think: just to a tab, or to a D too?
     - widget Title: consider adding bold and italic
     - consider if putting Templates (for D, W, etc) and CanvasSettings, TributaryTypes, etc in DB makes sense.  Disadvantage is speed, not sure there is a real advantage.
+    - currently flip-to-table/graph is temporary - consider storing the widgetType permanently.
 
     Treeview: 
     --------
@@ -552,7 +550,29 @@ This document describes items for later versions of Canvas.
     - #pagenr and #pages in Template: it takes the page Nr from the template, and not the main Dashboard.  Consider changing it.
     - consider HTML or MarkDown inside text boxes and bullets.  Consider the benefit.
     - Bullets: move up and down arrows to arrange the points
-    - Text: add StrikeThrough to bold, italics.  SuperScript and SubScript ??
+    - Improve borders: current with 4, 1 per side so that one can have a Box with a thin gray border and one side a blue line
+    - Text: add StrikeThrough to bold, italics. With Ctrl-B, etc.  SuperScript and SubScript ?
+    - TextBox (new shape): 
+        - Ideally a third party control, that writes to HTML and Canvas then puts this into the InnetHTML 
+        - can edit individual strings inside the one textbox
+        - can have text at top, and bullet below it
+        - different font sizes
+        - add StrikeThrough to bold, italics. With Ctrl-B, etc
+        - SuperScript and SubScript ??
+    - Next (slide) button ...
+    - Jupyter NB style - run code inside and show results
+    - Effects !  Ie Text slides in from right ...  With CSS
+    - Code shape - looks like code !
+    - Gifs ...
+    - Math formulas - no way unless we use third party tool !
+    - Thumbnails - open on side and jump to tab by clicking on it
+    - Need a LINE !!
+    - Add icons, that can be resized
+    - Arrange and size blocks inside blocks - click one, select center, click second ...?
+    - Needs a big question mark
+    - Speaker notes 
+    - Time keeping ...
+    - Insert clip art ...
     
 
     Draw Mode (Shapes):

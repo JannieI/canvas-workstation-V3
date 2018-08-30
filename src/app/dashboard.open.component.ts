@@ -106,7 +106,7 @@ export class DashboardOpenComponent implements OnInit {
 
         // Template list
         this.globalVariableService.dashboards.forEach(d => {
-            if (d.state = 'Complete') {
+            if (d.state == 'Complete') {
                 this.dashboardList.push(d.name + ' (' + d.id.toString() + ')');
             };
         });
@@ -548,7 +548,7 @@ export class DashboardOpenComponent implements OnInit {
                 this.errorMessage = 'Insufficient Permission';
                 return;
         };
-        
+
         // Only Editor can open his Draft
         if (this.dashboards[index].state == 'Draft'
             &&
