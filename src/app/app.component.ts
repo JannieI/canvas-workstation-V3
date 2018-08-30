@@ -495,6 +495,7 @@ export class AppComponent implements OnInit {
     dexieDB: any[];
     testIndexDB: boolean = false;
     dbDataCachingTable;
+    localDataCachingTable: DataCachingTable[];
 
     // rubberbandShow: boolean = false;
     // rubberbandHeight: number = 100;
@@ -6209,22 +6210,47 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
     clickHelpDocumentation() {
         // Help: Documentation
-        this.dbDataCachingTable.table("localDataCachingTable").put(
-            {
-                key: 'datasources',
-                datasourceID: null,
-                serverCacheable: true,
-                serverLastUpdatedDateTime: new Date(),
-                serverExpiryDateTime: new Date(),
-                serverLastWSsequenceNr: 1,
-                localCacheable: true,
-                localLastUpdatedDateTime: new Date(),
-                localExpiryDateTime: new Date(),
-                localVariableName: 'datasources'
-            }
-        ).then(res => {
-            console.log('xx stored dbDataCachingTable', res);
+
+        let foundDataCachingTable: boolean = true;
+        // Count
+        this.dbDataCachingTable.table("localDataCachingTable").count(res => {
+            console.warn('xx count at START', res);
         });
+
+        // Query DB
+        this.dbDataCachingTable.table("localDataCachingTable")
+            .where('key').belowOrEqual('datasources')
+            .toArray(res => {
+                this.localDataCachingTable = res;
+                console.warn('xx res', res)
+                console.warn('xx localDataCachingTable', this.localDataCachingTable);
+                
+             })
+            .then(data => {
+                console.log('xx data', data);
+            })
+            .catch(err => {
+                console.log('xx error', err)
+            })
+
+        if (!foundDataCachingTable) {
+            this.dbDataCachingTable.table("localDataCachingTable").put(
+                {
+                    key: 'datasources',
+                    datasourceID: null,
+                    serverCacheable: true,
+                    serverLastUpdatedDateTime: new Date(),
+                    serverExpiryDateTime: new Date(),
+                    serverLastWSsequenceNr: 1,
+                    localCacheable: true,
+                    localLastUpdatedDateTime: new Date(),
+                    localExpiryDateTime: new Date(),
+                    localVariableName: 'datasources'
+                }
+            ).then(res => {
+                console.log('xx stored dbDataCachingTable', res);
+            });
+        };
     }
 
     clickHelpTutorials() {
