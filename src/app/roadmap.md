@@ -771,10 +771,6 @@ This document describes items for later versions of Canvas.
     -----------
     - time series graphs with annotations
      
-    Business messages:  See How We Can Incorporate This
-    -----------------
-    - business tool for business to write own reports
-    - large effort in developing reports
 
     Notebook: Style
     --------
@@ -782,9 +778,16 @@ This document describes items for later versions of Canvas.
     - does regression by choosing type of regression
     - R built in
 
+
     Data Scientist:  More advanced functions
+    --------------
     - has math and date time and stats functions in calculated fields
 
+
+    Business messages:  See How We Can Incorporate This
+    -----------------
+    - business tool for business to write own reports
+    - large effort in developing reports
 
     They needed to find a way to:
     - get more from data 
@@ -845,10 +848,8 @@ This document describes items for later versions of Canvas.
     - available on mobile
     - snapshot = G Drive previous version = version control
     - Industries: customer service, marketing, finance, social responsibility, healthcare, - human resources, manufacturing, retail, sales, IT, education, computer software, telecom, executive, supply-chain
-
     - report = simple Dashboard
     - Explore = discover
-    - Define Dashboard better = content, report = 1, tabs, related = permissions, data, etc – - include collaboration and management, maybe new Tab
     - Canvas = powerpoint-lite, dashboard, data virtualisation-lite, transformations, data - governance-lite
     - World class, easy insight from any data, agile tool, full BI scope (1 tool with less resources), instant deployment, short learning curve (hrs not weeks), can blend data together, analysis = slice and dice, impact = actionable insights, deploy = cloud, on-prem, hybrid, embed = secure and white label, govern = secure and control your data, customer success, instant impact: quickly up and running and deliver ROI within weeks or months, no need to involve IT resources to tackle complex data, no DBA or scripts required, increase customer satisfaction, easy to use front end, open API architecture, latest socket technology, access control, full reporting suite allowing for user customisation, dashboard for key statistics, easy to use with minimal training, unlimited number of users, no upfront capital expenditure (if in cloud), easily scale up or down, pay as you go?, remote working, empower your employees
     share Dashboard – also sends out email
