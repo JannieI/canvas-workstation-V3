@@ -45,16 +45,18 @@ import { WebSocketSubject }           from 'rxjs/webSocket';
 // Dexie
 import Dexie from 'dexie';
 
-class MyAppDatabase extends Dexie {
+class CanvasAppDatabase extends Dexie {
     // Declare implicit table properties.
     // (just to inform Typescript. Instanciated by Dexie in stores() method)
     contacts: Dexie.Table<IContact, number>; // number = type of the primkey
+    localDashboards: Dexie.Table<ILocalDashboard, number>; 
     //...other tables goes here...
 
     constructor () {
-        super("MyAppDatabase");
+        super("CanvasAppDatabase");
         this.version(1).stores({
             contacts: '++id, first, last',
+            localDashboards: 'id',
             //...other tables goes here...
         });
     }
@@ -89,7 +91,7 @@ class DataCachingTable extends Dexie {
     constructor () {
         super("DataCachingTable");
         this.version(1).stores({
-            contacts: 'key, localLastUpdatedDateTime, localExpiryDateTime',
+            contacts: 'key, localLastUpdatedDateTime, localExpiryDateTime'
         });
     }
 }
@@ -144,6 +146,20 @@ export class LocalDataCachingTable implements IDataCachingTable {
 }
 
 
+interface ILocalDashboard {
+    id: number,
+    dashboard: Dashboard
+}
+
+export class LocalDashboard implements ILocalDashboard {
+    id: number;
+    dashboard: Dashboard;
+
+    constructor(id:number, dashboard: Dashboard) {
+        this.id = id;
+        this.dashboard = dashboard;
+    }
+}
 
 // Constants
 export enum KEY_CODE {
@@ -495,6 +511,7 @@ export class AppComponent implements OnInit {
     dexieDB: any[];
     testIndexDB: boolean = false;
     dbDataCachingTable;
+    dbCanvasAppDatabase;
     localDataCachingTable: DataCachingTable[];
 
     // rubberbandShow: boolean = false;
@@ -531,15 +548,20 @@ export class AppComponent implements OnInit {
         // this[type+'_count'] = 1000;  // in a function we use "this";
         // alert(this.article_count);
 
-        var db = new Dexie("MyAppDatabase");
-        db.version(1).stores({contacts: 'id, first, last'});
+        this.dbCanvasAppDatabase = new Dexie("CanvasAppDatabase");
+        this.dbCanvasAppDatabase.version(1).stores(
+            {
+                contacts: 'id, first, last',
+                localDashboards: 'id'
+            });
         // db.table("contacts").put({first: "First name", last: "Last name"});
 
         // Local DB info
         this.dbDataCachingTable = new Dexie("DataCachingTable");
         this.dbDataCachingTable.version(1).stores(
             {
-                localDataCachingTable: 'key, datasourceID, localExpiryDateTime'
+                localDataCachingTable: 'key, datasourceID, localExpiryDateTime',
+                localDashboards: 'id', 
             }
         );
 
@@ -6213,9 +6235,11 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
         let foundDataCachingTable: boolean = true;
         // Count
-        let localDataCachingTable: string;
         this.dbDataCachingTable.table("localDataCachingTable").count(res => {
-            console.warn('xx count at START', res);
+            console.warn('xx count localDataCachingTable at START', res);
+        });
+        this.dbCanvasAppDatabase.table("localDashboards").count(res => {
+            console.warn('xx count localDashboards at START', res);
         });
 
         // Query DB
@@ -6270,7 +6294,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         }
 
         // Define DB
-        var db = new Dexie("MyAppDatabase");
+        var db = new Dexie("CanvasAppDatabase");
 
         // Listening to Deletions and Version Changes
         // db.on("versionchange", function(event) {
@@ -6313,7 +6337,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                     // db.close()
                     // db.delete().then(() => {
                     //     console.log("Database successfully deleted");
-                    //     var db = new Dexie("MyAppDatabase");
+                    //     var db = new Dexie("CanvasAppDatabase");
                     //     db.version(1).stores({contacts: 'id, first, last'});
                     // db.open()
                     // .then(res => {
@@ -6390,7 +6414,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         // )
         // console.log('xx Deleted DB');
 
-        // Dexie.exists("MyAppDatabase").then(function(exists) {
+        // Dexie.exists("CanvasAppDatabase").then(function(exists) {
         //     if (exists) {
         //         console.log("Database exists");
         //         // Open DB
@@ -6405,7 +6429,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
         //     } else {
         //         console.log("Database doesn't exist");
-        //         var db = new Dexie('MyAppDatabase');
+        //         var db = new Dexie('CanvasAppDatabase');
         //         db.version(1).stores({contacts: 'id, first, last'});
         //         db.open();
         //         console.log('xx Opened NEW DB');

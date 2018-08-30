@@ -583,7 +583,8 @@ This document describes items for later versions of Canvas.
     - Math formulas - no way unless we use third party tool !
     - Thumbnails - open on side and jump to tab by clicking on it
     - Need a LINE !!
-    - Add icons, that can be resized
+    - Add icons, that can be resized: see
+        https://www.w3schools.com/charsets/ref_utf_misc_symbols.asp
     - Arrange and size blocks inside blocks - click one, select center, click second ...?
     - Needs a big question mark
     - Speaker notes 

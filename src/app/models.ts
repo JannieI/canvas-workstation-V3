@@ -341,8 +341,7 @@ export class CombinationDetail {
 }
 
 export class DataCachingTable {
-    key: string;                             // Unique key
-    datasourceID: number;                    // Optional, for indivudual DS
+    table: string;                           // Unique Table Name for which info is kept
     serverCacheable: boolean;                // True if cached on server 
     serverLastUpdatedDateTime: Date;         // When cached last refreshed on server
     serverExpiryDateTime: Date;              // When cache expires on server
