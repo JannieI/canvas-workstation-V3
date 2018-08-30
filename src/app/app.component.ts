@@ -6261,14 +6261,11 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
             .then(result =>
                 {
                     console.log('xx CLEARED localDataCachingTable', result);
-                    this.dbDataCachingTable.version(1).stores(
-                        {
-                            localDataCachingTable: 'key, datasourceID, localExpiryDateTime',
-                        }
-                    ).then(res => {
-                        console.warn('xx OPENED localDataCachingTable');
-                    })
+                    this.dbCanvasAppDatabase = new Dexie("DataCachingTable");
 
+                    this.dbDataCachingTable.table("localDataCachingTable").count(res => {
+                        console.warn('xx count localDataCachingTable after CLEAR', res);
+                    });
                 }
             )
             .catch(err => console.warn('xx err clearing localDataCachingTable', err))
@@ -6277,15 +6274,11 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
             .then(result =>
                 {
                     console.log('xx CLEARED localDashboards', result);
-                    this.dbCanvasAppDatabase.version(1).stores(
-                        {
-                            contacts: 'id, first, last',
-                            localDashboards: 'id'
-                        }
-                    ).then(res => {
-                        console.warn('xx OPENED localDataCachingTable');
-                    })
-                }
+                    this.dbCanvasAppDatabase = new Dexie("CanvasAppDatabase");
+
+                    this.dbCanvasAppDatabase.table("localDashboards").count(res => {
+                        console.warn('xx count localDashboards at START', res);
+                    });                }
             )
             .catch(err => console.warn('xx err clearing localDashboards', err))
 
