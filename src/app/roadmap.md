@@ -146,6 +146,10 @@ This document describes items for later versions of Canvas.
     14.How do we treat sensitive data - that may not be seen by DBA.  Keep it in Excel and reload each time ...
     - Add Named-Transformations: have a CRUD form where user specifies a name, and a list of transformations to be performed with it.  Maybe give a start DS -> can only work if the requested DS has this layout, plus has field types, etc to calc and also know it will work.  Seems best solution to have a start DS.
     - export to csv, Excel, etc
+    - has currency
+    - data bars inside text values
+    - sub totals and grand totals
+    - can add labels, once 
 
 
     Data types and field lengths:
@@ -447,6 +451,9 @@ This document describes items for later versions of Canvas.
     - widget Title: consider adding bold and italic
     - consider if putting Templates (for D, W, etc) and CanvasSettings, TributaryTypes, etc in DB makes sense.  Disadvantage is speed, not sure there is a real advantage.
     - currently flip-to-table/graph is temporary - consider storing the widgetType permanently.
+    - kanban board – think of container with cards, each having user selected fields (assigned to, task descr, etc) and a filter => can create a block of tasks assigned to me ?
+    - Storyboard – explain better and show example
+    - Graph with different granularity ~ via checkpoints?
 
     Treeview: 
     --------
@@ -484,6 +491,7 @@ This document describes items for later versions of Canvas.
     Tables:
     ------
     - allow to set pagination nr (currently defaults to 10)
+    - table checkpoints?
 
     Comments:
     --------
@@ -560,7 +568,6 @@ This document describes items for later versions of Canvas.
         - add StrikeThrough to bold, italics. With Ctrl-B, etc
         - SuperScript and SubScript ??
     - Next (slide) button ...
-    - Jupyter NB style - run code inside and show results
     - Effects !  Ie Text slides in from right ...  With CSS
     - Code shape - looks like code !
     - Gifs ...
@@ -573,6 +580,7 @@ This document describes items for later versions of Canvas.
     - Speaker notes 
     - Time keeping ...
     - Insert clip art ...
+    - Text: capitalisation, ie Short Demo ??  Really, really needed?
     
 
     Draw Mode (Shapes):
@@ -749,6 +757,99 @@ This document describes items for later versions of Canvas.
     - link to Company platform, ie Skype?
     - make messages visible, ie hover shows latest collaborations
 
+    Alerts:
+    ------
+    - pulse alerts aligned to a dashboard with thresholds acceded 
+
+
     Dashboard Permissions:
     ---------------------
     - currently cannot grant permissions to Draft, which is Private.  Re-Consider this: should draft be Shared, Scheduled, etc?  And what happens to permissions when saved back - should it revert back to previous permissions for the Complete version, or inherit the next version (dont think so, as this means one has to wiggle this a bit ...)
+
+
+    News Events:
+    -----------
+    - time series graphs with annotations
+     
+    Business messages:  See How We Can Incorporate This
+    -----------------
+    - business tool for business to write own reports
+    - large effort in developing reports
+
+    Notebook: Style
+    --------
+    - emulate a Jupyter NB style - run code inside and show results
+    - does regression by choosing type of regression
+    - R built in
+
+    Data Scientist:  More advanced functions
+    - has math and date time and stats functions in calculated fields
+
+
+    They needed to find a way to:
+    - get more from data 
+    - offer more value 
+    - innovate 
+    - grow with clients 
+    - compete to attract talent 
+    - how to simplify reporting 
+    - visualize reports 
+    - share reports with all levels 
+    - join different pockets of data to get insight 
+    - growing rate of amount of data 
+    - measurement scorecard 
+    - peer scorecard 
+    - see trends real time 
+    - centralize reporting 
+    - can access reports from anywhere including mobile 
+    - more factual, visual decision making 
+    - pulse alerts aligned to a dashboard with thresholds acceded 
+    - governance in who can see what 
+    - helped by structured data strategy 
+    - want to apply AI and machine learning which is not easy as one requires a baseline over a period of time 
+    - get new insights to run business better 
+    - build a competitive advantage 
+    - see he customer behaviour is changing 
+    - better understanding of company impact 
+    - performance measurements of staff 
+    - strategic partnership with product provider like Sisense 
+    - all levels in company sees same reports
+    - real time insights will become more important
+    - all businesses are now data businesses
+    - Data is the new oil
+    - they believe in reports by business people by business people
+    - agile which means don't need SQL
+    - can answer any question immediately
+    - every one must be able to access tool
+    - dashboards visually appealing
+    - can use scripts if need be
+    - can annotate data and text comments called key takeaways or key insights
+    - uses Northwind SQL db for demo
+    - imports data and shows relationships from SQL DB
+    - can link from different sources ie Excel and SQL  DB
+    - can also do calculated fields 
+    - change headers 
+    - can change data type 
+    - then build elastic cube which imports data which can also be scheduled
+    - can also do live connect to get real time data
+    - formatting gauge widget via a popup
+    - can add conditional formatting with multiple rules
+    - can add kpi to alert - in popup can give email or mobile to notify via above threshold or always
+    - new widget via popup which makes suggestion on widget type
+    - can show pivot table and switch to graph
+    - Multiple Dbs → 1 Dashboard
+    - Joining different Dbs on different keys and values
+    - Dev – 60% + of time on ops reports !
+    - Messages = IM
+    - ERD tool – and central data Dict
+    - available on mobile
+    - snapshot = G Drive previous version = version control
+    - Industries: customer service, marketing, finance, social responsibility, healthcare, - human resources, manufacturing, retail, sales, IT, education, computer software, telecom, executive, supply-chain
+
+    - report = simple Dashboard
+    - Explore = discover
+    - Define Dashboard better = content, report = 1, tabs, related = permissions, data, etc – - include collaboration and management, maybe new Tab
+    - Canvas = powerpoint-lite, dashboard, data virtualisation-lite, transformations, data - governance-lite
+    - World class, easy insight from any data, agile tool, full BI scope (1 tool with less resources), instant deployment, short learning curve (hrs not weeks), can blend data together, analysis = slice and dice, impact = actionable insights, deploy = cloud, on-prem, hybrid, embed = secure and white label, govern = secure and control your data, customer success, instant impact: quickly up and running and deliver ROI within weeks or months, no need to involve IT resources to tackle complex data, no DBA or scripts required, increase customer satisfaction, easy to use front end, open API architecture, latest socket technology, access control, full reporting suite allowing for user customisation, dashboard for key statistics, easy to use with minimal training, unlimited number of users, no upfront capital expenditure (if in cloud), easily scale up or down, pay as you go?, remote working, empower your employees
+    share Dashboard – also sends out email
+
