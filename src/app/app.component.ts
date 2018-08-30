@@ -97,7 +97,7 @@ class DataCachingTable extends Dexie {
 interface IDataCachingTable {
     key: string;                             // Unique key
     datasourceID: number;                    // Optional, for indivudual DS
-    serverCacheable: boolean;                // True if cached on server 
+    serverCacheable: boolean;                // True if cached on server
     serverLastUpdatedDateTime: Date;         // When cached last refreshed on server
     serverExpiryDateTime: Date;              // When cache expires on server
     serverLastWSsequenceNr: number;          // Last WSockets message nr sent for this
@@ -129,7 +129,7 @@ export class LocalDataCachingTable implements IDataCachingTable {
         localLastUpdatedDateTime: Date,
         localExpiryDateTime: Date,
         localVariableName: string) {
-      
+
             this.key = key,
             this.datasourceID = datasourceID,
             this.serverCacheable = serverCacheable,
@@ -6224,33 +6224,37 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                 this.localDataCachingTable = res;
                 console.warn('xx res', res)
                 console.warn('xx localDataCachingTable', this.localDataCachingTable);
-                
+                if (this.localDataCachingTable.length == 0) {
+                    console.warn('xx Adding new here')
+                    foundDataCachingTable = false;
+                }
              })
             .then(data => {
-                console.log('xx data', data);
+                console.log('xx found', foundDataCachingTable);
+                if (!foundDataCachingTable) {
+                    this.dbDataCachingTable.table("localDataCachingTable").put(
+                        {
+                            key: 'datasources',
+                            datasourceID: null,
+                            serverCacheable: true,
+                            serverLastUpdatedDateTime: new Date(),
+                            serverExpiryDateTime: new Date(),
+                            serverLastWSsequenceNr: 1,
+                            localCacheable: true,
+                            localLastUpdatedDateTime: new Date(),
+                            localExpiryDateTime: new Date(),
+                            localVariableName: 'datasources'
+                        }
+                    ).then(res => {
+                        console.log('xx stored dbDataCachingTable', res);
+                    });
+                };                
             })
             .catch(err => {
                 console.log('xx error', err)
             })
 
-        if (!foundDataCachingTable) {
-            this.dbDataCachingTable.table("localDataCachingTable").put(
-                {
-                    key: 'datasources',
-                    datasourceID: null,
-                    serverCacheable: true,
-                    serverLastUpdatedDateTime: new Date(),
-                    serverExpiryDateTime: new Date(),
-                    serverLastWSsequenceNr: 1,
-                    localCacheable: true,
-                    localLastUpdatedDateTime: new Date(),
-                    localExpiryDateTime: new Date(),
-                    localVariableName: 'datasources'
-                }
-            ).then(res => {
-                console.log('xx stored dbDataCachingTable', res);
-            });
-        };
+
     }
 
     clickHelpTutorials() {
