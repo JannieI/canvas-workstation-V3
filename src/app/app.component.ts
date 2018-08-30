@@ -6249,7 +6249,44 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
     clickHelpCreateWidget() {
         // Help: Create Widget
         this.globalFunctionService.printToConsole(this.constructor.name,'clickHelpTutorials', '@Start')
+                   
+        let localDataCachingTable: any[] = [];
+        localDataCachingTable = [{
+            table: 'dashboards',
+            serverCacheable: true,
+            serverLastUpdatedDateTime: new Date(),
+            serverExpiryDateTime: new Date(),
+            serverLastWSsequenceNr: 1,
+            localCacheable: true,
+            localLastUpdatedDateTime: new Date(),
+            localExpiryDateTime: new Date(),
+            localVariableName: 'dashboards'
+        }];
+        
+        // // Load var
+        // for (var i = 0; i < 10000; i++) {
+        //     this.dexieDB.push(
+        //         {
+        //             first: "First name",
+        //             last: "Last name",
+        //             dashboard: this.globalVariableService.dashboards[0],
+        //             id: i
+        //         }
+        //     )
+        // };
+        
+        // Load DB with bulkPut
+        this.dbDataCachingTable.table("localDataCachingTable")
+            .bulkPut(localDataCachingTable)
+            .then(res => {
+                console.warn('xx End BulkPut');
 
+                // Count
+                this.dbDataCachingTable.table("localDataCachingTable").count(res => {
+                    console.warn('xx count after bulkPut', res);
+                });
+            });
+        
     }
 
     clickHelpTransformData() {
