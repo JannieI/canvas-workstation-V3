@@ -436,6 +436,7 @@ export class AppComponent implements OnInit {
 
     dexieDB: any[];
     testIndexDB: boolean = false;
+    dbDataCachingTable;
 
     // rubberbandShow: boolean = false;
     // rubberbandHeight: number = 100;
@@ -474,6 +475,14 @@ export class AppComponent implements OnInit {
         var db = new Dexie("MyAppDatabase");
         db.version(1).stores({contacts: 'id, first, last'});
         // db.table("contacts").put({first: "First name", last: "Last name"});
+        
+        // Local DB info
+        this.dbDataCachingTable = new Dexie("DataCachingTable");
+        this.dbDataCachingTable.version(1).stores(
+            {
+                dataCachingTable: 'key, datasourceID, localExpiryDateTime'
+            }
+        );
 
         // Get Users and Groups, async
         this.globalVariableService.getCanvasGroups();
@@ -6138,6 +6147,26 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         this.router.navigate(['/help']);
 
         this.menuOptionClickPostAction();
+    }
+
+    clickHelpDocumentation() {
+        // Help: Documentation
+        this.dbDataCachingTable.table("contacts").put(
+            {
+                key: 'datasources',
+                datasourceID: null,
+                serverCacheable: true,
+                serverLastUpdatedDateTime: new Date(),
+                serverExpiryDateTime: new Date(),
+                serverLastWSsequenceNr: 1,
+                localCacheable: true,
+                localLastUpdatedDateTime: new Date(),
+                localExpiryDateTime: new Date(),
+                localVariableName: 'datasources'
+            }
+        ).then(res => {
+            console.log('xx stored dbDataCachingTable', res);
+        });
     }
 
     clickHelpTutorials() {
