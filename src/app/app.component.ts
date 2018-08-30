@@ -49,7 +49,7 @@ class CanvasAppDatabase extends Dexie {
     // Declare implicit table properties.
     // (just to inform Typescript. Instanciated by Dexie in stores() method)
     contacts: Dexie.Table<IContact, number>; // number = type of the primkey
-    localDashboards: Dexie.Table<ILocalDashboard, number>; 
+    localDashboards: Dexie.Table<ILocalDashboard, number>;
     //...other tables goes here...
 
     constructor () {
@@ -561,7 +561,6 @@ export class AppComponent implements OnInit {
         this.dbDataCachingTable.version(1).stores(
             {
                 localDataCachingTable: 'key, datasourceID, localExpiryDateTime',
-                localDashboards: 'id', 
             }
         );
 
@@ -6257,6 +6256,39 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
     // Help: Transform Data
     this.globalFunctionService.printToConsole(this.constructor.name,'clickHelpTutorials', '@Start')
 
+        // Clear DB
+        this.dbDataCachingTable.table("localDataCachingTable").clear()
+            .then(result =>
+                {
+                    console.log('xx CLEARED localDataCachingTable', result);
+                    this.dbDataCachingTable.version(1).stores(
+                        {
+                            localDataCachingTable: 'key, datasourceID, localExpiryDateTime',
+                        }
+                    ).then(res => {
+                        console.warn('xx OPENED localDataCachingTable');
+                    })
+
+                }
+            )
+            .catch(err => console.warn('xx err clearing localDataCachingTable', err))
+
+        this.dbCanvasAppDatabase.table("localDashboards").clear()
+            .then(result =>
+                {
+                    console.log('xx CLEARED localDashboards', result);
+                    this.dbCanvasAppDatabase.version(1).stores(
+                        {
+                            contacts: 'id, first, last',
+                            localDashboards: 'id'
+                        }
+                    ).then(res => {
+                        console.warn('xx OPENED localDataCachingTable');
+                    })
+                }
+            )
+            .catch(err => console.warn('xx err clearing localDashboards', err))
+
     }
 
     clickHelpDocumentation() {
@@ -6274,7 +6306,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
         // Query DB
         this.dbDataCachingTable.table("localDataCachingTable")
-            .where('key').belowOrEqual('datasources')
+            .where('key').belowOrEqual('dashboards')
             .toArray(res => {
                 this.localDataCachingTable = res;
                 console.warn('xx res', res)
@@ -6289,7 +6321,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                 if (!foundDataCachingTable) {
                     this.dbDataCachingTable.table("localDataCachingTable").put(
                         {
-                            table: 'datasources',
+                            table: 'dashboards',
                             serverCacheable: true,
                             serverLastUpdatedDateTime: new Date(),
                             serverExpiryDateTime: new Date(),
@@ -6297,12 +6329,12 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                             localCacheable: true,
                             localLastUpdatedDateTime: new Date(),
                             localExpiryDateTime: new Date(),
-                            localVariableName: 'datasources'
+                            localVariableName: 'dashboards'
                         }
                     ).then(res => {
                         console.log('xx stored dbDataCachingTable', res);
                     });
-                };                
+                };
             })
             .catch(err => {
                 console.log('xx error', err)

@@ -7706,7 +7706,7 @@ export class GlobalVariableService {
         //     this.get(url)
         //         .then(res => {
                     this.dataCachingTable = [{
-                        table: 'datasources',
+                        table: 'dashboards',
                         serverCacheable: true,
                         serverLastUpdatedDateTime: new Date(),
                         serverExpiryDateTime: new Date(),
@@ -7714,7 +7714,7 @@ export class GlobalVariableService {
                         localCacheable: true,
                         localLastUpdatedDateTime: new Date(),
                         localExpiryDateTime: new Date(),
-                        localVariableName: 'datasources'
+                        localVariableName: 'dashboards'
                     }];
                 
                     console.log('%c    Global-Variables getDataCachingTable 1',
