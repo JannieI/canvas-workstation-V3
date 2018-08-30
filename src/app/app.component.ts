@@ -67,14 +67,12 @@ interface IContact {
     dashboard: Dashboard
 }
 
-
-
 export class Contact implements IContact {
     id: number;
     first: string;
     last: string;
     dashboard: Dashboard;
-    
+
     constructor(first: string, last: string, dashboard: Dashboard, id?:number) {
       this.first = first;
       this.last = last;
@@ -83,7 +81,67 @@ export class Contact implements IContact {
     }
 }
 
+class DataCachingTable extends Dexie {
+    // Declare implicit table properties.
+    // (just to inform Typescript. Instanciated by Dexie in stores() method)
+    localDataCachingTable: Dexie.Table<IContact, number>; // number = type of the primkey
 
+    constructor () {
+        super("DataCachingTable");
+        this.version(1).stores({
+            contacts: 'key, localLastUpdatedDateTime, localExpiryDateTime',
+        });
+    }
+}
+
+interface IDataCachingTable {
+    key: string;                             // Unique key
+    datasourceID: number;                    // Optional, for indivudual DS
+    serverCacheable: boolean;                // True if cached on server 
+    serverLastUpdatedDateTime: Date;         // When cached last refreshed on server
+    serverExpiryDateTime: Date;              // When cache expires on server
+    serverLastWSsequenceNr: number;          // Last WSockets message nr sent for this
+    localCacheable: boolean;                 // True if cached locally, ie IndexedDB
+    localLastUpdatedDateTime: Date;          // When local cache last refreshed
+    localExpiryDateTime: Date;               // When local cache expries
+    localVariableName: string;               // Optional name of memory variable
+}
+
+export class LocalDataCachingTable implements IDataCachingTable {
+    key: string;
+    datasourceID: number;
+    serverCacheable: boolean;
+    serverLastUpdatedDateTime: Date;
+    serverExpiryDateTime: Date;
+    serverLastWSsequenceNr: number;
+    localCacheable: boolean;
+    localLastUpdatedDateTime: Date;
+    localExpiryDateTime: Date;
+    localVariableName: string;
+
+    constructor(key: string,
+        datasourceID: number,
+        serverCacheable: boolean,
+        serverLastUpdatedDateTime: Date,
+        serverExpiryDateTime: Date,
+        serverLastWSsequenceNr: number,
+        localCacheable: boolean,
+        localLastUpdatedDateTime: Date,
+        localExpiryDateTime: Date,
+        localVariableName: string) {
+      
+            this.key = key,
+            this.datasourceID = datasourceID,
+            this.serverCacheable = serverCacheable,
+            this.serverLastUpdatedDateTime = serverLastUpdatedDateTime,
+            this.serverExpiryDateTime = serverExpiryDateTime,
+            this.serverLastWSsequenceNr = serverLastWSsequenceNr,
+            this.localCacheable = localCacheable,
+            this.localLastUpdatedDateTime = localLastUpdatedDateTime,
+            this.localExpiryDateTime = localExpiryDateTime,
+            this.localVariableName = localVariableName
+        }
+}
 
 
 
@@ -475,12 +533,12 @@ export class AppComponent implements OnInit {
         var db = new Dexie("MyAppDatabase");
         db.version(1).stores({contacts: 'id, first, last'});
         // db.table("contacts").put({first: "First name", last: "Last name"});
-        
+
         // Local DB info
         this.dbDataCachingTable = new Dexie("DataCachingTable");
         this.dbDataCachingTable.version(1).stores(
             {
-                dataCachingTable: 'key, datasourceID, localExpiryDateTime'
+                localDataCachingTable: 'key, datasourceID, localExpiryDateTime'
             }
         );
 
@@ -6151,7 +6209,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
     clickHelpDocumentation() {
         // Help: Documentation
-        this.dbDataCachingTable.table("contacts").put(
+        this.dbDataCachingTable.table("localDataCachingTable").put(
             {
                 key: 'datasources',
                 datasourceID: null,
@@ -6209,14 +6267,14 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                 db.table("contacts")
                     .where('id').belowOrEqual(2)
                     .toArray(res => console.warn('xx res', res) ).then(data => {
-                        console.log('xx End WHERE', {data}); 
+                        console.log('xx End WHERE', {data});
 
                     })
 
                 if (this.testIndexDB) {
 
                     console.warn('xx testIndexDB', this.testIndexDB);
-                    
+
                     // Clear var
                     this.dexieDB = [];
 
@@ -6234,7 +6292,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                     db.table("contacts").clear().then(result => {
                         console.log('xx CLEARED DB', result);
 
-                
+
                             // }).catch((err) => {
                             //     console.error("Could not delete database");
                             // }).finally(() => {
@@ -6246,17 +6304,17 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
                         // Load Ds individually
                         for (var i = 0; i < 0; i++) {
-                            
+
                             db.table("contacts").put(
                                 {
-                                    first: "First name", 
-                                    last: "Last name", 
-                                    dashboard: this.globalVariableService.dashboards[0], 
+                                    first: "First name",
+                                    last: "Last name",
+                                    dashboard: this.globalVariableService.dashboards[0],
                                     id: i
                                 }
                             ).then(res => {
                                 // console.log('xx res', res);
-                                
+
                             });
                         };
 
@@ -6267,9 +6325,9 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                         for (var i = 0; i < 10000; i++) {
                             this.dexieDB.push(
                                 {
-                                    first: "First name", 
-                                    last: "Last name", 
-                                    dashboard: this.globalVariableService.dashboards[0], 
+                                    first: "First name",
+                                    last: "Last name",
+                                    dashboard: this.globalVariableService.dashboards[0],
                                     id: i
                                 }
                             )
@@ -6284,22 +6342,22 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                                 console.warn('xx count 3 at END', res);
                             });
                         });
-                        
+
 
                         // Msg
                         console.log('xx End')
                     });
                 // });
-                };                
+                };
             })
             .catch((error) => {
                 console.log('xx Error in Open DB', error);
             });
-        
+
         // // Delete DB
         // db.table("contacts").delete().catch(err => console.warn('xx Del failed', err);
         // )
-        // console.log('xx Deleted DB'); 
+        // console.log('xx Deleted DB');
 
         // Dexie.exists("MyAppDatabase").then(function(exists) {
         //     if (exists) {
@@ -6313,13 +6371,13 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         //             .catch((error) => {
         //                 console.log('xx Error in Open DB', error);
         //             });
-                 
+
         //     } else {
         //         console.log("Database doesn't exist");
         //         var db = new Dexie('MyAppDatabase');
         //         db.version(1).stores({contacts: 'id, first, last'});
         //         db.open();
-        //         console.log('xx Opened NEW DB'); 
+        //         console.log('xx Opened NEW DB');
 
         //     }
         // })
@@ -6707,9 +6765,9 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
             if (!this.checkForOnlyOneWidget()) {
                 this.clickMenuWidgetDuplicate('Graph');
             }
-            
+
             this.menuOptionClickPreAction();
-            
+
             // Indicate edit W and open Editor, which will work with selected W
             this.currentWidgets.forEach(w => {
                 if (w.isSelected) {
