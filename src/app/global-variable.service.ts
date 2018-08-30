@@ -30,6 +30,7 @@ import { DashboardTab }               from './models';
 import { DashboardTag }               from './models';
 import { DashboardTemplate }          from './models';
 import { DashboardTheme }             from './models';
+import { DataCachingTable }           from './models';
 import { DataConnection }             from './models';
 import { DatasourceTransformation }   from './models';
 import { DatasourceSchedule }         from './models';
@@ -511,6 +512,7 @@ export class GlobalVariableService {
     datasources: Datasource[] = [];
     datasourceSchedules: DatasourceSchedule[] = [];
     datasourceScheduleLog: DatasourceScheduleLog[] = [];
+    dataCachingTable: DataCachingTable[] = [];
     dataConnections: DataConnection[] = [];
     dataFields: DataField[] = [];
     dataOwnerships: DataOwnership[] = [];
@@ -7690,6 +7692,40 @@ export class GlobalVariableService {
         };
     }
 
+    getDataCachingTable(): DataCachingTable[] {
+       // Description: Gets the caching table that drives local caching process
+        console.log('%c    Global-Variables getDataCachingTable ...',
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+            this.statusBarMessageLogs.length);
+
+        let url: string = 'dataCachingTable';
+        this.filePath = './assets/dataCachingTable.json';
+
+        // return new Promise<DataCachingTable[]>((resolve, reject) => {
+
+        //     this.get(url)
+        //         .then(res => {
+                    this.dataCachingTable = [{
+                        key: 'datasources',
+                        datasourceID: null,
+                        serverCacheable: true,
+                        serverLastUpdatedDateTime: new Date(),
+                        serverExpiryDateTime: new Date(),
+                        serverLastWSsequenceNr: 1,
+                        localCacheable: true,
+                        localLastUpdatedDateTime: new Date(),
+                        localExpiryDateTime: new Date(),
+                        localVariableName: 'datasources'
+                    }];
+                
+                    console.log('%c    Global-Variables getDataCachingTable 1',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                        this.dataCachingTable)
+                    return this.dataCachingTable;
+        //             resolve(this.dataCachingTable);
+        // });
+
+    }
     connectLocalDB<T>(): Promise<string | Object> {
         // Connect to the local DB, ie nanaSQL
         console.log('%c    Global-Variables connectLocalDB',
