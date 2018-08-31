@@ -6237,6 +6237,22 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         // Help: Get Data
         this.globalFunctionService.printToConsole(this.constructor.name,'clickHelpTutorials', '@Start')
 
+        // Reload Dashboards
+
+        // Create Var with data
+        let localDashboardSingle = this.globalVariableService.dashboards[1];
+
+        // Load DB with bulkPut
+        this.dbCanvasAppDatabase.table("localDashboards")
+            .bulkPut(localDashboardSingle, localDashboardSingle.id)
+            .then(res => {
+                console.warn('xx End Add/Update for 1 Dashboard');
+
+                // Count
+                this.dbCanvasAppDatabase.table("localDashboards").count(res => {
+                    console.warn('xx End Add/Update for 1 Dashboard', res);
+                });
+            });
     }
 
     clickHelpCreateDashboard() {
