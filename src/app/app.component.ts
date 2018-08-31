@@ -511,6 +511,7 @@ export class AppComponent implements OnInit {
     dbDataCachingTable;
     dbCanvasAppDatabase;
     localDataCachingTable: IDataCachingTable[];
+    localDashboard: ILocalDashboard[];
 
     // rubberbandShow: boolean = false;
     // rubberbandHeight: number = 100;
@@ -556,7 +557,7 @@ export class AppComponent implements OnInit {
         );
         this.dbCanvasAppDatabase.open();
 
-        // Local CachingTable DB 
+        // Local CachingTable DB
         this.dbDataCachingTable = new Dexie("DataCachingTable");
         this.dbDataCachingTable.version(1).stores(
             {
@@ -6250,7 +6251,11 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
     clickHelpCreateWidget() {
         // Help: Create Widget
         this.globalFunctionService.printToConsole(this.constructor.name,'clickHelpTutorials', '@Start')
-                
+
+        // Replace DataCachingTable
+
+        // Create Var with data
+        this.localDataCachingTable = [];
         this.localDataCachingTable = [{
             key: 'dashboards',
             serverCacheable: true,
@@ -6262,31 +6267,44 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
             localExpiryDateTime: new Date(),
             localVariableName: 'dashboards'
         }];
-        
-        // // Load var
-        // for (var i = 0; i < 10000; i++) {
-        //     this.dexieDB.push(
-        //         {
-        //             first: "First name",
-        //             last: "Last name",
-        //             dashboard: this.globalVariableService.dashboards[0],
-        //             id: i
-        //         }
-        //     )
-        // };
-        
+
         // Load DB with bulkPut
         this.dbDataCachingTable.table("localDataCachingTable")
             .bulkPut(this.localDataCachingTable)
             .then(res => {
-                console.warn('xx End BulkPut');
+                console.warn('xx End BulkPut for localDataCachingTable');
 
                 // Count
                 this.dbDataCachingTable.table("localDataCachingTable").count(res => {
-                    console.warn('xx count after bulkPut', res);
+                    console.warn('xx count after bulkPut for localDataCachingTable', res);
                 });
             });
-        
+
+        // Reload Dashboards
+
+        // Create Var with data
+        this.localDashboard = [];
+        for (var i = 0; i < this.globalVariableService.dashboards.length; i++) {
+            this.localDashboard.push(
+                {
+                    id: this.globalVariableService.dashboards[i].id,
+                    dashboard: this.globalVariableService.dashboards[i],
+                }
+            )
+        };
+
+        // Load DB with bulkPut
+        this.dbDataCachingTable.table("localDashboard")
+            .bulkPut(this.localDashboard)
+            .then(res => {
+                console.warn('xx End BulkPut for localDashboard');
+
+                // Count
+                this.dbDataCachingTable.table("localDashboard").count(res => {
+                    console.warn('xx count after bulkPut for localDashboard', res);
+                });
+            });
+
     }
 
     clickHelpTransformData() {
@@ -6299,13 +6317,13 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                 {
                     console.log('xx CLEARED localDataCachingTable', result);
 
-                    this.dbDataCachingTable = new Dexie("DataCachingTable");
-                    this.dbDataCachingTable.version(1).stores(
-                        {
-                            localDataCachingTable: 'key, datasourceID, localExpiryDateTime',
-                        }
-                    );
-                    console.log('xx CREATED localDataCachingTable', result);
+                    // this.dbDataCachingTable = new Dexie("DataCachingTable");
+                    // this.dbDataCachingTable.version(1).stores(
+                    //     {
+                    //         localDataCachingTable: 'key, datasourceID, localExpiryDateTime',
+                    //     }
+                    // );
+                    // console.log('xx CREATED localDataCachingTable', result);
 
                     this.dbDataCachingTable.table("localDataCachingTable").count(res => {
                         console.warn('xx count localDataCachingTable after CLEAR', res);
@@ -6318,15 +6336,15 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
             .then(result =>
                 {
                     console.log('xx CLEARED localDashboards', result);
-                    this.dbCanvasAppDatabase = new Dexie("CanvasAppDatabase");
-                    this.dbCanvasAppDatabase.version(1).stores(
-                        {
-                            contacts: 'id, first, last',
-                            localDashboards: 'id'
-                        }
-                    );
+                    // this.dbCanvasAppDatabase = new Dexie("CanvasAppDatabase");
+                    // this.dbCanvasAppDatabase.version(1).stores(
+                    //     {
+                    //         contacts: 'id, first, last',
+                    //         localDashboards: 'id'
+                    //     }
+                    // );
+                    // console.log('xx CREATED localDashboards', result);
 
-                    console.log('xx CREATED localDashboards', result);
                     this.dbCanvasAppDatabase.table("localDashboards").count(res => {
                         console.warn('xx count localDashboards at START', res);
                     });                }
