@@ -875,8 +875,10 @@ export class GlobalVariableService {
         // - dashboardID = D to copy (= Original)
         // - name, state: optional values for the new copy
         // - To make a draft: originalD.state = Complete, state = Draft
-        console.log('%c    Global-Variables copyDashboard D,T id = ',
-        "color: black; background: lightgray; font-size: 10px", {dashboardID})
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables copyDashboard D,T id = ',
+                "color: black; background: lightgray; font-size: 10px", {dashboardID})
+        };
 
         // Duplicate the D and all related info
         return new Promise<Dashboard>((resolve, reject) => {
@@ -1071,8 +1073,10 @@ export class GlobalVariableService {
 
     letDashboard(dashboardID: number = null): Dashboard {
         // Returns the given D from the internal arrays
-        console.log('%c    Global-Variables letDashboard ...',
-        "color: black; background: lightgray; font-size: 10px", {dashboardID});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables letDashboard ...',
+                "color: black; background: lightgray; font-size: 10px", {dashboardID});
+        };
 
         // Set to current if none provided
         if (dashboardID == null) {
@@ -1096,8 +1100,10 @@ export class GlobalVariableService {
         // The following are unmodified:
         // - the AuditTrails are kept against the Draft
 
-        console.log('%c    Global-Variables discardDashboard ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables discardDashboard ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        };
 
         // Set to current
         let draftID: number = this.currentDashboardInfo.value.currentDashboardID;
@@ -1285,10 +1291,12 @@ export class GlobalVariableService {
         // The following are unmodified:
         // - the AuditTrails are kept against the Draft
 
-        console.log('%c    Global-Variables saveDraftDashboard ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-            {deleteSnapshots});
-
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables saveDraftDashboard ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                {deleteSnapshots});
+        };
+        
         // Set to current
         let draftID = this.currentDashboardInfo.value.currentDashboardID;
         let draftDashboard = this.letDashboard(draftID);
