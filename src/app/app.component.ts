@@ -6255,6 +6255,16 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                     console.warn('xx count after Delete of localDashboard', res);
                 });
             });
+
+        let collection = this.dbCanvasAppDatabase.table("localDashboards")
+            .where('id').above('40')
+            .delete()
+            .then(res => {
+                console.warn('xx count after delete above 40', res);
+                this.dbCanvasAppDatabase.table("localDashboards").count(res => {
+                    console.warn('xx count after delete above 40', res);
+                });
+            });
     }
 
     clickHelpCreateWidget() {
