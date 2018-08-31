@@ -6223,9 +6223,18 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
         this.menuOptionClickPreAction();
 
-        this.router.navigate(['/help']);
+        // this.router.navigate(['/help']);
 
         this.menuOptionClickPostAction();
+        // db.[table].where(index).above(value).and(filterFunction).count()
+        // .and((disc: IDiscountlist) => {
+        //     return disc.MatrixType == matrixType
+
+        this.dbDataCachingTable.table("localDataCachingTable")
+            .where('key').equals('dashboards')
+            .and(res => res.serverCacheable)
+            .toArray(res => console.log('where', res[0].serverCacheable))
+
     }
 
     clickHelpGettingStarted() {
@@ -6240,6 +6249,18 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         // Count
         this.dbDataCachingTable.table("localDataCachingTable").count(res => {
             console.warn('xx count of localDataCachingTable', res);
+        });
+
+        this.dbDataCachingTable.table("localDataCachingTable")
+            .where('localExpiryDateTime').below(new Date())
+            .count(res => {
+                console.warn('xx count of below', res);
+        });
+
+        this.dbDataCachingTable.table("localDataCachingTable")
+            .where('localExpiryDateTime').above(new Date())
+            .count(res => {
+                console.warn('xx count of above', res);
         });
 
         let localDashboardArray: Dashboard[] = [];
