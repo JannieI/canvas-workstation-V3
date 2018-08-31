@@ -1940,11 +1940,13 @@ export class GlobalVariableService {
         //   dashboardID
         // Returns: this.currentDashboardTabs array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getCurrentDashboardTabs ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-            {dashboardID});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getCurrentDashboardTabs ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                {dashboardID});
+        };
 
-            // Refresh from source at start, or if dirty
+        // Refresh from source at start, or if dirty
         if ( (this.dashboardTabs.length == 0)  ||  (this.isDirtyDashboardTabs) ) {
             return new Promise<DashboardTab[]>((resolve, reject) => {
                 this.getDashboardTabs()
@@ -1963,9 +1965,11 @@ export class GlobalVariableService {
                             return 0;
                         });
 
-                        console.log('%c    Global-Variables getCurrentDashboardTabs 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            {dashboardID}, this.currentDashboardTabs)
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables getCurrentDashboardTabs 1',
+                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                {dashboardID}, this.currentDashboardTabs)
+                        };
                         resolve(this.currentDashboardTabs);
 
                 })
@@ -1987,9 +1991,11 @@ export class GlobalVariableService {
                     return 0;
                 });
 
-                console.log('%c    Global-Variables getCurrentDashboardTabs 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                    {dashboardID}, this.currentDashboardTabs)
+                if (this.sessionDebugging) {
+                    console.log('%c    Global-Variables getCurrentDashboardTabs 2',
+                      "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                        {dashboardID}, this.currentDashboardTabs)
+                };
                 resolve(this.currentDashboardTabs);
             });
         };
