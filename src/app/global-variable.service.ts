@@ -1803,7 +1803,7 @@ export class GlobalVariableService {
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('Error deleteDashboard FAILED', {err});;
+                    console.log('Error deleteDashboard FAILED', {err});
                     reject(err);
                 }
             )
@@ -2056,7 +2056,7 @@ export class GlobalVariableService {
                     resolve(res);
                 },
                 err => {
-                    console.log('Error addDashboardTab FAILED', {err});;
+                    console.log('Error addDashboardTab FAILED', {err});
                     reject(err);
                 }
             )
@@ -2099,7 +2099,7 @@ export class GlobalVariableService {
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error saveDashboardTab FAILED', {err});;
+                    console.log('Error saveDashboardTab FAILED', {err});
                     reject(err);
                 }
             )
@@ -2167,7 +2167,7 @@ export class GlobalVariableService {
                     });
                 },
                 err => {
-                    console.log('Error deleteDashboardTab FAILED', {err});;
+                    console.log('Error deleteDashboardTab FAILED', {err});
                     reject(err);
                 }
             )
@@ -2422,7 +2422,7 @@ export class GlobalVariableService {
                     resolve(temp);
                 },
                 err => {
-                    console.log('Error dashboardsRecent FAILED', {err});;
+                    console.log('Error dashboardsRecent FAILED', {err});
                     reject(err);
                 }
             )
@@ -2470,7 +2470,7 @@ export class GlobalVariableService {
                     };
                 },
                 err => {
-                    console.log('Error saveDashboardRecent FAILED', {err});;
+                    console.log('Error saveDashboardRecent FAILED', {err});
                     reject(err);
                 }
             )
@@ -2507,7 +2507,7 @@ export class GlobalVariableService {
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('Error deleteDashboardRecent FAILED', {err});;
+                    console.log('Error deleteDashboardRecent FAILED', {err});
                     reject(err);
                 }
             )
@@ -2574,7 +2574,7 @@ export class GlobalVariableService {
                     resolve(res);
                 },
                 err => {
-                    console.log('Error addDataConnection FAILED', {err});;
+                    console.log('Error addDataConnection FAILED', {err});
                     reject(err);
                 }
             )
@@ -2609,7 +2609,7 @@ export class GlobalVariableService {
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error saveDataConnection FAILED', {err});;
+                    console.log('Error saveDataConnection FAILED', {err});
                     reject(err);
                 }
             )
@@ -2642,7 +2642,7 @@ export class GlobalVariableService {
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('Error deleteDataConnection FAILED', {err});;
+                    console.log('Error deleteDataConnection FAILED', {err});
                     reject(err);
                 }
             )
@@ -2710,7 +2710,7 @@ export class GlobalVariableService {
                     resolve(res);
                 },
                 err => {
-                    console.log('Error addDatasourceTransformation FAILED', {err});;
+                    console.log('Error addDatasourceTransformation FAILED', {err});
                     reject(err);
                 }
             )
@@ -2745,7 +2745,7 @@ export class GlobalVariableService {
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error saveDatasourceTransformation FAILED', {err});;
+                    console.log('Error saveDatasourceTransformation FAILED', {err});
                     reject(err);
                 }
             )
@@ -2778,7 +2778,7 @@ export class GlobalVariableService {
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('Error deleteDatasourceTransformation FAILED', {err});;
+                    console.log('Error deleteDatasourceTransformation FAILED', {err});
                     reject(err);
                 }
             )
@@ -3085,7 +3085,7 @@ export class GlobalVariableService {
                     resolve(res);
                 },
                 err => {
-                    console.log('Error addDataset FAILED', {err});;
+                    console.log('Error addDataset FAILED', {err});
                     reject(err);
                 }
             )
@@ -3125,7 +3125,7 @@ export class GlobalVariableService {
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error saveDataset FAILED', {err});;
+                    console.log('Error saveDataset FAILED', {err});
                     reject(err);
                 }
             )
@@ -3161,7 +3161,7 @@ export class GlobalVariableService {
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('Error deleteDataset FAILED', {err});;
+                    console.log('Error deleteDataset FAILED', {err});
                     reject(err);
                 }
             )
@@ -3226,7 +3226,7 @@ export class GlobalVariableService {
                     resolve(res);
                 },
                 err => {
-                    console.log('Error addData FAILED', {err});;
+                    console.log('Error addData FAILED', {err});
                     reject(err);
                 }
             )
@@ -3257,7 +3257,7 @@ export class GlobalVariableService {
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error saveData FAILED', {err});;
+                    console.log('Error saveData FAILED', {err});
                     reject(err);
                 }
             )
@@ -3286,7 +3286,7 @@ export class GlobalVariableService {
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('Error deleteData FAILED', {err});;
+                    console.log('Error deleteData FAILED', {err});
                     reject(err);
                 }
             )
@@ -3503,7 +3503,7 @@ export class GlobalVariableService {
                     resolve(res);
                 },
                 err => {
-                    console.log('Error addDashboardSchedule FAILED', {err});;
+                    console.log('Error addDashboardSchedule FAILED', {err});
                     reject(err);
                 }
             )
@@ -3538,7 +3538,7 @@ export class GlobalVariableService {
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error saveDashboardSchedule FAILED', {err});;
+                    console.log('Error saveDashboardSchedule FAILED', {err});
                     reject(err);
                 }
             )
@@ -3574,7 +3574,7 @@ export class GlobalVariableService {
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('Error deleteDashboardSchedule FAILED', {err});;
+                    console.log('Error deleteDashboardSchedule FAILED', {err});
                     reject(err);
                 }
             )
@@ -3728,7 +3728,7 @@ export class GlobalVariableService {
                     resolve(res);
                 },
                 err => {
-                    console.log('Error addDatasourceSchedule FAILED', {err});;
+                    console.log('Error addDatasourceSchedule FAILED', {err});
                     reject(err);
                 }
             )
@@ -3763,7 +3763,7 @@ export class GlobalVariableService {
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error saveDatasourceSchedule FAILED', {err});;
+                    console.log('Error saveDatasourceSchedule FAILED', {err});
                     reject(err);
                 }
             )
@@ -3799,7 +3799,7 @@ export class GlobalVariableService {
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('Error deleteDatasourceSchedule FAILED', {err});;
+                    console.log('Error deleteDatasourceSchedule FAILED', {err});
                     reject(err);
                 }
             )
@@ -3948,7 +3948,7 @@ export class GlobalVariableService {
                     resolve(res);
                 },
                 err => {
-                    console.log('Error addDashboardTag FAILED', {err});;
+                    console.log('Error addDashboardTag FAILED', {err});
                     reject(err);
                 }
             )
@@ -3984,7 +3984,7 @@ export class GlobalVariableService {
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('Error deleteDashboardTag FAILED', {err});;
+                    console.log('Error deleteDashboardTag FAILED', {err});
                     reject(err);
                 }
             )
@@ -4093,7 +4093,7 @@ export class GlobalVariableService {
                     resolve(res);
                 },
                 err => {
-                    console.log('Error addDashboardPermission FAILED', {err});;
+                    console.log('Error addDashboardPermission FAILED', {err});
                     reject(err);
                 }
             )
@@ -4128,7 +4128,7 @@ export class GlobalVariableService {
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error saveDashboardPermission FAILED', {err});;
+                    console.log('Error saveDashboardPermission FAILED', {err});
                     reject(err);
                 }
             )
@@ -4164,7 +4164,7 @@ export class GlobalVariableService {
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('Error deleteDashboardPermission FAILED', {err});;
+                    console.log('Error deleteDashboardPermission FAILED', {err});
                     reject(err);
                 }
             )
@@ -4390,7 +4390,7 @@ export class GlobalVariableService {
                     resolve(res);
                 },
                 err => {
-                    console.log('Error addDashboardSnapshot FAILED', {err});;
+                    console.log('Error addDashboardSnapshot FAILED', {err});
                     reject(err);
                 }
             )
@@ -4426,7 +4426,7 @@ export class GlobalVariableService {
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('Error deleteDashboardSnapshot FAILED', {err});;
+                    console.log('Error deleteDashboardSnapshot FAILED', {err});
                     reject(err);
                 }
             )
@@ -4681,7 +4681,7 @@ export class GlobalVariableService {
                     resolve(res);
                 },
                 err => {
-                    console.log('Error addDatasource FAILED', {err});;
+                    console.log('Error addDatasource FAILED', {err});
                     reject(err);
                 }
             )
@@ -4784,7 +4784,7 @@ export class GlobalVariableService {
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error saveDatasource FAILED', {err});;
+                    console.log('Error saveDatasource FAILED', {err});
                     reject(err);
                 }
             )
@@ -4820,7 +4820,7 @@ export class GlobalVariableService {
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('Error deleteDatasource FAILED', {err});;
+                    console.log('Error deleteDatasource FAILED', {err});
                     reject(err);
                 }
             )
@@ -5032,7 +5032,7 @@ export class GlobalVariableService {
                     resolve(res);
                 },
                 err => {
-                    console.log('Error addDataQualityIssue FAILED', {err});;
+                    console.log('Error addDataQualityIssue FAILED', {err});
                     reject(err);
                 }
             )
@@ -5067,7 +5067,7 @@ export class GlobalVariableService {
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error saveDataQualityIssue FAILED', {err});;
+                    console.log('Error saveDataQualityIssue FAILED', {err});
                     reject(err);
                 }
             )
@@ -5103,7 +5103,7 @@ export class GlobalVariableService {
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('Error deleteDataQualityIssue FAILED', {err});;
+                    console.log('Error deleteDataQualityIssue FAILED', {err});
                     reject(err);
                 }
             )
@@ -5217,7 +5217,7 @@ export class GlobalVariableService {
                     resolve(res);
                 },
                 err => {
-                    console.log('Error addDataOwnership FAILED', {err});;
+                    console.log('Error addDataOwnership FAILED', {err});
                     reject(err);
                 }
             )
@@ -5252,7 +5252,7 @@ export class GlobalVariableService {
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error saveDataOwnership FAILED', {err});;
+                    console.log('Error saveDataOwnership FAILED', {err});
                     reject(err);
                 }
             )
@@ -5288,7 +5288,7 @@ export class GlobalVariableService {
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('Error deleteDataOwnership FAILED', {err});;
+                    console.log('Error deleteDataOwnership FAILED', {err});
                     reject(err);
                 }
             )
@@ -5418,7 +5418,7 @@ export class GlobalVariableService {
                     resolve(res);
                 },
                 err => {
-                    console.log('Error addDatasourcePermission FAILED', {err});;
+                    console.log('Error addDatasourcePermission FAILED', {err});
                     reject(err);
                 }
             )
@@ -5462,7 +5462,7 @@ export class GlobalVariableService {
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error saveDatasourcePermission FAILED', {err});;
+                    console.log('Error saveDatasourcePermission FAILED', {err});
                     reject(err);
                 }
             )
@@ -5641,7 +5641,7 @@ export class GlobalVariableService {
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error saveSystemSettings FAILED', {err});;
+                    console.log('Error saveSystemSettings FAILED', {err});
                     reject(err);
                 }
             )
@@ -5753,7 +5753,7 @@ export class GlobalVariableService {
                         resolve('Saved');
                 },
                 err => {
-                    console.log('Error saveDashboardSubscription FAILED', {err});;
+                    console.log('Error saveDashboardSubscription FAILED', {err});
                     reject(err);
                 }
             )
@@ -5783,7 +5783,7 @@ export class GlobalVariableService {
                     resolve(res);
                 },
                 err => {
-                    console.log('Error addDashboardSubscription FAILED', {err});;
+                    console.log('Error addDashboardSubscription FAILED', {err});
                     reject(err);
                 }
             )
@@ -5817,7 +5817,7 @@ export class GlobalVariableService {
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('Error deleteDashboardSubscription FAILED', {err});;
+                    console.log('Error deleteDashboardSubscription FAILED', {err});
                     reject(err);
                 }
             )
@@ -5888,7 +5888,7 @@ export class GlobalVariableService {
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error savePaletteButtonBar FAILED', {err});;
+                    console.log('Error savePaletteButtonBar FAILED', {err});
                     reject(err);
                 }
             )
@@ -5970,7 +5970,7 @@ export class GlobalVariableService {
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error savePaletteButtonsSelected FAILED', {err});;
+                    console.log('Error savePaletteButtonsSelected FAILED', {err});
                     reject(err);
                 }
             )
@@ -6019,7 +6019,7 @@ export class GlobalVariableService {
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('Error deletePaletteButtonsSelected FAILED', {err});;
+                    console.log('Error deletePaletteButtonsSelected FAILED', {err});
                     reject(err);
                 }
             )
@@ -6058,7 +6058,7 @@ export class GlobalVariableService {
                         resolve(data);
                     },
                     err => {
-                        console.log('Error addDashboardSubscription FAILED', {err});;
+                        console.log('Error addDashboardSubscription FAILED', {err});
                         reject(err);
                     }
                 )
@@ -6332,7 +6332,7 @@ export class GlobalVariableService {
                     resolve(res);
                 },
                 err => {
-                    console.log('Error addWidget FAILED', {err});;
+                    console.log('Error addWidget FAILED', {err});
                     reject(err);
                 }
             )
@@ -6377,7 +6377,7 @@ export class GlobalVariableService {
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('Error deleteWidget FAILED', {err});;
+                    console.log('Error deleteWidget FAILED', {err});
                     reject(err);
                 }
             )
@@ -6448,7 +6448,7 @@ export class GlobalVariableService {
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error saveWidget FAILED', {err});;
+                    console.log('Error saveWidget FAILED', {err});
                     reject(err);
                 }
             )
@@ -6726,7 +6726,7 @@ export class GlobalVariableService {
                     resolve(res);
                 },
                 err => {
-                    console.log('Error addCanvasTask FAILED', {err});;
+                    console.log('Error addCanvasTask FAILED', {err});
                     reject(err);
                 }
             )
@@ -6761,7 +6761,7 @@ export class GlobalVariableService {
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error saveCanvasTask FAILED', {err});;
+                    console.log('Error saveCanvasTask FAILED', {err});
                     reject(err);
                 }
             )
@@ -6841,7 +6841,7 @@ export class GlobalVariableService {
                     resolve(res);
                 },
                 err => {
-                    console.log('Error addCanvasComment FAILED', {err});;
+                    console.log('Error addCanvasComment FAILED', {err});
                     reject(err);
                 }
             )
@@ -6876,7 +6876,7 @@ export class GlobalVariableService {
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error saveCanvasComment FAILED', {err});;
+                    console.log('Error saveCanvasComment FAILED', {err});
                     reject(err);
                 }
             )
@@ -6918,7 +6918,7 @@ export class GlobalVariableService {
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('Error deleteCanvasComment FAILED', {err});;
+                    console.log('Error deleteCanvasComment FAILED', {err});
                     reject(err);
                 }
             )
@@ -6988,7 +6988,7 @@ export class GlobalVariableService {
                     resolve(res);
                 },
                 err => {
-                    console.log('Error addCanvasMessage FAILED', {err});;
+                    console.log('Error addCanvasMessage FAILED', {err});
                     reject(err);
                 }
             )
@@ -7023,7 +7023,7 @@ export class GlobalVariableService {
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error saveCanvasMessage FAILED', {err});;
+                    console.log('Error saveCanvasMessage FAILED', {err});
                     reject(err);
                 }
             )
@@ -7073,7 +7073,7 @@ export class GlobalVariableService {
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('Error deleteCanvasMessage FAILED', {err});;
+                    console.log('Error deleteCanvasMessage FAILED', {err});
                     reject(err);
                 }
             )
@@ -7185,7 +7185,7 @@ export class GlobalVariableService {
                     resolve(res);
                 },
                 err => {
-                    console.log('Error addWidgetCheckpoint FAILED', {err});;
+                    console.log('Error addWidgetCheckpoint FAILED', {err});
                     reject(err);
                 }
             )
@@ -7222,7 +7222,7 @@ export class GlobalVariableService {
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('Error deleteWidgetCheckpoint FAILED', {err});;
+                    console.log('Error deleteWidgetCheckpoint FAILED', {err});
                     reject(err);
                 }
             )
@@ -7257,7 +7257,7 @@ export class GlobalVariableService {
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error saveWidgetCheckpoint FAILED', {err});;
+                    console.log('Error saveWidgetCheckpoint FAILED', {err});
                     reject(err);
                 }
             )
@@ -7445,7 +7445,7 @@ export class GlobalVariableService {
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error saveCanvasUser FAILED', {err});;
+                    console.log('Error saveCanvasUser FAILED', {err});
                     reject(err);
                 }
             )
@@ -7516,7 +7516,7 @@ export class GlobalVariableService {
                     resolve(res);
                 },
                 err => {
-                    console.log('Error addCanvasAuditTrail FAILED', {err});;
+                    console.log('Error addCanvasAuditTrail FAILED', {err});
                     reject(err);
                 }
             )
@@ -7587,7 +7587,7 @@ export class GlobalVariableService {
                     resolve(res);
                 },
                 err => {
-                    console.log('Error addstatusBarMessageLogs FAILED', {err});;
+                    console.log('Error addstatusBarMessageLogs FAILED', {err});
                     reject(err);
                 }
             )
@@ -9022,7 +9022,7 @@ export class GlobalVariableService {
                 resolve(true);
             },
             err => {
-                console.log('Error login FAILED', {err});;
+                console.log('Error login FAILED', {err});
                 resolve(false);
             });
         });
@@ -9054,7 +9054,7 @@ export class GlobalVariableService {
                     resolve(res);
                 },
                 err => {
-                    console.log('Error Get Tributary Data FAILED', {err});;
+                    console.log('Error Get Tributary Data FAILED', {err});
                     reject(err);
                 }
             )
@@ -9088,7 +9088,7 @@ export class GlobalVariableService {
                     resolve(res);
                 },
                 err => {
-                    console.log('Error Get Tributary Inspect FAILED', {err});;
+                    console.log('Error Get Tributary Inspect FAILED', {err});
                     reject(err);
                 }
             )
@@ -9121,7 +9121,7 @@ export class GlobalVariableService {
                     resolve(res);
                 },
                 err => {
-                    console.log('Error Get Tributary Inspect FAILED', {err});;
+                    console.log('Error Get Tributary Inspect FAILED', {err});
                     reject(err);
                 }
             )
