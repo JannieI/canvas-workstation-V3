@@ -1811,7 +1811,7 @@ export class GlobalVariableService {
                     if (this.sessionDebugging) {
                         console.log('Error deleteDashboard FAILED', {err});
                     };
-                    
+
                     reject(err);
                 }
             )
@@ -5051,9 +5051,11 @@ export class GlobalVariableService {
         // Returns: this.datasources array, unless:
         //   If not cached or if dirty, get from File
         // NB: assume this.currentWidgets exists !!
-        console.log('%c    Global-Variables getCurrentDatasources ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-            {dashboardID});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getCurrentDatasources ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                {dashboardID});
+        };
 
         let url: string = 'datasources';
         this.filePath = './assets/data.datasources.json';
@@ -5091,9 +5093,13 @@ export class GlobalVariableService {
                             this.isDirtyDatasources = false;
                             this.currentDatasources = returnData;
                             this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                            console.log('%c    Global-Variables getCurrentDatasources 1',
-                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                                {dashboardID}, this.currentDatasources);
+
+                            if (this.sessionDebugging) {
+                                console.log('%c    Global-Variables getCurrentDatasources 1',
+                                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                    {dashboardID}, this.currentDatasources);
+                            };
+
                             resolve(this.currentDatasources);
                         }
                     )
@@ -5120,9 +5126,13 @@ export class GlobalVariableService {
                 this.isDirtyDatasources = false;
                 this.currentDatasources = returnData;
                 this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                console.log('%c    Global-Variables getCurrentDatasources 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                    {dashboardID}, this.currentDatasources);
+
+                if (this.sessionDebugging) {
+                    console.log('%c    Global-Variables getCurrentDatasources 2',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                        {dashboardID}, this.currentDatasources);
+                };
+
                 resolve(this.currentDatasources);
             }
         });
@@ -5131,8 +5141,10 @@ export class GlobalVariableService {
     addDatasource(data: Datasource): Promise<any> {
         // Description: Adds a new Datasource, if it does not exist
         // Returns: Added Data or error message
-        console.log('%c    Global-Variables addDatasource ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables addDatasource ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        };
 
         let url: string = 'datasources';
         this.filePath = './assets/data.datasources.json';
@@ -5158,13 +5170,18 @@ export class GlobalVariableService {
                     // Inform that we now at a DS
                     this.hasDatasources.next(true);
 
-                    console.log('addDatasource ADDED', {res},
-                        this.currentDatasources, this.datasources)
+                    if (this.sessionDebugging) {
+                        console.log('addDatasource ADDED', {res},
+                            this.currentDatasources, this.datasources)
+                    };
 
                     resolve(res);
                 },
                 err => {
-                    console.log('Error addDatasource FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error addDatasource FAILED', {err});
+                    };
+
                     reject(err);
                 }
             )
@@ -5173,8 +5190,10 @@ export class GlobalVariableService {
 
     addCurrentDatasource(datasourceID: number){
         // Add DS AND dSet to current-arrays (from DS and dSet arrays) for a given DS-id
-        console.log('%c    Global-Variables addCurrentDatasource ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables addCurrentDatasource ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        };
 
         // Get the data, if so requested
         let localDatasource: Datasource;
@@ -5233,8 +5252,10 @@ export class GlobalVariableService {
     saveDatasource(data: Datasource): Promise<string> {
         // Description: Saves Datasource
         // Returns: 'Saved' or error message
-        console.log('%c    Global-Variables saveDatasource ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables saveDatasource ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        };
 
         let url: string = 'Datasources';
         this.filePath = './assets/data.Datasources.json';
@@ -5262,12 +5283,17 @@ export class GlobalVariableService {
                         this.datasources[localIndex] = data;
                     };
 
+                    if (this.sessionDebugging) {
+                        console.log('saveDatasource SAVED', {res})
+                    };
 
-                    console.log('saveDatasource SAVED', {res})
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error saveDatasource FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error saveDatasource FAILED', {err});
+                    };
+
                     reject(err);
                 }
             )
@@ -5277,8 +5303,10 @@ export class GlobalVariableService {
     deleteDatasource(id: number): Promise<string> {
         // Description: Deletes a Datasources
         // Returns: 'Deleted' or error message
-        console.log('%c    Global-Variables deleteDatasource ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables deleteDatasource ...',
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
+        };
 
         let url: string = 'datasources';
         this.filePath = './assets/data.datasources.json';
@@ -5299,11 +5327,17 @@ export class GlobalVariableService {
                         dsp => dsp.id != id
                     );
 
-                    console.log('deleteDatasource DELETED id: ', {id})
+                    if (this.sessionDebugging) {
+                        console.log('deleteDatasource DELETED id: ', {id})
+                    };
+
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('Error deleteDatasource FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error deleteDatasource FAILED', {err});
+                    };
+
                     reject(err);
                 }
             )
@@ -5313,9 +5347,11 @@ export class GlobalVariableService {
     // TODO - is this still needed?
     deleteCurrentDatasource(id: number) {
         // Delete current DS
-        console.log('%c    Global-Variables deleteCurrentDatasource',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-            {id}, this.currentDatasources)
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables deleteCurrentDatasource',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                {id}, this.currentDatasources)
+        };
 
         let index: number = -1;
         for (var i = 0; i < this.currentDatasources.length; i++) {
@@ -5327,18 +5363,21 @@ export class GlobalVariableService {
             this.currentDatasources.splice(index,1)
         };
 
-        console.log('%c    Global-Variables deleteCurrentDatasource end',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-            this.currentDatasources)
-
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables deleteCurrentDatasource end',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                this.currentDatasources)
+        };
     }
 
     getTransformations(): Promise<Transformation[]> {
         // Description: Gets all Tr
         // Returns: this.transformations array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getTransformations ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getTransformations ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        };
 
         let url: string = 'transformations';
         this.filePath = './assets/data.transformations.json';
@@ -5353,14 +5392,21 @@ export class GlobalVariableService {
                         this.transformations = res;
                         this.isDirtyTransformations = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getTransformations 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            {res})
+
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables getTransformations 1',
+                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                {res})
+                        };
+
                         resolve(this.transformations);
                     });
             } else {
-                console.log('%c    Global-Variables getTransformations 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
+                if (this.sessionDebugging) {
+                    console.log('%c    Global-Variables getTransformations 2',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
+                };
+                
                 resolve(this.transformations);
             }
         });
