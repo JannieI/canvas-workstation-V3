@@ -6243,6 +6243,18 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         // Help: Create Dashboard
         this.globalFunctionService.printToConsole(this.constructor.name,'clickHelpTutorials', '@Start')
 
+        // Delete a D
+        let key: number = 2;
+        this.dbCanvasAppDatabase.table("localDashboards")
+            .delete(key)
+            .then(res => {
+                console.warn('xx Delete of key = ' + key.toString() + ' in localDashboards');
+
+                // Count
+                this.dbCanvasAppDatabase.table("localDashboards").count(res => {
+                    console.warn('xx count after Delete of localDashboard', res);
+                });
+            });
     }
 
     clickHelpCreateWidget() {
