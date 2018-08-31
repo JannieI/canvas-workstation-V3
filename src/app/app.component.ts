@@ -90,7 +90,7 @@ class DataCachingTable extends Dexie {
     constructor () {
         super("DataCachingTable");
         this.version(1).stores({
-            contacts: 'key, localLastUpdatedDateTime, localExpiryDateTime'
+            localDataCachingTable: 'key, localLastUpdatedDateTime, localExpiryDateTime'
         });
     }
 }
@@ -6294,13 +6294,13 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         };
 
         // Load DB with bulkPut
-        this.dbDataCachingTable.table("localDashboard")
+        this.dbDataCachingTable.table("localDashboards")
             .bulkPut(this.localDashboard)
             .then(res => {
-                console.warn('xx End BulkPut for localDashboard');
+                console.warn('xx End BulkPut for localDashboards');
 
                 // Count
-                this.dbDataCachingTable.table("localDashboard").count(res => {
+                this.dbDataCachingTable.table("localDashboards").count(res => {
                     console.warn('xx count after bulkPut for localDashboard', res);
                 });
             });
