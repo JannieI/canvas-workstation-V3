@@ -30,7 +30,6 @@ import { PaletteButtonBar }           from './models'
 import { WebSocketMessage }           from './models'
 import { Widget }                     from './models'
 import { WidgetCheckpoint }           from './models';
-
 import { WidgetSingleComponent }      from './widget.single.component';
 
 // Vega, Vega-Lite
@@ -55,7 +54,7 @@ class CanvasAppDatabase extends Dexie {
     constructor () {
         super("CanvasAppDatabase");
         this.version(1).stores({
-            contacts: '++id, first, last',
+            contacts: 'id, first, last',
             localDashboards: 'id',
             //...other tables goes here...
         });
@@ -86,7 +85,7 @@ export class Contact implements IContact {
 class DataCachingTable extends Dexie {
     // Declare implicit table properties.
     // (just to inform Typescript. Instanciated by Dexie in stores() method)
-    localDataCachingTable: Dexie.Table<IContact, number>; // number = type of the primkey
+    localDataCachingTable: Dexie.Table<IDataCachingTable, number>; // number = type of the primkey
 
     constructor () {
         super("DataCachingTable");
@@ -98,7 +97,6 @@ class DataCachingTable extends Dexie {
 
 interface IDataCachingTable {
     key: string;                             // Unique key
-    datasourceID: number;                    // Optional, for indivudual DS
     serverCacheable: boolean;                // True if cached on server
     serverLastUpdatedDateTime: Date;         // When cached last refreshed on server
     serverExpiryDateTime: Date;              // When cache expires on server
@@ -512,7 +510,7 @@ export class AppComponent implements OnInit {
     testIndexDB: boolean = false;
     dbDataCachingTable;
     dbCanvasAppDatabase;
-    localDataCachingTable: DataCachingTable[];
+    localDataCachingTable: IDataCachingTable[];
 
     // rubberbandShow: boolean = false;
     // rubberbandHeight: number = 100;
@@ -548,21 +546,24 @@ export class AppComponent implements OnInit {
         // this[type+'_count'] = 1000;  // in a function we use "this";
         // alert(this.article_count);
 
+        // Local App info DB
         this.dbCanvasAppDatabase = new Dexie("CanvasAppDatabase");
         this.dbCanvasAppDatabase.version(1).stores(
             {
                 contacts: 'id, first, last',
                 localDashboards: 'id'
-            });
-        // db.table("contacts").put({first: "First name", last: "Last name"});
+            }
+        );
+        this.dbCanvasAppDatabase.open();
 
-        // Local DB info
+        // Local CachingTable DB 
         this.dbDataCachingTable = new Dexie("DataCachingTable");
         this.dbDataCachingTable.version(1).stores(
             {
                 localDataCachingTable: 'key, datasourceID, localExpiryDateTime',
             }
         );
+        this.dbDataCachingTable.open();
 
         // Get Users and Groups, async
         this.globalVariableService.getCanvasGroups();
@@ -6249,10 +6250,9 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
     clickHelpCreateWidget() {
         // Help: Create Widget
         this.globalFunctionService.printToConsole(this.constructor.name,'clickHelpTutorials', '@Start')
-                   
-        let localDataCachingTable: any[] = [];
-        localDataCachingTable = [{
-            table: 'dashboards',
+                
+        this.localDataCachingTable = [{
+            key: 'dashboards',
             serverCacheable: true,
             serverLastUpdatedDateTime: new Date(),
             serverExpiryDateTime: new Date(),
@@ -6277,7 +6277,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         
         // Load DB with bulkPut
         this.dbDataCachingTable.table("localDataCachingTable")
-            .bulkPut(localDataCachingTable)
+            .bulkPut(this.localDataCachingTable)
             .then(res => {
                 console.warn('xx End BulkPut');
 
@@ -6298,7 +6298,14 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
             .then(result =>
                 {
                     console.log('xx CLEARED localDataCachingTable', result);
-                    this.dbCanvasAppDatabase = new Dexie("DataCachingTable");
+
+                    this.dbDataCachingTable = new Dexie("DataCachingTable");
+                    this.dbDataCachingTable.version(1).stores(
+                        {
+                            localDataCachingTable: 'key, datasourceID, localExpiryDateTime',
+                        }
+                    );
+                    console.log('xx CREATED localDataCachingTable', result);
 
                     this.dbDataCachingTable.table("localDataCachingTable").count(res => {
                         console.warn('xx count localDataCachingTable after CLEAR', res);
@@ -6312,7 +6319,14 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                 {
                     console.log('xx CLEARED localDashboards', result);
                     this.dbCanvasAppDatabase = new Dexie("CanvasAppDatabase");
+                    this.dbCanvasAppDatabase.version(1).stores(
+                        {
+                            contacts: 'id, first, last',
+                            localDashboards: 'id'
+                        }
+                    );
 
+                    console.log('xx CREATED localDashboards', result);
                     this.dbCanvasAppDatabase.table("localDashboards").count(res => {
                         console.warn('xx count localDashboards at START', res);
                     });                }

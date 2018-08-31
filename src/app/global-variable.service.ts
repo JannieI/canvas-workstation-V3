@@ -7706,7 +7706,7 @@ export class GlobalVariableService {
         //     this.get(url)
         //         .then(res => {
                     this.dataCachingTable = [{
-                        table: 'dashboards',
+                        key: 'dashboards',
                         serverCacheable: true,
                         serverLastUpdatedDateTime: new Date(),
                         serverExpiryDateTime: new Date(),
