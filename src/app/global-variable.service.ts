@@ -1296,7 +1296,7 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                 {deleteSnapshots});
         };
-        
+
         // Set to current
         let draftID = this.currentDashboardInfo.value.currentDashboardID;
         let draftDashboard = this.letDashboard(draftID);
@@ -1530,8 +1530,11 @@ export class GlobalVariableService {
 
     deleteDashboardInfo(dashboardID: number) {
         // Deletes D with all related Entities
-        console.log('%c    Global-Variables deleteDashboardInfo ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {dashboardID});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables deleteDashboardInfo ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                {dashboardID});
+        };
 
         // TODO - update all from DB ?
         // Remove where D used as template
@@ -1655,8 +1658,10 @@ export class GlobalVariableService {
 
     clearDashboardInfo() {
         // Clears all related Entities of a D
-        console.log('%c    Global-Variables clearDashboardInfo ...',
-        "color: black; background: lightgray; font-size: 10px");
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables clearDashboardInfo ...',
+                "color: black; background: lightgray; font-size: 10px");
+        };
 
         // TODO - find a better way to keep all related items in sync, and list updated
         this.currentDashboards = [];
@@ -1676,8 +1681,10 @@ export class GlobalVariableService {
     addDashboard(data: Dashboard): Promise<any> {
         // Description: Adds a new Dashboard
         // Returns: Added Data or error message
-        console.log('%c    Global-Variables addDashboard ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables addDashboard ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        };
 
         let url: string = 'dashboards';
         this.filePath = './assets/data.dashboards.json';
@@ -1698,12 +1705,17 @@ export class GlobalVariableService {
                     this.dashboards.push(JSON.parse(JSON.stringify(res)));
                     this.currentDashboards.push(JSON.parse(JSON.stringify(res)));
 
-                    console.log('addDashboard ADDED', {res}, this.dashboards)
+                    if (this.sessionDebugging) {
+                        console.log('addDashboard ADDED', {res}, this.dashboards)
+                    };
 
                     resolve(res);
                 },
                 err => {
-                    console.log('Error addDashboard FAILED', {err});;
+                    if (this.sessionDebugging) {
+                        console.log('Error addDashboard FAILED', {err});
+                    };
+
                     reject(err);
                 }
             )
@@ -1713,8 +1725,10 @@ export class GlobalVariableService {
     saveDashboard(data: Dashboard): Promise<string> {
         // Description: Saves Dashboard
         // Returns: 'Saved' or error message
-        console.log('%c    Global-Variables saveDashboard ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",{data});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables saveDashboard ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",{data});
+        };
 
         let url: string = 'dashboards';
         this.filePath = './assets/data.dashboards.json';
@@ -1742,12 +1756,17 @@ export class GlobalVariableService {
                         this.currentDashboards[localIndex] = data;
                     };
 
+                    if (this.sessionDebugging) {
+                        console.log('saveDashboard SAVED', {res})
+                    };
 
-                    console.log('saveDashboard SAVED', {res})
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error saveDashboard FAILED', {err});;
+                    if (this.sessionDebugging) {
+                        console.log('Error saveDashboard FAILED', {err});
+                    };
+
                     reject(err);
                 }
             )
