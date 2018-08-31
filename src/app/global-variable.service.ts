@@ -4763,7 +4763,7 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                 {snapshotName}, {snapshotComment}, {snapshotType});
         };
-        
+
         return new Promise<any>((resolve, reject) => {
 
             // Create new record
@@ -4791,8 +4791,10 @@ export class GlobalVariableService {
     addDashboardSnapshot(data: DashboardSnapshot): Promise<any> {
         // Description: Adds a new DashboardSnapshot
         // Returns: Added Data or error message
-        console.log('%c    Global-Variables addDashboardSnapshot ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables addDashboardSnapshot ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        };
 
         let url: string = 'dashboardSnapshots';
         this.filePath = './assets/data.dashboardSnapshots.json';
@@ -4810,13 +4812,18 @@ export class GlobalVariableService {
                     this.dashboardSnapshots.push(JSON.parse(JSON.stringify(res)));
                     this.currentDashboardSnapshots.push(JSON.parse(JSON.stringify(res)));
 
-                    console.log('addDashboardSnapshot ADDED', {res},
-                        this.currentDashboardSnapshots, this.dashboardSnapshots)
-
+                    if (this.sessionDebugging) {
+                        console.log('addDashboardSnapshot ADDED', {res},
+                            this.currentDashboardSnapshots, this.dashboardSnapshots)
+                    };
+                    
                     resolve(res);
                 },
                 err => {
-                    console.log('Error addDashboardSnapshot FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error addDashboardSnapshot FAILED', {err});
+                    };
+
                     reject(err);
                 }
             )
@@ -4826,8 +4833,10 @@ export class GlobalVariableService {
     deleteDashboardSnapshot(id: number): Promise<string> {
         // Description: Deletes a DashboardSnapshots
         // Returns: 'Deleted' or error message
-        console.log('%c    Global-Variables deleteDashboardSnapshot ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables deleteDashboardSnapshot ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
+        };
 
         let url: string = 'dashboardSnapshots';
         this.filePath = './assets/data.dashboardSnapshots.json';
@@ -4848,11 +4857,17 @@ export class GlobalVariableService {
                         dsp => dsp.id != id
                     );
 
-                    console.log('deleteDashboardSnapshot DELETED id: ', {id})
+                    if (this.sessionDebugging) {
+                        console.log('deleteDashboardSnapshot DELETED id: ', {id})
+                    };
+
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('Error deleteDashboardSnapshot FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error deleteDashboardSnapshot FAILED', {err});
+                    };
+
                     reject(err);
                 }
             )
@@ -4863,8 +4878,10 @@ export class GlobalVariableService {
         // Description: Gets all Th
         // Returns: this.dashboardThemes array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getDashboardThemes ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getDashboardThemes ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        };
 
         let url: string = 'dashboardThemes';
         this.filePath = './assets/data.dashboardThemes.json';
@@ -4879,14 +4896,20 @@ export class GlobalVariableService {
                         this.dashboardThemes = res;
                         this.isDirtyDashboardThemes = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getDashboardThemes 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            this.dashboardThemes)
+
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables getDashboardThemes 1',
+                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                this.dashboardThemes)
+                        };
+
                         resolve(this.dashboardThemes);
                     });
             } else {
-                console.log('%c    Global-Variables getDashboardThemes 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
+                if (this.sessionDebugging) {
+                    console.log('%c    Global-Variables getDashboardThemes 2',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
+                };
                 resolve(this.dashboardThemes);
             }
         });
@@ -4898,8 +4921,10 @@ export class GlobalVariableService {
         // Returns: recent [D] array, unless:
         //   If not cached or if dirty, get from File
         // Refresh from source at start, or if dirty
-        console.log('%c    Global-Variables getDashboardTemplates ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getDashboardTemplates ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        };
 
         if ( this.dashboards == []  ||  (this.isDirtyDashboards) ) {
             return new Promise<Dashboard[]>((resolve, reject) => {
@@ -4920,9 +4945,13 @@ export class GlobalVariableService {
                                 };
                             };
                         };
-                        console.log('%c    Global-Variables getDashboardTemplates 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            {returnData})
+
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables getDashboardTemplates 1',
+                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                {returnData})
+                        };
+
                         resolve(returnData);
                     });
             });
@@ -4943,9 +4972,13 @@ export class GlobalVariableService {
                         };
                     };
                 };
-                console.log('%c    Global-Variables getDashboardTemplates 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                    {returnData})
+
+                if (this.sessionDebugging) {
+                    console.log('%c    Global-Variables getDashboardTemplates 2',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                        {returnData})
+                };
+                
                 resolve(returnData);
 
             });
@@ -4957,8 +4990,10 @@ export class GlobalVariableService {
         // Description: Gets all DS
         // Returns: this.datasources array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getDatasources ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getDatasources ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        };
 
         let url: string = 'datasources';
         this.filePath = './assets/data.datasources.json';
@@ -4974,14 +5009,20 @@ export class GlobalVariableService {
                         this.isDirtyDatasources = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
 
-                        console.log('%c    Global-Variables getDatasources 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            this.datasources)
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables getDatasources 1',
+                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                this.datasources)
+                        };
+
                         resolve(this.datasources);
                     });
             } else {
-                console.log('%c    Global-Variables getDatasources 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
+                if (this.sessionDebugging) {
+                    console.log('%c    Global-Variables getDatasources 2',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
+                };
+                
                 resolve(this.datasources);
             }
         });
