@@ -6240,11 +6240,15 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         // Reload Dashboards
 
         // Create Var with data
-        let localDashboardSingle = this.globalVariableService.dashboards[1];
+        let localDashboardSingle = 
+            {
+                id: this.globalVariableService.dashboards[1].id,
+                dashboard: this.globalVariableService.dashboards[1],
+            };
 
-        // Load DB with bulkPut
+        // Add / Update DB with Put
         this.dbCanvasAppDatabase.table("localDashboards")
-            .bulkPut(localDashboardSingle, localDashboardSingle.id)
+            .put(localDashboardSingle)
             .then(res => {
                 console.warn('xx End Add/Update for 1 Dashboard');
 
