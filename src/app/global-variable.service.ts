@@ -661,9 +661,11 @@ export class GlobalVariableService {
         // Refreshes all info related to current D
         // dashboardTabID = -1 if unknown, so get first T
         // Returns True if all worked, False if something went wrong
-        console.log('%c    Global-Variables refreshCurrentDashboardInfo D,T id = ',
-            "color: black; background: lightgray; font-size: 10px",
-            {dashboardID}, {dashboardTabID})
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables refreshCurrentDashboardInfo D,T id = ',
+                "color: black; background: lightgray; font-size: 10px",
+                {dashboardID}, {dashboardTabID})
+        };
 
         // Load the current Dashboard, and Optional template.  The dependants are stakced
         // in a Promise chain, to ensure we have all or nothing ...
@@ -722,8 +724,10 @@ export class GlobalVariableService {
     refreshCurrentDatasourceInfo(datasourceID: number): Promise<boolean> {
         // Refreshes all info related to current DS, but NOT currentDatasources
         // Returns True if all worked, False if something went wrong
-        console.log('%c    Global-Variables refreshCurrentDatasourceInfo D,T id = ',
-        "color: black; background: lightgray; font-size: 10px", {datasourceID})
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables refreshCurrentDatasourceInfo D,T id = ',
+                "color: black; background: lightgray; font-size: 10px", {datasourceID})
+        };
 
         // Get lates dSet for give DSid
         // TODO - decide if lates / -1 is best choice here
@@ -821,8 +825,10 @@ export class GlobalVariableService {
         // Description: Gets all D
         // Returns: this.dashboards array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c        Global-Variables getDashboards ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        if (this.sessionDebugging) {
+            console.log('%c        Global-Variables getDashboards ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        };
 
         if (params.substring(0 ,1) != '?') {
             params = '?' + params;
@@ -841,15 +847,19 @@ export class GlobalVariableService {
                         this.dashboards = res;
                         this.isDirtyDashboards = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getDashboards 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            this.dashboards)
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables getDashboards 1',
+                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                this.dashboards);
+                        };
                         resolve(this.dashboards);
                     })
                     .catch(err => reject(err));
             } else {
-                console.log('%c    Global-Variables getDashboards 2',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
+                if (this.sessionDebugging) {
+                    console.log('%c    Global-Variables getDashboards 2',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
+                };
                 resolve(this.dashboards);
             }
         });
