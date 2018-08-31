@@ -597,7 +597,7 @@ export class GlobalVariableService {
     loggedIntoServer = new BehaviorSubject<boolean>(true);
     menuActionResize = new BehaviorSubject<boolean>(false);
     sessionDateTimeLoggedin: string = '';
-    sessionDebugging: boolean = true;
+    sessionDebugging: boolean = false;
     sessionLogging: boolean = false;
     templateInUse = new BehaviorSubject<boolean>(false);
     widgetGroup = new BehaviorSubject<number[]>([]);
@@ -1776,9 +1776,11 @@ export class GlobalVariableService {
     deleteDashboard(id: number): Promise<string> {
         // Description: Deletes a Dashboard
         // Returns: 'Deleted' or error message
-        console.log('%c    Global-Variables deleteDashboard ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-            {id});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables deleteDashboard ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                {id});
+        };
 
         let url: string = 'dashboards';
         this.filePath = './assets/data.dashboards.json';
@@ -1799,11 +1801,17 @@ export class GlobalVariableService {
                         dsp => dsp.id != id
                     );
 
-                    console.log('deleteDashboard DELETED id: ', {id})
+                    if (this.sessionDebugging) {
+                        console.log('deleteDashboard DELETED id: ', {id})
+                    };
+
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('Error deleteDashboard FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error deleteDashboard FAILED', {err});
+                    };
+                    
                     reject(err);
                 }
             )
@@ -1816,8 +1824,10 @@ export class GlobalVariableService {
         //   dashboardID
         // Returns: this.currentDashboards array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getCurrentDashboards ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {dashboardID});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getCurrentDashboards ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {dashboardID});
+        }; 
 
         // Refresh from source at start, or if dirty
         if (
@@ -1876,9 +1886,12 @@ export class GlobalVariableService {
                         }
                         // this.currentDashboards.next(currentDashboards);
 
-                        console.log('%c    Global-Variables getCurrentDashboards 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            {dashboardID}, this.currentDashboards)
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables getCurrentDashboards 1',
+                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                {dashboardID}, this.currentDashboards)
+                        };
+
                         resolve(this.currentDashboards);
 
                 })
@@ -1912,9 +1925,12 @@ export class GlobalVariableService {
                     this.templateInUse.next(false);
                 };
 
-                console.log('%c    Global-Variables getCurrentDashboards 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                    {dashboardID}, this.currentDashboards)
+                if (this.sessionDebugging) {
+                    console.log('%c    Global-Variables getCurrentDashboards 2',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                        {dashboardID}, this.currentDashboards)
+                };
+
                 resolve(this.currentDashboards);
             });
         };
@@ -5022,7 +5038,7 @@ export class GlobalVariableService {
                     console.log('%c    Global-Variables getDatasources 2',
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
                 };
-                
+
                 resolve(this.datasources);
             }
         });
@@ -9219,8 +9235,10 @@ export class GlobalVariableService {
         //   CanEditOrCanDelete, CanEditAndCanDelete.  These are Hard-Coded
         //   It is NOT case sensitive, and only applicable to accessType = 'AccessList'
 
-        console.log('%c    Global-Variables dashboardPermissionCheck ...',
-            "color: black; background: lightgray; font-size: 10px", {dashboardID}, {accessRequired});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables dashboardPermissionCheck ...',
+                "color: black; background: lightgray; font-size: 10px", {dashboardID}, {accessRequired});
+        };
 
         // Assume no access
         let hasAccess: boolean = false;
@@ -9334,7 +9352,10 @@ export class GlobalVariableService {
         };
 
         // Return
-        console.log('  Access type, result: ', dashboard.accessType, {hasAccess})
+        if (this.sessionDebugging) {
+            console.log('  Access type, result: ', dashboard.accessType, {hasAccess})
+        };
+
         return hasAccess;
     }
 
@@ -9433,22 +9454,24 @@ export class GlobalVariableService {
     }
 
     formatDate(date: Date, returnFormat: string = 'dateTime') {
-         // Formats a given date into requested format
-         // - date: date to format
-         // - returnFormat: format to return
-         //   = date (YYYY/MM/DD) - Default
-         //   = time (HH:MM:SS)
-         //   = dateTime (YYYY/MM/DD HH:MM:SS)
-         console.log('%c    Global-Variables formatDate ...',
+        // Formats a given date into requested format
+        // - date: date to format
+        // - returnFormat: format to return
+        //   = date (YYYY/MM/DD) - Default
+        //   = time (HH:MM:SS)
+        //   = dateTime (YYYY/MM/DD HH:MM:SS)
+        if (this.sessionDebugging) {
+        console.log('%c    Global-Variables formatDate ...',
             "color: black; background: lightgray; font-size: 10px", {date});
+        };
 
-         let d = new Date(date);
-         let month = '' + (d.getMonth() + 1);
-         let day = '' + d.getDate();
-         let year = d.getFullYear();
-         let hour = d.getHours();
-         let minute = d.getMinutes();
-         let second = d.getSeconds();
+        let d = new Date(date);
+        let month = '' + (d.getMonth() + 1);
+        let day = '' + d.getDate();
+        let year = d.getFullYear();
+        let hour = d.getHours();
+        let minute = d.getMinutes();
+        let second = d.getSeconds();
 
         if (month.length < 2) month = '0' + month;
         if (day.length < 2) day = '0' + day;
@@ -9700,23 +9723,25 @@ export class GlobalVariableService {
         // Description: Transforms the .shapeText property to .shapeTextDisplay using
         // keywords like #pagenr, #pages, #date
         // Returns: Added Data or error message
-        console.log('%c    Global-Variables calcShapeTextDisplay ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {shapeText});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables calcShapeTextDisplay ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {shapeText});
+        };
+    
+        let today = new Date();
+        let pages: number = this.currentDashboardTabs.length;
+        let selectedTabIndex: number = this.currentDashboardInfo
+            .value.currentDashboardTabIndex;
+        selectedTabIndex = selectedTabIndex + 1;
+        let shapeTextDisplay = shapeText;
+        shapeTextDisplay = shapeTextDisplay
+            .replace(/#date/g, this.formatDate(today, 'date'));
+        shapeTextDisplay = shapeTextDisplay
+            .replace(/#pagenr/g, selectedTabIndex.toString());
+        shapeTextDisplay = shapeTextDisplay
+            .replace(/#pages/g, pages.toString());
 
-            let today = new Date();
-            let pages: number = this.currentDashboardTabs.length;
-            let selectedTabIndex: number = this.currentDashboardInfo
-                .value.currentDashboardTabIndex;
-            selectedTabIndex = selectedTabIndex + 1;
-            let shapeTextDisplay = shapeText;
-            shapeTextDisplay = shapeTextDisplay
-                .replace(/#date/g, this.formatDate(today, 'date'));
-            shapeTextDisplay = shapeTextDisplay
-                .replace(/#pagenr/g, selectedTabIndex.toString());
-            shapeTextDisplay = shapeTextDisplay
-                .replace(/#pages/g, pages.toString());
-
-            // Return
-            return shapeTextDisplay;
+        // Return
+        return shapeTextDisplay;
     }
 }
