@@ -6256,14 +6256,11 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                 });
             });
 
-        let collection = this.dbCanvasAppDatabase.table("localDashboards")
-            .where('id').above('40')
+        this.dbCanvasAppDatabase.table("localDashboards")
+            .where('id').above(70)
             .delete()
             .then(res => {
-                console.warn('xx count after delete above 40', res);
-                this.dbCanvasAppDatabase.table("localDashboards").count(res => {
-                    console.warn('xx count after delete above 40', res);
-                });
+                console.warn('xx count after delete above 70: deleted = ', res);
             });
     }
 
