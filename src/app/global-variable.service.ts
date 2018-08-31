@@ -2626,8 +2626,10 @@ export class GlobalVariableService {
     addDataConnection(data: DataConnection): Promise<any> {
         // Description: Adds a new DataConnection
         // Returns: Added Data or error message
-        console.log('%c    Global-Variables addDataConnection ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables addDataConnection ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        };
 
         let url: string = 'DataConnections';
         this.filePath = './assets/data.DataConnections.json';
@@ -2644,12 +2646,17 @@ export class GlobalVariableService {
                     // Update Global vars to make sure they remain in sync
                     this.dataConnections.push(JSON.parse(JSON.stringify(res)));
 
-                    console.log('addDataConnection ADDED', {res}, this.dataConnections)
+                    if (this.sessionDebugging) {
+                        console.log('addDataConnection ADDED', {res}, this.dataConnections)
+                    };
 
                     resolve(res);
                 },
                 err => {
-                    console.log('Error addDataConnection FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error addDataConnection FAILED', {err});
+                    };
+
                     reject(err);
                 }
             )
@@ -2659,8 +2666,10 @@ export class GlobalVariableService {
     saveDataConnection(data: DataConnection): Promise<string> {
         // Description: Saves DataConnection
         // Returns: 'Saved' or error message
-        console.log('%c    Global-Variables saveDataConnection ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables saveDataConnection ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        };
 
         let url: string = 'DataConnections';
         this.filePath = './assets/data.DataConnections.json';
@@ -2680,11 +2689,17 @@ export class GlobalVariableService {
                     );
                     this.dataConnections[localIndex] = data;
 
-                    console.log('saveDataConnection SAVED', {res})
+                    if (this.sessionDebugging) {
+                        console.log('saveDataConnection SAVED', {res})
+                    };
+
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error saveDataConnection FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error saveDataConnection FAILED', {err});
+                    };
+
                     reject(err);
                 }
             )
@@ -2694,8 +2709,10 @@ export class GlobalVariableService {
     deleteDataConnection(id: number): Promise<string> {
         // Description: Deletes a DataConnections
         // Returns: 'Deleted' or error message
-        console.log('%c    Global-Variables deleteDataConnection ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables deleteDataConnection ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
+        };
 
         let url: string = 'DataConnections';
         this.filePath = './assets/data.DataConnections.json';
@@ -2713,11 +2730,17 @@ export class GlobalVariableService {
                         dsp => dsp.id != id
                     );
 
-                    console.log('deleteDataConnection DELETED id: ', {id})
+                    if (this.sessionDebugging) {
+                        console.log('deleteDataConnection DELETED id: ', {id})
+                    };
+
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('Error deleteDataConnection FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error deleteDataConnection FAILED', {err});
+                    };
+
                     reject(err);
                 }
             )
@@ -2727,9 +2750,11 @@ export class GlobalVariableService {
     getDatasourceTransformations(): Promise<DatasourceTransformation[]> {
         // Description: Gets DatasourceTransformations
         // Returns: this.DatasourceTransformation
-        console.log('%c    Global-Variables getDatasourceTransformations ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
-
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getDatasourceTransformations ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        };
+        
         let url: string = 'datasourceTransformations';
         this.filePath = './asConnections/data.datasourceTransformations.json';
 
