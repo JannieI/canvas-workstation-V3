@@ -2305,7 +2305,7 @@ export class GlobalVariableService {
                     console.log('%c    Global-Variables dashboardsRecent 1',
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {temp})
                 };
-                
+
                 resolve(temp);
             });
         });
@@ -2313,8 +2313,10 @@ export class GlobalVariableService {
 
     dashboardIndexInRecentList(dashboardID: number): number {
         // Returns index of first D in the Recent list. Else -1
-        console.log('%c    Global-Variables dashboardIndexInRecentList ...',
-            "color: black; background: lightgray; font-size: 10px", {dashboardID});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables dashboardIndexInRecentList ...',
+                "color: black; background: lightgray; font-size: 10px", {dashboardID});
+        };
 
         // Determine index in Recent list
         let index: number = this.dashboardsRecent.findIndex(dR =>
@@ -2325,9 +2327,11 @@ export class GlobalVariableService {
 
     dashboardTabIndexInRecentList(dashboardID: number, dashboardTabID: number): number {
         // Returns index of first D, T in the Recent list.  Else -1
-        console.log('%c    Global-Variables dashboardTabIndexInRecentList ...',
-            "color: black; background: lightgray; font-size: 10px",
-            {dashboardID}, {dashboardTabID});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables dashboardTabIndexInRecentList ...',
+                "color: black; background: lightgray; font-size: 10px",
+                {dashboardID}, {dashboardTabID});
+        };
 
         // Determine index in Recent list
         let index: number = this.dashboardsRecent.findIndex(dR =>
@@ -2345,9 +2349,11 @@ export class GlobalVariableService {
         // - if D not there, call ADD
         // - if D there but T change, call SAVE
         // - if D & T there, do nothing
-        console.log('%c    Global-Variables amendDashboardRecent ...',
-            "color: black; background: lightgray; font-size: 10px",
-            {dashboardID}, {dashboardTabID});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables amendDashboardRecent ...',
+                "color: black; background: lightgray; font-size: 10px",
+                {dashboardID}, {dashboardTabID});
+        };
 
         // TODO - fix this timing issue, as I have no idea why this is happening here
         // this.sleep(2000);
@@ -2405,9 +2411,11 @@ export class GlobalVariableService {
         // It is typically used:
         // - change current D Desc => position remains unchanged
         // - D Rename => position should not be affected
-        console.log('%c    Global-Variables touchupDashboardRecent ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px"
-            , {dashboardID}, {dashboardName});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables touchupDashboardRecent ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px"
+                , {dashboardID}, {dashboardName});
+        };
 
         let newRecentIndex: number = this.dashboardsRecent
             .findIndex(dR => dR.dashboardID == dashboardID);
@@ -2423,8 +2431,10 @@ export class GlobalVariableService {
         // Adds a D to the Recent list, and update:
         // - this.dashboardsRecent
         // - this.dashboardsRecentBehSubject.next()
-        console.log('%c    Global-Variables addDashboardRecent ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables addDashboardRecent ...',
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        };
 
         let url: string = 'dashboardsRecent';
         this.filePath = './assets/data.dashboardsRecent.json';
@@ -2454,11 +2464,17 @@ export class GlobalVariableService {
 
                     this.dashboardsRecentBehSubject.next(this.dashboardsRecent);
 
-                    console.log('dashboardsRecent ADDED', {res}, this.dashboardsRecent)
+                    if (this.sessionDebugging) {
+                        console.log('dashboardsRecent ADDED', {res}, this.dashboardsRecent)
+                    };
+
                     resolve(temp);
                 },
                 err => {
-                    console.log('Error dashboardsRecent FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error dashboardsRecent FAILED', {err});
+                    };
+
                     reject(err);
                 }
             )
@@ -2468,8 +2484,10 @@ export class GlobalVariableService {
     saveDashboardRecent(data: DashboardRecent): Promise<string> {
         // Description: Saves DashboardRecent
         // Returns: 'Saved' or error message
-        console.log('%c    Global-Variables saveDashboardRecent ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables saveDashboardRecent ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        };
 
         let url: string = 'dashboardsRecent';
         this.filePath = './assets/data.dashboardsRecent.json';
@@ -2499,14 +2517,20 @@ export class GlobalVariableService {
                         this.dashboardsRecent = temp;
                         this.dashboardsRecentBehSubject.next(this.dashboardsRecent);
                         
-                        console.log('saveDashboardRecent SAVED', {res})
+                        if (this.sessionDebugging) {
+                            console.log('saveDashboardRecent SAVED', {res})
+                        };
+
                         resolve('Saved');
                     } else {
                         resolve('Failed: id not in globalVariables.dashboardsRecent');
                     };
                 },
                 err => {
-                    console.log('Error saveDashboardRecent FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error saveDashboardRecent FAILED', {err});
+                    };
+
                     reject(err);
                 }
             )
@@ -2518,8 +2542,10 @@ export class GlobalVariableService {
         // - this.dashboardsRecent
         // - this.dashboardsRecentBehSubject.next()
         // Returns 'Deleted' or error message
-        console.log('%c    Global-Variables deleteDashboardRecent ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables deleteDashboardRecent ...',
+            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
+        };
 
         let url: string = 'dashboardsRecent';
         this.filePath = './assets/data.dashboardsRecent.json';
@@ -2539,11 +2565,16 @@ export class GlobalVariableService {
 
                     this.dashboardsRecentBehSubject.next(this.dashboardsRecent);
 
-                    console.log('deleteDashboardRecent DELETED id: ', {id})
+                    if (this.sessionDebugging) {
+                        console.log('deleteDashboardRecent DELETED id: ', {id})
+                    };
+
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('Error deleteDashboardRecent FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error deleteDashboardRecent FAILED', {err});
+                    };
                     reject(err);
                 }
             )
@@ -2553,8 +2584,10 @@ export class GlobalVariableService {
     getDataConnections(): Promise<DataConnection[]> {
         // Description: Gets DataConnections, WITHOUT data
         // Returns: this.dataConnection
-        console.log('%c    Global-Variables getDataConnections ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getDataConnections ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        };
 
         let url: string = 'dataConnections';
         this.filePath = './asConnections/data.dataConnections.json';
@@ -2569,15 +2602,21 @@ export class GlobalVariableService {
                         this.dataConnections = res;
                         this.isDirtyDataConnections = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getDataConnection 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            this.dataConnections)
+
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables getDataConnection 1',
+                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                this.dataConnections)
+                        };
+
                         resolve(this.dataConnections);
                     });
             } else {
-                console.log('%c    Global-Variables getDataConnection 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                    this.dataConnections)
+                if (this.sessionDebugging) {
+                    console.log('%c    Global-Variables getDataConnection 2',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                        this.dataConnections)
+                };
                 resolve(this.dataConnections);
             }
         });
