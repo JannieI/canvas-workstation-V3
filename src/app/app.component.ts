@@ -6231,6 +6231,25 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
     clickHelpGettingStarted() {
         // Help: Getting Started
         this.globalFunctionService.printToConsole(this.constructor.name,'clickHelpTutorials', '@Start')
+
+        // Count
+        this.dbCanvasAppDatabase.table("localDashboards").count(res => {
+            console.warn('xx count of localDashboard', res);
+        });
+
+        // Count
+        this.dbDataCachingTable.table("localDataCachingTable").count(res => {
+            console.warn('xx count of localDataCachingTable', res);
+        });
+
+        let localDashboardArray: Dashboard[] = [];
+        this.dbCanvasAppDatabase.table("localDashboards")
+            .toArray()
+            .then(res => {
+                localDashboardArray = res.map(row => row.dashboard);
+                console.log('xx Array', localDashboardArray, localDashboardArray[0].name)
+            });
+        
     }
 
     clickHelpGetData() {
