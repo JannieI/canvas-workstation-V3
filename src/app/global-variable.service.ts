@@ -3439,8 +3439,10 @@ export class GlobalVariableService {
     saveData(data: any): Promise<string> {
         // Description: Saves Data
         // Returns: 'Saved' or error message
-        console.log('%c    Global-Variables saveData ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables saveData ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        };
 
         let url: string = 'data';
         this.filePath = './assets/data.Datas.json';
@@ -3456,11 +3458,16 @@ export class GlobalVariableService {
 
                     // No local to Replace
 
-                    console.log('saveData SAVED', {res})
+                    if (this.sessionDebugging) {
+                        console.log('saveData SAVED', {res})
+                    };
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error saveData FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error saveData FAILED', {err});
+                    };
+
                     reject(err);
                 }
             )
@@ -3470,8 +3477,10 @@ export class GlobalVariableService {
     deleteData(id: number): Promise<string> {
         // Description: Deletes given Data
         // Returns: 'Deleted' or error message
-        console.log('%c    Global-Variables deleteData ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables deleteData ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
+        };
 
         let url: string = 'data';
         this.filePath = './assets/data.data.json';
@@ -3485,11 +3494,16 @@ export class GlobalVariableService {
             .subscribe(
                 res => {
 
-                    console.log('deleteData DELETED id: ', {id})
+                    if (this.sessionDebugging) {
+                        console.log('deleteData DELETED id: ', {id})
+                    };
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('Error deleteData FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error deleteData FAILED', {err});
+                    };
+
                     reject(err);
                 }
             )
@@ -3501,9 +3515,11 @@ export class GlobalVariableService {
         // into .data
         // Note: Objects and arrays are passed by reference. Primitive values like number,
         // string, boolean are passed by value.  Thus, original object (dSet) is modified here.
-        console.log('%c    Global-Variables filterSlicer ...',
-            "color: black; background: lightgray; font-size: 10px", {dataSet});
-
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables filterSlicer ...',
+                "color: black; background: lightgray; font-size: 10px", {dataSet});
+        };
+        
         this.currentWidgets.forEach(w => {
             console.warn('xx strt graphData', w.graphUrl, w.graphData);
         });
@@ -3608,8 +3624,10 @@ export class GlobalVariableService {
         // Description: Gets all Sch
         // Returns: this.dashboardSchedules array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getDashboardSchedules ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getDashboardSchedules ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        };
 
         let url: string = 'dashboardSchedules';
         this.filePath = './assets/data.dashboardSchedules.json';
@@ -3624,14 +3642,21 @@ export class GlobalVariableService {
                         this.dashboardSchedules = res;
                         this.isDirtyDashboardSchedules = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getDashboardSchedules 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            {res})
+
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables getDashboardSchedules 1',
+                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                {res})
+                        };
+
                         resolve(this.dashboardSchedules);
                     });
             } else {
-                console.log('%c    Global-Variables getDashboardSchedules 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
+                if (this.sessionDebugging) {
+                    console.log('%c    Global-Variables getDashboardSchedules 2',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
+                };
+
                 resolve(this.dashboardSchedules);
             }
         });
@@ -3644,9 +3669,11 @@ export class GlobalVariableService {
         //   dashboardID
         // Returns: this.currentDashboardSchedules array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getCurrentDashboardSchedules ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-            {dashboardID});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getCurrentDashboardSchedules ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                {dashboardID});
+        };
 
         // Refresh from source at start, or if dirty
         if ( (this.dashboardSchedules.length == 0)  ||  (this.isDirtyDashboardSchedules) ) {
@@ -3657,9 +3684,13 @@ export class GlobalVariableService {
                             i => i.dashboardID == dashboardID
                         );
                         this.currentDashboardSchedules = res;
-                        console.log('%c    Global-Variables getCurrentDashboardSchedules 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            {dashboardID}, {res})
+
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables getCurrentDashboardSchedules 1',
+                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                {dashboardID}, {res})
+                        };
+
                         resolve(this.currentDashboardSchedules);
                 })
              })
@@ -3670,9 +3701,13 @@ export class GlobalVariableService {
                     i => i.dashboardID == dashboardID
                 );
                 this.currentDashboardSchedules = returnData;
-                console.log('%c    Global-Variables getCurrentDashboardSchedules 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                    {dashboardID}, {returnData})
+
+                if (this.sessionDebugging) {
+                    console.log('%c    Global-Variables getCurrentDashboardSchedules 2',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                        {dashboardID}, {returnData})
+                };
+
                 resolve(this.currentDashboardSchedules);
             });
         };
@@ -3681,8 +3716,10 @@ export class GlobalVariableService {
     addDashboardSchedule(data: DashboardSchedule): Promise<any> {
         // Description: Adds a new DashboardSchedule
         // Returns: Added Data or error message
-        console.log('%c    Global-Variables addDashboardSchedule ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables addDashboardSchedule ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        };
 
         let url: string = 'dashboardSchedules';
         this.filePath = './assets/data.dashboardSchedules.json';
@@ -3700,13 +3737,17 @@ export class GlobalVariableService {
                     this.dashboardSchedules.push(JSON.parse(JSON.stringify(res)));
                     this.currentDashboardSchedules.push(JSON.parse(JSON.stringify(res)));
 
-                    console.log('addDashboardSchedule ADDED', {res},
-                        this.currentDashboardSchedules, this.dashboardSchedules)
+                    if (this.sessionDebugging) {
+                        console.log('addDashboardSchedule ADDED', {res},
+                            this.currentDashboardSchedules, this.dashboardSchedules)
+                    };
 
                     resolve(res);
                 },
                 err => {
-                    console.log('Error addDashboardSchedule FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error addDashboardSchedule FAILED', {err});
+                    };
                     reject(err);
                 }
             )
