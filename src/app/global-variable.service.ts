@@ -2754,7 +2754,7 @@ export class GlobalVariableService {
             console.log('%c    Global-Variables getDatasourceTransformations ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
-        
+
         let url: string = 'datasourceTransformations';
         this.filePath = './asConnections/data.datasourceTransformations.json';
 
@@ -2768,15 +2768,22 @@ export class GlobalVariableService {
                         this.datasourceTransformations = res;
                         this.isDirtyDatasourceTransformations = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getDatasourceTransformation 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            this.datasourceTransformations)
+
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables getDatasourceTransformation 1',
+                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                this.datasourceTransformations)
+                        };
+
                         resolve(this.datasourceTransformations);
                     });
             } else {
-                console.log('%c    Global-Variables getDatasourceTransformation 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                    this.datasourceTransformations)
+                if (this.sessionDebugging) {
+                    console.log('%c    Global-Variables getDatasourceTransformation 2',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                        this.datasourceTransformations)
+                };
+
                 resolve(this.datasourceTransformations);
             }
         });
@@ -2786,8 +2793,10 @@ export class GlobalVariableService {
     addDatasourceTransformation(data: DatasourceTransformation): Promise<any> {
         // Description: Adds a new DatasourceTransformation
         // Returns: Added Data or error message
-        console.log('%c    Global-Variables addDatasourceTransformation ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables addDatasourceTransformation ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        };
 
         let url: string = 'datasourceTransformations';
         this.filePath = './assets/data.datasourceTransformations.json';
@@ -2804,13 +2813,17 @@ export class GlobalVariableService {
                     // Update Global vars to make sure they remain in sync
                     this.datasourceTransformations.push(JSON.parse(JSON.stringify(res)));
 
-                    console.log('addDatasourceTransformation ADDED', {res},
-                        this.datasourceTransformations)
+                    if (this.sessionDebugging) {
+                        console.log('addDatasourceTransformation ADDED', {res},
+                            this.datasourceTransformations)
+                    };
 
                     resolve(res);
                 },
                 err => {
-                    console.log('Error addDatasourceTransformation FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error addDatasourceTransformation FAILED', {err});
+                    };
                     reject(err);
                 }
             )
@@ -2820,8 +2833,10 @@ export class GlobalVariableService {
     saveDatasourceTransformation(data: DatasourceTransformation): Promise<string> {
         // Description: Saves DatasourceTransformation
         // Returns: 'Saved' or error message
-        console.log('%c    Global-Variables saveDatasourceTransformation ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables saveDatasourceTransformation ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        };
 
         let url: string = 'datasourceTransformations';
         this.filePath = './assets/data.datasourceTransformations.json';
@@ -2841,11 +2856,17 @@ export class GlobalVariableService {
                     );
                     this.datasourceTransformations[localIndex] = data;
 
-                    console.log('saveDatasourceTransformation SAVED', {res})
+                    if (this.sessionDebugging) {
+                        console.log('saveDatasourceTransformation SAVED', {res})
+                    };
+
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error saveDatasourceTransformation FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error saveDatasourceTransformation FAILED', {err});
+                    };
+
                     reject(err);
                 }
             )
@@ -2855,8 +2876,10 @@ export class GlobalVariableService {
     deleteDatasourceTransformation(id: number): Promise<string> {
         // Description: Deletes a DatasourceTransformations
         // Returns: 'Deleted' or error message
-        console.log('%c    Global-Variables deleteDatasourceTransformation ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables deleteDatasourceTransformation ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
+        };
 
         let url: string = 'datasourceTransformations';
         this.filePath = './assets/data.datasourceTransformations.json';
@@ -2874,11 +2897,17 @@ export class GlobalVariableService {
                         dsp => dsp.id != id
                     );
 
-                    console.log('deleteDatasourceTransformation DELETED id: ', {id})
+                    if (this.sessionDebugging) {
+                        console.log('deleteDatasourceTransformation DELETED id: ', {id})
+                    };
+
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('Error deleteDatasourceTransformation FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error deleteDatasourceTransformation FAILED', {err});
+                    };
+                    
                     reject(err);
                 }
             )
