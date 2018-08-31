@@ -5406,7 +5406,7 @@ export class GlobalVariableService {
                     console.log('%c    Global-Variables getTransformations 2',
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
                 };
-                
+
                 resolve(this.transformations);
             }
         });
@@ -5417,8 +5417,10 @@ export class GlobalVariableService {
         // Description: Gets Tr for current DS
         // Returns: this.currentTransformations.value array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getCurrentTransformations ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getCurrentTransformations ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        };
 
         let url: string = 'transformations';
         this.filePath = './assets/data.transformations.json';
@@ -5431,9 +5433,13 @@ export class GlobalVariableService {
                         //     i => i.datasourceID == datasourceID
                         // );
                         this.currentTransformations = res;
-                        console.log('%c    Global-Variables getTransformations 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            {datasourceID}, {res})
+
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables getTransformations 1',
+                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                {datasourceID}, {res})
+                        };
+
                         resolve(this.currentTransformations);
                 })
              })
@@ -5445,9 +5451,13 @@ export class GlobalVariableService {
                 //     i => i.datasourceID == datasourceID
                 // );
                 this.currentTransformations = returnData;
-                console.log('%c    Global-Variables getTransformations 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                    {datasourceID}, {returnData})
+
+                if (this.sessionDebugging) {
+                    console.log('%c    Global-Variables getTransformations 2',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                        {datasourceID}, {returnData})
+                };
+
                 resolve(this.currentTransformations);
             });
         };
@@ -5457,8 +5467,10 @@ export class GlobalVariableService {
         // Description: Gets all dQual
         // Returns: this.dataQualityIssues array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getDataQualityIssues ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getDataQualityIssues ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        };
 
         let url: string = 'dataQualityIssues';
         this.filePath = './assets/data.dataQualityIssues.json';
@@ -5473,15 +5485,22 @@ export class GlobalVariableService {
                         this.dataQualityIssues = res;
                         this.isDirtyDataQualityIssues = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getDataQualityIssues 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            this.dataQualityIssues)
+
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables getDataQualityIssues 1',
+                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                this.dataQualityIssues)
+                        };
+
                         resolve(this.dataQualityIssues);
                     });
             } else {
-                console.log('%c    Global-Variables getDataQualityIssues 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                    this.dataQualityIssues)
+                if (this.sessionDebugging) {
+                    console.log('%c    Global-Variables getDataQualityIssues 2',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                        this.dataQualityIssues)
+                };
+
                 resolve(this.dataQualityIssues);
             }
         });
@@ -5491,9 +5510,11 @@ export class GlobalVariableService {
         // Description: Gets dQual for current DS
         // Returns: this.dataQualityIssues.value array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getCurrentDataQualityIssues ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-            {datasourceID});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getCurrentDataQualityIssues ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                {datasourceID});
+        };
 
         let url: string = 'dataQualityIssues';
         this.filePath = './assets/data.dataQualityIssues.json';
@@ -5506,9 +5527,13 @@ export class GlobalVariableService {
                             i => i.datasourceID == datasourceID
                         );
                         this.currentDataQualityIssues = res;
-                        console.log('%c    Global-Variables getDataQualityIssuess 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            {datasourceID}, {res})
+
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables getDataQualityIssuess 1',
+                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                {datasourceID}, {res})
+                        };
+
                         resolve(this.currentDataQualityIssues);
                 })
              })
@@ -5519,9 +5544,13 @@ export class GlobalVariableService {
                     i => i.datasourceID == datasourceID
                 );
                 this.currentDataQualityIssues = returnData;
-                console.log('%c    Global-Variables getDataQualityIssuess 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                    {datasourceID}, returnData)
+
+                if (this.sessionDebugging) {
+                    console.log('%c    Global-Variables getDataQualityIssuess 2',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                        {datasourceID}, returnData)
+                };
+
                 resolve(this.currentDataQualityIssues);
             });
         };
@@ -5530,9 +5559,11 @@ export class GlobalVariableService {
     addDataQualityIssue(data: DataQualityIssue): Promise<any> {
         // Description: Adds a new QualityIssue, if it does not exist
         // Returns: Added Data or error message
-        console.log('%c    Global-Variables addDataQualityIssue ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-            {data});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables addDataQualityIssue ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                {data});
+        };
 
         let url: string = 'dataQualityIssues';
         this.filePath = './assets/data.dataQualityIssues.json';
@@ -5555,13 +5586,18 @@ export class GlobalVariableService {
                         this.currentDataQualityIssues.push(newDS);
                     };
 
-                    console.log('addDataQualityIssue ADDED', {res},
-                        this.currentDataQualityIssues, this.dataQualityIssues)
+                    if (this.sessionDebugging) {
+                        console.log('addDataQualityIssue ADDED', {res},
+                            this.currentDataQualityIssues, this.dataQualityIssues)
+                    };
 
                     resolve(res);
                 },
                 err => {
-                    console.log('Error addDataQualityIssue FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error addDataQualityIssue FAILED', {err});
+                    };
+
                     reject(err);
                 }
             )
@@ -5571,8 +5607,10 @@ export class GlobalVariableService {
     saveDataQualityIssue(data: DataQualityIssue): Promise<string> {
         // Description: Saves DataQualityIssue
         // Returns: 'Saved' or error message
-        console.log('%c    Global-Variables saveDataQualityIssue ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables saveDataQualityIssue ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        };
 
         let url: string = 'dataQualityIssues';
         this.filePath = './assets/data.dataQualityIssues.json';
@@ -5592,11 +5630,17 @@ export class GlobalVariableService {
                     );
                     this.dataQualityIssues[localIndex] = data;
 
-                    console.log('saveDataQualityIssue SAVED', {res})
+                    if (this.sessionDebugging) {
+                        console.log('saveDataQualityIssue SAVED', {res})
+                    };
+
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error saveDataQualityIssue FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error saveDataQualityIssue FAILED', {err});
+                    };
+
                     reject(err);
                 }
             )
@@ -5606,8 +5650,10 @@ export class GlobalVariableService {
     deleteDataQualityIssue(id: number): Promise<string> {
         // Description: Deletes a DataQualityIssues
         // Returns: 'Deleted' or error message
-        console.log('%c    Global-Variables deleteDataQualityIssue ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables deleteDataQualityIssue ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
+        };
 
         let url: string = 'dataQualityIssues';
         this.filePath = './assets/data.dataQualityIssues.json';
@@ -5628,11 +5674,16 @@ export class GlobalVariableService {
                         dsp => dsp.id != id
                     );
 
-                    console.log('deleteDataQualityIssue DELETED id: ', {id})
+                    if (this.sessionDebugging) {
+                        console.log('deleteDataQualityIssue DELETED id: ', {id})
+                    };
+
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('Error deleteDataQualityIssue FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error deleteDataQualityIssue FAILED', {err});
+                    };
                     reject(err);
                 }
             )
@@ -5643,8 +5694,10 @@ export class GlobalVariableService {
         // Description: Gets all dQual
         // Returns: this.DataOwnerships array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getDataOwnerships ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getDataOwnerships ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        };
 
         let url: string = 'dataOwnerships';
         this.filePath = './assets/data.dataOwnerships.json';
@@ -5659,15 +5712,22 @@ export class GlobalVariableService {
                         this.dataOwnerships = res;
                         this.isDirtyDataOwnership = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getDataOwnerships 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            this.dataOwnerships)
+
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables getDataOwnerships 1',
+                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                this.dataOwnerships)
+                        };
+
                         resolve(this.dataOwnerships);
                     });
             } else {
-                console.log('%c    Global-Variables getDataOwnerships 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                    this.dataOwnerships)
+                if (this.sessionDebugging) {
+                    console.log('%c    Global-Variables getDataOwnerships 2',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                        this.dataOwnerships)
+                };
+
                 resolve(this.dataOwnerships);
             }
         });
@@ -5677,9 +5737,11 @@ export class GlobalVariableService {
         // Description: Gets dQual for current DS
         // Returns: this.dataOwnerships.value array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getCurrentDataOwnerships ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-            {datasourceID});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getCurrentDataOwnerships ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                {datasourceID});
+        };
 
         let url: string = 'dataOwnerships';
         this.filePath = './assets/data.dataOwnerships.json';
@@ -5692,9 +5754,13 @@ export class GlobalVariableService {
                             i => i.datasourceID == datasourceID
                         );
                         this.currentDataOwnerships = res;
-                        console.log('%c    Global-Variables getDataOwnershipss 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            {datasourceID}, {res})
+
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables getDataOwnershipss 1',
+                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                {datasourceID}, {res})
+                        };
+
                         resolve(this.currentDataOwnerships);
                 })
              })
@@ -5705,9 +5771,13 @@ export class GlobalVariableService {
                     i => i.datasourceID == datasourceID
                 );
                 this.currentDataOwnerships = returnData;
-                console.log('%c    Global-Variables getDataOwnershipss 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                    {datasourceID}, {returnData})
+
+                if (this.sessionDebugging) {
+                    console.log('%c    Global-Variables getDataOwnershipss 2',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                        {datasourceID}, {returnData})
+                };
+
                 resolve(this.currentDataOwnerships);
             });
         };
@@ -5716,8 +5786,10 @@ export class GlobalVariableService {
     addDataOwnership(data: DataOwnership): Promise<any> {
         // Description: Adds a new Ownership, if it does not exist
         // Returns: Added Data or error message
-        console.log('%c    Global-Variables addDataOwnership ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables addDataOwnership ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        };
 
         let url: string = 'dataOwnerships';
         this.filePath = './assets/data.dataOwnerships.json';
@@ -5740,13 +5812,18 @@ export class GlobalVariableService {
                         this.currentDataOwnerships.push(newDS);
                     };
 
-                    console.log('addDataOwnership ADDED', {res},
-                        this.currentDataOwnerships, this.dataOwnerships)
+                    if (this.sessionDebugging) {
+                        console.log('addDataOwnership ADDED', {res},
+                            this.currentDataOwnerships, this.dataOwnerships)
+                    };
 
                     resolve(res);
                 },
                 err => {
-                    console.log('Error addDataOwnership FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error addDataOwnership FAILED', {err});
+                    };
+
                     reject(err);
                 }
             )
@@ -5756,8 +5833,10 @@ export class GlobalVariableService {
     saveDataOwnership(data: DataOwnership): Promise<string> {
         // Description: Saves DataOwnership
         // Returns: 'Saved' or error message
-        console.log('%c    Global-Variables saveDataOwnership ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables saveDataOwnership ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        };
 
         let url: string = 'dataOwnerships';
         this.filePath = './assets/data.dataOwnerships.json';
@@ -5777,11 +5856,17 @@ export class GlobalVariableService {
                     );
                     this.dataOwnerships[localIndex] = data;
 
-                    console.log('saveDataOwnership SAVED', {res})
+                    if (this.sessionDebugging) {
+                        console.log('saveDataOwnership SAVED', {res})
+                    };
+
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error saveDataOwnership FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error saveDataOwnership FAILED', {err});
+                    };
+
                     reject(err);
                 }
             )
@@ -5791,8 +5876,10 @@ export class GlobalVariableService {
     deleteDataOwnership(id: number): Promise<string> {
         // Description: Deletes a DataOwnerships
         // Returns: 'Deleted' or error message
-        console.log('%c    Global-Variables deleteDataOwnership ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables deleteDataOwnership ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
+        };
 
         let url: string = 'dataOwnerships';
         this.filePath = './assets/data.dataOwnerships.json';
@@ -5813,11 +5900,17 @@ export class GlobalVariableService {
                         dsp => dsp.id != id
                     );
 
-                    console.log('deleteDataOwnership DELETED id: ', {id})
+                    if (this.sessionDebugging) {
+                        console.log('deleteDataOwnership DELETED id: ', {id})
+                    };
+
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('Error deleteDataOwnership FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error deleteDataOwnership FAILED', {err});
+                    };
+
                     reject(err);
                 }
             )
@@ -5828,8 +5921,10 @@ export class GlobalVariableService {
         // Description: Gets all DS-P
         // Returns: this.datasourcePermissions array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getDatasourcePermissions ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getDatasourcePermissions ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        };
 
         let url: string = 'datasourcePermissions';
         this.filePath = './assets/data.datasourcePermissions.json';
@@ -5858,15 +5953,22 @@ export class GlobalVariableService {
                         this.datasourcePermissions = res;
                         this.isDirtyDatasourcePermissions = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getDatasourcePermissions 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            this.datasourcePermissions)
+
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables getDatasourcePermissions 1',
+                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                this.datasourcePermissions)
+                        };
+
                         resolve(this.datasourcePermissions);
                     });
             } else {
-                console.log('%c    Global-Variables getDatasourcePermissions 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                    this.datasourcePermissions)
+                if (this.sessionDebugging) {
+                    console.log('%c    Global-Variables getDatasourcePermissions 2',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                        this.datasourcePermissions)
+                };
+
                 resolve(this.datasourcePermissions);
             }
         });
@@ -5876,9 +5978,11 @@ export class GlobalVariableService {
         // Description: Gets DS-P for current DS
         // Returns: this.datasourcePermissions.value array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getCurrentDatasourcePermissions ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-            {datasourceID});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getCurrentDatasourcePermissions ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                {datasourceID});
+        };
 
         let url: string = 'datasourcePermissions';
         this.filePath = './assets/data..datasourcePermissions.json';
@@ -5891,9 +5995,13 @@ export class GlobalVariableService {
                             i => i.datasourceID == datasourceID
                         );
                         this.currentDatasourcePermissions = res;
-                        console.log('%c    Global-Variables getDatasourcePermissions 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            {datasourceID}, {res})
+
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables getDatasourcePermissions 1',
+                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                {datasourceID}, {res})
+                        };
+
                         resolve(this.currentDatasourcePermissions);
                 })
              })
@@ -5904,9 +6012,13 @@ export class GlobalVariableService {
                     i => i.datasourceID == datasourceID
                 );
                 this.currentDatasourcePermissions = returnData;
-                console.log('%c    Global-Variables getDatasourcePermissions 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                    {datasourceID})
+
+                if (this.sessionDebugging) {
+                    console.log('%c    Global-Variables getDatasourcePermissions 2',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                        {datasourceID})
+                };
+                
                 resolve(this.currentDatasourcePermissions);
             });
         };
