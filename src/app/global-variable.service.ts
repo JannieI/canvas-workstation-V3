@@ -2907,7 +2907,7 @@ export class GlobalVariableService {
                     if (this.sessionDebugging) {
                         console.log('Error deleteDatasourceTransformation FAILED', {err});
                     };
-                    
+
                     reject(err);
                 }
             )
@@ -2917,8 +2917,10 @@ export class GlobalVariableService {
     getDataTable(): Promise<DataTable[]> {
         // Description: Gets DataTables, WITHOUT data
         // Returns: this.dataTable
-        console.log('%c    Global-Variables getDataTable ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getDataTable ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        };
 
         let url: string = 'dataTables';
         this.filePath = './asTables/data.dataTables.json';
@@ -2933,15 +2935,22 @@ export class GlobalVariableService {
                         this.dataTables = res;
                         this.isDirtyDataTables = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getDataTable 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            this.dataTables)
+        
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables getDataTable 1',
+                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                this.dataTables)
+                        };
+
                         resolve(this.dataTables);
                     });
             } else {
-                console.log('%c    Global-Variables getDataTable 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                    this.dataTables)
+                if (this.sessionDebugging) {
+                    console.log('%c    Global-Variables getDataTable 2',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                        this.dataTables)
+                };
+
                 resolve(this.dataTables);
             }
         });
@@ -2951,8 +2960,10 @@ export class GlobalVariableService {
     getDataField(): Promise<DataField[]> {
         // Description: Gets DataFields, WITHOUT data
         // Returns: this.dataField
-        console.log('%c    Global-Variables getDataField ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getDataField ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        };
 
         let url: string = 'dataFields';
         this.filePath = './asFields/data.dataFields.json';
@@ -2967,15 +2978,22 @@ export class GlobalVariableService {
                         this.dataFields = res;
                         this.isDirtyDataFields = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getDataField 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            this.dataFields)
+        
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables getDataField 1',
+                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                this.dataFields)
+                        };
+
                         resolve(this.dataFields);
                     });
             } else {
-                console.log('%c    Global-Variables getDataField 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                    this.dataFields)
+                if (this.sessionDebugging) {
+                    console.log('%c    Global-Variables getDataField 2',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                        this.dataFields)
+                };
+
                 resolve(this.dataFields);
             }
         });
@@ -2985,8 +3003,10 @@ export class GlobalVariableService {
     getDataset(): Promise<Dataset[]> {
         // Description: Gets Datasets, WITHOUT data
         // Returns: this.dataset
-        console.log('%c    Global-Variables getDataset ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getDataset ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        };
 
         let url: string = 'datasets';
         this.filePath = './assets/data.datasets.json';
@@ -3001,15 +3021,22 @@ export class GlobalVariableService {
                         this.datasets = res;
                         this.isDirtyDatasets = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getDataset 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            this.datasets)
+        
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables getDataset 1',
+                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                this.datasets)
+                        };
+
                         resolve(this.datasets);
                     });
             } else {
-                console.log('%c    Global-Variables getDataset 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                    this.datasets)
+                if (this.sessionDebugging) {
+                    console.log('%c    Global-Variables getDataset 2',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                        this.datasets)
+                };
+
                 resolve(this.datasets);
             }
         });
@@ -3019,9 +3046,11 @@ export class GlobalVariableService {
     getCurrentDataset(datasourceID: number, datasetID: number): Promise<Dataset> {
         // Description: Gets a Dataset, and inserts it once into this.currentDatasets
         // Returns: dataset
-        console.log('%c    Global-Variables getCurrentDataset ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-            {datasourceID}, {datasetID});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getCurrentDataset ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                {datasourceID}, {datasetID});
+        };
 
         let url: string = 'dataset';
         this.filePath = './assets/data.datasets.json';
@@ -3077,7 +3106,10 @@ export class GlobalVariableService {
                         this.currentDatasets.push(this.datasets[datasetIndex]);
                     };
                 } else {
-                    console.log('Error in getCurrentDataset - datasetIndex == null')
+                    if (this.sessionDebugging) {
+                        console.log('Error in getCurrentDataset - datasetIndex == null')
+                    };
+
                 };
             };
 
@@ -3098,10 +3130,13 @@ export class GlobalVariableService {
                         this.currentDatasets.push(newdSet);
                     };
 
-                    console.log('%c    Global-Variables getCurrentDataset 1 from ',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                        {dsSourceLocation}, ' for DS-id = ', {datasourceID}, '.  Added dSet: ',
-                        {newdSet}, ', and currentDatasets = ', this.currentDatasets)
+                    if (this.sessionDebugging) {
+                        console.log('%c    Global-Variables getCurrentDataset 1 from ',
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                            {dsSourceLocation}, ' for DS-id = ', {datasourceID}, '.  Added dSet: ',
+                            {newdSet}, ', and currentDatasets = ', this.currentDatasets)
+                    };
+
                     resolve(newdSet);
                 });
             };
@@ -3136,10 +3171,12 @@ export class GlobalVariableService {
                             this.currentDatasets.push(newdSet);
                         };
 
-                        console.log('%c    Global-Variables getCurrentDataset 1 from ',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            {dsSourceLocation}, ' for DS-id = ', {datasourceID}, '.  Added dSet: ',
-                            {newdSet}, ', and currentDatasets = ', this.currentDatasets)
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables getCurrentDataset 1 from ',
+                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                {dsSourceLocation}, ' for DS-id = ', {datasourceID}, '.  Added dSet: ',
+                                {newdSet}, ', and currentDatasets = ', this.currentDatasets)
+                        };
                         resolve(newdSet);
                     }
                 );
@@ -3174,10 +3211,13 @@ export class GlobalVariableService {
                             this.currentDatasets.push(newdSet);
                         };
 
-                        console.log('%c    Global-Variables getCurrentDataset 1 from ',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            {dsSourceLocation}, ' for DS-id  = ', {datasourceID}, '.  Added dSet: ',
-                            {newdSet}, ', and currentDatasets = ', this.currentDatasets)
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables getCurrentDataset 1 from ',
+                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                {dsSourceLocation}, ' for DS-id  = ', {datasourceID}, '.  Added dSet: ',
+                                {newdSet}, ', and currentDatasets = ', this.currentDatasets)
+                        };
+
                         resolve(newdSet);
                     }
                 );
@@ -3188,8 +3228,10 @@ export class GlobalVariableService {
     addDataset(data: Dataset): Promise<any> {
         // Description: Adds a new Dataset
         // Returns: Added Data or error message
-        console.log('%c    Global-Variables addDataset ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables addDataset ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        };
 
         // let url: string = data.url;
         // this.filePath = data.folderName + data.fileName;
@@ -3209,12 +3251,16 @@ export class GlobalVariableService {
                     this.datasets.push(JSON.parse(JSON.stringify(res)));
                     this.currentDatasets.push(JSON.parse(JSON.stringify(res)));
 
-                    console.log('addDataset ADDED', {res}, this.datasets, this.currentDatasets)
+                    if (this.sessionDebugging) {
+                        console.log('addDataset ADDED', {res}, this.datasets, this.currentDatasets)
+                    };
 
                     resolve(res);
                 },
                 err => {
-                    console.log('Error addDataset FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error addDataset FAILED', {err});
+                    };
                     reject(err);
                 }
             )
