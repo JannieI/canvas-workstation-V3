@@ -3270,8 +3270,10 @@ export class GlobalVariableService {
     saveDataset(data: Dataset): Promise<string> {
         // Description: Saves Dataset
         // Returns: 'Saved' or error message
-        console.log('%c    Global-Variables saveDataset ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables saveDataset ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        };
 
         let url: string = 'datasets';
         this.filePath = './assets/data.Datasets.json';
@@ -3296,11 +3298,17 @@ export class GlobalVariableService {
                     );
                     this.currentDatasets[localCurrentIndex] = data;
 
-                    console.log('saveDataset SAVED', {res})
+                    if (this.sessionDebugging) {
+                        console.log('saveDataset SAVED', {res})
+                    };
+
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error saveDataset FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error saveDataset FAILED', {err});
+                    };
+
                     reject(err);
                 }
             )
@@ -3310,8 +3318,10 @@ export class GlobalVariableService {
     deleteDataset(id: number): Promise<string> {
         // Description: Deletes a Dataset
         // Returns: 'Deleted' or error message
-        console.log('%c    Global-Variables deleteDataset ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables deleteDataset ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
+        };
 
         let url: string = 'datasets';
         this.filePath = './assets/data.Datasets.json';
@@ -3332,11 +3342,17 @@ export class GlobalVariableService {
                         dSet => dSet.id != id
                     );
 
-                    console.log('deleteDataset DELETED id: ', {id})
+                    if (this.sessionDebugging) {
+                        console.log('deleteDataset DELETED id: ', {id})
+                    };
+
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('Error deleteDataset FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error deleteDataset FAILED', {err});
+                    };
+
                     reject(err);
                 }
             )
@@ -3346,8 +3362,10 @@ export class GlobalVariableService {
     getData(id: number): Promise<any[]> {
         // Description: Gets Datasets, WITHOUT data
         // Returns: this.dataset
-        console.log('%c    Global-Variables getData ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getData ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
+        };
 
         let url: string = 'data/' + id.toString();
         this.filePath = './assets/data.datasets.json';
@@ -3363,9 +3381,13 @@ export class GlobalVariableService {
                         // this.datasets[xxx from id].rawData & .data = data;
                         // this.isDirtyDatasets = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getData',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            {res})
+                        
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables getData',
+                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                {res})
+                        };
+
                         resolve(res.data);
                     });
             // } else {
@@ -3379,8 +3401,10 @@ export class GlobalVariableService {
     addData(data: any): Promise<any> {
         // Description: Adds DATA used in a new Dataset
         // Returns: Added Data or error message
-        console.log('%c    Global-Variables addData  ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables addData  ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        };
 
         // let url: string = data.url;
         // this.filePath = data.folderName + data.fileName;
@@ -3396,12 +3420,16 @@ export class GlobalVariableService {
             .subscribe(
                 res => {
 
-                    console.log('addData ADDED', {res}, this.datasets, this.currentDatasets)
+                    if (this.sessionDebugging) {
+                        console.log('addData ADDED', {res}, this.datasets, this.currentDatasets)
+                    };
 
                     resolve(res);
                 },
                 err => {
-                    console.log('Error addData FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error addData FAILED', {err});
+                    };
                     reject(err);
                 }
             )
