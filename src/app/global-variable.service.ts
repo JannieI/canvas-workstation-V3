@@ -3979,7 +3979,7 @@ export class GlobalVariableService {
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                         {datasourceID}, {returnData})
                 };
-                
+
                 resolve(this.currentDatasourceSchedules);
             });
         };
@@ -3988,8 +3988,10 @@ export class GlobalVariableService {
     addDatasourceSchedule(data: DatasourceSchedule): Promise<any> {
         // Description: Adds a new DatasourceSchedule
         // Returns: Added Data or error message
-        console.log('%c    Global-Variables addDatasourceSchedule ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables addDatasourceSchedule ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        };
 
         let url: string = 'datasourceSchedules';
         this.filePath = './assets/data.datasourceSchedules.json';
@@ -4007,13 +4009,17 @@ export class GlobalVariableService {
                     this.datasourceSchedules.push(JSON.parse(JSON.stringify(res)));
                     this.currentDatasourceSchedules.push(JSON.parse(JSON.stringify(res)));
 
-                    console.log('addDatasourceSchedule ADDED', {res},
-                        this.currentDatasourceSchedules, this.datasourceSchedules)
+                    if (this.sessionDebugging) {
+                        console.log('addDatasourceSchedule ADDED', {res},
+                            this.currentDatasourceSchedules, this.datasourceSchedules)
+                    };
 
                     resolve(res);
                 },
                 err => {
-                    console.log('Error addDatasourceSchedule FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error addDatasourceSchedule FAILED', {err});
+                    };
                     reject(err);
                 }
             )
@@ -4023,8 +4029,10 @@ export class GlobalVariableService {
     saveDatasourceSchedule(data: DatasourceSchedule): Promise<string> {
         // Description: Saves DatasourceSchedule
         // Returns: 'Saved' or error message
-        console.log('%c    Global-Variables saveDatasourceSchedule ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables saveDatasourceSchedule ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        };
 
         let url: string = 'datasourceSchedules';
         this.filePath = './assets/data.datasourceSchedules.json';
@@ -4044,11 +4052,17 @@ export class GlobalVariableService {
                     );
                     this.datasourceSchedules[localIndex] = data;
 
-                    console.log('saveDatasourceSchedule SAVED', {res})
+                    if (this.sessionDebugging) {
+                        console.log('saveDatasourceSchedule SAVED', {res})
+                    };
+
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error saveDatasourceSchedule FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error saveDatasourceSchedule FAILED', {err});
+                    };
+
                     reject(err);
                 }
             )
@@ -4058,8 +4072,10 @@ export class GlobalVariableService {
     deleteDatasourceSchedule(id: number): Promise<string> {
         // Description: Deletes a DatasourceSchedules
         // Returns: 'Deleted' or error message
-        console.log('%c    Global-Variables deleteDatasourceSchedule ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables deleteDatasourceSchedule ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
+        };
 
         let url: string = 'datasourceSchedules';
         this.filePath = './assets/data.datasourceSchedules.json';
@@ -4080,11 +4096,17 @@ export class GlobalVariableService {
                         dsp => dsp.id != id
                     );
 
-                    console.log('deleteDatasourceSchedule DELETED id: ', {id})
+                    if (this.sessionDebugging) {
+                        console.log('deleteDatasourceSchedule DELETED id: ', {id})
+                    };
+
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('Error deleteDatasourceSchedule FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error deleteDatasourceSchedule FAILED', {err});
+                    };
+
                     reject(err);
                 }
             )
@@ -4098,9 +4120,11 @@ export class GlobalVariableService {
         // Description: Gets the Schedule Log for a single DS or requested range
         // Returns: this.datasourceScheduleLog array
         // NOTE: this routine does NOT use cached or if dirty (goes to DB each time)
-        console.log('%c    Global-Variables getDatasourceScheduleLog ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-            {datasourceID} , {sentAfter}, {sentBefore})
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getDatasourceScheduleLog ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                {datasourceID} , {sentAfter}, {sentBefore})
+        };
 
         let url: string = 'datasourceScheduleLog';
         this.filePath = './assets/data.datasourceScheduleLog.json';
@@ -4123,9 +4147,12 @@ export class GlobalVariableService {
                     };
                     this.datasourceScheduleLog = res;
                     this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                    console.log('%c    Global-Variables getDatasourceScheduleLog 1',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                        {res})
+
+                    if (this.sessionDebugging) {
+                        console.log('%c    Global-Variables getDatasourceScheduleLog 1',
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                            {res})
+                    };
                     resolve(this.datasourceScheduleLog);
                 });
         });
@@ -4136,8 +4163,10 @@ export class GlobalVariableService {
         // Description: Gets all Sch
         // Returns: this.dashboardTagsget array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getDashboardTags ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getDashboardTags ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        };
 
         let url: string = 'dashboardTags';
         this.filePath = './assets/data.dashboardTags.json';
@@ -4152,14 +4181,21 @@ export class GlobalVariableService {
                         this.dashboardTags = res;
                         this.isDirtyDashboardTags = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getDashboardTags 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            {res})
+
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables getDashboardTags 1',
+                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                {res})
+                        };
+
                         resolve(this.dashboardTags);
                     });
             } else {
-                console.log('%c    Global-Variables getDashboardTags 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
+                if (this.sessionDebugging) {
+                    console.log('%c    Global-Variables getDashboardTags 2',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
+                };
+                
                 resolve(this.dashboardTags);
             }
         });
