@@ -4474,8 +4474,10 @@ export class GlobalVariableService {
     saveDashboardPermission(data: DashboardPermission): Promise<string> {
         // Description: Saves DashboardPermission
         // Returns: 'Saved' or error message
-        console.log('%c    Global-Variables saveDashboardPermission ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables saveDashboardPermission ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        };
 
         let url: string = 'dashboardPermissions';
         this.filePath = './assets/data.dashboardPermissions.json';
@@ -4495,11 +4497,17 @@ export class GlobalVariableService {
                     );
                     this.dashboardPermissions[localIndex] = data;
 
-                    console.log('saveDashboardPermission SAVED', {res})
+                    if (this.sessionDebugging) {
+                        console.log('saveDashboardPermission SAVED', {res})
+                    };
+
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error saveDashboardPermission FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error saveDashboardPermission FAILED', {err});
+                    };
+
                     reject(err);
                 }
             )
@@ -4509,8 +4517,10 @@ export class GlobalVariableService {
     deleteDashboardPermission(id: number): Promise<string> {
         // Description: Deletes a DashboardPermissions
         // Returns: 'Deleted' or error message
-        console.log('%c    Global-Variables deleteDashboardPermission ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables deleteDashboardPermission ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
+        };
 
         let url: string = 'dashboardPermissions';
         this.filePath = './assets/data.dashboardPermissions.json';
@@ -4531,11 +4541,17 @@ export class GlobalVariableService {
                         dsp => dsp.id != id
                     );
 
-                    console.log('deleteDashboardPermission DELETED id: ', {id})
+                    if (this.sessionDebugging) {
+                        console.log('deleteDashboardPermission DELETED id: ', {id})
+                    };
+
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('Error deleteDashboardPermission FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error deleteDashboardPermission FAILED', {err});
+                    };
+
                     reject(err);
                 }
             )
@@ -4546,8 +4562,10 @@ export class GlobalVariableService {
         // Description: Gets all G
         // Returns: this.canvasGroups array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getCanvasGroups ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getCanvasGroups ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        };
 
         let url: string = 'canvasGroups';
         this.filePath = './assets/data.canvasGroups.json';
@@ -4562,15 +4580,22 @@ export class GlobalVariableService {
                         this.canvasGroups = res;
                         this.isDirtyCanvasGroups = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getCanvasGroups 1',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                        {res})
+
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables getCanvasGroups 1',
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                            {res})
+                        };
+
                         resolve(this.canvasGroups);
                     })
                     .catch(err => reject(err));
             } else {
-                console.log('%c    Global-Variables getCanvasGroups 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
+                if (this.sessionDebugging) {
+                    console.log('%c    Global-Variables getCanvasGroups 2',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
+                };
+
                 resolve(this.canvasGroups);
             }
         });
@@ -4581,8 +4606,10 @@ export class GlobalVariableService {
         // Description: Gets all Sn
         // Returns: this.dashboardSnapshots array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getDashboardSnapshots ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getDashboardSnapshots ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        };
 
         let url: string = 'dashboardSnapshots';
         this.filePath = './assets/data.dashboardSnapshots.json';
@@ -4598,14 +4625,21 @@ export class GlobalVariableService {
                         this.dashboardSnapshots = res;
                         this.isDirtyDashboardSnapshots = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getDashboardSnapshots 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            this.dashboardSnapshots)
+
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables getDashboardSnapshots 1',
+                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                this.dashboardSnapshots)
+                        };
+
                         resolve(this.dashboardSnapshots);
                     });
             } else {
-                console.log('%c    Global-Variables getDashboardSnapshots 2',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
+                if (this.sessionDebugging) {
+                    console.log('%c    Global-Variables getDashboardSnapshots 2',
+                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
+                };
+
                 resolve(this.dashboardSnapshots);
             }
         });
@@ -4618,9 +4652,11 @@ export class GlobalVariableService {
         //   dashboardID
         // Returns: this.getDashboardSnapshots array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getCurrentDashboardSnapshots ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-            {dashboardID});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getCurrentDashboardSnapshots ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                {dashboardID});
+        };
 
         // Refresh from source at start, or if dirty
         if ( (this.dashboardSnapshots.length == 0)  ||  (this.isDirtyDashboardSnapshots) ) {
@@ -4631,9 +4667,13 @@ export class GlobalVariableService {
                             i => i.dashboardID == dashboardID
                         );
                         this.currentDashboardSnapshots = res;
-                        console.log('%c    Global-Variables getCurrentDashboardSnapshots 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            {dashboardID}, {res})
+
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables getCurrentDashboardSnapshots 1',
+                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                {dashboardID}, {res})
+                        };
+
                         resolve(this.currentDashboardSnapshots);
                 })
              })
@@ -4644,9 +4684,13 @@ export class GlobalVariableService {
                     i => i.dashboardID == dashboardID
                 );
                 this.currentDashboardSnapshots = returnData;
-                console.log('%c    Global-Variables getCurrentDashboardSnapshots 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                    {dashboardID})
+
+                if (this.sessionDebugging) {
+                    console.log('%c    Global-Variables getCurrentDashboardSnapshots 2',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                        {dashboardID})
+                };
+
                 resolve(this.currentDashboardSnapshots);
             });
         };
@@ -4658,9 +4702,11 @@ export class GlobalVariableService {
         //   dashboardID
         // Returns: this.getDashboardSnapshots array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables findlastDashboardSnapshot ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-            {dashboardID});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables findlastDashboardSnapshot ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                {dashboardID});
+        };
 
         // Refresh from source at start, or if dirty
         if ( (this.dashboardSnapshots.length == 0)  ||  (this.isDirtyDashboardSnapshots) ) {
@@ -4674,9 +4720,13 @@ export class GlobalVariableService {
                         if (res.length > 0) {
                             lastDashboardSnapshot = res[res.length - 1];
                         };
-                        console.log('%c    Global-Variables findlastDashboardSnapshot 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            {lastDashboardSnapshot})
+
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables findlastDashboardSnapshot 1',
+                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                {lastDashboardSnapshot})
+                        };
+
                         resolve(lastDashboardSnapshot);
                 })
              })
@@ -4691,9 +4741,12 @@ export class GlobalVariableService {
                     lastDashboardSnapshot = returnData[returnData.length - 1];
                 };
 
-                console.log('%c    Global-Variables findlastDashboardSnapshot 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                    {dashboardID})
+                if (this.sessionDebugging) {
+                    console.log('%c    Global-Variables findlastDashboardSnapshot 2',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                        {dashboardID})
+                };
+
                 resolve(lastDashboardSnapshot);
             });
         };
@@ -4705,10 +4758,12 @@ export class GlobalVariableService {
         snapshotType: string): Promise<any>  {
         // Description: Adds a new DashboardSnapshot
         // Returns: Added Data or error message
-        console.log('%c    Global-Variables newDashboardSnapshot ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-            {snapshotName}, {snapshotComment}, {snapshotType});
-
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables newDashboardSnapshot ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                {snapshotName}, {snapshotComment}, {snapshotType});
+        };
+        
         return new Promise<any>((resolve, reject) => {
 
             // Create new record
