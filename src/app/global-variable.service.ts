@@ -1898,8 +1898,10 @@ export class GlobalVariableService {
         // Description: Gets all T
         // Returns: this.dashboardTabs array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getDashboardTabs ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getDashboardTabs ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        };
 
         let url: string = 'dashboardTabs';
         this.filePath = './assets/data.dashboardTabs.json';
@@ -1914,14 +1916,18 @@ export class GlobalVariableService {
                         this.dashboardTabs = res;
                         this.isDirtyDashboardTabs = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getDashboardTabs 1',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                        this.dashboardTabs)
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables getDashboardTabs 1',
+                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                this.dashboardTabs)
+                        };
                         resolve(this.dashboardTabs);
                     });
             } else {
-                console.log('%c    Global-Variables getDashboardTabs 2',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
+                if (this.sessionDebugging) {
+                    console.log('%c    Global-Variables getDashboardTabs 2',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
+                };
                 resolve(this.dashboardTabs);
             }
         });
