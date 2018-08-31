@@ -109,7 +109,6 @@ interface IDataCachingTable {
 
 export class LocalDataCachingTable implements IDataCachingTable {
     key: string;
-    datasourceID: number;
     serverCacheable: boolean;
     serverLastUpdatedDateTime: Date;
     serverExpiryDateTime: Date;
@@ -120,7 +119,6 @@ export class LocalDataCachingTable implements IDataCachingTable {
     localVariableName: string;
 
     constructor(key: string,
-        datasourceID: number,
         serverCacheable: boolean,
         serverLastUpdatedDateTime: Date,
         serverExpiryDateTime: Date,
@@ -131,7 +129,6 @@ export class LocalDataCachingTable implements IDataCachingTable {
         localVariableName: string) {
 
             this.key = key,
-            this.datasourceID = datasourceID,
             this.serverCacheable = serverCacheable,
             this.serverLastUpdatedDateTime = serverLastUpdatedDateTime,
             this.serverExpiryDateTime = serverExpiryDateTime,
@@ -561,7 +558,7 @@ export class AppComponent implements OnInit {
         this.dbDataCachingTable = new Dexie("DataCachingTable");
         this.dbDataCachingTable.version(1).stores(
             {
-                localDataCachingTable: 'key, datasourceID, localExpiryDateTime',
+                localDataCachingTable: 'key, localCacheable, localExpiryDateTime',
             }
         );
         this.dbDataCachingTable.open();
@@ -6294,13 +6291,13 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         };
 
         // Load DB with bulkPut
-        this.dbDataCachingTable.table("localDashboards")
+        this.dbCanvasAppDatabase.table("localDashboards")
             .bulkPut(this.localDashboard)
             .then(res => {
                 console.warn('xx End BulkPut for localDashboards');
 
                 // Count
-                this.dbDataCachingTable.table("localDashboards").count(res => {
+                this.dbCanvasAppDatabase.table("localDashboards").count(res => {
                     console.warn('xx count after bulkPut for localDashboard', res);
                 });
             });
@@ -6320,7 +6317,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                     // this.dbDataCachingTable = new Dexie("DataCachingTable");
                     // this.dbDataCachingTable.version(1).stores(
                     //     {
-                    //         localDataCachingTable: 'key, datasourceID, localExpiryDateTime',
+                    //         localDataCachingTable: 'key, localExpiryDateTime',
                     //     }
                     // );
                     // console.log('xx CREATED localDataCachingTable', result);
