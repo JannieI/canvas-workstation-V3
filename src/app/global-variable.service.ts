@@ -4195,7 +4195,7 @@ export class GlobalVariableService {
                     console.log('%c    Global-Variables getDashboardTags 2',
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
                 };
-                
+
                 resolve(this.dashboardTags);
             }
         });
@@ -4208,9 +4208,11 @@ export class GlobalVariableService {
         //   dashboardID
         // Returns: this.currentDashboardTags array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getCurrentDashboardTags ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-            {dashboardID});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getCurrentDashboardTags ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                {dashboardID});
+        };
 
         // Refresh frogetm source at start, or if dirty
         if ( (this.dashboardTags.length == 0)  ||  (this.isDirtyDashboardTags) ) {
@@ -4221,9 +4223,13 @@ export class GlobalVariableService {
                             i => i.dashboardID == dashboardID
                         );
                         this.currentDashboardTags = res;
-                        console.log('%c    Global-Variables getCurrentDashboardTags 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            {dashboardID}, {res})
+
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables getCurrentDashboardTags 1',
+                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                {dashboardID}, {res})
+                        };
+
                         resolve(this.currentDashboardTags);
                 })
              })
@@ -4234,9 +4240,13 @@ export class GlobalVariableService {
                     i => i.dashboardID == dashboardID
                 );
                 this.currentDashboardTags = returnData;
-                console.log('%c    Global-Variables getCurrentDashboardTags 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                    {dashboardID})
+
+                if (this.sessionDebugging) {
+                    console.log('%c    Global-Variables getCurrentDashboardTags 2',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                        {dashboardID})
+                };
+
                 resolve(this.currentDashboardTags);
             });
         };
@@ -4245,8 +4255,10 @@ export class GlobalVariableService {
     addDashboardTag(data: DashboardTag): Promise<any> {
         // Description: Adds a new DashboardTag
         // Returns: Added Data or error message
-        console.log('%c    Global-Variables addDashboardTag ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables addDashboardTag ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        };
 
         let url: string = 'dashboardTags';
         this.filePath = './assets/data.dashboardTags.json';
@@ -4264,12 +4276,16 @@ export class GlobalVariableService {
                     this.dashboardTags.push(JSON.parse(JSON.stringify(res)));
                     this.currentDashboardTags.push(JSON.parse(JSON.stringify(res)));
 
-                    console.log('addDashboardTag ADDED', {res}, this.dashboardTags)
+                    if (this.sessionDebugging) {
+                        console.log('addDashboardTag ADDED', {res}, this.dashboardTags)
+                    };
 
                     resolve(res);
                 },
                 err => {
-                    console.log('Error addDashboardTag FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error addDashboardTag FAILED', {err});
+                    };
                     reject(err);
                 }
             )
@@ -4279,8 +4295,10 @@ export class GlobalVariableService {
     deleteDashboardTag(id: number): Promise<string> {
         // Description: Deletes a DashboardTag
         // Returns: 'Deleted' or error message
-        console.log('%c    Global-Variables deleteDashboardTag ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables deleteDashboardTag ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
+        };
 
         let url: string = 'dashboardTags';
         this.filePath = './assets/data.dashboardTags.json';
@@ -4301,11 +4319,17 @@ export class GlobalVariableService {
                         dsp => dsp.id != id
                     );
 
-                    console.log('deleteDashboardTag DELETED id: ', {id})
+                    if (this.sessionDebugging) {
+                        console.log('deleteDashboardTag DELETED id: ', {id})
+                    };
+
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('Error deleteDashboardTag FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error deleteDashboardTag FAILED', {err});
+                    };
+
                     reject(err);
                 }
             )
@@ -4316,8 +4340,10 @@ export class GlobalVariableService {
         // Description: Gets all P
         // Returns: this.dashboardPermissions array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getDashboardPermissions ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getDashboardPermissions ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        };
 
         let url: string = 'dashboardPermissions';
         this.filePath = './assets/data.dashboardPermissions.json';
@@ -4332,14 +4358,21 @@ export class GlobalVariableService {
                         this.dashboardPermissions = res;
                         this.isDirtyDashboardPermissions = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getDashboardPermissions 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            {res})
+
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables getDashboardPermissions 1',
+                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                {res})
+                        };
+
                         resolve(this.dashboardPermissions);
                     });
             } else {
-                console.log('%c    Global-Variables getDashboardPermissions 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
+                if (this.sessionDebugging) {
+                    console.log('%c    Global-Variables getDashboardPermissions 2',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
+                };
+
                 resolve(this.dashboardPermissions);
             }
         });
@@ -4352,9 +4385,11 @@ export class GlobalVariableService {
         //   dashboardID
         // Returns: this.currentDashboardPermissions array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getCurrentDashboardPermissions ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-            {dashboardID});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getCurrentDashboardPermissions ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                {dashboardID});
+        };
 
         // Refresh from source at start, or if dirty
         if ( (this.dashboardPermissions.length == 0)  ||  (this.isDirtyDashboardPermissions) ) {
@@ -4365,9 +4400,13 @@ export class GlobalVariableService {
                             i => i.dashboardID == dashboardID
                         );
                         this.currentDashboardPermissions =res;
-                        console.log('%c    Global-Variables getCurrentDashboardPermissions 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            {dashboardID}, {res})
+
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables getCurrentDashboardPermissions 1',
+                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                {dashboardID}, {res})
+                        };
+
                         resolve(this.currentDashboardPermissions);
                 })
              })
@@ -4378,9 +4417,13 @@ export class GlobalVariableService {
                     i => i.dashboardID == dashboardID
                 );
                 this.currentDashboardPermissions =returnData;
-                console.log('%c    Global-Variables getCurrentDashboardPermissions 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                    {dashboardID})
+
+                if (this.sessionDebugging) {
+                    console.log('%c    Global-Variables getCurrentDashboardPermissions 2',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                        {dashboardID})
+                };
+
                 resolve(this.currentDashboardPermissions);
             });
         };
@@ -4389,8 +4432,10 @@ export class GlobalVariableService {
     addDashboardPermission(data: DashboardPermission): Promise<any> {
         // Description: Adds a new DashboardPermission
         // Returns: Added Data or error message
-        console.log('%c    Global-Variables addDashboardPermission ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables addDashboardPermission ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        };
 
         let url: string = 'dashboardPermissions';
         this.filePath = './assets/data.dashboardPermissions.json';
@@ -4408,13 +4453,18 @@ export class GlobalVariableService {
                     this.dashboardPermissions.push(JSON.parse(JSON.stringify(res)));
                     this.currentDashboardPermissions.push(JSON.parse(JSON.stringify(res)));
 
-                    console.log('addDashboardPermission ADDED', {res},
-                        this.currentDashboardPermissions, this.dashboardPermissions)
+                    if (this.sessionDebugging) {
+                        console.log('addDashboardPermission ADDED', {res},
+                            this.currentDashboardPermissions, this.dashboardPermissions)
+                    };
 
                     resolve(res);
                 },
                 err => {
-                    console.log('Error addDashboardPermission FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error addDashboardPermission FAILED', {err});
+                    };
+                    
                     reject(err);
                 }
             )
