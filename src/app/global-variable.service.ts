@@ -7537,7 +7537,7 @@ export class GlobalVariableService {
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                         this.canvasTasks)
                 };
-                
+
                 resolve(this.canvasTasks);
             }
         });
@@ -7547,8 +7547,10 @@ export class GlobalVariableService {
     addCanvasTask(data: CanvasTask): Promise<any> {
         // Description: Adds a new canvasTask
         // Returns: Added Data or error message
-        console.log('%c    Global-Variables addCanvasTask ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables addCanvasTask ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        };
 
         let url: string = 'canvasTasks';
         this.filePath = './assets/data.CanvasTasks.json';
@@ -7565,13 +7567,18 @@ export class GlobalVariableService {
                     // Update Global vars to make sure they remain in sync
                     this.canvasTasks.push(JSON.parse(JSON.stringify(res)));
 
-                    console.log('addCanvasTask ADDED', {res}, this.canvasTasks,
-                        this.canvasTasks)
+                    if (this.sessionDebugging) {
+                        console.log('addCanvasTask ADDED', {res}, this.canvasTasks,
+                            this.canvasTasks)
+                    };
 
                     resolve(res);
                 },
                 err => {
-                    console.log('Error addCanvasTask FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error addCanvasTask FAILED', {err});
+                    };
+
                     reject(err);
                 }
             )
@@ -7581,8 +7588,10 @@ export class GlobalVariableService {
     saveCanvasTask(data: CanvasTask): Promise<string> {
         // Description: Saves CanvasTask
         // Returns: 'Saved' or error Task
-        console.log('%c    Global-Variables saveCanvasTask ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables saveCanvasTask ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        };
 
         let url: string = 'canvasTasks';
         this.filePath = './assets/data.canvasTasks.json';
@@ -7602,11 +7611,17 @@ export class GlobalVariableService {
                     );
                     this.canvasTasks[localIndex] = data;
 
-                    console.log('saveCanvasTask SAVED', {data})
+                    if (this.sessionDebugging) {
+                        console.log('saveCanvasTask SAVED', {data})
+                    };
+
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error saveCanvasTask FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error saveCanvasTask FAILED', {err});
+                    };
+
                     reject(err);
                 }
             )
@@ -7617,9 +7632,11 @@ export class GlobalVariableService {
         // Description: Gets all Canvas Comments
         // Returns: this.canvasComments array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getCanvasComments ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-            this.canvasComments.length);
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getCanvasComments ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                this.canvasComments.length);
+        };
 
         let url: string = 'canvasComments';
         this.filePath = './assets/settings.canvasComments.json';
@@ -7635,15 +7652,22 @@ export class GlobalVariableService {
 
                         this.isDirtyCanvasComments = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getCanvasComments 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            this.canvasComments)
+
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables getCanvasComments 1',
+                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                this.canvasComments)
+                        };
+
                         resolve(this.canvasComments);
                     });
             } else {
-                console.log('%c    Global-Variables getCanvasComments 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                    this.canvasComments)
+                if (this.sessionDebugging) {
+                    console.log('%c    Global-Variables getCanvasComments 2',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                        this.canvasComments)
+                };
+
                 resolve(this.canvasComments);
             }
         });
@@ -7653,8 +7677,10 @@ export class GlobalVariableService {
     addCanvasComment(data: CanvasComment): Promise<any> {
         // Description: Adds a new canvasComment
         // Returns: Added Data or error message
-        console.log('%c    Global-Variables addCanvasComment ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables addCanvasComment ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        };
 
         let url: string = 'canvasComments';
         this.filePath = './assets/data.CanvasComments.json';
@@ -7680,13 +7706,18 @@ export class GlobalVariableService {
                     // Update Global vars to make sure they remain in sync
                     this.canvasComments.push(JSON.parse(JSON.stringify(res)));
 
-                    console.log('addCanvasComment ADDED', {res}, this.canvasComments,
-                        this.canvasComments)
+                    if (this.sessionDebugging) {
+                        console.log('addCanvasComment ADDED', {res}, this.canvasComments,
+                            this.canvasComments)
+                    };
 
                     resolve(res);
                 },
                 err => {
-                    console.log('Error addCanvasComment FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error addCanvasComment FAILED', {err});
+                    };
+
                     reject(err);
                 }
             )
@@ -7696,8 +7727,10 @@ export class GlobalVariableService {
     saveCanvasComment(data: CanvasComment): Promise<string> {
         // Description: Saves CanvasComment
         // Returns: 'Saved' or error Comment
-        console.log('%c    Global-Variables saveCanvasComment ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables saveCanvasComment ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        };
 
         let url: string = 'canvasComments';
         this.filePath = './assets/data.canvasComments.json';
@@ -7717,11 +7750,16 @@ export class GlobalVariableService {
                     );
                     this.canvasComments[localIndex] = data;
 
-                    console.log('saveCanvasComment SAVED', {data})
+                    if (this.sessionDebugging) {
+                        console.log('saveCanvasComment SAVED', {data})
+                    };
+
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error saveCanvasComment FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error saveCanvasComment FAILED', {err});
+                    };
                     reject(err);
                 }
             )
