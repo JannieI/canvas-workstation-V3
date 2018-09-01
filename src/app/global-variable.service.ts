@@ -9087,14 +9087,18 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                 {table}, {params});
         };
-        
+
         return new Promise((resolve, reject) => {
 
             nSQL(table).query('select').exec()
             .then( result => {
-                console.log('%c    Global-Variables getLocal result',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                    {result}) // <= arrayid:1, name:"bill", age: 20}]
+
+                if (this.sessionDebugging) {
+                    console.log('%c    Global-Variables getLocal result',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                        {result}) // <= arrayid:1, name:"bill", age: 20}]
+                };
+
                 resolve(result)
             })
 
@@ -9113,8 +9117,11 @@ export class GlobalVariableService {
 
     saveLocal<T>(table: string, row: any): Promise<any> {
         // Generic saving of row to a table in the localDB
-        console.log('%c    Global-Variables saveLocal for table...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {table});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables saveLocal for table...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {table});
+        };
+
         return new Promise((resolve, reject) => {
 
             nSQL(table).query('upsert', row).exec().then(res => {
@@ -9225,10 +9232,12 @@ export class GlobalVariableService {
         // Info has already been collected - to allow for the first time this is called.
         // It does assume that we have a currentDashboardInfo object if Previous/Next are
         // parameters.
-        console.log('%c    Global-Variables refreshCurrentDashboard ...',
-            "color: black; background: lightgray; font-size: 10px",
-            {refreshingRoutine}, {dashboardID}, {dashboardTabID}, {tabToShow},
-            {widgetsToRefresh});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables refreshCurrentDashboard ...',
+                "color: black; background: lightgray; font-size: 10px",
+                {refreshingRoutine}, {dashboardID}, {dashboardTabID}, {tabToShow},
+                {widgetsToRefresh});
+        };
 
         // TODO - add Permissions, either here or automatically in DB !!!
 
@@ -9257,7 +9266,11 @@ export class GlobalVariableService {
 
         if (tabToShow != '') {
             if (currentDashboardTabs.length == 0) {
-                console.log('this.currentDashboardTabs empty');
+
+                if (this.sessionDebugging) {
+                    console.log('this.currentDashboardTabs empty');
+                };
+
                 return;
             }
             if (tabToShow == 'First') {
@@ -9319,8 +9332,10 @@ export class GlobalVariableService {
         // Creates a new Dashboard with ID = newDashboardID, but all properties from
         // oldDashboard
         // - changedDashboard = new D, with changed properties
-        console.log('%c    Global-Variables ... dashboardMoveInfo',
-            "color: black; background: lightgray; font-size: 10px", {newDashboardID});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables ... dashboardMoveInfo',
+                "color: black; background: lightgray; font-size: 10px", {newDashboardID});
+        };
 
         let returnDashboard: Dashboard = {
             id:  newDashboardID,
@@ -9365,8 +9380,10 @@ export class GlobalVariableService {
 
     widgetReplace(changedWidget: Widget) {
         // Replaces (ByVal) the global W and currentW
-        console.log('%c    Global-Variables ... widgetReplace',
-        "   color: black; background: lightgray; font-size: 10px", {changedWidget});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables ... widgetReplace',
+                "   color: black; background: lightgray; font-size: 10px", {changedWidget});
+        };
 
         // Make a Deep Copy and fill Global Vars
         let widgetIndex: number = this.widgets.findIndex(w =>
@@ -9389,8 +9406,11 @@ export class GlobalVariableService {
 
     sleep(milliseconds: number) {
         // Sleep for a while
-        console.log('%c    Global-Variables sleep ...',
-            "color: black; background: lightgray; font-size: 10px", {milliseconds});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables sleep ...',
+                "color: black; background: lightgray; font-size: 10px", {milliseconds});
+        };
+
         var start: number = new Date().getTime();
         console.log('  start', {start}, new Date().getTime())
         for (var counter = 0; counter < 3600001; counter++) {
@@ -9417,9 +9437,11 @@ export class GlobalVariableService {
         //   required detail
         // - height, width are optional dimensions.  If provided, it will overrule
         //   those values in spec
-        console.log('%c    Global-Variables createVegaLiteSpec ...',
-            "color: black; background: lightgray; font-size: 10px",
-            {widget}, {height}, {width});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables createVegaLiteSpec ...',
+                "color: black; background: lightgray; font-size: 10px",
+                {widget}, {height}, {width});
+        };
 
         let vlSpecsNew: dl.spec.TopLevelExtendedSpec = this.vlTemplate;
         if (widget.graphUrl != "") {
@@ -9503,10 +9525,11 @@ export class GlobalVariableService {
         logToDB: boolean = true
      ): number {
         let actID: number = 1;
-        console.log('%c    Global-Variables actionUpsert ...',
-            "color: black; background: lightgray; font-size: 10px", {logToDB},
-            {oldWidget}, {newWidget}
-        );
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables actionUpsert ...',
+                "color: black; background: lightgray; font-size: 10px", {logToDB},
+                {oldWidget}, {newWidget});
+        };
 
         // Make snapshot when start changing
         if (this.firstAction) {
@@ -9663,8 +9686,10 @@ export class GlobalVariableService {
 
     alignToGripPoint(inputValue: number) {
         // This routine recalcs a value to a gridpoint IF snapping is enabled
-        console.log('%c    Global-Variables alignToGripPoint ...',
-            "color: black; background: lightgray; font-size: 10px", {inputValue});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables alignToGripPoint ...',
+                "color: black; background: lightgray; font-size: 10px", {inputValue});
+        };
 
         if (this.canvasSettings.snapToGrid) {
             if ( (inputValue % this.canvasSettings.gridSize) >= (this.canvasSettings.gridSize / 2)) {
@@ -9681,8 +9706,10 @@ export class GlobalVariableService {
     showStatusBarMessage(statusBarMessage: StatusBarMessage
         ): void {
         // Shows a message in the right area, ie StatusBar
-        console.log('%c    Global-Variables showStatusBarMessage ...',
-            "color: black; background: lightgray; font-size: 10px", {statusBarMessage});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables showStatusBarMessage ...',
+                "color: black; background: lightgray; font-size: 10px", {statusBarMessage});
+        };
 
         // Add to DB
         let newStatusBarMessageLog: StatusBarMessageLog = {
@@ -9716,9 +9743,11 @@ export class GlobalVariableService {
         ): DatagridColumn[] {
         // It will return an array of datagridColumns to use in the ca-datagrid
         // for a given array of data and a set of columns to show,
-        console.log('%c    Global-Variables createDatagridColumns ...',
-            "color: black; background: lightgray; font-size: 10px",
-            {dataRow}, {showFields}, {visibleFields});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables createDatagridColumns ...',
+                "color: black; background: lightgray; font-size: 10px",
+                {dataRow}, {showFields}, {visibleFields});
+        };
 
         // No data provided
         if (dataRow == null  ||  dataRow == undefined) {
@@ -9921,8 +9950,10 @@ export class GlobalVariableService {
 
     dashboardPermissionList(id: number): string[] {
         // Returns Array of Permissions for the current user to the given D.
-        console.log('%c    Global-Variables dashboardPermissionCheck ...',
-            "color: black; background: lightgray; font-size: 10px", {id});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables dashboardPermissionCheck ...',
+                "color: black; background: lightgray; font-size: 10px", {id});
+        };
 
         // Assume no access
         let accessList: string[] = [];
@@ -10021,8 +10052,8 @@ export class GlobalVariableService {
         //   = time (HH:MM:SS)
         //   = dateTime (YYYY/MM/DD HH:MM:SS)
         if (this.sessionDebugging) {
-        console.log('%c    Global-Variables formatDate ...',
-            "color: black; background: lightgray; font-size: 10px", {date});
+            console.log('%c    Global-Variables formatDate ...',
+                "color: black; background: lightgray; font-size: 10px", {date});
         };
 
         let d = new Date(date);
@@ -10056,9 +10087,11 @@ export class GlobalVariableService {
         // Login, and return a token which is stored in LocalStorage.  Also, set global User
         // If not a valid user, return false.
         // If so, set currentUser object and return true
-        console.log('%c    Global-Variables login ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-            {username}, {password});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables login ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                {username}, {password});
+        };
 
         return new Promise<boolean>((resolve, reject) => {
 
@@ -10081,8 +10114,10 @@ export class GlobalVariableService {
     getTributaryData(source: any): Promise<any> {
         // Description: Gets data from the Tributary Server
         // Returns: Added Data or error message
-        console.log('%c    Global-Variables getTributaryData ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {source});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getTributaryData ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {source});
+        };
 
         let url: string = 'https://eazl-rest.xyz/eazl/canvas/enqueue/';
         this.filePath = './assets/data.dashboards.json';
@@ -10099,12 +10134,17 @@ export class GlobalVariableService {
             .subscribe(
                 res => {
 
-                    console.log('Tributary Data', {res})
+                    if (this.sessionDebugging) {
+                        console.log('Tributary Data', {res})
+                    };
 
                     resolve(res);
                 },
                 err => {
-                    console.log('Error Get Tributary Data FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error Get Tributary Data FAILED', {err});
+                    };
+                    
                     reject(err);
                 }
             )
@@ -10114,9 +10154,11 @@ export class GlobalVariableService {
     getTributaryGraphQL(graphQLquery: string): Promise<any> {
         // Description: Gets data from the Tributary Server
         // Returns: Added Data or error message
-        console.log('%c    Global-Variables getTributaryData ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-            {graphQLquery});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getTributaryData ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                {graphQLquery});
+        };
 
         let url: string = 'https://eazl-rest.xyz/eazl/accounts/graphql/';
         this.filePath = './assets/data.dashboards.json';
