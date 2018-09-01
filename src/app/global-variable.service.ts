@@ -6018,19 +6018,20 @@ export class GlobalVariableService {
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                         {datasourceID})
                 };
-                
+
                 resolve(this.currentDatasourcePermissions);
             });
         };
 
     }
 
-
     addDatasourcePermission(data: DatasourcePermission): Promise<any> {
         // Description: Adds a new Ownership, if it does not exist
         // Returns: Added Data or error message
-        console.log('%c    Global-Variables addDatasourcePermission ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables addDatasourcePermission ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        };
 
         let url: string = 'datasourcePermissions';
         this.filePath = './assets/data.datasourcePermissions.json';
@@ -6053,13 +6054,18 @@ export class GlobalVariableService {
                         this.currentDatasourcePermissions.push(newDS);
                     };
 
-                    console.log('addDatasourcePermission ADDED', {res},
-                        this.currentDatasourcePermissions, this.datasourcePermissions)
+                    if (this.sessionDebugging) {
+                        console.log('addDatasourcePermission ADDED', {res},
+                            this.currentDatasourcePermissions, this.datasourcePermissions)
+                    };
 
                     resolve(res);
                 },
                 err => {
-                    console.log('Error addDatasourcePermission FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error addDatasourcePermission FAILED', {err});
+                    };
+
                     reject(err);
                 }
             )
@@ -6069,8 +6075,10 @@ export class GlobalVariableService {
     saveDatasourcePermission(data: DatasourcePermission): Promise<string> {
         // Description: Saves DatasourcePermission
         // Returns: 'Saved' or error message
-        console.log('%c    Global-Variables saveDatasourcePermission ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables saveDatasourcePermission ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        };
 
         let url: string = 'datasourcePermissions';
         this.filePath = './assets/data.datasourcePermissions.json';
@@ -6098,12 +6106,17 @@ export class GlobalVariableService {
                         this.currentDatasourcePermissions[localIndex] = data;
                     };
 
+                    if (this.sessionDebugging) {
+                        console.log('saveDatasourcePermission SAVED', {res})
+                    };
 
-                    console.log('saveDatasourcePermission SAVED', {res})
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error saveDatasourcePermission FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error saveDatasourcePermission FAILED', {err});
+                    };
+
                     reject(err);
                 }
             )
@@ -6113,9 +6126,11 @@ export class GlobalVariableService {
 
     deleteDatasourcePermission(id: number) {
         // Remove a record from the global and current DatasourcePermissions
-        console.log('%c    Global-Variables deleteDatasourcePermission ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
-
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables deleteDatasourcePermission ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
+        };
+        
         this.datasourcePermissions = this.datasourcePermissions.filter(
             dsp => dsp.id != id
         );
