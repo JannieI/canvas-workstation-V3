@@ -7769,8 +7769,10 @@ export class GlobalVariableService {
     deleteCanvasComment(id: number, widgetID: number = null): Promise<string> {
         // Description: Deletes a canvasComments
         // Returns: 'Deleted' or error message
-        console.log('%c    Global-Variables deleteCanvasComment ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables deleteCanvasComment ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
+        };
 
         let url: string = 'canvasComments';
         this.filePath = './assets/data.CanvasComments.json';
@@ -7797,11 +7799,17 @@ export class GlobalVariableService {
                         com => com.id != id
                     );
 
-                    console.log('deleteCanvasComment DELETED id: ', {id})
+                    if (this.sessionDebugging) {
+                        console.log('deleteCanvasComment DELETED id: ', {id})
+                    };
+
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('Error deleteCanvasComment FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error deleteCanvasComment FAILED', {err});
+                    };
+
                     reject(err);
                 }
             )
@@ -7812,9 +7820,11 @@ export class GlobalVariableService {
         // Description: Gets all Canvas Messages
         // Returns: this.canvasMessages array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getCanvasMessages ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-            this.canvasMessages.length);
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getCanvasMessages ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                this.canvasMessages.length);
+        };
 
         let url: string = 'canvasMessages';
         this.filePath = './assets/settings.canvasMessages.json';
@@ -7830,15 +7840,22 @@ export class GlobalVariableService {
 
                         this.isDirtyCanvasMessages = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getCanvasMessages 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            this.canvasMessages)
+
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables getCanvasMessages 1',
+                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                this.canvasMessages)
+                        };
+
                         resolve(this.canvasMessages);
                     });
             } else {
-                console.log('%c    Global-Variables getCanvasMessages 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                    this.canvasMessages)
+                if (this.sessionDebugging) {
+                    console.log('%c    Global-Variables getCanvasMessages 2',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                        this.canvasMessages)
+                };
+
                 resolve(this.canvasMessages);
             }
         });
@@ -7848,8 +7865,10 @@ export class GlobalVariableService {
     addCanvasMessage(data: CanvasMessage): Promise<any> {
         // Description: Adds a new CanvasMessage
         // Returns: Added Data or error message
-        console.log('%c    Global-Variables addCanvasMessage ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables addCanvasMessage ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        };
 
         let url: string = 'canvasMessages';
         this.filePath = './assets/data.canvasMessages.json';
@@ -7866,12 +7885,17 @@ export class GlobalVariableService {
                     // Update Global vars to make sure they remain in sync
                     this.canvasMessages.push(JSON.parse(JSON.stringify(res)));
 
-                    console.log('addCanvasMessage ADDED', this.canvasMessages)
+                    if (this.sessionDebugging) {
+                        console.log('addCanvasMessage ADDED', this.canvasMessages)
+                    };
 
                     resolve(res);
                 },
                 err => {
-                    console.log('Error addCanvasMessage FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error addCanvasMessage FAILED', {err});
+                    };
+
                     reject(err);
                 }
             )
@@ -7881,8 +7905,10 @@ export class GlobalVariableService {
     saveCanvasMessage(data: CanvasMessage): Promise<string> {
         // Description: Saves CanvasMessage
         // Returns: 'Saved' or error message
-        console.log('%c    Global-Variables saveCanvasMessage ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables saveCanvasMessage ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        };
 
         let url: string = 'canvasMessages';
         this.filePath = './assets/data.canvasMessages.json';
@@ -7902,11 +7928,17 @@ export class GlobalVariableService {
                     );
                     this.canvasMessages[localIndex] = data;
 
-                    console.log('saveCanvasMessage SAVED', {data})
+                    if (this.sessionDebugging) {
+                        console.log('saveCanvasMessage SAVED', {data})
+                    };
+
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error saveCanvasMessage FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error saveCanvasMessage FAILED', {err});
+                    };
+
                     reject(err);
                 }
             )
@@ -7916,9 +7948,11 @@ export class GlobalVariableService {
     updateCanvasMessagesAsRead(userID: string) {
         // Marks all messages for this userID as read - typically done when Messages form
         // is closed, or at logout.
-        console.log('%c    Global-Variables addCanvasMessage ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {userID});
-
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables addCanvasMessage ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {userID});
+        };
+        
         // TODO - this must be done via the DB: for now, only glob-var array
         let today = new Date();
         this.canvasMessages.forEach(msg => {
