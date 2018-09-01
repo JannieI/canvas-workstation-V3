@@ -7259,7 +7259,7 @@ export class GlobalVariableService {
                     if (this.sessionDebugging) {
                         console.log('saveWidget SAVED', {res})
                     };
-                    
+
                     resolve('Saved');
                 },
                 err => {
@@ -7275,8 +7275,10 @@ export class GlobalVariableService {
 
     duplicateSingleWidget(originalWidget: Widget) {
         // Duplicate the given Widget
-        console.log('%c    Global-Variables duplicateSingleWidget ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {originalWidget});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables duplicateSingleWidget ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {originalWidget});
+        };
 
         // Find latest copy #
         let copyPosition: number = 1;
@@ -7332,8 +7334,10 @@ export class GlobalVariableService {
         // Description: Gets data and other info for [W]
         // Returns: this.datasets, currentDataset array
         // NB: this assumes [W] and [datasets] are available !!
-        console.log('%c    Global-Variables getWidgetsInfo ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getWidgetsInfo ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        };
 
         // Empty the necessary
         let dsCurrIDs: number[] = [];       // Current Dataset IDs
@@ -7417,8 +7421,11 @@ export class GlobalVariableService {
 
                     // });
 
-                    console.log('%c    Global-Variables getWidgetsInfo 1 True',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+                    if (this.sessionDebugging) {
+                        console.log('%c    Global-Variables getWidgetsInfo 1 True',
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+                    };
+
                     resolve(true);
                 },
                 rejectionReason => console.log('reason:', {rejectionReason}) // reason: rejected!
@@ -7428,8 +7435,10 @@ export class GlobalVariableService {
 
     allWithAsync = (...listOfPromises) => {
         // Resolve all promises in array
-        console.log('%c    Global-Variables allWithAsync ...',
-            "color: black; background: lightgray; font-size: 10px");
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables allWithAsync ...',
+                "color: black; background: lightgray; font-size: 10px");
+        };
 
         return new Promise(async (resolve, reject) => {
             let results = []
@@ -7448,8 +7457,10 @@ export class GlobalVariableService {
         // Description: Gets all Background colors
         // Returns: this.backgroundcolors array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getBackgroundColors ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getBackgroundColors ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        };
 
         let url: string = 'canvasBackgroundcolors';
         this.filePath = './assets/settings.backgroundcolors.json';
@@ -7465,15 +7476,22 @@ export class GlobalVariableService {
 
                         this.isDirtyBackgroundColors = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getBackgroundColors 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            this.backgroundcolors)
+
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables getBackgroundColors 1',
+                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                this.backgroundcolors)
+                        };
+
                         resolve(this.backgroundcolors);
                     });
             } else {
-                console.log('%c    Global-Variables getBackgroundColors 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                    this.backgroundcolors)
+                if (this.sessionDebugging) {
+                    console.log('%c    Global-Variables getBackgroundColors 2',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                        this.backgroundcolors)
+                };
+
                 resolve(this.backgroundcolors);
             }
         });
@@ -7484,9 +7502,11 @@ export class GlobalVariableService {
         // Description: Gets all Canvas Activities
         // Returns: this.canvasTasks array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getCanvasTasks ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-            this.canvasTasks.length);
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getCanvasTasks ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                this.canvasTasks.length);
+        };
 
         let url: string = 'canvasTasks';
         this.filePath = './assets/settings.canvasTasks.json';
@@ -7502,15 +7522,22 @@ export class GlobalVariableService {
 
                         this.isDirtyCanvasTasks = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getCanvasTasks 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            this.canvasTasks)
+
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables getCanvasTasks 1',
+                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                this.canvasTasks)
+                        };
+
                         resolve(this.canvasTasks);
                     });
             } else {
-                console.log('%c    Global-Variables getCanvasTasks 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                    this.canvasTasks)
+                if (this.sessionDebugging) {
+                    console.log('%c    Global-Variables getCanvasTasks 2',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                        this.canvasTasks)
+                };
+                
                 resolve(this.canvasTasks);
             }
         });
