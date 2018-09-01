@@ -6428,7 +6428,7 @@ export class GlobalVariableService {
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                         this.currentDashboardSubscriptions)
                 };
-                
+
                 resolve(this.currentDashboardSubscriptions);
             }
         });
@@ -6438,8 +6438,10 @@ export class GlobalVariableService {
     saveDashboardSubscription(data: DashboardSubscription): Promise<string> {
         // Description: Saves DashboardSubscription
         // Returns: 'Saved' or error message
-        console.log('%c    Global-Variables saveDashboardSubscription ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables saveDashboardSubscription ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        };
 
         let url: string = 'dashboardSubscriptions';
         this.filePath = './assets/data.dashboardSubscriptions.json';
@@ -6459,11 +6461,17 @@ export class GlobalVariableService {
                     );
                     this.dashboardSubscriptions[localIndex] = data;
 
-                    console.log('saveDashboardSubscription SAVED', {res})
-                        resolve('Saved');
+                    if (this.sessionDebugging) {
+                        console.log('saveDashboardSubscription SAVED', {res})
+                            resolve('Saved');
+                    };
+
                 },
                 err => {
-                    console.log('Error saveDashboardSubscription FAILED', {err});
+
+                    if (this.sessionDebugging) {
+                        console.log('Error saveDashboardSubscription FAILED', {err});
+                    };
                     reject(err);
                 }
             )
@@ -6473,8 +6481,10 @@ export class GlobalVariableService {
     addDashboardSubscription(data: DashboardSubscription): Promise<any> {
         // Description: Adds a new DashboardSubscription
         // Returns: Added Data or error message
-        console.log('%c    Global-Variables addDashboardSubscription ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables addDashboardSubscription ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        };
 
         let url: string = 'dashboardSubscriptions';
         this.filePath = './assets/data.dashboardSubscriptions.json';
@@ -6489,11 +6499,18 @@ export class GlobalVariableService {
                 res => {
                     this.dashboardSubscriptions.push(JSON.parse(JSON.stringify(res)));
                     this.currentDashboardSubscriptions.push(JSON.parse(JSON.stringify(res)));
-                    console.log('addDashboardSubscription ADDED', {res})
+        
+                    if (this.sessionDebugging) {
+                        console.log('addDashboardSubscription ADDED', {res})
+                    };
+
                     resolve(res);
                 },
                 err => {
-                    console.log('Error addDashboardSubscription FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error addDashboardSubscription FAILED', {err});
+                    };
+
                     reject(err);
                 }
             )
@@ -6503,8 +6520,10 @@ export class GlobalVariableService {
     deleteDashboardSubscription(id: number): Promise<string> {
         // Description: Deletes a DashboardSubscription
         // Returns: 'Deleted' or error message
-        console.log('%c    Global-Variables deleteDashboardSubscription ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables deleteDashboardSubscription ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
+        };
 
         let url: string = 'dashboardSubscriptions';
         this.filePath = './assets/data.dashboardSubscriptions.json';
@@ -6522,12 +6541,18 @@ export class GlobalVariableService {
                         filter(sub => sub.id != id);
                     this.currentDashboardSubscriptions = this.currentDashboardSubscriptions.
                         filter(sub => sub.id != id);
-                    console.log('deleteDashboardSubscription DELETED', {id}, {res},
-                        this.dashboardSubscriptions, this.currentDashboardSubscriptions)
+
+                    if (this.sessionDebugging) {
+                        console.log('deleteDashboardSubscription DELETED', {id}, {res},
+                            this.dashboardSubscriptions, this.currentDashboardSubscriptions)
+                    };
+
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('Error deleteDashboardSubscription FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error deleteDashboardSubscription FAILED', {err});
+                    };
                     reject(err);
                 }
             )
@@ -6538,8 +6563,10 @@ export class GlobalVariableService {
         // Description: Gets currentgetPaletteButtonBar
         // Returns: this.currentgetPaletteButtonBar object, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getPaletteButtonBar ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getPaletteButtonBar ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        };
 
         let url: string = 'paletteButtonBars';
         this.filePath = './assets/data.paletteButtonBars.json';
@@ -6555,15 +6582,22 @@ export class GlobalVariableService {
 
                         this.isDirtyPaletteButtonBar = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getPaletteButtonBar 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            this.currentPaletteButtonBar)
+
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables getPaletteButtonBar 1',
+                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                this.currentPaletteButtonBar)
+                        };
+
                         resolve(this.currentPaletteButtonBar);
                     });
             } else {
-                console.log('%c    Global-Variables getPaletteButtonBar 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                    this.currentPaletteButtonBar)
+                if (this.sessionDebugging) {
+                    console.log('%c    Global-Variables getPaletteButtonBar 2',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                        this.currentPaletteButtonBar)
+                };
+
                 resolve(this.currentPaletteButtonBar);
             }
         });
@@ -6573,8 +6607,10 @@ export class GlobalVariableService {
     savePaletteButtonBar(data: PaletteButtonBar): Promise<string> {
         // Description: Saves PaletteButtonBar
         // Returns: 'Saved' or error message
-        console.log('%c    Global-Variables savePaletteButtonBar ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables savePaletteButtonBar ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        };
 
         let url: string = 'paletteButtonBars';
         this.filePath = './assets/data.paletteButtonBars.json';
@@ -6594,11 +6630,17 @@ export class GlobalVariableService {
                     );
                     this.currentPaletteButtonBar[localIndex] = data;
 
-                    console.log('savePaletteButtonBar SAVED', {res})
+                    if (this.sessionDebugging) {
+                        console.log('savePaletteButtonBar SAVED', {res})
+                    };
+                    
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error savePaletteButtonBar FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error savePaletteButtonBar FAILED', {err});
+                    };
+
                     reject(err);
                 }
             )
@@ -6609,8 +6651,10 @@ export class GlobalVariableService {
         // Description: Gets currentgetPaletteButtonsSelected
         // Returns: this.currentgetPaletteButtonsSelected object, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getPaletteButtonsSelected ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getPaletteButtonsSelected ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        };
 
         let url: string = 'paletteButtonsSelecteds';
         this.filePath = './assets/data.paletteButtonsSelecteds.json';
@@ -6636,15 +6680,20 @@ export class GlobalVariableService {
                         this.isDirtyPaletteButtonsSelected = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
 
-                        console.log('%c    Global-Variables getPaletteButtonsSelected 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            this.currentPaletteButtonsSelected.value);
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables getPaletteButtonsSelected 1',
+                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                this.currentPaletteButtonsSelected.value);
+                        };
+
                         resolve(this.currentPaletteButtonsSelected.value);
                     });
             } else {
-                console.log('%c    Global-Variables getPaletteButtonsSelected 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                    this.currentPaletteButtonsSelected.value);
+                if (this.sessionDebugging) {
+                    console.log('%c    Global-Variables getPaletteButtonsSelected 2',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                        this.currentPaletteButtonsSelected.value);
+                };
 
                 resolve(this.currentPaletteButtonsSelected.value);
             }
@@ -6655,8 +6704,10 @@ export class GlobalVariableService {
     savePaletteButtonsSelected(data: PaletteButtonsSelected): Promise<string> {
         // Description: Saves PaletteButtonsSelected
         // Returns: 'Saved' or error message
-        console.log('%c    Global-Variables savePaletteButtonsSelected ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables savePaletteButtonsSelected ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        };
 
         let url: string = 'paletteButtonsSelecteds';
         this.filePath = './assets/data.paletteButtonsSelecteds.json';
@@ -6676,11 +6727,17 @@ export class GlobalVariableService {
                     );
                     this.currentPaletteButtonsSelected.value[localIndex] = data;
 
-                    console.log('savePaletteButtonsSelected SAVED', {res})
+                    if (this.sessionDebugging) {
+                        console.log('savePaletteButtonsSelected SAVED', {res})
+                    };
+
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error savePaletteButtonsSelected FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error savePaletteButtonsSelected FAILED', {err});
+                    };
+                    
                     reject(err);
                 }
             )
