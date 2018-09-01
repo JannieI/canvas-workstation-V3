@@ -8539,9 +8539,11 @@ export class GlobalVariableService {
         // Description: Gets all StatusBarMessageLogs
         // Returns: this.statusBarMessageLogss array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getstatusBarMessageLogss ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-            this.statusBarMessageLogs.length);
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getstatusBarMessageLogss ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                this.statusBarMessageLogs.length);
+        };
 
         let url: string = 'statusBarMessageLogs';
         this.filePath = './assets/statusBarMessageLogs.json';
@@ -8557,15 +8559,22 @@ export class GlobalVariableService {
 
                         this.isDirtystatusBarMessageLogs = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getstatusBarMessageLogss 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            this.statusBarMessageLogs)
+
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables getstatusBarMessageLogss 1',
+                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                this.statusBarMessageLogs)
+                        };
+
                         resolve(this.statusBarMessageLogs);
                     });
             } else {
-                console.log('%c    Global-Variables getstatusBarMessageLogss 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                    this.statusBarMessageLogs)
+                if (this.sessionDebugging) {
+                    console.log('%c    Global-Variables getstatusBarMessageLogss 2',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                        this.statusBarMessageLogs)
+                };
+
                 resolve(this.statusBarMessageLogs);
             }
         });
@@ -8575,8 +8584,10 @@ export class GlobalVariableService {
     addStatusBarMessageLog(data: StatusBarMessageLog): Promise<any> {
         // Description: Adds a new statusBarMessageLogs
         // Returns: Added Data or error message
-        console.log('%c    Global-Variables addstatusBarMessageLogs ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables addstatusBarMessageLogs ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        };
 
         let url: string = 'statusBarMessageLogs';
         this.filePath = './assets/data.statusBarMessageLogs.json';
@@ -8593,13 +8604,18 @@ export class GlobalVariableService {
                     // Update Global vars to make sure they remain in sync
                     this.statusBarMessageLogs.push(JSON.parse(JSON.stringify(res)));
 
-                    console.log('addstatusBarMessageLogs ADDED', {res}, this.statusBarMessageLogs,
-                        this.statusBarMessageLogs)
+                    if (this.sessionDebugging) {
+                        console.log('addstatusBarMessageLogs ADDED', {res}, this.statusBarMessageLogs,
+                            this.statusBarMessageLogs)
+                    };
 
                     resolve(res);
                 },
                 err => {
-                    console.log('Error addstatusBarMessageLogs FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error addstatusBarMessageLogs FAILED', {err});
+                    };
+
                     reject(err);
                 }
             )
@@ -8608,9 +8624,11 @@ export class GlobalVariableService {
 
     get<T>(url: string, options?: any, dashboardID?: number, datasourceID?: number): Promise<any> {
         // Generic GET data, later to be replaced with http
-        console.log('%c    Global-Variables get (url, filePath) ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {url},
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables get (url, filePath) ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {url},
                 this.filePath);
+        };
 
         // TODO - cleaner switch to http?
         // if (this.filePath == './assets/data.widgets.json') {
@@ -8755,9 +8773,11 @@ export class GlobalVariableService {
 
     getDataCachingTable(): DataCachingTable[] {
        // Description: Gets the caching table that drives local caching process
-        console.log('%c    Global-Variables getDataCachingTable ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-            this.statusBarMessageLogs.length);
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getDataCachingTable ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                this.statusBarMessageLogs.length);
+        };
 
         let url: string = 'dataCachingTable';
         this.filePath = './assets/dataCachingTable.json';
@@ -8778,9 +8798,12 @@ export class GlobalVariableService {
                         localVariableName: 'dashboards'
                     }];
                 
-                    console.log('%c    Global-Variables getDataCachingTable 1',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                        this.dataCachingTable)
+                    if (this.sessionDebugging) {
+                        console.log('%c    Global-Variables getDataCachingTable 1',
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                            this.dataCachingTable)
+                    };
+
                     return this.dataCachingTable;
         //             resolve(this.dataCachingTable);
         // });
@@ -8788,8 +8811,10 @@ export class GlobalVariableService {
     }
     connectLocalDB<T>(): Promise<string | Object> {
         // Connect to the local DB, ie nanaSQL
-        console.log('%c    Global-Variables connectLocalDB',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables connectLocalDB',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        };
 
         return new Promise((resolve, reject) => {
 
@@ -9043,8 +9068,12 @@ export class GlobalVariableService {
             ])
             .connect()
             .then(db => {
-                console.log('%c    Global-Variables connectLocalDB',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {db})
+
+                if (this.sessionDebugging) {
+                    console.log('%c    Global-Variables connectLocalDB',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {db})
+                };
+
                 resolve(db)
 
             })
@@ -9053,10 +9082,12 @@ export class GlobalVariableService {
 
     getLocal<T>(table: string, params?: any): Promise<any> {
         // Generic retrieval of data from localDB
-        console.log('%c    Global-Variables getLocal for table, params...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-            {table}, {params});
-
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getLocal for table, params...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                {table}, {params});
+        };
+        
         return new Promise((resolve, reject) => {
 
             nSQL(table).query('select').exec()
