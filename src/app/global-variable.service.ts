@@ -7000,7 +7000,7 @@ export class GlobalVariableService {
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                         this.widgets)
                 };
-                
+
                 this.widgets.forEach(w => {
 
                     // Constants in Text and Bullets
@@ -7026,9 +7026,11 @@ export class GlobalVariableService {
         // Returns: arrays of current W, Sl, Sh, Tbl; unless:
         //   If not cached or if dirty, get from File
         // Usage: getWidgets(1, -1)  =>  Returns W for DashboardID = 1
-        console.log('%c    Global-Variables getCurrentWidgets ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-            {dashboardID}, {dashboardTabID});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getCurrentWidgets ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                {dashboardID}, {dashboardTabID});
+        };
 
         // Refresh from source at start, or if dirty
         if ( (this.widgets.length == 0)  ||  (this.isDirtyWidgets) ) {
@@ -7056,9 +7058,12 @@ export class GlobalVariableService {
                             };
                         });
 
-                        console.log('%c    Global-Variables getCurrentWidgets 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            this.currentWidgets)
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables getCurrentWidgets 1',
+                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                this.currentWidgets)
+                        };
+
                         resolve(this.currentWidgets);
                 })
              })
@@ -7084,9 +7089,13 @@ export class GlobalVariableService {
                 });
 
                 this.currentWidgets = data;
-                console.log('%c    Global-Variables getCurrentWidgets 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                    {dashboardID}, {dashboardTabID},  this.currentWidgets, this.widgets)
+
+                if (this.sessionDebugging) {
+                    console.log('%c    Global-Variables getCurrentWidgets 2',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                        {dashboardID}, {dashboardTabID},  this.currentWidgets, this.widgets)
+                };
+
                 resolve(this.currentWidgets);
 
             });
@@ -7097,8 +7106,10 @@ export class GlobalVariableService {
     addWidget(data: Widget): Promise<any> {
         // Description: Adds a new Widget
         // Returns: Added Data or error message
-        console.log('%c    Global-Variables addWidget ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables addWidget ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        };
 
         let url: string = 'widgets';
         this.filePath = './assets/data.widgets.json';
@@ -7116,12 +7127,17 @@ export class GlobalVariableService {
                     this.widgets.push(JSON.parse(JSON.stringify(res)));
                     this.currentWidgets.push(JSON.parse(JSON.stringify(res)));
 
-                    console.log('addWidget ADDED', {res}, this.widgets)
+                    if (this.sessionDebugging) {
+                        console.log('addWidget ADDED', {res}, this.widgets)
+                    };
 
                     resolve(res);
                 },
                 err => {
-                    console.log('Error addWidget FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error addWidget FAILED', {err});
+                    };
+
                     reject(err);
                 }
             )
@@ -7132,8 +7148,10 @@ export class GlobalVariableService {
         // Description: Deletes a Widgets
         // Returns: 'Deleted' or error message
         // NOTE: this permananently deletes a W, from arrays and DB.
-        console.log('%c    Global-Variables deleteWidget ...',
-        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables deleteWidget ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
+        };
 
         let url: string = 'widgets';
         this.filePath = './assets/data.widgets.json';
@@ -7161,8 +7179,11 @@ export class GlobalVariableService {
                         };
                     });
 
-                    console.log('deleteWidget DELETED id: ', {id}, this.widgetCheckpoints,
+                    if (this.sessionDebugging) {
+                        console.log('deleteWidget DELETED id: ', {id}, this.widgetCheckpoints,
                             this.currentWidgetCheckpoints)
+                    };
+
                     resolve('Deleted');
                 },
                 err => {
@@ -7176,8 +7197,10 @@ export class GlobalVariableService {
     saveWidget(data: Widget): Promise<string> {
         // Description: Saves Widget
         // Returns: 'Saved' or error message
-        console.log('%c    Global-Variables saveWidget ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables saveWidget ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        };
 
         let url: string = 'widgets';
         this.filePath = './assets/data.widgets.json';
@@ -7233,11 +7256,17 @@ export class GlobalVariableService {
                     //     };
                     // };
 
-                    console.log('saveWidget SAVED', {res})
+                    if (this.sessionDebugging) {
+                        console.log('saveWidget SAVED', {res})
+                    };
+                    
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error saveWidget FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error saveWidget FAILED', {err});
+                    };
+
                     reject(err);
                 }
             )
