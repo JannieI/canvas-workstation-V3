@@ -8189,8 +8189,10 @@ export class GlobalVariableService {
     saveWidgetCheckpoint(data: WidgetCheckpoint): Promise<string> {
         // Description: Saves Widget Checkpoint
         // Returns: 'Saved' or error message
-        console.log('%c    Global-Variables saveWidgetCheckpoint ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables saveWidgetCheckpoint ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        };
 
         let url: string = 'widgetCheckpoints';
         this.filePath = './assets/data.widgetCheckpoints.json';
@@ -8210,11 +8212,17 @@ export class GlobalVariableService {
                     );
                     this.widgetCheckpoints[localIndex] = data;
 
-                    console.log('saveWidgetCheckpoint SAVED', {res})
+                    if (this.sessionDebugging) {
+                        console.log('saveWidgetCheckpoint SAVED', {res})
+                    };
+
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error saveWidgetCheckpoint FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error saveWidgetCheckpoint FAILED', {err});
+                    };
+
                     reject(err);
                 }
             )
@@ -8225,8 +8233,10 @@ export class GlobalVariableService {
         // Description: Gets all Canvas Users
         // Returns: this.users array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getCanvasUsers ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getCanvasUsers ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        };
 
         let url: string = 'canvasUsers';
         this.filePath = './assets/data.canvasUsers.json';
@@ -8241,15 +8251,22 @@ export class GlobalVariableService {
                         this.canvasUsers = res;
                         this.isDirtyUsers = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getCanvasUsers 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            this.canvasUsers)
+
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables getCanvasUsers 1',
+                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                this.canvasUsers)
+                        };
+
                         resolve(this.canvasUsers);
                     });
             } else {
-                console.log('%c    Global-Variables getCanvasUsers 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                    this.canvasUsers)
+                if (this.sessionDebugging) {
+                    console.log('%c    Global-Variables getCanvasUsers 2',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                        this.canvasUsers)
+                };
+
                 resolve(this.canvasUsers);
             }
         });
@@ -8259,8 +8276,10 @@ export class GlobalVariableService {
     setCurrentCanvasUser(userID: string){
         // Description: set the Global currentUser variable to the logged in User
         // Returns: 'Setted', else 'Error: userID does not exist in canvasUsers'
-        console.log('%c    Global-Variables setCurrentCanvasUser ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {userID});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables setCurrentCanvasUser ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {userID});
+        };
 
         this.currentUser = this.canvasUsers.filter(u => u.userID == userID)[0];
 
@@ -8268,8 +8287,10 @@ export class GlobalVariableService {
 
     clearCurrentUser() {
         // Description: reset the Global currentUser variable 
-        console.log('%c    Global-Variables clearCurrentUser ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables clearCurrentUser ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        };
 
         this.currentUser.userID = '';
         this.currentUser.isSuperuser = false;
@@ -8306,8 +8327,10 @@ export class GlobalVariableService {
         // Description: update properties in the the Global currentUser variable
         // NOTE: This does NOT update the DB or any other Variable
         // Returns: 'Setted', else 'Error: userID does not exist in canvasUsers'
-        console.log('%c    Global-Variables updateCurrentUserProperties ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables updateCurrentUserProperties ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        };
 
         if (parameters.isFirstTimeUser != null) {
             this.currentUser.isFirstTimeUser = parameters.isFirstTimeUser;
@@ -8356,19 +8379,28 @@ export class GlobalVariableService {
     validateUser(userID: string): Promise<boolean> {
         // Checks if userID exists.  If not, return false.
         // If so, set currentUser object and return true
-        console.log('%c    Global-Variables validateUser ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {userID});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables validateUser ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {userID});
+        };
 
         // TODO - do in more safe way with DB, Auth0, etc
         return new Promise<boolean>((resolve, reject) => {
             this.getCanvasUsers().then(usr => {
                 let foundIndex: number = this.canvasUsers.findIndex(u => u.userID == userID);
                 if (foundIndex < 0) {
-                    console.warn('xx Invalid userid', userID)
+
+                    if (this.sessionDebugging) {
+                        console.warn('xx Invalid userid', userID)
+                    };
+
                     resolve(false);
                 } else {
                     resolve(true);
-                    console.warn('xx Valid userid', userID)
+            
+                    if (this.sessionDebugging) {
+                        console.warn('xx Valid userid', userID)
+                    };
                 };
             });
         });
@@ -8377,8 +8409,10 @@ export class GlobalVariableService {
     saveCanvasUser(data: CanvasUser): Promise<string> {
         // Description: Saves CanvasUser
         // Returns: 'Saved' or error message
-        console.log('%c    Global-Variables saveCanvasUser ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables saveCanvasUser ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        };
 
         let url: string = 'canvasUsers';
         this.filePath = './assets/data.canvasUsers.json';
@@ -8398,11 +8432,17 @@ export class GlobalVariableService {
                     );
                     this.canvasUsers[localIndex] = data;
 
-                    console.log('saveCanvasUser SAVED', {res})
+                    if (this.sessionDebugging) {
+                        console.log('saveCanvasUser SAVED', {res})
+                    };
+
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error saveCanvasUser FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error saveCanvasUser FAILED', {err});
+                    };
+
                     reject(err);
                 }
             )
@@ -8413,9 +8453,11 @@ export class GlobalVariableService {
         // Description: Gets all Canvas AuditTrails
         // Returns: this.canvasAuditTrails array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getCanvasAuditTrails ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-            this.canvasAuditTrails.length);
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getCanvasAuditTrails ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                this.canvasAuditTrails.length);
+        };
 
         let url: string = 'canvasAuditTrails';
         this.filePath = './assets/settings.canvasAuditTrails.json';
@@ -8431,15 +8473,22 @@ export class GlobalVariableService {
 
                         this.isDirtyCanvasAuditTrails = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getCanvasAuditTrails 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            this.canvasAuditTrails)
+
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables getCanvasAuditTrails 1',
+                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                this.canvasAuditTrails)
+                        };
+
                         resolve(this.canvasAuditTrails);
                     });
             } else {
-                console.log('%c    Global-Variables getCanvasAuditTrails 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                    this.canvasAuditTrails)
+                if (this.sessionDebugging) {
+                    console.log('%c    Global-Variables getCanvasAuditTrails 2',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                        this.canvasAuditTrails)
+                };
+
                 resolve(this.canvasAuditTrails);
             }
         });
@@ -8449,8 +8498,10 @@ export class GlobalVariableService {
     addCanvasAuditTrail(data: CanvasAuditTrail): Promise<any> {
         // Description: Adds a new canvasAuditTrail
         // Returns: Added Data or error message
-        console.log('%c    Global-Variables addCanvasAuditTrail ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables addCanvasAuditTrail ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        };
 
         let url: string = 'canvasAuditTrails';
         this.filePath = './assets/data.CanvasAuditTrails.json';
@@ -8467,13 +8518,17 @@ export class GlobalVariableService {
                     // Update Global vars to make sure they remain in sync
                     this.canvasAuditTrails.push(JSON.parse(JSON.stringify(res)));
 
-                    console.log('addCanvasAuditTrail ADDED', {res}, this.canvasAuditTrails,
-                        this.canvasAuditTrails)
+                    if (this.sessionDebugging) {
+                        console.log('addCanvasAuditTrail ADDED', {res}, this.canvasAuditTrails,
+                            this.canvasAuditTrails)
+                    };
 
                     resolve(res);
                 },
                 err => {
-                    console.log('Error addCanvasAuditTrail FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error addCanvasAuditTrail FAILED', {err});
+                    };
                     reject(err);
                 }
             )
