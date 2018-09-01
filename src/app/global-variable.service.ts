@@ -6130,7 +6130,7 @@ export class GlobalVariableService {
             console.log('%c    Global-Variables deleteDatasourcePermission ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
         };
-        
+
         this.datasourcePermissions = this.datasourcePermissions.filter(
             dsp => dsp.id != id
         );
@@ -6143,8 +6143,10 @@ export class GlobalVariableService {
         // Description: Gets all DS-P
         // Returns: this.datasourcePivots array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getDatasourcePivots ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getDatasourcePivots ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        };
 
         let url: string = 'datasourcePivots';
         this.filePath = './assets/data.datasourcePivots.json';
@@ -6159,15 +6161,22 @@ export class GlobalVariableService {
                         this.datasourcePivots = res;
                         this.isDirtyDatasourcePivots = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getDatasourcePivots 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            this.datasourcePivots)
+
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables getDatasourcePivots 1',
+                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                this.datasourcePivots)
+                        };
+
                         resolve(this.datasourcePivots);
                     });
             } else {
-                console.log('%c    Global-Variables getDatasourcePivots 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                    this.datasourcePivots)
+                if (this.sessionDebugging) {
+                    console.log('%c    Global-Variables getDatasourcePivots 2',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                        this.datasourcePivots)
+                };
+
                 resolve(this.datasourcePivots);
             }
         });
@@ -6177,9 +6186,11 @@ export class GlobalVariableService {
         // Description: Gets DS-P for current DS
         // Returns: this.datasourcePivots.value array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getCurrentDatasourcePivots ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-            {datasourceID});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getCurrentDatasourcePivots ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                {datasourceID});
+        };
 
         let url: string = 'datasourcePivots';
         this.filePath = './assets/data..datasourcePivots.json';
@@ -6192,9 +6203,13 @@ export class GlobalVariableService {
                             i => i.datasourceID == datasourceID
                         );
                         this.currentDatasourcePivots = res;
-                        console.log('%c    Global-Variables getDatasourcePivots 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            {datasourceID}, {res})
+
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables getDatasourcePivots 1',
+                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                {datasourceID}, {res})
+                        };
+
                         resolve(this.currentDatasourcePivots);
                 })
              })
@@ -6205,9 +6220,13 @@ export class GlobalVariableService {
                     i => i.datasourceID == datasourceID
                 );
                 this.currentDatasourcePivots = returnData;
-                console.log('%c    Global-Variables getDatasourcePivots 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                    {datasourceID}, {returnData})
+
+                if (this.sessionDebugging) {
+                    console.log('%c    Global-Variables getDatasourcePivots 2',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                        {datasourceID}, {returnData})
+                };
+
                 resolve(this.currentDatasourcePivots);
             });
         };
@@ -6218,8 +6237,10 @@ export class GlobalVariableService {
         // Description: Gets system settings
         // Returns: this.canvasSettings object, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getSystemSettings ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getSystemSettings ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        };
 
         let url: string = 'canvasSettings';
         this.filePath = './assets/data.canvasSettings.json';
@@ -6259,15 +6280,21 @@ export class GlobalVariableService {
 
                         this.isDirtyCanvasSettings = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getSystemSettings 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            this.canvasSettings)
+
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables getSystemSettings 1',
+                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                this.canvasSettings)
+                        };
                         resolve(this.canvasSettings);
                     });
             } else {
-                console.log('%c    Global-Variables getSystemSettings 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                    this.canvasSettings)
+                if (this.sessionDebugging) {
+                    console.log('%c    Global-Variables getSystemSettings 2',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                        this.canvasSettings)
+                };
+
                 resolve(this.canvasSettings);
             }
         });
@@ -6277,8 +6304,10 @@ export class GlobalVariableService {
     saveSystemSettings(data: CanvasSettings): Promise<string> {
         // Description: Saves system settings
         // Returns: 'Saved' or error message
-        console.log('%c    Global-Variables saveSystemSettings ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables saveSystemSettings ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        };
 
         let url: string = 'canvasSettings';
         this.filePath = './assets/data.canvasSettings.json';
@@ -6293,11 +6322,18 @@ export class GlobalVariableService {
                 res => {
 
                     this.canvasSettings = JSON.parse(JSON.stringify(res));
-                    console.log('saveSystemSettings SAVED', {res})
+
+                    if (this.sessionDebugging) {
+                        console.log('saveSystemSettings SAVED', {res})
+                    };
+
                     resolve('Saved');
                 },
                 err => {
-                    console.log('Error saveSystemSettings FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error saveSystemSettings FAILED', {err});
+                    };
+
                     reject(err);
                 }
             )
@@ -6308,8 +6344,10 @@ export class GlobalVariableService {
         // Description: Gets dashboardSubscriptions
         // Returns: this.dashboardSubscriptions object, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getDashboardSubscription ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getDashboardSubscription ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        };
 
         let url: string = 'dashboardSubscriptions';
         this.filePath = './assets/data.dashboardSubscriptions.json';
@@ -6325,15 +6363,22 @@ export class GlobalVariableService {
 
                         this.isDirtyDashboardSubscription = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getDashboardSubscription 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            this.dashboardSubscriptions)
+
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables getDashboardSubscription 1',
+                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                this.dashboardSubscriptions)
+                        };
+
                         resolve(this.dashboardSubscriptions);
                     });
             } else {
-                console.log('%c    Global-Variables getDashboardSubscription 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                    this.dashboardSubscriptions)
+                if (this.sessionDebugging) {
+                    console.log('%c    Global-Variables getDashboardSubscription 2',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                        this.dashboardSubscriptions)
+                };
+
                 resolve(this.dashboardSubscriptions);
             }
         });
@@ -6344,9 +6389,11 @@ export class GlobalVariableService {
         // Description: Gets currentDashboardSubscription
         // Returns: this.currentDashboardSubscription object, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getDashboardSubscription ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-            {dashboardID});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getDashboardSubscription ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                {dashboardID});
+        };
 
         let url: string = 'dashboardSubscriptions';
         this.filePath = './assets/data.dashboardSubscriptions.json';
@@ -6366,15 +6413,22 @@ export class GlobalVariableService {
 
                         this.isDirtyDashboardSubscription = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getDashboardSubscription 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            this.currentDashboardSubscriptions)
+
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables getDashboardSubscription 1',
+                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                this.currentDashboardSubscriptions)
+                        };
+
                         resolve(this.currentDashboardSubscriptions);
                     });
             } else {
-                console.log('%c    Global-Variables getDashboardSubscription 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                    this.currentDashboardSubscriptions)
+                if (this.sessionDebugging) {
+                    console.log('%c    Global-Variables getDashboardSubscription 2',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                        this.currentDashboardSubscriptions)
+                };
+                
                 resolve(this.currentDashboardSubscriptions);
             }
         });
