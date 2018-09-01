@@ -7952,7 +7952,7 @@ export class GlobalVariableService {
             console.log('%c    Global-Variables addCanvasMessage ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {userID});
         };
-        
+
         // TODO - this must be done via the DB: for now, only glob-var array
         let today = new Date();
         this.canvasMessages.forEach(msg => {
@@ -7967,8 +7967,10 @@ export class GlobalVariableService {
     deleteCanvasMessage(id: number): Promise<string> {
         // Description: Deletes a canvasMessages
         // Returns: 'Deleted' or error message
-        console.log('%c    Global-Variables deleteCanvasMessage ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables deleteCanvasMessage ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
+        };
 
         let url: string = 'canvasMessages';
         this.filePath = './assets/data.CanvasMessages.json';
@@ -7986,11 +7988,16 @@ export class GlobalVariableService {
                         msg => msg.id != id
                     );
 
-                    console.log('deleteCanvasMessage DELETED id: ', {id})
+                    if (this.sessionDebugging) {
+                        console.log('deleteCanvasMessage DELETED id: ', {id})
+                    };
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('Error deleteCanvasMessage FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error deleteCanvasMessage FAILED', {err});
+                    };
+
                     reject(err);
                 }
             )
@@ -8001,9 +8008,11 @@ export class GlobalVariableService {
         // Description: Gets all Canvas Messages
         // Returns: this.widgetCheckpoints array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getWidgetCheckpoints ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-            this.widgetCheckpoints.length);
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getWidgetCheckpoints ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                this.widgetCheckpoints.length);
+        };
 
         let url: string = 'widgetCheckpoints';
         this.filePath = './assets/settings.widgetCheckpoints.json';
@@ -8019,15 +8028,22 @@ export class GlobalVariableService {
 
                         this.isDirtyWidgetCheckpoints = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        console.log('%c    Global-Variables getWidgetCheckpoints 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            this.widgetCheckpoints)
+
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables getWidgetCheckpoints 1',
+                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                this.widgetCheckpoints)
+                        };
+
                         resolve(this.widgetCheckpoints);
                     });
             } else {
-                console.log('%c    Global-Variables getWidgetCheckpoints 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                    this.widgetCheckpoints)
+                if (this.sessionDebugging) {
+                    console.log('%c    Global-Variables getWidgetCheckpoints 2',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                        this.widgetCheckpoints)
+                };
+
                 resolve(this.widgetCheckpoints);
             }
         });
@@ -8038,9 +8054,11 @@ export class GlobalVariableService {
         // Description: Gets all Checkpoints for current D
         // Returns: this.currentWidgetCheckpoints array, unless:
         //   If not cached or if dirty, get from File
-        console.log('%c    Global-Variables getCurrentWidgetCheckpoints ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-            {dashboardID});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getCurrentWidgetCheckpoints ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                {dashboardID});
+        };
 
         // Refresh from source at start, or if dirty
         if ( (this.widgetCheckpoints.length == 0)  ||  (this.isDirtyWidgetCheckpoints) ) {
@@ -8051,9 +8069,13 @@ export class GlobalVariableService {
                             i => i.dashboardID == dashboardID
                         );
                         this.currentWidgetCheckpoints = res;
-                        console.log('%c    Global-Variables getCurrentWidgetCheckpoints 1',
-                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                            {dashboardID}, {res})
+
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables getCurrentWidgetCheckpoints 1',
+                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                {dashboardID}, {res})
+                        };
+
                         resolve(this.currentWidgetCheckpoints);
 
                 })
@@ -8065,9 +8087,13 @@ export class GlobalVariableService {
                     i => i.dashboardID == dashboardID
                 );
                 this.currentWidgetCheckpoints = returnData;
-                console.log('%c    Global-Variables getCurrentWidgetCheckpoints 2',
-                    "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                    {dashboardID}, {returnData})
+
+                if (this.sessionDebugging) {
+                    console.log('%c    Global-Variables getCurrentWidgetCheckpoints 2',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                        {dashboardID}, {returnData})
+                };
+
                 resolve(this.currentWidgetCheckpoints);
             });
         };
@@ -8077,8 +8103,10 @@ export class GlobalVariableService {
     addWidgetCheckpoint(data: WidgetCheckpoint): Promise<any> {
         // Description: Adds a new WidgetCheckpoint
         // Returns: Added Data or error message
-        console.log('%c    Global-Variables addWidgetCheckpoint ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables addWidgetCheckpoint ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        };
 
         let url: string = 'widgetCheckpoints';
         this.filePath = './assets/data.widgetCheckpoints.json';
@@ -8096,13 +8124,18 @@ export class GlobalVariableService {
                     this.widgetCheckpoints.push(JSON.parse(JSON.stringify(res)));
                     this.currentWidgetCheckpoints.push(JSON.parse(JSON.stringify(res)));
 
-                    console.log('addWidgetCheckpoint ADDED', {res},
-                        this.currentWidgetCheckpoints, this.widgetCheckpoints)
+                    if (this.sessionDebugging) {
+                        console.log('addWidgetCheckpoint ADDED', {res},
+                            this.currentWidgetCheckpoints, this.widgetCheckpoints)
+                    };
 
                     resolve(res);
                 },
                 err => {
-                    console.log('Error addWidgetCheckpoint FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error addWidgetCheckpoint FAILED', {err});
+                    };
+
                     reject(err);
                 }
             )
@@ -8112,8 +8145,10 @@ export class GlobalVariableService {
     deleteWidgetCheckpoint(id: number): Promise<string> {
         // Description: Deletes a WidgetCheckpoints
         // Returns: 'Deleted' or error message
-        console.log('%c    Global-Variables deleteWidgetCheckpoint ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables deleteWidgetCheckpoint ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
+        };
 
         let url: string = 'widgetCheckpoints';
         this.filePath = './assets/data.widgetCheckpoints.json';
@@ -8135,11 +8170,16 @@ export class GlobalVariableService {
                         chk => chk.id != id
                     );
 
-                    console.log('deleteWidgetCheckpoint DELETED id: ', {id})
+                    if (this.sessionDebugging) {
+                        console.log('deleteWidgetCheckpoint DELETED id: ', {id})
+                    };
+
                     resolve('Deleted');
                 },
                 err => {
-                    console.log('Error deleteWidgetCheckpoint FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error deleteWidgetCheckpoint FAILED', {err});
+                    };
                     reject(err);
                 }
             )
