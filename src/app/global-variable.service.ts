@@ -830,6 +830,9 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
+        // TODO - remove !
+        this.sessionDebugging = true;
+
         return new Promise<Dashboard[]>((resolve, reject) => {
 
                 // Assume worse case that all has to be obtained from HTTP server
@@ -843,39 +846,62 @@ export class GlobalVariableService {
                 let dataCachingTableIndex: number = this.dataCachingTable.findIndex(dct =>
                     dct.key == tableName
                 );
-
+                console.warn('xx dataCachingTableIndex', dataCachingTableIndex);
+                
                 if (dataCachingTableIndex >= 0) {
 
-                    // Only proceed localy if local cache allowed
+                    // Only proceed locally if local cache allowed
                     localCacheable = this.dataCachingTable[dataCachingTableIndex].localCacheable;
 
                     if (localCacheable) {
+                        console.warn('xx localCach', localCacheable);
+                        
+                        // Get var and table names
+                        localVariableName = this.dataCachingTable
+                            [dataCachingTableIndex].localVariableName;
+                        localCurrentVariableName = this.dataCachingTable
+                            [dataCachingTableIndex].localCurrentVariableName;
+                        localTableName  = this.dataCachingTable
+                            [dataCachingTableIndex].localTableName;
 
                         // Fresh if not expired as yet
-                        if (this.dataCachingTable[dataCachingTableIndex]
-                            .localExpiryDateTime >= new Date()) {
-                            isFresh = true;
-
-                            localVariableName = this.dataCachingTable
-                                [dataCachingTableIndex].localVariableName;
-                            localCurrentVariableName = this.dataCachingTable
-                                [dataCachingTableIndex].localCurrentVariableName;
-                            localTableName  = this.dataCachingTable
-                                [dataCachingTableIndex].localTableName;
-            
+                        let dn: Date = new Date();
+                        let tn: number = dn.getTime()
+                        let dl: Date = new Date(this.dataCachingTable[dataCachingTableIndex]
+                            .localExpiryDateTime);
+                        let tl: number = dl.getTime();
+                        if (tl >= tn) {
+                            isFresh = true;            
                         } else {
                             isFresh = false;
                         };
+                        console.warn('xx isFresh', isFresh, this.dataCachingTable[dataCachingTableIndex]
+                        .localExpiryDateTime, dn, tn, dl, tl, this.dataCachingTable[dataCachingTableIndex]
+                        .localVariableName, this.dataCachingTable[dataCachingTableIndex]
+                        .localTableName);
+                        
+                        // Use local cache variable or table if fresh
+                        if (isFresh) {
+                            if (localVariableName != null) {
+                                console.warn('xx return from VAR');
+                                return;
+                            };
+                            if (localTableName != null) {
+                                console.warn('xx return from TABLE');
+                                return;
+                            };
+                        };
                     };
-                }
-                console.warn('xx key', dataCachingTableIndex)
+                };
+                console.warn('xx return from HTTP')
 
+                
 
-            if (this.dashboards = []) {
-                resolve(this.dashboards);
-            } else {
-                reject([])
-            }
+                // if (this.dashboards == []) {
+                //     resolve(this.dashboards);
+                // } else {
+                //     reject([])
+                // };
 
         })
     }
@@ -8847,25 +8873,25 @@ export class GlobalVariableService {
 
             this.get(url)
                 .then(res => {
-                    this.dataCachingTable = 
-                        [
-                            {
-                                key: 'dashboards',
-                                serverCacheable: true,
-                                serverLastUpdatedDateTime: new Date(),
-                                serverExpiryDateTime: new Date(),
-                                serverLastWSsequenceNr: 1,
-                                localCacheable: true,
-                                localLastUpdatedDateTime: new Date(),
-                                localExpiryDateTime: new Date(),
-                                localVariableName: 'dashboards',
-                                localCurrentVariableName: 'currentDashboards',
-                                localTableName: 'dashboards'
-                            }
-                        ];
+                    this.dataCachingTable = res;
+                        // [
+                        //     {
+                        //         key: 'dashboards',
+                        //         serverCacheable: true,
+                        //         serverLastUpdatedDateTime: new Date(),
+                        //         serverExpiryDateTime: new Date(),
+                        //         serverLastWSsequenceNr: 1,
+                        //         localCacheable: true,
+                        //         localLastUpdatedDateTime: new Date(),
+                        //         localExpiryDateTime: new Date(),
+                        //         localVariableName: 'dashboards',
+                        //         localCurrentVariableName: 'currentDashboards',
+                        //         localTableName: 'dashboards'
+                        //     }
+                        // ];
 
                     if (this.sessionDebugging) {
-                        console.log('%c    Global-Variables getDataCachingTable 1',
+                        console.log('%c    Global-Variables getDataCachingTable',
                             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                             this.dataCachingTable)
                     };
