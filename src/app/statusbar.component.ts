@@ -532,7 +532,7 @@ export class StatusbarComponent {
             // Add to DB
             this.globalVariableService.addDashboardTab(duplicateTab).then(res => {
                 let newTabID: number = res.id;
-                console.warn('xx new ID', newTabID)
+
                 // Duplicate the Widgets
                 this.globalVariableService.currentWidgets.forEach(w => {
                     console.warn('xx ids', w.dashboardTabID, this.globalVariableService

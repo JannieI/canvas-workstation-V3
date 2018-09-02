@@ -231,7 +231,6 @@ export class LandingComponent implements OnInit {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'clickOpenRecentDashboard', '@Start');
 
-		console.warn('xx IDs', dashboardID, dashboardTabID)
 		// Cannot open deleted ones
 		if (this.dashboardsRecent[index].stateAtRunTime == 'Deleted') {
 			this.globalVariableService.showStatusBarMessage(

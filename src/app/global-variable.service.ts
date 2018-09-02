@@ -557,10 +557,10 @@ export class GlobalVariableService {
     // Global vars that guide all interactions
     // ***************************************
     // Modes and Display
-    editMode = new BehaviorSubject<boolean>(false);
-    showGrid = new BehaviorSubject<boolean>(false);
-    showPalette = new BehaviorSubject<boolean>(true);
-    preferencePaletteHorisontal = new BehaviorSubject<boolean>(true);
+    editMode = new BehaviorSubject<boolean>(false);     // True/False = EditMode/ViewMode
+    showGrid = new BehaviorSubject<boolean>(false);     // True to show th egrid
+    showPalette = new BehaviorSubject<boolean>(true);   // True to show the palette
+    preferencePaletteHorisontal = new BehaviorSubject<boolean>(true); // Palette orientation
 
     // First time user
     isFirstTimeDashboardOpen = new BehaviorSubject<boolean>(true);
@@ -585,9 +585,9 @@ export class GlobalVariableService {
     >(null);
     continueToTransformations: boolean = false;         // True after Edit DS -> Open Transformations form
     currentPaletteButtonsSelected= new BehaviorSubject<PaletteButtonsSelected[]>([]);
-    currentUser: CanvasUser;
+    currentUser: CanvasUser;                            // Current logged in user
     currentUserID = new BehaviorSubject<string>('');
-    dashboardsRecent: DashboardRecent[] = [];
+    dashboardsRecent: DashboardRecent[] = [];           // List of Recent Dashboards
     dashboardsRecentBehSubject = new BehaviorSubject<DashboardRecent[]>([]);  // Recently used Dashboards
     datasourceToEditID = new BehaviorSubject<number>(null);
     dontDisturb = new BehaviorSubject<boolean>(false);   // True means dont disturb display
@@ -597,7 +597,7 @@ export class GlobalVariableService {
     loggedIntoServer = new BehaviorSubject<boolean>(true);
     menuActionResize = new BehaviorSubject<boolean>(false);
     sessionDateTimeLoggedin: string = '';
-    sessionDebugging: boolean = false;
+    sessionDebugging: boolean = false;      // True to log multiple messages to Console
     sessionLogging: boolean = false;
     templateInUse = new BehaviorSubject<boolean>(false);
     widgetGroup = new BehaviorSubject<number[]>([]);
@@ -10144,7 +10144,7 @@ export class GlobalVariableService {
                     if (this.sessionDebugging) {
                         console.log('Error Get Tributary Data FAILED', {err});
                     };
-                    
+
                     reject(err);
                 }
             )
@@ -10175,12 +10175,17 @@ export class GlobalVariableService {
             .subscribe(
                 res => {
 
-                    console.log('Tributary Data', {res})
+                    if (this.sessionDebugging) {
+                        console.log('Tributary Data', {res})
+                    };
 
                     resolve(res);
                 },
                 err => {
-                    console.log('Error Get Tributary Inspect FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error Get Tributary Inspect FAILED', {err});
+                    };
+
                     reject(err);
                 }
             )
@@ -10190,8 +10195,10 @@ export class GlobalVariableService {
     getTributaryInspect(source: any): Promise<any> {
         // Description: Gets data from the Tributary Server
         // Returns: Added Data or error message
-        console.log('%c    Global-Variables getTributaryData ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {source});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getTributaryData ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {source});
+        };
 
         let url: string = 'https://eazl-rest.xyz/eazl/canvas/inspect/';
         this.filePath = './assets/data.dashboards.json';
@@ -10208,12 +10215,16 @@ export class GlobalVariableService {
             .subscribe(
                 res => {
 
-                    console.log('Tributary Data', {res})
+                    if (this.sessionDebugging) {
+                        console.log('Tributary Data', {res})
+                    };
 
                     resolve(res);
                 },
                 err => {
-                    console.log('Error Get Tributary Inspect FAILED', {err});
+                    if (this.sessionDebugging) {
+                        console.log('Error Get Tributary Inspect FAILED', {err});
+                    };
                     reject(err);
                 }
             )
@@ -10230,10 +10241,12 @@ export class GlobalVariableService {
         port: number,
         query: string): TributarySource {
         // Description: constructs a Tributary Source object from the given parameters
-        console.log('%c    Global-Variables constructTributarySQLSource ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-            {connector}, {drivername}, {username}, {password}, {database}, {host}, {port},
-            {query});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables constructTributarySQLSource ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                {connector}, {drivername}, {username}, {password}, {database}, {host}, {port},
+                {query});
+        };
 
         let tributarySource: TributarySource = {
             "source": {
@@ -10259,9 +10272,11 @@ export class GlobalVariableService {
         //  - units  Number of units of the given interval to add.
         //  Example: dateAdd(new Date(), 'minute', 30)  //returns 30 minutes from now
         // Returns: Amended Date
-        console.log('%c    Global-Variables getTributaryDirectDBSchema ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-            {date}, {interval}, {units});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getTributaryDirectDBSchema ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                {date}, {interval}, {units});
+        };
 
         // Get the original
         var ret: Date = new Date(date); //don't change original date
@@ -10289,9 +10304,11 @@ export class GlobalVariableService {
         //  - interval  One of: year, quarter, month, week, day, hour, minute, second
         //  Example: dateAdd(new Date(), 'minute', 30)  //returns 30 minutes from now
         // Returns: Amended Date
-        console.log('%c    Global-Variables getTributaryDirectDBSchema ...',
-            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-            {fromDate}, {toDate}, {interval});
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getTributaryDirectDBSchema ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                {fromDate}, {toDate}, {interval});
+        };
 
         // Cater for missing input
         if (fromDate == null) {
