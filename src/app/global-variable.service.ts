@@ -821,6 +821,26 @@ export class GlobalVariableService {
 
     }
 
+    getDashboardsNEW(params: string = ''): Promise<Dashboard[]> {
+        // Description: Gets all D from correct place: variable, localCache, getHTTP
+        // Returns: this.dashboards array, unless:
+        //   If not cached or if dirty, get from File
+        if (this.sessionDebugging) {
+            console.log('%c        Global-Variables getDashboardsNEW ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        };
+
+        return new Promise<Dashboard[]>((resolve, reject) => {
+
+            if (this.dashboards = []) {
+                resolve(this.dashboards);
+            } else {
+                reject([])
+            }
+
+        })
+    }
+
     getDashboards(params: string = ''): Promise<Dashboard[]> {
         // Description: Gets all D
         // Returns: this.dashboards array, unless:
