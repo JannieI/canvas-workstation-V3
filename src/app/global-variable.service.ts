@@ -597,7 +597,7 @@ export class GlobalVariableService {
     loggedIntoServer = new BehaviorSubject<boolean>(true);
     menuActionResize = new BehaviorSubject<boolean>(false);
     sessionDateTimeLoggedin: string = '';
-    sessionDebugging: boolean = false;      // True to log multiple messages to Console
+    sessionDebugging: boolean = true;      // True to log multiple messages to Console
     sessionLogging: boolean = false;
     templateInUse = new BehaviorSubject<boolean>(false);
     widgetGroup = new BehaviorSubject<number[]>([]);
@@ -821,7 +821,7 @@ export class GlobalVariableService {
 
     }
 
-    getDashboardsNEW(params: string = ''): Promise<Dashboard[]> {
+    getDashboardsNEW(tableName: string = ''): Promise<Dashboard[]> {
         // Description: Gets all D from correct place: variable, localCache, getHTTP
         // Returns: this.dashboards array, unless:
         //   If not cached or if dirty, get from File
@@ -831,6 +831,12 @@ export class GlobalVariableService {
         };
 
         return new Promise<Dashboard[]>((resolve, reject) => {
+
+
+            if (tableName == 'Dashboard') {
+
+            }
+
 
             if (this.dashboards = []) {
                 resolve(this.dashboards);
@@ -1552,7 +1558,7 @@ export class GlobalVariableService {
         // Deletes D with all related Entities
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables deleteDashboardInfo ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", 
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                 {dashboardID});
         };
 
@@ -1847,7 +1853,7 @@ export class GlobalVariableService {
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables getCurrentDashboards ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {dashboardID});
-        }; 
+        };
 
         // Refresh from source at start, or if dirty
         if (
@@ -1873,12 +1879,12 @@ export class GlobalVariableService {
 
                                 hasAccess = false;
                                 if (this.dashboardPermissionCheck(
-                                    this.currentDashboards[0].templateDashboardID, 
+                                    this.currentDashboards[0].templateDashboardID,
                                     'canviewright')) {
                                         hasAccess = true;
                                 };
                                 if (this.dashboardPermissionCheck(
-                                    this.currentDashboards[0].templateDashboardID, 
+                                    this.currentDashboards[0].templateDashboardID,
                                     'canviewandcanedit')) {
                                         hasAccess = true;
                                 };
@@ -1886,11 +1892,11 @@ export class GlobalVariableService {
                                 if (hasAccess) {
 
                                     let templateDashboard: Dashboard[] = null;
-                                    
+
                                     templateDashboard = this.dashboards.filter(
                                         i => i.id == this.currentDashboards[0].templateDashboardID
                                     );
-                                    
+
                                     if (templateDashboard == null) {
                                         alert('Dashboard template id does not exist in Dashboards Array')
                                     } else {
@@ -1898,7 +1904,7 @@ export class GlobalVariableService {
                                         this.templateInUse.next(true);
                                     }
                                 } else {
-                                    this.templateInUse.next(false);    
+                                    this.templateInUse.next(false);
                                 };
                             } else {
                                 this.templateInUse.next(false);
@@ -2455,7 +2461,7 @@ export class GlobalVariableService {
 
         let newRecentIndex: number = this.dashboardsRecent
             .findIndex(dR => dR.dashboardID == dashboardID);
-        
+
         if (newRecentIndex >= 0) {
             this.dashboardsRecent[newRecentIndex].nameAtRunTime = dashboardName;
             // this.saveDashboardRecent(this.dashboardsRecent[newRecentIndex],);
@@ -2545,14 +2551,14 @@ export class GlobalVariableService {
                     if(localIndex>= 0) {
 
                         this.dashboardsRecent[localIndex] = data;
-                        
+
                         // Change order - last accessed one must be at top
                         let temp: DashboardRecent[] = [ this.dashboardsRecent[localIndex] ].concat(
                             this.dashboardsRecent.filter(dR => dR.id != data.id)
                         );
                         this.dashboardsRecent = temp;
                         this.dashboardsRecentBehSubject.next(this.dashboardsRecent);
-                        
+
                         if (this.sessionDebugging) {
                             console.log('saveDashboardRecent SAVED', {res})
                         };
@@ -2971,7 +2977,7 @@ export class GlobalVariableService {
                         this.dataTables = res;
                         this.isDirtyDataTables = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-        
+
                         if (this.sessionDebugging) {
                             console.log('%c    Global-Variables getDataTable 1',
                                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
@@ -3014,7 +3020,7 @@ export class GlobalVariableService {
                         this.dataFields = res;
                         this.isDirtyDataFields = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-        
+
                         if (this.sessionDebugging) {
                             console.log('%c    Global-Variables getDataField 1',
                                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
@@ -3057,7 +3063,7 @@ export class GlobalVariableService {
                         this.datasets = res;
                         this.isDirtyDatasets = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-        
+
                         if (this.sessionDebugging) {
                             console.log('%c    Global-Variables getDataset 1',
                                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
@@ -3417,7 +3423,7 @@ export class GlobalVariableService {
                         // this.datasets[xxx from id].rawData & .data = data;
                         // this.isDirtyDatasets = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        
+
                         if (this.sessionDebugging) {
                             console.log('%c    Global-Variables getData',
                                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
@@ -3555,7 +3561,7 @@ export class GlobalVariableService {
             console.log('%c    Global-Variables filterSlicer ...',
                 "color: black; background: lightgray; font-size: 10px", {dataSet});
         };
-        
+
         this.currentWidgets.forEach(w => {
             console.warn('xx strt graphData', w.graphUrl, w.graphData);
         });
@@ -4500,7 +4506,7 @@ export class GlobalVariableService {
                     if (this.sessionDebugging) {
                         console.log('Error addDashboardPermission FAILED', {err});
                     };
-                    
+
                     reject(err);
                 }
             )
@@ -4852,7 +4858,7 @@ export class GlobalVariableService {
                         console.log('addDashboardSnapshot ADDED', {res},
                             this.currentDashboardSnapshots, this.dashboardSnapshots)
                     };
-                    
+
                     resolve(res);
                 },
                 err => {
@@ -5014,7 +5020,7 @@ export class GlobalVariableService {
                         "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                         {returnData})
                 };
-                
+
                 resolve(returnData);
 
             });
@@ -6519,7 +6525,7 @@ export class GlobalVariableService {
                 res => {
                     this.dashboardSubscriptions.push(JSON.parse(JSON.stringify(res)));
                     this.currentDashboardSubscriptions.push(JSON.parse(JSON.stringify(res)));
-        
+
                     if (this.sessionDebugging) {
                         console.log('addDashboardSubscription ADDED', {res})
                     };
@@ -6653,7 +6659,7 @@ export class GlobalVariableService {
                     if (this.sessionDebugging) {
                         console.log('savePaletteButtonBar SAVED', {res})
                     };
-                    
+
                     resolve('Saved');
                 },
                 err => {
@@ -8306,7 +8312,7 @@ export class GlobalVariableService {
     }
 
     clearCurrentUser() {
-        // Description: reset the Global currentUser variable 
+        // Description: reset the Global currentUser variable
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables clearCurrentUser ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
@@ -8326,7 +8332,7 @@ export class GlobalVariableService {
         this.currentUser.canManageGroupRole = false;
     }
 
-    updateCurrentUserProperties(parameters: 
+    updateCurrentUserProperties(parameters:
         {
             isFirstTimeUser?: boolean,
             preferencePaletteHorisontal?: boolean,
@@ -8394,7 +8400,7 @@ export class GlobalVariableService {
         if (parameters.preferenceDefaultSnapshotMins != null) {
             this.currentUser.preferenceDefaultSnapshotMins = parameters.preferenceDefaultSnapshotMins;
         };
-        
+
     }
     validateUser(userID: string): Promise<boolean> {
         // Checks if userID exists.  If not, return false.
@@ -8417,7 +8423,7 @@ export class GlobalVariableService {
                     resolve(false);
                 } else {
                     resolve(true);
-            
+
                     if (this.sessionDebugging) {
                         console.warn('xx Valid userid', userID)
                     };
@@ -8721,6 +8727,8 @@ export class GlobalVariableService {
                 let finalUrl: string = '';
                 if (url == 'dashboardsRecent') {
                     finalUrl = 'http://localhost:3001/' + url;
+                } else if (url == 'dataCachingTable') {
+                    finalUrl = 'http://localhost:3001/' + url;
                 } else if (url == 'dataConnections') {
                     finalUrl = 'http://localhost:3001/' + url;
                 } else if (url == 'dataTables') {
@@ -8791,7 +8799,7 @@ export class GlobalVariableService {
         };
     }
 
-    getDataCachingTable(): DataCachingTable[] {
+    getDataCachingTable(): Promise<DataCachingTable[]> {
        // Description: Gets the caching table that drives local caching process
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables getDataCachingTable ...',
@@ -8802,33 +8810,38 @@ export class GlobalVariableService {
         let url: string = 'dataCachingTable';
         this.filePath = './assets/dataCachingTable.json';
 
-        // return new Promise<DataCachingTable[]>((resolve, reject) => {
+        return new Promise<DataCachingTable[]>((resolve, reject) => {
 
-        //     this.get(url)
-        //         .then(res => {
-                    this.dataCachingTable = [{
-                        key: 'dashboards',
-                        serverCacheable: true,
-                        serverLastUpdatedDateTime: new Date(),
-                        serverExpiryDateTime: new Date(),
-                        serverLastWSsequenceNr: 1,
-                        localCacheable: true,
-                        localLastUpdatedDateTime: new Date(),
-                        localExpiryDateTime: new Date(),
-                        localVariableName: 'dashboards'
-                    }];
-                
+            this.get(url)
+                .then(res => {
+                    this.dataCachingTable = 
+                        [
+                            {
+                                key: 'dashboards',
+                                serverCacheable: true,
+                                serverLastUpdatedDateTime: new Date(),
+                                serverExpiryDateTime: new Date(),
+                                serverLastWSsequenceNr: 1,
+                                localCacheable: true,
+                                localLastUpdatedDateTime: new Date(),
+                                localExpiryDateTime: new Date(),
+                                localVariableName: 'dashboards'
+                            }
+                        ];
+
                     if (this.sessionDebugging) {
                         console.log('%c    Global-Variables getDataCachingTable 1',
                             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
                             this.dataCachingTable)
                     };
 
-                    return this.dataCachingTable;
-        //             resolve(this.dataCachingTable);
-        // });
+                    // return this.dataCachingTable;
+                    resolve(this.dataCachingTable);
+            });
+        });
 
     }
+
     connectLocalDB<T>(): Promise<string | Object> {
         // Connect to the local DB, ie nanaSQL
         if (this.sessionDebugging) {
@@ -9835,7 +9848,7 @@ export class GlobalVariableService {
     }
 
     dashboardPermissionCheck(
-        dashboardID: number, 
+        dashboardID: number,
         accessRequired: string = 'CanViewOrCanEdit'
         ): boolean {
         // Checks if the current user has access to the given D.
@@ -9887,7 +9900,7 @@ export class GlobalVariableService {
                 if (dp.dashboardID == dashboard.id) {
 
                     if (dp.userID != null) {
-                        
+
                         if (dp.userID.toLowerCase() == userID.toLowerCase()) {
                             if (accessRequired == 'canviewright'  &&  dp.canViewRight) {
                                 hasAccess = true;
@@ -10366,7 +10379,7 @@ export class GlobalVariableService {
             console.log('%c    Global-Variables calcShapeTextDisplay ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {shapeText});
         };
-    
+
         let today = new Date();
         let pages: number = this.currentDashboardTabs.length;
         let selectedTabIndex: number = this.currentDashboardInfo
