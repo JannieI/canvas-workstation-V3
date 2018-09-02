@@ -394,15 +394,17 @@ export class Dataset {
 }
 
 export class DataCachingTable {
-    key: string;                             // Unique key
-    serverCacheable: boolean;                // True if cached on server
-    serverLastUpdatedDateTime: Date;         // When cached last refreshed on server
-    serverExpiryDateTime: Date;              // When cache expires on server
-    serverLastWSsequenceNr: number;          // Last WSockets message nr sent for this
-    localCacheable: boolean;                 // True if cached locally, ie IndexedDB
-    localLastUpdatedDateTime: Date;          // When local cache last refreshed
-    localExpiryDateTime: Date;               // When local cache expries
-    localVariableName: string;               // Optional name of memory variable
+    key: string;                            // Unique key
+    serverCacheable: boolean;               // True if cached on server
+    serverLastUpdatedDateTime: Date;        // When cached last refreshed on server
+    serverExpiryDateTime: Date;             // When cache expires on server
+    serverLastWSsequenceNr: number;         // Last WSockets message nr sent for this
+    localCacheable: boolean;                // True if cached locally, ie IndexedDB
+    localLastUpdatedDateTime: Date;         // When local cache last refreshed
+    localExpiryDateTime: Date;              // When local cache expries
+    localVariableName: string;              // Optional name of memory variable
+    localCurrentVariableName: string;       // Optional name of memory current variable
+    localTableName: string;                 // Optional name of Table in IndexedDB
 }
 
 export class Datasource {

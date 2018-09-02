@@ -830,13 +830,14 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
-        // Assume worse case that all has to be obtained from HTTP server
-        let isFresh: boolean = false;
-        let localVariableName: string = null;
-        // let localVariableName: string = false;
-        let localCacheable: boolean = false;
-
         return new Promise<Dashboard[]>((resolve, reject) => {
+
+                // Assume worse case that all has to be obtained from HTTP server
+                let isFresh: boolean = false;
+                let localCacheable: boolean = false;
+                let localVariableName: string = null;
+                let localCurrentVariableName: string = '';
+                let localTableName: string = '';
 
                 // Find DS in localCachingTable
                 let dataCachingTableIndex: number = this.dataCachingTable.findIndex(dct =>
@@ -855,8 +856,13 @@ export class GlobalVariableService {
                             .localExpiryDateTime >= new Date()) {
                             isFresh = true;
 
-                            localVariableName = this.dataCachingTable[dataCachingTableIndex].localVariableName;
-
+                            localVariableName = this.dataCachingTable
+                                [dataCachingTableIndex].localVariableName;
+                            localCurrentVariableName = this.dataCachingTable
+                                [dataCachingTableIndex].localCurrentVariableName;
+                            localTableName  = this.dataCachingTable
+                                [dataCachingTableIndex].localTableName;
+            
                         } else {
                             isFresh = false;
                         };
@@ -8852,7 +8858,9 @@ export class GlobalVariableService {
                                 localCacheable: true,
                                 localLastUpdatedDateTime: new Date(),
                                 localExpiryDateTime: new Date(),
-                                localVariableName: 'dashboards'
+                                localVariableName: 'dashboards',
+                                localCurrentVariableName: 'currentDashboards',
+                                localTableName: 'dashboards'
                             }
                         ];
 

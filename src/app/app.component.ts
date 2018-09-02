@@ -105,6 +105,8 @@ interface IDataCachingTable {
     localLastUpdatedDateTime: Date;          // When local cache last refreshed
     localExpiryDateTime: Date;               // When local cache expries
     localVariableName: string;               // Optional name of memory variable
+    localCurrentVariableName: string;       // Optional name of memory current variable
+    localTableName: string;                 // Optional name of Table in IndexedDB
 }
 
 export class LocalDataCachingTable implements IDataCachingTable {
@@ -117,6 +119,8 @@ export class LocalDataCachingTable implements IDataCachingTable {
     localLastUpdatedDateTime: Date;
     localExpiryDateTime: Date;
     localVariableName: string;
+    localCurrentVariableName: string;       // Optional name of memory current variable
+    localTableName: string;                 // Optional name of Table in IndexedDB
 
     constructor(key: string,
         serverCacheable: boolean,
@@ -126,7 +130,10 @@ export class LocalDataCachingTable implements IDataCachingTable {
         localCacheable: boolean,
         localLastUpdatedDateTime: Date,
         localExpiryDateTime: Date,
-        localVariableName: string) {
+        localVariableName: string,
+        localCurrentVariableName: string,
+        localTableName: string
+        ) {
 
             this.key = key,
             this.serverCacheable = serverCacheable,
@@ -137,7 +144,9 @@ export class LocalDataCachingTable implements IDataCachingTable {
             this.localLastUpdatedDateTime = localLastUpdatedDateTime,
             this.localExpiryDateTime = localExpiryDateTime,
             this.localVariableName = localVariableName
-        }
+            this.localCurrentVariableName = localCurrentVariableName;
+            this.localTableName = localTableName;
+                }
 }
 
 
@@ -6343,7 +6352,10 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
             localCacheable: true,
             localLastUpdatedDateTime: new Date(),
             localExpiryDateTime: new Date(),
-            localVariableName: 'dashboards'
+            localVariableName: 'dashboards',
+            localCurrentVariableName: 'currentDashboards',
+            localTableName: 'dashboards'
+    
         }];
 
         // Load DB with bulkPut
@@ -6469,7 +6481,9 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                             localCacheable: true,
                             localLastUpdatedDateTime: new Date(),
                             localExpiryDateTime: new Date(),
-                            localVariableName: 'dashboards'
+                            localVariableName: 'dashboards',
+                            localCurrentVariableName: 'currentDashboards',
+                            localTableName: 'dashboards'
                         }
                     ).then(res => {
                         console.log('xx stored dbDataCachingTable', res);
