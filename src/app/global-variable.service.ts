@@ -597,7 +597,7 @@ export class GlobalVariableService {
     loggedIntoServer = new BehaviorSubject<boolean>(true);
     menuActionResize = new BehaviorSubject<boolean>(false);
     sessionDateTimeLoggedin: string = '';
-    sessionDebugging: boolean = true;      // True to log multiple messages to Console
+    sessionDebugging: boolean = false;      // True to log multiple messages to Console
     sessionLogging: boolean = false;
     templateInUse = new BehaviorSubject<boolean>(false);
     widgetGroup = new BehaviorSubject<number[]>([]);
@@ -830,12 +830,39 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
+        // Assume worse case that all has to be obtained from HTTP server
+        let isFresh: boolean = false;
+        let localVariableName: string = null;
+        // let localVariableName: string = false;
+        let localCacheable: boolean = false;
+
         return new Promise<Dashboard[]>((resolve, reject) => {
 
+                // Find DS in localCachingTable
+                let dataCachingTableIndex: number = this.dataCachingTable.findIndex(dct =>
+                    dct.key == tableName
+                );
 
-            if (tableName == 'Dashboard') {
+                if (dataCachingTableIndex >= 0) {
 
-            }
+                    // Only proceed localy if local cache allowed
+                    localCacheable = this.dataCachingTable[dataCachingTableIndex].localCacheable;
+
+                    if (localCacheable) {
+
+                        // Fresh if not expired as yet
+                        if (this.dataCachingTable[dataCachingTableIndex]
+                            .localExpiryDateTime >= new Date()) {
+                            isFresh = true;
+
+                            localVariableName = this.dataCachingTable[dataCachingTableIndex].localVariableName;
+
+                        } else {
+                            isFresh = false;
+                        };
+                    };
+                }
+                console.warn('xx key', dataCachingTableIndex)
 
 
             if (this.dashboards = []) {
