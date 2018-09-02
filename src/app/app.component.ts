@@ -6251,7 +6251,12 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickHelpTutorials', '@Start')
 
         // Get GV values
-        this.globalVariableService.getDashboardsNEW('dashboards')
+        this.globalVariableService.getDashboardsNEW('dashboards').then(res => {
+            let testDashboards: Dashboard[];
+            testDashboards = res;
+            console.warn('xx APP D []', testDashboards)
+        });
+
         // Count
         this.dbCanvasAppDatabase.table("localDashboards").count(res => {
             console.warn('xx count of localDashboard', res);

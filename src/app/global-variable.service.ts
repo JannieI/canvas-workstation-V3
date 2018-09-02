@@ -821,7 +821,7 @@ export class GlobalVariableService {
 
     }
 
-    getDashboardsNEW(tableName: string = ''): Promise<Dashboard[]> {
+    getDashboardsNEW(tableName: string = ''): Promise<any> {
         // Description: Gets all D from correct place: variable, localCache, getHTTP
         // Returns: this.dashboards array, unless:
         //   If not cached or if dirty, get from File
@@ -833,7 +833,7 @@ export class GlobalVariableService {
         // TODO - remove !
         this.sessionDebugging = true;
 
-        return new Promise<Dashboard[]>((resolve, reject) => {
+        return new Promise<any>((resolve, reject) => {
 
                 // Assume worse case that all has to be obtained from HTTP server
                 let isFresh: boolean = false;
@@ -846,7 +846,6 @@ export class GlobalVariableService {
                 let dataCachingTableIndex: number = this.dataCachingTable.findIndex(dct =>
                     dct.key == tableName
                 );
-                console.warn('xx dataCachingTableIndex', dataCachingTableIndex);
                 
                 if (dataCachingTableIndex >= 0) {
 
@@ -854,7 +853,6 @@ export class GlobalVariableService {
                     localCacheable = this.dataCachingTable[dataCachingTableIndex].localCacheable;
 
                     if (localCacheable) {
-                        console.warn('xx localCach', localCacheable);
                         
                         // Get var and table names
                         localVariableName = this.dataCachingTable
@@ -875,16 +873,16 @@ export class GlobalVariableService {
                         } else {
                             isFresh = false;
                         };
-                        console.warn('xx isFresh', isFresh, this.dataCachingTable[dataCachingTableIndex]
-                        .localExpiryDateTime, dn, tn, dl, tl, this.dataCachingTable[dataCachingTableIndex]
-                        .localVariableName, this.dataCachingTable[dataCachingTableIndex]
-                        .localTableName);
                         
                         // Use local cache variable or table if fresh
                         if (isFresh) {
                             if (localVariableName != null) {
                                 console.warn('xx return from VAR');
-                                return;
+        // var type = 'article';
+        // this[type+'_count'] = 1000;  // in a function we use "this";
+        // alert(this.article_count);
+                                console.warn('xx VAR dashboards', this[localVariableName])
+                                resolve(this[localVariableName]);
                             };
                             if (localTableName != null) {
                                 console.warn('xx return from TABLE');
