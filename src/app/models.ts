@@ -318,7 +318,7 @@ export class WebSocketMessage {
     content: any;                           // Payload, can be text string or Object or Array
     isBroadcast = false;                    // ?
     channel: string;                        // Channel on which message was sent
-    messageType: boolean;                   // Type of message, ie objectDirty, Message, etc
+    messageType: string;                    // Type of message, ie objectDirty, Message, etc
     action: string;                         // Optional Action, ie Add, Update, Delete, ReplaceAll
     objectName: string;                     // Affected data, ie Datasources, Users
     objectID: number;                       // Optional single Record affected, ie DatasourceID
