@@ -54,6 +54,9 @@ import { TributarySource }            from './models';
 import { Widget }                     from './models';
 import { WidgetCheckpoint }           from './models';
 
+// Dexie
+import Dexie from 'dexie';
+
 // TODO - to remove
 import { Token }                      from './models';
 
@@ -649,12 +652,45 @@ export class GlobalVariableService {
     isDirtyWidgetCheckpoints: boolean = true;
     isDirtyWidgets: boolean = true;
 
+    dbDataCachingTable;
+    dbCanvasAppDatabase;
 
 
     constructor(
         private http: HttpClient,
     ) {
      }
+
+     ngOnInit() {
+        // Initial
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables ngOnInit D,T id = ',
+                "color: black; background: lightgray; font-size: 10px",)
+        };
+
+        // var type = 'article';
+        // this[type+'_count'] = 1000;  // in a function we use "this";
+        // alert(this.article_count);
+
+        // Local App info DB
+        this.dbCanvasAppDatabase = new Dexie("CanvasAppDatabase");
+        this.dbCanvasAppDatabase.version(1).stores(
+            {
+                contacts: 'id, first, last',
+                localDashboards: 'id'
+            }
+        );
+        this.dbCanvasAppDatabase.open();
+
+        // Local CachingTable DB
+        this.dbDataCachingTable = new Dexie("DataCachingTable");
+        this.dbDataCachingTable.version(1).stores(
+            {
+                localDataCachingTable: 'key, localCacheable, localExpiryDateTime',
+            }
+        );
+        this.dbDataCachingTable.open();
+    }
 
      refreshCurrentDashboardInfo(dashboardID: number, dashboardTabID: number):
         Promise<boolean> {
@@ -886,6 +922,14 @@ export class GlobalVariableService {
                             };
                             if (localTableName != null) {
                                 console.warn('xx return from TABLE');
+                                let localDashboardArray: Dashboard[] = [];
+                                this.dbCanvasAppDatabase.table("localDashboards")
+                                    .toArray()
+                                    .then(res => {
+                                        localDashboardArray = res.map(row => row.dashboard);
+                                        console.log('xx Array', localDashboardArray)
+                                    });
+
                                 return;
                             };
                         };
