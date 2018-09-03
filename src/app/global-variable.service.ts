@@ -857,7 +857,7 @@ export class GlobalVariableService {
 
     }
 
-    getDashboardsNEW(tableName: string = ''): Promise<any> {
+    getDashboardsNEW(tableName: string = '', params: string = ''): Promise<any> {
         // Description: Gets all D from correct place: variable, localCache, getHTTP
         // Returns: this.dashboards array, unless:
         //   If not cached or if dirty, get from File
@@ -916,6 +916,7 @@ export class GlobalVariableService {
         // alert(this.article_count);
                                 console.warn('xx VAR dashboards', this[localVariableName])
                                 resolve(this[localVariableName]);
+                                return;
                             };
                             if (localTableName != null) {
                                 console.warn('xx return from TABLE');
@@ -927,13 +928,22 @@ export class GlobalVariableService {
                                         console.log('xx Array', localDashboardArray)
                                     });
 
+                                resolve(localDashboardArray);
                                 return;
                             };
                         };
                     };
                 };
                 console.warn('xx return from HTTP')
+        
+                // Get from HTTP server
+                let url: string = tableName + params;
 
+                this.get(url)
+                    .then(res => {
+                        resolve(res);
+                        return;
+                    });
                 
 
                 // if (this.dashboards == []) {
