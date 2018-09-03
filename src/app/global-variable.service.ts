@@ -659,7 +659,28 @@ export class GlobalVariableService {
     constructor(
         private http: HttpClient,
     ) {
-     }
+        // Local App info DB
+        this.dbCanvasAppDatabase = new Dexie("CanvasAppDatabase");
+        this.dbCanvasAppDatabase.version(1).stores(
+            {
+                contacts: 'id, first, last',
+                localDashboards: 'id'
+            }
+        );
+        this.dbCanvasAppDatabase.open();
+
+        // Local CachingTable DB
+        this.dbDataCachingTable = new Dexie("DataCachingTable");
+        this.dbDataCachingTable.version(1).stores(
+            {
+                localDataCachingTable: 'key, localCacheable, localExpiryDateTime',
+            }
+        );
+        this.dbDataCachingTable.open();
+
+        console.warn('xx local DBs created');
+
+    }
 
      ngOnInit() {
         // Initial
@@ -879,14 +900,14 @@ export class GlobalVariableService {
                 let dataCachingTableIndex: number = this.dataCachingTable.findIndex(dct =>
                     dct.key == tableName
                 );
-                
+
                 if (dataCachingTableIndex >= 0) {
 
                     // Only proceed locally if local cache allowed
                     localCacheable = this.dataCachingTable[dataCachingTableIndex].localCacheable;
 
                     if (localCacheable) {
-                        
+
                         // Get var and table names
                         localVariableName = this.dataCachingTable
                             [dataCachingTableIndex].localVariableName;
@@ -902,11 +923,11 @@ export class GlobalVariableService {
                             .localExpiryDateTime);
                         let tl: number = dl.getTime();
                         if (tl >= tn) {
-                            isFresh = true;            
+                            isFresh = true;
                         } else {
                             isFresh = false;
                         };
-                        
+
                         // Use local cache variable or table if fresh
                         if (isFresh) {
                             if (localVariableName != null) {
@@ -921,21 +942,21 @@ export class GlobalVariableService {
                             if (localTableName != null) {
                                 console.warn('xx return from TABLE');
                                 let localDashboardArray: Dashboard[] = [];
-                                this.dbCanvasAppDatabase.table("localDashboards")
+                                this.dbCanvasAppDatabase.table(localTableName)
                                     .toArray()
                                     .then(res => {
                                         localDashboardArray = res.map(row => row.dashboard);
                                         console.log('xx Array', localDashboardArray)
-                                    });
 
-                                resolve(localDashboardArray);
+                                        resolve(localDashboardArray);
+                                });
                                 return;
                             };
                         };
                     };
                 };
                 console.warn('xx return from HTTP')
-        
+
                 // Get from HTTP server
                 let url: string = tableName + params;
 
@@ -944,7 +965,7 @@ export class GlobalVariableService {
                         resolve(res);
                         return;
                     });
-                
+
 
                 // if (this.dashboards == []) {
                 //     resolve(this.dashboards);
