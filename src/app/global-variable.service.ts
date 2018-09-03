@@ -903,18 +903,18 @@ export class GlobalVariableService {
 
                 if (dataCachingTableIndex >= 0) {
 
+                    // Get var and table names
+                    localVariableName = this.dataCachingTable
+                        [dataCachingTableIndex].localVariableName;
+                    localCurrentVariableName = this.dataCachingTable
+                        [dataCachingTableIndex].localCurrentVariableName;
+                    localTableName  = this.dataCachingTable
+                        [dataCachingTableIndex].localTableName;
+
                     // Only proceed locally if local cache allowed
                     localCacheable = this.dataCachingTable[dataCachingTableIndex].localCacheable;
 
                     if (localCacheable) {
-
-                        // Get var and table names
-                        localVariableName = this.dataCachingTable
-                            [dataCachingTableIndex].localVariableName;
-                        localCurrentVariableName = this.dataCachingTable
-                            [dataCachingTableIndex].localCurrentVariableName;
-                        localTableName  = this.dataCachingTable
-                            [dataCachingTableIndex].localTableName;
 
                         // Fresh if not expired as yet
                         let dn: Date = new Date();
@@ -962,6 +962,19 @@ export class GlobalVariableService {
 
                 this.get(url)
                     .then(res => {
+
+                        console.warn('xx vars', dataCachingTableIndex, localCacheable, localVariableName);
+                        
+                        if (dataCachingTableIndex >= 0) {
+                            if (localCacheable) {
+                                if (localVariableName != null) {
+                                    console.warn('xx updated VAR');
+                                    res = this[localVariableName];
+                                    console.warn('xx dashboards', this.dashboards)
+                                };
+                            };
+                        };
+
                         resolve(res);
                         return;
                     });
