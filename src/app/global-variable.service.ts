@@ -965,12 +965,31 @@ export class GlobalVariableService {
 
                         console.warn('xx vars', dataCachingTableIndex, localCacheable, localVariableName);
                         
+                        // If cached, filled local info
                         if (dataCachingTableIndex >= 0) {
                             if (localCacheable) {
+
+                                // Fill local Var
                                 if (localVariableName != null) {
                                     console.warn('xx updated VAR');
-                                    res = this[localVariableName];
+                                    this[localVariableName] = res;
                                     console.warn('xx dashboards', this.dashboards)
+                                };
+
+                                // Fill local Table
+                                if (localTableName != null) {
+
+                                    this.dbCanvasAppDatabase.table(localTableName)
+                                    .bulkPut(res)
+                                    .then(resPut => {
+                                        console.warn('xx after bulkPut', resPut);
+                        
+                                        // Count
+                                        this.dbCanvasAppDatabase.table(localTableName)
+                                            .count(resCount => {
+                                                console.warn('xx with count of', resCount);
+                                        });
+                                    });                                    
                                 };
                             };
                         };
