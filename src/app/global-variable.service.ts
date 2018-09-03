@@ -878,6 +878,44 @@ export class GlobalVariableService {
 
     }
 
+    actionWebSocket(webSocketMessage: WebSocketMessage){
+        // Description: Actions received Web Socket message
+        // Returns: 
+        if (this.sessionDebugging) {
+            console.log('%c        Global-Variables actionWebSocket ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        };
+
+        // Get last WS# from local DB
+
+        // If we have missed messages, reflesh this table
+
+        // If my own message, it is actioned already
+        if (webSocketMessage.sender == this.currentUser.userID) {
+            // Update the WS#
+
+            return;
+        };
+
+        // Add an object
+
+        // Delete an object
+
+        // Clear a table
+
+        // Replace a whole table
+
+        // sender
+        // content
+        // isBroadcast
+        // channel
+        // messageType
+        // action
+        // objectName
+        // objectID
+        // severity
+    };
+
     getDashboardsNEW(tableName: string = '', params: string = ''): Promise<any> {
         // Description: Gets all D from correct place: variable, localCache, getHTTP
         // Returns: this.dashboards array, unless:
@@ -972,6 +1010,7 @@ export class GlobalVariableService {
                                 // Fill local Var
                                 if (localVariableName != null) {
                                     console.warn('xx updated VAR');
+                                    this[localVariableName] = [];
                                     this[localVariableName] = res;
                                     console.warn('xx dashboards', this.dashboards)
                                 };

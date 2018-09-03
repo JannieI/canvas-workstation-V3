@@ -315,12 +315,13 @@ export class CanvasGroup {
 
 export class WebSocketMessage {
     sender: string;                         // UserID who sent it, Eazl = backend
-    content: string;                        // Message text
+    content: any;                           // Payload, can be text string or Object or Array
     isBroadcast = false;                    // ?
     channel: string;                        // Channel on which message was sent
     messageType: boolean;                   // Type of message, ie objectDirty, Message, etc
-    objectName: string;                     // Affected data, ie Datasource, Users
-    objectID: number;                       // Record affected, ie Datasource ID
+    action: string;                         // Optional Action, ie Add, Update, Delete, ReplaceAll
+    objectName: string;                     // Affected data, ie Datasources, Users
+    objectID: number;                       // Optional single Record affected, ie DatasourceID
     severity: string;                       // How severy is badness, critical = refresh immediatetly
 }
 
