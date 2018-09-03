@@ -600,7 +600,7 @@ export class GlobalVariableService {
     loggedIntoServer = new BehaviorSubject<boolean>(true);
     menuActionResize = new BehaviorSubject<boolean>(false);
     sessionDateTimeLoggedin: string = '';
-    sessionDebugging: boolean = false;      // True to log multiple messages to Console
+    sessionDebugging: boolean = true;      // True to log multiple messages to Console
     sessionLogging: boolean = false;
     templateInUse = new BehaviorSubject<boolean>(false);
     widgetGroup = new BehaviorSubject<number[]>([]);
@@ -865,9 +865,6 @@ export class GlobalVariableService {
             console.log('%c        Global-Variables getDashboardsNEW ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
-
-        // TODO - remove !
-        this.sessionDebugging = true;
 
         return new Promise<any>((resolve, reject) => {
 
