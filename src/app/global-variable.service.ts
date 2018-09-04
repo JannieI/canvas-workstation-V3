@@ -881,7 +881,7 @@ export class GlobalVariableService {
 
     actionWebSocket(webSocketMessage: WebSocketMessage){
         // Description: Actions received Web Socket message
-        // Returns: 
+        // Returns:
         if (this.sessionDebugging) {
             console.log('%c        Global-Variables actionWebSocket ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
@@ -897,14 +897,12 @@ export class GlobalVariableService {
             let localCurrentVariableName: string = null;
             let localTableName: string = null;
             let localLastWebSocketNumber: number = -1;
-            let serverTableName: string = webSocketMessage.objectName;
             let serverLastWebSocketNumber: number = webSocketMessage.lastWebSocketNumber;
-            let newLocalExpiryDateTime: Date = webSocketMessage.newLocalExpiryDateTime;
 
-            
+
             // Find DS in localCachingTable
             let dataCachingTableIndex: number = this.dataCachingTable.findIndex(dct =>
-                dct.key == serverTableName
+                dct.key == webSocketMessage.objectName
             );
 
             // If in CachingTable:
@@ -924,18 +922,6 @@ export class GlobalVariableService {
 
                 // Only proceed locally if local cache allowed
                 if (localCacheable) {
-                    
-                    // // Fresh if not expired as yet
-                    // let dn: Date = new Date();
-                    // let tn: number = dn.getTime()
-                    // let dl: Date = new Date(this.dataCachingTable[dataCachingTableIndex]
-                    //     .localExpiryDateTime);
-                    // let tl: number = dl.getTime();
-                    // if (tl >= tn) {
-                    //     isFresh = true;
-                    // } else {
-                    //     isFresh = false;
-                    // };                    
 
                     // If we have missed messages, reflesh this table
                     if ( (localLastWebSocketNumber + 1) != serverLastWebSocketNumber ) {
@@ -944,7 +930,7 @@ export class GlobalVariableService {
 
                     // Create Var with data
                     let dataCachingTableSingle: DataCachingTable = {
-                        key: serverTableName,
+                        key: webSocketMessage.objectName,
                         objectID: this.dataCachingTable[dataCachingTableIndex].objectID,
                         serverCacheable: this.dataCachingTable[dataCachingTableIndex].serverCacheable,
                         serverLastUpdatedDateTime: this.dataCachingTable[dataCachingTableIndex].
@@ -970,7 +956,7 @@ export class GlobalVariableService {
                         .put(dataCachingTableSingle)
                         .then(res => {
                             console.warn('xx End Update for localDataCachingTable');
-                                                
+
                         // If my own message, it is actioned already
                         if (webSocketMessage.sender == this.currentUser.userID) {
 
@@ -981,7 +967,7 @@ export class GlobalVariableService {
                         if (webSocketMessage.action == 'AddUpdate') {
 
                             // Create Var with data
-                            let localObjectSingle = 
+                            let localObjectSingle =
                                 {
                                     id: webSocketMessage.objectID,
                                     dashboard: webSocketMessage.content
@@ -992,6 +978,11 @@ export class GlobalVariableService {
                                 this[localVariableName].push(localObjectSingle);
                             };
 
+                            // Update Current Var
+                            if (localCurrentVariableName != null) {
+                                this[localCurrentVariableName].push(localObjectSingle);
+                            };
+
                             // Add / Update DB
                             if (localTableName != null) {
 
@@ -999,7 +990,7 @@ export class GlobalVariableService {
                                     .put(localObjectSingle)
                                     .then(res => {
                                         console.warn('xx End Add/Update for 1 Object');
-                                    });                        
+                                    });
                             };
                         };
 
@@ -1007,7 +998,7 @@ export class GlobalVariableService {
                         if (webSocketMessage.action == 'Add') {
 
                             // Create Var with data
-                            let localObjectSingle = 
+                            let localObjectSingle =
                                 {
                                     id: webSocketMessage.objectID,
                                     dashboard: webSocketMessage.content
@@ -1016,6 +1007,14 @@ export class GlobalVariableService {
                             // Update Var
                             if (localVariableName != null) {
                                 this[localVariableName] = this[localVariableName].filter(
+                                    lv => {
+                                        lv.id != webSocketMessage.objectID
+                                    });
+                            };
+
+                            // Update Current Var
+                            if (localCurrentVariableName != null) {
+                                this[localCurrentVariableName] = this[localCurrentVariableName].filter(
                                     lv => {
                                         lv.id != webSocketMessage.objectID
                                     });
@@ -1041,6 +1040,11 @@ export class GlobalVariableService {
                                 this[localVariableName] = [];
                             };
 
+                            // Update Var
+                            if (localCurrentVariableName != null) {
+                                this[localCurrentVariableName] = [];
+                            };
+                            
                             // Add / Update DB
                             if (localTableName != null) {
 
@@ -1048,7 +1052,7 @@ export class GlobalVariableService {
                                     .clear()
                                     .then(res => {
                                         console.warn('xx after Clear All');
-                                    });                        
+                                    });
                             };
                         };
 
@@ -1071,6 +1075,11 @@ export class GlobalVariableService {
                                 this[localVariableName] = webSocketMessage.content;
                             };
 
+                            // Update Var
+                            if (localCurrentVariableName != null) {
+                                this[localCurrentVariableName] = webSocketMessage.content;
+                            };
+                            
                             // Update DB
                             if (localTableName != null) {
 
@@ -1078,14 +1087,14 @@ export class GlobalVariableService {
                                     .bulkPut(localObjectArray)
                                     .then(res => {
                                         console.warn('xx after Replace all');
-                                    });                        
+                                    });
                             };
                         };
                     });
                 };
             };
         };
-        
+
         // sender
         // content
         // isBroadcast
@@ -1183,7 +1192,7 @@ export class GlobalVariableService {
                     .then(res => {
 
                         console.warn('xx vars', dataCachingTableIndex, localCacheable, localVariableName);
-                        
+
                         // If cached, filled local info
                         if (dataCachingTableIndex >= 0) {
                             if (localCacheable) {
@@ -1203,13 +1212,13 @@ export class GlobalVariableService {
                                     .bulkPut(res)
                                     .then(resPut => {
                                         console.warn('xx after bulkPut', resPut);
-                        
+
                                         // Count
                                         this.dbCanvasAppDatabase.table(localTableName)
                                             .count(resCount => {
                                                 console.warn('xx with count of', resCount);
                                         });
-                                    });                                    
+                                    });
                                 };
                             };
                         };
