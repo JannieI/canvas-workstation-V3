@@ -896,8 +896,9 @@ export class GlobalVariableService {
             let localVariableName: string = null;
             let localCurrentVariableName: string = null;
             let localTableName: string = null;
+            let localLastWebSocketNumber: number = -1;
             let serverTableName: string = webSocketMessage.objectName;
-            let localLastWebSocketNumber: number = webSocketMessage.lastWebSocketNumber;
+            let serverLastWebSocketNumber: number = webSocketMessage.lastWebSocketNumber;
 
             
             // Find DS in localCachingTable
@@ -909,16 +910,18 @@ export class GlobalVariableService {
             if (dataCachingTableIndex >= 0) {
 
                 // Get var and table names
-                localVariableName = this.dataCachingTable
-                    [dataCachingTableIndex].localVariableName;
-                localCurrentVariableName = this.dataCachingTable
-                    [dataCachingTableIndex].localCurrentVariableName;
-                localTableName  = this.dataCachingTable
-                    [dataCachingTableIndex].localTableName;
+                localCacheable = this.dataCachingTable[dataCachingTableIndex].
+                    localCacheable;
+                localVariableName = this.dataCachingTable[dataCachingTableIndex].
+                    localVariableName;
+                localCurrentVariableName = this.dataCachingTable[dataCachingTableIndex].
+                    localCurrentVariableName;
+                localTableName  = this.dataCachingTable[dataCachingTableIndex].
+                    localTableName;
+                localLastWebSocketNumber  = this.dataCachingTable[dataCachingTableIndex].
+                    localLastWebSocketNumber;
 
                 // Only proceed locally if local cache allowed
-                localCacheable = this.dataCachingTable[dataCachingTableIndex].localCacheable;
-
                 if (localCacheable) {
                     
                     // // Fresh if not expired as yet
@@ -934,7 +937,10 @@ export class GlobalVariableService {
                     // };                    
 
                     // If we have missed messages, reflesh this table
+                    if ( (localLastWebSocketNumber + 1) != serverLastWebSocketNumber ) {
 
+                    };
+                    
                     // If my own message, it is actioned already
                     if (webSocketMessage.sender == this.currentUser.userID) {
                         // Update the WS#
