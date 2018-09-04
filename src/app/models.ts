@@ -324,6 +324,7 @@ export class WebSocketMessage {
     objectID: number;                       // Optional single Record affected, ie DatasourceID
     severity: string;                       // How severy is badness, critical = refresh immediatetly
     lastWebSocketNumber: number;            // Last WS number for THIS object
+    newLocalExpiryDateTime: Date;           // New Expiry date calced by Server
 }
 
 // Data

@@ -109,6 +109,7 @@ interface IDataCachingTable {
     localCurrentVariableName: string;       // Optional name of memory current variable
     localTableName: string;                 // Optional name of Table in IndexedDB
     localLastWebSocketNumber: number;       // Last WS number processed
+    newLocalExpiryDateTime: Date;           // New Expiry date calced by Server
 }
 
 export class LocalDataCachingTable implements IDataCachingTable {
@@ -125,6 +126,7 @@ export class LocalDataCachingTable implements IDataCachingTable {
     localCurrentVariableName: string;       // Optional name of memory current variable
     localTableName: string;                 // Optional name of Table in IndexedDB
     localLastWebSocketNumber: number;       // Last WS number processed
+    newLocalExpiryDateTime: Date;           // New Expiry date calced by Server
 
     constructor(key: string,
         serverCacheable: boolean,
@@ -138,7 +140,8 @@ export class LocalDataCachingTable implements IDataCachingTable {
         localVariableName: string,
         localCurrentVariableName: string,
         localTableName: string,
-        localLastWebSocketNumber: number
+        localLastWebSocketNumber: number,
+        newLocalExpiryDateTime: Date
     ) {
 
             this.key = key,
@@ -154,6 +157,8 @@ export class LocalDataCachingTable implements IDataCachingTable {
             this.localCurrentVariableName = localCurrentVariableName;
             this.localTableName = localTableName;
             this.localLastWebSocketNumber = localLastWebSocketNumber;
+            this.newLocalExpiryDateTime = newLocalExpiryDateTime;
+
                 }
 }
 
@@ -6369,7 +6374,8 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
             localVariableName: 'dashboards',
             localCurrentVariableName: 'currentDashboards',
             localTableName: 'dashboards',
-            localLastWebSocketNumber: -1
+            localLastWebSocketNumber: -1,
+            newLocalExpiryDateTime: null
     
         }];
 
@@ -6499,7 +6505,9 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                             localVariableName: 'dashboards',
                             localCurrentVariableName: 'currentDashboards',
                             localTableName: 'dashboards',
-                            localLastWebSocketNumber: -1
+                            localLastWebSocketNumber: -1,
+                            newLocalExpiryDateTime: null
+
                         }
                     ).then(res => {
                         console.log('xx stored dbDataCachingTable', res);

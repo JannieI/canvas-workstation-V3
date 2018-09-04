@@ -899,6 +899,7 @@ export class GlobalVariableService {
             let localLastWebSocketNumber: number = -1;
             let serverTableName: string = webSocketMessage.objectName;
             let serverLastWebSocketNumber: number = webSocketMessage.lastWebSocketNumber;
+            let newLocalExpiryDateTime: Date = webSocketMessage.newLocalExpiryDateTime;
 
             
             // Find DS in localCachingTable
@@ -957,12 +958,15 @@ export class GlobalVariableService {
                                 serverLastWSsequenceNr,
                             localCacheable: this.dataCachingTable[dataCachingTableIndex].localCacheable,
                             localLastUpdatedDateTime: new Date(),
-                            localExpiryDateTime: webSocketMessage.
-                            localVariableName: this.dataCachingTable[dataCachingTableIndex].localVariableName,
-                            localCurrentVariableName: this.dataCachingTable[dataCachingTableIndex].
-                                localCurrentVariableName,
-                            localTableName: this.dataCachingTable[dataCachingTableIndex].localTableName,
-                            localLastWebSocketNumber: this.dataCachingTable[dataCachingTableIndex].localLastWebSocketNumber
+                            localExpiryDateTime: webSocketMessage.newLocalExpiryDateTime,
+                            localVariableName: this.dataCachingTable[dataCachingTableIndex].
+                                localVariableName,
+                            localCurrentVariableName: this.dataCachingTable
+                                [dataCachingTableIndex].localCurrentVariableName,
+                            localTableName: this.dataCachingTable[dataCachingTableIndex].
+                                localTableName,
+                            localLastWebSocketNumber: this.dataCachingTable
+                                [dataCachingTableIndex].localLastWebSocketNumber
                         };
 
                         // Update DB
