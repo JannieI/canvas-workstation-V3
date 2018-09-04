@@ -407,6 +407,7 @@ export class DataCachingTable {
     localVariableName: string;              // Optional name of memory variable
     localCurrentVariableName: string;       // Optional name of memory current variable
     localTableName: string;                 // Optional name of Table in IndexedDB
+    localLastWebSocketNumber: number;       // Last WS number processed
 }
 
 export class Datasource {

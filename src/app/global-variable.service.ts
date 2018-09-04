@@ -887,61 +887,75 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
+        // Handle all WS messages that relates to data
         if (webSocketMessage.messageType == 'DataUpdates') {
 
             // Get info like last WS# from local DB
-                let isFresh: boolean = false;
-                let localCacheable: boolean = false;
-                let localVariableName: string = null;
-                let localCurrentVariableName: string = '';
-                let localTableName: string = '';
-                let serverTableName: string = webSocketMessage.objectName;
-                
-                // Find DS in localCachingTable
-                let dataCachingTableIndex: number = this.dataCachingTable.findIndex(dct =>
-                    dct.key == serverTableName
-                );
+            // let isFresh: boolean = false;
+            let localCacheable: boolean = false;
+            let localVariableName: string = null;
+            let localCurrentVariableName: string = null;
+            let localTableName: string = null;
+            let serverTableName: string = webSocketMessage.objectName;
+            
+            // Find DS in localCachingTable
+            let dataCachingTableIndex: number = this.dataCachingTable.findIndex(dct =>
+                dct.key == serverTableName
+            );
 
-                if (dataCachingTableIndex >= 0) {
+            // If in CachingTable:
+            if (dataCachingTableIndex >= 0) {
 
-                    // Get var and table names
-                    localVariableName = this.dataCachingTable
-                        [dataCachingTableIndex].localVariableName;
-                    localCurrentVariableName = this.dataCachingTable
-                        [dataCachingTableIndex].localCurrentVariableName;
-                    localTableName  = this.dataCachingTable
-                        [dataCachingTableIndex].localTableName;
+                // Get var and table names
+                localVariableName = this.dataCachingTable
+                    [dataCachingTableIndex].localVariableName;
+                localCurrentVariableName = this.dataCachingTable
+                    [dataCachingTableIndex].localCurrentVariableName;
+                localTableName  = this.dataCachingTable
+                    [dataCachingTableIndex].localTableName;
 
-                    // Only proceed locally if local cache allowed
-                    localCacheable = this.dataCachingTable[dataCachingTableIndex].localCacheable;
+                // Only proceed locally if local cache allowed
+                localCacheable = this.dataCachingTable[dataCachingTableIndex].localCacheable;
 
-                    if (localCacheable) {
+                if (localCacheable) {
+                    
+                    // // Fresh if not expired as yet
+                    // let dn: Date = new Date();
+                    // let tn: number = dn.getTime()
+                    // let dl: Date = new Date(this.dataCachingTable[dataCachingTableIndex]
+                    //     .localExpiryDateTime);
+                    // let tl: number = dl.getTime();
+                    // if (tl >= tn) {
+                    //     isFresh = true;
+                    // } else {
+                    //     isFresh = false;
+                    // };                    
+
+                    // If we have missed messages, reflesh this table
+
+                    // If my own message, it is actioned already
+                    if (webSocketMessage.sender == this.currentUser.userID) {
+                        // Update the WS#
+
+                        return;
+                    };
+
+                    // Add an object
+                    if (webSocketMessage.action == 'Add') {
+                    };
+
+                    // Delete an object
+                    if (webSocketMessage.action == 'Add') {
+                    };
+
+                    // Clear a table
+                    if (webSocketMessage.action == 'Add') {
+                    };
+
+                    // Replace a whole table
+                    if (webSocketMessage.action == 'Add') {
                     };
                 };
-
-            // If we have missed messages, reflesh this table
-
-            // If my own message, it is actioned already
-            if (webSocketMessage.sender == this.currentUser.userID) {
-                // Update the WS#
-
-                return;
-            };
-
-            // Add an object
-            if (webSocketMessage.action == 'Add') {
-            };
-
-            // Delete an object
-            if (webSocketMessage.action == 'Add') {
-            };
-
-            // Clear a table
-            if (webSocketMessage.action == 'Add') {
-            };
-
-            // Replace a whole table
-            if (webSocketMessage.action == 'Add') {
             };
         };
         
