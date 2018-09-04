@@ -1005,14 +1005,41 @@ export class GlobalVariableService {
 
                         // Delete an object
                         if (webSocketMessage.action == 'Add') {
+
+                            // Create Var with data
+                            let localObjectSingle = 
+                                {
+                                    id: webSocketMessage.objectID,
+                                    dashboard: webSocketMessage.content
+                                };
+
+                            // Update Var
+                            if (localVariableName != null) {
+                                this[localVariableName] = this[localVariableName].filter(
+                                    lv => {
+                                        lv.id != webSocketMessage.objectID
+                                    });
+                            };
+
+                            // Delete from DB
+                            if (localTableName != null) {
+
+                                this.dbCanvasAppDatabase.table(localTableName)
+                                    .where('id').equals(webSocketMessage.objectID)
+                                    .delete()
+                                    .then(res => {
+                                        console.warn('xx count after delete above ', webSocketMessage.objectID);
+                                    });
+                            };
                         };
 
                         // Clear a table
-                        if (webSocketMessage.action == 'Add') {
+                        if (webSocketMessage.action == 'ClearAll') {
+
                         };
 
                         // Replace a whole table
-                        if (webSocketMessage.action == 'Add') {
+                        if (webSocketMessage.action == 'Replace') {
                         };
                     });
                 };
