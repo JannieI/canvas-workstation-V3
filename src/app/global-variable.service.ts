@@ -970,10 +970,10 @@ export class GlobalVariableService {
                         };
 
                         // Update DB
-                        this.dbCanvasAppDatabase.table("localDashboards")
+                        this.dbCanvasAppDatabase.table("localDataCachingTable")
                             .put(dataCachingTableSingle)
                             .then(res => {
-                                console.warn('xx End Add/Update for 1 Dashboard');
+                                console.warn('xx End Update for localDataCachingTable');
                             });
 
                         return;
