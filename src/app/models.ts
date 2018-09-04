@@ -323,6 +323,7 @@ export class WebSocketMessage {
     objectName: string;                     // Affected data, ie Datasources, Users
     objectID: number;                       // Optional single Record affected, ie DatasourceID
     severity: string;                       // How severy is badness, critical = refresh immediatetly
+    lastWebSocketNumber: number;            // Last WS number for THIS object
 }
 
 // Data

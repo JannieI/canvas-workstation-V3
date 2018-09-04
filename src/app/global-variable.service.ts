@@ -897,6 +897,8 @@ export class GlobalVariableService {
             let localCurrentVariableName: string = null;
             let localTableName: string = null;
             let serverTableName: string = webSocketMessage.objectName;
+            let localLastWebSocketNumber: number = webSocketMessage.lastWebSocketNumber;
+
             
             // Find DS in localCachingTable
             let dataCachingTableIndex: number = this.dataCachingTable.findIndex(dct =>
