@@ -97,6 +97,7 @@ class DataCachingTable extends Dexie {
 
 interface IDataCachingTable {
     key: string;                             // Unique key
+    objectID: number;                       // Optional record ID, ie for Data
     serverCacheable: boolean;                // True if cached on server
     serverLastUpdatedDateTime: Date;         // When cached last refreshed on server
     serverExpiryDateTime: Date;              // When cache expires on server
@@ -111,6 +112,7 @@ interface IDataCachingTable {
 
 export class LocalDataCachingTable implements IDataCachingTable {
     key: string;
+    objectID: number;                       // Optional record ID, ie for Data
     serverCacheable: boolean;
     serverLastUpdatedDateTime: Date;
     serverExpiryDateTime: Date;
@@ -124,6 +126,7 @@ export class LocalDataCachingTable implements IDataCachingTable {
 
     constructor(key: string,
         serverCacheable: boolean,
+        objectID: number,
         serverLastUpdatedDateTime: Date,
         serverExpiryDateTime: Date,
         serverLastWSsequenceNr: number,
@@ -137,6 +140,7 @@ export class LocalDataCachingTable implements IDataCachingTable {
 
             this.key = key,
             this.serverCacheable = serverCacheable,
+            this.objectID = objectID;
             this.serverLastUpdatedDateTime = serverLastUpdatedDateTime,
             this.serverExpiryDateTime = serverExpiryDateTime,
             this.serverLastWSsequenceNr = serverLastWSsequenceNr,
@@ -6350,6 +6354,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         this.localDataCachingTable = [];
         this.localDataCachingTable = [{
             key: 'dashboards',
+            objectID: null,
             serverCacheable: true,
             serverLastUpdatedDateTime: new Date(),
             serverExpiryDateTime: new Date(),

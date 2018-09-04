@@ -396,6 +396,7 @@ export class Dataset {
 
 export class DataCachingTable {
     key: string;                            // Unique key
+    objectID: number;                       // Optional record ID, ie for Data
     serverCacheable: boolean;               // True if cached on server
     serverLastUpdatedDateTime: Date;        // When cached last refreshed on server
     serverExpiryDateTime: Date;             // When cache expires on server
