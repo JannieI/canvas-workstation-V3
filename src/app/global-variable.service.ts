@@ -1036,6 +1036,20 @@ export class GlobalVariableService {
                         // Clear a table
                         if (webSocketMessage.action == 'ClearAll') {
 
+                            // Update Var
+                            if (localVariableName != null) {
+                                this[localVariableName] = [];
+                            };
+
+                            // Add / Update DB
+                            if (localTableName != null) {
+
+                                this.dbCanvasAppDatabase.table(localTableName)
+                                    .clear()
+                                    .then(res => {
+                                        console.warn('xx after Clear All');
+                                    });                        
+                            };
                         };
 
                         // Replace a whole table
