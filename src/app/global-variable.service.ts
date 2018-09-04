@@ -942,39 +942,38 @@ export class GlobalVariableService {
                         alert('Get from HTTP and refresh = A portion code')
                     };
 
+                    // Create Var with data
+                    let dataCachingTableSingle: DataCachingTable = {
+                        key: serverTableName,
+                        objectID: this.dataCachingTable[dataCachingTableIndex].objectID,
+                        serverCacheable: this.dataCachingTable[dataCachingTableIndex].serverCacheable,
+                        serverLastUpdatedDateTime: this.dataCachingTable[dataCachingTableIndex].
+                            serverLastUpdatedDateTime,
+                        serverExpiryDateTime: this.dataCachingTable[dataCachingTableIndex].serverExpiryDateTime,
+                        serverLastWSsequenceNr: this.dataCachingTable[dataCachingTableIndex].
+                            serverLastWSsequenceNr,
+                        localCacheable: this.dataCachingTable[dataCachingTableIndex].localCacheable,
+                        localLastUpdatedDateTime: new Date(),
+                        localExpiryDateTime: webSocketMessage.newLocalExpiryDateTime,
+                        localVariableName: this.dataCachingTable[dataCachingTableIndex].
+                            localVariableName,
+                        localCurrentVariableName: this.dataCachingTable
+                            [dataCachingTableIndex].localCurrentVariableName,
+                        localTableName: this.dataCachingTable[dataCachingTableIndex].
+                            localTableName,
+                        localLastWebSocketNumber: this.dataCachingTable
+                            [dataCachingTableIndex].localLastWebSocketNumber
+                    };
+
+                    // Update DB with WS#
+                    this.dbCanvasAppDatabase.table("localDataCachingTable")
+                        .put(dataCachingTableSingle)
+                        .then(res => {
+                            console.warn('xx End Update for localDataCachingTable');
+                        });
+                                            
                     // If my own message, it is actioned already
                     if (webSocketMessage.sender == this.currentUser.userID) {
-                        // Update the WS#
-                        
-                        // Create Var with data
-                        let dataCachingTableSingle: DataCachingTable = {
-                            key: serverTableName,
-                            objectID: this.dataCachingTable[dataCachingTableIndex].objectID,
-                            serverCacheable: this.dataCachingTable[dataCachingTableIndex].serverCacheable,
-                            serverLastUpdatedDateTime: this.dataCachingTable[dataCachingTableIndex].
-                                serverLastUpdatedDateTime,
-                            serverExpiryDateTime: this.dataCachingTable[dataCachingTableIndex].serverExpiryDateTime,
-                            serverLastWSsequenceNr: this.dataCachingTable[dataCachingTableIndex].
-                                serverLastWSsequenceNr,
-                            localCacheable: this.dataCachingTable[dataCachingTableIndex].localCacheable,
-                            localLastUpdatedDateTime: new Date(),
-                            localExpiryDateTime: webSocketMessage.newLocalExpiryDateTime,
-                            localVariableName: this.dataCachingTable[dataCachingTableIndex].
-                                localVariableName,
-                            localCurrentVariableName: this.dataCachingTable
-                                [dataCachingTableIndex].localCurrentVariableName,
-                            localTableName: this.dataCachingTable[dataCachingTableIndex].
-                                localTableName,
-                            localLastWebSocketNumber: this.dataCachingTable
-                                [dataCachingTableIndex].localLastWebSocketNumber
-                        };
-
-                        // Update DB
-                        this.dbCanvasAppDatabase.table("localDataCachingTable")
-                            .put(dataCachingTableSingle)
-                            .then(res => {
-                                console.warn('xx End Update for localDataCachingTable');
-                            });
 
                         return;
                     };
