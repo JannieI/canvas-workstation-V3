@@ -1054,6 +1054,32 @@ export class GlobalVariableService {
 
                         // Replace a whole table
                         if (webSocketMessage.action == 'Replace') {
+
+                            // Create Var with data
+                            let localObjectArray: any[];
+                            for (var i = 0; i < webSocketMessage.content.length; i++) {
+                                localObjectArray.push(
+                                    {
+                                        id: webSocketMessage.content[i].id,
+                                        dashboard: webSocketMessage.content[i],
+                                    }
+                                )
+                            };
+
+                            // Update Var
+                            if (localVariableName != null) {
+                                this[localVariableName] = webSocketMessage.content;
+                            };
+
+                            // Update DB
+                            if (localTableName != null) {
+
+                                this.dbCanvasAppDatabase.table(localTableName)
+                                    .bulkPut(localObjectArray)
+                                    .then(res => {
+                                        console.warn('xx after Replace all');
+                                    });                        
+                            };
                         };
                     });
                 };
