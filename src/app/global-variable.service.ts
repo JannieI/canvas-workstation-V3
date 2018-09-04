@@ -970,29 +970,51 @@ export class GlobalVariableService {
                         .put(dataCachingTableSingle)
                         .then(res => {
                             console.warn('xx End Update for localDataCachingTable');
-                        });
-                                            
-                    // If my own message, it is actioned already
-                    if (webSocketMessage.sender == this.currentUser.userID) {
+                                                
+                        // If my own message, it is actioned already
+                        if (webSocketMessage.sender == this.currentUser.userID) {
 
-                        return;
-                    };
+                            return;
+                        };
 
-                    // Add an object
-                    if (webSocketMessage.action == 'Add') {
-                    };
+                        // Add/Update an object
+                        if (webSocketMessage.action == 'AddUpdate') {
 
-                    // Delete an object
-                    if (webSocketMessage.action == 'Add') {
-                    };
+                            // Create Var with data
+                            let localObjectSingle = 
+                                {
+                                    id: webSocketMessage.objectID,
+                                    dashboard: webSocketMessage.content
+                                };
 
-                    // Clear a table
-                    if (webSocketMessage.action == 'Add') {
-                    };
+                            // Update Var
+                            if (localVariableName != null) {
+                                this[localVariableName].push(localObjectSingle);
+                            };
 
-                    // Replace a whole table
-                    if (webSocketMessage.action == 'Add') {
-                    };
+                            // Add / Update DB
+                            if (localTableName != null) {
+
+                                this.dbCanvasAppDatabase.table(localTableName)
+                                    .put(localObjectSingle)
+                                    .then(res => {
+                                        console.warn('xx End Add/Update for 1 Object');
+                                    });                        
+                            };
+                        };
+
+                        // Delete an object
+                        if (webSocketMessage.action == 'Add') {
+                        };
+
+                        // Clear a table
+                        if (webSocketMessage.action == 'Add') {
+                        };
+
+                        // Replace a whole table
+                        if (webSocketMessage.action == 'Add') {
+                        };
+                    });
                 };
             };
         };
