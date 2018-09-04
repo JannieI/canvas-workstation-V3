@@ -899,6 +899,7 @@ export class GlobalVariableService {
             let localLastWebSocketNumber: number = -1;
             let serverLastWebSocketNumber: number = webSocketMessage.lastWebSocketNumber;
 
+            // TODO - not sure if CurrentVar should be updated here - rather when D refreshes?
 
             // Find DS in localCachingTable
             let dataCachingTableIndex: number = this.dataCachingTable.findIndex(dct =>
@@ -959,7 +960,6 @@ export class GlobalVariableService {
 
                         // If my own message, it is actioned already
                         if (webSocketMessage.sender == this.currentUser.userID) {
-
                             return;
                         };
 
@@ -997,13 +997,6 @@ export class GlobalVariableService {
                         // Delete an object
                         if (webSocketMessage.action == 'Add') {
 
-                            // Create Var with data
-                            let localObjectSingle =
-                                {
-                                    id: webSocketMessage.objectID,
-                                    dashboard: webSocketMessage.content
-                                };
-
                             // Update Var
                             if (localVariableName != null) {
                                 this[localVariableName] = this[localVariableName].filter(
@@ -1040,7 +1033,7 @@ export class GlobalVariableService {
                                 this[localVariableName] = [];
                             };
 
-                            // Update Var
+                            // Update Current Var
                             if (localCurrentVariableName != null) {
                                 this[localCurrentVariableName] = [];
                             };
@@ -1059,7 +1052,7 @@ export class GlobalVariableService {
                         // Replace a whole table
                         if (webSocketMessage.action == 'Replace') {
 
-                            // Create Var with data
+                            // Create Var with data. WS.content = array, ie of Dashboards
                             let localObjectArray: any[];
                             for (var i = 0; i < webSocketMessage.content.length; i++) {
                                 localObjectArray.push(
@@ -1075,7 +1068,7 @@ export class GlobalVariableService {
                                 this[localVariableName] = webSocketMessage.content;
                             };
 
-                            // Update Var
+                            // Update Current Var
                             if (localCurrentVariableName != null) {
                                 this[localCurrentVariableName] = webSocketMessage.content;
                             };
@@ -1095,15 +1088,6 @@ export class GlobalVariableService {
             };
         };
 
-        // sender
-        // content
-        // isBroadcast
-        // channel
-        // messageType
-        // action
-        // objectName
-        // objectID
-        // severity
     };
 
     getDashboardsNEW(tableName: string = '', params: string = ''): Promise<any> {
