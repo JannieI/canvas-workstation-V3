@@ -66,6 +66,11 @@ This document describes items for later versions of Canvas.
     -------------
     - allow different print layouts and formats, for example one
        Widget per page, Dashboard layout, all Dashboards (linked) or just the current one.
+    - MUST be able to print 1 page, or all pages of Dashboard in one click
+
+    Animation:
+    - consider this ...  This may have serious consequences for structure, or could simply be a list of object IDs in sequence, and animation disable = false them in sequence!
+    - arrow keys or enter if nothing selected could trigger animation.  
 
 
     Admin module and Users
@@ -531,6 +536,8 @@ This document describes items for later versions of Canvas.
     Shapes:
     -------
     - links (to web and other D, T)
+    - Container:
+        - add border type, ie solid or dotted
     - write text vertically !
     - have UPPERCASE / Sentence Case options
     - add triangle, or make arrow more sophisticated = no line (! triangle), no arrowhead:
@@ -548,7 +555,15 @@ This document describes items for later versions of Canvas.
     - Can / should other Shapes (ie TEXT, LINE) also rotate with transform="rotate(30 20,40)"??
     - Can / should Shapes have radial / linear blur inside??
     - Consider Shape = Line - easy to do, not sure where and how used (rather use arrow)?
-    - Add emojis !?  See https://www.w3schools.com/charsets/ref_utf_misc_symbols.asp 
+        - must be draggable to increase / decrease size
+        - must set width in px
+        - must set color
+        - must be solid or dotted
+    - consider sparklines:
+        - small graphs with no text, etc.  Maybe this only has value inside a table?
+    - Add emojis !?  
+        - See https://www.w3schools.com/charsets/ref_utf_misc_symbols.asp 
+        - try to include big, colourful icons
     - Consider MarkDown / HTML formatting to Text shape - do we really need this?
     - PBI can change type of W after created, ie Table to Matrix
     - How to incorporate fancy W types, ie half circle with needle / doughnut / etc ...
@@ -576,6 +591,8 @@ This document describes items for later versions of Canvas.
         - different font sizes
         - add StrikeThrough to bold, italics. With Ctrl-B, etc
         - SuperScript and SubScript ??
+        - make it easy to insert symbols = unicode UTF8
+    - Easy to add images - select from file or use url
     - Next (slide) button ...
     - Effects !  Ie Text slides in from right ...  With CSS
     - Code shape - looks like code !
