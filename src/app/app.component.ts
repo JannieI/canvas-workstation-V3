@@ -7778,6 +7778,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
             //     this.globalVariableService.currentWidgets[gvIndex].graphWidth =
             //     Math.max(this.minGraphWidth, this.currentWidgets[index].graphWidth);
             // };
+            
         };
 
         // Bottom moved: adjust the height
@@ -7831,6 +7832,24 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
             //     Math.max(this.minGraphWidth, this.currentWidgets[index].graphWidth);
             // };
         };
+
+        this.currentWidgets[index].graphHeight = 
+        this.globalVariableService.calcGraphHeight(this.currentWidgets[index]);
+        
+        this.currentWidgets[index].graphWidth = 
+        this.globalVariableService.calcGraphWidth(this.currentWidgets[index]);
+
+        console.warn('xx container height', this.currentWidgets[index].containerHeight)
+
+        console.warn('xx calced height', 
+        this.globalVariableService.calcGraphHeight(this.currentWidgets[index]) ) 
+
+        console.warn('xx container width', this.currentWidgets[index].containerWidth)
+
+        console.warn('xx calced width', 
+        this.globalVariableService.calcGraphWidth(this.currentWidgets[index]) );
+
+
 
         // Add to Action log
         this.globalVariableService.actionUpsert(

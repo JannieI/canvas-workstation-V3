@@ -10794,21 +10794,39 @@ export class GlobalVariableService {
         if (widget.graphXaxisTitle != ''
             &&
             widget.graphXaxisTitle != null) {
-                graphHeight = widget.containerHeight - 70;
+                graphHeight = widget.containerHeight - 45;
         } else {
-            graphHeight = widget.containerHeight - 55;
-        };
-
-        // Assume font size 12 for now
-        if (widget.graphColorField != ''
-            &&  widget.graphColorField != null) {
-            widget.graphWidth = widget.containerWidth - 130;
-            35 + (+widget.graphColorField.length * 12 / 2);
-        } else {
-            widget.graphWidth = widget.containerWidth - 60;
+            graphHeight = widget.containerHeight - 15;
         };
 
         // Return
         return graphHeight;
+    }
+
+    calcGraphWidth(widget: Widget): number {
+        // Description: calculate the Width of the graph in a Widget
+        // Returns: Graph Width, null if impossible to do so
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables calcGraphWidth ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        };
+
+        // Ignore bad input
+        if (widget == null) {
+            return null;
+        };
+
+        let graphWidth: number;
+
+        // Set Graph Width and Width - Assume font size 12 for now
+        if (widget.graphColorField != ''
+            &&  widget.graphColorField != null) {
+            graphWidth = widget.containerWidth - 45;
+        } else {
+            graphWidth = widget.containerWidth - 45;
+        };
+
+        // Return
+        return graphWidth;
     }
 }
