@@ -155,6 +155,11 @@ This document describes items for later versions of Canvas.
     - data bars inside text values
     - sub totals and grand totals
     - can add labels, once 
+    - PowerBI can delete DS, then W just shows big X, with a message Fix this.  Is this a good idea?  I dont think so, but I think one must be able to swop DS for a W provided the same fields are present - just replace the DS-id ?  Maybe just easier to recreate it, and only be able to delete a DS if all Widgets linked to it are deleted.
+    - PowerBI has a mess with duplication - and checks once per hour if a DS has been changed.  I dont think we should do this at all.
+    - consider row level security ...
+    - PowerBI puts DS in a file, and do versioning here.  We should be able to do versioning in Canvas!
+    - PowerBI tenant setting: can export data, can forward data, can share data, can print, can subscribe on behalf of someone else.  Consider this and improve our settings
 
 
     Data types and field lengths:
@@ -387,10 +392,17 @@ This document describes items for later versions of Canvas.
        these comments??  Think carefully here.
     - Consider popup status messages, like VSCode to be more visible - maybe not needed.
     - Considering opening message per D (might even be per user as well), that will display each time D is opened.  How is it entered, who enters / deletes / edits it, and how is it displayed - modal (another one!), popup and for how long, and how is it closed, and how does it look to fit in?
-    - have group of D (better name ...) of severalDs = used on filtering when Open D.  Maybe called bookmarks?
+    - have group of D (better name ...) of several Ds = used on filtering when Open D.  Maybe called bookmarks?
     - have D views on a D = set of filters and settings applied. Currently this is just another Snapshot ...  Make it easy to switch, and then attach a VIEW to a message ...
     - Save keeps all snapshots and undo actions, forever.  Thus, can see how things looked like at any point in the past.  It must be clearly marked for the user.  Must also be able to search the list, and see a list of undo actions.  Also, do we discard all undo actions when a snapshot is taken, or not.  Think clearly about it.
+    - navigation menu:
+        - can open menu on left with icons and colours that jumps to different pages when clicked.  Can use this menu for beginner = create D, create W, etc !
+    - consider adding Ctrl-Z = Redo previous action (if on menu, ie open Add Widget form).  Can be tricksy - what if previous was Delete Widget ?
 
+    Layouts:
+    -------
+    - consider, ala James McGillivray, standard layout grids, with some cells merged.  Then, when D opens, looks like Powerpoint that says type title here, text here.  Each block will say 'click here to add Title / Graph / Text Shape / etc'.  Can make it easy to have standard layouts! 
+    - what happens after: are Widgets fixed to block, or can one drag them (think this is better), and can one delete empty thing.
 
     Data:
     ----
@@ -411,7 +423,7 @@ This document describes items for later versions of Canvas.
     - consider import from Powerpoint and Word tables ... 
     - consider integration with a ERD tool like Erwin, see:
     https://erwin.com/products/data-modeler/#
-
+    - Filters take a lot of space => rather use clicking on graph to filter, or open filter on separate page / popup.  Then have a button on form to indicate that it is filtered and to clear the filters.
 
     Eazl:
     ----
@@ -561,6 +573,8 @@ This document describes items for later versions of Canvas.
         - must be solid or dotted
     - consider sparklines:
         - small graphs with no text, etc.  Maybe this only has value inside a table?
+    - Consider robot widgets:
+        - shows red / orange / green light depending on status.
     - Add emojis !?  
         - See https://www.w3schools.com/charsets/ref_utf_misc_symbols.asp 
         - try to include big, colourful icons
@@ -739,6 +753,11 @@ This document describes items for later versions of Canvas.
     - consider bookmark(s), gives filters at a point in time.  Can send this to other users, and will open with these filters applied.
     - can this be used in a presentation, ie Bookmark1 = Overall, Bookmark2 = drill down
 
+    Presentation Mode:
+    -----------------
+    - take menus away (cater somehow for the gap during design, unless you design with this OR *ngIf menu out)
+    - status bar becomes simple and replaces existing (think if this is really necessary) with name, page n of m, <> arrows.  Maybe just add page n of m to existing one!!
+
     Tributary:
     ----------
     - Read more - see Pentaho ETL / Data Integration for features.
@@ -754,7 +773,7 @@ This document describes items for later versions of Canvas.
     ------------
     - can save Dashboard as pdf - see https://github.com/MrRio/jsPDF.
         Rather: https://stackoverflow.com/questions/38996376/generate-pdf-file-from-html-using-angular2-typescript,  or  https://stackoverflow.com/questions/42900319/how-to-convert-html-to-pdf-in-angular2  or  https://www.npmjs.com/package/jspdf
-        - can send as Email Attachment (in pdf or pic). To do this via Gmail, use its API - see https://www.sitepoint.com/sending-emails-gmail-javascript-api/
+        - can send Dashboard as Email Attachment (in pdf or pic). To do this via Gmail, use its API - see https://www.sitepoint.com/sending-emails-gmail-javascript-api/
         - can copy whole D as image - can paste somewhere, or print and put on wall
         - view pdf docs insides forms: see https://www.npmjs.com/package/ng2-pdf-viewer
         - make sure we can have hybrid DS - cloud and local and server in one D
@@ -824,6 +843,11 @@ This document describes items for later versions of Canvas.
     - business tool for business to write own reports
     - large effort in developing reports
 
+    There are two types of BI:
+    - self-service, where a business user, ie CFO, does own graphs
+    - enterprise BI which is closely controlled.
+    There is space for BOTH, and Canvas supports both. Note that we dont spread the DS distributedly, which becomes a management nightmare.
+
     They needed to find a way to:
     - get more from data 
     - offer more value 
@@ -889,3 +913,8 @@ This document describes items for later versions of Canvas.
     - World class, easy insight from any data, agile tool, full BI scope (1 tool with less resources), instant deployment, short learning curve (hrs not weeks), can blend data together, analysis = slice and dice, impact = actionable insights, deploy = cloud, on-prem, hybrid, embed = secure and white label, govern = secure and control your data, customer success, instant impact: quickly up and running and deliver ROI within weeks or months, no need to involve IT resources to tackle complex data, no DBA or scripts required, increase customer satisfaction, easy to use front end, open API architecture, latest socket technology, access control, full reporting suite allowing for user customisation, dashboard for key statistics, easy to use with minimal training, unlimited number of users, no upfront capital expenditure (if in cloud), easily scale up or down, pay as you go?, remote working, empower your employees
     share Dashboard – also sends out email
 
+    Data Profiling:
+    --------------
+    - this is a whole thing, see Microsoft SQL data profiler
+    - gives col info: length, null ratio, pateer, value distribution, stats
+    - possible foreign keys between two tables
