@@ -10774,4 +10774,41 @@ export class GlobalVariableService {
         // Return
         return shapeTextDisplay;
     }
+
+    calcGraphHeight(widget: Widget): number {
+        // Description: calculate the Height of the graph in a Widget
+        // Returns: Graph Height, null if impossible to do so
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables calcGraphHeight ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        };
+
+        // Ignore bad input
+        if (widget == null) {
+            return null;
+        };
+
+        let graphHeight: number;
+
+        // Set Graph Height and Width
+        if (widget.graphXaxisTitle != ''
+            &&
+            widget.graphXaxisTitle != null) {
+                graphHeight = widget.containerHeight - 70;
+        } else {
+            graphHeight = widget.containerHeight - 55;
+        };
+
+        // Assume font size 12 for now
+        if (widget.graphColorField != ''
+            &&  widget.graphColorField != null) {
+            widget.graphWidth = widget.containerWidth - 130;
+            35 + (+widget.graphColorField.length * 12 / 2);
+        } else {
+            widget.graphWidth = widget.containerWidth - 60;
+        };
+
+        // Return
+        return graphHeight;
+    }
 }

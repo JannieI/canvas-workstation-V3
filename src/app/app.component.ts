@@ -6897,6 +6897,8 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         // Clicked the Edit option on palette - decide what to do
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuPaletteEdit', '@Start');
 
+        console.warn('xx clickMenuPaletteEdit input:', widgetID, widgetIndex, canSave, widgetType);
+        
         // Graph type has been supplied
         if (widgetType == 'Graph') {
             this.clickMenuWidgetEdit(widgetID);
