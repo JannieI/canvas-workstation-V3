@@ -6165,22 +6165,22 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                 } else {
                     this.currentWidgets[i].containerWidth = x;
                     this.currentWidgets[i].containerHeight = y;
-                };
 
-                // Calc the graph dimensions
-                this.currentWidgets[i].graphHeight = 
-                this.globalVariableService.calcGraphHeight(this.currentWidgets[i]);
+                    // Calc the graph dimensions
+                    this.currentWidgets[i].graphHeight = 
+                    this.globalVariableService.calcGraphHeight(this.currentWidgets[i]);
 
-                this.currentWidgets[i].graphWidth = 
-                this.globalVariableService.calcGraphWidth(this.currentWidgets[i]);
-                
-                // Refresh graphs
-                if (this.currentWidgets[i].widgetType == 'Graph') {
-                    this.globalVariableService.changedWidget.next(this.currentWidgets[i]);
+                    this.currentWidgets[i].graphWidth = 
+                    this.globalVariableService.calcGraphWidth(this.currentWidgets[i]);
+                    
+                    // Refresh graphs
+                    if (this.currentWidgets[i].widgetType == 'Graph') {
+                        this.globalVariableService.changedWidget.next(this.currentWidgets[i]);
+                    };
+                    
+                    // Save to DB
+                    this.globalVariableService.saveWidget(this.currentWidgets[i]);
                 };
-                
-                // Save to DB
-                this.globalVariableService.saveWidget(this.currentWidgets[i]);
             };
         };
 
