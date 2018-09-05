@@ -8500,6 +8500,11 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                 w.containerWidth = this.widgetDimenstions.width;
                 w.containerHeight = this.widgetDimenstions.height;
 
+
+                // Calc the graph dimensions
+                w.graphHeight = this.globalVariableService.calcGraphHeight(w);
+                w.graphWidth = this.globalVariableService.calcGraphWidth(w);
+
                 this.globalVariableService.saveWidget(w);
                 this.showMessage(
                     'Widget Dimensions pasted',
