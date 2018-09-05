@@ -10821,9 +10821,9 @@ export class GlobalVariableService {
         // Set Graph Width and Width - Assume font size 12 for now
         if (widget.graphColorField != ''
             &&  widget.graphColorField != null) {
-            graphWidth = widget.containerWidth - 45;
+            graphWidth = widget.containerWidth - 35;
         } else {
-            graphWidth = widget.containerWidth - 45;
+            graphWidth = widget.containerWidth - 35;
         };
 
         // Return

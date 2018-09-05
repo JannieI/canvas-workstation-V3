@@ -7749,9 +7749,9 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
             //             this.currentWidgets[index].containerHeight);
             // };
 
-            // Reset Graph Height
-            this.currentWidgets[index].graphHeight = Math.max(this.minGraphHeight,
-                this.currentWidgets[index].graphHeight - ev.y + this.startY);
+            // // Reset Graph Height
+            // this.currentWidgets[index].graphHeight = Math.max(this.minGraphHeight,
+            //     this.currentWidgets[index].graphHeight - ev.y + this.startY);
             // if (gvIndex != -1) {
             //     this.globalVariableService.currentWidgets[gvIndex].graphHeight =
             //     Math.max(this.minGraphHeight, this.currentWidgets[index].graphHeight);
@@ -7771,9 +7771,9 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
             //             this.currentWidgets[index].containerWidth);
             // };
 
-            // Adjust Graph Width
-            this.currentWidgets[index].graphWidth = Math.max(this.minGraphWidth,
-                this.currentWidgets[index].graphWidth - this.startX + ev.x);
+            // // Adjust Graph Width
+            // this.currentWidgets[index].graphWidth = Math.max(this.minGraphWidth,
+            //     this.currentWidgets[index].graphWidth - this.startX + ev.x);
             // if (gvIndex != -1) {
             //     this.globalVariableService.currentWidgets[gvIndex].graphWidth =
             //     Math.max(this.minGraphWidth, this.currentWidgets[index].graphWidth);
@@ -7794,9 +7794,9 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
             //             this.currentWidgets[index].containerHeight);
             // };
 
-            // Adjust Graph Height
-            this.currentWidgets[index].graphHeight = Math.max(this.minGraphHeight,
-                this.currentWidgets[index].graphHeight - this.startY + ev.y);
+            // // Adjust Graph Height
+            // this.currentWidgets[index].graphHeight = Math.max(this.minGraphHeight,
+            //     this.currentWidgets[index].graphHeight - this.startY + ev.y);
             // if (gvIndex != -1) {
             //     this.globalVariableService.currentWidgets[gvIndex].graphHeight =
             //     Math.max(this.minGraphHeight, this.currentWidgets[index].graphHeight);
@@ -7824,32 +7824,21 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
             //             this.currentWidgets[index].containerWidth);
             // };
 
-            // Adjust Graph Width
-            this.currentWidgets[index].graphWidth = Math.max(this.minGraphWidth ,
-                this.currentWidgets[index].graphWidth - ev.x + this.startX);
+            // // Adjust Graph Width
+            // this.currentWidgets[index].graphWidth = Math.max(this.minGraphWidth ,
+            //     this.currentWidgets[index].graphWidth - ev.x + this.startX);
             // if (gvIndex != -1) {
             //     this.globalVariableService.currentWidgets[gvIndex].graphWidth =
             //     Math.max(this.minGraphWidth, this.currentWidgets[index].graphWidth);
             // };
         };
 
+        // Calc the graph dimensions
         this.currentWidgets[index].graphHeight = 
         this.globalVariableService.calcGraphHeight(this.currentWidgets[index]);
-        
+
         this.currentWidgets[index].graphWidth = 
         this.globalVariableService.calcGraphWidth(this.currentWidgets[index]);
-
-        console.warn('xx container height', this.currentWidgets[index].containerHeight)
-
-        console.warn('xx calced height', 
-        this.globalVariableService.calcGraphHeight(this.currentWidgets[index]) ) 
-
-        console.warn('xx container width', this.currentWidgets[index].containerWidth)
-
-        console.warn('xx calced width', 
-        this.globalVariableService.calcGraphWidth(this.currentWidgets[index]) );
-
-
 
         // Add to Action log
         this.globalVariableService.actionUpsert(

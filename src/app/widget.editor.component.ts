@@ -342,25 +342,32 @@ const graphWidth: number = 420;
         this.localWidget.containerHasContextMenus = this.containerHasContextMenus;
         this.localWidget.containerHasTitle = this.containerHasTitle;
 
+        // Calc the graph dimensions
+        this.localWidget.graphHeight = 
+        this.globalVariableService.calcGraphHeight(this.localWidget);
+
+        this.localWidget.graphWidth = 
+        this.globalVariableService.calcGraphWidth(this.localWidget);
+        
         // Update new/edit
         if (this.newWidget) {
 
-            // Set Graph Height and Width
-            if (this.localWidget.graphXaxisTitle != ''
-                &&
-                this.localWidget.graphXaxisTitle != null) {
-                    this.localWidget.graphHeight = this.localWidget.containerHeight
-                    - 70;
-            } else {
-                this.localWidget.graphHeight = this.localWidget.containerHeight - 55;
-            };
+            // // Set Graph Height and Width
+            // if (this.localWidget.graphXaxisTitle != ''
+            //     &&
+            //     this.localWidget.graphXaxisTitle != null) {
+            //         this.localWidget.graphHeight = this.localWidget.containerHeight
+            //         - 70;
+            // } else {
+            //     this.localWidget.graphHeight = this.localWidget.containerHeight - 55;
+            // };
 
-            if (this.localWidget.graphColorField != ''
-                &&  this.localWidget.graphColorField != null) {
-                this.localWidget.graphWidth = this.localWidget.containerWidth - 130;
-            } else {
-                this.localWidget.graphWidth = this.localWidget.containerWidth - 60;
-            };
+            // if (this.localWidget.graphColorField != ''
+            //     &&  this.localWidget.graphColorField != null) {
+            //     this.localWidget.graphWidth = this.localWidget.containerWidth - 130;
+            // } else {
+            //     this.localWidget.graphWidth = this.localWidget.containerWidth - 60;
+            // };
 
             // TODO - improve this when using a DB!
             // let newID: number = 1;
@@ -425,19 +432,20 @@ const graphWidth: number = 420;
             });
 
         } else {
-            if (this.selectedWidget.graphColorField != ''
-                &&  this.selectedWidget.graphColorField != null) {
-                    if (this.localWidget.graphColorField == ''  ||  this.localWidget.graphColorField == null) {
-                        this.localWidget.graphWidth = this.selectedWidget.graphWidth + 70;
-                    };
-            };
-            if (this.selectedWidget.graphColorField == ''
-                ||  this.selectedWidget.graphColorField == null) {
-                    if (this.localWidget.graphColorField != ''
-                        &&  this.localWidget.graphColorField != null) {
-                        this.localWidget.graphWidth = this.selectedWidget.graphWidth - 70;
-                    };
-            };
+
+            // if (this.selectedWidget.graphColorField != ''
+            //     &&  this.selectedWidget.graphColorField != null) {
+            //         if (this.localWidget.graphColorField == ''  ||  this.localWidget.graphColorField == null) {
+            //             this.localWidget.graphWidth = this.selectedWidget.graphWidth + 70;
+            //         };
+            // };
+            // if (this.selectedWidget.graphColorField == ''
+            //     ||  this.selectedWidget.graphColorField == null) {
+            //         if (this.localWidget.graphColorField != ''
+            //             &&  this.localWidget.graphColorField != null) {
+            //             this.localWidget.graphWidth = this.selectedWidget.graphWidth - 70;
+            //         };
+            // };
 
             // Update global W and DB
             this.globalVariableService.saveWidget(this.localWidget).then(res => {
