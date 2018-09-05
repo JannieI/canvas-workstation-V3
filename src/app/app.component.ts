@@ -6167,6 +6167,14 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                     this.currentWidgets[i].containerHeight = y;
                 };
 
+
+                // Calc the graph dimensions
+                this.currentWidgets[i].graphHeight = 
+                this.globalVariableService.calcGraphHeight(this.currentWidgets[i]);
+
+                this.currentWidgets[i].graphWidth = 
+                this.globalVariableService.calcGraphWidth(this.currentWidgets[i]);
+                
                 // Save to DB
                 this.globalVariableService.saveWidget(this.currentWidgets[i]);
             };
