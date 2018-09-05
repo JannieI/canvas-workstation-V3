@@ -9794,7 +9794,7 @@ export class GlobalVariableService {
                 "   color: black; background: lightgray; font-size: 10px", {changedWidget});
         };
 
-        // Make a Deep Copy and fill Global Vars
+        // Replace into widgets
         let widgetIndex: number = this.widgets.findIndex(w =>
             w.id == changedWidget.id
         );
@@ -9802,6 +9802,8 @@ export class GlobalVariableService {
             this.widgets[widgetIndex] =
                 JSON.parse(JSON.stringify(changedWidget));
         };
+
+        // Replace into currentWidgets
         let currentWidgetIndex: number = this.currentWidgets.findIndex(w =>
             w.id == changedWidget.id
         );

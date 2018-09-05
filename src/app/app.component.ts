@@ -7717,98 +7717,117 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         // let oldWidget: Widget = Object.assign({}, this.currentWidgets[index]);
         let oldWidget: Widget = JSON.parse(JSON.stringify(this.currentWidgets[index]));
 
-        let gvIndex: number = -1;
-        gvIndex = this.globalVariableService.currentWidgets.findIndex(w =>
-            w.id == this.currentWidgets[index].id
-        );
+        // let gvIndex: number = -1;
+        // gvIndex = this.globalVariableService.currentWidgets.findIndex(w =>
+        //     w.id == this.currentWidgets[index].id
+        // );
 
         // Top moved: adjust the height & top
         if (resizeTop) {
+
+            // Adjust Container Top
             this.currentWidgets[index].containerTop =
                 this.currentWidgets[index].containerTop - this.startY + ev.y;
-            if (gvIndex != -1) {
-                this.globalVariableService.currentWidgets[gvIndex].containerTop =
-                    this.currentWidgets[index].containerTop;
-            };
+
+            // // gv.currentWidgets Top
+            // if (gvIndex != -1) {
+            //     this.globalVariableService.currentWidgets[gvIndex].containerTop =
+            //         this.currentWidgets[index].containerTop;
+            // };
+
+            // Adjust Container Height
             this.currentWidgets[index].containerHeight =
                 Math.max(this.minWidgetContainerHeight,
                     this.currentWidgets[index].containerHeight - ev.y + this.startY);
-            if (gvIndex != -1) {
-                this.globalVariableService.currentWidgets[gvIndex].containerHeight =
-                    Math.max(this.minWidgetContainerHeight,
-                        this.currentWidgets[index].containerHeight);
-            };
 
+            // // 
+            // if (gvIndex != -1) {
+            //     this.globalVariableService.currentWidgets[gvIndex].containerHeight =
+            //         Math.max(this.minWidgetContainerHeight,
+            //             this.currentWidgets[index].containerHeight);
+            // };
+
+            // Reset Graph Height
             this.currentWidgets[index].graphHeight = Math.max(this.minGraphHeight,
                 this.currentWidgets[index].graphHeight - ev.y + this.startY);
-            if (gvIndex != -1) {
-                this.globalVariableService.currentWidgets[gvIndex].graphHeight =
-                Math.max(this.minGraphHeight, this.currentWidgets[index].graphHeight);
-            };
+            // if (gvIndex != -1) {
+            //     this.globalVariableService.currentWidgets[gvIndex].graphHeight =
+            //     Math.max(this.minGraphHeight, this.currentWidgets[index].graphHeight);
+            // };
         };
 
         // Right moved: adjust the width
         if (resizeRight) {
+
+            // Adjust Container Width
             this.currentWidgets[index].containerWidth =
                 Math.max(this.minWidgetContainerWidth,
                     this.currentWidgets[index].containerWidth - this.startX + ev.x);
-            if (gvIndex != -1) {
-                this.globalVariableService.currentWidgets[gvIndex].containerWidth =
-                    Math.max(this.minWidgetContainerWidth,
-                        this.currentWidgets[index].containerWidth);
-            };
+            // if (gvIndex != -1) {
+            //     this.globalVariableService.currentWidgets[gvIndex].containerWidth =
+            //         Math.max(this.minWidgetContainerWidth,
+            //             this.currentWidgets[index].containerWidth);
+            // };
 
+            // Adjust Graph Width
             this.currentWidgets[index].graphWidth = Math.max(this.minGraphWidth,
                 this.currentWidgets[index].graphWidth - this.startX + ev.x);
-            if (gvIndex != -1) {
-                this.globalVariableService.currentWidgets[gvIndex].graphWidth =
-                Math.max(this.minGraphWidth, this.currentWidgets[index].graphWidth);
-            };
+            // if (gvIndex != -1) {
+            //     this.globalVariableService.currentWidgets[gvIndex].graphWidth =
+            //     Math.max(this.minGraphWidth, this.currentWidgets[index].graphWidth);
+            // };
         };
 
         // Bottom moved: adjust the height
         if (resizeBottom) {
+
+            // Adjust Container Height
             this.currentWidgets[index].containerHeight =
                 Math.max(this.minWidgetContainerHeight,
                     this.currentWidgets[index].containerHeight - this.startY + ev.y);
-            if (gvIndex != -1) {
-                this.globalVariableService.currentWidgets[gvIndex].containerHeight =
-                    Math.max(this.minWidgetContainerHeight,
-                        this.currentWidgets[index].containerHeight);
-            };
+            // if (gvIndex != -1) {
+            //     this.globalVariableService.currentWidgets[gvIndex].containerHeight =
+            //         Math.max(this.minWidgetContainerHeight,
+            //             this.currentWidgets[index].containerHeight);
+            // };
 
+            // Adjust Graph Height
             this.currentWidgets[index].graphHeight = Math.max(this.minGraphHeight,
                 this.currentWidgets[index].graphHeight - this.startY + ev.y);
-            if (gvIndex != -1) {
-                this.globalVariableService.currentWidgets[gvIndex].graphHeight =
-                Math.max(this.minGraphHeight, this.currentWidgets[index].graphHeight);
-            };
+            // if (gvIndex != -1) {
+            //     this.globalVariableService.currentWidgets[gvIndex].graphHeight =
+            //     Math.max(this.minGraphHeight, this.currentWidgets[index].graphHeight);
+            // };
         };
 
         // Left moved: adjust the width & left
         if (resizeLeft) {
+
+            // Adjust Container Left
             this.currentWidgets[index].containerLeft =
                 this.currentWidgets[index].containerLeft - this.startX + ev.x;
-            if (gvIndex != -1) {
-                this.globalVariableService.currentWidgets[gvIndex].containerLeft =
-                    this.currentWidgets[index].containerLeft;
-            };
+            // if (gvIndex != -1) {
+            //     this.globalVariableService.currentWidgets[gvIndex].containerLeft =
+            //         this.currentWidgets[index].containerLeft;
+            // };
 
+            // Adjust Container Width
             this.currentWidgets[index].containerWidth =
                 Math.max(this.minWidgetContainerWidth,
                     this.currentWidgets[index].containerWidth - ev.x + this.startX);
-            if (gvIndex != -1) {
-                this.globalVariableService.currentWidgets[gvIndex].containerWidth =
-                    Math.max(this.minWidgetContainerWidth,
-                        this.currentWidgets[index].containerWidth);
-            };
+            // if (gvIndex != -1) {
+            //     this.globalVariableService.currentWidgets[gvIndex].containerWidth =
+            //         Math.max(this.minWidgetContainerWidth,
+            //             this.currentWidgets[index].containerWidth);
+            // };
 
+            // Adjust Graph Width
             this.currentWidgets[index].graphWidth = Math.max(this.minGraphWidth ,
                 this.currentWidgets[index].graphWidth - ev.x + this.startX);
-            if (gvIndex != -1) {
-                this.globalVariableService.currentWidgets[gvIndex].graphWidth =
-                Math.max(this.minGraphWidth, this.currentWidgets[index].graphWidth);
-            };
+            // if (gvIndex != -1) {
+            //     this.globalVariableService.currentWidgets[gvIndex].graphWidth =
+            //     Math.max(this.minGraphWidth, this.currentWidgets[index].graphWidth);
+            // };
         };
 
         // Add to Action log
