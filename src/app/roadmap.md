@@ -614,13 +614,19 @@ This document describes items for later versions of Canvas.
     - Math formulas - no way unless we use third party tool !
     - Thumbnails - open on side and jump to tab by clicking on it
     - Need a LINE !!
-    - Add icons, that can be resized: see
+        - consider drawing this via the mouse
+        - must be stretchable via dragging endpoints.
+    - Add icons (colour and variety of images) and symbols, that can be resized: see
         https://www.w3schools.com/charsets/ref_utf_misc_symbols.asp
     - Arrange and size blocks inside blocks - click one, select center, click second ...?
     - Needs a big question mark
     - Speaker notes 
+    - when adding an image, the height and width is all over the place.  Store that in the widget definition somewhere.
     - Time keeping ...
+    - consider separate menu options and forms for Shapes, might be easier for user and also gives more flexibility (and easier code).
     - Insert clip art ...
+    - align selected shapes ONLY: click big box and smaller box inside it, select Center and the smaller one is centered RELATIVE to the bigger one.  This is needed!
+    - guide rails like Google: drag a box past another box, and red lines appear to show it aligns with the top, middle, bottom of another box, or center of page.  And also when things are equi-distant.  This I assume is serious code.
     - Text: capitalisation, ie Short Demo ??  Really, really needed?
     - Text: truncate option:
         <p class="truncate-text">If I exceed one line's width, I will be truncated.</p>
