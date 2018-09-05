@@ -5296,7 +5296,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
             return;
         };
 
-        // Make sure we have only one, then delete it
+        // Make sure we have only one, then edit it
         if (widgetID == null) {
 
             if (!this.checkForOnlyOneWidget()) {
@@ -5315,6 +5315,8 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
         } else {
             let widgetIndex: number = this.currentWidgets.findIndex(w => w.id == widgetID);
+            console.warn('xx clickMenuShapeEdit widgetIndex', widgetIndex, widgetID);
+            
             if (widgetIndex < 0) {
                 this.showMessage(
                     'Widget does not exist in list',

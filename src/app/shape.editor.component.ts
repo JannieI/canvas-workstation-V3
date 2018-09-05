@@ -98,6 +98,8 @@ export class ShapeEditComponent implements OnInit {
     showBrackets: boolean = false;
 
 
+    arrowLine: string = "M10,10 L150,10";
+
     constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
@@ -893,5 +895,22 @@ export class ShapeEditComponent implements OnInit {
 
         this.localWidget.shapeStroke = ev.target.value;
     }
+    
+    mousedownArrow(ev: any) {
+        // Toggles Palette - horisontal / vertical
+        this.globalFunctionService.printToConsole(this.constructor.name,'mousedownArrow', '@Start');
 
+        // Store X & Y
+        console.warn('xx ', ev.x, ev.y)
+        var audio = new Audio('./assets/Button_Push-Mike_Koenig-1659525069.mp3');
+        audio.play();
+    }
+
+    mouseupArrow(ev: any) {
+        // Toggles Palette - horisontal / vertical
+        this.globalFunctionService.printToConsole(this.constructor.name,'mouseupArrow', '@Start');
+
+        console.warn('xx ', ev.x, ev.y)
+    }
 }
+

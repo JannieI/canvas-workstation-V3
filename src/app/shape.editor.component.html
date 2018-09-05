@@ -131,7 +131,7 @@
                     </svg>
                 </div>
 
-                <div class="gridShape" *ngIf="showText"                
+                <div class="gridShape" *ngIf="showText"
                     [style.color]="localWidget.shapeTextColour"
                     [style.font-style]="localWidget.shapeIsItalic? 'italic' : 'normal'"
                     [style.font-weight]="localWidget.shapeIsBold? 'bold' : 'normal'"
@@ -731,8 +731,39 @@
                 </div>
 
                 <div class="gridShape" *ngIf="showArrowThin"
+                    (mousedown)="mousedownArrow($event)"
+                    (mouseup)="mouseupArrow($event)"
                     >
-                    <svg width="300" height="300"
+                    <svg width="180" height="180"
+                        [style.transform]="'rotate(' + localWidget.shapeRotation + 'deg)'"
+                        >
+                        <defs>
+                            <marker id="markerCircle" markerWidth="8" markerHeight="8" refX="5" refY="5">
+                                <circle cx="5" cy="5" r="3" 
+                                [style.stroke]="localWidget.shapeStroke"
+                                [style.fill]="localWidget.shapeStroke"
+
+                                />
+                            </marker>
+                        
+                            <marker id="markerArrow" markerWidth="13" markerHeight="13" refX="2" refY="6"
+                                orient="auto">
+                                <path d="M2,2 L2,11 L10,6 L2,2" 
+                                [style.stroke]="localWidget.shapeStroke"
+                                [style.fill]="localWidget.shapeStroke"
+                                />
+                            </marker>
+                        </defs>
+                        
+                        <path d="M10,10 L150,10"
+                            style="stroke: #6666ff; stroke-width: 1px; fill: none;
+                                        marker-start: url(#markerCircle);
+                                        marker-end: url(#markerArrow);
+                                        "
+                        
+                                />
+                    </svg>
+                    <!-- <svg width="300" height="300"
                         [style.transform]="'rotate(' + localWidget.shapeRotation + 'deg)'"
                         >
                         <defs
@@ -764,7 +795,7 @@
                             stroke-width="3"
                             marker-end="url(#arrowThin)"
                             />
-                    </svg>
+                    </svg> -->
                 </div>
 
                 <div class="gridShape" *ngIf="showImage">

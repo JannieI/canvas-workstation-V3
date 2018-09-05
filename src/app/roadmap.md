@@ -201,7 +201,9 @@ This document describes items for later versions of Canvas.
     - Cross hair with showing values on axis - ie crypto trading websites!
     - Look at embeding widgets -> export Vega spec + embed line, user puts it in his html ...?
     - Serias work to be done - learning Vega and adding ALL features !!!
-    - Add other Viz to W Editor (data page) - ie Layered Graphs, Trellis, etc.  These need new templates, and a new UI. For a GAUGE, see https://gist.github.com/anilkpatro/0cf0503b581556a14aab
+    - Add other Viz to W Editor (data page) - ie Layered Graphs, Trellis, etc.  These need new templates, and a new UI. For a GAUGE, see    https://gist.github.com/anilkpatro/0cf0503b581556a14aab
+    For SVG Gauge, see http://svgdiscovery.com/HMI/AnalogGaugeObject/analogGaugeObject.htm
+    and http://svgdiscovery.com/HMI/Button/AnalogGauge/buttonGauge.htm  !!!
     For KPI charts, see https://www.zoho.com/reports/help/dashboard/kpi-widgets.html.  Must include target, and progress (either % with green/red arrow since last month or graph ytd) and level of achievement (ie combo graph with line as target)
     - Give hints/advice on W as to type of graph, insights, etc.
     - filter in W, not only via Slicer, using Vega
@@ -398,6 +400,9 @@ This document describes items for later versions of Canvas.
     - navigation menu:
         - can open menu on left with icons and colours that jumps to different pages when clicked.  Can use this menu for beginner = create D, create W, etc !
     - consider adding Ctrl-Z = Redo previous action (if on menu, ie open Add Widget form).  Can be tricksy - what if previous was Delete Widget ?
+    - when posting a message to the StatusBar, make an audible sound.  See
+    https://www.w3schools.com/graphics/game_sound.asp
+    http://soundbible.com/tags-button.html - list of mp3 files
 
     Layouts:
     -------
@@ -571,16 +576,270 @@ This document describes items for later versions of Canvas.
         - must set width in px
         - must set color
         - must be solid or dotted
+        - draw with mouse, see http://svgdiscovery.com/THREEjs/SVGControl/03-drawArrowLines.htm
     - consider sparklines:
         - small graphs with no text, etc.  Maybe this only has value inside a table?
     - Consider robot widgets:
         - shows red / orange / green light depending on status.
+        - for SVG, see http://svgdiscovery.com/HMI/StatusStick/statusStick.htm
     - Add emojis !?  
         - See https://www.w3schools.com/charsets/ref_utf_misc_symbols.asp 
         - try to include big, colourful icons
+        - can convert unicode to SVG - see http://svgdiscovery.com/C/svg-text-symbol.htm
+        - in SVG!  See http://svgdiscovery.com/L/svg-font-icon.htm
+                function buildIconTable()
+                {
+                    var fontSize=50
+                    for(var k=0;k<svgIcon.length;k++)
+                    {
+                        var iconSplit=svgIcon[k].split(",")
+                        var fontFamily=iconSplit[0]
+                        var code="&#x"+iconSplit[1]
+                        var title=iconSplit[2]
+                        var row=iconTable.insertRow(k)
+                        var nameCell=row.insertCell(0)
+                        nameCell.innerText=(k+1)+". "+title+"\nFont Family: "+fontFamily+"\n"+code
+
+                        var iconCell=row.insertCell(1)
+                        iconCell.style.color=rcolor()
+                        iconCell.style.fontFamily=fontFamily
+                        iconCell.style.fontSize=fontSize+"px"
+                        iconCell.innerHTML=code
+
+                    }
+                }
+                var svgIcon=[]
+                svgIcon[0]='Arial Unicode MS,2708,AIRLINER'
+                svgIcon[1]='Wingdings,f051,AIRPLANE'
+                svgIcon[2]='Webdings,f06A,AIRPLANE:PRIVATE'
+                svgIcon[3]='Webdings,f068,AMBULANCE'
+                svgIcon[4]='Arial Unicode MS,27AB,ARROW:BACK-TILTED'
+                svgIcon[5]='Arial Unicode MS,27B2,ARROW:CIRCLED'
+                svgIcon[6]='Arial Unicode MS,27A8,ARROW:CONCAVE-POINTED'
+                svgIcon[7]='Arial Unicode MS,27A5,ARROW:CURVED DOWNWARDS'
+                svgIcon[8]='Arial Unicode MS,27A6,ARROW:CURVED UPWARDS'
+                svgIcon[9]='Arial Unicode MS,279F,ARROW:DASHED TRIANGLE'
+                svgIcon[10]='Arial Unicode MS,279B,ARROW:DRAFTING POINT'
+                svgIcon[11]='Arial Unicode MS,27B9,ARROW:FEATHERED HEAVY NORTH EAST'
+                svgIcon[12]='Arial Unicode MS,27B7,ARROW:FEATHERED HEAVY SOUTH EAST'
+                svgIcon[13]='Arial Unicode MS,27B8,ARROW:FEATHERED HEAVY'
+                svgIcon[14]='Arial Unicode MS,27B6,ARROW:FEATHERED NORTH EAST'
+                svgIcon[15]='Arial Unicode MS,27B5,ARROW:FEATHERED SOLID'
+                svgIcon[16]='Arial Unicode MS,27B4,ARROW:FEATHERED SOUTH EAST'
+                svgIcon[17]='Arial Unicode MS,27B3,ARROW:FEATHERED'
+                svgIcon[18]='Arial Unicode MS,27AC,ARROW:FRONT-TILTEDS'
+                svgIcon[19]='Arial Unicode MS,27A0,ARROW:HEAVY DASHED TRIANGLE'
+                svgIcon[20]='Arial Unicode MS,27AE,ARROW:HEAVY RIGHT-SHADOWED'
+                svgIcon[21]='Arial Unicode MS,279E,ARROW:HEAVY TRIANGLE-HEADED'
+                svgIcon[22]='Arial Unicode MS,27BD,ARROW:HEAVY WEDGE-TAILED'
+                svgIcon[23]='Arial Unicode MS,27AA,ARROW:LEFT-SHADED'
+                svgIcon[24]='Arial Unicode MS,279A,ARROW:NORTH EAST'
+                svgIcon[25]='Arial Unicode MS,27B1,ARROW:NOTCHED-SHADOWED'
+                svgIcon[26]='Arial Unicode MS,27AF,ARROW:NOTCHED'
+                svgIcon[27]='Arial Unicode MS,27BE,ARROW:OPEN-OUTLINED'
+                svgIcon[28]='Wingdings,f0c3,ARROW:RIBBON 1'
+                svgIcon[29]='Wingdings,f0c4,ARROW:RIBBON 2'
+                svgIcon[30]='Wingdings,f0c5,ARROW:RIBBON 3'
+                svgIcon[31]='Wingdings,f0c6,ARROW:RIBBON 4'
+                svgIcon[32]='Wingdings,f0c7,ARROW:RIBBON 5'
+                svgIcon[33]='Wingdings,f0c8,ARROW:RIBBON 6'
+                svgIcon[34]='Wingdings,f0c9,ARROW:RIBBON 7'
+                svgIcon[35]='Wingdings,f0cA,ARROW:RIBBON 8'
+                svgIcon[36]='Arial Unicode MS,27A9,ARROW:RIGHT-SHADED'
+                svgIcon[37]='Arial Unicode MS,27AD,ARROW:RIGHT-SHADOWED'
+                svgIcon[38]='Arial Unicode MS,2799,ARROW:RIGHTWARDS'
+                svgIcon[39]='Arial Unicode MS,279C,ARROW:ROUND-TIPPED'
+                svgIcon[40]='Arial Unicode MS,27A1,ARROW:SOLID RIGHTWARDS'
+                svgIcon[41]='Arial Unicode MS,2798,ARROW:SOUTH EAST'
+                svgIcon[42]='Arial Unicode MS,27A7,ARROW:SQUAT RIGHTWARDS'
+                svgIcon[43]='Arial Unicode MS,27BA,ARROW:TEARDROP-BARBED'
+                svgIcon[44]='Arial Unicode MS,27BB,ARROW:TEARDROP-SHANKED'
+                svgIcon[45]='Arial Unicode MS,279D,ARROW:TRIANGLE-HEADED'
+                svgIcon[46]='Arial Unicode MS,27BC,ARROW:WEDGE-TAILED'
+                svgIcon[47]='Arial Unicode MS,2794,ARROW:WIDE-RIGHTWARDS'
+                svgIcon[48]='Wingdings,f0dA,ARROWHEAD:DOWN'
+                svgIcon[49]='Wingdings,f0d7,ARROWHEAD:LEFT'
+                svgIcon[50]='Wingdings,f0d8,ARROWHEAD:RIGHT'
+                svgIcon[51]='Arial Unicode MS,27A4,ARROWHEAD:SOLID RIGHTWARDS'
+                svgIcon[52]='Arial Unicode MS,27A3,ARROWHEAD:THREE-D BOTTOM'
+                svgIcon[53]='Arial Unicode MS,27A2,ARROWHEAD:THREE-D TOP'
+                svgIcon[54]='Wingdings,f0d9,ARROWHEAD:UP'
+                svgIcon[55]='Arial Unicode MS,2743,ASTERISK: PINWHEEL'
+                svgIcon[56]='Arial Unicode MS,273A,ASTERISK:16 POINTED'
+                svgIcon[57]='Arial Unicode MS,274A,ASTERISK:8 TEARDROP-SPOKED'
+                svgIcon[58]='Arial Unicode MS,2749,ASTERISK:BALLOON-SPOKED'
+                svgIcon[59]='Arial Unicode MS,2723,ASTERISK:BALLOON'
+                svgIcon[60]='Arial Unicode MS,2725,ASTERISK:CLUB-SPOKED'
+                svgIcon[61]='Arial Unicode MS,2733,ASTERISK:EIGHT SPOKED'
+                svgIcon[62]='Arial Unicode MS,274B,ASTERISK:HEAVY 8 TEARDROP-SPOKED'
+                svgIcon[63]='Arial Unicode MS,2724,ASTERISK:HEAVY BALLOON'
+                svgIcon[64]='Arial Unicode MS,273D,ASTERISK:HEAVY TEARDROP-SPOKED'
+                svgIcon[65]='Arial Unicode MS,2731,ASTERISK:HEAVY'
+                svgIcon[66]='Arial Unicode MS,2732,ASTERISK:OPEN CENTRE'
+                svgIcon[67]='Arial Unicode MS,273C,ASTERISK:OPEN TEARDROP-SPOKED'
+                svgIcon[68]='Arial Unicode MS,273B,ASTERISK:TEARDROP-SPOKED'
+                svgIcon[69]='Arial Unicode MS,2722,ASTERISK:TEARDROP'
+                svgIcon[70]='Webdings,f08e,AUTOMOBILE'
+                svgIcon[71]='Wingdings,f025,BELL'
+                svgIcon[72]='Webdings,f062,BICYCLE'
+                svgIcon[73]='Webdings,f06F,BOAT'
+                svgIcon[74]='Wingdings,f04d,BOMB'
+                svgIcon[75]='Wingdings,f0fe,BOX:CHECK'
+                svgIcon[76]='Wingdings,f0fd,BOX:x'
+                svgIcon[77]='Webdings,F076,BUS'
+                svgIcon[78]='Webdings,f08f,CHART'
+                svgIcon[79]='Arial Unicode MS,2713,CHECK MARK'
+                svgIcon[80]='Arial Unicode MS,2714,CHECK MARK:HEAVY '
+                svgIcon[81]='Webdings,f061,CHECK'
+                svgIcon[82]='Arial Unicode MS,274D,CIRCLE:SHADOWED'
+                svgIcon[83]='Arial Unicode MS,2776,CIRCLED DIGIT[A]:1'
+                svgIcon[84]='Arial Unicode MS,2777,CIRCLED DIGIT[A]:2'
+                svgIcon[85]='Arial Unicode MS,2778,CIRCLED DIGIT[A]:3'
+                svgIcon[86]='Arial Unicode MS,2779,CIRCLED DIGIT[A]:4'
+                svgIcon[87]='Arial Unicode MS,277A,CIRCLED DIGIT[A]:5'
+                svgIcon[88]='Arial Unicode MS,277B,CIRCLED DIGIT[A]:6'
+                svgIcon[89]='Arial Unicode MS,277C,CIRCLED DIGIT[A]:7'
+                svgIcon[90]='Arial Unicode MS,277D,CIRCLED DIGIT[A]:8'
+                svgIcon[91]='Arial Unicode MS,277E,CIRCLED DIGIT[A]:9'
+                svgIcon[92]='Arial Unicode MS,277F,CIRCLED DIGIT[A]:10'
+                svgIcon[93]='Arial Unicode MS,2780,CIRCLED DIGIT[B]:1'
+                svgIcon[94]='Arial Unicode MS,2781,CIRCLED DIGIT[B]:2'
+                svgIcon[95]='Arial Unicode MS,2782,CIRCLED DIGIT[B]:3'
+                svgIcon[96]='Arial Unicode MS,2783,CIRCLED DIGIT[B]:4'
+                svgIcon[97]='Arial Unicode MS,2784,CIRCLED DIGIT[B]:5'
+                svgIcon[98]='Arial Unicode MS,2785,CIRCLED DIGIT[B]:6'
+                svgIcon[99]='Arial Unicode MS,2786,CIRCLED DIGIT[B]:7'
+                svgIcon[100]='Arial Unicode MS,2787,CIRCLED DIGIT[B]:8'
+                svgIcon[101]='Arial Unicode MS,2788,CIRCLED DIGIT[B]:9'
+                svgIcon[102]='Arial Unicode MS,2789,CIRCLED DIGIT[B]:10'
+                svgIcon[103]='Arial Unicode MS,278A,CIRCLED DIGIT[C]:1'
+                svgIcon[104]='Arial Unicode MS,278B,CIRCLED DIGIT[C]:2'
+                svgIcon[105]='Arial Unicode MS,278C,CIRCLED DIGIT[C]:3'
+                svgIcon[106]='Arial Unicode MS,278D,CIRCLED DIGIT[C]:4'
+                svgIcon[107]='Arial Unicode MS,278E,CIRCLED DIGIT[C]:5'
+                svgIcon[108]='Arial Unicode MS,278F,CIRCLED DIGIT[C]:6'
+                svgIcon[109]='Arial Unicode MS,2790,CIRCLED DIGIT[C]:7'
+                svgIcon[110]='Arial Unicode MS,2791,CIRCLED DIGIT[C]:8'
+                svgIcon[111]='Arial Unicode MS,2792,CIRCLED DIGIT[C]:9'
+                svgIcon[112]='Arial Unicode MS,2793,CIRCLED DIGIT[C]:10'
+                svgIcon[113]='Arial Unicode MS,271A,CROSS:HEAVY GREEK'
+                svgIcon[114]='Arial Unicode MS,271C,CROSS:HEAVY OPEN CENTRE'
+                svgIcon[115]='Arial Unicode MS,271D,CROSS:LATIN'
+                svgIcon[116]='Arial Unicode MS,2720,CROSS:MALTESE'
+                svgIcon[117]='Arial Unicode MS,271B,CROSS:OPEN CENTRE'
+                svgIcon[118]='Arial Unicode MS,2719,CROSS:OUTLINED GREEK'
+                svgIcon[119]='Arial Unicode MS,271F,CROSS:OUTLINED LATIN'
+                svgIcon[120]='Arial Unicode MS,271E,CROSS:SHADOWED LATIN'
+                svgIcon[121]='Wingdings,f0b1,CROSSHAIRS:CIRCLE'
+                svgIcon[122]='Wingdings,f0b0,CROSSHAIRS:SQUARE'
+                svgIcon[123]='Webdings,F095,DAGGER'
+                svgIcon[124]='Wingdings,f05d,DHARMA'
+                svgIcon[125]='Arial Unicode MS,2756,DIAMOND: MINUS X'
+                svgIcon[126]='Webdings,F0FF,DOVE'
+                svgIcon[127]='Webdings,F0F1,DRONE'
+                svgIcon[128]='Wingdings,f053,DROP OF WATER'
+                svgIcon[129]='Webdings,f060,ENCLOSED'
+                svgIcon[130]='Webdings,F04E,EYE'
+                svgIcon[131]='Wingdings,f04c,FACE:FROWNING'
+                svgIcon[132]='Wingdings,f04b,FACE:NEUTRAL'
+                svgIcon[133]='Wingdings,f04A,FACE:SMILEY'
+                svgIcon[134]='Webdings,F066,FIRE ENGINE'
+                svgIcon[135]='Wingdings,f04f,FLAG'
+                svgIcon[136]='Arial Unicode MS,2740,FLORETTE:'
+                svgIcon[137]='Arial Unicode MS,273E,FLORETTE:6 PETALLED SOLID'
+                svgIcon[138]='Arial Unicode MS,2741,FLORETTE:8 PETALLED'
+                svgIcon[139]='Arial Unicode MS,273F,FLORETTE:SOLID'
+                svgIcon[140]='Webdings,F059,HEART'
+                svgIcon[141]='Arial Unicode MS,2766,HEART:FLORAL'
+                svgIcon[142]='Arial Unicode MS,2764,HEART:HEAVY SOLID '
+                svgIcon[143]='Arial Unicode MS,2763,HEART:ORNAMENT'
+                svgIcon[144]='Arial Unicode MS,2765,HEART:ROTATED BULLET'
+                svgIcon[145]='Arial Unicode MS,2767,HEART:ROTATED FLORAL'
+                svgIcon[146]='Wingdings,f036,HOURGLASS'
+                svgIcon[147]='Webdings,F0D1,KEY'
+                svgIcon[148]='Webdings,f07e,LIGHTNING'
+                svgIcon[149]='Webdings,F085,MASK'
+                svgIcon[150]='Webdings,f091,MONEYBAG'
+                svgIcon[151]='Webdings,F0AF,MUSIC'
+                svgIcon[152]='Arial Unicode MS,2712,NIB'
+                svgIcon[153]='Webdings,F054,OCEAN LINER'
+                svgIcon[154]='Arial Unicode MS,2761,PARAGRAPH ORNAMENT'
+                svgIcon[155]='Wingdings,f050,PENNANT'
+                svgIcon[156]='Webdings,F0EB,PIN'
+                svgIcon[157]='Webdings,F070,POLICE CAR'
+                svgIcon[158]='Webdings,F073,QUESTION'
+                svgIcon[159]='Wingdings,f0b4,QUESTION:DIAMOND'
+                svgIcon[160]='Webdings,F0F9,ROCKET'
+                svgIcon[161]='Webdings,F071,ROTATE'
+                svgIcon[162]='Webdings,F06B,SATELLITE'
+                svgIcon[163]='Webdings,f064,SHIELD'
+                svgIcon[164]='Wingdings,f04e,SKULL CROSS BONES'
+                svgIcon[165]='Arial Unicode MS,2744,SNOWFLAKE'
+                svgIcon[166]='Arial Unicode MS,2746,SNOWFLAKE:CHEVRON'
+                svgIcon[167]='Arial Unicode MS,2745,SNOWFLAKE:TRIFOLIATE'
+                svgIcon[168]='Arial Unicode MS,2747,SPARKLE'
+                svgIcon[169]='Arial Unicode MS,2748,SPARKLE:HEAVY'
+                svgIcon[170]='Webdings,f021,SPIDER'
+                svgIcon[171]='Arial Unicode MS,274F,SQUARE:LOWER RIGHT SHADOWED'
+                svgIcon[172]='Arial Unicode MS,2751,SQUARE:LOWER RIGHT SHADOWED'
+                svgIcon[173]='Arial Unicode MS,2750,SQUARE:UPPER RIGHT SHADOWED'
+                svgIcon[174]='Arial Unicode MS,2752,SQUARE:UPPER RIGHT SHADOWED'
+                svgIcon[175]='Wingdings,f05a,STAR AND CRESCENT'
+                svgIcon[176]='Arial Unicode MS,2721,STAR OF DAVID'
+                svgIcon[177]='Webdings,f06C,STAR'
+                svgIcon[178]='Wingdings,F0ae,STAR:10-POINTS'
+                svgIcon[179]='Arial Unicode MS,2739,STAR:12 POINTED SOLID'
+                svgIcon[180]='Webdings,F098,STAR:3-D'
+                svgIcon[181]='Wingdings,F0a9,STAR:3-POINTS'
+                svgIcon[182]='Wingdings,F0aa,STAR:4-POINTS'
+                svgIcon[183]='Wingdings,F0ab,STAR:5-POINTS'
+                svgIcon[184]='Arial Unicode MS,2736,STAR:6 POINTED SOLID'
+                svgIcon[185]='Wingdings,F0ac,STAR:6-POINTS'
+                svgIcon[186]='Arial Unicode MS,2735,STAR:8 POINTED PINWHEEL'
+                svgIcon[187]='Arial Unicode MS,2734,STAR:8 POINTED SOLID'
+                svgIcon[188]='Wingdings,F0ad,STAR:8-POINTS'
+                svgIcon[189]='Wingdings,f0b3,STAR:ARC-ROTATED'
+                svgIcon[190]='Wingdings,f0b2,STAR:ARC'
+                svgIcon[191]='Arial Unicode MS,2742,STAR:CIRCLED OPEN'
+                svgIcon[192]='Wingdings,f0b5,STAR:CIRCLED1'
+                svgIcon[193]='Arial Unicode MS,272A,STAR:CIRCLED2'
+                svgIcon[194]='Arial Unicode MS,2727,STAR:FOUR POINTED'
+                svgIcon[195]='Arial Unicode MS,272E,STAR:HEAVY OUTLINED'
+                svgIcon[196]='Arial Unicode MS,2738,STAR:HEAVY RECTILINEAR'
+                svgIcon[197]='Arial Unicode MS,272B,STAR:OPEN CENTRE'
+                svgIcon[198]='Arial Unicode MS,272D,STAR:OUTLINED'
+                svgIcon[199]='Arial Unicode MS,272F,STAR:PINWHEEL'
+                svgIcon[200]='Arial Unicode MS,2737,STAR:RECTILINEAR'
+                svgIcon[201]='Wingdings,f0b6,STAR:SHADOWED1'
+                svgIcon[202]='Arial Unicode MS,2730,STAR:SHADOWED2'
+                svgIcon[203]='Arial Unicode MS,272C,STAR:SOLID CENTRE'
+                svgIcon[204]='Arial Unicode MS,2726,STAR:SOLID FOUR POINTED'
+                svgIcon[205]='Arial Unicode MS,2729,STAR:STRESS OUTLINED'
+                svgIcon[206]='Wingdings,f0a5,TARGET'
+                svgIcon[207]='Webdings,f074,TRAIN'
+                svgIcon[208]='Webdings,F0D8,WEATHER:CLOUDY RAIN'
+                svgIcon[209]='Webdings,F0D9,WEATHER:CLOUDY'
+                svgIcon[210]='Webdings,F0D7,WEATHER:PARTLY CLOUDY'
+                svgIcon[211]='Webdings,F0D6,WEATHER:PARTLY SUNNY'
+                svgIcon[212]='Webdings,F0DB,WEATHER:RAIN'
+                svgIcon[213]='Webdings,F0DA,WEATHER:SNOW'
+                svgIcon[214]='Webdings,f0d5,WEATHER:SUNNY'
+                svgIcon[215]='Webdings,F0DC,WEATHER:THUNDER SHOWERS'
+                svgIcon[216]='Webdings,F0DD,WEATHER:TORNADO'
+                svgIcon[217]='Webdings,F0DE,WEATHER:WINDY'
+                svgIcon[218]='Webdings,f022,WEB'
+                svgIcon[219]='Wingdings,f052,WHITE SUN WITH RAYS'
+                svgIcon[220]='Arial Unicode MS,2715,X:'
+                svgIcon[221]='Arial Unicode MS,2717,X:BALLOT'
+                svgIcon[222]='Arial Unicode MS,2718,X:HEAVY BALLOT'
+                svgIcon[223]='Arial Unicode MS,2716,X:HEAVY'
+                svgIcon[224]='Wingdings,f05b,YIN YANG'
+
+
     - Consider MarkDown / HTML formatting to Text shape - do we really need this?
     - PBI can change type of W after created, ie Table to Matrix
     - How to incorporate fancy W types, ie half circle with needle / doughnut / etc ...
+        - see SVG http://svgdiscovery.com/C/svg-donut-arcs.htm
     - add video as shape
     - ArrowThin is not inside the W container => difficult to drag and drop, hangs over others, difficult to place, looks funny.  Also, the Arrow header is not always the same colour as the line.  Make more sophisticated to set tail (line) length -> so line length = 0 makes it s simple arrow head, or Triangle.  Also dimentions for head size - height and width.  Can these be done with a mouse ?
     - consider triangle as a new shape - not sure it is needed, or if can be done via thin arrows
@@ -612,6 +871,7 @@ This document describes items for later versions of Canvas.
     - Code shape - looks like code !
     - Gifs ...
     - Math formulas - no way unless we use third party tool !
+        - easy peezy, just use SVG.  See http://svgdiscovery.com/Text/dynamicText.htm
     - Thumbnails - open on side and jump to tab by clicking on it
     - Need a LINE !!
         - consider drawing this via the mouse
@@ -636,7 +896,7 @@ This document describes items for later versions of Canvas.
             text-overflow: ellipsis;
             width: 200px;
         }
-    
+    - barGauge, see http://svgdiscovery.com/HMI/BarGauge/barGaugeObject.htm
 
     Draw Mode (Shapes):
     -------------------
@@ -778,6 +1038,7 @@ This document describes items for later versions of Canvas.
     PDF / IMAGE:
     ------------
     - can save Dashboard as pdf - see https://github.com/MrRio/jsPDF.
+    - also, SVG-> PDF see http://svgdiscovery.com/C/svg-print-save-PDF.htm 
         Rather: https://stackoverflow.com/questions/38996376/generate-pdf-file-from-html-using-angular2-typescript,  or  https://stackoverflow.com/questions/42900319/how-to-convert-html-to-pdf-in-angular2  or  https://www.npmjs.com/package/jspdf
         - can send Dashboard as Email Attachment (in pdf or pic). To do this via Gmail, use its API - see https://www.sitepoint.com/sending-emails-gmail-javascript-api/
         - can copy whole D as image - can paste somewhere, or print and put on wall
