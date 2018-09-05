@@ -6174,6 +6174,12 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                 this.currentWidgets[i].graphWidth = 
                 this.globalVariableService.calcGraphWidth(this.currentWidgets[i]);
                 
+                // Refresh graphs
+                if (this.currentWidgets[i].widgetType == 'Graph') {
+
+                    this.globalVariableService.changedWidget.next(this.currentWidgets[i]);
+                };
+                
                 // Save to DB
                 this.globalVariableService.saveWidget(this.currentWidgets[i]);
             };
@@ -6205,8 +6211,13 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
                 // Calc the graph dimensions
                 this.currentWidgets[i].graphHeight = 
-                this.globalVariableService.calcGraphHeight(this.currentWidgets[i]);
+                    this.globalVariableService.calcGraphHeight(this.currentWidgets[i]);
 
+                // Refresh graphs
+                if (this.currentWidgets[i].widgetType == 'Graph') {
+
+                    this.globalVariableService.changedWidget.next(this.currentWidgets[i]);
+                };
                 // Save to DB
                 this.globalVariableService.saveWidget(this.currentWidgets[i]);
             };
@@ -6238,6 +6249,12 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
                 this.currentWidgets[i].graphWidth = 
                 this.globalVariableService.calcGraphWidth(this.currentWidgets[i]);
+
+                // Refresh graphs
+                if (this.currentWidgets[i].widgetType == 'Graph') {
+
+                    this.globalVariableService.changedWidget.next(this.currentWidgets[i]);
+                };
 
                 // Save to DB
                 this.globalVariableService.saveWidget(this.currentWidgets[i]);
@@ -8511,6 +8528,13 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                 w.graphHeight = this.globalVariableService.calcGraphHeight(w);
                 w.graphWidth = this.globalVariableService.calcGraphWidth(w);
 
+                // Refresh graphs
+                if (w.widgetType == 'Graph') {
+
+                    this.globalVariableService.changedWidget.next(w);
+                };
+
+                // Save to DB
                 this.globalVariableService.saveWidget(w);
                 this.showMessage(
                     'Widget Dimensions pasted',
