@@ -560,13 +560,6 @@ export class ShapeEditComponent implements OnInit {
         this.localWidget.shapeTextDisplay =
             this.globalVariableService.calcShapeTextDisplay(this.localWidget.shapeText);
 
-        // Set calculated start Width and Height for Text
-        if (this.localWidget.widgetSubType == 'Text') {
-            this.localWidget.containerWidth = this.localWidget.shapeTextDisplay.length
-                * this.localWidget.shapeFontSize / 2;
-            this.localWidget.containerHeight = 8 + +this.localWidget.shapeFontSize;
-        };
-
         if (this.newWidget) {
 
             // Estimate size of Bullets
@@ -589,7 +582,14 @@ export class ShapeEditComponent implements OnInit {
                     (8 + +this.localWidget.shapeFontSize);
 
             };
-            
+
+            // Set calculated start Width and Height for Text
+            if (this.localWidget.widgetSubType == 'Text') {
+                this.localWidget.containerWidth = this.localWidget.shapeTextDisplay.length
+                    * this.localWidget.shapeFontSize / 2;
+                this.localWidget.containerHeight = 8 + +this.localWidget.shapeFontSize;
+            };
+
             this.localWidget.dashboardTabIDs.push(
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID
             );
