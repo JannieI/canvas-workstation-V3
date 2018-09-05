@@ -6236,6 +6236,9 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                     this.currentWidgets[i].containerWidth = x;
                 };
 
+                this.currentWidgets[i].graphWidth = 
+                this.globalVariableService.calcGraphWidth(this.currentWidgets[i]);
+
                 // Save to DB
                 this.globalVariableService.saveWidget(this.currentWidgets[i]);
             };
