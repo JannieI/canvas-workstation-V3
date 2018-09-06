@@ -833,15 +833,20 @@
                             <clr-icon shape="trash"
                                 (dblclick)="dblclickBulletDelete(i, row)">
                             </clr-icon>
-                            <clr-icon shape="arrow right" *ngIf="row.linkedTabID!=null">
+                            <clr-icon  *ngIf="row.linkedTabID!=null"
+                                shape="arrow right"
+                                style="margin-left: 3px;"
+                                >
                             </clr-icon>
                             <clr-icon *ngIf="i==editLineNr"
                                 shape="refresh"
+                                style="margin-left: 3px;"
                                 (click)="clickBulletEditCancel(i)"
                                 >
                             </clr-icon>
                             <clr-icon *ngIf="i==editLineNr"
                                 shape="floppy"
+                                style="margin-left: 3px;"
                                 (click)="clickBulletEditSave(i)"
                                 >
                             </clr-icon>
@@ -896,16 +901,19 @@
                             [style.margin-bottom.px]="localWidget.shapeBulletMarginBottom"
                             >
                             <clr-icon shape="trash"
-                                (dblclick)="dblclickBulletDelete(i, row)">
+                                (dblclick)="dblclickBulletDelete(i, row)"
+                                >
                             </clr-icon>
                             <clr-icon shape="arrow right" *ngIf="row.linkedTabID!=null">
                             </clr-icon>
                             <clr-icon *ngIf="i==editLineNr"
+                                style="margin-left: 3px;"
                                 shape="refresh"
                                 (click)="clickBulletEditCancel(i)"
                                 >
                             </clr-icon>
                             <clr-icon *ngIf="i==editLineNr"
+                                style="margin-left: 3px;"
                                 shape="floppy"
                                 (click)="clickBulletEditSave(i)"
                                 >
