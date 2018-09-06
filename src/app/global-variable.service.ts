@@ -10745,7 +10745,7 @@ export class GlobalVariableService {
         if (widget.graphXaxisTitle != ''
             &&
             widget.graphXaxisTitle != null) {
-                graphHeight = widget.containerHeight - 45;
+                graphHeight = widget.containerHeight - 55;
         } else {
             graphHeight = widget.containerHeight - 15;
         };
