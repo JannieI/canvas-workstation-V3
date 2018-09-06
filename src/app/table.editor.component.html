@@ -32,61 +32,73 @@
 
                 <div class="gridDatasourceTitle" *ngIf="showDatasourcePopup">
                     Select a <b>Datasources</b> added before, and click Continue.
+
+                    <button *ngIf="hasClicked"
+                        class="btn btn-sm btn-secondary datasourceButton"
+                        (click)="clickContinue()">
+                        Continue
+                    </button>
+
+                    <div class="errorMessage">
+                        {{ errorMessage }}
+                    </div>
+
+                    <div class="gridDatasourceTable">
+                        <clr-datagrid>
+                            <clr-dg-column >NrWidgets</clr-dg-column>
+                            <clr-dg-column >Name</clr-dg-column>
+                            <clr-dg-column >Description</clr-dg-column>
+                            <clr-dg-row *clrDgItems="let row of currentDatasources;
+                                let i = index"
+                                [style.background-color]="(i == selectedRowIndex)? '#123456' : 'white'"
+                                [style.color]="(i == selectedRowIndex)? 'white' : 'gray'"
+                                (click)="clickDSrow(i, row.id)"
+                                >
+                                <clr-dg-cell>{{ row.nrWidgets }}</clr-dg-cell>
+                                <clr-dg-cell>{{ row.name }}</clr-dg-cell>
+                                <clr-dg-cell>{{ row.description }}</clr-dg-cell>
+                            </clr-dg-row>
+
+                            <clr-dg-footer>
+                                {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+                                of {{pagination.totalItems}} rows
+                                <clr-dg-pagination #pagination [clrDgPageSize]="7"></clr-dg-pagination>
+                            </clr-dg-footer>
+
+                        </clr-datagrid>
+                    </div>
+
+                    <div class="gridDatasourcePreview" *ngIf="hasClicked">
+                        <clr-datagrid>
+
+                            <clr-dg-column *ngFor="let row of dataFieldNames">{{row}}</clr-dg-column>
+                            <clr-dg-row *ngFor="let row of currentData">
+
+                                <clr-dg-cell *ngFor="let col of dataFieldNames; let i = index">
+                                        {{ row[col] }}
+                                </clr-dg-cell>
+                            </clr-dg-row>
+
+                            <clr-dg-footer>
+                                {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+                                of {{pagination.totalItems}} rows
+                                <clr-dg-pagination #pagination [clrDgPageSize]="10"></clr-dg-pagination>
+                            </clr-dg-footer>
+
+                        </clr-datagrid>
+                    </div>
                 </div>
 
-                <div class="gridDatasourceTable" *ngIf="showDatasourcePopup">
-                    <clr-datagrid>
-                        <clr-dg-column >Name</clr-dg-column>
-                        <clr-dg-column >Description</clr-dg-column>
-                        <clr-dg-row *clrDgItems="let row of currentDatasources;
-                            let i = index"
-                            [style.background-color]="(i == selectedRowIndex)? '#123456' : 'white'"
-                            [style.color]="(i == selectedRowIndex)? 'white' : 'gray'"
-                            (click)="clickDSrow(i, row.id)"
-                            >
-                            <clr-dg-cell>{{ row.name }}</clr-dg-cell>
-                            <clr-dg-cell>{{ row.description }}</clr-dg-cell>
-                        </clr-dg-row>
-
-                        <clr-dg-footer>
-                            {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
-                            of {{pagination.totalItems}} rows
-                            <clr-dg-pagination #pagination [clrDgPageSize]="7"></clr-dg-pagination>
-                        </clr-dg-footer>
-
-                    </clr-datagrid>
-                </div>
-
-                <div class="gridDatasourcePreview" *ngIf="hasClicked  &&  showDatasourcePopup">
-                    <clr-datagrid>
-
-                        <clr-dg-column *ngFor="let row of dataFieldNames">{{row}}</clr-dg-column>
-                        <clr-dg-row *ngFor="let row of currentData">
-
-                            <clr-dg-cell *ngFor="let col of dataFieldNames; let i = index">
-                                    {{ row[col] }}
-                            </clr-dg-cell>
-                        </clr-dg-row>
-
-                        <clr-dg-footer>
-                            {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
-                            of {{pagination.totalItems}} rows
-                            <clr-dg-pagination #pagination [clrDgPageSize]="10"></clr-dg-pagination>
-                        </clr-dg-footer>
-
-                    </clr-datagrid>
-                </div>
-
-                <div class="gridButtonContinue" *ngIf="showDatasourcePopup">
+                <!-- <div class="gridButtonContinue" *ngIf="showDatasourcePopup">
                     <button class="btn btn-primary"
                         (click)="clickContinue()">
                         Continue
                     </button>
-                </div>
+                </div> -->
 
-                <div class="gridSelectedDatasource" *ngIf="!showDatasourcePopup">
+                <!-- <div class="gridSelectedDatasource" *ngIf="!showDatasourcePopup">
                     <b>Fields for: {{ currentDatasources[0].name }}</b>
-                </div>
+                </div> -->
 
                 <div class="gridFields" *ngIf="!showDatasourcePopup">
                     <clr-datagrid [(clrDgSelected)]="selectedRow" [clDgRowSelection]="true">

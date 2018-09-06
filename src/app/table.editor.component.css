@@ -44,6 +44,11 @@
         z-index: 100;
     }
 
+    .errorMessage {
+        color: red;
+        margin-left: 10px;
+    }
+    
     .gridDatasourceTable {
         grid-column-start: 1;
         /* autoprefixer: off */
@@ -62,6 +67,10 @@
         margin-right: 12px;
         overflow: auto;
     }
+
+        .datasourceButton {
+            float: right;
+        }
 
     .gridSelectedDatasource {
         grid-column-start: 1;

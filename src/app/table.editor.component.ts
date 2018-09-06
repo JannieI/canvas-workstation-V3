@@ -67,8 +67,10 @@ import { GlobalVariableService }      from './global-variable.service';
     dragoverCol: boolean = false;
     dragoverRow: boolean = false;
     dragoverColor: boolean = false;
+    errorMessage: string = '';
     filterPivotFields: string = '';
     hasClicked: boolean = false;
+    isBusyRetrievingData: boolean = false;
     localWidget: Widget;                            // W to modify, copied from selected
     opened: boolean = true;
     showPropertiesArea: boolean;
@@ -96,7 +98,14 @@ import { GlobalVariableService }      from './global-variable.service';
 
         if (this.newWidget) {
             // Get DS
-            this.currentDatasources = this.globalVariableService.currentDatasources.slice();
+            this.currentDatasources = this.globalVariableService.datasources.slice();
+
+            // Count the Ws
+            let widgets: Widget[];
+            this.currentDatasources.forEach(ds => {
+                widgets = this.globalVariableService.widgets.filter(w => w.datasourceID == ds.id);
+                ds.nrWidgets = widgets.length;
+            });
 
             // Create new W
             // this.localWidget = this.globalVariableService.widgetTemplate;
@@ -128,12 +137,12 @@ import { GlobalVariableService }      from './global-variable.service';
             this.containerHasContextMenus = this.localWidget.containerHasContextMenus;
             this.containerHasTitle = this.localWidget.containerHasTitle;
 
-            // this.dataFieldNames = this.currentDatasources[0].dataFields;
-            // this.dataFieldLengths = this.currentDatasources[0].dataFieldLengths;
-            // this.dataFieldTypes = this.currentDatasources[0].dataFieldTypes;
+            this.dataFieldNames = this.currentDatasources[0].dataFields;
+            this.dataFieldLengths = this.currentDatasources[0].dataFieldLengths;
+            this.dataFieldTypes = this.currentDatasources[0].dataFieldTypes;
 
             this.showTable = true;
-            this.clickDSrow(-1, this.localWidget.datasourceID)
+            // this.clickDSrow(-1, this.localWidget.datasourceID)
         }
 
     }
@@ -157,6 +166,180 @@ import { GlobalVariableService }      from './global-variable.service';
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
         this.formWidgetEditorClosed.emit(null);
+    }
+
+    clickDSrow(index: number, datasourceID: number) {
+        // Set the selected datasourceID
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDSrow', '@Start');
+
+        // Highlight selected row
+        this.selectedRowIndex = index;
+        this.errorMessage = '';
+
+        // Determine if data obtains in Glob Var
+        let dSetIndex: number = this.globalVariableService.currentDatasets.findIndex(
+            ds => ds.datasourceID == datasourceID
+        );
+
+        if (dSetIndex < 0) {
+
+            if (this.isBusyRetrievingData) {
+                this.errorMessage = 'Still retrieving the actual data for this DS';
+                return;
+            };
+
+            this.isBusyRetrievingData = true;
+            this.errorMessage = 'Getting data ...'
+            this.globalVariableService.addCurrentDatasource(datasourceID).then(res => {
+
+                // Reset
+                this.isBusyRetrievingData = false
+                this.currentDatasources = this.globalVariableService.datasources.slice();
+
+                // Tell user
+                this.errorMessage = 'Data retrieved - click row again to continue';
+
+            });
+
+            // Stop Synch execution
+            return;
+        };
+
+        // Load local arrays for ngFor
+        let dsIndex: number = this.currentDatasources.findIndex(ds => ds.id == datasourceID);
+        console.warn('xx dSetIndex', dSetIndex)
+
+        if (dsIndex >= 0) {
+            this.dataFieldNames = this.currentDatasources[dsIndex].dataFields;
+            this.dataFieldLengths = this.currentDatasources[dsIndex].dataFieldLengths;
+            this.dataFieldTypes = this.currentDatasources[dsIndex].dataFieldTypes;
+
+            // Reset
+            this.isBusyRetrievingData = false;
+        } else {
+
+            if (this.isBusyRetrievingData) {
+                this.errorMessage = 'Retrieving the actual data - click row again once done';
+                return;
+            };
+
+            this.isBusyRetrievingData = true;
+            this.globalVariableService.addCurrentDatasource(datasourceID).then(res => {
+                this.isBusyRetrievingData = false
+
+            });
+        };
+        console.warn('xx this.dataFieldNames', this.dataFieldNames)
+
+        // Switch on the preview after the first row was clicked
+        this.hasClicked = true;
+
+        // Get latest dSet for the selected DS
+        let ds: number[]=[];
+        let dSetID: number = 0;
+
+        for (var i = 0; i < this.globalVariableService.currentDatasets.length; i++) {
+            if(this.globalVariableService.currentDatasets[i].datasourceID == datasourceID) {
+                ds.push(this.globalVariableService.currentDatasets[i].id)
+            }
+        };
+        if (ds.length > 0) {
+            dSetID = Math.max(...ds);
+        } else {
+            // Make proper error handling
+            alert('Error: no dataSet in glob vars for DSid = ' + datasourceID)
+        };
+        console.warn('xx this.globalVariableService.currentDatasets', dSetID, this.globalVariableService.currentDatasets)
+
+        // Load first few rows into preview
+        this.currentData = this.globalVariableService.currentDatasets.filter(
+            d => d.id == dSetID)[0].data.slice(0,5);
+
+        // Fill in data info
+        if (this.newWidget) {
+            this.localWidget.datasourceID = datasourceID;
+            this.localWidget.datasetID = dSetID;
+            this.localWidget.graphData = this.globalVariableService.currentDatasets.filter(
+                d => d.id == dSetID)[0].data;
+        };
+
+
+
+
+
+
+
+        // OLD CODE
+
+        // this.selectedRowIndex = index;
+
+        // // this.currentDatasources = this.globalVariableService.currentDatasources
+        // //     .filter(ds => ds.id == datasourceID)
+
+        // // Load local arrays for ngFor
+        // this.dataFieldNames = this.currentDatasources[0].dataFields;
+        // this.dataFieldLengths = this.currentDatasources[0].dataFieldLengths;
+        // this.dataFieldTypes = this.currentDatasources[0].dataFieldTypes;
+
+        // // Switch on the preview after the first row was clicked
+        // this.hasClicked = true;
+
+        // // Get latest dSet for the selected DS
+        // let ds: number[]=[];
+        // let dSetID: number = 0;
+
+        // for (var i = 0; i < this.globalVariableService.currentDatasets.length; i++) {
+        //     if(this.globalVariableService.currentDatasets[i].datasourceID == datasourceID) {
+        //         ds.push(this.globalVariableService.currentDatasets[i].id)
+        //     }
+        // };
+        // if (ds.length > 0) {
+        //     dSetID = Math.max(...ds);
+        // } else {
+        //     // Make proper error handling
+        //     alert('Error: no dataSet in glob vars for DSid = ' + datasourceID)
+        // };
+
+        // // Load first few rows into preview
+        // this.currentData = this.globalVariableService.currentDatasets.filter(
+        //     d => d.id == dSetID)[0].data.slice(0,5);
+
+        // // Fill in data info
+        // if (this.newWidget) {
+        //     this.localWidget.datasourceID = datasourceID;
+        //     this.localWidget.datasetID = dSetID;
+        //     this.localWidget.graphData = this.globalVariableService.currentDatasets.filter(
+        //         d => d.id == dSetID)[0].data;
+        // };
+
+    }
+
+    clickContinue(){
+        // Continue to design / edit the W, and close the form for the data
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickContinue', '@Start');
+
+        this.showDatasourcePopup = false;
+        this.showTable = true;
+    }
+
+    clickProperties(){
+        // Show popup for full list of Table Properties
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickProperties', '@Start');
+
+        this.showPropertiesArea = true;
+    }
+
+    clickApplyProperties(action: string) {
+        // Apply changes to Table properties
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickApplyProperties', '@Start');
+
+        if (action == 'Close') {
+            this.showPropertiesArea = false;
+            return;
+        };
+
+        // TODO - save to DB
+        this.showPropertiesArea = false;
     }
 
     clickSave(action: string) {
@@ -262,81 +445,6 @@ import { GlobalVariableService }      from './global-variable.service';
         // );
 
         // this.formWidgetEditorClosed.emit(this.localWidget);
-    }
-
-    clickDSrow(index: number, datasourceID: number) {
-        // Set the selected datasourceID
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickDSrow', '@Start');
-
-        this.selectedRowIndex = index;
-
-        this.currentDatasources = this.globalVariableService.currentDatasources
-            .filter(ds => ds.id == datasourceID)
-
-        // Load local arrays for ngFor
-        this.dataFieldNames = this.currentDatasources[0].dataFields;
-        this.dataFieldLengths = this.currentDatasources[0].dataFieldLengths;
-        this.dataFieldTypes = this.currentDatasources[0].dataFieldTypes;
-
-        // Switch on the preview after the first row was clicked
-        this.hasClicked = true;
-
-        // Get latest dSet for the selected DS
-        let ds: number[]=[];
-        let dSetID: number = 0;
-
-        for (var i = 0; i < this.globalVariableService.currentDatasets.length; i++) {
-            if(this.globalVariableService.currentDatasets[i].datasourceID == datasourceID) {
-                ds.push(this.globalVariableService.currentDatasets[i].id)
-            }
-        };
-        if (ds.length > 0) {
-            dSetID = Math.max(...ds);
-        } else {
-            // Make proper error handling
-            alert('Error: no dataSet in glob vars for DSid = ' + datasourceID)
-        };
-
-        // Load first few rows into preview
-        this.currentData = this.globalVariableService.currentDatasets.filter(
-            d => d.id == dSetID)[0].data.slice(0,5);
-
-        // Fill in data info
-        if (this.newWidget) {
-            this.localWidget.datasourceID = datasourceID;
-            this.localWidget.datasetID = dSetID;
-            this.localWidget.graphData = this.globalVariableService.currentDatasets.filter(
-                d => d.id == dSetID)[0].data;
-        };
-
-    }
-
-    clickContinue(){
-        // Continue to design / edit the W, and close the form for the data
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickContinue', '@Start');
-
-        this.showDatasourcePopup = false;
-        this.showTable = true;
-    }
-
-    clickProperties(){
-        // Show popup for full list of Table Properties
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickProperties', '@Start');
-
-        this.showPropertiesArea = true;
-    }
-
-    clickApplyProperties(action: string) {
-        // Apply changes to Table properties
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickApplyProperties', '@Start');
-
-        if (action == 'Close') {
-            this.showPropertiesArea = false;
-            return;
-        };
-
-        // TODO - save to DB
-        this.showPropertiesArea = false;
     }
 
   }
