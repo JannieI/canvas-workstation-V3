@@ -338,13 +338,6 @@ import { GlobalVariableService }      from './global-variable.service';
         this.dragoverColor = false;
     }
 
-    dragoleaveRow(ev, actionName: string) {
-        // Event trigger when the dragged Field is leaves the Row field
-        this.globalFunctionService.printToConsole(this.constructor.name,'dragoleaveRow', '@Start');
-
-        ev.preventDefault();
-        this.dragoverRow = false;
-    }
 
     clickDSrow(index: number, datasourceID: number) {
         // Set the selected datasourceID
