@@ -328,16 +328,6 @@ import { GlobalVariableService }      from './global-variable.service';
         this.dragoverCol = false;
     }
 
-    dragenterRow(ev, actionName: string) {
-        // Event trigger when the dragged Field is enters the Row field
-        this.globalFunctionService.printToConsole(this.constructor.name,'dragenterRow', '@Start');
-
-        ev.preventDefault();
-        this.dragoverCol = false;
-        this.dragoverRow = true;
-        this.dragoverColor = false;
-    }
-
 
     clickDSrow(index: number, datasourceID: number) {
         // Set the selected datasourceID
