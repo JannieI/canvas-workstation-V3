@@ -9738,56 +9738,6 @@ export class GlobalVariableService {
 
     }
 
-    dashboardMoveInfo(newDashboardID: number, oldDashboard: Dashboard): Dashboard {
-        // Creates a new Dashboard with ID = newDashboardID, but all properties from
-        // oldDashboard
-        // - changedDashboard = new D, with changed properties
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables ... dashboardMoveInfo',
-                "color: black; background: lightgray; font-size: 10px", {newDashboardID});
-        };
-
-        let returnDashboard: Dashboard = {
-            id:  newDashboardID,
-            originalID: oldDashboard.originalID,
-            draftID: oldDashboard.draftID,
-            version: oldDashboard.version,
-            state: oldDashboard.state,
-            code: oldDashboard.code,
-            name: oldDashboard.name,
-            description: oldDashboard.description,
-            accessType: oldDashboard.accessType,
-            password: oldDashboard.password,
-            refreshMode: oldDashboard.refreshMode,
-            refreshTimer: oldDashboard.refreshTimer,
-            defaultTabID: oldDashboard.defaultTabID,
-            defaultExportFileType: oldDashboard.defaultExportFileType,
-            url: oldDashboard.url,
-            qaRequired: oldDashboard.qaRequired,
-            isSample: oldDashboard.isSample,
-            backgroundColor: oldDashboard.backgroundColor,
-            backgroundImage: oldDashboard.backgroundImage,
-            templateDashboardID: oldDashboard.templateDashboardID,
-            creator: oldDashboard.creator,
-            dateCreated: oldDashboard.dateCreated,
-            editor: oldDashboard.editor,
-            dateEdited: oldDashboard.dateEdited,
-            refresher: oldDashboard.refresher,
-            dateRefreshed: oldDashboard.dateRefreshed,
-            nrWidgets: oldDashboard.nrWidgets,
-            nrShapes: oldDashboard.nrShapes,
-            nrRecords: oldDashboard.nrRecords,
-            nrTimesOpened: oldDashboard.nrTimesOpened,
-            nrTimesChanged: oldDashboard.nrTimesChanged,
-            tabs: oldDashboard.tabs,
-            permissions: oldDashboard.permissions
-
-        };
-
-        // Return
-        return returnDashboard;
-    }
-
     widgetReplace(changedWidget: Widget) {
         // Replaces (ByVal) the global W and currentW
         if (this.sessionDebugging) {
