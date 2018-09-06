@@ -320,15 +320,6 @@ import { GlobalVariableService }      from './global-variable.service';
         this.dragoverColor = false;
     }
 
-    dragleaveColumn(ev, actionName: string) {
-        // Event trigger when dragged field leave Column
-        this.globalFunctionService.printToConsole(this.constructor.name,'dragleaveColumn', '@Start');
-
-        ev.preventDefault();
-        this.dragoverCol = false;
-    }
-
-
     clickDSrow(index: number, datasourceID: number) {
         // Set the selected datasourceID
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDSrow', '@Start');
