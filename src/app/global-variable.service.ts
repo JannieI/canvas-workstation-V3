@@ -1917,7 +1917,8 @@ export class GlobalVariableService {
             // Perform all the promises
             this.allWithAsync(...promiseArray).then(resolvedData => {
                 // Dashboard
-                originalDashboard = this.dashboardMoveInfo(originalID, draftDashboard);
+                originalDashboard = JSON.parse(JSON.stringify(draftDashboard));
+                originalDashboard.id = originalID;
                 originalDashboard.state = 'Complete';
                 this.saveDashboard(originalDashboard).then(res => {
                     resolve(originalID);

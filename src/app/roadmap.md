@@ -582,10 +582,11 @@ This document describes items for later versions of Canvas.
     - Consider robot widgets:
         - shows red / orange / green light depending on status.
         - for SVG, see http://svgdiscovery.com/HMI/StatusStick/statusStick.htm
-    - Add emojis !?  
+    - Add emojis !?  See http://unicode.org/charts/  (also pictographs!)
         - See https://www.w3schools.com/charsets/ref_utf_misc_symbols.asp 
         - try to include big, colourful icons
         - can convert unicode to SVG - see http://svgdiscovery.com/C/svg-text-symbol.htm
+        and https://unicode-table.com/en/#miscellaneous-symbols
         - in SVG!  See http://svgdiscovery.com/L/svg-font-icon.htm
                 function buildIconTable()
                 {
