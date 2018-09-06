@@ -33,40 +33,44 @@
         width: 100%;
     }
 
-    .gridDatasourceTitle {
+    .datasources {
+        background-color: white;
         grid-column-start: 1;
         /* autoprefixer: off */
         grid-column-end: 19;
-        grid-row-start: 3;
-        grid-row-end: 4;
+        grid-row-start: 2;
+        grid-row-end: 25;
         margin-bottom: 0;
-        padding: 0 0.7rem 0 0.7rem;
-        z-index: 100;
+        padding: 0.7rem;   
+        z-index: 100;     
     }
 
-    .errorMessage {
-        color: red;
-        margin-left: 10px;
-    }
-    
-    .gridDatasourceTable {
-        grid-column-start: 1;
-        /* autoprefixer: off */
-        grid-column-end: 8;
-        grid-row-start: 3;
-        grid-row-end: 24;
-    }
+        .errorMessage {
+            color: red;
+            margin-left: 10px;
+        }
 
-    .gridDatasourcePreview{
-        grid-column-start: 8;
-        /* autoprefixer: off */
-        grid-column-end: 18;
-        grid-row-start: 3;
-        grid-row-end: 24;
-        margin-left: 12px;
-        margin-right: 12px;
-        overflow: auto;
-    }
+        .datasourceList {
+            border: 1px solid black;
+            display: inline-block;
+            height: 375px;
+            left: 20px;
+            margin: 10px;
+            position: absolute;
+            top: 105px;
+            width: 450px;
+        }
+
+        .datasourcePreview{
+            border: 1px solid black;
+            display: inline-block;
+            height: 375px;
+            left: 510px;
+            margin: 10px;
+            position: absolute;
+            top: 105px;
+            width: 600px;
+        }
 
         .datasourceButton {
             float: right;
