@@ -264,52 +264,6 @@ import { GlobalVariableService }      from './global-variable.service';
         // this.formWidgetEditorClosed.emit(this.localWidget);
     }
 
-    dragstartField(ev) {
-        // Event trigger when start Dragging a Field in the list
-        this.globalFunctionService.printToConsole(this.constructor.name,'dragstartField', '@Start');
-
-        ev.dataTransfer.setData("text/plain", ev.target.id);
-        this.draggedField = ev.srcElement.innerText;
-    }
-
-    // dragoverColumn(ev, actionName: string) {
-    //     // Event trigger when a field is dragged over Column element
-    //     this.globalFunctionService.printToConsole(this.constructor.name,'dragoverColumn', '@Start');
-
-    //     ev.preventDefault();
-    // }
-
-
-    // dropColumn(ev) {
-    //     // Event trigger when the dragged Field is dropped the Column field
-    //     this.globalFunctionService.printToConsole(this.constructor.name,'dropColumn', '@Start');
-    //     ev.preventDefault();
-
-    //     // Show X icon
-    //     this.showColumnDeleteIcon = true;
-
-    //     ev.dataTransfer.dropEffect = "move"
-    //     // Get the id of the target and add the moved element to the target's DOM
-
-    //     var data = ev.dataTransfer.getData("text");
-    //     // ev.target.appendChild(document.getElementById(data));
-    //     this.colField = this.draggedField;
-    //     this.localWidget.graphXfield = this.draggedField;
-    //     this.localWidget.graphXaxisTitle = this.draggedField;
-
-    //     // Fill the default and allowed types of Vega field types
-    //     let fieldType:string = this.getFieldType(this.draggedField);
-    //     this.graphTypeFieldX = this.allowedGraphTypeField(fieldType);
-    //     this.localWidget.graphXtype = this.defaultGraphTypeField(fieldType);
-    //     console.log('Field dropped: ', this.colField )
-
-    //     let definition = this.createVegaLiteSpec();
-    //     this.showColFieldAdvanced = true;
-    //     this.renderGraph(definition);
-
-    // }
-
-
     clickDSrow(index: number, datasourceID: number) {
         // Set the selected datasourceID
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDSrow', '@Start');
