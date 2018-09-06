@@ -739,28 +739,29 @@
                         >
                         <defs>
                             <marker id="markerCircle" markerWidth="8" markerHeight="8" refX="5" refY="5">
-                                <circle cx="5" cy="5" r="3" 
+                                <circle cx="5" cy="5" r="3"
                                 [style.stroke]="localWidget.shapeStroke"
                                 [style.fill]="localWidget.shapeStroke"
 
                                 />
                             </marker>
-                        
+
                             <marker id="markerArrow" markerWidth="13" markerHeight="13" refX="2" refY="6"
                                 orient="auto">
-                                <path d="M2,2 L2,11 L10,6 L2,2" 
+                                <path d="M2,2 L2,11 L10,6 L2,2"
                                 [style.stroke]="localWidget.shapeStroke"
                                 [style.fill]="localWidget.shapeStroke"
                                 />
                             </marker>
                         </defs>
-                        
+
                         <path d="M90,90 L160,90"
-                            style="stroke: #6666ff; stroke-width: 1px; fill: none;
-                                        marker-start: url(#markerCircle);
-                                        marker-end: url(#markerArrow);
-                                        "
-                        
+                            [style.stroke]="localWidget.shapeStroke"
+                            [style.fill]="localWidget.shapeStroke"
+                            style="stroke-width: 1px;
+                                marker-start: url(#markerCircle);
+                                marker-end: url(#markerArrow);
+                                "
                                 />
                     </svg>
                     <!-- <svg width="300" height="300"

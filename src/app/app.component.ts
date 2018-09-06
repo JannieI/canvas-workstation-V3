@@ -5328,6 +5328,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
             } else {
                 this.selectedWidget = this.currentWidgets[widgetIndex];
+                console.warn('xx this.selectedWidget', this.selectedWidget)
             }
         };
 

@@ -2838,7 +2838,50 @@
 
             <!-- Shape ArrowThin Object -->
             <div class="widget" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='ArrowThin'">
-                <svg [style.height.px]="row.containerHeight"
+                <svg width="180" height="180"
+                    [attr.transform]="'translate(0, 0) rotate(' + row.shapeRotation + ')'"
+                    >
+                    <defs>
+                        <marker id="markerCircle" 
+                            markerWidth="8" 
+                            markerHeight="8" 
+                            refX="5" 
+                            refY="5"
+                            >
+                            
+                            <circle 
+                                [style.stroke]="row.shapeStroke"
+                                [style.fill]="row.shapeStroke"
+                                cx="5" 
+                                cy="5" 
+                                r="3" 
+                                />
+                        </marker>
+                    
+                        <marker id="markerArrow" 
+                            markerWidth="13" 
+                            markerHeight="13" 
+                            refX="2" 
+                            refY="6"
+                            orient="auto"
+                            >
+                            <path d="M2,2 L2,11 L10,6 L2,2" 
+                                [style.stroke]="row.shapeStroke"
+                                [style.fill]="row.shapeStroke"
+                                />
+                        </marker>
+                    </defs>
+                    
+                    <path d="M90,90 L160,90"
+                        [style.stroke]="row.shapeStroke"
+                        [style.fill]="row.shapeStroke"
+                        style="stroke-width: 1px;
+                            marker-start: url(#markerCircle);
+                            marker-end: url(#markerArrow);
+                            "
+                            />
+                </svg>                
+                <!-- <svg [style.height.px]="row.containerHeight"
                     [style.width.px]="row.containerWidth"
                     [style.marginTop.px]="-25"
                     [style.marginLeft.px]="-9"
@@ -2868,7 +2911,7 @@
                         stroke-width="5"
                         marker-end="url(#arrowThin)"
                         />
-                </svg>
+                </svg> -->
             </div>
 
             <!-- Shape Image Object -->
@@ -3798,7 +3841,50 @@
 
             <!-- Shape ArrowThin Object -->
             <div class="widget" *ngIf="row.widgetType=='Shape'  &&  row.widgetSubType=='ArrowThin'">
-                <svg [style.height.px]="row.containerHeight"
+                <svg width="180" height="180"
+                    [attr.transform]="'translate(0, 0) rotate(' + row.shapeRotation + ')'"
+                    >
+                    <defs>
+                        <marker id="markerCircle" 
+                            markerWidth="8" 
+                            markerHeight="8" 
+                            refX="5" 
+                            refY="5"
+                            >
+                            
+                            <circle 
+                                [style.stroke]="row.shapeStroke"
+                                [style.fill]="row.shapeStroke"
+                                cx="5" 
+                                cy="5" 
+                                r="3" 
+                                />
+                        </marker>
+                    
+                        <marker id="markerArrow" 
+                            markerWidth="13" 
+                            markerHeight="13" 
+                            refX="2" 
+                            refY="6"
+                            orient="auto"
+                            >
+                            <path d="M2,2 L2,11 L10,6 L2,2" 
+                                [style.stroke]="row.shapeStroke"
+                                [style.fill]="row.shapeStroke"
+                                />
+                        </marker>
+                    </defs>
+                    
+                    <path d="M90,90 L160,90"
+                        [style.stroke]="row.shapeStroke"
+                        [style.fill]="row.shapeStroke"
+                        style="stroke-width: 1px;
+                            marker-start: url(#markerCircle);
+                            marker-end: url(#markerArrow);
+                            "
+                            />
+                </svg>    
+                <!-- <svg [style.height.px]="row.containerHeight"
                     [style.width.px]="row.containerWidth"
                     [style.marginTop.px]="-25"
                     [style.marginLeft.px]="-9"
@@ -3822,7 +3908,7 @@
                         stroke-width="5"
                         marker-end="url(#arrowThin)"
                         />
-                </svg>
+                </svg> -->
             </div>
 
             <!-- Shape Image Object -->
