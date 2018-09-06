@@ -346,17 +346,6 @@ import { GlobalVariableService }      from './global-variable.service';
         this.dragoverRow = false;
     }
 
-    dragenterColors(ev, actionName: string) {
-        // Event trigger when the dragged Field is enters the Colour field
-        this.globalFunctionService.printToConsole(this.constructor.name,'dragenterColors', '@Start');
-
-        ev.preventDefault();
-      this.dragoverCol = false;
-      this.dragoverRow = false;
-      this.dragoverColor = true;
-    }
-
-
     clickDSrow(index: number, datasourceID: number) {
         // Set the selected datasourceID
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDSrow', '@Start');
