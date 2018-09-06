@@ -89,17 +89,6 @@
                     </div>
                 </div>
 
-                <!-- <div class="gridButtonContinue" *ngIf="showDatasourcePopup">
-                    <button class="btn btn-primary"
-                        (click)="clickContinue()">
-                        Continue
-                    </button>
-                </div> -->
-
-                <!-- <div class="gridSelectedDatasource" *ngIf="!showDatasourcePopup">
-                    <b>Fields for: {{ currentDatasources[0].name }}</b>
-                </div> -->
-
                 <div class="gridFields" *ngIf="!showDatasourcePopup">
                     <clr-datagrid [(clrDgSelected)]="selectedRow" [clDgRowSelection]="true">
                         <clr-dg-column [clrDgField]="'filterPivotFields'">Name</clr-dg-column>

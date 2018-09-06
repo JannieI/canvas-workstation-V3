@@ -263,55 +263,6 @@ import { GlobalVariableService }      from './global-variable.service';
                 d => d.id == dSetID)[0].data;
         };
 
-
-
-
-
-
-
-        // OLD CODE
-
-        // this.selectedRowIndex = index;
-
-        // // this.currentDatasources = this.globalVariableService.currentDatasources
-        // //     .filter(ds => ds.id == datasourceID)
-
-        // // Load local arrays for ngFor
-        // this.dataFieldNames = this.currentDatasources[0].dataFields;
-        // this.dataFieldLengths = this.currentDatasources[0].dataFieldLengths;
-        // this.dataFieldTypes = this.currentDatasources[0].dataFieldTypes;
-
-        // // Switch on the preview after the first row was clicked
-        // this.hasClicked = true;
-
-        // // Get latest dSet for the selected DS
-        // let ds: number[]=[];
-        // let dSetID: number = 0;
-
-        // for (var i = 0; i < this.globalVariableService.currentDatasets.length; i++) {
-        //     if(this.globalVariableService.currentDatasets[i].datasourceID == datasourceID) {
-        //         ds.push(this.globalVariableService.currentDatasets[i].id)
-        //     }
-        // };
-        // if (ds.length > 0) {
-        //     dSetID = Math.max(...ds);
-        // } else {
-        //     // Make proper error handling
-        //     alert('Error: no dataSet in glob vars for DSid = ' + datasourceID)
-        // };
-
-        // // Load first few rows into preview
-        // this.currentData = this.globalVariableService.currentDatasets.filter(
-        //     d => d.id == dSetID)[0].data.slice(0,5);
-
-        // // Fill in data info
-        // if (this.newWidget) {
-        //     this.localWidget.datasourceID = datasourceID;
-        //     this.localWidget.datasetID = dSetID;
-        //     this.localWidget.graphData = this.globalVariableService.currentDatasets.filter(
-        //         d => d.id == dSetID)[0].data;
-        // };
-
     }
 
     clickContinue(){
