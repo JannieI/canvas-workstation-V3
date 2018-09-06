@@ -1186,3 +1186,10 @@ This document describes items for later versions of Canvas.
     - this is a whole thing, see Microsoft SQL data profiler
     - gives col info: length, null ratio, pateer, value distribution, stats
     - possible foreign keys between two tables
+
+    Twitter interface:
+    -----------------
+    - incoming: show a twitter feed as a Widget
+    - outgoing: send a graph with user text to Twitter, see https://developer.twitter.com/en/docs/twitter-for-websites/javascript-api/overview
+
+    

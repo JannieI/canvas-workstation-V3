@@ -343,12 +343,12 @@ const graphWidth: number = 420;
         this.localWidget.containerHasTitle = this.containerHasTitle;
 
         // Calc the graph dimensions
-        this.localWidget.graphHeight = 
+        this.localWidget.graphHeight =
         this.globalVariableService.calcGraphHeight(this.localWidget);
 
-        this.localWidget.graphWidth = 
+        this.localWidget.graphWidth =
         this.globalVariableService.calcGraphWidth(this.localWidget);
-        
+
         // Update new/edit
         if (this.newWidget) {
 

@@ -139,13 +139,13 @@ import { GlobalVariableService }      from './global-variable.service';
     }
 
     ngOnDestroy() {
-        // Cleanup just before Angular destroys the directive/component. 
+        // Cleanup just before Angular destroys the directive/component.
         // Unsubscribe Observables and detach event handlers to avoid memory leaks.
         // Called just before Angular destroys the directive/component.
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnDestroy', '@Start');
 
     }
-    
+
     ngAfterViewInit() {
         // ngAfterViewInit Life Cycle Hook
         this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewInit', '@Start');
@@ -165,7 +165,7 @@ import { GlobalVariableService }      from './global-variable.service';
 
         this.localWidget.containerHasContextMenus = this.containerHasContextMenus;
         this.localWidget.containerHasTitle = this.containerHasTitle;
-        
+
         // Set width, depending on ColorField change
         if (this.newWidget) {
             if (this.localWidget.graphColorField != ''
@@ -192,7 +192,7 @@ import { GlobalVariableService }      from './global-variable.service';
 
             // this.globalVariableService.widgets.push(this.localWidget);
             // this.globalVariableService.currentWidgets.push(this.localWidget);
-         
+
             this.globalVariableService.addWidget(this.localWidget).then(res => {
                 this.localWidget.id = res.id;
 
@@ -211,7 +211,7 @@ import { GlobalVariableService }      from './global-variable.service';
                 this.formWidgetEditorClosed.emit(this.localWidget);
 
             });
-   
+
         } else {
             if (this.selectedWidget.graphColorField != ''
                 &&  this.selectedWidget.graphColorField != null) {
@@ -229,7 +229,7 @@ import { GlobalVariableService }      from './global-variable.service';
 
             // Replace the W
             // this.globalVariableService.widgetReplace(this.localWidget);
- 
+
             // Update global W and DB
             this.globalVariableService.saveWidget(this.localWidget).then(res => {
 
@@ -245,11 +245,11 @@ import { GlobalVariableService }      from './global-variable.service';
                 );
 
                 this.formWidgetEditorClosed.emit(this.localWidget);
-                
+
             });
-            
+
         };
- 
+
         // // Tell user
         // this.globalVariableService.showStatusBarMessage(
         //     {
@@ -356,13 +356,6 @@ import { GlobalVariableService }      from './global-variable.service';
       this.dragoverColor = true;
     }
 
-    dragleaveColors(ev, actionName: string) {
-        // Event trigger when the dragged Field is leaves the Colour field
-        this.globalFunctionService.printToConsole(this.constructor.name,'dragleaveColors', '@Start');
-
-        ev.preventDefault();
-        this.dragoverColor = false;
-    }
 
     clickDSrow(index: number, datasourceID: number) {
         // Set the selected datasourceID

@@ -20,9 +20,9 @@
                             </h5>
                             <p style="margin-top: 0; color:gray;">
                                 This form allows for the adding of a new Table, or the editing
-                                of an existing Table.  For new Tables, first select the 
+                                of an existing Table.  For new Tables, first select the
                                 Datasource.  Afterwards, select the fields to show in the
-                                table.  Enhance the Table (i.e. sorting) by clicking the 
+                                table.  Enhance the Table (i.e. sorting) by clicking the
                                 More button.
                                 Click the X or press Escape to close this form.
                             </p>
@@ -38,7 +38,7 @@
                     <clr-datagrid>
                         <clr-dg-column >Name</clr-dg-column>
                         <clr-dg-column >Description</clr-dg-column>
-                        <clr-dg-row *clrDgItems="let row of currentDatasources; 
+                        <clr-dg-row *clrDgItems="let row of currentDatasources;
                             let i = index"
                             [style.background-color]="(i == selectedRowIndex)? '#123456' : 'white'"
                             [style.color]="(i == selectedRowIndex)? 'white' : 'gray'"
@@ -82,7 +82,7 @@
                         (click)="clickContinue()">
                         Continue
                     </button>
-                </div>  
+                </div>
 
                 <div class="gridSelectedDatasource" *ngIf="!showDatasourcePopup">
                     <b>Fields for: {{ currentDatasources[0].name }}</b>
@@ -266,7 +266,7 @@
                 <div class="gridLastRefreshedMsg" *ngIf="!showDatasourcePopup">
                     Last refreshed: 2017/01/01 08:31
                 </div>
-                
+
                 <div class="gridButtonCancel" *ngIf="!showDatasourcePopup">
                     <button
                         type="button"
