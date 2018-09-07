@@ -78,7 +78,7 @@ export class TableSingleComponent {
             .filter(ds => ds.id == this.table.datasourceID)
         this.dataFieldNames = this.currentDatasources[0].dataFields;
         this.dataFieldLengths = this.currentDatasources[0].dataFieldLengths;
-        
+
     }
 
     clickTable() {

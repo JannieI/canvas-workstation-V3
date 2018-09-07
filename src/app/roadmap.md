@@ -450,8 +450,6 @@ This document describes items for later versions of Canvas.
     - consider auto-calculated values, ie hover and show SUM of data.  Not sure how to do this, and if useful
     - make Checkpoints more visible, may o o 0 o at bottom to show how many and where we are?
     - consider dataQual triangle, -> link icons in same spot each time? 
-    - 
-    - consider bulk delete - all those selected.  This is soo dangerous.  Alternatively consider Delete All W (on current Tab) as a menu option: clear and easy ...
     - consider Ctrl-X = CUT = Delete current and Copy it.  Can for example use the Del Form to confirm - do we need a confirmation ?
     - container: consider 100% height / width option => fills parent div element.
     - consider Shift-Delete = needs no confirmation - good idea?

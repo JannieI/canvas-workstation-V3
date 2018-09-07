@@ -28,7 +28,7 @@
     margin: 0 !important;
     padding: 0 0 0 15px !important;
 }
- 
+
 .datagrid-cell {
     font-size: 0.45rem !important;
     height: 0.6rem !important;
@@ -46,20 +46,6 @@
     padding: 0 0 0 15px !important;
 
 }
-
-.datagrid-foot {
-    border: transparent;
-    font-size: 0.45rem !important;
-    height: 24px !important;
-    padding-top: 2px !important;
-    position: absolute !important;
-    right: 0 !important;
-    /* TODO - Reset height & top if Widget Grid in app.html changes !   OR, non-hard-code*/
-    top: 22px;      
-    vertical-align:text-top;
-}
-
-
 
 signpost {
     display: inline-block;
