@@ -1904,7 +1904,6 @@
 
 <!-- <div> <input type="text" [(ngModel)]="testIndexDB">    </div> -->
 
-        <!-- Popup Menu -->
 
         <!-- TEST ENDs -->
 
@@ -1915,12 +1914,13 @@
         [style.left.px]="popupLeft"
         [style.top.px]="popupTop"
         >
-        <clr-icon
+        Use menu at top
+        <!-- <clr-icon
             (click)="togglePaletteHorisontal()"
             shape="trash"
             size="18"
             >
-        </clr-icon>
+        </clr-icon> -->
     </div>
 
     <!-- Widget Container -->
@@ -4004,6 +4004,7 @@
             (click)="clickDashboard($event)"
             (mousedown)="mousedownDashboard($event)"
             (mouseup)="mouseupDashboard($event)"
+            (contextmenu)="contextMenuOpen($event, -1, 0, 0)"
             >
             <router-outlet ></router-outlet>
         </div>

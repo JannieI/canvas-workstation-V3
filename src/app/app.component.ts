@@ -7198,10 +7198,23 @@ console.warn('xx dims', ev, index, widgetLeft, widgetTop);
         // // Must be first, else default behaviour takes over
         ev.preventDefault();
 
-        this.popupLeft = widgetLeft;
-        this.popupTop = widgetTop;
-        this.selectedDropdownID = index;
-        this.showWidgetContextMenu = true;
+        // Clicked in main area, outside a Widget
+        if (index == -1) {
+            this.showMessage(
+                'Please use menu at the top',
+                'StatusBar',
+                'Info',
+                3000,
+                ''
+            );
+
+        } else {
+
+            this.popupLeft = widgetLeft;
+            this.popupTop = widgetTop;
+            this.selectedDropdownID = index;
+            this.showWidgetContextMenu = true;
+        };
     }
 
     contextmenuWidgetAnnotations(ev: any, index: number, id: number) {
@@ -8673,7 +8686,7 @@ console.warn('xx dims', ev, index, widgetLeft, widgetTop);
 
         // Close popup menu
         this.showWidgetContextMenu = false;
-        
+
         // Unselect all Ws
         this.clickMenuEditSelectAllNone('None');
         this.dashboardStartX = 0;
