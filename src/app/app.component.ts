@@ -466,6 +466,7 @@ export class AppComponent implements OnInit {
     showModalGroups: boolean = false;
     showModalShapeEdit: boolean = false;
     showModalShapeDelete: boolean = false;
+    showModalShapeDeleteAll: boolean = false;
     showModalTableDelete: boolean = false;
     showModalSlicerDelete: boolean = false;
     showModalUserMyPermissions: boolean = false;
@@ -1166,27 +1167,11 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
     }
 
     handleCloseShapeDelete(action: string) {
-        //
+        // Handle form close of Delete one Shape
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseShapeDelete', '@Start');
 
         // Delete if so requested
         if (action == 'Delete') {
-
-            // Add to Action log
-            this.globalVariableService.actionUpsert(
-                null,
-                this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
-                this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
-                this.selectedWidget.id,
-                'Widget',
-                'Delete',
-                '',
-                'App handleCloseWidgetDelete',
-                null,
-                null,
-                this.selectedWidget,
-                null
-            );
 
             this.deleteWidget('Shape');
         };
@@ -1194,6 +1179,30 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         this.menuOptionClickPostAction();
 
         this.showModalShapeDelete = false;
+    }
+
+    handleCloseShapeDeleteAll(action: string) {
+        // Handle close form Delete ALL Shapes
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseShapeDeleteAll', '@Start');
+
+        // Delete if so requested
+        if (action == 'Delete') {
+
+            let deleteWidget: Widget;
+
+            for (var i = 0; i < this.currentWidgets.length; i++) {
+    
+                // Delete ALL the Shapes
+                if ( this.currentWidgets[i].widgetType == 'Shape') {
+    
+                    this.deleteWidget('Shape', this.currentWidgets[i].id);
+                };
+            };
+        };
+
+        this.menuOptionClickPostAction();
+
+        this.showModalShapeDeleteAll = false;
     }
 
     handleCloseWidgetAnnotations(action: string) {
@@ -5518,6 +5527,73 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         this.showModalShapeDelete = true;
     }
 
+    clickMenuShapeDeleteAll() {
+        // Delete ALL Shapes on the current Tab
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuShapeDeleteAll', '@Start');
+
+        // Permissions
+        if (!this.globalVariableService.currentUser.dashboardCanEditRole
+            &&
+            !this.globalVariableService.currentUser.isAdministrator) {
+            this.showMessage(
+                'You do not have Edit Permissions (role must be added)',
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+
+        // Must have access to this D
+        if (!this.globalVariableService.dashboardPermissionCheck(
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+            'CanEdit')) {
+                this.showMessage(
+                    'No Edit access to this Dashboard',
+                    'StatusBar',
+                    'Warning',
+                    3000,
+                    ''
+                );
+                return;
+        };
+
+        // Has to be in editMode
+        if (!this.editMode) {
+            this.showMessage(
+                this.globalVariableService.canvasSettings.notInEditModeMsg,
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+
+        this.menuOptionClickPreAction();
+
+        // Set selectedWidget, for action log afterwards
+        this.currentWidgets.forEach(w => {
+            if (w.widgetType == 'Shape') {
+
+                // Check if Locked
+                if (w.isLocked) {
+                    this.showMessage(
+                        'A Widget is locked (unlock using menu option)',
+                        'StatusBar',
+                        'Warning',
+                        3000,
+                        ''
+                    );
+                    return;
+                };
+            };
+
+        });
+
+        this.showModalShapeDeleteAll = true;
+    }
 
 
 
@@ -6549,7 +6625,6 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
             .catch(err => {
                 console.log('xx error', err)
             })
-
 
     }
 
@@ -8222,18 +8297,24 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         };
 
         // Delete W + Chkpnts from the DB and global ones
-        this.globalVariableService.deleteWidget(deleteWidget.id);
+        this.globalVariableService.deleteWidget(deleteWidget.id).then(w => {
 
-        // for (var i = 0; i < this.globalVariableService.widgets.length; i++) {
-        //     if (delIDs.indexOf(this.globalVariableService.widgets[i].id) >= 0) {
-        //         this.globalVariableService.widgets.splice(i,1)
-        //     };
-        // };
-        // for (var i = 0; i < this.globalVariableService.currentWidgets.length; i++) {
-        //     if (delIDs.indexOf(this.globalVariableService.currentWidgets[i].id) >= 0) {
-        //         this.globalVariableService.currentWidgets.splice(i,1)
-        //     };
-        // };
+            // Add to Action log
+            this.globalVariableService.actionUpsert(
+                null,
+                this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                this.selectedWidget.id,
+                'Widget',
+                'Delete',
+                '',
+                'App deleteWidget',
+                null,
+                null,
+                deleteWidget,
+                null
+            );            
+        });
 
         // Filter the data in the dSets to which the Sl points.
         // In addition, apply all Sl that relates to each one
