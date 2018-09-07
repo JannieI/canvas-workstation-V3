@@ -1904,10 +1904,26 @@
 
 <!-- <div> <input type="text" [(ngModel)]="testIndexDB">    </div> -->
 
-<!-- TEST ENDs -->
+        <!-- Popup Menu -->
+
+        <!-- TEST ENDs -->
 
     <!-- ****************************  WIDGETS & RELATED FORMS ***************************** -->
 
+    <!-- Widget Popup -->
+    <div class="widgetPopupMenu" *ngIf="showWidgetContextMenu"
+        [style.left.px]="popupLeft"
+        [style.top.px]="popupTop"
+        >
+        <clr-icon
+            (click)="togglePaletteHorisontal()"
+            shape="trash"
+            size="18"
+            >
+        </clr-icon>
+    </div>
+
+    <!-- Widget Container -->
     <div class="widgetContainer" *ngFor="let row of currentWidgets; let i = index"
         [style.background-color]="row.containerBackgroundcolor"
         [style.border]="row.containerBorder"
@@ -1924,6 +1940,7 @@
         (dragstart)="clickWidgetContainerDragStart($event, i)"
         (dragend)="clickWidgetContainerDragEnd($event, row.id)"
         draggable="true"
+        (contextmenu)="contextMenuOpen($event, i, row.containerLeft, row.containerTop)"
         >
 
         <!-- Drag Handles -->
@@ -2125,7 +2142,6 @@
                 [style.text-align]="row.titleTextAlign"
                 [style.width.%]="row.titleWidth? row.titleWidth : '100'"
                 [style.z-index]="row.containerZindex+1"
-                (contextmenu)="contextMenuOpen()"
                 >
 
                 <!-- Annotation -->

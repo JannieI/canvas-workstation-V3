@@ -941,8 +941,7 @@ export class ShapeEditComponent implements OnInit {
 
         // Store X & Y
         console.warn('xx ', ev.x, ev.y)
-        var audio = new Audio('./assets/Button_Push-Mike_Koenig-1659525069.mp3');
-        audio.play();
+
     }
 
     mouseupArrow(ev: any) {

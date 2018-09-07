@@ -375,6 +375,8 @@ export class AppComponent implements OnInit {
     paletteTop: number = 80;                    // Palette position in px
     paletteHeight = 275;                        // Palette dimensions in px
     paletteWidth = 39;                          // Palette dimensions in px
+    popupLeft: number = 0;
+    popupTop: number = 0;
 	recentDashboards: DashboardRecent[];
     refreshGraphs: boolean = false;
     selectDatasetID: number;
@@ -382,6 +384,7 @@ export class AppComponent implements OnInit {
     selectedDatasource: Datasource;
     selectedDashboard: Dashboard;
     selectedDatasourceID: number;       // DS of selecte W, -1 for D
+    selectedDropdownID: number;
     selectedWidget: Widget;
     selectedWidgetID: number;
     selectedWidgetIndex: number;
@@ -7187,13 +7190,17 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
     // ***********************  CONTEXT MENUS  ************************ //
 
-    contextMenuOpen() {
+    contextMenuOpen(ev: any, index: number, widgetLeft: number, widgetTop: number) {
         // Open context / dropdown Menu from the Title Bar
         this.globalFunctionService.printToConsole(this.constructor.name,'contextMenuOpen', '@Start');
+console.warn('xx dims', ev, index, widgetLeft, widgetTop);
 
         // // Must be first, else default behaviour takes over
-        // ev.preventDefault();
+        ev.preventDefault();
 
+        this.popupLeft = widgetLeft;
+        this.popupTop = widgetTop;
+        this.selectedDropdownID = index;
         this.showWidgetContextMenu = true;
     }
 
@@ -7984,6 +7991,10 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         // Shows a message in the right area, ie StatusBar
         this.globalFunctionService.printToConsole(this.constructor.name,'showMessage', '@Start');
 
+        // Audible clue
+        let audio = new Audio('./assets/Click2.wav');
+        audio.play();
+
         // Pop message in right area
         this.globalVariableService.showStatusBarMessage(
             {
@@ -8660,6 +8671,9 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
             return;
         };
 
+        // Close popup menu
+        this.showWidgetContextMenu = false;
+        
         // Unselect all Ws
         this.clickMenuEditSelectAllNone('None');
         this.dashboardStartX = 0;

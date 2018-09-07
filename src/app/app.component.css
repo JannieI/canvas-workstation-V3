@@ -138,6 +138,12 @@
         border: 1px dotted gray;
     }
 
+    .widgetPopupMenu {
+        background-color: lightgray; 
+        display: inline-block; 
+        position:absolute; 
+        z-index: 101;
+    }
     .widgetRelatedInfoMenu {
         display: inline-block;
         grid-column-start: 2;

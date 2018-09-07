@@ -260,29 +260,21 @@ This document describes items for later versions of Canvas.
     Dashboard:
     ----------
     - Show Grid - currently a .png -> how to make this dynamic ?
-    11.StatusBar must not grow beyond screen width, or to double line
 
 
     Samples: use this to demo Canvas features (brag)
     --------
-    - Sample 1: personal finance, budget, expenses, etc
-    - Sample 2: elaborate to-do list
-    - Sample 3: buying a house: loan projections, to-do list of steps, pictures of house, share with friends, time-line of progress, gannt chart in Vega!
-    - Sample 4: Anscombe example.  Consider built-in stats functions like regression into backend; as a Transformation.
 
+        Dashboards:
+        - Sample 1: personal finance, budget, expenses, etc
+        - Sample 2: elaborate to-do list
+        - Sample 3: buying a house: loan projections, to-do list of steps, pictures of house, share with friends, time-line of progress, gannt chart in Vega!
+        - Sample 4: Anscombe example.  Consider built-in stats functions like regression into backend; as a Transformation.
 
-    Sample (standard) DS: useful data available
-    - Consider where to store, tag as sample => cannot alter and delete?
-    - Reserve Bank CPI
-    - Support desk!  Usual, ie calls per week, calls per agent, etc.  BUT, have a capturing tool ~ Canvas menu.  When a call is closed: click on menu option, add: issue + text, new dev requested + text, support needed by user + text.  This can produce powerful graphs on the three dimensions, each with nr of users per menu option.  This can be used to improve training, and new dev: the hotspots should be easily visible = area that must be fixed or enhanced or simplied to give the best bang for the next sprint.  Running the data over a timeline and marking the change as an event, one can easily see if the change has worked, and trends (ie what is getting worse / better).  I want to use this for Clarity on Canvas.
-
-
-
-    Templates:
-    ----------
-    1. Add Datasources to Dashboard, but flag them as invisible.  Thus, Dashboard can use them in Template only, and user cannot use them.  If the user needs that Datasource, he can add it, in which case it will be duplicated, one invisible.
-    6. When a T is changed on a template, the user is warned which Ds use it - he can see their names and maybe even open them.
-    8. A D may have many tabs, which tabs of Template is used where, or just first one on all D tabs?
+        Datasources:
+        - Consider where to store, tag as sample => cannot alter and delete?
+        - Reserve Bank CPI
+        - Support desk!  Usual, ie calls per week, calls per agent, etc.  BUT, have a capturing tool ~ Canvas menu.  When a call is closed: click on menu option, add: issue + text, new dev requested + text, support needed by user + text.  This can produce powerful graphs on the three dimensions, each with nr of users per menu option.  This can be used to improve training, and new dev: the hotspots should be easily visible = area that must be fixed or enhanced or simplied to give the best bang for the next sprint.  Running the data over a timeline and marking the change as an event, one can easily see if the change has worked, and trends (ie what is getting worse / better).  I want to use this for Clarity on Canvas.
 
 
 
@@ -388,9 +380,6 @@ This document describes items for later versions of Canvas.
     - navigation menu:
         - can open menu on left with icons and colours that jumps to different pages when clicked.  Can use this menu for beginner = create D, create W, etc !
     - consider adding Ctrl-Z = Redo previous action (if on menu, ie open Add Widget form).  Can be tricksy - what if previous was Delete Widget ?
-    - when posting a message to the StatusBar, make an audible sound.  See
-    https://www.w3schools.com/graphics/game_sound.asp
-    http://soundbible.com/tags-button.html - list of mp3 files
 
     Layouts:
     -------
@@ -1190,3 +1179,26 @@ This document describes items for later versions of Canvas.
     - Service worker
     - AngularFire
     
+
+    Templates:
+    ----------
+    6. When a T is changed on a template, the user is warned which Ds use it - he can see their names and maybe even open them.
+    8. A D may have many tabs, which tabs of Template is used where, or just first one on all D tabs?
+
+
+    StatusBar:
+    ---------
+    - the StatusBar must not grow beyond screen width, or to double line
+    - page # from pages
+    - custom select of elements on StatusBar: ie ViewMode/EditMode, Version, etc
+
+    Audible sounds (on statusbar):
+    -----------------------------
+    - add user option to turn on/off
+    - add user selection of sound (.wav file to play), see:
+        https://www.zapsplat.com/sound-effect-category/button-clicks/
+        http://soundbible.com/1705-Click2.html
+        http://www.findsounds.com/ISAPI/search.dll?keywords=mouse+click
+        http://www.freesfx.co.uk/soundeffects/button-clicks/
+
+
