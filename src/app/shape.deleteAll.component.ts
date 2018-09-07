@@ -23,7 +23,7 @@ import { GlobalVariableService }      from './global-variable.service';
     templateUrl: './shape.deleteAll.component.html',
     styleUrls: ['./shape.deleteAll.component.css']
 })
-export class ShapeDeleteComponent implements OnInit {
+export class ShapeDeleteAllComponent implements OnInit {
 
     @Output() formShapeDeleteClosedAll: EventEmitter<string> = new EventEmitter();
 
@@ -61,9 +61,6 @@ export class ShapeDeleteComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        if (this.selectedWidget.widgetSubType == 'Text') {
-            this.widgetText = this.selectedWidget.shapeText;
-        };
     }
 
   	clickClose() {

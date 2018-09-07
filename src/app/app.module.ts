@@ -74,6 +74,7 @@ import { SlicerDeleteComponent }      from './slicer.delete.component';
 
 import { ShapeEditComponent }         from './shape.editor.component';
 import { ShapeDeleteComponent }       from './shape.delete.component';
+import { ShapeDeleteAllComponent }    from './shape.deleteAll.component';
 
 import { DataDirectFileCSVComponent } from './data.direct.fileCSV.component';
 import { DataDirectFileJSONComponent }          from './data.direct.fileJSON.component';
@@ -249,6 +250,7 @@ import { StatusbarComponent }         from './statusbar.component';
 
         ShapeEditComponent,
         ShapeDeleteComponent,
+        ShapeDeleteAllComponent,
 
         CollaborateMessagesComponent,
         CollaborateTaskAddComponent,

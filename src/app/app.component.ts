@@ -8304,7 +8304,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                 null,
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
-                this.selectedWidget.id,
+                deleteWidget.id,
                 'Widget',
                 'Delete',
                 '',
