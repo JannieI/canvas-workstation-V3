@@ -91,7 +91,7 @@ const graphWidth: number = 420;
     isBusyRetrievingData: boolean = false;
     hasClicked: boolean = false;
     localWidget: Widget;                            // W to modify, copied from selected
-    oldWidget: Widget;                              // W at start
+    oldWidget: Widget = null;                       // W at start
     opened: boolean = true;
     rowField: string = 'Drag a field here ...';
     selectedRowIndex: number = 0;
@@ -419,17 +419,6 @@ const graphWidth: number = 420;
             this.globalVariableService.addWidget(this.localWidget).then(res => {
                 this.localWidget.id = res.id;
 
-                // Tell user
-                this.globalVariableService.showStatusBarMessage(
-                    {
-                        message: 'Graph Added',
-                        uiArea: 'StatusBar',
-                        classfication: 'Info',
-                        timeout: 3000,
-                        defaultMessage: ''
-                    }
-                );
-
                 // Action
                 // TODO - cater for errors + make more generic
                 let actID: number = this.globalVariableService.actionUpsert(
@@ -447,6 +436,18 @@ const graphWidth: number = 420;
                     this.localWidget,
                     false               // Dont log to DB yet
                 );
+
+                // Tell user
+                this.globalVariableService.showStatusBarMessage(
+                    {
+                        message: 'Graph Added',
+                        uiArea: 'StatusBar',
+                        classfication: 'Info',
+                        timeout: 3000,
+                        defaultMessage: ''
+                    }
+                );
+
                 // Return to main menu
                 this.formWidgetEditorClosed.emit(this.localWidget);
 
