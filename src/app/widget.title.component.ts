@@ -59,7 +59,7 @@ export class WidgetTitleComponent implements OnInit {
     lineColor: string = 'none';
     lineSize: string = 'none';
     localWidget: Widget;                            // W to modify, copied from selected
-    oldWidget: Widget;                              // W at start
+    oldWidget: Widget = null;                       // W at start
     selectedColour: string;
 
 

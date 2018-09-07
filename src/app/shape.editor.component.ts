@@ -83,6 +83,7 @@ export class ShapeEditComponent implements OnInit {
     editLineNr: number = -1;
     localWidget: Widget;                            // W to modify, copied from selected
     oldText: string = '';
+    oldWidget: Widget = null;                       // W at start
     selectedColour: string;
     selectedTabIndex: number;
     showArrow: boolean = false;
@@ -230,8 +231,10 @@ export class ShapeEditComponent implements OnInit {
 
         } else {
 
-            // Deep copy
-            // this.localWidget = Object.assign({}, this.selectedWidget);
+            // Deep copy original W
+            this.oldWidget = JSON.parse(JSON.stringify(this.selectedWidget));
+
+            // Deep copy Local W
             this.localWidget = JSON.parse(JSON.stringify(this.selectedWidget));
 
             // Refresh the form with the sub type
@@ -598,6 +601,24 @@ export class ShapeEditComponent implements OnInit {
 
             this.globalVariableService.addWidget(this.localWidget).then(res => {
 
+                // Action
+                // TODO - cater for errors + make more generic
+                let actID: number = this.globalVariableService.actionUpsert(
+                    null,
+                    this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                    this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                    this.localWidget.id,
+                    'Widget',
+                    'Edit',
+                    'Update Title',
+                    'W Title clickSave',
+                    null,
+                    null,
+                    null,
+                    this.localWidget,
+                    false               // Dont log to DB yet
+                );
+
                 this.localWidget.id = res.id;
 
                 // Tell user
@@ -620,6 +641,24 @@ export class ShapeEditComponent implements OnInit {
 
             // Update global W and DB
             this.globalVariableService.saveWidget(this.localWidget).then(res => {
+
+                // Action
+                // TODO - cater for errors + make more generic
+                let actID: number = this.globalVariableService.actionUpsert(
+                    null,
+                    this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                    this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                    this.localWidget.id,
+                    'Widget',
+                    'Edit',
+                    'Update Title',
+                    'W Title clickSave',
+                    null,
+                    null,
+                    this.oldWidget,
+                    this.localWidget,
+                    false               // Dont log to DB yet
+                );
 
                 // Tell user
                 this.globalVariableService.showStatusBarMessage(
