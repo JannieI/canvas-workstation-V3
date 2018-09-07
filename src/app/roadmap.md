@@ -556,8 +556,6 @@ This document describes items for later versions of Canvas.
     -------
     - links (to web and other D, T)
     - Slicer: all ALL, NONE options to list of checkboxes (or the heading, or the caret dropdown menu)
-    - Container:
-        - add border type, ie solid or dotted
     - write text vertically !
     - have UPPERCASE / Sentence Case options
     - add triangle, or make arrow more sophisticated = no line (! triangle), no arrowhead:

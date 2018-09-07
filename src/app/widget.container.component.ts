@@ -62,6 +62,7 @@ export class WidgetContainerComponent implements OnInit {
     lineSize: string = 'none';
     lineType: string = 'bold';
     localWidget: Widget;                            // W to modify, copied from selected
+    oldWidget: Widget;
     selectedColour: string;
 
 
@@ -123,8 +124,10 @@ export class WidgetContainerComponent implements OnInit {
         // Get setup info
         this.backgroundcolors = this.globalVariableService.backgroundcolors.slice();
 
-        // Deep copy
-        // this.localWidget = Object.assign({}, this.selectedWidget);
+        // Deep copy original
+        this.oldWidget = JSON.parse(JSON.stringify(this.selectedWidget));
+
+        // Deep copy local copy
         this.localWidget = JSON.parse(JSON.stringify(this.selectedWidget));
 
     }
@@ -229,6 +232,24 @@ export class WidgetContainerComponent implements OnInit {
         // Replace the W - DB and local vars
         this.globalVariableService.saveWidget(this.localWidget).then(res => {
             // this.globalVariableService.widgetReplace(this.localWidget);
+                    // Action
+                    // TODO - cater for errors + make more generic
+                    let actID: number = this.globalVariableService.actionUpsert(
+                        null,
+                        this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                        this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                        this.localWidget.id,
+                        'Widget',
+                        'Edit',
+                        'Update Container',
+                        'W Containter clickSave',
+                        null,
+                        null,
+                        this.oldWidget,
+                        this.localWidget,
+                        false               // Dont log to DB yet
+                    );
+
         });
 
         // Tell user

@@ -145,7 +145,7 @@
     .gridLineType {
         grid-column-start: 10;
         /* autoprefixer: off */
-        grid-column-end: 11;
+        grid-column-end: 12;
         grid-row-start: 8;
         grid-row-end: 9;
         padding-left: 15px;
