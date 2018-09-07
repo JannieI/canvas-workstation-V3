@@ -91,6 +91,7 @@ const graphWidth: number = 420;
     isBusyRetrievingData: boolean = false;
     hasClicked: boolean = false;
     localWidget: Widget;                            // W to modify, copied from selected
+    oldWidget: Widget;                              // W at start
     opened: boolean = true;
     rowField: string = 'Drag a field here ...';
     selectedRowIndex: number = 0;
@@ -140,7 +141,10 @@ const graphWidth: number = 420;
             };
         } else {
 
-            // this.localWidget = Object.assign({}, this.selectedWidget);
+            // Deep copy original W
+            this.oldWidget = JSON.parse(JSON.stringify(this.selectedWidget));
+
+            // Deep copy Local W
             this.localWidget = JSON.parse(JSON.stringify(this.selectedWidget));
 
             // TODO - handle properly and close form
@@ -426,6 +430,23 @@ const graphWidth: number = 420;
                     }
                 );
 
+                // Action
+                // TODO - cater for errors + make more generic
+                let actID: number = this.globalVariableService.actionUpsert(
+                    null,
+                    this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                    this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                    this.localWidget.id,
+                    'Widget',
+                    'Edit',
+                    'Update Title',
+                    'W Title clickSave',
+                    null,
+                    null,
+                    null,
+                    this.localWidget,
+                    false               // Dont log to DB yet
+                );
                 // Return to main menu
                 this.formWidgetEditorClosed.emit(this.localWidget);
 
@@ -449,6 +470,24 @@ const graphWidth: number = 420;
 
             // Update global W and DB
             this.globalVariableService.saveWidget(this.localWidget).then(res => {
+                
+                // Action
+                // TODO - cater for errors + make more generic
+                let actID: number = this.globalVariableService.actionUpsert(
+                    null,
+                    this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                    this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                    this.localWidget.id,
+                    'Widget',
+                    'Edit',
+                    'Update Title',
+                    'W Title clickSave',
+                    null,
+                    null,
+                    this.oldWidget,
+                    this.localWidget,
+                    false               // Dont log to DB yet
+                );
 
                 // Tell user
                 this.globalVariableService.showStatusBarMessage(

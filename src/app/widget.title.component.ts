@@ -120,12 +120,11 @@ export class WidgetTitleComponent implements OnInit {
             };
         });
 
-        // Deep copy original
+        // Deep copy original W
         this.oldWidget = JSON.parse(JSON.stringify(this.selectedWidget));
 
-        // Deep copy
+        // Deep copy Local W
         this.localWidget = JSON.parse(JSON.stringify(this.selectedWidget));
-        console.warn('xx col', this.localWidget.titleBackgroundColor, this.localWidget.titleColor )
 
         // Get setup info
         this.backgroundcolors = this.globalVariableService.backgroundcolors.slice();
