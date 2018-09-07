@@ -127,18 +127,15 @@
                     </div>
 
                     <div class="gridLineTypeTitle">
-                        Line Type:
+                        Type:
                     </div>
                     <div class="select gridLineType">
                         <select [(ngModel)]="lineType"
-                            name="lineSize"
+                            name="lineType"
                             (change)="clickSelectLineType($event)"
                             >
-                            <option>none</option>
-                            <option>1px</option>
-                            <option>2px</option>
-                            <option>3px</option>
-                            <option>4px</option>
+                            <option>solid</option>
+                            <option>dotted</option>
                         </select>
                     </div>
 

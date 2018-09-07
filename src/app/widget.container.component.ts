@@ -78,21 +78,20 @@ export class WidgetContainerComponent implements OnInit {
         if (this.selectedWidget.containerBorder != ''
             &&
             this.selectedWidget.containerBorder != 'none') {
-                let space: number = this.selectedWidget.containerBorder.indexOf(' ');
-                if (space > 0) {
-                    this.lineSize = this.selectedWidget.containerBorder.substr(0, space);
-                    let rest: string = this.selectedWidget.containerBorder.substr(space + 1, 999);
+                let space1: number = this.selectedWidget.containerBorder.indexOf(' ');
+                if (space1 > 0) {
+                    this.lineSize = this.selectedWidget.containerBorder.substr(0, space1);
+                    let rest: string = this.selectedWidget.containerBorder.substr(space1 + 1, 999);
 
-                    space = rest.indexOf(' ');
-                    if (space > 0) {
-                        let rest: string = this.selectedWidget.containerBorder.substr(space + 1, 999);
+                    let space2: number = rest.indexOf(' ');
+                    if (space2 > 0) {
 
-                        space = rest.indexOf(' ');
-                        if (space > 0) {
-                            this.lineColor = rest.substr(space + 1, 999);
-                        };
+                        this.lineType = rest.substr(0, space2)
+                        this.lineColor = rest.substr(space2 + 1, 999);
                     };
                 };
+                console.warn('xx linestuff', this.lineSize, this.lineType,  this.lineColor);
+                
         };
         console.warn('xx start Wcont', this.globalVariableService.currentWidgets)
         // Manage colour picker
