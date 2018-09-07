@@ -260,15 +260,7 @@ This document describes items for later versions of Canvas.
     Dashboard:
     ----------
     - Show Grid - currently a .png -> how to make this dynamic ?
-      Important: NO undo on forms, ie Comments.  Must be done through Add/Edit/Delete
-      buttons and logic on form.
-    9 .Import: check security, particularly for the Datasource.  Also, is the access rights
-       stored with the text file (security risk)?  Also, can / should it over-write an
-       existing Dashboard - yes, with a warning.  It must create a Draft version in all cases.
     11.StatusBar must not grow beyond screen width, or to double line
-    12.Set editMode per Recent - must be same mode as last saved
-    13.Set editMode @startup as user pref ?  How will this work if a D is opened read-only
-    14.Consider quick access to EditMode - maybe dblClick 'ViewOnly' on StatusBar
 
 
     Samples: use this to demo Canvas features (brag)
@@ -276,6 +268,7 @@ This document describes items for later versions of Canvas.
     - Sample 1: personal finance, budget, expenses, etc
     - Sample 2: elaborate to-do list
     - Sample 3: buying a house: loan projections, to-do list of steps, pictures of house, share with friends, time-line of progress, gannt chart in Vega!
+    - Sample 4: Anscombe example.  Consider built-in stats functions like regression into backend; as a Transformation.
 
 
     Sample (standard) DS: useful data available
@@ -287,16 +280,9 @@ This document describes items for later versions of Canvas.
 
     Templates:
     ----------
-    1. Loading a template - make sure to respect security / rights + all is read-only
-    2. D used as Templates may include templates already!  This is to simplify things, and a string     of dependencies - it is thus restricted to one level.  A T can be used in may D, no issue.
-    3. Add Datasources to Dashboard, but flag them as invisible.  Thus, Dashboard can use them
-       in Template only, and user cannot use them.  If the user needs that Datasource, he can
-       add it, in which case it will be duplicated, one invisible.
-    4. If this gets too complicated, only use Shapes on Templates.
-    6. When a T is changed, the user is warned which Ds use it - he can see their names and maybe   even open them.
-    7. When and where is DS & data loaded?  
-    8. Is it same per Tab?  The D will have many tabs, which tabs of Template is used where, or just first one on all D tabs?
-    9. A lot more thought and testing needs to go into this.
+    1. Add Datasources to Dashboard, but flag them as invisible.  Thus, Dashboard can use them in Template only, and user cannot use them.  If the user needs that Datasource, he can add it, in which case it will be duplicated, one invisible.
+    6. When a T is changed on a template, the user is warned which Ds use it - he can see their names and maybe even open them.
+    8. A D may have many tabs, which tabs of Template is used where, or just first one on all D tabs?
 
 
 
@@ -464,7 +450,7 @@ This document describes items for later versions of Canvas.
     - consider auto-calculated values, ie hover and show SUM of data.  Not sure how to do this, and if useful
     - make Checkpoints more visible, may o o 0 o at bottom to show how many and where we are?
     - consider dataQual triangle, -> link icons in same spot each time? 
-    - consider: if click in open space, deselect all selected Widgets.  Make sure this works in conjuction with clicking on the menu or palette or statusbar ...
+    - 
     - consider bulk delete - all those selected.  This is soo dangerous.  Alternatively consider Delete All W (on current Tab) as a menu option: clear and easy ...
     - consider Ctrl-X = CUT = Delete current and Copy it.  Can for example use the Del Form to confirm - do we need a confirmation ?
     - container: consider 100% height / width option => fills parent div element.

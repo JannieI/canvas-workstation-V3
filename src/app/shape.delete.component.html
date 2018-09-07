@@ -19,7 +19,7 @@
                                 Help
                             </h5>
                             <p style="margin-top: 0; color:gray;">
-                                    This form deletes the selected Shape.  
+                                    This form deletes the selected Shape.
                                     Select <b>Edit -> Undo</b>
                                     on the main menu to undo the action if necessary.
                                     Click the X or press Escape to close this form.
@@ -32,7 +32,8 @@
                     The Widget is of sub type
                     {{ selectedWidget.widgetSubType }}.
                     <br>
-                    <b>{{ widgetText }}</b>
+                    <b [innerHtml]="widgetText">
+                    </b>
                 </div>
 
                 <div class = "gridConfirmation">

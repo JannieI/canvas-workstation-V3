@@ -63,7 +63,7 @@ export class ShapeDeleteComponent implements OnInit {
     ngOnInit() {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
-        
+
         if (this.selectedWidget.widgetSubType == 'Text') {
             this.widgetText = this.selectedWidget.shapeText;
         };
