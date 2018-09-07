@@ -59,6 +59,7 @@ export class WidgetTitleComponent implements OnInit {
     lineColor: string = 'none';
     lineSize: string = 'none';
     localWidget: Widget;                            // W to modify, copied from selected
+    oldWidget: Widget;                              // W at start
     selectedColour: string;
 
 
@@ -119,8 +120,10 @@ export class WidgetTitleComponent implements OnInit {
             };
         });
 
+        // Deep copy original
+        this.oldWidget = JSON.parse(JSON.stringify(this.selectedWidget));
+
         // Deep copy
-        // this.localWidget = Object.assign({}, this.selectedWidget);
         this.localWidget = JSON.parse(JSON.stringify(this.selectedWidget));
         console.warn('xx col', this.localWidget.titleBackgroundColor, this.localWidget.titleColor )
 
@@ -219,6 +222,24 @@ export class WidgetTitleComponent implements OnInit {
         };
 
         this.globalVariableService.saveWidget(this.localWidget).then(res => {
+            // Action
+            // TODO - cater for errors + make more generic
+            let actID: number = this.globalVariableService.actionUpsert(
+                null,
+                this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                this.localWidget.id,
+                'Widget',
+                'Edit',
+                'Update Title',
+                'W Title clickSave',
+                null,
+                null,
+                this.oldWidget,
+                this.localWidget,
+                false               // Dont log to DB yet
+            );
+
             // Tell user
             this.globalVariableService.showStatusBarMessage(
                 {
