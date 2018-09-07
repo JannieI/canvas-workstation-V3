@@ -60,6 +60,7 @@ import { GlobalVariableService }      from './global-variable.service';
     containerHasTitle: boolean = true;
     containerslicerAddRest: boolean = false;
     localWidget: Widget;                            // W to modify, copied from selected
+    oldWidget: Widget = null;                       // W at start
     selectedColor: string = 'Gray';
     selectedDatasourceID: number = -1;
     selectedDatasetID: number = -1;
@@ -110,8 +111,12 @@ import { GlobalVariableService }      from './global-variable.service';
             this.localWidget.widgetType = 'Slicer';
         } else {
 
-            // this.localWidget = Object.assign({}, this.selectedWidget);
+            // Deep copy original W
+            this.oldWidget = JSON.parse(JSON.stringify(this.selectedWidget));
+
+            // Deep copy Local W
             this.localWidget = JSON.parse(JSON.stringify(this.selectedWidget));
+
             this.dataFields = this.localWidget.dataFields;
             this.dataFieldTypes = this.localWidget.dataFieldTypes;
             this.containerHasContextMenus = this.localWidget.containerHasContextMenus;
@@ -468,6 +473,24 @@ import { GlobalVariableService }      from './global-variable.service';
             this.globalVariableService.addWidget(this.localWidget).then(res => {
                 this.localWidget.id = res.id;
 
+                // Action
+                // TODO - cater for errors + make more generic
+                let actID: number = this.globalVariableService.actionUpsert(
+                    null,
+                    this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                    this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                    this.localWidget.id,
+                    'Widget',
+                    'Edit',
+                    'Update Title',
+                    'W Title clickSave',
+                    null,
+                    null,
+                    null,
+                    this.localWidget,
+                    false               // Dont log to DB yet
+                );
+
                 // Tell user
                 this.globalVariableService.showStatusBarMessage(
                     {
@@ -490,6 +513,24 @@ import { GlobalVariableService }      from './global-variable.service';
  
             // Update global W and DB
             this.globalVariableService.saveWidget(this.localWidget).then(res => {
+
+                // Action
+                // TODO - cater for errors + make more generic
+                let actID: number = this.globalVariableService.actionUpsert(
+                    null,
+                    this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                    this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                    this.localWidget.id,
+                    'Widget',
+                    'Edit',
+                    'Update Title',
+                    'W Title clickSave',
+                    null,
+                    null,
+                    this.oldWidget,
+                    this.localWidget,
+                    false               // Dont log to DB yet
+                );
 
                 // Tell user
                 this.globalVariableService.showStatusBarMessage(
