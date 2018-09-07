@@ -5316,7 +5316,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         } else {
             let widgetIndex: number = this.currentWidgets.findIndex(w => w.id == widgetID);
             console.warn('xx clickMenuShapeEdit widgetIndex', widgetIndex, widgetID);
-            
+
             if (widgetIndex < 0) {
                 this.showMessage(
                     'Widget does not exist in list',
@@ -6170,17 +6170,17 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                     this.currentWidgets[i].containerHeight = y;
 
                     // Calc the graph dimensions
-                    this.currentWidgets[i].graphHeight = 
+                    this.currentWidgets[i].graphHeight =
                     this.globalVariableService.calcGraphHeight(this.currentWidgets[i]);
 
-                    this.currentWidgets[i].graphWidth = 
+                    this.currentWidgets[i].graphWidth =
                     this.globalVariableService.calcGraphWidth(this.currentWidgets[i]);
-                    
+
                     // Refresh graphs
                     if (this.currentWidgets[i].widgetType == 'Graph') {
                         this.globalVariableService.changedWidget.next(this.currentWidgets[i]);
                     };
-                    
+
                     // Save to DB
                     this.globalVariableService.saveWidget(this.currentWidgets[i]);
                 };
@@ -6211,7 +6211,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                     this.currentWidgets[i].containerHeight = y;
 
                     // Calc the graph dimensions
-                    this.currentWidgets[i].graphHeight = 
+                    this.currentWidgets[i].graphHeight =
                         this.globalVariableService.calcGraphHeight(this.currentWidgets[i]);
 
                     // Refresh graphs
@@ -6248,7 +6248,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                 } else {
                     this.currentWidgets[i].containerWidth = x;
 
-                    this.currentWidgets[i].graphWidth = 
+                    this.currentWidgets[i].graphWidth =
                         this.globalVariableService.calcGraphWidth(this.currentWidgets[i]);
 
                     // Refresh graphs
@@ -6331,7 +6331,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                 localDashboardArray = res.map(row => row.dashboard);
                 console.log('xx Array', localDashboardArray)
             });
-        
+
     }
 
     clickHelpGetData() {
@@ -6341,7 +6341,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         // Reload Dashboards
 
         // Create Var with data
-        let localDashboardSingle = 
+        let localDashboardSingle =
             {
                 id: this.globalVariableService.dashboards[1].id,
                 dashboard: this.globalVariableService.dashboards[1],
@@ -6408,7 +6408,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
             localTableName: 'dashboards',
             localLastWebSocketNumber: -1,
             newLocalExpiryDateTime: null
-    
+
         }];
 
         // Load DB with bulkPut
@@ -6930,7 +6930,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuPaletteEdit', '@Start');
 
         console.warn('xx clickMenuPaletteEdit input:', widgetID, widgetIndex, canSave, widgetType);
-        
+
         // Graph type has been supplied
         if (widgetType == 'Graph') {
             this.clickMenuWidgetEdit(widgetID);
@@ -7774,7 +7774,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                 Math.max(this.minWidgetContainerHeight,
                     this.currentWidgets[index].containerHeight - ev.y + this.startY);
 
-            // // 
+            // //
             // if (gvIndex != -1) {
             //     this.globalVariableService.currentWidgets[gvIndex].containerHeight =
             //         Math.max(this.minWidgetContainerHeight,
@@ -7810,7 +7810,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
             //     this.globalVariableService.currentWidgets[gvIndex].graphWidth =
             //     Math.max(this.minGraphWidth, this.currentWidgets[index].graphWidth);
             // };
-            
+
         };
 
         // Bottom moved: adjust the height
@@ -7866,10 +7866,10 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         };
 
         // Calc the graph dimensions
-        this.currentWidgets[index].graphHeight = 
+        this.currentWidgets[index].graphHeight =
         this.globalVariableService.calcGraphHeight(this.currentWidgets[index]);
 
-        this.currentWidgets[index].graphWidth = 
+        this.currentWidgets[index].graphWidth =
         this.globalVariableService.calcGraphWidth(this.currentWidgets[index]);
 
         // Add to Action log

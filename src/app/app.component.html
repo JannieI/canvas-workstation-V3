@@ -324,7 +324,7 @@
                                     >
                                     Subscribe
                                 </button>
-        
+
 
                             </clr-dropdown-menu>
                         </clr-dropdown>
@@ -971,7 +971,7 @@
                             >
                             Paste (Ctrl-V)
                         </button>
-                        
+
                         <div class="dropdown-divider"></div>
                         <button type="button"
                             clrDropdownItem
@@ -2842,36 +2842,36 @@
                     [attr.transform]="'translate(0, 0) rotate(' + row.shapeRotation + ')'"
                     >
                     <defs>
-                        <marker id="markerCircle" 
-                            markerWidth="8" 
-                            markerHeight="8" 
-                            refX="5" 
+                        <marker id="markerCircle"
+                            markerWidth="8"
+                            markerHeight="8"
+                            refX="5"
                             refY="5"
                             >
-                            
-                            <circle 
+
+                            <circle
                                 [style.stroke]="row.shapeStroke"
                                 [style.fill]="row.shapeStroke"
-                                cx="5" 
-                                cy="5" 
-                                r="3" 
+                                cx="5"
+                                cy="5"
+                                r="3"
                                 />
                         </marker>
-                    
-                        <marker id="markerArrow" 
-                            markerWidth="13" 
-                            markerHeight="13" 
-                            refX="2" 
+
+                        <marker id="markerArrow"
+                            markerWidth="13"
+                            markerHeight="13"
+                            refX="2"
                             refY="6"
                             orient="auto"
                             >
-                            <path d="M2,2 L2,11 L10,6 L2,2" 
+                            <path d="M2,2 L2,11 L10,6 L2,2"
                                 [style.stroke]="row.shapeStroke"
                                 [style.fill]="row.shapeStroke"
                                 />
                         </marker>
                     </defs>
-                    
+
                     <path d="M90,90 L160,90"
                         [style.stroke]="row.shapeStroke"
                         [style.fill]="row.shapeStroke"
@@ -2880,7 +2880,7 @@
                             marker-end: url(#markerArrow);
                             "
                             />
-                </svg>                
+                </svg>
                 <!-- <svg [style.height.px]="row.containerHeight"
                     [style.width.px]="row.containerWidth"
                     [style.marginTop.px]="-25"
@@ -2888,12 +2888,12 @@
                     [style.transform]="'rotate(' + row.shapeRotation + 'deg)'"
                     >
                     <defs>
-                        <marker id="arrowThin" 
-                            markerWidth="10" 
-                            markerHeight="10" 
-                            refX="0" 
-                            refY="3" 
-                            orient="auto" 
+                        <marker id="arrowThin"
+                            markerWidth="10"
+                            markerHeight="10"
+                            refX="0"
+                            refY="3"
+                            orient="auto"
                             markerUnits="strokeWidth">
                         <path
                             d="M0,0 L0,6 L9,3 z"
@@ -3845,36 +3845,36 @@
                     [attr.transform]="'translate(0, 0) rotate(' + row.shapeRotation + ')'"
                     >
                     <defs>
-                        <marker id="markerCircle" 
-                            markerWidth="8" 
-                            markerHeight="8" 
-                            refX="5" 
+                        <marker id="markerCircle"
+                            markerWidth="8"
+                            markerHeight="8"
+                            refX="5"
                             refY="5"
                             >
-                            
-                            <circle 
+
+                            <circle
                                 [style.stroke]="row.shapeStroke"
                                 [style.fill]="row.shapeStroke"
-                                cx="5" 
-                                cy="5" 
-                                r="3" 
+                                cx="5"
+                                cy="5"
+                                r="3"
                                 />
                         </marker>
-                    
-                        <marker id="markerArrow" 
-                            markerWidth="13" 
-                            markerHeight="13" 
-                            refX="2" 
+
+                        <marker id="markerArrow"
+                            markerWidth="13"
+                            markerHeight="13"
+                            refX="2"
                             refY="6"
                             orient="auto"
                             >
-                            <path d="M2,2 L2,11 L10,6 L2,2" 
+                            <path d="M2,2 L2,11 L10,6 L2,2"
                                 [style.stroke]="row.shapeStroke"
                                 [style.fill]="row.shapeStroke"
                                 />
                         </marker>
                     </defs>
-                    
+
                     <path d="M90,90 L160,90"
                         [style.stroke]="row.shapeStroke"
                         [style.fill]="row.shapeStroke"
@@ -3883,7 +3883,7 @@
                             marker-end: url(#markerArrow);
                             "
                             />
-                </svg>    
+                </svg>
                 <!-- <svg [style.height.px]="row.containerHeight"
                     [style.width.px]="row.containerWidth"
                     [style.marginTop.px]="-25"
@@ -3977,7 +3977,7 @@
         [style.background-image]="showGrid? 'url(../images/gridBlock.png)' : (currentDashboardBackgroundImage? 'url(../images/' + currentDashboardBackgroundImage + ')' : '')"
         [style.background-color]="currentDashboardBackgroundColor"
         >
-        <div  class="content-area" 
+        <div  class="content-area"
             (click)="clickDashboard($event)"
             (mousedown)="mousedownDashboard($event)"
             (mouseup)="mouseupDashboard($event)"

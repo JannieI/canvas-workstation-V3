@@ -995,7 +995,7 @@ export class GlobalVariableService {
                         };
 
                         // Delete an object
-                        if (webSocketMessage.action == 'Add') {
+                        if (webSocketMessage.action == 'Delete') {
 
                             // Update Var
                             if (localVariableName != null) {

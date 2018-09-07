@@ -150,6 +150,8 @@ This document describes items for later versions of Canvas.
     13.Allow own profile pic upload!
     14.How do we treat sensitive data - that may not be seen by DBA.  Keep it in Excel and reload each time ...
     - Add Named-Transformations: have a CRUD form where user specifies a name, and a list of transformations to be performed with it.  Maybe give a start DS -> can only work if the requested DS has this layout, plus has field types, etc to calc and also know it will work.  Seems best solution to have a start DS.
+    - Show Transformations and Spec as json !!
+    - Transform with IF this then that value Statement !
     - export to csv, Excel, etc
     - has currency
     - data bars inside text values
@@ -553,6 +555,7 @@ This document describes items for later versions of Canvas.
     Shapes:
     -------
     - links (to web and other D, T)
+    - Slicer: all ALL, NONE options to list of checkboxes (or the heading, or the caret dropdown menu)
     - Container:
         - add border type, ie solid or dotted
     - write text vertically !
@@ -1081,7 +1084,8 @@ This document describes items for later versions of Canvas.
 
     Alerts:
     ------
-    - pulse alerts aligned to a dashboard with thresholds acceded 
+    - pulse alerts aligned to a dashboard with thresholds acceeded
+    - user wants to know when trades exceed 90% percentile, and then get 1. an alert and 2. a Dashboard attached with the relevant info 
 
 
     Dashboard Permissions:
@@ -1192,4 +1196,14 @@ This document describes items for later versions of Canvas.
     - incoming: show a twitter feed as a Widget
     - outgoing: send a graph with user text to Twitter, see https://developer.twitter.com/en/docs/twitter-for-websites/javascript-api/overview
 
+    Connectors:
+    - Connector to git hub !!!
+    - Strata connector !!!
+
+    Packages:
+    --------
+    - consider these
+    - Lighthouse
+    - Service worker
+    - AngularFire
     
