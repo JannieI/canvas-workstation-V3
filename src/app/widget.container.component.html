@@ -126,6 +126,22 @@
                         </select>
                     </div>
 
+                    <div class="gridLineTypeTitle">
+                        Line Type:
+                    </div>
+                    <div class="select gridLineType">
+                        <select [(ngModel)]="lineType"
+                            name="lineSize"
+                            (change)="clickSelectLineType($event)"
+                            >
+                            <option>none</option>
+                            <option>1px</option>
+                            <option>2px</option>
+                            <option>3px</option>
+                            <option>4px</option>
+                        </select>
+                    </div>
+
                     <div class="gridBorderRadiusTitle">
                         Border Radius:
                     </div>

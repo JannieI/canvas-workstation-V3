@@ -130,14 +130,14 @@ export class WidgetContainerComponent implements OnInit {
     }
 
     ngOnDestroy() {
-        // Cleanup just before Angular destroys the directive/component. 
+        // Cleanup just before Angular destroys the directive/component.
         // Unsubscribe Observables and detach event handlers to avoid memory leaks.
         // Called just before Angular destroys the directive/component.
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnDestroy', '@Start');
 
         this.colourPickerSubscription.unsubscribe();
     }
-    
+
     clickSelectBgColorPicker(ev: any) {
         // Open the Colour Picker for Background Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBgColorPicker', '@Start');
@@ -175,6 +175,8 @@ export class WidgetContainerComponent implements OnInit {
         } else {
             this.localWidget.containerBorder = this.lineSize
         };
+        console.warn('xx line', this.localWidget.containerBorder, this.lineColor, this.lineSize);
+        
     }
 
     clickSelectLineSize(ev: any) {

@@ -580,7 +580,7 @@ export class ShapeEditComponent implements OnInit {
 
                 this.localWidget.containerWidth = 35 + (maxTextLength
                     * this.localWidget.shapeFontSize / 2);
-                this.localWidget.containerHeight = +nrLines * 
+                this.localWidget.containerHeight = +nrLines *
                     (8 + +this.localWidget.shapeFontSize);
 
             };
@@ -895,7 +895,7 @@ export class ShapeEditComponent implements OnInit {
 
         this.localWidget.shapeStroke = ev.target.value;
     }
-    
+
     mousedownArrow(ev: any) {
         // Toggles Palette - horisontal / vertical
         this.globalFunctionService.printToConsole(this.constructor.name,'mousedownArrow', '@Start');
