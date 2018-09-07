@@ -500,6 +500,7 @@ This document describes items for later versions of Canvas.
     ------
     - allow to set pagination nr (currently defaults to 10)
     - table checkpoints?
+    - dynamic setting of table size: number of rows shown, number of rows per page.  Maybe via the drop down menu in the title?
 
     Comments:
     --------

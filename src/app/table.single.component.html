@@ -21,22 +21,6 @@
             </clr-dg-row>
 
             <clr-dg-footer *ngIf="hasTitle">
-                
-                <span *ngIf="nrRecords">
-                    Showing 
-                    <span *ngIf="!allowEdit" (dblclick)="allowEdit=!allowEdit"> 
-                        {{ nrRecords }} 
-                    </span>
-                    
-                    <span *ngIf="allowEdit"> <input type="text" [(ngModel)]="nrRecords"> </span>
-                    
-                    <b *ngIf="allowEdit" (click)="clickNrRows(nrRecords.value)"> Go </b>
-                    
-                    records in batches of 
-                    {{ pageSize }}
-                    . 
-                </span>
-
                 <clr-dg-pagination #pagination [clrDgPageSize]="pageSize">
                     {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
                     of {{pagination.totalItems}} users
