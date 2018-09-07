@@ -4752,6 +4752,14 @@
 </shape-delete>
 
 
+<!-- Modal: Shape Delete ALL -->
+<shape-deleteAll
+    class="formPopupDashboard"
+    *ngIf="showModalShapeDeleteAll"
+    (formShapeDeleteClosedAll)="handleCloseShapeDeleteAll($event)">Load Shape Delete ALL ...
+</shape-deleteAll>
+
+
 <!-- Overlay: Help -->
 <dashboard-help
     *ngIf="isFirstTimeUser"

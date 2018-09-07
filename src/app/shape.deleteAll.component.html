@@ -1,0 +1,60 @@
+<div class="modal modalBox">
+    <div class="modal-dialog modal-md" role="dialog" aria-hidden="true">
+        <div class="modal-content modalContent">
+
+            <div class="gridOverall">
+                <button type="button" class="closeButton" (click)="clickClose()">
+                    <b>X</b>
+                </button>
+
+                <div class="gridTitle">
+                    <b>Delete ALL Shapes</b>
+                    <clr-signpost>
+                        <clr-icon shape="info-circle"
+                            clrSignpostTrigger>
+                        </clr-icon>
+                            <clr-signpost-content *clrIfOpen
+                            [clrPosition]="'bottom-middle'">
+                            <h5 style="margin-top: 0; color:gray;">
+                                Help
+                            </h5>
+                            <p style="margin-top: 0; color:gray;">
+                                    This form deletes ALL the Shapes on the current Tab!
+                                    Select <b>Edit -> Undo</b>
+                                    on the main menu to undo the action if necessary.
+                                    Click the X or press Escape to close this form.
+                            </p>
+                        </clr-signpost-content>
+                    </clr-signpost>
+                </div>
+
+                <div class = "gridConfirmation">
+                    <label>
+                        Are you 100% sure you want to delete <b>ALL</b> the Shapes on the 
+                        current Tab?
+                    </label>
+                </div>
+
+                <div class = "gridButtonCancel">
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        (click)="clickClose()"
+                        >
+                        Cancel
+                    </button>
+                </div>
+
+                <div class = "gridButtonDelete">
+                    <button
+                        type="button"
+                        class="btn btn-danger"
+                        (click)="clickDelete()"
+                        >
+                        Delete
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
