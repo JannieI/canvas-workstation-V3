@@ -60,6 +60,7 @@ export class WidgetContainerComponent implements OnInit {
     colourPickerSubscription: Subscription;
     lineColor: string = 'none';
     lineSize: string = 'none';
+    lineType: string = 'bold';
     localWidget: Widget;                            // W to modify, copied from selected
     selectedColour: string;
 
@@ -113,7 +114,7 @@ export class WidgetContainerComponent implements OnInit {
 
                         // Construct line size
                         if (this.lineSize != 'none') {
-                            this.localWidget.containerBorder = this.lineSize + ' solid ' + this.lineColor;
+                            this.localWidget.containerBorder = this.lineSize + ' ' + this.lineType + ' ' + this.lineColor;
                         };
                     };
                 };
@@ -171,7 +172,7 @@ export class WidgetContainerComponent implements OnInit {
 
         // Construct line size
         if (this.lineSize != 'none') {
-            this.localWidget.containerBorder = this.lineSize + ' solid ' + this.lineColor;
+            this.localWidget.containerBorder = this.lineSize + ' ' + this.lineType + ' ' + this.lineColor;
         } else {
             this.localWidget.containerBorder = this.lineSize
         };
@@ -181,13 +182,27 @@ export class WidgetContainerComponent implements OnInit {
 
     clickSelectLineSize(ev: any) {
         // Select Circle Line Colour
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBgColor', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectLineSize', '@Start');
 
         this.lineSize = ev.target.value;
 
         // Construct line size
         if (this.lineSize != 'none') {
-            this.localWidget.containerBorder = this.lineSize + ' solid ' + this.lineColor;
+            this.localWidget.containerBorder = this.lineSize + ' ' + this.lineType + ' ' + this.lineColor;
+        } else {
+            this.localWidget.containerBorder = this.lineSize
+        };
+    }
+
+    clickSelectLineType(ev: any) {
+        // Select Circle Line Colour
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectLineType', '@Start');
+
+        this.lineType = ev.target.value;
+
+        // Construct line size
+        if (this.lineSize != 'none') {
+            this.localWidget.containerBorder = this.lineSize + ' ' + this.lineType + ' ' + this.lineColor;
         } else {
             this.localWidget.containerBorder = this.lineSize
         };
@@ -207,7 +222,7 @@ export class WidgetContainerComponent implements OnInit {
 
         // Construct line size
         if (this.lineSize != 'none') {
-            this.localWidget.containerBorder = this.lineSize + ' solid ' + this.lineColor;
+            this.localWidget.containerBorder = this.lineSize + ' ' + this.lineType + ' ' + this.lineColor;
         } else {
             this.localWidget.containerBorder = this.lineSize
         };
