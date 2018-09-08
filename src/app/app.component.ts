@@ -5387,6 +5387,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         this.showModalDashboardComments = true;
 
     }
+    
     clickMenuShapeHyperLinks() {
         // Manage hyperlinks for the selected Shape
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuShapeHyperLinks', '@Start');
@@ -5414,6 +5415,12 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         };
 
         this.menuOptionClickPreAction();
+        
+        this.currentWidgets.forEach(w => {
+            if (w.isSelected  &&  w.widgetType == 'Shape') {
+                this.selectedWidget = w;
+            };
+        });
 
         this.showModalWidgetHyperlinks = true;
     }

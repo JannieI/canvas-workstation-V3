@@ -67,6 +67,7 @@ export class WidgetLinksComponent implements OnInit {
     ngOnInit() {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+console.warn('xx this.selectedWidget', this.selectedWidget);
 
         this.dashboards = this.globalVariableService.dashboards.slice();
         this.dashboardTabs = this.globalVariableService.dashboardTabs.slice();

@@ -139,7 +139,8 @@
     }
 
     .widgetPopupMenu {
-        background-color: lightgray; 
+        background-color: rgb(153, 149, 149); 
+        color: black;
         display: inline-block; 
         position:absolute; 
         z-index: 101;
