@@ -3808,6 +3808,9 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         // Show popup to edit Widget Container properties
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetContainer', '@Start');
 
+        // Reset popup menu
+        this.showWidgetContextMenu = false;
+
         // Permissions
         if (!this.globalVariableService.currentUser.dashboardCanEditRole
             &&
