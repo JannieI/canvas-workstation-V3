@@ -5814,14 +5814,40 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
         for (var i = 0; i < this.currentWidgets.length; i++) {
             if (this.currentWidgets[i].isSelected) {
+
+                // Set W before change
+                let oldWidget: Widget = null;
+
                 if (x == -1) {
                     x = this.currentWidgets[i].containerLeft;
                 } else {
                     this.currentWidgets[i].containerLeft = x;
+                    oldWidget = JSON.parse(JSON.stringify(this.currentWidgets[i]));
+
                 };
 
                 // Save to DB
-                this.globalVariableService.saveWidget(this.currentWidgets[i]);
+                this.globalVariableService.saveWidget(this.currentWidgets[i]).then(res => {
+                    
+                    // Add to Action log
+                    if (oldWidget != null) {
+                        this.globalVariableService.actionUpsert(
+                            null,
+                            this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                            this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                            oldWidget.id,
+                            'Widget',
+                            'Edit',
+                            'AlignLeft',
+                            'App clickMenuArrangeAlignLeft',
+                            null,
+                            null,
+                            oldWidget,
+                            this.currentWidgets[i],
+                            false
+                        );
+                    };
+                });
             };
         };
 
