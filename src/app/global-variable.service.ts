@@ -7313,17 +7313,17 @@ export class GlobalVariableService {
                             };
 
                             // TODO - this does NOT work in datalib: if the first dashboardTabIDs
-                            = "a,b,c", then all works.  Else, it gives a big number 1046785...
-                            irrespective ...
-                            if (w.dashboardTabIDs != null) {
-                                // re = regEx
-                                var re = /t/gi;
-                                let d: string = w.dashboardTabIDs.toString();
-                                d = d.replace(re, '');
-                                let dA: string[] = d.split(',');
-                                w.dashboardTabIDs = [];
-                                dA.forEach(da => w.dashboardTabIDs.push(+da));
-                            }
+                            // = "a,b,c", then all works.  Else, it gives a big number 1046785...
+                            // irrespective ...
+                            // if (w.dashboardTabIDs != null) {
+                            //     // re = regEx
+                            //     var re = /t/gi;
+                            //     let d: string = w.dashboardTabIDs.toString();
+                            //     d = d.replace(re, '');
+                            //     let dA: string[] = d.split(',');
+                            //     w.dashboardTabIDs = [];
+                            //     dA.forEach(da => w.dashboardTabIDs.push(+da));
+                            // }
 
                             // TODO - fix when using DB
                             // Update slicerSelection
