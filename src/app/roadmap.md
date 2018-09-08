@@ -61,6 +61,10 @@ This document describes items for later versions of Canvas.
     - Test on different configs: screen resolution, 2 screens
     - Test on different devices, ie Tablet and Phone
     Multi-T display: show nr of Tabs where a W is displayed in header as a badge
+    - different Browsers (NB)
+    - different devices, ie iPad and iPhone
+    - different OS, ie Applie
+    - use Canvas for our business !
 
     Printing:
     -------------
@@ -138,6 +142,7 @@ This document describes items for later versions of Canvas.
     Data:
     -----
     1. Make sure terminology is consitent: Datasource -> Transform -> Dataset
+    - getting Data from a web table: this is not so often used, thus try and read other types of grids/tables as well (ie Clarity Datagrid)
     3. Have TestConnectivity method - can TEST connection
     4. I used FieldNames (string) in ie Pivot - is that okay?
     5. Design (technically) how Datasets, pivotRow, pivotCol, pivotResult, pivotAgg, Fields,    FieldsMetaData, Combinations, CombinationDetails will work, given that these can change over   time, has to be fast enough (cannot all live in memory) and has to integrate with Vega ...
@@ -154,6 +159,7 @@ This document describes items for later versions of Canvas.
     - Transform with IF this then that value Statement !
     - export to csv, Excel, etc
     - has currency
+    - consider Excel-like format => many users can use it already
     - data bars inside text values
     - sub totals and grand totals
     - can add labels, once 
@@ -190,6 +196,7 @@ This document describes items for later versions of Canvas.
     - DESIGn: Adv form
     - user can change Vega field types on Adv form
     - our field type -> vega types: take a best guess
+    - highlight one series in graph, either click the line (bar), or click on the legend
     - APPLY on Adv form must re-render
     - at start, add row, col, color fields
     - EDIT buggie - color stays, fails on T=2
@@ -216,7 +223,7 @@ This document describes items for later versions of Canvas.
     - Easy way to compare data: graph shows revenue per month for this year.  What was figure
        for March last year, or compare all to last year ... NB
     - Also, easy way to jump to previous period:  loaded at start with data ??
-
+    - has to do QA of some sorts on DS creation and definitions.  Not sure how...
 
 
     Table (Bradley SmartTable):
@@ -353,6 +360,8 @@ This document describes items for later versions of Canvas.
     ----------
     - relook at D export: maybe export Widgets too, plus data or at least points to data.  Amend Import to: show structure and what is valid, and if user proceeds: read Widgets to, create new records in DB, similar to ADD D and ADD W
     - show rubberband when selecting with mouse on D: mouse down and up @View controls size of pre-created Div
+    - have optional authorised recipients -> can only Send a Message / Email to these and no one else.
+    - on SAVE form: add user / group to notify that this D has been saved.
     - make it easier to see where to input data: maybe gray background ... Is this really necesary?  Make baie certain as this is baie work ...
     - look at Windi.com, Wahoo ? to see how to make it easy
     - look at gartner quadrant for dv. Explore, visualize, transform, compute, compose
@@ -488,6 +497,8 @@ This document describes items for later versions of Canvas.
     - allow to set pagination nr (currently defaults to 10)
     - table checkpoints?
     - dynamic setting of table size: number of rows shown, number of rows per page.  Maybe via the drop down menu in the title?
+    - merged cells - give County ones, then all cities for this county as rows below it.
+    - consider subtotals per group ...
 
     Comments:
     --------
@@ -894,6 +905,8 @@ This document describes items for later versions of Canvas.
     - also decide: should Group/ UnGroup save to DB or not?  It could be considered a once off thing, that must not affect other users when they open it.
     - currently: put Widgets A, B into a group and unselect.  When select Widget C, then the group will also become selected, so A, B, C selected.  This could make sense - think about the use case and consider changing it.
     - can duplicate a group, and can also copy a group from one tab to the next?
+    - can have multiple groups?
+    - when move group and then undo: the whole group has to jump back to original position.
 
 
     Speaker notes:
@@ -977,6 +990,8 @@ This document describes items for later versions of Canvas.
     - tag data in context
     - tag Dashboards, Widgets
     - flexible and customisable
+    - searchable (NB), can see Dashboards and Descriptions on list
+    - can jump to relevant Dashboards from here
 
     Product Design:
     --------------
@@ -1053,6 +1068,8 @@ This document describes items for later versions of Canvas.
     - easy to show / access unread ~ use of inbox as todo list in Google
     - link to Company platform, ie Skype?
     - make messages visible, ie hover shows latest collaborations
+    - send only to authorised email list on a D (optional feature) if it exists
+    - see if recipients can be linked to data, ie Clearing Member selected on Dashboard, then send to HIS email address only
 
     Alerts:
     ------
