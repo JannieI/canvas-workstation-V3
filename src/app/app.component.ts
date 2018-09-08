@@ -96,16 +96,17 @@ class DataCachingTable extends Dexie {
 }
 
 interface IDataCachingTable {
-    key: string;                             // Unique key
+    key: string;                            // Unique key
     objectID: number;                       // Optional record ID, ie for Data
-    serverCacheable: boolean;                // True if cached on server
-    serverLastUpdatedDateTime: Date;         // When cached last refreshed on server
-    serverExpiryDateTime: Date;              // When cache expires on server
-    serverLastWSsequenceNr: number;          // Last WSockets message nr sent for this
-    localCacheable: boolean;                 // True if cached locally, ie IndexedDB
-    localLastUpdatedDateTime: Date;          // When local cache last refreshed
-    localExpiryDateTime: Date;               // When local cache expries
-    localVariableName: string;               // Optional name of memory variable
+    serverCacheable: boolean;               // True if cached on server
+    serverLastUpdatedDateTime: Date;        // When cached last refreshed on server
+    serverExpiryDateTime: Date;             // When cache expires on server
+    serverLastWSsequenceNr: number;         // Last WSockets message nr sent for this
+    serverUtl: string;                      // URL of the data on the server
+    localCacheable: boolean;                // True if cached locally, ie IndexedDB
+    localLastUpdatedDateTime: Date;         // When local cache last refreshed
+    localExpiryDateTime: Date;              // When local cache expries
+    localVariableName: string;              // Optional name of memory variable
     localCurrentVariableName: string;       // Optional name of memory current variable
     localTableName: string;                 // Optional name of Table in IndexedDB
     localLastWebSocketNumber: number;       // Last WS number processed
@@ -119,6 +120,7 @@ export class LocalDataCachingTable implements IDataCachingTable {
     serverLastUpdatedDateTime: Date;
     serverExpiryDateTime: Date;
     serverLastWSsequenceNr: number;
+    serverUtl: string; 
     localCacheable: boolean;
     localLastUpdatedDateTime: Date;
     localExpiryDateTime: Date;
@@ -134,6 +136,7 @@ export class LocalDataCachingTable implements IDataCachingTable {
         serverLastUpdatedDateTime: Date,
         serverExpiryDateTime: Date,
         serverLastWSsequenceNr: number,
+        serverUtl: string,
         localCacheable: boolean,
         localLastUpdatedDateTime: Date,
         localExpiryDateTime: Date,
@@ -150,6 +153,7 @@ export class LocalDataCachingTable implements IDataCachingTable {
             this.serverLastUpdatedDateTime = serverLastUpdatedDateTime,
             this.serverExpiryDateTime = serverExpiryDateTime,
             this.serverLastWSsequenceNr = serverLastWSsequenceNr,
+            this.serverUtl = serverUtl;
             this.localCacheable = localCacheable,
             this.localLastUpdatedDateTime = localLastUpdatedDateTime,
             this.localExpiryDateTime = localExpiryDateTime,
@@ -6567,6 +6571,7 @@ console.warn('xx filteredActions[0].action', filteredActions[0].action);
             serverLastUpdatedDateTime: new Date(),
             serverExpiryDateTime: new Date(),
             serverLastWSsequenceNr: 1,
+            serverUtl: 'dashboards',
             localCacheable: true,
             localLastUpdatedDateTime: new Date(),
             localExpiryDateTime: new Date(),
@@ -6698,6 +6703,7 @@ console.warn('xx filteredActions[0].action', filteredActions[0].action);
                             serverLastUpdatedDateTime: new Date(),
                             serverExpiryDateTime: new Date(),
                             serverLastWSsequenceNr: 1,
+                            serverUtl: 'dashboards',
                             localCacheable: true,
                             localLastUpdatedDateTime: new Date(),
                             localExpiryDateTime: new Date(),

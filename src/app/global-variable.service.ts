@@ -939,6 +939,8 @@ export class GlobalVariableService {
                         serverExpiryDateTime: this.dataCachingTable[dataCachingTableIndex].serverExpiryDateTime,
                         serverLastWSsequenceNr: this.dataCachingTable[dataCachingTableIndex].
                             serverLastWSsequenceNr,
+                        serverUrl: this.dataCachingTable[dataCachingTableIndex].
+                            serverUrl,
                         localCacheable: this.dataCachingTable[dataCachingTableIndex].localCacheable,
                         localLastUpdatedDateTime: new Date(),
                         localExpiryDateTime: webSocketMessage.newLocalExpiryDateTime,

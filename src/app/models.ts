@@ -403,6 +403,7 @@ export class DataCachingTable {
     serverLastUpdatedDateTime: Date;        // When cached last refreshed on server
     serverExpiryDateTime: Date;             // When cache expires on server
     serverLastWSsequenceNr: number;         // Last WSockets message nr sent for this
+    serverUrl: string;                      // URL of the data on the server
     localCacheable: boolean;                // True if cached locally, ie IndexedDB
     localLastUpdatedDateTime: Date;         // When local cache last refreshed
     localExpiryDateTime: Date;              // When local cache expries
