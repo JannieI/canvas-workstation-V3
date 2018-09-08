@@ -1144,7 +1144,10 @@ export class GlobalVariableService {
 
                         // Use local cache variable or table if fresh
                         if (isFresh) {
-                            if (localVariableName != null) {
+                            if ( (localVariableName != null)  
+                                 &&  
+                                 (this[localVariableName].length != 0) 
+                               ) {
                                 console.warn('xx return from VAR');
         // var type = 'article';
         // this[type+'_count'] = 1000;  // in a function we use "this";
@@ -1159,6 +1162,7 @@ export class GlobalVariableService {
                                 this.dbCanvasAppDatabase.table(localTableName)
                                     .toArray()
                                     .then(res => {
+                                        // TODO - generalize .dashboard for ANY data
                                         localDashboardArray = res.map(row => row.dashboard);
                                         console.log('xx Array', localDashboardArray)
 
@@ -1181,6 +1185,11 @@ export class GlobalVariableService {
 
                         // If cached, filled local info
                         if (dataCachingTableIndex >= 0) {
+
+                            // Update Expiry Date
+                            this.dataCachingTable[dataCachingTableIndex]
+                                .localExpiryDateTime = new Date();
+
                             if (localCacheable) {
 
                                 // Fill local Var
