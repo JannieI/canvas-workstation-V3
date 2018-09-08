@@ -5715,15 +5715,45 @@ console.warn('xx filteredActions[0].action', filteredActions[0].action);
 
         this.menuOptionClickPreAction();
 
+        // Deep copy of old-, newW
+        let oldWidget: Widget = null;
+        let newWidget: Widget = null;
+
         for (var i = 0; i < this.currentWidgets.length; i++) {
             if (this.currentWidgets[i].isSelected) {
+
+                oldWidget = JSON.parse(JSON.stringify(this.currentWidgets[i]));
+
                 this.currentWidgets[i].containerZindex = Math.max(
                     this.globalVariableService.canvasSettings.widgetsMinZindex,
                     this.currentWidgets[i].containerZindex - 1
                 );
 
+                newWidget = JSON.parse(JSON.stringify(this.currentWidgets[i]));
+
                 // Save to DB
-                this.globalVariableService.saveWidget(this.currentWidgets[i]);
+                this.globalVariableService.saveWidget(this.currentWidgets[i]).then(res => {
+                    
+                    // Add to Action log
+                    if (oldWidget != null) {
+                        this.globalVariableService.actionUpsert(
+                            null,
+                            this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                            this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                            oldWidget.id,
+                            'Widget',
+                            'Edit',
+                            'AlignCenter',
+                            'App clickMenuArrangeAlignCenter',
+                            null,
+                            null,
+                            oldWidget,
+                            newWidget,
+                            false
+                        );
+                    };
+    
+                });
 
                 // Refresh the Dashboard
                 this.globalVariableService.changedWidget.next(this.currentWidgets[i]);
