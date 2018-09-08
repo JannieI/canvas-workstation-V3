@@ -285,12 +285,31 @@
         padding-top: 6px;
     }
 
+    .gridZindexTitle {
+        grid-column-start: 1;
+        /* autoprefixer: off */
+        grid-column-end: 4;
+        grid-row-start: 20;
+        grid-row-end: 21;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+    .gridZindex {
+        grid-column-start: 4;
+        /* autoprefixer: off */
+        grid-column-end: 6;
+        grid-row-start: 20;
+        grid-row-end: 21;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+
     .gridButtonCancel {
         grid-column-start: 6;
         /* autoprefixer: off */
         grid-column-end: 8;
-        grid-row-start: 21;
-        grid-row-end: 22;
+        grid-row-start: 22;
+        grid-row-end: 23;
         margin-bottom: 15px;
     }
 
@@ -298,8 +317,8 @@
         grid-column-start: 13;
         /* autoprefixer: off */
         grid-column-end: 15;
-        grid-row-start: 21;
-        grid-row-end: 22;
+        grid-row-start: 22;
+        grid-row-end: 23;
         margin-bottom: 15px;
     }
 

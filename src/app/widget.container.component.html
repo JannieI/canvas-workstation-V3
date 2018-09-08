@@ -241,6 +241,22 @@
                             >
                     </div>
 
+                    <div class="gridZindexTitle">
+                        Z-ndex:
+                    </div>
+                    <div class="gridZindex">
+                        <input [(ngModel)]="localWidget.containerZindex"
+                            type="number"
+                            name="containerWidth"
+                            #containerWidthVar="ngModel"
+                            placeholder="Z-index can be 60-99"
+                            min="60"
+                            max="69"
+                            size="5"
+                            [style.color]="!containerWidthVar.valid ? 'red' : 'gray'"
+                            >
+                    </div>
+
                     <div class="gridButtonCancel">
                         <button
                             type="button"

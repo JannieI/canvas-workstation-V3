@@ -5387,7 +5387,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         this.showModalDashboardComments = true;
 
     }
-    
+
     clickMenuShapeHyperLinks() {
         // Manage hyperlinks for the selected Shape
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuShapeHyperLinks', '@Start');
@@ -7438,6 +7438,9 @@ console.warn('xx dims', ev, index, id, widgetLeft, widgetTop);
         // Jumps to the linked Dashboard and Tab
         this.globalFunctionService.printToConsole(this.constructor.name,'actionmenuJumpToLinked', '@Start');
 
+        // Reset popup menu
+        this.showWidgetContextMenu = false;
+        
         // Exit if no Dashboard to jump to
         if (dashboardID == null) {
             return;
