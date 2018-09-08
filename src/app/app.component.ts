@@ -376,6 +376,8 @@ export class AppComponent implements OnInit {
     paletteHeight = 275;                        // Palette dimensions in px
     paletteWidth = 39;                          // Palette dimensions in px
     popupLeft: number = 0;
+    popupHyperlinkDashboardID: number;
+    popupHyperlinkDashboardTabID: number;
     popupTop: number = 0;
 	recentDashboards: DashboardRecent[];
     refreshGraphs: boolean = false;
@@ -7190,10 +7192,10 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
     // ***********************  CONTEXT MENUS  ************************ //
 
-    contextMenuOpen(ev: any, index: number, widgetLeft: number, widgetTop: number) {
+    popupMenuOpen(ev: any, index: number, id: number, widgetLeft: number, widgetTop: number) {
         // Open context / dropdown Menu from the Title Bar
-        this.globalFunctionService.printToConsole(this.constructor.name,'contextMenuOpen', '@Start');
-console.warn('xx dims', ev, index, widgetLeft, widgetTop);
+        this.globalFunctionService.printToConsole(this.constructor.name,'popupMenuOpen', '@Start');
+console.warn('xx dims', ev, index, id, widgetLeft, widgetTop);
 
         // // Must be first, else default behaviour takes over
         ev.preventDefault();
@@ -7214,6 +7216,9 @@ console.warn('xx dims', ev, index, widgetLeft, widgetTop);
             this.popupTop = widgetTop;
             this.selectedDropdownID = index;
             this.showWidgetContextMenu = true;
+            this.popupHyperlinkDashboardID = this.currentWidgets[index].hyperlinkDashboardID;
+            this.popupHyperlinkDashboardTabID = this.currentWidgets[index]
+                .hyperlinkDashboardTabID;
         };
     }
 

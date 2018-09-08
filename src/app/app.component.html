@@ -1914,6 +1914,10 @@
         [style.left.px]="popupLeft"
         [style.top.px]="popupTop"
         >
+        <clr-icon shape="arrow right" *ngIf="popupHyperlinkDashboardID"
+            (click)="actionmenuJumpToLinked(popupHyperlinkDashboardID, popupHyperlinkDashboardTabID)"
+            >
+        </clr-icon>
         Use menu at top
         <!-- <clr-icon
             (click)="togglePaletteHorisontal()"
@@ -1940,7 +1944,7 @@
         (dragstart)="clickWidgetContainerDragStart($event, i)"
         (dragend)="clickWidgetContainerDragEnd($event, row.id)"
         draggable="true"
-        (contextmenu)="contextMenuOpen($event, i, row.containerLeft, row.containerTop)"
+        (contextmenu)="popupMenuOpen($event, i, row.id, row.containerLeft, row.containerTop)"
         >
 
         <!-- Drag Handles -->
@@ -4004,7 +4008,7 @@
             (click)="clickDashboard($event)"
             (mousedown)="mousedownDashboard($event)"
             (mouseup)="mouseupDashboard($event)"
-            (contextmenu)="contextMenuOpen($event, -1, 0, 0)"
+            (contextmenu)="popupMenuOpen($event, -1, -1, 0, 0)"
             >
             <router-outlet ></router-outlet>
         </div>

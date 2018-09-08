@@ -257,10 +257,6 @@ This document describes items for later versions of Canvas.
     - central logging and handling
     - error bubbling strategy
 
-    Dashboard:
-    ----------
-    - Show Grid - currently a .png -> how to make this dynamic ?
-
 
     Samples: use this to demo Canvas features (brag)
     --------
@@ -380,6 +376,7 @@ This document describes items for later versions of Canvas.
     - navigation menu:
         - can open menu on left with icons and colours that jumps to different pages when clicked.  Can use this menu for beginner = create D, create W, etc !
     - consider adding Ctrl-Z = Redo previous action (if on menu, ie open Add Widget form).  Can be tricksy - what if previous was Delete Widget ?
+    - Show Grid - currently a .png -> how to make this dynamic ?  See: https://stackoverflow.com/questions/3540194/how-to-make-a-grid-like-graph-paper-grid-with-just-css
 
     Layouts:
     -------
@@ -544,6 +541,7 @@ This document describes items for later versions of Canvas.
         }
     - make rotation of arrow with mouse - drag it around!
     - size with svg markerWidth and -Height
+    - easy way to fit container around context, ie edit words in a Text box and now the container with a border is too small / large.
     - Can / should other Shapes (ie TEXT, LINE) also rotate with transform="rotate(30 20,40)"??
     - Can / should Shapes have radial / linear blur inside??
     - Consider Shape = Line - easy to do, not sure where and how used (rather use arrow)?
@@ -894,6 +892,7 @@ This document describes items for later versions of Canvas.
     - better indication that groups are used, and maybe some help when Ws are group - say one- time help popup.
     - also decide: should Group/ UnGroup save to DB or not?  It could be considered a once off thing, that must not affect other users when they open it.
     - currently: put Widgets A, B into a group and unselect.  When select Widget C, then the group will also become selected, so A, B, C selected.  This could make sense - think about the use case and consider changing it.
+    - can duplicate a group, and can also copy a group from one tab to the next?
 
 
     Speaker notes:
