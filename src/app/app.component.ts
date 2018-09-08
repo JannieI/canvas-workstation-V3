@@ -5867,6 +5867,10 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         let x: number = -1;
 
         for (var i = 0; i < this.currentWidgets.length; i++) {
+
+            // Set W before change
+            let oldWidget: Widget = null;
+
             if (this.currentWidgets[i].isSelected) {
                 if (x == -1) {
                     x = this.currentWidgets[i].containerLeft +
@@ -5874,10 +5878,31 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                 } else {
                     this.currentWidgets[i].containerLeft = x -
                         (this.currentWidgets[i].containerWidth / 2);
+                    oldWidget = JSON.parse(JSON.stringify(this.currentWidgets[i]));
                 };
 
                 // Save to DB
-                this.globalVariableService.saveWidget(this.currentWidgets[i]);
+                this.globalVariableService.saveWidget(this.currentWidgets[i]).then(res => {
+                    
+                    // Add to Action log
+                    if (oldWidget != null) {
+                        this.globalVariableService.actionUpsert(
+                            null,
+                            this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                            this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                            oldWidget.id,
+                            'Widget',
+                            'Edit',
+                            'AlignCenter',
+                            'App clickMenuArrangeAlignCenter',
+                            null,
+                            null,
+                            oldWidget,
+                            this.currentWidgets[i],
+                            false
+                        );
+                    };
+                });
             };
         };
 
