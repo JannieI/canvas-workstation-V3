@@ -3804,7 +3804,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         this.showModalWidgetEditor = true;
     }
 
-    clickMenuWidgetContainer(widgetType: string) {
+    clickMenuWidgetContainer(widgetType: string, selectedWidgetID: number = null) {
         // Show popup to edit Widget Container properties
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetContainer', '@Start');
 
@@ -3851,18 +3851,30 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
             return;
         };
 
-        if (!this.checkForOnlyOneWidget(widgetType)) {
-            return
+        // Check exactly one W selected if no specific ID was given
+        if (selectedWidgetID == null) {
+
+            if (!this.checkForOnlyOneWidget(widgetType)) {
+                return
+            };
         };
 
         this.menuOptionClickPreAction();
 
+        // this.currentWidgets.forEach(w => {
+        //     if (w.isSelected  &&  w.widgetType == widgetType) {
+        //         this.selectedWidget = w;
+        //     };
+        // });
+        // Set the selected W
         this.currentWidgets.forEach(w => {
-            if (w.isSelected  &&  w.widgetType == widgetType) {
+            if (w.isSelected  &&  (selectedWidgetID == null)
+                ||
+                (w.id == selectedWidgetID   &&  (selectedWidgetID != null) )
+                ) {
                 this.selectedWidget = w;
             };
-        });
-
+        })
         this.showModalWidgetContainer = true;
     }
 
