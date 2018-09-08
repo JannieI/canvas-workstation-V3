@@ -6501,6 +6501,10 @@ console.warn('xx filteredActions[0].action', filteredActions[0].action);
         // Adjust the middle Ws (W1 and Wn remains unchanged): Wi = loop (i = 2,.., n-1)
         // Wi.top = W(i-1).top + W(i-1).heigth + g
         for (var i = 0; i < (selectedOnes.length - 1); i++) {
+            oldWidget = JSON.parse(JSON.stringify(
+                this.currentWidgets[selectedOnes[i].position])
+            );
+
             if (i > 0) {
                 selectedOnes[i].newTop = selectedOnes[i-1].newTop +
                     selectedOnes[i-1].height + g;
@@ -6508,12 +6512,36 @@ console.warn('xx filteredActions[0].action', filteredActions[0].action);
                     selectedOnes[i].newTop;
                 this.globalVariableService.currentWidgets[selectedOnes[i].position].
                     containerTop = selectedOnes[i].newTop;
-            } else {
-                selectedOnes[i].newTop = selectedOnes[i].newTop;
+
+                newWidget = JSON.parse(JSON.stringify(this.currentWidgets[selectedOnes[i]
+                    .position]));
+                } else {
+                // selectedOnes[i].newTop = selectedOnes[i].newTop;
             };
 
             // Save to DB
-            this.globalVariableService.saveWidget(this.currentWidgets[i]);
+            this.globalVariableService.saveWidget(this.currentWidgets[i]).then(res => {
+                    
+                // Add to Action log
+                if (oldWidget != null) {
+                    this.globalVariableService.actionUpsert(
+                        null,
+                        this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                        this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                        oldWidget.id,
+                        'Widget',
+                        'Edit',
+                        'AlignCenter',
+                        'App clickMenuArrangeAlignCenter',
+                        null,
+                        null,
+                        oldWidget,
+                        newWidget,
+                        false
+                    );
+                };
+
+            });
         };
 
         this.menuOptionClickPostAction();
