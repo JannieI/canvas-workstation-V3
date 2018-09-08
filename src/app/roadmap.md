@@ -377,6 +377,7 @@ This document describes items for later versions of Canvas.
         - can open menu on left with icons and colours that jumps to different pages when clicked.  Can use this menu for beginner = create D, create W, etc !
     - consider adding Ctrl-Z = Redo previous action (if on menu, ie open Add Widget form).  Can be tricksy - what if previous was Delete Widget ?
     - Show Grid - currently a .png -> how to make this dynamic ?  See: https://stackoverflow.com/questions/3540194/how-to-make-a-grid-like-graph-paper-grid-with-just-css
+    - consider removing Datalib library, if not needed for vega template spec
 
     Layouts:
     -------
@@ -1201,3 +1202,9 @@ This document describes items for later versions of Canvas.
         http://www.freesfx.co.uk/soundeffects/button-clicks/
 
 
+    Editor:
+    ------
+    - allow to transform editing of D to another user, provided she has the rights to edit.
+    - on separate form, filtered with right access rights?, with space for a message
+    - send message to new user
+    - update D record and switch to viewonly for current user

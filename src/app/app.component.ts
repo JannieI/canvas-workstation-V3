@@ -579,22 +579,11 @@ export class AppComponent implements OnInit {
         // alert(this.article_count);
 
         // Local App info DB
-        this.dbCanvasAppDatabase = new Dexie("CanvasAppDatabase");
-        this.dbCanvasAppDatabase.version(1).stores(
-            {
-                contacts: 'id, first, last',
-                localDashboards: 'id'
-            }
-        );
+        this.dbCanvasAppDatabase = new CanvasAppDatabase
         this.dbCanvasAppDatabase.open();
 
         // Local CachingTable DB
-        this.dbDataCachingTable = new Dexie("DataCachingTable");
-        this.dbDataCachingTable.version(1).stores(
-            {
-                localDataCachingTable: 'key, localCacheable, localExpiryDateTime',
-            }
-        );
+        this.dbDataCachingTable = new DataCachingTable;
         this.dbDataCachingTable.open();
 
         // Get Users and Groups, async
