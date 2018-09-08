@@ -5836,8 +5836,31 @@ console.warn('xx filteredActions[0].action', filteredActions[0].action);
                 this.currentWidgets[i].containerZindex =
                     this.globalVariableService.canvasSettings.widgetsMinZindex;
 
+                newWidget = JSON.parse(JSON.stringify(this.currentWidgets[i]));
+
                 // Save to DB
-                this.globalVariableService.saveWidget(this.currentWidgets[i]);
+                this.globalVariableService.saveWidget(this.currentWidgets[i]).then(res => {
+                    
+                    // Add to Action log
+                    if (oldWidget != null) {
+                        this.globalVariableService.actionUpsert(
+                            null,
+                            this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                            this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                            oldWidget.id,
+                            'Widget',
+                            'Edit',
+                            'AlignCenter',
+                            'App clickMenuArrangeAlignCenter',
+                            null,
+                            null,
+                            oldWidget,
+                            newWidget,
+                            false
+                        );
+                    };
+    
+                });
 
                 // Refresh the Dashboard
                 this.globalVariableService.changedWidget.next(this.currentWidgets[i]);
@@ -5866,8 +5889,31 @@ console.warn('xx filteredActions[0].action', filteredActions[0].action);
                 this.currentWidgets[i].containerZindex =
                     this.globalVariableService.canvasSettings.widgetsMaxZindex;
 
+                newWidget = JSON.parse(JSON.stringify(this.currentWidgets[i]));
+
                 // Save to DB
-                this.globalVariableService.saveWidget(this.currentWidgets[i]);
+                this.globalVariableService.saveWidget(this.currentWidgets[i]).then(res => {
+                    
+                    // Add to Action log
+                    if (oldWidget != null) {
+                        this.globalVariableService.actionUpsert(
+                            null,
+                            this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                            this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                            oldWidget.id,
+                            'Widget',
+                            'Edit',
+                            'AlignCenter',
+                            'App clickMenuArrangeAlignCenter',
+                            null,
+                            null,
+                            oldWidget,
+                            newWidget,
+                            false
+                        );
+                    };
+    
+                });
 
                 // Refresh the Dashboard
                 this.globalVariableService.changedWidget.next(this.currentWidgets[i]);
