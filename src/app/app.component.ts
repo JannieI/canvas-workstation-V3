@@ -6317,8 +6317,14 @@ console.warn('xx filteredActions[0].action', filteredActions[0].action);
 
         // Get selected, sorted by .left  = [Wi]
         let selectedOnes = [];
+
+        // Deep copy of old-, newW
+        let oldWidget: Widget = null;
+        let newWidget: Widget = null;
+
         for (var i = 0; i < (this.currentWidgets.length); i++) {
             if (this.currentWidgets[i].isSelected) {
+
                 selectedOnes.push({
                     position: i,
                     id: this.currentWidgets[i].id,
@@ -6329,6 +6335,7 @@ console.warn('xx filteredActions[0].action', filteredActions[0].action);
                     top: this.currentWidgets[i].containerTop,
                     newTop: this.currentWidgets[i].containerTop
                 });
+
             }
         };
 
@@ -6374,19 +6381,50 @@ console.warn('xx filteredActions[0].action', filteredActions[0].action);
         // Adjust the middle Ws (W1 and Wn remains unchanged): Wi = loop (i = 2,.., n-1)
         // Wi.left = W(i-1).left + W(i-1).width + g
         for (var i = 0; i < (selectedOnes.length - 1); i++) {
+            oldWidget = JSON.parse(JSON.stringify(
+                this.currentWidgets[selectedOnes[i].position])
+            );
+
             if (i > 0) {
+
                 selectedOnes[i].newLeft = selectedOnes[i-1].newLeft +
                     selectedOnes[i-1].width + g;
                 this.currentWidgets[selectedOnes[i].position].containerLeft =
                     selectedOnes[i].newLeft;
-                this.globalVariableService.currentWidgets[selectedOnes[i].position].
-                    containerLeft = selectedOnes[i].newLeft;
+                // this.globalVariableService.currentWidgets[selectedOnes[i].position].
+                //     containerLeft = selectedOnes[i].newLeft;
+
+                newWidget = JSON.parse(JSON.stringify(this.currentWidgets[selectedOnes[i]
+                    .position]));
             } else {
-                selectedOnes[i].newLeft = selectedOnes[i].newLeft;
+                // selectedOnes[i].newLeft = selectedOnes[i].newLeft;
+                
             };
 
             // Save to DB
-            this.globalVariableService.saveWidget(this.currentWidgets[i]);
+            this.globalVariableService.saveWidget(this.currentWidgets[selectedOnes[i
+                ].position]).then(res => {
+                    
+                // Add to Action log
+                if (oldWidget != null) {
+                    this.globalVariableService.actionUpsert(
+                        null,
+                        this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                        this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                        oldWidget.id,
+                        'Widget',
+                        'Edit',
+                        'AlignCenter',
+                        'App clickMenuArrangeAlignCenter',
+                        null,
+                        null,
+                        oldWidget,
+                        newWidget,
+                        false
+                    );
+                };
+
+            });
         };
 
         this.menuOptionClickPostAction();
@@ -6400,6 +6438,11 @@ console.warn('xx filteredActions[0].action', filteredActions[0].action);
 
         // Get selected, sorted by .top  = [Wi]
         let selectedOnes = [];
+
+        // Deep copy of old-, newW
+        let oldWidget: Widget = null;
+        let newWidget: Widget = null;
+
         for (var i = 0; i < (this.currentWidgets.length); i++) {
             if (this.currentWidgets[i].isSelected) {
                 selectedOnes.push({
