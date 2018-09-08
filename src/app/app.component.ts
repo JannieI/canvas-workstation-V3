@@ -5824,7 +5824,14 @@ console.warn('xx filteredActions[0].action', filteredActions[0].action);
 
         this.menuOptionClickPreAction();
 
+        // Deep copy of old-, newW
+        let oldWidget: Widget = null;
+        let newWidget: Widget = null;
+
         for (var i = 0; i < this.currentWidgets.length; i++) {
+
+            oldWidget = JSON.parse(JSON.stringify(this.currentWidgets[i]));
+
             if (this.currentWidgets[i].isSelected) {
                 this.currentWidgets[i].containerZindex =
                     this.globalVariableService.canvasSettings.widgetsMinZindex;
@@ -5847,7 +5854,14 @@ console.warn('xx filteredActions[0].action', filteredActions[0].action);
 
         this.menuOptionClickPreAction();
 
+        // Deep copy of old-, newW
+        let oldWidget: Widget = null;
+        let newWidget: Widget = null;
+
         for (var i = 0; i < this.currentWidgets.length; i++) {
+
+            oldWidget = JSON.parse(JSON.stringify(this.currentWidgets[i]));
+
             if (this.currentWidgets[i].isSelected) {
                 this.currentWidgets[i].containerZindex =
                     this.globalVariableService.canvasSettings.widgetsMaxZindex;
