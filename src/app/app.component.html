@@ -1914,11 +1914,13 @@
         [style.left.px]="popupLeft"
         [style.top.px]="popupTop"
         >
-        
+        <!-- Container for This Widget -->
         <clr-icon shape="keyboard" 
-            (click)="clickMenuWidgetContainer(popupWidgetType)"
+            (click)="clickMenuWidgetContainer(popupWidgetType, popupWidgetID)"
             >
         </clr-icon>
+
+        <!-- Optional Hyperlink      -->
         <clr-icon shape="arrow right" *ngIf="popupHyperlinkDashboardID"
             (click)="actionmenuJumpToLinked(popupHyperlinkDashboardID, popupHyperlinkDashboardTabID)"
             >

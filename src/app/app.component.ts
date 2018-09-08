@@ -379,6 +379,7 @@ export class AppComponent implements OnInit {
     popupHyperlinkDashboardID: number;
     popupHyperlinkDashboardTabID: number;
     popupTop: number = 0;
+    popupWidgetID: number;
     popupWidgetType: string;
 	recentDashboards: DashboardRecent[];
     refreshGraphs: boolean = false;
@@ -7243,6 +7244,7 @@ console.warn('xx dims', ev, index, id, widgetLeft, widgetTop);
             this.popupHyperlinkDashboardTabID = this.currentWidgets[index]
                 .hyperlinkDashboardTabID;
             this.popupWidgetType = this.currentWidgets[index].widgetType;
+            this.popupWidgetID = this.currentWidgets[index].id;
         };
     }
 
@@ -7600,6 +7602,9 @@ console.warn('xx dims', ev, index, id, widgetLeft, widgetTop);
         // Register start of W drag event
         this.globalFunctionService.printToConsole(this.constructor.name,'clickWidgetContainerDragStart', '@Start');
 
+        // Reset popup menu
+        this.showWidgetContextMenu = false;
+
         if (!this.editMode) {
             return;
         }
@@ -7620,6 +7625,9 @@ console.warn('xx dims', ev, index, id, widgetLeft, widgetTop);
     clickWidgetContainerDragEnd(ev: MouseEvent, id: number) {
         // Move the W containter at the end of the drag event
         this.globalFunctionService.printToConsole(this.constructor.name,'clickWidgetContainerDragEnd', '@Start');
+
+        // Reset popup menu
+        this.showWidgetContextMenu = false;
 
         if (!this.editMode) {
             return;
@@ -7760,6 +7768,9 @@ console.warn('xx dims', ev, index, id, widgetLeft, widgetTop);
         // Click Slicer inside W
         this.globalFunctionService.printToConsole(this.constructor.name,'clickWidgetSlicerev', '@Start');
 
+        // Reset popup menu
+        this.showWidgetContextMenu = false;
+
         this.clickedSlicerItem = true;
     }
 
@@ -7781,6 +7792,9 @@ console.warn('xx dims', ev, index, id, widgetLeft, widgetTop);
     clickWidget(ev: MouseEvent, index: number, id: number) {
         // Click W object
         this.globalFunctionService.printToConsole(this.constructor.name,'clickWidget', '@Start');
+
+        // Reset popup menu
+        this.showWidgetContextMenu = false;
 
         // Sl item was clicked, so nothing further to do on the W container
         if (this.clickedSlicerItem) {
