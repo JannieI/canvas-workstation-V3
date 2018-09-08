@@ -7862,22 +7862,24 @@ console.warn('xx filteredActions[0].action', filteredActions[0].action);
 
                     // Action
                     // TODO - cater for errors + make more generic
-                    let actID: number = this.globalVariableService.actionUpsert(
-                        null,
-                        this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
-                        this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
-                        w.id,
-                        'Widget',
-                        'Edit',
-                        'Move',
-                        'App moveWidgets',
-                        null,
-                        null,
-                        w,
-                        null,
-                        false               // Dont log to DB yet
-                    );
+                    // let actID: number = this.globalVariableService.actionUpsert(
+                    //     null,
+                    //     this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                    //     this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                    //     w.id,
+                    //     'Widget',
+                    //     'Edit',
+                    //     'Move',
+                    //     'App moveWidgets',
+                    //     null,
+                    //     null,
+                    //     w,
+                    //     null,
+                    //     false               // Dont log to DB yet
+                    // );
 
+                    let oldWidget: Widget = JSON.parse(JSON.stringify(w));
+                     
                     // Move the container
                     w.containerLeft = w.containerLeft - this.startX + this.endX;
                     w.containerTop =  w.containerTop - this.startY + this.endY;
@@ -7895,24 +7897,27 @@ console.warn('xx filteredActions[0].action', filteredActions[0].action);
                             w.containerTop);
                     };
 
-                    // Add to action log
-                    actID = this.globalVariableService.actionUpsert(
-                        actID,
-                        this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
-                        this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
-                        w.id,
-                        'Widget',
-                        'Edit',
-                        'Move',
-                        null,
-                        null,
-                        null,
-                        null,
-                        w
-                    );
+                    let newWidget: Widget = JSON.parse(JSON.stringify(w));
 
                     // Save to DB
-                    this.globalVariableService.saveWidget(w);
+                    this.globalVariableService.saveWidget(w).then(res => {
+
+                        // Add to action log
+                        this.globalVariableService.actionUpsert(
+                            null,
+                            this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                            this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                            w.id,
+                            'Widget',
+                            'Edit',
+                            'Move',
+                            'App moveWidgets',
+                            null,
+                            null,
+                            oldWidget,
+                            newWidget
+                        );
+                    });
                 };
             };
         });
