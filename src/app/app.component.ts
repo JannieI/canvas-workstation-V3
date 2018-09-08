@@ -6698,12 +6698,18 @@ console.warn('xx filteredActions[0].action', filteredActions[0].action);
 
         let x: number = -1;
 
+        // Deep copy of old-, newW
+        let oldWidget: Widget = null;
+        let newWidget: Widget = null;
+
         for (var i = 0; i < this.currentWidgets.length; i++) {
             if (this.currentWidgets[i].isSelected) {
                 if (x == -1) {
                     x = this.currentWidgets[i].containerWidth;
 
                 } else {
+                    oldWidget = JSON.parse(JSON.stringify(this.currentWidgets[i]));
+
                     this.currentWidgets[i].containerWidth = x;
 
                     this.currentWidgets[i].graphWidth =
@@ -6713,9 +6719,31 @@ console.warn('xx filteredActions[0].action', filteredActions[0].action);
                     if (this.currentWidgets[i].widgetType == 'Graph') {
                         this.globalVariableService.changedWidget.next(this.currentWidgets[i]);
                     };
+                    newWidget = JSON.parse(JSON.stringify(this.currentWidgets[i]));
 
                     // Save to DB
-                    this.globalVariableService.saveWidget(this.currentWidgets[i]);
+                    this.globalVariableService.saveWidget(this.currentWidgets[i]).then(res => {
+                    
+                        // Add to Action log
+                        if (oldWidget != null) {
+                            this.globalVariableService.actionUpsert(
+                                null,
+                                this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                                this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
+                                oldWidget.id,
+                                'Widget',
+                                'Edit',
+                                'AlignCenter',
+                                'App clickMenuArrangeAlignCenter',
+                                null,
+                                null,
+                                oldWidget,
+                                newWidget,
+                                false
+                            );
+                        };
+        
+                    });
                 };
             };
         };
