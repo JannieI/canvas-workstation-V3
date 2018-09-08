@@ -2349,6 +2349,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
             act.dashboardTabID ==
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID
         );
+console.warn('xx ourActions', ourActions);
 
         // Can only undo if something has been done before
         if (ourActions.length == 0) {
@@ -2364,13 +2365,14 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
             tempActionIDs.push(ourActions[i].id)
         };
         let maxActID: number = Math.max(...tempActionIDs);
-
+console.warn('xx tempActionIDs maxActID',tempActionIDs, maxActID);
         // Get last action
         let filteredActions: CanvasAction[] = [];
         filteredActions = ourActions.filter(act => act.id == maxActID);
+console.warn('xx filteredActions', filteredActions);
 
         if (filteredActions[0].undoID == null) {
-            console.warn('xx filteredActions[0]', filteredActions[0])
+            console.warn('xx IN undoID == null WITH filteredActions[0]', filteredActions[0])
             // Previous was not an UNDO, so just reverse it
             let widgetID: number = null;
             if (filteredActions[0].newWidget != null) {
@@ -2391,6 +2393,9 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                 filteredActions[0].newWidget,
                 filteredActions[0].oldWidget
             );
+
+            console.warn('xx AFTER this.globalVariableService.actionUpsert filteredActions[0]', filteredActions[0]);
+            
             if (filteredActions[0].objectType == 'Widget') {
                 if (filteredActions[0].oldWidget == null) {
                     this.deleteWidget(null, filteredActions[0].newWidget.id);
@@ -2421,12 +2426,16 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                             };
                         });
                     };
+console.warn('xx filteredActions[0].action', filteredActions[0].action);
 
                     // Add (previous action was a Delete) / Save to DB
-                    if (filteredActions[0].action = 'Delete') {
+                    if (filteredActions[0].action == 'Delete') {
                         this.globalVariableService.addWidget(filteredActions[0].oldWidget);
+                    console.warn('xx IN DELETE', filteredActions[0].oldWidget.id);
+                    
                     } else {
                         this.globalVariableService.saveWidget(filteredActions[0].oldWidget);
+                        console.warn('xx IN SAVE', filteredActions[0].oldWidget.id);
                     };
 
                     this.globalVariableService.changedWidget.next(filteredActions[0].oldWidget);
@@ -2437,6 +2446,8 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
             console.log('undo prev DO, id ',filteredActions[0].id, this.globalVariableService.actions )
         } else {
             // Get highest DO id < (undoID - 1)
+            console.warn('xx IN Else: undoID != null');
+            
             let lastUndoID: number = filteredActions[0].undoID;
             let undoActID: number = 1;
             let tempActionIDs: number[] = [];

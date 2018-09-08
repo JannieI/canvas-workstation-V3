@@ -9854,23 +9854,6 @@ export class GlobalVariableService {
         return vlSpecsNew;
     }
 
-    // id: number,
-    // dashboardID: number,
-    // dashboardTabID: number,
-    // widgetID: number,
-
-    // objectType: string,
-    // actionType: string,
-    // action: string,
-    // description: string,
-
-    // undoID: number,
-    // redoID: number,
-
-    // oldWidget: any,
-    // newWidget: any,
-    // logToDB: boolean = true
-
     actionUpsert(
         id: number,
         dashboardID: number,
