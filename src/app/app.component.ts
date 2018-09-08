@@ -5819,9 +5819,10 @@ console.warn('xx filteredActions[0].action', filteredActions[0].action);
         for (var i = 0; i < this.currentWidgets.length; i++) {
             if (this.currentWidgets[i].isSelected) {
 
-                // Set W before change
+                // Deep copy of old-, newW
                 let oldWidget: Widget = null;
                 let newWidget: Widget = null;
+
                 if (x == -1) {
                     x = this.currentWidgets[i].containerLeft;
                 } else {
@@ -5872,17 +5873,20 @@ console.warn('xx filteredActions[0].action', filteredActions[0].action);
 
         for (var i = 0; i < this.currentWidgets.length; i++) {
 
-            // Set W before change
-            let oldWidget: Widget = null;
-
             if (this.currentWidgets[i].isSelected) {
+
+                // Deep copy of old-, newW
+                let oldWidget: Widget = null;
+                let newWidget: Widget = null;
+
                 if (x == -1) {
                     x = this.currentWidgets[i].containerLeft +
                         (this.currentWidgets[i].containerWidth / 2);
                 } else {
+                    oldWidget = JSON.parse(JSON.stringify(this.currentWidgets[i]));
                     this.currentWidgets[i].containerLeft = x -
                         (this.currentWidgets[i].containerWidth / 2);
-                    oldWidget = JSON.parse(JSON.stringify(this.currentWidgets[i]));
+                    newWidget = JSON.parse(JSON.stringify(this.currentWidgets[i]));
                 };
 
                 // Save to DB
@@ -5902,7 +5906,7 @@ console.warn('xx filteredActions[0].action', filteredActions[0].action);
                             null,
                             null,
                             oldWidget,
-                            this.currentWidgets[i],
+                            newWidget,
                             false
                         );
                     };
