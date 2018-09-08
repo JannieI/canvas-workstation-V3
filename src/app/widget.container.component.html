@@ -247,13 +247,13 @@
                     <div class="gridZindex">
                         <input [(ngModel)]="localWidget.containerZindex"
                             type="number"
-                            name="containerWidth"
-                            #containerWidthVar="ngModel"
-                            placeholder="Z-index can be 60-99"
-                            min="60"
-                            max="69"
+                            name="containerZindex"
+                            #containerZindexVar="ngModel"
+                            placeholder="Z-index can be 50-59"
+                            min="50"
+                            max="59"
                             size="5"
-                            [style.color]="!containerWidthVar.valid ? 'red' : 'gray'"
+                            [style.color]="!containerZindexVar.valid ? 'red' : 'gray'"
                             >
                     </div>
 

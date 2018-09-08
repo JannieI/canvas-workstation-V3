@@ -379,6 +379,7 @@ export class AppComponent implements OnInit {
     popupHyperlinkDashboardID: number;
     popupHyperlinkDashboardTabID: number;
     popupTop: number = 0;
+    popupWidgetType: string;
 	recentDashboards: DashboardRecent[];
     refreshGraphs: boolean = false;
     selectDatasetID: number;
@@ -7226,6 +7227,7 @@ console.warn('xx dims', ev, index, id, widgetLeft, widgetTop);
             this.popupHyperlinkDashboardID = this.currentWidgets[index].hyperlinkDashboardID;
             this.popupHyperlinkDashboardTabID = this.currentWidgets[index]
                 .hyperlinkDashboardTabID;
+            this.popupWidgetType = this.currentWidgets[index].widgetType;
         };
     }
 
@@ -7440,7 +7442,7 @@ console.warn('xx dims', ev, index, id, widgetLeft, widgetTop);
 
         // Reset popup menu
         this.showWidgetContextMenu = false;
-        
+
         // Exit if no Dashboard to jump to
         if (dashboardID == null) {
             return;
