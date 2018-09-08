@@ -5821,15 +5821,15 @@ console.warn('xx filteredActions[0].action', filteredActions[0].action);
 
                 // Set W before change
                 let oldWidget: Widget = null;
-
+                let newWidget: Widget = null;
                 if (x == -1) {
                     x = this.currentWidgets[i].containerLeft;
                 } else {
-                    this.currentWidgets[i].containerLeft = x;
                     oldWidget = JSON.parse(JSON.stringify(this.currentWidgets[i]));
-
+                    this.currentWidgets[i].containerLeft = x;
+                    newWidget = JSON.parse(JSON.stringify(this.currentWidgets[i]));
                 };
-
+              
                 // Save to DB
                 this.globalVariableService.saveWidget(this.currentWidgets[i]).then(res => {
                     
@@ -5847,7 +5847,7 @@ console.warn('xx filteredActions[0].action', filteredActions[0].action);
                             null,
                             null,
                             oldWidget,
-                            this.currentWidgets[i],
+                            newWidget,
                             false
                         );
                     };
@@ -7276,7 +7276,6 @@ console.warn('xx filteredActions[0].action', filteredActions[0].action);
     popupMenuOpen(ev: any, index: number, id: number, widgetLeft: number, widgetTop: number) {
         // Open context / dropdown Menu from the Title Bar
         this.globalFunctionService.printToConsole(this.constructor.name,'popupMenuOpen', '@Start');
-console.warn('xx dims', ev, index, id, widgetLeft, widgetTop);
 
         // // Must be first, else default behaviour takes over
         ev.preventDefault();

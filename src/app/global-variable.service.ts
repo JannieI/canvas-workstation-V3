@@ -9886,7 +9886,12 @@ export class GlobalVariableService {
                 "color: black; background: lightgray; font-size: 10px", {logToDB},
                 {oldWidget}, {newWidget});
         };
-
+if (oldWidget != null) {
+    console.warn('xx, oldWidget.containerLeft', oldWidget.containerLeft)
+}
+if (newWidget != null) {
+    console.warn('xx, newWidget.containerLeft', newWidget.containerLeft)
+}
         // Make snapshot when start changing
         if (this.firstAction) {
             let dashboardIndex: number = this.dashboards.findIndex(
@@ -9958,6 +9963,9 @@ export class GlobalVariableService {
                 createor: this.currentUser.userID,
                 created: today
             });
+
+            console.warn('xx Upsert actions', this.actions);
+            
         } else {
             this.actions.forEach(ac => {
                 if (ac.id == id) {

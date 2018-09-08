@@ -72,10 +72,6 @@ This document describes items for later versions of Canvas.
        Widget per page, Dashboard layout, all Dashboards (linked) or just the current one.
     - MUST be able to print 1 page, or all pages of Dashboard in one click
 
-    Animation:
-    - consider this ...  This may have serious consequences for structure, or could simply be a list of object IDs in sequence, and animation disable = false them in sequence!
-    - arrow keys or enter if nothing selected could trigger animation.  
-
 
     Admin module and Users
     ----------------------
@@ -442,12 +438,12 @@ This document describes items for later versions of Canvas.
     -------
     - Decide to get a W from another D - only show those where the user has access to the DS
     - Decide if check/tick is shown on related Sl when a W is clicked.  The treeview is good enough methinks
+    - consider colour in HEX code
     - Consider Table Checkpoint - not sure if it is that useful, as one can filter, etc on table, or redesign ... And the purpose of a table is to look at data for a while methinks
     - consider auto-calculated values, ie hover and show SUM of data.  Not sure how to do this, and if useful
     - make Checkpoints more visible, may o o 0 o at bottom to show how many and where we are?
     - consider dataQual triangle, -> link icons in same spot each time? 
     - consider Ctrl-X = CUT = Delete current and Copy it.  Can for example use the Del Form to confirm - do we need a confirmation ?
-    - container: consider 100% height / width option => fills parent div element.
     - consider Shift-Delete = needs no confirmation - good idea?
     - consider selection of geo data on a map using a polygon - maybe via a 3rd party package
     - dot on rectangle - move to change border-radius (see LibreOffice Impress) ?
@@ -553,7 +549,6 @@ This document describes items for later versions of Canvas.
         }
     - make rotation of arrow with mouse - drag it around!
     - size with svg markerWidth and -Height
-    - easy way to fit container around context, ie edit words in a Text box and now the container with a border is too small / large.
     - Can / should other Shapes (ie TEXT, LINE) also rotate with transform="rotate(30 20,40)"??
     - Can / should Shapes have radial / linear blur inside??
     - Consider Shape = Line - easy to do, not sure where and how used (rather use arrow)?
@@ -830,11 +825,6 @@ This document describes items for later versions of Canvas.
     - ArrowThin is not inside the W container => difficult to drag and drop, hangs over others, difficult to place, looks funny.  Also, the Arrow header is not always the same colour as the line.  Make more sophisticated to set tail (line) length -> so line length = 0 makes it s simple arrow head, or Triangle.  Also dimentions for head size - height and width.  Can these be done with a mouse ?
     - consider triangle as a new shape - not sure it is needed, or if can be done via thin arrows
     - are thin Arrows just Arrows without the body??
-    - Arrow: make dynamic!  For both size and rotation, taking into account that it has to land inside the W container at all times, and preferably left top corner for easy placements.  Also, consider shrinking W container, ie with *ngIf on title and other grid areas ...  Look at:
-        . https://www.w3schools.com/css/css3_2dtransforms.asp
-        . https://learn.shayhowe.com/advanced-html-css/css-transforms/
-        . https://robots.thoughtbot.com/transitions-and-transforms
-        . https://www.w3schools.com/cssref/tryit.asp?filename=trycss3_transform-origin
     - make it easier to add co logo, ie Add logo menu option.
     - have polygon - 6 sided doughnut as shape
     - have pentagon as shape - can divide background in 2 colours with a slant
@@ -1225,3 +1215,24 @@ This document describes items for later versions of Canvas.
     - on separate form, filtered with right access rights?, with space for a message
     - send message to new user
     - update D record and switch to viewonly for current user
+
+
+    Animation:
+    ---------
+    - consider this ...  This may have serious consequences for structure, or could simply be a list of object IDs in sequence, and animation disable = false them in sequence!
+    - arrow keys or enter if nothing selected could trigger animation.  
+
+
+    Container:
+    ---------
+    - container: consider 100% height / width option => fills parent div element.
+    - easy way to fit container around context, ie edit words in a Text box and now the container with a border is too small / large.
+    - consider colour in HEX code
+    - Arrow: make dynamic!  For both size and rotation, taking into account that it has to land inside the W container at all times, and preferably left top corner for easy placements.  Also, consider shrinking W container, ie with *ngIf on title and other grid areas ...  Look at:
+        . https://www.w3schools.com/css/css3_2dtransforms.asp
+        . https://learn.shayhowe.com/advanced-html-css/css-transforms/
+        . https://robots.thoughtbot.com/transitions-and-transforms
+        . https://www.w3schools.com/cssref/tryit.asp?filename=trycss3_transform-origin
+    - consider MULTIPLE edit: 
+        - select more than one, open Container Form.  
+        - apply changes to ALL selected ...
