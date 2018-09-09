@@ -45,7 +45,7 @@
                         [style.width.px]="300"
                         [style.height.px]="300"
                         [style.background-color]="containerBackgroundcolor"
-                        [style.border]="localWidget.containerBorder"
+                        [style.border]="containerBorder"
                         [style.border-radius]="containerBorderRadius"
                         [style.box-shadow]="containerBoxshadow"
                         [style.font-size.px]="containerFontsize"
@@ -201,12 +201,14 @@
                         <b>Bold?:</b>
                         <input type="checkbox"
                             [(ngModel)]="shapeIsBold"
+                            name="shapeIsBold"
                             >
                     </div>
                     <div class="gridTextItalic">
                         <b>Italic?:</b>
                         <input type="checkbox"
                             [(ngModel)]="shapeIsItalic"
+                            name="shapeIsItalic"
                             >
                     </div>
 
@@ -216,6 +218,7 @@
                     <div class="select gridTextAlign">
                         <select
                             [(ngModel)]="shapeTextAlign"
+                            name="shapeTextAlign"
                             (change)="clickSelectTextAlign($event)"
                             >
                             <option>Left</option>
@@ -230,7 +233,8 @@
                     <div class="gridTextLineHeight">
                         <input type="text"
                             placeholder="Line height: normal, 1.6, 80%"
-                            [(ngModel)]="localWidget.shapeLineHeight"
+                            [(ngModel)]="shapeLineHeight"
+                            name="shapeLineHeight"
                             >
                     </div>
 
