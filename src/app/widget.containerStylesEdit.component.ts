@@ -188,7 +188,7 @@ export class WidgetContainerStylesEditComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
         console.log('clickClose')
 
-		this.formWidgetContainerStylesClosed.emit(null);
+		this.formWidgetContainerStylesEditClosed.emit(null);
     }
 
     clickSave() {
@@ -236,7 +236,7 @@ export class WidgetContainerStylesEditComponent implements OnInit {
             }
         );
 
-	  	this.formWidgetContainerStylesClosed.emit(this.localWidget);
+	  	this.formWidgetContainerStylesEditClosed.emit(this.localWidget);
     }
 
 }

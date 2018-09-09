@@ -4119,11 +4119,18 @@
 </div>
 
 
-<!-- Modal: Widget Container Styles -->
-<widget-containerStyles
-    *ngIf="showModalWidgetContainerStyles"
-    (formWidgetContainerStylesClosed)="handleCloseWidgetContainerStyles($event)">Widget Container Styles ...
-</widget-containerStyles>
+<!-- Modal: Widget Container Styles Add -->
+<widget-containerStylesAdd
+    *ngIf="showModalWidgetContainerStylesAdd"
+    (formWidgetContainerStylesAddClosed)="handleCloseWidgetContainerStylesAdd($event)">Widget Container Styles Add ...
+</widget-containerStylesAdd>
+
+
+<!-- Modal: Widget Container Styles Edit -->
+<widget-containerStylesEdit
+    *ngIf="showModalWidgetContainerStylesEdit"
+    (formWidgetContainerStylesEditClosed)="handleCloseWidgetContainerStylesEdit($event)">Widget Container Styles Edit ...
+</widget-containerStylesEdit>
 
 
 <!-- Title properties -->
