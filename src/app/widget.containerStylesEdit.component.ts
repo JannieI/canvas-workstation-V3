@@ -67,7 +67,7 @@ export class WidgetContainerStylesEditComponent implements OnInit {
     containerFontsize: number = 12;
     containerSelectedStyleID: number = -1;
     containerStyleName: string = '';
-    containerStylesList: string[] = [];
+    containerStyleNameList: string[] = [];
     containerStyles: ContainerStyle[] = [];
     errorMessage: string;
     oldWidget: Widget;
@@ -94,7 +94,7 @@ export class WidgetContainerStylesEditComponent implements OnInit {
             this.containerStyles = res; 
             this.containerStyles.forEach(cs => {
                 // List of ngFor (needs ID at later stage, state is useful for user)
-                this.containerStylesList.push(cs.name + ' (' + cs.id.toString() + ')');
+                this.containerStyleNameList.push(cs.name + ' (' + cs.id.toString() + ')');
             });   
             // Fill Initial
             if (this.containerStyles.length >= 0) {
@@ -143,19 +143,16 @@ export class WidgetContainerStylesEditComponent implements OnInit {
         // Style name was clicked in dropdown
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectStyleName', '@Start');
 
-        console.warn('xx', this.containerStyleName);
+        console.warn('xx', ev);
         let selectedContainerStyleName: string = ev.target.value;
 
-        if (selectedContainerStyleName != 'None') {
+        // Get the ID
+        this.containerSelectedStyleID = -1;
+        let openBracket: number = selectedContainerStyleName.indexOf('(');
+        let closeBracket: number = selectedContainerStyleName.indexOf(')');
+        this.containerSelectedStyleID = +selectedContainerStyleName.
+            substring(openBracket + 1, closeBracket);
 
-            // Get D info
-            let openBracket: number = selectedContainerStyleName.indexOf('(');
-            let closeBracket: number = selectedContainerStyleName.indexOf(')');
-            this.containerSelectedStyleID = +selectedContainerStyleName.substring(openBracket + 1, closeBracket);
-
-        } else {
-            this.containerSelectedStyleID = -1;
-        };
         console.warn('xx this.dashboardTemplateID', this.containerSelectedStyleID)
     
     }

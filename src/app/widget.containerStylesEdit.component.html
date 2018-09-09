@@ -85,9 +85,9 @@
                             name="gridStyleName"
                             (change)="clickSelectStyleName($event)"
                             >
-                            <option *ngFor="let row of containerStyles"
+                            <option *ngFor="let row of containerStyleNameList"
                                 >
-                                {{ row.name }}
+                                {{ row }}
                             </option>
                         </select>
                     </div>
