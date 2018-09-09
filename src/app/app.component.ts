@@ -937,6 +937,15 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
     }
 
+    handleCloseWidgetContainerStyles(changedWidget: Widget) {
+        // Handle close of ContainerStyles form
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetContainerStyles', '@Start');
+
+        this.menuOptionClickPostAction();
+
+        this.showModalWidgetContainerStyles = false;
+    }
+
     handleCloseDashboardNew(action: string) {
         //
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDashboardNew', '@Start');
@@ -2681,7 +2690,7 @@ console.warn('xx filteredActions[0].action', filteredActions[0].action);
     }
 
 
-    
+
 
 
     // ***********************  CLICK DASHBOARD MENU OPTIONS ************************ //
