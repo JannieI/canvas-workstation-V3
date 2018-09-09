@@ -17,7 +17,7 @@
                     </div>
 
                     <div class="gridHeading">
-                        <b>Edit / Delete a Container Style</b>
+                        <b>Add a new Container Style</b>
                         <clr-signpost>
                             <clr-icon shape="info-circle"
                                 clrSignpostTrigger>
@@ -33,8 +33,7 @@
                                     deleted.  When modifying a style, all containers and text 
                                     boxes linked to it will be changed automatically with the 
                                     properties defined here.
-                                    Click the X or press Escape to close this form.
-                                </p>
+                                    Click the X or press Escape to close this form.                                                                                                </p>
                             </clr-signpost-content>
                         </clr-signpost>
                     </div>
@@ -42,35 +41,51 @@
                     <div class="gridShape"
                         [style.width.px]="300"
                         [style.height.px]="300"
-                        [style.background-color]="localWidget.containerBackgroundcolor"
-                        [style.border]="localWidget.containerBorder"
-                        [style.border-radius]="localWidget.containerBorderRadius"
-                        [style.box-shadow]="localWidget.containerBoxshadow"
-                        [style.font-size.px]="localWidget.containerFontsize"
+                        [style.background-color]="containerBackgroundcolor"
+                        [style.border]="containerBorder"
+                        [style.border-radius.px]="containerBorderRadius"
+                        [style.box-shadow]="containerBoxshadow"
+                        [style.font-size.px]="containerFontsize"
+                        name="shapeText"
 
                         >
                         <br>
                         <br>
                         <br>
-                        Sample Text
                         <br>
-                        Sample Text
                         <br>
-                        Sample Text
                         <br>
-                        Sample Text
-                        <br>
-                        Sample Text
-                        <br>
-                        Sample Text
-                        <br>
+                        <div 
+                            [style.background-color]="containerBackgroundcolor"
+                            [style.color]="containerBorderColour"
+                            [style.font-style]="shapeIsItalic? 'italic' : 'normal'"
+                            [style.font-weight]="shapeIsBold? 'bold' : 'normal'"
+                            [style.font-family]="shapeFontFamily"
+                            [style.font-size.px]="containerFontsize"
+                            [style.line-height]="shapeLineHeight"
+                            [style.text-align]="shapeTextAlign"
+                            style="display: block; padding: 5px; line-height: 150%;"
+                            >
+                            Sample Text
+                        </div>                        
+                    </div>
+
+                    <div class="gridStyleNameTitle">
+                        Name:
+                    </div>
+                    <div class="gridStyleName">
+                        <input type="text"
+                            placeholder="Name of new Style"
+                            [(ngModel)]="containerStyleName"
+                            name="containerStyleName"
+                            >
                     </div>
 
                     <div class="gridBackgroundcolorTitle">
                         Bg Colour:
                     </div>
                     <div class="select gridBackgroundcolor">
-                        <select [(ngModel)]="localWidget.containerBackgroundcolor"
+                        <select [(ngModel)]="containerBackgroundcolor"
                             name="containerBackgroundcolor"
                             (change)="clickSelectBgColor($event)"
                             >
@@ -89,11 +104,11 @@
                         Picker
                     </button>
 
-                    <div class="gridLinecolorTitle">
+                    <div class="containerBorderColorTitle">
                         Border Colour:
                     </div>
-                    <div class="select gridLinecolor">
-                        <select [(ngModel)]="lineColor"
+                    <div class="select containerBorderColor">
+                        <select [(ngModel)]="containerBorderColour"
                             (change)="clickSelectLineColor($event)"
                             name="lineColor"
                             >
@@ -112,28 +127,28 @@
                         Picker
                     </button>
 
-                    <div class="gridLineSizeTitle">
+                    <div class="containerBorderSizeTitle">
                         Border Size:
                     </div>
-                    <div class="select gridLineSize">
-                        <select [(ngModel)]="lineSize"
-                            name="lineSize"
+                    <div class="select containerBorderSize">
+                        <select [(ngModel)]="containerBorderSize"
+                            name="containerBorderSize"
                             (change)="clickSelectLineSize($event)"
                             >
                             <option>none</option>
-                            <option>1px</option>
-                            <option>2px</option>
-                            <option>3px</option>
-                            <option>4px</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
                         </select>
                     </div>
 
-                    <div class="gridLineTypeTitle">
+                    <div class="containerBorderTypeTitle">
                         Type:
                     </div>
-                    <div class="select gridLineType">
-                        <select [(ngModel)]="lineType"
-                            name="lineType"
+                    <div class="select containerBorderType">
+                        <select [(ngModel)]="containerBorderType"
+                            name="containerBorderType"
                             (change)="clickSelectLineType($event)"
                             >
                             <option>solid</option>
@@ -145,10 +160,10 @@
                         Border Radius:
                     </div>
                     <div class="gridBorderRadius">
-                        <input [(ngModel)]="localWidget.containerBorderRadius"
-                            type="text"
+                        <input [(ngModel)]="containerBorderRadius"
+                            type="number"
                             name="containerBorderRadius"
-                            placeholder="Corners, ie 3px"
+                            placeholder="Corners, ie 3 (measured in px)"
                             >
                     </div>
 
@@ -156,7 +171,7 @@
                         Box Shadow:
                     </div>
                     <div class="gridBoxShadow">
-                        <input [(ngModel)]="localWidget.containerBoxshadow"
+                        <input [(ngModel)]="containerBoxshadow"
                             type="text"
                             name="containerBoxshadow"
                             placeholder="2px 2px lightgray"
@@ -167,96 +182,73 @@
                         FontSize:
                     </div>
                     <div class="gridFontSize">
-                        <input [(ngModel)]="localWidget.containerFontsize"
+                        <input [(ngModel)]="containerFontsize"
                             type="number"
                             name="containerFontsize"
                             #containerFontsizeVar="ngModel"
-                            placeholder="4-48 pt"
+                            placeholder="4-96 (measured in px)"
                             min="4"
-                            max="48"
+                            max="96"
                             size="5"
                             [style.color]="!containerFontsizeVar.valid ? 'red' : 'gray'"
                             >
                     </div>
 
-                    <div class="gridTopTitle">
-                        Top:
+                    <div class="gridShapeFontFamilyTitle">
+                        Font:
                     </div>
-                    <div class="gridTop">
-                        <input [(ngModel)]="localWidget.containerTop"
-                            type="number"
-                            name="containerTop"
-                            #containerTopVar="ngModel"
-                            placeholder="4-48 pt"
-                            min="-10"
-                            max="2000"
-                            size="5"
-                            [style.color]="!containerTopVar.valid ? 'red' : 'gray'"
+                    <div class="gridShapeFontFamily">
+                        <input [(ngModel)]="shapeFontFamily"
+                            type="text"
+                            name="shapeFontFamily"
+                            #shapeFontFamilyVar="ngModel"
+                            placeholder="Font, ie Arial, Sans Serif"
                             >
                     </div>
 
-                    <div class="gridLeftTitle">
-                        Left:
+                    <div class="gridTextBold">
+                        <b>Bold?:</b>
+                        <input type="checkbox"
+                            [(ngModel)]="shapeIsBold"
+                            name="shapeIsBold"
+                            >
                     </div>
-                    <div class="gridLeft">
-                        <input [(ngModel)]="localWidget.containerLeft"
-                            type="number"
-                            name="containerLeft"
-                            #containerLeftVar="ngModel"
-                            placeholder="4-48 pt"
-                            min="-10"
-                            max="2000"
-                            size="5"
-                            [style.color]="!containerLeftVar.valid ? 'red' : 'gray'"
+                    <div class="gridTextItalic">
+                        <b>Italic?:</b>
+                        <input type="checkbox"
+                            [(ngModel)]="shapeIsItalic"
+                            name="shapeIsItalic"
                             >
                     </div>
 
-                    <div class="gridHeightTitle">
-                        Height:
+                    <div class="gridTextAlignTitle">
+                        <b>Align:</b>
                     </div>
-                    <div class="gridHeight">
-                        <input [(ngModel)]="localWidget.containerHeight"
-                            type="number"
-                            name="containerHeight"
-                            #containerHeightVar="ngModel"
-                            placeholder="4-48 pt"
-                            min="-10"
-                            max="2000"
-                            size="5"
-                            [style.color]="!containerHeightVar.valid ? 'red' : 'gray'"
+                    <div class="select gridTextAlign">
+                        <select
+                            [(ngModel)]="shapeTextAlign"
+                            name="shapeTextAlign"
+                            (change)="clickSelectTextAlign($event)"
+                            >
+                            <option>Left</option>
+                            <option>Center</option>
+                            <option>Right</option>
+                        </select>
+                    </div>
+
+                    <div class="gridTextLineHeightTitle">
+                        <b>Line Height:</b>
+                    </div>
+                    <div class="gridTextLineHeight">
+                        <input type="text"
+                            placeholder="Line height: normal, 1.6, 80%"
+                            [(ngModel)]="shapeLineHeight"
+                            name="shapeLineHeight"
                             >
                     </div>
 
-                    <div class="gridWidthTitle">
-                        Width:
-                    </div>
-                    <div class="gridWidth">
-                        <input [(ngModel)]="localWidget.containerWidth"
-                            type="number"
-                            name="containerWidth"
-                            #containerWidthVar="ngModel"
-                            placeholder="4-48 pt"
-                            min="-10"
-                            max="2000"
-                            size="5"
-                            [style.color]="!containerWidthVar.valid ? 'red' : 'gray'"
-                            >
-                    </div>
-
-                    <div class="gridZindexTitle">
-                        Z-index:
-                    </div>
-                    <div class="gridZindex">
-                        <input [(ngModel)]="localWidget.containerZindex"
-                            type="number"
-                            name="containerZindex"
-                            #containerZindexVar="ngModel"
-                            placeholder="Z-index can be 50-59"
-                            min="50"
-                            max="59"
-                            size="5"
-                            [style.color]="!containerZindexVar.valid ? 'red' : 'gray'"
-                            >
+                    <div class="gridErrorMessage" name="gridErrorMessage">
+                        {{ errorMessage }}
                     </div>
 
                     <div class="gridButtonCancel">
@@ -268,13 +260,13 @@
                             Cancel
                         </button>
                     </div>
-                    <div class="gridButtonSave">
+                    <div class="gridButtonAdd">
                         <button
                             type="button"
                             class="btn btn-primary"
-                            (click)="clickSave()"
+                            (click)="clickAdd()"
                             >
-                            Save
+                            Add
                         </button>
                     </div>
 

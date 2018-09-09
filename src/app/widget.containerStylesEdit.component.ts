@@ -6,12 +6,12 @@
 import { Component }                  from '@angular/core';
 import { EventEmitter }               from '@angular/core';
 import { HostListener }               from '@angular/core';
-import { Input }                      from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
 
 // Our Models
 import { CSScolor }                   from './models';
+import { ContainerStyle }             from './models';
 import { Widget }                     from './models';
 
 // Our Functions
@@ -22,9 +22,9 @@ import { GlobalVariableService }      from './global-variable.service';
 import { Subscription }               from 'rxjs';
 
 @Component({
-    selector: 'widget-containerStylesEdit',
-    templateUrl: './widget.containerStylesEdit.component.html',
-    styleUrls: ['./widget.containerStylesEdit.component.css']
+    selector: 'widget-containerStylesEdot',
+    templateUrl: './widget.containerStylesEdot.component.html',
+    styleUrls: ['./widget.containerStylesEdot.component.css']
 })
 export class WidgetContainerStylesEditComponent implements OnInit {
 
@@ -47,7 +47,7 @@ export class WidgetContainerStylesEditComponent implements OnInit {
             &&
             (!event.shiftKey)
            ) {
-            this.clickSave();
+            this.clickAdd();
             return;
         };
 
@@ -57,12 +57,24 @@ export class WidgetContainerStylesEditComponent implements OnInit {
     callingRoutine: string = '';
     colourPickerClosed: boolean = false;
     colourPickerSubscription: Subscription;
-    lineColor: string = 'none';
-    lineSize: string = 'none';
-    lineType: string = 'bold';
-    localWidget: Widget;                            // W to modify, copied from selected
+    containerStyleName: string = '';
+    containerBackgroundcolor: string = 'transparent';
+    containerBorder: string = '1px solid black';
+    containerBorderColour: string = 'black';
+    containerBorderRadius: string;
+    containerBorderType: string = 'solid';
+    containerBorderSize: string = '1';
+    containerBoxshadow: string;
+    containerFontsize: number = 12;
+    errorMessage: string;
     oldWidget: Widget;
     selectedColour: string;
+    shapeFontFamily: string;                // Font, ie Aria, Sans Serif
+    shapeIsBold: boolean;                   // True if text is bold
+    shapeIsItalic: boolean;                 // True if text is italic
+    shapeLineHeight: string;                // Line Height: normal, 1.6, 80%
+    shapeText: string = 'Test text';
+    shapeTextAlign: string = 'Left';        // Align text Left, Center, Right
 
 
     constructor(
@@ -77,7 +89,7 @@ export class WidgetContainerStylesEditComponent implements OnInit {
         // Manage colour picker
         this.colourPickerSubscription = this.globalVariableService.colourPickerClosed.subscribe(clp => {
 
-            if (this.localWidget != undefined  &&  clp != null) {
+            if (clp != null) {
 
                 if (clp.cancelled) {
                     this.colourPickerClosed = false;
@@ -85,16 +97,12 @@ export class WidgetContainerStylesEditComponent implements OnInit {
 
                     if (clp.callingRoutine == 'BgColour') {
                         this.colourPickerClosed = false;
-                        this.localWidget.containerBackgroundcolor = clp.selectedColor;
+                        this.containerBackgroundcolor = clp.selectedColor;
                     };
                     if (clp.callingRoutine == 'LineColour') {
                         this.colourPickerClosed = false;
-                        this.lineColor = clp.selectedColor;
+                        this.containerBorderColour = clp.selectedColor;
 
-                        // Construct line size
-                        if (this.lineSize != 'none') {
-                            this.localWidget.containerBorder = this.lineSize + ' ' + this.lineType + ' ' + this.lineColor;
-                        };
                     };
                 };
             };
@@ -118,7 +126,7 @@ export class WidgetContainerStylesEditComponent implements OnInit {
         // Open the Colour Picker for Background Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBgColorPicker', '@Start');
 
-        this.selectedColour = this.localWidget.containerBackgroundcolor;
+        this.selectedColour = this.containerBackgroundcolor;
         this.callingRoutine = 'BgColour';
         this.colourPickerClosed = true;
     }
@@ -127,14 +135,14 @@ export class WidgetContainerStylesEditComponent implements OnInit {
         // Select Background Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBgColor', '@Start');
 
-        this.localWidget.containerBackgroundcolor = ev.target.value;
+        this.containerBackgroundcolor = ev.target.value;
     }
 
     clickSelectLineColorPicker(ev: any) {
         // Open the Colour Picker for Line Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectLineColorPicker', '@Start');
 
-        this.selectedColour = this.lineColor;
+        this.selectedColour = this.containerBorderColour;
         this.callingRoutine = 'LineColour';
         this.colourPickerClosed = true;
     }
@@ -143,15 +151,16 @@ export class WidgetContainerStylesEditComponent implements OnInit {
         // Select Line Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectLineColor', '@Start');
 
-        this.lineColor = ev.target.value;
+        this.containerBorderColour = ev.target.value;
 
         // Construct line size
-        if (this.lineSize != 'none') {
-            this.localWidget.containerBorder = this.lineSize + ' ' + this.lineType + ' ' + this.lineColor;
+        if (this.containerBorderSize != 'none'  &&  this.containerBorderColour != 'none') {
+            this.containerBorder = this.containerBorderSize + 'px ' + 
+                this.containerBorderType + ' ' + this.containerBorderColour;
         } else {
-            this.localWidget.containerBorder = this.lineSize
+            this.containerBorder = 'none';
         };
-        console.warn('xx line', this.localWidget.containerBorder, this.lineColor, this.lineSize);
+        console.warn('xx line', this.containerBorder);
 
     }
 
@@ -159,30 +168,42 @@ export class WidgetContainerStylesEditComponent implements OnInit {
         // Select Circle Line Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectLineSize', '@Start');
 
-        this.lineSize = ev.target.value;
+        this.containerBorderSize = ev.target.value;
 
         // Construct line size
-        if (this.lineSize != 'none') {
-            this.localWidget.containerBorder = this.lineSize + ' ' + this.lineType + ' ' + this.lineColor;
+        if (this.containerBorderSize != 'none'  &&  this.containerBorderColour != 'none') {
+            this.containerBorder = this.containerBorderSize + 'px ' + 
+                this.containerBorderType + ' ' + this.containerBorderColour;
         } else {
-            this.localWidget.containerBorder = this.lineSize
+            this.containerBorder = 'none';
         };
+        console.warn('xx line', this.containerBorder);
     }
 
     clickSelectLineType(ev: any) {
         // Select Circle Line Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectLineType', '@Start');
 
-        this.lineType = ev.target.value;
+        this.containerBorderType = ev.target.value;
 
         // Construct line size
-        if (this.lineSize != 'none') {
-            this.localWidget.containerBorder = this.lineSize + ' ' + this.lineType + ' ' + this.lineColor;
+        if (this.containerBorderSize != 'none'  &&  this.containerBorderColour != 'none') {
+            this.containerBorder = this.containerBorderSize + 'px ' + 
+                this.containerBorderType + ' ' + this.containerBorderColour;
         } else {
-            this.localWidget.containerBorder = this.lineSize
+            this.containerBorder = 'none';
         };
+        console.warn('xx line', this.containerBorder);
     }
 
+    clickSelectTextAlign(ev: any) {
+        // Select Circle Line Colour
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectTextAlign', '@Start');
+
+        this.shapeTextAlign = ev.target.value;
+
+    }
+    
     clickClose() {
         // Close the form, nothing saved
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
@@ -191,52 +212,54 @@ export class WidgetContainerStylesEditComponent implements OnInit {
 		this.formWidgetContainerStylesEditClosed.emit(null);
     }
 
-    clickSave() {
-        // Close form and save all
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
+    clickAdd() {
+        // Add a new Container Style
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
 
-        // Construct line size
-        if (this.lineSize != 'none') {
-            this.localWidget.containerBorder = this.lineSize + ' ' + this.lineType + ' ' + this.lineColor;
-        } else {
-            this.localWidget.containerBorder = this.lineSize
+        // Validation
+        if (this.containerStyleName == '') {
+            this.errorMessage = 'The name is compulsory.';
+            return;
         };
 
-        // Replace the W - DB and local vars
-        this.globalVariableService.saveWidget(this.localWidget).then(res => {
-            // this.globalVariableService.widgetReplace(this.localWidget);
-                    // Action
-                    // TODO - cater for errors + make more generic
-                    let actID: number = this.globalVariableService.actionUpsert(
-                        null,
-                        this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
-                        this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
-                        this.localWidget.id,
-                        'Widget',
-                        'Edit',
-                        'Update Container',
-                        'W Containter clickSave',
-                        null,
-                        null,
-                        this.oldWidget,
-                        this.localWidget,
-                        false               // Dont log to DB yet
-                    );
+        // Add to DB
+        let newContainerStyle: ContainerStyle = {
+            id: null,
+            name: this.containerStyleName,
+            containerBackgroundcolor: this.containerBackgroundcolor,
+            containerBorderColour: this.containerBorderColour,
+            containerBorderRadius: +this.containerBorderRadius,
+            containerBorderSize: this.containerBorderSize=='none'? 0 : +this.containerBorderSize,
+            containerBorderType: this.containerBorderType,
+            containerBoxshadow: this.containerBoxshadow,
+            containerFontsize: this.containerFontsize,
+            shapeFontFamily: this.shapeFontFamily,
+            shapeIsBold: this.shapeIsBold,
+            shapeIsItalic: this.shapeIsItalic,
+            shapeLineHeight: this.shapeLineHeight,
+            shapeTextAlign: this.shapeTextAlign,
+            containerCreatedOn: new Date(),
+            containerCreatedBy: this.globalVariableService.currentUser.userID,
+            containerUpdatedOn: null,
+            containerUpdatedBy: null,
+        
+        };
+console.warn('xx newContainerStyle', newContainerStyle);
+
+        this.globalVariableService.addContainerStyle(newContainerStyle).then(res => {
 
         });
 
         // Tell user
         this.globalVariableService.showStatusBarMessage(
             {
-                message: 'Container updated',
+                message: 'Container Style added',
                 uiArea: 'StatusBar',
                 classfication: 'Info',
                 timeout: 3000,
                 defaultMessage: ''
             }
         );
-
-	  	this.formWidgetContainerStylesEditClosed.emit(this.localWidget);
     }
 
 }

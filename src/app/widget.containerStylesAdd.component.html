@@ -189,9 +189,9 @@
                             type="number"
                             name="containerFontsize"
                             #containerFontsizeVar="ngModel"
-                            placeholder="4-48 (measured in px)"
+                            placeholder="4-96 (measured in px)"
                             min="4"
-                            max="48"
+                            max="96"
                             size="5"
                             [style.color]="!containerFontsizeVar.valid ? 'red' : 'gray'"
                             >
@@ -202,14 +202,10 @@
                     </div>
                     <div class="gridShapeFontFamily">
                         <input [(ngModel)]="shapeFontFamily"
-                            type="number"
+                            type="text"
                             name="shapeFontFamily"
                             #shapeFontFamilyVar="ngModel"
-                            placeholder="4-48 pt"
-                            min="-10"
-                            max="2000"
-                            size="5"
-                            [style.color]="!shapeFontFamilyVar.valid ? 'red' : 'gray'"
+                            placeholder="Font, ie Arial, Sans Serif"
                             >
                     </div>
 

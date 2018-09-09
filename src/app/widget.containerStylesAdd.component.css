@@ -240,13 +240,12 @@
     .gridShapeFontFamily {
         grid-column-start: 4;
         /* autoprefixer: off */
-        grid-column-end: 6;
+        grid-column-end: 10;
         grid-row-start: 17;
         grid-row-end: 18;
         padding-left: 15px;
         padding-top: 6px;
     }
-
 
     .gridTextBold {
         grid-column-start: 1;

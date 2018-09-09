@@ -74,7 +74,7 @@ export class WidgetContainerStylesAddComponent implements OnInit {
     shapeIsItalic: boolean;                 // True if text is italic
     shapeLineHeight: string;                // Line Height: normal, 1.6, 80%
     shapeText: string = 'Test text';
-    shapeTextAlign: string = 'left';        // Align text Left, Center, Right
+    shapeTextAlign: string = 'Left';        // Align text Left, Center, Right
 
 
     constructor(
