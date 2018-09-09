@@ -305,7 +305,7 @@
         padding-top: 6px;
     }
 
-    .gridErrorMessaget {
+    .gridErrorMessage {
         color: red;
         grid-column-start: 13;
         /* autoprefixer: off */

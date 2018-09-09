@@ -57,17 +57,15 @@ export class WidgetContainerStylesAddComponent implements OnInit {
     callingRoutine: string = '';
     colourPickerClosed: boolean = false;
     colourPickerSubscription: Subscription;
-
-    containerStyleName: string;
-
-    containerBackgroundcolor: string;
-    containerBorder: string = 'none';
-    containerBorderColour: string = 'none';
+    containerStyleName: string = '';
+    containerBackgroundcolor: string = 'transparent';
+    containerBorder: string = '1px solid black';
+    containerBorderColour: string = 'black';
     containerBorderRadius: string;
-    containerBorderType: string = 'bold';
-    containerBorderSize: string = 'none';
+    containerBorderType: string = 'solid';
+    containerBorderSize: string = '1';
     containerBoxshadow: string;
-    containerFontsize: number;
+    containerFontsize: number = 12;
     errorMessage: string;
     oldWidget: Widget;
     selectedColour: string;
@@ -157,12 +155,12 @@ export class WidgetContainerStylesAddComponent implements OnInit {
 
         // Construct line size
         if (this.containerBorderSize != 'none'  &&  this.containerBorderColour != 'none') {
-            this.containerBorder = this.containerBorderSize + ' ' + 
+            this.containerBorder = this.containerBorderSize + 'px ' + 
                 this.containerBorderType + ' ' + this.containerBorderColour;
         } else {
             this.containerBorder = 'none';
         };
-        console.warn('xx line', this.containerBorder, this.containerBorderColour, this.containerBorderSize);
+        console.warn('xx line', this.containerBorder);
 
     }
 
@@ -174,12 +172,12 @@ export class WidgetContainerStylesAddComponent implements OnInit {
 
         // Construct line size
         if (this.containerBorderSize != 'none'  &&  this.containerBorderColour != 'none') {
-            this.containerBorder = this.containerBorderSize + ' ' + 
+            this.containerBorder = this.containerBorderSize + 'px ' + 
                 this.containerBorderType + ' ' + this.containerBorderColour;
         } else {
             this.containerBorder = 'none';
         };
-        console.warn('xx line', this.containerBorder, this.containerBorderColour, this.containerBorderSize);
+        console.warn('xx line', this.containerBorder);
     }
 
     clickSelectLineType(ev: any) {
@@ -190,12 +188,12 @@ export class WidgetContainerStylesAddComponent implements OnInit {
 
         // Construct line size
         if (this.containerBorderSize != 'none'  &&  this.containerBorderColour != 'none') {
-            this.containerBorder = this.containerBorderSize + ' ' + 
+            this.containerBorder = this.containerBorderSize + 'px ' + 
                 this.containerBorderType + ' ' + this.containerBorderColour;
         } else {
             this.containerBorder = 'none';
         };
-        console.warn('xx line', this.containerBorder, this.containerBorderColour, this.containerBorderSize);
+        console.warn('xx line', this.containerBorder);
     }
 
     clickSelectTextAlign(ev: any) {
@@ -218,18 +216,12 @@ export class WidgetContainerStylesAddComponent implements OnInit {
         // Add a new Container Style
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
 
-        // Construct line size
-        if (this.containerBorderSize != 'none'  &&  this.containerBorderColour != 'none') {
-            this.containerBorder = this.containerBorderSize + ' ' + 
-                this.containerBorderType + ' ' + this.containerBorderColour;
-        } else {
-            this.containerBorder = 'none';
+        // Validation
+        if (this.containerStyleName == '') {
+            this.errorMessage = 'The name is compulsory.';
+            return;
         };
 
-        console.warn('xx line', this.containerBorder, this.containerBorderColour, this.containerBorderSize);
-
-        // Validation
-        
         // Add to DB
         let newContainerStyle: ContainerStyle = {
             id: null,
