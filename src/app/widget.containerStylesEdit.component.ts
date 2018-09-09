@@ -47,7 +47,7 @@ export class WidgetContainerStylesEditComponent implements OnInit {
             &&
             (!event.shiftKey)
            ) {
-            this.clickAdd();
+            this.clickSave();
             return;
         };
 
@@ -98,6 +98,7 @@ export class WidgetContainerStylesEditComponent implements OnInit {
             });   
             // Fill Initial
             if (this.containerStyles.length >= 0) {
+                this.updateForm(0);
                 this.containerStyleName = this.containerStyles[0].name + 
                     ' (' + this.containerStyles[0].id.toString() + ')';
             };
@@ -153,8 +154,55 @@ export class WidgetContainerStylesEditComponent implements OnInit {
         this.containerSelectedStyleID = +selectedContainerStyleName.
             substring(openBracket + 1, closeBracket);
 
+        // Find row and update form
+        if (this.containerSelectedStyleID != -1) {
+            let localIndex: number = this.containerStyles.findIndex(cs => 
+                cs.id == this.containerSelectedStyleID
+            );
+            if (localIndex != -1) {
+                this.updateForm(localIndex);
+            };
+        };
         console.warn('xx this.dashboardTemplateID', this.containerSelectedStyleID)
     
+    }
+
+    updateForm(localIndex: number) {
+        // Update the form from the local Array with for a given index
+        this.globalFunctionService.printToConsole(this.constructor.name,'updateForm', '@Start');
+
+        if (localIndex != -1) {
+            this.containerBackgroundcolor = this.containerStyles[localIndex].
+                containerBackgroundcolor;
+            this.containerBorderColour = this.containerStyles[localIndex].
+                containerBorderColour;
+
+            if (this.containerStyles[localIndex].containerBorderRadius != null) {
+                this.containerBorderRadius = this.containerStyles[localIndex].
+                    containerBorderRadius.toString();
+            } else {
+                this.containerBorderRadius = null;
+            };
+            
+            if (this.containerStyles[localIndex].containerBorderSize != null) {
+                this.containerBorderSize = this.containerStyles[localIndex].
+                    containerBorderSize.toString();
+            } else {
+                this.containerBorderSize = null;
+            };
+
+            this.containerBorderType = this.containerStyles[localIndex].
+                containerBorderType;
+            this.containerBoxshadow = this.containerStyles[localIndex].
+                containerBoxshadow;
+            this.containerFontsize = this.containerStyles[localIndex].containerFontsize;
+            this.shapeFontFamily = this.containerStyles[localIndex].shapeFontFamily;
+            this.shapeIsBold = this.containerStyles[localIndex].shapeIsBold;
+            this.shapeIsItalic = this.containerStyles[localIndex].shapeIsItalic;
+            this.shapeLineHeight = this.containerStyles[localIndex].shapeLineHeight;
+            this.shapeTextAlign = this.containerStyles[localIndex].shapeTextAlign;
+        };
+
     }
 
     clickSelectBgColorPicker(ev: any) {
@@ -247,19 +295,13 @@ export class WidgetContainerStylesEditComponent implements OnInit {
 		this.formWidgetContainerStylesEditClosed.emit(null);
     }
 
-    clickAdd() {
-        // Add a new Container Style
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
-
-        // Validation
-        if (this.containerStyleName == '') {
-            this.errorMessage = 'The name is compulsory.';
-            return;
-        };
+    clickSave() {
+        // Save the Container Style
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
         // Add to DB
         let newContainerStyle: ContainerStyle = {
-            id: null,
+            id: this.containerSelectedStyleID,
             name: this.containerStyleName,
             containerBackgroundcolor: this.containerBackgroundcolor,
             containerBorderColour: this.containerBorderColour,
@@ -281,14 +323,15 @@ export class WidgetContainerStylesEditComponent implements OnInit {
         };
 console.warn('xx newContainerStyle', newContainerStyle);
 
-        this.globalVariableService.addContainerStyle(newContainerStyle).then(res => {
-
+        this.globalVariableService.saveContainerStyle(newContainerStyle).then(res => {
+            console.warn('xx res', res);
+            
         });
 
         // Tell user
         this.globalVariableService.showStatusBarMessage(
             {
-                message: 'Container Style added',
+                message: 'Container Style saved',
                 uiArea: 'StatusBar',
                 classfication: 'Info',
                 timeout: 3000,
