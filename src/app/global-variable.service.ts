@@ -7246,14 +7246,14 @@ export class GlobalVariableService {
                         );
 
                         if (this.sessionDebugging) {
-                            console.log('addWidget ADDED', {data}, this.widgets)
+                            console.log('PaletteButtonsSelected ADDED', {data}, this.widgets)
                         };
 
                         resolve(data);
                     },
                     err => {
                         if (this.sessionDebugging) {
-                            console.log('Error addDashboardSubscription FAILED', {err});
+                            console.log('Error addPaletteButtonsSelected FAILED', {err});
                         };
 
                         reject(err);
@@ -9105,16 +9105,15 @@ export class GlobalVariableService {
                         // Update Global vars to make sure they remain in sync
                         this.containerStyles.push(JSON.parse(JSON.stringify(res)));
 
-
                         if (this.sessionDebugging) {
-                            console.log('addWidget ADDED', {data}, this.widgets)
+                            console.log('ContainerStyle ADDED', {data}, this.widgets)
                         };
 
                         resolve(data);
                     },
                     err => {
                         if (this.sessionDebugging) {
-                            console.log('Error addDashboardSubscription FAILED', {err});
+                            console.log('Error addContainerStyle FAILED', {err});
                         };
 
                         reject(err);

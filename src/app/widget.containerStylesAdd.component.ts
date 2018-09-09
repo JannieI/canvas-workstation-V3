@@ -69,7 +69,6 @@ export class WidgetContainerStylesAddComponent implements OnInit {
     containerBoxshadow: string;
     containerFontsize: number;
     errorMessage: string;
-    localWidget: Widget;                            // W to modify, copied from selected
     oldWidget: Widget;
     selectedColour: string;
     shapeFontFamily: string;                // Font, ie Aria, Sans Serif
@@ -106,10 +105,6 @@ export class WidgetContainerStylesAddComponent implements OnInit {
                         this.colourPickerClosed = false;
                         this.containerBorderColour = clp.selectedColor;
 
-                        // // Construct line size
-                        // if (this.containerBorderSize != 'none') {
-                        //     this.localWidget.containerBorder = this.containerBorderSize + ' ' + this.containerBorderType + ' ' + this.containerBorderColour;
-                        // };
                     };
                 };
             };
@@ -167,7 +162,7 @@ export class WidgetContainerStylesAddComponent implements OnInit {
         } else {
             this.containerBorder = 'none';
         };
-        console.warn('xx line', this.localWidget.containerBorder, this.containerBorderColour, this.containerBorderSize);
+        console.warn('xx line', this.containerBorder, this.containerBorderColour, this.containerBorderSize);
 
     }
 
@@ -184,7 +179,7 @@ export class WidgetContainerStylesAddComponent implements OnInit {
         } else {
             this.containerBorder = 'none';
         };
-        console.warn('xx line', this.localWidget.containerBorder, this.containerBorderColour, this.containerBorderSize);
+        console.warn('xx line', this.containerBorder, this.containerBorderColour, this.containerBorderSize);
     }
 
     clickSelectLineType(ev: any) {
@@ -200,7 +195,7 @@ export class WidgetContainerStylesAddComponent implements OnInit {
         } else {
             this.containerBorder = 'none';
         };
-        console.warn('xx line', this.localWidget.containerBorder, this.containerBorderColour, this.containerBorderSize);
+        console.warn('xx line', this.containerBorder, this.containerBorderColour, this.containerBorderSize);
     }
 
     clickSelectTextAlign(ev: any) {
@@ -209,12 +204,6 @@ export class WidgetContainerStylesAddComponent implements OnInit {
 
         this.shapeTextAlign = ev.target.value;
 
-        // // Construct line size
-        // if (this.containerBorderSize != 'none') {
-        //     this.localWidget.containerBorder = this.containerBorderSize + ' ' + this.containerBorderType + ' ' + this.containerBorderColour;
-        // } else {
-        //     this.localWidget.containerBorder = this.containerBorderSize
-        // };
     }
     
     clickClose() {
@@ -237,7 +226,7 @@ export class WidgetContainerStylesAddComponent implements OnInit {
             this.containerBorder = 'none';
         };
 
-        console.warn('xx line', this.localWidget.containerBorder, this.containerBorderColour, this.containerBorderSize);
+        console.warn('xx line', this.containerBorder, this.containerBorderColour, this.containerBorderSize);
 
         // Validation
         
