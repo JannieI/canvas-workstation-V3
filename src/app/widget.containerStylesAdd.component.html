@@ -46,7 +46,7 @@
                         [style.height.px]="300"
                         [style.background-color]="containerBackgroundcolor"
                         [style.border]="containerBorder"
-                        [style.border-radius]="containerBorderRadius"
+                        [style.border-radius.px]="containerBorderRadius"
                         [style.box-shadow]="containerBoxshadow"
                         [style.font-size.px]="containerFontsize"
 
@@ -54,18 +54,25 @@
                         <br>
                         <br>
                         <br>
-                        Sample Text
                         <br>
-                        Sample Text
                         <br>
-                        Sample Text
                         <br>
+                        <div></div>
                         Sample Text
-                        <br>
-                        Sample Text
-                        <br>
-                        Sample Text
-                        <br>
+                        <div 
+                            [style.background-color]="localWidget.containerBackgroundcolor"
+                            [style.color]="localWidget.shapeTextColour"
+                            [style.font-style]="localWidget.shapeIsItalic? 'italic' : 'normal'"
+                            [style.font-weight]="localWidget.shapeIsBold? 'bold' : 'normal'"
+                            [style.font-family]="localWidget.shapeFontFamily"
+                            [style.font-size.px]="localWidget.shapeFontSize"
+                            [style.line-height]="localWidget.shapeLineHeight"
+                            [style.text-align]="left"
+                            style="display: block; padding: 5px; line-height: 150%;"
+
+                            [(ngModel)]="shapeText"
+                                >
+                        </div>                        
                     </div>
 
                     <div class="gridStyleNameTitle">
@@ -134,10 +141,10 @@
                             (change)="clickSelectLineSize($event)"
                             >
                             <option>none</option>
-                            <option>1px</option>
-                            <option>2px</option>
-                            <option>3px</option>
-                            <option>4px</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
                         </select>
                     </div>
 
@@ -159,9 +166,9 @@
                     </div>
                     <div class="gridBorderRadius">
                         <input [(ngModel)]="containerBorderRadius"
-                            type="text"
+                            type="number"
                             name="containerBorderRadius"
-                            placeholder="Corners, ie 3px"
+                            placeholder="Corners, ie 3 (measured in px)"
                             >
                     </div>
 
@@ -184,7 +191,7 @@
                             type="number"
                             name="containerFontsize"
                             #containerFontsizeVar="ngModel"
-                            placeholder="4-48 pt"
+                            placeholder="4-48 (measured in px)"
                             min="4"
                             max="48"
                             size="5"
@@ -247,6 +254,10 @@
                             [(ngModel)]="shapeLineHeight"
                             name="shapeLineHeight"
                             >
+                    </div>
+
+                    <div class="gridErrorMessage">
+                        {{ errorMessage }}
                     </div>
 
                     <div class="gridButtonCancel">

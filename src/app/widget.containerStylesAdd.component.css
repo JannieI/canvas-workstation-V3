@@ -305,6 +305,17 @@
         padding-top: 6px;
     }
 
+    .gridErrorMessaget {
+        color: red;
+        grid-column-start: 13;
+        /* autoprefixer: off */
+        grid-column-end: 28;
+        grid-row-start: 23;
+        grid-row-end: 24;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+
     .gridButtonCancel {
         grid-column-start: 6;
         /* autoprefixer: off */

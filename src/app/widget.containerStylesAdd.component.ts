@@ -61,31 +61,23 @@ export class WidgetContainerStylesAddComponent implements OnInit {
     containerStyleName: string;
 
     containerBackgroundcolor: string;
+    containerBorder: string = 'none';
     containerBorderColour: string = 'none';
     containerBorderRadius: string;
     containerBorderType: string = 'bold';
     containerBorderSize: string = 'none';
     containerBoxshadow: string;
     containerFontsize: number;
-
-    // Shape
+    errorMessage: string;
+    localWidget: Widget;                            // W to modify, copied from selected
+    oldWidget: Widget;
+    selectedColour: string;
     shapeFontFamily: string;                // Font, ie Aria, Sans Serif
     shapeIsBold: boolean;                   // True if text is bold
     shapeIsItalic: boolean;                 // True if text is italic
     shapeLineHeight: string;                // Line Height: normal, 1.6, 80%
+    shapeText: string = 'Test text';
     shapeTextAlign: string;                 // Align text Left, Center, Right
-
-    // Created, updated and refreshed
-    containerRefreshedOn: string;           // Data Refreshed on
-    containerRefreshedBy: string;           // Date Refreshed by
-    containerCreatedOn: Date;               // Created on
-    containerCreatedBy: string;             // Created by
-    containerUpdatedOn: Date;               // Updated on
-    containerUpdatedBy: string
-    
-    localWidget: Widget;                            // W to modify, copied from selected
-    oldWidget: Widget;
-    selectedColour: string;
 
 
     constructor(
@@ -168,13 +160,12 @@ export class WidgetContainerStylesAddComponent implements OnInit {
 
         this.containerBorderColour = ev.target.value;
 
-        // // Construct line size
-        // if (this.containerBorderSize != 'none') {
-        //     this.localWidget.containerBorder = this.containerBorderSize + ' ' + this.containerBorderType + ' ' + this.containerBorderColour;
-        // } else {
-        //     this.localWidget.containerBorder = this.containerBorderSize
-        // };
-        // console.warn('xx line', this.localWidget.containerBorder, this.containerBorderColour, this.containerBorderSize);
+        // Construct line size
+        if (this.containerBorderSize != 'none'  &&  this.containerBorderColour != 'none') {
+            this.containerBorder = this.containerBorderSize + ' ' + 
+                this.containerBorderType + ' ' + this.containerBorderColour;
+        };
+        console.warn('xx line', this.localWidget.containerBorder, this.containerBorderColour, this.containerBorderSize);
 
     }
 
@@ -184,12 +175,12 @@ export class WidgetContainerStylesAddComponent implements OnInit {
 
         this.containerBorderSize = ev.target.value;
 
-        // // Construct line size
-        // if (this.containerBorderSize != 'none') {
-        //     this.localWidget.containerBorder = this.containerBorderSize + ' ' + this.containerBorderType + ' ' + this.containerBorderColour;
-        // } else {
-        //     this.localWidget.containerBorder = this.containerBorderSize
-        // };
+        // Construct line size
+        if (this.containerBorderSize != 'none'  &&  this.containerBorderColour != 'none') {
+            this.containerBorder = this.containerBorderSize + ' ' + 
+                this.containerBorderType + ' ' + this.containerBorderColour;
+        };
+        console.warn('xx line', this.localWidget.containerBorder, this.containerBorderColour, this.containerBorderSize);
     }
 
     clickSelectLineType(ev: any) {
@@ -198,12 +189,12 @@ export class WidgetContainerStylesAddComponent implements OnInit {
 
         this.containerBorderType = ev.target.value;
 
-        // // Construct line size
-        // if (this.containerBorderSize != 'none') {
-        //     this.localWidget.containerBorder = this.containerBorderSize + ' ' + this.containerBorderType + ' ' + this.containerBorderColour;
-        // } else {
-        //     this.localWidget.containerBorder = this.containerBorderSize
-        // };
+        // Construct line size
+        if (this.containerBorderSize != 'none'  &&  this.containerBorderColour != 'none') {
+            this.containerBorder = this.containerBorderSize + ' ' + 
+                this.containerBorderType + ' ' + this.containerBorderColour;
+        };
+        console.warn('xx line', this.localWidget.containerBorder, this.containerBorderColour, this.containerBorderSize);
     }
 
     clickSelectTextAlign(ev: any) {
@@ -246,7 +237,7 @@ export class WidgetContainerStylesAddComponent implements OnInit {
             containerBackgroundcolor: this.containerBackgroundcolor,
             containerBorderColour: this.containerBorderColour,
             containerBorderRadius: +this.containerBorderRadius,
-            containerBorderSize: +this.containerBorderSize,
+            containerBorderSize: this.containerBorderSize=='none'? 0 : +this.containerBorderSize,
             containerBorderType: this.containerBorderType,
             containerBoxshadow: this.containerBoxshadow,
             containerFontsize: this.containerFontsize,
