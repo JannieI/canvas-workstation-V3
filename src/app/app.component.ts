@@ -488,7 +488,8 @@ export class AppComponent implements OnInit {
     showModalWidgetAnnotations: boolean = false;
     showModalWidgetCheckpoints: boolean = false;
     showModalWidgetContainer: boolean = false;
-    showModalWidgetContainerStyles: boolean = false;
+    showModalWidgetContainerStylesAdd: boolean = false;
+    showModalWidgetContainerStylesEdit: boolean = false;
     showModalWidgetDelete: boolean = false;
     showModalWidgetDescription: boolean = false;
     showModalWidgetEditor: boolean = false;
@@ -935,6 +936,15 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
             this.showModalLanding = false;
         };
 
+    }
+
+    handleCloseWidgetContainerStylesAdd() {
+        // Handle close of ContainerStyles form
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetContainerStylesAdd', '@Start');
+
+        this.menuOptionClickPostAction();
+
+        this.showModalWidgetContainerStyles = false;
     }
 
     handleCloseWidgetContainerStyles() {

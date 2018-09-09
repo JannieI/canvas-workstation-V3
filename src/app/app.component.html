@@ -39,8 +39,8 @@
                             >
                             {{ editMenuText }}
                         </button>
+                        
                         <div class="dropdown-divider"></div>
-
                         <button type="button"
                             clrDropdownItem
                             title="Undo previous action"
@@ -55,6 +55,7 @@
                             >
                             Redo (Ctrl-Y)
                         </button>
+
                         <div class="dropdown-divider"></div>
                         <button type="button"
                             clrDropdownItem
@@ -72,7 +73,6 @@
                         </button>
 
                         <div class="dropdown-divider"></div>
-
                         <clr-dropdown>
                             <button
                                 type="button"
@@ -83,22 +83,22 @@
                                 Container Styles
                             </button>
                             <clr-dropdown-menu clrPosition="right-top" *clrIfOpen>
-
-                            <button type="button"
-                                clrDropdownItem
-                                (click)="clickMenuEditContainerStylesAdd()"
-                                title="Add a new container style"
-                                >
-                                Add
-                            </button>
-                            <button type="button"
-                                clrDropdownItem
-                                (click)="clickMenuEditContainerStylesEdit()"
-                                title="Edit or Delete an existing container style"
-                                >
-                                Edit / Delete
-                            </button>
-                        </clr-dropdown-menu>
+                                <button type="button"
+                                    clrDropdownItem
+                                    (click)="clickMenuEditContainerStylesAdd()"
+                                    title="Add a new container style"
+                                    >
+                                    Add
+                                </button>
+                                <button type="button"
+                                    clrDropdownItem
+                                    (click)="clickMenuEditContainerStylesEdit()"
+                                    title="Edit or Delete an existing container style"
+                                    >
+                                    Edit / Delete
+                                </button>
+                            </clr-dropdown-menu>
+                        </clr-dropdown>
 
                     </clr-dropdown-menu>
                 </clr-dropdown>
