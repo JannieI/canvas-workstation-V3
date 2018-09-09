@@ -4109,6 +4109,13 @@
 </div>
 
 
+<!-- Modal: Widget Container Styles -->
+<widget-containerStyles
+    *ngIf="showModalWidgetContainerStyles"
+    (formWidgetContainerStylesClosed)="handleCloseWidgetContainerStyles($event)">Widget Container Styles ...
+</widget-containerStyles>
+
+
 <!-- Title properties -->
 <widget-title *ngIf="showTitleForm"
     (formWidgetTitleClosed)="handleCloseWidgetTitle($event)"
@@ -4675,6 +4682,7 @@
     </button>
     <div class="widgetFullScreenGraph" #widgetFullDOM></div>
 </div>
+
 
 <!-- Modal: Widget Container -->
 <widget-container

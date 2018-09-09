@@ -59,6 +59,7 @@ import { WidgetExportComponent }      from './widget.export.component';
 import { WidgetDeleteComponent }      from './widget.delete.component';
 import { WidgetSingleComponent }      from './widget.single.component';
 import { WidgetContainerComponent }   from './widget.container.component';
+import { WidgetContainerStylesComponent }       from './widget.containerStyles.component';
 import { WidgetTitleComponent }       from './widget.title.component';
 import { WidgetRefreshComponent }     from './widget.refresh.component';
 import { WidgetAnnotationsComponent } from './widget.annotations.component';
@@ -235,6 +236,7 @@ import { StatusbarComponent }         from './statusbar.component';
         WidgetDeleteComponent,
         WidgetSingleComponent,
         WidgetContainerComponent,
+        WidgetContainerStylesComponent,
         WidgetTitleComponent,
         WidgetRefreshComponent,
         WidgetAnnotationsComponent,

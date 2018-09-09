@@ -488,6 +488,7 @@ export class AppComponent implements OnInit {
     showModalWidgetAnnotations: boolean = false;
     showModalWidgetCheckpoints: boolean = false;
     showModalWidgetContainer: boolean = false;
+    showModalWidgetContainerStyles: boolean = false;
     showModalWidgetDelete: boolean = false;
     showModalWidgetDescription: boolean = false;
     showModalWidgetEditor: boolean = false;
@@ -2665,7 +2666,22 @@ console.warn('xx filteredActions[0].action', filteredActions[0].action);
     }
 
 
+    clickMenuEditContainerStyles() {
+        // Show popup to manage Container Styles
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditContainerStyles', '@Start');
 
+        // Reset popup menu
+        this.showWidgetContextMenu = false;
+
+        // TODO - Permissions could be added here, based on user role 
+
+        this.menuOptionClickPreAction();
+
+        this.showModalWidgetContainerStyles = true;
+    }
+
+
+    
 
 
     // ***********************  CLICK DASHBOARD MENU OPTIONS ************************ //
