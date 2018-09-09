@@ -22,13 +22,13 @@ import { GlobalVariableService }      from './global-variable.service';
 import { Subscription }               from 'rxjs';
 
 @Component({
-    selector: 'widget-containerStyles',
-    templateUrl: './widget.containerStyles.component.html',
-    styleUrls: ['./widget.containerStyles.component.css']
+    selector: 'widget-containerStylesEdit',
+    templateUrl: './widget.containerStylesEdit.component.html',
+    styleUrls: ['./widget.containerStylesEdit.component.css']
 })
-export class WidgetContainerStylesComponent implements OnInit {
+export class WidgetContainerStylesEditComponent implements OnInit {
 
-    @Output() formWidgetContainerStylesClosed: EventEmitter<Widget> = new EventEmitter();
+    @Output() formWidgetContainerStylesEditClosed: EventEmitter<Widget> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
