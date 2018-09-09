@@ -9104,7 +9104,7 @@ export class GlobalVariableService {
                 res => {
 
                     // Replace local
-                    let localIndex: number = this.containerStyle.value.findIndex(d =>
+                    let localIndex: number = this.containerStyles.findIndex(d =>
                         d.id == data.id
                     );
                     this.containerStyles[localIndex] = data;
@@ -9150,21 +9150,16 @@ export class GlobalVariableService {
                     // Observable, and will be refreshed with a .next by the calling
                     // routine
                     let dID: number = -1;
-                    for (var i = 0; i < this.containerStyles.value.length; i++) {
+                    for (var i = 0; i < this.containerStyles.length; i++) {
 
-                        if (this.containerStyles.value[i].id == id) {
+                        if (this.containerStyles[i].id == id) {
                             dID = i;
                             break;
                         };
                     };
                     if (dID >=0) {
-                        this.containerStyles.value.splice(dID, 1);
+                        this.containerStyles.splice(dID, 1);
                     };
-
-                    // Inform subscribers
-                    this.containerStyles.next(
-                        this.containerStyles.value
-                    );
 
                     if (this.sessionDebugging) {
                         console.log('deleteContainerStyle DELETED id: ', {id})
@@ -9182,9 +9177,6 @@ export class GlobalVariableService {
             )
         });
     }
-
-
-
 
     get<T>(url: string, options?: any, dashboardID?: number, datasourceID?: number): Promise<any> {
         // Generic GET data, later to be replaced with http
