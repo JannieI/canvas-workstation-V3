@@ -206,9 +206,7 @@ export class ContainerStyle {
     shapeLineHeight: string;                // Line Height: normal, 1.6, 80%
     shapeTextAlign: string;                 // Align text Left, Center, Right
 
-    // Created, updated and refreshed
-    containerRefreshedOn: string;           // Data Refreshed on
-    containerRefreshedBy: string;           // Date Refreshed by
+    // Created, updated
     containerCreatedOn: Date;               // Created on
     containerCreatedBy: string;             // Created by
     containerUpdatedOn: Date;               // Updated on

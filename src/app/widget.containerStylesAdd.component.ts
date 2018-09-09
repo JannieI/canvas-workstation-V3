@@ -6,12 +6,12 @@
 import { Component }                  from '@angular/core';
 import { EventEmitter }               from '@angular/core';
 import { HostListener }               from '@angular/core';
-import { Input }                      from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
 
 // Our Models
 import { CSScolor }                   from './models';
+import { ContainerStyle }             from './models';
 import { Widget }                     from './models';
 
 // Our Functions
@@ -58,7 +58,7 @@ export class WidgetContainerStylesAddComponent implements OnInit {
     colourPickerClosed: boolean = false;
     colourPickerSubscription: Subscription;
 
-    styleName: string;
+    containerStyleName: string;
 
     containerBackgroundcolor: string;
     containerBorderColour: string = 'none';
@@ -225,8 +225,30 @@ export class WidgetContainerStylesAddComponent implements OnInit {
         //     this.localWidget.containerBorder = this.containerBorderSize
         // };
 
-        // Replace the W - DB and local vars
-        this.globalVariableService.saveWidget(this.localWidget).then(res => {
+        // Add to DB
+        let newContainerStyle: ContainerStyle = {
+            id: null,
+            name: this.containerStyleName,
+            containerBackgroundcolor: this.containerBackgroundcolor,
+            containerBorderColour: this.containerBorderColour,
+            containerBorderRadius: +this.containerBorderRadius,
+            containerBorderSize: +this.containerBorderSize,
+            containerBorderType: this.containerBorderType,
+            containerBoxshadow: this.containerBoxshadow,
+            containerFontsize: this.containerFontsize,
+            shapeFontFamily: this.shapeFontFamily,
+            shapeIsBold: this.shapeIsBold,
+            shapeIsItalic: this.shapeIsItalic,
+            shapeLineHeight: this.shapeLineHeight,
+            shapeTextAlign: this.shapeTextAlign,
+            containerCreatedOn: new Date(),
+            containerCreatedBy: this.globalVariableService.currentUser.userID,
+            containerUpdatedOn: null,
+            containerUpdatedBy: null,
+        
+        };
+
+        this.globalVariableService.saveContainerStyle(newContainerStyle).then(res => {
 
 
         });
