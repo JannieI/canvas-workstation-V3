@@ -47,7 +47,7 @@ export class WidgetContainerStylesAddComponent implements OnInit {
             &&
             (!event.shiftKey)
            ) {
-            this.clickSave();
+            this.clickAdd();
             return;
         };
 
@@ -57,6 +57,8 @@ export class WidgetContainerStylesAddComponent implements OnInit {
     callingRoutine: string = '';
     colourPickerClosed: boolean = false;
     colourPickerSubscription: Subscription;
+
+    styleName: string;
 
     containerBackgroundcolor: string;
     containerBorderColour: string = 'none';
@@ -98,7 +100,7 @@ export class WidgetContainerStylesAddComponent implements OnInit {
         // Manage colour picker
         this.colourPickerSubscription = this.globalVariableService.colourPickerClosed.subscribe(clp => {
 
-            if (this.localWidget != undefined  &&  clp != null) {
+            if (clp != null) {
 
                 if (clp.cancelled) {
                     this.colourPickerClosed = false;
@@ -106,16 +108,16 @@ export class WidgetContainerStylesAddComponent implements OnInit {
 
                     if (clp.callingRoutine == 'BgColour') {
                         this.colourPickerClosed = false;
-                        this.localWidget.containerBackgroundcolor = clp.selectedColor;
+                        this.containerBackgroundcolor = clp.selectedColor;
                     };
                     if (clp.callingRoutine == 'LineColour') {
                         this.colourPickerClosed = false;
                         this.containerBorderColour = clp.selectedColor;
 
-                        // Construct line size
-                        if (this.containerBorderSize != 'none') {
-                            this.localWidget.containerBorder = this.containerBorderSize + ' ' + this.containerBorderType + ' ' + this.containerBorderColour;
-                        };
+                        // // Construct line size
+                        // if (this.containerBorderSize != 'none') {
+                        //     this.localWidget.containerBorder = this.containerBorderSize + ' ' + this.containerBorderType + ' ' + this.containerBorderColour;
+                        // };
                     };
                 };
             };
@@ -139,7 +141,7 @@ export class WidgetContainerStylesAddComponent implements OnInit {
         // Open the Colour Picker for Background Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBgColorPicker', '@Start');
 
-        this.selectedColour = this.localWidget.containerBackgroundcolor;
+        this.selectedColour = this.containerBackgroundcolor;
         this.callingRoutine = 'BgColour';
         this.colourPickerClosed = true;
     }
@@ -148,7 +150,7 @@ export class WidgetContainerStylesAddComponent implements OnInit {
         // Select Background Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBgColor', '@Start');
 
-        this.localWidget.containerBackgroundcolor = ev.target.value;
+        this.containerBackgroundcolor = ev.target.value;
     }
 
     clickSelectLineColorPicker(ev: any) {
@@ -166,13 +168,13 @@ export class WidgetContainerStylesAddComponent implements OnInit {
 
         this.containerBorderColour = ev.target.value;
 
-        // Construct line size
-        if (this.containerBorderSize != 'none') {
-            this.localWidget.containerBorder = this.containerBorderSize + ' ' + this.containerBorderType + ' ' + this.containerBorderColour;
-        } else {
-            this.localWidget.containerBorder = this.containerBorderSize
-        };
-        console.warn('xx line', this.localWidget.containerBorder, this.containerBorderColour, this.containerBorderSize);
+        // // Construct line size
+        // if (this.containerBorderSize != 'none') {
+        //     this.localWidget.containerBorder = this.containerBorderSize + ' ' + this.containerBorderType + ' ' + this.containerBorderColour;
+        // } else {
+        //     this.localWidget.containerBorder = this.containerBorderSize
+        // };
+        // console.warn('xx line', this.localWidget.containerBorder, this.containerBorderColour, this.containerBorderSize);
 
     }
 
@@ -182,12 +184,12 @@ export class WidgetContainerStylesAddComponent implements OnInit {
 
         this.containerBorderSize = ev.target.value;
 
-        // Construct line size
-        if (this.containerBorderSize != 'none') {
-            this.localWidget.containerBorder = this.containerBorderSize + ' ' + this.containerBorderType + ' ' + this.containerBorderColour;
-        } else {
-            this.localWidget.containerBorder = this.containerBorderSize
-        };
+        // // Construct line size
+        // if (this.containerBorderSize != 'none') {
+        //     this.localWidget.containerBorder = this.containerBorderSize + ' ' + this.containerBorderType + ' ' + this.containerBorderColour;
+        // } else {
+        //     this.localWidget.containerBorder = this.containerBorderSize
+        // };
     }
 
     clickSelectLineType(ev: any) {
@@ -196,12 +198,12 @@ export class WidgetContainerStylesAddComponent implements OnInit {
 
         this.containerBorderType = ev.target.value;
 
-        // Construct line size
-        if (this.containerBorderSize != 'none') {
-            this.localWidget.containerBorder = this.containerBorderSize + ' ' + this.containerBorderType + ' ' + this.containerBorderColour;
-        } else {
-            this.localWidget.containerBorder = this.containerBorderSize
-        };
+        // // Construct line size
+        // if (this.containerBorderSize != 'none') {
+        //     this.localWidget.containerBorder = this.containerBorderSize + ' ' + this.containerBorderType + ' ' + this.containerBorderColour;
+        // } else {
+        //     this.localWidget.containerBorder = this.containerBorderSize
+        // };
     }
 
     clickClose() {
@@ -212,52 +214,33 @@ export class WidgetContainerStylesAddComponent implements OnInit {
 		this.formWidgetContainerStylesAddClosed.emit(null);
     }
 
-    clickSave() {
-        // Close form and save all
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
+    clickAdd() {
+        // Add a new Container Style
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
 
-        // Construct line size
-        if (this.containerBorderSize != 'none') {
-            this.localWidget.containerBorder = this.containerBorderSize + ' ' + this.containerBorderType + ' ' + this.containerBorderColour;
-        } else {
-            this.localWidget.containerBorder = this.containerBorderSize
-        };
+        // // Construct line size
+        // if (this.containerBorderSize != 'none') {
+        //     this.localWidget.containerBorder = this.containerBorderSize + ' ' + this.containerBorderType + ' ' + this.containerBorderColour;
+        // } else {
+        //     this.localWidget.containerBorder = this.containerBorderSize
+        // };
 
         // Replace the W - DB and local vars
         this.globalVariableService.saveWidget(this.localWidget).then(res => {
-            // this.globalVariableService.widgetReplace(this.localWidget);
-                    // Action
-                    // TODO - cater for errors + make more generic
-                    let actID: number = this.globalVariableService.actionUpsert(
-                        null,
-                        this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
-                        this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID,
-                        this.localWidget.id,
-                        'Widget',
-                        'Edit',
-                        'Update Container',
-                        'W Containter clickSave',
-                        null,
-                        null,
-                        this.oldWidget,
-                        this.localWidget,
-                        false               // Dont log to DB yet
-                    );
+
 
         });
 
         // Tell user
         this.globalVariableService.showStatusBarMessage(
             {
-                message: 'Container updated',
+                message: 'Container Style added',
                 uiArea: 'StatusBar',
                 classfication: 'Info',
                 timeout: 3000,
                 defaultMessage: ''
             }
         );
-
-	  	this.formWidgetContainerStylesAddClosed.emit(this.localWidget);
     }
 
 }

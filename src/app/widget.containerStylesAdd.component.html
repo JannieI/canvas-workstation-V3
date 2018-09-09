@@ -68,6 +68,17 @@
                         <br>
                     </div>
 
+                    <div class="gridStyleNameTitle">
+                        Name::
+                    </div>
+                    <div class="gridStyleName">
+                        <input type="text"
+                            placeholder="Name of new Style"
+                            [(ngModel)]="styleName"
+                            name="styleName"
+                            >
+                    </div>
+
                     <div class="gridBackgroundcolorTitle">
                         Bg Colour:
                     </div>
@@ -247,13 +258,13 @@
                             Cancel
                         </button>
                     </div>
-                    <div class="gridButtonSave">
+                    <div class="gridButtonAdd">
                         <button
                             type="button"
                             class="btn btn-primary"
-                            (click)="clickSave()"
+                            (click)="clickAdd()"
                             >
-                            Save
+                            Add
                         </button>
                     </div>
 
