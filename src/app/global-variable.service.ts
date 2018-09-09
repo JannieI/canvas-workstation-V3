@@ -9126,62 +9126,62 @@ export class GlobalVariableService {
         });
     }
 
-    // deletePaletteButtonsSelected(id: number): Promise<string> {
-    //     // Description: Deletes a PaletteButtonsSelected
-    //     // Returns: 'Deleted' or error message
-    //     if (this.sessionDebugging) {
-    //         console.log('%c    Global-Variables deletePaletteButtonsSelected ...',
-    //             "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
-    //     };
+    deleteContainerStyle(id: number): Promise<string> {
+        // Description: Deletes a ContainerStyle
+        // Returns: 'Deleted' or error message
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables deleteContainerStyle ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
+        };
 
-    //     let url: string = 'paletteButtonsSelecteds';
-    //     this.filePath = './assets/data.paletteButtonsSelecteds.json';
+        let url: string = 'containerStyle';
+        this.filePath = './assets/data.containerStyle.json';
 
-    //     return new Promise<any>((resolve, reject) => {
+        return new Promise<any>((resolve, reject) => {
 
-    //         const headers = new HttpHeaders()
-    //             .set("Content-Type", "application/json");
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
 
-    //         this.http.delete('http://localhost:3001/' + url + '/' + id, {headers})
-    //         .subscribe(
-    //             res => {
+            this.http.delete('http://localhost:3001/' + url + '/' + id, {headers})
+            .subscribe(
+                res => {
 
-    //                 // This is a different case: containerStyles is an
-    //                 // Observable, and will be refreshed with a .next by the calling
-    //                 // routine
-    //                 let dID: number = -1;
-    //                 for (var i = 0; i < this.currentPaletteButtonsSelected.value.length; i++) {
+                    // This is a different case: containerStyles is an
+                    // Observable, and will be refreshed with a .next by the calling
+                    // routine
+                    let dID: number = -1;
+                    for (var i = 0; i < this.containerStyles.value.length; i++) {
 
-    //                     if (this.currentPaletteButtonsSelected.value[i].id == id) {
-    //                         dID = i;
-    //                         break;
-    //                     };
-    //                 };
-    //                 if (dID >=0) {
-    //                     this.currentPaletteButtonsSelected.value.splice(dID, 1);
-    //                 };
+                        if (this.containerStyles.value[i].id == id) {
+                            dID = i;
+                            break;
+                        };
+                    };
+                    if (dID >=0) {
+                        this.containerStyles.value.splice(dID, 1);
+                    };
 
-    //                 // Inform subscribers
-    //                 this.currentPaletteButtonsSelected.next(
-    //                     this.currentPaletteButtonsSelected.value
-    //                 );
+                    // Inform subscribers
+                    this.containerStyles.next(
+                        this.containerStyles.value
+                    );
 
-    //                 if (this.sessionDebugging) {
-    //                     console.log('deletePaletteButtonsSelected DELETED id: ', {id})
-    //                 };
+                    if (this.sessionDebugging) {
+                        console.log('deleteContainerStyle DELETED id: ', {id})
+                    };
 
-    //                 resolve('Deleted');
-    //             },
-    //             err => {
-    //                 if (this.sessionDebugging) {
-    //                     console.log('Error deletePaletteButtonsSelected FAILED', {err});
-    //                 };
+                    resolve('Deleted');
+                },
+                err => {
+                    if (this.sessionDebugging) {
+                        console.log('Error deleteContainerStyle FAILED', {err});
+                    };
 
-    //                 reject(err);
-    //             }
-    //         )
-    //     });
-    // }
+                    reject(err);
+                }
+            )
+        });
+    }
 
 
 
