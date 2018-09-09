@@ -22,9 +22,9 @@ import { GlobalVariableService }      from './global-variable.service';
 import { Subscription }               from 'rxjs';
 
 @Component({
-    selector: 'widget-containerStylesEdot',
-    templateUrl: './widget.containerStylesEdot.component.html',
-    styleUrls: ['./widget.containerStylesEdot.component.css']
+    selector: 'widget-containerStylesEdit',
+    templateUrl: './widget.containerStylesEdit.component.html',
+    styleUrls: ['./widget.containerStylesEdit.component.css']
 })
 export class WidgetContainerStylesEditComponent implements OnInit {
 
@@ -57,7 +57,6 @@ export class WidgetContainerStylesEditComponent implements OnInit {
     callingRoutine: string = '';
     colourPickerClosed: boolean = false;
     colourPickerSubscription: Subscription;
-    containerStyleName: string = '';
     containerBackgroundcolor: string = 'transparent';
     containerBorder: string = '1px solid black';
     containerBorderColour: string = 'black';
@@ -66,6 +65,10 @@ export class WidgetContainerStylesEditComponent implements OnInit {
     containerBorderSize: string = '1';
     containerBoxshadow: string;
     containerFontsize: number = 12;
+    containerSelectedStyleID: number = -1;
+    containerStyleName: string = '';
+    containerStylesList: string[] = [];
+    containerStyles: ContainerStyle[] = [];
     errorMessage: string;
     oldWidget: Widget;
     selectedColour: string;
@@ -85,6 +88,20 @@ export class WidgetContainerStylesEditComponent implements OnInit {
     ngOnInit() {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
+        // Get list
+        this.globalVariableService.getContainerStyles().then(res => {
+            this.containerStyles = res; 
+            this.containerStyles.forEach(cs => {
+                // List of ngFor (needs ID at later stage, state is useful for user)
+                this.containerStylesList.push(cs.name + ' (' + cs.id.toString() + ')');
+            });   
+            // Fill Initial
+            if (this.containerStyles.length >= 0) {
+                this.containerStyleName = this.containerStyles[0].name + 
+                    ' (' + this.containerStyles[0].id.toString() + ')';
+            };
+        });
 
         // Manage colour picker
         this.colourPickerSubscription = this.globalVariableService.colourPickerClosed.subscribe(clp => {
@@ -120,6 +137,27 @@ export class WidgetContainerStylesEditComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnDestroy', '@Start');
 
         this.colourPickerSubscription.unsubscribe();
+    }
+
+    clickSelectStyleName(ev: any) {
+        // Style name was clicked in dropdown
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectStyleName', '@Start');
+
+        console.warn('xx', this.containerStyleName);
+        let selectedContainerStyleName: string = ev.target.value;
+
+        if (selectedContainerStyleName != 'None') {
+
+            // Get D info
+            let openBracket: number = selectedContainerStyleName.indexOf('(');
+            let closeBracket: number = selectedContainerStyleName.indexOf(')');
+            this.containerSelectedStyleID = +selectedContainerStyleName.substring(openBracket + 1, closeBracket);
+
+        } else {
+            this.containerSelectedStyleID = -1;
+        };
+        console.warn('xx this.dashboardTemplateID', this.containerSelectedStyleID)
+    
     }
 
     clickSelectBgColorPicker(ev: any) {

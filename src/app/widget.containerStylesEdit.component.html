@@ -17,7 +17,7 @@
                     </div>
 
                     <div class="gridHeading">
-                        <b>Add a new Container Style</b>
+                        <b>Edit / Delete a Container Style</b>
                         <clr-signpost>
                             <clr-icon shape="info-circle"
                                 clrSignpostTrigger>
@@ -71,15 +71,30 @@
                     </div>
 
                     <div class="gridStyleNameTitle">
-                        Name:
+                        Name: 
                     </div>
-                    <div class="gridStyleName">
+                    <!-- <div class="gridStyleName">
                         <input type="text"
                             placeholder="Name of new Style"
                             [(ngModel)]="containerStyleName"
                             name="containerStyleName"
                             >
+                    </div> -->
+                    <div class="select gridStyleName">
+                        <select [(ngModel)]="gridStyleName"
+                            name="gridStyleName"
+                            (change)="clickSelectStyleName($event)"
+                            >
+                            <option *ngFor="let row of containerStyles"
+                                >
+                                {{ row.name }}
+                            </option>
+                        </select>
                     </div>
+
+
+
+
 
                     <div class="gridBackgroundcolorTitle">
                         Bg Colour:

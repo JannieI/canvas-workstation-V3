@@ -9059,7 +9059,8 @@ export class GlobalVariableService {
 
                         this.isDirtyContainerStyles = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-
+                        this.containerStyles = res;
+                        
                         if (this.sessionDebugging) {
                             console.log('%c    Global-Variables getContainerStyles 1',
                                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
