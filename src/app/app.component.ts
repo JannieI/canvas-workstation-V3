@@ -939,21 +939,21 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
     }
 
     handleCloseWidgetContainerStylesAdd() {
-        // Handle close of ContainerStyles form
+        // Handle close of ContainerStyles Add form
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetContainerStylesAdd', '@Start');
 
         this.menuOptionClickPostAction();
 
-        this.showModalWidgetContainerStyles = false;
+        this.showModalWidgetContainerStylesAdd = false;
     }
 
-    handleCloseWidgetContainerStyles() {
-        // Handle close of ContainerStyles form
-        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetContainerStyles', '@Start');
+    handleCloseWidgetContainerStylesEdit() {
+        // Handle close of ContainerStyles Edit form
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetContainerStylesEdit', '@Start');
 
         this.menuOptionClickPostAction();
 
-        this.showModalWidgetContainerStyles = false;
+        this.showModalWidgetContainerStylesEdit = false;
     }
 
     handleCloseDashboardNew(action: string) {
@@ -2684,10 +2684,9 @@ console.warn('xx filteredActions[0].action', filteredActions[0].action);
         this.menuOptionClickPostAction();
     }
 
-
-    clickMenuEditContainerStyles() {
-        // Show popup to manage Container Styles
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditContainerStyles', '@Start');
+    clickMenuEditContainerStylesAdd() {
+        // Show popup to Add new Container Styles 
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditContainerStylesAdd', '@Start');
 
         // Reset popup menu
         this.showWidgetContextMenu = false;
@@ -2696,9 +2695,22 @@ console.warn('xx filteredActions[0].action', filteredActions[0].action);
 
         this.menuOptionClickPreAction();
 
-        this.showModalWidgetContainerStyles = true;
+        this.showModalWidgetContainerStylesAdd = true;
     }
 
+    clickMenuEditContainerStylesEdit() {
+        // Show popup to edit / delete existing Container Styles
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditContainerStylesEdit', '@Start');
+
+        // Reset popup menu
+        this.showWidgetContextMenu = false;
+
+        // TODO - Permissions could be added here, based on user role 
+
+        this.menuOptionClickPreAction();
+
+        this.showModalWidgetContainerStylesEdit = true;
+    }
 
 
 
