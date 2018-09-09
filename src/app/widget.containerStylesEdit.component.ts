@@ -96,8 +96,10 @@ export class WidgetContainerStylesEditComponent implements OnInit {
                 // List of ngFor (needs ID at later stage, state is useful for user)
                 this.containerStyleNameList.push(cs.name + ' (' + cs.id.toString() + ')');
             });   
+
             // Fill Initial
             if (this.containerStyles.length >= 0) {
+                this.containerSelectedStyleID = this.containerStyles[0].id;
                 this.updateForm(0);
                 this.containerStyleName = this.containerStyles[0].name + 
                     ' (' + this.containerStyles[0].id.toString() + ')';
@@ -299,7 +301,13 @@ export class WidgetContainerStylesEditComponent implements OnInit {
         // Save the Container Style
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
-        // Add to DB
+        // Validate
+        if (this.containerSelectedStyleID == -1) {
+            this.errorMessage = 'Invalid selection.';
+            return;
+        };
+
+        // Create object
         let newContainerStyle: ContainerStyle = {
             id: this.containerSelectedStyleID,
             name: this.containerStyleName,
@@ -321,11 +329,11 @@ export class WidgetContainerStylesEditComponent implements OnInit {
             containerUpdatedBy: null,
         
         };
-console.warn('xx newContainerStyle', newContainerStyle);
 
+        // Save to DB
         this.globalVariableService.saveContainerStyle(newContainerStyle).then(res => {
-            console.warn('xx res', res);
-            
+            // Update local Array
+            this.containerStyles[this.containerSelectedStyleID] = newContainerStyle;
         });
 
         // Tell user
@@ -340,4 +348,23 @@ console.warn('xx newContainerStyle', newContainerStyle);
         );
     }
 
+    clickDelete() {
+        // Delete the selected Container Style
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickDelete', '@Start');
+
+        // Validate
+        if (this.containerSelectedStyleID == -1) {
+            this.errorMessage = 'Invalid selection.';
+            return;
+        };
+
+        // Update DB
+        this.globalVariableService.deleteContainerStyle(this.containerSelectedStyleID).then(
+            res => {
+                // Update local Array
+                this.containerStyles = this.containerStyles.filter(cs =>
+                    cs.id != this.containerSelectedStyleID)
+            }
+        );
+    }
 }
