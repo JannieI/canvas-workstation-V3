@@ -28,8 +28,7 @@ import { Subscription }               from 'rxjs';
 })
 export class WidgetContainerStylesComponent implements OnInit {
 
-    @Output() formWidgetContainerClosed: EventEmitter<Widget> = new EventEmitter();
-    @Input() selectedWidget: Widget;
+    @Output() formWidgetContainerStylesClosed: EventEmitter<Widget> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
@@ -75,26 +74,6 @@ export class WidgetContainerStylesComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        // Deconstruct border
-        if (this.selectedWidget.containerBorder != ''
-            &&
-            this.selectedWidget.containerBorder != 'none') {
-                let space1: number = this.selectedWidget.containerBorder.indexOf(' ');
-                if (space1 > 0) {
-                    this.lineSize = this.selectedWidget.containerBorder.substr(0, space1);
-                    let rest: string = this.selectedWidget.containerBorder.substr(space1 + 1, 999);
-
-                    let space2: number = rest.indexOf(' ');
-                    if (space2 > 0) {
-
-                        this.lineType = rest.substr(0, space2)
-                        this.lineColor = rest.substr(space2 + 1, 999);
-                    };
-                };
-                console.warn('xx linestuff', this.lineSize, this.lineType,  this.lineColor);
-
-        };
-        console.warn('xx start Wcont', this.globalVariableService.currentWidgets)
         // Manage colour picker
         this.colourPickerSubscription = this.globalVariableService.colourPickerClosed.subscribe(clp => {
 
@@ -123,12 +102,6 @@ export class WidgetContainerStylesComponent implements OnInit {
 
         // Get setup info
         this.backgroundcolors = this.globalVariableService.backgroundcolors.slice();
-
-        // Deep copy original
-        this.oldWidget = JSON.parse(JSON.stringify(this.selectedWidget));
-
-        // Deep copy local copy
-        this.localWidget = JSON.parse(JSON.stringify(this.selectedWidget));
 
     }
 
@@ -215,7 +188,7 @@ export class WidgetContainerStylesComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
         console.log('clickClose')
 
-		this.formWidgetContainerClosed.emit(null);
+		this.formWidgetContainerStylesClosed.emit(null);
     }
 
     clickSave() {
@@ -263,7 +236,7 @@ export class WidgetContainerStylesComponent implements OnInit {
             }
         );
 
-	  	this.formWidgetContainerClosed.emit(this.localWidget);
+	  	this.formWidgetContainerStylesClosed.emit(this.localWidget);
     }
 
 }

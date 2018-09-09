@@ -937,7 +937,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
     }
 
-    handleCloseWidgetContainerStyles(changedWidget: Widget) {
+    handleCloseWidgetContainerStyles() {
         // Handle close of ContainerStyles form
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetContainerStyles', '@Start');
 
