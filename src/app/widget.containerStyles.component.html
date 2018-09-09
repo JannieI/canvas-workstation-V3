@@ -1,0 +1,284 @@
+<div class="modal modalBox">
+    <div class="modal-dialog modal-lg" role="dialog" aria-hidden="true">
+        <div class="modal-content modalContent">
+            <form #f="ngForm" role="form" novalidate>
+
+                <div class="gridOverall">
+                    <button type="button" class="closeButton" (click)="clickClose()">
+                        <b>X</b>
+                    </button>
+
+                    <div class="colourpicker" *ngIf="colourPickerClosed">
+                        <colour-picker
+                            [callingRoutine]="callingRoutine"
+                            [selectedColor]="selectedColour"
+                            >
+                        </colour-picker>
+                    </div>
+
+                    <div class="gridHeading">
+                        <b>Container settings</b>
+                        <clr-signpost>
+                            <clr-icon shape="info-circle"
+                                clrSignpostTrigger>
+                            </clr-icon>
+                                <clr-signpost-content *clrIfOpen
+                                [clrPosition]="'bottom-middle'">
+                                <h5 style="margin-top: 0; color:gray;">
+                                    Help
+                                </h5>
+                                <p style="margin-top: 0; color:gray;">
+                                    This form specifies the properties of the container around
+                                    the Widget.  The image on the right shows how the changes
+                                    will appear.
+                                    Click the X or press Escape to close this form.
+                                </p>
+                            </clr-signpost-content>
+                        </clr-signpost>
+                    </div>
+
+                    <div class="gridShape"
+                        [style.width.px]="300"
+                        [style.height.px]="300"
+                        [style.background-color]="localWidget.containerBackgroundcolor"
+                        [style.border]="localWidget.containerBorder"
+                        [style.border-radius]="localWidget.containerBorderRadius"
+                        [style.box-shadow]="localWidget.containerBoxshadow"
+                        [style.font-size.px]="localWidget.containerFontsize"
+
+                        >
+                        <br>
+                        <br>
+                        <br>
+                        Sample Text
+                        <br>
+                        Sample Text
+                        <br>
+                        Sample Text
+                        <br>
+                        Sample Text
+                        <br>
+                        Sample Text
+                        <br>
+                        Sample Text
+                        <br>
+                    </div>
+
+                    <div class="gridBackgroundcolorTitle">
+                        Bg Colour:
+                    </div>
+                    <div class="select gridBackgroundcolor">
+                        <select [(ngModel)]="localWidget.containerBackgroundcolor"
+                            name="containerBackgroundcolor"
+                            (change)="clickSelectBgColor($event)"
+                            >
+                            <option *ngFor="let row of backgroundcolors"
+                                [style.background-color]="row.name"
+                                >
+                                {{ row.name }}
+                            </option>
+                        </select>
+                    </div>
+                    <button
+                        type="button"
+                        class="btn btn-link btn-sm gridBackgroundcolorPicker"
+                        (click)="clickSelectBgColorPicker()"
+                        >
+                        Picker
+                    </button>
+
+                    <div class="gridLinecolorTitle">
+                        Border Colour:
+                    </div>
+                    <div class="select gridLinecolor">
+                        <select [(ngModel)]="lineColor"
+                            (change)="clickSelectLineColor($event)"
+                            name="lineColor"
+                            >
+                            <option *ngFor="let row of backgroundcolors"
+                                [style.background-color]="row.name"
+                                >
+                                {{ row.name }}
+                            </option>
+                        </select>
+                    </div>
+                    <button
+                        type="button"
+                        class="btn btn-link btn-sm gridLinecolorPicker"
+                        (click)="clickSelectLineColorPicker()"
+                        >
+                        Picker
+                    </button>
+
+                    <div class="gridLineSizeTitle">
+                        Border Size:
+                    </div>
+                    <div class="select gridLineSize">
+                        <select [(ngModel)]="lineSize"
+                            name="lineSize"
+                            (change)="clickSelectLineSize($event)"
+                            >
+                            <option>none</option>
+                            <option>1px</option>
+                            <option>2px</option>
+                            <option>3px</option>
+                            <option>4px</option>
+                        </select>
+                    </div>
+
+                    <div class="gridLineTypeTitle">
+                        Type:
+                    </div>
+                    <div class="select gridLineType">
+                        <select [(ngModel)]="lineType"
+                            name="lineType"
+                            (change)="clickSelectLineType($event)"
+                            >
+                            <option>solid</option>
+                            <option>dotted</option>
+                        </select>
+                    </div>
+
+                    <div class="gridBorderRadiusTitle">
+                        Border Radius:
+                    </div>
+                    <div class="gridBorderRadius">
+                        <input [(ngModel)]="localWidget.containerBorderRadius"
+                            type="text"
+                            name="containerBorderRadius"
+                            placeholder="Corners, ie 3px"
+                            >
+                    </div>
+
+                    <div class="gridBoxShadowTitle">
+                        Box Shadow:
+                    </div>
+                    <div class="gridBoxShadow">
+                        <input [(ngModel)]="localWidget.containerBoxshadow"
+                            type="text"
+                            name="containerBoxshadow"
+                            placeholder="2px 2px lightgray"
+                            >
+                    </div>
+
+                    <div class="gridFontSizeTitle">
+                        FontSize:
+                    </div>
+                    <div class="gridFontSize">
+                        <input [(ngModel)]="localWidget.containerFontsize"
+                            type="number"
+                            name="containerFontsize"
+                            #containerFontsizeVar="ngModel"
+                            placeholder="4-48 pt"
+                            min="4"
+                            max="48"
+                            size="5"
+                            [style.color]="!containerFontsizeVar.valid ? 'red' : 'gray'"
+                            >
+                    </div>
+
+                    <div class="gridTopTitle">
+                        Top:
+                    </div>
+                    <div class="gridTop">
+                        <input [(ngModel)]="localWidget.containerTop"
+                            type="number"
+                            name="containerTop"
+                            #containerTopVar="ngModel"
+                            placeholder="4-48 pt"
+                            min="-10"
+                            max="2000"
+                            size="5"
+                            [style.color]="!containerTopVar.valid ? 'red' : 'gray'"
+                            >
+                    </div>
+
+                    <div class="gridLeftTitle">
+                        Left:
+                    </div>
+                    <div class="gridLeft">
+                        <input [(ngModel)]="localWidget.containerLeft"
+                            type="number"
+                            name="containerLeft"
+                            #containerLeftVar="ngModel"
+                            placeholder="4-48 pt"
+                            min="-10"
+                            max="2000"
+                            size="5"
+                            [style.color]="!containerLeftVar.valid ? 'red' : 'gray'"
+                            >
+                    </div>
+
+                    <div class="gridHeightTitle">
+                        Height:
+                    </div>
+                    <div class="gridHeight">
+                        <input [(ngModel)]="localWidget.containerHeight"
+                            type="number"
+                            name="containerHeight"
+                            #containerHeightVar="ngModel"
+                            placeholder="4-48 pt"
+                            min="-10"
+                            max="2000"
+                            size="5"
+                            [style.color]="!containerHeightVar.valid ? 'red' : 'gray'"
+                            >
+                    </div>
+
+                    <div class="gridWidthTitle">
+                        Width:
+                    </div>
+                    <div class="gridWidth">
+                        <input [(ngModel)]="localWidget.containerWidth"
+                            type="number"
+                            name="containerWidth"
+                            #containerWidthVar="ngModel"
+                            placeholder="4-48 pt"
+                            min="-10"
+                            max="2000"
+                            size="5"
+                            [style.color]="!containerWidthVar.valid ? 'red' : 'gray'"
+                            >
+                    </div>
+
+                    <div class="gridZindexTitle">
+                        Z-index:
+                    </div>
+                    <div class="gridZindex">
+                        <input [(ngModel)]="localWidget.containerZindex"
+                            type="number"
+                            name="containerZindex"
+                            #containerZindexVar="ngModel"
+                            placeholder="Z-index can be 50-59"
+                            min="50"
+                            max="59"
+                            size="5"
+                            [style.color]="!containerZindexVar.valid ? 'red' : 'gray'"
+                            >
+                    </div>
+
+                    <div class="gridButtonCancel">
+                        <button
+                            type="button"
+                            class="btn btn-secondary"
+                            (click)="clickClose()"
+                            >
+                            Cancel
+                        </button>
+                    </div>
+                    <div class="gridButtonSave">
+                        <button
+                            type="button"
+                            class="btn btn-primary"
+                            (click)="clickSave()"
+                            >
+                            Save
+                        </button>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

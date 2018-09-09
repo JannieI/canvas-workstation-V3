@@ -27,12 +27,9 @@ This document describes items for later versions of Canvas.
      Ease of use / Simplicity
     -------------------------
     - GO BACK TO SIMPLICITY !!!  Review regular on how to make it easier and faster.  If like SPSS where everything sits behinds a menu item, then too difficult.  Simplify (Ivan)
-    - Review whether as beautiful as Simplus
     - Relook at ALL forms for consistent layout, look and feel, INcluding the popups like the W title
     - everything must be accessable IN 3 CLICKS
-    - be able to make a Dashboard in 5 mins
-    - Add 'X' top left on all, so that it can close if screen is too small and the save button  overflow beyond the screen
-    - Keep Help Message on top of forms uniform - always look and feel the same.  Also, make sure   there is a preference to switch it back on manually.
+    - Keep Help Message on top of forms uniform - always look and feel the same.  Also, make sure there is a preference to switch it back on manually.
     Standard unit of measure: maybe save all as rem, and user can select px, rem, etc?
     - neaten first time user for all forms: maybe more GotIt help messages that shows up only once, and disappears after GotIt was clicked.  Key example: first time EditMode is used, the user needs to understand Save and Discard.
     - Google Sheets says 'All changes saved' after each change.  Should we do the same, ie after each resize or drag-n-drop?
@@ -124,9 +121,6 @@ This document describes items for later versions of Canvas.
         * currentW: app (20+ times), SlicerEd.clickSave & clickSlicerItem
     - how to add a table without deleting the IndexDB manually ??
     Caching:
-    - option to switch caching on or not at the server level and local level (if server allows it)
-    - refreshed via WS from DB
-    - also used for auto-save: all the steps are saved here, and synced to server at specified  interval (setting on client)
     - speed test with Dexie with Dashboards stored:
         * memory variable 0 - 3 ms, once 6 ms for 10K Ds
         * 10: 11 - 177 ms, avg 55 ms
@@ -178,7 +172,6 @@ This document describes items for later versions of Canvas.
     ---------------
     - what default permissions of a new DS
     - can we have the same private/public/access list as on a Dashboard?
-    - is it okay to share DS in EditMode and ViewMode?
     - make sure these permissions are respected within each Widget
     - make sure these respected in Delete DS
 
@@ -454,6 +447,8 @@ This document describes items for later versions of Canvas.
     - kanban board – think of container with cards, each having user selected fields (assigned to, task descr, etc) and a filter => can create a block of tasks assigned to me ?
     - Storyboard – explain better and show example
     - Graph with different granularity ~ via checkpoints?
+    - consider standardizing items between Container and Graph-Title, ie Font Weight, Shadow, Margin, etc only on one and not the other
+    - consider a list of predefined styles for Graph-Titles similar to Containers
 
     Treeview: 
     --------

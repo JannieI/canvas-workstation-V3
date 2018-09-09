@@ -22,11 +22,11 @@ import { GlobalVariableService }      from './global-variable.service';
 import { Subscription }               from 'rxjs';
 
 @Component({
-    selector: 'widget-container',
-    templateUrl: './widget.container.component.html',
-    styleUrls: ['./widget.container.component.css']
+    selector: 'widget-containerStyles',
+    templateUrl: './widget.containerStyles.component.html',
+    styleUrls: ['./widget.containerStyles.component.css']
 })
-export class WidgetContainerComponent implements OnInit {
+export class WidgetContainerStylesComponent implements OnInit {
 
     @Output() formWidgetContainerClosed: EventEmitter<Widget> = new EventEmitter();
     @Input() selectedWidget: Widget;
