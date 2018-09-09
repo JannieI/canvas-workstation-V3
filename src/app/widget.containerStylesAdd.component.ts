@@ -59,13 +59,28 @@ export class WidgetContainerStylesAddComponent implements OnInit {
     colourPickerSubscription: Subscription;
 
     containerBackgroundcolor: string;
+    containerBorderColour: string = 'none';
     containerBorderRadius: string;
+    containerBorderType: string = 'bold';
+    containerBorderSize: string = 'none';
     containerBoxshadow: string;
     containerFontsize: number;
-    containerBorderColour: string = 'none';
-    containerBorderSize: string = 'none';
-    containerBorderType: string = 'bold';
 
+    // Shape
+    shapeFontFamily: string;                // Font, ie Aria, Sans Serif
+    shapeIsBold: boolean;                   // True if text is bold
+    shapeIsItalic: boolean;                 // True if text is italic
+    shapeLineHeight: string;                // Line Height: normal, 1.6, 80%
+    shapeTextAlign: string;                 // Align text Left, Center, Right
+
+    // Created, updated and refreshed
+    containerRefreshedOn: string;           // Data Refreshed on
+    containerRefreshedBy: string;           // Date Refreshed by
+    containerCreatedOn: Date;               // Created on
+    containerCreatedBy: string;             // Created by
+    containerUpdatedOn: Date;               // Updated on
+    containerUpdatedBy: string
+    
     localWidget: Widget;                            // W to modify, copied from selected
     oldWidget: Widget;
     selectedColour: string;

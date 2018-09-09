@@ -91,10 +91,10 @@
                         Picker
                     </button>
 
-                    <div class="gridLinecolorTitle">
+                    <div class="containerBorderColorTitle">
                         Border Colour:
                     </div>
-                    <div class="select gridLinecolor">
+                    <div class="select containerBorderColor">
                         <select [(ngModel)]="containerBorderColour"
                             (change)="clickSelectLineColor($event)"
                             name="lineColor"
@@ -114,12 +114,12 @@
                         Picker
                     </button>
 
-                    <div class="gridLineSizeTitle">
+                    <div class="containerBorderSizeTitle">
                         Border Size:
                     </div>
-                    <div class="select gridLineSize">
-                        <select [(ngModel)]="containerBorder"
-                            name="lineSize"
+                    <div class="select containerBorderSize">
+                        <select [(ngModel)]="containerBorderSize"
+                            name="containerBorderSize"
                             (change)="clickSelectLineSize($event)"
                             >
                             <option>none</option>
@@ -130,12 +130,12 @@
                         </select>
                     </div>
 
-                    <div class="gridLineTypeTitle">
+                    <div class="containerBorderTypeTitle">
                         Type:
                     </div>
-                    <div class="select gridLineType">
+                    <div class="select containerBorderType">
                         <select [(ngModel)]="containerBorderType"
-                            name="lineType"
+                            name="containerBorderType"
                             (change)="clickSelectLineType($event)"
                             >
                             <option>solid</option>
@@ -181,83 +181,56 @@
                             >
                     </div>
 
-                    <div class="gridTopTitle">
-                        Top:
+                    <div class="gridShapeFontFamilyTitle">
+                        Font:
                     </div>
-                    <div class="gridTop">
-                        <input [(ngModel)]="localWidget.containerTop"
+                    <div class="gridShapeFontFamily">
+                        <input [(ngModel)]="shapeFontFamily"
                             type="number"
-                            name="containerTop"
-                            #containerTopVar="ngModel"
+                            name="shapeFontFamily"
+                            #shapeFontFamilyVar="ngModel"
                             placeholder="4-48 pt"
                             min="-10"
                             max="2000"
                             size="5"
-                            [style.color]="!containerTopVar.valid ? 'red' : 'gray'"
+                            [style.color]="!shapeFontFamilyVar.valid ? 'red' : 'gray'"
                             >
                     </div>
 
-                    <div class="gridLeftTitle">
-                        Left:
+                    <div class="gridTextBold">
+                        <b>Bold?:</b>
+                        <input type="checkbox"
+                            [(ngModel)]="shapeIsBold"
+                            >
                     </div>
-                    <div class="gridLeft">
-                        <input [(ngModel)]="localWidget.containerLeft"
-                            type="number"
-                            name="containerLeft"
-                            #containerLeftVar="ngModel"
-                            placeholder="4-48 pt"
-                            min="-10"
-                            max="2000"
-                            size="5"
-                            [style.color]="!containerLeftVar.valid ? 'red' : 'gray'"
+                    <div class="gridTextItalic">
+                        <b>Italic?:</b>
+                        <input type="checkbox"
+                            [(ngModel)]="shapeIsItalic"
                             >
                     </div>
 
-                    <div class="gridHeightTitle">
-                        Height:
+                    <div class="gridTextAlignTitle">
+                        <b>Align:</b>
                     </div>
-                    <div class="gridHeight">
-                        <input [(ngModel)]="localWidget.containerHeight"
-                            type="number"
-                            name="containerHeight"
-                            #containerHeightVar="ngModel"
-                            placeholder="4-48 pt"
-                            min="-10"
-                            max="2000"
-                            size="5"
-                            [style.color]="!containerHeightVar.valid ? 'red' : 'gray'"
+                    <div class="select gridTextAlign">
+                        <select
+                            [(ngModel)]="shapeTextAlign"
+                            (change)="clickSelectTextAlign($event)"
                             >
+                            <option>Left</option>
+                            <option>Center</option>
+                            <option>Right</option>
+                        </select>
                     </div>
 
-                    <div class="gridWidthTitle">
-                        Width:
+                    <div class="gridTextLineHeightTitle">
+                        <b>Line Height:</b>
                     </div>
-                    <div class="gridWidth">
-                        <input [(ngModel)]="localWidget.containerWidth"
-                            type="number"
-                            name="containerWidth"
-                            #containerWidthVar="ngModel"
-                            placeholder="4-48 pt"
-                            min="-10"
-                            max="2000"
-                            size="5"
-                            [style.color]="!containerWidthVar.valid ? 'red' : 'gray'"
-                            >
-                    </div>
-
-                    <div class="gridZindexTitle">
-                        Z-index:
-                    </div>
-                    <div class="gridZindex">
-                        <input [(ngModel)]="localWidget.containerZindex"
-                            type="number"
-                            name="containerZindex"
-                            #containerZindexVar="ngModel"
-                            placeholder="Z-index can be 50-59"
-                            min="50"
-                            max="59"
-                            size="5"
-                            [style.color]="!containerZindexVar.valid ? 'red' : 'gray'"
+                    <div class="gridTextLineHeight">
+                        <input type="text"
+                            placeholder="Line height: normal, 1.6, 80%"
+                            [(ngModel)]="localWidget.shapeLineHeight"
                             >
                     </div>
 

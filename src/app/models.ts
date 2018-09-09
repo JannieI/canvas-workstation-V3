@@ -189,13 +189,13 @@ export class CSScolor {
 export class ContainerStyle {
     id: number;                             // Unique ID
     name: string;                           // Unique Name of style
-    
+
     // Container
     containerBackgroundcolor: string;       // Bg Colour
+    containerBorderColour: string;           // Colour of border
+    containerBorderRadius: number;          // Border radius in px      
     containerBorderSize: number;            // Size of border, in px
     containerBorderType: string;            // Type of border, dotted or solid
-    containerBorderColor: string;           // Colour of border
-    containerBorderRadius: number;          // Border radius in px      
     containerBoxshadow: string;             // Border shadow, ie 2px 2px gray
     containerFontsize: number;              // Size of container and text font, in px
 
@@ -204,16 +204,15 @@ export class ContainerStyle {
     shapeIsBold: boolean;                   // True if text is bold
     shapeIsItalic: boolean;                 // True if text is italic
     shapeLineHeight: string;                // Line Height: normal, 1.6, 80%
-    shapeOpacity: number;                   // Opacity, between 0 and 1, ie of rectangle
     shapeTextAlign: string;                 // Align text Left, Center, Right
 
     // Created, updated and refreshed
-    widgetRefreshedOn: string;              // Data Refreshed on
-    widgetRefreshedBy: string;              // Date Refreshed by
-    widgetCreatedOn: Date;                  // Created on
-    widgetCreatedBy: string;                // Created by
-    widgetUpdatedOn: Date;                  // Updated on
-    widgetUpdatedBy: string;                // Updated by
+    containerRefreshedOn: string;           // Data Refreshed on
+    containerRefreshedBy: string;           // Date Refreshed by
+    containerCreatedOn: Date;               // Created on
+    containerCreatedBy: string;             // Created by
+    containerUpdatedOn: Date;               // Updated on
+    containerUpdatedBy: string;             // Updated by
 }
 
 // Messages / Activities / Alerts / Comments / User
