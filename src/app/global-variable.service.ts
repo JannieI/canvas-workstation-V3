@@ -9090,7 +9090,7 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
-        let url: string = 'containerStyle';
+        let url: string = 'containerStyles';
         this.filePath = './assets/data.containerStyle.json';
 
         return new Promise<string>((resolve, reject) => {
@@ -9133,7 +9133,7 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
         };
 
-        let url: string = 'containerStyle';
+        let url: string = 'containerStyles';
         this.filePath = './assets/data.containerStyle.json';
 
         return new Promise<any>((resolve, reject) => {

@@ -206,6 +206,20 @@ export class WidgetContainerStylesAddComponent implements OnInit {
         // };
     }
 
+    clickSelectTextAlign(ev: any) {
+        // Select Circle Line Colour
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectTextAlign', '@Start');
+
+        this.shapeTextAlign = ev.target.value;
+
+        // // Construct line size
+        // if (this.containerBorderSize != 'none') {
+        //     this.localWidget.containerBorder = this.containerBorderSize + ' ' + this.containerBorderType + ' ' + this.containerBorderColour;
+        // } else {
+        //     this.localWidget.containerBorder = this.containerBorderSize
+        // };
+    }
+    
     clickClose() {
         // Close the form, nothing saved
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
