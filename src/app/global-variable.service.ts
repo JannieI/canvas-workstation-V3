@@ -9037,7 +9037,6 @@ export class GlobalVariableService {
         });
     }
 
-
     getContainerStyles(): Promise<ContainerStyle[]> {
         // Description: Gets currentgetContainerStyles
         // Returns: this.currentgetContainerStyles object, unless:

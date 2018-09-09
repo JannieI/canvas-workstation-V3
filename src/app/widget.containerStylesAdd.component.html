@@ -60,14 +60,14 @@
                         <div></div>
                         Sample Text
                         <div 
-                            [style.background-color]="localWidget.containerBackgroundcolor"
-                            [style.color]="localWidget.shapeTextColour"
-                            [style.font-style]="localWidget.shapeIsItalic? 'italic' : 'normal'"
-                            [style.font-weight]="localWidget.shapeIsBold? 'bold' : 'normal'"
-                            [style.font-family]="localWidget.shapeFontFamily"
-                            [style.font-size.px]="localWidget.shapeFontSize"
-                            [style.line-height]="localWidget.shapeLineHeight"
-                            [style.text-align]="left"
+                            [style.background-color]="containerBackgroundcolor"
+                            [style.color]="containerBorderColour"
+                            [style.font-style]="shapeIsItalic? 'italic' : 'normal'"
+                            [style.font-weight]="shapeIsBold? 'bold' : 'normal'"
+                            [style.font-family]="shapeFontFamily"
+                            [style.font-size.px]="containerFontsize"
+                            [style.line-height]="shapeLineHeight"
+                            [style.text-align]="shapeTextAlign"
                             style="display: block; padding: 5px; line-height: 150%;"
 
                             [(ngModel)]="shapeText"
@@ -256,7 +256,7 @@
                             >
                     </div>
 
-                    <div class="gridErrorMessage">
+                    <div class="gridErrorMessage" name="gridErrorMessage">
                         {{ errorMessage }}
                     </div>
 

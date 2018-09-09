@@ -77,7 +77,7 @@ export class WidgetContainerStylesAddComponent implements OnInit {
     shapeIsItalic: boolean;                 // True if text is italic
     shapeLineHeight: string;                // Line Height: normal, 1.6, 80%
     shapeText: string = 'Test text';
-    shapeTextAlign: string;                 // Align text Left, Center, Right
+    shapeTextAlign: string = 'left';        // Align text Left, Center, Right
 
 
     constructor(
@@ -164,6 +164,8 @@ export class WidgetContainerStylesAddComponent implements OnInit {
         if (this.containerBorderSize != 'none'  &&  this.containerBorderColour != 'none') {
             this.containerBorder = this.containerBorderSize + ' ' + 
                 this.containerBorderType + ' ' + this.containerBorderColour;
+        } else {
+            this.containerBorder = 'none';
         };
         console.warn('xx line', this.localWidget.containerBorder, this.containerBorderColour, this.containerBorderSize);
 
@@ -179,6 +181,8 @@ export class WidgetContainerStylesAddComponent implements OnInit {
         if (this.containerBorderSize != 'none'  &&  this.containerBorderColour != 'none') {
             this.containerBorder = this.containerBorderSize + ' ' + 
                 this.containerBorderType + ' ' + this.containerBorderColour;
+        } else {
+            this.containerBorder = 'none';
         };
         console.warn('xx line', this.localWidget.containerBorder, this.containerBorderColour, this.containerBorderSize);
     }
@@ -193,6 +197,8 @@ export class WidgetContainerStylesAddComponent implements OnInit {
         if (this.containerBorderSize != 'none'  &&  this.containerBorderColour != 'none') {
             this.containerBorder = this.containerBorderSize + ' ' + 
                 this.containerBorderType + ' ' + this.containerBorderColour;
+        } else {
+            this.containerBorder = 'none';
         };
         console.warn('xx line', this.localWidget.containerBorder, this.containerBorderColour, this.containerBorderSize);
     }
@@ -223,13 +229,18 @@ export class WidgetContainerStylesAddComponent implements OnInit {
         // Add a new Container Style
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
 
-        // // Construct line size
-        // if (this.containerBorderSize != 'none') {
-        //     this.localWidget.containerBorder = this.containerBorderSize + ' ' + this.containerBorderType + ' ' + this.containerBorderColour;
-        // } else {
-        //     this.localWidget.containerBorder = this.containerBorderSize
-        // };
+        // Construct line size
+        if (this.containerBorderSize != 'none'  &&  this.containerBorderColour != 'none') {
+            this.containerBorder = this.containerBorderSize + ' ' + 
+                this.containerBorderType + ' ' + this.containerBorderColour;
+        } else {
+            this.containerBorder = 'none';
+        };
 
+        console.warn('xx line', this.localWidget.containerBorder, this.containerBorderColour, this.containerBorderSize);
+
+        // Validation
+        
         // Add to DB
         let newContainerStyle: ContainerStyle = {
             id: null,
@@ -252,9 +263,9 @@ export class WidgetContainerStylesAddComponent implements OnInit {
             containerUpdatedBy: null,
         
         };
+console.warn('xx newContainerStyle', newContainerStyle);
 
         this.globalVariableService.saveContainerStyle(newContainerStyle).then(res => {
-
 
         });
 
