@@ -18,6 +18,7 @@ import { CanvasUser}                  from './models';
 import { Combination }                from './models';
 import { CombinationDetail }          from './models';
 import { CSScolor }                   from './models';
+import { ContainerStyle }             from './models';
 import { CurrentDashboardInfo }       from './models';
 import { Dashboard }                  from './models';
 import { DashboardPermission }        from './models';
@@ -503,6 +504,7 @@ export class GlobalVariableService {
     canvasMessages: CanvasMessage[] = [];
     canvasTasks: CanvasTask[] = [];
     canvasUsers: CanvasUser[] = [];
+    containerStyles: ContainerStyle[] = [];
     dashboardPermissions: DashboardPermission[] = [];
     dashboards: Dashboard[] = [];
     dashboardScheduleLog: DashboardScheduleLog[] = [];
@@ -622,6 +624,7 @@ export class GlobalVariableService {
     isDirtyCanvasSettings: boolean = true;
     isDirtyCanvasTasks: boolean = true;
     isDirtyCanvasAuditTrails: boolean = true;
+    isDirtyContainerStyles: boolean = true;
     isDirtyDashboardPermissions: boolean = true;
     isDirtyDashboards: boolean = true;
     isDirtyDashboardsRecent: boolean = true;
@@ -9034,6 +9037,51 @@ export class GlobalVariableService {
         });
     }
 
+
+    getContainerStyles(): Promise<ContainerStyle[]> {
+        // Description: Gets currentgetContainerStyles
+        // Returns: this.currentgetContainerStyles object, unless:
+        //   If not cached or if dirty, get from File
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getContainerStyles ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        };
+
+        let url: string = 'containerStyles';
+        this.filePath = './assets/data.containerStyles.json';
+
+        return new Promise<ContainerStyle[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if (this.isDirtyContainerStyles) {
+                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
+                this.get(url)
+                    .then(res => {
+
+                        this.isDirtyContainerStyles = false;
+                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
+
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables getContainerStyles 1',
+                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                this.containerStyles);
+                        };
+
+                        resolve(this.containerStyles);
+                    });
+            } else {
+                if (this.sessionDebugging) {
+                    console.log('%c    Global-Variables getContainerStyles 2',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                        this.containerStyles);
+                };
+
+                resolve(this.containerStyles);
+            }
+        });
+
+    }
+    
     get<T>(url: string, options?: any, dashboardID?: number, datasourceID?: number): Promise<any> {
         // Generic GET data, later to be replaced with http
         if (this.sessionDebugging) {
@@ -9138,6 +9186,8 @@ export class GlobalVariableService {
                 } else if (url == 'canvasAuditTrails') {
                     finalUrl = 'http://localhost:3002/' + url;
                 } else if (url == 'paletteButtonBars') {
+                    finalUrl = 'http://localhost:3001/' + url;
+                } else if (url == 'containerStyles') {
                     finalUrl = 'http://localhost:3001/' + url;
                 } else if (url == 'paletteButtonsSelecteds') {
                     finalUrl = 'http://localhost:3001/' + url;
