@@ -9106,7 +9106,9 @@ export class GlobalVariableService {
                     let localIndex: number = this.containerStyles.findIndex(d =>
                         d.id == data.id
                     );
-                    this.containerStyles[localIndex] = data;
+                    if (localIndex >= 0) {
+                        this.containerStyles[localIndex] = data;
+                    };
 
                     if (this.sessionDebugging) {
                         console.log('savePaletteButtonsSelected SAVED', {res})
