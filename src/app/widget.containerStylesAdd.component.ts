@@ -265,7 +265,7 @@ export class WidgetContainerStylesAddComponent implements OnInit {
         };
 console.warn('xx newContainerStyle', newContainerStyle);
 
-        this.globalVariableService.saveContainerStyle(newContainerStyle).then(res => {
+        this.globalVariableService.addContainerStyle(newContainerStyle).then(res => {
 
         });
 

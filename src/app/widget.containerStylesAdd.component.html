@@ -49,6 +49,7 @@
                         [style.border-radius.px]="containerBorderRadius"
                         [style.box-shadow]="containerBoxshadow"
                         [style.font-size.px]="containerFontsize"
+                        name="shapeText"
 
                         >
                         <br>
@@ -57,8 +58,6 @@
                         <br>
                         <br>
                         <br>
-                        <div></div>
-                        Sample Text
                         <div 
                             [style.background-color]="containerBackgroundcolor"
                             [style.color]="containerBorderColour"
@@ -69,14 +68,13 @@
                             [style.line-height]="shapeLineHeight"
                             [style.text-align]="shapeTextAlign"
                             style="display: block; padding: 5px; line-height: 150%;"
-
-                            [(ngModel)]="shapeText"
-                                >
+                            >
+                            Sample Text
                         </div>                        
                     </div>
 
                     <div class="gridStyleNameTitle">
-                        Name::
+                        Name:
                     </div>
                     <div class="gridStyleName">
                         <input type="text"

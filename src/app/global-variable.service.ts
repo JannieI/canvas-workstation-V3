@@ -9080,6 +9080,48 @@ export class GlobalVariableService {
         });
 
     }
+
+    addContainerStyle(data: ContainerStyle): Promise<any> {
+        // Description: Adds a new ContainerStyle
+        // Returns: Added Data or error message
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables addContainerStyle ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        };
+
+        let url: string = 'containerStyles';
+        this.filePath = './assets/data.ContainerStyles.json';
+
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.post('http://localhost:3001/' + url, data, {headers})
+                .subscribe(
+                    res => {
+
+                        // Update Global vars to make sure they remain in sync
+                        this.containerStyles.push(JSON.parse(JSON.stringify(res)));
+
+
+                        if (this.sessionDebugging) {
+                            console.log('addWidget ADDED', {data}, this.widgets)
+                        };
+
+                        resolve(data);
+                    },
+                    err => {
+                        if (this.sessionDebugging) {
+                            console.log('Error addDashboardSubscription FAILED', {err});
+                        };
+
+                        reject(err);
+                    }
+                )
+        });
+    }
     
     saveContainerStyle(data: ContainerStyle): Promise<string> {
         // Description: Saves ContainerStyle
