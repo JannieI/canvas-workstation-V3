@@ -117,8 +117,8 @@
                     </div>
                     <div class="select containerBorderColor">
                         <select [(ngModel)]="containerBorderColour"
-                            (change)="clickSelectLineColor($event)"
-                            name="lineColor"
+                            (change)="clickSelectBorderColor($event)"
+                            name="containerBorderColour"
                             >
                             <option *ngFor="let row of backgroundcolors"
                                 [style.background-color]="row.name"
@@ -141,7 +141,7 @@
                     <div class="select containerBorderSize">
                         <select [(ngModel)]="containerBorderSize"
                             name="containerBorderSize"
-                            (change)="clickSelectLineSize($event)"
+                            (change)="clickSelectBorderSize($event)"
                             >
                             <option>none</option>
                             <option>1px</option>
@@ -157,7 +157,7 @@
                     <div class="select containerBorderType">
                         <select [(ngModel)]="containerBorderType"
                             name="containerBorderType"
-                            (change)="clickSelectLineType($event)"
+                            (change)="clickSelectBorderType($event)"
                             >
                             <option>solid</option>
                             <option>dotted</option>

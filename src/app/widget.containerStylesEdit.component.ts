@@ -93,7 +93,8 @@ export class WidgetContainerStylesEditComponent implements OnInit {
 
         // Get list
         this.globalVariableService.getContainerStyles().then(res => {
-            this.containerStyles = res;
+            this.containerStyles = res.slice();
+            this.containerStyleNameList = [];
             this.containerStyles.forEach(cs => {
                 // List of ngFor (needs ID at later stage, state is useful for user)
                 this.containerStyleNameList.push(cs.name + ' (' + cs.id.toString() + ')');
@@ -103,9 +104,9 @@ export class WidgetContainerStylesEditComponent implements OnInit {
             if (this.containerStyles.length >= 0) {
                 this.containerSelectedStyleID = this.containerStyles[0].id;
                 this.containerSelectedStyleName = this.containerStyles[0].name;
-                this.updateForm(0);
                 this.containerStyleName = this.containerStyles[0].name +
                     ' (' + this.containerStyles[0].id.toString() + ')';
+                this.updateForm(0);
             };
         });
 
@@ -213,7 +214,7 @@ export class WidgetContainerStylesEditComponent implements OnInit {
             this.shapeTextAlign = this.containerStyles[localIndex].shapeTextAlign;
 
 
-            // Construct line size
+            // Construct Border
             if (this.containerBorderSize != 'none'  &&  this.containerBorderColour != 'none') {
                 this.containerBorder = this.containerBorderSize + ' ' +
                     this.containerBorderType + ' ' + this.containerBorderColour;
@@ -261,9 +262,9 @@ export class WidgetContainerStylesEditComponent implements OnInit {
     //     this.colourPickerClosed = true;
     // }
 
-    clickSelectLineColor(ev: any) {
-        // Select Line Colour
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectLineColor', '@Start');
+    clickSelectBorderColor(ev: any) {
+        // Select Border Colour
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBorderColor', '@Start');
 
         // Reset
         this.errorMessage = '';
@@ -271,7 +272,7 @@ export class WidgetContainerStylesEditComponent implements OnInit {
 
         this.containerBorderColour = ev.target.value;
 
-        // Construct line size
+        // Construct Border
         if (this.containerBorderSize != 'none'  &&  this.containerBorderColour != 'none') {
             this.containerBorder = this.containerBorderSize + ' ' +
                 this.containerBorderType + ' ' + this.containerBorderColour;
@@ -282,9 +283,9 @@ export class WidgetContainerStylesEditComponent implements OnInit {
 
     }
 
-    clickSelectLineSize(ev: any) {
-        // Select Circle Line Colour
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectLineSize', '@Start');
+    clickSelectBorderSize(ev: any) {
+        // Select Border Size
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBorderSize', '@Start');
 
         // Reset
         this.errorMessage = '';
@@ -292,7 +293,7 @@ export class WidgetContainerStylesEditComponent implements OnInit {
 
         this.containerBorderSize = ev.target.value;
 
-        // Construct line size
+        // Construct Border
         if (this.containerBorderSize != 'none'  &&  this.containerBorderColour != 'none') {
             this.containerBorder = this.containerBorderSize + ' ' +
                 this.containerBorderType + ' ' + this.containerBorderColour;
@@ -302,9 +303,9 @@ export class WidgetContainerStylesEditComponent implements OnInit {
         console.warn('xx line', this.containerBorder);
     }
 
-    clickSelectLineType(ev: any) {
-        // Select Circle Line Colour
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectLineType', '@Start');
+    clickSelectBorderType(ev: any) {
+        // Select Border Type
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBorderType', '@Start');
 
         // Reset
         this.errorMessage = '';
@@ -312,7 +313,7 @@ export class WidgetContainerStylesEditComponent implements OnInit {
 
         this.containerBorderType = ev.target.value;
 
-        // Construct line size
+        // Construct Border
         if (this.containerBorderSize != 'none'  &&  this.containerBorderColour != 'none') {
             this.containerBorder = this.containerBorderSize + ' ' +
                 this.containerBorderType + ' ' + this.containerBorderColour;

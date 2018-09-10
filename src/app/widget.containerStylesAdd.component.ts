@@ -160,9 +160,9 @@ export class WidgetContainerStylesAddComponent implements OnInit {
     //     this.colourPickerClosed = true;
     // }
 
-    clickSelectLineColor(ev: any) {
-        // Select Line Colour
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectLineColor', '@Start');
+    clickSelectBorderColor(ev: any) {
+        // Select Border Colour
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBorderColor', '@Start');
 
         // Reset
         this.errorMessage = '';
@@ -170,20 +170,20 @@ export class WidgetContainerStylesAddComponent implements OnInit {
 
         this.containerBorderColour = ev.target.value;
 
-        // Construct line size
+        // Construct Border
         if (this.containerBorderSize != 'none'  &&  this.containerBorderColour != 'none') {
             this.containerBorder = this.containerBorderSize + ' ' + 
                 this.containerBorderType + ' ' + this.containerBorderColour;
         } else {
             this.containerBorder = 'none';
         };
-        console.warn('xx line', this.containerBorder);
+        console.warn('xx clickSelectBorderColor', this.containerBorder);
 
     }
 
-    clickSelectLineSize(ev: any) {
-        // Select Circle Line Colour
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectLineSize', '@Start');
+    clickSelectBorderSize(ev: any) {
+        // Select Border Size
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBorderSize', '@Start');
 
         // Reset
         this.errorMessage = '';
@@ -191,7 +191,7 @@ export class WidgetContainerStylesAddComponent implements OnInit {
 
         this.containerBorderSize = ev.target.value;
 
-        // Construct line size
+        // Construct Border
         if (this.containerBorderSize != 'none'  &&  this.containerBorderColour != 'none') {
             this.containerBorder = this.containerBorderSize + ' ' + 
                 this.containerBorderType + ' ' + this.containerBorderColour;
@@ -201,9 +201,9 @@ export class WidgetContainerStylesAddComponent implements OnInit {
         console.warn('xx line', this.containerBorder);
     }
 
-    clickSelectLineType(ev: any) {
-        // Select Circle Line Colour
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectLineType', '@Start');
+    clickSelectBorderType(ev: any) {
+        // Select Border Type
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBorderType', '@Start');
 
         // Reset
         this.errorMessage = '';
@@ -211,7 +211,7 @@ export class WidgetContainerStylesAddComponent implements OnInit {
 
         this.containerBorderType = ev.target.value;
 
-        // Construct line size
+        // Construct Border
         if (this.containerBorderSize != 'none'  &&  this.containerBorderColour != 'none') {
             this.containerBorder = this.containerBorderSize + ' ' + 
                 this.containerBorderType + ' ' + this.containerBorderColour;
