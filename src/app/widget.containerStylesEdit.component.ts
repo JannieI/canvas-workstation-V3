@@ -62,7 +62,7 @@ export class WidgetContainerStylesEditComponent implements OnInit {
     containerBorderColour: string = 'black';
     containerBorderRadius: string;
     containerBorderType: string = 'solid';
-    containerBorderSize: string = '1';
+    containerBorderSize: string = '1px';
     containerBoxshadow: string;
     containerFontsize: number = 12;
     containerSelectedStyleID: number = -1;
@@ -199,13 +199,8 @@ export class WidgetContainerStylesEditComponent implements OnInit {
                 this.containerBorderRadius = null;
             };
 
-            if (this.containerStyles[localIndex].containerBorderSize != null) {
-                this.containerBorderSize = this.containerStyles[localIndex].
-                    containerBorderSize.toString();
-            } else {
-                this.containerBorderSize = null;
-            };
-
+            this.containerBorderSize = this.containerStyles[localIndex].
+                containerBorderSize;
             this.containerBorderType = this.containerStyles[localIndex].
                 containerBorderType;
             this.containerBoxshadow = this.containerStyles[localIndex].
@@ -220,7 +215,7 @@ export class WidgetContainerStylesEditComponent implements OnInit {
 
             // Construct line size
             if (this.containerBorderSize != 'none'  &&  this.containerBorderColour != 'none') {
-                this.containerBorder = this.containerBorderSize + 'px ' +
+                this.containerBorder = this.containerBorderSize + ' ' +
                     this.containerBorderType + ' ' + this.containerBorderColour;
             } else {
                 this.containerBorder = 'none';
@@ -278,7 +273,7 @@ export class WidgetContainerStylesEditComponent implements OnInit {
 
         // Construct line size
         if (this.containerBorderSize != 'none'  &&  this.containerBorderColour != 'none') {
-            this.containerBorder = this.containerBorderSize + 'px ' +
+            this.containerBorder = this.containerBorderSize + ' ' +
                 this.containerBorderType + ' ' + this.containerBorderColour;
         } else {
             this.containerBorder = 'none';
@@ -299,7 +294,7 @@ export class WidgetContainerStylesEditComponent implements OnInit {
 
         // Construct line size
         if (this.containerBorderSize != 'none'  &&  this.containerBorderColour != 'none') {
-            this.containerBorder = this.containerBorderSize + 'px ' +
+            this.containerBorder = this.containerBorderSize + ' ' +
                 this.containerBorderType + ' ' + this.containerBorderColour;
         } else {
             this.containerBorder = 'none';
@@ -319,7 +314,7 @@ export class WidgetContainerStylesEditComponent implements OnInit {
 
         // Construct line size
         if (this.containerBorderSize != 'none'  &&  this.containerBorderColour != 'none') {
-            this.containerBorder = this.containerBorderSize + 'px ' +
+            this.containerBorder = this.containerBorderSize + ' ' +
                 this.containerBorderType + ' ' + this.containerBorderColour;
         } else {
             this.containerBorder = 'none';
