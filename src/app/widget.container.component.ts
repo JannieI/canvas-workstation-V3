@@ -58,6 +58,7 @@ export class WidgetContainerComponent implements OnInit {
     callingRoutine: string = '';
     colourPickerClosed: boolean = false;
     colourPickerSubscription: Subscription;
+    containerStyleID: number = null;
     lineColor: string = 'none';
     lineSize: string = 'none';
     lineType: string = 'bold';
