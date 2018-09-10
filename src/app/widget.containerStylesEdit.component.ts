@@ -364,7 +364,7 @@ console.warn('xx this.containerSelectedStyleID', this.containerSelectedStyleID);
             name: this.containerSelectedStyleName,
             containerBackgroundcolor: this.containerBackgroundcolor,
             containerBorderColour: this.containerBorderColour,
-            containerBorderRadius: +this.containerBorderRadius,
+            containerBorderRadius: this.containerBorderRadius,
             containerBorderSize: this.containerBorderSize,
             containerBorderType: this.containerBorderType,
             containerBoxshadow: this.containerBoxshadow,

@@ -193,8 +193,8 @@ export class ContainerStyle {
     // Container
     containerBackgroundcolor: string;       // Bg Colour
     containerBorderColour: string;          // Colour of border
-    containerBorderRadius: number;          // Border radius in px      
-    containerBorderSize: string;            // Size of border, in px
+    containerBorderRadius: string;          // Border radius in px      
+    containerBorderSize: string;            // Size of border in px
     containerBorderType: string;            // Type of border, dotted or solid
     containerBoxshadow: string;             // Border shadow, ie 2px 2px gray
     containerFontsize: number;              // Size of container and text font, in px

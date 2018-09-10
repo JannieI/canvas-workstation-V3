@@ -261,7 +261,7 @@ export class WidgetContainerStylesAddComponent implements OnInit {
             name: this.containerStyleName,
             containerBackgroundcolor: this.containerBackgroundcolor,
             containerBorderColour: this.containerBorderColour,
-            containerBorderRadius: +this.containerBorderRadius,
+            containerBorderRadius: this.containerBorderRadius,
             containerBorderSize: this.containerBorderSize,
             containerBorderType: this.containerBorderType,
             containerBoxshadow: this.containerBoxshadow,
