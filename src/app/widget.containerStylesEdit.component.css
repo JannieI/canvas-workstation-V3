@@ -314,20 +314,37 @@
         padding-left: 15px;
         padding-top: 6px;
     }
+    .gridInfoMessage {
+        color: blue;
+        grid-column-start: 13;
+        /* autoprefixer: off */
+        grid-column-end: 28;
+        grid-row-start: 23;
+        grid-row-end: 24;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
 
     .gridButtonCancel {
-        grid-column-start: 6;
+        grid-column-start: 5;
         /* autoprefixer: off */
-        grid-column-end: 8;
+        grid-column-end: 7;
         grid-row-start: 25;
         grid-row-end: 26;
         margin-bottom: 15px;
     }
-
-    .gridButtonAdd {
-        grid-column-start: 13;
+    .gridButtonDelete {
+        grid-column-start: 11;
         /* autoprefixer: off */
-        grid-column-end: 15;
+        grid-column-end: 13;
+        grid-row-start: 25;
+        grid-row-end: 26;
+        margin-bottom: 15px;
+    }
+    .gridButtonSave {
+        grid-column-start: 17;
+        /* autoprefixer: off */
+        grid-column-end: 18;
         grid-row-start: 25;
         grid-row-end: 26;
         margin-bottom: 15px;

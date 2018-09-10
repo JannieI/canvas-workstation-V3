@@ -67,6 +67,7 @@ export class WidgetContainerStylesAddComponent implements OnInit {
     containerBoxshadow: string;
     containerFontsize: number = 12;
     errorMessage: string;
+    infoMessage: string;
     oldWidget: Widget;
     selectedColour: string;
     shapeFontFamily: string;                // Font, ie Aria, Sans Serif
@@ -126,6 +127,10 @@ export class WidgetContainerStylesAddComponent implements OnInit {
         // Open the Colour Picker for Background Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBgColorPicker', '@Start');
 
+        // Reset
+        this.errorMessage = '';
+        this.infoMessage = '';
+
         this.selectedColour = this.containerBackgroundcolor;
         this.callingRoutine = 'BgColour';
         this.colourPickerClosed = true;
@@ -135,12 +140,20 @@ export class WidgetContainerStylesAddComponent implements OnInit {
         // Select Background Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBgColor', '@Start');
 
+        // Reset
+        this.errorMessage = '';
+        this.infoMessage = '';
+
         this.containerBackgroundcolor = ev.target.value;
     }
 
     clickSelectLineColorPicker(ev: any) {
         // Open the Colour Picker for Line Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectLineColorPicker', '@Start');
+
+        // Reset
+        this.errorMessage = '';
+        this.infoMessage = '';
 
         this.selectedColour = this.containerBorderColour;
         this.callingRoutine = 'LineColour';
@@ -150,6 +163,10 @@ export class WidgetContainerStylesAddComponent implements OnInit {
     clickSelectLineColor(ev: any) {
         // Select Line Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectLineColor', '@Start');
+
+        // Reset
+        this.errorMessage = '';
+        this.infoMessage = '';
 
         this.containerBorderColour = ev.target.value;
 
@@ -168,6 +185,10 @@ export class WidgetContainerStylesAddComponent implements OnInit {
         // Select Circle Line Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectLineSize', '@Start');
 
+        // Reset
+        this.errorMessage = '';
+        this.infoMessage = '';
+
         this.containerBorderSize = ev.target.value;
 
         // Construct line size
@@ -183,6 +204,10 @@ export class WidgetContainerStylesAddComponent implements OnInit {
     clickSelectLineType(ev: any) {
         // Select Circle Line Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectLineType', '@Start');
+
+        // Reset
+        this.errorMessage = '';
+        this.infoMessage = '';
 
         this.containerBorderType = ev.target.value;
 
@@ -200,6 +225,10 @@ export class WidgetContainerStylesAddComponent implements OnInit {
         // Select Circle Line Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectTextAlign', '@Start');
 
+        // Reset
+        this.errorMessage = '';
+        this.infoMessage = '';
+
         this.shapeTextAlign = ev.target.value;
 
     }
@@ -215,6 +244,10 @@ export class WidgetContainerStylesAddComponent implements OnInit {
     clickAdd() {
         // Add a new Container Style
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
+
+        // Reset
+        this.errorMessage = '';
+        this.infoMessage = '';
 
         // Validation
         if (this.containerStyleName == '') {
@@ -251,6 +284,7 @@ console.warn('xx newContainerStyle', newContainerStyle);
         });
 
         // Tell user
+        this.infoMessage = 'Container Style added';
         this.globalVariableService.showStatusBarMessage(
             {
                 message: 'Container Style added',

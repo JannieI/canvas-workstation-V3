@@ -66,10 +66,12 @@ export class WidgetContainerStylesEditComponent implements OnInit {
     containerBoxshadow: string;
     containerFontsize: number = 12;
     containerSelectedStyleID: number = -1;
+    containerSelectedStyleName: string = '';
     containerStyleName: string = '';
     containerStyleNameList: string[] = [];
     containerStyles: ContainerStyle[] = [];
     errorMessage: string;
+    infoMessage: string;
     oldWidget: Widget;
     selectedColour: string;
     shapeFontFamily: string;                // Font, ie Aria, Sans Serif
@@ -100,6 +102,7 @@ export class WidgetContainerStylesEditComponent implements OnInit {
             // Fill Initial
             if (this.containerStyles.length >= 0) {
                 this.containerSelectedStyleID = this.containerStyles[0].id;
+                this.containerSelectedStyleName = this.containerStyles[0].name;
                 this.updateForm(0);
                 this.containerStyleName = this.containerStyles[0].name + 
                     ' (' + this.containerStyles[0].id.toString() + ')';
@@ -146,6 +149,10 @@ export class WidgetContainerStylesEditComponent implements OnInit {
         // Style name was clicked in dropdown
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectStyleName', '@Start');
 
+        // Reset
+        this.errorMessage = '';
+        this.infoMessage = '';
+
         console.warn('xx', ev);
         let selectedContainerStyleName: string = ev.target.value;
 
@@ -153,6 +160,7 @@ export class WidgetContainerStylesEditComponent implements OnInit {
         this.containerSelectedStyleID = -1;
         let openBracket: number = selectedContainerStyleName.indexOf('(');
         let closeBracket: number = selectedContainerStyleName.indexOf(')');
+        this.containerSelectedStyleName = selectedContainerStyleName.substring(0, openBracket);
         this.containerSelectedStyleID = +selectedContainerStyleName.
             substring(openBracket + 1, closeBracket);
 
@@ -165,7 +173,7 @@ export class WidgetContainerStylesEditComponent implements OnInit {
                 this.updateForm(localIndex);
             };
         };
-        console.warn('xx this.dashboardTemplateID', this.containerSelectedStyleID)
+        console.warn('xx this.dashboardTemplateID', this.containerSelectedStyleID, this.containerSelectedStyleName)
     
     }
 
@@ -173,7 +181,12 @@ export class WidgetContainerStylesEditComponent implements OnInit {
         // Update the form from the local Array with for a given index
         this.globalFunctionService.printToConsole(this.constructor.name,'updateForm', '@Start');
 
+        // Reset
+        this.errorMessage = '';
+        this.infoMessage = '';
+
         if (localIndex != -1) {
+
             this.containerBackgroundcolor = this.containerStyles[localIndex].
                 containerBackgroundcolor;
             this.containerBorderColour = this.containerStyles[localIndex].
@@ -203,6 +216,15 @@ export class WidgetContainerStylesEditComponent implements OnInit {
             this.shapeIsItalic = this.containerStyles[localIndex].shapeIsItalic;
             this.shapeLineHeight = this.containerStyles[localIndex].shapeLineHeight;
             this.shapeTextAlign = this.containerStyles[localIndex].shapeTextAlign;
+
+
+            // Construct line size
+            if (this.containerBorderSize != 'none'  &&  this.containerBorderColour != 'none') {
+                this.containerBorder = this.containerBorderSize + 'px ' + 
+                    this.containerBorderType + ' ' + this.containerBorderColour;
+            } else {
+                this.containerBorder = 'none';
+            };
         };
 
     }
@@ -210,6 +232,10 @@ export class WidgetContainerStylesEditComponent implements OnInit {
     clickSelectBgColorPicker(ev: any) {
         // Open the Colour Picker for Background Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBgColorPicker', '@Start');
+
+        // Reset
+        this.errorMessage = '';
+        this.infoMessage = '';
 
         this.selectedColour = this.containerBackgroundcolor;
         this.callingRoutine = 'BgColour';
@@ -220,12 +246,20 @@ export class WidgetContainerStylesEditComponent implements OnInit {
         // Select Background Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBgColor', '@Start');
 
+        // Reset
+        this.errorMessage = '';
+        this.infoMessage = '';
+
         this.containerBackgroundcolor = ev.target.value;
     }
 
     clickSelectLineColorPicker(ev: any) {
         // Open the Colour Picker for Line Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectLineColorPicker', '@Start');
+
+        // Reset
+        this.errorMessage = '';
+        this.infoMessage = '';
 
         this.selectedColour = this.containerBorderColour;
         this.callingRoutine = 'LineColour';
@@ -235,6 +269,10 @@ export class WidgetContainerStylesEditComponent implements OnInit {
     clickSelectLineColor(ev: any) {
         // Select Line Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectLineColor', '@Start');
+
+        // Reset
+        this.errorMessage = '';
+        this.infoMessage = '';
 
         this.containerBorderColour = ev.target.value;
 
@@ -253,6 +291,10 @@ export class WidgetContainerStylesEditComponent implements OnInit {
         // Select Circle Line Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectLineSize', '@Start');
 
+        // Reset
+        this.errorMessage = '';
+        this.infoMessage = '';
+
         this.containerBorderSize = ev.target.value;
 
         // Construct line size
@@ -268,6 +310,10 @@ export class WidgetContainerStylesEditComponent implements OnInit {
     clickSelectLineType(ev: any) {
         // Select Circle Line Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectLineType', '@Start');
+
+        // Reset
+        this.errorMessage = '';
+        this.infoMessage = '';
 
         this.containerBorderType = ev.target.value;
 
@@ -285,6 +331,10 @@ export class WidgetContainerStylesEditComponent implements OnInit {
         // Select Circle Line Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectTextAlign', '@Start');
 
+        // Reset
+        this.errorMessage = '';
+        this.infoMessage = '';
+
         this.shapeTextAlign = ev.target.value;
 
     }
@@ -301,6 +351,10 @@ export class WidgetContainerStylesEditComponent implements OnInit {
         // Save the Container Style
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
+        // Reset
+        this.errorMessage = '';
+        this.infoMessage = '';
+
         // Validate
         if (this.containerSelectedStyleID == -1) {
             this.errorMessage = 'Invalid selection.';
@@ -310,7 +364,7 @@ export class WidgetContainerStylesEditComponent implements OnInit {
         // Create object
         let newContainerStyle: ContainerStyle = {
             id: this.containerSelectedStyleID,
-            name: this.containerStyleName,
+            name: this.containerSelectedStyleName,
             containerBackgroundcolor: this.containerBackgroundcolor,
             containerBorderColour: this.containerBorderColour,
             containerBorderRadius: +this.containerBorderRadius,
@@ -337,6 +391,7 @@ export class WidgetContainerStylesEditComponent implements OnInit {
         });
 
         // Tell user
+        this.infoMessage = 'Container Style saved';
         this.globalVariableService.showStatusBarMessage(
             {
                 message: 'Container Style saved',
@@ -357,13 +412,37 @@ export class WidgetContainerStylesEditComponent implements OnInit {
             this.errorMessage = 'Invalid selection.';
             return;
         };
+        if (this.containerStyles.length == 1) {
+            this.errorMessage = 'Cannot delete the last one.';
+            return;
+        };
 
         // Update DB
         this.globalVariableService.deleteContainerStyle(this.containerSelectedStyleID).then(
             res => {
+                
+                this.infoMessage = 'Container Style deleted';
+                
                 // Update local Array
                 this.containerStyles = this.containerStyles.filter(cs =>
-                    cs.id != this.containerSelectedStyleID)
+                    cs.id != this.containerSelectedStyleID);
+
+                // Reload dropdown displayed on form, and refresh info with first one
+                this.containerStyleNameList = [];
+
+                this.containerStyles.forEach(cs => {
+                    // List of ngFor (needs ID at later stage, state is useful for user)
+                    this.containerStyleNameList.push(cs.name + ' (' + cs.id.toString() + ')');
+                });   
+    
+                // Fill Initial
+                if (this.containerStyles.length >= 0) {
+                    this.containerSelectedStyleID = this.containerStyles[0].id;
+                    this.containerSelectedStyleName = this.containerStyles[0].name;
+                    this.updateForm(0);
+                    this.containerStyleName = this.containerStyles[0].name + 
+                        ' (' + this.containerStyles[0].id.toString() + ')';
+                };
             }
         );
     }

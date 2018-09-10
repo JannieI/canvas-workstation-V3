@@ -266,6 +266,10 @@
                         {{ errorMessage }}
                     </div>
 
+                    <div class="gridInfoMessage" name="gridInfoMessage">
+                        {{ infoMessage }}
+                    </div>
+                    
                     <div class="gridButtonCancel">
                         <button
                             type="button"
@@ -275,13 +279,22 @@
                             Cancel
                         </button>
                     </div>
-                    <div class="gridButtonAdd">
+                    <div class="gridButtonDelete">
+                        <button
+                            type="button"
+                            class="btn btn-primary"
+                            (click)="clickDelete()"
+                            >
+                            Delete
+                        </button>
+                    </div>
+                    <div class="gridButtonSave">
                         <button
                             type="button"
                             class="btn btn-primary"
                             (click)="clickSave()"
                             >
-                            Add
+                            Save
                         </button>
                     </div>
 
