@@ -12,6 +12,7 @@ import { Output }                     from '@angular/core';
 
 // Our Models
 import { CSScolor }                   from './models';
+import { ContainerStyle }             from './models';
 import { Widget }                     from './models';
 
 // Our Functions
@@ -58,6 +59,9 @@ export class WidgetContainerComponent implements OnInit {
     callingRoutine: string = '';
     colourPickerClosed: boolean = false;
     colourPickerSubscription: Subscription;
+    containerBorderColour: string = 'black';
+    containerBorderType: string = 'solid';
+    containerBorderSize: string = '1';
     containerStyleID: number = null;
     containerSelectedStyleID: number = -1;
     containerSelectedStyleName: string = '';
@@ -82,6 +86,24 @@ export class WidgetContainerComponent implements OnInit {
     ngOnInit() {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
+        // Get list of Styles
+        this.globalVariableService.getContainerStyles().then(res => {
+            this.containerStyles = res;
+            this.containerStyles.forEach(cs => {
+                // List of ngFor (needs ID at later stage, state is useful for user)
+                this.containerStyleNameList.push(cs.name + ' (' + cs.id.toString() + ')');
+            });
+
+            // Fill Initial
+            if (this.containerStyles.length >= 0) {
+                this.containerSelectedStyleID = this.containerStyles[0].id;
+                this.containerSelectedStyleName = this.containerStyles[0].name;
+                this.updateForm(0);
+                this.containerStyleName = this.containerStyles[0].name +
+                    ' (' + this.containerStyles[0].id.toString() + ')';
+            };
+        });
 
         // Deconstruct border
         if (this.selectedWidget.containerBorder != ''
@@ -260,16 +282,16 @@ export class WidgetContainerComponent implements OnInit {
 
         if (localIndex != -1) {
 
-            this.containerBackgroundcolor = this.containerStyles[localIndex].
+            this.localWidget.containerBackgroundcolor = this.containerStyles[localIndex].
                 containerBackgroundcolor;
             this.containerBorderColour = this.containerStyles[localIndex].
                 containerBorderColour;
 
             if (this.containerStyles[localIndex].containerBorderRadius != null) {
-                this.containerBorderRadius = this.containerStyles[localIndex].
+                this.localWidget.containerBorderRadius = this.containerStyles[localIndex].
                     containerBorderRadius.toString();
             } else {
-                this.containerBorderRadius = null;
+                this.localWidget.containerBorderRadius = null;
             };
 
             if (this.containerStyles[localIndex].containerBorderSize != null) {
@@ -281,22 +303,22 @@ export class WidgetContainerComponent implements OnInit {
 
             this.containerBorderType = this.containerStyles[localIndex].
                 containerBorderType;
-            this.containerBoxshadow = this.containerStyles[localIndex].
+            this.localWidget.containerBoxshadow = this.containerStyles[localIndex].
                 containerBoxshadow;
-            this.containerFontsize = this.containerStyles[localIndex].containerFontsize;
-            this.shapeFontFamily = this.containerStyles[localIndex].shapeFontFamily;
-            this.shapeIsBold = this.containerStyles[localIndex].shapeIsBold;
-            this.shapeIsItalic = this.containerStyles[localIndex].shapeIsItalic;
-            this.shapeLineHeight = this.containerStyles[localIndex].shapeLineHeight;
-            this.shapeTextAlign = this.containerStyles[localIndex].shapeTextAlign;
+            this.localWidget.containerFontsize = this.containerStyles[localIndex].containerFontsize;
+            this.localWidget.shapeFontFamily = this.containerStyles[localIndex].shapeFontFamily;
+            this.localWidget.shapeIsBold = this.containerStyles[localIndex].shapeIsBold;
+            this.localWidget.shapeIsItalic = this.containerStyles[localIndex].shapeIsItalic;
+            this.localWidget.shapeLineHeight = this.containerStyles[localIndex].shapeLineHeight;
+            this.localWidget.shapeTextAlign = this.containerStyles[localIndex].shapeTextAlign;
 
 
             // Construct line size
             if (this.containerBorderSize != 'none'  &&  this.containerBorderColour != 'none') {
-                this.containerBorder = this.containerBorderSize + 'px ' +
+                this.localWidget.containerBorder = this.containerBorderSize + 'px ' +
                     this.containerBorderType + ' ' + this.containerBorderColour;
             } else {
-                this.containerBorder = 'none';
+                this.localWidget.containerBorder = 'none';
             };
         };
 
