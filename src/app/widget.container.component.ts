@@ -90,6 +90,7 @@ export class WidgetContainerComponent implements OnInit {
         // Get list of Styles
         this.globalVariableService.getContainerStyles().then(res => {
             this.containerStyles = res;
+            this.containerStyleNameList = [''];
             this.containerStyles.forEach(cs => {
                 // List of ngFor (needs ID at later stage, state is useful for user)
                 this.containerStyleNameList.push(cs.name + ' (' + cs.id.toString() + ')');
@@ -97,11 +98,21 @@ export class WidgetContainerComponent implements OnInit {
 
             // Fill Initial
             if (this.containerStyles.length >= 0) {
-                this.containerSelectedStyleID = this.containerStyles[0].id;
-                this.containerSelectedStyleName = this.containerStyles[0].name;
-                this.updateForm(0);
-                this.containerStyleName = this.containerStyles[0].name +
-                    ' (' + this.containerStyles[0].id.toString() + ')';
+
+                // Load if linked
+                if (this.localWidget.containerStyleID != null) {
+
+                    let localStyle: number = this.containerStyles.findIndex(cs =>
+                        cs.id == this.localWidget.containerStyleID
+                    );
+                    if (localStyle != -1) {
+                        this.containerSelectedStyleID = this.containerStyles[localStyle].id;
+                        this.containerSelectedStyleName = this.containerStyles[localStyle].name;
+                        this.updateForm(localStyle);
+                        this.containerStyleName = this.containerStyles[localStyle].name +
+                            ' (' + this.containerStyles[localStyle].id.toString() + ')';
+                    };
+                };
             };
         });
 
@@ -251,6 +262,11 @@ export class WidgetContainerComponent implements OnInit {
         console.warn('xx', ev);
         let selectedContainerStyleName: string = ev.target.value;
 
+        // Unselected
+        if (selectedContainerStyleName == '') {
+            return;
+        };
+        
         // Get the ID
         this.containerSelectedStyleID = -1;
         let openBracket: number = selectedContainerStyleName.indexOf('(');
