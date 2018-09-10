@@ -270,7 +270,7 @@ export class WidgetContainerStylesAddComponent implements OnInit {
         // Add to DB
         let newContainerStyle: ContainerStyle = {
             id: null,
-            name: this.containerStyleName,
+            name: this.containerStyleName.trim(),
             containerBackgroundcolor: this.containerBackgroundcolor,
             containerBorderColour: this.containerBorderColour,
             containerBorderRadius: this.containerBorderRadius,

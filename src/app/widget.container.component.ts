@@ -107,15 +107,20 @@ export class WidgetContainerComponent implements OnInit {
                 // Load if linked
                 if (this.localWidget.containerStyleID != null) {
 
-                    let localStyle: number = this.containerStyles.findIndex(cs =>
+                    let localStyleIndex: number = this.containerStyles.findIndex(cs =>
                         cs.id == this.localWidget.containerStyleID
                     );
-                    if (localStyle != -1) {
-                        this.containerSelectedStyleID = this.containerStyles[localStyle].id;
-                        this.containerSelectedStyleName = this.containerStyles[localStyle].name;
-                        this.updateForm(localStyle);
-                        this.containerStyleName = this.containerStyles[localStyle].name +
-                            ' (' + this.containerStyles[localStyle].id.toString() + ')';
+                    if (localStyleIndex != -1) {
+                        this.containerSelectedStyleID = this.containerStyles[localStyleIndex].id;
+                        this.containerSelectedStyleName = this.containerStyles[localStyleIndex].name;
+                        this.updateForm(localStyleIndex);
+                        this.containerStyleName = this.containerStyles[localStyleIndex].name.trim() +
+                            ' (' + this.containerStyles[localStyleIndex].id.toString() + ')';
+                console.warn('xx hier ', localStyleIndex,
+                
+                            this.containerSelectedStyleID ,
+                        this.containerSelectedStyleName ,
+                        this.containerStyleName, ':', this.containerStyles);
                     };
                 };
             };
@@ -141,6 +146,7 @@ export class WidgetContainerComponent implements OnInit {
 
         };
         console.warn('xx start Wcont', this.globalVariableService.currentWidgets)
+
         // Manage colour picker
         this.colourPickerSubscription = this.globalVariableService.colourPickerClosed.subscribe(clp => {
 
@@ -333,11 +339,14 @@ export class WidgetContainerComponent implements OnInit {
 
             // Construct line size
             if (this.containerBorderSize != 'none'  &&  this.containerBorderColour != 'none') {
-                this.localWidget.containerBorder = this.containerBorderSize + 'px ' +
+                this.localWidget.containerBorder = this.containerBorderSize + ' ' +
                     this.containerBorderType + ' ' + this.containerBorderColour;
             } else {
                 this.localWidget.containerBorder = 'none';
             };
+            console.warn('xx this.localWidget.containerBorder', this.localWidget.containerBorder);
+                        this.localWidget.containerBorder = this.containerBorderSize + ' ' + this.containerBorderType + ' ' + this.containerBorderColour;
+
         };
 
     }
