@@ -908,6 +908,7 @@ export class Widget {
     // Links @Runtime
     hyperlinkDashboardID: number;           // Optional Widget ID to jump to
     hyperlinkDashboardTabID: number;        // Optional Tab Nr to jump to
+    containerStyleID: number;                 // Optional ContainerStyleID that provides formatting
 
     // Data related
     datasourceID: number;                   // Specific ID that this W points to.  For a W,

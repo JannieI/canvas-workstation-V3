@@ -1231,3 +1231,10 @@ This document describes items for later versions of Canvas.
     - consider MULTIPLE edit: 
         - select more than one, open Container Form.  
         - apply changes to ALL selected ...
+
+    Canvas Schema Changes:
+    ---------------------
+    - get a visual tool that will help with changes to Canvas Schemas
+    - maybe: check code where something is used, change model, and update DB (delete or edit or add a field).  Of course, only after a proper BACKUP !
+
+    

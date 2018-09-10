@@ -177,6 +177,7 @@ const widgetTemplate: Widget =
         "lastCheckpoint": -1,
         "hyperlinkDashboardID": null,
         "hyperlinkDashboardTabID": null,
+        "containerStyleID": null,
         "datasourceID": null,
         "data": null,
         "dataFields": null,
@@ -9060,7 +9061,7 @@ export class GlobalVariableService {
                         this.isDirtyContainerStyles = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         this.containerStyles = res;
-                        
+
                         if (this.sessionDebugging) {
                             console.log('%c    Global-Variables getContainerStyles 1',
                                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
@@ -9540,6 +9541,7 @@ export class GlobalVariableService {
                 {key: 'lastCheckpoint', 			type: 'int'},
                 {key: 'hyperlinkDashboardID', 		type: 'int'},
                 {key: 'hyperlinkDashboardTabID', 	type: 'int'},
+                {key: 'containerStyleID',           type: 'int'},
                 {key: 'datasourceID', 				type: 'int'},
                 {key: 'datasetID', 					type: 'int'},
                 {key: 'dataParameters', 			type: 'array'},
