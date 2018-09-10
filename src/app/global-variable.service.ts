@@ -9108,7 +9108,7 @@ export class GlobalVariableService {
                         this.containerStyles.push(JSON.parse(JSON.stringify(res)));
 
                         if (this.sessionDebugging) {
-                            console.log('ContainerStyle ADDED', {data}, this.widgets)
+                            console.log('addContainerStyle ADDED', {data}, this.widgets)
                         };
 
                         resolve(data);
@@ -9153,14 +9153,14 @@ export class GlobalVariableService {
                     };
 
                     if (this.sessionDebugging) {
-                        console.log('savePaletteButtonsSelected SAVED', {res})
+                        console.log('saveContainerStyle SAVED', {res})
                     };
 
                     resolve('Saved');
                 },
                 err => {
                     if (this.sessionDebugging) {
-                        console.log('Error savePaletteButtonsSelected FAILED', {err});
+                        console.log('Error saveContainerStyle FAILED', {err});
                     };
 
                     reject(err);

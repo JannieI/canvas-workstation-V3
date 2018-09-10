@@ -279,7 +279,7 @@ export class WidgetContainerStylesEditComponent implements OnInit {
         } else {
             this.containerBorder = 'none';
         };
-        console.warn('xx line', this.containerBorder);
+        console.warn('xx clickSelectBorderColor', this.containerBorder);
 
     }
 
@@ -300,7 +300,7 @@ export class WidgetContainerStylesEditComponent implements OnInit {
         } else {
             this.containerBorder = 'none';
         };
-        console.warn('xx line', this.containerBorder);
+        console.warn('xx clickSelectBorderSize', this.containerBorder);
     }
 
     clickSelectBorderType(ev: any) {
@@ -320,7 +320,7 @@ export class WidgetContainerStylesEditComponent implements OnInit {
         } else {
             this.containerBorder = 'none';
         };
-        console.warn('xx line', this.containerBorder);
+        console.warn('xx clickSelectBorderType', this.containerBorder);
     }
 
     clickSelectTextAlign(ev: any) {
@@ -356,6 +356,7 @@ export class WidgetContainerStylesEditComponent implements OnInit {
             this.errorMessage = 'Invalid selection.';
             return;
         };
+console.warn('xx this.containerSelectedStyleID', this.containerSelectedStyleID);
 
         // Create object
         let newContainerStyle: ContainerStyle = {

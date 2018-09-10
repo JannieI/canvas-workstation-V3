@@ -198,7 +198,7 @@ export class WidgetContainerStylesAddComponent implements OnInit {
         } else {
             this.containerBorder = 'none';
         };
-        console.warn('xx line', this.containerBorder);
+        console.warn('xx clickSelectBorderSize', this.containerBorder);
     }
 
     clickSelectBorderType(ev: any) {
@@ -218,7 +218,7 @@ export class WidgetContainerStylesAddComponent implements OnInit {
         } else {
             this.containerBorder = 'none';
         };
-        console.warn('xx line', this.containerBorder);
+        console.warn('xx clickSelectBorderType', this.containerBorder);
     }
 
     clickSelectTextAlign(ev: any) {
