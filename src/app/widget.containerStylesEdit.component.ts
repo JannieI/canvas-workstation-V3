@@ -396,7 +396,10 @@ console.warn('xx this.containerSelectedStyleID', this.containerSelectedStyleID);
         // Save to DB
         this.globalVariableService.saveContainerStyle(newContainerStyle).then(res => {
             // Update local Array
-            this.containerStyles[this.containerSelectedStyleID] = newContainerStyle;
+            let localIndex: number = this.containerStyles.findIndex(cs =>
+                cs.id == this.containerSelectedStyleID
+            );
+            this.containerStyles[localIndex] = newContainerStyle;
         });
 
         // Tell user
