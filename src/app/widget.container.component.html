@@ -69,8 +69,8 @@
                         Style from:
                     </div>
                     <div class="select gridShapeContainerStyle">
-                        <select [(ngModel)]="gridStyleName"
-                            name="gridStyleName"
+                        <select [(ngModel)]="containerStyleName"
+                            name="containerStyleName"
                             (change)="clickSelectStyleName($event)"
                             >
                             <option *ngFor="let row of containerStyleNameList"
@@ -109,9 +109,9 @@
                         Border Colour:
                     </div>
                     <div class="select gridLinecolor">
-                        <select [(ngModel)]="lineColor"
+                        <select [(ngModel)]="containerBorderColour"
                             (change)="clickSelectLineColor($event)"
-                            name="lineColor"
+                            name="containerBorderColour"
                             >
                             <option *ngFor="let row of backgroundcolors"
                                 [style.background-color]="row.name"
@@ -132,8 +132,8 @@
                         Border Size:
                     </div>
                     <div class="select gridLineSize">
-                        <select [(ngModel)]="lineSize"
-                            name="lineSize"
+                        <select [(ngModel)]="containerBorderSize"
+                            name="containerBorderSize"
                             (change)="clickSelectLineSize($event)"
                             >
                             <option>none</option>
@@ -148,8 +148,8 @@
                         Type:
                     </div>
                     <div class="select gridLineType">
-                        <select [(ngModel)]="lineType"
-                            name="lineType"
+                        <select [(ngModel)]="containerBorderType"
+                            name="containerBorderType"
                             (change)="clickSelectLineType($event)"
                             >
                             <option>solid</option>

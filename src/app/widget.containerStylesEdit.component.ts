@@ -368,7 +368,7 @@ export class WidgetContainerStylesEditComponent implements OnInit {
             containerBackgroundcolor: this.containerBackgroundcolor,
             containerBorderColour: this.containerBorderColour,
             containerBorderRadius: +this.containerBorderRadius,
-            containerBorderSize: this.containerBorderSize=='none'? 0 : +this.containerBorderSize,
+            containerBorderSize: this.containerBorderSize,
             containerBorderType: this.containerBorderType,
             containerBoxshadow: this.containerBoxshadow,
             containerFontsize: this.containerFontsize,

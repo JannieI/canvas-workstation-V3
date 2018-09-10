@@ -61,7 +61,7 @@ export class WidgetContainerComponent implements OnInit {
     colourPickerSubscription: Subscription;
     containerBorderColour: string = 'black';
     containerBorderType: string = 'solid';
-    containerBorderSize: string = '1';
+    containerBorderSize: string = '1px';
     containerStyleID: number = null;
     containerSelectedStyleID: number = -1;
     containerSelectedStyleName: string = '';
@@ -70,9 +70,6 @@ export class WidgetContainerComponent implements OnInit {
     containerStyles: ContainerStyle[] = [];
     errorMessage: string;
     infoMessage: string;
-    lineColor: string = 'none';
-    lineSize: string = 'none';
-    lineType: string = 'bold';
     localWidget: Widget;                            // W to modify, copied from selected
     oldWidget: Widget;
     selectedColour: string;
@@ -130,17 +127,17 @@ export class WidgetContainerComponent implements OnInit {
             this.selectedWidget.containerBorder != 'none') {
                 let space1: number = this.selectedWidget.containerBorder.indexOf(' ');
                 if (space1 > 0) {
-                    this.lineSize = this.selectedWidget.containerBorder.substr(0, space1);
+                    this.containerBorderSize = this.selectedWidget.containerBorder.substr(0, space1);
                     let rest: string = this.selectedWidget.containerBorder.substr(space1 + 1, 999);
 
                     let space2: number = rest.indexOf(' ');
                     if (space2 > 0) {
 
-                        this.lineType = rest.substr(0, space2)
-                        this.lineColor = rest.substr(space2 + 1, 999);
+                        this.containerBorderType = rest.substr(0, space2)
+                        this.containerBorderColour = rest.substr(space2 + 1, 999);
                     };
                 };
-                console.warn('xx linestuff', this.lineSize, this.lineType,  this.lineColor);
+                console.warn('xx linestuff', this.containerBorderSize, this.containerBorderType,  this.containerBorderColour);
 
         };
         console.warn('xx start Wcont', this.globalVariableService.currentWidgets)
@@ -159,11 +156,11 @@ export class WidgetContainerComponent implements OnInit {
                     };
                     if (clp.callingRoutine == 'LineColour') {
                         this.colourPickerClosed = false;
-                        this.lineColor = clp.selectedColor;
+                        this.containerBorderColour = clp.selectedColor;
 
                         // Construct line size
-                        if (this.lineSize != 'none') {
-                            this.localWidget.containerBorder = this.lineSize + ' ' + this.lineType + ' ' + this.lineColor;
+                        if (this.containerBorderSize != 'none') {
+                            this.localWidget.containerBorder = this.containerBorderSize + ' ' + this.containerBorderType + ' ' + this.containerBorderColour;
                         };
                     };
                 };
@@ -204,7 +201,7 @@ export class WidgetContainerComponent implements OnInit {
         // Open the Colour Picker for Line Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectLineColorPicker', '@Start');
 
-        this.selectedColour = this.lineColor;
+        this.selectedColour = this.containerBorderColour;
         this.callingRoutine = 'LineColour';
         this.colourPickerClosed = true;
     }
@@ -213,15 +210,15 @@ export class WidgetContainerComponent implements OnInit {
         // Select Line Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectLineColor', '@Start');
 
-        this.lineColor = ev.target.value;
+        this.containerBorderColour = ev.target.value;
 
         // Construct line size
-        if (this.lineSize != 'none') {
-            this.localWidget.containerBorder = this.lineSize + ' ' + this.lineType + ' ' + this.lineColor;
+        if (this.containerBorderSize != 'none') {
+            this.localWidget.containerBorder = this.containerBorderSize + ' ' + this.containerBorderType + ' ' + this.containerBorderColour;
         } else {
-            this.localWidget.containerBorder = this.lineSize
+            this.localWidget.containerBorder = this.containerBorderSize
         };
-        console.warn('xx line', this.localWidget.containerBorder, this.lineColor, this.lineSize);
+        console.warn('xx line', this.localWidget.containerBorder, this.containerBorderColour, this.containerBorderSize);
 
     }
 
@@ -229,13 +226,13 @@ export class WidgetContainerComponent implements OnInit {
         // Select Circle Line Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectLineSize', '@Start');
 
-        this.lineSize = ev.target.value;
+        this.containerBorderSize = ev.target.value;
 
         // Construct line size
-        if (this.lineSize != 'none') {
-            this.localWidget.containerBorder = this.lineSize + ' ' + this.lineType + ' ' + this.lineColor;
+        if (this.containerBorderSize != 'none') {
+            this.localWidget.containerBorder = this.containerBorderSize + ' ' + this.containerBorderType + ' ' + this.containerBorderColour;
         } else {
-            this.localWidget.containerBorder = this.lineSize
+            this.localWidget.containerBorder = this.containerBorderSize
         };
     }
 
@@ -243,13 +240,13 @@ export class WidgetContainerComponent implements OnInit {
         // Select Circle Line Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectLineType', '@Start');
 
-        this.lineType = ev.target.value;
+        this.containerBorderType = ev.target.value;
 
         // Construct line size
-        if (this.lineSize != 'none') {
-            this.localWidget.containerBorder = this.lineSize + ' ' + this.lineType + ' ' + this.lineColor;
+        if (this.containerBorderSize != 'none') {
+            this.localWidget.containerBorder = this.containerBorderSize + ' ' + this.containerBorderType + ' ' + this.containerBorderColour;
         } else {
-            this.localWidget.containerBorder = this.lineSize
+            this.localWidget.containerBorder = this.containerBorderSize
         };
     }
 
@@ -358,10 +355,10 @@ export class WidgetContainerComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
         // Construct line size
-        if (this.lineSize != 'none') {
-            this.localWidget.containerBorder = this.lineSize + ' ' + this.lineType + ' ' + this.lineColor;
+        if (this.containerBorderSize != 'none') {
+            this.localWidget.containerBorder = this.containerBorderSize + ' ' + this.containerBorderType + ' ' + this.containerBorderColour;
         } else {
-            this.localWidget.containerBorder = this.lineSize
+            this.localWidget.containerBorder = this.containerBorderSize
         };
 
         // Replace the W - DB and local vars

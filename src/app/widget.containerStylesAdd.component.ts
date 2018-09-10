@@ -63,7 +63,7 @@ export class WidgetContainerStylesAddComponent implements OnInit {
     containerBorderColour: string = 'black';
     containerBorderRadius: string;
     containerBorderType: string = 'solid';
-    containerBorderSize: string = '1';
+    containerBorderSize: string = '1px';
     containerBoxshadow: string;
     containerFontsize: number = 12;
     errorMessage: string;
@@ -172,7 +172,7 @@ export class WidgetContainerStylesAddComponent implements OnInit {
 
         // Construct line size
         if (this.containerBorderSize != 'none'  &&  this.containerBorderColour != 'none') {
-            this.containerBorder = this.containerBorderSize + 'px ' + 
+            this.containerBorder = this.containerBorderSize + ' ' + 
                 this.containerBorderType + ' ' + this.containerBorderColour;
         } else {
             this.containerBorder = 'none';
@@ -193,7 +193,7 @@ export class WidgetContainerStylesAddComponent implements OnInit {
 
         // Construct line size
         if (this.containerBorderSize != 'none'  &&  this.containerBorderColour != 'none') {
-            this.containerBorder = this.containerBorderSize + 'px ' + 
+            this.containerBorder = this.containerBorderSize + ' ' + 
                 this.containerBorderType + ' ' + this.containerBorderColour;
         } else {
             this.containerBorder = 'none';
@@ -213,7 +213,7 @@ export class WidgetContainerStylesAddComponent implements OnInit {
 
         // Construct line size
         if (this.containerBorderSize != 'none'  &&  this.containerBorderColour != 'none') {
-            this.containerBorder = this.containerBorderSize + 'px ' + 
+            this.containerBorder = this.containerBorderSize + ' ' + 
                 this.containerBorderType + ' ' + this.containerBorderColour;
         } else {
             this.containerBorder = 'none';
@@ -262,7 +262,7 @@ export class WidgetContainerStylesAddComponent implements OnInit {
             containerBackgroundcolor: this.containerBackgroundcolor,
             containerBorderColour: this.containerBorderColour,
             containerBorderRadius: +this.containerBorderRadius,
-            containerBorderSize: this.containerBorderSize=='none'? 0 : +this.containerBorderSize,
+            containerBorderSize: this.containerBorderSize,
             containerBorderType: this.containerBorderType,
             containerBoxshadow: this.containerBoxshadow,
             containerFontsize: this.containerFontsize,
