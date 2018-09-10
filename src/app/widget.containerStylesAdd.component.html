@@ -162,12 +162,17 @@
                     <div class="gridBorderRadiusTitle">
                         Border Radius:
                     </div>
-                    <div class="gridBorderRadius">
-                        <input [(ngModel)]="containerBorderRadius"
-                            type="number"
+                    <div class="select gridBorderRadius">
+                        <select [(ngModel)]="containerBorderRadius"
                             name="containerBorderRadius"
-                            placeholder="Corners, ie 3 (measured in px)"
+                            (change)="clickSelectBorderRadius($event)"
                             >
+                            <option>none</option>
+                            <option>1px</option>
+                            <option>2px</option>
+                            <option>3px</option>
+                            <option>4px</option>
+                        </select>
                     </div>
 
                     <div class="gridBoxShadowTitle">
