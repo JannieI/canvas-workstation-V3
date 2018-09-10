@@ -55,8 +55,8 @@ export class WidgetContainerStylesEditComponent implements OnInit {
 
     backgroundcolors: CSScolor[];
     callingRoutine: string = '';
-    colourPickerClosed: boolean = false;
-    colourPickerSubscription: Subscription;
+    // colourPickerClosed: boolean = false;
+    // colourPickerSubscription: Subscription;
     containerBackgroundcolor: string = 'transparent';
     containerBorder: string = '1px solid black';
     containerBorderColour: string = 'black';
@@ -110,26 +110,26 @@ export class WidgetContainerStylesEditComponent implements OnInit {
         });
 
         // Manage colour picker
-        this.colourPickerSubscription = this.globalVariableService.colourPickerClosed.subscribe(clp => {
+        // this.colourPickerSubscription = this.globalVariableService.colourPickerClosed.subscribe(clp => {
 
-            if (clp != null) {
+        //     if (clp != null) {
 
-                if (clp.cancelled) {
-                    this.colourPickerClosed = false;
-                } else {
+        //         if (clp.cancelled) {
+        //             this.colourPickerClosed = false;
+        //         } else {
 
-                    if (clp.callingRoutine == 'BgColour') {
-                        this.colourPickerClosed = false;
-                        this.containerBackgroundcolor = clp.selectedColor;
-                    };
-                    if (clp.callingRoutine == 'LineColour') {
-                        this.colourPickerClosed = false;
-                        this.containerBorderColour = clp.selectedColor;
+        //             if (clp.callingRoutine == 'BgColour') {
+        //                 this.colourPickerClosed = false;
+        //                 this.containerBackgroundcolor = clp.selectedColor;
+        //             };
+        //             if (clp.callingRoutine == 'LineColour') {
+        //                 this.colourPickerClosed = false;
+        //                 this.containerBorderColour = clp.selectedColor;
 
-                    };
-                };
-            };
-        });
+        //             };
+        //         };
+        //     };
+        // });
 
         // Get setup info
         this.backgroundcolors = this.globalVariableService.backgroundcolors.slice();
@@ -142,7 +142,7 @@ export class WidgetContainerStylesEditComponent implements OnInit {
         // Called just before Angular destroys the directive/component.
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnDestroy', '@Start');
 
-        this.colourPickerSubscription.unsubscribe();
+        // this.colourPickerSubscription.unsubscribe();
     }
 
     clickSelectStyleName(ev: any) {
@@ -224,18 +224,18 @@ export class WidgetContainerStylesEditComponent implements OnInit {
 
     }
 
-    clickSelectBgColorPicker(ev: any) {
-        // Open the Colour Picker for Background Colour
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBgColorPicker', '@Start');
+    // clickSelectBgColorPicker(ev: any) {
+    //     // Open the Colour Picker for Background Colour
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBgColorPicker', '@Start');
 
-        // Reset
-        this.errorMessage = '';
-        this.infoMessage = '';
+    //     // Reset
+    //     this.errorMessage = '';
+    //     this.infoMessage = '';
 
-        this.selectedColour = this.containerBackgroundcolor;
-        this.callingRoutine = 'BgColour';
-        this.colourPickerClosed = true;
-    }
+    //     this.selectedColour = this.containerBackgroundcolor;
+    //     this.callingRoutine = 'BgColour';
+    //     this.colourPickerClosed = true;
+    // }
 
     clickSelectBgColor(ev: any) {
         // Select Background Colour
@@ -248,18 +248,18 @@ export class WidgetContainerStylesEditComponent implements OnInit {
         this.containerBackgroundcolor = ev.target.value;
     }
 
-    clickSelectLineColorPicker(ev: any) {
-        // Open the Colour Picker for Line Colour
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectLineColorPicker', '@Start');
+    // clickSelectLineColorPicker(ev: any) {
+    //     // Open the Colour Picker for Line Colour
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectLineColorPicker', '@Start');
 
-        // Reset
-        this.errorMessage = '';
-        this.infoMessage = '';
+    //     // Reset
+    //     this.errorMessage = '';
+    //     this.infoMessage = '';
 
-        this.selectedColour = this.containerBorderColour;
-        this.callingRoutine = 'LineColour';
-        this.colourPickerClosed = true;
-    }
+    //     this.selectedColour = this.containerBorderColour;
+    //     this.callingRoutine = 'LineColour';
+    //     this.colourPickerClosed = true;
+    // }
 
     clickSelectLineColor(ev: any) {
         // Select Line Colour
