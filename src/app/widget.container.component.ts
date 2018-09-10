@@ -59,6 +59,13 @@ export class WidgetContainerComponent implements OnInit {
     colourPickerClosed: boolean = false;
     colourPickerSubscription: Subscription;
     containerStyleID: number = null;
+    containerSelectedStyleID: number = -1;
+    containerSelectedStyleName: string = '';
+    containerStyleName: string = '';
+    containerStyleNameList: string[] = [];
+    containerStyles: ContainerStyle[] = [];
+    errorMessage: string;
+    infoMessage: string;
     lineColor: string = 'none';
     lineSize: string = 'none';
     lineType: string = 'bold';
@@ -242,7 +249,59 @@ export class WidgetContainerComponent implements OnInit {
         console.warn('xx this.dashboardTemplateID', this.containerSelectedStyleID, this.containerSelectedStyleName)
 
     }
-    
+
+    updateForm(localIndex: number) {
+        // Update the form from the local Array with for a given index
+        this.globalFunctionService.printToConsole(this.constructor.name,'updateForm', '@Start');
+
+        // Reset
+        this.errorMessage = '';
+        this.infoMessage = '';
+
+        if (localIndex != -1) {
+
+            this.containerBackgroundcolor = this.containerStyles[localIndex].
+                containerBackgroundcolor;
+            this.containerBorderColour = this.containerStyles[localIndex].
+                containerBorderColour;
+
+            if (this.containerStyles[localIndex].containerBorderRadius != null) {
+                this.containerBorderRadius = this.containerStyles[localIndex].
+                    containerBorderRadius.toString();
+            } else {
+                this.containerBorderRadius = null;
+            };
+
+            if (this.containerStyles[localIndex].containerBorderSize != null) {
+                this.containerBorderSize = this.containerStyles[localIndex].
+                    containerBorderSize.toString();
+            } else {
+                this.containerBorderSize = null;
+            };
+
+            this.containerBorderType = this.containerStyles[localIndex].
+                containerBorderType;
+            this.containerBoxshadow = this.containerStyles[localIndex].
+                containerBoxshadow;
+            this.containerFontsize = this.containerStyles[localIndex].containerFontsize;
+            this.shapeFontFamily = this.containerStyles[localIndex].shapeFontFamily;
+            this.shapeIsBold = this.containerStyles[localIndex].shapeIsBold;
+            this.shapeIsItalic = this.containerStyles[localIndex].shapeIsItalic;
+            this.shapeLineHeight = this.containerStyles[localIndex].shapeLineHeight;
+            this.shapeTextAlign = this.containerStyles[localIndex].shapeTextAlign;
+
+
+            // Construct line size
+            if (this.containerBorderSize != 'none'  &&  this.containerBorderColour != 'none') {
+                this.containerBorder = this.containerBorderSize + 'px ' +
+                    this.containerBorderType + ' ' + this.containerBorderColour;
+            } else {
+                this.containerBorder = 'none';
+            };
+        };
+
+    }
+
     clickClose() {
         // Close the form, nothing saved
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
