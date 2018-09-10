@@ -295,6 +295,35 @@
         padding-top: 6px;
     }
 
+    /* Right Hand Side */
+    .gridShape {
+        border-left: 1px solid black;
+        grid-column-start: 13;
+        /* autoprefixer: off */
+        grid-column-end: 21;
+        grid-row-start: 3;
+        grid-row-end: 18;
+        text-align: center;
+    }
+    
+    .gridShapeContainerStyleTitle {
+        grid-column-start: 13;
+        /* autoprefixer: off */
+        grid-column-end: 21;
+        grid-row-start: 20;
+        grid-row-end: 21;
+        text-align: center;
+    }
+    .gridShapeContainerStyle {
+        grid-column-start: 13;
+        /* autoprefixer: off */
+        grid-column-end: 21;
+        grid-row-start: 20;
+        grid-row-end: 21;
+        text-align: center;
+    }
+
+    /* Buttons */
     .gridButtonCancel {
         grid-column-start: 6;
         /* autoprefixer: off */
@@ -311,24 +340,5 @@
         grid-row-start: 22;
         grid-row-end: 23;
         margin-bottom: 15px;
-    }
-
-    /* Right Hand Side */
-    .gridShape {
-        border-left: 1px solid black;
-        grid-column-start: 13;
-        /* autoprefixer: off */
-        grid-column-end: 21;
-        grid-row-start: 3;
-        grid-row-end: 18;
-        text-align: center;
-    }
-    .gridShapeContainerStyle {
-        grid-column-start: 13;
-        /* autoprefixer: off */
-        grid-column-end: 21;
-        grid-row-start: 20;
-        grid-row-end: 21;
-        text-align: center;
     }
 

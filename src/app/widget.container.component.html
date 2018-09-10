@@ -65,9 +65,20 @@
                         <br>
                     </div>
 
-                    <div class="gridShapeContainerStyle">
-                        Linked to: _____    
+                    <div class="gridShapeContainerStyleTitle">
+                        Style from:
                     </div>
+                    <div class="select gridShapeContainerStyle">
+                        <select [(ngModel)]="gridStyleName"
+                            name="gridStyleName"
+                            (change)="clickSelectStyleName($event)"
+                            >
+                            <option *ngFor="let row of containerStyleNameList"
+                                >
+                                {{ row }}
+                            </option>
+                        </select>
+                    </div>        
 
 
                     <!-- Left Hand Side -->

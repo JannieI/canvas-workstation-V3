@@ -211,6 +211,38 @@ export class WidgetContainerComponent implements OnInit {
         };
     }
 
+    clickSelectStyleName(ev: any) {
+        // Style name was clicked in dropdown
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectStyleName', '@Start');
+
+        // Reset
+        this.errorMessage = '';
+        this.infoMessage = '';
+
+        console.warn('xx', ev);
+        let selectedContainerStyleName: string = ev.target.value;
+
+        // Get the ID
+        this.containerSelectedStyleID = -1;
+        let openBracket: number = selectedContainerStyleName.indexOf('(');
+        let closeBracket: number = selectedContainerStyleName.indexOf(')');
+        this.containerSelectedStyleName = selectedContainerStyleName.substring(0, openBracket);
+        this.containerSelectedStyleID = +selectedContainerStyleName.
+            substring(openBracket + 1, closeBracket);
+
+        // Find row and update form
+        if (this.containerSelectedStyleID != -1) {
+            let localIndex: number = this.containerStyles.findIndex(cs =>
+                cs.id == this.containerSelectedStyleID
+            );
+            if (localIndex != -1) {
+                this.updateForm(localIndex);
+            };
+        };
+        console.warn('xx this.dashboardTemplateID', this.containerSelectedStyleID, this.containerSelectedStyleName)
+
+    }
+    
     clickClose() {
         // Close the form, nothing saved
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');

@@ -93,18 +93,18 @@ export class WidgetContainerStylesEditComponent implements OnInit {
 
         // Get list
         this.globalVariableService.getContainerStyles().then(res => {
-            this.containerStyles = res; 
+            this.containerStyles = res;
             this.containerStyles.forEach(cs => {
                 // List of ngFor (needs ID at later stage, state is useful for user)
                 this.containerStyleNameList.push(cs.name + ' (' + cs.id.toString() + ')');
-            });   
+            });
 
             // Fill Initial
             if (this.containerStyles.length >= 0) {
                 this.containerSelectedStyleID = this.containerStyles[0].id;
                 this.containerSelectedStyleName = this.containerStyles[0].name;
                 this.updateForm(0);
-                this.containerStyleName = this.containerStyles[0].name + 
+                this.containerStyleName = this.containerStyles[0].name +
                     ' (' + this.containerStyles[0].id.toString() + ')';
             };
         });
@@ -166,7 +166,7 @@ export class WidgetContainerStylesEditComponent implements OnInit {
 
         // Find row and update form
         if (this.containerSelectedStyleID != -1) {
-            let localIndex: number = this.containerStyles.findIndex(cs => 
+            let localIndex: number = this.containerStyles.findIndex(cs =>
                 cs.id == this.containerSelectedStyleID
             );
             if (localIndex != -1) {
@@ -174,7 +174,7 @@ export class WidgetContainerStylesEditComponent implements OnInit {
             };
         };
         console.warn('xx this.dashboardTemplateID', this.containerSelectedStyleID, this.containerSelectedStyleName)
-    
+
     }
 
     updateForm(localIndex: number) {
@@ -198,7 +198,7 @@ export class WidgetContainerStylesEditComponent implements OnInit {
             } else {
                 this.containerBorderRadius = null;
             };
-            
+
             if (this.containerStyles[localIndex].containerBorderSize != null) {
                 this.containerBorderSize = this.containerStyles[localIndex].
                     containerBorderSize.toString();
@@ -220,7 +220,7 @@ export class WidgetContainerStylesEditComponent implements OnInit {
 
             // Construct line size
             if (this.containerBorderSize != 'none'  &&  this.containerBorderColour != 'none') {
-                this.containerBorder = this.containerBorderSize + 'px ' + 
+                this.containerBorder = this.containerBorderSize + 'px ' +
                     this.containerBorderType + ' ' + this.containerBorderColour;
             } else {
                 this.containerBorder = 'none';
@@ -278,7 +278,7 @@ export class WidgetContainerStylesEditComponent implements OnInit {
 
         // Construct line size
         if (this.containerBorderSize != 'none'  &&  this.containerBorderColour != 'none') {
-            this.containerBorder = this.containerBorderSize + 'px ' + 
+            this.containerBorder = this.containerBorderSize + 'px ' +
                 this.containerBorderType + ' ' + this.containerBorderColour;
         } else {
             this.containerBorder = 'none';
@@ -299,7 +299,7 @@ export class WidgetContainerStylesEditComponent implements OnInit {
 
         // Construct line size
         if (this.containerBorderSize != 'none'  &&  this.containerBorderColour != 'none') {
-            this.containerBorder = this.containerBorderSize + 'px ' + 
+            this.containerBorder = this.containerBorderSize + 'px ' +
                 this.containerBorderType + ' ' + this.containerBorderColour;
         } else {
             this.containerBorder = 'none';
@@ -319,7 +319,7 @@ export class WidgetContainerStylesEditComponent implements OnInit {
 
         // Construct line size
         if (this.containerBorderSize != 'none'  &&  this.containerBorderColour != 'none') {
-            this.containerBorder = this.containerBorderSize + 'px ' + 
+            this.containerBorder = this.containerBorderSize + 'px ' +
                 this.containerBorderType + ' ' + this.containerBorderColour;
         } else {
             this.containerBorder = 'none';
@@ -338,7 +338,7 @@ export class WidgetContainerStylesEditComponent implements OnInit {
         this.shapeTextAlign = ev.target.value;
 
     }
-    
+
     clickClose() {
         // Close the form, nothing saved
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
@@ -381,7 +381,7 @@ export class WidgetContainerStylesEditComponent implements OnInit {
             containerCreatedBy: this.globalVariableService.currentUser.userID,
             containerUpdatedOn: null,
             containerUpdatedBy: null,
-        
+
         };
 
         // Save to DB
@@ -420,9 +420,9 @@ export class WidgetContainerStylesEditComponent implements OnInit {
         // Update DB
         this.globalVariableService.deleteContainerStyle(this.containerSelectedStyleID).then(
             res => {
-                
+
                 this.infoMessage = 'Container Style deleted';
-                
+
                 // Update local Array
                 this.containerStyles = this.containerStyles.filter(cs =>
                     cs.id != this.containerSelectedStyleID);
@@ -433,14 +433,14 @@ export class WidgetContainerStylesEditComponent implements OnInit {
                 this.containerStyles.forEach(cs => {
                     // List of ngFor (needs ID at later stage, state is useful for user)
                     this.containerStyleNameList.push(cs.name + ' (' + cs.id.toString() + ')');
-                });   
-    
+                });
+
                 // Fill Initial
                 if (this.containerStyles.length >= 0) {
                     this.containerSelectedStyleID = this.containerStyles[0].id;
                     this.containerSelectedStyleName = this.containerStyles[0].name;
                     this.updateForm(0);
-                    this.containerStyleName = this.containerStyles[0].name + 
+                    this.containerStyleName = this.containerStyles[0].name +
                         ' (' + this.containerStyles[0].id.toString() + ')';
                 };
             }
