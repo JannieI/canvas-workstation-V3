@@ -267,8 +267,12 @@ export class WidgetContainerComponent implements OnInit {
         console.warn('xx', ev);
         let selectedContainerStyleName: string = ev.target.value;
 
-        // Unselected
+        // None selected
         if (selectedContainerStyleName == '') {
+            console.warn('xx reseted');
+            
+            this.containerSelectedStyleName = '';
+            this.containerSelectedStyleID = -1;
             return;
         };
 
@@ -279,6 +283,7 @@ export class WidgetContainerComponent implements OnInit {
         this.containerSelectedStyleName = selectedContainerStyleName.substring(0, openBracket);
         this.containerSelectedStyleID = +selectedContainerStyleName.
             substring(openBracket + 1, closeBracket);
+            console.warn('xx hier bb ', ' :' , this.containerSelectedStyleID ,this.containerSelectedStyleName + ':');
 
         // Find row and update form
         if (this.containerSelectedStyleID != -1) {
@@ -363,12 +368,18 @@ export class WidgetContainerComponent implements OnInit {
         // Close form and save all
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
-        // Construct line size
+        // Construct Border
         if (this.containerBorderSize != 'none') {
             this.localWidget.containerBorder = this.containerBorderSize + ' ' + this.containerBorderType + ' ' + this.containerBorderColour;
         } else {
             this.localWidget.containerBorder = this.containerBorderSize
         };
+
+        // Remove Style IF
+        if (this.containerSelectedStyleName == '') {
+            this.localWidget.containerStyleID = null;
+        };
+console.warn('xx hier ', ' :' + this.containerSelectedStyleName + ':');
 
         // Replace the W - DB and local vars
         this.globalVariableService.saveWidget(this.localWidget).then(res => {
