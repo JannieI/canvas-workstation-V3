@@ -323,6 +323,18 @@ export class WidgetContainerStylesEditComponent implements OnInit {
         console.warn('xx clickSelectBorderType', this.containerBorder);
     }
 
+    clickSelectBorderRadius(ev: any) {
+        // Select Border Radius
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBorderRadius', '@Start');
+
+        // Reset
+        this.errorMessage = '';
+        this.infoMessage = '';
+
+        this.containerBorderRadius = ev.target.value;
+
+    }
+
     clickSelectTextAlign(ev: any) {
         // Select Circle Line Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectTextAlign', '@Start');
