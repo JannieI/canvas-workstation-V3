@@ -87,6 +87,14 @@ export class WidgetContainerComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
+        // Deep copy original
+        this.oldWidget = JSON.parse(JSON.stringify(this.selectedWidget));
+
+        // Deep copy local copy - Note: this must be done at the start of this method
+        this.localWidget = JSON.parse(JSON.stringify(this.selectedWidget));
+
+        console.warn('xx this.localWidget.containerStyleID', this.localWidget.containerStyleID);
+
         // Get list of Styles
         this.globalVariableService.getContainerStyles().then(res => {
             this.containerStyles = res;
@@ -164,12 +172,6 @@ export class WidgetContainerComponent implements OnInit {
 
         // Get setup info
         this.backgroundcolors = this.globalVariableService.backgroundcolors.slice();
-
-        // Deep copy original
-        this.oldWidget = JSON.parse(JSON.stringify(this.selectedWidget));
-
-        // Deep copy local copy
-        this.localWidget = JSON.parse(JSON.stringify(this.selectedWidget));
 
     }
 
@@ -266,7 +268,7 @@ export class WidgetContainerComponent implements OnInit {
         if (selectedContainerStyleName == '') {
             return;
         };
-        
+
         // Get the ID
         this.containerSelectedStyleID = -1;
         let openBracket: number = selectedContainerStyleName.indexOf('(');
@@ -283,6 +285,9 @@ export class WidgetContainerComponent implements OnInit {
             if (localIndex != -1) {
                 this.updateForm(localIndex);
             };
+
+            // Set the Style ID
+            this.localWidget.containerStyleID =  this.containerSelectedStyleID;
         };
         console.warn('xx this.dashboardTemplateID', this.containerSelectedStyleID, this.containerSelectedStyleName)
 
