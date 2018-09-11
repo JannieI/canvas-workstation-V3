@@ -118,6 +118,7 @@
     }
 
     .errorMessage {
+        color: red;
         grid-column-start: 11;
         /* autoprefixer: off */
         grid-column-end: 21;

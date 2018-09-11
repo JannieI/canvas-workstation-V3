@@ -62,7 +62,7 @@ export class ManageColoursComponent implements OnInit {
         // Get setup info
         this.globalVariableService.getBackgroundColorsDefault().then(res => {
 
-            this.backgroundcolorsDefault = res;
+            this.backgroundcolorsDefault = res.slice();
 
             // Sort the list
             this.backgroundcolorsDefault.sort( (obj1,obj2) => {
@@ -76,7 +76,7 @@ export class ManageColoursComponent implements OnInit {
             });
         });
         this.globalVariableService.getBackgroundColors().then(res => {
-            this.backgroundcolors = res;
+            this.backgroundcolors = res.slice();
 
             // Sort the list
             this.backgroundcolors.sort( (obj1,obj2) => {
@@ -121,11 +121,18 @@ export class ManageColoursComponent implements OnInit {
 
         // Validation
         if (this.newColorName == ''  ||  this.newColorName == null  ||  this.newColorName == undefined) {
+            this.errorMessage = 'Name is compulsory';
             return;
         };
         if (this.newColorCode == ''  ||  this.newColorCode == null  ||  this.newColorCode == undefined) {
+            this.errorMessage = 'Code is compulsory';
             return;
         };
+        if (this.newColorCode.substring(0, 1) != '#') {
+            this.errorMessage = 'Code must start with #';
+            return;
+        };
+        
         console.warn('xx len', this.backgroundcolors.length, this.backgroundcolorsDefault.length);
         
         let isFound: boolean = false;
@@ -149,6 +156,8 @@ export class ManageColoursComponent implements OnInit {
             };
                 
         this.globalVariableService.addBackgroundColor(newCSSColour).then(res => {
+            console.warn('xx res', res);
+            
             this.backgroundcolors.push(res);
 
             // Sort the lists
@@ -162,7 +171,6 @@ export class ManageColoursComponent implements OnInit {
                 return 0;
             });                
         });
-
 
     }
 
@@ -197,6 +205,7 @@ export class ManageColoursComponent implements OnInit {
             };
                 
         this.globalVariableService.addBackgroundColor(newCSSColour).then(res => {
+
             this.backgroundcolors.push(res);
             
             // Sort the lists

@@ -53,10 +53,10 @@
                             name="newColorCode"
                             #newCodeVar="ngModel"
                             required
-                            minlength="3"
-                            maxlength="40"
+                            minlength="7"
+                            maxlength="7"
                             [style.color]="!newCodeVar.valid ? 'red' : 'gray'"
-                            placeholder="Enter new HEX colour code here, ie #000000"
+                            placeholder="Enter new HEX colour code with #, ie #000000"
                             >
                     </div>
 
@@ -94,7 +94,7 @@
                         <nav>
                             <ul class="nav-list">
                                 <div *ngFor="let row of backgroundcolors; let i = index"
-                                    [style.background-color]="row.name"
+                                    [style.background-color]="row.cssCode"
                                     [style.color]="(i == selectedBgIndex)? 'red' : 'black'"
                                     (click)="clickSelected(i)"
                                     >

@@ -7249,7 +7249,7 @@ export class GlobalVariableService {
                         );
 
                         if (this.sessionDebugging) {
-                            console.log('PaletteButtonsSelected ADDED', {data}, this.widgets)
+                            console.log('PaletteButtonsSelected ADDED', {data}, this.currentPaletteButtonsSelected)
                         };
 
                         resolve(data);
@@ -7937,6 +7937,17 @@ export class GlobalVariableService {
                     .then(res => {
                         this.backgroundcolors = res;
 
+                        // Sort the list
+                        this.backgroundcolors.sort( (obj1,obj2) => {
+                            if (obj1.name > obj2.name) {
+                                return 1;
+                            };
+                            if (obj1.name < obj2.name) {
+                                return -1;
+                            };
+                            return 0;
+                        });
+
                         this.isDirtyBackgroundColors = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
 
@@ -7955,6 +7966,17 @@ export class GlobalVariableService {
                         this.backgroundcolors)
                 };
 
+                // Sort the list
+                this.backgroundcolors.sort( (obj1,obj2) => {
+                    if (obj1.name > obj2.name) {
+                        return 1;
+                    };
+                    if (obj1.name < obj2.name) {
+                        return -1;
+                    };
+                    return 0;
+                });
+                
                 resolve(this.backgroundcolors);
             }
         });
@@ -7986,10 +8008,10 @@ export class GlobalVariableService {
                         this.backgroundcolors.push(JSON.parse(JSON.stringify(res)));
 
                         if (this.sessionDebugging) {
-                            console.log('addBackgroundColor ADDED', {data}, this.widgets)
+                            console.log('addBackgroundColor ADDED', {res}, this.backgroundcolors)
                         };
 
-                        resolve(data);
+                        resolve(res);
                     },
                     err => {
                         if (this.sessionDebugging) {
@@ -9294,7 +9316,7 @@ export class GlobalVariableService {
                         this.containerStyles.push(JSON.parse(JSON.stringify(res)));
 
                         if (this.sessionDebugging) {
-                            console.log('addContainerStyle ADDED', {data}, this.widgets)
+                            console.log('addContainerStyle ADDED', {data}, this.containerStyles)
                         };
 
                         resolve(data);
