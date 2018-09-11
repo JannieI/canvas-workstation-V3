@@ -4160,6 +4160,13 @@
 </widget-containerStylesEdit>
 
 
+<!-- Modal: Manage Colours -->
+<widget-manageColours
+    *ngIf="showModalManageColours"
+    (formWidgetContainerStylesEditClosed)="handleCloseManageColours($event)">Manage Colours ...
+</widget-manageColours>
+
+
 <!-- Title properties -->
 <widget-title *ngIf="showTitleForm"
     (formWidgetTitleClosed)="handleCloseWidgetTitle($event)"
