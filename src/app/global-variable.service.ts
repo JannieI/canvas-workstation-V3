@@ -55,6 +55,7 @@ import { TributarySource }            from './models';
 import { WebSocketMessage }           from './models';
 import { Widget }                     from './models';
 import { WidgetCheckpoint }           from './models';
+import { WidgetLayout }               from './models';
 
 // Dexie
 import Dexie from 'dexie';
@@ -537,6 +538,7 @@ export class GlobalVariableService {
     transformationsFormat: Transformation[] = transformationsFormat;
     widgetCheckpoints: WidgetCheckpoint[] = [];
     widgets: Widget[] = [];
+    widgetLayouts: WidgetLayout[] = [];
 
     // Data for CURRENT Dashboard and Datasources: only some models are loaded
     currentCanvasGroups: CanvasGroup[] = [];
@@ -660,6 +662,7 @@ export class GlobalVariableService {
     isDirtyUsers: boolean = true;
     isDirtyWidgetCheckpoints: boolean = true;
     isDirtyWidgets: boolean = true;
+    isDirtyWidgetLayouts: boolean = true;
 
     dbDataCachingTable;
     dbCanvasAppDatabase;
@@ -9471,6 +9474,51 @@ export class GlobalVariableService {
                 };
 
                 resolve(this.dashboardLayouts);
+            }
+        });
+
+    }
+
+    getWidgetLayouts(): Promise<WidgetLayout[]> {
+        // Description: Gets WidgetLayouts
+        // Returns: this.WidgetLayouts object, unless:
+        //   If not cached or if dirty, get from File
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getWidgetLayouts ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        };
+
+        let url: string = 'widgetLayout';
+        this.filePath = './assets/data.WidgetLayouts.json';
+
+        return new Promise<WidgetLayout[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if (this.isDirtyWidgetLayouts) {
+                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
+                this.get(url)
+                    .then(res => {
+
+                        this.isDirtyWidgetLayouts = false;
+                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
+                        this.widgetLayouts = res;
+
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables getWidgetLayouts 1',
+                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                this.widgetLayouts);
+                        };
+
+                        resolve(this.widgetLayouts);
+                    });
+            } else {
+                if (this.sessionDebugging) {
+                    console.log('%c    Global-Variables getWidgetLayouts 2',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                        this.widgetLayouts);
+                };
+
+                resolve(this.widgetLayouts);
             }
         });
 
