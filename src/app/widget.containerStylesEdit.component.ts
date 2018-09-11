@@ -428,6 +428,13 @@ console.warn('xx this.containerSelectedStyleID', this.containerSelectedStyleID);
             this.errorMessage = 'Cannot delete the last one.';
             return;
         };
+        let filteredWidgets: Widget[] = this.globalVariableService.widgets.filter(w => 
+            w.containerStyleID == this.containerSelectedStyleID
+        );
+        if (filteredWidgets.length > 0) {
+            this.errorMessage = 'No Delete - linked to ' + filteredWidgets.length.toString() + ' widget(s)';
+            return;
+        };
 
         // Update DB
         this.globalVariableService.deleteContainerStyle(this.containerSelectedStyleID).then(
