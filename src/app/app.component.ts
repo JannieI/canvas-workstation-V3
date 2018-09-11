@@ -23,6 +23,7 @@ import { GlobalFunctionService } 	  from './global-function.service';
 // Our Models
 import { CanvasAction }               from './models'
 import { Dashboard }                  from './models'
+import { DashboardLayout }            from './models'
 import { DashboardRecent }            from './models'
 import { Dataset }                    from './models'
 import { Datasource }                 from './models'
@@ -346,6 +347,7 @@ export class AppComponent implements OnInit {
     draggableWidgets: number[] = [];
     dashboardEndX: number;
     dashboardEndY: number;
+    dashboardLayouts: DashboardLayout[] = [];
     dashboardStartX: number;
     dashboardStartY: number;
     editingDS: boolean;
@@ -580,15 +582,13 @@ export class AppComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-
-        this.widgetLayouts.push({
-            id: 1,
-            dashboardLayoutID: 1,
-            height: 250, 
-            left: 30,
-            top: 150,
-            width: 200
-        })
+        // Fill Layouts
+        this.globalVariableService.getDashboardLayouts().then(res => {
+            this.dashboardLayouts = res.slice();
+        });
+        this.globalVariableService.getWidgetLayouts().then(res => {
+            this.widgetLayouts = res.slice();
+        });
 
         // Local App info DB
         this.dbCanvasAppDatabase = new CanvasAppDatabase

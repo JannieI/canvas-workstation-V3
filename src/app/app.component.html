@@ -1940,12 +1940,12 @@
 <!-- TEST -->
 
 <!-- <div> <input type="text" [(ngModel)]="testIndexDB">    </div> -->
-    <div class="widgetTemplate" *ngFor="let row of widgetTemplate; let i = index"
+    <div class="widgetTemplate" *ngFor="let row of widgetLayouts; let i = index"
         [style.height.px]="row.height"
         [style.left.px]="row.left"
         [style.top.px]="row.top"
         [style.width.px]="row.width"
-        (click)="clickWidgetCreate()"
+        (click)="clickWidgetLayoutCreate(row.id, i)"
         >
         <div
             [style.line-height.px]="row.height"

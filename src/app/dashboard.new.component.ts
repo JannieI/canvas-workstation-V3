@@ -117,12 +117,12 @@ export class DashboardNewComponent implements OnInit {
     loadFile(theFile) {
         // Callback for loading File
         console.warn('loadFile', '@Start');
-        
+
         this.importedDashboard = JSON.parse(JSON.parse(theFile.target.result))
         this.dashboardCode = this.importedDashboard.code;
         this.dashboardName = this.importedDashboard.name;
         this.dashboardDescription = this.importedDashboard.description;
-        
+
     }
 
     abortRead() {
@@ -205,7 +205,7 @@ export class DashboardNewComponent implements OnInit {
             newDashboard.url = this.importedDashboard.url;
             newDashboard.version = this.importedDashboard.version;
         };
-      
+
         // Add new (Complete + Draft) to DB, and open Draft
         newDashboard.state = 'Complete';
         this.globalVariableService.addDashboard(newDashboard).then(newD => {
