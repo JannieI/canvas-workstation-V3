@@ -1,0 +1,130 @@
+<div class="modal modalBox">
+    <div class="modal-dialog modal-lg" role="dialog" aria-hidden="true">
+        <div class="modal-content modalContent">
+            <form #f="ngForm" role="form" novalidate>
+
+                <div class="gridOverall">
+                    <button type="button" class="closeButton" (click)="clickClose()">
+                        <b>X</b>
+                    </button>
+
+                    <div class="gridTitle">
+                        <b>
+                            Dashboard Tags
+                        </b>
+                        <clr-signpost>
+                            <clr-icon shape="info-circle"
+                                clrSignpostTrigger>
+                            </clr-icon>
+                                <clr-signpost-content *clrIfOpen
+                                [clrPosition]="'bottom-middle'">
+                                <h5 style="margin-top: 0; color:gray;">
+                                    Help
+                                </h5>
+                                <p style="margin-top: 0; color:gray;">
+                                    Tags help to group different Dashboards.  Any text
+                                    can be used as a tag.
+                                    Click the X or press Escape to close this form.
+                                </p>
+                            </clr-signpost-content>
+                        </clr-signpost>
+
+                    </div>
+
+                    <div class="gridAdd">
+                        New tag:
+                        <input [(ngModel)]="newTag"
+                            type="text"
+                            name="newTag"
+                            #newTagVar="ngModel"
+                            required
+                            minlength="3"
+                            maxlength="40"
+                            [style.color]="!newTagVar.valid ? 'red' : 'gray'"
+                            placeholder="Enter new tag name here"
+                            >
+                    </div>
+                    <div class="gridButtonAdd">
+                        <button  type="button"
+                            class="btn btn-link"
+                            (click)="clickAddNew()">
+                            Add
+                        </button>
+                    </div>
+
+                    <div class="gridAvailableTitle">
+                        <b>Tags used before:</b>
+                    </div>
+                    <div class="gridAvailable">
+                        <nav>
+                            <ul class="nav-list">
+                                <div *ngFor="let row of availableDashboardTags; let i = index"
+                                    [style.background-color]="availableTagIndex==i? '#123456' : 'transparent'"
+                                    [style.color]="(i == availableTagIndex)? 'white' : 'gray'"
+                                    (click)="clickAvailable(i)"
+                                    >
+                                    <span class="tagText">
+                                        {{ row.tag }}
+                                    </span>
+                                </div>
+                            </ul>
+                        </nav>
+                    </div>
+
+                    <div class="gridSelectedTitle">
+                        <b>Selected Tags:</b>
+                    </div>
+                    <div class="gridSelected">
+                        <nav>
+                            <ul class="nav-list">
+                                <div *ngFor="let row of selectedDashboardTags; let i = index"
+                                    [style.background-color]="selectedTagIndex==i? '#123456' : 'transparent'"
+                                    [style.color]="(i == selectedTagIndex)? 'white' : 'gray'"
+                                    (click)="clickSelected(i)"
+                                    >
+                                    <span class="tagText">
+                                        <clr-icon shape="trash"
+                                            size="12"
+                                            (dblclick)="dblclickDelete(row.id, i)"
+                                            >
+                                        </clr-icon>
+                                        {{ row.tag }}
+                                    </span>
+                                </div>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="gridArrowAdd">
+                        <button
+                            type="button"
+                            class="btn btn-secondary btn-sm"
+                            (click)="clickAdd()"
+                            >
+                            <clr-icon shape="arrow right" size="20"></clr-icon>
+                        </button>
+                    </div>
+
+                    <div class="gridButtonCancel">
+                            <button
+                            type="button"
+                            class="gridButtonCancel btn btn-secondary"
+                            (click)="clickClose('Close')"
+                            >
+                            Cancel
+                        </button>
+                    </div>
+                    <div class="gridButtonSave">
+                        <button
+                            type="button"
+                            class="gridButtonSave btn btn-primary"
+                            (click)="clickSave('Saved')"
+                            >
+                            Save
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
