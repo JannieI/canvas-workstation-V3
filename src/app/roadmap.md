@@ -1193,6 +1193,7 @@ This document describes items for later versions of Canvas.
     - the StatusBar must not grow beyond screen width, or to double line
     - page # from pages
     - custom select of elements on StatusBar: ie ViewMode/EditMode, Version, etc
+    - add Ctrl-Backspace to go back to the previously opened tab, useful if jumped randomly using Tabs popup (just keep prevID, and if pressed then replace with current => toggle between two.  Think this can be useful)
 
     Audible sounds (on statusbar):
     -----------------------------

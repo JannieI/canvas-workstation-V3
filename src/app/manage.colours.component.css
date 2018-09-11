@@ -34,18 +34,24 @@
         text-align: left;
     }
 
-    .gridAdd {
+    .gridAddName {
         grid-column-start: 1;
         /* autoprefixer: off */
-        grid-column-end: 8;
+        grid-column-end: 6;
         grid-row-start: 3;
         grid-row-end: 4;
     }
-
-    .gridButtonAdd {
-        grid-column-start: 6;
+    .gridAddCode {
+        grid-column-start: 7;
         /* autoprefixer: off */
-        grid-column-end: 9;
+        grid-column-end: 12;
+        grid-row-start: 3;
+        grid-row-end: 4;
+    }
+    .gridButtonAdd {
+        grid-column-start: 13;
+        /* autoprefixer: off */
+        grid-column-end: 15;
         grid-row-start: 2;
         grid-row-end: 3;
         margin-top: 12px;
@@ -111,10 +117,10 @@
         text-align: left;
     }
 
-    .gridButtonSave {
+    .errorMessage {
         grid-column-start: 11;
         /* autoprefixer: off */
-        grid-column-end: 13;
+        grid-column-end: 21;
         grid-row-start: 18;
         grid-row-end: 19;
         text-align: left;

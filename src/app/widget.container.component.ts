@@ -348,12 +348,6 @@ export class WidgetContainerComponent implements OnInit {
             } else {
                 this.localWidget.containerBorder = 'none';
             };
-
-            // Update the TEXT (for Shape Widgets)
-            
-            console.warn('xx this.localWidget.containerBorder', this.localWidget.containerBorder);
-                        this.localWidget.containerBorder = this.containerBorderSize + ' ' + this.containerBorderType + ' ' + this.containerBorderColour;
-
         };
 
     }
@@ -381,7 +375,6 @@ export class WidgetContainerComponent implements OnInit {
         if (this.containerSelectedStyleName == '') {
             this.localWidget.containerStyleID = null;
         };
-console.warn('xx hier ', ' :' + this.containerSelectedStyleName + ':');
 
         // Replace the W - DB and local vars
         this.globalVariableService.saveWidget(this.localWidget).then(res => {

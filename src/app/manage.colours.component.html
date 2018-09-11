@@ -33,29 +33,29 @@
 
                     </div>
 
-                    <div class="gridAdd">
+                    <div class="gridAddName">
                         New Name:
                         <input [(ngModel)]="newColorName"
                             type="text"
                             name="newColorName"
-                            #newTagVar="ngModel"
+                            #newNameVar="ngModel"
                             required
                             minlength="3"
                             maxlength="40"
-                            [style.color]="!newTagVar.valid ? 'red' : 'gray'"
+                            [style.color]="!newNameVar.valid ? 'red' : 'gray'"
                             placeholder="Enter new colour name here, ie Black"
                             >
                     </div>
-                    <div class="gridAdd">
+                    <div class="gridAddCode">
                         New Code:
                         <input [(ngModel)]="newColorCode"
                             type="text"
                             name="newColorCode"
-                            #newTagVar="ngModel"
+                            #newCodeVar="ngModel"
                             required
                             minlength="3"
                             maxlength="40"
-                            [style.color]="!newTagVar.valid ? 'red' : 'gray'"
+                            [style.color]="!newCodeVar.valid ? 'red' : 'gray'"
                             placeholder="Enter new HEX colour code here, ie #000000"
                             >
                     </div>
@@ -75,8 +75,8 @@
                         <nav>
                             <ul class="nav-list">
                                 <div *ngFor="let row of backgroundcolorsDefault; let i = index"
-                                    [style.background-color]="availableBgIndex==i? '#123456' : 'transparent'"
-                                    [style.color]="(i == availableBgIndex)? 'white' : 'gray'"
+                                    [style.background-color]="row.name"
+                                    [style.color]="(i == availableBgIndex)? 'red' : 'black'"
                                     (click)="clickAvailable(i)"
                                     >
                                     <span class="tagText">
@@ -94,8 +94,8 @@
                         <nav>
                             <ul class="nav-list">
                                 <div *ngFor="let row of backgroundcolors; let i = index"
-                                    [style.background-color]="selectedTagIndex==i? '#123456' : 'transparent'"
-                                    [style.color]="(i == selectedTagIndex)? 'white' : 'gray'"
+                                    [style.background-color]="row.name"
+                                    [style.color]="(i == selectedBgIndex)? 'red' : 'black'"
                                     (click)="clickSelected(i)"
                                     >
                                     <span class="tagText">
@@ -129,15 +129,10 @@
                             Cancel
                         </button>
                     </div>
-                    <!-- <div class="gridButtonSave">
-                        <button
-                            type="button"
-                            class="gridButtonSave btn btn-primary"
-                            (click)="clickSave('Saved')"
-                            >
-                            Save
-                        </button>
-                    </div> -->
+
+                    <div class="errorMessage">
+                        {{ errorMessage }}
+                    </div>
                 </div>
             </form>
         </div>

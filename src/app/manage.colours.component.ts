@@ -6,7 +6,6 @@
 import { Component }                  from '@angular/core';
 import { EventEmitter }               from '@angular/core';
 import { HostListener }               from '@angular/core';
-import { Input }                      from '@angular/core';
 import { OnInit }                     from '@angular/core';
 import { Output }                     from '@angular/core';
 
@@ -18,12 +17,6 @@ import { GlobalVariableService}       from './global-variable.service';
 
 // Models
 import { CSScolor }                   from './models';
-import { Dashboard }                  from './models';
-import { DashboardTag }               from './models';
-
-// Models
-import { PaletteButtonBar }           from './models';
-import { PaletteButtonsSelected }     from './models';
 
 
 @Component({
@@ -33,7 +26,6 @@ import { PaletteButtonsSelected }     from './models';
 })
 export class ManageColoursComponent implements OnInit {
 
-    @Input() selectedDashboard: Dashboard
     @Output() formManageColoursClosed: EventEmitter<string> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
@@ -50,14 +42,13 @@ export class ManageColoursComponent implements OnInit {
     }
 
     // availableDashboardTags: DashboardTag[] = [];
+    availableBgIndex: number = -1;
     backgroundcolors: CSScolor[];
     backgroundcolorsDefault: CSScolor[];
+    errorMessage: string = '';
     newColorCode: string = '';
     newColorName: string = '';
-    paletteButtons: PaletteButtonBar[];
-    paletteButtonsSelected: PaletteButtonsSelected[];
-    availableBgIndex: number = -1;
-    selectedTagIndex: number = -1;
+    selectedBgIndex: number = -1;
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -69,10 +60,9 @@ export class ManageColoursComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         // Get setup info
-        this.backgroundcolorsDefault = this.globalVariableService.backgroundcolorsDefault.slice();
-        this.backgroundcolors = this.globalVariableService.backgroundcolors.slice();
+        this.globalVariableService.getBackgroundColorsDefault().then(res => {
 
-        this.globalVariableService.getDashboardTags().then(dt => {
+            this.backgroundcolorsDefault = res;
 
             // Sort the lists
             this.backgroundcolorsDefault.sort( (obj1,obj2) => {
@@ -84,6 +74,11 @@ export class ManageColoursComponent implements OnInit {
                 };
                 return 0;
             });
+        });
+        this.globalVariableService.getBackgroundColors().then(res => {
+            this.backgroundcolors = res;
+
+            // Sort the lists
             this.backgroundcolors.sort( (obj1,obj2) => {
                 if (obj1.name > obj2.name) {
                     return 1;
@@ -93,7 +88,6 @@ export class ManageColoursComponent implements OnInit {
                 };
                 return 0;
             });
-
         });
 
     }
@@ -109,7 +103,7 @@ export class ManageColoursComponent implements OnInit {
         // Heighlight the clicked row
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelected', '@Start');
 
-        this.selectedTagIndex = index;
+        this.selectedBgIndex = index;
     }
 
     clickAddNew() {
@@ -184,7 +178,7 @@ export class ManageColoursComponent implements OnInit {
     }
 
     dblclickDelete(id: number, index: number){
-        // Close the form, nothing saved
+        // Delete the selected Color
         this.globalFunctionService.printToConsole(this.constructor.name,'dblclickDelete', '@Start');
 console.warn('xx ..', id, index)
         // Remove from seleted list

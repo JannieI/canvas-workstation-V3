@@ -20,10 +20,6 @@ import { GlobalVariableService}       from './global-variable.service';
 import { Dashboard }                  from './models';
 import { DashboardTag }               from './models';
 
-// Models
-import { PaletteButtonBar }           from './models';
-import { PaletteButtonsSelected }     from './models';
-
 
 @Component({
     selector: 'dashboard-tags',
@@ -51,8 +47,6 @@ export class DashboardTagsComponent implements OnInit {
     availableDashboardTags: DashboardTag[] = [];
     selectedDashboardTags: DashboardTag[] = [];
     newTag: string = '';
-    paletteButtons: PaletteButtonBar[];
-    paletteButtonsSelected: PaletteButtonsSelected[];
     availableTagIndex: number = -1;
     selectedTagIndex: number = -1;
 
@@ -212,7 +206,6 @@ console.warn('xx ..', id, index)
         };
 
         // Add the new ones to the DB
-        // TODO - note that IDs in paletteButtonsSelected sent to app is DIFF to DB ...
         this.selectedDashboardTags.forEach(dt =>
                 this.globalVariableService.addDashboardTag(dt)
         );
