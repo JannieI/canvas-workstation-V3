@@ -21,6 +21,7 @@ import { CSScolor }                   from './models';
 import { ContainerStyle }             from './models';
 import { CurrentDashboardInfo }       from './models';
 import { Dashboard }                  from './models';
+import { DashboardLayout }            from './models';
 import { DashboardPermission }        from './models';
 import { DashboardRecent}             from './models';
 import { DashboardSnapshot }          from './models';
@@ -29,7 +30,6 @@ import { DashboardScheduleLog }       from './models';
 import { DashboardSubscription }      from './models';
 import { DashboardTab }               from './models';
 import { DashboardTag }               from './models';
-import { DashboardLayout }            from './models';
 import { DashboardTheme }             from './models';
 import { DataCachingTable }           from './models';
 import { DataConnection }             from './models';
@@ -507,6 +507,7 @@ export class GlobalVariableService {
     canvasTasks: CanvasTask[] = [];
     canvasUsers: CanvasUser[] = [];
     containerStyles: ContainerStyle[] = [];
+    dashboardLayout: DashboardLayout[] = [];
     dashboardPermissions: DashboardPermission[] = [];
     dashboards: Dashboard[] = [];
     dashboardScheduleLog: DashboardScheduleLog[] = [];
@@ -653,6 +654,7 @@ export class GlobalVariableService {
     isDirtyShapes: boolean = true;
     isDirtySlicers: boolean = true;
     isDirtystatusBarMessageLogs: boolean = true;
+    isDirtyDashboardLayouts: boolean = true;
     isDirtyTransformations: boolean = true;
     isDirtyUserPaletteButtonBar: boolean = true;
     isDirtyUsers: boolean = true;
@@ -9429,6 +9431,51 @@ export class GlobalVariableService {
         });
     }
 
+    getDashboardLayouts(): Promise<DashboardLayout[]> {
+        // Description: Gets dashboardLayouts
+        // Returns: this.dashboardLayouts object, unless:
+        //   If not cached or if dirty, get from File
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getDashboardLayouts ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        };
+
+        let url: string = 'dashboardLayouts';
+        this.filePath = './assets/data.DashboardLayouts.json';
+
+        return new Promise<DashboardLayout[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if (this.isDirtyDashboardLayouts) {
+                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
+                this.get(url)
+                    .then(res => {
+
+                        this.isDirtyDashboardLayouts = false;
+                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
+                        this.dashboardLayouts = res;
+
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables getDashboardLayouts 1',
+                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                this.dashboardLayouts);
+                        };
+
+                        resolve(this.dashboardLayouts);
+                    });
+            } else {
+                if (this.sessionDebugging) {
+                    console.log('%c    Global-Variables getDashboardLayouts 2',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                        this.dashboardLayouts);
+                };
+
+                resolve(this.dashboardLayouts);
+            }
+        });
+
+    }
+
     get<T>(url: string, options?: any, dashboardID?: number, datasourceID?: number): Promise<any> {
         // Generic GET data, later to be replaced with http
         if (this.sessionDebugging) {
@@ -9535,6 +9582,10 @@ export class GlobalVariableService {
                 } else if (url == 'paletteButtonBars') {
                     finalUrl = 'http://localhost:3001/' + url;
                 } else if (url == 'containerStyles') {
+                    finalUrl = 'http://localhost:3001/' + url;
+                } else if (url == 'dashboardLayouts') {
+                    finalUrl = 'http://localhost:3001/' + url;
+                } else if (url == 'widgetLayout') {
                     finalUrl = 'http://localhost:3001/' + url;
                 } else if (url == 'canvasBackgroundcolorsDefault') {
                     finalUrl = 'http://localhost:3001/' + url;
