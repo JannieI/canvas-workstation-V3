@@ -7955,6 +7955,52 @@ export class GlobalVariableService {
         });
     }
     
+        
+    saveBackgroundColor(data: CSScolor): Promise<string> {
+        // Description: Saves BackgroundColor
+        // Returns: 'Saved' or error message
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables saveBackgroundColor ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        };
+
+        let url: string = 'BackgroundColors';
+        this.filePath = './assets/data.BackgroundColor.json';
+
+        return new Promise<string>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.put('http://localhost:3001/' + url + '/' + data.id, data, {headers})
+            .subscribe(
+                res => {
+
+                    // Replace local
+                    let localIndex: number = this.backgroundcolors.findIndex(d =>
+                        d.id == data.id
+                    );
+                    if (localIndex >= 0) {
+                        this.backgroundcolors[localIndex] = data;
+                    };
+
+                    if (this.sessionDebugging) {
+                        console.log('saveBackgroundColor SAVED', {res})
+                    };
+
+                    resolve('Saved');
+                },
+                err => {
+                    if (this.sessionDebugging) {
+                        console.log('Error saveBackgroundColor FAILED', {err});
+                    };
+
+                    reject(err);
+                }
+            )
+        });
+    }
+
     getCanvasTasks(): Promise<CanvasTask[]> {
         // Description: Gets all Canvas Activities
         // Returns: this.canvasTasks array, unless:
