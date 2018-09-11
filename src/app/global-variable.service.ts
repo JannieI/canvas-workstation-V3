@@ -7922,7 +7922,7 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
-        let url: string = 'backgroundColors';
+        let url: string = 'canvasBackgroundcolors';
         this.filePath = './assets/data.backgroundColors.json';
 
 
@@ -7964,7 +7964,7 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
-        let url: string = 'BackgroundColors';
+        let url: string = 'canvasBackgroundcolors';
         this.filePath = './assets/data.BackgroundColor.json';
 
         return new Promise<string>((resolve, reject) => {
@@ -7993,6 +7993,58 @@ export class GlobalVariableService {
                 err => {
                     if (this.sessionDebugging) {
                         console.log('Error saveBackgroundColor FAILED', {err});
+                    };
+
+                    reject(err);
+                }
+            )
+        });
+    }
+
+    deleteBackgroundColor(id: number): Promise<string> {
+        // Description: Deletes a BackgroundColor
+        // Returns: 'Deleted' or error message
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables deleteBackgroundColor ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
+        };
+
+        let url: string = 'canvasBackgroundcolors';
+        this.filePath = './assets/data.BackgroundColor.json';
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.delete('http://localhost:3001/' + url + '/' + id, {headers})
+            .subscribe(
+                res => {
+
+                    // This is a different case: BackgroundColors is an
+                    // Observable, and will be refreshed with a .next by the calling
+                    // routine
+                    let dID: number = -1;
+                    for (var i = 0; i < this.backgroundcolors.length; i++) {
+
+                        if (this.backgroundcolors[i].id == id) {
+                            dID = i;
+                            break;
+                        };
+                    };
+                    if (dID >=0) {
+                        this.backgroundcolors.splice(dID, 1);
+                    };
+
+                    if (this.sessionDebugging) {
+                        console.log('deleteBackgroundColor DELETED id: ', {id})
+                    };
+
+                    resolve('Deleted');
+                },
+                err => {
+                    if (this.sessionDebugging) {
+                        console.log('Error deleteBackgroundColor FAILED', {err});
                     };
 
                     reject(err);
