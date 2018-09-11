@@ -7,7 +7,7 @@
                     <button type="button" class="closeButton" (click)="clickClose()">
                         <b>X</b>
                     </button>
-            
+
                     <div class="gridTitle">
                         <b>
                             Dashboard Tags
@@ -21,20 +21,20 @@
                                 <h5 style="margin-top: 0; color:gray;">
                                     Help
                                 </h5>
-                                <p style="margin-top: 0; color:gray;"> 
-                                    Tags help to group different Dashboards.  Any text 
-                                    can be used as a tag.  
+                                <p style="margin-top: 0; color:gray;">
+                                    Tags help to group different Dashboards.  Any text
+                                    can be used as a tag.
                                     Click the X or press Escape to close this form.
                                 </p>
                             </clr-signpost-content>
                         </clr-signpost>
-    
+
                     </div>
 
                     <div class="gridAdd">
                         New tag:
                         <input [(ngModel)]="newTag"
-                            type="text" 
+                            type="text"
                             name="newTag"
                             #newTagVar="ngModel"
                             required
@@ -70,7 +70,7 @@
                             </ul>
                         </nav>
                     </div>
-    
+
                     <div class="gridSelectedTitle">
                         <b>Selected Tags:</b>
                     </div>
@@ -83,8 +83,8 @@
                                     (click)="clickSelected(i)"
                                     >
                                     <span class="tagText">
-                                        <clr-icon shape="trash" 
-                                            size="12" 
+                                        <clr-icon shape="trash"
+                                            size="12"
                                             (dblclick)="dblclickDelete(row.id, i)"
                                             >
                                         </clr-icon>
@@ -111,7 +111,7 @@
                             (click)="clickClose('Close')"
                             >
                             Cancel
-                        </button> 
+                        </button>
                     </div>
                     <div class="gridButtonSave">
                         <button
@@ -123,7 +123,7 @@
                         </button>
                     </div>
                 </div>
-            </form> 
+            </form>
         </div>
     </div>
 </div>

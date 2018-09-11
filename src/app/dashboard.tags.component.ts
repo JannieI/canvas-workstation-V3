@@ -188,7 +188,7 @@ export class DashboardTagsComponent implements OnInit {
             };
 
         this.globalVariableService.addDashboardTag(newTag).then(res => {
-            this.selectedDashboardTags.push(newTag);
+            this.selectedDashboardTags.push(res);
         });
 
     }
@@ -196,7 +196,7 @@ export class DashboardTagsComponent implements OnInit {
     dblclickDelete(id: number, index: number){
         // Close the form, nothing saved
         this.globalFunctionService.printToConsole(this.constructor.name,'dblclickDelete', '@Start');
-
+console.warn('xx ..', id, index)
         // Remove from seleted list
         this.globalVariableService.deleteDashboardTag(id).then(res => {
             this.selectedDashboardTags.splice(index, 1);

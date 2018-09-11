@@ -341,7 +341,6 @@ export class WidgetContainerComponent implements OnInit {
             this.localWidget.shapeLineHeight = this.containerStyles[localIndex].shapeLineHeight;
             this.localWidget.shapeTextAlign = this.containerStyles[localIndex].shapeTextAlign;
 
-
             // Construct line size
             if (this.containerBorderSize != 'none'  &&  this.containerBorderColour != 'none') {
                 this.localWidget.containerBorder = this.containerBorderSize + ' ' +
@@ -349,6 +348,9 @@ export class WidgetContainerComponent implements OnInit {
             } else {
                 this.localWidget.containerBorder = 'none';
             };
+
+            // Update the TEXT (for Shape Widgets)
+            
             console.warn('xx this.localWidget.containerBorder', this.localWidget.containerBorder);
                         this.localWidget.containerBorder = this.containerBorderSize + ' ' + this.containerBorderType + ' ' + this.containerBorderColour;
 
