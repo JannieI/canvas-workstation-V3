@@ -64,7 +64,7 @@ export class ManageColoursComponent implements OnInit {
 
             this.backgroundcolorsDefault = res;
 
-            // Sort the lists
+            // Sort the list
             this.backgroundcolorsDefault.sort( (obj1,obj2) => {
                 if (obj1.name > obj2.name) {
                     return 1;
@@ -78,7 +78,7 @@ export class ManageColoursComponent implements OnInit {
         this.globalVariableService.getBackgroundColors().then(res => {
             this.backgroundcolors = res;
 
-            // Sort the lists
+            // Sort the list
             this.backgroundcolors.sort( (obj1,obj2) => {
                 if (obj1.name > obj2.name) {
                     return 1;
@@ -96,6 +96,9 @@ export class ManageColoursComponent implements OnInit {
         // Heighlight the clicked row
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAvailable', '@Start');
 
+        // Reset 
+        this.errorMessage = '';
+ 
         this.availableBgIndex = index;
     }
 
@@ -103,12 +106,18 @@ export class ManageColoursComponent implements OnInit {
         // Heighlight the clicked row
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelected', '@Start');
 
+        // Reset 
+        this.errorMessage = '';
+ 
         this.selectedBgIndex = index;
     }
 
     clickAddNew() {
         // Add text for a new tag
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAddNew', '@Start');
+
+        // Reset 
+        this.errorMessage = '';
 
         // Validation
         if (this.newColorName == ''  ||  this.newColorName == null  ||  this.newColorName == undefined) {
@@ -117,14 +126,16 @@ export class ManageColoursComponent implements OnInit {
         if (this.newColorCode == ''  ||  this.newColorCode == null  ||  this.newColorCode == undefined) {
             return;
         };
+        console.warn('xx len', this.backgroundcolors.length, this.backgroundcolorsDefault.length);
         
         let isFound: boolean = false;
         this.backgroundcolors.forEach(bg => {
-            if (bg.name == this.backgroundcolorsDefault[this.availableBgIndex].name) {
+            if (bg.name == this.newColorName) {
                 isFound = true;
             }
         });
         if (isFound) {
+            this.errorMessage = 'Colour already exists'
             return;
         };
 
@@ -139,6 +150,17 @@ export class ManageColoursComponent implements OnInit {
                 
         this.globalVariableService.addBackgroundColor(newCSSColour).then(res => {
             this.backgroundcolors.push(res);
+
+            // Sort the lists
+            this.backgroundcolors.sort( (obj1,obj2) => {
+                if (obj1.name > obj2.name) {
+                    return 1;
+                };
+                if (obj1.name < obj2.name) {
+                    return -1;
+                };
+                return 0;
+            });                
         });
 
 
@@ -148,6 +170,9 @@ export class ManageColoursComponent implements OnInit {
         // Add Bg colour that is selected on the Avaliable list
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
 
+        // Reset 
+        this.errorMessage = '';
+ 
         // Nothing to do
         if (this.availableBgIndex < 0) {
             return;
@@ -173,6 +198,18 @@ export class ManageColoursComponent implements OnInit {
                 
         this.globalVariableService.addBackgroundColor(newCSSColour).then(res => {
             this.backgroundcolors.push(res);
+            
+            // Sort the lists
+            this.backgroundcolors.sort( (obj1,obj2) => {
+                if (obj1.name > obj2.name) {
+                    return 1;
+                };
+                if (obj1.name < obj2.name) {
+                    return -1;
+                };
+                return 0;
+            });                
+
         });
 
     }
@@ -181,9 +218,24 @@ export class ManageColoursComponent implements OnInit {
         // Delete the selected Color
         this.globalFunctionService.printToConsole(this.constructor.name,'dblclickDelete', '@Start');
 console.warn('xx ..', id, index)
+
+        // Reset 
+        this.errorMessage = '';
+ 
         // Remove from seleted list
         this.globalVariableService.deleteBackgroundColor(id).then(res => {
             this.backgroundcolors.splice(index, 1);
+
+            // Sort the lists
+            this.backgroundcolors.sort( (obj1,obj2) => {
+                if (obj1.name > obj2.name) {
+                    return 1;
+                };
+                if (obj1.name < obj2.name) {
+                    return -1;
+                };
+                return 0;
+            });                
         });
 
     }
