@@ -489,6 +489,7 @@ export class AppComponent implements OnInit {
     showModalWidgetCheckpoints: boolean = false;
     showModalWidgetContainer: boolean = false;
     showModalWidgetContainerStylesAdd: boolean = false;
+    showModalManageColours: boolean = false;
     showModalWidgetContainerStylesEdit: boolean = false;
     showModalWidgetDelete: boolean = false;
     showModalWidgetDescription: boolean = false;
@@ -947,6 +948,15 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         this.showModalWidgetContainerStylesAdd = false;
     }
 
+    handleCloseManageColours() {
+        // Handle close of Manage Colours form
+        this.globalFunctionService.printToConsole(this.constructor.name,'ManageColours', '@Start');
+
+        this.menuOptionClickPostAction();
+
+        this.showModalManageColours = false;
+    }
+    
     handleCloseWidgetContainerStylesEdit() {
         // Handle close of ContainerStyles Edit form
         this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseWidgetContainerStylesEdit', '@Start');
