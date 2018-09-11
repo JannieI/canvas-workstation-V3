@@ -52,7 +52,8 @@ export class ManageColoursComponent implements OnInit {
     // availableDashboardTags: DashboardTag[] = [];
     backgroundcolors: CSScolor[];
     selectedDashboardTags: DashboardTag[] = [];
-    newTag: string = '';
+    newColorCode: string = '';
+    newColorName: string = '';
     paletteButtons: PaletteButtonBar[];
     paletteButtonsSelected: PaletteButtonsSelected[];
     availableBgIndex: number = -1;
@@ -123,13 +124,17 @@ export class ManageColoursComponent implements OnInit {
         // Add text for a new tag
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAddNew', '@Start');
 
-        // Nothing to do
-        if (this.newTag == ''  ||  this.newTag == null  ||  this.newTag == undefined) {
+        // Validation
+        if (this.newColorName == ''  ||  this.newColorName == null  ||  this.newColorName == undefined) {
             return;
         };
+        if (this.newColorCode == ''  ||  this.newColorCode == null  ||  this.newColorCode == undefined) {
+            return;
+        };
+        
         let isFound: boolean = false;
         this.selectedDashboardTags.forEach(dt => {
-            if (dt.tag == this.newTag) {
+            if (dt.tag == this.newColorName) {
                 isFound = true;
             }
         });
@@ -138,16 +143,18 @@ export class ManageColoursComponent implements OnInit {
         };
 
         // Add to DB, and local Array
-        let newTag: DashboardTag =
+        let newCSSColour: CSScolor =
             {
                 id: null,
-                dashboardID: this.selectedDashboard.id,
-                tag: this.newTag
+                name: this.newColorName,
+                cssCode: this.newColorCode,
+                shortList: false
             };
-
-        this.globalVariableService.addDashboardTag(newTag).then(res => {
+                
+        this.globalVariableService.addBackgroundColor(newCSSColour).then(res => {
             this.selectedDashboardTags.push(res);
         });
+
 
     }
 

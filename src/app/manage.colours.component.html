@@ -34,18 +34,32 @@
                     </div>
 
                     <div class="gridAdd">
-                        New colour:
-                        <input [(ngModel)]="newTag"
+                        New Name:
+                        <input [(ngModel)]="newColorName"
                             type="text"
-                            name="newTag"
+                            name="newColorName"
                             #newTagVar="ngModel"
                             required
                             minlength="3"
                             maxlength="40"
                             [style.color]="!newTagVar.valid ? 'red' : 'gray'"
-                            placeholder="Enter new tag name here"
+                            placeholder="Enter new colour name here, ie Black"
                             >
                     </div>
+                    <div class="gridAdd">
+                        New Code:
+                        <input [(ngModel)]="newColorCode"
+                            type="text"
+                            name="newColorCode"
+                            #newTagVar="ngModel"
+                            required
+                            minlength="3"
+                            maxlength="40"
+                            [style.color]="!newTagVar.valid ? 'red' : 'gray'"
+                            placeholder="Enter new HEX colour code here, ie #000000"
+                            >
+                    </div>
+
                     <div class="gridButtonAdd">
                         <button  type="button"
                             class="btn btn-link"
