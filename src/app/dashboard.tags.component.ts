@@ -131,23 +131,18 @@ export class DashboardTagsComponent implements OnInit {
             return;
         };
 
-        // TODO - do this better with a DB
-        let maxIDs: number[] = [];
-        let maxID: number = 0;
-        this.globalVariableService.currentDashboardTags.forEach(pbs =>
-            maxIDs.push (pbs.id)
-        );
-        maxID = Math.max(...maxIDs);
-
-        maxID = maxID + 1;
-        this.selectedDashboardTags.push(
+        // Add to DB, and local Array
+        let newTag: DashboardTag =
             {
-                id: maxID,
+                id: null,
                 dashboardID: this.selectedDashboard.id,
-                tag: this.newTag
+                tag: this.availableDashboardTags[this.availableTagIndex].tag
+            };
 
-            }
-        );
+        this.globalVariableService.addDashboardTag(newTag).then(res => {
+            this.selectedDashboardTags.push(res);
+        });
+
     }
 
     clickAdd() {
@@ -168,23 +163,12 @@ export class DashboardTagsComponent implements OnInit {
             return;
         };
 
-        // Get selected in Available, and add to Selected
-
-        // TODO - do this better with a DB
-        // let maxIDs: number[] = [];
-        // let maxID: number = 0;
-        // this.globalVariableService.currentDashboardTags.forEach(pbs =>
-        //     maxIDs.push (pbs.id)
-        // );
-        // maxID = Math.max(...maxIDs);
-
-        // maxID = maxID + 1;
+        // Add to DB, and local Array
         let newTag: DashboardTag =
             {
                 id: null,
                 dashboardID: this.selectedDashboard.id,
                 tag: this.availableDashboardTags[this.availableTagIndex].tag
-
             };
 
         this.globalVariableService.addDashboardTag(newTag).then(res => {
