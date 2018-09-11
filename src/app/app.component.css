@@ -126,14 +126,12 @@
     color: gray;
     display: inline-block;
     font-size: 24px;
-    height: 200px;
-    left: 50px;
     margin: 10px;
     position: absolute;
     padding: auto;
-    top: 50px;
-    width: 200px;
+    text-align:center;
 }
+
 
 /* Widget */
 .widgetContainer {

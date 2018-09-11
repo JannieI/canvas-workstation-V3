@@ -6,7 +6,7 @@
                 <button type="button" class="closeButton" (click)="clickClose()">
                     <b>X</b>
                 </button>
-    
+
                 <div class="gridTitle">
                     <b>Add a New Dashboard.</b>
                     <clr-signpost>
@@ -18,17 +18,17 @@
                             <h5 style="margin-top: 0; color:gray;">
                                 Help
                             </h5>
-                            <p style="margin-top: 0; color:gray;"> 
+                            <p style="margin-top: 0; color:gray;">
                                 The existing open Dashboard will be closed (all changes will be saved
                                 automatically) and a new Dashboard will be opened.  It has one Tab
                                 called Tab1 (shown in the Statusbar at the bottom of the screen).  A Tab can be renamed
                                 by clicking on its name.  More Tabs can be added using the
-                                <clr-icon shape="plus"></clr-icon> in the Statusbar. You can add 
-                                Dashboard properties (ie. Description) under the Dashboard -> 
-                                Details menu option.  After creation, the new Dashboard is only 
+                                <clr-icon shape="plus"></clr-icon> in the Statusbar. You can add
+                                Dashboard properties (ie. Description) under the Dashboard ->
+                                Details menu option.  After creation, the new Dashboard is only
                                 visible and editable by yourself.  Other users or groups
-                                have to be granted Permissions, using the Dashboard -> Share menu 
-                                option. 
+                                have to be granted Permissions, using the Dashboard -> Share menu
+                                option.
                             </p>
                         </clr-signpost-content>
                     </clr-signpost>
@@ -94,7 +94,7 @@
                 </div>
 
                 <div class="gridImportMessage">
-                    When Importing a Dashboard, a brand new Dashboard is created (and new 
+                    When Importing a Dashboard, a brand new Dashboard is created (and new
                     permisions, etc has to be created afresh).
                 </div>
 
@@ -117,6 +117,15 @@
                     </button>
                 </div>
 
+                <div class="gridImages">
+                    <img src="../images/Layout 5 x 3.png" 
+                        alt=""
+                        height="50"
+                        style="border: 1px solid darkgray; margin: 2px; padding: 2px;"
+                        width="80"
+                        (click)="clickImage()"
+                        >
+                </div>
             </div>
         </div>
     </div>

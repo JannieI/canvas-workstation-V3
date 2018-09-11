@@ -29,7 +29,7 @@ import { DashboardScheduleLog }       from './models';
 import { DashboardSubscription }      from './models';
 import { DashboardTab }               from './models';
 import { DashboardTag }               from './models';
-import { DashboardTemplate }          from './models';
+import { DashboardLayout }            from './models';
 import { DashboardTheme }             from './models';
 import { DataCachingTable }           from './models';
 import { DataConnection }             from './models';
@@ -516,7 +516,7 @@ export class GlobalVariableService {
     dashboardTabs: DashboardTab[] = [];
     dashboardTags: DashboardTag[] = [];
     dashboardThemes: DashboardTheme[] = [];
-    dashboardTemplates: DashboardTemplate[] = [];
+    dashboardLayouts: DashboardLayout[] = [];
     datasources: Datasource[] = [];
     datasourceSchedules: DatasourceSchedule[] = [];
     datasourceScheduleLog: DatasourceScheduleLog[] = [];

@@ -769,10 +769,10 @@ export class DashboardTag {
     tag: string;
 }
 
-export class DashboardTemplate {
-    id: number;
-    name: string;
-    description: string;
+export class DashboardLayout {
+    id: number;                         // Unique ID
+    name: string;                       // Short Name, ie 3 x 5 with 5 blocks
+    description: string;                // More detailed description
 }
 
 export class DashboardTheme {
@@ -867,7 +867,9 @@ export class DashboardSubscription {
     notify: string;                     // How to be notified: Email, Message, Both
 }
 
-export class WidgetTemplate {
+export class WidgetLayout {
+    id: number;                         // Unique ID
+    dashboardLayoutID: number;        // FK of the D Layout to which it belongs
     height: number;                     // Heigth of box
     left: number;                       // Left position
     top: number;                        // Top position

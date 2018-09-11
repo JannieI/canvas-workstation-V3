@@ -1940,10 +1940,33 @@
 <!-- TEST -->
 
 <!-- <div> <input type="text" [(ngModel)]="testIndexDB">    </div> -->
-    <div class="widgetTemplate"
+    <div class="widgetTemplate" *ngFor="let row of widgetTemplate; let i = index"
+        [style.height.px]="row.height"
+        [style.left.px]="row.left"
+        [style.top.px]="row.top"
+        [style.width.px]="row.width"
         (click)="clickWidgetCreate()"
         >
-        Click to add a Graph
+        <div
+            [style.line-height.px]="row.height"
+            >
+            Click
+            <clr-icon shape="trash" 
+                style="color: red; margin: 3px;"
+                (click)="clickMenuWidgetContainer(popupWidgetType, popupWidgetID)"
+                >
+            </clr-icon>
+            <clr-icon shape="line-chart" 
+                style="color: blue; margin: 3px;"
+                (click)="clickMenuWidgetContainer(popupWidgetType, popupWidgetID)"
+                >
+            </clr-icon>
+            <clr-icon shape="text" 
+                style="color: green; margin: 3px;"
+                (click)="clickMenuWidgetContainer(popupWidgetType, popupWidgetID)"
+                >
+            </clr-icon>
+        </div>
     </div>
 
         <!-- TEST ENDs -->

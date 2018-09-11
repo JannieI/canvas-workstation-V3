@@ -17,7 +17,7 @@ import { GlobalVariableService}       from './global-variable.service';
 
 // Models
 import { Dashboard }                  from './models';
-import { DashboardTemplate }          from './models';
+import { DashboardLayout }          from './models';
 
 @Component({
     selector: 'dashboard-template',

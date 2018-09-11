@@ -30,6 +30,8 @@ import { PaletteButtonBar }           from './models'
 import { WebSocketMessage }           from './models'
 import { Widget }                     from './models'
 import { WidgetCheckpoint }           from './models';
+import { WidgetLayout }               from './models';
+
 import { WidgetSingleComponent }      from './widget.single.component';
 
 // Vega, Vega-Lite
@@ -529,7 +531,7 @@ export class AppComponent implements OnInit {
             height: 0,
         };
     widgetGroup: number[] = [];
-    widgetTemplate: 
+    widgetLayouts: WidgetLayout[] = [];
     zoomFactor: string = 'scale(1)';
 
     // WS Stuffies
@@ -578,9 +580,15 @@ export class AppComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        // var type = 'article';
-        // this[type+'_count'] = 1000;  // in a function we use "this";
-        // alert(this.article_count);
+
+        this.widgetLayouts.push({
+            id: 1,
+            dashboardLayoutID: 1,
+            height: 250, 
+            left: 30,
+            top: 150,
+            width: 200
+        })
 
         // Local App info DB
         this.dbCanvasAppDatabase = new CanvasAppDatabase
