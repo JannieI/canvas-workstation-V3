@@ -51,7 +51,7 @@ export class ManageColoursComponent implements OnInit {
 
     // availableDashboardTags: DashboardTag[] = [];
     backgroundcolors: CSScolor[];
-    selectedDashboardTags: DashboardTag[] = [];
+    backgroundcolorsDefault: CSScolor[];
     newColorCode: string = '';
     newColorName: string = '';
     paletteButtons: PaletteButtonBar[];
@@ -68,30 +68,22 @@ export class ManageColoursComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        
         // Get setup info
+        this.backgroundcolorsDefault = this.globalVariableService.backgroundcolorsDefault.slice();
         this.backgroundcolors = this.globalVariableService.backgroundcolors.slice();
 
         this.globalVariableService.getDashboardTags().then(dt => {
 
-            // Get selected, before any manipulation done to dt
-            this.selectedDashboardTags = dt.filter(f =>
-                f.dashboardID == this.selectedDashboard.id
-            )
-
-            // Get a unique list of tags
-            let availableTagText = new Set(dt.map(t => t.tag));
-            let availableTagTextArray = Array.from(availableTagText);
-
-            // for (let i = 0; i < dt.length; i++) {
-
-            //     if (availableTagTextArray.indexOf(dt[i].tag) >= 0) {
-            //         this.availableDashboardTags.push(dt[i]);
-            //         availableTagTextArray = availableTagTextArray.slice(1);
-            //     };
-            // };
-
-            // Sort the available tags
+            // Sort the lists
+            this.backgroundcolorsDefault.sort( (obj1,obj2) => {
+                if (obj1.name > obj2.name) {
+                    return 1;
+                };
+                if (obj1.name < obj2.name) {
+                    return -1;
+                };
+                return 0;
+            });
             this.backgroundcolors.sort( (obj1,obj2) => {
                 if (obj1.name > obj2.name) {
                     return 1;
@@ -133,8 +125,8 @@ export class ManageColoursComponent implements OnInit {
         };
         
         let isFound: boolean = false;
-        this.selectedDashboardTags.forEach(dt => {
-            if (dt.tag == this.newColorName) {
+        this.backgroundcolors.forEach(bg => {
+            if (bg.name == this.backgroundcolorsDefault[this.availableBgIndex].name) {
                 isFound = true;
             }
         });
@@ -152,14 +144,14 @@ export class ManageColoursComponent implements OnInit {
             };
                 
         this.globalVariableService.addBackgroundColor(newCSSColour).then(res => {
-            this.selectedDashboardTags.push(res);
+            this.backgroundcolors.push(res);
         });
 
 
     }
 
     clickAdd() {
-        // Add tag that is selected on the Avaliable Tag list
+        // Add Bg colour that is selected on the Avaliable list
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
 
         // Nothing to do
@@ -167,8 +159,8 @@ export class ManageColoursComponent implements OnInit {
             return;
         };
         let isFound: boolean = false;
-        this.selectedDashboardTags.forEach(dt => {
-            if (dt.tag == this.backgroundcolors[this.availableBgIndex].tag) {
+        this.backgroundcolors.forEach(bg => {
+            if (bg.name == this.backgroundcolorsDefault[this.availableBgIndex].name) {
                 isFound = true;
             }
         });
@@ -180,13 +172,13 @@ export class ManageColoursComponent implements OnInit {
         let newCSSColour: CSScolor =
             {
                 id: null,
-                name: this.backgroundcolors[this.availableBgIndex].name,
-                cssCode: this.backgroundcolors[this.availableBgIndex].cssCode,
-                shortList: this.backgroundcolors[this.availableBgIndex].shortList
+                name: this.backgroundcolorsDefault[this.availableBgIndex].name,
+                cssCode: this.backgroundcolorsDefault[this.availableBgIndex].cssCode,
+                shortList: this.backgroundcolorsDefault[this.availableBgIndex].shortList
             };
                 
         this.globalVariableService.addBackgroundColor(newCSSColour).then(res => {
-            this.selectedDashboardTags.push(res);
+            this.backgroundcolors.push(res);
         });
 
     }
@@ -196,8 +188,8 @@ export class ManageColoursComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'dblclickDelete', '@Start');
 console.warn('xx ..', id, index)
         // Remove from seleted list
-        this.globalVariableService.deleteDashboardTag(id).then(res => {
-            this.selectedDashboardTags.splice(index, 1);
+        this.globalVariableService.deleteBackgroundColor(id).then(res => {
+            this.backgroundcolors.splice(index, 1);
         });
 
     }
@@ -205,42 +197,6 @@ console.warn('xx ..', id, index)
     clickClose(action: string) {
         // Close the form, nothing saved
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
-
-		this.formManageColoursClosed.emit(action);
-    }
-
-    clickSave(action: string) {
-        // Save data, and Close the form
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
-
-        // TODO - this can of course be done more cleverly and eliquently and fasta
-        // Delete all Tags for this D
-        for (let i = this.globalVariableService.dashboardTags.length - 1; i >= 0; i--) {
-            if (this.globalVariableService.dashboardTags[i].dashboardID ==
-                this.selectedDashboard.id) {
-                    this.globalVariableService.deleteDashboardTag(
-                        this.globalVariableService.dashboardTags[i].id
-                    );
-                    // this.globalVariableService.dashboardTags.splice(i, 1)
-            };
-        };
-
-        // Add the new ones to the DB
-        // TODO - note that IDs in paletteButtonsSelected sent to app is DIFF to DB ...
-        this.selectedDashboardTags.forEach(dt =>
-                this.globalVariableService.addDashboardTag(dt)
-        );
-
-        // Tell user
-        this.globalVariableService.showStatusBarMessage(
-            {
-                message: 'Changes Saved',
-                uiArea: 'StatusBar',
-                classfication: 'Info',
-                timeout: 3000,
-                defaultMessage: ''
-            }
-        );
 
 		this.formManageColoursClosed.emit(action);
     }

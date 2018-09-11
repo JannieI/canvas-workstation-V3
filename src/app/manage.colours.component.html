@@ -74,13 +74,13 @@
                     <div class="gridAvailable">
                         <nav>
                             <ul class="nav-list">
-                                <div *ngFor="let row of backgroundcolors; let i = index"
+                                <div *ngFor="let row of backgroundcolorsDefault; let i = index"
                                     [style.background-color]="availableBgIndex==i? '#123456' : 'transparent'"
                                     [style.color]="(i == availableBgIndex)? 'white' : 'gray'"
                                     (click)="clickAvailable(i)"
                                     >
                                     <span class="tagText">
-                                        {{ row.tag }}
+                                        {{ row.name }}
                                     </span>
                                 </div>
                             </ul>
@@ -93,7 +93,7 @@
                     <div class="gridSelected">
                         <nav>
                             <ul class="nav-list">
-                                <div *ngFor="let row of selectedDashboardTags; let i = index"
+                                <div *ngFor="let row of backgroundcolors; let i = index"
                                     [style.background-color]="selectedTagIndex==i? '#123456' : 'transparent'"
                                     [style.color]="(i == selectedTagIndex)? 'white' : 'gray'"
                                     (click)="clickSelected(i)"
@@ -104,7 +104,7 @@
                                             (dblclick)="dblclickDelete(row.id, i)"
                                             >
                                         </clr-icon>
-                                        {{ row.tag }}
+                                        {{ row.name }}
                                     </span>
                                 </div>
                             </ul>
@@ -129,7 +129,7 @@
                             Cancel
                         </button>
                     </div>
-                    <div class="gridButtonSave">
+                    <!-- <div class="gridButtonSave">
                         <button
                             type="button"
                             class="gridButtonSave btn btn-primary"
@@ -137,7 +137,7 @@
                             >
                             Save
                         </button>
-                    </div>
+                    </div> -->
                 </div>
             </form>
         </div>
