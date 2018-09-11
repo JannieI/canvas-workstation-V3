@@ -60,9 +60,9 @@
                     <div class="gridAvailable">
                         <nav>
                             <ul class="nav-list">
-                                <div *ngFor="let row of availableDashboardTags; let i = index"
-                                    [style.background-color]="availableTagIndex==i? '#123456' : 'transparent'"
-                                    [style.color]="(i == availableTagIndex)? 'white' : 'gray'"
+                                <div *ngFor="let row of backgroundcolors; let i = index"
+                                    [style.background-color]="availableBgIndex==i? '#123456' : 'transparent'"
+                                    [style.color]="(i == availableBgIndex)? 'white' : 'gray'"
                                     (click)="clickAvailable(i)"
                                     >
                                     <span class="tagText">

@@ -17,6 +17,7 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService}       from './global-variable.service';
 
 // Models
+import { CSScolor }                   from './models';
 import { Dashboard }                  from './models';
 import { DashboardTag }               from './models';
 
@@ -48,12 +49,13 @@ export class ManageColoursComponent implements OnInit {
 
     }
 
-    availableDashboardTags: DashboardTag[] = [];
+    // availableDashboardTags: DashboardTag[] = [];
+    backgroundcolors: CSScolor[];
     selectedDashboardTags: DashboardTag[] = [];
     newTag: string = '';
     paletteButtons: PaletteButtonBar[];
     paletteButtonsSelected: PaletteButtonsSelected[];
-    availableTagIndex: number = -1;
+    availableBgIndex: number = -1;
     selectedTagIndex: number = -1;
 
 	constructor(
@@ -64,6 +66,10 @@ export class ManageColoursComponent implements OnInit {
     ngOnInit() {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
+        
+        // Get setup info
+        this.backgroundcolors = this.globalVariableService.backgroundcolors.slice();
 
         this.globalVariableService.getDashboardTags().then(dt => {
 
@@ -76,20 +82,20 @@ export class ManageColoursComponent implements OnInit {
             let availableTagText = new Set(dt.map(t => t.tag));
             let availableTagTextArray = Array.from(availableTagText);
 
-            for (let i = 0; i < dt.length; i++) {
+            // for (let i = 0; i < dt.length; i++) {
 
-                if (availableTagTextArray.indexOf(dt[i].tag) >= 0) {
-                    this.availableDashboardTags.push(dt[i]);
-                    availableTagTextArray = availableTagTextArray.slice(1);
-                };
-            };
+            //     if (availableTagTextArray.indexOf(dt[i].tag) >= 0) {
+            //         this.availableDashboardTags.push(dt[i]);
+            //         availableTagTextArray = availableTagTextArray.slice(1);
+            //     };
+            // };
 
             // Sort the available tags
-            this.availableDashboardTags.sort( (obj1,obj2) => {
-                if (obj1.tag > obj2.tag) {
+            this.backgroundcolors.sort( (obj1,obj2) => {
+                if (obj1.name > obj2.name) {
                     return 1;
                 };
-                if (obj1.tag < obj2.tag) {
+                if (obj1.name < obj2.name) {
                     return -1;
                 };
                 return 0;
@@ -103,7 +109,7 @@ export class ManageColoursComponent implements OnInit {
         // Heighlight the clicked row
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAvailable', '@Start');
 
-        this.availableTagIndex = index;
+        this.availableBgIndex = index;
     }
 
     clickSelected(index: number){
@@ -150,12 +156,12 @@ export class ManageColoursComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
 
         // Nothing to do
-        if (this.availableTagIndex < 0) {
+        if (this.availableBgIndex < 0) {
             return;
         };
         let isFound: boolean = false;
         this.selectedDashboardTags.forEach(dt => {
-            if (dt.tag == this.availableDashboardTags[this.availableTagIndex].tag) {
+            if (dt.tag == this.backgroundcolors[this.availableBgIndex].tag) {
                 isFound = true;
             }
         });
@@ -164,14 +170,15 @@ export class ManageColoursComponent implements OnInit {
         };
 
         // Add to DB, and local Array
-        let newTag: DashboardTag =
+        let newCSSColour: CSScolor =
             {
                 id: null,
-                dashboardID: this.selectedDashboard.id,
-                tag: this.availableDashboardTags[this.availableTagIndex].tag
+                name: this.backgroundcolors[this.availableBgIndex].name,
+                cssCode: this.backgroundcolors[this.availableBgIndex].cssCode,
+                shortList: this.backgroundcolors[this.availableBgIndex].shortList
             };
-
-        this.globalVariableService.addDashboardTag(newTag).then(res => {
+                
+        this.globalVariableService.addBackgroundColor(newCSSColour).then(res => {
             this.selectedDashboardTags.push(res);
         });
 
