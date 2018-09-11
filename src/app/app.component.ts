@@ -529,6 +529,7 @@ export class AppComponent implements OnInit {
             height: 0,
         };
     widgetGroup: number[] = [];
+    widgetTemplate: 
     zoomFactor: string = 'scale(1)';
 
     // WS Stuffies

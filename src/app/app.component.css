@@ -118,6 +118,23 @@
     padding: 2px;
 }
 
+/* Widget Template */
+.widgetTemplate {
+    background-color: transparent;
+    border: 1px solid black;
+    border-radius: 12px;
+    color: gray;
+    display: inline-block;
+    font-size: 24px;
+    height: 200px;
+    left: 50px;
+    margin: 10px;
+    position: absolute;
+    padding: auto;
+    top: 50px;
+    width: 200px;
+}
+
 /* Widget */
 .widgetContainer {
     display: inline-block;

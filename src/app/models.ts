@@ -867,6 +867,13 @@ export class DashboardSubscription {
     notify: string;                     // How to be notified: Email, Message, Both
 }
 
+export class WidgetTemplate {
+    height: number;                     // Heigth of box
+    left: number;                       // Left position
+    top: number;                        // Top position
+    width: number;                      // Width of box
+}
+
 export class Widget {
 
     // Type

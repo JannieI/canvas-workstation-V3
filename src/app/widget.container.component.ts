@@ -29,8 +29,8 @@ import { Subscription }               from 'rxjs';
 })
 export class WidgetContainerComponent implements OnInit {
 
-    @Output() formWidgetContainerClosed: EventEmitter<Widget> = new EventEmitter();
     @Input() selectedWidget: Widget;
+    @Output() formWidgetContainerClosed: EventEmitter<Widget> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
@@ -83,12 +83,16 @@ export class WidgetContainerComponent implements OnInit {
     ngOnInit() {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+console.warn('xx selectedWidget', this.selectedWidget);
 
         // Deep copy original
         this.oldWidget = JSON.parse(JSON.stringify(this.selectedWidget));
 
         // Deep copy local copy - Note: this must be done at the start of this method
         this.localWidget = JSON.parse(JSON.stringify(this.selectedWidget));
+
+        // Get setup info
+        this.backgroundcolors = this.globalVariableService.backgroundcolors.slice();
 
         console.warn('xx this.localWidget.containerStyleID', this.localWidget.containerStyleID);
 
@@ -132,17 +136,18 @@ export class WidgetContainerComponent implements OnInit {
             this.selectedWidget.containerBorder != 'none') {
                 let space1: number = this.selectedWidget.containerBorder.indexOf(' ');
                 if (space1 > 0) {
-                    this.containerBorderSize = this.selectedWidget.containerBorder.substr(0, space1);
+                    this.containerBorderSize = this.selectedWidget.containerBorder.
+                        substr(0, space1).trim();
                     let rest: string = this.selectedWidget.containerBorder.substr(space1 + 1, 999);
 
                     let space2: number = rest.indexOf(' ');
                     if (space2 > 0) {
 
-                        this.containerBorderType = rest.substr(0, space2)
-                        this.containerBorderColour = rest.substr(space2 + 1, 999);
+                        this.containerBorderType = rest.substr(0, space2).trim();
+                        this.containerBorderColour = rest.substr(space2 + 1, 999).trim();
                     };
                 };
-                console.warn('xx linestuff', this.containerBorderSize, this.containerBorderType,  this.containerBorderColour);
+                console.warn('xx linestuff', ':'+ this.containerBorderSize+':'+ this.containerBorderType+':'+  this.containerBorderColour);
 
         };
         console.warn('xx start Wcont', this.globalVariableService.currentWidgets)
@@ -172,9 +177,6 @@ export class WidgetContainerComponent implements OnInit {
                 };
             };
         });
-
-        // Get setup info
-        this.backgroundcolors = this.globalVariableService.backgroundcolors.slice();
 
     }
 
@@ -217,14 +219,18 @@ export class WidgetContainerComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectLineColor', '@Start');
 
         this.containerBorderColour = ev.target.value;
-
+        let bgIndex: number = this.backgroundcolors.findIndex(bg => bg.name == ev.target.value);
+        if (bgIndex >= 0) {
+            // this.containerBorderColour = this.backgroundcolors[bgIndex].cssCode;
+        };
+        
         // Construct line size
         if (this.containerBorderSize != 'none') {
             this.localWidget.containerBorder = this.containerBorderSize + ' ' + this.containerBorderType + ' ' + this.containerBorderColour;
         } else {
             this.localWidget.containerBorder = this.containerBorderSize
         };
-        console.warn('xx line', this.localWidget.containerBorder, this.containerBorderColour, this.containerBorderSize);
+        console.warn('xx line', this.localWidget.containerBorder, '-', this.containerBorderColour);
 
     }
 

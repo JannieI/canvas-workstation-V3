@@ -530,6 +530,8 @@ This document describes items for later versions of Canvas.
     -------
     - links (to web and other D, T)
     - Slicer: all ALL, NONE options to list of checkboxes (or the heading, or the caret dropdown menu)
+    - make typing / changing text easier - type into box like PowerPoint
+    - create a Word-like reporter (Terence uses this): Another great use would be to make a report. Not so much for display but for reading. Like a monthly report on exposures. We currently use word for that but the only difference from what you already have would beprinting in A4 format with different font and wording formats.
     - write text vertically !
     - have UPPERCASE / Sentence Case options
     - add triangle, or make arrow more sophisticated = no line (! triangle), no arrowhead:

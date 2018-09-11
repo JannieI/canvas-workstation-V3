@@ -91,7 +91,7 @@
                             (change)="clickSelectBgColor($event)"
                             >
                             <option *ngFor="let row of backgroundcolors"
-                                [style.background-color]="row.name"
+                                [style.background-color]="row.cssCode"
                                 >
                                 {{ row.name }}
                             </option>
@@ -106,15 +106,15 @@
                     </button>
 
                     <div class="gridLinecolorTitle">
-                        Border Colour:
+                        Border Colour:                        
                     </div>
                     <div class="select gridLinecolor">
                         <select [(ngModel)]="containerBorderColour"
-                            (change)="clickSelectLineColor($event)"
                             name="containerBorderColour"
+                            (change)="clickSelectLineColor($event)"
                             >
                             <option *ngFor="let row of backgroundcolors"
-                                [style.background-color]="row.name"
+                                [style.background-color]="row.cssCode"
                                 >
                                 {{ row.name }}
                             </option>
