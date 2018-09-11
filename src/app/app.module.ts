@@ -61,6 +61,7 @@ import { WidgetSingleComponent }      from './widget.single.component';
 import { WidgetContainerComponent }   from './widget.container.component';
 import { WidgetContainerStylesAddComponent }    from './widget.containerStylesAdd.component';
 import { WidgetContainerStylesEditComponent }   from './widget.containerStylesEdit.component';
+import { ManageColoursComponent }     from './manage.colours.component';
 import { WidgetTitleComponent }       from './widget.title.component';
 import { WidgetRefreshComponent }     from './widget.refresh.component';
 import { WidgetAnnotationsComponent } from './widget.annotations.component';
@@ -239,6 +240,7 @@ import { StatusbarComponent }         from './statusbar.component';
         WidgetContainerComponent,
         WidgetContainerStylesAddComponent,
         WidgetContainerStylesEditComponent,
+        ManageColoursComponent,
         WidgetTitleComponent,
         WidgetRefreshComponent,
         WidgetAnnotationsComponent,

@@ -7914,6 +7914,47 @@ export class GlobalVariableService {
 
     }
 
+    addBackgroundColor(data: CSScolor): Promise<any> {
+        // Description: Adds a new BackgroundColor
+        // Returns: Added Data or error message
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables addBackgroundColor ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        };
+
+        let url: string = 'backgroundColors';
+        this.filePath = './assets/data.backgroundColors.json';
+
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.post('http://localhost:3001/' + url, data, {headers})
+                .subscribe(
+                    res => {
+
+                        // Update Global vars to make sure they remain in sync
+                        this.backgroundcolors.push(JSON.parse(JSON.stringify(res)));
+
+                        if (this.sessionDebugging) {
+                            console.log('addBackgroundColor ADDED', {data}, this.widgets)
+                        };
+
+                        resolve(data);
+                    },
+                    err => {
+                        if (this.sessionDebugging) {
+                            console.log('Error addBackgroundColor FAILED', {err});
+                        };
+
+                        reject(err);
+                    }
+                )
+        });
+    }
+    
     getCanvasTasks(): Promise<CanvasTask[]> {
         // Description: Gets all Canvas Activities
         // Returns: this.canvasTasks array, unless:
@@ -9327,6 +9368,8 @@ export class GlobalVariableService {
                 } else if (url == 'paletteButtonBars') {
                     finalUrl = 'http://localhost:3001/' + url;
                 } else if (url == 'containerStyles') {
+                    finalUrl = 'http://localhost:3001/' + url;
+                } else if (url == 'canvasBackgroundcolors') {
                     finalUrl = 'http://localhost:3001/' + url;
                 } else if (url == 'paletteButtonsSelecteds') {
                     finalUrl = 'http://localhost:3001/' + url;

@@ -10,7 +10,7 @@
 
                     <div class="gridTitle">
                         <b>
-                            Dashboard Tags
+                            Manage Colours
                         </b>
                         <clr-signpost>
                             <clr-icon shape="info-circle"
@@ -22,8 +22,10 @@
                                     Help
                                 </h5>
                                 <p style="margin-top: 0; color:gray;">
-                                    Tags help to group different Dashboards.  Any text
-                                    can be used as a tag.
+                                    Canvas has a built in set of colours.  Use this form to 
+                                    specify what colours are available.  These can be used to
+                                    define any colour property in Canvas, like background or 
+                                    line colour.
                                     Click the X or press Escape to close this form.
                                 </p>
                             </clr-signpost-content>
@@ -32,7 +34,7 @@
                     </div>
 
                     <div class="gridAdd">
-                        New tag:
+                        New colour:
                         <input [(ngModel)]="newTag"
                             type="text"
                             name="newTag"
@@ -53,7 +55,7 @@
                     </div>
 
                     <div class="gridAvailableTitle">
-                        <b>Tags used before:</b>
+                        <b>Default Colours:</b>
                     </div>
                     <div class="gridAvailable">
                         <nav>
@@ -72,7 +74,7 @@
                     </div>
 
                     <div class="gridSelectedTitle">
-                        <b>Selected Tags:</b>
+                        <b>Selected Colours:</b>
                     </div>
                     <div class="gridSelected">
                         <nav>
