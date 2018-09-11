@@ -499,6 +499,7 @@ export class GlobalVariableService {
     // Permanent data
     actions: CanvasAction[] = [];
     backgroundcolors: CSScolor[] = [];
+    backgroundcolorsDefault: CSScolor[] = [];
     canvasAuditTrails: CanvasAuditTrail[] = [];
     canvasComments: CanvasComment[] = [];
     canvasGroups: CanvasGroup[] = [];
@@ -619,6 +620,7 @@ export class GlobalVariableService {
 
     // Dirtiness of system (local) data: True if dirty (all dirty at startup)
     isDirtyBackgroundColors: boolean = true;
+    isDirtyBackgroundColorsDefault: boolean = true;
     isDirtyCanvasComments: boolean = true;
     isDirtyCanvasGroups: boolean = true;
     isDirtyCanvasMessages: boolean = true;
@@ -7869,6 +7871,51 @@ export class GlobalVariableService {
         })
     }
 
+    getBackgroundColorsDefault(): Promise<CSScolor[]> {
+        // Description: Gets the DEFAULT (built-in) Background colors
+        // Returns: this.backgroundcolors array, unless:
+        //   If not cached or if dirty, get from File
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getBackgroundColorsDefault ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        };
+
+        let url: string = 'canvasBackgroundcolorsDefault';
+        this.filePath = './assets/settings.backgroundcolors.json';
+
+        return new Promise<CSScolor[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if ( (this.backgroundcolorsDefault.length == 0)  ||  (this.isDirtyBackgroundColorsDefault) ) {
+                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
+                this.get(url)
+                    .then(res => {
+                        this.backgroundcolorsDefault = res;
+
+                        this.isDirtyBackgroundColorsDefault = false;
+                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
+
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables getBackgroundColorsDefault 1',
+                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                                this.backgroundcolorsDefault)
+                        };
+
+                        resolve(this.backgroundcolorsDefault);
+                    });
+            } else {
+                if (this.sessionDebugging) {
+                    console.log('%c    Global-Variables getBackgroundColorsDefault 2',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                        this.backgroundcolorsDefault)
+                };
+
+                resolve(this.backgroundcolorsDefault);
+            }
+        });
+
+    }
+
     getBackgroundColors(): Promise<CSScolor[]> {
         // Description: Gets all Background colors
         // Returns: this.backgroundcolors array, unless:
@@ -9466,6 +9513,8 @@ export class GlobalVariableService {
                 } else if (url == 'paletteButtonBars') {
                     finalUrl = 'http://localhost:3001/' + url;
                 } else if (url == 'containerStyles') {
+                    finalUrl = 'http://localhost:3001/' + url;
+                } else if (url == 'canvasBackgroundcolorsDefault') {
                     finalUrl = 'http://localhost:3001/' + url;
                 } else if (url == 'canvasBackgroundcolors') {
                     finalUrl = 'http://localhost:3001/' + url;
