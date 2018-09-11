@@ -136,7 +136,7 @@ export class DashboardTagsComponent implements OnInit {
             {
                 id: null,
                 dashboardID: this.selectedDashboard.id,
-                tag: this.availableDashboardTags[this.availableTagIndex].tag
+                tag: this.newTag
             };
 
         this.globalVariableService.addDashboardTag(newTag).then(res => {

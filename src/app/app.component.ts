@@ -2698,6 +2698,20 @@ console.warn('xx filteredActions[0].action', filteredActions[0].action);
         this.showModalWidgetContainerStylesAdd = true;
     }
 
+    clickMenuEditManageColours() {
+        // Show popup to Manage Colours (back- and foreground) in Canvas
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditManageColours', '@Start');
+
+        // Reset popup menu
+        this.showWidgetContextMenu = false;
+
+        // TODO - Permissions could be added here, based on user role 
+
+        this.menuOptionClickPreAction();
+
+        this.showModalManageColours = true;
+    }
+
     clickMenuEditContainerStylesEdit() {
         // Show popup to edit / delete existing Container Styles
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuEditContainerStylesEdit', '@Start');
