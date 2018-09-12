@@ -15,6 +15,7 @@ import { Output }                     from '@angular/core';
 // Our Models
 import { CSScolor }                   from './models';
 import { Widget }                     from './models';
+import { WidgetLayout }               from './models';
 
 // Our Functions
 import { GlobalFunctionService } 	  from './global-function.service';
@@ -31,9 +32,11 @@ import { Subscription }               from 'rxjs';
 })
 export class ShapeEditComponent implements OnInit {
 
+    @Input() selectedWidgetLayout: WidgetLayout;
+    @Input() selectedWidget: Widget;
+
     @Output() formShapeEditClosed: EventEmitter<Widget> = new EventEmitter();
     @Input() newWidget: boolean;
-    @Input() selectedWidget: Widget;
 
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
@@ -228,6 +231,14 @@ export class ShapeEditComponent implements OnInit {
             this.localWidget.shapeSvgWidth = 60;
             this.localWidget.shapeText = 'Enter text, keywords: #pagenr, #pages, #date';
             this.localWidget.shapeTextAlign = 'Left';
+            
+            // Populate predefined dimensions            
+            if (this.selectedWidgetLayout != null) {
+                this.localWidget.containerLeft = this.selectedWidgetLayout.left;
+                this.localWidget.containerHeight = this.selectedWidgetLayout.height;
+                this.localWidget.containerTop = this.selectedWidgetLayout.top;
+                this.localWidget.containerWidth = this.selectedWidgetLayout.width;
+            };            
 
         } else {
 
