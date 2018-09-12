@@ -4854,6 +4854,7 @@
 <shape-edit
     class="formPopupDashboard"
     *ngIf="showModalShapeEdit"
+    [selectedWidgetLayout]="selectedWidgetLayout"
     [newWidget]="newWidget"
     [selectedWidget]="selectedWidget"
     (formShapeEditClosed)="handleCloseShapeEdit($event)">Load Shape Edit ...

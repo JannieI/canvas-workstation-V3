@@ -3781,8 +3781,12 @@ console.warn('xx filteredActions[0].action', filteredActions[0].action);
 
         // Set Dimensions
         this.selectedWidgetLayout = widgetLayout;
-        this.newWidgetContainerLeft = 0;
-        this.newWidgetContainerTop = 0;
+        if (widgetLayout != null) {
+            this.newWidgetContainerLeft = 0;
+            this.newWidgetContainerTop = 0;
+        } else {
+
+        };
 
         // Indicate new W and open Editor
         this.newWidget = true;
@@ -5348,7 +5352,7 @@ console.warn('xx filteredActions[0].action', filteredActions[0].action);
 
     // ***********************  CLICK SHAPE MENU OPTIONS ************************ //
 
-    clickMenuShapeNew() {
+    clickMenuShapeNew(widgetLayout: WidgetLayout = null) {
         // Add a new Shape
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuShapeNew', '@Start');
 
@@ -5382,6 +5386,15 @@ console.warn('xx filteredActions[0].action', filteredActions[0].action);
 
         this.menuOptionClickPreAction();
 
+        // Set Dimensions
+        this.selectedWidgetLayout = widgetLayout;
+        if (widgetLayout != null) {
+            this.newWidgetContainerLeft = 0;
+            this.newWidgetContainerTop = 0;
+        } else {
+
+        };
+        
         this.newWidget = true;
         this.showModalShapeEdit = true;
     }
