@@ -314,7 +314,7 @@ export class DashboardNewComponent implements OnInit {
                                     .then(res => {
                                         this.widgetLayouts.forEach(wl => {
                                             if (wl.dashboardLayoutID == dashboardLayoutID) {
-                                                let newWidgetLayout: WidgetLayout;
+                                                let newWidgetLayout: WidgetLayout = wl;
                                                 newWidgetLayout.id = null;
                                                 newWidgetLayout.dashboardLayoutID = res.id;
                                                 this.globalVariableService.addWidgetLayout(

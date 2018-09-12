@@ -1189,6 +1189,10 @@ This document describes items for later versions of Canvas.
     6. When a T is changed on a template, the user is warned which Ds use it - he can see their names and maybe even open them.
     8. A D may have many tabs, which tabs of Template is used where, or just first one on all D tabs?
 
+    Layouts:
+    - store template Layouts in DB - currently hardcoded in form
+    - Create form: just add any number of containers to a Tab, then click this option.  It must save their dimensions, a thumbnail and create records in DB (template layouts)
+    - consider to have a Layout per Tab - easy to do if adding a TabID to the DashboardLayout record ...
 
     StatusBar:
     ---------
