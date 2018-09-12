@@ -589,9 +589,12 @@ export class AppComponent implements OnInit {
             this.globalVariableService.currentDashboardInfo.value.currentDashboardID
         ).then(res => {
             this.dashboardLayouts = res.slice();
-        });
-        this.globalVariableService.getWidgetLayouts().then(res => {
-            this.widgetLayouts = res.slice();
+            if (this.dashboardLayouts.length > 0) {
+                this.globalVariableService.getWidgetLayouts(
+                    this.dashboardLayouts[0].id).then(res => {
+                    this.widgetLayouts = res.slice();
+                });
+            };
         });
 
         // Local App info DB
