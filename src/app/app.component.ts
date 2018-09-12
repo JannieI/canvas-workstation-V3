@@ -7817,7 +7817,15 @@ console.warn('xx filteredActions[0].action', filteredActions[0].action);
         this.clickMenuWidgetNew();
     }
 
- 
+    clickMenuWidgetContainerAddShape(index: number, widgetLayoutID: number) {
+        // Clicked Add Shape button on Widget Layout object
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetContainerAddShape', '@Start');
+
+        // Set the dimensions from the layout
+        this.selectedWidgetLayout = this.widgetLayouts[index];
+
+        this.clickMenuShapeNew();
+    }
 
 
 
