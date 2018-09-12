@@ -7836,10 +7836,17 @@ console.warn('xx filteredActions[0].action', filteredActions[0].action);
         // Clicked Delete button on Widget Layout object
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetContainerDelete', '@Start');
 
+        // TODO - this is a hack - do better in backend
+        let localDashboardID: number = this.widgetLayouts[index].dashboardLayoutID;
+
         // Delete from DB and Filter local Array
-        this.globalVariableService.deleteWidgetLayout(widgetLayoutID).then(res => {
-            this.widgetLayouts = this.widgetLayouts.filter(wl => wl.id != widgetLayoutID);
-        });
+        this.globalVariableService.deleteWidgetLayout(widgetLayoutID, localDashboardID)
+            .then(res => 
+                {
+                    this.widgetLayouts = this.widgetLayouts.
+                        filter(wl => wl.id != widgetLayoutID);
+                }
+            );
     }
 
     clickMenuWidgetContainerAddGraph(index: number, widgetLayoutID: number) {
