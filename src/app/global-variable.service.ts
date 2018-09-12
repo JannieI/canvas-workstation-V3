@@ -9485,8 +9485,8 @@ export class GlobalVariableService {
 
     }
 
-    getWidgetLayouts(): Promise<WidgetLayout[]> {
-        // Description: Gets WidgetLayouts
+    getWidgetLayouts(dashboardLayoutID: number = null): Promise<WidgetLayout[]> {
+        // Description: Gets WidgetLayouts.  Optional filter on dashboardLayoutID
         // Returns: this.WidgetLayouts object, unless:
         //   If not cached or if dirty, get from File
         if (this.sessionDebugging) {
@@ -9508,6 +9508,12 @@ export class GlobalVariableService {
                         this.isDirtyWidgetLayouts = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         this.widgetLayouts = res;
+
+                        // Optional filter
+                        if (dashboardLayoutID != null) {
+                            this.widgetLayouts = this.widgetLayouts.filter(dl =>
+                                dl.dashboardLayoutID == dashboardLayoutID)
+                        };
 
                         if (this.sessionDebugging) {
                             console.log('%c    Global-Variables getWidgetLayouts 1',
