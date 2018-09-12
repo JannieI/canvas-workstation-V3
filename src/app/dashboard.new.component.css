@@ -153,4 +153,9 @@
         padding: 4px;
         text-align: left;
     }
+    .gridImageSingle {
+        border: 1px solid black; 
+        margin: 2px; 
+        padding: 2px;
+    }
 

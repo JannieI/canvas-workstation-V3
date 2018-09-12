@@ -18,6 +18,8 @@ import { GlobalVariableService}       from './global-variable.service';
 // Models
 import { Dashboard }                  from './models';
 import { DashboardTab }               from './models';
+import { DashboardLayout }            from './models';
+import { WidgetLayout }               from './models';
 
 @Component({
     selector: 'dashboard-new',
@@ -53,6 +55,7 @@ export class DashboardNewComponent implements OnInit {
 
     dashboards: Dashboard[];
     dashboardCode: string = '';
+    dashboardLayouts: DashboardLayout[] = [];
     dashboardName: string = '';
     dashboardDescription: string = '';
     errorMessage: string = '';
@@ -60,7 +63,9 @@ export class DashboardNewComponent implements OnInit {
     importedDashboard: Dashboard = null;
     reader = new FileReader();
     theFile: any;
+    widgetLayouts: WidgetLayout[] = [];
 
+    
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -72,6 +77,68 @@ export class DashboardNewComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         this.dashboards = this.globalVariableService.dashboards.slice();
+
+        // TODO - put in DB later on
+        this.dashboardLayouts = [
+            {
+              'id': 1,
+              'dashboardID': 68,
+              'name': "Blank",
+              'description': "Blank layout, no blocks"
+            },
+            {
+              'id': 2,
+              'dashboardID': 69,
+              'name': "3 x 5 with 5 blocks",
+              'description': "3 x 5 with 5 blocks"
+            }
+        ];
+        this.widgetLayouts = [
+          
+            {
+              'id': 1,
+              'dashboardLayoutID': 2,
+              'top': 75,
+              "left": 15,
+              'height': 529,
+              'width': 456
+            },
+            {
+              'id': 2,
+              'dashboardLayoutID': 2,
+              'top': 75,
+              "left": 486,
+              'height': 320,
+              'width': 798
+            },
+            {
+              'id': 3,
+              'dashboardLayoutID': 2,
+              'top': 409,
+              "left": 490,
+              'height': 195,
+              'width': 251
+            },
+            {
+              'id': 4,
+              'dashboardLayoutID': 2,
+              'top': 409,
+              "left": 761,
+              'height': 195,
+              'width': 251
+            },
+            {
+              'id': 5,
+              'dashboardLayoutID': 2,
+              'top': 409,
+              "left": 1033,
+              'height': 195,
+              'width': 251
+            }
+        ];
+        
+
+
     }
 
     clickClose() {
