@@ -7797,6 +7797,18 @@ console.warn('xx filteredActions[0].action', filteredActions[0].action);
 
 
 
+    // ***********************  LAYOUT ACTIONS  ************************ //
+    clickMenuWidgetContainerDelete(index: number, widgetLayoutID: number) {
+        // Clicked Delete button on Widget Layout object
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetContainerDelete', '@Start');
+
+        // Filter local Array
+        this.widgetLayouts = this.widgetLayouts.filter(wl => wl.id != id);
+    }
+
+
+
+
     // ***********************  CONTEXT MENUS  ************************ //
 
     popupMenuOpen(ev: any, index: number, id: number, widgetLeft: number, widgetTop: number) {

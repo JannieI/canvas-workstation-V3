@@ -1952,18 +1952,21 @@
             >
             Click
             <clr-icon shape="trash" 
+                size="16"
                 style="color: red; margin: 3px;"
-                (click)="clickMenuWidgetContainer(popupWidgetType, popupWidgetID)"
+                (click)="clickMenuWidgetContainerDelete(i, row.id)"
                 >
             </clr-icon>
             <clr-icon shape="line-chart" 
+                size="20"
                 style="color: blue; margin: 3px;"
-                (click)="clickMenuWidgetContainer(popupWidgetType, popupWidgetID)"
+                (click)="clickMenuWidgetContainerAddGraph(i, row.id)"
                 >
             </clr-icon>
             <clr-icon shape="text" 
+                size="24"
                 style="color: green; margin: 3px;"
-                (click)="clickMenuWidgetContainer(popupWidgetType, popupWidgetID)"
+                (click)="clickMenuWidgetContainerAddShape(i, row.id)"
                 >
             </clr-icon>
         </div>
