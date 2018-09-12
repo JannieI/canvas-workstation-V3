@@ -7836,9 +7836,10 @@ console.warn('xx filteredActions[0].action', filteredActions[0].action);
         // Clicked Delete button on Widget Layout object
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetContainerDelete', '@Start');
 
-        // Filter local Array
-        this.globalVariableService.deletew
-        this.widgetLayouts = this.widgetLayouts.filter(wl => wl.id != widgetLayoutID);
+        // Delete from DB and Filter local Array
+        this.globalVariableService.deleteWidgetLayout(widgetLayoutID).then(res => {
+            this.widgetLayouts = this.widgetLayouts.filter(wl => wl.id != widgetLayoutID);
+        });
     }
 
     clickMenuWidgetContainerAddGraph(index: number, widgetLayoutID: number) {
