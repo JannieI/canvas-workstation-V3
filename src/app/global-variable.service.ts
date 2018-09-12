@@ -656,7 +656,6 @@ export class GlobalVariableService {
     isDirtyShapes: boolean = true;
     isDirtySlicers: boolean = true;
     isDirtystatusBarMessageLogs: boolean = true;
-    isDirtyDashboardLayouts: boolean = true;
     isDirtyTransformations: boolean = true;
     isDirtyUserPaletteButtonBar: boolean = true;
     isDirtyUsers: boolean = true;
@@ -9437,7 +9436,7 @@ export class GlobalVariableService {
     getDashboardLayouts(dashboardID: number = null): Promise<DashboardLayout[]> {
         // Description: Gets dashboardLayouts.  Can optionally filter on D-id
         // Returns: this.dashboardLayouts object, unless:
-        //   If not cached or if dirty, get from File
+        //   NOTE: this is always obtained from DB as we dont keep a full list
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables getDashboardLayouts ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
@@ -9449,38 +9448,27 @@ export class GlobalVariableService {
         return new Promise<DashboardLayout[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
-            if (this.isDirtyDashboardLayouts) {
-                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-                this.get(url)
-                    .then(res => {
+            this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
+            this.get(url)
+                .then(res => {
 
-                        this.isDirtyDashboardLayouts = false;
-                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        this.dashboardLayouts = res;
+                    this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
+                    this.dashboardLayouts = res;
 
-                        // Optional filter
-                        if (dashboardID != null) {
-                            this.dashboardLayouts = this.dashboardLayouts.filter(dl =>
-                                dl.dashboardID == dashboardID)
-                        };
+                    // Optional filter
+                    if (dashboardID != null) {
+                        this.dashboardLayouts = this.dashboardLayouts.filter(dl =>
+                            dl.dashboardID == dashboardID)
+                    };
 
-                        if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getDashboardLayouts 1',
-                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                                this.dashboardLayouts);
-                        };
+                    if (this.sessionDebugging) {
+                        console.log('%c    Global-Variables getDashboardLayouts 1',
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                            this.dashboardLayouts);
+                    };
 
-                        resolve(this.dashboardLayouts);
-                    });
-            } else {
-                if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables getDashboardLayouts 2',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                        this.dashboardLayouts);
-                };
-
-                resolve(this.dashboardLayouts);
-            }
+                    resolve(this.dashboardLayouts);
+                });
         });
 
     }
@@ -9530,6 +9518,12 @@ export class GlobalVariableService {
                         this.widgetLayouts);
                 };
 
+                // Optional filter
+                if (dashboardLayoutID != null) {
+                    this.widgetLayouts = this.widgetLayouts.filter(dl =>
+                        dl.dashboardLayoutID == dashboardLayoutID)
+                };
+                
                 resolve(this.widgetLayouts);
             }
         });

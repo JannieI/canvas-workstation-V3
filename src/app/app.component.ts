@@ -584,19 +584,6 @@ export class AppComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        // Fill Layouts
-        this.globalVariableService.getDashboardLayouts(
-            this.globalVariableService.currentDashboardInfo.value.currentDashboardID
-        ).then(res => {
-            this.dashboardLayouts = res.slice();
-            if (this.dashboardLayouts.length > 0) {
-                this.globalVariableService.getWidgetLayouts(
-                    this.dashboardLayouts[0].id).then(res => {
-                    this.widgetLayouts = res.slice();
-                });
-            };
-        });
-
         // Local App info DB
         this.dbCanvasAppDatabase = new CanvasAppDatabase
         this.dbCanvasAppDatabase.open();
@@ -757,13 +744,30 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
                     this.companyName = this.globalVariableService.canvasSettings.companyName;
                     this.hasDashboard = true;
-
+                    
                     this.globalVariableService.refreshCurrentDashboardInfo(
                         this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
                         this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID)
                             .then(j => {
 
-                                let dashboardIndex: number = this.globalVariableService.dashboards.findIndex(d => d.id == this.globalVariableService.currentDashboardInfo.value.currentDashboardID);
+                                // Fill Layouts
+                                this.globalVariableService.getDashboardLayouts(
+                                    this.globalVariableService.currentDashboardInfo.value.currentDashboardID
+                                ).then(res => {
+                                    this.dashboardLayouts = res.slice();
+                                    if (this.dashboardLayouts.length > 0) {
+                                        this.globalVariableService.getWidgetLayouts(
+                                            this.dashboardLayouts[0].id).then(res => {
+                                            this.widgetLayouts = res.slice();
+                                        });
+                                    };
+                                });
+                                
+                                let dashboardIndex: number = this.globalVariableService
+                                    .dashboards.findIndex(
+                                        d => d.id == this.globalVariableService.
+                                            currentDashboardInfo.value.currentDashboardID
+                                    );
 
                                 if (dashboardIndex >= 0) {
                                     this.currentDashboardBackgroundColor = this.globalVariableService.dashboards[dashboardIndex].backgroundColor;
