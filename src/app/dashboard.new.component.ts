@@ -302,13 +302,35 @@ export class DashboardNewComponent implements OnInit {
 
                         this.globalVariableService.amendDashboardRecent(draftD.id, t.id).then(dR => {
 
-                            this.globalVariableService.refreshCurrentDashboard(
-                                'addDashboard-clickCreate', draftD.id, t.id, ''
-                            );
-
                             // Add the Dashboard Layout, other than Blank
                             if (this.selectedLayoutIndex > 0) {
-                                this.globalVariableService
+                                let dashboardLayoutID: number = 
+                                    this.dashboardLayouts[this.selectedLayoutIndex].id;
+                                let newDashboardLayout: DashboardLayout = 
+                                    this.dashboardLayouts[this.selectedLayoutIndex];
+                                newDashboardLayout.id = null;    
+                                newDashboardLayout.dashboardID = draftD.id;
+                                this.globalVariableService.addDashboardLayout(newDashboardLayout)
+                                    .then(res => {
+                                        this.widgetLayouts.forEach(wl => {
+                                            if (wl.dashboardLayoutID == dashboardLayoutID) {
+                                                let newWidgetLayout: WidgetLayout;
+                                                newWidgetLayout.id = null;
+                                                newWidgetLayout.dashboardLayoutID = res.id;
+                                                this.globalVariableService.addWidgetLayout(
+                                                    newWidgetLayout
+                                                ).then(res => {
+                                                    this.globalVariableService.refreshCurrentDashboard(
+                                                        'addDashboard-clickCreate', draftD.id, t.id, ''
+                                                    );
+                                                });
+                                            };
+                                    });
+                                });
+                            } else {
+                                this.globalVariableService.refreshCurrentDashboard(
+                                    'addDashboard-clickCreate', draftD.id, t.id, ''
+                                );
                             };
                             this.formDashboardNewClosed.emit('Created');
                         });

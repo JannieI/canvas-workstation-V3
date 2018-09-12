@@ -9319,10 +9319,10 @@ export class GlobalVariableService {
                         this.containerStyles.push(JSON.parse(JSON.stringify(res)));
 
                         if (this.sessionDebugging) {
-                            console.log('addContainerStyle ADDED', {data}, this.containerStyles)
+                            console.log('addContainerStyle ADDED', this.containerStyles)
                         };
 
-                        resolve(data);
+                        resolve(this.containerStyles);
                     },
                     err => {
                         if (this.sessionDebugging) {
@@ -9497,10 +9497,10 @@ export class GlobalVariableService {
                         this.dashboardLayouts.push(JSON.parse(JSON.stringify(res)));
 
                         if (this.sessionDebugging) {
-                            console.log('addDashboardLayout ADDED', {data}, this.dashboardLayouts)
+                            console.log('addDashboardLayout ADDED', this.dashboardLayouts)
                         };
 
-                        resolve(data);
+                        resolve(this.dashboardLayouts);
                     },
                     err => {
                         if (this.sessionDebugging) {
@@ -9617,10 +9617,10 @@ export class GlobalVariableService {
                         this.widgetLayouts.push(JSON.parse(JSON.stringify(res)));
 
                         if (this.sessionDebugging) {
-                            console.log('addWidgetLayout ADDED', {data}, this.widgetLayouts)
+                            console.log('addWidgetLayout ADDED', this.widgetLayouts)
                         };
 
-                        resolve(data);
+                        resolve(this.widgetLayouts);
                     },
                     err => {
                         if (this.sessionDebugging) {
