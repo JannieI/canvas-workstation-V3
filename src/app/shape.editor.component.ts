@@ -572,8 +572,9 @@ console.warn('xx this.localWidget', this.localWidget);
         if (this.newWidget) {
             
             // Populate predefined dimensions
-            if (this.selectedWidgetLayout.id != null  &&  this.selectedWidgetLayout.id != undefined) {
-                console.warn(' ai ');
+            if (this.selectedWidgetLayout.id != null  
+                &&  
+                this.selectedWidgetLayout.id != undefined) {
                 
                 this.localWidget.containerLeft = this.selectedWidgetLayout.left;
                 this.localWidget.containerHeight = this.selectedWidgetLayout.height;

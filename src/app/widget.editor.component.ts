@@ -143,7 +143,9 @@ const graphWidth: number = 420;
             if (this.newWidgetContainerTop > 0) {
                 this.localWidget.containerTop = this.newWidgetContainerTop;
             };
-            if (this.selectedWidgetLayout != null) {
+            if (this.selectedWidgetLayout.id != null  
+                &&  
+                this.selectedWidgetLayout.id != undefined) {
                 this.localWidget.containerLeft = this.selectedWidgetLayout.left;
                 this.localWidget.containerHeight = this.selectedWidgetLayout.height;
                 this.localWidget.containerTop = this.selectedWidgetLayout.top;
