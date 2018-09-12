@@ -661,7 +661,6 @@ export class GlobalVariableService {
     isDirtyUsers: boolean = true;
     isDirtyWidgetCheckpoints: boolean = true;
     isDirtyWidgets: boolean = true;
-    isDirtyWidgetLayouts: boolean = true;
 
     dbDataCachingTable;
     dbCanvasAppDatabase;
@@ -9488,44 +9487,28 @@ export class GlobalVariableService {
         return new Promise<WidgetLayout[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
-            if (this.isDirtyWidgetLayouts) {
-                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-                this.get(url)
-                    .then(res => {
+            this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
+            this.get(url)
+                .then(res => {
 
-                        this.isDirtyWidgetLayouts = false;
-                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
-                        this.widgetLayouts = res;
+                    this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
+                    this.widgetLayouts = res;
 
-                        // Optional filter
-                        if (dashboardLayoutID != null) {
-                            this.widgetLayouts = this.widgetLayouts.filter(dl =>
-                                dl.dashboardLayoutID == dashboardLayoutID)
-                        };
+                    // Optional filter
+                    if (dashboardLayoutID != null) {
+                        this.widgetLayouts = this.widgetLayouts.filter(dl =>
+                            dl.dashboardLayoutID == dashboardLayoutID)
+                    };
 
-                        if (this.sessionDebugging) {
-                            console.log('%c    Global-Variables getWidgetLayouts 1',
-                                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                                this.widgetLayouts);
-                        };
+                    if (this.sessionDebugging) {
+                        console.log('%c    Global-Variables getWidgetLayouts 1',
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                            this.widgetLayouts);
+                    };
 
-                        resolve(this.widgetLayouts);
-                    });
-            } else {
-                if (this.sessionDebugging) {
-                    console.log('%c    Global-Variables getWidgetLayouts 2',
-                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
-                        this.widgetLayouts);
-                };
-
-                // Optional filter
-                if (dashboardLayoutID != null) {
-                    this.widgetLayouts = this.widgetLayouts.filter(dl =>
-                        dl.dashboardLayoutID == dashboardLayoutID)
-                };
-                
-                resolve(this.widgetLayouts);
-            }
+                    resolve(this.widgetLayouts);
+                });
+            
         });
 
     }
