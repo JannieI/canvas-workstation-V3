@@ -9481,7 +9481,7 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
-        let url: string = 'widgetLayout';
+        let url: string = 'widgetLayouts';
         this.filePath = './assets/data.WidgetLayouts.json';
 
         return new Promise<WidgetLayout[]>((resolve, reject) => {
@@ -9660,7 +9660,7 @@ export class GlobalVariableService {
                     finalUrl = 'http://localhost:3001/' + url;
                 } else if (url == 'dashboardLayouts') {
                     finalUrl = 'http://localhost:3001/' + url;
-                } else if (url == 'widgetLayout') {
+                } else if (url == 'widgetLayouts') {
                     finalUrl = 'http://localhost:3001/' + url;
                 } else if (url == 'canvasBackgroundcolorsDefault') {
                     finalUrl = 'http://localhost:3001/' + url;
