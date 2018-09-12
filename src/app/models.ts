@@ -774,6 +774,7 @@ export class DashboardLayout {
     dashboardID: number                 // D to which these belong
     name: string;                       // Short Name, ie 3 x 5 with 5 blocks
     description: string;                // More detailed description
+    imageUrl?: string;                  // Optional Image url, only used in definition
 }
 
 export class DashboardTheme {

@@ -81,71 +81,66 @@ export class DashboardNewComponent implements OnInit {
         // TODO - put in DB later on
         this.dashboardLayouts = [
             {
-              'id': 1,
-              'dashboardID': 68,
-              'name': "Blank",
-              'description': "Blank layout, no blocks"
+              id: 1,
+              dashboardID: 68,
+              name: "Blank",
+              description: "Blank layout, no blocks",
+              imageUrl: '../images/Dashboard Layout Blank.png'
             },
             {
-              'id': 2,
-              'dashboardID': 69,
-              'name': "3 x 5 with 5 blocks",
-              'description': "3 x 5 with 5 blocks"
+              id: 2,
+              dashboardID: 69,
+              name: "3 x 5 with 5 blocks",
+              description: "3 x 5 with 5 blocks",
+              imageUrl: '../images/Dashboard Layout 5 x 3.png'
             }
         ];
         this.widgetLayouts = [
           
             {
-              'id': 1,
-              'dashboardLayoutID': 2,
-              'top': 75,
-              "left": 15,
-              'height': 529,
-              'width': 456
+              id: 1,
+              dashboardLayoutID: 2,
+              top: 75,
+              left: 15,
+              height: 529,
+              width: 456
             },
             {
-              'id': 2,
-              'dashboardLayoutID': 2,
-              'top': 75,
-              "left": 486,
-              'height': 320,
-              'width': 798
+              id: 2,
+              dashboardLayoutID: 2,
+              top: 75,
+              left: 486,
+              height: 320,
+              width: 798
             },
             {
-              'id': 3,
-              'dashboardLayoutID': 2,
-              'top': 409,
-              "left": 490,
-              'height': 195,
-              'width': 251
+              id: 3,
+              dashboardLayoutID: 2,
+              top: 409,
+              left: 490,
+              height: 195,
+              width: 251
             },
             {
-              'id': 4,
-              'dashboardLayoutID': 2,
-              'top': 409,
-              "left": 761,
-              'height': 195,
-              'width': 251
+              id: 4,
+              dashboardLayoutID: 2,
+              top: 409,
+              left: 761,
+              height: 195,
+              width: 251
             },
             {
-              'id': 5,
-              'dashboardLayoutID': 2,
-              'top': 409,
-              "left": 1033,
-              'height': 195,
-              'width': 251
+              id: 5,
+              dashboardLayoutID: 2,
+              top: 409,
+              left: 1033,
+              height: 195,
+              width: 251
             }
         ];
         
 
 
-    }
-
-    clickClose() {
-        // Close form, no action
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
-
-		this.formDashboardNewClosed.emit('Cancel');
     }
 
     clickFileBrowse() {
@@ -231,6 +226,21 @@ export class DashboardNewComponent implements OnInit {
                 // progress.textContent = percentLoaded + '%';
             };
         };
+    }
+    
+    clickImage(index: number, id: number) {
+        // Clicked a layout image
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickImage', '@Start');
+
+		console.warn('xx id', id, index);
+        ;
+    }
+
+    clickClose() {
+        // Close form, no action
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
+
+		this.formDashboardNewClosed.emit('Cancel');
     }
 
     clickCreate() {
