@@ -46,6 +46,7 @@ import { WebSocketSubject }           from 'rxjs/webSocket';
 
 // Dexie
 import Dexie from 'dexie';
+import { NullViewportScroller } from '@angular/common/src/viewport_scroller';
 
 class CanvasAppDatabase extends Dexie {
     // Declare implicit table properties.
@@ -3726,11 +3727,11 @@ console.warn('xx filteredActions[0].action', filteredActions[0].action);
 
     // ***********************  CLICK WIDGET MENU OPTIONS ************************ //
 
-    clickMenuWidgetNew() {
+    clickMenuWidgetNew(widgetLayout: WidgetLayout = null) {
         // Open W Editor
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetNew', '@Start');
 
-        // Permissions
+        // PermissiNullViewportScrollerons
         if (!this.globalVariableService.currentUser.dashboardCanEditRole
             &&
             !this.globalVariableService.currentUser.isAdministrator) {
@@ -3765,6 +3766,11 @@ console.warn('xx filteredActions[0].action', filteredActions[0].action);
         } else {
             this.paletteDrag = false;
         };
+
+        // Set Dimensions
+        this.selectedWidgetLayout = widgetLayout;
+        this.newWidgetContainerLeft = 0;
+        this.newWidgetContainerTop = 0;
 
         // Indicate new W and open Editor
         this.newWidget = true;
@@ -7811,10 +7817,8 @@ console.warn('xx filteredActions[0].action', filteredActions[0].action);
         // Clicked Add Graph button on Widget Layout object
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetContainerAddGraph', '@Start');
 
-        // Set the dimensions from the layout
-        this.selectedWidgetLayout = this.widgetLayouts[index];
-
-        this.clickMenuWidgetNew();
+        // Create Graph, with optional dimensions set
+        this.clickMenuWidgetNew(this.widgetLayouts[index]);
     }
 
     clickMenuWidgetContainerAddShape(index: number, widgetLayoutID: number) {

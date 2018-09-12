@@ -1945,7 +1945,6 @@
         [style.left.px]="row.left"
         [style.top.px]="row.top"
         [style.width.px]="row.width"
-        (click)="clickWidgetLayoutCreate(row.id, i)"
         >
         <div
             [style.line-height.px]="row.height"
@@ -4737,6 +4736,7 @@
 <widget-editor
     *ngIf="showModalWidgetEditor"
     [showDatasourcePopup]="showDatasourcePopup"
+    [selectedWidgetLayout]="selectedWidgetLayout"
     [newWidget]="newWidget"
     [canSave]="canSave"
     [selectedWidget]="selectedWidget"

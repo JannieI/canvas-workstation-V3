@@ -11,6 +11,7 @@ import { ViewChild }                  from '@angular/core';
 // Our models
 import { Datasource }                 from './models';
 import { Widget }                     from './models';
+import { WidgetLayout }               from './models';
 import { WidgetCheckpoint }           from './models';
 
 // Our Services
@@ -33,6 +34,7 @@ const graphWidth: number = 420;
   })
   export class WidgetEditorComponent implements OnInit {
 
+    @Input() selectedWidgetLayout: WidgetLayout;
     @Input() newWidget: boolean;
     @Input() showDatasourcePopup: boolean;
     @Input() selectedWidget: Widget;
@@ -133,11 +135,19 @@ const graphWidth: number = 420;
             this.localWidget.dashboardID = this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
             this.localWidget.dashboardTabID = this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID;
             this.localWidget.widgetType = 'Graph';
+
+            // Populate predefined dimensions
             if (this.newWidgetContainerLeft > 0) {
                 this.localWidget.containerLeft = this.newWidgetContainerLeft;
             };
             if (this.newWidgetContainerTop > 0) {
                 this.localWidget.containerTop = this.newWidgetContainerTop;
+            };
+            if (this.selectedWidgetLayout != null) {
+                this.localWidget.containerLeft = this.selectedWidgetLayout.left;
+                this.localWidget.containerHeight = this.selectedWidgetLayout.height;
+                this.localWidget.containerTop = this.selectedWidgetLayout.top;
+                this.localWidget.containerWidth = this.selectedWidgetLayout.width;
             };
         } else {
 
