@@ -9551,7 +9551,7 @@ export class GlobalVariableService {
 
     }
 
-    deleteWidgetLayout(id: number): Promise<string> {
+    deleteWidgetLayout(id: number, dashboardLayoutID: number): Promise<string> {
         // Description: Deletes a WidgetLayout
         // Returns: 'Deleted' or error message
         if (this.sessionDebugging) {
@@ -9572,6 +9572,13 @@ export class GlobalVariableService {
                 res => {
                     this.widgetLayouts = this.widgetLayouts.filter(wl => wl.id != id);
 
+                    // TODO - do this better in DB as we are checking local Array length
+                    //        which may be diff to DB
+                    // Delete the DashboardLayout if last one
+                    if (this.widgetLayouts.length == 0) {
+                        this.deleteDashboardLayout(dashboardLayoutID);
+                    };
+                    
                     if (this.sessionDebugging) {
                         console.log('deleteWidgetLayout DELETED id: ', {id})
                     };
