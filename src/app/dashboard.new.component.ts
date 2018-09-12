@@ -306,6 +306,10 @@ export class DashboardNewComponent implements OnInit {
                                 'addDashboard-clickCreate', draftD.id, t.id, ''
                             );
 
+                            // Add the Dashboard Layout, other than Blank
+                            if (this.selectedLayoutIndex > 0) {
+                                this.globalVariableService
+                            };
                             this.formDashboardNewClosed.emit('Created');
                         });
                     })

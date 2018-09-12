@@ -9472,6 +9472,47 @@ export class GlobalVariableService {
 
     }
 
+    addDashboardLayout(data: DashboardLayout): Promise<any> {
+        // Description: Adds a new DashboardLayout
+        // Returns: Added Data or error message
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables addDashboardLayout ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
+        };
+
+        let url: string = 'dashboardLayouts';
+        this.filePath = './assets/data.DashboardLayouts.json';
+
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.post('http://localhost:3001/' + url, data, {headers})
+                .subscribe(
+                    res => {
+
+                        // Update Global vars to make sure they remain in sync
+                        this.dashboardLayouts.push(JSON.parse(JSON.stringify(res)));
+
+                        if (this.sessionDebugging) {
+                            console.log('addDashboardLayout ADDED', {data}, this.dashboardLayouts)
+                        };
+
+                        resolve(data);
+                    },
+                    err => {
+                        if (this.sessionDebugging) {
+                            console.log('Error addDashboardLayout FAILED', {err});
+                        };
+
+                        reject(err);
+                    }
+                )
+        });
+    }
+    
     deleteDashboardLayout(id: number): Promise<string> {
         // Description: Deletes a DashboardLayout
         // Returns: 'Deleted' or error message
@@ -9578,7 +9619,7 @@ export class GlobalVariableService {
                     if (this.widgetLayouts.length == 0) {
                         this.deleteDashboardLayout(dashboardLayoutID);
                     };
-                    
+
                     if (this.sessionDebugging) {
                         console.log('deleteWidgetLayout DELETED id: ', {id})
                     };
