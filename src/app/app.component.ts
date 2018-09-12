@@ -5394,7 +5394,7 @@ console.warn('xx filteredActions[0].action', filteredActions[0].action);
         } else {
 
         };
-        
+
         this.newWidget = true;
         this.showModalShapeEdit = true;
     }
@@ -7837,6 +7837,7 @@ console.warn('xx filteredActions[0].action', filteredActions[0].action);
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetContainerDelete', '@Start');
 
         // Filter local Array
+        this.globalVariableService.deletew
         this.widgetLayouts = this.widgetLayouts.filter(wl => wl.id != widgetLayoutID);
     }
 

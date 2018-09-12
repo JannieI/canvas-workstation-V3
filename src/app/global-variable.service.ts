@@ -9513,6 +9513,44 @@ export class GlobalVariableService {
 
     }
 
+    deleteWidgetLayout(id: number): Promise<string> {
+        // Description: Deletes a WidgetLayout
+        // Returns: 'Deleted' or error message
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables deleteWidgetLayout ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
+        };
+
+        let url: string = 'widgetLayouts';
+        this.filePath = './assets/data.WidgetLayout.json';
+
+        return new Promise<any>((resolve, reject) => {
+
+            const headers = new HttpHeaders()
+                .set("Content-Type", "application/json");
+
+            this.http.delete('http://localhost:3001/' + url + '/' + id, {headers})
+            .subscribe(
+                res => {
+                    this.widgetLayouts = this.widgetLayouts.filter(wl => wl.id != id);
+
+                    if (this.sessionDebugging) {
+                        console.log('deleteWidgetLayout DELETED id: ', {id})
+                    };
+
+                    resolve('Deleted');
+                },
+                err => {
+                    if (this.sessionDebugging) {
+                        console.log('Error deleteWidgetLayout FAILED', {err});
+                    };
+
+                    reject(err);
+                }
+            )
+        });
+    }
+
     get<T>(url: string, options?: any, dashboardID?: number, datasourceID?: number): Promise<any> {
         // Generic GET data, later to be replaced with http
         if (this.sessionDebugging) {
