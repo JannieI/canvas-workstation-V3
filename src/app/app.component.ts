@@ -751,6 +751,9 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                             .then(j => {
 
                                 // Fill Layouts
+                                this.dashboardLayouts = [];
+                                this.widgetLayouts = [];
+
                                 this.globalVariableService.getDashboardLayouts(
                                     this.globalVariableService.currentDashboardInfo.value.currentDashboardID
                                 ).then(res => {
