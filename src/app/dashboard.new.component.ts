@@ -62,6 +62,7 @@ export class DashboardNewComponent implements OnInit {
     importFolder: string;
     importedDashboard: Dashboard = null;
     reader = new FileReader();
+    selectedLayoutIndex: number = 0;        // Start with Blank Layout seleted
     theFile: any;
     widgetLayouts: WidgetLayout[] = [];
 
@@ -232,8 +233,9 @@ export class DashboardNewComponent implements OnInit {
         // Clicked a layout image
         this.globalFunctionService.printToConsole(this.constructor.name,'clickImage', '@Start');
 
+        this.selectedLayoutIndex = index;
 		console.warn('xx id', id, index);
-        ;
+        
     }
 
     clickClose() {

@@ -116,24 +116,14 @@
                         Create
                     </button>
                 </div>
-                
-                <!-- <div class="gridImages">
-                    <img src="../images/Dashboard Layout Blank.png" class="gridImageSingle"
-                        alt=""
-                        height="130"
-                        width="210"
-                        (click)="clickImage()"
-                        >
-                    <img src="../images/Dashboard Layout 5 x 3.png" class="gridImageSingle"
-                        alt=""
-                        height="130"
-                        width="210"
-                        (click)="clickImage()"
-                        >
-                </div> -->
-                <div class="gridImages" *ngFor="let row of dashboardLayouts; let i = index">
-                    <img [src]="row.imageUrl" class="gridImageSingle"
-                        alt=""
+
+                <div class="gridImagesTitle">
+                    Select a Dashboard Layout:
+                </div>
+                <div class="gridImages">
+                    <img class="gridImageSingle" *ngFor="let row of dashboardLayouts; let i = index"
+                        [src]="row.imageUrl"
+                        [style.border]="(i==selectedLayoutIndex)? '2px solid black' : '1px solid black'"                        alt=""
                         height="130"
                         width="210"
                         (click)="clickImage(i, row.id)"
