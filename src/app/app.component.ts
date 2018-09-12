@@ -585,7 +585,9 @@ export class AppComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         // Fill Layouts
-        this.globalVariableService.getDashboardLayouts().then(res => {
+        this.globalVariableService.getDashboardLayouts(
+            this.globalVariableService.currentDashboardInfo.value.currentDashboardID
+        ).then(res => {
             this.dashboardLayouts = res.slice();
         });
         this.globalVariableService.getWidgetLayouts().then(res => {
@@ -7804,6 +7806,8 @@ console.warn('xx filteredActions[0].action', filteredActions[0].action);
 
 
 
+
+
     // ***********************  LAYOUT ACTIONS  ************************ //
     clickMenuWidgetContainerDelete(index: number, widgetLayoutID: number) {
         // Clicked Delete button on Widget Layout object
@@ -7830,6 +7834,8 @@ console.warn('xx filteredActions[0].action', filteredActions[0].action);
 
         this.clickMenuShapeNew();
     }
+
+
 
 
 

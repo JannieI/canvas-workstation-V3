@@ -9434,8 +9434,8 @@ export class GlobalVariableService {
         });
     }
 
-    getDashboardLayouts(): Promise<DashboardLayout[]> {
-        // Description: Gets dashboardLayouts
+    getDashboardLayouts(dashboardID: number = null): Promise<DashboardLayout[]> {
+        // Description: Gets dashboardLayouts.  Can optionally filter on D-id
         // Returns: this.dashboardLayouts object, unless:
         //   If not cached or if dirty, get from File
         if (this.sessionDebugging) {
@@ -9457,6 +9457,12 @@ export class GlobalVariableService {
                         this.isDirtyDashboardLayouts = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
                         this.dashboardLayouts = res;
+
+                        // Optional filter
+                        if (dashboardID != null) {
+                            this.dashboardLayouts = this.dashboardLayouts.filter(dl =>
+                                dl.dashboardID == dashboardID)
+                        };
 
                         if (this.sessionDebugging) {
                             console.log('%c    Global-Variables getDashboardLayouts 1',
