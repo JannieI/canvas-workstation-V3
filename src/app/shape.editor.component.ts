@@ -34,9 +34,9 @@ export class ShapeEditComponent implements OnInit {
 
     @Input() selectedWidgetLayout: WidgetLayout;
     @Input() selectedWidget: Widget;
+    @Input() newWidget: boolean;
 
     @Output() formShapeEditClosed: EventEmitter<Widget> = new EventEmitter();
-    @Input() newWidget: boolean;
 
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
@@ -231,14 +231,7 @@ export class ShapeEditComponent implements OnInit {
             this.localWidget.shapeSvgWidth = 60;
             this.localWidget.shapeText = 'Enter text, keywords: #pagenr, #pages, #date';
             this.localWidget.shapeTextAlign = 'Left';
-            
-            // Populate predefined dimensions            
-            if (this.selectedWidgetLayout != null) {
-                this.localWidget.containerLeft = this.selectedWidgetLayout.left;
-                this.localWidget.containerHeight = this.selectedWidgetLayout.height;
-                this.localWidget.containerTop = this.selectedWidgetLayout.top;
-                this.localWidget.containerWidth = this.selectedWidgetLayout.width;
-            };            
+console.warn('xx this.localWidget', this.localWidget);
 
         } else {
 
@@ -577,33 +570,46 @@ export class ShapeEditComponent implements OnInit {
             this.globalVariableService.calcShapeTextDisplay(this.localWidget.shapeText);
 
         if (this.newWidget) {
+            
+            // Populate predefined dimensions
+            if (this.selectedWidgetLayout.id != null  &&  this.selectedWidgetLayout.id != undefined) {
+                console.warn(' ai ');
+                
+                this.localWidget.containerLeft = this.selectedWidgetLayout.left;
+                this.localWidget.containerHeight = this.selectedWidgetLayout.height;
+                this.localWidget.containerTop = this.selectedWidgetLayout.top;
+                this.localWidget.containerWidth = this.selectedWidgetLayout.width;
+            } else {
 
-            // Estimate size of Bullets
-            if (this.localWidget.widgetSubType == 'Bullets') {
-                let maxTextLength: number = 3;
-                let nrLines: number = this.localWidget.shapeBullet.length;
-                this.localWidget.shapeBullet.forEach(sb => {
-                    if (sb.text.length > maxTextLength) {
-                        maxTextLength = sb.text.length;
-                    };
-                    if (maxTextLength > 50) {
-                        maxTextLength = 50;
-                        nrLines = nrLines + 1;
-                    };
-                });
+                // Estimate size of Bullets
+                if (this.localWidget.widgetSubType == 'Bullets') {
+                    let maxTextLength: number = 3;
+                    let nrLines: number = this.localWidget.shapeBullet.length;
+                    this.localWidget.shapeBullet.forEach(sb => {
+                        if (sb.text.length > maxTextLength) {
+                            maxTextLength = sb.text.length;
+                        };
+                        if (maxTextLength > 50) {
+                            maxTextLength = 50;
+                            nrLines = nrLines + 1;
+                        };
+                    });
 
-                this.localWidget.containerWidth = 35 + (maxTextLength
-                    * this.localWidget.shapeFontSize / 2);
-                this.localWidget.containerHeight = +nrLines *
-                    (8 + +this.localWidget.shapeFontSize);
+                    this.localWidget.containerWidth = 35 + (maxTextLength
+                        * this.localWidget.shapeFontSize / 2);
+                    this.localWidget.containerHeight = +nrLines *
+                        (8 + +this.localWidget.shapeFontSize);
 
-            };
+                };
 
-            // Set calculated start Width and Height for Text
-            if (this.localWidget.widgetSubType == 'Text') {
-                this.localWidget.containerWidth = this.localWidget.shapeTextDisplay.length
-                    * this.localWidget.shapeFontSize / 2;
-                this.localWidget.containerHeight = 8 + +this.localWidget.shapeFontSize;
+                // Set calculated start Width and Height for Text
+                if (this.localWidget.widgetSubType == 'Text') {
+                    this.localWidget.containerWidth = this.localWidget.shapeTextDisplay.length
+                        * this.localWidget.shapeFontSize / 2;
+                    this.localWidget.containerHeight = 8 + +this.localWidget.shapeFontSize;
+                };
+                console.warn('xx this.localWidget', this.localWidget);
+                
             };
 
             this.localWidget.dashboardTabIDs.push(
