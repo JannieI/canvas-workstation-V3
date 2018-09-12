@@ -149,7 +149,7 @@
         grid-row-start: 13;
         grid-row-end: 20;
         margin: 5px;
-        overflow: scroll;
+        overflow-y: scroll;
         padding: 4px;
         text-align: left;
     }

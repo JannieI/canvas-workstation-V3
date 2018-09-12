@@ -570,12 +570,12 @@ console.warn('xx this.localWidget', this.localWidget);
             this.globalVariableService.calcShapeTextDisplay(this.localWidget.shapeText);
 
         if (this.newWidget) {
-            
+
             // Populate predefined dimensions
-            if (this.selectedWidgetLayout.id != null  
-                &&  
+            if (this.selectedWidgetLayout.id != null
+                &&
                 this.selectedWidgetLayout.id != undefined) {
-                
+
                 this.localWidget.containerLeft = this.selectedWidgetLayout.left;
                 this.localWidget.containerHeight = this.selectedWidgetLayout.height;
                 this.localWidget.containerTop = this.selectedWidgetLayout.top;
@@ -610,7 +610,7 @@ console.warn('xx this.localWidget', this.localWidget);
                     this.localWidget.containerHeight = 8 + +this.localWidget.shapeFontSize;
                 };
                 console.warn('xx this.localWidget', this.localWidget);
-                
+
             };
 
             this.localWidget.dashboardTabIDs.push(

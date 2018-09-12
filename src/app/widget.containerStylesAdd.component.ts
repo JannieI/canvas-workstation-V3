@@ -172,7 +172,7 @@ export class WidgetContainerStylesAddComponent implements OnInit {
 
         // Construct Border
         if (this.containerBorderSize != 'none'  &&  this.containerBorderColour != 'none') {
-            this.containerBorder = this.containerBorderSize + ' ' + 
+            this.containerBorder = this.containerBorderSize + ' ' +
                 this.containerBorderType + ' ' + this.containerBorderColour;
         } else {
             this.containerBorder = 'none';
@@ -193,7 +193,7 @@ export class WidgetContainerStylesAddComponent implements OnInit {
 
         // Construct Border
         if (this.containerBorderSize != 'none'  &&  this.containerBorderColour != 'none') {
-            this.containerBorder = this.containerBorderSize + ' ' + 
+            this.containerBorder = this.containerBorderSize + ' ' +
                 this.containerBorderType + ' ' + this.containerBorderColour;
         } else {
             this.containerBorder = 'none';
@@ -213,7 +213,7 @@ export class WidgetContainerStylesAddComponent implements OnInit {
 
         // Construct Border
         if (this.containerBorderSize != 'none'  &&  this.containerBorderColour != 'none') {
-            this.containerBorder = this.containerBorderSize + ' ' + 
+            this.containerBorder = this.containerBorderSize + ' ' +
                 this.containerBorderType + ' ' + this.containerBorderColour;
         } else {
             this.containerBorder = 'none';
@@ -232,7 +232,7 @@ export class WidgetContainerStylesAddComponent implements OnInit {
         this.containerBorderRadius = ev.target.value;
 
     }
-    
+
     clickSelectTextAlign(ev: any) {
         // Select Circle Line Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectTextAlign', '@Start');
@@ -244,7 +244,7 @@ export class WidgetContainerStylesAddComponent implements OnInit {
         this.shapeTextAlign = ev.target.value;
 
     }
-    
+
     clickClose() {
         // Close the form, nothing saved
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
@@ -287,7 +287,7 @@ export class WidgetContainerStylesAddComponent implements OnInit {
             containerCreatedBy: this.globalVariableService.currentUser.userID,
             containerUpdatedOn: null,
             containerUpdatedBy: null,
-        
+
         };
 console.warn('xx newContainerStyle', newContainerStyle);
 

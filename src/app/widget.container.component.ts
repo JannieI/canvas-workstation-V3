@@ -121,7 +121,7 @@ console.warn('xx selectedWidget', this.selectedWidget);
                         this.containerStyleName = this.containerStyles[localStyleIndex].name.trim() +
                             ' (' + this.containerStyles[localStyleIndex].id.toString() + ')';
                 console.warn('xx hier ', localStyleIndex,
-                
+
                             this.containerSelectedStyleID ,
                         this.containerSelectedStyleName ,
                         this.containerStyleName, ':', this.containerStyles);
@@ -223,7 +223,7 @@ console.warn('xx selectedWidget', this.selectedWidget);
         if (bgIndex >= 0) {
             // this.containerBorderColour = this.backgroundcolors[bgIndex].cssCode;
         };
-        
+
         // Construct line size
         if (this.containerBorderSize != 'none') {
             this.localWidget.containerBorder = this.containerBorderSize + ' ' + this.containerBorderType + ' ' + this.containerBorderColour;
@@ -276,7 +276,7 @@ console.warn('xx selectedWidget', this.selectedWidget);
         // None selected
         if (selectedContainerStyleName == '') {
             console.warn('xx reseted');
-            
+
             this.containerSelectedStyleName = '';
             this.containerSelectedStyleID = -1;
             return;
