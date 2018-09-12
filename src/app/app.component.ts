@@ -7839,10 +7839,8 @@ console.warn('xx filteredActions[0].action', filteredActions[0].action);
         // Clicked Add Shape button on Widget Layout object
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetContainerAddShape', '@Start');
 
-        // Set the dimensions from the layout
-        this.selectedWidgetLayout = this.widgetLayouts[index];
-
-        this.clickMenuShapeNew();
+        // Create Shape, with optional dimensions set
+        this.clickMenuShapeNew(this.widgetLayouts[index]);
     }
 
 
