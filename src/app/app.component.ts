@@ -400,6 +400,7 @@ export class AppComponent implements OnInit {
     selectedWidget: Widget;
     selectedWidgetID: number;
     selectedWidgetIndex: number;
+    selectedWidgetLayout: WidgetLayout;
     showDatasourcePopup: boolean = false;
     showFavouriteDashboard: boolean = false;
     showGrid: boolean;
@@ -7803,9 +7804,20 @@ console.warn('xx filteredActions[0].action', filteredActions[0].action);
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetContainerDelete', '@Start');
 
         // Filter local Array
-        this.widgetLayouts = this.widgetLayouts.filter(wl => wl.id != id);
+        this.widgetLayouts = this.widgetLayouts.filter(wl => wl.id != widgetLayoutID);
     }
 
+    clickMenuWidgetContainerAddGraph(index: number, widgetLayoutID: number) {
+        // Clicked Add Graph button on Widget Layout object
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetContainerAddGraph', '@Start');
+
+        // Set the dimensions from the layout
+        this.selectedWidgetLayout = this.widgetLayouts[index];
+
+        this.clickMenuWidgetNew();
+    }
+
+ 
 
 
 
