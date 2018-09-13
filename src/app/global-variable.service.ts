@@ -1678,7 +1678,9 @@ export class GlobalVariableService {
                         this.deleteWidgetLayout(wl.id, wl.dashboardLayoutID);
                     };
                 });
-                this.deleteDashboardLayout(dl.id);
+                // Note: when the last widgetLayout is deleted, it will automatically 
+                //       delete the dashboardLayout !
+                // this.deleteDashboardLayout(dl.id);
             };
         });
 
