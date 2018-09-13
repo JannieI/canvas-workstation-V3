@@ -59,6 +59,7 @@ export class WidgetContainerStylesAddComponent implements OnInit {
     // colourPickerSubscription: Subscription;
     containerStyleName: string = '';
     containerBackgroundcolor: string = 'transparent';
+    containerBackgroundcolorName: string = 'transparent';
     containerBorder: string = '1px solid black';
     containerBorderColour: string = 'black';
     containerBorderRadius: string;
@@ -272,6 +273,7 @@ export class WidgetContainerStylesAddComponent implements OnInit {
             id: null,
             name: this.containerStyleName.trim(),
             containerBackgroundcolor: this.containerBackgroundcolor,
+            containerBackgroundcolorName: this.containerBackgroundcolorName,
             containerBorderColour: this.containerBorderColour,
             containerBorderRadius: this.containerBorderRadius,
             containerBorderSize: this.containerBorderSize,

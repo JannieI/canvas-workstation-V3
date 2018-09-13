@@ -192,6 +192,7 @@ const widgetTemplate: Widget =
         "addRestRow": false,
         "size": "",
         "containerBackgroundcolor": "transparent",
+        "containerBackgroundcolorName": "transparent",
         "containerBorder": "1px solid gray",
         "containerBorderRadius": "6px",
         "containerBoxshadow": "none",
@@ -1669,8 +1670,6 @@ export class GlobalVariableService {
 
         // TODO - maybe this can be done better in DB
         // Delete Dashboard- and Widget Layouts
-        console.warn('xx xxxx discardDashboard', dl.id, this.currentDashboardInfo.value.currentDashboardID, this.dashboardLayouts, this.widgetLayouts);
-        
         this.dashboardLayouts.forEach(dl => {
             if (dl.dashboardID == this.currentDashboardInfo.value.currentDashboardID) {
                 this.widgetLayouts.forEach(wl => {
@@ -10046,6 +10045,7 @@ export class GlobalVariableService {
                 {key: 'addRestRow', 				type: 'bool'},
                 {key: 'size', 						type: 'string'},
                 {key: 'containerBackgroundcolor', 	type: 'string'},
+                {key: 'containerBackgroundcolorName', 	type: 'string'},
                 {key: 'containerBorder', 			type: 'string'},
                 {key: 'containerBorderRadius', 	    type: 'string'},
                 {key: 'containerBoxshadow', 		type: 'string'},

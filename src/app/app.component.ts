@@ -4257,6 +4257,7 @@ console.warn('xx filteredActions[0].action', filteredActions[0].action);
         localWidget.isSelected = false;
         localWidget.containerBorder = '';
         localWidget.containerBackgroundcolor = 'white';
+        localWidget.containerBackgroundcolorName = 'white';
 
         let definition = this.globalVariableService.createVegaLiteSpec(localWidget);
 
@@ -8842,6 +8843,7 @@ console.warn('xx filteredActions[0].action', filteredActions[0].action);
                             wc.widgetSpec.currentCheckpoint = w.currentCheckpoint;
                             wc.widgetSpec.lastCheckpoint = w.lastCheckpoint;
                             wc.widgetSpec.containerBackgroundcolor = w.containerBackgroundcolor
+                            wc.widgetSpec.containerBackgroundcolorName = w.containerBackgroundcolorName;                            
                             wc.widgetSpec.containerBorder = w.containerBorder
                             wc.widgetSpec.containerBorderRadius = w.containerBorderRadius
                             wc.widgetSpec.containerBoxshadow = w.containerBoxshadow

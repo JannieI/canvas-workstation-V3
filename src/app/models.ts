@@ -193,6 +193,7 @@ export class ContainerStyle {
 
     // Container
     containerBackgroundcolor: string;       // Bg Colour
+    containerBackgroundcolorName: string    // Bg Colour Name
     containerBorderColour: string;          // Colour of border
     containerBorderRadius: string;          // Border radius in px      
     containerBorderSize: string;            // Size of border in px
@@ -941,7 +942,8 @@ export class Widget {
     size: string;                       // Small, Medium, Large ito data loading
 
     // Container
-    containerBackgroundcolor: string;
+    containerBackgroundcolor: string;   // Actual colour (CSS name or HEX code)
+    containerBackgroundcolorName: string;   // Name - CSS (ie black) or Custome Name (Our company blue)
     containerBorder: string;
     containerBorderRadius: string;
     containerBoxshadow: string;

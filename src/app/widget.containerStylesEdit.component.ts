@@ -58,6 +58,7 @@ export class WidgetContainerStylesEditComponent implements OnInit {
     // colourPickerClosed: boolean = false;
     // colourPickerSubscription: Subscription;
     containerBackgroundcolor: string = 'transparent';
+    containerBackgroundcolorName: string = 'transparent';
     containerBorder: string = '1px solid black';
     containerBorderColour: string = 'black';
     containerBorderRadius: string;
@@ -375,6 +376,7 @@ console.warn('xx this.containerSelectedStyleID', this.containerSelectedStyleID);
             id: this.containerSelectedStyleID,
             name: this.containerSelectedStyleName,
             containerBackgroundcolor: this.containerBackgroundcolor,
+            containerBackgroundcolorName: this.containerBackgroundcolorName,
             containerBorderColour: this.containerBorderColour,
             containerBorderRadius: this.containerBorderRadius,
             containerBorderSize: this.containerBorderSize,

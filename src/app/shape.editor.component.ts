@@ -212,6 +212,7 @@ export class ShapeEditComponent implements OnInit {
             // Standard settings
             this.localWidget.widgetType = 'Shape';
             this.localWidget.containerBackgroundcolor = 'transparent';
+            this.localWidget.containerBackgroundcolorName = 'transparent';
             this.localWidget.containerBorder = 'none';
             this.localWidget.containerBorderRadius = '';
             this.localWidget.containerHasContextMenus = false;

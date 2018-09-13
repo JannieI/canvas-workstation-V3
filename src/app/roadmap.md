@@ -846,7 +846,8 @@ This document describes items for later versions of Canvas.
     - Gifs ...
     - Math formulas - no way unless we use third party tool !
         - easy peezy, just use SVG.  See http://svgdiscovery.com/Text/dynamicText.htm
-    - Thumbnails - open on side and jump to tab by clicking on it
+    - Thumbnails - open on side and jump to tab by clicking on it, see:
+    https://www.npmjs.com/package/dom-to-image
     - Need a LINE !!
         - consider drawing this via the mouse
         - must be stretchable via dragging endpoints.
@@ -1017,6 +1018,7 @@ This document describes items for later versions of Canvas.
     PDF / IMAGE:
     ------------
     - can save Dashboard as pdf - see https://github.com/MrRio/jsPDF.
+    - See: https://stackoverflow.com/questions/14552112/html-to-pdf-with-node-js
     - also, SVG-> PDF see http://svgdiscovery.com/C/svg-print-save-PDF.htm 
         Rather: https://stackoverflow.com/questions/38996376/generate-pdf-file-from-html-using-angular2-typescript,  or  https://stackoverflow.com/questions/42900319/how-to-convert-html-to-pdf-in-angular2  or  https://www.npmjs.com/package/jspdf
         - can send Dashboard as Email Attachment (in pdf or pic). To do this via Gmail, use its API - see https://www.sitepoint.com/sending-emails-gmail-javascript-api/

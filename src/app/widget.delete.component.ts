@@ -84,6 +84,7 @@ export class WidgetDeleteComponent implements OnInit {
         localWidget.graphYaxisTitle = '';
         localWidget.containerBorder = '';
         localWidget.containerBackgroundcolor = 'white';
+        localWidget.containerBackgroundcolorName = 'white';
 
         let definition = this.globalVariableService.createVegaLiteSpec(localWidget);
         console.warn('xx def', definition)
