@@ -145,9 +145,15 @@ export class WidgetContainerStylesAddComponent implements OnInit {
         this.errorMessage = '';
         this.infoMessage = '';
 
-        this.containerBackgroundcolor = ev.target.value;
+        this.containerBackgroundcolorName = ev.target.value;
+        this.containerBackgroundcolor = this.containerBackgroundcolorName;
+        let localIndex: number = this.backgroundcolors.findIndex(bg =>
+            bg.name == this.containerBackgroundcolorName
+        );
+        if (localIndex >= 0) {
+            this.containerBackgroundcolor = this.backgroundcolors[localIndex].cssCode;
+        };
 
-        
     }
 
     // clickSelectLineColorPicker(ev: any) {
