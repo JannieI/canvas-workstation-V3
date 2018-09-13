@@ -21,6 +21,7 @@ This document describes items for later versions of Canvas.
     - Direct Service
     - Managed Service
     - Combinations
+    - Template form: does not work this way any longer.  Maybe use this for the Layout form, else just delete.
 
 
 
