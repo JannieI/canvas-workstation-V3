@@ -146,6 +146,8 @@ export class WidgetContainerStylesAddComponent implements OnInit {
         this.infoMessage = '';
 
         this.containerBackgroundcolor = ev.target.value;
+
+        
     }
 
     // clickSelectLineColorPicker(ev: any) {

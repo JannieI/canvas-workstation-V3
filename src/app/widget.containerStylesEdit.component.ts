@@ -244,6 +244,7 @@ export class WidgetContainerStylesEditComponent implements OnInit {
     clickSelectBgColor(ev: any) {
         // Select Background Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBgColor', '@Start');
+        console.warn('xx ev', ev.target.value);
 
         // Reset
         this.errorMessage = '';
@@ -257,7 +258,6 @@ export class WidgetContainerStylesEditComponent implements OnInit {
         if (localIndex >= 0) {
             this.containerBackgroundcolor = this.backgroundcolors[localIndex].cssCode;
         };
-        console.warn('xx cols 2', this.containerBackgroundcolor, this.containerBackgroundcolorName);
         
     }
 
