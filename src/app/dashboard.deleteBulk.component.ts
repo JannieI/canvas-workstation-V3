@@ -41,7 +41,7 @@ class FilterDescription implements ClrDatagridStringFilterInterface<Dashboard> {
 })
 export class DashboardDeleteBulkComponent implements OnInit {
 
-    @Output() formDashboardDeleteClosed: EventEmitter<string> = new EventEmitter();
+    @Output() formDashboardDeleteBulkClosed: EventEmitter<string> = new EventEmitter();
 
     @HostListener('window:keyup', ['$event'])
     keyEvent(event: KeyboardEvent) {
@@ -91,7 +91,7 @@ export class DashboardDeleteBulkComponent implements OnInit {
         // Close form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
-		this.formDashboardDeleteClosed.emit(action);
+		this.formDashboardDeleteBulkClosed.emit(action);
     }
 
     dblclickDelete(index: number, id: number) {
