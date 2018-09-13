@@ -1139,7 +1139,7 @@ This document describes items for later versions of Canvas.
     - can annotate data and text comments called key takeaways or key insights
     - uses Northwind SQL db for demo
     - imports data and shows relationships from SQL DB
-    - can link from different sources ie Excel and SQL  DB
+    - can link from different sources ie Excel and SQL  DB.  See (for node): https://www.npmjs.com/package/xlsx
     - can also do calculated fields 
     - change headers 
     - can change data type 

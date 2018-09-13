@@ -191,6 +191,8 @@ export class WidgetContainerStylesEditComponent implements OnInit {
 
             this.containerBackgroundcolor = this.containerStyles[localIndex].
                 containerBackgroundcolor;
+            this.containerBackgroundcolorName = this.containerStyles[localIndex].
+                containerBackgroundcolorName;
             this.containerBorderColour = this.containerStyles[localIndex].
                 containerBorderColour;
 
@@ -247,7 +249,16 @@ export class WidgetContainerStylesEditComponent implements OnInit {
         this.errorMessage = '';
         this.infoMessage = '';
 
-        this.containerBackgroundcolor = ev.target.value;
+        this.containerBackgroundcolorName = ev.target.value;
+        this.containerBackgroundcolor = this.containerBackgroundcolorName;
+        let localIndex: number = this.backgroundcolors.findIndex(bg =>
+            bg.name == this.containerBackgroundcolorName
+        );
+        if (localIndex >= 0) {
+            this.containerBackgroundcolor = this.backgroundcolors[localIndex].cssCode;
+        };
+        console.warn('xx cols 2', this.containerBackgroundcolor, this.containerBackgroundcolorName);
+        
     }
 
     // clickSelectLineColorPicker(ev: any) {
