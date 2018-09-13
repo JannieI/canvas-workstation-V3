@@ -1,7 +1,7 @@
 /*
  * Visualise page, to view / present Dashboards previously created
  */
- 
+
 // Angular
 import { Component }                  from '@angular/core';
 import { EventEmitter }               from '@angular/core';
@@ -37,18 +37,18 @@ export class DashboardDeleteComponent implements OnInit {
             this.clickClose('Close');
             return;
         };
-        if ( 
+        if (
             (event.code == 'Enter'  ||  event.code == 'NumpadEnter')
-            &&  
-            (!event.ctrlKey)  
-            &&  
-            (!event.shiftKey) 
+            &&
+            (!event.ctrlKey)
+            &&
+            (!event.shiftKey)
            ) {
             this.clickDelete();
             return;
         };
     }
-    
+
     dashboard: Dashboard;
     dashboardTabs: number = 0;
     dashboardWidgets: number = 0;
@@ -136,7 +136,7 @@ export class DashboardDeleteComponent implements OnInit {
                 });
             });
         });
-        
+
     }
 
     clickClose(action: string) {
@@ -146,7 +146,7 @@ export class DashboardDeleteComponent implements OnInit {
 		this.formDashboardDeleteClosed.emit(action);
     }
 
-    clickDelete() { 
+    clickDelete() {
         // Delete selected D and all related records, if user has access
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDelete', '@Start');
 
@@ -158,18 +158,18 @@ export class DashboardDeleteComponent implements OnInit {
             this.errorMessage = 'No access';
             return;
         };
-  
+
         // Cannot remove if Draft present
         if (this.dashboard.draftID != null){
             this.errorMessage = 'First discard the Draft for this Dashboard';
             return;
-        }; 
+        };
 
         // TODO - remove later on!!
         let id: number = this.globalVariableService.currentDashboardInfo.value.currentDashboardID;
         if (
-            (id < 9  || id == 40  ||  id == 41)  
-            &&  
+            (id < 9  || id == 40  ||  id == 41)
+            &&
             this.globalVariableService.currentDashboardInfo.value.currentDashboardState == 'Complete'
             ) {
             alert('Dont delete Complete version of ids 1-8, 40, 41 while testing !')
@@ -182,7 +182,7 @@ export class DashboardDeleteComponent implements OnInit {
         );
 
 		this.formDashboardDeleteClosed.emit('Deleted');
-        
+
     }
 
 }

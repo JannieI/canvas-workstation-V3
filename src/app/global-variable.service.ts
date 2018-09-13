@@ -1667,6 +1667,21 @@ export class GlobalVariableService {
             };
         });
 
+        // TODO - maybe this can be done better in DB
+        // Delete Dashboard- and Widget Layouts
+        console.warn('xx xxxx', this.dashboardLayouts, this.widgetLayouts);
+        
+        this.dashboardLayouts.forEach(dl => {
+            if (dl.id == this.currentDashboardInfo.value.currentDashboardID) {
+                this.widgetLayouts.forEach(wl => {
+                    if (wl.dashboardLayoutID == dl.id) {
+                        this.deleteWidgetLayout(wl.id, wl.dashboardLayoutID);
+                    };
+                });
+                this.deleteDashboardLayout(dl.id);
+            };
+        });
+
         // Delete the Draft D content created as part of the Draft version:
         // Dashboard
         this.deleteDashboard(draftID);
@@ -2044,7 +2059,7 @@ export class GlobalVariableService {
                 });
                 this.deleteDashboardLayout(dl.id);
             };
-        })
+        });
 
         // Delete where D was used as hyperlink in Schedule
         this.dashboardSchedules.forEach(sch => {

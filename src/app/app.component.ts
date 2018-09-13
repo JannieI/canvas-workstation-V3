@@ -1148,6 +1148,13 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
         if (action == 'Deleted') {
             this.clearDashboard();
+            this.showMessage(
+                'Click Dashboard Add or Open to continue with another dashboard',
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
         }
         this.menuOptionClickPostAction();
 
@@ -3266,7 +3273,7 @@ console.warn('xx filteredActions[0].action', filteredActions[0].action);
         if (this.globalVariableService.currentDashboardInfo.value.currentDashboardState ==
             'Draft') {
             this.showMessage(
-                'Draft Dashboards cannot be deleted (use Discard menu option)',
+                'Draft Dashboards cannot be deleted (use Save -> Discard, then Delete)',
                 'StatusBar',
                 'Warning',
                 3000,
