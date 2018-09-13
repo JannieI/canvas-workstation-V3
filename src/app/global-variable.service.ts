@@ -1672,9 +1672,9 @@ export class GlobalVariableService {
         console.warn('xx xxxx discardDashboard', dl.id, this.currentDashboardInfo.value.currentDashboardID, this.dashboardLayouts, this.widgetLayouts);
         
         this.dashboardLayouts.forEach(dl => {
-            if (dl.id == this.currentDashboardInfo.value.currentDashboardID) {
+            if (dl.dashboardID == this.currentDashboardInfo.value.currentDashboardID) {
                 this.widgetLayouts.forEach(wl => {
-                    if (wl.dashboardLayoutID == dl.dashboardID) {
+                    if (wl.dashboardLayoutID == dl.id) {
                         this.deleteWidgetLayout(wl.id, wl.dashboardLayoutID);
                     };
                 });
@@ -2051,9 +2051,9 @@ export class GlobalVariableService {
         // TODO - maybe this can be done better in DB
         // Delete Dashboard- and Widget Layouts
         this.dashboardLayouts.forEach(dl => {
-            if (dl.id == this.currentDashboardInfo.value.currentDashboardID) {
+            if (dl.dashboardID == this.currentDashboardInfo.value.currentDashboardID) {
                 this.widgetLayouts.forEach(wl => {
-                    if (wl.dashboardLayoutID == dl.dashboardID) {
+                    if (wl.dashboardLayoutID == dl.id) {
                         this.deleteWidgetLayout(wl.id, wl.dashboardLayoutID);
                     };
                 });
