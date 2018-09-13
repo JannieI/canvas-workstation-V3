@@ -291,7 +291,6 @@ export class WidgetContainerStylesEditComponent implements OnInit {
         } else {
             this.containerBorder = 'none';
         };
-        console.warn('xx clickSelectBorderColor', this.containerBorder);
 
     }
 
@@ -432,6 +431,10 @@ console.warn('xx this.containerSelectedStyleID', this.containerSelectedStyleID);
         // Delete the selected Container Style
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDelete', '@Start');
 
+        // Reset
+        this.errorMessage = '';
+        this.infoMessage = '';
+
         // Validate
         if (this.containerSelectedStyleID == -1) {
             this.errorMessage = 'Invalid selection.';
@@ -475,6 +478,9 @@ console.warn('xx this.containerSelectedStyleID', this.containerSelectedStyleID);
                     this.containerStyleName = this.containerStyles[0].name +
                         ' (' + this.containerStyles[0].id.toString() + ')';
                 };
+
+                // Tell User
+                this.infoMessage = 'Style deleted';
             }
         );
     }

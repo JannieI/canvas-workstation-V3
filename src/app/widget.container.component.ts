@@ -202,7 +202,14 @@ console.warn('xx selectedWidget', this.selectedWidget);
         // Select Background Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBgColor', '@Start');
 
-        this.localWidget.containerBackgroundcolor = ev.target.value;
+        this.localWidget.containerBackgroundcolorName = ev.target.value;
+        this.localWidget.containerBackgroundcolor = this.localWidget.containerBackgroundcolorName;
+        let localIndex: number = this.backgroundcolors.findIndex(bg =>
+            bg.name == this.localWidget.containerBackgroundcolorName
+        );
+        if (localIndex >= 0) {
+            this.localWidget.containerBackgroundcolor = this.backgroundcolors[localIndex].cssCode;
+        };
     }
 
     clickSelectLineColorPicker(ev: any) {
