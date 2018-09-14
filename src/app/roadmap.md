@@ -1194,7 +1194,12 @@ This document describes items for later versions of Canvas.
 
     Layouts:
     - store template Layouts in DB - currently hardcoded in form
-    - Create form: just add any number of containers to a Tab, then click this option.  It must save their dimensions, a thumbnail and create records in DB (template layouts)
+    - Create form: just add any number of containers to a Tab, then click this option.  It must save their dimensions, a thumbnail and create records in DB (template layouts).
+    See:
+    https://github.com/rioki/node-thumper
+    https://libraries.io/npm/express-thumbnail
+    https://www.npmjs.com/package/capture-chrome
+    https://www.npmjs.com/package/capture-phantomjs
     - consider to have a Layout per Tab - easy to do if adding a TabID to the DashboardLayout record ...
 
     StatusBar:

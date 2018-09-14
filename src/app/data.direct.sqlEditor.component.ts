@@ -224,19 +224,36 @@ export class DataDirectSQLEditorComponent implements OnInit {
             .filter(styp => styp.serverType == this.selectedDatasource.serverType)
             .map(styp => styp.driverName)[0];
 
+        // let specificationInspect: any = {
+        //     "source": {
+        //         "inspector": "tributary.inspectors.sql:SqlInspector",
+        //         "specification": {
+        //             "drivername": driver,
+        //             "username": this.selectedDatasource.username,
+        //             "password": this.selectedDatasource.password,
+        //             "database": this.selectedDatasource.databaseName,
+        //             "host": this.selectedDatasource.serverName,
+        //             "port": +this.selectedDatasource.port
+        //         }
+        //     }
+        // };
+        
         let specificationInspect: any = {
             "source": {
                 "inspector": "tributary.inspectors.sql:SqlInspector",
                 "specification": {
-                    "drivername": driver,
-                    "username": this.selectedDatasource.username,
-                    "password": this.selectedDatasource.password,
-                    "database": this.selectedDatasource.databaseName,
-                    "host": this.selectedDatasource.serverName,
-                    "port": +this.selectedDatasource.port
+                    "drivername": "postgresql",
+                    "host": "postgres",
+                    "port": 5432,
+                    "username": "postgres",
+                    "password": "postgres",
+                    "database": "data"
                 }
             }
-        };
+        }
+
+
+
         // Call Tributary Inspector
         this.globalVariableService.getTributaryInspect(specificationInspect).then(res => {
 
