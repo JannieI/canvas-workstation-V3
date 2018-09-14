@@ -229,10 +229,12 @@ console.warn('xx selectedWidget', this.selectedWidget);
         // Select Line Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectLineColor', '@Start');
 
-        this.containerBorderColour = ev.target.value;
-        let bgIndex: number = this.backgroundcolors.findIndex(bg => bg.name == ev.target.value);
+        this.containerBorderColourName = ev.target.value;
+        this.containerBorderColour = this.containerBorderColourName;
+        let bgIndex: number = this.backgroundcolors.findIndex(
+            bg => bg.name == this.containerBorderColourName);
         if (bgIndex >= 0) {
-            // this.containerBorderColour = this.backgroundcolors[bgIndex].cssCode;
+            this.containerBorderColour = this.backgroundcolors[bgIndex].cssCode;
         };
 
         // Construct line size

@@ -112,9 +112,9 @@
                         Border Colour:
                     </div>
                     <div class="select containerBorderColor">
-                        <select [(ngModel)]="containerBorderColour"
+                        <select [(ngModel)]="containerBorderColourName"
                             (change)="clickSelectBorderColor($event)"
-                            name="containerBorderColour"
+                            name="containerBorderColourName"
                             >
                             <option *ngFor="let row of backgroundcolors"
                                 [style.background-color]="row.name"

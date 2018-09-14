@@ -192,9 +192,10 @@ export class ContainerStyle {
     name: string;                           // Unique Name of style
 
     // Container
-    containerBackgroundcolor: string;       // Bg Colour
-    containerBackgroundcolorName: string    // Bg Colour Name
-    containerBorderColour: string;          // Colour of border
+    containerBackgroundcolor: string;       // Actual colour (CSS name or HEX code)
+    containerBackgroundcolorName: string    // Name - CSS (ie black) or Custome Name (Our company blue)
+    containerBorderColour: string;          // Actual colour (CSS name or HEX code)
+    containerBorderColourName: string;      // Name - CSS (ie black) or Custome Name (Our company blue)
     containerBorderRadius: string;          // Border radius in px      
     containerBorderSize: string;            // Size of border in px
     containerBorderType: string;            // Type of border, dotted or solid

@@ -114,13 +114,12 @@
                         </clr-icon>
                     </div>
 
-
                     <div class="gridLinecolorTitle">
                         Border Colour:
                     </div>
                     <div class="select gridLinecolor">
-                        <select [(ngModel)]="containerBorderColour"
-                            name="containerBorderColour"
+                        <select [(ngModel)]="containerBorderColourName"
+                            name="containerBorderColourName"
                             (change)="clickSelectLineColor($event)"
                             >
                             <option *ngFor="let row of backgroundcolors"
