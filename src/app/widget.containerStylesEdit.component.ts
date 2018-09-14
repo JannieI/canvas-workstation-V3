@@ -196,6 +196,8 @@ export class WidgetContainerStylesEditComponent implements OnInit {
                 containerBackgroundcolorName;
             this.containerBorderColour = this.containerStyles[localIndex].
                 containerBorderColour;
+            this.containerBorderColourName = this.containerStyles[localIndex].
+                containerBorderColourName;
 
             if (this.containerStyles[localIndex].containerBorderRadius != null) {
                 this.containerBorderRadius = this.containerStyles[localIndex].
