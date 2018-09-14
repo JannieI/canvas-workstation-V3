@@ -61,6 +61,7 @@ export class WidgetContainerStylesEditComponent implements OnInit {
     containerBackgroundcolorName: string = 'transparent';
     containerBorder: string = '1px solid black';
     containerBorderColour: string = 'black';
+    containerBorderColourName: string = 'Black';
     containerBorderRadius: string;
     containerBorderType: string = 'solid';
     containerBorderSize: string = '1px';
@@ -282,7 +283,14 @@ export class WidgetContainerStylesEditComponent implements OnInit {
         this.errorMessage = '';
         this.infoMessage = '';
 
-        this.containerBorderColour = ev.target.value;
+        this.containerBorderColourName = ev.target.value;
+        this.containerBorderColour = this.containerBorderColourName;
+        let localIndex: number = this.backgroundcolors.findIndex(bg =>
+            bg.name == this.containerBorderColourName
+        );
+        if (localIndex >= 0) {
+            this.containerBorderColour = this.backgroundcolors[localIndex].cssCode;
+        };
 
         // Construct Border
         if (this.containerBorderSize != 'none'  &&  this.containerBorderColour != 'none') {
@@ -388,6 +396,7 @@ console.warn('xx this.containerSelectedStyleID', this.containerSelectedStyleID);
             containerBackgroundcolor: this.containerBackgroundcolor,
             containerBackgroundcolorName: this.containerBackgroundcolorName,
             containerBorderColour: this.containerBorderColour,
+            containerBorderColourName: this.containerBorderColourName,
             containerBorderRadius: this.containerBorderRadius,
             containerBorderSize: this.containerBorderSize,
             containerBorderType: this.containerBorderType,
