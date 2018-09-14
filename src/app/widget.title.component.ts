@@ -129,11 +129,13 @@ export class WidgetTitleComponent implements OnInit {
 
         // Get setup info
         this.backgroundcolors = this.globalVariableService.backgroundcolors.slice();
-
+        this.backgroundcolors = [
+            {id: null, name: 'Open Picker ...', cssCode: '', shortList: false}, ...this.backgroundcolors
+        ];
     }
 
     ngOnDestroy() {
-        // Cleanup just before Angular destroys the directive/component. 
+        // Cleanup just before Angular destroys the directive/component.
         // Unsubscribe Observables and detach event handlers to avoid memory leaks.
         // Called just before Angular destroys the directive/component.
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnDestroy', '@Start');
@@ -145,6 +147,10 @@ export class WidgetTitleComponent implements OnInit {
         // Select Background Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectTitleBgColor', '@Start');
 
+        // Open Picker if selected
+        if (ev.target.value == 'Open Picker ...') {
+            this.clickSelectTitleBgColorPicker(null);
+        };
         // this.localWidget.titleBackgroundColor = ev.target.value;
 
         this.localWidget.titleBackgroundColorName = ev.target.value;
