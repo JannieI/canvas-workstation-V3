@@ -111,6 +111,7 @@ export class WidgetTitleComponent implements OnInit {
                     if (clp.callingRoutine == 'Colour') {
                         this.colourPickerClosed = false;
                         this.localWidget.titleColor = clp.selectedColor;
+                        this.localWidget.titleColorName = 'Open Picker ...';
                     };
                     if (clp.callingRoutine == 'BorderColour') {
                         this.colourPickerClosed = false;
@@ -144,14 +145,13 @@ export class WidgetTitleComponent implements OnInit {
     }
 
     clickSelectTitleBgColor(ev: any) {
-        // Select Background Colour
+        // Select Background Colour for the Title
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectTitleBgColor', '@Start');
 
         // Open Picker if selected
         if (ev.target.value == 'Open Picker ...') {
             this.clickSelectTitleBgColorPicker(null);
         };
-        // this.localWidget.titleBackgroundColor = ev.target.value;
 
         this.localWidget.titleBackgroundColorName = ev.target.value;
         this.localWidget.titleBackgroundColor = this.localWidget.titleBackgroundColorName;
@@ -172,16 +172,30 @@ export class WidgetTitleComponent implements OnInit {
         this.colourPickerClosed = true;
     }
 
-    clickSelectColor(ev: any) {
-        // Select text Colour
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectColor', '@Start');
+    clickSelectTitleColor(ev: any) {
+        // Select text Colour for the Title
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectTitleColor', '@Start');
 
-        this.localWidget.titleColor = ev.target.value;
+        // this.localWidget.titleColor = ev.target.value;
+
+        // Open Picker if selected
+        if (ev.target.value == 'Open Picker ...') {
+            this.clickSelectTitleColorPicker(null);
+        };
+
+        this.localWidget.titleColorName = ev.target.value;
+        this.localWidget.titleColor = this.localWidget.titleColorName;
+        let localIndex: number = this.backgroundcolors.findIndex(bg =>
+            bg.name == this.localWidget.titleColorName
+        );
+        if (localIndex >= 0) {
+            this.localWidget.titleColor = this.backgroundcolors[localIndex].cssCode;
+        };
     }
 
-    clickSelectColorPicker(ev: any) {
+    clickSelectTitleColorPicker(ev: any) {
         // Open the Colour Picker for text Colour
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectColorPicker', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectTitleColorPicker', '@Start');
 
         this.selectedColour = this.localWidget.titleColor;
         this.callingRoutine = 'Colour';

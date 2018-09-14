@@ -93,7 +93,7 @@
                     <div class="select titleColour">
                         <select [(ngModel)]="localWidget.titleColor"
                             name="titleColor"
-                            (change)="clickSelectColor($event)"
+                            (change)="clickSelectTitleColor($event)"
                             >
                             <option *ngFor="let row of backgroundcolors"
                                 [style.background-color]="row.name"
@@ -106,7 +106,7 @@
                         <button
                             type="button"
                             class="btn btn-link btn-sm"
-                            (click)="clickSelectColorPicker()"
+                            (click)="clickSelectTitleColorPicker()"
                             >
                             Picker
                         </button>                        
