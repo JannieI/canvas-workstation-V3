@@ -102,13 +102,22 @@
                             </option>
                         </select>
                     </div>
-                    <button
-                        type="button"
-                        class="btn btn-link btn-sm titleColourPicker"
-                        (click)="clickSelectColorPicker()"
-                        >
-                        Picker
-                    </button>
+                    <div class="titleColourPicker">
+                        <button
+                            type="button"
+                            class="btn btn-link btn-sm"
+                            (click)="clickSelectColorPicker()"
+                            >
+                            Picker
+                        </button>                        
+                        <clr-icon
+                            shape="circle"
+                            size="14"
+                            [style.background-color]="localWidget.titlecolor"
+                            [style.color]="localWidget.titlecolor"
+                            >
+                        </clr-icon>
+                    </div>
 
                     <div class="titleBorderSizeTitle">
                         Border Size:
