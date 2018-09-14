@@ -1008,8 +1008,10 @@ export class Widget {
     graphColorType: string;
 
     // Table - to be determined later ...
-    tableBackgroundColor: string;       // Background color
-    tableColor: string;                 // Text color
+    tableBackgroundColor: string;       // Actual colour (CSS name or HEX code)  
+    tableBackgroundColorName: string;   // Name - CSS (ie black) or Custome Name (Our company blue)
+    tableColor: string;                 // Actual colour (CSS name or HEX code)  
+    tableColorName: string;             // Name - CSS (ie black) or Custome Name (Our company blue)
     tableCols: number;                  // Nr of cols, 0 means all
     fontSize: number;                   // Font size of text
     tableHeight: number;                // in px, cuts of rest if bigger than this
