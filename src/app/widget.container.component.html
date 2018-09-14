@@ -130,13 +130,23 @@
                             </option>
                         </select>
                     </div>
-                    <button
-                        type="button"
-                        class="btn btn-link btn-sm gridLinecolorPicker"
-                        (click)="clickSelectLineColorPicker()"
-                        >
-                        Picker
-                    </button>
+                    <div>
+                        <button
+                            type="button"
+                            class="btn btn-link btn-sm gridLinecolorPicker"
+                            (click)="clickSelectLineColorPicker()"
+                            >
+                            Picker
+                        </button>
+                        <clr-icon
+                            shape="circle"
+                            size="14"
+                            [style.background-color]="localWidget.containerBorderColour"
+                            [style.color]="localWidget.containerBorderColour"
+                            >
+                        </clr-icon>
+                    </div>
+
 
                     <div class="gridLineSizeTitle">
                         Border Size:
