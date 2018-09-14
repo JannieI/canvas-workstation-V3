@@ -95,6 +95,15 @@
         padding-left: 15px;
         padding-top: 6px;
     }
+    .gridBackgroundcolorIndicator {
+        grid-column-start: 8;
+        /* autoprefixer: off */
+        grid-column-end: 9;
+        grid-row-start: 5;
+        grid-row-end: 6;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
     .gridBackgroundcolorPicker {
         grid-column-start: 9;
         /* autoprefixer: off */
@@ -118,6 +127,15 @@
         grid-column-start: 4;
         /* autoprefixer: off */
         grid-column-end: 8;
+        grid-row-start: 7;
+        grid-row-end: 8;
+        padding-left: 15px;
+        padding-top: 6px;
+    }
+    .containerBorderColorIndicator {
+        grid-column-start: 8;
+        /* autoprefixer: off */
+        grid-column-end: 9;
         grid-row-start: 7;
         grid-row-end: 8;
         padding-left: 15px;

@@ -62,7 +62,7 @@ export class WidgetContainerStylesAddComponent implements OnInit {
     containerBackgroundcolorName: string = 'transparent';
     containerBorder: string = '1px solid black';
     containerBorderColour: string = 'black';
-    containerBorderColourName: string = 'black';
+    containerBorderColourName: string = 'Black';
     containerBorderRadius: string;
     containerBorderType: string = 'solid';
     containerBorderSize: string = '1px';
