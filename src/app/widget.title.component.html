@@ -139,8 +139,8 @@
                         Border:
                     </div>
                     <div class="select titleBorderColor">
-                        <select [(ngModel)]="lineColorName"
-                            name="lineColorName"
+                        <select [(ngModel)]="localWidget.titleBorderName"
+                            name="titleBorderName"
                             (change)="clickSelectBorderColor($event)"
                             >
                             <option *ngFor="let row of backgroundcolors"
@@ -161,8 +161,8 @@
                         <clr-icon
                             shape="circle"
                             size="14"
-                            [style.background-color]="lineColorName"
-                            [style.color]="lineColorName"
+                            [style.background-color]="lineColor"
+                            [style.color]="lineColor"
                             >
                         </clr-icon>
                     </div>

@@ -57,7 +57,6 @@ export class WidgetTitleComponent implements OnInit {
     colourPickerClosed: boolean = false;
     colourPickerSubscription: Subscription;
     lineColor: string = 'none';
-    lineColorName: string = 'none';
     lineSize: string = 'none';
     localWidget: Widget;                            // W to modify, copied from selected
     oldWidget: Widget = null;                       // W at start
@@ -73,6 +72,7 @@ export class WidgetTitleComponent implements OnInit {
     ngOnInit() {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+console.warn('xx this.selectedWidget.titleBorder', this.selectedWidget.titleBorder);
 
         // Deconstruct border
         if (this.selectedWidget.titleBorder != ''
@@ -117,7 +117,7 @@ export class WidgetTitleComponent implements OnInit {
                     if (clp.callingRoutine == 'BorderColour') {
                         this.colourPickerClosed = false;
                         this.lineColor = clp.selectedColor;
-                        this.lineColorName = 'Open Picker ...';
+                        this.localWidget.titleBorderName = 'Open Picker ...';
                     };
 
                 };
@@ -213,10 +213,10 @@ export class WidgetTitleComponent implements OnInit {
             this.clickSelectBorderColorPicker(null);
         };
 
-        this.lineColorName = ev.target.value;
-        this.lineColor = this.lineColorName;
+        this.localWidget.titleBorderName = ev.target.value;
+        this.lineColor = this.localWidget.titleBorderName;
         let localIndex: number = this.backgroundcolors.findIndex(bg =>
-            bg.name == this.lineColorName
+            bg.name == this.localWidget.titleBorderName
         );
         if (localIndex >= 0) {
             this.lineColor = this.backgroundcolors[localIndex].cssCode;
