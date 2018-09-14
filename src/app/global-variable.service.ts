@@ -11140,7 +11140,11 @@ export class GlobalVariableService {
         return new Promise<boolean>((resolve, reject) => {
 
             // Get a Token
-            this.http.post<Token>('https://eazl-rest.xyz/eazl/accounts/obtain-token/',
+
+            // this.http.post<Token>('https://eazl-rest.xyz/eazl/accounts/obtain-token/',
+
+
+            this.http.post<Token>('https://eazl-rest.xyz/eazl/accounts/jwt-create/',
                 {username, password}).subscribe(token => {
 
                 // Store locally
