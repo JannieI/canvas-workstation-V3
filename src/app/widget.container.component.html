@@ -97,13 +97,23 @@
                             </option>
                         </select>
                     </div>
-                    <button
-                        type="button"
-                        class="btn btn-link btn-sm gridBackgroundcolorPicker"
-                        (click)="clickSelectBgColorPicker()"
-                        >
-                        Picker
-                    </button>
+                    <div class="gridBackgroundcolorPicker">
+                        <button
+                            type="button"
+                            class="btn btn-link btn-sm"
+                            (click)="clickSelectBgColorPicker()"
+                            >
+                            Picker
+                        </button>
+                        <clr-icon
+                            shape="circle"
+                            size="14"
+                            [style.background-color]="localWidget.containerBackgroundcolor"
+                            [style.color]="localWidget.containerBackgroundcolor"
+                            >
+                        </clr-icon>
+                    </div>
+
 
                     <div class="gridLinecolorTitle">
                         Border Colour:
