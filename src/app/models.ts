@@ -946,6 +946,7 @@ export class Widget {
     containerBackgroundcolor: string;   // Actual colour (CSS name or HEX code)
     containerBackgroundcolorName: string;   // Name - CSS (ie black) or Custome Name (Our company blue)
     containerBorder: string;
+    containerBorderColourName: string;  // Name - CSS (ie black) or Custome Name (Our company blue)
     containerBorderRadius: string;
     containerBoxshadow: string;
     containerFontsize: number;

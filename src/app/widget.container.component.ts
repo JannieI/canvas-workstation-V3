@@ -91,6 +91,7 @@ console.warn('xx selectedWidget', this.selectedWidget);
 
         // Deep copy local copy - Note: this must be done at the start of this method
         this.localWidget = JSON.parse(JSON.stringify(this.selectedWidget));
+        this.containerBorderColourName = this.localWidget.containerBorderColourName;
 
         // Get setup info
         this.backgroundcolors = this.globalVariableService.backgroundcolors.slice();
@@ -386,6 +387,8 @@ console.warn('xx selectedWidget', this.selectedWidget);
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
         // Construct Border
+        this.localWidget.containerBorderColourName = this.containerBorderColourName;
+
         if (this.containerBorderSize != 'none') {
             this.localWidget.containerBorder = this.containerBorderSize + ' ' + this.containerBorderType + ' ' + this.containerBorderColour;
         } else {
