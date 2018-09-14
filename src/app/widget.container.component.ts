@@ -153,7 +153,6 @@ console.warn('xx selectedWidget', this.selectedWidget);
                 console.warn('xx linestuff', ':'+ this.containerBorderSize+':'+ this.containerBorderType+':'+  this.containerBorderColour);
 
         };
-        console.warn('xx start Wcont', this.globalVariableService.currentWidgets)
 
         // Manage colour picker
         this.colourPickerSubscription = this.globalVariableService.colourPickerClosed.subscribe(clp => {
@@ -163,6 +162,7 @@ console.warn('xx selectedWidget', this.selectedWidget);
                 if (clp.cancelled) {
                     this.colourPickerClosed = false;
                 } else {
+                    console.warn('xx col picker call back');
 
                     if (clp.callingRoutine == 'BgColour') {
                         this.colourPickerClosed = false;
@@ -178,6 +178,9 @@ console.warn('xx selectedWidget', this.selectedWidget);
                         if (this.containerBorderSize != 'none') {
                             this.localWidget.containerBorder = this.containerBorderSize + ' ' + this.containerBorderType + ' ' + this.containerBorderColour;
                         };
+
+                        // Reset
+                        clp.callingRoutine = '';
                     };
                 };
             };
