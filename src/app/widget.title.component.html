@@ -109,7 +109,7 @@
                             (click)="clickSelectTitleColorPicker()"
                             >
                             Picker
-                        </button>                        
+                        </button>
                         <clr-icon
                             shape="circle"
                             size="14"
@@ -139,9 +139,9 @@
                         Border:
                     </div>
                     <div class="select titleBorderColor">
-                        <select [(ngModel)]="localWidget.titleBorder"
+                        <select [(ngModel)]="lineColorName"
+                            name="lineColorName"
                             (change)="clickSelectBorderColor($event)"
-                            name="lineColor"
                             >
                             <option *ngFor="let row of backgroundcolors"
                                 [style.background-color]="row.name"
@@ -150,13 +150,22 @@
                             </option>
                         </select>
                     </div>
-                    <button
-                        type="button"
-                        class="btn btn-link btn-sm titleBorderColorPicker"
-                        (click)="clickSelectBorderColorPicker()"
-                        >
-                        Picker
-                    </button>
+                    <div class="titleBorderColorPicker">
+                        <button
+                            type="button"
+                            class="btn btn-link btn-sm"
+                            (click)="clickSelectBorderColorPicker()"
+                            >
+                            Picker
+                        </button>
+                        <clr-icon
+                            shape="circle"
+                            size="14"
+                            [style.background-color]="lineColorName"
+                            [style.color]="lineColorName"
+                            >
+                        </clr-icon>
+                    </div>
 
                     <div class="titleTextAlignTitle">
                         TextAlign:

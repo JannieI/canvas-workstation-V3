@@ -57,6 +57,7 @@ export class WidgetTitleComponent implements OnInit {
     colourPickerClosed: boolean = false;
     colourPickerSubscription: Subscription;
     lineColor: string = 'none';
+    lineColorName: string = 'none';
     lineSize: string = 'none';
     localWidget: Widget;                            // W to modify, copied from selected
     oldWidget: Widget = null;                       // W at start
@@ -116,6 +117,7 @@ export class WidgetTitleComponent implements OnInit {
                     if (clp.callingRoutine == 'BorderColour') {
                         this.colourPickerClosed = false;
                         this.lineColor = clp.selectedColor;
+                        this.lineColorName = 'Open Picker ...';
                     };
 
                 };
@@ -176,8 +178,6 @@ export class WidgetTitleComponent implements OnInit {
         // Select text Colour for the Title
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectTitleColor', '@Start');
 
-        // this.localWidget.titleColor = ev.target.value;
-
         // Open Picker if selected
         if (ev.target.value == 'Open Picker ...') {
             this.clickSelectTitleColorPicker(null);
@@ -206,7 +206,21 @@ export class WidgetTitleComponent implements OnInit {
         // Select text Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectColor', '@Start');
 
-        this.lineColor = ev.target.value;
+        // this.lineColor = ev.target.value;
+
+        // Open Picker if selected
+        if (ev.target.value == 'Open Picker ...') {
+            this.clickSelectBorderColorPicker(null);
+        };
+
+        this.lineColorName = ev.target.value;
+        this.lineColor = this.lineColorName;
+        let localIndex: number = this.backgroundcolors.findIndex(bg =>
+            bg.name == this.lineColorName
+        );
+        if (localIndex >= 0) {
+            this.lineColor = this.backgroundcolors[localIndex].cssCode;
+        };        
     }
 
     clickSelectBorderColorPicker(ev: any) {
