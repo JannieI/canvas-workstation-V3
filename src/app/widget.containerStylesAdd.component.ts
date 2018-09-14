@@ -19,7 +19,7 @@ import { GlobalFunctionService } 	  from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
 
 // Other
-import { Subscription }               from 'rxjs';
+// import { Subscription }               from 'rxjs';
 
 @Component({
     selector: 'widget-containerStylesAdd',
@@ -62,6 +62,7 @@ export class WidgetContainerStylesAddComponent implements OnInit {
     containerBackgroundcolorName: string = 'transparent';
     containerBorder: string = '1px solid black';
     containerBorderColour: string = 'black';
+    containerBorderColourName: string = 'black';
     containerBorderRadius: string;
     containerBorderType: string = 'solid';
     containerBorderSize: string = '1px';
@@ -177,7 +178,14 @@ export class WidgetContainerStylesAddComponent implements OnInit {
         this.errorMessage = '';
         this.infoMessage = '';
 
-        this.containerBorderColour = ev.target.value;
+        this.containerBorderColourName = ev.target.value;
+        this.containerBorderColour = this.containerBorderColourName;
+        let localIndex: number = this.backgroundcolors.findIndex(bg =>
+            bg.name == this.containerBorderColourName
+        );
+        if (localIndex >= 0) {
+            this.containerBorderColour = this.backgroundcolors[localIndex].cssCode;
+        };
 
         // Construct Border
         if (this.containerBorderSize != 'none'  &&  this.containerBorderColour != 'none') {
@@ -283,6 +291,7 @@ export class WidgetContainerStylesAddComponent implements OnInit {
             containerBackgroundcolor: this.containerBackgroundcolor,
             containerBackgroundcolorName: this.containerBackgroundcolorName,
             containerBorderColour: this.containerBorderColour,
+            containerBorderColourName: this.containerBorderColourName,
             containerBorderRadius: this.containerBorderRadius,
             containerBorderSize: this.containerBorderSize,
             containerBorderType: this.containerBorderType,
