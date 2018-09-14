@@ -60,6 +60,7 @@ export class WidgetContainerComponent implements OnInit {
     colourPickerClosed: boolean = false;
     colourPickerSubscription: Subscription;
     containerBorderColour: string = 'black';
+    containerBorderColourName: string = 'black';
     containerBorderType: string = 'solid';
     containerBorderSize: string = '1px';
     containerStyleID: number = null;
@@ -93,8 +94,9 @@ console.warn('xx selectedWidget', this.selectedWidget);
 
         // Get setup info
         this.backgroundcolors = this.globalVariableService.backgroundcolors.slice();
-
-        console.warn('xx this.localWidget.containerStyleID', this.localWidget.containerStyleID);
+        this.backgroundcolors = [
+            {id: null, name: 'Open Picker ...', cssCode: '', shortList: false}, ...this.backgroundcolors
+        ];
 
         // Get list of Styles
         this.globalVariableService.getContainerStyles().then(res => {
@@ -131,14 +133,14 @@ console.warn('xx selectedWidget', this.selectedWidget);
         });
 
         // Deconstruct border
-        if (this.selectedWidget.containerBorder != ''
+        if (this.localWidget.containerBorder != ''
             &&
-            this.selectedWidget.containerBorder != 'none') {
-                let space1: number = this.selectedWidget.containerBorder.indexOf(' ');
+            this.localWidget.containerBorder != 'none') {
+                let space1: number = this.localWidget.containerBorder.indexOf(' ');
                 if (space1 > 0) {
-                    this.containerBorderSize = this.selectedWidget.containerBorder.
+                    this.containerBorderSize = this.localWidget.containerBorder.
                         substr(0, space1).trim();
-                    let rest: string = this.selectedWidget.containerBorder.substr(space1 + 1, 999);
+                    let rest: string = this.localWidget.containerBorder.substr(space1 + 1, 999);
 
                     let space2: number = rest.indexOf(' ');
                     if (space2 > 0) {
@@ -164,10 +166,12 @@ console.warn('xx selectedWidget', this.selectedWidget);
                     if (clp.callingRoutine == 'BgColour') {
                         this.colourPickerClosed = false;
                         this.localWidget.containerBackgroundcolor = clp.selectedColor;
+                        this.localWidget.containerBackgroundcolorName = 'Open Picker ...';
                     };
                     if (clp.callingRoutine == 'LineColour') {
                         this.colourPickerClosed = false;
                         this.containerBorderColour = clp.selectedColor;
+                        this.containerBorderColourName = 'Open Picker ...';
 
                         // Construct line size
                         if (this.containerBorderSize != 'none') {
@@ -326,6 +330,8 @@ console.warn('xx selectedWidget', this.selectedWidget);
 
             this.localWidget.containerBackgroundcolor = this.containerStyles[localIndex].
                 containerBackgroundcolor;
+            this.localWidget.containerBackgroundcolorName = this.containerStyles[localIndex].
+                containerBackgroundcolorName;
             this.containerBorderColour = this.containerStyles[localIndex].
                 containerBorderColour;
 

@@ -87,7 +87,7 @@
                     </div>
                     <div class="select gridBackgroundcolor">
                         <select [(ngModel)]="localWidget.containerBackgroundcolorName"
-                            name="containerBackgroundcolor"
+                            name="containerBackgroundcolorName"
                             (change)="clickSelectBgColor($event)"
                             >
                             <option *ngFor="let row of backgroundcolors"
@@ -130,10 +130,10 @@
                             </option>
                         </select>
                     </div>
-                    <div>
+                    <div class="gridLinecolorPicker">
                         <button
                             type="button"
-                            class="btn btn-link btn-sm gridLinecolorPicker"
+                            class="btn btn-link btn-sm"
                             (click)="clickSelectLineColorPicker()"
                             >
                             Picker
