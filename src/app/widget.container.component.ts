@@ -207,6 +207,11 @@ console.warn('xx selectedWidget', this.selectedWidget);
         // Select Background Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBgColor', '@Start');
 
+        // Open Picker if selected
+        if (ev.target.value == 'Open Picker ...') {
+            this.clickSelectBgColorPicker(null);
+        };
+
         this.localWidget.containerBackgroundcolorName = ev.target.value;
         this.localWidget.containerBackgroundcolor = this.localWidget.containerBackgroundcolorName;
         let localIndex: number = this.backgroundcolors.findIndex(bg =>
@@ -230,6 +235,10 @@ console.warn('xx selectedWidget', this.selectedWidget);
         // Select Line Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectLineColor', '@Start');
 
+        // Open Picker if selected
+        if (ev.target.value == 'Open Picker ...') {
+            this.clickSelectLineColorPicker(null);
+        };
         this.containerBorderColourName = ev.target.value;
         this.containerBorderColour = this.containerBorderColourName;
         let bgIndex: number = this.backgroundcolors.findIndex(
