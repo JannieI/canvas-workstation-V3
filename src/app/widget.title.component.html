@@ -7,7 +7,7 @@
                     <button type="button" class="closeButton" (click)="clickClose()">
                         <b>X</b>
                     </button>
-    
+
                     <div class="colourpicker" *ngIf="colourPickerClosed">
                         <colour-picker
                             [callingRoutine]="callingRoutine"
@@ -27,8 +27,8 @@
                                 <h5 style="margin-top: 0; color:gray;">
                                     Help
                                 </h5>
-                                <p style="margin-top: 0; color:gray;"> 
-                                    Set properties of the Title bar at the top of the Widget.  
+                                <p style="margin-top: 0; color:gray;">
+                                    Set properties of the Title bar at the top of the Widget.
                                     Click the X or press Escape to close this form.
                                 </p>
                             </clr-signpost-content>
@@ -61,13 +61,22 @@
                             </option>
                         </select>
                     </div>
-                    <button
-                        type="button"
-                        class="btn btn-link btn-sm titleBackgroundColourPicker"
-                        (click)="clickSelectTitleBgColorPicker()"
-                        >
-                        Picker
-                    </button>
+                    <div class="titleBackgroundColourPicker">
+                        <button
+                            type="button"
+                            class="btn btn-link btn-sm"
+                            (click)="clickSelectTitleBgColorPicker()"
+                            >
+                            Picker
+                        </button>
+                        <clr-icon
+                            shape="circle"
+                            size="14"
+                            [style.background-color]="localWidget.titleBackgroundColor"
+                            [style.color]="localWidget.titleBackgroundColor"
+                            >
+                        </clr-icon>
+                    </div>
 
                     <div class="titlePadding">
                         Padding:

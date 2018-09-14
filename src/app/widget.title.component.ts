@@ -106,7 +106,7 @@ export class WidgetTitleComponent implements OnInit {
                     if (clp.callingRoutine == 'BgColour') {
                         this.colourPickerClosed = false;
                         this.localWidget.titleBackgroundColor = clp.selectedColor;
-                        this.localWidget.titleBackgroundColorName = clp.selectedColor;
+                        this.localWidget.titleBackgroundColorName = '';
                     };
                     if (clp.callingRoutine == 'Colour') {
                         this.colourPickerClosed = false;
