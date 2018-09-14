@@ -91,7 +91,7 @@
                         Colour:
                     </div>
                     <div class="select titleColour">
-                        <select [(ngModel)]="localWidget.titleColor"
+                        <select [(ngModel)]="localWidget.titleColorName"
                             name="titleColor"
                             (change)="clickSelectTitleColor($event)"
                             >
@@ -113,8 +113,8 @@
                         <clr-icon
                             shape="circle"
                             size="14"
-                            [style.background-color]="localWidget.titlecolor"
-                            [style.color]="localWidget.titlecolor"
+                            [style.background-color]="localWidget.titleColor"
+                            [style.color]="localWidget.titleColor"
                             >
                         </clr-icon>
                     </div>
