@@ -562,6 +562,7 @@ console.warn('xx this.localWidget', this.localWidget);
             this.localWidget.containerBorderRadius = '5px';
             this.localWidget.containerHeight = 80;
             this.localWidget.titleBackgroundColor = 'transparent';
+            this.localWidget.titleBackgroundColorName = 'transparent';
             // TODO - make this the field name
             this.localWidget.titleText = 'Value';
         };

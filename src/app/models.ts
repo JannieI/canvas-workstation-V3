@@ -958,7 +958,8 @@ export class Widget {
 
     // Title
     titleText: string;                  // Text, can include HTML & keywords (##today##)
-    titleBackgroundColor: string;
+    titleBackgroundColor: string;       // Actual colour (CSS name or HEX code)  
+    titleBackgroundColorName: string;   // Name - CSS (ie black) or Custome Name (Our company blue)
     titleBorder: string;                // css spec, ie 1px solid black
     titleColor: string;
     titleFontsize: number;              // in px (for later use)

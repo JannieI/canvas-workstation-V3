@@ -50,9 +50,9 @@
                         Bg Colour:
                     </div>
                     <div class="select titleBackgroundColour">
-                        <select [(ngModel)]="localWidget.titleBackgroundColor"
-                            name="titleBackgroundColor"
-                            (change)="clickSelectBgColor($event)"
+                        <select [(ngModel)]="localWidget.titleBackgroundColorName"
+                            name="titleBackgroundColorName"
+                            (change)="clickSelectTitleBgColor($event)"
                             >
                             <option *ngFor="let row of backgroundcolors"
                                 [style.background-color]="row.name"
@@ -64,7 +64,7 @@
                     <button
                         type="button"
                         class="btn btn-link btn-sm titleBackgroundColourPicker"
-                        (click)="clickSelectBgColorPicker()"
+                        (click)="clickSelectTitleBgColorPicker()"
                         >
                         Picker
                     </button>

@@ -106,6 +106,7 @@ export class WidgetTitleComponent implements OnInit {
                     if (clp.callingRoutine == 'BgColour') {
                         this.colourPickerClosed = false;
                         this.localWidget.titleBackgroundColor = clp.selectedColor;
+                        this.localWidget.titleBackgroundColorName = clp.selectedColor;
                     };
                     if (clp.callingRoutine == 'Colour') {
                         this.colourPickerClosed = false;
@@ -140,16 +141,25 @@ export class WidgetTitleComponent implements OnInit {
         this.colourPickerSubscription.unsubscribe();
     }
 
-    clickSelectBgColor(ev: any) {
+    clickSelectTitleBgColor(ev: any) {
         // Select Background Colour
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBgColor', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectTitleBgColor', '@Start');
 
-        this.localWidget.titleBackgroundColor = ev.target.value;
+        // this.localWidget.titleBackgroundColor = ev.target.value;
+
+        this.localWidget.titleBackgroundColorName = ev.target.value;
+        this.localWidget.titleBackgroundColor = this.localWidget.titleBackgroundColorName;
+        let localIndex: number = this.backgroundcolors.findIndex(bg =>
+            bg.name == this.localWidget.titleBackgroundColorName
+        );
+        if (localIndex >= 0) {
+            this.localWidget.titleBackgroundColor = this.backgroundcolors[localIndex].cssCode;
+        };
     }
 
-    clickSelectBgColorPicker(ev: any) {
+    clickSelectTitleBgColorPicker(ev: any) {
         // Open the Colour Picker for Background Colour
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBgColorPicker', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectTitleBgColorPicker', '@Start');
 
         this.selectedColour = this.localWidget.titleBackgroundColor;
         this.callingRoutine = 'BgColour';
