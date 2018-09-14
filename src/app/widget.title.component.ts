@@ -72,7 +72,6 @@ export class WidgetTitleComponent implements OnInit {
     ngOnInit() {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
-console.warn('xx this.selectedWidget.titleBorder', this.selectedWidget.titleBorder);
 
         // Deconstruct border
         if (this.selectedWidget.titleBorder != ''
@@ -93,6 +92,7 @@ console.warn('xx this.selectedWidget.titleBorder', this.selectedWidget.titleBord
                         };
                     };
                 };
+                
         };
 
         // Manage colour picker
@@ -204,7 +204,7 @@ console.warn('xx this.selectedWidget.titleBorder', this.selectedWidget.titleBord
 
     clickSelectBorderColor(ev: any) {
         // Select text Colour
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectColor', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBorderColor', '@Start');
 
         // this.lineColor = ev.target.value;
 
@@ -225,16 +225,16 @@ console.warn('xx this.selectedWidget.titleBorder', this.selectedWidget.titleBord
 
     clickSelectBorderColorPicker(ev: any) {
         // Open the Colour Picker for text Colour
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectColorPicker', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBorderColorPicker', '@Start');
 
         this.selectedColour = this.lineColor;
         this.callingRoutine = 'BorderColour';
         this.colourPickerClosed = true;
     }
 
-    clickSelectLineSize(ev: any) {
+    clickSelectTitleLineSize(ev: any) {
         // Select Circle Line Colour
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectLineSize', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectTitleLineSize', '@Start');
 
         this.lineSize = ev.target.value;
 
@@ -254,12 +254,10 @@ console.warn('xx this.selectedWidget.titleBorder', this.selectedWidget.titleBord
     clickSave() {
         // Save and close the form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
-        console.warn('xx b col', this.lineColor, this.lineSize, this.localWidget.titleBorder)
 
         // Construct title Border
         if (this.lineSize != 'none') {
             this.localWidget.titleBorder = this.lineSize + ' solid ' + this.lineColor;
-            console.warn('xx b col 2', this.localWidget.titleBorder)
         } else {
             this.localWidget.titleBorder = this.lineSize
         };
