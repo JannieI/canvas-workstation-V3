@@ -1133,7 +1133,21 @@ console.warn('xx this.localWidget', this.localWidget);
         // Select Circle Line Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectArrowThinColor', '@Start');
 
-        this.localWidget.shapeStroke = ev.target.value;
+        // this.localWidget.shapeStroke = ev.target.value;
+
+        // Open Picker if selected
+        if (ev.target.value == 'Open Picker ...') {
+            this.clickSelectArrowThinColorPicker(null);
+        };
+
+        this.localWidget.shapeStrokeName = ev.target.value;
+        this.localWidget.shapeStroke = this.localWidget.shapeStrokeName;
+        let localIndex: number = this.backgroundcolors.findIndex(bg =>
+            bg.name == this.localWidget.shapeStrokeName
+        );
+        if (localIndex >= 0) {
+            this.localWidget.shapeStroke = this.backgroundcolors[localIndex].cssCode;
+        };
     }
 
     clickSelectArrowThinColorPicker(ev: any) {
