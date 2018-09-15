@@ -816,6 +816,27 @@ console.warn('xx this.localWidget', this.localWidget);
         this.colourPickerClosed = true;
     }
 
+    clickSelectCircleFillColor(ev: any) {
+        // Select Circle Line Colour
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectCircleFillColor', '@Start');
+
+        // this.localWidget.shapeFill = ev.target.value;
+
+        // Open Picker if selected
+        if (ev.target.value == 'Open Picker ...') {
+            this.clickSelectCircleFillColorPicker(null);
+        };
+
+        this.localWidget.shapeFillName = ev.target.value;
+        this.localWidget.shapeFill = this.localWidget.shapeFillName;
+        let localIndex: number = this.backgroundcolors.findIndex(bg =>
+            bg.name == this.localWidget.shapeFillName
+        );
+        if (localIndex >= 0) {
+            this.localWidget.shapeFill = this.backgroundcolors[localIndex].cssCode;
+        };
+    }
+
     clickSelectCircleFillColorPicker(ev: any) {
         // Open the Colour Picker for Circle Line Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectCircleFillColorPicker', '@Start');
@@ -823,13 +844,6 @@ console.warn('xx this.localWidget', this.localWidget);
         this.selectedColour = this.localWidget.shapeStroke;
         this.callingRoutine = 'ShapeEditorCircleFillColor';
         this.colourPickerClosed = true;
-    }
-
-    clickSelectCircleFillColor(ev: any) {
-        // Select Circle Line Colour
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectCircleFillColor', '@Start');
-
-        this.localWidget.shapeFill = ev.target.value;
     }
 
     clickSelectEllipseLineColorPicker(ev: any) {
