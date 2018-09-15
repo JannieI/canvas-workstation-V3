@@ -996,6 +996,27 @@ console.warn('xx this.localWidget', this.localWidget);
         this.colourPickerClosed = true;
     }
 
+    clickSelectBulletsColor(ev: any) {
+        // Select Bullets Colour
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBulletsColor', '@Start');
+
+        // this.localWidget.shapeTextColour = ev.target.value;
+
+        // Open Picker if selected
+        if (ev.target.value == 'Open Picker ...') {
+            this.clickSelectBulletsColorPicker();
+        };
+
+        this.localWidget.shapeTextColourName = ev.target.value;
+        this.localWidget.shapeTextColour = this.localWidget.shapeTextColourName;
+        let localIndex: number = this.backgroundcolors.findIndex(bg =>
+            bg.name == this.localWidget.shapeTextColourName
+        );
+        if (localIndex >= 0) {
+            this.localWidget.shapeTextColour = this.backgroundcolors[localIndex].cssCode;
+        };
+    }
+
     clickSelectBulletsColorPicker() {
         // Open the Colour Picker for Bullets Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBulletsColorPicker', '@Start');
@@ -1003,13 +1024,6 @@ console.warn('xx this.localWidget', this.localWidget);
         this.selectedColour = this.localWidget.shapeTextColour;
         this.callingRoutine = 'ShapeEditorBulletsColor';
         this.colourPickerClosed = true;
-    }
-
-    clickSelectBulletsColor(ev: any) {
-        // Select Bullets Colour
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBulletsColor', '@Start');
-
-        this.localWidget.shapeTextColour = ev.target.value;
     }
 
     clickSelectBulletsIncrease() {
