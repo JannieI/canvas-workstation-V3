@@ -936,6 +936,27 @@ console.warn('xx this.localWidget', this.localWidget);
         this.colourPickerClosed = true;
     }
 
+    clickSelectRectangleFillColor(ev: any) {
+        // Select Rectangle Line Colour
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectRectangleFillColor', '@Start');
+
+        // this.localWidget.shapeFill = ev.target.value;
+
+        // Open Picker if selected
+        if (ev.target.value == 'Open Picker ...') {
+            this.clickSelectRectangleLineColorPicker(null);
+        };
+
+        this.localWidget.shapeFillName = ev.target.value;
+        this.localWidget.shapeFill = this.localWidget.shapeFillName;
+        let localIndex: number = this.backgroundcolors.findIndex(bg =>
+            bg.name == this.localWidget.shapeFillName
+        );
+        if (localIndex >= 0) {
+            this.localWidget.shapeFill = this.backgroundcolors[localIndex].cssCode;
+        };
+    }
+
     clickSelectRectangleFillColorPicker(ev: any) {
         // Open the Colour Picker for Rectangle Line Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectRectangleFillColorPicker', '@Start');
@@ -945,11 +966,11 @@ console.warn('xx this.localWidget', this.localWidget);
         this.colourPickerClosed = true;
     }
 
-    clickSelectRectangleFillColor(ev: any) {
-        // Select Rectangle Line Colour
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectRectangleFillColor', '@Start');
+    clickSelectValueLineColor(ev: any) {
+        // Select Value Line Colour
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectValueLineColor', '@Start');
 
-        this.localWidget.shapeFill = ev.target.value;
+        this.localWidget.shapeTextColour = ev.target.value;
     }
 
     clickSelectValueLineColorPicker(ev: any) {
@@ -959,13 +980,6 @@ console.warn('xx this.localWidget', this.localWidget);
         this.selectedColour = this.localWidget.shapeStroke;
         this.callingRoutine = 'ShapeEditorValueLineColor';
         this.colourPickerClosed = true;
-    }
-
-    clickSelectValueLineColor(ev: any) {
-        // Select Value Line Colour
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectValueLineColor', '@Start');
-
-        this.localWidget.shapeTextColour = ev.target.value;
     }
 
     clickSelectBulletsColorPicker() {
