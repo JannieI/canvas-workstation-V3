@@ -1103,7 +1103,21 @@ console.warn('xx this.localWidget', this.localWidget);
         // Select Arrow Fill Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectArrowFill', '@Start');
 
-        this.localWidget.shapeFill = ev.target.value;
+        // this.localWidget.shapeFill = ev.target.value;
+
+        // Open Picker if selected
+        if (ev.target.value == 'Open Picker ...') {
+            this.clickSelectArrowFillColorPicker(null);
+        };
+
+        this.localWidget.shapeFillName = ev.target.value;
+        this.localWidget.shapeFill = this.localWidget.shapeFillName;
+        let localIndex: number = this.backgroundcolors.findIndex(bg =>
+            bg.name == this.localWidget.shapeFillName
+        );
+        if (localIndex >= 0) {
+            this.localWidget.shapeFill = this.backgroundcolors[localIndex].cssCode;
+        };
     }
 
     clickSelectArrowFillColorPicker(ev: any) {
