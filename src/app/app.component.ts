@@ -46,7 +46,6 @@ import { WebSocketSubject }           from 'rxjs/webSocket';
 
 // Dexie
 import Dexie from 'dexie';
-import { NullViewportScroller } from '@angular/common/src/viewport_scroller';
 
 class CanvasAppDatabase extends Dexie {
     // Declare implicit table properties.
@@ -237,6 +236,10 @@ export class AppComponent implements OnInit {
             return;
         };
         if (event.code == 'KeyY'  &&  (event.ctrlKey)  &&  (!event.shiftKey) ) {
+            this.clickMenuEditRedo();
+            return;
+        };
+        if (event.code == 'KeyZ'  &&  (event.ctrlKey)  &&  (event.shiftKey) ) {
             this.clickMenuEditRedo();
             return;
         };
@@ -3748,7 +3751,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         // Open W Editor
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuWidgetNew', '@Start');
 
-        // PermissiNullViewportScrollerons
+        // Permissions
         if (!this.globalVariableService.currentUser.dashboardCanEditRole
             &&
             !this.globalVariableService.currentUser.isAdministrator) {
