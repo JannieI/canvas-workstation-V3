@@ -252,7 +252,6 @@ export class ShapeEditComponent implements OnInit {
             this.localWidget.shapeTextColour = 'gray';
             this.localWidget.shapeTextColourName = 'Gray';
             this.localWidget.shapeTextAlign = 'Left';
-console.warn('xx this.localWidget', this.localWidget);
 
         } else {
 
@@ -631,7 +630,6 @@ console.warn('xx this.localWidget', this.localWidget);
                         * this.localWidget.shapeFontSize / 2;
                     this.localWidget.containerHeight = 8 + +this.localWidget.shapeFontSize;
                 };
-                console.warn('xx this.localWidget', this.localWidget);
 
             };
 
