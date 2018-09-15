@@ -846,6 +846,27 @@ console.warn('xx this.localWidget', this.localWidget);
         this.colourPickerClosed = true;
     }
 
+    clickSelectEllipseLineColor(ev: any) {
+        // Select Ellipse Line Colour
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectEllipseLineColor', '@Start');
+
+        // this.localWidget.shapeStroke = ev.target.value;
+
+        // Open Picker if selected
+        if (ev.target.value == 'Open Picker ...') {
+            this.clickSelectEllipseLineColorPicker(null);
+        };
+
+        this.localWidget.shapeStrokeName = ev.target.value;
+        this.localWidget.shapeStroke = this.localWidget.shapeStrokeName;
+        let localIndex: number = this.backgroundcolors.findIndex(bg =>
+            bg.name == this.localWidget.shapeStrokeName
+        );
+        if (localIndex >= 0) {
+            this.localWidget.shapeStroke = this.backgroundcolors[localIndex].cssCode;
+        };
+    }
+
     clickSelectEllipseLineColorPicker(ev: any) {
         // Open the Colour Picker for Ellipse Line Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectEllipseLineColorPicker', '@Start');
@@ -853,13 +874,6 @@ console.warn('xx this.localWidget', this.localWidget);
         this.selectedColour = this.localWidget.shapeStroke;
         this.callingRoutine = 'ShapeEditorEllipseLineColor';
         this.colourPickerClosed = true;
-    }
-
-    clickSelectEllipseLineColor(ev: any) {
-        // Select Ellipse Line Colour
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectEllipseLineColor', '@Start');
-
-        this.localWidget.shapeStroke = ev.target.value;
     }
 
     clickSelectEllipseFillColorPicker(ev: any) {
