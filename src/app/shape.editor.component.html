@@ -1007,13 +1007,23 @@
                             </option>
                         </select>
                     </div>
-                    <button
-                        type="button"
-                        class="btn btn-link btn-sm gridCircleLineColourPicker"
-                        (click)="clickSelectCircleLineColorPicker()"
-                        >
-                        Picker
-                    </button>
+
+                    <div class="gridCircleLineColourPicker">
+                        <button
+                            type="button"
+                            class="btn btn-link btn-sm"
+                            (click)="clickSelectCircleLineColorPicker()"
+                            >
+                            Picker
+                        </button>
+                        <clr-icon
+                            shape="circle"
+                            size="14"
+                            [style.background-color]="localWidget.shapeStroke"
+                            [style.color]="localWidget.shapeStroke"
+                            >
+                        </clr-icon>
+                    </div>
 
                     <div class="gridCircleThickness">
                         <b>Line thickness:</b>
@@ -1039,13 +1049,24 @@
                             </option>
                         </select>
                     </div>
-                    <button
-                        type="button"
-                        class="btn btn-link btn-sm gridCircleFillColourPicker"
-                        (click)="clickSelectCircleFillColorPicker()"
-                        >
-                        Picker
-                    </button>
+                   
+                    <div class="gridCircleFillColourPicker">
+                        <button
+                            type="button"
+                            class="btn btn-link btn-sm"
+                            (click)="clickSelectCircleFillColorPicker()"
+                            >
+                            Picker
+                        </button>
+                        <clr-icon
+                            shape="circle"
+                            size="14"
+                            [style.background-color]="localWidget.shapeFill"
+                            [style.color]="localWidget.shapeFill"
+                            >
+                        </clr-icon>
+                    </div>
+
 
                 </div>
 

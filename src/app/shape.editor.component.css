@@ -134,7 +134,7 @@
         padding-top: 6px;
     }
     .gridCircleLineColourPicker {
-        grid-column-start: 9;
+        grid-column-start: 8;
         /* autoprefixer: off */
         grid-column-end: 11;
         grid-row-start: 1;
@@ -172,7 +172,7 @@
         padding-top: 6px;
     }
     .gridCircleFillColourPicker {
-        grid-column-start: 9;
+        grid-column-start: 8;
         /* autoprefixer: off */
         grid-column-end: 11;
         grid-row-start: 5;
