@@ -717,7 +717,24 @@ console.warn('xx this.localWidget', this.localWidget);
         // Select Bracket Line Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBracketLineColor', '@Start');
 
-        this.localWidget.shapeStroke = ev.target.value;
+        // this.localWidget.shapeStroke = ev.target.value;
+
+
+        // Open Picker if selected
+        if (ev.target.value == 'Open Picker ...') {
+            this.clickSelectBracketLineColorPicker();
+        };
+
+        this.localWidget.shapeStrokeName = ev.target.value;
+        this.localWidget.shapeStroke = this.localWidget.shapeStrokeName;
+        let localIndex: number = this.backgroundcolors.findIndex(bg =>
+            bg.name == this.localWidget.shapeStrokeName
+        );
+        if (localIndex >= 0) {
+            this.localWidget.shapeStroke = this.backgroundcolors[localIndex].cssCode;
+        };
+
+
     }
 
     clickSelectBracketLineColorPicker() {
@@ -861,7 +878,7 @@ console.warn('xx this.localWidget', this.localWidget);
         // Select Value Line Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectValueLineColor', '@Start');
 
-        this.localWidget.shapeStroke = ev.target.value;
+        this.localWidget.shapeTextColour = ev.target.value;
     }
 
     clickSelectBulletsColorPicker() {
