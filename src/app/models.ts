@@ -1049,7 +1049,8 @@ export class Widget {
     shapeBulletsOrdered: boolean;       // True if the list is ordered
     shapeBulletMarginBottom: number;    // Margin-Top in px
     shapeCorner: number;                // Corner size in px, ie 15
-    shapeFill: string;                  // Fill / inside (ie of circle, colour of text, etc)
+    shapeFill: string;                  // Fill / inside (ie of circle, colour of text, etc) in HEX
+    shapeFillName: string;              // Name - CSS (ie black) or Custome Name (Our company blue)
     shapeFontFamily: string;            // Font, ie Aria, Sans Serif
     shapeFontSize: number;              // Size of font in px, ie 12
     shapeImageUrl: string;              // URL of the Image
@@ -1059,14 +1060,16 @@ export class Widget {
     shapeOpacity: number;               // Opacity, between 0 and 1, ie of rectangle
     shapeRotation: number;              // Nr of degrees to rotate a Shape
     shapeSize: number;                  // Size of shape, used in scale(). For now: 0-9
-    shapeStroke: string;                // Colour of line
+    shapeStroke: string;                // Colour of line in HEX
+    shapeStrokeName: string;            // Name - CSS (ie black) or Custome Name (Our company blue)
     shapeStrokeWidth: string;           // Line thickness in px
     shapeSvgHeight: number;             // Height of SVG element
     shapeSvgWidth: number;              // Width of SVG element
     shapeText: string;                  // Text in textbox - WITH formula, ie #pagenr
     shapeTextDisplay: string;           // Text in textbox - translated, ie 1
     shapeTextAlign: string;             // Align text Left, Center, Right
-    shapeTextColour: string;            // Text colour
+    shapeTextColour: string;            // Text colour in HEX
+    shapeTextColourName: string;        // Name - CSS (ie black) or Custome Name (Our company blue)
     shapeValue: string;                 // Value to display
 
     // Created, updated and refreshed

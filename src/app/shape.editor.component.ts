@@ -125,63 +125,76 @@ export class ShapeEditComponent implements OnInit {
                     if (clp.callingRoutine == 'ShapeEditorTextColor') {
                         this.colourPickerClosed = false;
                         this.localWidget.shapeTextColour = clp.selectedColor;
+                        this.localWidget.shapeTextColourName = 'Open Picker ...';
                     };
 
                     if (clp.callingRoutine == 'ShapeEditorBracketColor') {
                         this.colourPickerClosed = false;
                         this.localWidget.shapeStroke = clp.selectedColor;
+                        this.localWidget.shapeStrokeName = 'Open Picker ...';
                     };
 
                     if (clp.callingRoutine == 'ShapeEditorCircleLineColor') {
                         this.colourPickerClosed = false;
                         this.localWidget.shapeStroke = clp.selectedColor;
+                        this.localWidget.shapeStrokeName = 'Open Picker ...';
                     };
                     if (clp.callingRoutine == 'ShapeEditorCircleFillColor') {
                         this.colourPickerClosed = false;
                         this.localWidget.shapeFill = clp.selectedColor;
+                        this.localWidget.shapeFillName = 'Open Picker ...';
                     };
 
                     if (clp.callingRoutine == 'ShapeEditorEllipseLineColor') {
                         this.colourPickerClosed = false;
                         this.localWidget.shapeStroke = clp.selectedColor;
+                        this.localWidget.shapeStrokeName = 'Open Picker ...';
                     };
                     if (clp.callingRoutine == 'ShapeEditorEllipseFillColor') {
                         this.colourPickerClosed = false;
                         this.localWidget.shapeFill = clp.selectedColor;
+                        this.localWidget.shapeFillName = 'Open Picker ...';
                     };
 
                     if (clp.callingRoutine == 'ShapeEditorRectangleLineColor') {
                         this.colourPickerClosed = false;
                         this.localWidget.shapeStroke = clp.selectedColor;
+                        this.localWidget.shapeStrokeName = 'Open Picker ...';
                     };
                     if (clp.callingRoutine == 'ShapeEditorRectangleFillColor') {
                         this.colourPickerClosed = false;
                         this.localWidget.shapeFill = clp.selectedColor;
+                        this.localWidget.shapeFillName = 'Open Picker ...';
                     };
 
                     if (clp.callingRoutine == 'ShapeEditorValueLineColor') {
                         this.colourPickerClosed = false;
                         this.localWidget.shapeStroke = clp.selectedColor;
+                        this.localWidget.shapeStrokeName = 'Open Picker ...';
                     };
 
                     if (clp.callingRoutine == 'ShapeEditorBulletsColor') {
                         this.colourPickerClosed = false;
                         this.localWidget.shapeTextColour = clp.selectedColor;
+                        this.localWidget.shapeTextColourName = 'Open Picker ...';
                     };
 
                     if (clp.callingRoutine == 'ShapeEditorArrowLineColor') {
                         this.colourPickerClosed = false;
                         this.localWidget.shapeStroke = clp.selectedColor;
+                        this.localWidget.shapeStrokeName = 'Open Picker ...';
                     };
 
                     if (clp.callingRoutine == 'ShapeEditorArrowFillColor') {
                         this.colourPickerClosed = false;
                         this.localWidget.shapeFill = clp.selectedColor;
+                        this.localWidget.shapeFillName = 'Open Picker ...';
                     };
 
                     if (clp.callingRoutine == 'ShapeEditorArrowThinColor') {
                         this.colourPickerClosed = false;
                         this.localWidget.shapeStroke = clp.selectedColor;
+                        this.localWidget.shapeStrokeName = 'Open Picker ...';
                     };
 
                 };
@@ -190,6 +203,9 @@ export class ShapeEditComponent implements OnInit {
 
         // Get setup info
         this.backgroundcolors = this.globalVariableService.backgroundcolors.slice();
+        this.backgroundcolors = [
+            {id: null, name: 'Open Picker ...', cssCode: '', shortList: false}, ...this.backgroundcolors
+        ];
 
         // Create list of Tabs to show: first is 'None', rest is name (sequence nr),
         //   where sequence nr = index + 1 - to look easier for user, 1 = 1st tab, etc
