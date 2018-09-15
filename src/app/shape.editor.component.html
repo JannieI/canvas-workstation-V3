@@ -1165,13 +1165,24 @@
                             </option>
                         </select>
                     </div>
-                    <button
-                        type="button"
-                        class="btn btn-link btn-sm gridRectangleLineColourPicker"
-                        (click)="clickSelectRectangleLineColorPicker()"
-                        >
-                        Picker
-                    </button>
+
+                    <div class="gridRectangleLineColourPicker">
+                        <button
+                            type="button"
+                            class="btn btn-link btn-sm"
+                            (click)="clickSelectRectangleLineColorPicker()"
+                            >
+                            Picker
+                        </button>
+                        <clr-icon
+                            shape="circle"
+                            size="14"
+                            [style.background-color]="localWidget.shapeStroke"
+                            [style.color]="localWidget.shapeStroke"
+                            >
+                        </clr-icon>
+                    </div>
+
                     <div class="gridRectangleThickness">
                         <b>Line thickness:</b>
                         <input type="text"
@@ -1195,13 +1206,23 @@
                             </option>
                         </select>
                     </div>
-                    <button
-                        type="button"
-                        class="btn btn-link btn-sm gridRectangleFillColourPicker"
-                        (click)="clickSelectRectangleFillColorPicker()"
-                        >
-                        Picker
-                    </button>
+
+                    <div class="gridRectangleFillColourPicker">
+                        <button
+                            type="button"
+                            class="btn btn-link btn-sm"
+                            (click)="clickSelectRectangleFillColorPicker()"
+                            >
+                            Picker
+                        </button>
+                        <clr-icon
+                            shape="circle"
+                            size="14"
+                            [style.background-color]="localWidget.shapeFill"
+                            [style.color]="localWidget.shapeFill"
+                            >
+                        </clr-icon>
+                    </div>
 
                     <div class="gridRectangleOpacity">
                         <b>Fill Opacity:</b>
