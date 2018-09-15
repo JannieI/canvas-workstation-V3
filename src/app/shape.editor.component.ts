@@ -970,7 +970,21 @@ console.warn('xx this.localWidget', this.localWidget);
         // Select Value Line Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectValueLineColor', '@Start');
 
-        this.localWidget.shapeTextColour = ev.target.value;
+        // this.localWidget.shapeTextColour = ev.target.value;
+
+        // Open Picker if selected
+        if (ev.target.value == 'Open Picker ...') {
+            this.clickSelectValueLineColorPicker(null);
+        };
+
+        this.localWidget.shapeTextColourName = ev.target.value;
+        this.localWidget.shapeTextColour = this.localWidget.shapeTextColourName;
+        let localIndex: number = this.backgroundcolors.findIndex(bg =>
+            bg.name == this.localWidget.shapeTextColourName
+        );
+        if (localIndex >= 0) {
+            this.localWidget.shapeTextColour = this.backgroundcolors[localIndex].cssCode;
+        };
     }
 
     clickSelectValueLineColorPicker(ev: any) {
