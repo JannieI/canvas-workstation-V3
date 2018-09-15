@@ -1051,15 +1051,6 @@ console.warn('xx this.localWidget', this.localWidget);
         this.localWidget.shapeBulletStyleType = ev.target.value;
     }
 
-    clickSelectArrowLineColorPicker(ev: any) {
-        // Open the Colour Picker for Arrow Line Colour
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectArrowLineColorPicker', '@Start');
-
-        this.selectedColour = this.localWidget.shapeStroke;
-        this.callingRoutine = 'ShapeEditorArrowLineColor';
-        this.colourPickerClosed = true;
-    }
-
     clickSelectBracketSize(ev: any) {
         // Select Arrow Size
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBracketSize', '@Start');
@@ -1078,20 +1069,34 @@ console.warn('xx this.localWidget', this.localWidget);
         this.localWidget.shapeSvgWidth = 60;  //((this.localWidget.shapeSize - 1) * 22.5 ) + 40;
     }
 
-    clickSelectArrowFillColorPicker(ev: any) {
-        // Open the Colour Picker for Arrow Fill Colour
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectArrowFillColorPicker', '@Start');
-
-        this.selectedColour = this.localWidget.shapeFill;
-        this.callingRoutine = 'ShapeEditorArrowFillColor';
-        this.colourPickerClosed = true;
-    }
-
     clickSelectArrowLineColor(ev: any) {
         // Select Arrow Line Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectArrowLineColor', '@Start');
 
-        this.localWidget.shapeStroke = ev.target.value;
+        // this.localWidget.shapeStroke = ev.target.value;
+
+        // Open Picker if selected
+        if (ev.target.value == 'Open Picker ...') {
+            this.clickSelectArrowLineColorPicker(null);
+        };
+
+        this.localWidget.shapeStrokeName = ev.target.value;
+        this.localWidget.shapeStroke = this.localWidget.shapeStrokeName;
+        let localIndex: number = this.backgroundcolors.findIndex(bg =>
+            bg.name == this.localWidget.shapeStrokeName
+        );
+        if (localIndex >= 0) {
+            this.localWidget.shapeStroke = this.backgroundcolors[localIndex].cssCode;
+        };
+    }
+
+    clickSelectArrowLineColorPicker(ev: any) {
+        // Open the Colour Picker for Arrow Line Colour
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectArrowLineColorPicker', '@Start');
+
+        this.selectedColour = this.localWidget.shapeStroke;
+        this.callingRoutine = 'ShapeEditorArrowLineColor';
+        this.colourPickerClosed = true;
     }
 
     clickSelectArrowFill(ev: any) {
@@ -1101,12 +1106,12 @@ console.warn('xx this.localWidget', this.localWidget);
         this.localWidget.shapeFill = ev.target.value;
     }
 
-    clickSelectArrowThinColorPicker(ev: any) {
-        // Open the Colour Picker for Circle Line Colour
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectArrowThinColorPicker', '@Start');
+    clickSelectArrowFillColorPicker(ev: any) {
+        // Open the Colour Picker for Arrow Fill Colour
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectArrowFillColorPicker', '@Start');
 
-        this.selectedColour = this.localWidget.shapeStroke;
-        this.callingRoutine = 'ShapeEditorArrowThinColor';
+        this.selectedColour = this.localWidget.shapeFill;
+        this.callingRoutine = 'ShapeEditorArrowFillColor';
         this.colourPickerClosed = true;
     }
 
@@ -1115,6 +1120,15 @@ console.warn('xx this.localWidget', this.localWidget);
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectArrowThinColor', '@Start');
 
         this.localWidget.shapeStroke = ev.target.value;
+    }
+
+    clickSelectArrowThinColorPicker(ev: any) {
+        // Open the Colour Picker for Circle Line Colour
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectArrowThinColorPicker', '@Start');
+
+        this.selectedColour = this.localWidget.shapeStroke;
+        this.callingRoutine = 'ShapeEditorArrowThinColor';
+        this.colourPickerClosed = true;
     }
 
     mousedownArrow(ev: any) {
