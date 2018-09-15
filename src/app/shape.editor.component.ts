@@ -228,7 +228,7 @@ export class ShapeEditComponent implements OnInit {
             // Standard settings
             this.localWidget.widgetType = 'Shape';
             this.localWidget.containerBackgroundcolor = 'transparent';
-            this.localWidget.containerBackgroundcolorName = 'transparent';
+            this.localWidget.containerBackgroundcolorName = 'Transparent';
             this.localWidget.containerBorder = 'none';
             this.localWidget.containerBorderRadius = '';
             this.localWidget.containerHasContextMenus = false;
@@ -240,13 +240,17 @@ export class ShapeEditComponent implements OnInit {
             this.localWidget.shapeBulletsOrdered = false;
             this.localWidget.shapeCorner = 15;
             this.localWidget.shapeFill = 'gray';
+            this.localWidget.shapeFill = 'Gray';
             this.localWidget.shapeFontFamily = 'Arial, sans serif';
             this.localWidget.shapeIsBold = true;
             this.localWidget.shapeStroke = 'gray';
+            this.localWidget.shapeStroke = 'Gray';
             this.localWidget.shapeStrokeWidth = '1';
             this.localWidget.shapeSvgHeight = 60;
             this.localWidget.shapeSvgWidth = 60;
             this.localWidget.shapeText = 'Enter text, keywords: #pagenr, #pages, #date';
+            this.localWidget.shapeTextColour = 'gray';
+            this.localWidget.shapeTextColourName = 'Gray';
             this.localWidget.shapeTextAlign = 'Left';
 console.warn('xx this.localWidget', this.localWidget);
 
@@ -719,7 +723,6 @@ console.warn('xx this.localWidget', this.localWidget);
 
         // this.localWidget.shapeStroke = ev.target.value;
 
-
         // Open Picker if selected
         if (ev.target.value == 'Open Picker ...') {
             this.clickSelectBracketLineColorPicker();
@@ -733,7 +736,6 @@ console.warn('xx this.localWidget', this.localWidget);
         if (localIndex >= 0) {
             this.localWidget.shapeStroke = this.backgroundcolors[localIndex].cssCode;
         };
-
 
     }
 
@@ -757,7 +759,22 @@ console.warn('xx this.localWidget', this.localWidget);
         // Select Text Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectTextColor', '@Start');
 
-        this.localWidget.shapeTextColour = ev.target.value;
+        // this.localWidget.shapeTextColour = ev.target.value;
+
+        // Open Picker if selected
+        if (ev.target.value == 'Open Picker ...') {
+            this.clickSelectTextColorPicker();
+        };
+
+        this.localWidget.shapeTextColourName = ev.target.value;
+        this.localWidget.shapeTextColour = this.localWidget.shapeTextColourName;
+        let localIndex: number = this.backgroundcolors.findIndex(bg =>
+            bg.name == this.localWidget.shapeTextColourName
+        );
+        if (localIndex >= 0) {
+            this.localWidget.shapeTextColour = this.backgroundcolors[localIndex].cssCode;
+        };
+
     }
 
     clickSelectTextColorPicker() {
