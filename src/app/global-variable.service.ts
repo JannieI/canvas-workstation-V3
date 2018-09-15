@@ -3905,7 +3905,7 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post('http://localhost:3000/' + url, data, {headers})
+            this.http.post('http://localhost:3006/' + url, data, {headers})
             .subscribe(
                 res => {
 
@@ -3941,7 +3941,7 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.put('http://localhost:3000/' + url + '/' + data.id, data, {headers})
+            this.http.put('http://localhost:3006/' + url + '/' + data.id, data, {headers})
             .subscribe(
                 res => {
 
@@ -3979,7 +3979,7 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
+            this.http.delete('http://localhost:3006/' + url + '/' + id, {headers})
             .subscribe(
                 res => {
 
@@ -9853,6 +9853,9 @@ export class GlobalVariableService {
                     finalUrl = 'http://localhost:3001/' + url;
                 } else if (url == 'widgets') {
                     finalUrl = 'http://localhost:3005/' + url;
+                } else if (url == 'data') {
+                    finalUrl = 'http://localhost:3006/' + url;
+
                 } else {
                     finalUrl = 'http://localhost:3000/' + url;
                 };
