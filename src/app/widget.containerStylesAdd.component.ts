@@ -194,7 +194,6 @@ export class WidgetContainerStylesAddComponent implements OnInit {
         } else {
             this.containerBorder = 'none';
         };
-        console.warn('xx clickSelectBorderColor', this.containerBorder);
 
     }
 
@@ -215,7 +214,6 @@ export class WidgetContainerStylesAddComponent implements OnInit {
         } else {
             this.containerBorder = 'none';
         };
-        console.warn('xx clickSelectBorderSize', this.containerBorder);
     }
 
     clickSelectBorderType(ev: any) {
@@ -235,7 +233,6 @@ export class WidgetContainerStylesAddComponent implements OnInit {
         } else {
             this.containerBorder = 'none';
         };
-        console.warn('xx clickSelectBorderType', this.containerBorder);
     }
 
     clickSelectBorderRadius(ev: any) {
@@ -308,7 +305,6 @@ export class WidgetContainerStylesAddComponent implements OnInit {
             containerUpdatedBy: null,
 
         };
-console.warn('xx newContainerStyle', newContainerStyle);
 
         this.globalVariableService.addContainerStyle(newContainerStyle).then(res => {
 

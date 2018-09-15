@@ -1087,13 +1087,24 @@
                             </option>
                         </select>
                     </div>
-                    <button
-                        type="button"
-                        class="btn btn-link btn-sm gridEllipseLineColourPicker"
-                        (click)="clickSelectEllipseLineColorPicker()"
-                        >
-                        Picker
-                    </button>
+
+                    <div class="gridEllipseLineColourPicker">
+                        <button
+                            type="button"
+                            class="btn btn-link btn-sm"
+                            (click)="clickSelectEllipseLineColorPicker()"
+                            >
+                            Picker
+                        </button>
+                        <clr-icon
+                            shape="circle"
+                            size="14"
+                            [style.background-color]="localWidget.shapeStroke"
+                            [style.color]="localWidget.shapeStroke"
+                            >
+                        </clr-icon>
+                    </div>
+
                     <div class="gridEllipseThickness">
                         <b>Line thickness:</b>
                         <input type="text"
@@ -1117,13 +1128,24 @@
                             </option>
                         </select>
                     </div>
-                    <button
-                        type="button"
-                        class="btn btn-link btn-sm gridEllipseFillColourPicker"
-                        (click)="clickSelectEllipseFillColorPicker()"
-                        >
-                        Picker
-                    </button>
+
+                    <div class="gridEllipseFillColourPicker">
+                        <button
+                            type="button"
+                            class="btn btn-link btn-sm"
+                            (click)="clickSelectEllipseFillColorPicker()"
+                            >
+                            Picker
+                        </button>
+                        <clr-icon
+                            shape="circle"
+                            size="14"
+                            [style.background-color]="localWidget.shapeFill"
+                            [style.color]="localWidget.shapeFill"
+                            >
+                        </clr-icon>
+                    </div>
+            
                 </div>
 
                 <div class="gridShapeProperties" *ngIf="showRectangle">

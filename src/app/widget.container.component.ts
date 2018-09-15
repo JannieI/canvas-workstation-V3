@@ -84,7 +84,6 @@ export class WidgetContainerComponent implements OnInit {
     ngOnInit() {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
-console.warn('xx selectedWidget', this.selectedWidget);
 
         // Deep copy original
         this.oldWidget = JSON.parse(JSON.stringify(this.selectedWidget));
@@ -123,11 +122,7 @@ console.warn('xx selectedWidget', this.selectedWidget);
                         this.updateForm(localStyleIndex);
                         this.containerStyleName = this.containerStyles[localStyleIndex].name.trim() +
                             ' (' + this.containerStyles[localStyleIndex].id.toString() + ')';
-                console.warn('xx hier ', localStyleIndex,
 
-                            this.containerSelectedStyleID ,
-                        this.containerSelectedStyleName ,
-                        this.containerStyleName, ':', this.containerStyles);
                     };
                 };
             };
@@ -150,7 +145,6 @@ console.warn('xx selectedWidget', this.selectedWidget);
                         this.containerBorderColour = rest.substr(space2 + 1, 999).trim();
                     };
                 };
-                console.warn('xx linestuff', ':'+ this.containerBorderSize+':'+ this.containerBorderType+':'+  this.containerBorderColour);
 
         };
 
@@ -162,7 +156,6 @@ console.warn('xx selectedWidget', this.selectedWidget);
                 if (clp.cancelled) {
                     this.colourPickerClosed = false;
                 } else {
-                    console.warn('xx col picker call back');
 
                     if (clp.callingRoutine == 'BgColour') {
                         this.colourPickerClosed = false;
@@ -256,7 +249,6 @@ console.warn('xx selectedWidget', this.selectedWidget);
         } else {
             this.localWidget.containerBorder = this.containerBorderSize
         };
-        console.warn('xx line', this.localWidget.containerBorder, '-', this.containerBorderColour);
 
     }
 
@@ -296,12 +288,10 @@ console.warn('xx selectedWidget', this.selectedWidget);
         this.errorMessage = '';
         this.infoMessage = '';
 
-        console.warn('xx', ev);
         let selectedContainerStyleName: string = ev.target.value;
 
         // None selected
         if (selectedContainerStyleName == '') {
-            console.warn('xx reseted');
 
             this.containerSelectedStyleName = '';
             this.containerSelectedStyleID = -1;
@@ -315,7 +305,6 @@ console.warn('xx selectedWidget', this.selectedWidget);
         this.containerSelectedStyleName = selectedContainerStyleName.substring(0, openBracket);
         this.containerSelectedStyleID = +selectedContainerStyleName.
             substring(openBracket + 1, closeBracket);
-            console.warn('xx hier bb ', ' :' , this.containerSelectedStyleID ,this.containerSelectedStyleName + ':');
 
         // Find row and update form
         if (this.containerSelectedStyleID != -1) {
@@ -329,7 +318,6 @@ console.warn('xx selectedWidget', this.selectedWidget);
             // Set the Style ID
             this.localWidget.containerStyleID =  this.containerSelectedStyleID;
         };
-        console.warn('xx this.dashboardTemplateID', this.containerSelectedStyleID, this.containerSelectedStyleName)
 
     }
 

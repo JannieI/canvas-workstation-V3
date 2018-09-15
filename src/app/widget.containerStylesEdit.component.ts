@@ -156,7 +156,6 @@ export class WidgetContainerStylesEditComponent implements OnInit {
         this.errorMessage = '';
         this.infoMessage = '';
 
-        console.warn('xx', ev);
         let selectedContainerStyleName: string = ev.target.value;
 
         // Get the ID
@@ -176,7 +175,6 @@ export class WidgetContainerStylesEditComponent implements OnInit {
                 this.updateForm(localIndex);
             };
         };
-        console.warn('xx this.dashboardTemplateID', this.containerSelectedStyleID, this.containerSelectedStyleName)
 
     }
 
@@ -247,7 +245,6 @@ export class WidgetContainerStylesEditComponent implements OnInit {
     clickSelectBgColor(ev: any) {
         // Select Background Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBgColor', '@Start');
-        console.warn('xx ev', ev.target.value);
 
         // Reset
         this.errorMessage = '';
@@ -321,7 +318,6 @@ export class WidgetContainerStylesEditComponent implements OnInit {
         } else {
             this.containerBorder = 'none';
         };
-        console.warn('xx clickSelectBorderSize', this.containerBorder);
     }
 
     clickSelectBorderType(ev: any) {
@@ -341,7 +337,6 @@ export class WidgetContainerStylesEditComponent implements OnInit {
         } else {
             this.containerBorder = 'none';
         };
-        console.warn('xx clickSelectBorderType', this.containerBorder);
     }
 
     clickSelectBorderRadius(ev: any) {
@@ -389,7 +384,6 @@ export class WidgetContainerStylesEditComponent implements OnInit {
             this.errorMessage = 'Invalid selection.';
             return;
         };
-console.warn('xx this.containerSelectedStyleID', this.containerSelectedStyleID);
 
         // Create object
         let newContainerStyle: ContainerStyle = {
