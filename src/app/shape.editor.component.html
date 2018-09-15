@@ -1750,13 +1750,24 @@
                             </option>
                         </select>
                     </div>
-                    <button
-                        type="button"
-                        class="btn btn-link btn-sm gridValueLineColourPicker"
-                        (click)="clickSelectValueLineColorPicker()"
-                        >
-                        Picker
-                    </button>
+
+                    <div class="gridValueLineColourPicker">
+                        <button
+                            type="button"
+                            class="btn btn-link btn-sm"
+                            (click)="clickSelectValueLineColorPicker()"
+                            >
+                            Picker
+                        </button>
+                        <clr-icon
+                            shape="circle"
+                            size="14"
+                            [style.background-color]="localWidget.shapeStroke"
+                            [style.color]="localWidget.shapeStroke"
+                            >
+                        </clr-icon>
+                    </div>
+            
                 </div>
             </div>
         </div>
