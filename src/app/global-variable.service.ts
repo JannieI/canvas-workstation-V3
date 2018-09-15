@@ -2615,50 +2615,64 @@ export class GlobalVariableService {
             .subscribe(
                 res => {
 
-                    // Get info from the deleted one
-                    let deletedDashboardIndex: number = this.currentDashboardInfo.value
-                        .currentDashboardID;
-                    let deletedDashboardTabIndex: number = this.dashboardTabs.findIndex(t =>
-                        t.id == id
+                    this.dashboardTabs = this.dashboardTabs.filter(
+                        dsp => dsp.id != id
                     );
-                    let deletedDashboardTabDisplayOrder: number =
-                        this.dashboardTabs.length + 1;
-                    if (deletedDashboardTabIndex >= 0) {
-                        deletedDashboardTabDisplayOrder =
-                            this.dashboardTabs[deletedDashboardTabIndex].displayOrder;
+                    this.currentDashboardTabs = this.currentDashboardTabs.filter(
+                        dsp => dsp.id != id
+                    );
+
+                    if (this.sessionDebugging) {
+                        console.log('deleteDashboardTab DELETED id: ', {id})
                     };
 
-                    // Update local Arrays for ALL Tabs (currentTabs will be re-Getted)
-                    this.dashboardTabs = this.dashboardTabs.filter(
-                        t => t.id != id
-                    );
-                    // this.currentDashboardTabs = this.currentDashboardTabs.filter(
+                    resolve('Deleted');
+
+                    // OLD
+                    // // Get info from the deleted one
+                    // let deletedDashboardIndex: number = this.currentDashboardInfo.value
+                    //     .currentDashboardID;
+                    // let deletedDashboardTabIndex: number = this.dashboardTabs.findIndex(t =>
+                    //     t.id == id
+                    // );
+                    // let deletedDashboardTabDisplayOrder: number =
+                    //     this.dashboardTabs.length + 1;
+                    // if (deletedDashboardTabIndex >= 0) {
+                    //     deletedDashboardTabDisplayOrder =
+                    //         this.dashboardTabs[deletedDashboardTabIndex].displayOrder;
+                    // };
+
+                    // // Update local Arrays for ALL Tabs (currentTabs will be re-Getted)
+                    // this.dashboardTabs = this.dashboardTabs.filter(
                     //     t => t.id != id
                     // );
+                    // // this.currentDashboardTabs = this.currentDashboardTabs.filter(
+                    // //     t => t.id != id
+                    // // );
 
-                    // Update displayOrder for the rest
-                    let promiseArray = [];
+                    // // Update displayOrder for the rest
+                    // let promiseArray = [];
 
-                    this.dashboardTabs.forEach(t => {
-                        if (t.dashboardID == deletedDashboardIndex  &&
-                            t.displayOrder > deletedDashboardTabDisplayOrder) {
-                            t.displayOrder = t.displayOrder - 1;
-                        };
-                        promiseArray.push(this.saveDashboardTab(t));
-                    });
+                    // this.dashboardTabs.forEach(t => {
+                    //     if (t.dashboardID == deletedDashboardIndex  &&
+                    //         t.displayOrder > deletedDashboardTabDisplayOrder) {
+                    //         t.displayOrder = t.displayOrder - 1;
+                    //     };
+                    //     promiseArray.push(this.saveDashboardTab(t));
+                    // });
 
-                    this.allWithAsync(...promiseArray)
-                        .then(res => {
+                    // this.allWithAsync(...promiseArray)
+                    //     .then(res => {
 
-                        this.getCurrentDashboardTabs(deletedDashboardIndex).then(t => {
+                    //     this.getCurrentDashboardTabs(deletedDashboardIndex).then(t => {
 
-                            if (this.sessionDebugging) {
-                                console.log('deleteDashboardTab DELETED id: ', {id})
-                            };
+                    //         if (this.sessionDebugging) {
+                    //             console.log('deleteDashboardTab DELETED id: ', {id})
+                    //         };
 
-                            resolve('Deleted');
-                        });
-                    });
+                    //         resolve('Deleted');
+                    //     });
+                    // });
                 },
                 err => {
                     if (this.sessionDebugging) {
