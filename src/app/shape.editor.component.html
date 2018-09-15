@@ -1310,7 +1310,7 @@
                     </div>
                     <div class="select gridTextColour">
                         <select
-                            [(ngModel)]="localWidget.shapeFillName"
+                            [(ngModel)]="localWidget.shapeTextColourName"
                             (change)="clickSelectTextColor($event)"
                             >
                             <option *ngFor="let row of backgroundcolors"
@@ -1332,8 +1332,8 @@
                         <clr-icon
                             shape="circle"
                             size="14"
-                            [style.background-color]="localWidget.shapeFill"
-                            [style.color]="localWidget.shapeFill"
+                            [style.background-color]="localWidget.shapeTextColour"
+                            [style.color]="localWidget.shapeTextColour"
                             >
                         </clr-icon>
                     </div>
@@ -1641,7 +1641,7 @@
                     </div>
                     <div class="select gridBulletsColour">
                         <select
-                            [(ngModel)]="localWidget.shapeFillName"
+                            [(ngModel)]="localWidget.shapeTextColourName"
                             (change)="clickSelectBulletsColor($event)"
                             >
                             <option *ngFor="let row of backgroundcolors"
@@ -1663,8 +1663,8 @@
                         <clr-icon
                             shape="circle"
                             size="14"
-                            [style.background-color]="localWidget.shapeFill"
-                            [style.color]="localWidget.shapeFill"
+                            [style.background-color]="localWidget.shapeTextColour"
+                            [style.color]="localWidget.shapeTextColour"
                             >
                         </clr-icon>
                     </div>
@@ -1740,7 +1740,7 @@
 
                     <div class="select gridValueLineColour">
                         <select
-                            [(ngModel)]="localWidget.shapeStrokeName"
+                            [(ngModel)]="localWidget.shapeTextColourName"
                             (change)="clickSelectValueLineColor($event)"
                             >
                             <option *ngFor="let row of backgroundcolors"
@@ -1762,8 +1762,8 @@
                         <clr-icon
                             shape="circle"
                             size="14"
-                            [style.background-color]="localWidget.shapeStroke"
-                            [style.color]="localWidget.shapeStroke"
+                            [style.background-color]="localWidget.shapeTextColour"
+                            [style.color]="localWidget.shapeTextColour"
                             >
                         </clr-icon>
                     </div>

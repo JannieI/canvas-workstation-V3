@@ -169,8 +169,8 @@ export class ShapeEditComponent implements OnInit {
 
                     if (clp.callingRoutine == 'ShapeEditorValueLineColor') {
                         this.colourPickerClosed = false;
-                        this.localWidget.shapeStroke = clp.selectedColor;
-                        this.localWidget.shapeStrokeName = 'Open Picker ...';
+                        this.localWidget.shapeTextColour = clp.selectedColor;
+                        this.localWidget.shapeTextColourName = 'Open Picker ...';
                     };
 
                     if (clp.callingRoutine == 'ShapeEditorBulletsColor') {
@@ -729,15 +729,6 @@ console.warn('xx this.localWidget', this.localWidget);
         this.colourPickerClosed = true;
     }
 
-    clickSelectTextColorPicker() {
-        // Open the Colour Picker for Text Colour
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectTextColorPicker', '@Start');
-
-        this.selectedColour = this.localWidget.shapeTextColour;
-        this.callingRoutine = 'ShapeEditorTextColor';
-        this.colourPickerClosed = true;
-    }
-
     clickSelectTextAlign(ev: any) {
         // Select Text Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectTextAlign', '@Start');
@@ -750,6 +741,15 @@ console.warn('xx this.localWidget', this.localWidget);
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectTextColor', '@Start');
 
         this.localWidget.shapeTextColour = ev.target.value;
+    }
+
+    clickSelectTextColorPicker() {
+        // Open the Colour Picker for Text Colour
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectTextColorPicker', '@Start');
+
+        this.selectedColour = this.localWidget.shapeTextColour;
+        this.callingRoutine = 'ShapeEditorTextColor';
+        this.colourPickerClosed = true;
     }
 
     clickSelectCircleLineColorPicker(ev: any) {
