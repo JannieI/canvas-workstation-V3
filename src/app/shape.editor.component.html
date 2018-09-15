@@ -1381,13 +1381,23 @@
                             </option>
                         </select>
                     </div>
-                    <button
-                        type="button"
-                        class="btn btn-link btn-sm gridBracketLineColourPicker"
-                        (click)="clickSelectBracketLineColorPicker()"
-                        >
-                        Picker
-                    </button>
+
+                    <div class="gridBracketLineColourPicker">
+                        <button
+                            type="button"
+                            class="btn btn-link btn-sm"
+                            (click)="clickSelectBracketLineColorPicker()"
+                            >
+                            Picker
+                        </button>
+                        <clr-icon
+                            shape="circle"
+                            size="14"
+                            [style.background-color]="localWidget.shapeStroke"
+                            [style.color]="localWidget.shapeStroke"
+                            >
+                        </clr-icon>
+                    </div>
 
                     <div class="gridBracketSizeTitle">
                         <b>Size:</b>
@@ -1446,13 +1456,24 @@
                             </option>
                         </select>
                     </div>
-                    <button
-                        type="button"
-                        class="btn btn-link btn-sm gridArrowFillColourPicker"
-                        (click)="clickSelectArrowFillColorPicker()"
-                        >
-                        Picker
-                    </button>
+            
+                    <div class="gridArrowFillColourPicker">
+                        <button
+                            type="button"
+                            class="btn btn-link btn-sm"
+                            (click)="clickSelectArrowFillColorPicker()"
+                            >
+                            Picker
+                        </button>
+                        <clr-icon
+                            shape="circle"
+                            size="14"
+                            [style.background-color]="localWidget.shapeStroke"
+                            [style.color]="localWidget.shapeStroke"
+                            >
+                        </clr-icon>
+                    </div>
+
                     <div class="gridArrowLineColourTitle">
                         <b>Line:</b>
                     </div>
@@ -1468,13 +1489,23 @@
                             </option>
                         </select>
                     </div>
-                    <button
-                        type="button"
-                        class="btn btn-link btn-sm gridArrowLineColourPicker"
-                        (click)="clickSelectArrowLineColorPicker()"
-                        >
-                        Picker
-                    </button>
+    
+                    <div class="gridArrowLineColourPicker">
+                        <button
+                            type="button"
+                            class="btn btn-link btn-sm"
+                            (click)="clickSelectArrowLineColorPicker()"
+                            >
+                            Picker
+                        </button>
+                        <clr-icon
+                            shape="circle"
+                            size="14"
+                            [style.background-color]="localWidget.shapeStroke"
+                            [style.color]="localWidget.shapeStroke"
+                            >
+                        </clr-icon>
+                    </div>
 
                     <div class="gridArrowSizeTitle">
                         <b>Size:</b>
@@ -1522,13 +1553,23 @@
                             </option>
                         </select>
                     </div>
-                    <button
-                        type="button"
-                        class="btn btn-link btn-sm gridArrowThinColourPicker"
-                        (click)="clickSelectArrowThinColorPicker()"
-                        >
-                        Picker
-                    </button>
+
+                    <div class="gridArrowThinColourPicker">
+                        <button
+                            type="button"
+                            class="btn btn-link btn-sm"
+                            (click)="clickSelectArrowThinColorPicker()"
+                            >
+                            Picker
+                        </button>
+                        <clr-icon
+                            shape="circle"
+                            size="14"
+                            [style.background-color]="localWidget.shapeStroke"
+                            [style.color]="localWidget.shapeStroke"
+                            >
+                        </clr-icon>
+                    </div>
 
                 </div>
 
@@ -1610,14 +1651,23 @@
                             </option>
                         </select>
                     </div>
-                    <button
-                        type="button"
-                        class="btn btn-link btn-sm gridBulletsColourPicker"
-                        (click)="clickSelectBulletsColorPicker()"
-                        >
-                        Picker
-                    </button>
 
+                    <div class="gridBulletsColourPicker">
+                        <button
+                            type="button"
+                            class="btn btn-link btn-sm"
+                            (click)="clickSelectBulletsColorPicker()"
+                            >
+                            Picker
+                        </button>
+                        <clr-icon
+                            shape="circle"
+                            size="14"
+                            [style.background-color]="localWidget.shapeFill"
+                            [style.color]="localWidget.shapeFill"
+                            >
+                        </clr-icon>
+                    </div>
                 </div>
 
                 <div class="gridShapeProperties" *ngIf="showValue">
