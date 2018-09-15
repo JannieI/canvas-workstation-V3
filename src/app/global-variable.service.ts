@@ -9101,7 +9101,7 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.put('http://localhost:3000/' + url + '/' + data.id, data, {headers})
+            this.http.put('http://localhost:3001/' + url + '/' + data.id, data, {headers})
             .subscribe(
                 res => {
 
@@ -9810,6 +9810,10 @@ export class GlobalVariableService {
                 if (url == 'dashboardsRecent') {
                     finalUrl = 'http://localhost:3001/' + url;
                 } else if (url == 'dataCachingTable') {
+                    finalUrl = 'http://localhost:3001/' + url;
+                } else if (url == 'canvasUsers') {
+                    finalUrl = 'http://localhost:3001/' + url;
+                } else if (url == 'canvasGroups') {
                     finalUrl = 'http://localhost:3001/' + url;
                 } else if (url == 'dataConnections') {
                     finalUrl = 'http://localhost:3001/' + url;

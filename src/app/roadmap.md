@@ -403,6 +403,9 @@ This document describes items for later versions of Canvas.
     - consider integration with a ERD tool like Erwin, see:
     https://erwin.com/products/data-modeler/#
     - Filters take a lot of space => rather use clicking on graph to filter, or open filter on separate page / popup.  Then have a button on form to indicate that it is filtered and to clear the filters.
+    - functionality to change DS on a W
+    - give a warning of which Dashboards uses a field if a DS definition is changed.
+     
 
     Eazl:
     ----
