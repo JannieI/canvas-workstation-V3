@@ -66,7 +66,7 @@ export class DashboardNewComponent implements OnInit {
     theFile: any;
     widgetLayouts: WidgetLayout[] = [];
 
-    
+
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -97,7 +97,7 @@ export class DashboardNewComponent implements OnInit {
             }
         ];
         this.widgetLayouts = [
-          
+
             {
               id: 1,
               dashboardLayoutID: 2,
@@ -139,7 +139,7 @@ export class DashboardNewComponent implements OnInit {
               width: 251
             }
         ];
-        
+
 
 
     }
@@ -228,14 +228,14 @@ export class DashboardNewComponent implements OnInit {
             };
         };
     }
-    
+
     clickImage(index: number, id: number) {
         // Clicked a layout image
         this.globalFunctionService.printToConsole(this.constructor.name,'clickImage', '@Start');
 
         this.selectedLayoutIndex = index;
 		console.warn('xx id', id, index);
-        
+
     }
 
     clickClose() {
@@ -287,54 +287,67 @@ export class DashboardNewComponent implements OnInit {
 
         // Add new (Complete + Draft) to DB, and open Draft
         newDashboard.state = 'Complete';
+
+        // Add Original D
         this.globalVariableService.addDashboard(newDashboard).then(newD => {
+
+            // Add Draft D
             newDashboard.state = 'Draft';
             newDashboard.originalID = newD.id;
             this.globalVariableService.addDashboard(newDashboard).then(draftD => {
+
+                // Reset draftID on Original
                 newD.draftID = draftD.id;
                 this.globalVariableService.saveDashboard(newD).then(originalD => {
 
+                    // Add Original Tab to DB
                     let newDashboardTab: DashboardTab = this.globalVariableService.dashboardTabTemplate;
-                    newDashboardTab.dashboardID = draftD.id;
+                    newDashboardTab.dashboardID = newD.id;
+                    this.globalVariableService.addDashboardTab(newDashboardTab).then(originalTab => {
 
-                    // Add Tab to DB
-                    this.globalVariableService.addDashboardTab(newDashboardTab).then(t => {
+                        // Add Draft Tab to DB
+                        let newDashboardTab: DashboardTab = this.globalVariableService.dashboardTabTemplate;
+                        newDashboardTab.dashboardID = draftD.id;
+                        newDashboardTab.originalID = originalTab.id;
+                        this.globalVariableService.addDashboardTab(newDashboardTab).then(draftTab => {
 
-                        this.globalVariableService.amendDashboardRecent(draftD.id, t.id).then(dR => {
+                            // Amend Recent list
+                            this.globalVariableService.amendDashboardRecent(draftD.id, draftTab.id).then(dR => {
 
-                            // Add the Dashboard Layout, other than Blank
-                            if (this.selectedLayoutIndex > 0) {
-                                let dashboardLayoutID: number = 
-                                    this.dashboardLayouts[this.selectedLayoutIndex].id;
-                                let newDashboardLayout: DashboardLayout = 
-                                    this.dashboardLayouts[this.selectedLayoutIndex];
-                                newDashboardLayout.id = null;    
-                                newDashboardLayout.dashboardID = draftD.id;
-                                this.globalVariableService.addDashboardLayout(newDashboardLayout)
-                                    .then(res => {
-                                        this.widgetLayouts.forEach(wl => {
-                                            if (wl.dashboardLayoutID == dashboardLayoutID) {
-                                                let newWidgetLayout: WidgetLayout = wl;
-                                                newWidgetLayout.id = null;
-                                                newWidgetLayout.dashboardLayoutID = res.id;
-                                                this.globalVariableService.addWidgetLayout(
-                                                    newWidgetLayout
-                                                ).then(res => {
-                                                    this.globalVariableService.refreshCurrentDashboard(
-                                                        'addDashboard-clickCreate', draftD.id, t.id, ''
-                                                    );
-                                                });
-                                            };
+                                // Add the Dashboard Layout, other than Blank
+                                if (this.selectedLayoutIndex > 0) {
+                                    let dashboardLayoutID: number =
+                                        this.dashboardLayouts[this.selectedLayoutIndex].id;
+                                    let newDashboardLayout: DashboardLayout =
+                                        this.dashboardLayouts[this.selectedLayoutIndex];
+                                    newDashboardLayout.id = null;
+                                    newDashboardLayout.dashboardID = draftD.id;
+                                    this.globalVariableService.addDashboardLayout(newDashboardLayout)
+                                        .then(res => {
+                                            this.widgetLayouts.forEach(wl => {
+                                                if (wl.dashboardLayoutID == dashboardLayoutID) {
+                                                    let newWidgetLayout: WidgetLayout = wl;
+                                                    newWidgetLayout.id = null;
+                                                    newWidgetLayout.dashboardLayoutID = res.id;
+                                                    this.globalVariableService.addWidgetLayout(
+                                                        newWidgetLayout
+                                                    ).then(res => {
+                                                        this.globalVariableService.refreshCurrentDashboard(
+                                                            'addDashboard-clickCreate', draftD.id, draftTab.id, ''
+                                                        );
+                                                    });
+                                                };
+                                        });
                                     });
-                                });
-                            } else {
-                                this.globalVariableService.refreshCurrentDashboard(
-                                    'addDashboard-clickCreate', draftD.id, t.id, ''
-                                );
-                            };
-                            this.formDashboardNewClosed.emit('Created');
+                                } else {
+                                    this.globalVariableService.refreshCurrentDashboard(
+                                        'addDashboard-clickCreate', draftD.id, draftTab.id, ''
+                                    );
+                                };
+                                this.formDashboardNewClosed.emit('Created');
+                            });
                         });
-                    })
+                    });
                 });
             });
         });
