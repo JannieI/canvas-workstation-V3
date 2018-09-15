@@ -906,6 +906,27 @@ console.warn('xx this.localWidget', this.localWidget);
         this.colourPickerClosed = true;
     }
 
+    clickSelectRectangleLineColor(ev: any) {
+        // Select Rectangle Line Colour
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectRectangleLineColor', '@Start');
+
+        // this.localWidget.shapeStroke = ev.target.value;
+
+        // Open Picker if selected
+        if (ev.target.value == 'Open Picker ...') {
+            this.clickSelectRectangleLineColorPicker(null);
+        };
+
+        this.localWidget.shapeStrokeName = ev.target.value;
+        this.localWidget.shapeStroke = this.localWidget.shapeStrokeName;
+        let localIndex: number = this.backgroundcolors.findIndex(bg =>
+            bg.name == this.localWidget.shapeStrokeName
+        );
+        if (localIndex >= 0) {
+            this.localWidget.shapeStroke = this.backgroundcolors[localIndex].cssCode;
+        };
+    }
+
     clickSelectRectangleLineColorPicker(ev: any) {
         // Open the Colour Picker for Rectangle Line Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectRectangleLineColorPicker', '@Start');
@@ -913,13 +934,6 @@ console.warn('xx this.localWidget', this.localWidget);
         this.selectedColour = this.localWidget.shapeStroke;
         this.callingRoutine = 'ShapeEditorRectangleLineColor';
         this.colourPickerClosed = true;
-    }
-
-    clickSelectRectangleLineColor(ev: any) {
-        // Select Rectangle Line Colour
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectRectangleLineColor', '@Start');
-
-        this.localWidget.shapeStroke = ev.target.value;
     }
 
     clickSelectRectangleFillColorPicker(ev: any) {
