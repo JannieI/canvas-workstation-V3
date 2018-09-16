@@ -178,7 +178,12 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
             startsOn: null,
             endsNever: false,
             endsAfter: 0,
-            endsOn: null
+            endsOn: null,
+            editedBy: null,
+            editedOn: null,
+            createdBy: null,
+            createdOn: null
+
         };
     }
 

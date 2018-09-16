@@ -974,7 +974,8 @@ export class GlobalVariableService {
                         localTableName: this.dataCachingTable[dataCachingTableIndex].
                             localTableName,
                         localLastWebSocketNumber: this.dataCachingTable
-                            [dataCachingTableIndex].localLastWebSocketNumber
+                            [dataCachingTableIndex].localLastWebSocketNumber,
+                            
                     };
 
                     // Update DB with WS#
@@ -4582,7 +4583,7 @@ export class GlobalVariableService {
             .subscribe(
                 res => {
 
-                    this.datasourceSchedules = this.dashboardSchedules.filter(
+                    this.datasourceSchedules = this.datasourceSchedules.filter(
                         dsp => dsp.id != id
                     );
                     this.currentDatasourceSchedules = this.currentDatasourceSchedules.filter(

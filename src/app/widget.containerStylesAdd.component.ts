@@ -302,7 +302,7 @@ export class WidgetContainerStylesAddComponent implements OnInit {
             containerCreatedOn: new Date(),
             containerCreatedBy: this.globalVariableService.currentUser.userID,
             containerUpdatedOn: null,
-            containerUpdatedBy: null,
+            containerUpdatedBy: null
 
         };
 
