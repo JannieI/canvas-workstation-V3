@@ -131,11 +131,14 @@ export class PreferencesComponent implements OnInit {
                     this.selectedStartupDashboard = d.name + ' (' + d.id.toString() + ')';
                 };
 
+            });
+
+            this.globalVariableService.dashboardTabs.forEach(t => {
                 // Fill Initial Startup T
                 if (this.preferenceStartupDashboardTabID != null
                     &&
-                    this.preferenceStartupDashboardTabID == d.id) {
-                    this.selectedStartupDashboardTab = d.name + ' (' + d.id.toString() + ')';
+                    this.preferenceStartupDashboardTabID == t.id) {
+                    this.selectedStartupDashboardTab = t.name + ' (' + t.id.toString() + ')';
                 };
             });
 
