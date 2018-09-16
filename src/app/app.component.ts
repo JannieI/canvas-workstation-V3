@@ -3762,6 +3762,20 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         // Import a DS from an external file (json format)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDirectImport', '@Start');
 
+        // Permissions
+        if (!this.globalVariableService.currentUser.datasourceCanCreateRole
+            &&
+            !this.globalVariableService.currentUser.isAdministrator) {
+            this.showMessage(
+                'You cannot add a new Datasource (role must be added to your user)',
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+
         this.showModalDataDirectImport = true;
     }
 
