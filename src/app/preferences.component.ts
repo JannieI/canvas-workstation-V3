@@ -53,11 +53,6 @@ export class PreferencesComponent implements OnInit {
     dashboardList: string[] = ['None'];
     dashboards: Dashboard[];
     preferenceAutoSync: boolean;
-    preferencePaletteHorisontal: boolean;
-    preferenceShowOpenStartupMessage: boolean;
-    preferenceShowOpenDataCombinationMessage: boolean;
-    preferenceShowViewStartupMessage: boolean;
-    preferenceShowDiscardStartupMessage: boolean;
     preferenceDefaultTemplateID: number;
     preferenceDefaultDateformat: string;
     preferenceDefaultFolder: string;
@@ -65,8 +60,17 @@ export class PreferencesComponent implements OnInit {
     preferenceDefaultPageSize: string;
     preferenceDefaultPageLayout: string;
     preferenceDefaultSnapshotMins: number;
+    preferencePaletteHorisontal: boolean;
+    preferenceShowOpenStartupMessage: boolean;
+    preferenceShowOpenDataCombinationMessage: boolean;
+    preferenceShowViewStartupMessage: boolean;
+    preferenceShowDiscardStartupMessage: boolean;
+    preferenceStartupDashboardID: number;
+    preferenceStartupDashboardTabID: number;
     selectedDashboardId: number;
     selectedTemplateDashboard: string;
+    selectedStartupDashboard: string;
+    selectedStartupDashboardTab: string;
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -76,6 +80,23 @@ export class PreferencesComponent implements OnInit {
     ngOnInit() {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+
+        // Fill local vars for ngModel
+        this.preferenceAutoSync = this.globalVariableService.currentUser.preferenceAutoSync;
+        this.preferencePaletteHorisontal = this.globalVariableService.currentUser.preferencePaletteHorisontal;
+        this.preferenceShowOpenStartupMessage = this.globalVariableService.currentUser.preferenceShowOpenStartupMessage;
+        this.preferenceShowOpenDataCombinationMessage = this.globalVariableService.currentUser.preferenceShowOpenDataCombinationMessage;
+        this.preferenceShowViewStartupMessage = this.globalVariableService.currentUser.preferenceShowViewStartupMessage;
+        this.preferenceShowDiscardStartupMessage = this.globalVariableService.currentUser.preferenceShowDiscardStartupMessage;
+        this.preferenceDefaultTemplateID = this.globalVariableService.currentUser.preferenceDefaultTemplateID;
+        this.preferenceDefaultDateformat = this.globalVariableService.currentUser.preferenceDefaultDateformat;
+        this.preferenceDefaultFolder = this.globalVariableService.currentUser.preferenceDefaultFolder;
+        this.preferenceDefaultPrinter = this.globalVariableService.currentUser.preferenceDefaultPrinter;
+        this.preferenceDefaultPageSize = this.globalVariableService.currentUser.preferenceDefaultPageSize;
+        this.preferenceDefaultPageLayout = this.globalVariableService.currentUser.preferenceDefaultPageLayout;
+        this.preferenceDefaultSnapshotMins = this.globalVariableService.currentUser.preferenceDefaultSnapshotMins;
+        this.preferenceStartupDashboardID = this.globalVariableService.currentUser.preferenceStartupDashboardID;
+        this.preferenceStartupDashboardTabID = this.globalVariableService.currentUser.preferenceStartupDashboardTabID;
 
         // Get list of D for dropdown
         this.globalVariableService.getDashboards().then(d => {
@@ -96,29 +117,29 @@ export class PreferencesComponent implements OnInit {
                     this.dashboardList.push(d.name + ' (' + d.id.toString() + ')');
                 };
 
-                // Fill Initial
+                // Fill Initial Template
                 if (this.preferenceDefaultTemplateID != null
                     &&
                     this.preferenceDefaultTemplateID == d.id) {
                     this.selectedTemplateDashboard = d.name + ' (' + d.id.toString() + ')';
                 };
+
+                // Fill Initial Startup D
+                if (this.preferenceStartupDashboardID != null
+                    &&
+                    this.preferenceStartupDashboardID == d.id) {
+                    this.selectedStartupDashboard = d.name + ' (' + d.id.toString() + ')';
+                };
+
+                // Fill Initial Startup T
+                if (this.preferenceStartupDashboardTabID != null
+                    &&
+                    this.preferenceStartupDashboardTabID == d.id) {
+                    this.selectedStartupDashboardTab = d.name + ' (' + d.id.toString() + ')';
+                };
             });
 
         });
-
-        this.preferenceAutoSync = this.globalVariableService.currentUser.preferenceAutoSync;
-        this.preferencePaletteHorisontal = this.globalVariableService.currentUser.preferencePaletteHorisontal;
-        this.preferenceShowOpenStartupMessage = this.globalVariableService.currentUser.preferenceShowOpenStartupMessage;
-        this.preferenceShowOpenDataCombinationMessage = this.globalVariableService.currentUser.preferenceShowOpenDataCombinationMessage;
-        this.preferenceShowViewStartupMessage = this.globalVariableService.currentUser.preferenceShowViewStartupMessage;
-        this.preferenceShowDiscardStartupMessage = this.globalVariableService.currentUser.preferenceShowDiscardStartupMessage;
-        this.preferenceDefaultTemplateID = this.globalVariableService.currentUser.preferenceDefaultTemplateID;
-        this.preferenceDefaultDateformat = this.globalVariableService.currentUser.preferenceDefaultDateformat;
-        this.preferenceDefaultFolder = this.globalVariableService.currentUser.preferenceDefaultFolder;
-        this.preferenceDefaultPrinter = this.globalVariableService.currentUser.preferenceDefaultPrinter;
-        this.preferenceDefaultPageSize = this.globalVariableService.currentUser.preferenceDefaultPageSize;
-        this.preferenceDefaultPageLayout = this.globalVariableService.currentUser.preferenceDefaultPageLayout;
-        this.preferenceDefaultSnapshotMins = this.globalVariableService.currentUser.preferenceDefaultSnapshotMins;
     }
 
     clickTemplateDashboard(ev:any, id: number) {

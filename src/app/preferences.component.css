@@ -170,10 +170,38 @@
             text-align: left;
         }
 
-        .gridStartupDashboard {
+        .gridStartupDashboardTitle {
             grid-column-start: 1;
             /* autoprefixer: off */
+            grid-column-end: 2;
+            grid-row-start: 13;
+            grid-row-end: 14;
+            margin-left: 20px;
+            text-align: left;
+        }
+        .gridStartupDashboard {
+            grid-column-start: 2;
+            /* autoprefixer: off */
             grid-column-end: 7;
+            grid-row-start: 13;
+            grid-row-end: 14;
+            margin-left: 20px;
+            text-align: left;
+        }
+
+        .gridStartupDashboardTabTitle {
+            grid-column-start: 8;
+            /* autoprefixer: off */
+            grid-column-end: 9;
+            grid-row-start: 13;
+            grid-row-end: 14;
+            margin-left: 20px;
+            text-align: left;
+        }
+        .gridStartupDashboardTab {
+            grid-column-start: 9;
+            /* autoprefixer: off */
+            grid-column-end: 13;
             grid-row-start: 13;
             grid-row-end: 14;
             margin-left: 20px;
