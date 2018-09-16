@@ -3559,6 +3559,20 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         // Open form to create a DS with data that comes from a Spreadsheet.
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDirectFileSpreadsheet', '@Start');
 
+        // Permissions
+        if (!this.globalVariableService.currentUser.datasourceCanCreateRole
+            &&
+            !this.globalVariableService.currentUser.isAdministrator) {
+            this.showMessage(
+                'You cannot add a new Datasource (role must be added to your user)',
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+
         this.menuOptionClickPreAction();
 
         this.editingDS = false;
