@@ -64,6 +64,8 @@ export class SystemSettingsComponent implements OnInit {
     notInEditModeMsg: string;
     noQueryRunningMessage: string;
     queryRunningMessage: string;
+    createdBy: string;
+    createdOn: Date;
     
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -88,6 +90,8 @@ export class SystemSettingsComponent implements OnInit {
         this.notInEditModeMsg = this.globalVariableService.canvasSettings.notInEditModeMsg;
         this.noQueryRunningMessage = this.globalVariableService.canvasSettings.noQueryRunningMessage;
         this.queryRunningMessage = this.globalVariableService.canvasSettings.queryRunningMessage;
+        this.createdBy = this.globalVariableService.canvasSettings.createdBy;
+        this.createdOn = this.globalVariableService.canvasSettings.createdOn;
 
         console.warn('xx cs', this.globalVariableService.canvasSettings)
     }
@@ -127,7 +131,12 @@ export class SystemSettingsComponent implements OnInit {
             noQueryRunningMessage: this.noQueryRunningMessage,
             queryRunningMessage: this.queryRunningMessage,
             cleanCacheOnLogin: false,
-            cleanCacheOnLogout: false
+            cleanCacheOnLogout: false,
+            editedBy: this.globalVariableService.currentUser.userID,
+            editedOn: new Date(),
+            createdBy: this.createdBy,
+            createdOn: this.createdOn
+
         };
 
         // Save globally, and in DB
