@@ -147,8 +147,17 @@
             text-align: left;
         }
 
-        .gridMessagesDiscard {
+        .gridMessagesDiscardTitle {
             grid-column-start: 8;
+            /* autoprefixer: off */
+            grid-column-end: 9;
+            grid-row-start: 8;
+            grid-row-end: 9;
+            margin-left: 20px;
+            text-align: left;
+        }
+        .gridMessagesDiscard {
+            grid-column-start: 9;
             /* autoprefixer: off */
             grid-column-end: 15;
             grid-row-start: 8;
@@ -186,18 +195,36 @@
             text-align: left;
         }
 
+        .gridDefaultDateFormatTitle {
+            grid-column-start: 8;
+            /* autoprefixer: off */
+            grid-column-end: 9;
+            grid-row-start: 11;
+            grid-row-end: 12;
+            margin-left: 20px;
+            text-align: left;
+        }
         .gridDefaultDateFormat {
             grid-column-start: 8;
             /* autoprefixer: off */
-            grid-column-end: 15;
+            grid-column-end: 9;
             grid-row-start: 11;
             grid-row-end: 12;
             margin-left: 20px;
             text-align: left;
         }
 
-        .gridDefaultFolder {
+        .gridDefaultFolderTitle {
             grid-column-start: 1;
+            /* autoprefixer: off */
+            grid-column-end: 2;
+            grid-row-start: 12;
+            grid-row-end: 13;
+            margin-left: 20px;
+            text-align: left;
+        }
+        .gridDefaultFolder {
+            grid-column-start: 2;
             /* autoprefixer: off */
             grid-column-end: 7;
             grid-row-start: 12;
@@ -206,8 +233,17 @@
             text-align: left;
         }
 
-        .gridDefaultSnapshot {
+        .gridDefaultSnapshotTitle {
             grid-column-start: 8;
+            /* autoprefixer: off */
+            grid-column-end: 9;
+            grid-row-start: 12;
+            grid-row-end: 13;
+            margin-left: 20px;
+            text-align: left;
+        }
+        .gridDefaultSnapshot {
+            grid-column-start: 9;
             /* autoprefixer: off */
             grid-column-end: 15;
             grid-row-start: 12;
@@ -264,8 +300,17 @@
         text-align: left;
     }
 
-        .gridPrintDefault {
+        .gridPrintDefaultTitle {
             grid-column-start: 1;
+            /* autoprefixer: off */
+            grid-column-end: 2;
+            grid-row-start: 16;
+            grid-row-end: 17;
+            margin-left: 20px;
+            text-align: left;
+        }
+        .gridPrintDefault {
+            grid-column-start: 2;
             /* autoprefixer: off */
             grid-column-end: 7;
             grid-row-start: 16;
@@ -274,8 +319,17 @@
             text-align: left;
         }
 
-        .gridPrintSize {
+        .gridPrintSizeTitle {
             grid-column-start: 8;
+            /* autoprefixer: off */
+            grid-column-end: 9;
+            grid-row-start: 16;
+            grid-row-end: 17;
+            margin-left: 20px;
+            text-align: left;
+        }
+        .gridPrintSize {
+            grid-column-start: 9;
             /* autoprefixer: off */
             grid-column-end: 15;
             grid-row-start: 16;
@@ -284,10 +338,19 @@
             text-align: left;
         }
 
+        .gridPrintLayoutTitle {
+            grid-column-start: 1;
+            /* autoprefixer: off */
+            grid-column-end: 2;
+            grid-row-start: 17;
+            grid-row-end: 18;
+            margin-left: 20px;
+            text-align: left;
+        }
         .gridPrintLayout {
             grid-column-start: 1;
             /* autoprefixer: off */
-            grid-column-end: 7;
+            grid-column-end: 2;
             grid-row-start: 17;
             grid-row-end: 18;
             margin-left: 20px;
