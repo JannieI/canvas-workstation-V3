@@ -3591,6 +3591,21 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
     clickMenuDataDirectSQLEditor() {
         // Open DATA form for a DS that comes from a SQL using SQL statements.
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDirectSQLEditor', '@Start');
+console.warn('xx this.globalVariableService.currentUser.datasourceCanCreateRole', this.globalVariableService.currentUser.datasourceCanCreateRole);
+
+        // Permissions
+        if (!this.globalVariableService.currentUser.datasourceCanCreateRole
+            &&
+            !this.globalVariableService.currentUser.isAdministrator) {
+            this.showMessage(
+                'You do not have add a Datasource (role must be added)',
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
 
         this.menuOptionClickPreAction();
 

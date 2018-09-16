@@ -8931,6 +8931,7 @@ export class GlobalVariableService {
                         this.isDirtyUsers = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
 
+                        
                         if (this.sessionDebugging) {
                             console.log('%c    Global-Variables getCanvasUsers 1',
                                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
@@ -8983,6 +8984,11 @@ export class GlobalVariableService {
         this.currentUser.dashboardCanCreateRole = false;
         this.currentUser.dashboardCanAddDatasourceRole = false;
         this.currentUser.canManageGroupRole = false;
+        this.currentUser.datasourceCanCreateRole = false;
+        this.currentUser.datasourceCanViewRole = false;
+        this.currentUser.datasourceCanEditRole = false;
+        this.currentUser.datasourceCanDeleteRole = false;
+        this.currentUser.datasourceCanGrantAccessRole = false;
     }
 
     updateCurrentUserProperties(parameters:
@@ -9064,6 +9070,7 @@ export class GlobalVariableService {
         };
 
     }
+
     validateUser(userID: string): Promise<boolean> {
         // Checks if userID exists.  If not, return false.
         // If so, set currentUser object and return true
