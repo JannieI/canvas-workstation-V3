@@ -9000,7 +9000,9 @@ export class GlobalVariableService {
             preferenceDefaultPrinter?: string,
             preferenceDefaultPageSize?: string,
             preferenceDefaultPageLayout?: string,
-            preferenceDefaultSnapshotMins?: number
+            preferenceDefaultSnapshotMins?: number,
+            preferenceStartupDashboardID?: number,
+            preferenceStartupDashboardTabID?: number
         }
         ) {
         // Description: update properties in the the Global currentUser variable
@@ -9052,6 +9054,13 @@ export class GlobalVariableService {
         };
         if (parameters.preferenceDefaultSnapshotMins != null) {
             this.currentUser.preferenceDefaultSnapshotMins = parameters.preferenceDefaultSnapshotMins;
+        };
+
+        if (parameters.preferenceStartupDashboardID != null) {
+            this.currentUser.preferenceStartupDashboardID = parameters.preferenceStartupDashboardID;
+        };
+        if (parameters.preferenceStartupDashboardTabID != null) {
+            this.currentUser.preferenceStartupDashboardTabID = parameters.preferenceStartupDashboardTabID;
         };
 
     }

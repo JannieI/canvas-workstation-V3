@@ -251,8 +251,8 @@ export class PreferencesComponent implements OnInit {
                 preferenceDefaultPageSize: this.preferenceDefaultPageSize,
                 preferenceDefaultPageLayout: this.preferenceDefaultPageLayout,
                 preferenceDefaultSnapshotMins: this.preferenceDefaultSnapshotMins,
-                this.preferenceStartupDashboardID: this.preferenceStartupDashboardID,
-                this.preferenceStartupDashboardTabID: this.preferenceStartupDashboardTabID
+                preferenceStartupDashboardID: this.preferenceStartupDashboardID,
+                preferenceStartupDashboardTabID: this.preferenceStartupDashboardTabID
             }
         );
 
