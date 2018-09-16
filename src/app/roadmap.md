@@ -9,249 +9,236 @@ This document describes items for later versions of Canvas.
 
     Tooltips:
     ---------
-    Add Tooltips to all - decide if CSS title is okay, as it looks different to Clarity tooltip   for icons - See where and how to use tooltips on buttons (ie HTML title="" or via Clarity).  Be   consistent!!
+        Add Tooltips to all - decide if CSS title is okay, as it looks different to Clarity tooltip   for icons - See where and how to use tooltips on buttons (ie HTML title="" or via Clarity).  Be   consistent!!
 
     Outstanding Forms:
     ------------
-    - Usage Stats form
-    - Data Qual form
-    - Print
-    - Theme
-    - Tablist
-    - Direct Service
-    - Managed Service
-    - Combinations
-    - Template form: does not work this way any longer.  Maybe use this for the Layout form, else just delete.
+        - Usage Stats form
+        - Data Qual form
+        - Print
+        - Theme
+        - Tablist
+        - Direct Service
+        - Managed Service
+        - Combinations
+        - Template form: does not work this way any longer.  Maybe use this for the Layout form, else just delete.
 
 
 
      Ease of use / Simplicity
     -------------------------
-    - GO BACK TO SIMPLICITY !!!  Review regular on how to make it easier and faster.  If like SPSS where everything sits behinds a menu item, then too difficult.  Simplify (Ivan)
-    - Relook at ALL forms for consistent layout, look and feel, INcluding the popups like the W title
-    - everything must be accessable IN 3 CLICKS
-    - Keep Help Message on top of forms uniform - always look and feel the same.  Also, make sure there is a preference to switch it back on manually.
-    Standard unit of measure: maybe save all as rem, and user can select px, rem, etc?
-    - neaten first time user for all forms: maybe more GotIt help messages that shows up only once, and disappears after GotIt was clicked.  Key example: first time EditMode is used, the user needs to understand Save and Discard.
-    - Google Sheets says 'All changes saved' after each change.  Should we do the same, ie after each resize or drag-n-drop?
-    - verify that we cater for casual to sophisticated user
-    - test: a new user must be able to build a D in 5 minutes, and a person must be ready with max 1hr training session.  Remember, no one reads the manual!  Final test, give it to highschool kids!!  
-    - test with newBee - can they do graph on D with minimal guidance?
-    - must easily spot messages on StatusBar
-    - must immediately know when in EditMode.
-    - make EditMode and Save easier for beginners - via docs and what else?
+        - GO BACK TO SIMPLICITY !!!  Review regular on how to make it easier and faster.  If like SPSS where everything sits behinds a menu item, then too difficult.  Simplify (Ivan)
+        - Relook at ALL forms for consistent layout, look and feel, INcluding the popups like the W title
+        - everything must be accessable IN 3 CLICKS
+        - Keep Help Message on top of forms uniform - always look and feel the same.  Also, make sure there is a preference to switch it back on manually.
+        Standard unit of measure: maybe save all as rem, and user can select px, rem, etc?
+        - neaten first time user for all forms: maybe more GotIt help messages that shows up only once, and disappears after GotIt was clicked.  Key example: first time EditMode is used, the user needs to understand Save and Discard.
+        - Google Sheets says 'All changes saved' after each change.  Should we do the same, ie after each resize or drag-n-drop?
+        - verify that we cater for casual to sophisticated user
+        - test: a new user must be able to build a D in 5 minutes, and a person must be ready with max 1hr training session.  Remember, no one reads the manual!  Final test, give it to highschool kids!!  
+        - test with newBee - can they do graph on D with minimal guidance?
+        - must easily spot messages on StatusBar
+        - must immediately know when in EditMode.
+        - make EditMode and Save easier for beginners - via docs and what else?
 
     UI, Layout, menu options:
     ------------------------
-    - Use style.css for standard items, ie class="helpMessage"
-    - Standardize date format shown - as selected by the user, stored as settings
-    - Consider Zoom - can use scale(0.6) from CSS, but then need to properly understand layout of main page.  Also, Google, etc already has a zoom, so what's the point.  Remove from menu if not needed
-    - every form must load in LESS THAN 3 SECS
-    - go through system and make sure things are done consistently
-    - make all drag-n-drop and similar to Microsoft interface.
-    - go through Liz doc on Driv (GDG) on design principles and review all forms
+        - Use style.css for standard items, ie class="helpMessage"
+        - Standardize date format shown - as selected by the user, stored as settings
+        - Consider Zoom - can use scale(0.6) from CSS, but then need to properly understand layout of main page.  Also, Google, etc already has a zoom, so what's the point.  Remove from menu if not needed
+        - every form must load in LESS THAN 3 SECS
+        - go through system and make sure things are done consistently
+        - make all drag-n-drop and similar to Microsoft interface.
+        - go through Liz doc on Driv (GDG) on design principles and review all forms
 
 
 
     Testing:
     --------
-    - test everything with 1000 - ie 1000 Dashboards in system, 1000 Widgets per D, etc - to check performance and to see it form layout (ie grids sizes) will copy with large volume
-    - Test on different configs: screen resolution, 2 screens
-    - Test on different devices, ie Tablet and Phone
-    Multi-T display: show nr of Tabs where a W is displayed in header as a badge
-    - different Browsers (NB)
-    - different devices, ie iPad and iPhone
-    - different OS, ie Applie
-    - use Canvas for our business !
+        - test everything with 1000 - ie 1000 Dashboards in system, 1000 Widgets per D, etc - to check performance and to see it form layout (ie grids sizes) will copy with large volume
+        - Test on different configs: screen resolution, 2 screens
+        - Test on different devices, ie Tablet and Phone
+        Multi-T display: show nr of Tabs where a W is displayed in header as a badge
+        - different Browsers (NB)
+        - different devices, ie iPad and iPhone
+        - different OS, ie Applie
+        - use Canvas for our business !
 
     Printing:
     -------------
-    - allow different print layouts and formats, for example one
-       Widget per page, Dashboard layout, all Dashboards (linked) or just the current one.
-    - MUST be able to print 1 page, or all pages of Dashboard in one click
+        - allow different print layouts and formats, for example one
+        Widget per page, Dashboard layout, all Dashboards (linked) or just the current one.
+        - MUST be able to print 1 page, or all pages of Dashboard in one click
 
 
     Admin module and Users
     ----------------------
-    - Users, groups, permissions: add DS permissions, Private Dashboards?, Public Dashboards?, etc to form 'My Permissions'
-    - Where does UI sit - in Dashboard or separate.  Consider Standalone vs Network
-    - Finalise group membership / roles
-    - Add UserID to ALL data and code -> where needed ...
-    - It must be impossible to lock out all users - admin keeps access and at least one is kept.  Also, if a W is locked and the owner on leave, someone must be able to unlock it.
+        - Users, groups, permissions: add DS permissions, Private Dashboards?, Public Dashboards?, etc to form 'My Permissions'
+        - Where does UI sit - in Dashboard or separate.  Consider Standalone vs Network
+        - Finalise group membership / roles
+        - Add UserID to ALL data and code -> where needed ...
+        - It must be impossible to lock out all users - admin keeps access and at least one is kept.  Also, if a W is locked and the owner on leave, someone must be able to unlock it.
 
 
     Refactoring / tech debt / necessary improvements:
     -------------------------------------------------
-    - Add RouteGuard on 'Clarity Analytics', before going to web site ...
-    BUG/ISSUE: multi-tab Slicers and Ws only refresh on the first one - when are the others done?  To do them while hidden makes no sence - should we have a dirty flag, and filterSlicer on tab change??
-    - ContainerFontSize - consider dropping it, and have a font size for Title, Shape-Text, etc. Else it gets confusing ...
-    - Consider not increasing stuckCount in App if an item is selected/deselected. This does mean to pass event back from slicer.single component.
-    - On Duplicate of W: make sure Comments, Links, etc is also duplicated in DB (or not??)
-    - Expand: add Refresh button, for when change nr lines to show.  Also, 100 -> 1000
-     + Dont show top if no Dataset - rather appropriate Unexpected Error msg
-    - Resize does not snap to grid - is this philosophy correct?  If it does snap, remember to change the graphW & -H as well
-    - FIX nrDataQualityIssues at DB level: join and fill the value, so that Canvas dont need to do any manipulation
-    - in Open D we list those 'Due on' a date.  This can only be done when we calculate the due date given the schedule - remember the Omega complexity with this.
+        - Add RouteGuard on 'Clarity Analytics', before going to web site ...
+        BUG/ISSUE: multi-tab Slicers and Ws only refresh on the first one - when are the others done?  To do them while hidden makes no sence - should we have a dirty flag, and filterSlicer on tab change??
+        - ContainerFontSize - consider dropping it, and have a font size for Title, Shape-Text, etc. Else it gets confusing ...
+        - Consider not increasing stuckCount in App if an item is selected/deselected. This does mean to pass event back from slicer.single component.
+        - On Duplicate of W: make sure Comments, Links, etc is also duplicated in DB (or not??)
+        - Expand: add Refresh button, for when change nr lines to show.  Also, 100 -> 1000
+        + Dont show top if no Dataset - rather appropriate Unexpected Error msg
+        - Resize does not snap to grid - is this philosophy correct?  If it does snap, remember to change the graphW & -H as well
+        - FIX nrDataQualityIssues at DB level: join and fill the value, so that Canvas dont need to do any manipulation
+        - in Open D we list those 'Due on' a date.  This can only be done when we calculate the due date given the schedule - remember the Omega complexity with this.
     
 
 
     Tributary:
     ----------
-    - Combinations must also be done here
-    - Add token management forms: forgot password, refresh token ...
+        - Combinations must also be done here
+        - Add token management forms: forgot password, refresh token ...
 
 
 
     Different versions of Vega:
     ---------------------------
-    - keep version on W in DB
-    - Upgrade Util: converts W to new version, creates new record and keeps old one as IsTrashed=True.  Thus, can always see what it looked like before.  More thinking required here.
-    - see DRF guidelines about the steps to do
-    - a version of Canvas will only work with a specified version(s) of W - inside code.  This way, can load any version of Canvas and it will work provided the W version is in acceptable range - hardcoded in TS.  The version is set per W, thus can have different versions of Graphs (Vega), Sl, etc.
-    API: Have flexible field selection: ie ..."fields": [A, B, F]
-    Setting min Grid width - wait for Clarity Bug fix
+        - keep version on W in DB
+        - Upgrade Util: converts W to new version, creates new record and keeps old one as IsTrashed=True.  Thus, can always see what it looked like before.  More thinking required here.
+        - see DRF guidelines about the steps to do
+        - a version of Canvas will only work with a specified version(s) of W - inside code.  This way, can load any version of Canvas and it will work provided the W version is in acceptable range - hardcoded in TS.  The version is set per W, thus can have different versions of Graphs (Vega), Sl, etc.
+        API: Have flexible field selection: ie ..."fields": [A, B, F]
+        Setting min Grid width - wait for Clarity Bug fix
 
 
     Local DB:
     ---------
-    - review and check: it should NEVER be allowed to edit the DB itself - there must be a UI function for changing things.  And always by the users, with rights if necessary.
-    - Snapshot.clickRestore accesses global vars directly: revisit whole routine and see if can be done better: DS, dSet, WChkPnt, D, T, W.
-        - some other places with the same issue:
-        * WidgetCheckPoint: app.Undo
-        * current dSet: dataRefresh.clickDS, slicerSingle.clickSlicer
-        * currentW: app (20+ times), SlicerEd.clickSave & clickSlicerItem
-    - how to add a table without deleting the IndexDB manually ??
-    Caching:
-    - speed test with Dexie with Dashboards stored:
-        * memory variable 0 - 3 ms, once 6 ms for 10K Ds
-        * 10: 11 - 177 ms, avg 55 ms
-        *100: 99 - 136, avg 120 ms
-        * 1000 405 - 575, avg 505 ms
-        * 10 000: avg 8 secs 200ms.  Note: clearing the DB took 10.5 MINS - 12.5 MINS !
+        - review and check: it should NEVER be allowed to edit the DB itself - there must be a UI function for changing things.  And always by the users, with rights if necessary.
+        - Snapshot.clickRestore accesses global vars directly: revisit whole routine and see if can be done better: DS, dSet, WChkPnt, D, T, W.
+            - some other places with the same issue:
+            * WidgetCheckPoint: app.Undo
+            * current dSet: dataRefresh.clickDS, slicerSingle.clickSlicer
+            * currentW: app (20+ times), SlicerEd.clickSave & clickSlicerItem
+        - how to add a table without deleting the IndexDB manually ??
+        Caching:
+        - speed test with Dexie with Dashboards stored:
+            * memory variable 0 - 3 ms, once 6 ms for 10K Ds
+            * 10: 11 - 177 ms, avg 55 ms
+            *100: 99 - 136, avg 120 ms
+            * 1000 405 - 575, avg 505 ms
+            * 10 000: avg 8 secs 200ms.  Note: clearing the DB took 10.5 MINS - 12.5 MINS !
 
 
     Data:
     -----
-    1. Make sure terminology is consitent: Datasource -> Transform -> Dataset
-    - getting Data from a web table: this is not so often used, thus try and read other types of grids/tables as well (ie Clarity Datagrid)
-    3. Have TestConnectivity method - can TEST connection
-    4. I used FieldNames (string) in ie Pivot - is that okay?
-    5. Design (technically) how Datasets, pivotRow, pivotCol, pivotResult, pivotAgg, Fields,    FieldsMetaData, Combinations, CombinationDetails will work, given that these can change over   time, has to be fast enough (cannot all live in memory) and has to integrate with Vega ...
-    6. Check Definition of DS = source, location, authentication, F, Tr, Pv etc.  Dataset is just the data, with an ID / url to find it.
-    7. Discover DBs, ie IP, etc (Bradley)
-    8. When removing a Dataset, it validates that not used in a Widget, Shape or Combination. If so, then cannot be removed.  If removed, all resultsets stored for it must be removed as well, or  not?
-    9. Data Quality issues: add place to add detail values.  An overall statement can say all data  has an issue, but a specific one must identify the column(s) and row(s) affected, thus given the IDs or key values.
-    10.Similtaneous update of LOCAL and GLOBAL vars!  Ie: app sends [widgets] to widget component, which is the local widgets.  Who and where are Global widgets synced !!!!????  Maybe use observables where the local ones just subscribe to the global ones.  Anyway, make this method standard across app.
-    12.Remember usage - and can sort by popular ones or show it for all relevant objects
-    13.Allow own profile pic upload!
-    14.How do we treat sensitive data - that may not be seen by DBA.  Keep it in Excel and reload each time ...
-    - Add Named-Transformations: have a CRUD form where user specifies a name, and a list of transformations to be performed with it.  Maybe give a start DS -> can only work if the requested DS has this layout, plus has field types, etc to calc and also know it will work.  Seems best solution to have a start DS.
-    - Show Transformations and Spec as json !!
-    - Transform with IF this then that value Statement !
-    - export to csv, Excel, etc
-    - has currency
-    - consider Excel-like format => many users can use it already
-    - data bars inside text values
-    - sub totals and grand totals
-    - can add labels, once 
-    - PowerBI can delete DS, then W just shows big X, with a message Fix this.  Is this a good idea?  I dont think so, but I think one must be able to swop DS for a W provided the same fields are present - just replace the DS-id ?  Maybe just easier to recreate it, and only be able to delete a DS if all Widgets linked to it are deleted.
-    - PowerBI has a mess with duplication - and checks once per hour if a DS has been changed.  I dont think we should do this at all.
-    - consider row level security ...
-    - PowerBI puts DS in a file, and do versioning here.  We should be able to do versioning in Canvas!
-    - PowerBI tenant setting: can export data, can forward data, can share data, can print, can subscribe on behalf of someone else.  Consider this and improve our settings
+        - Make sure terminology is consitent: Datasource -> Transform -> Dataset
+        - Have TestConnectivity method - can TEST connection
+        - I used FieldNames (string) in ie Pivot - is that okay?
+        - Design (technically) how Datasets, pivotRow, pivotCol, pivotResult, pivotAgg, Fields, FieldsMetaData, Combinations, CombinationDetails will work, given that these can change over time, has to be fast enough (cannot all live in memory) and has to integrate with Vega ...
+        - Check Definition of DS = source, location, authentication, F, Tr, Pv etc.  Dataset is just the data, with an ID / url to find it.
+        - When removing a Dataset, it validates that not used in a Widget, Shape or Combination. If so, then cannot be removed.  If removed, all resultsets stored for it must be removed as well, or  not?
+        - Similtaneous update of LOCAL and GLOBAL vars!  Ie: app sends [widgets] to widget component, which is the local widgets.  Who and where are Global widgets synced !!!!????  Maybe use observables where the local ones just subscribe to the global ones.  Anyway, make this method standard across app.
+        - Allow own profile pic upload!
+        - export to csv, Excel, etc
+        - has currency
+        - consider Excel-like format => many users can use it already
+        - data bars inside text values
+        - sub totals and grand totals
+        - can add labels, once 
 
 
     Data types and field lengths:
     -----------------------------
-    - Define Canvas datatype = TS ones?  Define Canvas data types: which module creates this for data and where?  Are all numbers equal?
-    - where defined, by what means, and how are they used?  Is it display side only?  Can the user  change it?  What if an actual field is wider than the stated length - will it truncate displayed data?  Does numbers have a length?
-    - How are dates stored in DB vs localDB vs arrays?  How do we format dates onto the form?  How  is locale used?
-    - How does types tranform into Vega field types, ie on Editor?
-    16.After Ws were linked to a DS: if do a Tr, then validate that W are still okay (ie a W field  may not exist any longer in DS)
+        - Define Canvas datatype = TS / Vega ones?  Define Canvas data types: which module creates this for data and where?  Are all numbers equal?
+        - where defined, by what means, and how are they used?  Is it display side only?  Can the user  change it?  What if an actual field is wider than the stated length - will it truncate displayed data?  Does numbers have a length?
+        - How are dates stored in DB vs localDB vs arrays?  How do we format dates onto the form?  How  is locale used?
+        - How does types tranform into Vega field types, ie on Editor?
+        16.After Ws were linked to a DS: if do a Tr, then validate that W are still okay (ie a W field  may not exist any longer in DS)
+    
 
     Data Permisions:
     ---------------
-    - what default permissions of a new DS
-    - make sure these permissions are respected within each Widget
-    - make sure these respected in Delete DS
+        - make sure these permissions are respected within each Widget
+        - make sure these respected in Delete DS
 
 
     Authentication:
     ---------------
-    - add Auth0, Google, Facebook
+        - add Auth0, Google, Facebook
 
     Widget Editor - Adv:
     --------------------
-    - DESIGn: Adv form
-    - user can change Vega field types on Adv form
-    - our field type -> vega types: take a best guess
-    - highlight one series in graph, either click the line (bar), or click on the legend
-    - APPLY on Adv form must re-render
-    - at start, add row, col, color fields
-    - EDIT buggie - color stays, fails on T=2
-    BUG: if using a custom vega spec, the editor does not understand this.
-    - set properties of new Widget as a template - user pref
-    - when open NEW and only 1 DS, then skip DS selection page?
-    - when add NEW, ensure it is accessable: always same position top left + z-index = Max(rest)+1
-    - How to show comparison between current and previous period ?
-    - Bug with IE: 'IE supports only grid-row-end with span. You should add grid: false option to Autoprefixer and use some JS grid polyfill for full spec support' - looks like no solution at the moment
-    - can switch DS for a W, provided used fields are the same (name and type): is this REALLY necessary and useful as it looks complicated and not important
-    - Cross hair with showing values on axis - ie crypto trading websites!
-    - Look at embeding widgets -> export Vega spec + embed line, user puts it in his html ...?
-    - Serias work to be done - learning Vega and adding ALL features !!!
-    - Add other Viz to W Editor (data page) - ie Layered Graphs, Trellis, etc.  These need new templates, and a new UI. For a GAUGE, see    https://gist.github.com/anilkpatro/0cf0503b581556a14aab
-    For SVG Gauge, see http://svgdiscovery.com/HMI/AnalogGaugeObject/analogGaugeObject.htm
-    and http://svgdiscovery.com/HMI/Button/AnalogGauge/buttonGauge.htm  !!!
-    For KPI charts, see https://www.zoho.com/reports/help/dashboard/kpi-widgets.html.  Must include target, and progress (either % with green/red arrow since last month or graph ytd) and level of achievement (ie combo graph with line as target)
-    - Give hints/advice on W as to type of graph, insights, etc.
-    - filter in W, not only via Slicer, using Vega
-    - where to store pictures for Ws - on a server??
-    - Easy to drill in and out of dates - year - month - day, etc
-    - consider filter and W: thus DS remains unchanged, but W has subset of data in graphData.  This can be =, <= etc on data, or limits (top 10). This must work in conjunction with sorting.
-    - add Drill Down / Drill Through: this is critical.  Drill down is a capability that takes the user from a more general view of the data to a more specific one at the click of a mouse. For example, a report that shows sales revenue by state can allow the user to select a state, click on it and see sales revenue by county or city within that state. It is called “drill down” because it is a feature that allows the user to go deeper into more specific layers of the data or information being analyzed.  Further levels of drill down can be set up within the report–practically as many as supported by the data. In our example, the drill-down can go from country to state to city to zip code to specific location of stores or individual sales reps. Typically, the look and feel of each level of the report is similar–what changes is the granularity of the data.  Instead of taking the user to a more granular level of the data, drill through takes him to a report that is relevant to the data being analyzed, also at the click of a mouse. For example, a tabular report that shows sales revenue by state can allow the user to click on it and reveal an analysis grid of the same data, or a heat map representing the data in visual form. It is called “drill through” because it is a feature that allows the user to pass from one report to another while still analyzing the same set of data.
-    - Easy way to compare data: graph shows revenue per month for this year.  What was figure
-       for March last year, or compare all to last year ... NB
-    - Also, easy way to jump to previous period:  loaded at start with data ??
-    - has to do QA of some sorts on DS creation and definitions.  Not sure how...
+        - DESIGn: Adv form
+        - user can change Vega field types on Adv form
+        - our field type -> vega types: take a best guess
+        - highlight one series in graph, either click the line (bar), or click on the legend
+        - APPLY on Adv form must re-render
+        - at start, add row, col, color fields
+        - EDIT buggie - color stays, fails on T=2
+        BUG: if using a custom vega spec, the editor does not understand this.
+        - set properties of new Widget as a template - user pref
+        - when open NEW and only 1 DS, then skip DS selection page?
+        - when add NEW, ensure it is accessable: always same position top left + z-index = Max(rest)+1
+        - How to show comparison between current and previous period ?
+        - Bug with IE: 'IE supports only grid-row-end with span. You should add grid: false option to Autoprefixer and use some JS grid polyfill for full spec support' - looks like no solution at the moment
+        - can switch DS for a W, provided used fields are the same (name and type): is this REALLY necessary and useful as it looks complicated and not important
+        - Cross hair with showing values on axis - ie crypto trading websites!
+        - Look at embeding widgets -> export Vega spec + embed line, user puts it in his html ...?
+        - Serias work to be done - learning Vega and adding ALL features !!!
+        - Add other Viz to W Editor (data page) - ie Layered Graphs, Trellis, etc.  These need new templates, and a new UI. For a GAUGE, see    https://gist.github.com/anilkpatro/0cf0503b581556a14aab
+        For SVG Gauge, see http://svgdiscovery.com/HMI/AnalogGaugeObject/analogGaugeObject.htm
+        and http://svgdiscovery.com/HMI/Button/AnalogGauge/buttonGauge.htm  !!!
+        For KPI charts, see https://www.zoho.com/reports/help/dashboard/kpi-widgets.html.  Must include target, and progress (either % with green/red arrow since last month or graph ytd) and level of achievement (ie combo graph with line as target)
+        - Give hints/advice on W as to type of graph, insights, etc.
+        - filter in W, not only via Slicer, using Vega
+        - where to store pictures for Ws - on a server??
+        - Easy to drill in and out of dates - year - month - day, etc
+        - consider filter and W: thus DS remains unchanged, but W has subset of data in graphData.  This can be =, <= etc on data, or limits (top 10). This must work in conjunction with sorting.
+        - add Drill Down / Drill Through: this is critical.  Drill down is a capability that takes the user from a more general view of the data to a more specific one at the click of a mouse. For example, a report that shows sales revenue by state can allow the user to select a state, click on it and see sales revenue by county or city within that state. It is called “drill down” because it is a feature that allows the user to go deeper into more specific layers of the data or information being analyzed.  Further levels of drill down can be set up within the report–practically as many as supported by the data. In our example, the drill-down can go from country to state to city to zip code to specific location of stores or individual sales reps. Typically, the look and feel of each level of the report is similar–what changes is the granularity of the data.  Instead of taking the user to a more granular level of the data, drill through takes him to a report that is relevant to the data being analyzed, also at the click of a mouse. For example, a tabular report that shows sales revenue by state can allow the user to click on it and reveal an analysis grid of the same data, or a heat map representing the data in visual form. It is called “drill through” because it is a feature that allows the user to pass from one report to another while still analyzing the same set of data.
+        - Easy way to compare data: graph shows revenue per month for this year.  What was figure
+        for March last year, or compare all to last year ... NB
+        - Also, easy way to jump to previous period:  loaded at start with data ??
+        - has to do QA of some sorts on DS creation and definitions.  Not sure how...
 
 
     Table (Bradley SmartTable):
     ---------------------------
-    - add drag fields - to X = Add, Drag away = delete from headers
-    - add drag field to Y = Pivot!  Decide local or in backend
-    - add functionality = filter, sort, etc.  Decide here OR in app component ... Maybe only here
-    - Does not have Links button - thinking was that one would not need to link a table to another  tab, but this must be verified
-    - Right click to get popup menu with clever info
-    - can set whether a user can change properties at runtime, or not
-    - export to csv, Excel, etc
-    - grouping of cols under another
-    - filter on any col
-    - cell based filter: click a cell, and it 1. filters all records in col with that value (how to show visually that table is filtered, how to unfilter it)  2. cross filter (via Slicer or otherwise) to filter all other tables and graphs using the same DS.  Think first clearly how this will work !
-    - sort on all cols
-    - conditional formatting
-    - tooltips, which give data type, etc
-    - freeze rows, cols, both
-    - col header buttons, which can be on/off
-    - powerful sizing and resizing
-    - totals row and col
-    - custom event handling
-    - in-cell editing, with validation
-    - cell background and colour and font size
-    - resize row and col
-    - support 10m rows
-    - Add SORT to DB ... what about add afterwards?
-    - Consider filter on click cell -> not sure how to make this easy in UI, could be quite easy to just call slicerFilter in the background.
-    - Consider, carefully, to allow table to grow to a max of x rows.  This means that all affected Ws have to have a relative starting position.  Remember ReportBuilder ...
-    - cell highlighter: 1. user-defined way to specify what colour a cell should be, ie red, orange, green for info, warn, error.  2.  Also with ranges, ie 1-10 = light blue, etc.  3. And filter, ie all values over 200K are red.  4. Full on Conditional Formatting
-    - hierarchical Grid
-    - pivot functionality
-    - group headers and rows
+        - add drag fields - to X = Add, Drag away = delete from headers
+        - add drag field to Y = Pivot!  Decide local or in backend
+        - add functionality = filter, sort, etc.  Decide here OR in app component ... Maybe only here
+        - Does not have Links button - thinking was that one would not need to link a table to another  tab, but this must be verified
+        - Right click to get popup menu with clever info
+        - can set whether a user can change properties at runtime, or not
+        - export to csv, Excel, etc
+        - grouping of cols under another
+        - filter on any col
+        - cell based filter: click a cell, and it 1. filters all records in col with that value (how to show visually that table is filtered, how to unfilter it)  2. cross filter (via Slicer or otherwise) to filter all other tables and graphs using the same DS.  Think first clearly how this will work !
+        - sort on all cols
+        - conditional formatting
+        - tooltips, which give data type, etc
+        - freeze rows, cols, both
+        - col header buttons, which can be on/off
+        - powerful sizing and resizing
+        - totals row and col
+        - custom event handling
+        - in-cell editing, with validation
+        - cell background and colour and font size
+        - resize row and col
+        - support 10m rows
+        - Add SORT to DB ... what about add afterwards?
+        - Consider filter on click cell -> not sure how to make this easy in UI, could be quite easy to just call slicerFilter in the background.
+        - Consider, carefully, to allow table to grow to a max of x rows.  This means that all affected Ws have to have a relative starting position.  Remember ReportBuilder ...
+        - cell highlighter: 1. user-defined way to specify what colour a cell should be, ie red, orange, green for info, warn, error.  2.  Also with ranges, ie 1-10 = light blue, etc.  3. And filter, ie all values over 200K are red.  4. Full on Conditional Formatting
+        - hierarchical Grid
+        - pivot functionality
+        - group headers and rows
 
     Error Handling:
     --------------
-    - nice message at all points, ie when DB not available on landing page
-    - central logging and handling
-    - error bubbling strategy
+        - nice message at all points, ie when DB not available on landing page
+        - central logging and handling
+        - error bubbling strategy
 
 
     Samples: use this to demo Canvas features (brag)
@@ -272,10 +259,10 @@ This document describes items for later versions of Canvas.
 
     Scheduler:
     ----------
-    1. Determine tech and where/how it runs
-    2. How does standalone work - does it have a schedule?
-    3. How are users notified and also when scheduler is down
-    4. How is dataset stored - per Dashboard as more than one can be linked ..
+        1. Determine tech and where/how it runs
+        2. How does standalone work - does it have a schedule?
+        3. How are users notified and also when scheduler is down
+        4. How is dataset stored - per Dashboard as more than one can be linked ..
 
 
 
@@ -384,12 +371,15 @@ This document describes items for later versions of Canvas.
 
     Data:
     ----
+    - Discover DBs, ie IP, etc (Bradley)
     - reconsider Transpose option for pre-loading.  May be useful for some datasets, but clearly not for SQL, etc.  And doubt if json files would need that.  Can this be useful?
-    Widget Action Menu:
-    - decide what other menu options to add here
-    - decide if all these must be on Main menu and Palette, ie Edit Title (currently not on)
-    - decide if different actions per W Type, ie Slicer has some that Shape does not have
-    - consider recorded actions: make title bg color = xxx, color = yyy (company default)
+    - How do we treat sensitive data - that may not be seen by DBA.  Keep it in Excel and reload each time ...
+    - Remember usage - and can sort by popular ones or show it for all relevant objects
+    - PowerBI can delete DS, then W just shows big X, with a message Fix this.  Is this a good idea?  I dont think so, but I think one must be able to swop DS for a W provided the same fields are present - just replace the DS-id ?  Maybe just easier to recreate it, and only be able to delete a DS if all Widgets linked to it are deleted.
+    - PowerBI has a mess with duplication - and checks once per hour if a DS has been changed.  I dont think we should do this at all.
+    - consider row level security ...
+    - PowerBI puts DS in a file, and do versioning here.  We should be able to do versioning in Canvas!
+    - PowerBI tenant setting: can export data, can forward data, can share data, can print, can subscribe on behalf of someone else.  Consider this and improve our settings
     - consider COPY of DS: can then amend the second one, ie do Transformations
     - load file: add predefined filters, so that only THIS data is loaded.  Thus, less loaded into Canvas.  Consider how to define this, ie columnName='...' - can this then be done before / after preview ?  Make visual.
     - load file: add limit, max nr of lines loaded.  And warn when this has been reached.
@@ -404,6 +394,15 @@ This document describes items for later versions of Canvas.
     - Filters take a lot of space => rather use clicking on graph to filter, or open filter on separate page / popup.  Then have a button on form to indicate that it is filtered and to clear the filters.
     - functionality to change DS on a W
     - give a warning of which Dashboards uses a field if a DS definition is changed.
+    - getting Data from a web table: this is not so often used, thus try and read other types of grids/tables as well (ie Clarity Datagrid)
+
+
+    Widget Action Menu:
+    ------------------
+    - decide what other menu options to add here
+    - decide if all these must be on Main menu and Palette, ie Edit Title (currently not on)
+    - decide if different actions per W Type, ie Slicer has some that Shape does not have
+    - consider recorded actions: make title bg color = xxx, color = yyy (company default)
 
 
     Eazl:
@@ -501,7 +500,6 @@ This document describes items for later versions of Canvas.
     - only per D, or per W as well?
     - add filter on Sender/Receiver
     - In ViewOnly mode: cannot select a W, thus cannot see Comments per selected ...
-    - Consider dataQuality on own menu item, or on W menu
     - look at ITTT - if this then that = rules engine that is dynamic
     - consider to show pages and tabs as images - making it easy to select
     - consider adding data: ie load new data into a grid / table ala Excel, and save it in Canvas as DS ...
@@ -881,7 +879,6 @@ This document describes items for later versions of Canvas.
     - make the whole canvas interactive once you click DrawMode
     - hand-drawn lines / pics with mouse! => creates a normal W, with sizing and positioning so that it is top left :-)
     - add handles to arrows, lines, etc => use this to position and rotate and make longer / resize !
-    - data quality issues: decide in inside or outside Canvas, and complete form
     - curved lines, bazier curves
 
 
@@ -965,6 +962,9 @@ This document describes items for later versions of Canvas.
     - consider: get the SQL for an Overlay query, might be useful
     - get SQL back from an Overlay query -> show on screen so user can see
     - consider data filters - then we have to store this and include in SQL Where clause ...
+    - Add Named-Transformations: have a CRUD form where user specifies a name, and a list of transformations to be performed with it.  Maybe give a start DS -> can only work if the requested DS has this layout, plus has field types, etc to calc and also know it will work.  Seems best solution to have a start DS.
+    - Show Transformations and Spec as json !!
+    - Transform with IF this then that value Statement !
 
     Create DS via File:
     -------------------
@@ -1255,4 +1255,5 @@ This document describes items for later versions of Canvas.
     - get a visual tool that will help with changes to Canvas Schemas
     - maybe: check code where something is used, change model, and update DB (delete or edit or add a field).  Of course, only after a proper BACKUP !
 
-    
+    Data Quality:
+    - Data Quality issues: add place to add detail values.  An overall statement can say all data  has an issue, but a specific one must identify the column(s) and row(s) affected, thus given the IDs or key values.

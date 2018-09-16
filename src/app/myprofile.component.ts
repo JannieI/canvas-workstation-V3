@@ -41,23 +41,23 @@ export class MyProfileComponent implements OnInit {
             this.clickClose('Close');
             return;
         };
-        if (
-            (event.code == 'Enter'  ||  event.code == 'NumpadEnter')
-            &&
-            (!event.ctrlKey)
-            &&
-            (!event.shiftKey)
-           ) {
-            this.clickSave('Saved');
-            return;
-        };
+        // if (
+        //     (event.code == 'Enter'  ||  event.code == 'NumpadEnter')
+        //     &&
+        //     (!event.ctrlKey)
+        //     &&
+        //     (!event.shiftKey)
+        //    ) {
+        //     this.clickSave('Saved');
+        //     return;
+        // };
 
     }
- 
+
     accessType: string = '';
     currentData: any[] = [];
     currentUser: CanvasUser;
-    dashboardPermissions: DashboardPermission[];    
+    dashboardPermissions: DashboardPermission[];
     dataFieldNames: number[] = [];
     favDashboards: Dashboard[] = [];
     showFavs: boolean = false;
@@ -66,7 +66,7 @@ export class MyProfileComponent implements OnInit {
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
 	) {}
- 
+
     ngOnInit() {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
@@ -75,10 +75,10 @@ export class MyProfileComponent implements OnInit {
         this.accessType = this.selectedDashboard.accessType;
 
         this.dashboardPermissions = this.globalVariableService.dashboardPermissions.slice();
-         
+
 
         // KEEP - getting my Fav Ds, and put into fancy table.  Could be useful somewhere
-        // this.favDashboards = this.globalVariableService.dashboards.filter(d => 
+        // this.favDashboards = this.globalVariableService.dashboards.filter(d =>
         //     this.globalVariableService.currentUser.favouriteDashboards.indexOf(d.id) >= 0
         // );
         // if (this.favDashboards.length > 0) {
@@ -147,23 +147,24 @@ export class MyProfileComponent implements OnInit {
 		this.formDashboardMyProfileClosed.emit(action);
     }
 
-    clickSave(action: string) {
-        // Save data and close form
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
+    // For now: cannot change info here
+    // clickSave(action: string) {
+    //     // Save data and close form
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
-        this.globalVariableService.saveCanvasUser(this.currentUser);
+    //     this.globalVariableService.saveCanvasUser(this.currentUser);
 
-        this.globalVariableService.showStatusBarMessage(
-            {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
-                message: 'User info saved ...',
-                uiArea: 'StatusBar',
-                classfication: 'Info',
-                timeout: 3000,
-                defaultMessage: ''
-            }
-        );
+    //     this.globalVariableService.showStatusBarMessage(
+    //         {
+    //             message: 'User info saved ...',
+    //             uiArea: 'StatusBar',
+    //             classfication: 'Info',
+    //             timeout: 3000,
+    //             defaultMessage: ''
+    //         }
+    //     );
 
-		this.formDashboardMyProfileClosed.emit(action);
-    }
+	// 	this.formDashboardMyProfileClosed.emit(action);
+    // }
 
 }

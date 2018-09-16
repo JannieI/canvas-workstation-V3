@@ -1,5 +1,5 @@
 <div class="modal modalBox">
-    <div class="modal-dialog modal-md" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="dialog" aria-hidden="true">
         <div class="modal-content modalContent">
 
             <div class="gridOverall">
@@ -19,8 +19,8 @@
                                 Help
                             </h5>
                             <p style="margin-top: 0; color:gray;">
-                                This form shows permissions that are applicable to the current 
-                                Dashboard and user.  
+                                This form shows permissions that are applicable to the current
+                                Dashboard and user.
                                 Click the X or press Escape to close this form.
                             </p>
                         </clr-signpost-content>
@@ -28,13 +28,14 @@
                 </div>
 
                 <div class="gridDashboardRolesTitle">
-                    <b>User Roles:</b>
+                    <b>User Roles for Dashboards:</b>
                 </div>
 
                 <div class="gridDashboardCanCreateRole">
                     <b>CanCreate:</b>
                     <input [(ngModel)]="currentUser.dashboardCanCreateRole"
                         type="checkbox"
+                        disabled
                         title="Can Create new Dashboards (T/F)"
                         >
                 </div>
@@ -42,6 +43,7 @@
                     <b>CanView:</b>
                     <input [(ngModel)]="currentUser.dashboardCanViewRole"
                         type="checkbox"
+                        disabled
                         title="Can View Dashboards (T/F)"
                         >
                 </div>
@@ -49,6 +51,7 @@
                     <b>CanEdit:</b>
                     <input [(ngModel)]="currentUser.dashboardCanEditRole"
                         type="checkbox"
+                        disabled
                         title="Can Edit Dashboards (T/F)"
                         >
                 </div>
@@ -56,6 +59,7 @@
                     <b>CanSave:</b>
                     <input [(ngModel)]="currentUser.dashboardCanSaveRole"
                         type="checkbox"
+                        disabled
                         title="Can Save Dashboards (T/F)"
                         >
                 </div>
@@ -63,6 +67,7 @@
                     <b>CanDelete:</b>
                     <input [(ngModel)]="currentUser.dashboardCanDeleteRole"
                         type="checkbox"
+                        disabled
                         title="Can Delete Dashboards (T/F)"
                         >
                 </div>
@@ -70,6 +75,7 @@
                     <b>GrantAccess:</b>
                     <input [(ngModel)]="currentUser.dashboardCanGrantAccessRole"
                         type="checkbox"
+                        disabled
                         title="Can grant access to other users to a Dashboards (T/F)"
                         >
                 </div>
@@ -77,19 +83,69 @@
                     <b>CanAdd DS:</b>
                     <input [(ngModel)]="currentUser.dashboardCanAddDatasourceRole"
                         type="checkbox"
+                        disabled
                         title="Can add a Datasource to a Dashboards (T/F)"
                         >
+                </div>
+
+                <div class="gridDashboardRolesTitle">
+                    <b>User Roles for Dashboards:</b>
                 </div>
                 <div class="gridDashboardCanManageGroupRole">
                     <b>CanManage Group:</b>
                     <input [(ngModel)]="currentUser.canManageGroupRole"
                         type="checkbox"
+                        disabled
                         title="Can Manage groups (add/delete users) (T/F)"
                         >
                 </div>
 
+                <div class="gridDatasourceRolesTitle">
+                    <b>User Roles for Datasources:</b>
+                </div>
+                <div class="gridDatasourceCanCreateRole">
+                    <b>CanManage Group:</b>
+                    <input [(ngModel)]="currentUser.datasourceCanCreateRole"
+                        type="checkbox"
+                        disabled
+                        title="Can Create new Datasources (T/F)"
+                        >
+                </div>
+                <div class="gridDatasourceCanViewRole">
+                    <b>CanManage Group:</b>
+                    <input [(ngModel)]="currentUser.datasourceCanViewRole"
+                        type="checkbox"
+                        disabled
+                        title="Can View existing Datasources (T/F)"
+                        >
+                </div>
+                <div class="gridDatasourceCanEditRole">
+                    <b>CanManage Group:</b>
+                    <input [(ngModel)]="currentUser.datasourceCanEditRole"
+                        type="checkbox"
+                        disabled
+                        title="Can Edit existing Datasources (T/F)"
+                        >
+                </div>
+                <div class="gridDatasourceCanDeleteRole">
+                    <b>CanManage Group:</b>
+                    <input [(ngModel)]="currentUser.datasourceCanDeleteRole"
+                        type="checkbox"
+                        disabled
+                        title="Can Delete existing Datasources (T/F)"
+                        >
+                </div>
+                <div class="gridDatasourceCanGrantAccessRole">
+                    <b>CanManage Group:</b>
+                    <input [(ngModel)]="currentUser.datasourceCanGrantAccessRole"
+                        type="checkbox"
+                        disabled
+                        title="Can grant access to existing Datasources (T/F)"
+                        >
+                </div>
+                
                 <div class="gridDashboardAccessTypeTitle">
-                    <b>Dashboard Access:</b>
+                    <b>CurrentDashboard Access:</b>
                 </div>
 
                 <div class="gridDashboardAccessType">
