@@ -158,8 +158,9 @@ export class PreferencesComponent implements OnInit {
         });
     }
 
+    
     clickTemplateDashboard(ev:any, id: number) {
-        // Close the form, nothing saved
+        // Selected a Template in the dropdown
         this.globalFunctionService.printToConsole(this.constructor.name,'clickTemplateDashboard', '@Start');
 
         let selectedDashboardString: string = ev.target.value;
@@ -174,6 +175,25 @@ export class PreferencesComponent implements OnInit {
             this.preferenceDefaultTemplateID = this.selectedDashboardId;
         } else {
             this.preferenceDefaultTemplateID = null;
+        };
+    }
+
+    clickStartupDashboard(ev:any, id: number) {
+        // Selected a startup D
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickStartupDashboard', '@Start');
+
+        let selectedDashboardString: string = ev.target.value;
+
+        if (selectedDashboardString != 'None') {
+
+            // Get D info
+            let openBracket: number = selectedDashboardString.indexOf('(');
+            let closeBracket: number = selectedDashboardString.indexOf(')');
+            this.selectedDashboardId = +selectedDashboardString.substring(openBracket + 1, closeBracket);
+
+            this.preferenceStartupDashboardID = this.selectedDashboardId;
+        } else {
+            this.preferenceStartupDashboardID = null;
         };
     }
 
