@@ -28,7 +28,7 @@
                 </div>
 
                 <div class="gridDashboardRolesTitle">
-                    <b>User Roles for Dashboards:</b>
+                    <b>Current User Roles for all Dashboards:</b>
                 </div>
 
                 <div class="gridDashboardCanCreateRole">
@@ -88,10 +88,10 @@
                         >
                 </div>
 
-                <div class="gridDashboardRolesTitle">
-                    <b>User Roles for Dashboards:</b>
+                <div class="gridUserGroupRolesTitle">
+                    <b>Current User Roles for Groups and Users:</b>
                 </div>
-                <div class="gridDashboardCanManageGroupRole">
+                <div class="gridUserGroupRoles">
                     <b>CanManage Group:</b>
                     <input [(ngModel)]="currentUser.canManageGroupRole"
                         type="checkbox"
@@ -101,10 +101,10 @@
                 </div>
 
                 <div class="gridDatasourceRolesTitle">
-                    <b>User Roles for Datasources:</b>
+                    <b>Current User Roles for Datasources:</b>
                 </div>
                 <div class="gridDatasourceCanCreateRole">
-                    <b>CanManage Group:</b>
+                    <b>Can Create:</b>
                     <input [(ngModel)]="currentUser.datasourceCanCreateRole"
                         type="checkbox"
                         disabled
@@ -112,7 +112,7 @@
                         >
                 </div>
                 <div class="gridDatasourceCanViewRole">
-                    <b>CanManage Group:</b>
+                    <b>Can View:</b>
                     <input [(ngModel)]="currentUser.datasourceCanViewRole"
                         type="checkbox"
                         disabled
@@ -120,7 +120,7 @@
                         >
                 </div>
                 <div class="gridDatasourceCanEditRole">
-                    <b>CanManage Group:</b>
+                    <b>Can Edit:</b>
                     <input [(ngModel)]="currentUser.datasourceCanEditRole"
                         type="checkbox"
                         disabled
@@ -128,7 +128,7 @@
                         >
                 </div>
                 <div class="gridDatasourceCanDeleteRole">
-                    <b>CanManage Group:</b>
+                    <b>Can Delete:</b>
                     <input [(ngModel)]="currentUser.datasourceCanDeleteRole"
                         type="checkbox"
                         disabled
@@ -136,7 +136,7 @@
                         >
                 </div>
                 <div class="gridDatasourceCanGrantAccessRole">
-                    <b>CanManage Group:</b>
+                    <b>Can Grant Access:</b>
                     <input [(ngModel)]="currentUser.datasourceCanGrantAccessRole"
                         type="checkbox"
                         disabled
