@@ -172,7 +172,6 @@ This document describes items for later versions of Canvas.
     Data Permisions:
     ---------------
     - what default permissions of a new DS
-    - can we have the same private/public/access list as on a Dashboard?
     - make sure these permissions are respected within each Widget
     - make sure these respected in Delete DS
 

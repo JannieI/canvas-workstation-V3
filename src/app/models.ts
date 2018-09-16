@@ -314,6 +314,11 @@ export class CanvasUser {
     dashboardCanDeleteRole: boolean;        // Role can delete a Dashboard
     dashboardCanGrantAccessRole: boolean;   // Role can change access to a Dashboard
     dashboardCanAddDatasourceRole: boolean; // Role can change add DS to a Dashboard
+    datasourceCanCreateRole: boolean;           // Role can create Datasource
+    datasourceCanViewRole: boolean;             // Role can view Datasource
+    datasourceCanEditRole: boolean;             // Role can change / edit Datasource
+    datasourceCanDeleteRole: boolean;           // Role can delete a Datasource
+    datasourceCanGrantAccessRole: boolean;      // Role can change access to a Datasource
     canManageGroupRole: boolean;            // Role can add/delete users to Group
     lastPaletteLeft: number;                // Last value saved
     lastPaletteTop: number;                 // Last value saved
