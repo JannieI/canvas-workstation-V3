@@ -3737,6 +3737,20 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         // Open DATA form for a DS that comes from a Web page.
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDirectWeb', '@Start');
 
+        // Permissions
+        if (!this.globalVariableService.currentUser.datasourceCanCreateRole
+            &&
+            !this.globalVariableService.currentUser.isAdministrator) {
+            this.showMessage(
+                'You cannot add a new Datasource (role must be added to your user)',
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+
         this.menuOptionClickPreAction();
 
         this.editingDS = false;
