@@ -1632,8 +1632,8 @@ export class GlobalVariableService {
         // - flag for Favourite Dashboard
         // - flag for Startup Dashboard
         this.canvasUsers.forEach(u => {
-            if (u.startupDashboardID == draftID) {
-                u.startupDashboardID = 0;
+            if (u.preferenceStartupDashboardID == draftID) {
+                u.preferenceStartupDashboardID = 0;
             };
             u.favouriteDashboards.filter(f => f != draftID)
             // TODO - improve this to not update ALL users
@@ -1859,8 +1859,8 @@ export class GlobalVariableService {
         // - flag for Favourite Dashboard
         // - flag for Startup Dashboard
         this.canvasUsers.forEach(u => {
-            if (u.startupDashboardID == draftID) {
-                u.startupDashboardID = 0;
+            if (u.preferenceStartupDashboardID == draftID) {
+                u.preferenceStartupDashboardID = 0;
             };
             u.favouriteDashboards.filter(f => f != draftID)
             // TODO - improve this to not update ALL users
@@ -2011,8 +2011,8 @@ export class GlobalVariableService {
 
         // Remove where D was used as fav, startup
         this.canvasUsers.forEach(u => {
-            if (u.startupDashboardID == dashboardID) {
-                u.startupDashboardID = 0;
+            if (u.preferenceStartupDashboardID == dashboardID) {
+                u.preferenceStartupDashboardID = 0;
             };
             u.favouriteDashboards.filter(f => f != dashboardID)
             // TODO - improve this to not update ALL users
@@ -9829,8 +9829,6 @@ export class GlobalVariableService {
                     finalUrl = 'http://localhost:3000/' + url;
                 } else if (url == 'widgetCheckpoints') {
                     finalUrl = 'http://localhost:3000/' + url;
-                } else if (url == 'data') {
-                    finalUrl = 'http://localhost:3000/' + url;
                 } else if (url == 'datasets') {
                     finalUrl = 'http://localhost:3000/' + url;
                 } else if (url == 'statusBarMessageLogs') {
@@ -9853,7 +9851,7 @@ export class GlobalVariableService {
                     finalUrl = 'http://localhost:3001/' + url;
                 } else if (url == 'widgets') {
                     finalUrl = 'http://localhost:3005/' + url;
-                } else if (url == 'data') {
+                } else if (url.substring(0, 5) == 'data/') {                    
                     finalUrl = 'http://localhost:3006/' + url;
 
                 } else {

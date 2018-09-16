@@ -298,8 +298,6 @@ export class CanvasUser {
     dateJoined: Date;
     lastLogin: string;
     colorScheme: string;                    // Color scheme for Canvas - for later use
-    startupDashboardID: number;             // Optional Dashboard ID to show at startup
-    startupDashboardTabID: number;          // Optional Dashboard Tab ID to show at startup
     gridSize: number;                       // Size of Grid on Dashboard in px
     environment: string;                    // Live, Test-Environment-Name
     profilePicture: string;
@@ -335,6 +333,8 @@ export class CanvasUser {
     preferenceDefaultPageSize: string;                      // Default Page Size
     preferenceDefaultPageLayout: string;                    // Default Page Layout
     preferenceDefaultSnapshotMins: number;                  // Mins after which a Snapshot must be taken (0 = none)
+    preferenceStartupDashboardID: number;                   // Optional Dashboard ID to show at startup
+    preferenceStartupDashboardTabID: number;                // Optional Dashboard Tab ID to show at startup
 }
 
 export class CanvasGroup {

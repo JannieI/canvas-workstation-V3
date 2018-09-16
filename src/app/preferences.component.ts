@@ -177,20 +177,6 @@ export class PreferencesComponent implements OnInit {
             }
         );
 
-        // this.globalVariableService.currentUser.preferencePaletteHorisontal = this.preferencePaletteHorisontal,
-        // this.globalVariableService.currentUser.preferenceAutoSync = this.preferenceAutoSync,
-        // this.globalVariableService.currentUser.preferenceShowOpenStartupMessage = this.preferenceShowOpenStartupMessage,
-        // this.globalVariableService.currentUser.preferenceShowOpenDataCombinationMessage = this.preferenceShowOpenDataCombinationMessage,
-        // this.globalVariableService.currentUser.preferenceShowViewStartupMessage = this.preferenceShowViewStartupMessage,
-        // this.globalVariableService.currentUser.preferenceShowDiscardStartupMessage = this.preferenceShowDiscardStartupMessage,
-        // this.globalVariableService.currentUser.preferenceDefaultTemplateID = this.preferenceDefaultTemplateID,
-        // this.globalVariableService.currentUser.preferenceDefaultDateformat = this.preferenceDefaultDateformat,
-        // this.globalVariableService.currentUser.preferenceDefaultFolder = this.preferenceDefaultFolder,
-        // this.globalVariableService.currentUser.preferenceDefaultPrinter = this.preferenceDefaultPrinter,
-        // this.globalVariableService.currentUser.preferenceDefaultPageSize = this.preferenceDefaultPageSize,
-        // this.globalVariableService.currentUser.preferenceDefaultPageLayout = this.preferenceDefaultPageLayout,
-        // this.globalVariableService.currentUser.preferenceDefaultSnapshotMins = this.preferenceDefaultSnapshotMins;
-
         // Save globally, and in DB
         this.globalVariableService.saveCanvasUser(this.globalVariableService.currentUser).then(
             res =>

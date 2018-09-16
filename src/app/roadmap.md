@@ -405,7 +405,7 @@ This document describes items for later versions of Canvas.
     - Filters take a lot of space => rather use clicking on graph to filter, or open filter on separate page / popup.  Then have a button on form to indicate that it is filtered and to clear the filters.
     - functionality to change DS on a W
     - give a warning of which Dashboards uses a field if a DS definition is changed.
-     
+
 
     Eazl:
     ----
@@ -453,6 +453,7 @@ This document describes items for later versions of Canvas.
     - Graph with different granularity ~ via checkpoints?
     - consider standardizing items between Container and Graph-Title, ie Font Weight, Shadow, Margin, etc only on one and not the other
     - consider a list of predefined styles for Graph-Titles similar to Containers
+    - if a shape with a transparent background is just below the title bar, and one clicks the context menus (ie Annotations): then the dropdown disappears behind the the shape.  It is a bit confusing but setting the z-index of the dropdown menu does not seem to change anything.  Ideas?
 
     Treeview: 
     --------

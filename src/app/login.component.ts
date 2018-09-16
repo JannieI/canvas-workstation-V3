@@ -117,15 +117,15 @@ export class LoginComponent implements OnInit {
                 this.globalVariableService.currentUserID.next(this.currentUserID);
 
                 // Optional start D
-                if (this.globalVariableService.currentUser.startupDashboardID != null) {
+                if (this.globalVariableService.currentUser.preferenceStartupDashboardID != null) {
                     let startTabID: number = -1;
-                    if (this.globalVariableService.currentUser.startupDashboardTabID != null) {
-                        startTabID = this.globalVariableService.currentUser.startupDashboardTabID;
+                    if (this.globalVariableService.currentUser.preferenceStartupDashboardTabID != null) {
+                        startTabID = this.globalVariableService.currentUser.preferenceStartupDashboardTabID;
                     };
 
                     this.globalVariableService.refreshCurrentDashboard(
                         'statusbar-clickTabDelete',
-                        this.globalVariableService.currentUser.startupDashboardID,
+                        this.globalVariableService.currentUser.preferenceStartupDashboardID,
                         startTabID,
                         ''
                     );

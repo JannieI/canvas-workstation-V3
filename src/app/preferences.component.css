@@ -6,7 +6,7 @@
 .gridOverall {
     display: grid;
     grid-template-columns: repeat(14, 1fr);
-    grid-template-rows: repeat(19, 1rem);
+    grid-template-rows: repeat(20, 1rem);
     margin-top: 2px;
 }
     .closeButton {
@@ -90,7 +90,7 @@
             margin-left: 20px;
             text-align: left;
         }
-        
+
         .gridMessagesView {
             grid-column-start: 1;
             /* autoprefixer: off */
@@ -100,7 +100,7 @@
             margin-left: 20px;
             text-align: left;
         }
-        
+
         .gridMessagesDiscard {
             grid-column-start: 8;
             /* autoprefixer: off */
@@ -110,7 +110,7 @@
             margin-left: 20px;
             text-align: left;
         }
-        
+
     .gridDefaultTitle {
         font-size: 0.65rem;
         grid-column-start: 1;
@@ -149,7 +149,7 @@
             margin-left: 20px;
             text-align: left;
         }
-    
+
         .gridDefaultFolder {
             grid-column-start: 1;
             /* autoprefixer: off */
@@ -159,7 +159,7 @@
             margin-left: 20px;
             text-align: left;
         }
-               
+
         .gridDefaultSnapshot {
             grid-column-start: 8;
             /* autoprefixer: off */
@@ -169,38 +169,28 @@
             margin-left: 20px;
             text-align: left;
         }
-               
+
+        .gridStartupDashboard {
+            grid-column-start: 1;
+            /* autoprefixer: off */
+            grid-column-end: 7;
+            grid-row-start: 13;
+            grid-row-end: 14;
+            margin-left: 20px;
+            text-align: left;
+        }
+
     .gridPrintTitle {
         font-size: 0.65rem;
         grid-column-start: 1;
         /* autoprefixer: off */
         grid-column-end: 18;
-        grid-row-start: 14;
-        grid-row-end: 15;
+        grid-row-start: 15;
+        grid-row-end: 16;
         text-align: left;
     }
 
         .gridPrintDefault {
-            grid-column-start: 1;
-            /* autoprefixer: off */
-            grid-column-end: 7;
-            grid-row-start: 15;
-            grid-row-end: 16;
-            margin-left: 20px;
-            text-align: left;
-        }
-
-        .gridPrintSize {
-            grid-column-start: 8;
-            /* autoprefixer: off */
-            grid-column-end: 15;
-            grid-row-start: 15;
-            grid-row-end: 16;
-            margin-left: 20px;
-            text-align: left;
-        }
-
-        .gridPrintLayout {
             grid-column-start: 1;
             /* autoprefixer: off */
             grid-column-end: 7;
@@ -209,13 +199,33 @@
             margin-left: 20px;
             text-align: left;
         }
- 
+
+        .gridPrintSize {
+            grid-column-start: 8;
+            /* autoprefixer: off */
+            grid-column-end: 15;
+            grid-row-start: 16;
+            grid-row-end: 17;
+            margin-left: 20px;
+            text-align: left;
+        }
+
+        .gridPrintLayout {
+            grid-column-start: 1;
+            /* autoprefixer: off */
+            grid-column-end: 7;
+            grid-row-start: 17;
+            grid-row-end: 18;
+            margin-left: 20px;
+            text-align: left;
+        }
+
     .gridButtonCancel {
         grid-column-start: 4;
         /* autoprefixer: off */
         grid-column-end: 6;
-        grid-row-start: 18;
-        grid-row-end: 19;
+        grid-row-start: 19;
+        grid-row-end: 20;
         text-align: left;
     }
 
@@ -223,7 +233,7 @@
         grid-column-start: 10;
         /* autoprefixer: off */
         grid-column-end: 12;
-        grid-row-start: 18;
-        grid-row-end: 19;
+        grid-row-start: 19;
+        grid-row-end: 20;
         text-align: left;
     }

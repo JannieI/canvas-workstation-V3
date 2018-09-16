@@ -160,7 +160,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
 
             // Get the Schema from Tributary, and refresh
             this.clickRefresh();
-            
+
         };
 
     }
@@ -291,7 +291,7 @@ export class DataDirectQueryBuilderComponent implements OnInit {
                 return datsch;
             };
         })[0].tableFields;
-        
+
         // Build the selected fields
         for (let i = 0; i < this.selectedDatasource.dataFields.length; i++) {
             this.selectedFields.push(

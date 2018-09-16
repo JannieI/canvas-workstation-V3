@@ -125,7 +125,7 @@ export class DashboardDeleteComponent implements OnInit {
                                     d => d.templateDashboardID == dashboardID
                                 ).length;
                                 this.startupDashboards = this.globalVariableService.canvasUsers.filter(
-                                    u => u.startupDashboardID == dashboardID
+                                    u => u.preferenceStartupDashboardID == dashboardID
                                 ).length;
                                 this.favouriteDashboards = this.globalVariableService.canvasUsers.filter(
                                     u => u.favouriteDashboards.indexOf(dashboardID) >= 0
