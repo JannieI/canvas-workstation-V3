@@ -74,7 +74,10 @@ export class MyProfileComponent implements OnInit {
         this.currentUser = this.globalVariableService.currentUser;
         this.accessType = this.selectedDashboard.accessType;
 
-        this.dashboardPermissions = this.globalVariableService.dashboardPermissions.slice();
+        this.dashboardPermissions = this.globalVariableService.dashboardPermissions
+            .filter(dp => dp.dashboardID == 
+                this.globalVariableService.currentDashboardInfo.value.currentDashboardID)
+            .slice();
 
 
         // KEEP - getting my Fav Ds, and put into fancy table.  Could be useful somewhere
