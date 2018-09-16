@@ -139,7 +139,7 @@ This document describes items for later versions of Canvas.
         - Check Definition of DS = source, location, authentication, F, Tr, Pv etc.  Dataset is just the data, with an ID / url to find it.
         - When removing a Dataset, it validates that not used in a Widget, Shape or Combination. If so, then cannot be removed.  If removed, all resultsets stored for it must be removed as well, or  not?
         - Similtaneous update of LOCAL and GLOBAL vars!  Ie: app sends [widgets] to widget component, which is the local widgets.  Who and where are Global widgets synced !!!!????  Maybe use observables where the local ones just subscribe to the global ones.  Anyway, make this method standard across app.
-        - Allow own profile pic upload!
+        - Allow own profile pic upload! - currently hardcoded to JannieProfile pic ...
         - export to csv, Excel, etc
         - has currency
         - consider Excel-like format => many users can use it already

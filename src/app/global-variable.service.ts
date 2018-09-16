@@ -465,7 +465,11 @@ export class GlobalVariableService {
         noQueryRunningMessage: 'No Query',
         queryRunningMessage: 'Query running...',
         cleanCacheOnLogin: false,
-        cleanCacheOnLogout: false
+        cleanCacheOnLogout: false,
+        editedBy: '',
+        editedOn: null,
+        createdBy: '',
+        createdOn: null
 
     }
 

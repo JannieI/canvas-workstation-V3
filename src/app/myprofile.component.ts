@@ -134,6 +134,14 @@ export class MyProfileComponent implements OnInit {
         // };
     }
 
+    clickProfilePic() {
+        // Upload a profile pic
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickProfilePic', '@Start');
+
+        console.warn('xx upload file here and store url');
+        
+    }
+
     clickClose(action: string) {
         // Close form, no changes
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
