@@ -145,8 +145,22 @@
                     </select>
                 </div>
 
-                <!-- gridStartupDashboardTabTitle
-                gridStartupDashboardTab -->
+
+                <div class="gridStartupDashboardTabTitle">
+                    <b>Tab:</b>
+                </div>
+                <div class="select gridStartupDashboardTab">
+                    <select
+                        [(ngModel)]="selectedStartupDashboardTab"
+                        name="dashboardStartup"
+                        (change)="clickTemplateDashboard($event)"
+                        placeholder="Select an optional startup Dashboard Tab"
+                        >
+                        <option *ngFor="let row of dashboardTabList">
+                            {{ row }}
+                        </option>
+                    </select>
+                </div>
 
                 <div class="gridPrintTitle">
                     <b>Printer:</b>

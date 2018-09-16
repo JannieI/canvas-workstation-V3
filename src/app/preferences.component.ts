@@ -51,6 +51,7 @@ export class PreferencesComponent implements OnInit {
     }
 
     dashboardList: string[] = ['None'];
+    dashboardTabList: string[] = ['None'];
     dashboards: Dashboard[];
     preferenceAutoSync: boolean;
     preferenceDefaultTemplateID: number;
@@ -134,6 +135,9 @@ export class PreferencesComponent implements OnInit {
             });
 
             this.globalVariableService.dashboardTabs.forEach(t => {
+
+                this.dashboardTabList.push(t.name + ' (' + t.id.toString() + ')');
+
                 // Fill Initial Startup T
                 if (this.preferenceStartupDashboardTabID != null
                     &&
