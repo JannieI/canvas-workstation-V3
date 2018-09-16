@@ -68,7 +68,6 @@ export class PreferencesComponent implements OnInit {
     preferenceShowDiscardStartupMessage: boolean;
     preferenceStartupDashboardID: number;
     preferenceStartupDashboardTabID: number;
-    selectedDashboardId: number;
     selectedTemplateDashboard: string;
     selectedStartupDashboard: string;
     selectedStartupDashboardTab: string;
@@ -170,9 +169,8 @@ export class PreferencesComponent implements OnInit {
             // Get D info
             let openBracket: number = selectedDashboardString.indexOf('(');
             let closeBracket: number = selectedDashboardString.indexOf(')');
-            this.selectedDashboardId = +selectedDashboardString.substring(openBracket + 1, closeBracket);
+            this.preferenceDefaultTemplateID = +selectedDashboardString.substring(openBracket + 1, closeBracket);
 
-            this.preferenceDefaultTemplateID = this.selectedDashboardId;
         } else {
             this.preferenceDefaultTemplateID = null;
         };
@@ -189,9 +187,7 @@ export class PreferencesComponent implements OnInit {
             // Get D info
             let openBracket: number = selectedDashboardString.indexOf('(');
             let closeBracket: number = selectedDashboardString.indexOf(')');
-            this.selectedDashboardId = +selectedDashboardString.substring(openBracket + 1, closeBracket);
-
-            this.preferenceStartupDashboardID = this.selectedDashboardId;
+            this.preferenceStartupDashboardID = +selectedDashboardString.substring(openBracket + 1, closeBracket);
 
             // Fill relevant Tabs
             this.dashboardTabList = ['None'];
@@ -227,9 +223,8 @@ export class PreferencesComponent implements OnInit {
             // Get D info
             let openBracket: number = selectedDashboardTabString.indexOf('(');
             let closeBracket: number = selectedDashboardTabString.indexOf(')');
-            this.selectedDashboardId = +selectedDashboardTabString.substring(openBracket + 1, closeBracket);
-
-            this.preferenceStartupDashboardTabID = this.selectedDashboardId;
+            this.preferenceStartupDashboardTabID = +selectedDashboardTabString.substring(openBracket + 1, closeBracket);
+console.warn('xx this.preferenceStartupDashboardTabID', this.preferenceStartupDashboardTabID);
 
         } else {
             this.preferenceStartupDashboardID = null;
