@@ -93,7 +93,7 @@
         .gridMessagesStartupTitle {
             grid-column-start: 1;
             /* autoprefixer: off */
-            grid-column-end: 2;
+            grid-column-end: 3;
             grid-row-start: 7;
             grid-row-end: 8;
             margin-left: 20px;
@@ -131,7 +131,7 @@
         .gridMessagesViewTitle {
             grid-column-start: 1;
             /* autoprefixer: off */
-            grid-column-end: 2;
+            grid-column-end: 3;
             grid-row-start: 8;
             grid-row-end: 9;
             margin-left: 20px;
@@ -179,7 +179,7 @@
         .gridDefaultTemplateTitle {
             grid-column-start: 1;
             /* autoprefixer: off */
-            grid-column-end: 2;
+            grid-column-end: 3;
             grid-row-start: 11;
             grid-row-end: 12;
             margin-left: 20px;
@@ -205,9 +205,9 @@
             text-align: left;
         }
         .gridDefaultDateFormat {
-            grid-column-start: 8;
+            grid-column-start: 9;
             /* autoprefixer: off */
-            grid-column-end: 9;
+            grid-column-end: 15;
             grid-row-start: 11;
             grid-row-end: 12;
             margin-left: 20px;
@@ -217,7 +217,7 @@
         .gridDefaultFolderTitle {
             grid-column-start: 1;
             /* autoprefixer: off */
-            grid-column-end: 2;
+            grid-column-end: 3;
             grid-row-start: 12;
             grid-row-end: 13;
             margin-left: 20px;
@@ -255,7 +255,7 @@
         .gridStartupDashboardTitle {
             grid-column-start: 1;
             /* autoprefixer: off */
-            grid-column-end: 2;
+            grid-column-end: 3;
             grid-row-start: 13;
             grid-row-end: 14;
             margin-left: 20px;
@@ -303,7 +303,7 @@
         .gridPrintDefaultTitle {
             grid-column-start: 1;
             /* autoprefixer: off */
-            grid-column-end: 2;
+            grid-column-end: 3;
             grid-row-start: 16;
             grid-row-end: 17;
             margin-left: 20px;
@@ -341,16 +341,16 @@
         .gridPrintLayoutTitle {
             grid-column-start: 1;
             /* autoprefixer: off */
-            grid-column-end: 2;
+            grid-column-end: 3;
             grid-row-start: 17;
             grid-row-end: 18;
             margin-left: 20px;
             text-align: left;
         }
         .gridPrintLayout {
-            grid-column-start: 1;
+            grid-column-start: 2;
             /* autoprefixer: off */
-            grid-column-end: 2;
+            grid-column-end: 7;
             grid-row-start: 17;
             grid-row-end: 18;
             margin-left: 20px;
