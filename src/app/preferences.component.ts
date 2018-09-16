@@ -250,7 +250,9 @@ export class PreferencesComponent implements OnInit {
                 preferenceDefaultPrinter: this.preferenceDefaultPrinter,
                 preferenceDefaultPageSize: this.preferenceDefaultPageSize,
                 preferenceDefaultPageLayout: this.preferenceDefaultPageLayout,
-                preferenceDefaultSnapshotMins: this.preferenceDefaultSnapshotMins
+                preferenceDefaultSnapshotMins: this.preferenceDefaultSnapshotMins,
+                this.preferenceStartupDashboardID: this.preferenceStartupDashboardID,
+                this.preferenceStartupDashboardTabID: this.preferenceStartupDashboardTabID
             }
         );
 
