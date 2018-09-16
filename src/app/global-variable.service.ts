@@ -8931,7 +8931,50 @@ export class GlobalVariableService {
                         this.isDirtyUsers = false;
                         this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
 
-                        
+                        // Set Default to false
+                        this.canvasUsers.forEach(cu => {
+
+                            if (cu.dashboardCanViewRole == undefined) {
+                                cu.dashboardCanViewRole = false;
+                            };
+                            if (cu.dashboardCanSaveRole == undefined) {
+                                cu.dashboardCanSaveRole = false;
+                            };
+                            if (cu.dashboardCanGrantAccessRole == undefined) {
+                                cu.dashboardCanGrantAccessRole = false;
+                            };
+                            if (cu.dashboardCanEditRole == undefined) {
+                                cu.dashboardCanEditRole = false;
+                            };
+                            if (cu.dashboardCanDeleteRole == undefined) {
+                                cu.dashboardCanDeleteRole = false;
+                            };
+                            if (cu.dashboardCanCreateRole == undefined) {
+                                cu.dashboardCanCreateRole = false;
+                            };
+                            if (cu.dashboardCanAddDatasourceRole == undefined) {
+                                cu.dashboardCanAddDatasourceRole = false;
+                            };
+                            if (cu.canManageGroupRole == undefined) {
+                                cu.canManageGroupRole = false;
+                            };
+                            if (cu.datasourceCanCreateRole == undefined) {
+                                cu.datasourceCanCreateRole = false;
+                            };
+                            if (cu.datasourceCanViewRole == undefined) {
+                                cu.datasourceCanViewRole = false;
+                            };
+                            if (cu.datasourceCanEditRole == undefined) {
+                                cu.datasourceCanEditRole = false;
+                            };
+                            if (cu.datasourceCanDeleteRole == undefined) {
+                                cu.datasourceCanDeleteRole = false;
+                            };
+                            if (cu.datasourceCanGrantAccessRole == undefined) {
+                                cu.datasourceCanGrantAccessRole = false;
+                            };
+                        });
+
                         if (this.sessionDebugging) {
                             console.log('%c    Global-Variables getCanvasUsers 1',
                                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
