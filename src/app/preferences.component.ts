@@ -192,8 +192,28 @@ export class PreferencesComponent implements OnInit {
             this.selectedDashboardId = +selectedDashboardString.substring(openBracket + 1, closeBracket);
 
             this.preferenceStartupDashboardID = this.selectedDashboardId;
+
+            // Fill relevant Tabs
+            this.dashboardTabList = ['None'];
+
+            this.globalVariableService.dashboardTabs.forEach(t => {
+
+                // Fill TabList
+                if (this.preferenceStartupDashboardID != null 
+                    &&
+                    this.preferenceStartupDashboardID == t.dashboardID) {
+                        this.dashboardTabList.push(t.name + ' (' + t.id.toString() + ')');
+                };
+
+            });
+
+
         } else {
             this.preferenceStartupDashboardID = null;
+
+            // Clear Tabs
+            this.dashboardTabList = ['None'];
+
         };
     }
 
