@@ -171,7 +171,7 @@
                     <select
                         [(ngModel)]="selectedStartupDashboardTab"
                         name="dashboardStartup"
-                        (change)="clickTemplateDashboard($event)"
+                        (change)="clickStartupDashboardTab($event)"
                         placeholder="Select an optional startup Dashboard Tab"
                         >
                         <option *ngFor="let row of dashboardTabList">

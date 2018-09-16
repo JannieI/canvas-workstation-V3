@@ -207,13 +207,32 @@ export class PreferencesComponent implements OnInit {
 
             });
 
-
         } else {
             this.preferenceStartupDashboardID = null;
 
             // Clear Tabs
             this.dashboardTabList = ['None'];
 
+        };
+    }
+
+    clickStartupDashboardTab(ev:any, id: number) {
+        // Selected a startup T
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickStartupDashboardTab', '@Start');
+
+        let selectedDashboardTabString: string = ev.target.value;
+
+        if (selectedDashboardTabString != 'None') {
+
+            // Get D info
+            let openBracket: number = selectedDashboardTabString.indexOf('(');
+            let closeBracket: number = selectedDashboardTabString.indexOf(')');
+            this.selectedDashboardId = +selectedDashboardTabString.substring(openBracket + 1, closeBracket);
+
+            this.preferenceStartupDashboardTabID = this.selectedDashboardId;
+
+        } else {
+            this.preferenceStartupDashboardID = null;
         };
     }
 
