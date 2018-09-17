@@ -2770,6 +2770,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
 
 
+
     // ***********************  CLICK DASHBOARD MENU OPTIONS ************************ //
 
     clickDashboardNew() {
@@ -3560,8 +3561,22 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
     }
 
     clickMenuDataEditDatasource() {
-        // Editor DS
+        // Edit DS
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataEditDatasource', '@Start');
+
+        // Permissions
+        if (!this.globalVariableService.currentUser.datasourceCanEditRole
+            &&
+            !this.globalVariableService.currentUser.isAdministrator) {
+            this.showMessage(
+                'You cannot add a new Datasource (role must be added to your user)',
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
 
         this.menuOptionClickPreAction();
 

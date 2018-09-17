@@ -18,7 +18,7 @@ import { GlobalVariableService}       from './global-variable.service';
 // Models
 import { Datasource }                 from './models';
 import { Widget }                     from './models';
- 
+
 @Component({
     selector: 'data-refresh-once',
     templateUrl: './data.refresh.once.component.html',
@@ -67,7 +67,7 @@ export class DataRefreshOnceComponent implements OnInit {
         if (this.currentDatasources.length > 0) {
             this.dataFieldNames = this.currentDatasources[0].dataFields;
         };
-            
+
         // Count the Ws
         let widgets: Widget[];
         this.currentDatasources.forEach(ds => {
@@ -84,9 +84,9 @@ export class DataRefreshOnceComponent implements OnInit {
         this.selectedRowIndex = index;
         this.dataFieldNames = this.currentDatasources[index].dataFields;
         this.errorMessage = '';
-        
+
     }
-    
+
     clickClose(action: string) {
         // Close the form, nothing saved
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
@@ -109,7 +109,7 @@ export class DataRefreshOnceComponent implements OnInit {
         ).length;
 
         if (dSetIndex <= 0) {
-            
+
             if (this.isBusyRetrievingData) {
                 this.errorMessage = 'Still retrieving the actual data for this DS';
                 return;
@@ -121,7 +121,7 @@ export class DataRefreshOnceComponent implements OnInit {
 
                 // Reset
                 this.isBusyRetrievingData = false
-                
+
                 let globalCurrentDSIndex: number = this.globalVariableService.currentDatasources
                 .findIndex(dS => dS.id == datasourceID
                 );
@@ -138,21 +138,21 @@ export class DataRefreshOnceComponent implements OnInit {
                 };
 
                 // Tell user
-                this.errorMessage = 'Data retrieved - click row again to continue';                
+                this.errorMessage = 'Data retrieved - click row again to continue';
 
             });
 
             // Stop Synch execution
             return;
         };
- 
+
         // Load local arrays for ngFor
         let dsIndex: number = this.currentDatasources
             .findIndex(ds => ds.id == datasourceID);
-        
+
         if (dsIndex >= 0) {
             this.dataFieldNames = this.currentDatasources[dsIndex].dataFields;
-            
+
             // Reset
             this.isBusyRetrievingData = false;
         } else {
@@ -165,7 +165,7 @@ export class DataRefreshOnceComponent implements OnInit {
             this.isBusyRetrievingData = true;
             this.globalVariableService.addCurrentDatasource(datasourceID).then(res => {
                 this.isBusyRetrievingData = false
-                
+
                 let globalCurrentDSIndex: number = this.globalVariableService.currentDatasources
                 .findIndex(dS => dS.id == datasourceID
                 );
