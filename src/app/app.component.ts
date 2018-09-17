@@ -3436,6 +3436,20 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         // SQL Editor
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataManagedSQLEditor', '@Start');
 
+        // Permissions
+        if (!this.globalVariableService.currentUser.datasourceCanCreateRole
+            &&
+            !this.globalVariableService.currentUser.isAdministrator) {
+            this.showMessage(
+                'You cannot add a new Datasource (role must be added to your user)',
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+
         this.menuOptionClickPreAction();
 
         this.showModalDataManagedSQLEditor = true;
