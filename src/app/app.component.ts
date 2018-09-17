@@ -3968,6 +3968,20 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         // Manage sharing access to DS
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataShare', '@Start');
 
+        // Permissions
+        if (!this.globalVariableService.currentUser.datasourceCanGrantAccessRole
+            &&
+            !this.globalVariableService.currentUser.isAdministrator) {
+            this.showMessage(
+                'You cannot add a new Datasource (role must be added to your user)',
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+
         this.menuOptionClickPreAction();
 
         this.showModalDataShare = true;
