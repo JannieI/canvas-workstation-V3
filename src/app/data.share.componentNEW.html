@@ -1,0 +1,216 @@
+<div class="modal modalBox">
+    <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
+        <div class="modal-content modalContent">
+
+            <div class="gridOverall">
+                <button type="button" class="closeButton" (click)="clickClose()">
+                    <b>X</b>
+                </button>
+                <div class="gridTitle">
+                    <b>Share Dashboard</b>
+                    <clr-signpost>
+                        <clr-icon shape="info-circle"
+                            clrSignpostTrigger>
+                        </clr-icon>
+                            <clr-signpost-content *clrIfOpen
+                            [clrPosition]="'bottom-middle'">
+                            <h5 style="margin-top: 0; color:gray;">
+                                Help
+                            </h5>
+                            <p style="margin-top: 0; color:gray;">
+                                Indicate who can access this Dashboard, and how.  The options are Private
+                                (only accesable to myself), Public (all users can view and edit it) or
+                                Access List (list of users and groups shown below, each with
+                                View/Edit/Delete permissions.  To change existing permissions, double click the
+                                View/Edit/Delete cell in the grid below.  Double click the delete icon
+                                to delete a row.
+                                Click the X or press Escape to close this form.
+                            </p>
+                        </clr-signpost-content>
+                    </clr-signpost>
+                </div>
+
+                <div class="gridCurrentTitle">
+                    Dashboard Access Type:
+                </div>
+                <div class="gridCurrentSelect">
+                    <div class="select">
+                        <select [(ngModel)]="accessType"
+                            >
+                            <option>Private</option>
+                            <option>Public</option>
+                            <option>AccessList</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="gridCurrentButton">
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                        (click)="clickSave()"
+                        >
+                        Save and Close
+                    </button>
+                </div>
+                <div class="gridNewError" *ngIf="errorMessage != ''">
+                    {{ errorMessage }}
+                </div>
+                <div class="gridCurrentBR" *ngIf="accessType != 'AccessList'">
+                </div>
+
+                <div class="gridNewTitle" *ngIf="accessType == 'AccessList'">
+                    <b>For an Access List, you can add a new user or group to the table below.
+                        Then toggle the required access by double clicking on it in the table.</b>
+                </div>
+                <div class="gridNewUserID" *ngIf="accessType == 'AccessList'">
+                    <b>UserID:</b>
+                    <input type="text" [(ngModel)]="userID" placeholder="User ID">
+                </div>
+                <div class="gridNewGroupName" *ngIf="accessType == 'AccessList'">
+                    <b>Group:</b>
+                </div>
+                <div class="gridNewGroupSelect" *ngIf="accessType == 'AccessList'  &&  groups">
+                    <div class="select">
+                        <select
+                            (change)="clickSelectGroup($event)"
+                            >
+                            <option *ngFor="let row of groups; let i = index">
+                                {{ row.name }}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="gridNewButton" *ngIf="accessType == 'AccessList'">
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        (click)="clickAdd()"
+                        >
+                        Add
+                    </button>
+                </div>
+
+                <div class="gridTable" *ngIf="accessType == 'AccessList'">
+                    <clr-datagrid>
+                        <clr-dg-column
+                        [style.text-align]="center">Remove</clr-dg-column>
+                        <clr-dg-column [clrDgField]="userID">User ID (single)</clr-dg-column>
+                        <clr-dg-column [clrDgField]="name">Group Name (applies to all its members)</clr-dg-column>
+                        <clr-dg-column [clrDgField]="canViewRight" class="checkCell">View</clr-dg-column>
+                        <clr-dg-column [clrDgField]="canEditRight">Edit</clr-dg-column>
+                        <clr-dg-column [clrDgField]="canSaveRight">Save</clr-dg-column>
+                        <clr-dg-column [clrDgField]="canDeleteRight">Delete</clr-dg-column>
+                        <clr-dg-column [clrDgField]="canAddDatasource">Add DS</clr-dg-column>
+                        <clr-dg-column [clrDgField]="canGrantAccess">Grant Access</clr-dg-column>
+                        <clr-dg-column [clrDgField]="grantor">Grantor</clr-dg-column>
+                        <clr-dg-column [clrDgField]="grantedOn">Granted On</clr-dg-column>
+
+                        <clr-dg-row *clrDgItems="let row of dashboardPermissions;
+                            let i = index"
+                            [style.background-color]="(i == selectedRow)? '#123456' : 'white'"
+                            [style.color]="(i == selectedRow)? 'white' : 'gray'"
+                            (click)="clickRow(i)"
+                            >
+                            <clr-dg-cell>
+                                <clr-icon shape="trash"
+                                    size="16"
+                                    (dblclick)="dblclickDelete(row.id)"
+                                    >
+                                </clr-icon>
+                            </clr-dg-cell>
+                            <clr-dg-cell>{{row.userID}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.groupName}}</clr-dg-cell>
+                            <clr-dg-cell class="checkCell">
+                                <clr-icon shape="check" *ngIf="row.canViewRight"
+                                    size="16"
+                                    (dblclick)="clickToggleView(row.id, $event)"
+                                    >
+                                </clr-icon>
+                                <clr-icon shape="times" *ngIf="!row.canViewRight"
+                                    size="16"
+                                    (dblclick)="clickToggleView(row.id, $event)"
+                                    >
+                                </clr-icon>
+                            </clr-dg-cell>
+                            <clr-dg-cell class="checkCell">
+                                    <clr-icon shape="check" *ngIf="row.canEditRight"
+                                    size="16"
+                                    (dblclick)="clickToggleEdit(row.id, $event)"
+                                    >
+                                </clr-icon>
+                                <clr-icon shape="times" *ngIf="!row.canEditRight"
+                                    size="16"
+                                    (dblclick)="clickToggleEdit(row.id, $event)"
+                                    >
+                                </clr-icon>
+                            </clr-dg-cell>
+                            <clr-dg-cell class="checkCell">
+                                <clr-icon shape="check" *ngIf="row.canSaveRight"
+                                    size="16"
+                                    (dblclick)="clickToggleSave(row.id, $event)"
+                                    >
+                                </clr-icon>
+                                <clr-icon shape="times" *ngIf="!row.canSaveRight"
+                                    size="16"
+                                    (dblclick)="clickToggleSave(row.id, $event)"
+                                    >
+                                </clr-icon>
+                            </clr-dg-cell>
+                            <clr-dg-cell class="checkCell">
+                                    <clr-icon shape="check" *ngIf="row.canDeleteRight"
+                                    size="16"
+                                    (dblclick)="clickToggleDelete(row.id, $event)"
+                                    >
+                                </clr-icon>
+                                <clr-icon shape="times" *ngIf="!row.canDeleteRight"
+                                    size="16"
+                                    (dblclick)="clickToggleDelete(row.id, $event)"
+                                    >
+                                </clr-icon>
+                            </clr-dg-cell>
+                            <clr-dg-cell class="checkCell">
+                                    <clr-icon shape="check" *ngIf="row.canAddDatasource"
+                                    size="16"
+                                    (dblclick)="clickToggleAddDS(row.id, $event)"
+                                    >
+                                </clr-icon>
+                                <clr-icon shape="times" *ngIf="!row.canAddDatasource"
+                                    size="16"
+                                    (dblclick)="clickToggleAddDS(row.id, $event)"
+                                    >
+                                </clr-icon>
+                            </clr-dg-cell>
+                            <clr-dg-cell class="checkCell">
+                                <clr-icon shape="check" *ngIf="row.canGrantAccess"
+                                size="16"
+                                (dblclick)="clickToggleGrantAccess(row.id, $event)"
+                                >
+                            </clr-icon>
+                            <clr-icon shape="times" *ngIf="!row.canGrantAccess"
+                                size="16"
+                                (dblclick)="clickToggleGrantAccess(row.id, $event)"
+                                >
+                            </clr-icon>
+                        </clr-dg-cell>
+
+                            <clr-dg-cell>{{row.grantor}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.grantedOn}}</clr-dg-cell>
+                        </clr-dg-row>
+
+                        <clr-dg-footer>
+                            {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+                            of {{pagination.totalItems}} records
+                            <clr-dg-pagination
+                                #pagination
+                                [clrDgPageSize]="4"
+                                >
+                            </clr-dg-pagination>
+                        </clr-dg-footer>
+
+                    </clr-datagrid>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    

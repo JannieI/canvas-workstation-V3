@@ -85,11 +85,11 @@ import { DataDirectFileSpreadsheetComponent }   from './data.direct.fileSpreadsh
 import { DataDirectGoogleSheetsComponent }      from './data.direct.googleSheets.component';
 import { DataDirectQueryBuilderComponent }      from './data.direct.queryBuilder.component';
 import { DataDirectSQLEditorComponent }         from './data.direct.sqlEditor.component';
-import { DataDirectNoSQLComponent }   from './data.direct.Nosql.component';
-import { DataDirectServiceComponent } from './data.direct.service.component';
-import { DataDirectWebComponent }     from './data.direct.web.component';
-import { DataDirectImportComponent }  from './data.direct.import.component';
-import { DataDirectExportComponent }  from './data.direct.export.component';
+import { DataDirectNoSQLComponent }             from './data.direct.Nosql.component';
+import { DataDirectServiceComponent }           from './data.direct.service.component';
+import { DataDirectWebComponent }               from './data.direct.web.component';
+import { DataDirectImportComponent }            from './data.direct.import.component';
+import { DataDirectExportComponent }            from './data.direct.export.component';
 
 import { DataManagedConnectionComponent }       from './data.managed.connection.component';
 import { DataManagedQueryBuilderComponent }     from './data.managed.queryBuilder.component';
@@ -109,6 +109,7 @@ import { DataDatasourceOverviewComponent }      from './data.datasourceOverview.
 import { DataCombinationComponent }   from './data.combination.component';
 import { DataCombinationAppendComponent }       from './data.combination.append.component';
 import { DatasourceShareComponent }   from './data.share.component';
+import { DatasourceShareComponentNEW }          from './data.share.componentNEW';
 import { DataDictionaryComponent }    from './data.dictionary.component';
 import { DataBusinessGlossaryComponent }        from './data.businessGlossary.component';
 import { DataSummaryComponent }       from './data.summary.component';
@@ -215,6 +216,7 @@ import { StatusbarComponent }         from './statusbar.component';
         DataCombinationComponent,
         DataCombinationAppendComponent,
         DatasourceShareComponent,
+        DatasourceShareComponentNEW,
         DataDictionaryComponent,
         DataBusinessGlossaryComponent,
         DataSummaryComponent,

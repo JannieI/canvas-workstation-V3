@@ -1,0 +1,138 @@
+.modalBox {
+	background-color: rgba(0,0,0,0.4);
+	-shadow: 0 2px 2px 0 lightgray;
+}
+
+.checkCell {
+    text-align: center !important;
+}
+
+.gridOverall {
+    display: grid;
+    grid-template-columns: repeat(14, 1fr);
+    grid-template-rows: repeat(23, 0.8rem);
+}
+    .closeButton {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        grid-column-start: 1;
+        /* autoprefixer: off */
+        grid-column-end: 2;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        text-align: left;
+    }
+    .gridTitle {
+        font-size: 0.75rem;
+        grid-column-start: 1;
+        /* autoprefixer: off */
+        grid-column-end: 18;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        margin-left: 30px;
+        text-align: left;
+    }
+
+    .gridCurrentTitle {
+        grid-column-start: 1;
+        /* autoprefixer: off */
+        grid-column-end: 4;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridCurrentSelect {
+        grid-column-start: 4;
+        /* autoprefixer: off */
+        grid-column-end: 8;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridCurrentButton {
+        grid-column-start: 8;
+        /* autoprefixer: off */
+        grid-column-end: 10;
+        grid-row-start: 2;
+        grid-row-end: 3;
+        margin: 12px 2px 2px 20px;
+        text-align: left;
+    }
+    .gridNewError {
+        color: red;
+        grid-column-start: 11;
+        /* autoprefixer: off */
+        grid-column-end: 19;
+        grid-row-start: 4;
+        grid-row-end: 5;
+        margin: 2px 2px 2px 20px;
+        text-align: left;
+    }
+    .gridCurrentBR {
+        grid-column-start: 8;
+        /* autoprefixer: off */
+        grid-column-end: 10;
+        grid-row-start: 5;
+        grid-row-end: 6;
+        margin: 20px 2px 2px 20px;
+        text-align: left;
+    }
+
+    .gridNewTitle {
+        grid-column-start: 1;
+        /* autoprefixer: off */
+        grid-column-end: 19;
+        grid-row-start: 5;
+        grid-row-end: 6;
+        margin: 2px 2px 2px 40px;
+        text-align: left;
+    }
+    .gridNewUserID {
+        grid-column-start: 1;
+        /* autoprefixer: off */
+        grid-column-end: 6;
+        grid-row-start: 6;
+        grid-row-end: 7;
+        margin: 6px 2px 2px 60px;
+        text-align: left;
+    }
+    .gridNewGroupName {
+        grid-column-start: 6;
+        /* autoprefixer: off */
+        grid-column-end: 7;
+        grid-row-start: 6;
+        grid-row-end: 7;
+        margin: 6px 2px 2px 20px;
+        text-align: left;
+    }
+    .gridNewGroupSelect {
+        grid-column-start: 7;
+        /* autoprefixer: off */
+        grid-column-end: 12;
+        grid-row-start: 6;
+        grid-row-end: 7;
+        margin: 6px 2px 2px 20px;
+        text-align: left;
+    }
+    .gridNewButton {
+        grid-column-start: 12;
+        /* autoprefixer: off */
+        grid-column-end: 14;
+        grid-row-start: 6;
+        grid-row-end: 7;
+        margin: 2px 2px 2px 20px;
+        text-align: left;
+    }
+
+    .gridTable {
+        grid-column-start: 1;
+        /* autoprefixer: off */
+        grid-column-end: 19;
+        grid-row-start: 7;
+        grid-row-end: 22;
+        margin: 6px 2px 2px 2px;
+        text-align: left;
+    }
