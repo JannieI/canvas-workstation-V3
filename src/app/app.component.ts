@@ -4018,6 +4018,20 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         // Shows form to Delete Datasources
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDeleteDatasource', '@Start');
 
+        // Permissions
+        if (!this.globalVariableService.currentUser.datasourceCanDeleteRole
+            &&
+            !this.globalVariableService.currentUser.isAdministrator) {
+            this.showMessage(
+                'You cannot add a new Datasource (role must be added to your user)',
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+
         this.menuOptionClickPreAction();
 
         this.showModalDataDeleteDatasource = true;
