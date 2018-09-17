@@ -3548,7 +3548,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
     }
 
     clickMenuDataTransformation() {
-        // Overlay Editor
+        // Transformations
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataTransformation', '@Start');
 
         this.menuOptionClickPreAction();
@@ -3560,7 +3560,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
     }
 
     clickMenuDataEditDatasource() {
-        // Overlay Editor
+        // Editor DS
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataEditDatasource', '@Start');
 
         this.menuOptionClickPreAction();
@@ -3581,6 +3581,20 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
     clickMenuDataCombinationAppend() {
         // Combine one or more existing DS by appending at end of first one
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataCombinationAppend', '@Start');
+
+        // Permissions
+        if (!this.globalVariableService.currentUser.datasourceCanCreateRole
+            &&
+            !this.globalVariableService.currentUser.isAdministrator) {
+            this.showMessage(
+                'You cannot add a new Datasource (role must be added to your user)',
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
 
         this.menuOptionClickPreAction();
 
