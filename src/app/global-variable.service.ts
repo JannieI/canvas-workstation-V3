@@ -11102,18 +11102,7 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
-        DatasourcePermission
-        id: number;                         // Unique ID
-    datasourceID: number;               // FK to DS
-    name?: string;                      // Optional DS name - filled in @Runtime
-    userID: string;                     // 1 of usr/grp filled in, one blank
-    groupID: number;                    // Granted to Group ID
-    groupName?: string;                 // Optional Group name - filled in @Runtime
-    canView: boolean;                   // Can view a DS
-    canEdit: boolean;                   // Can Edit a DS, ie do a transformation
-    canAdd: boolean;                    // Can Add a new DS, ie DB table or a file
-    canDelete: boolean;                 // Can Delete a DS (Definition, not the Data)
-    canRefresh
+        return true;
     }
 
     dashboardPermissionList(id: number): string[] {

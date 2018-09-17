@@ -278,7 +278,6 @@ export class DatasourceShareComponent implements OnInit {
                 groupName: this.selectedGroupName,
                 canView: this.canView,
                 canEdit: this.canEdit,
-                canAdd: this.canAdd,
                 canDelete: this.canDelete,
                 canRefresh: this.canRefresh
         };

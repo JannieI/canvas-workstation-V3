@@ -161,7 +161,6 @@
                         <clr-dg-column>Group ID</clr-dg-column>
                         <clr-dg-column>CanView</clr-dg-column>
                         <clr-dg-column>CanEdit</clr-dg-column>
-                        <clr-dg-column>CanAdd</clr-dg-column>
                         <clr-dg-column>CanDelete</clr-dg-column>
                         <clr-dg-column>CanRefresh</clr-dg-column>
 
@@ -199,18 +198,6 @@
                                 <clr-icon shape="times" *ngIf="!row.canEdit"
                                     size="16"
                                     (dblclick)="clickToggleEdit(row.id, $event)"
-                                    >
-                                </clr-icon>
-                            </clr-dg-cell>
-                            <clr-dg-cell class="checkCell">
-                                <clr-icon shape="check" *ngIf="row.canAdd"
-                                    size="16"
-                                    (dblclick)="clickToggleAdd(row.id, $event)"
-                                    >
-                                </clr-icon>
-                                <clr-icon shape="times" *ngIf="!row.canAdd"
-                                    size="16"
-                                    (dblclick)="clickToggleAdd(row.id, $event)"
                                     >
                                 </clr-icon>
                             </clr-dg-cell>
