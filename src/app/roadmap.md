@@ -76,7 +76,7 @@ This document describes items for later versions of Canvas.
         - Users, groups, permissions: add DS permissions, Private Dashboards?, Public Dashboards?, etc to form 'My Permissions'
         - Where does UI sit - in Dashboard or separate.  Consider Standalone vs Network
         - Finalise group membership / roles
-        - Add UserID to ALL data and code -> where needed ...
+        - Add UserID to ALL data and code -> where needed ... [FROM DatasourcePermission]
         - It must be impossible to lock out all users - admin keeps access and at least one is kept.  Also, if a W is locked and the owner on leave, someone must be able to unlock it.
 
 
@@ -84,8 +84,6 @@ This document describes items for later versions of Canvas.
     -------------------------------------------------
         - Add RouteGuard on 'Clarity Analytics', before going to web site ...
         BUG/ISSUE: multi-tab Slicers and Ws only refresh on the first one - when are the others done?  To do them while hidden makes no sence - should we have a dirty flag, and filterSlicer on tab change??
-        - ContainerFontSize - consider dropping it, and have a font size for Title, Shape-Text, etc. Else it gets confusing ...
-        - Consider not increasing stuckCount in App if an item is selected/deselected. This does mean to pass event back from slicer.single component.
         - On Duplicate of W: make sure Comments, Links, etc is also duplicated in DB (or not??)
         - Expand: add Refresh button, for when change nr lines to show.  Also, 100 -> 1000
         + Dont show top if no Dataset - rather appropriate Unexpected Error msg
@@ -452,6 +450,9 @@ This document describes items for later versions of Canvas.
     - consider standardizing items between Container and Graph-Title, ie Font Weight, Shadow, Margin, etc only on one and not the other
     - consider a list of predefined styles for Graph-Titles similar to Containers
     - if a shape with a transparent background is just below the title bar, and one clicks the context menus (ie Annotations): then the dropdown disappears behind the the shape.  It is a bit confusing but setting the z-index of the dropdown menu does not seem to change anything.  Ideas?
+    - ContainerFontSize - consider dropping it, and have a font size for Title, Shape-Text, etc. Else it gets confusing ...
+    - Consider not increasing stuckCount in App if an item is selected/deselected. This does mean to pass event back from slicer.single component.
+
 
     Treeview: 
     --------

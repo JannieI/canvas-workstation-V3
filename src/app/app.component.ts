@@ -3389,6 +3389,20 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         // SQL Query Builder, constructed by selecting Table and Fields
         this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataManagedConnection', '@Start');
 
+        // Permissions
+        if (!this.globalVariableService.currentUser.datasourceCanCreateRole
+            &&
+            !this.globalVariableService.currentUser.isAdministrator) {
+            this.showMessage(
+                'You cannot add a new Datasource (role must be added to your user)',
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+
         this.menuOptionClickPreAction();
 
         this.showModalDataManagedConnection = true;
