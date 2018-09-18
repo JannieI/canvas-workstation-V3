@@ -100,7 +100,7 @@ export class DatasourceDescriptionComponent implements OnInit {
             this.selectedDatasource.accessType != 'AccessList') {
                 this.errorMessage = 'Warning; the existing access list was deleted.';
 
-                let DatasourcePermission: DatasourcePermission[];
+                // Delete the old DS Permissions
                 this.globalVariableService.getDatasourcePermissions().then(res => {
                     res.forEach(dP => {
                         if (dP.datasourceID == this.selectedDatasource.id) {
@@ -111,8 +111,8 @@ export class DatasourceDescriptionComponent implements OnInit {
                     });
                 });
             };
-            
-        // Update
+
+        // Update DS
         this.globalVariableService.saveDatasource(this.selectedDatasource).then(res => {
             this.infoMessage = 'Datasource Saved';
         });
