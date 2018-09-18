@@ -104,6 +104,7 @@ export class DataManagedNeo4jEditorComponent implements OnInit {
                 dataFieldTypes: [''],
                 dataFieldLengths: [0],
                 parameters: '',
+                accessType: '',
                 cacheResultsOnServer: true,
                 unRefreshable: true,
                 nrCacheCopies: 999,
