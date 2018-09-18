@@ -3569,7 +3569,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
             &&
             !this.globalVariableService.currentUser.isAdministrator) {
             this.showMessage(
-                'You cannot add a new Datasource (role must be added to your user)',
+                'You cannot edit Datasources (role must be added to your user)',
                 'StatusBar',
                 'Warning',
                 3000,
@@ -3582,6 +3582,30 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
         this.selectedDatasource = null;
         this.showModalDataEditDatasource = true;
+    }
+
+    clickMenuDataDatasourceDescription() {
+        // DS Description
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickMenuDataDatasourceDescription', '@Start');
+
+        // Permissions
+        if (!this.globalVariableService.currentUser.datasourceCanEditRole
+            &&
+            !this.globalVariableService.currentUser.isAdministrator) {
+            this.showMessage(
+                'You cannot edit Datasources (role must be added to your user)',
+                'StatusBar',
+                'Warning',
+                3000,
+                ''
+            );
+            return;
+        };
+
+        this.menuOptionClickPreAction();
+
+        this.selectedDatasource = null;
+        this.showModalDataDatasourceDescription = true;
     }
 
     clickMenuDatasourceOverview() {
