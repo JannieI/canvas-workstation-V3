@@ -359,6 +359,7 @@ export class DataDirectFileJSONComponent implements OnInit {
                 dataFieldTypes: [],
                 dataFieldLengths: [],
                 parameters: '',
+                accessType: '',
                 cacheResultsOnServer: true,
                 unRefreshable: true,
                 nrCacheCopies: 999,

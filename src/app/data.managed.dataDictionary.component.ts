@@ -80,6 +80,7 @@ export class DataManagedDataDictionaryComponent implements OnInit {
             dataFieldTypes: null,
             dataFieldLengths: null,
             parameters: '',
+            accessType: '',
             cacheResultsOnServer: true,
             unRefreshable: true,
             nrCacheCopies: 999,

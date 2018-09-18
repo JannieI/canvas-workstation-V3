@@ -249,6 +249,7 @@ export class DataDirectGoogleSheetsComponent implements OnInit {
                 dataFieldTypes: [],
                 dataFieldLengths: [],
                 parameters: '',
+                accessType: '',
                 cacheResultsOnServer: this.newCacheResults,
                 unRefreshable: true,
                 nrCacheCopies: 999,

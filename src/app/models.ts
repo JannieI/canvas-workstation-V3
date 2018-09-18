@@ -480,6 +480,9 @@ export class Datasource {
     dataFieldLengths: number[];         // Max field lengths, same order as dataFields
     parameters: string;                 // Parameters to pass into SQL query
 
+    // Access Type
+    accessType: string;                 // How to access D: Private, Public, AccessList
+
     // Create and Edit info
     createMethod: string;               // Method how DS was created, ie DirectFile, ..., ManagedSQLEditor
     createdBy: string;                  // Creator
