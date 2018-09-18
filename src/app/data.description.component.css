@@ -229,8 +229,8 @@
         grid-row-end: 4;
         margin: 2px 2px 2px 2px;
         text-align: left;
-    }    
-    
+    }
+
     .gridDatasourceRelatedTimeTitle {
         grid-column-start: 1;
         /* autoprefixer: off */
@@ -248,8 +248,8 @@
         grid-row-end: 4;
         margin: 2px 2px 2px 2px;
         text-align: left;
-    }    
-      
+    }
+
     .gridCanAdd {
         grid-column-start: 13;
         /* autoprefixer: off */
