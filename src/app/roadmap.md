@@ -1259,3 +1259,40 @@ This document describes items for later versions of Canvas.
 
     Data Quality:
     - Data Quality issues: add place to add detail values.  An overall statement can say all data  has an issue, but a specific one must identify the column(s) and row(s) affected, thus given the IDs or key values.
+
+
+
+
+
+
+
+**********************************************************************************
+**********************************************************************************
+**********************************************************************************
+**********************************************************************************
+**********************************************************************************
+**********************************************************************************
+
+
+
+
+
+
+
+
+
+
+    One day stuff:
+    -------------
+
+    - have TS scripts inside Canvas
+    - investigate IFrames
+    - Bezier curved arrows that can connect to rectangles 
+    - Workflow via diagram 
+    - Embedding 
+    - Speech driven 
+    - Dragable side-panel
+    - Team collaboration.... Editing the same Widget at the same time
+    - Chalk font
+
+    End of One day stuff:
