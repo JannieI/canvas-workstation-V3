@@ -656,7 +656,7 @@
                             type="button"
                             class="btn btn-link btn-sm"
                             clrDropdownItem
-                            title="Share permissions to Datasources"
+                            title="Share permissions to Datasources with AccessLists"
                             (click)="clickMenuDataShare()"
                             >
                             Share
@@ -4668,17 +4668,10 @@
 
 
 <!-- Modal: data Share -->
-<!-- <data-share
+<data-share
     *ngIf="showModalDataShare"
     (formDataShareClosed)="handleCloseDataShare($event)">Share / Permission of a Data Source ...
-</data-share> -->
-
-
-<!-- Modal: data Share -->
-<data-shareNEW
-    *ngIf="showModalDataShare"
-    (formDataShareClosed)="handleCloseDataShare($event)">Share / Permission of a Data Source ...
-</data-shareNEW>
+</data-share>
 
 
 <!-- Modal: Business Glossary -->

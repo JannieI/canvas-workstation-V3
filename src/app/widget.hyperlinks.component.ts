@@ -67,9 +67,18 @@ export class WidgetLinksComponent implements OnInit {
     ngOnInit() {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
-console.warn('xx this.selectedWidget', this.selectedWidget);
 
-        this.dashboards = this.globalVariableService.dashboards.slice();
+        this.dashboards = this.globalVariableService.dashboards
+            .slice()
+            .sort( (obj1,obj2) => {
+                if (obj1.name > obj2.name) {
+                    return 1;
+                };
+                if (obj1.name < obj2.name) {
+                    return -1;
+                };
+                return 0;
+            });
         this.dashboardTabs = this.globalVariableService.dashboardTabs.slice();
 
         // Show linking

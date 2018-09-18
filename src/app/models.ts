@@ -489,7 +489,7 @@ export class Datasource {
 
     // Caching info
     cacheResultsOnServer: boolean;      // True if results may be cached on server. Each Tr is decided deparately
-    unRefreshable: boolean;             // Can create once, but cannot
+    unRefreshable: boolean;             // Can create once, but cannot Refresh after that
     cacheResultsLocal: boolean;         // True if Local results must be cached
     nrCacheCopies: number;              // Nr Cache copies kept, 0 means none
 

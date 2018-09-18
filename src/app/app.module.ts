@@ -106,21 +106,20 @@ import { DataManagedBusGlossaryComponent }      from './data.managed.busGlossary
 import { DataTransformationComponent }          from './data.transformation.component';
 import { DataEditDatasourceComponent }          from './data.editDatasource.component';
 import { DataDatasourceOverviewComponent }      from './data.datasourceOverview.component';
-import { DataCombinationComponent }   from './data.combination.component';
+import { DataCombinationComponent }             from './data.combination.component';
 import { DataCombinationAppendComponent }       from './data.combination.append.component';
-import { DatasourceShareComponent }   from './data.share.component';
-import { DatasourceShareComponentNEW }          from './data.share.componentNEW';
-import { DataDictionaryComponent }    from './data.dictionary.component';
+import { DatasourceShareComponent }             from './data.share.component';
+import { DataDictionaryComponent }              from './data.dictionary.component';
 import { DataBusinessGlossaryComponent }        from './data.businessGlossary.component';
-import { DataSummaryComponent }       from './data.summary.component';
+import { DataSummaryComponent }                 from './data.summary.component';
 import { DataDatasourceUsageComponent }         from './data.datasourceUsage.component';
 import { DataDatasourceScheduleEditComponent }  from './data.datasourceScheduleEdit.component';
-import { DataDatasourceScheduleComponent }  from './data.datasourceSchedule.component';
-import { DataRefreshOnceComponent }   from './data.refresh.once.component';
-import { DataRefreshRepeatComponent }   from './data.refresh.repeat.component';
+import { DataDatasourceScheduleComponent }      from './data.datasourceSchedule.component';
+import { DataRefreshOnceComponent }             from './data.refresh.once.component';
+import { DataRefreshRepeatComponent }           from './data.refresh.repeat.component';
 import { DataDeleteDatasourceComponent }        from './data.deleteDatasource.component';
 
-import { HelpComponent }              from './help.component';
+import { HelpComponent }                        from './help.component';
 
 import { CollaborateMessagesComponent }         from './collaborate.messages.component';
 import { CollaborateTaskAddComponent }          from './collaborate.taskadd.component';
@@ -132,18 +131,18 @@ import { CollaborateMessageContentComponent }   from './collaborate.messageConte
 import { CollaborateSystemMessagesComponent }   from './collaborate.systemMessages.component';
 
 import { UserPaletteButtonBarComponent}         from './user.palette.buttonbar.component';
-import { LoginComponent}              from './login.component';
-import { MyProfileComponent }         from './myprofile.component';
-import { PreferencesComponent }       from './preferences.component';
-import { MyPermissionsComponent }     from './mypermissions.component';
-import { UsersComponent }             from './users.component';
-import { GroupsComponent }            from './groups.component';
-import { SystemSettingsComponent }    from './systemsettings.component';
-import { LogoutComponent}             from './logout.component';
+import { LoginComponent}                        from './login.component';
+import { MyProfileComponent }                   from './myprofile.component';
+import { PreferencesComponent }                 from './preferences.component';
+import { MyPermissionsComponent }               from './mypermissions.component';
+import { UsersComponent }                       from './users.component';
+import { GroupsComponent }                      from './groups.component';
+import { SystemSettingsComponent }              from './systemsettings.component';
+import { LogoutComponent}                       from './logout.component';
 
-import { WidgetTablistComponent }     from './widget.tablist.component';
+import { WidgetTablistComponent }               from './widget.tablist.component';
 
-import { PipeFilterDSType }           from './pipe.filter.component';
+import { PipeFilterDSType }                     from './pipe.filter.component';
 
 
 // Our Services
@@ -216,7 +215,6 @@ import { StatusbarComponent }         from './statusbar.component';
         DataCombinationComponent,
         DataCombinationAppendComponent,
         DatasourceShareComponent,
-        DatasourceShareComponentNEW,
         DataDictionaryComponent,
         DataBusinessGlossaryComponent,
         DataSummaryComponent,
