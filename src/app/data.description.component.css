@@ -1,0 +1,228 @@
+.modalBox {
+	background-color: rgba(0,0,0,0.4);
+	-shadow: 0 2px 2px 0 lightgray;
+}
+
+.gridOverall {
+    display: grid;
+    grid-template-columns: repeat(20, 1fr);
+    grid-template-rows: repeat(20, 1rem);
+}
+    .closeButton {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        grid-column-start: 1;
+        /* autoprefixer: off */
+        grid-column-end: 2;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        text-align: left;
+    }
+
+    .gridTitle {
+        font-size: 0.75rem;
+        grid-column-start: 1;
+        /* autoprefixer: off */
+        grid-column-end: 18;
+        grid-row-start: 1;
+        grid-row-end: 2;
+        margin-left: 30px;
+        text-align: left;
+    }
+    .gridSubTitle {
+        color: red;
+        grid-column-start: 1;
+        /* autoprefixer: off */
+        grid-column-end: 41;
+        grid-row-start: 2;
+        grid-row-end: 3;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+
+    .gridDatasourceNameTitle {
+        grid-column-start: 1;
+        /* autoprefixer: off */
+        grid-column-end: 3;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridDatasourceName {
+        grid-column-start: 3;
+        /* autoprefixer: off */
+        grid-column-end: 9;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+
+    .gridUserIDTitle {
+        grid-column-start: 10;
+        /* autoprefixer: off */
+        grid-column-end: 13;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridUserID {
+        grid-column-start: 13;
+        /* autoprefixer: off */
+        grid-column-end: 19;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+
+    .gridGroupIDTitle {
+        grid-column-start: 1;
+        /* autoprefixer: off */
+        grid-column-end: 3;
+        grid-row-start: 5;
+        grid-row-end: 6;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridGroupID {
+        grid-column-start: 3;
+        /* autoprefixer: off */
+        grid-column-end: 9;
+        grid-row-start: 5;
+        grid-row-end: 6;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+
+    .gridCanViewTitle {
+        grid-column-start: 10;
+        /* autoprefixer: off */
+        grid-column-end: 13;
+        grid-row-start: 5;
+        grid-row-end: 6;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridCanView {
+        grid-column-start: 13;
+        /* autoprefixer: off */
+        grid-column-end: 19;
+        grid-row-start: 5;
+        grid-row-end: 6;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+
+    .gridCanEditTitle {
+        grid-column-start: 1;
+        /* autoprefixer: off */
+        grid-column-end: 3;
+        grid-row-start: 7;
+        grid-row-end: 8;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridCanEdit {
+        grid-column-start: 3;
+        /* autoprefixer: off */
+        grid-column-end: 9;
+        grid-row-start: 7;
+        grid-row-end: 8;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+
+    .gridCanAddTitle {
+        grid-column-start: 10;
+        /* autoprefixer: off */
+        grid-column-end: 13;
+        grid-row-start: 7;
+        grid-row-end: 8;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridCanAdd {
+        grid-column-start: 13;
+        /* autoprefixer: off */
+        grid-column-end: 19;
+        grid-row-start: 7;
+        grid-row-end: 8;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+
+    .gridCanDeleteTitle {
+        grid-column-start: 1;
+        /* autoprefixer: off */
+        grid-column-end: 3;
+        grid-row-start: 9;
+        grid-row-end: 10;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridCanDelete {
+        grid-column-start: 3;
+        /* autoprefixer: off */
+        grid-column-end: 9;
+        grid-row-start: 9;
+        grid-row-end: 10;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+
+    .gridCanRefreshTitle {
+        grid-column-start: 10;
+        /* autoprefixer: off */
+        grid-column-end: 13;
+        grid-row-start: 9;
+        grid-row-end: 10;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridCanRefresh {
+        grid-column-start: 13;
+        /* autoprefixer: off */
+        grid-column-end: 19;
+        grid-row-start: 9;
+        grid-row-end: 10;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+
+    .gridErrorMessage {
+        color: red;
+        grid-column-start: 4;
+        /* autoprefixer: off */
+        grid-column-end: 14;
+        grid-row-start: 9;
+        grid-row-end: 10;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+
+    .gridButtonAdd {
+        grid-column-start: 15;
+        /* autoprefixer: off */
+        grid-column-end: 17;
+        grid-row-start: 8;
+        grid-row-end: 9;
+        margin: 8px 2px 2px 2px;
+        text-align: left;
+    }
+
+
+    .gridTable {
+        grid-column-start: 1;
+        /* autoprefixer: off */
+        grid-column-end: 41;
+        grid-row-start: 10;
+        grid-row-end: 20;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+
+

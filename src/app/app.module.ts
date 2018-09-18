@@ -105,6 +105,7 @@ import { DataManagedBusGlossaryComponent }      from './data.managed.busGlossary
 
 import { DataTransformationComponent }          from './data.transformation.component';
 import { DataEditDatasourceComponent }          from './data.editDatasource.component';
+import { DatasourceDescriptionComponent }       from './data.description.component';
 import { DataDatasourceOverviewComponent }      from './data.datasourceOverview.component';
 import { DataCombinationComponent }             from './data.combination.component';
 import { DataCombinationAppendComponent }       from './data.combination.append.component';
@@ -212,6 +213,7 @@ import { StatusbarComponent }         from './statusbar.component';
 
         DataTransformationComponent,
         DataEditDatasourceComponent,
+        DatasourceDescriptionComponent,
         DataCombinationComponent,
         DataCombinationAppendComponent,
         DatasourceShareComponent,

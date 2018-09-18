@@ -4585,6 +4585,13 @@
 </data-editDatasource>
 
 
+<!-- Modal: Datasource Description -->
+<data-description
+    *ngIf="showModalDataDatasourceDescription"
+    (formDataDatasourceDescriptionClosed)="handleCloseDataDatasourceDescription($event)">Load Datasource Description ...
+</data-description>
+
+
 <!-- Modal: Datasource Overview -->
 <data-datasourceOverview
     *ngIf="showModalDataOverview"

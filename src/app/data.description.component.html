@@ -1,0 +1,237 @@
+<div class="modal modalBox">
+    <div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
+        <div class="modal-content modalContent">
+
+            <div class="gridOverall">
+                <button type="button" class="closeButton" (click)="clickClose()">
+                    <b>X</b>
+                </button>
+
+                <div class="gridTitle">
+        
+                    <b>Datasource Description</b>
+                    <clr-signpost>
+                        <clr-icon shape="info-circle"
+                            clrSignpostTrigger>
+                        </clr-icon>
+                            <clr-signpost-content *clrIfOpen
+                            [clrPosition]="'bottom-middle'">
+                            <h5 style="margin-top: 0; color:gray;">
+                                Help
+                            </h5>
+                            <p style="margin-top: 0; color:gray;"> 
+                                Select a Datasource, and then amend the descriptive properties
+                                for it.  The access type can be private (only yourself), public
+                                (all users) or access list (apply specific permissions to users
+                                and groups using the Data -> Share menu option).
+                                Click the X or press Escape to close this form.
+                            </p>
+                        </clr-signpost-content>
+                    </clr-signpost>
+                </div>
+
+                <div class="gridDatasourceNameTitle">
+                    <b>DS Name:</b>
+                </div>
+
+                <div class="select gridDatasourceName">
+                    <select
+                        [(ngModel)]="selectedDatasource"
+                        >
+                        <option *ngFor="let row of datasources"
+                            >
+                            {{ row.name }}
+                        </option>
+                    </select>
+                </div>
+
+                <div class="gridUserIDTitle">
+                    <b>User:</b>
+                </div>
+                <div class="select gridUserID">
+                    <select
+                        [(ngModel)]="selectedUserID"
+                        >
+                        <option *ngFor="let row of userNames"
+                            >
+                            {{ row }}
+                        </option>
+                    </select>
+                </div>
+    
+                <div class="gridGroupIDTitle">
+                    <b>Group:</b>
+                </div>
+                <div class="gridGroupID">
+                    <div class="select">
+                        <select
+                            [(ngModel)]="selectedGroupName"
+                            >
+                            <option *ngFor="let row of groupNames; let i = index">
+                                {{ row }}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="gridCanViewTitle">
+                    Can View:
+                </div>
+                <div class="gridCanView">
+                    <input [(ngModel)]="canView"
+                        type="checkbox"
+                        name="canView"
+                        #snapToGridVar="ngModel"
+                        title="The specified User/Group Can View this Datasource (T/F)"
+                        [style.color]="!snapToGridVar.valid ? 'red' : 'gray'"
+                        >
+                </div>
+
+                <div class="gridCanEditTitle">
+                    Can Edit:
+                </div>
+                <div class="gridCanEdit">
+                    <input [(ngModel)]="canEdit"
+                        type="checkbox"
+                        name="canEdit"
+                        #snapToGridVar="ngModel"
+                        title="The specified User/Group Can Edit this Datasource (T/F)"
+                        [style.color]="!snapToGridVar.valid ? 'red' : 'gray'"
+                        >
+                </div>
+    
+                <div class="gridCanAddTitle">
+                    Can Add:
+                </div>
+                <div class="gridCanAdd">
+                    <input [(ngModel)]="canAdd"
+                        type="checkbox"
+                        name="canAdd"
+                        #snapToGridVar="ngModel"
+                        title="The specified User/Group Can Add this Datasource (T/F)"
+                        [style.color]="!snapToGridVar.valid ? 'red' : 'gray'"
+                        >
+                </div>
+    
+                <div class="gridCanDeleteTitle">
+                    Can Delete:
+                </div>
+                <div class="gridCanDelete">
+                    <input [(ngModel)]="canDelete"
+                        type="checkbox"
+                        name="canDelete"
+                        #snapToGridVar="ngModel"
+                        title="The specified User/Group Can Delete this Datasource (T/F)"
+                        [style.color]="!snapToGridVar.valid ? 'red' : 'gray'"
+                        >
+                </div>
+
+                <div class="gridCanRefreshTitle">
+                    Can Refresh:
+                </div>
+                <div class="gridCanRefresh">
+                    <input [(ngModel)]="canRefresh"
+                        type="checkbox"
+                        name="canRefresh"
+                        #snapToGridVar="ngModel"
+                        title="The specified User/Group Can Refresh this Datasource (T/F)"
+                        [style.color]="!snapToGridVar.valid ? 'red' : 'gray'"
+                        >
+                </div>
+
+                <div class = "gridButtonAdd">
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                        (click)="clickAdd()"
+                        >
+                        Add
+                    </button>
+                </div>
+
+                <div class="gridErrorMessage">
+                    {{ errorMessage }}
+                </div>
+
+                <div class = "gridTable">
+                    <clr-datagrid>
+                        <clr-dg-column>Delete</clr-dg-column>
+                        <clr-dg-column>DS Name</clr-dg-column>
+                        <clr-dg-column>User ID</clr-dg-column>
+                        <clr-dg-column>Group ID</clr-dg-column>
+                        <clr-dg-column>CanView</clr-dg-column>
+                        <clr-dg-column>CanEdit</clr-dg-column>
+                        <clr-dg-column>CanDelete</clr-dg-column>
+                        <clr-dg-column>CanRefresh</clr-dg-column>
+
+                        <clr-dg-row *ngFor="let row of datasourcePermissions; let i = index"
+                            [style.background-color]="(i == selectedRowIndex)? '#123456' : 'white'"
+                            [style.color]="(i == selectedRowIndex)? 'white' : 'gray'"
+                            (click)="clickRow(i, row.id)"
+                            >
+                            <clr-dg-cell>
+                                <clr-icon shape="trash"
+                                    (dblclick)="dblclickDeletePermission(row.id, i)">
+                                </clr-icon>
+                            </clr-dg-cell>
+                            <clr-dg-cell>{{row.name}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.userID}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.name}}</clr-dg-cell>
+                            <clr-dg-cell class="checkCell">
+                                <clr-icon shape="check" *ngIf="row.canView"
+                                    size="16"
+                                    (dblclick)="clickToggleView(row.id, $event)"
+                                    >
+                                </clr-icon>
+                                <clr-icon shape="times" *ngIf="!row.canView"
+                                    size="16"
+                                    (dblclick)="clickToggleView(row.id, $event)"
+                                    >
+                                </clr-icon>
+                            </clr-dg-cell>
+                            <clr-dg-cell class="checkCell">
+                                <clr-icon shape="check" *ngIf="row.canEdit"
+                                    size="16"
+                                    (dblclick)="clickToggleEdit(row.id, $event)"
+                                    >
+                                </clr-icon>
+                                <clr-icon shape="times" *ngIf="!row.canEdit"
+                                    size="16"
+                                    (dblclick)="clickToggleEdit(row.id, $event)"
+                                    >
+                                </clr-icon>
+                            </clr-dg-cell>
+                            <clr-dg-cell class="checkCell">
+                                <clr-icon shape="check" *ngIf="row.canDelete"
+                                    size="16"
+                                    (dblclick)="clickToggleDelete(row.id, $event)"
+                                    >
+                                </clr-icon>
+                                <clr-icon shape="times" *ngIf="!row.canDelete"
+                                    size="16"
+                                    (dblclick)="clickToggleDelete(row.id, $event)"
+                                    >
+                                </clr-icon>
+                            </clr-dg-cell>
+
+                            <clr-dg-cell class="checkCell">
+                                <clr-icon shape="check" *ngIf="row.canRefresh"
+                                    size="16"
+                                    (dblclick)="clickToggleRefresh(row.id, $event)"
+                                    >
+                                </clr-icon>
+                                <clr-icon shape="times" *ngIf="!row.canRefresh"
+                                    size="16"
+                                    (dblclick)="clickToggleRefresh(row.id, $event)"
+                                    >
+                                </clr-icon>
+                            </clr-dg-cell>
+
+                        </clr-dg-row>
+
+                    </clr-datagrid>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
