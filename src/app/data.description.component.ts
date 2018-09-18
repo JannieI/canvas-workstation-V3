@@ -61,6 +61,10 @@ export class DatasourceDescriptionComponent implements OnInit {
 
         this.datasources = this.globalVariableService.datasources.slice();
 
+        if (this.datasources.length > 0) {
+            this.selectedDatasource = this.datasources[0];
+        };
+
     }
 
     clickRow(index: number, id: number) {

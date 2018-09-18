@@ -33,7 +33,7 @@
                 <div class="gridDatasourceNameTitle">
                     <b>DS Name:</b>
                 </div>
-                <div class="gridDatasourceName">
+                <div class="gridDatasourceName" *ngIf="selectedDatasource.name">
                     <input [(ngModel)]="selectedDatasource.name"
                         name="name"
                         type="text"

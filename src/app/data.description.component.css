@@ -6,7 +6,7 @@
 .gridOverall {
     display: grid;
     grid-template-columns: repeat(20, 1fr);
-    grid-template-rows: repeat(20, 1rem);
+    grid-template-rows: repeat(26, 0.8rem);
 }
     .closeButton {
         background-color: transparent;
@@ -61,18 +61,18 @@
     }
 
     .gridDatasourceDescriptionTitle {
-        grid-column-start: 1;
+        grid-column-start: 10;
         /* autoprefixer: off */
-        grid-column-end: 3;
+        grid-column-end: 13;
         grid-row-start: 3;
         grid-row-end: 4;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
     .gridDatasourceDescription {
-        grid-column-start: 3;
+        grid-column-start: 13;
         /* autoprefixer: off */
-        grid-column-end: 9;
+        grid-column-end: 19;
         grid-row-start: 3;
         grid-row-end: 4;
         margin: 2px 2px 2px 2px;
@@ -83,8 +83,8 @@
         grid-column-start: 1;
         /* autoprefixer: off */
         grid-column-end: 3;
-        grid-row-start: 3;
-        grid-row-end: 4;
+        grid-row-start: 5;
+        grid-row-end: 6;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
@@ -92,27 +92,27 @@
         grid-column-start: 3;
         /* autoprefixer: off */
         grid-column-end: 9;
-        grid-row-start: 3;
-        grid-row-end: 4;
+        grid-row-start: 5;
+        grid-row-end: 6;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
 
     .gridDatasourceCacheServerTitle {
-        grid-column-start: 1;
+        grid-column-start: 10;
         /* autoprefixer: off */
-        grid-column-end: 3;
-        grid-row-start: 3;
-        grid-row-end: 4;
+        grid-column-end: 13;
+        grid-row-start: 5;
+        grid-row-end: 6;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
     .gridDatasourceCacheServer {
-        grid-column-start: 3;
+        grid-column-start: 13;
         /* autoprefixer: off */
-        grid-column-end: 9;
-        grid-row-start: 3;
-        grid-row-end: 4;
+        grid-column-end: 19;
+        grid-row-start: 5;
+        grid-row-end: 6;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
@@ -121,8 +121,8 @@
         grid-column-start: 1;
         /* autoprefixer: off */
         grid-column-end: 3;
-        grid-row-start: 3;
-        grid-row-end: 4;
+        grid-row-start: 7;
+        grid-row-end: 8;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
@@ -130,127 +130,22 @@
         grid-column-start: 3;
         /* autoprefixer: off */
         grid-column-end: 9;
-        grid-row-start: 3;
-        grid-row-end: 4;
+        grid-row-start: 7;
+        grid-row-end: 8;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
 
     .gridDatasourceCacheLocalTitle {
-        grid-column-start: 1;
+        grid-column-start: 10;
         /* autoprefixer: off */
-        grid-column-end: 3;
-        grid-row-start: 3;
-        grid-row-end: 4;
+        grid-column-end: 13;
+        grid-row-start: 7;
+        grid-row-end: 8;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
     .gridDatasourceCacheLocal {
-        grid-column-start: 3;
-        /* autoprefixer: off */
-        grid-column-end: 9;
-        grid-row-start: 3;
-        grid-row-end: 4;
-        margin: 2px 2px 2px 2px;
-        text-align: left;
-    }
-
-    .gridDatasourceNrCachedCopiesTitle {
-        grid-column-start: 1;
-        /* autoprefixer: off */
-        grid-column-end: 3;
-        grid-row-start: 3;
-        grid-row-end: 4;
-        margin: 2px 2px 2px 2px;
-        text-align: left;
-    }
-    .gridDatasourceNrCachedCopies {
-        grid-column-start: 3;
-        /* autoprefixer: off */
-        grid-column-end: 9;
-        grid-row-start: 3;
-        grid-row-end: 4;
-        margin: 2px 2px 2px 2px;
-        text-align: left;
-    }
-
-    .gridDatasourceMaxPeriodIntervalTitle {
-        grid-column-start: 1;
-        /* autoprefixer: off */
-        grid-column-end: 3;
-        grid-row-start: 3;
-        grid-row-end: 4;
-        margin: 2px 2px 2px 2px;
-        text-align: left;
-    }
-    .gridDatasourceMaxPeriodInterval {
-        grid-column-start: 3;
-        /* autoprefixer: off */
-        grid-column-end: 9;
-        grid-row-start: 3;
-        grid-row-end: 4;
-        margin: 2px 2px 2px 2px;
-        text-align: left;
-    }
-
-    .gridDatasourceMaxPeriodUnitsTitle {
-        grid-column-start: 1;
-        /* autoprefixer: off */
-        grid-column-end: 3;
-        grid-row-start: 3;
-        grid-row-end: 4;
-        margin: 2px 2px 2px 2px;
-        text-align: left;
-    }
-    .gridDatasourceMaxPeriodUnits {
-        grid-column-start: 3;
-        /* autoprefixer: off */
-        grid-column-end: 9;
-        grid-row-start: 3;
-        grid-row-end: 4;
-        margin: 2px 2px 2px 2px;
-        text-align: left;
-    }
-
-    .gridDatasourceRelatedDateTitle {
-        grid-column-start: 1;
-        /* autoprefixer: off */
-        grid-column-end: 3;
-        grid-row-start: 3;
-        grid-row-end: 4;
-        margin: 2px 2px 2px 2px;
-        text-align: left;
-    }
-    .gridDatasourceRelatedDate {
-        grid-column-start: 3;
-        /* autoprefixer: off */
-        grid-column-end: 9;
-        grid-row-start: 3;
-        grid-row-end: 4;
-        margin: 2px 2px 2px 2px;
-        text-align: left;
-    }
-
-    .gridDatasourceRelatedTimeTitle {
-        grid-column-start: 1;
-        /* autoprefixer: off */
-        grid-column-end: 3;
-        grid-row-start: 3;
-        grid-row-end: 4;
-        margin: 2px 2px 2px 2px;
-        text-align: left;
-    }
-    .gridDatasourceRelatedTime {
-        grid-column-start: 3;
-        /* autoprefixer: off */
-        grid-column-end: 9;
-        grid-row-start: 3;
-        grid-row-end: 4;
-        margin: 2px 2px 2px 2px;
-        text-align: left;
-    }
-
-    .gridCanAdd {
         grid-column-start: 13;
         /* autoprefixer: off */
         grid-column-end: 19;
@@ -260,7 +155,7 @@
         text-align: left;
     }
 
-    .gridCanDeleteTitle {
+    .gridDatasourceNrCachedCopiesTitle {
         grid-column-start: 1;
         /* autoprefixer: off */
         grid-column-end: 3;
@@ -269,7 +164,7 @@
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
-    .gridCanDelete {
+    .gridDatasourceNrCachedCopies {
         grid-column-start: 3;
         /* autoprefixer: off */
         grid-column-end: 9;
@@ -279,7 +174,7 @@
         text-align: left;
     }
 
-    .gridCanRefreshTitle {
+    .gridDatasourceMaxPeriodIntervalTitle {
         grid-column-start: 10;
         /* autoprefixer: off */
         grid-column-end: 13;
@@ -288,7 +183,7 @@
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
-    .gridCanRefresh {
+    .gridDatasourceMaxPeriodInterval {
         grid-column-start: 13;
         /* autoprefixer: off */
         grid-column-end: 19;
@@ -298,13 +193,70 @@
         text-align: left;
     }
 
+    .gridDatasourceMaxPeriodUnitsTitle {
+        grid-column-start: 1;
+        /* autoprefixer: off */
+        grid-column-end: 3;
+        grid-row-start: 11;
+        grid-row-end: 12;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridDatasourceMaxPeriodUnits {
+        grid-column-start: 3;
+        /* autoprefixer: off */
+        grid-column-end: 9;
+        grid-row-start: 11;
+        grid-row-end: 12;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+
+    .gridDatasourceRelatedDateTitle {
+        grid-column-start: 10;
+        /* autoprefixer: off */
+        grid-column-end: 13;
+        grid-row-start: 11;
+        grid-row-end: 12;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridDatasourceRelatedDate {
+        grid-column-start: 13;
+        /* autoprefixer: off */
+        grid-column-end: 19;
+        grid-row-start: 11;
+        grid-row-end: 12;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+
+    .gridDatasourceRelatedTimeTitle {
+        grid-column-start: 1;
+        /* autoprefixer: off */
+        grid-column-end: 3;
+        grid-row-start: 13;
+        grid-row-end: 14;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridDatasourceRelatedTime {
+        grid-column-start: 3;
+        /* autoprefixer: off */
+        grid-column-end: 9;
+        grid-row-start: 13;
+        grid-row-end: 14;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+
     .gridErrorMessage {
         color: red;
         grid-column-start: 4;
         /* autoprefixer: off */
         grid-column-end: 14;
-        grid-row-start: 9;
-        grid-row-end: 10;
+        grid-row-start: 14;
+        grid-row-end: 15;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
@@ -313,8 +265,8 @@
         grid-column-start: 4;
         /* autoprefixer: off */
         grid-column-end: 14;
-        grid-row-start: 9;
-        grid-row-end: 10;
+        grid-row-start: 14;
+        grid-row-end: 15;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
@@ -323,19 +275,18 @@
         grid-column-start: 15;
         /* autoprefixer: off */
         grid-column-end: 17;
-        grid-row-start: 8;
-        grid-row-end: 9;
+        grid-row-start: 13;
+        grid-row-end: 14;
         margin: 8px 2px 2px 2px;
         text-align: left;
     }
-
 
     .gridTable {
         grid-column-start: 1;
         /* autoprefixer: off */
         grid-column-end: 41;
-        grid-row-start: 10;
-        grid-row-end: 20;
+        grid-row-start: 15;
+        grid-row-end: 26;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
