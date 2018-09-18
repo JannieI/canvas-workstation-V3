@@ -35,7 +35,7 @@
                 </div>
                 <div class="gridDatasourceName">
                     <input [(ngModel)]="row.name"
-                        name="subject"
+                        name="name"
                         type="text"
                         title="Datasource Name"
                         required
@@ -46,27 +46,28 @@
                         >
                 </div>
 
-                <div class="gridDatasourceNameTitle">
-                    <b>DS Name:</b>
+                <div class="gridDatasourceDescriptionTitle">
+                    <b>Description:</b>
                 </div>
-                <div class="gridSubject">
+                <div class="gridDatasourceDescription">
                     <input [(ngModel)]="row.description"
-                        name="subject"
+                        name="description"
                         type="text"
-                        title="Subject"
+                        title="Datasource description"
                         required
                         minlength="2"
-                        #subjectVar="ngModel"
-                        [style.color]="!subjectVar.valid ? 'red' : 'gray'"
+                        #descriptionVar="ngModel"
+                        [style.color]="!descriptionVar.valid ? 'red' : 'gray'"
                         size="25"
                         >
                 </div>
 
-                <div class="gridDatasourceNameTitle">
-                    <b>DS Name:</b>
+                <div class="gridDatasourceAccessTypeTitle">
+                    <b>Access Type:</b>
                 </div>
-                <div class="select gridUserID">
+                <div class="select gridDatasourceAccessType">
                     <select
+                        name="accessType"
                         [(ngModel)]="selectedUserID"
                         >
                         <option>Private</option>
@@ -75,63 +76,64 @@
                     </select>
                 </div>
 
-                <div class="gridDatasourceNameTitle">
-                    <b>DS Name:</b>
+                <div class="gridDatasourceCacheServerTitle">
+                    <b>Cache Srv:</b>
                 </div>
-                <div class="gridCanDelete">
+                <div class="gridDatasourceCacheServer">
                     <input [(ngModel)]="row.cacheResultsOnServer"
                         type="checkbox"
-                        name="canDelete"
-                        #snapToGridVar="ngModel"
-                        title="The specified User/Group Can Delete this Datasource (T/F)"
-                        [style.color]="!snapToGridVar.valid ? 'red' : 'gray'"
+                        name="cacheResultsOnServer"
+                        #cacheServerVar="ngModel"
+                        title="Specify if data for this Datasource can be cached on the server (T/F)"
+                        [style.color]="!cacheServerVar.valid ? 'red' : 'gray'"
                         >
                 </div>
 
-                <div class="gridDatasourceNameTitle">
-                    <b>DS Name:</b>
+                <div class="gridDatasourceUnrefreshableTitle">
+                    <b>Unrefreshable?:</b>
                 </div>
-                <div class="gridCanDelete">
+                <div class="gridDatasourceUnrefreshable">
                     <input [(ngModel)]="row.unRefreshable"
                         type="checkbox"
-                        name="canDelete"
-                        #snapToGridVar="ngModel"
-                        title="The specified User/Group Can Delete this Datasource (T/F)"
-                        [style.color]="!snapToGridVar.valid ? 'red' : 'gray'"
+                        name="unRefreshable"
+                        #unrefreshableVar="ngModel"
+                        title="Specify if data for this Datasource can refreshed (T/F)"
+                        [style.color]="!unrefreshableVar.valid ? 'red' : 'gray'"
                         >
                 </div>
 
-                <div class="gridDatasourceNameTitle">
-                    <b>DS Name:</b>
+                <div class="gridDatasourceCacheLocalTitle">
+                    <b>Cache Local:</b>
                 </div>
-                <div class="gridCanDelete">
+                <div class="gridDatasourceCacheLocal">
                     <input [(ngModel)]="row.cacheResultsLocal"
                         type="checkbox"
-                        name="canDelete"
-                        #snapToGridVar="ngModel"
-                        title="The specified User/Group Can Delete this Datasource (T/F)"
-                        [style.color]="!snapToGridVar.valid ? 'red' : 'gray'"
+                        name="cacheResultsLocal"
+                        #cacheLocalVar="ngModel"
+                        title="Specift if data for this Datasource can be cached locally (T/F)"
+                        [style.color]="!cacheLocalVar.valid ? 'red' : 'gray'"
                         >
                 </div>
 
-                <div class="gridDatasourceNameTitle">
-                    <b>DS Name:</b>
+                <div class="gridDatasourceNrCachedCopiesTitle">
+                    <b>Cached Copies:</b>
                 </div>
-                <div class="gridCanDelete">
+                <div class="gridDatasourceNrCachedCopies">
                     <input [(ngModel)]="row.nrCacheCopies"
                         type="checkbox"
-                        name="canDelete"
-                        #snapToGridVar="ngModel"
-                        title="The specified User/Group Can Delete this Datasource (T/F)"
-                        [style.color]="!snapToGridVar.valid ? 'red' : 'gray'"
+                        name="nrCacheCopies"
+                        #cachedCopiesVar="ngModel"
+                        title="Specify the number of cached copies that must be kept for this Datasource"
+                        [style.color]="!cachedCopiesVar.valid ? 'red' : 'gray'"
                         >
                 </div>
 
-                <div class="gridDatasourceNameTitle">
-                    <b>DS Name:</b>
+                <div class="gridDatasourceMaxPeriodIntervalTitle">
+                    <b>Max Interval:</b>
                 </div>
-                <div class="select gridUserID">
+                <div class="select gridDatasourceMaxPeriodInterval">
                     <select
+                        name="oldnessMaxPeriodInterval"
                         [(ngModel)]="row.oldnessMaxPeriodInterval"
                         >
                         <option>Second</option>
@@ -143,52 +145,52 @@
                     </select>
                 </div>
 
-                <div class="gridDatasourceNameTitle">
-                    <b>DS Name:</b>
+                <div class="gridDatasourceMaxPeriodUnitsTitle">
+                    <b>Max Units:</b>
                 </div>
-                <div class="gridSubject">
+                <div class="gridDatasourceMaxPeriodUnits">
                     <input [(ngModel)]="row.oldnessMaxPeriodUnits"
-                        name="subject"
+                        name="oldnessMaxPeriodUnits"
                         type="number"
-                        title="Subject"
+                        title="Maximum number of units for oldness"
                         required
                         min="0"
                         max="100"
                         size="5"
-                        #subjectVar="ngModel"
-                        [style.color]="!subjectVar.valid ? 'red' : 'gray'"
+                        #MaxUnitsVar="ngModel"
+                        [style.color]="!MaxUnitsVar.valid ? 'red' : 'gray'"
                         size="25"
                         >
                 </div>
 
-                <div class="gridDatasourceNameTitle">
-                    <b>DS Name:</b>
+                <div class="gridDatasourceRelatedDateTitle">
+                    <b>Related Date:</b>
                 </div>
-                <div class="gridSubject">
+                <div class="gridDatasourceRelatedDate">
                     <input [(ngModel)]="row.oldnessRelatedDate"
-                        name="subject"
+                        name="oldnessRelatedDate"
                         type="text"
-                        title="Subject"
+                        title="Related date for oldness"
                         required
                         minlength="2"
-                        #subjectVar="ngModel"
-                        [style.color]="!subjectVar.valid ? 'red' : 'gray'"
+                        #relatedDateVar="ngModel"
+                        [style.color]="!relatedDateVar.valid ? 'red' : 'gray'"
                         size="25"
                         >
                 </div>
 
-                <div class="gridDatasourceNameTitle">
+                <div class="gridDatasourceRelatedTimeTitle">
                     <b>DS Name:</b>
                 </div>
-                <div class="gridSubject">
+                <div class="gridDatasourceRelatedTime">
                     <input [(ngModel)]="row.oldnessRelatedTime"
-                        name="subject"
+                        name="oldnessRelatedTime"
                         type="text"
-                        title="Subject"
+                        title="Related time for oldness"
                         required
                         minlength="2"
-                        #subjectVar="ngModel"
-                        [style.color]="!subjectVar.valid ? 'red' : 'gray'"
+                        #relatedTimeVar="ngModel"
+                        [style.color]="!relatedTimeVar.valid ? 'red' : 'gray'"
                         size="25"
                         >
                 </div>

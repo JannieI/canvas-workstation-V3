@@ -60,91 +60,196 @@
         text-align: left;
     }
 
-    .gridUserIDTitle {
-        grid-column-start: 10;
+    .gridDatasourceDescriptionTitle {
+        grid-column-start: 1;
         /* autoprefixer: off */
-        grid-column-end: 13;
+        grid-column-end: 3;
         grid-row-start: 3;
         grid-row-end: 4;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
-    .gridUserID {
-        grid-column-start: 13;
+    .gridDatasourceDescription {
+        grid-column-start: 3;
         /* autoprefixer: off */
-        grid-column-end: 19;
+        grid-column-end: 9;
         grid-row-start: 3;
         grid-row-end: 4;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
 
-    .gridGroupIDTitle {
+    .gridDatasourceAccessTypeTitle {
         grid-column-start: 1;
         /* autoprefixer: off */
         grid-column-end: 3;
-        grid-row-start: 5;
-        grid-row-end: 6;
+        grid-row-start: 3;
+        grid-row-end: 4;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
-    .gridGroupID {
+    .gridDatasourceAccessType {
         grid-column-start: 3;
         /* autoprefixer: off */
         grid-column-end: 9;
-        grid-row-start: 5;
-        grid-row-end: 6;
+        grid-row-start: 3;
+        grid-row-end: 4;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
 
-    .gridCanViewTitle {
-        grid-column-start: 10;
-        /* autoprefixer: off */
-        grid-column-end: 13;
-        grid-row-start: 5;
-        grid-row-end: 6;
-        margin: 2px 2px 2px 2px;
-        text-align: left;
-    }
-    .gridCanView {
-        grid-column-start: 13;
-        /* autoprefixer: off */
-        grid-column-end: 19;
-        grid-row-start: 5;
-        grid-row-end: 6;
-        margin: 2px 2px 2px 2px;
-        text-align: left;
-    }
-
-    .gridCanEditTitle {
+    .gridDatasourceCacheServerTitle {
         grid-column-start: 1;
         /* autoprefixer: off */
         grid-column-end: 3;
-        grid-row-start: 7;
-        grid-row-end: 8;
+        grid-row-start: 3;
+        grid-row-end: 4;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
-    .gridCanEdit {
+    .gridDatasourceCacheServer {
         grid-column-start: 3;
         /* autoprefixer: off */
         grid-column-end: 9;
-        grid-row-start: 7;
-        grid-row-end: 8;
+        grid-row-start: 3;
+        grid-row-end: 4;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
 
-    .gridCanAddTitle {
-        grid-column-start: 10;
+    .gridDatasourceUnrefreshableTitle {
+        grid-column-start: 1;
         /* autoprefixer: off */
-        grid-column-end: 13;
-        grid-row-start: 7;
-        grid-row-end: 8;
+        grid-column-end: 3;
+        grid-row-start: 3;
+        grid-row-end: 4;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
+    .gridDatasourceUnrefreshable {
+        grid-column-start: 3;
+        /* autoprefixer: off */
+        grid-column-end: 9;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+
+    .gridDatasourceCacheLocalTitle {
+        grid-column-start: 1;
+        /* autoprefixer: off */
+        grid-column-end: 3;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridDatasourceCacheLocal {
+        grid-column-start: 3;
+        /* autoprefixer: off */
+        grid-column-end: 9;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+
+    .gridDatasourceNrCachedCopiesTitle {
+        grid-column-start: 1;
+        /* autoprefixer: off */
+        grid-column-end: 3;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridDatasourceNrCachedCopies {
+        grid-column-start: 3;
+        /* autoprefixer: off */
+        grid-column-end: 9;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+
+    .gridDatasourceMaxPeriodIntervalTitle {
+        grid-column-start: 1;
+        /* autoprefixer: off */
+        grid-column-end: 3;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridDatasourceMaxPeriodInterval {
+        grid-column-start: 3;
+        /* autoprefixer: off */
+        grid-column-end: 9;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+
+    .gridDatasourceMaxPeriodUnitsTitle {
+        grid-column-start: 1;
+        /* autoprefixer: off */
+        grid-column-end: 3;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridDatasourceMaxPeriodUnits {
+        grid-column-start: 3;
+        /* autoprefixer: off */
+        grid-column-end: 9;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+
+    .gridDatasourceRelatedDateTitle {
+        grid-column-start: 1;
+        /* autoprefixer: off */
+        grid-column-end: 3;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridDatasourceRelatedDate {
+        grid-column-start: 3;
+        /* autoprefixer: off */
+        grid-column-end: 9;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }    
+    
+    .gridDatasourceRelatedTimeTitle {
+        grid-column-start: 1;
+        /* autoprefixer: off */
+        grid-column-end: 3;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridDatasourceRelatedTime {
+        grid-column-start: 3;
+        /* autoprefixer: off */
+        grid-column-end: 9;
+        grid-row-start: 3;
+        grid-row-end: 4;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }    
+      
     .gridCanAdd {
         grid-column-start: 13;
         /* autoprefixer: off */
