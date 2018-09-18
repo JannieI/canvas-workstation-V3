@@ -460,6 +460,7 @@ export class AppComponent implements OnInit {
     showModalDataDirectSQLEditor: boolean = false;
     showModalDataDirectWeb: boolean = false;
     showModalDataEditDatasource: boolean = false;
+    showModalDataDatasourceDescription: boolean = false;
     showModalDataManagedConnection: boolean = false;
     showModalDataManagedGraphQLEditor: boolean = false;
     showModalDataManagedNeo4jEditor: boolean = false;
@@ -1795,6 +1796,17 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
             };
 
         };
+    }
+
+    handleCloseDataDatasourceDescription () {
+        // Handle Close of Edit Datasource
+        this.globalFunctionService.printToConsole(this.constructor.name,'handleCloseDataDatasourceDescription', '@Start');
+
+        this.menuOptionClickPostAction();
+
+        // Close the DS Description form
+        this.showModalDataDatasourceDescription = false;
+
     }
 
     handleCloseDataManagedDataQuality(action: string) {
