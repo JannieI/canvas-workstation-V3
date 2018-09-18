@@ -43,23 +43,13 @@ export class DatasourceDescriptionComponent implements OnInit {
 
     }
 
-    canView: boolean = false;
-    canEdit: boolean = false;
-    canAdd: boolean = false;
-    canDelete: boolean = false;
-    canRefresh: boolean = false;
-    datasourcePermissions: DatasourcePermission[];
     datasources: Datasource[];
     errorMessage: string = '';
-    groupNames: string[] = [];
-    groups: CanvasGroup[];
-    selectedDatasource: string;
-    selectedGroupName: string = '';
+    infoMessage: string = '';
+    selectedDatasource: Datasource;
     selectedRowIndex: number = 0;
-    selectedUserID: string;
-    userNames: string[] = [];
-    users: CanvasUser[];
 
+    
 	constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
@@ -79,67 +69,37 @@ export class DatasourceDescriptionComponent implements OnInit {
 
         // Set seletected index - used for highlighting row
         this.selectedRowIndex = index;
+        this.selectedDatasource = this.datasources[index];
     }
 
-    clickAdd() {
-        // Add a new Permission
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickAdd', '@Start');
+    clickSave() {
+        // Save the DS
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
         // Reset
         this.errorMessage = '';
+        this.infoMessage = '';
 
         // Validation
-        if (this.selectedDatasource == ''  ||  this.selectedDatasource == null) {
-            this.errorMessage = 'Please select a Datasource';
+        if (this.selectedDatasource.name == ''  ||  this.selectedDatasource.name == null) {
+            this.errorMessage = 'Please enter a Name for the Datasource';
             return;
         };
-        if (this.selectedUserID == ''  &&  this.selectedGroupName == '') {
-            this.errorMessage = 'Select at least a user or a group';
+        if (this.selectedDatasource.description == ''  ||  this.selectedDatasource.description == null) {
+            this.errorMessage = 'Please enter a Description for the Datasource';
             return;
         };
 
-        // Get groupID
-        let groupID: number = -1;
-        if (this.selectedGroupName != '') {
-            let groupIndex: number = this.groups.findIndex(
-                grp => grp.name == this.selectedGroupName);
-            if (groupIndex < 0) {
-                this.errorMessage = 'Unexpected error - group not found';
-                return;
-            };
-            groupID = this.groups[groupIndex].id;
-        };
+        // Update
+        this.globalVariableService.saveDatasource(this.selectedDatasource).then(res => {
+            this.infoMessage = 'Datasource Saved';
+        });
 
-        // Get DS-ID
-        let datasourceIndex: number = this.datasources.findIndex(
-            ds => ds.name == this.selectedDatasource);
-        if (datasourceIndex < 0) {
-            this.errorMessage = 'Unexpected error - Datasource not found';
-            return;
-        }
-        let datasourceID: number = this.datasources[datasourceIndex].id;
-
-        // Create new Permisions record and save to DB
-        let newDatasourcePermision: DatasourcePermission = {
-                id: null,
-                datasourceID: datasourceID,
-                name: this.selectedDatasource,
-                userID: this.selectedUserID,
-                groupID: groupID,
-                groupName: this.selectedGroupName,
-                canView: this.canView,
-                canEdit: this.canEdit,
-                canDelete: this.canDelete,
-                canRefresh: this.canRefresh
-        };
-        this.globalVariableService.addDatasourcePermission(newDatasourcePermision).then(
-            res => this.datasourcePermissions.push(res)
-        );
 
     }
 
     clickClose(action: string) {
-        //
+        // Close the form, nothing saved at this moment
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClose', '@Start');
 
         console.log('clickClose')
