@@ -94,6 +94,24 @@ export class DatasourceDescriptionComponent implements OnInit {
             return;
         };
 
+        // Warn that access list was deleted
+        if (this.datasources[this.selectedRowIndex].accessType == 'AccessList'
+            &&
+            this.selectedDatasource.accessType != 'AccessList') {
+                this.errorMessage = 'Warning; the existing access list was deleted.';
+
+                let DatasourcePermission: DatasourcePermission[];
+                this.globalVariableService.getDatasourcePermissions().then(res => {
+                    res.forEach(dP => {
+                        if (dP.datasourceID == this.selectedDatasource.id) {
+                            this.globalVariableService.deleteDatasourcePermission(
+                                dP.datasourceID
+                            );
+                        };
+                    });
+                });
+            };
+            
         // Update
         this.globalVariableService.saveDatasource(this.selectedDatasource).then(res => {
             this.infoMessage = 'Datasource Saved';

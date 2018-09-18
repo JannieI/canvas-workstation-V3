@@ -262,6 +262,7 @@
     }
 
     .gridInfoMessage {
+        color: blue;
         grid-column-start: 4;
         /* autoprefixer: off */
         grid-column-end: 14;
