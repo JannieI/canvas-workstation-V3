@@ -69,7 +69,7 @@ export class DatasourceDescriptionComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.datasources = this.globalVariableService.datasources;
+        this.datasources = this.globalVariableService.datasources.slice();
 
         this.globalVariableService.getDatasourcePermissions().then (dp => {
             this.datasourcePermissions = dp;

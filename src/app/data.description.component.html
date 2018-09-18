@@ -8,7 +8,7 @@
                 </button>
 
                 <div class="gridTitle">
-        
+
                     <b>Datasource Description</b>
                     <clr-signpost>
                         <clr-icon shape="info-circle"
@@ -19,7 +19,7 @@
                             <h5 style="margin-top: 0; color:gray;">
                                 Help
                             </h5>
-                            <p style="margin-top: 0; color:gray;"> 
+                            <p style="margin-top: 0; color:gray;">
                                 Select a Datasource, and then amend the descriptive properties
                                 for it.  The access type can be private (only yourself), public
                                 (all users) or access list (apply specific permissions to users
@@ -33,91 +33,53 @@
                 <div class="gridDatasourceNameTitle">
                     <b>DS Name:</b>
                 </div>
-
-                <div class="select gridDatasourceName">
-                    <select
-                        [(ngModel)]="selectedDatasource"
+                <div class="gridDatasourceName">
+                    <input [(ngModel)]="row.name"
+                        name="subject"
+                        type="text"
+                        title="Datasource Name"
+                        required
+                        minlength="2"
+                        #nameVar="ngModel"
+                        [style.color]="!nameVar.valid ? 'red' : 'gray'"
+                        size="25"
                         >
-                        <option *ngFor="let row of datasources"
-                            >
-                            {{ row.name }}
-                        </option>
-                    </select>
                 </div>
 
-                <div class="gridUserIDTitle">
-                    <b>User:</b>
+                <div class="gridDatasourceNameTitle">
+                    <b>DS Name:</b>
+                </div>
+                <div class="gridSubject">
+                    <input [(ngModel)]="row.description"
+                        name="subject"
+                        type="text"
+                        title="Subject"
+                        required
+                        minlength="2"
+                        #subjectVar="ngModel"
+                        [style.color]="!subjectVar.valid ? 'red' : 'gray'"
+                        size="25"
+                        >
+                </div>
+
+                <div class="gridDatasourceNameTitle">
+                    <b>DS Name:</b>
                 </div>
                 <div class="select gridUserID">
                     <select
                         [(ngModel)]="selectedUserID"
                         >
-                        <option *ngFor="let row of userNames"
-                            >
-                            {{ row }}
-                        </option>
+                        <option>Private</option>
+                        <option>Public</option>
+                        <option>AccessList</option>
                     </select>
                 </div>
-    
-                <div class="gridGroupIDTitle">
-                    <b>Group:</b>
-                </div>
-                <div class="gridGroupID">
-                    <div class="select">
-                        <select
-                            [(ngModel)]="selectedGroupName"
-                            >
-                            <option *ngFor="let row of groupNames; let i = index">
-                                {{ row }}
-                            </option>
-                        </select>
-                    </div>
-                </div>
 
-                <div class="gridCanViewTitle">
-                    Can View:
-                </div>
-                <div class="gridCanView">
-                    <input [(ngModel)]="canView"
-                        type="checkbox"
-                        name="canView"
-                        #snapToGridVar="ngModel"
-                        title="The specified User/Group Can View this Datasource (T/F)"
-                        [style.color]="!snapToGridVar.valid ? 'red' : 'gray'"
-                        >
-                </div>
-
-                <div class="gridCanEditTitle">
-                    Can Edit:
-                </div>
-                <div class="gridCanEdit">
-                    <input [(ngModel)]="canEdit"
-                        type="checkbox"
-                        name="canEdit"
-                        #snapToGridVar="ngModel"
-                        title="The specified User/Group Can Edit this Datasource (T/F)"
-                        [style.color]="!snapToGridVar.valid ? 'red' : 'gray'"
-                        >
-                </div>
-    
-                <div class="gridCanAddTitle">
-                    Can Add:
-                </div>
-                <div class="gridCanAdd">
-                    <input [(ngModel)]="canAdd"
-                        type="checkbox"
-                        name="canAdd"
-                        #snapToGridVar="ngModel"
-                        title="The specified User/Group Can Add this Datasource (T/F)"
-                        [style.color]="!snapToGridVar.valid ? 'red' : 'gray'"
-                        >
-                </div>
-    
-                <div class="gridCanDeleteTitle">
-                    Can Delete:
+                <div class="gridDatasourceNameTitle">
+                    <b>DS Name:</b>
                 </div>
                 <div class="gridCanDelete">
-                    <input [(ngModel)]="canDelete"
+                    <input [(ngModel)]="row.cacheResultsOnServer"
                         type="checkbox"
                         name="canDelete"
                         #snapToGridVar="ngModel"
@@ -126,16 +88,108 @@
                         >
                 </div>
 
-                <div class="gridCanRefreshTitle">
-                    Can Refresh:
+                <div class="gridDatasourceNameTitle">
+                    <b>DS Name:</b>
                 </div>
-                <div class="gridCanRefresh">
-                    <input [(ngModel)]="canRefresh"
+                <div class="gridCanDelete">
+                    <input [(ngModel)]="row.unRefreshable"
                         type="checkbox"
-                        name="canRefresh"
+                        name="canDelete"
                         #snapToGridVar="ngModel"
-                        title="The specified User/Group Can Refresh this Datasource (T/F)"
+                        title="The specified User/Group Can Delete this Datasource (T/F)"
                         [style.color]="!snapToGridVar.valid ? 'red' : 'gray'"
+                        >
+                </div>
+
+                <div class="gridDatasourceNameTitle">
+                    <b>DS Name:</b>
+                </div>
+                <div class="gridCanDelete">
+                    <input [(ngModel)]="row.cacheResultsLocal"
+                        type="checkbox"
+                        name="canDelete"
+                        #snapToGridVar="ngModel"
+                        title="The specified User/Group Can Delete this Datasource (T/F)"
+                        [style.color]="!snapToGridVar.valid ? 'red' : 'gray'"
+                        >
+                </div>
+
+                <div class="gridDatasourceNameTitle">
+                    <b>DS Name:</b>
+                </div>
+                <div class="gridCanDelete">
+                    <input [(ngModel)]="row.nrCacheCopies"
+                        type="checkbox"
+                        name="canDelete"
+                        #snapToGridVar="ngModel"
+                        title="The specified User/Group Can Delete this Datasource (T/F)"
+                        [style.color]="!snapToGridVar.valid ? 'red' : 'gray'"
+                        >
+                </div>
+
+                <div class="gridDatasourceNameTitle">
+                    <b>DS Name:</b>
+                </div>
+                <div class="select gridUserID">
+                    <select
+                        [(ngModel)]="row.oldnessMaxPeriodInterval"
+                        >
+                        <option>Second</option>
+                        <option>Minute</option>
+                        <option>Hour</option>
+                        <option>Day</option>
+                        <option>Month</option>
+                        <option>Year</option>
+                    </select>
+                </div>
+
+                <div class="gridDatasourceNameTitle">
+                    <b>DS Name:</b>
+                </div>
+                <div class="gridSubject">
+                    <input [(ngModel)]="row.oldnessMaxPeriodUnits"
+                        name="subject"
+                        type="number"
+                        title="Subject"
+                        required
+                        min="0"
+                        max="100"
+                        size="5"
+                        #subjectVar="ngModel"
+                        [style.color]="!subjectVar.valid ? 'red' : 'gray'"
+                        size="25"
+                        >
+                </div>
+
+                <div class="gridDatasourceNameTitle">
+                    <b>DS Name:</b>
+                </div>
+                <div class="gridSubject">
+                    <input [(ngModel)]="row.oldnessRelatedDate"
+                        name="subject"
+                        type="text"
+                        title="Subject"
+                        required
+                        minlength="2"
+                        #subjectVar="ngModel"
+                        [style.color]="!subjectVar.valid ? 'red' : 'gray'"
+                        size="25"
+                        >
+                </div>
+
+                <div class="gridDatasourceNameTitle">
+                    <b>DS Name:</b>
+                </div>
+                <div class="gridSubject">
+                    <input [(ngModel)]="row.oldnessRelatedTime"
+                        name="subject"
+                        type="text"
+                        title="Subject"
+                        required
+                        minlength="2"
+                        #subjectVar="ngModel"
+                        [style.color]="!subjectVar.valid ? 'red' : 'gray'"
+                        size="25"
                         >
                 </div>
 
@@ -143,9 +197,9 @@
                     <button
                         type="button"
                         class="btn btn-primary"
-                        (click)="clickAdd()"
+                        (click)="clickSave()"
                         >
-                        Add
+                        Save
                     </button>
                 </div>
 
@@ -155,77 +209,58 @@
 
                 <div class = "gridTable">
                     <clr-datagrid>
-                        <clr-dg-column>Delete</clr-dg-column>
-                        <clr-dg-column>DS Name</clr-dg-column>
-                        <clr-dg-column>User ID</clr-dg-column>
-                        <clr-dg-column>Group ID</clr-dg-column>
-                        <clr-dg-column>CanView</clr-dg-column>
-                        <clr-dg-column>CanEdit</clr-dg-column>
-                        <clr-dg-column>CanDelete</clr-dg-column>
-                        <clr-dg-column>CanRefresh</clr-dg-column>
 
-                        <clr-dg-row *ngFor="let row of datasourcePermissions; let i = index"
+                        <clr-dg-column [clrDgField]="type">Type</clr-dg-column>
+
+                        <clr-dg-column [clrDgField]="name">Name</clr-dg-column>
+                        <clr-dg-column [clrDgField]="description">Description</clr-dg-column>
+                        <clr-dg-column [clrDgField]="accessType">AccessType</clr-dg-column>
+                        <clr-dg-column [clrDgField]="cacheResultsOnServer">Cache Srv</clr-dg-column>
+                        <clr-dg-column [clrDgField]="unRefreshable">UnRefreshable</clr-dg-column>
+                        <clr-dg-column [clrDgField]="cacheResultsLocal">Cache Local</clr-dg-column>
+                        <clr-dg-column [clrDgField]="nrCacheCopies">Cache Copies</clr-dg-column>
+                        <clr-dg-column [clrDgField]="oldnessMaxPeriodInterval">Oldness Interval</clr-dg-column>
+                        <clr-dg-column [clrDgField]="oldnessMaxPeriodUnits">Oldness Period</clr-dg-column>
+                        <clr-dg-column [clrDgField]="oldnessRelatedDate">Oldness Related</clr-dg-column>
+                        <clr-dg-column [clrDgField]="oldnessRelatedTime">Oldness Time</clr-dg-column>
+
+                        <clr-dg-column [clrDgField]="createMethod">Create Method</clr-dg-column>
+                        <clr-dg-column [clrDgField]="createdBy">Created By</clr-dg-column>
+                        <clr-dg-column [clrDgField]="createdOn">Created On</clr-dg-column>
+                        <clr-dg-column [clrDgField]="editor">Editor</clr-dg-column>
+                        <clr-dg-column [clrDgField]="dateEdited">Edited On</clr-dg-column>
+                        <clr-dg-column [clrDgField]="refreshedBy">Refreshed By</clr-dg-column>
+                        <clr-dg-column [clrDgField]="refreshedServerOn">Srv Refreshed</clr-dg-column>
+                        <clr-dg-column [clrDgField]="refreshedLocalOn">Local Refreshed</clr-dg-column>
+
+                        <clr-dg-row *ngFor="let row of datasources; let i = index"
                             [style.background-color]="(i == selectedRowIndex)? '#123456' : 'white'"
                             [style.color]="(i == selectedRowIndex)? 'white' : 'gray'"
                             (click)="clickRow(i, row.id)"
                             >
-                            <clr-dg-cell>
-                                <clr-icon shape="trash"
-                                    (dblclick)="dblclickDeletePermission(row.id, i)">
-                                </clr-icon>
-                            </clr-dg-cell>
-                            <clr-dg-cell>{{row.name}}</clr-dg-cell>
-                            <clr-dg-cell>{{row.userID}}</clr-dg-cell>
-                            <clr-dg-cell>{{row.name}}</clr-dg-cell>
-                            <clr-dg-cell class="checkCell">
-                                <clr-icon shape="check" *ngIf="row.canView"
-                                    size="16"
-                                    (dblclick)="clickToggleView(row.id, $event)"
-                                    >
-                                </clr-icon>
-                                <clr-icon shape="times" *ngIf="!row.canView"
-                                    size="16"
-                                    (dblclick)="clickToggleView(row.id, $event)"
-                                    >
-                                </clr-icon>
-                            </clr-dg-cell>
-                            <clr-dg-cell class="checkCell">
-                                <clr-icon shape="check" *ngIf="row.canEdit"
-                                    size="16"
-                                    (dblclick)="clickToggleEdit(row.id, $event)"
-                                    >
-                                </clr-icon>
-                                <clr-icon shape="times" *ngIf="!row.canEdit"
-                                    size="16"
-                                    (dblclick)="clickToggleEdit(row.id, $event)"
-                                    >
-                                </clr-icon>
-                            </clr-dg-cell>
-                            <clr-dg-cell class="checkCell">
-                                <clr-icon shape="check" *ngIf="row.canDelete"
-                                    size="16"
-                                    (dblclick)="clickToggleDelete(row.id, $event)"
-                                    >
-                                </clr-icon>
-                                <clr-icon shape="times" *ngIf="!row.canDelete"
-                                    size="16"
-                                    (dblclick)="clickToggleDelete(row.id, $event)"
-                                    >
-                                </clr-icon>
-                            </clr-dg-cell>
 
-                            <clr-dg-cell class="checkCell">
-                                <clr-icon shape="check" *ngIf="row.canRefresh"
-                                    size="16"
-                                    (dblclick)="clickToggleRefresh(row.id, $event)"
-                                    >
-                                </clr-icon>
-                                <clr-icon shape="times" *ngIf="!row.canRefresh"
-                                    size="16"
-                                    (dblclick)="clickToggleRefresh(row.id, $event)"
-                                    >
-                                </clr-icon>
-                            </clr-dg-cell>
+                            <clr-dg-cell>{{row.type: string}}</clr-dg-cell>
+
+                            <clr-dg-cell>{{row.name}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.description}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.accessType}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.cacheResultsOnServer}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.unRefreshable}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.cacheResultsLocal}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.nrCacheCopies}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.oldnessMaxPeriodInterval}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.oldnessMaxPeriodUnits}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.oldnessRelatedDate}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.oldnessRelatedTime}}</clr-dg-cell>
+
+                            <clr-dg-cell>{{row.createMethod: string;}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.createdBy: string;}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.createdOn: Date;}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.editor: string;}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.dateEdited: Date;}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.refreshedBy: string;}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.refreshedServerOn: Date;}}</clr-dg-cell>
+                            <clr-dg-cell>{{row.refreshedLocalOn: Date;}}</clr-dg-cell>
 
                         </clr-dg-row>
 
