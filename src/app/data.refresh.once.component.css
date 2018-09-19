@@ -32,9 +32,9 @@
     }
 
     .gridHelp {
-        grid-column-start: 4;
+        grid-column-start: 2;
         /* autoprefixer: off */
-        grid-column-end: 14;
+        grid-column-end: 11;
         grid-row-start: 2;
         grid-row-end: 3;
         margin: 2px 2px 2px 2px;
@@ -43,15 +43,26 @@
 
     .gridErrorMessage {
         color: red;
-        grid-column-start: 4;
+        grid-column-start: 11;
         /* autoprefixer: off */
-        grid-column-end: 14;
+        grid-column-end: 20;
         grid-row-start: 2;
         grid-row-end: 3;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
 
+    .gridInfoMessage {
+        color: blue;
+        grid-column-start: 11;
+        /* autoprefixer: off */
+        grid-column-end: 20;
+        grid-row-start: 2;
+        grid-row-end: 3;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    
     .datasourceList {
         border: 1px solid black;
         grid-column-start: 1;

@@ -46,6 +46,7 @@ export class DataRefreshOnceComponent implements OnInit {
     editing: boolean = false;
     errorMessage: string = '';
     selectedDatasource: Datasource;
+    infoMessage: string;
     isBusyRetrievingData: boolean = false;
     currentDatasources: Datasource[] = null;               // Current DS for the selected W
     selectedRowIndex: number = 0;
@@ -94,6 +95,7 @@ export class DataRefreshOnceComponent implements OnInit {
         this.selectedRowIndex = index;
         this.dataFieldNames = this.currentDatasources[index].dataFields;
         this.errorMessage = '';
+        this.infoMessage = '';
 
     }
 
@@ -112,6 +114,7 @@ export class DataRefreshOnceComponent implements OnInit {
         // Highlight selected row
         this.selectedRowIndex = index;
         this.errorMessage = '';
+        this.infoMessage = '';
 
         // Check permissions
         if (!this.globalVariableService.datasourcePermissionsCheck(
@@ -229,7 +232,7 @@ export class DataRefreshOnceComponent implements OnInit {
         this.currentData = this.globalVariableService.currentDatasets.filter(
             d => d.id == dSetID)[0].data.slice(0,5);
 
+        this.infoMessage = 'Data Refreshed (preview on the right)';
     }
-
 
 }
