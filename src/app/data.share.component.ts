@@ -241,6 +241,32 @@ export class DatasourceShareComponent implements OnInit {
         };
     }
 
+    clickToggleGrant(index: number, id: number) {
+        // User dblclicked Grant - so toggle it
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickToggleGrant', '@Start');
+
+        // Check permissions
+        if (!this.globalVariableService.datasourcePermissionsCheck(
+            this.datasourcePermissions[index].datasourceID, 'CanGrant') ) {
+            this.errorMessage = 'No permission to grant access on this record';
+            return;
+        };
+
+        // Toggle
+        for(var i = 0; i < this.datasourcePermissions.length; i++) {
+            if (this.datasourcePermissions[i].id == id) {
+                this.datasourcePermissions[i].canGrant = ! this.datasourcePermissions[i].canGrant;
+                index = i;
+            };
+        };
+
+        if (index != -1) {
+            this.globalVariableService.saveDatasourcePermission(
+                this.datasourcePermissions[index])
+                ;
+        };
+    }
+
     dblclickDeletePermission(id: number, index: number) {
         // Delete the selected Permission
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDeletePermission', '@Start');
