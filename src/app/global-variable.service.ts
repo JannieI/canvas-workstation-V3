@@ -11121,9 +11121,6 @@ export class GlobalVariableService {
         if (datasource == undefined) {
             return;
         };
-
-        // Everyone has access to Public Ds
-        console.warn('xx datasource.accessType', datasource);
         
         if (datasource.accessType.toLowerCase() == 'public') {
             hasAccess = true;
@@ -11140,6 +11137,7 @@ export class GlobalVariableService {
             this.datasourcePermissions.forEach(dp => {
 
                 if (dp.datasourceID == datasource.id) {
+console.warn('xx ds perm', dp);
 
                     if (dp.userID != null) {
 
@@ -11156,7 +11154,7 @@ export class GlobalVariableService {
                             if (accessRequired == 'canrefresh'  &&  dp.canRefresh) {
                                 hasAccess = true;
                             };
-                            if (accessRequired == 'cangrant'  &&  dp.canRefresh) {
+                            if (accessRequired == 'cangrant'  &&  dp.canGrant) {
                                 hasAccess = true;
                             };
                         };
@@ -11176,7 +11174,7 @@ export class GlobalVariableService {
                                 if (accessRequired == 'canrefresh'  &&  dp.canRefresh) {
                                     hasAccess = true;
                                 };
-                                if (accessRequired == 'cangrant'  &&  dp.canRefresh) {
+                                if (accessRequired == 'cangrant'  &&  dp.canGrant) {
                                     hasAccess = true;
                                 };
                             };

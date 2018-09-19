@@ -176,6 +176,7 @@
                         <clr-dg-column>CanEdit</clr-dg-column>
                         <clr-dg-column>CanDelete</clr-dg-column>
                         <clr-dg-column>CanRefresh</clr-dg-column>
+                        <clr-dg-column>CanGrant</clr-dg-column>
 
                         <clr-dg-row *ngFor="let row of datasourcePermissions; let i = index"
                             [style.background-color]="(i == selectedRowIndex)? '#123456' : 'white'"
@@ -239,7 +240,20 @@
                                     >
                                 </clr-icon>
                             </clr-dg-cell>
-                            gridCanGrant
+
+                            <clr-dg-cell class="checkCell">
+                                <clr-icon shape="check" *ngIf="row.canGrant"
+                                    size="16"
+                                    (dblclick)="clickToggleGrant(i, row.id)"
+                                    >
+                                </clr-icon>
+                                <clr-icon shape="times" *ngIf="!row.canGrant"
+                                    size="16"
+                                    (dblclick)="clickToggleGrant(i, row.id)"
+                                    >
+                                </clr-icon>
+                            </clr-dg-cell>
+
                         </clr-dg-row>
 
                     </clr-datagrid>

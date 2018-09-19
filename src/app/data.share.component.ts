@@ -142,6 +142,9 @@ export class DatasourceShareComponent implements OnInit {
         // User dblclicked View - so toggle it
         this.globalFunctionService.printToConsole(this.constructor.name,'clickToggleView', '@Start');
 
+        // Reset
+        this.errorMessage = '';
+
         // Check permissions
         if (!this.globalVariableService.datasourcePermissionsCheck(
             this.datasourcePermissions[index].datasourceID, 'CanGrant') ) {
@@ -168,6 +171,9 @@ export class DatasourceShareComponent implements OnInit {
     clickToggleEdit(index: number, id: number) {
         // User dblclicked Edit - so toggle it
         this.globalFunctionService.printToConsole(this.constructor.name,'clickToggleEdit', '@Start');
+
+        // Reset
+        this.errorMessage = '';
 
         // Check permissions
         if (!this.globalVariableService.datasourcePermissionsCheck(
@@ -196,6 +202,9 @@ export class DatasourceShareComponent implements OnInit {
         // User dblclicked Delete - so toggle it
         this.globalFunctionService.printToConsole(this.constructor.name,'clickToggleDelete', '@Start');
 
+        // Reset
+        this.errorMessage = '';
+
         // Check permissions
         if (!this.globalVariableService.datasourcePermissionsCheck(
             this.datasourcePermissions[index].datasourceID, 'CanGrant') ) {
@@ -223,6 +232,9 @@ export class DatasourceShareComponent implements OnInit {
         // User dblclicked Refresh - so toggle it
         this.globalFunctionService.printToConsole(this.constructor.name,'clickToggleRefresh', '@Start');
 
+        // Reset
+        this.errorMessage = '';
+
         // Check permissions
         if (!this.globalVariableService.datasourcePermissionsCheck(
             this.datasourcePermissions[index].datasourceID, 'CanGrant') ) {
@@ -248,6 +260,9 @@ export class DatasourceShareComponent implements OnInit {
     clickToggleGrant(index: number, id: number) {
         // User dblclicked Grant - so toggle it
         this.globalFunctionService.printToConsole(this.constructor.name,'clickToggleGrant', '@Start');
+
+        // Reset
+        this.errorMessage = '';
 
         // Check permissions
         if (!this.globalVariableService.datasourcePermissionsCheck(
