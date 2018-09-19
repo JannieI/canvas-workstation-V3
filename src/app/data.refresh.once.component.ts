@@ -103,6 +103,13 @@ export class DataRefreshOnceComponent implements OnInit {
         this.selectedRowIndex = index;
         this.errorMessage = '';
 
+        // Check permissions
+        if (!this.globalVariableService.datasourcePermissionsCheck(
+            datasourceID, 'CanRefresh') ) {
+            this.errorMessage = 'No permission to refresh the data for this record';
+            return;
+        };
+
         // Determine if data obtains in Glob Var
         let dSetIndex: number = this.globalVariableService.currentDatasets.filter(
             dS => dS.datasourceID == datasourceID
