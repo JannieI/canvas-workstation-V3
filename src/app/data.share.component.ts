@@ -137,9 +137,22 @@ export class DatasourceShareComponent implements OnInit {
         this.selectedRowIndex = index;
     }
 
-    clickToggleView(id: number, $event) {
+    clickToggleView(index: number, id: number) {
         // User dblclicked View - so toggle it
         this.globalFunctionService.printToConsole(this.constructor.name,'clickToggleView', '@Start');
+
+        // Check permissions
+        let datasource: Datasource = this.datasources.find(
+            ds => ds.id == this.datasourcePermissions[index].datasourceID
+        );
+        if (datasource == undefined) {
+            this.errorMessage = 'Error! Datasource does not exist any longer';
+            return;
+        };
+        if (datasource == undefined) {
+            this.errorMessage = 'Error! Datasource does not exist any longer';
+            return;
+        };
 
         let index: number = -1;
         for(var i = 0; i < this.datasourcePermissions.length; i++) {

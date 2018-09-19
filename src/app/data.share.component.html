@@ -180,12 +180,12 @@
                             <clr-dg-cell class="checkCell">
                                 <clr-icon shape="check" *ngIf="row.canView"
                                     size="16"
-                                    (dblclick)="clickToggleView(row.id, $event)"
+                                    (dblclick)="clickToggleView(i, row.id)"
                                     >
                                 </clr-icon>
                                 <clr-icon shape="times" *ngIf="!row.canView"
                                     size="16"
-                                    (dblclick)="clickToggleView(row.id, $event)"
+                                    (dblclick)="clickToggleView(i, row.id)"
                                     >
                                 </clr-icon>
                             </clr-dg-cell>

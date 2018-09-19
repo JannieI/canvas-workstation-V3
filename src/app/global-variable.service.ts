@@ -11156,6 +11156,9 @@ export class GlobalVariableService {
                             if (accessRequired == 'canrefresh'  &&  dp.canRefresh) {
                                 hasAccess = true;
                             };
+                            if (accessRequired == 'cangrant'  &&  dp.canRefresh) {
+                                hasAccess = true;
+                            };
                         };
                     };
                     if (dp.groupName != null) {
@@ -11171,6 +11174,9 @@ export class GlobalVariableService {
                                     hasAccess = true;
                                 };
                                 if (accessRequired == 'canrefresh'  &&  dp.canRefresh) {
+                                    hasAccess = true;
+                                };
+                                if (accessRequired == 'cangrant'  &&  dp.canRefresh) {
                                     hasAccess = true;
                                 };
                             };
