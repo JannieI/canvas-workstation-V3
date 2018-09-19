@@ -54,6 +54,7 @@ export class DatasourceShareComponent implements OnInit {
     errorMessage: string = '';
     groupNames: string[] = [];
     groups: CanvasGroup[];
+    infoMessage: string = '';
     selectedDatasource: string;
     selectedGroupName: string = '';
     selectedRowIndex: number = 0;
@@ -144,6 +145,7 @@ export class DatasourceShareComponent implements OnInit {
 
         // Reset
         this.errorMessage = '';
+        this.infoMessage = '';
 
         // Check permissions
         if (!this.globalVariableService.datasourcePermissionsCheck(
@@ -155,7 +157,7 @@ export class DatasourceShareComponent implements OnInit {
         // Toggle
         for(var i = 0; i < this.datasourcePermissions.length; i++) {
             if (this.datasourcePermissions[i].id == id) {
-                this.datasourcePermissions[i].canView = 
+                this.datasourcePermissions[i].canView =
                     !this.datasourcePermissions[i].canView;
                 index = i;
             };
@@ -163,8 +165,9 @@ export class DatasourceShareComponent implements OnInit {
 
         if (index != -1) {
             this.globalVariableService.saveDatasourcePermission(
-                this.datasourcePermissions[index])
-                ;
+                this.datasourcePermissions[index]).then(res => {
+                    this.infoMessage = 'Changes saved';
+                });
         };
     }
 
@@ -174,6 +177,7 @@ export class DatasourceShareComponent implements OnInit {
 
         // Reset
         this.errorMessage = '';
+        this.infoMessage = '';
 
         // Check permissions
         if (!this.globalVariableService.datasourcePermissionsCheck(
@@ -185,7 +189,7 @@ export class DatasourceShareComponent implements OnInit {
         // Toggle
         for(var i = 0; i < this.datasourcePermissions.length; i++) {
             if (this.datasourcePermissions[i].id == id) {
-                this.datasourcePermissions[i].canEdit = 
+                this.datasourcePermissions[i].canEdit =
                     !this.datasourcePermissions[i].canEdit;
                 index = i;
             };
@@ -193,8 +197,9 @@ export class DatasourceShareComponent implements OnInit {
 
         if (index != -1) {
             this.globalVariableService.saveDatasourcePermission(
-                this.datasourcePermissions[index])
-                ;
+                this.datasourcePermissions[index]).then(res => {
+                    this.infoMessage = 'Changes saved';
+                });
         };
     }
 
@@ -204,6 +209,7 @@ export class DatasourceShareComponent implements OnInit {
 
         // Reset
         this.errorMessage = '';
+        this.infoMessage = '';
 
         // Check permissions
         if (!this.globalVariableService.datasourcePermissionsCheck(
@@ -215,7 +221,7 @@ export class DatasourceShareComponent implements OnInit {
         // Toggle
         for(var i = 0; i < this.datasourcePermissions.length; i++) {
             if (this.datasourcePermissions[i].id == id) {
-                this.datasourcePermissions[i].canDelete = 
+                this.datasourcePermissions[i].canDelete =
                     !this.datasourcePermissions[i].canDelete;
                 index = i;
             };
@@ -223,8 +229,9 @@ export class DatasourceShareComponent implements OnInit {
 
         if (index != -1) {
             this.globalVariableService.saveDatasourcePermission(
-                this.datasourcePermissions[index])
-                ;
+                this.datasourcePermissions[index]).then(res => {
+                    this.infoMessage = 'Changes saved';
+                });
         };
     }
 
@@ -234,6 +241,7 @@ export class DatasourceShareComponent implements OnInit {
 
         // Reset
         this.errorMessage = '';
+        this.infoMessage = '';
 
         // Check permissions
         if (!this.globalVariableService.datasourcePermissionsCheck(
@@ -252,8 +260,9 @@ export class DatasourceShareComponent implements OnInit {
 
         if (index != -1) {
             this.globalVariableService.saveDatasourcePermission(
-                this.datasourcePermissions[index])
-                ;
+                this.datasourcePermissions[index]).then(res => {
+                    this.infoMessage = 'Changes saved';
+                });
         };
     }
 
@@ -263,6 +272,7 @@ export class DatasourceShareComponent implements OnInit {
 
         // Reset
         this.errorMessage = '';
+        this.infoMessage = '';
 
         // Check permissions
         if (!this.globalVariableService.datasourcePermissionsCheck(
@@ -274,7 +284,7 @@ export class DatasourceShareComponent implements OnInit {
         // Toggle
         for(var i = 0; i < this.datasourcePermissions.length; i++) {
             if (this.datasourcePermissions[i].id == id) {
-                this.datasourcePermissions[i].canGrant = 
+                this.datasourcePermissions[i].canGrant =
                     !this.datasourcePermissions[i].canGrant;
                 index = i;
             };
@@ -282,8 +292,9 @@ export class DatasourceShareComponent implements OnInit {
 
         if (index != -1) {
             this.globalVariableService.saveDatasourcePermission(
-                this.datasourcePermissions[index])
-                ;
+                this.datasourcePermissions[index]).then(res => {
+                    this.infoMessage = 'Changes saved';
+                });
         };
     }
 

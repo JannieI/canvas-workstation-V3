@@ -222,6 +222,17 @@
         text-align: left;
     }
 
+    .gridInfoMessage {
+        color: blue;
+        grid-column-start: 4;
+        /* autoprefixer: off */
+        grid-column-end: 14;
+        grid-row-start: 11;
+        grid-row-end: 12;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+
     .gridButtonAdd {
         grid-column-start: 15;
         /* autoprefixer: off */
