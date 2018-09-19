@@ -69,8 +69,17 @@ export class DatasourceShareComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.datasources = this.globalVariableService.datasources.filter(
-            ds => ds.accessType == 'AccessList');
+        this.datasources = this.globalVariableService.datasources
+            .filter(ds => ds.accessType == 'AccessList')
+            .sort( (obj1, obj2) => {
+                if (obj1.name > obj2.name) {
+                    return 1;
+                };
+                if (obj1.name < obj2.name) {
+                    return -1;
+                };
+                return 0;
+            });
 
         this.globalVariableService.getDatasourcePermissions().then (dp => {
             this.datasourcePermissions = dp;
