@@ -26,6 +26,12 @@
                         </clr-signpost>
                     </div>
 
+                    <div class="gridHelp">
+                        <b>
+                            Double click a Datasources to refresh it (get latest data).
+                        </b>
+                    </div>
+
                     <div class="datasourceList">
                         <clr-datagrid>
                             <clr-dg-column >NrWidgets</clr-dg-column>
@@ -42,12 +48,6 @@
                                 <clr-dg-cell>{{ row.name }}</clr-dg-cell>
                                 <clr-dg-cell>{{ row.description }}</clr-dg-cell>
                             </clr-dg-row>
-
-                            <clr-dg-footer>
-                                {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
-                                of {{pagination.totalItems}} rows
-                                <clr-dg-pagination #pagination [clrDgPageSize]="7"></clr-dg-pagination>
-                            </clr-dg-footer>
 
                         </clr-datagrid>
                     </div>

@@ -31,14 +31,36 @@
         text-align: left;
     }
 
+    .gridHelp {
+        grid-column-start: 4;
+        /* autoprefixer: off */
+        grid-column-end: 14;
+        grid-row-start: 2;
+        grid-row-end: 3;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+
+    .gridErrorMessage {
+        color: red;
+        grid-column-start: 4;
+        /* autoprefixer: off */
+        grid-column-end: 14;
+        grid-row-start: 2;
+        grid-row-end: 3;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+
     .datasourceList {
         border: 1px solid black;
         grid-column-start: 1;
         /* autoprefixer: off */
         grid-column-end: 10;
-        grid-row-start: 3;
+        grid-row-start: 4;
         grid-row-end: 27;
         margin: 10px;
+        overflow-y: scroll;
     }
 
     .datasourcePreview{
@@ -46,7 +68,7 @@
         grid-column-start: 10;
         /* autoprefixer: off */
         grid-column-end: 21;
-        grid-row-start: 3;
+        grid-row-start: 4;
         grid-row-end: 27;
         margin: 10px;
     }
