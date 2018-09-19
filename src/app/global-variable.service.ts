@@ -11093,22 +11093,104 @@ export class GlobalVariableService {
         return hasAccess;
     }
 
-
-    datasourcePermissionsCheck(datasourceID: number): boolean {
+    datasourcePermissionsCheck(datasourceID: number, accessRequired: string = 'CanView'): boolean {
         // Description: Determines if the current user has the given access to a DS
+        // Access is given directly to a user, and indirectly to a group (to which the user 
+        // belongs).
         // Returns: T/F
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables datasourcePermissionsCheck ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
-        return true;
+ 
+        // Assume no access
+        let hasAccess: boolean = false;
+        accessRequired = accessRequired.toLowerCase();
+
+        // Format user
+        let userID = this.currentUser.userID;
+
+        let datasource: Datasource;
+        this.datasourcePermissions.forEach(d => {
+            if (d.id == datasourceID) {
+                // dashboard = Object.assign({}, d);
+                datasource = JSON.parse(JSON.stringify(d));
+            };
+        });
+
+        // Make sure we have a D
+        if (datasource == undefined) {
+            return;
+        };
+
+        // Everyone has access to Public Ds
+        if (datasource.accessType.toLowerCase() == 'public') {
+            hasAccess = true;
+        };
+
+        // The owner has access to Private ones
+        if (datasource.accessType.toLowerCase() == 'private'
+            &&
+            datasource.createdBy.toLowerCase() == userID.toLowerCase()) {
+                hasAccess = true;
+        };
+        if (datasource.accessType.toLowerCase() == 'accesslist') {
+
+            this.datasourcePermissions.forEach(dp => {
+
+                if (dp.datasourceID == datasource.id) {
+
+                    if (dp.userID != null) {
+
+                        if (dp.userID.toLowerCase() == userID.toLowerCase()) {
+                            if (accessRequired == 'canview'  &&  dp.canView) {
+                                hasAccess = true;
+                            };
+                            if (accessRequired == 'canedit'  &&  dp.canEdit) {
+                                hasAccess = true;
+                            };
+                            if (accessRequired == 'candelete'  &&  dp.canDelete) {
+                                hasAccess = true;
+                            };
+                            if (accessRequired == 'canrefresh'  &&  dp.canRefresh) {
+                                hasAccess = true;
+                            };
+                        };
+                    };
+                    if (dp.groupName != null) {
+                        if (this.currentUser.groups.
+                            map(x => x.toLowerCase()).indexOf(dp.groupName.toLowerCase()) >= 0) {
+                                if (accessRequired == 'canview'  &&  dp.canView) {
+                                    hasAccess = true;
+                                };
+                                if (accessRequired == 'canedit'  &&  dp.canEdit) {
+                                    hasAccess = true;
+                                };
+                                if (accessRequired == 'candelete'  &&  dp.canDelete) {
+                                    hasAccess = true;
+                                };
+                                if (accessRequired == 'canrefresh'  &&  dp.canRefresh) {
+                                    hasAccess = true;
+                                };
+                            };
+                    };
+                };
+            });
+        };
+
+        // Return
+        if (this.sessionDebugging) {
+            console.log('  Access type, result: ', datasource.accessType, {hasAccess})
+        };
+
+        return hasAccess;
     }
 
     dashboardPermissionList(id: number): string[] {
         // Returns Array of Permissions for the current user to the given D.
         if (this.sessionDebugging) {
-            console.log('%c    Global-Variables dashboardPermissionCheck ...',
+            console.log('%c    Global-Variables dashboardPermissionList ...',
                 "color: black; background: lightgray; font-size: 10px", {id});
         };
 
