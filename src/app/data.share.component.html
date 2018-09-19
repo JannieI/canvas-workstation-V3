@@ -204,12 +204,12 @@
                             <clr-dg-cell class="checkCell">
                                 <clr-icon shape="check" *ngIf="row.canDelete"
                                     size="16"
-                                    (dblclick)="clickToggleDelete(row.id, $event)"
+                                    (dblclick)="clickToggleDelete(i, row.id)"
                                     >
                                 </clr-icon>
                                 <clr-icon shape="times" *ngIf="!row.canDelete"
                                     size="16"
-                                    (dblclick)="clickToggleDelete(row.id, $event)"
+                                    (dblclick)="clickToggleDelete(i, row.id)"
                                     >
                                 </clr-icon>
                             </clr-dg-cell>
@@ -217,12 +217,12 @@
                             <clr-dg-cell class="checkCell">
                                 <clr-icon shape="check" *ngIf="row.canRefresh"
                                     size="16"
-                                    (dblclick)="clickToggleRefresh(row.id, $event)"
+                                    (dblclick)="clickToggleRefresh(i, row.id)"
                                     >
                                 </clr-icon>
                                 <clr-icon shape="times" *ngIf="!row.canRefresh"
                                     size="16"
-                                    (dblclick)="clickToggleRefresh(row.id, $event)"
+                                    (dblclick)="clickToggleRefresh(i, row.id)"
                                     >
                                 </clr-icon>
                             </clr-dg-cell>
