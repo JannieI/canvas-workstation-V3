@@ -192,12 +192,12 @@
                             <clr-dg-cell class="checkCell">
                                 <clr-icon shape="check" *ngIf="row.canEdit"
                                     size="16"
-                                    (dblclick)="clickToggleEdit(row.id, $event)"
+                                    (dblclick)="clickToggleEdit(i, row.id)"
                                     >
                                 </clr-icon>
                                 <clr-icon shape="times" *ngIf="!row.canEdit"
                                     size="16"
-                                    (dblclick)="clickToggleEdit(row.id, $event)"
+                                    (dblclick)="clickToggleEdit(i, row.id)"
                                     >
                                 </clr-icon>
                             </clr-dg-cell>

@@ -142,7 +142,7 @@ export class DatasourceShareComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickToggleView', '@Start');
 
         // Check permissions
-        if (this.globalVariableService.datasourcePermissionsCheck(
+        if (!this.globalVariableService.datasourcePermissionsCheck(
             this.datasourcePermissions[index].datasourceID, 'CanGrant') ) {
             this.errorMessage = 'No permission to grant access on this record';
             return;
@@ -163,11 +163,18 @@ export class DatasourceShareComponent implements OnInit {
         };
     }
 
-    clickToggleEdit(id: number, $event) {
+    clickToggleEdit(index: number, id: number) {
         // User dblclicked Edit - so toggle it
         this.globalFunctionService.printToConsole(this.constructor.name,'clickToggleEdit', '@Start');
 
-        let index: number = -1;
+        // Check permissions
+        if (!this.globalVariableService.datasourcePermissionsCheck(
+            this.datasourcePermissions[index].datasourceID, 'CanGrant') ) {
+            this.errorMessage = 'No permission to grant access on this record';
+            return;
+        };
+
+        // Toggle
         for(var i = 0; i < this.datasourcePermissions.length; i++) {
             if (this.datasourcePermissions[i].id == id) {
                 this.datasourcePermissions[i].canEdit = ! this.datasourcePermissions[i].canEdit;
