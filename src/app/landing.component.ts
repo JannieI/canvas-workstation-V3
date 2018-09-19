@@ -53,6 +53,7 @@ export class LandingComponent implements OnInit {
 
 		// All Datasources
 		this.globalVariableService.getDatasources();
+		this.globalVariableService.getDatasourcePermissions();
 		this.globalVariableService.getDataCachingTable();
 
 		// Load D
