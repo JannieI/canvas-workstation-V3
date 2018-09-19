@@ -116,7 +116,11 @@ export class DataManagedConnectionComponent implements OnInit {
             port: '',
             database: '',
             authentication: '',
-            description: ''
+            description: '',
+            editedBy: '',
+            editedOn: null,
+            createdBy: '',
+            createdOn: null
         };
     }
 

@@ -372,8 +372,11 @@ const transformationsFormat: Transformation[] =
         parameterTitle: ['tit1','tit2','tit3','tit4','tit5','tit6'],
         parameterDefaultValue: ['txt1','txt2','txt3','txt4','txt5','txt6'],
         parameterHeading: ['head1','head2','head3','head4','head5','head6'],
-        parameterType: ['','','','','','']
-
+        parameterType: ['','','','','',''],
+        editedBy: '',
+        editedOn: null,
+        createdBy: '',
+        createdOn: null
     },
     {
         id: 16,
@@ -385,8 +388,11 @@ const transformationsFormat: Transformation[] =
         parameterTitle: ['tit1'],
         parameterDefaultValue: ['txt1'],
         parameterHeading: ['head1'],
-        parameterType: ['','','','','','']
-
+        parameterType: ['','','','','',''],
+        editedBy: '',
+        editedOn: null,
+        createdBy: '',
+        createdOn: null
     },
     {
         id: 20,
@@ -398,8 +404,11 @@ const transformationsFormat: Transformation[] =
         parameterTitle: ['tit1'],
         parameterDefaultValue: ['txt1'],
         parameterHeading: ['head1'],
-        parameterType: ['','','','','','']
-
+        parameterType: ['','','','','',''],
+        editedBy: '',
+        editedOn: null,
+        createdBy: '',
+        createdOn: null
     }
 ];
 
@@ -483,27 +492,52 @@ export class GlobalVariableService {
         {
             serverType: 'MySQL',
             driverName: 'mysql',
-            connector: 'tributary.connectors.sql:SqlConnector'
+            connector: 'tributary.connectors.sql:SqlConnector',
+            editedBy: '',
+            editedOn: null,
+            createdBy: '',
+            createdOn: null
+
         },
         {
             serverType: 'PostgresSQL',
             driverName: 'postgresql',
-            connector: 'tributary.connectors.sql:SqlConnector'
+            connector: 'tributary.connectors.sql:SqlConnector',
+            editedBy: '',
+            editedOn: null,
+            createdBy: '',
+            createdOn: null
+
         },
         {
             serverType:'Microsoft SQL',
             driverName: 'mssql',    // "mssql+pyodbc", "mssql+pymssql"
-            connector: 'tributary.connectors.sql:SqlConnector'
+            connector: 'tributary.connectors.sql:SqlConnector',
+            editedBy: '',
+            editedOn: null,
+            createdBy: '',
+            createdOn: null
+
         },
         {
             serverType:'SQLite',
             driverName: 'sqlite',
-            connector: 'tributary.connectors.sql:SqlConnector'
+            connector: 'tributary.connectors.sql:SqlConnector',
+            editedBy: '',
+            editedOn: null,
+            createdBy: '',
+            createdOn: null
+
         },
         {
             serverType:'Oracle',
             driverName: 'oracle',
-            connector: 'tributary.connectors.sql:SqlConnector'
+            connector: 'tributary.connectors.sql:SqlConnector',
+            editedBy: '',
+            editedOn: null,
+            createdBy: '',
+            createdOn: null
+
         }
 
 
