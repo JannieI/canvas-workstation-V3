@@ -193,13 +193,31 @@
         text-align: left;
     }
 
+    .gridCanGrantTitle {
+        grid-column-start: 1;
+        /* autoprefixer: off */
+        grid-column-end: 3;
+        grid-row-start: 11;
+        grid-row-end: 12;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
+    .gridCanGrant {
+        grid-column-start: 3;
+        /* autoprefixer: off */
+        grid-column-end: 9;
+        grid-row-start: 11;
+        grid-row-end: 12;
+        margin: 2px 2px 2px 2px;
+        text-align: left;
+    }
     .gridErrorMessage {
         color: red;
         grid-column-start: 4;
         /* autoprefixer: off */
         grid-column-end: 14;
-        grid-row-start: 9;
-        grid-row-end: 10;
+        grid-row-start: 11;
+        grid-row-end: 12;
         margin: 2px 2px 2px 2px;
         text-align: left;
     }
@@ -208,18 +226,17 @@
         grid-column-start: 15;
         /* autoprefixer: off */
         grid-column-end: 17;
-        grid-row-start: 8;
-        grid-row-end: 9;
+        grid-row-start: 11;
+        grid-row-end: 12;
         margin: 8px 2px 2px 2px;
         text-align: left;
     }
-
 
     .gridTable {
         grid-column-start: 1;
         /* autoprefixer: off */
         grid-column-end: 41;
-        grid-row-start: 10;
+        grid-row-start: 12;
         grid-row-end: 27;
         margin: 2px 2px 2px 2px;
         text-align: left;

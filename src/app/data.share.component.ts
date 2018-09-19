@@ -47,6 +47,7 @@ export class DatasourceShareComponent implements OnInit {
     canEdit: boolean = false;
     canAdd: boolean = false;
     canDelete: boolean = false;
+    canGrant: boolean = false;
     canRefresh: boolean = false;
     datasourcePermissions: DatasourcePermission[];
     datasources: Datasource[];
@@ -151,7 +152,8 @@ export class DatasourceShareComponent implements OnInit {
         // Toggle
         for(var i = 0; i < this.datasourcePermissions.length; i++) {
             if (this.datasourcePermissions[i].id == id) {
-                this.datasourcePermissions[i].canView = ! this.datasourcePermissions[i].canView;
+                this.datasourcePermissions[i].canView = 
+                    !this.datasourcePermissions[i].canView;
                 index = i;
             };
         };
@@ -177,7 +179,8 @@ export class DatasourceShareComponent implements OnInit {
         // Toggle
         for(var i = 0; i < this.datasourcePermissions.length; i++) {
             if (this.datasourcePermissions[i].id == id) {
-                this.datasourcePermissions[i].canEdit = ! this.datasourcePermissions[i].canEdit;
+                this.datasourcePermissions[i].canEdit = 
+                    !this.datasourcePermissions[i].canEdit;
                 index = i;
             };
         };
@@ -203,7 +206,8 @@ export class DatasourceShareComponent implements OnInit {
         // Toggle
         for(var i = 0; i < this.datasourcePermissions.length; i++) {
             if (this.datasourcePermissions[i].id == id) {
-                this.datasourcePermissions[i].canDelete = ! this.datasourcePermissions[i].canDelete;
+                this.datasourcePermissions[i].canDelete = 
+                    !this.datasourcePermissions[i].canDelete;
                 index = i;
             };
         };
@@ -255,7 +259,8 @@ export class DatasourceShareComponent implements OnInit {
         // Toggle
         for(var i = 0; i < this.datasourcePermissions.length; i++) {
             if (this.datasourcePermissions[i].id == id) {
-                this.datasourcePermissions[i].canGrant = ! this.datasourcePermissions[i].canGrant;
+                this.datasourcePermissions[i].canGrant = 
+                    !this.datasourcePermissions[i].canGrant;
                 index = i;
             };
         };
@@ -324,7 +329,8 @@ export class DatasourceShareComponent implements OnInit {
                 canView: this.canView,
                 canEdit: this.canEdit,
                 canDelete: this.canDelete,
-                canRefresh: this.canRefresh
+                canRefresh: this.canRefresh,
+                canGrant: this.canGrant
         };
         this.globalVariableService.addDatasourcePermission(newDatasourcePermision).then(
             res => this.datasourcePermissions.push(res)
