@@ -354,8 +354,11 @@ const dashboardTabTemplate: DashboardTab =
         description: '',
         displayOrder: 0,            // Note: this must start at 0
         backgroundColor: '',
-        color: ''
-
+        color: '',
+        editedBy: '',
+        editedOn: null,
+        createdBy: '',
+        createdOn: null
     };
 
 
@@ -1864,7 +1867,11 @@ export class GlobalVariableService {
                     let newDashboardTag: DashboardTag = {
                         id: null,
                         dashboardID: originalID,
-                        tag: newTag
+                        tag: newTag,
+                        editedBy: '',
+                        editedOn: null,
+                        createdBy: '',
+                        createdOn: null
                     }
                     this.addDashboardTag(newDashboardTag);
                 };
@@ -5306,7 +5313,11 @@ export class GlobalVariableService {
                 widgets: this.currentWidgets.slice(),
                 datasets: this.currentDatasets.slice(),
                 datasources: this.currentDatasources.slice(),
-                widgetCheckpoints: this.currentWidgetCheckpoints.slice()
+                widgetCheckpoints: this.currentWidgetCheckpoints.slice(),
+                editedBy: '',
+                editedOn: null,
+                createdBy: this.currentUser.userID,
+                createdOn: new Date()
             };
 
             // Add to DB
