@@ -71,8 +71,7 @@ export class DataManagedSQLEditorComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         // Set base info
-        this.serverTypes = this.globalVariableService.serverTypes;
-        this.serverTypes = this.globalVariableService.serverTypes;
+        this.serverTypes = this.globalVariableService.serverTypes.slice();
         this.globalVariableService.getDataConnections().then(dc => {
             this.dataConnections = dc.slice();
             this.dataConnectionNames = this.dataConnections.map(con => con.connectionName);
