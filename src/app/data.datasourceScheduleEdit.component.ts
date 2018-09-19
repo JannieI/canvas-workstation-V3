@@ -407,7 +407,8 @@ export class DataDatasourceScheduleEditComponent implements OnInit {
 
         this.clearRecord();
         this.globalVariableService.deleteDashboardSchedule(id).then(res => {
-            this.currentDatasourceSchedules = this.globalVariableService.currentDatasourceSchedules
+            this.currentDatasourceSchedules = this.globalVariableService
+                .currentDatasourceSchedules.slice();
         });
 
         this.selectedRow = null;

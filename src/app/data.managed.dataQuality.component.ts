@@ -270,7 +270,7 @@ export class DataManageDataQualityComponent implements OnInit {
 
         this.clearRecord();
         this.globalVariableService.deleteDataQualityIssue(id).then(res => {
-            this.dataQualityIssues = this.globalVariableService.dataQualityIssues
+            this.dataQualityIssues = this.globalVariableService.dataQualityIssues.slice();
         });
 
         this.selectedDataQualityIssueRowIndex = null;

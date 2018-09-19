@@ -237,7 +237,7 @@ export class DataManagedConnectionComponent implements OnInit {
 
         this.clearRecord();
         this.globalVariableService.deleteDataConnection(id).then(res => {
-            this.dataConnections = this.globalVariableService.dataConnections
+            this.dataConnections = this.globalVariableService.dataConnections.slice();
         });
 
         this.selectedConnectionRowIndex = null;

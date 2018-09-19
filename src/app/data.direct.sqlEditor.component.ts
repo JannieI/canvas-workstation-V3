@@ -70,7 +70,7 @@ export class DataDirectSQLEditorComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         // Set base info
-        this.serverTypes = this.globalVariableService.serverTypes;
+        this.serverTypes = this.globalVariableService.serverTypes.slice();
 
         if (this.selectedDatasource == null) {
             let today: Date = new Date();
