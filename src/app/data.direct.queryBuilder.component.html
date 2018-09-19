@@ -189,7 +189,8 @@
                             <clr-dg-column [clrDgField]="nameDB">Field Name</clr-dg-column>
 
                             <clr-dg-row
-                                *clrDgItems="let row of dataFieldsFiltered; let i = index"
+                                *clrDgItems="let row of dataFieldsFiltered; 
+                                    let i = index; trackBy: trackById"
                                 [clrDgItem]="row"
                                 [style.background-color]="(i == selectedFieldRowIndex)? '#123456' : 'white'"
                                 [style.color]="(i == selectedFieldRowIndex)? 'white' : 'gray'"

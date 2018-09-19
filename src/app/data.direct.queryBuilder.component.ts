@@ -166,6 +166,10 @@ export class DataDirectQueryBuilderComponent implements OnInit {
 
     }
 
+
+    trackById = (index, unit) => unit.id
+
+
     clickRefresh() {
         // Get the tables and fields from the DB
         // Click the first / selected table row
