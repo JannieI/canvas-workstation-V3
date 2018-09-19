@@ -362,7 +362,8 @@ export class DashboardScheduleEditComponent implements OnInit {
 
         this.clearRecord();
         this.globalVariableService.deleteDashboardSchedule(id).then(res => {
-            this.currentDashboardSchedules = this.globalVariableService.currentDashboardSchedules
+            this.currentDashboardSchedules = this.globalVariableService
+                .currentDashboardSchedules.slice();
         });
 
         this.selectedRow = null;
