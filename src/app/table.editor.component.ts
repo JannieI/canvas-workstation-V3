@@ -98,8 +98,22 @@ import { GlobalVariableService }      from './global-variable.service';
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         if (this.newWidget) {
-            // Get DS
-            this.currentDatasources = this.globalVariableService.datasources.slice();
+            // Get DS to which user has permissions
+            this.currentDatasources = this.globalVariableService.datasources
+                .slice()
+                .filter(ds => 
+                    this.globalVariableService.datasourcePermissionsCheck(ds.id, 'CanView')
+                )
+                .sort( (obj1, obj2) => {
+                    if (obj1.name > obj2.name) {
+                        return 1;
+                    };
+                    if (obj1.name < obj2.name) {
+                        return -1;
+                    };
+                    return 0;
+                }
+            );
 
             // Count the Ws
             let widgets: Widget[];

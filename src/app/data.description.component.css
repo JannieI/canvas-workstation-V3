@@ -276,8 +276,8 @@
         grid-column-start: 15;
         /* autoprefixer: off */
         grid-column-end: 17;
-        grid-row-start: 13;
-        grid-row-end: 14;
+        grid-row-start: 12;
+        grid-row-end: 13;
         margin: 8px 2px 2px 2px;
         text-align: left;
     }
