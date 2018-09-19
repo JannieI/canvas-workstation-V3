@@ -120,7 +120,7 @@ export class DataDatasourceOverviewComponent implements OnInit {
         };
         console.warn('xx DS, dSet', this.globalVariableService.datasources, this.globalVariableService.currentDatasources, this.globalVariableService.datasets, this.globalVariableService.currentDatasets)
         // TODO - fix!!
-        this.finalFields = this.globalVariableService.finalFields;
+        this.finalFields = this.globalVariableService.finalFields.slice();
 
         // Show first tab
         this.clickDSDescription('gridViewDescription');
