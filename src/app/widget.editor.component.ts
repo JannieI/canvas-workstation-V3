@@ -120,9 +120,13 @@ const graphWidth: number = 420;
         console.warn('xx INIT this.currentDatasources', this.currentDatasources)
 
         if (this.newWidget) {
-            // Get DS
+            // Get DS to which user has permissions
             this.currentDatasources = this.globalVariableService.datasources.slice();
-
+            console.warn('xx PRE canview', this.currentDatasources)
+            this.currentDatasources = this.currentDatasources.filter(ds => 
+                this.globalVariableService.datasourcePermissionsCheck(ds.id, 'CanView'));
+                console.warn('xx canview', this.currentDatasources.length);
+                
             // Count the Ws
             let widgets: Widget[];
             this.currentDatasources.forEach(ds => {
@@ -164,7 +168,7 @@ const graphWidth: number = 420;
 
             // TODO - handle properly and close form
             if (this.localWidget.datasourceID == 0) {
-                alert('No Widget was selected, or could not find it in glob vars')
+                alert('No Widget was selected, or could not find it in glob vars.  In: ngOnInit, ELSE +- line 170 inside WidgetEditor.ts')
             };
 
             // Get DS

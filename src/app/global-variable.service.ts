@@ -10984,7 +10984,6 @@ export class GlobalVariableService {
         let dashboard: Dashboard;
         this.dashboards.forEach(d => {
             if (d.id == dashboardID) {
-                // dashboard = Object.assign({}, d);
                 dashboard = JSON.parse(JSON.stringify(d));
             };
         });
@@ -11112,10 +11111,9 @@ export class GlobalVariableService {
         let userID = this.currentUser.userID;
 
         let datasource: Datasource;
-        this.datasourcePermissions.forEach(d => {
-            if (d.id == datasourceID) {
-                // dashboard = Object.assign({}, d);
-                datasource = JSON.parse(JSON.stringify(d));
+        this.datasources.forEach(ds => {
+            if (ds.id == datasourceID) {
+                datasource = JSON.parse(JSON.stringify(ds));
             };
         });
 
@@ -11125,6 +11123,8 @@ export class GlobalVariableService {
         };
 
         // Everyone has access to Public Ds
+        console.warn('xx datasource.accessType', datasource);
+        
         if (datasource.accessType.toLowerCase() == 'public') {
             hasAccess = true;
         };
@@ -11203,7 +11203,6 @@ export class GlobalVariableService {
         let dashboard: Dashboard;
         this.dashboards.forEach(d => {
             if (d.id == id) {
-                // dashboard = Object.assign({}, d);
                 dashboard = JSON.parse(JSON.stringify(d));
             };
         });
