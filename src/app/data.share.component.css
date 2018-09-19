@@ -6,7 +6,7 @@
 .gridOverall {
     display: grid;
     grid-template-columns: repeat(20, 1fr);
-    grid-template-rows: repeat(20, 1rem);
+    grid-template-rows: repeat(26, 0.8rem);
 }
     .closeButton {
         background-color: transparent;
@@ -220,9 +220,10 @@
         /* autoprefixer: off */
         grid-column-end: 41;
         grid-row-start: 10;
-        grid-row-end: 20;
+        grid-row-end: 27;
         margin: 2px 2px 2px 2px;
         text-align: left;
+        overflow-y: scroll;
     }
 
 

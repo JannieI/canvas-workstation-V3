@@ -77,7 +77,7 @@ export class DatasourceShareComponent implements OnInit {
             this.datasourcePermissions.forEach(tdsp => {
                 tdsp.name = this.globalVariableService.datasources.filter(
                     ds => ds.id == tdsp.datasourceID)[0].name;
-            })
+            });
 
             this.globalVariableService.getCanvasUsers().then(usr => {
                 this.userNames = usr.sort((n1,n2) => {
