@@ -215,11 +215,18 @@ export class DatasourceShareComponent implements OnInit {
         };
     }
 
-    clickToggleRefresh(id: number, $event) {
+    clickToggleRefresh(index: number, id: number) {
         // User dblclicked Refresh - so toggle it
         this.globalFunctionService.printToConsole(this.constructor.name,'clickToggleRefresh', '@Start');
 
-        let index: number = -1;
+        // Check permissions
+        if (!this.globalVariableService.datasourcePermissionsCheck(
+            this.datasourcePermissions[index].datasourceID, 'CanGrant') ) {
+            this.errorMessage = 'No permission to grant access on this record';
+            return;
+        };
+
+        // Toggle
         for(var i = 0; i < this.datasourcePermissions.length; i++) {
             if (this.datasourcePermissions[i].id == id) {
                 this.datasourcePermissions[i].canRefresh = ! this.datasourcePermissions[i].canRefresh;
