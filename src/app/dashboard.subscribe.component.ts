@@ -277,6 +277,10 @@ export class DashboardSubscribeComponent implements OnInit {
                 delete: false,
                 dashboardCode: this.dashboards[dIndex].code,
                 notify: 'Message',
+                editedBy: '',
+                editedOn: null,
+                createdBy: this.globalVariableService.currentUser.userID,
+                createdOn: new Date
             };
 
             // Add to DB

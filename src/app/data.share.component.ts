@@ -356,7 +356,11 @@ export class DatasourceShareComponent implements OnInit {
                 canEdit: this.canEdit,
                 canDelete: this.canDelete,
                 canRefresh: this.canRefresh,
-                canGrant: this.canGrant
+                canGrant: this.canGrant,
+                editedBy: '',
+                editedOn: null,
+                createdBy: this.globalVariableService.currentUser.userID,
+                createdOn: new Date()
         };
         this.globalVariableService.addDatasourcePermission(newDatasourcePermision).then(
             res => this.datasourcePermissions.push(res)

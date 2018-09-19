@@ -72,7 +72,11 @@ export class DataDirectNoSQLComponent implements OnInit {
             {
                 serverType: 'Mongo', 
                 driverName: 'mongo',
-                connector: 'tributary.connectors.mongodb:MongoDBConnector'
+                connector: 'tributary.connectors.mongodb:MongoDBConnector',
+                editedBy: '',
+                editedOn: null,
+                createdBy: this.globalVariableService.currentUser.userID,
+                createdOn: new Date()
             }
         ];
 

@@ -130,7 +130,11 @@ export class DashboardTagsComponent implements OnInit {
             {
                 id: null,
                 dashboardID: this.selectedDashboard.id,
-                tag: this.newTag
+                tag: this.newTag,
+                editedBy: '',
+                editedOn: null,
+                createdBy: this.globalVariableService.currentUser.userID,
+                createdOn: new Date()
             };
 
         this.globalVariableService.addDashboardTag(newTag).then(res => {
@@ -162,7 +166,11 @@ export class DashboardTagsComponent implements OnInit {
             {
                 id: null,
                 dashboardID: this.selectedDashboard.id,
-                tag: this.availableDashboardTags[this.availableTagIndex].tag
+                tag: this.availableDashboardTags[this.availableTagIndex].tag,
+                editedBy: '',
+                editedOn: null,
+                createdBy: this.globalVariableService.currentUser.userID,
+                createdOn: new Date()
             };
 
         this.globalVariableService.addDashboardTag(newTag).then(res => {

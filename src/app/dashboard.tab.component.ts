@@ -201,7 +201,11 @@ export class DashboardTabComponent {
                 description: this.description,
                 displayOrder: this.globalVariableService.currentDashboardTabs.length + 1,
                 backgroundColor: this.backgroundColor,
-                color: this.color
+                color: this.color,
+                editedBy: '',
+                editedOn: null,
+                createdBy: '',
+                createdOn: null
             }
 
             this.globalVariableService.addDashboardTab(newTab).then(res => {
@@ -229,7 +233,11 @@ export class DashboardTabComponent {
                 description: this.description,
                 displayOrder: 0,
                 backgroundColor: this.backgroundColor,
-                color: this.color
+                color: this.color,
+                editedBy: '',
+                editedOn: null,
+                createdBy: this.globalVariableService.currentUser.userID,
+                createdOn: new Date()
             };
 
             this.globalVariableService.saveDashboardTab(tab).then(res => {

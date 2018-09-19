@@ -153,7 +153,11 @@ export class DashboardShareComponent implements OnInit {
             canAddDatasource: false,
             canGrantAccess: false,
             grantor: this.globalVariableService.currentUser.userID,
-            grantedOn: today
+            grantedOn: today,
+            editedBy: '',
+            editedOn: null,
+            createdBy: this.globalVariableService.currentUser.userID,
+            createdOn: today
         };
 
         // Update locally

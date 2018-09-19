@@ -86,14 +86,22 @@ export class DashboardNewComponent implements OnInit {
               dashboardID: 68,
               name: "Blank",
               description: "Blank layout, no blocks",
-              imageUrl: '../images/Dashboard Layout Blank.png'
+              imageUrl: '../images/Dashboard Layout Blank.png',
+              editedBy: '',
+              editedOn: null,
+              createdBy: '',
+              createdOn: null
             },
             {
               id: 2,
               dashboardID: 69,
               name: "3 x 5 with 5 blocks",
               description: "3 x 5 with 5 blocks",
-              imageUrl: '../images/Dashboard Layout 5 x 3.png'
+              imageUrl: '../images/Dashboard Layout 5 x 3.png',
+              editedBy: '',
+              editedOn: null,
+              createdBy: '',
+              createdOn: null
             }
         ];
         this.widgetLayouts = [
@@ -104,7 +112,11 @@ export class DashboardNewComponent implements OnInit {
               top: 75,
               left: 15,
               height: 529,
-              width: 456
+              width: 456,
+              editedBy: '',
+              editedOn: null,
+              createdBy: '',
+              createdOn: null
             },
             {
               id: 2,
@@ -112,7 +124,11 @@ export class DashboardNewComponent implements OnInit {
               top: 75,
               left: 486,
               height: 320,
-              width: 798
+              width: 798,
+              editedBy: '',
+              editedOn: null,
+              createdBy: '',
+              createdOn: null
             },
             {
               id: 3,
@@ -120,7 +136,11 @@ export class DashboardNewComponent implements OnInit {
               top: 409,
               left: 490,
               height: 195,
-              width: 251
+              width: 251,
+              editedBy: '',
+              editedOn: null,
+              createdBy: '',
+              createdOn: null
             },
             {
               id: 4,
@@ -128,7 +148,11 @@ export class DashboardNewComponent implements OnInit {
               top: 409,
               left: 761,
               height: 195,
-              width: 251
+              width: 251,
+              editedBy: '',
+              editedOn: null,
+              createdBy: '',
+              createdOn: null
             },
             {
               id: 5,
@@ -136,7 +160,11 @@ export class DashboardNewComponent implements OnInit {
               top: 409,
               left: 1033,
               height: 195,
-              width: 251
+              width: 251,
+              editedBy: '',
+              editedOn: null,
+              createdBy: '',
+              createdOn: null
             }
         ];
 
