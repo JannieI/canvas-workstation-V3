@@ -139,6 +139,19 @@
                         >
                 </div>
 
+                <div class="gridCanGrantTitle">
+                    Can Grant:
+                </div>
+                <div class="gridCanGrant">
+                    <input [(ngModel)]="canGrant"
+                        type="checkbox"
+                        name="canGrant"
+                        #snapToGridVar="ngModel"
+                        title="The specified User/Group Can Grant access on this Datasource (T/F)"
+                        [style.color]="!snapToGridVar.valid ? 'red' : 'gray'"
+                        >
+                </div>
+
                 <div class = "gridButtonAdd">
                     <button
                         type="button"
