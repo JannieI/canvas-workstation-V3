@@ -59,7 +59,17 @@ export class DatasourceDescriptionComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        this.datasources = this.globalVariableService.datasources.slice();
+        this.datasources = this.globalVariableService.datasources
+            .slice()
+            .sort( (obj1, obj2) => {
+                if (obj1.name > obj2.name) {
+                    return 1;
+                };
+                if (obj1.name < obj2.name) {
+                    return -1;
+                };
+                return 0;
+            });
 
         if (this.datasources.length > 0) {
             this.selectedDatasource = this.datasources[0];

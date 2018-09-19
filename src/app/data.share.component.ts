@@ -70,8 +70,15 @@ export class DatasourceShareComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         this.datasources = this.globalVariableService.datasources
-            .filter(ds => ds.accessType == 'AccessList')
-            .sort( (obj1, obj2) => {
+            .filter(ds => ds.accessType == 'AccessList');
+
+        this.globalVariableService.getDatasourcePermissions().then (dp => {
+            this.datasourcePermissions = dp;
+            this.datasourcePermissions.forEach(tdsp => {
+                tdsp.name = this.globalVariableService.datasources.filter(
+                    ds => ds.id == tdsp.datasourceID)[0].name;
+            });
+            this.datasourcePermissions = this.datasourcePermissions.sort( (obj1, obj2) => {
                 if (obj1.name > obj2.name) {
                     return 1;
                 };
@@ -79,13 +86,6 @@ export class DatasourceShareComponent implements OnInit {
                     return -1;
                 };
                 return 0;
-            });
-
-        this.globalVariableService.getDatasourcePermissions().then (dp => {
-            this.datasourcePermissions = dp;
-            this.datasourcePermissions.forEach(tdsp => {
-                tdsp.name = this.globalVariableService.datasources.filter(
-                    ds => ds.id == tdsp.datasourceID)[0].name;
             });
 
             this.globalVariableService.getCanvasUsers().then(usr => {
