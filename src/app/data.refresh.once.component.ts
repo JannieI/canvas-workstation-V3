@@ -62,7 +62,17 @@ export class DataRefreshOnceComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         // Get DS
-        this.currentDatasources = this.globalVariableService.datasources.slice();
+        this.currentDatasources = this.globalVariableService.datasources
+            .slice()
+            .sort( (obj1, obj2) => {
+                if (obj1.name > obj2.name) {
+                    return 1;
+                };
+                if (obj1.name < obj2.name) {
+                    return -1;
+                };
+                return 0;
+            });
 
         if (this.currentDatasources.length > 0) {
             this.dataFieldNames = this.currentDatasources[0].dataFields;
