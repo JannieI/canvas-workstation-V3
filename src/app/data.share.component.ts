@@ -142,19 +142,13 @@ export class DatasourceShareComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickToggleView', '@Start');
 
         // Check permissions
-        let datasource: Datasource = this.datasources.find(
-            ds => ds.id == this.datasourcePermissions[index].datasourceID
-        );
-        if (datasource == undefined) {
-            this.errorMessage = 'Error! Datasource does not exist any longer';
-            return;
-        };
-        if (datasource == undefined) {
-            this.errorMessage = 'Error! Datasource does not exist any longer';
+        if (this.globalVariableService.datasourcePermissionsCheck(
+            this.datasourcePermissions[index].datasourceID, 'CanGrant') ) {
+            this.errorMessage = 'No permission to grant access on this record';
             return;
         };
 
-        let index: number = -1;
+        // Toggle
         for(var i = 0; i < this.datasourcePermissions.length; i++) {
             if (this.datasourcePermissions[i].id == id) {
                 this.datasourcePermissions[i].canView = ! this.datasourcePermissions[i].canView;
