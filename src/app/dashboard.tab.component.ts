@@ -176,7 +176,7 @@ export class DashboardTabComponent {
 
         // Open Picker if selected
         if (ev.target.value == 'Open Picker ...') {
-            this.clickSelectBgColorPicker(null);
+            this.clickSelectColorPicker(null);
         };
 
         this.colorName = ev.target.value;

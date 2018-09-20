@@ -1226,14 +1226,17 @@
 
                     <div class="gridRectangleOpacity">
                         <b>Fill Opacity:</b>
-                        <input type="text"
+                        <input type="number"
+                            min="0"
+                            max="1"
+                            step="0.01"
                             placeholder="0=opaque, 1=solid"
                             [(ngModel)]="localWidget.shapeOpacity"
                             >
                     </div>
                     <div class="gridRectangleCorners">
                         <b>Corners:</b>
-                        <input type="text"
+                        <input type="number"
                             placeholder="Corner Size in px"
                             [(ngModel)]="localWidget.shapeCorner"
                             >
