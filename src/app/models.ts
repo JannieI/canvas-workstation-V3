@@ -1044,15 +1044,15 @@ export class Widget {
     // NB: So, it must be set to -1 to be meaningful.
 
     // Links @Runtime
-    hyperlinkDashboardID: number;           // Optional Widget ID to jump to
-    hyperlinkDashboardTabID: number;        // Optional Tab Nr to jump to
-    containerStyleID: number;                 // Optional ContainerStyleID that provides formatting
+    hyperlinkDashboardID: number;       // Optional Widget ID to jump to
+    hyperlinkDashboardTabID: number;    // Optional Tab Nr to jump to
+    containerStyleID: number;           // Optional ContainerStyleID that provides formatting
 
     // Data related
-    datasourceID: number;                   // Specific ID that this W points to.  For a W,
+    datasourceID: number;               // Specific ID that this W points to.  For a W,
 
     // this is the dSet that contains its data.  For a Sl, it is the dSet that it filters.
-    datasetID: number;                      // Specific ID that this W points to.  For a W,
+    datasetID: number;                  // Specific ID that this W points to.  For a W,
     // this is the dSet that contains its data.  For a Sl, it is the dSet that it filters.
     // For a W, -1 = latest dataset of the DS-id.  For now, Sl must have a datsetID <> -1
     data: any;                          // Optional - can copy rawData into table
