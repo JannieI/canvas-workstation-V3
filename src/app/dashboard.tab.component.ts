@@ -12,7 +12,7 @@ import { DashboardTab }               from './models';
 // Our Services
 import { GlobalFunctionService }      from './global-function.service';
 import { GlobalVariableService }      from './global-variable.service';
- 
+
 // Other
 import { Subscription }               from 'rxjs';
 
@@ -47,7 +47,7 @@ export class DashboardTabComponent {
             this.clickSave();
             return;
         };
- 
+
     }
 
     dashboardID: number;                  // FK to DashboardID to which widget belongs
@@ -98,7 +98,7 @@ export class DashboardTabComponent {
                 if (clp.cancelled) {
                     this.colourPickerClosed = false;
                 } else {
- 
+
                     if (clp.callingRoutine == 'BgColour') {
                         this.colourPickerClosed = false;
                         this.backgroundColor = clp.selectedColor;
@@ -118,9 +118,9 @@ export class DashboardTabComponent {
 
         // Get setup info
         this.backgroundcolors = this.globalVariableService.backgroundcolors.slice();
-                
+
     }
-   
+
     ngOnDestroy() {
         // Cleanup just before Angular destroys the directive/component.
         // Unsubscribe Observables and detach event handlers to avoid memory leaks.
@@ -145,7 +145,7 @@ export class DashboardTabComponent {
         this.callingRoutine = 'BgColour';
         this.colourPickerClosed = true;
     }
-      
+
     clickSelectColor(ev: any) {
         // Select text Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectColor', '@Start');
@@ -177,12 +177,12 @@ export class DashboardTabComponent {
         this.showErrorMessage = false;
         this.errorMessageText = '';
 
-        if (this.name == ''  ||  this.name.length > 20) { 
+        if (this.name == ''  ||  this.name.length > 20) {
             this.showErrorMessage = true;
             this.errorMessageText = 'Please enter a name, and less than 20 char';
         };
 
-        if (this.description == '') { 
+        if (this.description == '') {
             this.showErrorMessage = true;
             this.errorMessageText = 'Please enter a description';
         };
@@ -220,7 +220,7 @@ export class DashboardTabComponent {
 
                 newTab.id = res.id;
                 this.formDashboardTabClosed.emit(newTab);
-        
+
             });
         } else {
             let tab: DashboardTab = {

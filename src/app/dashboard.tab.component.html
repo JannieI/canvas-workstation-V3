@@ -7,7 +7,7 @@
                     <button type="button" class="closeButton" (click)="clickClose()">
                         <b>X</b>
                     </button>
-            
+
                     <div class="colourpicker" *ngIf="colourPickerClosed">
                         <colour-picker
                             [callingRoutine]="callingRoutine"
@@ -27,24 +27,24 @@
                                 <h5 style="margin-top: 0; color:gray;">
                                     Help
                                 </h5>
-                                <p style="margin-top: 0; color:gray;"> 
+                                <p style="margin-top: 0; color:gray;">
                                     Set properties for a new Dashboard Tab.  Click the Picker
                                     button to select colours from the colour picker.
                                     Click the X or press Escape to close this form.
                                 </p>
                             </clr-signpost-content>
                     </clr-signpost>
-        
+
                     </div>
                     <div class="titleSubHeader">
                     </div>
 
                     <div class="gridName">
                         <label for="dashboardName" class="popupLabel">Name (20 char):</label>
-                        <input type="text" 
+                        <input type="text"
                             [(ngModel)]="name"
-                            class="popupInput" 
-                            name="name" 
+                            class="popupInput"
+                            name="name"
                             placeholder="Enter short name here"
                             minlength="3"
                             maxlength="20"
@@ -57,11 +57,11 @@
 
                     <div class="gridDescription">
                         <label for="dashboardName" class="popupLabel">Description :</label>
-                        <input type="text" 
+                        <input type="text"
                             [(ngModel)]="description"
-                            name="description" 
+                            name="description"
                             placeholder="Enter Tab description"
-                            class="popupInput" 
+                            class="popupInput"
                             minlength="3"
                             maxlength="100"
                             #descriptionVar="ngModel"
@@ -86,13 +86,23 @@
                             </option>
                         </select>
                     </div>
-                    <button
-                        type="button"
-                        class="btn btn-link btn-sm gridBgColorPicker"
-                        (click)="clickSelectBgColorPicker()"
-                        >
-                        Picker
-                    </button>
+
+                    <div class="gridBgColorPicker">
+                        <button
+                            type="button"
+                            class="btn btn-link btn-sm"
+                            (click)="clickSelectBgColorPicker()"
+                            >
+                            Picker
+                        </button>
+                        <clr-icon
+                            shape="circle"
+                            size="14"
+                            [style.background-color]="backgroundColor"
+                            [style.color]="backgroundColor"
+                            >
+                        </clr-icon>
+                    </div>
 
                     <div class="gridColorTitle">
                         Colour:
@@ -140,7 +150,7 @@
                             Save
                         </button>
                     </div>
-            
+
                 </div>
             </form>
         </div>

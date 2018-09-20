@@ -32,9 +32,10 @@
         .datasourceList {
             border: 1px solid black;
             display: inline-block;
-            height: 375px;
+            height: 18rem;
             left: 20px;
             margin: 10px;
+            overflow: scroll;
             position: absolute;
             top: 105px;
             width: 450px;
