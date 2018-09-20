@@ -469,7 +469,7 @@ export class StatusbarComponent {
         let widgetCount: number = 0;
         let firstDashboardID: number = null;
         this.globalVariableService.widgets.forEach(w => {
-            if(w.hyperlinkDashboardTabID = 
+            if(w.hyperlinkDashboardTabID == 
                 this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID) {
                     widgetCount = widgetCount + 1;
                     if (firstDashboardID == null) {
@@ -477,6 +477,7 @@ export class StatusbarComponent {
                     };
                 };
         });
+
         if (firstDashboardID != null) {
             let widgetString: string = widgetCount==1? ' widget ' : ' widgets'
             let dashboardIndex: number = this.globalVariableService.dashboards
@@ -486,7 +487,7 @@ export class StatusbarComponent {
                     {
                         message: 'Tab hyperlinked in ' + widgetCount.toString() +
                             widgetString + ', first is ' + this.globalVariableService
-                            .dashboards[firstDashboardID].name,
+                            .dashboards[dashboardIndex].name,
                         uiArea: 'StatusBar',
                         classfication: 'Warning',
                         timeout: 3000,
@@ -496,7 +497,7 @@ export class StatusbarComponent {
                 return;
             };
         }
-        
+
         // Can only delete Tab if it has no W on it
         let nrWperT: number = 0;
         nrWperT = this.globalVariableService.widgets.filter(w => {
@@ -521,17 +522,17 @@ export class StatusbarComponent {
             return;
         };
 
-        // this.globalVariableService.deleteDashboardTab(
-        //    this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID
-        // ).then(res => {
+        this.globalVariableService.deleteDashboardTab(
+           this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID
+        ).then(res => {
 
-        //     this.globalVariableService.refreshCurrentDashboard(
-        //         'statusbar-clickTabDelete',
-        //         this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
-        //         0,
-        //         'Previous'
-        //     );
-        // })
+            this.globalVariableService.refreshCurrentDashboard(
+                'statusbar-clickTabDelete',
+                this.globalVariableService.currentDashboardInfo.value.currentDashboardID,
+                0,
+                'Previous'
+            );
+        })
 
         // Close popup form
         this.showDashboardTabDescription = false;
