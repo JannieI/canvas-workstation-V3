@@ -173,7 +173,7 @@
         </span>
 
     </div>
-    <button
+    <button style="color: white"
         type="button"
         class="btn btn-link"
         (click)="showTabList=!showTabList"
@@ -187,7 +187,7 @@
 <!-- Dashboard Description -->
 <div class="dashboardDescription" *ngIf="showDashboardDescription">
     <div> {{ dashboardDescription }}</div>
-    <button
+    <button style="color: white"
         type="button"
         class="btn btn-link"
         (click)="showDashboardDescription=!showDashboardDescription"
@@ -200,29 +200,33 @@
 
 <!-- Dashboard Tab Description -->
 <div class="dashboardTabDescription" *ngIf="showDashboardTabDescription">
-    <div> {{ dashboardTabDescription }} </div>
-    <button
+    <div>  
+        <b>
+            Tab: {{ dashboardTabDescription }} 
+        </b>
+    </div>
+    <button style="color: white"
         type="button"
         class="btn btn-link"
         (click)="clickTabEdit()"
         >
         Edit
     </button>
-    <button
+    <button style="color: white"
         type="button"
         class="btn btn-link"
         (click)="clickTabDuplicate()"
         >
         Duplicate
     </button>
-    <button
+    <button style="color: white"
         type="button"
         class="btn btn-link"
         (click)="clickTabDelete()"
         >
         Delete
     </button>
-    <button
+    <button style="color: white"
         type="button"
         class="btn btn-link"
         (click)="showDashboardTabDescription=!showDashboardTabDescription"
