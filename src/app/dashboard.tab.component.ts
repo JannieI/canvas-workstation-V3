@@ -80,6 +80,8 @@ export class DashboardTabComponent {
             let tabIndex: number = this.globalVariableService.currentDashboardTabs
                 .findIndex(t => t.id == this.globalVariableService.currentDashboardInfo
                     .value.currentDashboardTabID);
+                    console.warn('xx this.globalVariableService.currentDashboardTabs[tabIndex]', this.globalVariableService.currentDashboardTabs[tabIndex]);
+                    
             if (tabIndex >= 0) {
                 this.name = this.globalVariableService.currentDashboardTabs[tabIndex].name;
                 this.description = this.globalVariableService.currentDashboardTabs[tabIndex]
@@ -121,7 +123,9 @@ export class DashboardTabComponent {
 
         // Get setup info
         this.backgroundcolors = this.globalVariableService.backgroundcolors.slice();
-
+        this.backgroundcolors = [
+            {id: null, name: 'Open Picker ...', cssCode: '', shortList: false}, ...this.backgroundcolors
+        ];
     }
 
     ngOnDestroy() {
