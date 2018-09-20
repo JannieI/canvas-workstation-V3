@@ -119,13 +119,23 @@
                             </option>
                         </select>
                     </div>
-                    <button
-                        type="button"
-                        class="btn btn-link btn-sm gridColorPicker"
-                        (click)="clickSelectColorPicker()"
-                        >
-                        Picker
-                    </button>
+
+                    <div class="gridColorPicker">
+                        <button
+                            type="button"
+                            class="btn btn-link btn-sm"
+                            (click)="clickSelectColorPicker()"
+                            >
+                            Picker
+                        </button>
+                        <clr-icon
+                            shape="circle"
+                            size="14"
+                            [style.background-color]="color"
+                            [style.color]="color"
+                            >
+                        </clr-icon>
+                    </div>
 
 
                     <div class="gridErrorMessage" *ngIf="showErrorMessage">

@@ -50,21 +50,22 @@ export class DashboardTabComponent {
 
     }
 
-    dashboardID: number;                  // FK to DashboardID to which widget belongs
-    name: string = '';                    // Name of new T
-    description: string = '';             // T description
-    backgroundColor: string = 'white';    // Bg Color of T
-    color: string = 'black';              // CSS color of T
-    showErrorMessage: boolean = false;
-    errorMessageText: string = '';
-
+    
+    backgroundColor: string = 'white';    // Actual Bg Color of T
+    backgroundColorName: string = 'White';    // Name of Bg Color of T
     backgroundcolors: CSScolor[];
     callingRoutine: string = '';
+    color: string = 'black';              // Actual CSS color of T
+    colorName: string = 'Black';          // Name of CSS color of T
     colourPickerClosed: boolean = false;
     colourPickerSubscription: Subscription;
-
+    dashboardID: number;                  // FK to DashboardID to which widget belongs
+    description: string = '';             // T description
+    errorMessageText: string = '';
     lineColor: string = 'none';
+    name: string = '';                    // Name of new T
     selectedColour: string;
+    showErrorMessage: boolean = false;
 
 
     constructor(
@@ -102,10 +103,12 @@ export class DashboardTabComponent {
                     if (clp.callingRoutine == 'BgColour') {
                         this.colourPickerClosed = false;
                         this.backgroundColor = clp.selectedColor;
+                        this.backgroundColorName = 'Open Picker ...';
                     };
                     if (clp.callingRoutine == 'Colour') {
                         this.colourPickerClosed = false;
                         this.color = clp.selectedColor;
+                        this.colorName = 'Open Picker ...';
                     };
                     if (clp.callingRoutine == 'BorderColour') {
                         this.colourPickerClosed = false;
@@ -134,7 +137,22 @@ export class DashboardTabComponent {
         // Select Background Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBgColor', '@Start');
 
-        this.backgroundColor = ev.target.value;
+        // this.backgroundColor = ev.target.value;
+
+        // Open Picker if selected
+        if (ev.target.value == 'Open Picker ...') {
+            this.clickSelectBgColorPicker(null);
+        };
+
+        this.backgroundColorName = ev.target.value;
+        this.backgroundColor = this.backgroundColorName;
+        let localIndex: number = this.backgroundcolors.findIndex(bg =>
+            bg.name == this.backgroundColorName
+        );
+        if (localIndex >= 0) {
+            this.backgroundColor = this.backgroundcolors[localIndex].cssCode;
+        };
+
     }
 
     clickSelectBgColorPicker(ev: any) {
