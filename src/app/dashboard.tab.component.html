@@ -75,8 +75,8 @@
                         Bg Colour:
                     </div>
                     <div class="select gridBgColor">
-                        <select [(ngModel)]="backgroundColor"
-                            name="backgroundColor"
+                        <select [(ngModel)]="backgroundColorName"
+                            name="backgroundColorName"
                             (change)="clickSelectBgColor($event)"
                             >
                             <option *ngFor="let row of backgroundcolors"
@@ -108,9 +108,9 @@
                         Colour:
                     </div>
                     <div class="select gridColor">
-                        <select [(ngModel)]="color"
+                        <select [(ngModel)]="colorName"
                             (change)="clickSelectColor($event)"
-                            name="color"
+                            name="colorName"
                             >
                             <option *ngFor="let row of backgroundcolors"
                                 [style.background-color]="row.name"

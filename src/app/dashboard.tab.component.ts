@@ -62,7 +62,6 @@ export class DashboardTabComponent {
     dashboardID: number;                  // FK to DashboardID to which widget belongs
     description: string = '';             // T description
     errorMessageText: string = '';
-    lineColor: string = 'none';
     name: string = '';                    // Name of new T
     selectedColour: string;
     showErrorMessage: boolean = false;
@@ -87,12 +86,17 @@ export class DashboardTabComponent {
                     .description;
                 this.backgroundColor = this.globalVariableService.currentDashboardTabs[tabIndex]
                     .backgroundColor;
+                this.backgroundColorName = this.globalVariableService.currentDashboardTabs[tabIndex]
+                    .backgroundColorName;
                 this.color = this.globalVariableService.currentDashboardTabs[tabIndex].color;
+                this.colorName = this.globalVariableService.currentDashboardTabs[tabIndex]
+                    .colorName;
             };
         };
 
         // Manage colour picker
-        this.colourPickerSubscription = this.globalVariableService.colourPickerClosed.subscribe(clp => {
+        this.colourPickerSubscription = this.globalVariableService.colourPickerClosed
+            .subscribe(clp => {
 
             if (clp != null) {
 
@@ -109,10 +113,6 @@ export class DashboardTabComponent {
                         this.colourPickerClosed = false;
                         this.color = clp.selectedColor;
                         this.colorName = 'Open Picker ...';
-                    };
-                    if (clp.callingRoutine == 'BorderColour') {
-                        this.colourPickerClosed = false;
-                        this.lineColor = clp.selectedColor;
                     };
 
                 };
@@ -233,7 +233,9 @@ export class DashboardTabComponent {
                 description: this.description,
                 displayOrder: this.globalVariableService.currentDashboardTabs.length + 1,
                 backgroundColor: this.backgroundColor,
+                backgroundColorName: this.backgroundColorName,
                 color: this.color,
+                colorName: this.colorName,
                 editedBy: '',
                 editedOn: null,
                 createdBy: '',
@@ -265,7 +267,9 @@ export class DashboardTabComponent {
                 description: this.description,
                 displayOrder: 0,
                 backgroundColor: this.backgroundColor,
+                backgroundColorName: this.backgroundColorName,
                 color: this.color,
+                colorName: this.colorName,
                 editedBy: '',
                 editedOn: null,
                 createdBy: this.globalVariableService.currentUser.userID,

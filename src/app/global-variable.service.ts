@@ -354,7 +354,9 @@ const dashboardTabTemplate: DashboardTab =
         description: '',
         displayOrder: 0,            // Note: this must start at 0
         backgroundColor: '',
+        backgroundColorName: '',
         color: '',
+        colorName: '',
         editedBy: '',
         editedOn: null,
         createdBy: '',
