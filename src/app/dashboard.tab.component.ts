@@ -168,7 +168,21 @@ export class DashboardTabComponent {
         // Select text Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectColor', '@Start');
 
-        this.color = ev.target.value;
+        // this.color = ev.target.value;
+
+        // Open Picker if selected
+        if (ev.target.value == 'Open Picker ...') {
+            this.clickSelectBgColorPicker(null);
+        };
+
+        this.colorName = ev.target.value;
+        this.color = this.colorName;
+        let localIndex: number = this.backgroundcolors.findIndex(bg =>
+            bg.name == this.colorName
+        );
+        if (localIndex >= 0) {
+            this.color = this.backgroundcolors[localIndex].cssCode;
+        };
     }
 
     clickSelectColorPicker(ev: any) {
