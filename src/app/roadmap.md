@@ -195,8 +195,7 @@ This document describes items for later versions of Canvas.
         - Easy to drill in and out of dates - year - month - day, etc
         - consider filter and W: thus DS remains unchanged, but W has subset of data in graphData.  This can be =, <= etc on data, or limits (top 10). This must work in conjunction with sorting.
         - add Drill Down / Drill Through: this is critical.  Drill down is a capability that takes the user from a more general view of the data to a more specific one at the click of a mouse. For example, a report that shows sales revenue by state can allow the user to select a state, click on it and see sales revenue by county or city within that state. It is called “drill down” because it is a feature that allows the user to go deeper into more specific layers of the data or information being analyzed.  Further levels of drill down can be set up within the report–practically as many as supported by the data. In our example, the drill-down can go from country to state to city to zip code to specific location of stores or individual sales reps. Typically, the look and feel of each level of the report is similar–what changes is the granularity of the data.  Instead of taking the user to a more granular level of the data, drill through takes him to a report that is relevant to the data being analyzed, also at the click of a mouse. For example, a tabular report that shows sales revenue by state can allow the user to click on it and reveal an analysis grid of the same data, or a heat map representing the data in visual form. It is called “drill through” because it is a feature that allows the user to pass from one report to another while still analyzing the same set of data.
-        - Easy way to compare data: graph shows revenue per month for this year.  What was figure
-        for March last year, or compare all to last year ... NB
+        - Easy way to compare data: graph shows revenue per month for this year.  What was figure for March last year, or compare all to last year ... NB
         - Also, easy way to jump to previous period:  loaded at start with data ??
         - has to do QA of some sorts on DS creation and definitions.  Not sure how...
 
@@ -340,7 +339,10 @@ This document describes items for later versions of Canvas.
     - make it easier to see where to input data: maybe gray background ... Is this really necesary?  Make baie certain as this is baie work ...
     - look at Windi.com, Wahoo ? to see how to make it easy
     - look at gartner quadrant for dv. Explore, visualize, transform, compute, compose
-    - create a video / bitmap
+    - create a video / bitmap.  See: w3schools:
+        <iframe width="420" height="315"
+            src="https://www.youtube.com/embed/tgbNymZ7vqY?autoplay=1">
+        </iframe>
     - consume all files in a folder !!  Can also poll folder to update when they change !!!
     - infer xsd from XML files. Tranform XML to SQL db table And show mapping. Publish to make it accessable by other consumers like spotfire. Which reads it as a db table, or to other bi consumers. Can combine XML to other data
     - can read Ems, Jms ... ??

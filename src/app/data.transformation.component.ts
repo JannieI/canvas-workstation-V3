@@ -594,7 +594,11 @@ export class DataTransformationComponent implements OnInit {
                 [
                 this.parameter1Value, this.parameter2Value, this.parameter3Value,
                 this.parameter4Value, this.parameter5Value, this.parameter6Value
-                ]
+                ],
+                editedBy: '',
+                editedOn: null,
+                createdBy: '',
+                createdOn: null
             };
 
             // Save to DB
