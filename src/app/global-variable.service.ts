@@ -5720,57 +5720,55 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
-        // Get the data, if so requested
-        let localDatasource: Datasource;
-        let currentDSIndex: number = this.currentDatasources
-            .findIndex(dS => dS.id == datasourceID
-        );
-        let dsIndex: number = this.datasources.findIndex(ds =>
-            ds.id == datasourceID
-        );
-
         return new Promise<any>((resolve, reject) => {
 
+            // Fill currentDS from DS, if required
+            let localDatasource: Datasource;
+            let datasourceIndex: number = this.datasources.findIndex(ds =>
+                ds.id == datasourceID
+            );
+            let currentDatasourceIndex: number = this.currentDatasources
+                .findIndex(dS => dS.id == datasourceID
+            );
+            console.warn('xx indexes', datasourceIndex, currentDatasourceIndex)
+
             // DS exists in gv datasources, but not in currentDatasources
-            if (dsIndex >= 0  &&  currentDSIndex < 0) {
+            if (datasourceIndex >= 0  &&  currentDatasourceIndex < 0) {
 
                 // Add DS to currentDS
-                localDatasource = this.datasources[dsIndex];
+                localDatasource = this.datasources[datasourceIndex];
                 this.currentDatasources.push(localDatasource);
                 this.hasDatasources.next(true);
+            };
+            let dataSetIndex: number = this.datasets.findIndex(dS =>
+                dS.datasourceID == datasourceID
+            );
+            let currentDataSetIndex: number = this.currentDatasets
+                .findIndex(dS => dS.id == datasourceID
+            );
 
-                let globalCurrentDsetIndex: number = this.currentDatasets
-                    .findIndex(dS => dS.id == datasourceID
-                );
-                let globalDsetIndex: number = this.datasets.findIndex(dS =>
-                    dS.datasourceID == datasourceID
-                );
+            // Dset exists in gv datasets, but not in currentDatasets
+            if (dataSetIndex >= 0  &&  currentDataSetIndex < 0) {
 
-                // Dset exists in gv datasets, but not in currentDatasets
-                if (globalDsetIndex >= 0  &&  globalCurrentDsetIndex < 0) {
+                // Get latest dSet-ID
+                let allDataSets: number[] = [];
+                let dSetID: number = -1;
 
-                    // Get latest dSet-ID
-                    let ds: number[] = [];
-                    let dSetID: number = -1;
-
-                    for (var i = 0; i < this.datasets.length; i++) {
-                        if(this.datasets[i].datasourceID == datasourceID) {
-                            ds.push(this.datasets[i].id)
-                        }
-                    };
-                    if (ds.length > 0) {
-                        dSetID = Math.max(...ds);
-
-                        // Get dSet with Data
-                        this.getCurrentDataset(datasourceID, dSetID).then(res => {
-
-                            resolve(res);
-
-                        });
-                    };
+                for (var i = 0; i < this.datasets.length; i++) {
+                    if(this.datasets[i].datasourceID == datasourceID) {
+                        allDataSets.push(this.datasets[i].id)
+                    }
                 };
-            } else {
-                resolve('Already in currentDS')
+                if (allDataSets.length > 0) {
+                    dSetID = Math.max(...allDataSets);
+
+                    // Get dSet with Data
+                    this.getCurrentDataset(datasourceID, dSetID).then(res => {
+
+                        resolve(res);
+
+                    });
+                };
             };
         });
 

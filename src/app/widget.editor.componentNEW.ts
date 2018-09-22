@@ -746,9 +746,10 @@ const graphWidth: number = 420;
         this.selectedDescription = this.localDatasources[this.selectedRowIndex].description;
         this.errorMessage = '';
         this.currentData = null;
-        console.warn('xx ---', this.selectedRowIndex, datasourceID)
+
         // Add DS to current DS (no action if already there)
         this.globalVariableService.addCurrentDatasource(datasourceID).then(res => {
+            console.warn('xx START this.globalVariableService.currentDatasets', this.globalVariableService.currentDatasets);
 
             // Load local arrays for ngFor
             this.dataFieldNames = this.localDatasources[this.selectedRowIndex].dataFields;
@@ -761,9 +762,11 @@ const graphWidth: number = 420;
             );
             if (dataSetIndex < 0) {
                 this.errorMessage = 'Error! The Data does not exist in currentDatasets array';
+                console.warn('xx this.errorMessage', this.errorMessage);
+                
                 return;
             };
-console.warn('xx this.globalVariableService.currentDatasets', dataSetIndex, this.globalVariableService.currentDatasets[dataSetIndex]);
+console.warn('xx dataSetIndex', dataSetIndex);
 
             // Load first few rows into preview
             this.currentData = this.globalVariableService.currentDatasets[dataSetIndex]
