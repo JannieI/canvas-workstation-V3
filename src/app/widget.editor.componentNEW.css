@@ -43,7 +43,7 @@
 
         display: grid;
         grid-template-columns: repeat(50, 1fr);
-        grid-template-rows: repeat(32, 0.8/rem);
+        grid-template-rows: repeat(32, 0.8rem);
         margin: 2px;
         padding: 8px;
     }
@@ -60,7 +60,7 @@
         .datasourceMainDescriptionTitle {
             grid-column-start: 20;
             /* autoprefixer: off */
-            grid-column-end: 24;
+            grid-column-end: 26;
             grid-row-start: 3;
             grid-row-end: 4;
             margin-left: 10px;
@@ -69,11 +69,11 @@
 
         .datasourceMainDescription {
             border: 1px solid lightgray;
-            grid-column-start: 24;
+            grid-column-start: 26;
             /* autoprefixer: off */
             grid-column-end: 50;
             grid-row-start: 3;
-            grid-row-end: 8;
+            grid-row-end: 7;
             margin-left: 10px;
             text-align: left;
         }
@@ -92,9 +92,8 @@
             grid-column-start: 1;
             /* autoprefixer: off */
             grid-column-end: 20;
-            grid-row-start: 3;
-            grid-row-end: 33;
-            margin-left: 10px;
+            grid-row-start: 4;
+            grid-row-end: 32;
             text-align: left;
             overflow-y: scroll;
         }
@@ -103,7 +102,7 @@
             grid-column-start: 20;
             /* autoprefixer: off */
             grid-column-end: 50;
-            grid-row-start: 10;
+            grid-row-start: 8;
             grid-row-end: 30;
             margin-left: 10px;
             text-align: left;
@@ -116,9 +115,6 @@
             grid-column-end: 46;
             grid-row-start: 30;
             grid-row-end: 31;
-            margin-left: 10px;
-            text-align: left;
-            overflow-y: scroll;
         }
 
     /* Widget Editor */
@@ -127,12 +123,12 @@
         grid-column-start: 1;
         /* autoprefixer: off */
         grid-column-end: 20;
-        grid-row-start: 1;
+        grid-row-start: 2;
         grid-row-end: 20;
 
         display: grid;
         grid-template-columns: repeat(50, 1fr);
-        grid-template-rows: repeat(32, 0.8/rem);
+        grid-template-rows: repeat(32, 0.8rem);
         margin: 2px;
         padding: 8px;
     }

@@ -91,6 +91,7 @@ const graphWidth: number = 420;
     localWidget: Widget;                            // W to modify, copied from selected
     oldWidget: Widget = null;                       // W at start
     rowField: string = 'Drag a field here ...';
+    selectedDescription: string = '';
     selectedRowIndex: number = 0;
     showColFieldAdvanced: boolean = false;
     showColFieldAdvancedArea: boolean = false;
@@ -735,6 +736,8 @@ const graphWidth: number = 420;
 
         // Highlight selected row
         this.selectedRowIndex = index;
+        this.selectedDescription = this.globalVariableService.datasources.find(ds => 
+            ds.id == datasourceID).description;
         this.errorMessage = '';
 
         // Determine if data obtains in Glob Var

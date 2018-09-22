@@ -40,7 +40,7 @@
                         Description:
                     </div>                        
                     <div class="datasourceMainDescription">
-                        Text bla-bla
+                        {{ selectedDescription }}
                     </div>
 
                     <div class="datasourceMainError">
@@ -53,22 +53,24 @@
                             <div>
                                 <clr-datagrid class="datagrid-compact">
                                     <clr-dg-column clrDgField="name"  
-                                        [style.width.px]="130"
+                                        [style.width.px]="230"
                                         [(clrDgSortOrder)]="sortOrder"
                                         (click)="sortOrder=sortOrder * -1"
                                         >
                                         Name
                                     </clr-dg-column>
-                                    <clr-dg-column 
-                                        [style.width.%]="10"
-                                        >
+
+                                    <clr-dg-column >
                                         NrWidgets
                                     </clr-dg-column>
+
                                     <clr-dg-column 
                                         clrDgField="description"
+                                        [style.width.px]="230"
                                         >
                                         Description
                                     </clr-dg-column>
+                                    
                                     <clr-dg-row *clrDgItems="let row of currentDatasources; let i = index"
                                         [clrDgItem]="row"
                                         [style.background-color]="(i == selectedRowIndex)? '#123456' : 'white'"
@@ -113,7 +115,6 @@
                             (click)="clickContinue()">
                             Continue
                         </button>
-    
                     </div>
                 </div>
 
