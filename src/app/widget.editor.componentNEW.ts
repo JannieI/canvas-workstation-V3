@@ -752,9 +752,7 @@ const graphWidth: number = 420;
         let dataSetIndex: number = this.globalVariableService.currentDatasets.findIndex(
             ds => ds.datasourceID == datasourceID
         );
-        if (dataSetIndex > 0) {
-            this.errorMessage = 'Error! The Data does not exist in currentDatasets array';
-            console.warn('xx this.errorMessage', this.errorMessage);
+        if (dataSetIndex >= 0) {
 
             // Load first few rows into preview
             this.currentData = this.globalVariableService.currentDatasets[dataSetIndex]
@@ -777,7 +775,7 @@ const graphWidth: number = 420;
             this.dataFieldTypes = this.localDatasources[this.selectedRowIndex].dataFieldTypes;
 
             // Determine if data obtains in Glob Var
-            let dataSetIndex: number = this.globalVariableService.currentDatasets.findIndex(
+            dataSetIndex = this.globalVariableService.currentDatasets.findIndex(
                 ds => ds.datasourceID == datasourceID
             );
             if (dataSetIndex < 0) {
