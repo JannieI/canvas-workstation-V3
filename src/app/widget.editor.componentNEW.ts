@@ -754,10 +754,11 @@ const graphWidth: number = 420;
                 this.errorMessage = 'Data does not exist in currentDatasets array';
                 return;
             };
+console.warn('xx this.globalVariableService.currentDatasets', this.globalVariableService.currentDatasets);
 
             // Load first few rows into preview
-            this.currentData = this.globalVariableService.currentDatasets.filter(
-                d => d.id == dataSetIndex)[0].data.slice(0,5);
+            this.currentData = this.globalVariableService.currentDatasets[dataSetIndex]
+                .data.slice(0,5);
 
             // Fill in data info
             this.localWidget.datasourceID = datasourceID;
