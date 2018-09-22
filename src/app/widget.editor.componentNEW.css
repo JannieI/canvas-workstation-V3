@@ -48,19 +48,78 @@
         padding: 8px;
     }
 
-        .datasourceMainDatasources {
-            grid-column-start: 1;
+        .datasourceMainHelp {
+            grid-column-start: 2;
             /* autoprefixer: off */
-            grid-column-end: 14;
+            grid-column-end: 50;
             grid-row-start: 1;
             grid-row-end: 2;
+            text-align: left;
+        }
+
+        .datasourceMainDescriptionTitle {
+            grid-column-start: 20;
+            /* autoprefixer: off */
+            grid-column-end: 24;
+            grid-row-start: 3;
+            grid-row-end: 4;
+            margin-left: 10px;
+            text-align: left;
+        }
+
+        .datasourceMainDescription {
+            border: 1px solid lightgray;
+            grid-column-start: 24;
+            /* autoprefixer: off */
+            grid-column-end: 50;
+            grid-row-start: 3;
+            grid-row-end: 8;
+            margin-left: 10px;
+            text-align: left;
+        }
+        
+        .datasourceMainError {
+            grid-column-start: 3;
+            /* autoprefixer: off */
+            grid-column-end: 4;
+            grid-row-start: 20;
+            grid-row-end: 50;
             margin-left: 33px;
             text-align: left;
-            overflow-y: scroll;
-            overflow-x: scroll;
         }
-    
+        
+        .datasourceMainList {
+            grid-column-start: 1;
+            /* autoprefixer: off */
+            grid-column-end: 20;
+            grid-row-start: 3;
+            grid-row-end: 33;
+            margin-left: 10px;
+            text-align: left;
+            overflow-y: scroll;
+        }
+        
+        .datasourceMainPreview {
+            grid-column-start: 20;
+            /* autoprefixer: off */
+            grid-column-end: 50;
+            grid-row-start: 10;
+            grid-row-end: 30;
+            margin-left: 10px;
+            text-align: left;
+            overflow-y: scroll;
+        }
 
+        .datasourceMainButton {
+            grid-column-start: 44;
+            /* autoprefixer: off */
+            grid-column-end: 46;
+            grid-row-start: 30;
+            grid-row-end: 31;
+            margin-left: 10px;
+            text-align: left;
+            overflow-y: scroll;
+        }
 
     /* Widget Editor */
     .editorMain {

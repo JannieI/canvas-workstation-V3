@@ -31,84 +31,90 @@
                 <!-- SHOWS the DS info to select one -->
                 <div class="datasourceMain" *ngIf="showDatasourceMain">
 
-                    <div class="datasourceMainDatasources">
+                    <div class="datasourceMainHelp">
                         Select a <b>Datasources</b> added before, and how it should be visualised:
+                    </div>  
 
+
+                    <div class="datasourceMainDescriptionTitle">
+                        Description:
+                    </div>                        
+                    <div class="datasourceMainDescription">
+                        Text bla-bla
+                    </div>
+
+                    <div class="datasourceMainError">
+                        {{ errorMessage }}
+                    </div>
+
+                    <div class="datasourceMainList">
+                        <nav
+                            >
+                            <div>
+                                <clr-datagrid class="datagrid-compact">
+                                    <clr-dg-column clrDgField="name"  
+                                        [style.width.px]="130"
+                                        [(clrDgSortOrder)]="sortOrder"
+                                        (click)="sortOrder=sortOrder * -1"
+                                        >
+                                        Name
+                                    </clr-dg-column>
+                                    <clr-dg-column 
+                                        [style.width.%]="10"
+                                        >
+                                        NrWidgets
+                                    </clr-dg-column>
+                                    <clr-dg-column 
+                                        clrDgField="description"
+                                        >
+                                        Description
+                                    </clr-dg-column>
+                                    <clr-dg-row *clrDgItems="let row of currentDatasources; let i = index"
+                                        [clrDgItem]="row"
+                                        [style.background-color]="(i == selectedRowIndex)? '#123456' : 'white'"
+                                        [style.color]="(i == selectedRowIndex)? 'white' : 'gray'"
+                                        (click)="clickDSrow(i, row.id)"
+                                        >
+                                        <clr-dg-cell>{{ row.name }}</clr-dg-cell>
+                                        <clr-dg-cell>{{ row.nrWidgets }}</clr-dg-cell>
+                                        <clr-dg-cell>{{ row.description }}</clr-dg-cell>
+                                    </clr-dg-row>
+
+                                </clr-datagrid>
+                            </div>
+                        </nav>
+                    </div>
+
+                    <div class="datasourceMainPreview" *ngIf="hasClicked">
+                        <clr-datagrid class="gridIdentifyDataPreviewGrid">
+
+                            <clr-dg-column *ngFor="let row of dataFieldNames">{{row}}</clr-dg-column>
+                            <clr-dg-row *ngFor="let row of currentData">
+
+                                <clr-dg-cell *ngFor="let col of dataFieldNames; 
+                                    let i = index"
+                                    >
+                                    {{ row[col] }}
+                                </clr-dg-cell>
+                            </clr-dg-row>
+
+                            <clr-dg-footer>
+                                {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+                                of {{pagination.totalItems}} rows
+                                <clr-dg-pagination #pagination [clrDgPageSize]="10"></clr-dg-pagination>
+                            </clr-dg-footer>
+
+                        </clr-datagrid>
+                    </div>
+
+                    <div class="datasourceMainButton">
                         <button *ngIf="hasClicked"
                             class="btn btn-sm btn-secondary datasourceButton"
                             (click)="clickContinue()">
                             Continue
                         </button>
-
-                        <div class="errorMessage">
-                            {{ errorMessage }}
-                        </div>
-
-                        <div class="datasourceList">
-                            {{ errorMessage }}
-                            <nav
-                                >
-                                <div>
-                                    <clr-datagrid class="datagrid-compact">
-                                        <clr-dg-column clrDgField="name"  
-                                            [(clrDgSortOrder)]="sortOrder"
-                                            (click)="sortOrder=sortOrder * -1"
-                                            >
-                                            Name
-                                        </clr-dg-column>
-                                        <clr-dg-column 
-                                            [style.width.%]="10"
-                                            >
-                                            NrWidgets
-                                        </clr-dg-column>
-                                        <clr-dg-column 
-                                            clrDgField="description"
-                                            >
-                                            Description
-                                        </clr-dg-column>
-                                        <clr-dg-row *clrDgItems="let row of currentDatasources; let i = index"
-                                            [clrDgItem]="row"
-                                            [style.background-color]="(i == selectedRowIndex)? '#123456' : 'white'"
-                                            [style.color]="(i == selectedRowIndex)? 'white' : 'gray'"
-                                            (click)="clickDSrow(i, row.id)"
-                                            >
-
-                                            <clr-dg-cell>{{ row.name }}</clr-dg-cell>
-                                            <clr-dg-cell>{{ row.nrWidgets }}</clr-dg-cell>
-                                            <clr-dg-cell>{{ row.description }}</clr-dg-cell>
-                                        </clr-dg-row>
-
-                                    </clr-datagrid>
-                                </div>
-                            </nav>
-                        </div>
-
-                        <div class="datasourcePreview" *ngIf="hasClicked">
-                            <div>
-                                <clr-datagrid class="gridIdentifyDataPreviewGrid">
-
-                                    <clr-dg-column *ngFor="let row of dataFieldNames">{{row}}</clr-dg-column>
-                                    <clr-dg-row *ngFor="let row of currentData">
-
-                                        <clr-dg-cell *ngFor="let col of dataFieldNames; 
-                                            let i = index"
-                                            >
-                                            {{ row[col] }}
-                                        </clr-dg-cell>
-                                    </clr-dg-row>
-
-                                    <clr-dg-footer>
-                                        {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
-                                        of {{pagination.totalItems}} rows
-                                        <clr-dg-pagination #pagination [clrDgPageSize]="10"></clr-dg-pagination>
-                                    </clr-dg-footer>
-
-                                </clr-datagrid>
-                            </div>
-                        </div>
-
+    
                     </div>
-
                 </div>
 
                 <!-- Widget Editor -->
