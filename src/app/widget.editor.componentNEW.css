@@ -31,6 +31,8 @@
         text-align: left;
     }
 
+
+    /* Datasource selection */
     .datasourceMain {
         border: 2px solid red;
         grid-column-start: 1;
@@ -46,6 +48,21 @@
         padding: 8px;
     }
 
+        .datasourceMainDatasources {
+            grid-column-start: 1;
+            /* autoprefixer: off */
+            grid-column-end: 14;
+            grid-row-start: 1;
+            grid-row-end: 2;
+            margin-left: 33px;
+            text-align: left;
+            overflow-y: scroll;
+            overflow-x: scroll;
+        }
+    
+
+
+    /* Widget Editor */
     .editorMain {
         border: 2px solid black;
         grid-column-start: 1;

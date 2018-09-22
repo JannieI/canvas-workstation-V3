@@ -100,6 +100,8 @@ const graphWidth: number = 420;
     showRowFieldAdvanced: boolean = false;
     showRowDeleteIcon: boolean = false;
     showType: boolean = false;
+    sortOrder: number = 1
+
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -117,16 +119,16 @@ const graphWidth: number = 420;
                 .filter(ds => 
                     this.globalVariableService.datasourcePermissionsCheck(ds.id, 'CanView')
                 )
-                .sort( (obj1, obj2) => {
-                    if (obj1.name > obj2.name) {
-                        return 1;
-                    };
-                    if (obj1.name < obj2.name) {
-                        return -1;
-                    };
-                    return 0;
-                }
-            );
+                // .sort( (obj1, obj2) => {
+                //     if (obj1.name > obj2.name) {
+                //         return 1;
+                //     };
+                //     if (obj1.name < obj2.name) {
+                //         return -1;
+                //     };
+                //     return 0;
+                // }
+            // );
 
             // Count the Ws
             let widgets: Widget[];
