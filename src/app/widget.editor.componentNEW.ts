@@ -746,6 +746,26 @@ const graphWidth: number = 420;
         this.selectedDescription = this.localDatasources[this.selectedRowIndex].description;
         this.errorMessage = '';
         this.currentData = null;
+        console.warn('xx START clickDSrow', this.globalVariableService.currentDatasets)
+
+        // Determine if data already in Glob Var
+        let dataSetIndex: number = this.globalVariableService.currentDatasets.findIndex(
+            ds => ds.datasourceID == datasourceID
+        );
+        if (dataSetIndex > 0) {
+            this.errorMessage = 'Error! The Data does not exist in currentDatasets array';
+            console.warn('xx this.errorMessage', this.errorMessage);
+
+            // Load first few rows into preview
+            this.currentData = this.globalVariableService.currentDatasets[dataSetIndex]
+                .data.slice(0,5);
+
+            // Switch on the preview after the first row was clicked
+            this.showPreview = true;
+            
+            return;
+        };
+        console.warn('xx dataSetIndex', dataSetIndex);
 
         // Add DS to current DS (no action if already there)
         this.globalVariableService.addCurrentDatasource(datasourceID).then(res => {

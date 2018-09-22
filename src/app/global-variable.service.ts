@@ -1014,7 +1014,7 @@ export class GlobalVariableService {
                             localTableName,
                         localLastWebSocketNumber: this.dataCachingTable
                             [dataCachingTableIndex].localLastWebSocketNumber,
-                            
+
                     };
 
                     // Update DB with WS#
@@ -1102,7 +1102,7 @@ export class GlobalVariableService {
                             if (localCurrentVariableName != null) {
                                 this[localCurrentVariableName] = [];
                             };
-                            
+
                             // Add / Update DB
                             if (localTableName != null) {
 
@@ -1137,7 +1137,7 @@ export class GlobalVariableService {
                             if (localCurrentVariableName != null) {
                                 this[localCurrentVariableName] = webSocketMessage.content;
                             };
-                            
+
                             // Update DB
                             if (localTableName != null) {
 
@@ -1207,9 +1207,9 @@ export class GlobalVariableService {
 
                         // Use local cache variable or table if fresh
                         if (isFresh) {
-                            if ( (localVariableName != null)  
-                                 &&  
-                                 (this[localVariableName].length != 0) 
+                            if ( (localVariableName != null)
+                                 &&
+                                 (this[localVariableName].length != 0)
                                ) {
                                 console.warn('xx return from VAR');
         // var type = 'article';
@@ -1730,7 +1730,7 @@ export class GlobalVariableService {
                         this.deleteWidgetLayout(wl.id, wl.dashboardLayoutID);
                     };
                 });
-                // Note: when the last widgetLayout is deleted, it will automatically 
+                // Note: when the last widgetLayout is deleted, it will automatically
                 //       delete the dashboardLayout !
                 // this.deleteDashboardLayout(dl.id);
             };
@@ -8083,7 +8083,7 @@ export class GlobalVariableService {
                     };
                     return 0;
                 });
-                
+
                 resolve(this.backgroundcolors);
             }
         });
@@ -8130,8 +8130,8 @@ export class GlobalVariableService {
                 )
         });
     }
-    
-        
+
+
     saveBackgroundColor(data: CSScolor): Promise<string> {
         // Description: Saves BackgroundColor
         // Returns: 'Saved' or error message
@@ -9497,7 +9497,7 @@ export class GlobalVariableService {
                 )
         });
     }
-    
+
     saveContainerStyle(data: ContainerStyle): Promise<string> {
         // Description: Saves ContainerStyle
         // Returns: 'Saved' or error message
@@ -9675,7 +9675,7 @@ export class GlobalVariableService {
                 )
         });
     }
-    
+
     deleteDashboardLayout(id: number): Promise<string> {
         // Description: Deletes a DashboardLayout
         // Returns: 'Deleted' or error message
@@ -9750,7 +9750,7 @@ export class GlobalVariableService {
 
                     resolve(this.widgetLayouts);
                 });
-            
+
         });
 
     }
@@ -9795,7 +9795,7 @@ export class GlobalVariableService {
                 )
         });
     }
-    
+
     deleteWidgetLayout(id: number, dashboardLayoutID: number): Promise<string> {
         // Description: Deletes a WidgetLayout
         // Returns: 'Deleted' or error message
@@ -9962,7 +9962,7 @@ export class GlobalVariableService {
                     finalUrl = 'http://localhost:3001/' + url;
                 } else if (url == 'widgets') {
                     finalUrl = 'http://localhost:3005/' + url;
-                } else if (url.substring(0, 5) == 'data/') {                    
+                } else if (url.substring(0, 5) == 'data/') {
                     finalUrl = 'http://localhost:3006/' + url;
 
                 } else {
@@ -10793,7 +10793,7 @@ export class GlobalVariableService {
             });
 
             console.warn('xx Upsert actions', this.actions);
-            
+
         } else {
             this.actions.forEach(ac => {
                 if (ac.id == id) {
@@ -11141,7 +11141,7 @@ export class GlobalVariableService {
 
     datasourcePermissionsCheck(datasourceID: number, accessRequired: string = 'CanView'): boolean {
         // Description: Determines if the current user has the given access to a DS
-        // Access is given directly to a user, and indirectly to a group (to which the user 
+        // Access is given directly to a user, and indirectly to a group (to which the user
         // belongs).
         // Returns: T/F
         if (this.sessionDebugging) {
@@ -11149,7 +11149,7 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
- 
+
         // Assume no access
         let hasAccess: boolean = false;
         accessRequired = accessRequired.toLowerCase();
@@ -11168,7 +11168,7 @@ export class GlobalVariableService {
         if (datasource == undefined) {
             return;
         };
-        
+
         if (datasource.accessType.toLowerCase() == 'public') {
             hasAccess = true;
         };
