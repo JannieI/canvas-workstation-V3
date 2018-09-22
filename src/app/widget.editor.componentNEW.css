@@ -178,8 +178,7 @@
             grid-row-end: 22;
             text-align: left;
             overflow-y: scroll;
-        }
-        
+        }        
 
         .editorPropertiesTitle {
             grid-column-start: 11;
@@ -187,6 +186,7 @@
             grid-column-end: 20;
             grid-row-start: 1;
             grid-row-end: 2;
+            margin-left: 10px;
             text-align: left;
         }
         .editorProperties {
@@ -198,7 +198,6 @@
             text-align: left;
             overflow-y: scroll;
         }
-    
 
         .editorTypesTitle {
             grid-column-start: 21;
@@ -206,6 +205,7 @@
             grid-column-end: 30;
             grid-row-start: 1;
             grid-row-end: 2;
+            margin-left: 10px;
             text-align: left;
         }
         .editorTypes {
@@ -218,13 +218,13 @@
             overflow-y: scroll;
         }
     
-
         .editorAreaTitle {
             grid-column-start: 31;
             /* autoprefixer: off */
             grid-column-end: 50;
             grid-row-start: 1;
             grid-row-end: 2;
+            margin-left: 10px;
             text-align: left;
         }
         .editorArea {
@@ -234,7 +234,6 @@
             grid-row-start: 2;
             grid-row-end: 16;
             text-align: left;
-            overflow-y: scroll;
         }
 
         .editorButtonCancel {
@@ -244,7 +243,6 @@
             grid-row-start: 20;
             grid-row-end: 21;
             text-align: left;
-            overflow-y: scroll;
         }
         .editorButtonSave {
             grid-column-start: 42;
@@ -253,7 +251,6 @@
             grid-row-start: 20;
             grid-row-end: 21;
             text-align: left;
-            overflow-y: scroll;
         }
 
     
