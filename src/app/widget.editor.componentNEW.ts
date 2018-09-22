@@ -86,7 +86,6 @@ const graphWidth: number = 420;
     graphTypeFieldX: string[] =[];
     graphTypeFieldColor: string[] =[];
     isBusyRetrievingData: boolean = false;
-    hasClicked: boolean = false;
     localDatasources: Datasource[] = null;          // Current DS for the selected W
     localWidget: Widget;                            // W to modify, copied from selected
     oldWidget: Widget = null;                       // W at start
@@ -98,6 +97,7 @@ const graphWidth: number = 420;
     showColourDeleteIcon: boolean = false;
     showColumnDeleteIcon: boolean = false;
     showDatasourceMain: boolean = true;
+    showPreview: boolean = false;
     showRowFieldAdvanced: boolean = false;
     showRowDeleteIcon: boolean = false;
     showType: boolean = false;
@@ -738,6 +738,12 @@ const graphWidth: number = 420;
         // Set the selected datasourceID
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDSrow', '@Start');
 
+        // Highlight selected row
+        this.selectedRowIndex = index;
+        this.selectedDescription = this.localDatasources.find(ds => 
+            ds.id == datasourceID).description;
+        this.errorMessage = '';
+
         // Add DS to current DS (no action if already there)
         this.globalVariableService.addCurrentDatasource(datasourceID).then(res => {
 
@@ -754,7 +760,7 @@ const graphWidth: number = 420;
                 this.errorMessage = 'Data does not exist in currentDatasets array';
                 return;
             };
-console.warn('xx this.globalVariableService.currentDatasets', this.globalVariableService.currentDatasets);
+console.warn('xx this.globalVariableService.currentDatasets', dataSetIndex, this.globalVariableService.currentDatasets[dataSetIndex]);
 
             // Load first few rows into preview
             this.currentData = this.globalVariableService.currentDatasets[dataSetIndex]
@@ -762,9 +768,14 @@ console.warn('xx this.globalVariableService.currentDatasets', this.globalVariabl
 
             // Fill in data info
             this.localWidget.datasourceID = datasourceID;
-            this.localWidget.datasetID = dataSetIndex;
-            this.localWidget.graphData = this.globalVariableService.currentDatasets.filter(
-                d => d.id == dataSetIndex)[0].data;
+            this.localWidget.datasetID = this.globalVariableService.
+                currentDatasets[dataSetIndex].id;
+            this.localWidget.graphData = this.globalVariableService
+                .currentDatasets[dataSetIndex].data;
+
+            // Switch on the preview after the first row was clicked
+            this.showPreview = true;
+
         });
 
         // Highlight selected row

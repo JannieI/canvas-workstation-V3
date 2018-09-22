@@ -86,7 +86,7 @@
                     <div class="datasourceMainPreviewTitle">
                         <b>Preview:</b>
                     </div>
-                    <div class="datasourceMainPreview" *ngIf="hasClicked">
+                    <div class="datasourceMainPreview" *ngIf="showPreview">
                         <clr-datagrid class="datagrid-compact">
 
                             <clr-dg-column *ngFor="let row of dataFieldNames">{{row}}</clr-dg-column>
@@ -103,7 +103,7 @@
                     </div>
 
                     <div class="datasourceMainButton">
-                        <button *ngIf="hasClicked"
+                        <button *ngIf="showPreview"
                             class="btn btn-sm btn-secondary datasourceButton"
                             (click)="clickContinue()">
                             Continue
