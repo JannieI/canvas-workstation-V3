@@ -885,6 +885,7 @@ export interface dataSchemaInterface {
                 type: 'string',
                 length: 12
             };
+            this.dataSchema.push(newDataSchema);
         })
     }
   }
