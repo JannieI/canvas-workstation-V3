@@ -161,10 +161,11 @@
         margin: 2px;
         padding: 8px;
     }
+
         .editorFieldsTitle {
             grid-column-start: 1;
             /* autoprefixer: off */
-            grid-column-end: 20;
+            grid-column-end: 11;
             grid-row-start: 1;
             grid-row-end: 2;
             text-align: left;
@@ -172,10 +173,67 @@
         .editorFields {
             grid-column-start: 1;
             /* autoprefixer: off */
-            grid-column-end: 20;
+            grid-column-end: 11;
             grid-row-start: 2;
             grid-row-end: 22;
             text-align: left;
             overflow-y: scroll;
         }
         
+
+        .editorPropertiesTitle {
+            grid-column-start: 11;
+            /* autoprefixer: off */
+            grid-column-end: 20;
+            grid-row-start: 1;
+            grid-row-end: 2;
+            text-align: left;
+        }
+        .editorProperties {
+            grid-column-start: 11;
+            /* autoprefixer: off */
+            grid-column-end: 20;
+            grid-row-start: 2;
+            grid-row-end: 22;
+            text-align: left;
+            overflow-y: scroll;
+        }
+    
+
+        .editorTypesTitle {
+            grid-column-start: 21;
+            /* autoprefixer: off */
+            grid-column-end: 30;
+            grid-row-start: 1;
+            grid-row-end: 2;
+            text-align: left;
+        }
+        .editorTypes {
+            grid-column-start: 21;
+            /* autoprefixer: off */
+            grid-column-end: 30;
+            grid-row-start: 2;
+            grid-row-end: 22;
+            text-align: left;
+            overflow-y: scroll;
+        }
+    
+
+        .editorAreaTitle {
+            grid-column-start: 31;
+            /* autoprefixer: off */
+            grid-column-end: 50;
+            grid-row-start: 1;
+            grid-row-end: 2;
+            text-align: left;
+        }
+        .editorArea {
+            grid-column-start: 31;
+            /* autoprefixer: off */
+            grid-column-end: 50;
+            grid-row-start: 2;
+            grid-row-end: 22;
+            text-align: left;
+            overflow-y: scroll;
+        }
+    

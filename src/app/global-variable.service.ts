@@ -5730,7 +5730,6 @@ export class GlobalVariableService {
             let currentDatasourceIndex: number = this.currentDatasources
                 .findIndex(dS => dS.id == datasourceID
             );
-            console.warn('xx indexes', {datasourceIndex}, {currentDatasourceIndex})
 
             // DS exists in gv datasources, but not in currentDatasources
             if (datasourceIndex >= 0  &&  currentDatasourceIndex < 0) {
@@ -5746,7 +5745,6 @@ export class GlobalVariableService {
             let currentDataSetIndex: number = this.currentDatasets
                 .findIndex(dS => dS.id == datasourceID
             );
-            console.warn('xx indexes', {dataSetIndex}, {currentDataSetIndex})
 
             // Dset exists in gv datasets, but not in currentDatasets
             if (dataSetIndex >= 0  &&  currentDataSetIndex < 0) {

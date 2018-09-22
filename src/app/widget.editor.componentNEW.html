@@ -137,14 +137,13 @@
                                     
                                     <clr-dg-row *clrDgItems="let row of dataSchema; let i = index"
                                         [clrDgItem]="row"
-                                        [style.background-color]="(i == selectedFieldIndex)? '#123456' : 'white'"
+                                        [style.background-color]="(row.type=='string')? '#123456' : 'white'"
                                         [style.color]="(i == selectedFieldIndex)? 'white' : 'gray'"
-                                        (click)="clickDSrow(row.id)"
                                         >
                                         <clr-dg-cell>
                                             {{ row.name }}
-                                            <span *ngIf="row.nrWidgets > 0"
-                                                class="badge badge-5">{{row.length}}
+                                            <span class="badge badge-5">
+                                                {{row.length}}
                                             </span>
                                         </clr-dg-cell>
                                     </clr-dg-row>
@@ -154,6 +153,24 @@
                         </nav>
                     </div>
         
+                    <div class="editorPropertiesTitle">
+                        <b>
+                            Properties:
+                        </b>
+                    </div>
+                    <div class="editorProperties"></div>
+
+                    <div class="editorTypesTitle">
+                        <b>
+                            Types:
+                        </b>
+                    </div>
+                    <div class="editorTypes"></div>
+
+                    <div class="editorAreaTitle">
+                        <b>Area:</b>
+                    </div>
+                    <div class="editorArea"></div>
                 </div>
 
             </div>

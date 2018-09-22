@@ -887,5 +887,7 @@ export interface dataSchemaInterface {
             };
             this.dataSchema.push(newDataSchema);
         })
+        console.warn('xx this.dataSchema', this.dataSchema);
+        
     }
   }
