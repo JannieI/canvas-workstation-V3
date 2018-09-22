@@ -36,7 +36,7 @@ const graphWidth: number = 420;
 
     @Input() selectedWidgetLayout: WidgetLayout;
     @Input() newWidget: boolean;
-    @Input() showDatasourcePopup: boolean;
+    @Input() showDatasourcePopup: boolean;  // TODO - Depricate this once form ready
     @Input() selectedWidget: Widget;
     @Input() newWidgetContainerLeft: number;
     @Input() newWidgetContainerTop: number;
@@ -68,7 +68,6 @@ const graphWidth: number = 420;
 
     }
 
-    clickedButtonAggregateNo: boolean = false;
     colField: string = 'Drag a field here ...';
     containerHasContextMenus: boolean = true;
     containerHasTitle: boolean = true;
@@ -82,10 +81,7 @@ const graphWidth: number = 420;
     dragoverRow: boolean = false;
     dragoverColor: boolean = false;
     errorMessage: string = '';
-    filterPivotFields: string = '';
     graphColorField: string = 'Drag a field here ...';
-    graphCols: string[];
-    graphRows: string[];
     graphColor: string[];
     graphTypeFieldY: string[] =[];
     graphTypeFieldX: string[] =[];
@@ -94,16 +90,14 @@ const graphWidth: number = 420;
     hasClicked: boolean = false;
     localWidget: Widget;                            // W to modify, copied from selected
     oldWidget: Widget = null;                       // W at start
-    opened: boolean = true;
     rowField: string = 'Drag a field here ...';
     selectedRowIndex: number = 0;
-    selectedViz: string = 'Graph';
     showColFieldAdvanced: boolean = false;
     showColFieldAdvancedArea: boolean = false;
     showColourDeleteIcon: boolean = false;
     showColumnDeleteIcon: boolean = false;
+    showDatasourceMain: boolean = true;
     showRowFieldAdvanced: boolean = false;
-    showRowFieldAdvancedArea: boolean = false;
     showRowDeleteIcon: boolean = false;
     showType: boolean = false;
 
@@ -115,9 +109,6 @@ const graphWidth: number = 420;
     ngOnInit() {
         // ngOnInit Life Cycle Hook
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
-        console.warn('xx INIT this.globalVariableService.currentDatasets', this.globalVariableService.currentDatasets)
-        console.warn('xx INIT this.globalVariableService.currentDatasources', this.globalVariableService.currentDatasources)
-        console.warn('xx INIT this.currentDatasources', this.currentDatasources)
 
         if (this.newWidget) {
             // Get DS to which user has permissions
@@ -229,18 +220,18 @@ const graphWidth: number = 420;
 
     }
 
-    ngAfterViewInit() {
-        // ngAfterViewInit Life Cycle Hook
-        this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewInit', '@Start');
+    // ngAfterViewInit() {
+    //     // ngAfterViewInit Life Cycle Hook
+    //     this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewInit', '@Start');
 
-        // Render if Editing an existing one
-        let definition = this.globalVariableService.createVegaLiteSpec(
-            this.localWidget, graphHeight, graphWidth
-        );
-        if (!this.newWidget) {
-            this.renderGraph(definition);
-        }
-    }
+    //     // Render if Editing an existing one
+    //     let definition = this.globalVariableService.createVegaLiteSpec(
+    //         this.localWidget, graphHeight, graphWidth
+    //     );
+    //     if (!this.newWidget) {
+    //         this.renderGraph(definition);
+    //     }
+    // }
 
     ngOnDestroy() {
         // Cleanup just before Angular destroys the directive/component.
@@ -384,39 +375,6 @@ const graphWidth: number = 420;
 
         // Update new/edit
         if (this.newWidget) {
-
-            // // Set Graph Height and Width
-            // if (this.localWidget.graphXaxisTitle != ''
-            //     &&
-            //     this.localWidget.graphXaxisTitle != null) {
-            //         this.localWidget.graphHeight = this.localWidget.containerHeight
-            //         - 70;
-            // } else {
-            //     this.localWidget.graphHeight = this.localWidget.containerHeight - 55;
-            // };
-
-            // if (this.localWidget.graphColorField != ''
-            //     &&  this.localWidget.graphColorField != null) {
-            //     this.localWidget.graphWidth = this.localWidget.containerWidth - 130;
-            // } else {
-            //     this.localWidget.graphWidth = this.localWidget.containerWidth - 60;
-            // };
-
-            // TODO - improve this when using a DB!
-            // let newID: number = 1;
-            // let wsIDs: number[]=[];
-            // for (var i = 0; i < this.globalVariableService.widgets.length; i++) {
-            //     wsIDs.push(this.globalVariableService.widgets[i].id)
-            // };
-            // if (wsIDs.length > 0) {
-            //     newID = Math.max(...wsIDs) + 1;
-            // };
-            // this.localWidget.id = newID;
-            //  console.warn('xx wIDs', wsIDs, newID)
-
-             // Get Checkpoint info for ALL W, not only current one - AFTER ID collected
-            // TODO - fix when using DB
-            // TODO - this code is NOT DRY ~ getWidget() code in global var
             let tempChk: WidgetCheckpoint[] = this.globalVariableService.widgetCheckpoints
                 .filter(wc =>
                     wc.dashboardID == this.localWidget.dashboardID
@@ -483,20 +441,6 @@ const graphWidth: number = 420;
             });
 
         } else {
-
-            // if (this.selectedWidget.graphColorField != ''
-            //     &&  this.selectedWidget.graphColorField != null) {
-            //         if (this.localWidget.graphColorField == ''  ||  this.localWidget.graphColorField == null) {
-            //             this.localWidget.graphWidth = this.selectedWidget.graphWidth + 70;
-            //         };
-            // };
-            // if (this.selectedWidget.graphColorField == ''
-            //     ||  this.selectedWidget.graphColorField == null) {
-            //         if (this.localWidget.graphColorField != ''
-            //             &&  this.localWidget.graphColorField != null) {
-            //             this.localWidget.graphWidth = this.selectedWidget.graphWidth - 70;
-            //         };
-            // };
 
             // Update global W and DB
             this.globalVariableService.saveWidget(this.localWidget).then(res => {
@@ -762,53 +706,6 @@ const graphWidth: number = 420;
         this.dragoverColor = false;
     }
 
-    clickCloseAdvancedX(action) {
-        // Closes the Advanced popup for the Xaxis
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickCloseAdvancedX', '@Start');
-
-        this.showColFieldAdvancedArea = false;
-    }
-
-    clickApplyAdvancedX(action) {
-        // Apply the changes specified in the Advanced popup for the Xaxis, then close it
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickApplyAdvancedX', '@Start');
-
-        this.showColFieldAdvancedArea = false;
-    }
-
-    clickCloseAdvancedY(action) {
-        // Closes the Advanced popup for the Yaxis
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickCloseAdvancedY', '@Start');
-
-        this.showRowFieldAdvancedArea = false;
-    }
-
-    clickApplyAdvancedY(action) {
-        // Apply the changes specified in the Advanced popup for the Yaxis, then close it
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickApplyAdvancedY', '@Start');
-
-        this.showRowFieldAdvancedArea = false;
-
-        let definition = this.globalVariableService.createVegaLiteSpec(
-            this.localWidget, graphHeight, graphWidth
-        );
-        this.renderGraph(definition);
-    }
-
-    clickShowColFieldAdvanced(){
-        // Shows the Advanced popup for Cols
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowColFieldAdvanced', '@Start');
-
-        this.showColFieldAdvancedArea = true;
-    }
-
-    clickShowRowFieldAdvanced(){
-        // Shows the Advanced popup for Rows
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowRowFieldAdvanced', '@Start');
-
-        this.showRowFieldAdvancedArea = true;
-    }
-
     clickDatasource(index: number, name: string) {
         // Show dropdown of DS
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDatasource', '@Start');
@@ -931,7 +828,7 @@ const graphWidth: number = 420;
         // Continue to design / edit the W, and close the form for the data
         this.globalFunctionService.printToConsole(this.constructor.name,'clickContinue', '@Start');
 
-        this.showDatasourcePopup = false;
+        this.showDatasourceMain = false;
     }
 
     setGraphTypeFieldY(graphYtype: string) {
