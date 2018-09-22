@@ -66,7 +66,7 @@
                                         Name
                                     </clr-dg-column>
                                     
-                                    <clr-dg-row *clrDgItems="let row of currentDatasources; let i = index"
+                                    <clr-dg-row *clrDgItems="let row of localDatasources; let i = index"
                                         [clrDgItem]="row"
                                         [style.background-color]="(i == selectedRowIndex)? '#123456' : 'white'"
                                         [style.color]="(i == selectedRowIndex)? 'white' : 'gray'"

@@ -5764,7 +5764,7 @@ export class GlobalVariableService {
                         // Get dSet with Data
                         this.getCurrentDataset(datasourceID, dSetID).then(res => {
 
-                        resolve(res);
+                            resolve(res);
 
                         });
                     };

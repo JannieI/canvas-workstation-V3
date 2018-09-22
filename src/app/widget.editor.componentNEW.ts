@@ -72,7 +72,6 @@ const graphWidth: number = 420;
     containerHasContextMenus: boolean = true;
     containerHasTitle: boolean = true;
     currentData: any = [];
-    currentDatasources: Datasource[] = null;               // Current DS for the selected W
     dataFieldNames: string[] = [];
     dataFieldLengths: number[] = [];
     dataFieldTypes: string[] = [];
@@ -88,6 +87,7 @@ const graphWidth: number = 420;
     graphTypeFieldColor: string[] =[];
     isBusyRetrievingData: boolean = false;
     hasClicked: boolean = false;
+    localDatasources: Datasource[] = null;          // Current DS for the selected W
     localWidget: Widget;                            // W to modify, copied from selected
     oldWidget: Widget = null;                       // W at start
     rowField: string = 'Drag a field here ...';
@@ -119,7 +119,7 @@ const graphWidth: number = 420;
 
         if (this.newWidget) {
             // Get DS to which user has permissions
-            this.currentDatasources = this.globalVariableService.datasources
+            this.localDatasources = this.globalVariableService.datasources
                 .slice()
                 .filter(ds => 
                     this.globalVariableService.datasourcePermissionsCheck(ds.id, 'CanView')
@@ -137,7 +137,7 @@ const graphWidth: number = 420;
 
             // Count the Ws
             let widgets: Widget[];
-            this.currentDatasources.forEach(ds => {
+            this.localDatasources.forEach(ds => {
                 widgets = this.globalVariableService.widgets.filter(w => w.datasourceID == ds.id);
                 ds.nrWidgets = widgets.length;
             });
@@ -180,11 +180,11 @@ const graphWidth: number = 420;
             };
 
             // Get DS
-            this.currentDatasources = this.globalVariableService.currentDatasources
+            this.localDatasources = this.globalVariableService.currentDatasources
                 .filter(ds => ds.id == this.localWidget.datasourceID)
 
             // TODO - handle properly and close form
-            if (this.currentDatasources.length != 1) {
+            if (this.localDatasources.length != 1) {
                 alert('Datasource not found in global currentDatasources')
             };
 
@@ -219,9 +219,9 @@ const graphWidth: number = 420;
             // Get local vars - easier for ngFor
             this.containerHasContextMenus = this.localWidget.containerHasContextMenus;
             this.containerHasTitle = this.localWidget.containerHasTitle;
-            this.dataFieldNames = this.currentDatasources[0].dataFields;
-            this.dataFieldLengths = this.currentDatasources[0].dataFieldLengths;
-            this.dataFieldTypes = this.currentDatasources[0].dataFieldTypes;
+            this.dataFieldNames = this.localDatasources[0].dataFields;
+            this.dataFieldLengths = this.localDatasources[0].dataFieldLengths;
+            this.dataFieldTypes = this.localDatasources[0].dataFieldTypes;
 
         }
 
@@ -738,98 +738,126 @@ const graphWidth: number = 420;
         // Set the selected datasourceID
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDSrow', '@Start');
 
-        // Highlight selected row
-        this.selectedRowIndex = index;
-        this.selectedDescription = this.currentDatasources.find(ds => 
-            ds.id == datasourceID).description;
-        this.errorMessage = '';
+        // Add DS to current DS (no action if already there)
+        this.globalVariableService.addCurrentDatasource(datasourceID).then(res => {
 
-        // Determine if data obtains in Glob Var
-        let dSetIndex: number = this.globalVariableService.currentDatasets.findIndex(
-            ds => ds.datasourceID == datasourceID
-        );
+            // Load local arrays for ngFor
+            this.dataFieldNames = this.localDatasources[index].dataFields;
+            this.dataFieldLengths = this.localDatasources[index].dataFieldLengths;
+            this.dataFieldTypes = this.localDatasources[index].dataFieldTypes;
 
-        if (dSetIndex < 0) {
-
-            if (this.isBusyRetrievingData) {
-                this.errorMessage = 'Still retrieving the actual data for this DS';
+            // Determine if data obtains in Glob Var
+            let dataSetIndex: number = this.globalVariableService.currentDatasets.findIndex(
+                ds => ds.datasourceID == datasourceID
+            );
+            if (dataSetIndex < 0) {
+                this.errorMessage = 'Data does not exist in currentDatasets array';
                 return;
             };
 
-            this.isBusyRetrievingData = true;
-            this.errorMessage = 'Getting data ...'
-            this.globalVariableService.addCurrentDatasource(datasourceID).then(res => {
+            // Load first few rows into preview
+            this.currentData = this.globalVariableService.currentDatasets.filter(
+                d => d.id == dataSetIndex)[0].data.slice(0,5);
 
-                // Reset
-                this.isBusyRetrievingData = false
-                this.currentDatasources = this.globalVariableService.datasources.slice();
-
-                // Tell user
-                this.errorMessage = 'Data retrieved - click row again to continue';
-
-            });
-
-            // Stop Synch execution
-            return;
-        };
-
-        // Load local arrays for ngFor
-        let dsIndex: number = this.currentDatasources.findIndex(ds => ds.id == datasourceID);
-        console.warn('xx dSetIndex', dSetIndex)
-
-        if (dsIndex >= 0) {
-            this.dataFieldNames = this.currentDatasources[dsIndex].dataFields;
-            this.dataFieldLengths = this.currentDatasources[dsIndex].dataFieldLengths;
-            this.dataFieldTypes = this.currentDatasources[dsIndex].dataFieldTypes;
-
-            // Reset
-            this.isBusyRetrievingData = false;
-        } else {
-
-            if (this.isBusyRetrievingData) {
-                this.errorMessage = 'Retrieving the actual data - click row again once done';
-                return;
-            };
-
-            this.isBusyRetrievingData = true;
-            this.globalVariableService.addCurrentDatasource(datasourceID).then(res => {
-                this.isBusyRetrievingData = false
-
-            });
-        };
-        console.warn('xx this.dataFieldNames', this.dataFieldNames)
-
-        // Switch on the preview after the first row was clicked
-        this.hasClicked = true;
-
-        // Get latest dSet for the selected DS
-        let ds: number[]=[];
-        let dSetID: number = 0;
-
-        for (var i = 0; i < this.globalVariableService.currentDatasets.length; i++) {
-            if(this.globalVariableService.currentDatasets[i].datasourceID == datasourceID) {
-                ds.push(this.globalVariableService.currentDatasets[i].id)
-            }
-        };
-        if (ds.length > 0) {
-            dSetID = Math.max(...ds);
-        } else {
-            // Make proper error handling
-            alert('Error: no dataSet in glob vars for DSid = ' + datasourceID)
-        };
-        console.warn('xx this.globalVariableService.currentDatasets', dSetID, this.globalVariableService.currentDatasets)
-
-        // Load first few rows into preview
-        this.currentData = this.globalVariableService.currentDatasets.filter(
-            d => d.id == dSetID)[0].data.slice(0,5);
-
-        // Fill in data info
-        if (this.newWidget) {
+            // Fill in data info
             this.localWidget.datasourceID = datasourceID;
-            this.localWidget.datasetID = dSetID;
+            this.localWidget.datasetID = dataSetIndex;
             this.localWidget.graphData = this.globalVariableService.currentDatasets.filter(
-                d => d.id == dSetID)[0].data;
-        };
+                d => d.id == dataSetIndex)[0].data;
+        });
+
+        // Highlight selected row
+        // this.selectedRowIndex = index;
+        // this.selectedDescription = this.localDatasources.find(ds => 
+        //     ds.id == datasourceID).description;
+        // this.errorMessage = '';
+
+        // // Determine if data obtains in Glob Var
+        // let dSetIndex: number = this.globalVariableService.currentDatasets.findIndex(
+        //     ds => ds.datasourceID == datasourceID
+        // );
+
+        // if (dSetIndex < 0) {
+
+        //     if (this.isBusyRetrievingData) {
+        //         this.errorMessage = 'Still retrieving the actual data for this DS';
+        //         return;
+        //     };
+
+        //     this.isBusyRetrievingData = true;
+        //     this.errorMessage = 'Getting data ...'
+        //     this.globalVariableService.addCurrentDatasource(datasourceID).then(res => {
+
+        //         // Reset
+        //         this.isBusyRetrievingData = false
+        //         this.localDatasources = this.globalVariableService.datasources.slice();
+
+        //         // Tell user
+        //         this.errorMessage = 'Data retrieved - click row again to continue';
+
+        //     });
+
+        //     // Stop Synch execution
+        //     return;
+        // };
+
+        // // Load local arrays for ngFor
+        // let dsIndex: number = this.localDatasources.findIndex(ds => ds.id == datasourceID);
+        // console.warn('xx dSetIndex', dSetIndex)
+
+        // if (dsIndex >= 0) {
+        //     this.dataFieldNames = this.localDatasources[dsIndex].dataFields;
+        //     this.dataFieldLengths = this.localDatasources[dsIndex].dataFieldLengths;
+        //     this.dataFieldTypes = this.localDatasources[dsIndex].dataFieldTypes;
+
+        //     // Reset
+        //     this.isBusyRetrievingData = false;
+        // } else {
+
+        //     if (this.isBusyRetrievingData) {
+        //         this.errorMessage = 'Retrieving the actual data - click row again once done';
+        //         return;
+        //     };
+
+        //     this.isBusyRetrievingData = true;
+        //     this.globalVariableService.addCurrentDatasource(datasourceID).then(res => {
+        //         this.isBusyRetrievingData = false
+
+        //     });
+        // };
+        // console.warn('xx this.dataFieldNames', this.dataFieldNames)
+
+        // // Switch on the preview after the first row was clicked
+        // this.hasClicked = true;
+
+        // // Get latest dSet for the selected DS
+        // let ds: number[]=[];
+        // let dSetID: number = 0;
+
+        // for (var i = 0; i < this.globalVariableService.currentDatasets.length; i++) {
+        //     if(this.globalVariableService.currentDatasets[i].datasourceID == datasourceID) {
+        //         ds.push(this.globalVariableService.currentDatasets[i].id)
+        //     }
+        // };
+        // if (ds.length > 0) {
+        //     dSetID = Math.max(...ds);
+        // } else {
+        //     // Make proper error handling
+        //     alert('Error: no dataSet in glob vars for DSid = ' + datasourceID)
+        // };
+        // console.warn('xx this.globalVariableService.currentDatasets', dSetID, this.globalVariableService.currentDatasets)
+
+        // // Load first few rows into preview
+        // this.currentData = this.globalVariableService.currentDatasets.filter(
+        //     d => d.id == dSetID)[0].data.slice(0,5);
+
+        // // Fill in data info
+        // if (this.newWidget) {
+        //     this.localWidget.datasourceID = datasourceID;
+        //     this.localWidget.datasetID = dSetID;
+        //     this.localWidget.graphData = this.globalVariableService.currentDatasets.filter(
+        //         d => d.id == dSetID)[0].data;
+        // };
 
     }
 
