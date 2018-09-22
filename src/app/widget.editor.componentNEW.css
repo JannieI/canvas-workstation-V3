@@ -44,7 +44,7 @@
 
     /* Datasource selection */
     .datasourceMain {
-        border: 2px solid red;
+        border: 2px solid lightgray;
         grid-column-start: 1;
         /* autoprefixer: off */
         grid-column-end: 20;
@@ -113,7 +113,7 @@
             /* autoprefixer: off */
             grid-column-end: 20;
             grid-row-start: 4;
-            grid-row-end: 23;
+            grid-row-end: 22;
             text-align: left;
             overflow-y: scroll;
         }
@@ -132,7 +132,7 @@
             /* autoprefixer: off */
             grid-column-end: 50;
             grid-row-start: 8;
-            grid-row-end: 30;
+            grid-row-end: 20;
             margin-left: 10px;
             text-align: left;
             overflow-y: scroll;
@@ -142,8 +142,8 @@
             grid-column-start: 44;
             /* autoprefixer: off */
             grid-column-end: 46;
-            grid-row-start: 30;
-            grid-row-end: 31;
+            grid-row-start: 20;
+            grid-row-end: 21;
         }
 
     /* Widget Editor */
@@ -161,3 +161,21 @@
         margin: 2px;
         padding: 8px;
     }
+        .editorFieldsTitle {
+            grid-column-start: 1;
+            /* autoprefixer: off */
+            grid-column-end: 20;
+            grid-row-start: 1;
+            grid-row-end: 2;
+            text-align: left;
+        }
+        .editorFields {
+            grid-column-start: 1;
+            /* autoprefixer: off */
+            grid-column-end: 20;
+            grid-row-start: 2;
+            grid-row-end: 22;
+            text-align: left;
+            overflow-y: scroll;
+        }
+        
