@@ -113,6 +113,10 @@ const graphWidth: number = 420;
         // ngOnInit Life Cycle Hook
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
+        if (this.globalVariableService.datasources.length > 0) {
+            this.selectedDescription = this.globalVariableService.datasources[0].description;
+        };
+
         if (this.newWidget) {
             // Get DS to which user has permissions
             this.currentDatasources = this.globalVariableService.datasources

@@ -3,6 +3,16 @@
 	-shadow: 0 2px 2px 0 lightgray;
 }
 
+.datagrid-compact.datagrid-host {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.datagrid-compact.datagrid-scroll {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
 .gridOverall {
     display: grid;
     grid-template-columns: repeat(19, 1fr);
@@ -60,7 +70,7 @@
         .datasourceMainDescriptionTitle {
             grid-column-start: 20;
             /* autoprefixer: off */
-            grid-column-end: 26;
+            grid-column-end: 25;
             grid-row-start: 3;
             grid-row-end: 4;
             margin-left: 10px;
@@ -69,13 +79,14 @@
 
         .datasourceMainDescription {
             border: 1px solid lightgray;
-            grid-column-start: 26;
+            grid-column-start: 25;
             /* autoprefixer: off */
             grid-column-end: 50;
             grid-row-start: 3;
             grid-row-end: 7;
             margin-left: 10px;
             text-align: left;
+            padding: 5px;
         }
         
         .datasourceMainError {
