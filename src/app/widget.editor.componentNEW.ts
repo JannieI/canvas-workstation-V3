@@ -754,6 +754,11 @@ const graphWidth: number = 420;
         );
         if (dataSetIndex >= 0) {
 
+            // Load local arrays for ngFor
+            this.dataFieldNames = this.localDatasources[this.selectedRowIndex].dataFields;
+            this.dataFieldLengths = this.localDatasources[this.selectedRowIndex].dataFieldLengths;
+            this.dataFieldTypes = this.localDatasources[this.selectedRowIndex].dataFieldTypes;
+
             // Load first few rows into preview
             this.currentData = this.globalVariableService.currentDatasets[dataSetIndex]
                 .data.slice(0,5);

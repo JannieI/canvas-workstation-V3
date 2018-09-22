@@ -53,7 +53,7 @@
 
         display: grid;
         grid-template-columns: repeat(50, 1fr);
-        grid-template-rows: repeat(32, 0.8rem);
+        grid-template-rows: repeat(22, 0.8rem);
         margin: 2px;
         padding: 8px;
     }
@@ -113,7 +113,7 @@
             /* autoprefixer: off */
             grid-column-end: 20;
             grid-row-start: 4;
-            grid-row-end: 32;
+            grid-row-end: 23;
             text-align: left;
             overflow-y: scroll;
         }
@@ -157,7 +157,7 @@
 
         display: grid;
         grid-template-columns: repeat(50, 1fr);
-        grid-template-rows: repeat(32, 0.8rem);
+        grid-template-rows: repeat(22, 0.8rem);
         margin: 2px;
         padding: 8px;
     }
