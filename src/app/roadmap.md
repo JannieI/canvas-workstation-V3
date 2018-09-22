@@ -241,6 +241,9 @@ This document describes items for later versions of Canvas.
 
     Samples: use this to demo Canvas features (brag)
     --------
+        NB: 
+        1. Start with Jen data, budget, sales, forecasts, costs and pipeline for first demos (must be able to drill down to customers, products and roll up per group and branch)
+        2. Build layouts per Industry, see AirTable
 
         Dashboards:
         - Sample 1: personal finance, budget, expenses, etc
@@ -335,6 +338,8 @@ This document describes items for later versions of Canvas.
     - relook at D export: maybe export Widgets too, plus data or at least points to data.  Amend Import to: show structure and what is valid, and if user proceeds: read Widgets to, create new records in DB, similar to ADD D and ADD W
     - show rubberband when selecting with mouse on D: mouse down and up @View controls size of pre-created Div
     - have optional authorised recipients -> can only Send a Message / Email to these and no one else.
+    - add colour to Dashboard tags.  Maybe show it on other forms as well, where useful
+    - share link (url) = will open Canvas with THIS Dashboard ?
     - on SAVE form: add user / group to notify that this D has been saved.
     - make it easier to see where to input data: maybe gray background ... Is this really necesary?  Make baie certain as this is baie work ...
     - look at Windi.com, Wahoo ? to see how to make it easy

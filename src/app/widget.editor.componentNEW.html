@@ -1,0 +1,461 @@
+<div class="modal modalBox">
+	<div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
+		<div class="modal-content modalContent">
+
+            <div class="overall">
+                <div class="closeButton">
+                    <button type="button" class="closeButton" (click)="clickClose()">
+                        X
+                    </button>
+                </div>
+
+                <div class="datasources" *ngIf="showDatasourcePopup">
+                    NEW Select a <b>Datasources</b> added before, and how it should be visualised:
+
+                    <button *ngIf="hasClicked"
+                        class="btn btn-sm btn-secondary datasourceButton"
+                        (click)="clickContinue()">
+                        Continue
+                    </button>
+
+                    <div class="errorMessage">
+                        {{ errorMessage }}
+                    </div>
+
+                    <div class="datasourceList">
+                        {{ errorMessage }}
+                        <nav
+                            >
+                            <div>
+                                <clr-datagrid>
+                                    <clr-dg-column >NrWidgets</clr-dg-column>
+                                    <clr-dg-column >Name</clr-dg-column>
+                                    <clr-dg-column >Description</clr-dg-column>
+                                    <clr-dg-row *clrDgItems="let row of currentDatasources; let i = index"
+                                        [style.background-color]="(i == selectedRowIndex)? '#123456' : 'white'"
+                                        [style.color]="(i == selectedRowIndex)? 'white' : 'gray'"
+                                        (click)="clickDSrow(i, row.id)"
+                                        >
+
+                                        <clr-dg-cell>{{ row.nrWidgets }}</clr-dg-cell>
+                                        <clr-dg-cell>{{ row.name }}</clr-dg-cell>
+                                        <clr-dg-cell>{{ row.description }}</clr-dg-cell>
+                                    </clr-dg-row>
+
+                                    <!-- <clr-dg-footer>
+                                        {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+                                        of {{pagination.totalItems}} rows
+                                        <clr-dg-pagination #pagination [clrDgPageSize]="7"></clr-dg-pagination>
+                                    </clr-dg-footer> -->
+
+                                </clr-datagrid>
+                            </div>
+                        </nav>
+                    </div>
+
+                    <div class="datasourcePreview" *ngIf="hasClicked">
+                        <div>
+                            <clr-datagrid class="gridIdentifyDataPreviewGrid">
+
+                                <clr-dg-column *ngFor="let row of dataFieldNames">{{row}}</clr-dg-column>
+                                <clr-dg-row *ngFor="let row of currentData">
+
+                                    <clr-dg-cell *ngFor="let col of dataFieldNames; let i = index">
+                                            {{ row[col] }}
+                                    </clr-dg-cell>
+                                </clr-dg-row>
+
+                                <clr-dg-footer>
+                                    {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+                                    of {{pagination.totalItems}} rows
+                                    <clr-dg-pagination #pagination [clrDgPageSize]="10"></clr-dg-pagination>
+                                </clr-dg-footer>
+
+                            </clr-datagrid>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="fieldList">
+                    <nav
+                        id="wrapper"
+                        class="sidenav"
+                        [style.width.px]="sideNavWidth"
+                        [style.min-width.rem]="sideNavMinWidth"
+                        >
+
+                        <div class="selectedDatasource">
+                            Fields for: {{ currentDatasources[selectedRowIndex].name }}
+                        </div>
+
+                        <div>
+                            <clr-datagrid>
+                                <clr-dg-column [clrDgField]="'filterPivotFields'">Name</clr-dg-column>
+                                <clr-dg-row *ngFor="let row of dataFieldNames">
+                                    <clr-dg-cell
+                                        id="fld"
+                                        draggable="true"
+                                        (dragstart)="dragstartField($event)"
+                                        >
+                                        {{ row }}
+                                    </clr-dg-cell>
+                                </clr-dg-row>
+                            </clr-datagrid>
+                        </div>
+                    </nav>
+                </div>
+
+              <div class="rowAdvanced" *ngIf="showRowFieldAdvancedArea">
+                    <span>
+                        <label for="dashboardName" class="popupLabel">
+                            Field : {{ rowField }}
+                        </label>
+
+                        <br>
+                        <span class="popupLabel">Graph field Type</span>
+                        <select class="popupLabel" id="selectGraphFieldType">
+                            <option *ngFor="let row of graphTypeFieldY"
+                            (change)="setGraphTypeFieldY(row)">
+                                {{ row }}
+                            </option>
+                        </select>
+                        <br>
+                        <label for="dashboardName" class="popupLabel">
+                            Aggregate :
+                        </label>
+                        <button class="popupButton"
+                            (click)="clickedButtonAggregateNo = !clickedButtonAggregateNo"
+                            [style.background-color] = "clickedButtonAggregateNo ? 'darkgray' : 'transparent'"
+
+                            >No
+                        </button>
+                        <button class="popupButton">Sum</button>
+                        <button class="popupButton">Avg</button>
+                        <button class="popupButton">Min</button>
+                        <button class="popupButton">Max</button>
+                        <button class="popupButton">Cnt</button>
+
+                        <br>
+                        <br>
+                        <label for="dashboardName" class="popupLabel">Bin :</label>
+                        <button class="popupButton">No</button>
+                        <button class="popupButton">Yes</button>
+                        <br>
+                        <br>
+
+                        <label for="dashboardName" class="popupLabel">Drill down/out :</label>
+                        <button class="popupButton">Year</button>
+                        <button class="popupButton">Qtr</button>
+                        <button class="popupButton">Mth</button>
+                        <button class="popupButton">Day</button>
+
+                        <br>
+                        <br>
+                        <label for="dashboardName" class="popupLabel">Previous period :</label>
+                        <button class="popupButton">Year</button>
+
+                        <br>
+                        <br>
+                        <label for="dashboardName" class="popupLabel">Explantion :</label>
+                        <button>Show</button>
+                        <br>
+                        Shows explanation graph here ...
+                        <br>
+                        <button
+                            class="btn btn-sm btn-secondary"
+                            (click)="clickCloseAdvancedY('Close')">
+                            Close
+                        </button>
+
+                        <button
+                            class="btn btn-sm btn-secondary"
+                            (click)="clickApplyAdvancedY('Close')">
+                            Apply
+                        </button>
+                    </span>
+                </div>
+
+                <div class="rowField">
+
+                    <div class="rowFieldDropLabel">
+                        Y axis:
+                    </div>
+
+                    <div class="rowFieldDropField"
+                        id="target"
+                        (drop)="dropRow($event);"
+                        (dragenter)="dragenterRow($event);"
+                        (dragleave)="dragoleaveRow($event);"
+                        (dragover)="dragoverRows($event);"
+                        [style.background-color]="dragoverRow? 'lightgray' : 'transparent'"
+                        >
+                        <clr-icon shape="times" *ngIf="showRowDeleteIcon"
+                            (click)="clickClearRowField()">
+                        </clr-icon>
+                        {{ rowField }}
+                    </div>
+
+                    <div class="rowFieldDropButton">
+                        <button class="btn btn-secondary"
+                            (click)="clickShowRowFieldAdvanced()"
+                            *ngIf="showRowFieldAdvanced"
+                            >
+                            Advanced ...
+                            <span class="badge">1</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="colAdvanced" *ngIf="showColFieldAdvancedArea">
+                    <span>
+                        <label for="dashboardName" class="popupLabel">
+                            Field : {{ colField }}
+                        </label>
+
+                        <br>
+                        <br>
+                        <label for="dashboardName" class="popupLabel">
+                            Aggregate :
+                        </label>
+                        <button class="popupButton"
+                            (click)="clickedButtonAggregateNo = !clickedButtonAggregateNo"
+                            [style.background-color] = "clickedButtonAggregateNo ? 'darkgray' : 'transparent'"
+
+                            >No
+                        </button>
+                        <button class="popupButton">Sum</button>
+                        <button class="popupButton">Avg</button>
+                        <button class="popupButton">Min</button>
+                        <button class="popupButton">Max</button>
+                        <button class="popupButton">Cnt</button>
+
+                        <br>
+                        <br>
+                        <label for="dashboardName" class="popupLabel">Bin :</label>
+                        <button class="popupButton">No</button>
+                        <button class="popupButton">Yes</button>
+                        <br>
+                        <br>
+
+                        <label for="dashboardName" class="popupLabel">Drill down/out :</label>
+                        <button class="popupButton">Year</button>
+                        <button class="popupButton">Qtr</button>
+                        <button class="popupButton">Mth</button>
+                        <button class="popupButton">Day</button>
+
+                        <br>
+                        <br>
+                        <label for="dashboardName" class="popupLabel">Previous period :</label>
+                        <button class="popupButton">Year</button>
+
+                        <br>
+                        <br>
+                        <label for="dashboardName" class="popupLabel">Explantion :</label>
+                        <button>Show</button>
+                        <br>
+                        Shows explanation graph here ...
+                        <br>
+                        <button
+                            class="btn btn-sm btn-secondary"
+                            (click)="clickCloseAdvancedX('Close')">
+                            Close
+                        </button>
+
+                        <button
+                            class="btn btn-sm btn-secondary"
+                            (click)="clickApplyAdvancedX('Close')">
+                            Apply
+                        </button>
+                    </span>
+                </div>
+
+                <div class="colField">
+                    <div class="colFieldDropField"
+                        id="target"
+                        (drop)="dropColumn($event);"
+                        (dragover)="dragoverColumn($event);"
+                        (dragenter)="dragenterColumn($event);"
+                        (dragleave)="dragleaveColumn($event);"
+                        [style.background-color]="dragoverCol? 'lightgray' : 'transparent'"
+                        >
+                        <clr-icon shape="times" *ngIf="showColumnDeleteIcon"
+                            (click)="clickClearColumnField()">
+                        </clr-icon>
+                        {{ colField }}
+                    </div>
+                </div>
+
+                <div class="hasTitle">
+                    <div class="checkbox">
+                        <input type="checkbox" id="containerHasTitle" [(ngModel)]="containerHasTitle">
+                        <label for="containerHasTitle">Title</label>
+                    </div>
+                </div>
+                <div class="hasContextMenus">
+                    <div class="checkbox">
+                        <input type="checkbox" id="containerHasContextMenus" [(ngModel)]="containerHasContextMenus">
+                        <label for="containerHasContextMenus">ContextMenu</label>
+                    </div>
+                </div>
+
+                <div class="colFieldDropButton">
+                    <button class="btn btn-secondary"
+                        (click)="clickShowColFieldAdvanced()"
+                        *ngIf="showColFieldAdvanced"
+                        >
+                        Advanced ...
+                    </button>
+                </div>
+
+                <div class="graphArea" #dragWidget>
+                </div>
+
+                <div class="graphType">
+
+                    <div>
+                        Current:
+                        <img class="typeIcon"
+                            [style.height.px]="20"
+                            [style.width.px]="20"
+                            src="../images/BarChart.png"
+                        >
+                    </div>
+                    <br>
+                    <img class="typeIcon"
+                        [style.height.px]="20"
+                        [style.width.px]="20"
+                        src="../images/BarChart.png"
+                        title="Bar Chart (select ordinal type for direction)"
+                        (click)="clickIcon('bar')"
+                    >
+                    <img class="typeIcon"
+                        [style.height.px]="20"
+                        [style.width.px]="20"
+                        src="../images/BubbleChart.png"
+                        title="Circles"
+                        (click)="clickIcon('circle')"
+                    >
+                    <img class="typeIcon"
+                        [style.height.px]="20"
+                        [style.width.px]="20"
+                        src="../images/ColumnChart.png"
+                        title="Rectangles"
+                        (click)="clickIcon('rect')"
+                    >
+                    <img class="typeIcon"
+                        [style.height.px]="20"
+                        [style.width.px]="20"
+                        src="../images/LineChart.png"
+                        title="Lines"
+                        (click)="clickIcon('line')"
+                    >
+                    <img class="typeIcon"
+                        [style.height.px]="20"
+                        [style.width.px]="20"
+                        src="../images/PieChart.png"
+                        title="Squares"
+                        (click)="clickIcon('square')"
+                    >
+                    <img class="typeIcon"
+                        [style.height.px]="20"
+                        [style.width.px]="20"
+                        src="../images/ScatterChart.png"
+                        title="Points"
+                        (click)="clickIcon('point')"
+                    >
+                    <img class="typeIcon"
+                        [style.height.px]="20"
+                        [style.width.px]="20"
+                        src="../images/BarChart.png"
+                        title="Bar Chart"
+                        (click)="clickIcon('bar')"
+                    >
+                    <img
+                        [style.height.px]="20"
+                        [style.width.px]="20"
+                        src="../images/BubbleChart.png"
+                        title="Ticks"
+                        (click)="clickIcon('tick')"
+                    >
+                    <img class="typeIcon"
+                        [style.height.px]="20"
+                        [style.width.px]="20"
+                        src="../images/ColumnChart.png"
+                        title="Squares"
+                        (click)="clickIcon('square')"
+                    >
+                    <img
+                        [style.height.px]="20"
+                        [style.width.px]="20"
+                        src="../images/LineChart.png"
+                        title="Lines"
+                        (click)="clickIcon('line')"
+                    >
+                    <img class="typeIcon"
+                        [style.height.px]="20"
+                        [style.width.px]="20"
+                        src="../images/PieChart.png"
+                        title="Bar Chart"
+                        (click)="clickIcon('bar')"
+                    >
+                    <img
+                        [style.height.px]="20"
+                        [style.width.px]="20"
+                        src="../images/ScatterChart.png"
+                        title="Points"
+                        (click)="clickIcon('point')"
+                    >
+                </div>
+
+                <div class="graphTypeMoreMsg">
+                    Last refreshed: 2017/01/01 08:31
+                </div>
+
+                <div class="colorAdvanced" *ngIf="showAdvancedField">
+                        <button class="btn btn-sm">type</button>
+                        <button class="btn btn-sm">bin</button>
+                        <button class="btn btn-sm">aggregate</button>
+                        <button class="btn btn-sm">zero</button>
+                        <button class="btn btn-sm">scale</button>
+
+                </div>
+
+                <div class="graphColorField">
+                    Color:
+                    <div
+                        class="dropZoneColor"
+                        id="target"
+                        (drop)="dropColor($event);"
+                        (dragover)="dragoverColors($event);"
+                        (dragenter)="dragenterColors($event);"
+                        (dragleave)="dragleaveColors($event);"
+                        [style.background-color]="dragoverColor? 'lightgray' : 'transparent'"
+                        >
+                        <clr-icon shape="times" *ngIf="showColourDeleteIcon"
+                            (click)="clickClearColourField()">
+                        </clr-icon>
+                        {{ graphColorField }}
+                    </div>
+                </div>
+
+                <div class="saveButton" *ngIf="canSave">
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                        (click)="clickSave('Saved')"
+                        >
+                        Save
+                    </button>
+                </div>
+
+                <span class="presentationNoSave" *ngIf="!canSave"
+                    >
+                    Cannot save during exploring
+                </span>
+
+            </div>
+
+        </div>
+    </div>
+</div>
