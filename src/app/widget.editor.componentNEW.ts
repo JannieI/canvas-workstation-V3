@@ -92,6 +92,7 @@ const graphWidth: number = 420;
     rowField: string = 'Drag a field here ...';
     selectedDescription: string = '';
     selectedRowIndex: number = -1;
+    selectedRowID: number;
     showColFieldAdvanced: boolean = false;
     showColFieldAdvancedArea: boolean = false;
     showColourDeleteIcon: boolean = false;
@@ -734,30 +735,32 @@ const graphWidth: number = 420;
 
     }
 
-    clickDSrow(index: number, datasourceID: number) {
+    clickDSrow(datasourceID: number) {
         // Set the selected datasourceID
+        // NOTE: this array can be filtered on front-end, thus DON'T use index
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDSrow', '@Start');
 
-        // Highlight selected row
-        this.selectedRowIndex = index;
-        this.selectedDescription = this.localDatasources.find(ds => 
-            ds.id == datasourceID).description;
+        // Reset, Highlight selected row
+        this.selectedRowIndex = this.localDatasources.findIndex(ds => ds.id == datasourceID);
+        this.selectedRowID = datasourceID;
+        this.selectedDescription = this.localDatasources[this.selectedRowIndex].description;
         this.errorMessage = '';
-
+        this.currentData = null;
+        console.warn('xx ---', this.selectedRowIndex, datasourceID)
         // Add DS to current DS (no action if already there)
         this.globalVariableService.addCurrentDatasource(datasourceID).then(res => {
 
             // Load local arrays for ngFor
-            this.dataFieldNames = this.localDatasources[index].dataFields;
-            this.dataFieldLengths = this.localDatasources[index].dataFieldLengths;
-            this.dataFieldTypes = this.localDatasources[index].dataFieldTypes;
+            this.dataFieldNames = this.localDatasources[this.selectedRowIndex].dataFields;
+            this.dataFieldLengths = this.localDatasources[this.selectedRowIndex].dataFieldLengths;
+            this.dataFieldTypes = this.localDatasources[this.selectedRowIndex].dataFieldTypes;
 
             // Determine if data obtains in Glob Var
             let dataSetIndex: number = this.globalVariableService.currentDatasets.findIndex(
                 ds => ds.datasourceID == datasourceID
             );
             if (dataSetIndex < 0) {
-                this.errorMessage = 'Data does not exist in currentDatasets array';
+                this.errorMessage = 'Error! The Data does not exist in currentDatasets array';
                 return;
             };
 console.warn('xx this.globalVariableService.currentDatasets', dataSetIndex, this.globalVariableService.currentDatasets[dataSetIndex]);
@@ -767,11 +770,11 @@ console.warn('xx this.globalVariableService.currentDatasets', dataSetIndex, this
                 .data.slice(0,5);
 
             // Fill in data info
-            this.localWidget.datasourceID = datasourceID;
-            this.localWidget.datasetID = this.globalVariableService.
-                currentDatasets[dataSetIndex].id;
-            this.localWidget.graphData = this.globalVariableService
-                .currentDatasets[dataSetIndex].data;
+            // this.localWidget.datasourceID = datasourceID;
+            // this.localWidget.datasetID = this.globalVariableService.
+            //     currentDatasets[dataSetIndex].id;
+            // this.localWidget.graphData = this.globalVariableService
+            //     .currentDatasets[dataSetIndex].data;
 
             // Switch on the preview after the first row was clicked
             this.showPreview = true;
@@ -877,7 +880,25 @@ console.warn('xx this.globalVariableService.currentDatasets', dataSetIndex, this
         // Continue to design / edit the W, and close the form for the data
         this.globalFunctionService.printToConsole(this.constructor.name,'clickContinue', '@Start');
 
+        // Determine if data obtains in Glob Var
+        let dataSetIndex: number = this.globalVariableService.currentDatasets.findIndex(
+            ds => ds.datasourceID == this.selectedRowID
+        );
+        if (dataSetIndex < 0) {
+            this.errorMessage = 'Error! The Data does not exist in currentDatasets array';
+            return;
+        };
+console.warn('xx this.globalVariableService.currentDatasets', dataSetIndex, this.globalVariableService.currentDatasets[dataSetIndex]);
+
+        // Fill in data info
+        this.localWidget.datasourceID = this.selectedRowID;
+        this.localWidget.datasetID = this.globalVariableService.
+            currentDatasets[dataSetIndex].id;
+        this.localWidget.graphData = this.globalVariableService
+            .currentDatasets[dataSetIndex].d
+            
         this.showDatasourceMain = false;
+
     }
 
     setGraphTypeFieldY(graphYtype: string) {

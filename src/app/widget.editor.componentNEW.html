@@ -70,11 +70,13 @@
                                         [clrDgItem]="row"
                                         [style.background-color]="(i == selectedRowIndex)? '#123456' : 'white'"
                                         [style.color]="(i == selectedRowIndex)? 'white' : 'gray'"
-                                        (click)="clickDSrow(i, row.id)"
+                                        (click)="clickDSrow(row.id)"
                                         >
                                         <clr-dg-cell>
                                             {{ row.name }}
-                                            <span class="badge badge-5">#{{row.nrWidgets}}</span>
+                                            <span *ngIf="row.nrWidgets > 0"
+                                                class="badge badge-5">{{row.nrWidgets}}
+                                            </span>
                                         </clr-dg-cell>
                                     </clr-dg-row>
 
