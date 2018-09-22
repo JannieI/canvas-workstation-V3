@@ -170,7 +170,24 @@
                     <div class="editorAreaTitle">
                         <b>Area:</b>
                     </div>
-                    <div class="editorArea"></div>
+                    <div class="editorArea" #dragWidget>
+                    </div>
+
+                    <div class="editorButtonCancel">
+                        <button *ngIf="showPreview"
+                            class="btn btn-sm btn-secondary datasourceButton"
+                            (click)="clickContinue()">
+                            Continue
+                        </button>
+                    </div>
+                    <div class="editorButtonSave">
+                        <button *ngIf="showPreview"
+                            class="btn btn-sm btn-secondary datasourceButton"
+                            (click)="clickContinue()">
+                            Continue
+                        </button>
+                    </div>
+        
                 </div>
 
             </div>

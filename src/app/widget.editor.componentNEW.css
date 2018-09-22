@@ -232,8 +232,28 @@
             /* autoprefixer: off */
             grid-column-end: 50;
             grid-row-start: 2;
-            grid-row-end: 22;
+            grid-row-end: 16;
             text-align: left;
             overflow-y: scroll;
         }
+
+        .editorButtonCancel {
+            grid-column-start: 36;
+            /* autoprefixer: off */
+            grid-column-end: 38;
+            grid-row-start: 20;
+            grid-row-end: 21;
+            text-align: left;
+            overflow-y: scroll;
+        }
+        .editorButtonSave {
+            grid-column-start: 42;
+            /* autoprefixer: off */
+            grid-column-end: 44;
+            grid-row-start: 20;
+            grid-row-end: 21;
+            text-align: left;
+            overflow-y: scroll;
+        }
+
     
