@@ -92,7 +92,7 @@ const graphWidth: number = 420;
     oldWidget: Widget = null;                       // W at start
     rowField: string = 'Drag a field here ...';
     selectedDescription: string = '';
-    selectedRowIndex: number = 0;
+    selectedRowIndex: number = -1;
     showColFieldAdvanced: boolean = false;
     showColFieldAdvancedArea: boolean = false;
     showColourDeleteIcon: boolean = false;
@@ -113,9 +113,9 @@ const graphWidth: number = 420;
         // ngOnInit Life Cycle Hook
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        if (this.globalVariableService.datasources.length > 0) {
-            this.selectedDescription = this.globalVariableService.datasources[0].description;
-        };
+        // if (this.globalVariableService.datasources.length > 0) {
+        //     this.selectedDescription = this.globalVariableService.datasources[0].description;
+        // };
 
         if (this.newWidget) {
             // Get DS to which user has permissions
@@ -740,7 +740,7 @@ const graphWidth: number = 420;
 
         // Highlight selected row
         this.selectedRowIndex = index;
-        this.selectedDescription = this.globalVariableService.datasources.find(ds => 
+        this.selectedDescription = this.currentDatasources.find(ds => 
             ds.id == datasourceID).description;
         this.errorMessage = '';
 

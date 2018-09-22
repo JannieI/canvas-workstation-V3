@@ -5722,20 +5722,20 @@ export class GlobalVariableService {
 
         // Get the data, if so requested
         let localDatasource: Datasource;
-        let globalCurrentDSIndex: number = this.currentDatasources
+        let currentDSIndex: number = this.currentDatasources
             .findIndex(dS => dS.id == datasourceID
         );
-        let globalDSIndex: number = this.datasources.findIndex(ds =>
+        let dsIndex: number = this.datasources.findIndex(ds =>
             ds.id == datasourceID
         );
 
         return new Promise<any>((resolve, reject) => {
 
             // DS exists in gv datasources, but not in currentDatasources
-            if (globalDSIndex >= 0  &&  globalCurrentDSIndex < 0) {
+            if (dsIndex >= 0  &&  currentDSIndex < 0) {
 
                 // Add DS to currentDS
-                localDatasource = this.datasources[globalDSIndex];
+                localDatasource = this.datasources[dsIndex];
                 this.currentDatasources.push(localDatasource);
                 this.hasDatasources.next(true);
 
@@ -5769,6 +5769,8 @@ export class GlobalVariableService {
                         });
                     };
                 };
+            } else {
+                resolve('Already in currentDS')
             };
         });
 

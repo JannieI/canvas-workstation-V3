@@ -9,7 +9,7 @@
                 </button>
 
                 <div class="gridTitle">
-                    <b>Widget Description</b>
+                    <b>Widget Editor</b>
                     <clr-signpost>
                         <clr-icon shape="info-circle"
                             clrSignpostTrigger>
@@ -20,8 +20,12 @@
                                 Help
                             </h5>
                             <p style="margin-top: 0; color:gray;">
-                                Descriptive detail for the current Widget  The information is
-                                read-only, and cannot be changed.
+                                <b>For new Widgets:</b> select a datasource, and click Continue 
+                                to the Widget Editor.
+                                <b>Widget Editor:</b> drag a Field onto the X and Y coloured blocks.
+                                Select a graph type.  Properties can be changed by clicking the dropdown
+                                icons.  Click Save to show the Widget on the Dashboard, or click Cancel
+                                to return to the Dashboard.
                                 Click the X or press Escape to close this form.
                             </p>
                         </clr-signpost-content>
@@ -32,12 +36,12 @@
                 <div class="datasourceMain" *ngIf="showDatasourceMain">
 
                     <div class="datasourceMainHelp">
-                        Select a <b>Datasources</b> added before, and how it should be visualised:
+                        Select a <b>Datasources</b> on which a Widget must be created.  Details
+                        about the datasource is shown on the right:
                     </div>  
 
-
                     <div class="datasourceMainDescriptionTitle">
-                        Description:
+                        <b>Description:</b>
                     </div>                        
                     <div class="datasourceMainDescription">
                         {{ selectedDescription }}
@@ -47,12 +51,16 @@
                         {{ errorMessage }}
                     </div>
 
+                    <div class="datasourceMainListTitle">
+                        <b>Datasources:</b>
+                    </div>
                     <div class="datasourceMainList">
                         <nav
                             >
                             <div>
                                 <clr-datagrid class="datagrid-compact">
-                                    <clr-dg-column 
+                                    <clr-dg-column clrDgField="name"  
+                                        [(clrDgSortOrder)]="sortOrder"
                                         (click)="sortOrder=sortOrder * -1"
                                         >
                                         Name
@@ -75,8 +83,11 @@
                         </nav>
                     </div>
 
+                    <div class="datasourceMainPreviewTitle">
+                        <b>Preview:</b>
+                    </div>
                     <div class="datasourceMainPreview" *ngIf="hasClicked">
-                        <clr-datagrid class="gridIdentifyDataPreviewGrid">
+                        <clr-datagrid class="datagrid-compact">
 
                             <clr-dg-column *ngFor="let row of dataFieldNames">{{row}}</clr-dg-column>
                             <clr-dg-row *ngFor="let row of currentData">
@@ -87,12 +98,6 @@
                                     {{ row[col] }}
                                 </clr-dg-cell>
                             </clr-dg-row>
-
-                            <clr-dg-footer>
-                                {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
-                                of {{pagination.totalItems}} rows
-                                <clr-dg-pagination #pagination [clrDgPageSize]="10"></clr-dg-pagination>
-                            </clr-dg-footer>
 
                         </clr-datagrid>
                     </div>

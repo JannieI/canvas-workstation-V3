@@ -99,6 +99,14 @@
             text-align: left;
         }
         
+        .datasourceMainListTitle {
+            grid-column-start: 1;
+            /* autoprefixer: off */
+            grid-column-end: 20;
+            grid-row-start: 3;
+            grid-row-end: 4;
+            text-align: left;
+        }
         .datasourceMainList {
             grid-column-start: 1;
             /* autoprefixer: off */
@@ -109,6 +117,15 @@
             overflow-y: scroll;
         }
         
+        .datasourceMainPreviewTitle {
+            grid-column-start: 20;
+            /* autoprefixer: off */
+            grid-column-end: 50;
+            grid-row-start: 8;
+            grid-row-end: 9;
+            margin-left: 10px;
+            text-align: left;
+        }
         .datasourceMainPreview {
             grid-column-start: 20;
             /* autoprefixer: off */
