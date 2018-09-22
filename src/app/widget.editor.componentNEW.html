@@ -121,7 +121,7 @@
                 <div class="editorMain" *ngIf="!showDatasourceMain">
 
                     <div class="editorFieldsTitle">
-                        <b>Datasources:</b>
+                        <b>Fields:</b>
                     </div>
                     <div class="editorFields">
                         <nav
@@ -135,10 +135,10 @@
                                         Name
                                     </clr-dg-column>
                                     
-                                    <clr-dg-row *clrDgItems="let row of localDatasources; let i = index"
+                                    <clr-dg-row *clrDgItems="let row of dataFieldNames; let i = index"
                                         [clrDgItem]="row"
-                                        [style.background-color]="(i == selectedRowIndex)? '#123456' : 'white'"
-                                        [style.color]="(i == selectedRowIndex)? 'white' : 'gray'"
+                                        [style.background-color]="(i == selectedFieldIndex)? '#123456' : 'white'"
+                                        [style.color]="(i == selectedFieldIndex)? 'white' : 'gray'"
                                         (click)="clickDSrow(row.id)"
                                         >
                                         <clr-dg-cell>

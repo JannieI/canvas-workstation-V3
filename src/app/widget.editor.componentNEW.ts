@@ -26,6 +26,12 @@ import { View }                       from 'vega';
 const graphHeight: number = 260;
 const graphWidth: number = 420;
 
+export interface dataSchemaInterface {
+    name: string; 
+    type: string; 
+    length: number
+}
+
 
 @Component({
     selector: 'widget-editorNEW',
@@ -72,6 +78,7 @@ const graphWidth: number = 420;
     containerHasContextMenus: boolean = true;
     containerHasTitle: boolean = true;
     currentData: any = [];
+    dataSchema: dataSchemaInterface[] = [];
     dataFieldNames: string[] = [];
     dataFieldLengths: number[] = [];
     dataFieldTypes: string[] = [];
@@ -91,6 +98,7 @@ const graphWidth: number = 420;
     oldWidget: Widget = null;                       // W at start
     rowField: string = 'Drag a field here ...';
     selectedDescription: string = '';
+    selectedFieldIndex: number = -1;
     selectedRowIndex: number = -1;
     selectedRowID: number;
     showColFieldAdvanced: boolean = false;
@@ -224,6 +232,7 @@ const graphWidth: number = 420;
             this.dataFieldLengths = this.localDatasources[0].dataFieldLengths;
             this.dataFieldTypes = this.localDatasources[0].dataFieldTypes;
 
+            this.constructDataSchema();
         }
 
     }
@@ -757,7 +766,7 @@ const graphWidth: number = 420;
             this.dataFieldNames = this.localDatasources[this.selectedRowIndex].dataFields;
             this.dataFieldLengths = this.localDatasources[this.selectedRowIndex].dataFieldLengths;
             this.dataFieldTypes = this.localDatasources[this.selectedRowIndex].dataFieldTypes;
-
+            this.constructDataSchema();
             // Load first few rows into preview
             this.currentData = this.globalVariableService.currentDatasets[dataSetIndex]
                 .data.slice(0,5);
@@ -775,6 +784,7 @@ const graphWidth: number = 420;
             this.dataFieldNames = this.localDatasources[this.selectedRowIndex].dataFields;
             this.dataFieldLengths = this.localDatasources[this.selectedRowIndex].dataFieldLengths;
             this.dataFieldTypes = this.localDatasources[this.selectedRowIndex].dataFieldTypes;
+            this.constructDataSchema();
 
             // Determine if data obtains in Glob Var
             dataSetIndex = this.globalVariableService.currentDatasets.findIndex(
@@ -807,7 +817,6 @@ const graphWidth: number = 420;
             this.errorMessage = 'Error! The Data does not exist in currentDatasets array';
             return;
         };
-console.warn('xx this.globalVariableService.currentDatasets', dataSetIndex, this.globalVariableService.currentDatasets[dataSetIndex]);
 
         // Fill in data info
         this.localWidget.datasourceID = this.selectedRowID;
@@ -863,4 +872,19 @@ console.warn('xx this.globalVariableService.currentDatasets', dataSetIndex, this
         };
     }
 
+    // TODO - do one or the other: 3 vars, or 1 combined object
+    constructDataSchema() {
+        // Construct combined object for fields
+        this.globalFunctionService.printToConsole(this.constructor.name,'constructDataSchema', '@Start');
+
+        // TODO - do one or the other: 3 vars, or 1 combined object
+        // Fill dataSchema
+        this.dataFieldNames.forEach(dfn => {
+            let newDataSchema: dataSchemaInterface = {
+                name: dfn,
+                type: 'string',
+                length: 12
+            };
+        })
+    }
   }
