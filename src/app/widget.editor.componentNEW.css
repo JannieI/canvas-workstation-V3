@@ -121,8 +121,8 @@
             grid-column-start: 20;
             /* autoprefixer: off */
             grid-column-end: 50;
-            grid-row-start: 8;
-            grid-row-end: 9;
+            grid-row-start: 7;
+            grid-row-end: 8;
             margin-left: 10px;
             text-align: left;
         }

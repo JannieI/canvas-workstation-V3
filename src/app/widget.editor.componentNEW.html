@@ -86,8 +86,10 @@
                     <div class="datasourceMainPreviewTitle">
                         <b>Preview:</b>
                     </div>
-                    <div class="datasourceMainPreview" *ngIf="showPreview">
+                    <div class="datasourceMainPreview">
                         <clr-datagrid class="datagrid-compact">
+
+                            <clr-dg-placeholder>Select a datasource to preview here</clr-dg-placeholder>
 
                             <clr-dg-column *ngFor="let row of dataFieldNames">{{row}}</clr-dg-column>
                             <clr-dg-row *ngFor="let row of currentData">
