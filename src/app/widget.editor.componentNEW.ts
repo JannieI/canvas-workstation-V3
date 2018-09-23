@@ -134,7 +134,9 @@ export interface dataSchemaInterface {
         //     this.selectedDescription = this.globalVariableService.datasources[0].description;
         // };
 
-        this.globalVariableService.getWidgetGraphs().then(res => this.widgetGraphs = res);
+        this.globalVariableService.getWidgetGraphs().then(res => {
+            this.widgetGraphs = res
+        });
 
         if (this.newWidget) {
             // Get DS to which user has permissions
@@ -273,6 +275,8 @@ export interface dataSchemaInterface {
         // rules.
         this.globalFunctionService.printToConsole(this.constructor.name,'showGraph', '@Start');
 
+        console.warn('xx graphID', graphID);
+        
         // Get the widgetGraph
         let widgetGraphIndex: number = this.widgetGraphs.findIndex(
             wg => wg.id == graphID);
@@ -280,6 +284,7 @@ export interface dataSchemaInterface {
             this.errorMessage = 'Graph type id = ' + graphID + ' does not exist in the DB';
             return;
         }
+console.warn('xx widgetGraphIndex', widgetGraphIndex);
 
         // Startup
         let width: number = 400;
@@ -290,6 +295,7 @@ export interface dataSchemaInterface {
 
         // Create and parameter fill each defintion
         if (graphShortName =='SimpleBarChart') {
+console.warn('xx in simple Bc');
 
             let graphDefinition: any = this.widgetGraphs[widgetGraphIndex].specification;
             if (this.localWidget.graphUrl != "") {
@@ -314,6 +320,8 @@ export interface dataSchemaInterface {
             graphDefinition['encoding']['y']['aggregate'] = this.localWidget.graphYaggregate;
     
         };
+console.warn('xx graphVisualGrammar', graphVisualGrammar);
+console.warn('xx specification', specification, specification == {});
 
         // Render graph for Vega-Lite
         if (graphVisualGrammar == 'Vega-Lite') {
