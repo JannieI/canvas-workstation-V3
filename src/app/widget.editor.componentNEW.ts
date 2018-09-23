@@ -582,6 +582,9 @@ console.warn('xx definition', definition);
         let fieldType:string = this.getFieldType(this.draggedField);
         this.graphTypeFieldY = this.allowedGraphTypeField(fieldType);
         this.localWidget.graphYtype = this.defaultGraphTypeField(fieldType);
+console.warn('xx big 3', fieldType,
+this.graphTypeFieldY,                   
+this.localWidget.graphYtype);
 
         // TODO - REMOVE when this is done via forms !!!
         // if (this.localWidget.graphYtype == 'quantitative') {
@@ -737,9 +740,9 @@ console.warn('xx definition', definition);
         // TODO - remove later if not used any longer
     }
 
-    clickIcon(graph: string) {
+    clickGraphType(graph: string) {
         // Click a type of graph icon
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickIcon', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickGraphType', '@Start');
 
         this.showType = false;
 
@@ -831,8 +834,9 @@ console.warn('xx definition', definition);
         this.localWidget.datasetID = this.globalVariableService.
             currentDatasets[dataSetIndex].id;
         this.localWidget.graphData = this.globalVariableService
-            .currentDatasets[dataSetIndex].d
-            
+            .currentDatasets[dataSetIndex].data;
+
+        // Show the Editor form
         this.showDatasourceMain = false;
 
     }

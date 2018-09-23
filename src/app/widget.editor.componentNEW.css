@@ -151,7 +151,6 @@
 
     /* Widget Editor */
     .editorMain {
-        border: 1px solid gray;
         grid-column-start: 1;
         /* autoprefixer: off */
         grid-column-end: 20;
@@ -190,6 +189,7 @@
             grid-column-end: 11;
             grid-row-start: 4;
             grid-row-end: 22;
+            margin-left: 10px;
             text-align: left;
             overflow-y: scroll;
         }    
@@ -198,9 +198,9 @@
         }    
 
         .editorPropertiesTitle {
-            grid-column-start: 11;
+            grid-column-start: 12;
             /* autoprefixer: off */
-            grid-column-end: 20;
+            grid-column-end: 21;
             grid-row-start: 1;
             grid-row-end: 2;
             margin-left: 10px;
@@ -208,9 +208,10 @@
         }
         .editorProperties {
             border: 1px solid gray;
-            grid-column-start: 11;
+            border-radius: 6px;
+            grid-column-start: 12;
             /* autoprefixer: off */
-            grid-column-end: 20;
+            grid-column-end: 21;
             grid-row-start: 2;
             grid-row-end: 22;
             text-align: left;
@@ -234,7 +235,7 @@
             }
 
         .editorTypesTitle {
-            grid-column-start: 21;
+            grid-column-start: 22;
             /* autoprefixer: off */
             grid-column-end: 30;
             grid-row-start: 1;
@@ -244,7 +245,8 @@
         }
         .editorTypes {
             border: 1px solid gray;
-            grid-column-start: 21;
+            border-radius: 6px;
+            grid-column-start: 22;
             /* autoprefixer: off */
             grid-column-end: 30;
             grid-row-start: 2;
@@ -252,6 +254,15 @@
             text-align: left;
             overflow-y: scroll;
         }
+            .editorTypeImages {
+                border: 1px solid black;
+                color: steelblue;
+                cursor: pointer;
+                font-size: 0.5rem;
+                margin: 4px;
+                padding: auto;
+                width: 100%;
+            }
     
         .editorAreaTitle {
             grid-column-start: 31;

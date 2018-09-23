@@ -253,7 +253,23 @@
                             Types:
                         </b>
                     </div>
-                    <div class="editorTypes"></div>
+                    <div class="editorTypes">
+                        <div class="editorTypeImages">
+                            <span 
+                                (click)="clickGraphType('bar')"
+                                >
+                                <i>
+                                    Simple Bar Chart:
+                                </i>
+                            </span>
+                            <img class="typeIcon"
+                                [style.height.px]="80"
+                                src="../images/SimpleBarChart.png"
+                                (click)="clickGraphType('bar')"
+
+                            >
+                        </div>
+                    </div>
 
                     <div class="editorAreaTitle">
                         <b>Area:</b>
