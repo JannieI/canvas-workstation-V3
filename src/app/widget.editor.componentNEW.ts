@@ -134,6 +134,8 @@ export interface dataSchemaInterface {
         //     this.selectedDescription = this.globalVariableService.datasources[0].description;
         // };
 
+        this.globalVariableService.getWidgetGraphs().then(res => this.widgetGraphs = res);
+
         if (this.newWidget) {
             // Get DS to which user has permissions
             this.localDatasources = this.globalVariableService.datasources
@@ -284,8 +286,7 @@ export interface dataSchemaInterface {
         let height: number = 260;
         let specification;              // Vega-Lite, Vega, or other grammar
         let graphVisualGrammar: string = this.widgetGraphs[widgetGraphIndex].visualGrammar;
-        let graphShortName: string = this.widgetGraphs[widgetGraphIndex
-        ].shortName;
+        let graphShortName: string = this.widgetGraphs[widgetGraphIndex].shortName;
 
         // Create and parameter fill each defintion
         if (graphShortName =='SimpleBarChart') {
@@ -297,8 +298,8 @@ export interface dataSchemaInterface {
                 graphDefinition['data'] = {"values": this.localWidget.graphData};
             }
             graphDefinition['description'] = this.localWidget.graphDescription;
-            graphDefinition['mark']['type'] = this.localWidget.graphMark;
-            graphDefinition['mark']['color'] = this.localWidget.graphMarkColor;
+            // graphDefinition['mark']['type'] = this.localWidget.graphMark;
+            // graphDefinition['mark']['color'] = this.localWidget.graphMarkColor;
     
             graphDefinition['encoding']['x']['field'] = this.localWidget.graphXfield;
             graphDefinition['encoding']['x']['type'] = this.localWidget.graphXtype;
