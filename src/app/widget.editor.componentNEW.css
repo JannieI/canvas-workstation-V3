@@ -251,7 +251,9 @@
             grid-column-end: 30;
             grid-row-start: 2;
             grid-row-end: 22;
-            text-align: left;
+            margin: 0px;
+            padding: 0px;
+            text-align: center;
             overflow-y: scroll;
         }
             .editorTypeImages {
@@ -259,7 +261,7 @@
                 color: steelblue;
                 cursor: pointer;
                 font-size: 0.5rem;
-                margin: 4px;
+                margin-right: 4px 15px 4px 4px;
                 padding: auto;
                 width: 100%;
             }
@@ -277,8 +279,8 @@
             grid-column-start: 31;
             /* autoprefixer: off */
             grid-column-end: 50;
-            grid-row-start: 2;
-            grid-row-end: 16;
+            grid-row-start: 4;
+            grid-row-end: 20;
             text-align: left;
         }
 
@@ -286,16 +288,16 @@
             grid-column-start: 36;
             /* autoprefixer: off */
             grid-column-end: 38;
-            grid-row-start: 20;
-            grid-row-end: 21;
+            grid-row-start: 21;
+            grid-row-end: 22;
             text-align: left;
         }
         .editorButtonSave {
             grid-column-start: 42;
             /* autoprefixer: off */
             grid-column-end: 44;
-            grid-row-start: 20;
-            grid-row-end: 21;
+            grid-row-start: 21;
+            grid-row-end: 22;
             text-align: left;
         }
 

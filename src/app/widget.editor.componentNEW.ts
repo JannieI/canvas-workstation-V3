@@ -271,8 +271,8 @@ console.warn('xx definition', definition);
 
         let specification = compile(definition).spec;
         let view = new View(parse(specification));
-        let width: number = 540;
-        let height: number = 350;
+        let width: number = 400;
+        let height: number = 260;
         let reduceX: number = 0;
         let reduceY: number = 0;
         let reduceColor: number = 0;
