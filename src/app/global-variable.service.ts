@@ -56,6 +56,7 @@ import { WebSocketMessage }           from './models';
 import { Widget }                     from './models';
 import { WidgetCheckpoint }           from './models';
 import { WidgetLayout }               from './models';
+import { WidgetGraph }                from './models';
 
 // Dexie
 import Dexie from 'dexie';
@@ -592,6 +593,7 @@ export class GlobalVariableService {
     widgetCheckpoints: WidgetCheckpoint[] = [];
     widgets: Widget[] = [];
     widgetLayouts: WidgetLayout[] = [];
+    widgetGraphs: WidgetGraph[] =[];
 
     // Data for CURRENT Dashboard and Datasources: only some models are loaded
     currentCanvasGroups: CanvasGroup[] = [];
@@ -714,6 +716,7 @@ export class GlobalVariableService {
     isDirtyUsers: boolean = true;
     isDirtyWidgetCheckpoints: boolean = true;
     isDirtyWidgets: boolean = true;
+    isDirtyWidgetGraphs: boolean = true;
 
     dbDataCachingTable;
     dbCanvasAppDatabase;
@@ -5134,6 +5137,50 @@ export class GlobalVariableService {
                 };
 
                 resolve(this.canvasGroups);
+            }
+        });
+
+    }
+
+    getWidgetGraphs(): Promise<WidgetGraph[]> {
+        // Description: Gets all G
+        // Returns: this.WidgetGraphs array, unless:
+        //   If not cached or if dirty, get from File
+        if (this.sessionDebugging) {
+            console.log('%c    Global-Variables getWidgetGraphs ...',
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
+        };
+
+        let url: string = 'widgetGraphs';
+        this.filePath = './assets/data.widgetGraphs.json';
+
+        return new Promise<WidgetGraph[]>((resolve, reject) => {
+
+            // Refresh from source at start, or if dirty
+            if ( (this.widgetGraphs.length == 0)  ||  (this.isDirtyWidgetGraphs) ) {
+                this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
+                this.get(url)
+                    .then(res => {
+                        this.widgetGraphs = res;
+                        this.isDirtyWidgetGraphs = false;
+                        this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
+
+                        if (this.sessionDebugging) {
+                            console.log('%c    Global-Variables getWidgetGraphs 1',
+                            "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px",
+                            {res})
+                        };
+
+                        resolve(this.widgetGraphs);
+                    })
+                    .catch(err => reject(err));
+            } else {
+                if (this.sessionDebugging) {
+                    console.log('%c    Global-Variables getWidgetGraphs 2',
+                        "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px")
+                };
+
+                resolve(this.widgetGraphs);
             }
         });
 
@@ -9934,6 +9981,8 @@ export class GlobalVariableService {
                 } else if (url == 'datasourceScheduleLog') {
                     finalUrl = 'http://localhost:3001/' + url;
                 } else if (url == 'dataFields') {
+                    finalUrl = 'http://localhost:3001/' + url;
+                } else if (url == 'widgetGraphs') {
                     finalUrl = 'http://localhost:3001/' + url;
                 } else if (url == 'dashboardSnapshots') {
                     finalUrl = 'http://localhost:3000/' + url;

@@ -1208,6 +1208,15 @@ export class Widget {
 
 }
 
+export class WidgetGraph {
+    id: number                          // Unique ID
+    visualGrammar: string;              // Vega-Lite, Vega, etc
+    visualGrammarVersion: number;       // Version, ie 2.0
+    shortName: string;                  // Short name to display
+    specification: any;                 // Grammar spec (template)
+    imageUrl: string;                   // Url where image lives
+}
+
 export class WidgetCheckpoint {
     id: number;                         // Unique ID
     parentWidgetIsDeleted: boolean;     // True if W it belongs to has been deleted.

@@ -13,6 +13,7 @@ import { Datasource }                 from './models';
 import { Widget }                     from './models';
 import { WidgetLayout }               from './models';
 import { WidgetCheckpoint }           from './models';
+import { WidgetGraph }                from './models';
 
 // Our Services
 import { GlobalFunctionService } 		  from './global-function.service';
@@ -117,6 +118,7 @@ export interface dataSchemaInterface {
     showRowDeleteIcon: boolean = false;
     showType: boolean = false;
     sortOrder: number = 1;
+    widgetGraphs: WidgetGraph[] =[];
 
 
     constructor(
@@ -264,6 +266,70 @@ export interface dataSchemaInterface {
 
     }
 
+    showGraph(graphID: number) {
+        // Render the graph on the form.  NOTE: each graph has its own spec and rendering
+        // rules.
+        this.globalFunctionService.printToConsole(this.constructor.name,'showGraph', '@Start');
+
+        // Get the widgetGraph
+        let widgetGraphIndex: number = this.widgetGraphs.findIndex(
+            wg => wg.id == graphID);
+        if (widgetGraphIndex < 0) {
+            this.errorMessage = 'Graph type id = ' + graphID + ' does not exist in the DB';
+            return;
+        }
+
+        // Startup
+        let width: number = 400;
+        let height: number = 260;
+        let specification;              // Vega-Lite, Vega, or other grammar
+        let graphVisualGrammar: string = this.widgetGraphs[widgetGraphIndex].visualGrammar;
+        let graphShortName: string = this.widgetGraphs[widgetGraphIndex
+        ].shortName;
+
+        // Create and parameter fill each defintion
+        if (graphShortName =='SimpleBarChart') {
+
+            let graphDefinition: any = this.widgetGraphs[widgetGraphIndex].specification;
+            if (this.localWidget.graphUrl != "") {
+                graphDefinition['data'] = {"url": this.localWidget.graphUrl};
+            } else {
+                graphDefinition['data'] = {"values": this.localWidget.graphData};
+            }
+            graphDefinition['description'] = this.localWidget.graphDescription;
+            graphDefinition['mark']['type'] = this.localWidget.graphMark;
+            graphDefinition['mark']['color'] = this.localWidget.graphMarkColor;
+    
+            graphDefinition['encoding']['x']['field'] = this.localWidget.graphXfield;
+            graphDefinition['encoding']['x']['type'] = this.localWidget.graphXtype;
+            graphDefinition['encoding']['x']['axis']['title'] = this.localWidget.graphXaxisTitle;
+            graphDefinition['encoding']['x']['timeUnit'] = this.localWidget.graphXtimeUnit;
+            graphDefinition['encoding']['x']['aggregate'] = this.localWidget.graphXaggregate;
+    
+            graphDefinition['encoding']['y']['field'] = this.localWidget.graphYfield;
+            graphDefinition['encoding']['y']['type'] = this.localWidget.graphYtype;
+            graphDefinition['encoding']['y']['axis']['title'] = this.localWidget.graphYaxisTitle;
+            graphDefinition['encoding']['y']['timeUnit'] = this.localWidget.graphYtimeUnit;
+            graphDefinition['encoding']['y']['aggregate'] = this.localWidget.graphYaggregate;
+    
+        };
+
+        // Render graph for Vega-Lite
+        if (graphVisualGrammar == 'Vega-Lite') {
+            if (specification != {}) {
+                let vegaSpecification = compile(specification).spec;
+                let view = new View(parse(vegaSpecification));
+
+                view.renderer('svg')
+                .initialize(this.dragWidget.nativeElement)
+                    .width(width)
+                    .height(height)
+                    .hover()
+                    .run()
+                    .finalize();
+            };
+        };
+    }
     renderGraph(definition: any) {
         // Render the graph on the form
         this.globalFunctionService.printToConsole(this.constructor.name,'renderGraph', '@Start');
