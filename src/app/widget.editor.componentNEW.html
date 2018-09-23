@@ -253,18 +253,18 @@
                         </b>
                     </div>
                     <div class="editorTypes">
-                        <div class="editorTypeImages">
+                        <div class="editorTypeImages" *ngFor="let row of widgetGraphs">
                             <span 
-                                (click)="clickGraphType('bar')"
+                                (click)="showGraph(row.id)"
                                 >
                                 <i>
-                                    Simple Bar Chart:
+                                    {{ row.shortName }}:
                                 </i>
                             </span>
                             <img
                                 [style.height.px]="85"
-                                src="../images/SimpleBarChart.png"
-                                (click)="clickGraphType('bar')"
+                                [src]="row.imageUrl"
+                                (click)="showGraph(row.id)"
 
                             >
                         </div>
