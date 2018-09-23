@@ -43,6 +43,9 @@
 
 
     /* Datasource selection */
+    .datasourceMain .datagrid-cell {
+        padding-left: 6px !important;
+    }
     .datasourceMain {
         border: 2px solid lightgray;
         grid-column-start: 1;
@@ -163,6 +166,7 @@
     }
 
         .editorShowDS {
+            cursor: pointer;
             font-size: 0.65rem;
             grid-column-start: 1;
             /* autoprefixer: off */
@@ -188,7 +192,10 @@
             grid-row-end: 22;
             text-align: left;
             overflow-y: scroll;
-        }        
+        }    
+        .editorFields .datagrid-cell {
+            padding-left: 4px !important;
+        }    
 
         .editorPropertiesTitle {
             grid-column-start: 11;
