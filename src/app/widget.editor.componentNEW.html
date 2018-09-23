@@ -120,6 +120,21 @@
                 <!-- Widget Editor -->
                 <div class="editorMain" *ngIf="!showDatasourceMain">
 
+                     <!-- TODO - TRY this code !!! https://next.plnkr.co/edit/Hhms3CxLmzKHark5HVsd?p=preview&preview
+                        <clr-dg-column *ngFor="let column of myColumns" [clrDgField]="column.name" [clrDgSorted]="column.name === 'first_name'">
+                            <ng-container *ngIf="column.isMandatory; else hideableBlock">
+                                {{column.displayName}}
+                            </ng-container>
+                            <ng-template #hideableBlock>
+                                <ng-container *clrDgHideableColumn="{hidden: (column.name !== 'email') && !column.isscore}">
+                                {{column.displayName}}
+                                </ng-container>
+                            </ng-template>
+                            
+                            <clr-dg-string-filter *ngIf="column.name === 'email'" id="emailFilter" [clrDgStringFilter]="emailFilter"  [clrFilterValue]="(column.email)"></clr-dg-string-filter>
+                        </clr-dg-column> -->
+
+
                     <div class="editorFieldsTitle">
                         <b>Fields:</b>
                     </div>
@@ -137,12 +152,33 @@
                                     
                                     <clr-dg-row *clrDgItems="let row of dataSchema; let i = index"
                                         [clrDgItem]="row"
-                                        [style.background-color]="(row.type=='string')? '#123456' : 'white'"
-                                        [style.color]="(i == selectedFieldIndex)? 'white' : 'gray'"
                                         >
                                         <clr-dg-cell>
+                                            <clr-icon *ngIf="row.type=='string'"
+                                                shape="circle"
+                                                size="14"
+                                                [style.background-color]="'darkgray'"
+                                                [style.color]="'darkgray'"
+                                                >
+                                            </clr-icon>
+                                            <clr-icon *ngIf="row.type=='number'"
+                                                shape="circle"
+                                                size="14"
+                                                [style.background-color]="'lightgreen'"
+                                                [style.color]="'lightgreen'"
+                                                >
+                                            </clr-icon>
+                                            <clr-icon *ngIf="row.type=='boolean'"
+                                                shape="circle"
+                                                size="14"
+                                                [style.border]="'lightgray'"
+                                                [style.background-color]="'white'"
+                                                [style.color]="'white'"
+                                                >
+                                            </clr-icon>
+                    
                                             {{ row.name }}
-                                            <span class="badge badge-5">
+                                            <span class="badge badge-light-gray">
                                                 {{row.length}}
                                             </span>
                                         </clr-dg-cell>
