@@ -70,7 +70,7 @@
                                         [clrDgItem]="row"
                                         [style.background-color]="(i == selectedRowIndex)? '#123456' : 'white'"
                                         [style.color]="(i == selectedRowIndex)? 'white' : 'gray'"
-                                        (click)="clickDSrow(row.id)"
+                                        (click)="clickDSrow(i, row.id)"
                                         >
                                         <clr-dg-cell>
                                             {{ row.name }}
@@ -153,7 +153,7 @@
                                     <clr-dg-row *clrDgItems="let row of dataSchema; let i = index"
                                         [clrDgItem]="row"
                                         >
-                                        <clr-dg-cell>
+                                        <clr-dg-cell style="margin-left: 2px; padding: 0;">
                                             <clr-icon *ngIf="row.type=='string'"
                                                 shape="circle"
                                                 size="14"
@@ -178,7 +178,7 @@
                                             </clr-icon>
                     
                                             {{ row.name }}
-                                            <span class="badge badge-light-gray">
+                                            <span class="badge badge-gainsboro">
                                                 {{row.length}}
                                             </span>
                                         </clr-dg-cell>

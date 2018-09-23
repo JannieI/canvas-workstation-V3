@@ -148,7 +148,7 @@
 
     /* Widget Editor */
     .editorMain {
-        border: 2px solid black;
+        border: 1px solid gray;
         grid-column-start: 1;
         /* autoprefixer: off */
         grid-column-end: 20;
