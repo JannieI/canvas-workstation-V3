@@ -274,8 +274,6 @@ export interface dataSchemaInterface {
         // Render the graph on the form.  NOTE: each graph has its own spec and rendering
         // rules.
         this.globalFunctionService.printToConsole(this.constructor.name,'showGraph', '@Start');
-
-        console.warn('xx graphID', graphID);
         
         // Get the widgetGraph
         let widgetGraphIndex: number = this.widgetGraphs.findIndex(
@@ -284,7 +282,6 @@ export interface dataSchemaInterface {
             this.errorMessage = 'Graph type id = ' + graphID + ' does not exist in the DB';
             return;
         }
-console.warn('xx widgetGraphIndex', widgetGraphIndex);
 
         // Startup
         let width: number = 400;
@@ -294,38 +291,37 @@ console.warn('xx widgetGraphIndex', widgetGraphIndex);
         let graphShortName: string = this.widgetGraphs[widgetGraphIndex].shortName;
 
         // Create and parameter fill each defintion
-        if (graphShortName =='SimpleBarChart') {
-console.warn('xx in simple Bc');
+        if (graphID == 1  &&  graphShortName =='Simple Bar Chart') {
 
-            let graphDefinition: any = this.widgetGraphs[widgetGraphIndex].specification;
+            specification = this.widgetGraphs[widgetGraphIndex].specification;
             if (this.localWidget.graphUrl != "") {
-                graphDefinition['data'] = {"url": this.localWidget.graphUrl};
+                specification['data'] = {"url": this.localWidget.graphUrl};
             } else {
-                graphDefinition['data'] = {"values": this.localWidget.graphData};
+                specification['data'] = {"values": this.localWidget.graphData};
             }
-            graphDefinition['description'] = this.localWidget.graphDescription;
-            // graphDefinition['mark']['type'] = this.localWidget.graphMark;
-            // graphDefinition['mark']['color'] = this.localWidget.graphMarkColor;
+            specification['description'] = this.localWidget.graphDescription;
+            // specification['mark']['type'] = this.localWidget.graphMark;
+            // specification['mark']['color'] = this.localWidget.graphMarkColor;
     
-            graphDefinition['encoding']['x']['field'] = this.localWidget.graphXfield;
-            graphDefinition['encoding']['x']['type'] = this.localWidget.graphXtype;
-            graphDefinition['encoding']['x']['axis']['title'] = this.localWidget.graphXaxisTitle;
-            graphDefinition['encoding']['x']['timeUnit'] = this.localWidget.graphXtimeUnit;
-            graphDefinition['encoding']['x']['aggregate'] = this.localWidget.graphXaggregate;
+            specification['encoding']['x']['field'] = this.localWidget.graphXfield;
+            specification['encoding']['x']['type'] = this.localWidget.graphXtype;
+            // specification['encoding']['x']['axis']['title'] = this.localWidget.graphXaxisTitle;
+            // specification['encoding']['x']['timeUnit'] = this.localWidget.graphXtimeUnit;
+            // specification['encoding']['x']['aggregate'] = this.localWidget.graphXaggregate;
     
-            graphDefinition['encoding']['y']['field'] = this.localWidget.graphYfield;
-            graphDefinition['encoding']['y']['type'] = this.localWidget.graphYtype;
-            graphDefinition['encoding']['y']['axis']['title'] = this.localWidget.graphYaxisTitle;
-            graphDefinition['encoding']['y']['timeUnit'] = this.localWidget.graphYtimeUnit;
-            graphDefinition['encoding']['y']['aggregate'] = this.localWidget.graphYaggregate;
+            specification['encoding']['y']['field'] = this.localWidget.graphYfield;
+            specification['encoding']['y']['type'] = this.localWidget.graphYtype;
+            // specification['encoding']['y']['axis']['title'] = this.localWidget.graphYaxisTitle;
+            // specification['encoding']['y']['timeUnit'] = this.localWidget.graphYtimeUnit;
+            // specification['encoding']['y']['aggregate'] = this.localWidget.graphYaggregate;
     
         };
 console.warn('xx graphVisualGrammar', graphVisualGrammar);
-console.warn('xx specification', specification, specification == {});
+console.warn('xx specification', specification, specification == undefined);
 
         // Render graph for Vega-Lite
         if (graphVisualGrammar == 'Vega-Lite') {
-            if (specification != {}) {
+            if (specification != undefined) {
                 let vegaSpecification = compile(specification).spec;
                 let view = new View(parse(vegaSpecification));
 
