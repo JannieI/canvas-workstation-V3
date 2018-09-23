@@ -220,6 +220,7 @@
                             (dragenter)="dragenterColumn($event);"
                             (dragleave)="dragleaveColumn($event);"
                             [style.background-color]="dragoverCol? 'lightgray' : 'transparent'"
+                            [style.font-style]="colField=='Drag a field here ...' ?  'italic'  :  'normal'"
                             >
                             <clr-icon shape="times" *ngIf="showColumnDeleteIcon"
                                 (click)="clickClearColumnField()">

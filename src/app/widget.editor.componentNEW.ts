@@ -68,8 +68,14 @@ export interface dataSchemaInterface {
             &&
             (!event.shiftKey)
            ) {
-            this.clickSave('Saved');
-            return;
+
+            if (this.showDatasourceMain) {
+                this.clickContinue();
+                return;    
+            } else {
+                this.clickSave('Saved');
+                return;    
+            }
         };
 
     }
