@@ -137,10 +137,8 @@
 
                     <div class="editorShowDS" (click)="clickShowDatasources()">
                         <clr-icon (click)="clickShowDatasources()"
-                            shape="caret left"
-                            size="28"
-                            [style.background-color]="'lightgreen'"
-                            [style.color]="'lightgreen'"
+                            shape="angle left"
+                            size="22"
                             >
                         </clr-icon>
 
@@ -164,7 +162,11 @@
                                 <clr-dg-row *clrDgItems="let row of dataSchema; let i = index"
                                     [clrDgItem]="row"
                                     >
-                                    <clr-dg-cell style="margin-left: 2px; padding: 0;">
+                                    <clr-dg-cell style="margin-left: 2px; padding: 0;"
+                                        id="fld"
+                                        draggable="true"
+                                        (dragstart)="dragstartField($event)"
+                                        >
                                         <clr-icon *ngIf="row.type=='string'"
                                             shape="circle"
                                             size="14"
@@ -189,9 +191,9 @@
                                         </clr-icon>
                 
                                         {{ row.name }}
-                                        <span class="badge badge-light-gray">
+                                        <!-- <span class="badge badge-light-gray">
                                             {{row.length}}
-                                        </span>
+                                        </span> -->
                                     </clr-dg-cell>
                                 </clr-dg-row>
 
@@ -204,7 +206,46 @@
                             Properties:
                         </b>
                     </div>
-                    <div class="editorProperties"></div>
+                    <div class="editorProperties">
+
+
+                        <div class="editorColFieldTitle">
+                            X axis:
+                        </div>
+    
+                        <div class="editorColField"
+                            id="target"
+                            (drop)="dropColumn($event);"
+                            (dragover)="dragoverColumn($event);"
+                            (dragenter)="dragenterColumn($event);"
+                            (dragleave)="dragleaveColumn($event);"
+                            [style.background-color]="dragoverCol? 'lightgray' : 'transparent'"
+                            >
+                            <clr-icon shape="times" *ngIf="showColumnDeleteIcon"
+                                (click)="clickClearColumnField()">
+                            </clr-icon>
+                            {{ colField }}
+                        </div>
+
+                        <div class="editorRowFieldTitle">
+                            Y axis:
+                        </div>
+    
+                        <div class="editorRowField"
+                            id="target"
+                            (drop)="dropRow($event);"
+                            (dragenter)="dragenterRow($event);"
+                            (dragleave)="dragoleaveRow($event);"
+                            (dragover)="dragoverRows($event);"
+                            [style.background-color]="dragoverRow? 'lightgray' : 'transparent'"
+                            >
+                            <clr-icon shape="times" *ngIf="showRowDeleteIcon"
+                                (click)="clickClearRowField()">
+                            </clr-icon>
+                            {{ rowField }}
+                        </div>
+        
+                    </div>
 
                     <div class="editorTypesTitle">
                         <b>

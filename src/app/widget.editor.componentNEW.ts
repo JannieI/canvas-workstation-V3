@@ -237,18 +237,18 @@ export interface dataSchemaInterface {
 
     }
 
-    // ngAfterViewInit() {
-    //     // ngAfterViewInit Life Cycle Hook
-    //     this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewInit', '@Start');
+    ngAfterViewInit() {
+        // ngAfterViewInit Life Cycle Hook
+        this.globalFunctionService.printToConsole(this.constructor.name,'ngAfterViewInit', '@Start');
 
-    //     // Render if Editing an existing one
-    //     let definition = this.globalVariableService.createVegaLiteSpec(
-    //         this.localWidget, graphHeight, graphWidth
-    //     );
-    //     if (!this.newWidget) {
-    //         this.renderGraph(definition);
-    //     }
-    // }
+        // Render if Editing an existing one
+        let definition = this.globalVariableService.createVegaLiteSpec(
+            this.localWidget, graphHeight, graphWidth
+        );
+        if (!this.newWidget) {
+            this.renderGraph(definition);
+        }
+    }
 
     ngOnDestroy() {
         // Cleanup just before Angular destroys the directive/component.
@@ -261,6 +261,7 @@ export interface dataSchemaInterface {
     renderGraph(definition: any) {
         // Render the graph on the form
         this.globalFunctionService.printToConsole(this.constructor.name,'renderGraph', '@Start');
+console.warn('xx definition', definition);
 
         let specification = compile(definition).spec;
         let view = new View(parse(specification));
@@ -899,5 +900,5 @@ export interface dataSchemaInterface {
 
         this.showDatasourceMain = true;
     }
-    
+
   }
