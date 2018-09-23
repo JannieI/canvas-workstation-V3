@@ -631,7 +631,7 @@ this.localWidget.graphYtype);
 
         // Show X icon
         this.showColumnDeleteIcon = false;
-        this.colField = '';
+        this.colField = 'Drag a field here ...';
         this.localWidget.graphXfield = null;
         this.localWidget.graphXaxisTitle = null;
         this.localWidget.graphXaggregate = null;
@@ -650,7 +650,7 @@ this.localWidget.graphYtype);
 
         // Show X icon
         this.showRowDeleteIcon = false;
-        this.rowField = '';
+        this.rowField = 'Drag a field here ...';
         this.localWidget.graphYfield = null;
         this.localWidget.graphYaxisTitle = null;
         this.localWidget.graphYaggregate = null;
