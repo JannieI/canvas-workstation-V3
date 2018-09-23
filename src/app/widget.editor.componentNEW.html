@@ -135,57 +135,67 @@
                         </clr-dg-column> -->
 
 
+                    <div class="editorShowDS" (click)="clickShowDatasources()">
+                        <clr-icon (click)="clickShowDatasources()"
+                            shape="caret left"
+                            size="28"
+                            [style.background-color]="'lightgreen'"
+                            [style.color]="'lightgreen'"
+                            >
+                        </clr-icon>
+
+                        <b>Show Datasources</b>
+                    </div>
+
                     <div class="editorFieldsTitle">
                         <b>Fields:</b>
                     </div>
                     <div class="editorFields">
                         <nav
                             >
-                            <div>
-                                <clr-datagrid class="datagrid-compact">
-                                    <clr-dg-column clrDgField="name"  
-                                        [(clrDgSortOrder)]="sortOrder"
-                                        (click)="sortOrder=sortOrder * -1"
-                                        >
-                                        Name
-                                    </clr-dg-column>
-                                    
-                                    <clr-dg-row *clrDgItems="let row of dataSchema; let i = index"
-                                        [clrDgItem]="row"
-                                        >
-                                        <clr-dg-cell style="margin-left: 2px; padding: 0;">
-                                            <clr-icon *ngIf="row.type=='string'"
-                                                shape="circle"
-                                                size="14"
-                                                [style.background-color]="'darkgray'"
-                                                [style.color]="'darkgray'"
-                                                >
-                                            </clr-icon>
-                                            <clr-icon *ngIf="row.type=='number'"
-                                                shape="circle"
-                                                size="14"
-                                                [style.background-color]="'lightgreen'"
-                                                [style.color]="'lightgreen'"
-                                                >
-                                            </clr-icon>
-                                            <clr-icon *ngIf="row.type=='boolean'"
-                                                shape="circle"
-                                                size="14"
-                                                [style.border]="'lightgray'"
-                                                [style.background-color]="'white'"
-                                                [style.color]="'white'"
-                                                >
-                                            </clr-icon>
-                    
-                                            {{ row.name }}
-                                            <span class="badge badge-gainsboro">
-                                                {{row.length}}
-                                            </span>
-                                        </clr-dg-cell>
-                                    </clr-dg-row>
+                            <clr-datagrid class="datagrid-compact">
+                                <clr-dg-column clrDgField="name"  
+                                    [(clrDgSortOrder)]="sortOrder"
+                                    (click)="sortOrder=sortOrder * -1"
+                                    >
+                                    Name
+                                </clr-dg-column>
+                                
+                                <clr-dg-row *clrDgItems="let row of dataSchema; let i = index"
+                                    [clrDgItem]="row"
+                                    >
+                                    <clr-dg-cell style="margin-left: 2px; padding: 0;">
+                                        <clr-icon *ngIf="row.type=='string'"
+                                            shape="circle"
+                                            size="14"
+                                            [style.background-color]="'darkgray'"
+                                            [style.color]="'darkgray'"
+                                            >
+                                        </clr-icon>
+                                        <clr-icon *ngIf="row.type=='number'"
+                                            shape="circle"
+                                            size="14"
+                                            [style.background-color]="'lightgreen'"
+                                            [style.color]="'lightgreen'"
+                                            >
+                                        </clr-icon>
+                                        <clr-icon *ngIf="row.type=='boolean'"
+                                            shape="circle"
+                                            size="14"
+                                            [style.border]="'lightgray'"
+                                            [style.background-color]="'white'"
+                                            [style.color]="'white'"
+                                            >
+                                        </clr-icon>
+                
+                                        {{ row.name }}
+                                        <span class="badge badge-light-gray">
+                                            {{row.length}}
+                                        </span>
+                                    </clr-dg-cell>
+                                </clr-dg-row>
 
-                                </clr-datagrid>
-                            </div>
+                            </clr-datagrid>
                         </nav>
                     </div>
         

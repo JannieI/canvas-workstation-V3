@@ -877,10 +877,10 @@ export interface dataSchemaInterface {
     constructDataSchema() {
         // Construct combined object for fields
         this.globalFunctionService.printToConsole(this.constructor.name,'constructDataSchema', '@Start');
-console.warn('xx this.dataFieldLengths', this.dataFieldLengths);
 
         // TODO - do one or the other: 3 vars, or 1 combined object
         // Fill dataSchema
+        this.dataSchema = [];
         for (let i = 0; i < this.dataFieldNames.length; i++) {
             let newDataSchema: dataSchemaInterface = {
                 name: this.dataFieldNames[i],
@@ -892,4 +892,12 @@ console.warn('xx this.dataFieldLengths', this.dataFieldLengths);
         console.warn('xx this.dataSchema', this.dataSchema);
         
     }
+
+    clickShowDatasources() {
+        // Show Datasources
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowDatasources', '@Start');
+
+        this.showDatasourceMain = true;
+    }
+    
   }
