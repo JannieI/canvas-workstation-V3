@@ -233,15 +233,15 @@
                         </div>
         
                         <div class="editorColourFieldTitle">
-                            Y axis:
+                            Colour:
                         </div>    
                         <div class="editorColourField"
                             id="target"
                             (drop)="dropColour($event);"
                             (dragenter)="dragenterColour($event);"
-                            (dragleave)="dragoleaveColour($event);"
-                            (dragover)="dragoverColours($event);"
-                            [style.background-color]="dragoverColour? 'lightgray' : 'transparent'"
+                            (dragleave)="dragleaveColour($event);"
+                            (dragover)="dragoverColour($event);"
+                            [style.background-color]="dragoverColours? 'lightgray' : 'transparent'"
                             >
                             <clr-icon shape="times" *ngIf="showColourDeleteIcon"
                                 (click)="clickClearColourField()">

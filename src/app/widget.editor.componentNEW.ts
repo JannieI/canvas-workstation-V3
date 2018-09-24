@@ -92,7 +92,7 @@ export interface dataSchemaInterface {
     draggedField: string = '';
     dragoverCol: boolean = false;
     dragoverRow: boolean = false;
-    dragoverColor: boolean = false;
+    dragoverColours: boolean = false;
     errorMessage: string = '';
     graphColorField: string = 'Drag a field here ...';
     graphColor: string[];
@@ -607,9 +607,9 @@ console.warn('xx definition', definition);
         ev.preventDefault();
     }
 
-    dragoverColors(ev, actionName: string) {
+    dragoverColour(ev, actionName: string) {
         // Event trigger when the dragged Field is over the Color field
-        this.globalFunctionService.printToConsole(this.constructor.name,'dragoverColors', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'dragoverColour', '@Start');
 
         ev.preventDefault();
     }
@@ -681,9 +681,9 @@ this.localWidget.graphYtype);
         // this.renderGraph(definition);
     }
 
-    dropColor(ev) {
+    dropColour(ev) {
         // Event trigger when the dragged Field is dropped the Colour field
-        this.globalFunctionService.printToConsole(this.constructor.name,'dropColor', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'dropColour', '@Start');
 
         // Show X icon
         this.showColourDeleteIcon = true;
@@ -769,7 +769,7 @@ this.localWidget.graphYtype);
         ev.preventDefault();
         this.dragoverCol = true;
         this.dragoverRow = false;
-        this.dragoverColor = false;
+        this.dragoverColours = false;
     }
 
     dragleaveColumn(ev, actionName: string) {
@@ -787,7 +787,7 @@ this.localWidget.graphYtype);
         ev.preventDefault();
         this.dragoverCol = false;
         this.dragoverRow = true;
-        this.dragoverColor = false;
+        this.dragoverColours = false;
     }
 
     dragoleaveRow(ev, actionName: string) {
@@ -798,22 +798,22 @@ this.localWidget.graphYtype);
         this.dragoverRow = false;
     }
 
-    dragenterColors(ev, actionName: string) {
+    dragenterColour(ev, actionName: string) {
         // Event trigger when the dragged Field is enters the Colour field
-        this.globalFunctionService.printToConsole(this.constructor.name,'dragenterColors', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'dragenterColour', '@Start');
 
         ev.preventDefault();
         this.dragoverCol = false;
         this.dragoverRow = false;
-        this.dragoverColor = true;
+        this.dragoverColours = true;
     }
 
-    dragleaveColors(ev, actionName: string) {
+    dragleaveColour(ev, actionName: string) {
         // Event trigger when the dragged Field is leaves the Colour field
-        this.globalFunctionService.printToConsole(this.constructor.name,'dragleaveColors', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'dragleaveColour', '@Start');
 
         ev.preventDefault();
-        this.dragoverColor = false;
+        this.dragoverColours = false;
     }
 
     clickDatasource(index: number, name: string) {
