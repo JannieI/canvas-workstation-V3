@@ -108,13 +108,10 @@ export interface dataSchemaInterface {
     selectedFieldIndex: number = -1;
     selectedRowIndex: number = -1;
     selectedRowID: number;
-    showColFieldAdvanced: boolean = false;
-    showColFieldAdvancedArea: boolean = false;
     showColourDeleteIcon: boolean = false;
     showColumnDeleteIcon: boolean = false;
     showDatasourceMain: boolean = true;
     showPreview: boolean = false;
-    showRowFieldAdvanced: boolean = false;
     showRowDeleteIcon: boolean = false;
     showType: boolean = false;
     sortOrder: number = 1;
@@ -209,7 +206,6 @@ export interface dataSchemaInterface {
             if (this.localWidget.graphXfield != ''   &&   this.localWidget.graphXfield != null) {
                 this.showColumnDeleteIcon = true;
                 this.colField = this.localWidget.graphXfield;
-                this.showColFieldAdvanced = true;
 
             } else {
                 this.showColumnDeleteIcon = false;
@@ -219,7 +215,6 @@ export interface dataSchemaInterface {
             if (this.localWidget.graphYfield != ''   &&   this.localWidget.graphYfield != null) {
                 this.showRowDeleteIcon = true;
                 this.rowField = this.localWidget.graphYfield;
-                this.showRowFieldAdvanced = true;
             } else {
                 this.showRowDeleteIcon = false;
                 this.rowField = '';
@@ -641,7 +636,6 @@ console.warn('xx definition', definition);
         let definition = this.globalVariableService.createVegaLiteSpec(
             this.localWidget, graphHeight, graphWidth
         );
-        this.showColFieldAdvanced = true;
         // this.renderGraph(definition);
 
     }
@@ -678,7 +672,6 @@ this.localWidget.graphYtype);
         let definition = this.globalVariableService.createVegaLiteSpec(
             this.localWidget, graphHeight, graphWidth
         );
-        this.showRowFieldAdvanced = true;
         // this.renderGraph(definition);
     }
 
