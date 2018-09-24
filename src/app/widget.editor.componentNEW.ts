@@ -850,6 +850,9 @@ this.localWidget.graphYtype);
         this.errorMessage = '';
         this.currentData = null;
 
+        // Clear previous selected fields
+        this.clickClearColourField();
+        
         // Determine if data already in Glob Var
         let dataSetIndex: number = this.globalVariableService.currentDatasets.findIndex(
             ds => ds.datasourceID == datasourceID

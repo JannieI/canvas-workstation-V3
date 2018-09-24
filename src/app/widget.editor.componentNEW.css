@@ -11,6 +11,21 @@
     padding: 0 !important;
 }
 
+.datagrid-scroll-wrapper {
+    margin: 0 !important;
+    padding-top: 0px !important;
+}
+
+.datagrid {
+    margin: 0 !important;
+    padding-top: 0px !important;
+}
+
+datagrid {
+    margin: 0 !important;
+    padding-top: 0px !important;
+}
+
 .datagrid-compact.datagrid-scroll {
     margin: 0 !important;
     padding: 0 !important;
@@ -192,7 +207,8 @@
             grid-column-end: 10;
             grid-row-start: 2;
             grid-row-end: 22;
-            margin-left: 10px;
+            margin: 0px;
+            margin-left: 2px;
             text-align: left;
             overflow-y: scroll;
         }
@@ -291,7 +307,7 @@
             grid-row-end: 22;
             margin: 0px;
             margin-left: 8px;
-            padding: 4pxpx;
+            padding: 4px;
             text-align: center;
             overflow-y: scroll;
         }
