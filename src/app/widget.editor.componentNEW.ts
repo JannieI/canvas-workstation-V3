@@ -137,10 +137,11 @@ export interface dataSchemaInterface {
 
         // Get DS to which user has permissions
         this.localDatasources = this.globalVariableService.datasources
-        .slice()
-        .filter(ds =>
-            this.globalVariableService.datasourcePermissionsCheck(ds.id, 'CanView')
+            .slice()
+            .filter(ds =>
+                this.globalVariableService.datasourcePermissionsCheck(ds.id, 'CanView')
         );
+    console.warn('xx this.localDatasources', this.localDatasources);
     
         // Start afresh for new W
         if (this.newWidget) {
@@ -621,7 +622,6 @@ console.warn('xx definition', definition);
         ev.preventDefault();
 
         let dataSchemaIndex: number = this.dataSchema.findIndex(dsc => dsc.name == this.draggedField)
-console.warn('xx dataSchema', this.dataSchema, dataSchemaIndex, '-' + this.draggedField + '-');
 
         // Show X icon
         this.showColumnDeleteIcon = true;
@@ -852,7 +852,23 @@ this.localWidget.graphYtype);
         this.currentData = null;
 
         // Clear previous selected fields
-        this.clickClearColourField();
+        this.showColumnDeleteIcon = false;
+        this.colField = '';
+        this.localWidget.graphXfield = '';
+        this.localWidget.graphXaxisTitle = '';
+
+        this.showRowDeleteIcon = false;
+        this.rowField = '';
+        this.localWidget.graphYfield = '';
+        this.localWidget.graphYaxisTitle = '';
+
+        this.showColourDeleteIcon = false;
+        this.graphColorField = '';
+        this.localWidget.graphColorField = ''
+        this.localWidget.graphColorType = '';
+
+
+
 
         // Determine if data already in Glob Var
         let dataSetIndex: number = this.globalVariableService.currentDatasets.findIndex(
