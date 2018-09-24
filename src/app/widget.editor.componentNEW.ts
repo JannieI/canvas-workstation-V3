@@ -853,22 +853,19 @@ this.localWidget.graphYtype);
 
         // Clear previous selected fields
         this.showColumnDeleteIcon = false;
-        this.colField = '';
+        this.colField = 'Drag a field here ...';
         this.localWidget.graphXfield = '';
         this.localWidget.graphXaxisTitle = '';
 
         this.showRowDeleteIcon = false;
-        this.rowField = '';
+        this.rowField = 'Drag a field here ...';
         this.localWidget.graphYfield = '';
         this.localWidget.graphYaxisTitle = '';
 
         this.showColourDeleteIcon = false;
-        this.graphColorField = '';
+        this.graphColorField = 'Drag a field here ...';
         this.localWidget.graphColorField = ''
         this.localWidget.graphColorType = '';
-
-
-
 
         // Determine if data already in Glob Var
         let dataSetIndex: number = this.globalVariableService.currentDatasets.findIndex(

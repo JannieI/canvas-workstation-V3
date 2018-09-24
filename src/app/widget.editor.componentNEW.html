@@ -225,6 +225,7 @@
                             (dragleave)="dragoleaveRow($event);"
                             (dragover)="dragoverRows($event);"
                             [style.background-color]="dragoverRow? 'lightgray' : 'transparent'"
+                            [style.font-style]="rowField=='Drag a field here ...' ?  'italic'  :  'normal'"
                             >
                             <clr-icon shape="times" *ngIf="showRowDeleteIcon"
                                 (click)="clickClearRowField()">
@@ -242,6 +243,7 @@
                             (dragleave)="dragleaveColour($event);"
                             (dragover)="dragoverColour($event);"
                             [style.background-color]="dragoverColours? 'lightgray' : 'transparent'"
+                            [style.font-style]="graphColorField=='Drag a field here ...' ?  'italic'  :  'normal'"
                             >
                             <clr-icon shape="times" *ngIf="showColourDeleteIcon"
                                 (click)="clickClearColourField()">
