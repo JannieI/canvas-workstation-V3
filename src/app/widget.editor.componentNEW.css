@@ -182,15 +182,15 @@
             grid-column-start: 1;
             /* autoprefixer: off */
             grid-column-end: 11;
-            grid-row-start: 3;
-            grid-row-end: 4;
+            grid-row-start: 1;
+            grid-row-end: 2;
             text-align: left;
         }
         .editorFields {
             grid-column-start: 1;
             /* autoprefixer: off */
             grid-column-end: 10;
-            grid-row-start: 4;
+            grid-row-start: 2;
             grid-row-end: 22;
             margin-left: 10px;
             text-align: left;
@@ -224,41 +224,52 @@
             .editorColFieldTitle {
                 display: inline-block;
                 font-size: 0.5rem;
+                line-height: 0.8rem;
+                margin-left: 4px;
+                width: 42px;
             }
             .editorColField {
                 border: 1px solid steelblue;
                 border-radius: 5px;
                 display: inline-block;
                 font-size: 0.5rem;
-                line-height: 0.5rem;
+                line-height: 0.8rem;
                 margin: 3px;
-                width: 80%;
+                width: 78%;
             }
 
             .editorRowFieldTitle {
                 display: inline-block;
                 font-size: 0.5rem;
+                line-height: 0.8rem;
+                margin-left: 4px;
+                width: 42px;
             }
             .editorRowField {
-                border: 1px solid gray;
+                border: 1px solid steelblue;
                 border-radius: 5px;
                 display: inline-block;
                 font-size: 0.5rem;
+                line-height: 0.8rem;
                 margin: 3px;
-                width: 80%;
+                width: 78%;
             }
 
             .editorColourFieldTitle {
                 display: inline-block;
                 font-size: 0.5rem;
+                line-height: 0.8rem;
+                margin-left: 4px;
+                width: 42px;
             }
             .editorColourField {
-                border: 1px solid gray;
+                border: 1px solid steelblue;
                 border-radius: 5px;
                 display: inline-block;
                 font-size: 0.5rem;
+                line-height: 0.8rem;
                 margin: 3px;
-                width: 80%;
+                width: 78%;
             }
 
         .editorTypesTitle {
