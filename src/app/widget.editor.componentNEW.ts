@@ -28,8 +28,8 @@ const graphHeight: number = 260;
 const graphWidth: number = 420;
 
 export interface dataSchemaInterface {
-    name: string; 
-    type: string; 
+    name: string;
+    type: string;
     length: number
 }
 
@@ -72,10 +72,10 @@ export interface dataSchemaInterface {
 
             if (this.showDatasourceMain) {
                 this.clickContinue();
-                return;    
+                return;
             } else {
                 this.clickSave('Saved');
-                return;    
+                return;
             }
         };
 
@@ -142,7 +142,7 @@ export interface dataSchemaInterface {
             // Get DS to which user has permissions
             this.localDatasources = this.globalVariableService.datasources
                 .slice()
-                .filter(ds => 
+                .filter(ds =>
                     this.globalVariableService.datasourcePermissionsCheck(ds.id, 'CanView')
                 )
                 // .sort( (obj1, obj2) => {
@@ -274,7 +274,7 @@ export interface dataSchemaInterface {
         // Render the graph on the form.  NOTE: each graph has its own spec and rendering
         // rules.
         this.globalFunctionService.printToConsole(this.constructor.name,'showGraph', '@Start');
-        
+
         // Get the widgetGraph
         let widgetGraphIndex: number = this.widgetGraphs.findIndex(
             wg => wg.id == graphID);
@@ -284,7 +284,7 @@ export interface dataSchemaInterface {
         }
 
         console.warn('xx this.localWidget', this.localWidget);
-        
+
         // Startup
         let width: number = 400;
         let height: number = 260;
@@ -306,19 +306,19 @@ export interface dataSchemaInterface {
             specification['height'] = height;
             // specification['mark']['type'] = this.localWidget.graphMark;
             // specification['mark']['color'] = this.localWidget.graphMarkColor;
-    
+
             specification['encoding']['x']['field'] = this.localWidget.graphXfield;
             specification['encoding']['x']['type'] = this.localWidget.graphXtype;
             // specification['encoding']['x']['axis']['title'] = this.localWidget.graphXaxisTitle;
             // specification['encoding']['x']['timeUnit'] = this.localWidget.graphXtimeUnit;
             // specification['encoding']['x']['aggregate'] = this.localWidget.graphXaggregate;
-    
+
             specification['encoding']['y']['field'] = this.localWidget.graphYfield;
             specification['encoding']['y']['type'] = this.localWidget.graphYtype;
             // specification['encoding']['y']['axis']['title'] = this.localWidget.graphYaxisTitle;
             // specification['encoding']['y']['timeUnit'] = this.localWidget.graphYtimeUnit;
             // specification['encoding']['y']['aggregate'] = this.localWidget.graphYaggregate;
-    
+
         };
 console.warn('xx graphVisualGrammar', graphVisualGrammar);
 console.warn('xx specification', specification, specification == undefined);
@@ -659,7 +659,7 @@ console.warn('xx dataSchema', this.dataSchema, dataSchemaIndex, '-' + this.dragg
         this.graphTypeFieldY = this.allowedGraphTypeField(fieldType);
         this.localWidget.graphYtype = this.defaultGraphTypeField(fieldType);
 console.warn('xx big 3', fieldType,
-this.graphTypeFieldY,                   
+this.graphTypeFieldY,
 this.localWidget.graphYtype);
 
         // TODO - REMOVE when this is done via forms !!!
@@ -829,7 +829,7 @@ this.localWidget.graphYtype);
         this.renderGraph(definition);
 
     }
-        
+
     clickDSrow(index, datasourceID: number) {
         // Set the selected datasourceID
         // NOTE: this array can be filtered on front-end, thus DON'T use index
@@ -860,7 +860,7 @@ this.localWidget.graphYtype);
 
             // Switch on the preview after the first row was clicked
             this.showPreview = true;
-            
+
             return;
         };
 
@@ -977,7 +977,7 @@ this.localWidget.graphYtype);
             this.dataSchema.push(newDataSchema);
         };
         console.warn('xx this.dataSchema', this.dataSchema);
-        
+
     }
 
     clickShowDatasources() {

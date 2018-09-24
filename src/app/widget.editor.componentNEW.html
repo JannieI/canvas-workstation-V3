@@ -134,17 +134,6 @@
                             <clr-dg-string-filter *ngIf="column.name === 'email'" id="emailFilter" [clrDgStringFilter]="emailFilter"  [clrFilterValue]="(column.email)"></clr-dg-string-filter>
                         </clr-dg-column> -->
 
-
-                    <div class="editorShowDS" (click)="clickShowDatasources()">
-                        <clr-icon (click)="clickShowDatasources()"
-                            shape="angle left"
-                            size="22"
-                            >
-                        </clr-icon>
-
-                        <b>Show Datasources</b>
-                    </div>
-
                     <div class="editorFieldsTitle">
                         <b>Fields:</b>
                     </div>
@@ -275,17 +264,35 @@
                     <div class="editorArea" #dragWidget>
                     </div>
 
+                    <div class="editorButtonShowData">
+                        <button
+                            class="btn btn-sm btn-secondary"
+                            (click)="clickShowDatasources()"
+                            >
+                            <clr-icon (click)="clickShowDatasources()"
+                                shape="angle left"
+                                size="18"
+                                >
+                            </clr-icon>
+                            Show Datas
+                        </button>
+                    </div>
+    
+
+
                     <div class="editorButtonCancel">
                         <button *ngIf="showPreview"
                             class="btn btn-sm btn-secondary"
-                            (click)="clickClose()">
+                            (click)="clickClose()"
+                            >
                             Cancel
                         </button>
                     </div>
                     <div class="editorButtonSave">
                         <button *ngIf="showPreview"
                             class="btn btn-sm btn-primary"
-                            (click)="clickSave()">
+                            (click)="clickSave()"
+                            >
                             Save
                         </button>
                     </div>

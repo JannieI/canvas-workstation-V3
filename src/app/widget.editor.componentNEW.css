@@ -2,9 +2,9 @@
 	background-color: rgba(0,0,0,0.4);
 	-shadow: 0 2px 2px 0 lightgray;
 }
-.modal-content { 
-    padding: 10px;
-} 
+.modal-content {
+    padding: 10px !important;
+}
 
 .datagrid-compact.datagrid-host {
     margin: 0 !important;
@@ -94,7 +94,7 @@
             text-align: left;
             padding: 5px;
         }
-        
+
         .datasourceMainError {
             color: red;
             grid-column-start: 2;
@@ -105,7 +105,7 @@
             margin-left: 33px;
             text-align: left;
         }
-        
+
         .datasourceMainListTitle {
             grid-column-start: 1;
             /* autoprefixer: off */
@@ -123,7 +123,7 @@
             text-align: left;
             overflow-y: scroll;
         }
-        
+
         .datasourceMainPreviewTitle {
             grid-column-start: 20;
             /* autoprefixer: off */
@@ -189,16 +189,16 @@
         .editorFields {
             grid-column-start: 1;
             /* autoprefixer: off */
-            grid-column-end: 11;
+            grid-column-end: 10;
             grid-row-start: 4;
             grid-row-end: 22;
             margin-left: 10px;
             text-align: left;
             overflow-y: scroll;
-        }    
+        }
         .editorFields .datagrid-cell {
             padding-left: 4px !important;
-        }    
+        }
 
         .editorPropertiesTitle {
             grid-column-start: 12;
@@ -206,17 +206,18 @@
             grid-column-end: 21;
             grid-row-start: 1;
             grid-row-end: 2;
-            margin-left: 10px;
+            margin-left: 8px;
             text-align: left;
         }
         .editorProperties {
             border: 1px solid gray;
             border-radius: 6px;
-            grid-column-start: 12;
+            grid-column-start: 10;
             /* autoprefixer: off */
             grid-column-end: 21;
             grid-row-start: 2;
             grid-row-end: 22;
+            margin-left: 8px;
             text-align: left;
         }
 
@@ -243,18 +244,19 @@
             grid-column-end: 30;
             grid-row-start: 1;
             grid-row-end: 2;
-            margin-left: 10px;
+            margin-left: 8px;
             text-align: left;
         }
         .editorTypes {
             border: 1px solid gray;
             border-radius: 6px;
-            grid-column-start: 22;
+            grid-column-start: 21;
             /* autoprefixer: off */
             grid-column-end: 30;
             grid-row-start: 2;
             grid-row-end: 22;
             margin: 0px;
+            margin-left: 8px;
             padding: 4pxpx;
             text-align: center;
             overflow-y: scroll;
@@ -268,7 +270,7 @@
                 padding: auto;
                 width: 96%;
             }
-    
+
         .editorAreaTitle {
             grid-column-start: 31;
             /* autoprefixer: off */
@@ -287,21 +289,28 @@
             text-align: left;
         }
 
-        .editorButtonCancel {
-            grid-column-start: 36;
+        .editorButtonShowData {
+            grid-column-start: 32;
             /* autoprefixer: off */
-            grid-column-end: 38;
-            grid-row-start: 21;
-            grid-row-end: 22;
+            grid-column-end: 35;
+            grid-row-start: 22;
+            grid-row-end: 23;
+            text-align: left;
+        }
+        .editorButtonCancel {
+            grid-column-start: 40;
+            /* autoprefixer: off */
+            grid-column-end: 42;
+            grid-row-start: 22;
+            grid-row-end: 23;
             text-align: left;
         }
         .editorButtonSave {
-            grid-column-start: 42;
+            grid-column-start: 46;
             /* autoprefixer: off */
-            grid-column-end: 44;
-            grid-row-start: 21;
-            grid-row-end: 22;
+            grid-column-end: 48;
+            grid-row-start: 22;
+            grid-row-end: 23;
             text-align: left;
         }
 
-    
