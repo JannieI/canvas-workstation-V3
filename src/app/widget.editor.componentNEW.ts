@@ -130,31 +130,26 @@ export interface dataSchemaInterface {
         // ngOnInit Life Cycle Hook
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
-        // if (this.globalVariableService.datasources.length > 0) {
-        //     this.selectedDescription = this.globalVariableService.datasources[0].description;
-        // };
-
+        // Get Widget Graph Specs
         this.globalVariableService.getWidgetGraphs().then(res => {
             this.widgetGraphs = res
         });
 
+        // Get DS to which user has permissions
+        this.localDatasources = this.globalVariableService.datasources
+        .slice()
+        .filter(ds =>
+            this.globalVariableService.datasourcePermissionsCheck(ds.id, 'CanView')
+        );
+    
+        // Start afresh for new W
         if (this.newWidget) {
-            // Get DS to which user has permissions
-            this.localDatasources = this.globalVariableService.datasources
-                .slice()
-                .filter(ds =>
-                    this.globalVariableService.datasourcePermissionsCheck(ds.id, 'CanView')
-                )
-                // .sort( (obj1, obj2) => {
-                //     if (obj1.name > obj2.name) {
-                //         return 1;
-                //     };
-                //     if (obj1.name < obj2.name) {
-                //         return -1;
-                //     };
-                //     return 0;
-                // }
-            // );
+            // // Get DS to which user has permissions
+            // this.localDatasources = this.globalVariableService.datasources
+            //     .slice()
+            //     .filter(ds =>
+            //         this.globalVariableService.datasourcePermissionsCheck(ds.id, 'CanView')
+            //     );
 
             // Count the Ws
             let widgets: Widget[];
@@ -169,7 +164,7 @@ export interface dataSchemaInterface {
             this.localWidget.dashboardTabID = this.globalVariableService.currentDashboardInfo.value.currentDashboardTabID;
             this.localWidget.widgetType = 'Graph';
 
-            // Populate predefined dimensions
+            // Populate predefined dimensions, considering layouts
             if (this.newWidgetContainerLeft > 0) {
                 this.localWidget.containerLeft = this.newWidgetContainerLeft;
             };
@@ -200,16 +195,16 @@ export interface dataSchemaInterface {
                 alert('No Widget was selected, or could not find it in glob vars.  In: ngOnInit, ELSE +- line 170 inside WidgetEditor.ts')
             };
 
-            // Get DS
-            this.localDatasources = this.globalVariableService.currentDatasources
-                .filter(ds => ds.id == this.localWidget.datasourceID)
+            // // Get DS
+            // this.localDatasources = this.globalVariableService.currentDatasources
+            //     .filter(ds => ds.id == this.localWidget.datasourceID)
 
             // TODO - handle properly and close form
             if (this.localDatasources.length != 1) {
                 alert('Datasource not found in global currentDatasources')
             };
 
-            // Add to axis
+            // Add Fields to selection areas
             if (this.localWidget.graphXfield != ''   &&   this.localWidget.graphXfield != null) {
                 this.showColumnDeleteIcon = true;
                 this.colField = this.localWidget.graphXfield;
@@ -240,9 +235,15 @@ export interface dataSchemaInterface {
             // Get local vars - easier for ngFor
             this.containerHasContextMenus = this.localWidget.containerHasContextMenus;
             this.containerHasTitle = this.localWidget.containerHasTitle;
-            this.dataFieldNames = this.localDatasources[0].dataFields;
-            this.dataFieldLengths = this.localDatasources[0].dataFieldLengths;
-            this.dataFieldTypes = this.localDatasources[0].dataFieldTypes;
+
+            let arrayIndex: number = this.localDatasources.findIndex(
+                ds => ds.id == this.localWidget.datasourceID);
+            if (arrayIndex < 0) {
+                alert('Datasource for current Dashboard not found in global currentDatasources')
+            };
+            this.dataFieldNames = this.localDatasources[arrayIndex].dataFields;
+            this.dataFieldLengths = this.localDatasources[arrayIndex].dataFieldLengths;
+            this.dataFieldTypes = this.localDatasources[arrayIndex].dataFieldTypes;
 
             this.constructDataSchema();
         }
@@ -852,7 +853,7 @@ this.localWidget.graphYtype);
 
         // Clear previous selected fields
         this.clickClearColourField();
-        
+
         // Determine if data already in Glob Var
         let dataSetIndex: number = this.globalVariableService.currentDatasets.findIndex(
             ds => ds.datasourceID == datasourceID
