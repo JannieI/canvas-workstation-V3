@@ -138,16 +138,9 @@ export interface dataSchemaInterface {
             .filter(ds =>
                 this.globalVariableService.datasourcePermissionsCheck(ds.id, 'CanView')
         );
-    console.warn('xx this.localDatasources', this.localDatasources);
     
         // Start afresh for new W
         if (this.newWidget) {
-            // // Get DS to which user has permissions
-            // this.localDatasources = this.globalVariableService.datasources
-            //     .slice()
-            //     .filter(ds =>
-            //         this.globalVariableService.datasourcePermissionsCheck(ds.id, 'CanView')
-            //     );
 
             // Count the Ws
             let widgets: Widget[];
@@ -193,15 +186,6 @@ export interface dataSchemaInterface {
                 alert('No Widget was selected, or could not find it in glob vars.  In: ngOnInit, ELSE +- line 170 inside WidgetEditor.ts')
             };
 
-            // // Get DS
-            // this.localDatasources = this.globalVariableService.currentDatasources
-            //     .filter(ds => ds.id == this.localWidget.datasourceID)
-
-            // TODO - handle properly and close form
-            if (this.localDatasources.length != 1) {
-                alert('Datasource not found in global currentDatasources')
-            };
-
             // Add Fields to selection areas
             if (this.localWidget.graphXfield != ''   &&   this.localWidget.graphXfield != null) {
                 this.showColumnDeleteIcon = true;
@@ -209,7 +193,7 @@ export interface dataSchemaInterface {
 
             } else {
                 this.showColumnDeleteIcon = false;
-                this.colField = '';
+                this.colField = 'Drag a field here ...';
             };
 
             if (this.localWidget.graphYfield != ''   &&   this.localWidget.graphYfield != null) {
@@ -217,7 +201,7 @@ export interface dataSchemaInterface {
                 this.rowField = this.localWidget.graphYfield;
             } else {
                 this.showRowDeleteIcon = false;
-                this.rowField = '';
+                this.rowField = 'Drag a field here ...';
             };
 
             if (this.localWidget.graphColorField != ''   &&   this.localWidget.graphColorField != null) {
@@ -225,7 +209,7 @@ export interface dataSchemaInterface {
                 this.graphColorField = this.localWidget.graphColorField;
             } else {
                 this.showColourDeleteIcon = false;
-                this.graphColorField = '';
+                this.graphColorField = 'Drag a field here ...';
             };
 
             // Get local vars - easier for ngFor
@@ -746,7 +730,7 @@ this.localWidget.graphYtype);
 
         // Show X icon
         this.showColourDeleteIcon = false;
-        this.graphColorField = '';
+        this.graphColorField = 'Drag a field here ...';
         this.localWidget.graphColorField = null;
         this.localWidget.graphColorType = null;
 
