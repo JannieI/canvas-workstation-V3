@@ -5817,7 +5817,6 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
         } else {
             let widgetIndex: number = this.currentWidgets.findIndex(w => w.id == widgetID);
-            console.warn('xx clickMenuShapeEdit widgetIndex OK', widgetIndex, widgetID);
 
             if (widgetIndex < 0) {
                 this.showMessage(
@@ -5830,7 +5829,6 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
 
             } else {
                 this.selectedWidget = this.currentWidgets[widgetIndex];
-                console.warn('xx this.selectedWidget OK', this.selectedWidget)
             }
         };
 
@@ -5848,6 +5846,8 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
             return;
         };
 
+        // Swith on Editing, and open form
+        this.newWidget = false;
         this.showModalShapeEdit = true;
     }
 

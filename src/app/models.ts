@@ -302,7 +302,7 @@ export class CanvasUser {
     isStaff: boolean;                       // Is a staff member (and not Guest)
     isActive: boolean;                      // When False, cannot work on system (ie left company)
     dateJoined: Date;
-    lastLogin: string;
+    lastLogin: Date;
     colorScheme: string;                    // Color scheme for Canvas - for later use
     gridSize: number;                       // Size of Grid on Dashboard in px
     environment: string;                    // Live, Test-Environment-Name
@@ -1244,7 +1244,7 @@ export class Token {
         is_active: boolean;
         groups: number[];
         user_permissions: number[];
-        last_login: string;
+        last_login: Date;
         date_joined: string;
         profile: string;
         url: string;
