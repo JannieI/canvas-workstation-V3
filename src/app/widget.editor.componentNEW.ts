@@ -400,25 +400,25 @@ console.warn('xx definition', definition);
         };
 
         // Get colour max width
-        let maxLengthColor: number = 0;
+        let maxLengthColour: number = 0;
         if (this.localWidget.graphColorField != ''  &&  this.localWidget.graphColorField != null) {
 
-            maxLengthColor = 0;        // Color blokkie
+            maxLengthColour = 0;        // Color blokkie
             const arrayColumn = (arr, n) => arr.map(x => x[n]) ;
             const singleColumn = arrayColumn(this.localWidget.graphData, this.localWidget.graphColorField);
             const arrayMaxLength = (arr) => arr.map(x => {
                 if ( (typeof x) != 'string') {
-                    maxLengthColor = 4;
+                    maxLengthColour = 4;
                 } else {
 
-                    if (x.length > maxLengthColor) {
-                        maxLengthColor = x.length
+                    if (x.length > maxLengthColour) {
+                        maxLengthColour = x.length
                     };
                 };
             });
             let temp = arrayMaxLength(singleColumn);
-            reduceColour = (maxLengthColor * 8) + 25;
-            console.warn('xx X maxLength', maxLengthColor, reduceColour)
+            reduceColour = (maxLengthColour * 8) + 25;
+            console.warn('xx X maxLength', maxLengthColour, reduceColour)
         };
 
         // Reduce width of legend by length of selected field
