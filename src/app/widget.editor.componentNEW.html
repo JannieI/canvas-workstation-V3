@@ -199,8 +199,7 @@
 
                         <div class="editorColFieldTitle">
                             X axis:
-                        </div>
-    
+                        </div>    
                         <div class="editorColField"
                             id="target"
                             (drop)="dropColumn($event);"
@@ -218,8 +217,7 @@
 
                         <div class="editorRowFieldTitle">
                             Y axis:
-                        </div>
-    
+                        </div>    
                         <div class="editorRowField"
                             id="target"
                             (drop)="dropRow($event);"
@@ -234,6 +232,22 @@
                             {{ rowField }}
                         </div>
         
+                        <div class="editorColourFieldTitle">
+                            Y axis:
+                        </div>    
+                        <div class="editorColourField"
+                            id="target"
+                            (drop)="dropColour($event);"
+                            (dragenter)="dragenterColour($event);"
+                            (dragleave)="dragoleaveColour($event);"
+                            (dragover)="dragoverColours($event);"
+                            [style.background-color]="dragoverColour? 'lightgray' : 'transparent'"
+                            >
+                            <clr-icon shape="times" *ngIf="showColourDeleteIcon"
+                                (click)="clickClearColourField()">
+                            </clr-icon>
+                            {{ rowField }}
+                        </div>
                     </div>
 
                     <div class="editorTypesTitle">

@@ -222,20 +222,43 @@
         }
 
             .editorColFieldTitle {
+                display: inline-block;
                 font-size: 0.5rem;
             }
             .editorColField {
-                border: 1px solid gray;
+                border: 1px solid steelblue;
                 border-radius: 5px;
+                display: inline-block;
+                font-size: 0.5rem;
+                line-height: 0.5rem;
                 margin: 3px;
+                width: 80%;
             }
+
             .editorRowFieldTitle {
+                display: inline-block;
                 font-size: 0.5rem;
             }
             .editorRowField {
                 border: 1px solid gray;
                 border-radius: 5px;
+                display: inline-block;
+                font-size: 0.5rem;
                 margin: 3px;
+                width: 80%;
+            }
+
+            .editorColourFieldTitle {
+                display: inline-block;
+                font-size: 0.5rem;
+            }
+            .editorColourField {
+                border: 1px solid gray;
+                border-radius: 5px;
+                display: inline-block;
+                font-size: 0.5rem;
+                margin: 3px;
+                width: 80%;
             }
 
         .editorTypesTitle {

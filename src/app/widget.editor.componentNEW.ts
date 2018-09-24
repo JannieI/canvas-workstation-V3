@@ -295,6 +295,10 @@ export interface dataSchemaInterface {
         // Create and parameter fill each defintion
         if (graphID == 1  &&  graphShortName =='Simple Bar Chart') {
 
+            // Enhance W properties
+            this.localWidget.graphMark = 'bar';
+
+            // Define Specification
             specification = this.widgetGraphs[widgetGraphIndex].specification;
             if (this.localWidget.graphUrl != ""  &&  this.localWidget.graphUrl != null) {
                 specification['data'] = {"url": this.localWidget.graphUrl};
@@ -318,6 +322,9 @@ export interface dataSchemaInterface {
             // specification['encoding']['y']['axis']['title'] = this.localWidget.graphYaxisTitle;
             // specification['encoding']['y']['timeUnit'] = this.localWidget.graphYtimeUnit;
             // specification['encoding']['y']['aggregate'] = this.localWidget.graphYaggregate;
+
+            // Tooltip setting
+            // specification['mark']['tooltip']['content'] = "";
 
         };
 console.warn('xx graphVisualGrammar', graphVisualGrammar);
@@ -348,7 +355,7 @@ console.warn('xx definition', definition);
         let height: number = 260;
         let reduceX: number = 0;
         let reduceY: number = 0;
-        let reduceColor: number = 0;
+        let reduceColour: number = 0;
 
         // Get X max width
         let maxLengthX: number = 0;
@@ -392,7 +399,7 @@ console.warn('xx definition', definition);
             console.warn('xx X maxLength', maxLengthY, reduceY)
         };
 
-        // Get color max width
+        // Get colour max width
         let maxLengthColor: number = 0;
         if (this.localWidget.graphColorField != ''  &&  this.localWidget.graphColorField != null) {
 
@@ -410,8 +417,8 @@ console.warn('xx definition', definition);
                 };
             });
             let temp = arrayMaxLength(singleColumn);
-            reduceColor = (maxLengthColor * 8) + 25;
-            console.warn('xx X maxLength', maxLengthColor, reduceColor)
+            reduceColour = (maxLengthColor * 8) + 25;
+            console.warn('xx X maxLength', maxLengthColor, reduceColour)
         };
 
         // Reduce width of legend by length of selected field
@@ -428,10 +435,10 @@ console.warn('xx definition', definition);
         //     width = width - reduce;
         // };
 
-        console.warn('xx w ', width, width - reduceX - reduceColor )
+        console.warn('xx w ', width, width - reduceX - reduceColour )
         console.warn('xx h', height, height - reduceY )
 
-        width =  width - reduceX - reduceColor;
+        width =  width - reduceX - reduceColour;
         height =  height - reduceY;
 
         // Note: trick to set .width and .height explicitly, thus W.graphWidth not used
