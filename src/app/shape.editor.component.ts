@@ -113,6 +113,8 @@ export class ShapeEditComponent implements OnInit {
         // Initial
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
+        console.warn('xx Sh Ed onini selectedWidget', this.newWidget, this.selectedWidget);
+        
         // Manage colour picker
         this.colourPickerSubscription = this.globalVariableService.colourPickerClosed.subscribe(clp => {
 
@@ -261,6 +263,8 @@ export class ShapeEditComponent implements OnInit {
             // Deep copy Local W
             this.localWidget = JSON.parse(JSON.stringify(this.selectedWidget));
 
+            console.warn('xx this.localWidget', this.localWidget);
+            
             // Refresh the form with the sub type
             this.selectShape(this.localWidget.widgetSubType);
 

@@ -283,6 +283,8 @@ export interface dataSchemaInterface {
             return;
         }
 
+        console.warn('xx this.localWidget', this.localWidget);
+        
         // Startup
         let width: number = 400;
         let height: number = 260;
@@ -294,12 +296,14 @@ export interface dataSchemaInterface {
         if (graphID == 1  &&  graphShortName =='Simple Bar Chart') {
 
             specification = this.widgetGraphs[widgetGraphIndex].specification;
-            if (this.localWidget.graphUrl != "") {
+            if (this.localWidget.graphUrl != ""  &&  this.localWidget.graphUrl != null) {
                 specification['data'] = {"url": this.localWidget.graphUrl};
             } else {
                 specification['data'] = {"values": this.localWidget.graphData};
             }
             specification['description'] = this.localWidget.graphDescription;
+            specification['width'] = width;
+            specification['height'] = height;
             // specification['mark']['type'] = this.localWidget.graphMark;
             // specification['mark']['color'] = this.localWidget.graphMarkColor;
     
@@ -327,8 +331,6 @@ console.warn('xx specification', specification, specification == undefined);
 
                 view.renderer('svg')
                 .initialize(this.dragWidget.nativeElement)
-                    .width(width)
-                    .height(height)
                     .hover()
                     .run()
                     .finalize();
@@ -581,7 +583,7 @@ console.warn('xx definition', definition);
         this.globalFunctionService.printToConsole(this.constructor.name,'dragstartField', '@Start');
 
         ev.dataTransfer.setData("text/plain", ev.target.id);
-        this.draggedField = ev.srcElement.innerText;
+        this.draggedField = ev.srcElement.innerText.trim();
     }
 
     dragoverColumn(ev, actionName: string) {
@@ -610,6 +612,9 @@ console.warn('xx definition', definition);
         this.globalFunctionService.printToConsole(this.constructor.name,'dropColumn', '@Start');
         ev.preventDefault();
 
+        let dataSchemaIndex: number = this.dataSchema.findIndex(dsc => dsc.name == this.draggedField)
+console.warn('xx dataSchema', this.dataSchema, dataSchemaIndex, '-' + this.draggedField + '-');
+
         // Show X icon
         this.showColumnDeleteIcon = true;
 
@@ -629,7 +634,7 @@ console.warn('xx definition', definition);
             this.localWidget, graphHeight, graphWidth
         );
         this.showColFieldAdvanced = true;
-        this.renderGraph(definition);
+        // this.renderGraph(definition);
 
     }
 
@@ -666,7 +671,7 @@ this.localWidget.graphYtype);
             this.localWidget, graphHeight, graphWidth
         );
         this.showRowFieldAdvanced = true;
-        this.renderGraph(definition);
+        // this.renderGraph(definition);
     }
 
     dropColor(ev) {
