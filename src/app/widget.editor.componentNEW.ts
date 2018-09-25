@@ -308,7 +308,42 @@ export interface dataSchemaInterface {
             // specification['mark']['tooltip']['content'] = "";
 
         };
-console.warn('xx graphVisualGrammar', graphVisualGrammar);
+        if (graphID == 2  &&  graphShortName =='Area Chart') {
+
+            // Enhance W properties
+            this.localWidget.graphMark = 'area';
+
+            // Define Specification
+            specification = this.widgetGraphs[widgetGraphIndex].specification;
+            if (this.localWidget.graphUrl != ""  &&  this.localWidget.graphUrl != null) {
+                specification['data'] = {"url": this.localWidget.graphUrl};
+            } else {
+                specification['data'] = {"values": this.localWidget.graphData};
+            }
+            specification['description'] = this.localWidget.graphDescription;
+            specification['width'] = width;
+            specification['height'] = height;
+            // specification['mark']['type'] = this.localWidget.graphMark;
+            // specification['mark']['color'] = this.localWidget.graphMarkColor;
+
+            specification['encoding']['x']['field'] = this.localWidget.graphXfield;
+            specification['encoding']['x']['type'] = this.localWidget.graphXtype;
+            // specification['encoding']['x']['axis']['title'] = this.localWidget.graphXaxisTitle;
+            // specification['encoding']['x']['timeUnit'] = this.localWidget.graphXtimeUnit;
+            // specification['encoding']['x']['aggregate'] = this.localWidget.graphXaggregate;
+
+            specification['encoding']['y']['field'] = this.localWidget.graphYfield;
+            specification['encoding']['y']['type'] = this.localWidget.graphYtype;
+            // specification['encoding']['y']['axis']['title'] = this.localWidget.graphYaxisTitle;
+            // specification['encoding']['y']['timeUnit'] = this.localWidget.graphYtimeUnit;
+            // specification['encoding']['y']['aggregate'] = this.localWidget.graphYaggregate;
+
+            // Tooltip setting
+            // specification['mark']['tooltip']['content'] = "";
+
+        };
+
+        console.warn('xx graphVisualGrammar', graphVisualGrammar);
 console.warn('xx specification', specification, specification == undefined);
 
         // Render graph for Vega-Lite
