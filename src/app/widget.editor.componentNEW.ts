@@ -204,6 +204,7 @@ export interface dataSchemaInterface {
     showColumnDeleteIcon: boolean = false;
     showDatasourceMain: boolean = true;
     showFieldTitleProperties: boolean = false;
+    showFieldXPropertiesInfo: boolean = false;
     showFieldXProperties: boolean = false;
     showFieldXPropertiesTitle: boolean = false;
     showFieldYProperties: boolean = false;
@@ -1166,6 +1167,17 @@ this.localWidget.graphYtype);
 
         // Toggle 
         this.showFieldXProperties = !this.showFieldXProperties;
+    }
+
+    changeXProperty() {
+        // Show info icon if any ONE of the properties are filled in
+        this.globalFunctionService.printToConsole(this.constructor.name,'changeXProperty', '@Start');
+
+        this.showFieldXPropertiesInfo = false;
+
+        if (this.xPropertiesAggregate != '' ) {
+            this.showFieldXPropertiesInfo = true;
+        };
     }
 
     clickShowTitleProperties() {
