@@ -119,6 +119,7 @@ export interface dataSchemaInterface {
     sortOrder: number = 1;
     widgetGraphs: WidgetGraph[] =[];
     xPropertiesAggregate: string = '';
+    yPropertiesAggregate: string = '';
 
 
     constructor(
@@ -294,7 +295,8 @@ export interface dataSchemaInterface {
             specification['height'] = height;
             // specification['mark']['type'] = this.localWidget.graphMark;
             // specification['mark']['color'] = this.localWidget.graphMarkColor;
-console.warn('xx this.localWidget.graphXtype', this.localWidget.graphXtype);
+console.warn('xx this.localWidget.graphXtype this.yPropertiesAggregate', 
+    this.localWidget.graphXtype, this.yPropertiesAggregate);
 
             specification['encoding']['x']['field'] = this.localWidget.graphXfield;
             specification['encoding']['x']['type'] = this.localWidget.graphXtype;
@@ -305,7 +307,7 @@ console.warn('xx this.localWidget.graphXtype', this.localWidget.graphXtype);
 
             specification['encoding']['y']['field'] = this.localWidget.graphYfield;
             specification['encoding']['y']['type'] = this.localWidget.graphYtype;
-            specification['encoding']['y']['aggregate'] = "mean";
+            specification['encoding']['y']['aggregate'] = this.yPropertiesAggregate.toLowerCase();
             // specification['encoding']['y']['axis']['title'] = this.localWidget.graphYaxisTitle;
             // specification['encoding']['y']['timeUnit'] = this.localWidget.graphYtimeUnit;
             // specification['encoding']['y']['aggregate'] = this.localWidget.graphYaggregate;
