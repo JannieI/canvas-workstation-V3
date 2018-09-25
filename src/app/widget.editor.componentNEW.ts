@@ -83,6 +83,11 @@ export interface dataSchemaInterface {
 
     aggregations: { displayName: string; vegaLiteName: string; description: string}[] = [
         {            	
+            displayName: '',
+            vegaLiteName: '', 
+            description: 'None.'
+        },
+        {            	
             displayName: 'Average',
             vegaLiteName: 'average', 
             description: 'The mean (average) field value. Identical to mean.'
