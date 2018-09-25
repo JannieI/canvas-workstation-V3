@@ -295,6 +295,22 @@ datagrid {
                 font-size: 0.5rem;
                 margin-top: 5px;
             }
+            .editorTitleTextTitle {
+                display: inline-block;
+                font-size: 0.5rem;
+                line-height: 0.8rem;
+                margin-left: 4px;
+                width: 64px;    
+            }
+            .editorTitleText {
+                border: 1px solid steelblue;
+                border-radius: 5px;
+                display: inline-block;
+                font-size: 0.5rem;
+                line-height: 0.8rem;
+                margin: 3px;
+                width: 68%;    
+            }
 
             .editorXPropertiesTitle {
                 background-color: rgb(203, 197, 255);

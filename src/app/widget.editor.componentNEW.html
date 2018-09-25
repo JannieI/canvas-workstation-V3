@@ -252,6 +252,8 @@
                             {{ graphColorField }}
                         </div>
 
+
+                        <!-- TITLE -->
                         <div class="editorTitleTitle"
                             (click)="clickShowTitleProperties()"
                             >
@@ -273,9 +275,18 @@
                                 >
                             </clr-icon>
                         </div>
+                        <div class="editorTitleTextTitle">
+                            Text:
+                        </div>    
+                        <div class="select editorTitleText">
+                            <input type="text"
+                                placeholder="Text of title"
+                                [(ngModel)]="titleText"
+                                name="titleText"
+                                >
+                        </div>
 
-                        text	String	
-                        Required. The title text.
+                        
                         
                         anchor	String	
                         The anchor position for placing the title. One of "start", "middle", or "end". For example, with an orientation of top these anchor positions map to a left-, center-, or right-aligned title.
@@ -292,6 +303,20 @@
                         
                         color	Color	
                         Text color for title text.
+                        <div class="editorXPropertiesAggregateTitle" *ngIf="showFieldXProperties">
+                            Aggregate:
+                        </div>    
+                        <div class="select editorXPropertiesAggregate" *ngIf="showFieldXProperties">
+                            <select id="selects_3"
+                                [(ngModel)]="xPropertiesAggregate"
+                                >
+                                <option *ngFor="let row of aggregations; let i = index">
+                                    {{ row.displayName }}
+                                </option>
+                            </select>                        
+                        </div>
+
+                        
                         
                         font	String	
                         Font name for title text.
@@ -348,18 +373,6 @@
                                     margin-top: 4px;"
                                 >
                             </clr-icon>
-                        </div>
-                        <div class="editorXPropertiesAggregateTitle" *ngIf="showFieldXProperties">
-                            Aggregate:
-                        </div>    
-                        <div class="select editorXPropertiesAggregate" *ngIf="showFieldXProperties">
-                            <select id="selects_3"
-                                [(ngModel)]="xPropertiesAggregate"
-                                >
-                                <option *ngFor="let row of aggregations; let i = index">
-                                    {{ row.displayName }}
-                                </option>
-                            </select>                        
                         </div>
                         <div class="editorXPropertiesAggregateTitle" *ngIf="showFieldXProperties">
                             Aggregate:
