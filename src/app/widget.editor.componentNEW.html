@@ -246,10 +246,26 @@
                             [style.font-style]="graphColorField=='Drag a field here ...' ?  'italic'  :  'normal'"
                             >
                             <clr-icon shape="times" *ngIf="showColourDeleteIcon"
-                                (click)="clickClearColourField()">
+                                (click)="clickClearColourField()"
+                                >
                             </clr-icon>
                             {{ graphColorField }}
                         </div>
+
+
+                        <div class="editorXProperties"
+                            (click)="clickShowXProperties()"
+                            >
+                            <b>
+                                X Properties
+                            </b>
+                            <clr-icon shape="angle down" *ngIf="showColourDeleteIcon"
+                                (click)="clickShowXProperties()"
+                                >
+                            </clr-icon>
+                        </div>
+
+
                     </div>
 
                     <div class="editorTypesTitle">

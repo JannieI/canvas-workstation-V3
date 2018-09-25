@@ -188,7 +188,7 @@ This document describes items for later versions of Canvas.
         - Add other Viz to W Editor (data page) - ie Layered Graphs, Trellis, etc.  These need new templates, and a new UI. For a GAUGE, see    https://gist.github.com/anilkpatro/0cf0503b581556a14aab
         For SVG Gauge, see http://svgdiscovery.com/HMI/AnalogGaugeObject/analogGaugeObject.htm
         and http://svgdiscovery.com/HMI/Button/AnalogGauge/buttonGauge.htm  !!!
-        For KPI charts, see https://www.zoho.com/reports/help/dashboard/kpi-widgets.html.  Must include target, and progress (either % with green/red arrow since last month or graph ytd) and level of achievement (ie combo graph with line as target)
+        For KPI charts, see https://www.zoho.com/reports/help/dashboard/kpi-widgets.html.  Must include target, and progress (either % with green/red arrow since last month or graph ytd) and level of achievement (ie combo graph with line as target).  Try to use Clarity CARDS for this.
         - Give hints/advice on W as to type of graph, insights, etc.
         - filter in W, not only via Slicer, using Vega
         - where to store pictures for Ws - on a server??
