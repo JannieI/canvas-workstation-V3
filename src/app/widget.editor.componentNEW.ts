@@ -1036,4 +1036,13 @@ this.localWidget.graphYtype);
         // Toggle 
         this.showFieldXProperties = !this.showFieldXProperties;
     }
-  }
+
+    clickShowYProperties() {
+        // Show Y Properties Area
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowYProperties', '@Start');
+
+        // Toggle 
+        this.showFieldYProperties = !this.showFieldYProperties;
+    }
+
+}
