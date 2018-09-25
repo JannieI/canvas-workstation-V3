@@ -280,22 +280,9 @@
                             <select id="selects_3"
                                 [(ngModel)]="xPropertiesAggregate"
                                 >
-                                <option>Average</option>
-                                <option>ci0</option>
-                                <option>ci1</option>
-                                <option>Count</option>
-                                <option>Distinct</option>
-                                <option>Max</option>
-                                <option>Mean</option>
-                                <option>Median</option>
-                                <option>Min</option>
-                                <option>Missing</option>
-                                <option>q1</option>
-                                <option>q3</option>
-                                <option>Std Deviation</option>
-                                <option>Std Error</option>
-                                <option>Sum</option>
-                                <option>Variance</option>
+                                <option *ngFor="let row of aggregations; let i = index">
+                                    {{ row.displayName }}
+                                </option>
                             </select>                        
                         </div>
 
