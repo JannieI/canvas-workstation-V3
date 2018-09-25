@@ -194,7 +194,7 @@ datagrid {
         }
 
         .editorFieldsTitle {
-            grid-column-start: 1;
+            grid-column-start: 4;
             /* autoprefixer: off */
             grid-column-end: 11;
             grid-row-start: 1;
@@ -217,7 +217,7 @@ datagrid {
         }
 
         .editorPropertiesTitle {
-            grid-column-start: 12;
+            grid-column-start: 14;
             /* autoprefixer: off */
             grid-column-end: 21;
             grid-row-start: 1;
@@ -289,7 +289,7 @@ datagrid {
             }
 
         .editorTypesTitle {
-            grid-column-start: 22;
+            grid-column-start: 24;
             /* autoprefixer: off */
             grid-column-end: 30;
             grid-row-start: 1;
@@ -322,7 +322,7 @@ datagrid {
             }
 
         .editorAreaTitle {
-            grid-column-start: 31;
+            grid-column-start: 38;
             /* autoprefixer: off */
             grid-column-end: 50;
             grid-row-start: 1;

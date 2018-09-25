@@ -138,7 +138,7 @@ export interface dataSchemaInterface {
             .filter(ds =>
                 this.globalVariableService.datasourcePermissionsCheck(ds.id, 'CanView')
         );
-    
+
         // Start afresh for new W
         if (this.newWidget) {
 
