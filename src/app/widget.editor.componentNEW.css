@@ -289,12 +289,33 @@ datagrid {
             }
 
 
-            .editorXProperties {
+            .editorXPropertiesTitle {
                 background-color: rgb(203, 197, 255);
+                border: 1px solid lightgray;
                 border-radius: 3px;
+                font-size: 0.5rem;
+                margin-top: 5px;
+            }
+            .editorXProperties {
                 font-size: 0.5rem;
             }
 
+                .editorXPropertiesTitle {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin-left: 4px;
+                    width: 42px;    
+                }
+                .editorXProperties {
+                    border: 1px solid steelblue;
+                    border-radius: 5px;
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin: 3px;
+                    width: 78%;    
+                }
 
         .editorTypesTitle {
             grid-column-start: 24;

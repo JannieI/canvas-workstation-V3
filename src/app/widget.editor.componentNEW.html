@@ -253,16 +253,36 @@
                         </div>
 
 
-                        <div class="editorXProperties"
+                        <div class="editorXPropertiesTitle"
                             (click)="clickShowXProperties()"
                             >
                             <b>
                                 X Properties
                             </b>
-                            <clr-icon shape="angle down" *ngIf="showColourDeleteIcon"
+                            <clr-icon shape="angle down" *ngIf="!ShowFieldXProperties"
                                 (click)="clickShowXProperties()"
                                 >
                             </clr-icon>
+                            <clr-icon shape="angle up" *ngIf="ShowFieldXProperties">
+                            </clr-icon>
+                        </div>
+                        <div class="editorXProperties" *ngIf="ShowFieldXProperties">
+                            Dinge
+
+                            <div class="editorXPropertiesTitle">
+                                    Aggregate:
+                                </div>    
+                                <div class="select editorXProperties">
+                                    <select id="selects_3"
+                                        [(ngModel)]="xPropertiesAggregate"
+                                        >
+                                        <option>Average</option>
+                                        <option>Sum</option>
+                                    </select>                        
+                                </div>
+        
+
+
                         </div>
 
 

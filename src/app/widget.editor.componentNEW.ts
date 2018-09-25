@@ -111,12 +111,14 @@ export interface dataSchemaInterface {
     showColourDeleteIcon: boolean = false;
     showColumnDeleteIcon: boolean = false;
     showDatasourceMain: boolean = true;
+    ShowFieldXProperties: boolean = false;
     showPreview: boolean = false;
     showRowDeleteIcon: boolean = false;
     showType: boolean = false;
     sortOrder: number = 1;
     widgetGraphs: WidgetGraph[] =[];
-
+    xPropertiesAggregate: string = '';
+    
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -1023,4 +1025,11 @@ this.localWidget.graphYtype);
         this.showDatasourceMain = true;
     }
 
+    clickShowXProperties() {
+        // Show X Properties Area
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowXProperties', '@Start');
+
+        // Toggle 
+        this.ShowFieldXProperties = !this.ShowFieldXProperties;
+    }
   }
