@@ -213,8 +213,10 @@ export interface dataSchemaInterface {
     sortOrder: number = 1;
     widgetGraphs: WidgetGraph[] =[];
     xPropertiesAggregate: string = '';
+    xPropertiesAggregateVegaLiteName: string = '';
     yPropertiesAggregate: string = '';
-
+    yPropertiesAggregateVegaLiteName: string = '';
+    
 
     constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -354,6 +356,26 @@ export interface dataSchemaInterface {
         // rules.
         this.globalFunctionService.printToConsole(this.constructor.name,'showGraph', '@Start');
 
+        // Get the Vega-Lite aggregation
+        this.xPropertiesAggregateVegaLiteName = '';
+        if (this.xPropertiesAggregate != '') {
+            let aggregationIndex: number = this.aggregations.findIndex(
+                agg => agg.displayName == this.xPropertiesAggregate);
+            if (aggregationIndex >= 0) {
+                this.xPropertiesAggregateVegaLiteName = this.aggregations[aggregationIndex]
+                    .vegaLiteName;
+            };
+        }
+        this.yPropertiesAggregateVegaLiteName = '';
+        if (this.yPropertiesAggregate != '') {
+            let aggregationIndex: number = this.aggregations.findIndex(
+                agg => agg.displayName == this.yPropertiesAggregate);
+            if (aggregationIndex >= 0) {
+                this.yPropertiesAggregateVegaLiteName = this.aggregations[aggregationIndex]
+                    .vegaLiteName;
+            };
+        }
+
         // Get the widgetGraph
         let widgetGraphIndex: number = this.widgetGraphs.findIndex(
             wg => wg.id == graphID);
@@ -389,19 +411,19 @@ export interface dataSchemaInterface {
             specification['height'] = height;
             // specification['mark']['type'] = this.localWidget.graphMark;
             // specification['mark']['color'] = this.localWidget.graphMarkColor;
-console.warn('xx this.localWidget.graphXtype this.yPropertiesAggregate', 
+console.warn('xx this.localWidget.graphXtype this.yPropertiesAggregateVegaLiteName', 
     this.localWidget.graphXtype, this.yPropertiesAggregate);
 
             specification['encoding']['x']['field'] = this.localWidget.graphXfield;
             specification['encoding']['x']['type'] = this.localWidget.graphXtype;
-            specification['encoding']['x']['aggregate'] = "";
+            specification['encoding']['x']['aggregate'] = this.xPropertiesAggregateVegaLiteName.toLowerCase();
             // specification['encoding']['x']['axis']['title'] = this.localWidget.graphXaxisTitle;
             // specification['encoding']['x']['timeUnit'] = this.localWidget.graphXtimeUnit;
             // specification['encoding']['x']['aggregate'] = this.localWidget.graphXaggregate;
 
             specification['encoding']['y']['field'] = this.localWidget.graphYfield;
             specification['encoding']['y']['type'] = this.localWidget.graphYtype;
-            specification['encoding']['y']['aggregate'] = this.yPropertiesAggregate.toLowerCase();
+            specification['encoding']['y']['aggregate'] = this.yPropertiesAggregateVegaLiteName.toLowerCase();
             // specification['encoding']['y']['axis']['title'] = this.localWidget.graphYaxisTitle;
             // specification['encoding']['y']['timeUnit'] = this.localWidget.graphYtimeUnit;
             // specification['encoding']['y']['aggregate'] = this.localWidget.graphYaggregate;
@@ -1152,5 +1174,6 @@ this.localWidget.graphYtype);
         // Toggle 
         this.showFieldYProperties = !this.showFieldYProperties;
     }
+
 
 }
