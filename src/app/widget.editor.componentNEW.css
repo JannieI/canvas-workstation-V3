@@ -300,14 +300,14 @@ datagrid {
                 font-size: 0.5rem;
             }
 
-                .editorXPropertiesTitle {
+                .editorXPropertiesAggregateTitle {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
                     width: 42px;    
                 }
-                .editorXProperties {
+                .editorXPropertiesAggregate {
                     border: 1px solid steelblue;
                     border-radius: 5px;
                     display: inline-block;

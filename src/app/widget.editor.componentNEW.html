@@ -266,24 +266,35 @@
                             <clr-icon shape="angle up" *ngIf="ShowFieldXProperties">
                             </clr-icon>
                         </div>
-                        <div class="editorXProperties" *ngIf="ShowFieldXProperties">
-                            Dinge
-
-                            <div class="editorXPropertiesTitle">
-                                    Aggregate:
-                                </div>    
-                                <div class="select editorXProperties">
-                                    <select id="selects_3"
-                                        [(ngModel)]="xPropertiesAggregate"
-                                        >
-                                        <option>Average</option>
-                                        <option>Sum</option>
-                                    </select>                        
-                                </div>
-        
-
-
+                        <div class="editorXPropertiesAggregateTitle" *ngIf="ShowFieldXProperties">
+                            Aggregate:
+                        </div>    
+                        <div class="select editorXPropertiesAggregate" *ngIf="ShowFieldXProperties">
+                            <select id="selects_3"
+                                [(ngModel)]="xPropertiesAggregate"
+                                >
+                                <option>Average</option>
+                                <option>ci0</option>
+                                <option>ci1</option>
+                                <option>Count</option>
+                                <option>Distinct</option>
+                                <option>Max</option>
+                                <option>Mean</option>
+                                <option>Median</option>
+                                <option>Min</option>
+                                <option>Missing</option>
+                                <option>q1</option>
+                                <option>q3</option>
+                                <option>Std Deviation</option>
+                                <option>Std Error</option>
+                                <option>Sum</option>
+                                <option>Variance</option>
+                            </select>                        
                         </div>
+
+
+
+
 
 
                     </div>
