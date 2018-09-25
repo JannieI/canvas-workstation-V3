@@ -288,7 +288,6 @@ datagrid {
                 width: 78%;
             }
 
-
             .editorXPropertiesTitle {
                 background-color: rgb(203, 197, 255);
                 border: 1px solid lightgray;
@@ -316,6 +315,41 @@ datagrid {
                     margin: 3px;
                     width: 68%;    
                 }
+
+
+
+                .editorYPropertiesTitle {
+                    background-color: rgb(203, 197, 255);
+                    border: 1px solid lightgray;
+                    border-radius: 3px;
+                    font-size: 0.5rem;
+                    margin-top: 5px;
+                }
+                .editorYProperties {
+                    font-size: 0.5rem;
+                }
+    
+                    .editorYPropertiesAggregateTitle {
+                        display: inline-block;
+                        font-size: 0.5rem;
+                        line-height: 0.8rem;
+                        margin-left: 4px;
+                        width: 64px;    
+                    }
+                    .editorYPropertiesAggregate {
+                        border: 1px solid steelblue;
+                        border-radius: 5px;
+                        display: inline-block;
+                        font-size: 0.5rem;
+                        line-height: 0.8rem;
+                        margin: 3px;
+                        width: 68%;    
+                    }
+    
+
+
+
+
 
         .editorTypesTitle {
             grid-column-start: 24;

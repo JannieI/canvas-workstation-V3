@@ -111,7 +111,8 @@ export interface dataSchemaInterface {
     showColourDeleteIcon: boolean = false;
     showColumnDeleteIcon: boolean = false;
     showDatasourceMain: boolean = true;
-    ShowFieldXProperties: boolean = false;
+    showFieldXProperties: boolean = false;
+    showFieldYProperties: boolean = false;
     showPreview: boolean = false;
     showRowDeleteIcon: boolean = false;
     showType: boolean = false;
@@ -1033,6 +1034,6 @@ this.localWidget.graphYtype);
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowXProperties', '@Start');
 
         // Toggle 
-        this.ShowFieldXProperties = !this.ShowFieldXProperties;
+        this.showFieldXProperties = !this.showFieldXProperties;
     }
   }
