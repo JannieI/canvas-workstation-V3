@@ -740,6 +740,9 @@ console.warn('xx definition', definition);
         // Show X icon
         this.showColumnDeleteIcon = true;
 
+        // Show the panel with X properties
+        this.showFieldXProperties = true;
+
         ev.dataTransfer.dropEffect = "move"
         // Get the id of the target and add the moved element to the target's DOM
 
@@ -769,6 +772,9 @@ console.warn('xx definition', definition);
 
         // Show X icon
         this.showRowDeleteIcon = true;
+
+        // Show the panel with X properties
+        this.showFieldYProperties = true;
 
         var data = ev.dataTransfer.getData("text");
         this.rowField = this.draggedField;
@@ -834,6 +840,9 @@ this.localWidget.graphYtype);
         this.localWidget.graphXtimeUnit = null;
         this.localWidget.graphXtype = null;
 
+        // Hide the panel with X properties
+        this.showFieldXProperties = false;
+
         let definition = this.globalVariableService.createVegaLiteSpec(
             this.localWidget, graphHeight, graphWidth
         );
@@ -843,6 +852,9 @@ this.localWidget.graphYtype);
     clickClearRowField() {
         // Clear the Colour Field
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClearRowField', '@Start');
+
+        // Hide the panel with X properties
+        this.showFieldYProperties = false;
 
         // Show X icon
         this.showRowDeleteIcon = false;
