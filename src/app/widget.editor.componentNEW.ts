@@ -203,6 +203,7 @@ export interface dataSchemaInterface {
     showColourDeleteIcon: boolean = false;
     showColumnDeleteIcon: boolean = false;
     showDatasourceMain: boolean = true;
+    showFieldTitleProperties: boolean = false;
     showFieldXProperties: boolean = false;
     showFieldXPropertiesTitle: boolean = false;
     showFieldYProperties: boolean = false;
