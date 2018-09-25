@@ -1168,6 +1168,14 @@ this.localWidget.graphYtype);
         this.showFieldXProperties = !this.showFieldXProperties;
     }
 
+    clickShowTitleProperties() {
+        // Show Title Properties Area
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowTitleProperties', '@Start');
+
+        // Toggle 
+        this.showFieldTitleProperties = !this.showFieldTitleProperties;
+    }
+
     clickShowYProperties() {
         // Show Y Properties Area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowYProperties', '@Start');
