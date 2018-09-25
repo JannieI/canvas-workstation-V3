@@ -204,7 +204,9 @@ export interface dataSchemaInterface {
     showColumnDeleteIcon: boolean = false;
     showDatasourceMain: boolean = true;
     showFieldXProperties: boolean = false;
+    showFieldXPropertiesTitle: boolean = false;
     showFieldYProperties: boolean = false;
+    showFieldYPropertiesTitle: boolean = false;
     showPreview: boolean = false;
     showRowDeleteIcon: boolean = false;
     showType: boolean = false;
@@ -741,7 +743,7 @@ console.warn('xx definition', definition);
         this.showColumnDeleteIcon = true;
 
         // Show the panel with X properties
-        this.showFieldXProperties = true;
+        this.showFieldXPropertiesTitle = true;
 
         ev.dataTransfer.dropEffect = "move"
         // Get the id of the target and add the moved element to the target's DOM
@@ -774,7 +776,7 @@ console.warn('xx definition', definition);
         this.showRowDeleteIcon = true;
 
         // Show the panel with X properties
-        this.showFieldYProperties = true;
+        this.showFieldYPropertiesTitle = true;
 
         var data = ev.dataTransfer.getData("text");
         this.rowField = this.draggedField;
@@ -841,7 +843,7 @@ this.localWidget.graphYtype);
         this.localWidget.graphXtype = null;
 
         // Hide the panel with X properties
-        this.showFieldXProperties = false;
+        this.showFieldXPropertiesTitle = false;
 
         let definition = this.globalVariableService.createVegaLiteSpec(
             this.localWidget, graphHeight, graphWidth
@@ -854,7 +856,7 @@ this.localWidget.graphYtype);
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClearRowField', '@Start');
 
         // Hide the panel with X properties
-        this.showFieldYProperties = false;
+        this.showFieldYPropertiesTitle = false;
 
         // Show X icon
         this.showRowDeleteIcon = false;

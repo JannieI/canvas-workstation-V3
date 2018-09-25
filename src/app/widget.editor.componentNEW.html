@@ -252,7 +252,7 @@
                             {{ graphColorField }}
                         </div>
 
-                        <div class="editorXPropertiesTitle"
+                        <div class="editorXPropertiesTitle" *ngIf="showFieldXPropertiesTitle"
                             (click)="clickShowXProperties()"
                             >
                             <b>
@@ -286,7 +286,7 @@
                             </select>                        
                         </div>
 
-                        <div class="editorYPropertiesTitle"
+                        <div class="editorYPropertiesTitle" *ngIf="showFieldYPropertiesTitle"
                             (click)="clickShowYProperties()"
                             >
                             <b>
