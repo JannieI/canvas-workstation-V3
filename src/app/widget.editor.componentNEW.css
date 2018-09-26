@@ -60,7 +60,10 @@ datagrid {
     }
 
 
+
+
     /* Datasource selection */
+    /* ********************************************************************************** */
     .datasourceMain .datagrid-cell {
         padding-left: 6px !important;
     }
@@ -167,7 +170,13 @@ datagrid {
             grid-row-end: 21;
         }
 
+
+
+
+
+
     /* Widget Editor */
+    /* ********************************************************************************** */
     .editorMain {
         grid-column-start: 1;
         /* autoprefixer: off */
@@ -193,19 +202,64 @@ datagrid {
             text-align: left;
         }
 
-        .editorFieldsTitle {
+        .editorComposition {
             grid-column-start: 4;
             /* autoprefixer: off */
             grid-column-end: 11;
             grid-row-start: 1;
-            grid-row-end: 2;
+            grid-row-end: 4;
+            text-align: left;
+        }
+            .editorCompositionTypeTitle {
+                display: inline-block;
+                font-size: 0.5rem;
+                line-height: 0.8rem;
+                margin-left: 4px;
+                width: 64px;    
+            }
+            .editorCompositionType {
+                border: 1px solid steelblue;
+                border-radius: 5px;
+                display: inline-block;
+                font-size: 0.5rem;
+                line-height: 0.8rem;
+                margin: 3px;
+                width: 68%;    
+            }
+            .editorCompositionLayerTitle{
+                display: inline-block;
+                font-size: 0.5rem;
+                line-height: 0.8rem;
+                margin-left: 4px;
+                width: 64px;    
+            }
+            .editorCompositionLayer {
+                border: 1px solid steelblue;
+                border-radius: 5px;
+                display: inline-block;
+                font-size: 0.5rem;
+                line-height: 0.8rem;
+                margin: 3px;
+                width: 68%;    
+            }
+
+
+
+
+
+        .editorFieldsTitle {
+            grid-column-start: 4;
+            /* autoprefixer: off */
+            grid-column-end: 11;
+            grid-row-start: 4;
+            grid-row-end: 5;
             text-align: left;
         }
         .editorFields {
             grid-column-start: 1;
             /* autoprefixer: off */
             grid-column-end: 10;
-            grid-row-start: 2;
+            grid-row-start: 5;
             grid-row-end: 22;
             margin: 0px;
             margin-left: 2px;
@@ -288,8 +342,9 @@ datagrid {
                 width: 78%;
             }
 
+            /* TITLE */
             .editorTitleTitle {
-                background-color: rgb(203, 197, 255);
+                background-color: rgb(211, 209, 226);
                 border: 1px solid lightgray;
                 border-radius: 3px;
                 font-size: 0.5rem;
@@ -312,8 +367,9 @@ datagrid {
                 width: 78%;    
             }
 
+            /* X PROPERTIES */
             .editorXPropertiesTitle {
-                background-color: rgb(203, 197, 255);
+                background-color: rgb(211, 209, 226);
                 border: 1px solid lightgray;
                 border-radius: 3px;
                 font-size: 0.5rem;
@@ -337,41 +393,40 @@ datagrid {
                     width: 68%;    
                 }
 
+            /* Y PROPERTIES */
+            .editorYPropertiesTitle {
+                background-color: rgb(211, 209, 226);
+                border: 1px solid lightgray;
+                border-radius: 3px;
+                font-size: 0.5rem;
+                margin-top: 5px;
+            }
+            .editorYProperties {
+                font-size: 0.5rem;
+            }
 
-
-                .editorYPropertiesTitle {
-                    background-color: rgb(203, 197, 255);
-                    border: 1px solid lightgray;
-                    border-radius: 3px;
+                .editorYPropertiesAggregateTitle {
+                    display: inline-block;
                     font-size: 0.5rem;
-                    margin-top: 5px;
+                    line-height: 0.8rem;
+                    margin-left: 4px;
+                    width: 64px;    
                 }
-                .editorYProperties {
+                .editorYPropertiesAggregate {
+                    border: 1px solid steelblue;
+                    border-radius: 5px;
+                    display: inline-block;
                     font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin: 3px;
+                    width: 68%;    
                 }
     
-                    .editorYPropertiesAggregateTitle {
-                        display: inline-block;
-                        font-size: 0.5rem;
-                        line-height: 0.8rem;
-                        margin-left: 4px;
-                        width: 64px;    
-                    }
-                    .editorYPropertiesAggregate {
-                        border: 1px solid steelblue;
-                        border-radius: 5px;
-                        display: inline-block;
-                        font-size: 0.5rem;
-                        line-height: 0.8rem;
-                        margin: 3px;
-                        width: 68%;    
-                    }
-    
 
 
 
 
-
+        /* GRAPH TYPES */
         .editorTypesTitle {
             grid-column-start: 24;
             /* autoprefixer: off */
@@ -405,6 +460,7 @@ datagrid {
                 width: 96%;
             }
 
+        /* GRAPH AREA */
         .editorAreaTitle {
             grid-column-start: 38;
             /* autoprefixer: off */
@@ -423,6 +479,7 @@ datagrid {
             text-align: left;
         }
 
+        /* BUTTONS */
         .editorButtonShowData {
             grid-column-start: 32;
             /* autoprefixer: off */

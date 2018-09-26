@@ -134,6 +134,38 @@
                             <clr-dg-string-filter *ngIf="column.name === 'email'" id="emailFilter" [clrDgStringFilter]="emailFilter"  [clrFilterValue]="(column.email)"></clr-dg-string-filter>
                         </clr-dg-column> -->
 
+
+                    <!-- COMPOSITION -->
+                    <div class="editorComposition">
+                        <div class="editorCompositionTypeTitle">
+                            Composition:
+                        </div>    
+                        <div class="select editorCompositionType">
+                            <select id="selects_3"
+                                [(ngModel)]="graphComposition"
+                                (change)="changeComposition()"
+                                >
+                                <option>Single</option>
+                                <option>Layered</option>
+                                <option>Vconcat</option>
+                                <option>Hconcat</option>
+                                <option>Repeat</option>
+                            </select>                        
+                        </div>
+                        <div class="editorCompositionLayerTitle">
+                            Layer:
+                        </div>    
+                        <div class="select editorCompositionLayer">
+                            <select id="selects_3"
+                                [(ngModel)]="xPropertiesAggregate"
+                                >
+                                <option *ngFor="let row of graphLayers; let i = index">
+                                    {{ row }}
+                                </option>
+                            </select>                        
+                        </div>                        
+                    </div>
+
                     <div class="editorFieldsTitle">
                         <b>Fields</b>
                     </div>
@@ -268,12 +300,12 @@
                                 size="12"
                                 >
                             </clr-icon>
-                            <clr-icon shape="info-circle" 
+                            <!-- <clr-icon shape="info-circle" 
                                 style="color: rgb(101, 101, 196); 
                                     float: right;
                                     margin-top: 4px;"
                                 >
-                            </clr-icon>
+                            </clr-icon> -->
                         </div>
                         <div class="editorTitleTextTitle" *ngIf="showFieldTitleProperties">
                             Text:

@@ -188,6 +188,7 @@ export interface dataSchemaInterface {
     errorMessage: string = '';
     graphColorField: string = 'Drag a field here ...';
     graphColor: string[];
+    graphLayers: number[] = [1, 2, 3,];  // TODO - fix hardcoding
     graphTypeFieldY: string[] =[];
     graphTypeFieldX: string[] =[];
     graphTypeFieldColor: string[] =[];
@@ -213,6 +214,7 @@ export interface dataSchemaInterface {
     showRowDeleteIcon: boolean = false;
     showType: boolean = false;
     sortOrder: number = 1;
+    titleText: string = '';
     widgetGraphs: WidgetGraph[] =[];
     xPropertiesAggregate: string = '';
     xPropertiesAggregateVegaLiteName: string = '';
@@ -400,9 +402,11 @@ export interface dataSchemaInterface {
 
             // Enhance W properties
             this.localWidget.graphMark = 'bar';
+            this.localWidget.graphTitle = this.titleText;
 
             // Define Specification
             specification = this.widgetGraphs[widgetGraphIndex].specification;
+            specification['title']['text'] = this.titleText;
             if (this.localWidget.graphUrl != ""  &&  this.localWidget.graphUrl != null) {
                 specification['data'] = {"url": this.localWidget.graphUrl};
             } else {
