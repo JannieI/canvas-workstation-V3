@@ -393,29 +393,28 @@
                             Font:
                         </div>    
                         <div class="editorTitleFont" *ngIf="showFieldTitleProperties">
-                            <input type="Number"
+                            <input type="text"
                                 placeholder="Font name of title"
                                 [(ngModel)]="titleFont"
                                 name="titleFont"
                                 >
                         </div>
 
-
                         <!-- Font size in pixels for title text. Default value: 10. -->
-                        <!--
-                        <div class="editorTitleTextTitle" *ngIf="showFieldTitleProperties">
-                            Text:
+                        <div class="editorTitleFontSizeTitle" *ngIf="showFieldTitleProperties">
+                            Font Size:
                         </div>    
-                        <div class="editorTitleText" *ngIf="showFieldTitleProperties">
-                            <input type="text"
-                                placeholder="Text of title"
-                                [(ngModel)]="titleText"
-                                name="titleText"
+                        <div class="editorTitleFontSize" *ngIf="showFieldTitleProperties">
+                            <input type="number"
+                                placeholder="Font Size of title"
+                                [(ngModel)]="titleFontSize"
+                                name="titleFontSize"
                                 >
                         </div>
 
                         
-                        fontWeight	String | Number	
+                        <!--
+                            fontWeight	String | Number	
                         Font weight for title text. This can be either a string (e.g "bold", "normal") or a number (100, 200, 300, …, 900 where "normal" = 400 and "bold" = 700).
                                                 <div class="editorTitleTextTitle" *ngIf="showFieldTitleProperties">
                             Text:
