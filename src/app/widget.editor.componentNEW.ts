@@ -222,6 +222,8 @@ export interface dataSchemaInterface {
     titleAnchor: string = 'Middle';
     titleAngle: number = 0;
     titleBaseline: string = 'Bottom';
+    titleColorName: string = 'Gray';
+    titleColor: string = 'gray';
     widgetGraphs: WidgetGraph[] =[];
     xPropertiesAggregate: string = '';
     xPropertiesAggregateVegaLiteName: string = '';
@@ -243,7 +245,7 @@ export interface dataSchemaInterface {
         this.backgroundcolors = [
             {id: null, name: 'Open Picker ...', cssCode: '', shortList: false}, ...this.backgroundcolors
         ];
-        
+
         // Get Widget Graph Specs
         this.globalVariableService.getWidgetGraphs().then(res => {
             this.widgetGraphs = res
@@ -423,6 +425,7 @@ export interface dataSchemaInterface {
             specification['title']['anchor'] = this.titleAnchor.toLowerCase();
             specification['title']['angle'] = this.titleAngle;
             specification['title']['baseline'] = this.titleBaseline.toLowerCase();
+            specification['title']['color'] = this.titleColor;
             
             if (this.localWidget.graphUrl != ""  &&  this.localWidget.graphUrl != null) {
                 specification['data'] = {"url": this.localWidget.graphUrl};
@@ -1217,5 +1220,18 @@ this.localWidget.graphYtype);
         this.showFieldYProperties = !this.showFieldYProperties;
     }
 
+    clickSelectTitleColor(ev: any) {
+        // Select Background Colour
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBgColor', '@Start');
+
+        this.titleColorName = ev.target.value;
+        this.titleColor = this.titleColorName;
+        let localIndex: number = this.backgroundcolors.findIndex(bg =>
+            bg.name == this.titleColorName
+        );
+        if (localIndex >= 0) {
+            this.titleColor = this.backgroundcolors[localIndex].cssCode;
+        };
+    }
 
 }
