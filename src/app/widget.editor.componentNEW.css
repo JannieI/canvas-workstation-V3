@@ -191,23 +191,14 @@ datagrid {
         padding: 0px;
     }
 
-        .editorShowDS {
-            cursor: pointer;
-            font-size: 0.65rem;
+
+        /* COMPOSITION */
+        .editorComposition {
             grid-column-start: 1;
             /* autoprefixer: off */
             grid-column-end: 11;
-            grid-row-start: 1;
-            grid-row-end: 2;
-            text-align: left;
-        }
-
-        .editorComposition {
-            grid-column-start: 4;
-            /* autoprefixer: off */
-            grid-column-end: 11;
-            grid-row-start: 1;
-            grid-row-end: 4;
+            grid-row-start: 2;
+            grid-row-end: 5;
             text-align: left;
         }
             .editorCompositionTypeTitle {
@@ -215,7 +206,7 @@ datagrid {
                 font-size: 0.5rem;
                 line-height: 0.8rem;
                 margin-left: 4px;
-                width: 64px;    
+                width: 80px;    
             }
             .editorCompositionType {
                 border: 1px solid steelblue;
@@ -224,14 +215,14 @@ datagrid {
                 font-size: 0.5rem;
                 line-height: 0.8rem;
                 margin: 3px;
-                width: 68%;    
+                width: 40%;    
             }
             .editorCompositionLayerTitle{
                 display: inline-block;
                 font-size: 0.5rem;
                 line-height: 0.8rem;
                 margin-left: 4px;
-                width: 64px;    
+                width: 80px;    
             }
             .editorCompositionLayer {
                 border: 1px solid steelblue;
@@ -240,26 +231,24 @@ datagrid {
                 font-size: 0.5rem;
                 line-height: 0.8rem;
                 margin: 3px;
-                width: 68%;    
+                width: 12%;    
             }
 
 
-
-
-
+        /* FIELDS */
         .editorFieldsTitle {
             grid-column-start: 4;
             /* autoprefixer: off */
             grid-column-end: 11;
-            grid-row-start: 4;
-            grid-row-end: 5;
+            grid-row-start: 7;
+            grid-row-end: 8;
             text-align: left;
         }
         .editorFields {
             grid-column-start: 1;
             /* autoprefixer: off */
             grid-column-end: 10;
-            grid-row-start: 5;
+            grid-row-start: 8;
             grid-row-end: 22;
             margin: 0px;
             margin-left: 2px;
@@ -270,6 +259,7 @@ datagrid {
             padding-left: 4px !important;
         }
 
+        /* PROPERTIES */
         .editorPropertiesTitle {
             grid-column-start: 14;
             /* autoprefixer: off */
