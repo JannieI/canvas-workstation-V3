@@ -390,19 +390,18 @@
             
                         <!-- Font name for title text. -->
                         <div class="editorTitleFontTitle" *ngIf="showFieldTitleProperties">
-                            Text:
+                            Font:
                         </div>    
                         <div class="editorTitleFont" *ngIf="showFieldTitleProperties">
-                            <input type="text"
-                                placeholder="Text of title"
+                            <input type="Number"
+                                placeholder="Font name of title"
                                 [(ngModel)]="titleFont"
                                 name="titleFont"
                                 >
                         </div>
 
 
-                        fontSize	Number	
-                        Font size in pixels for title text. Default value: 10.
+                        <!-- Font size in pixels for title text. Default value: 10. -->
                         <!--
                         <div class="editorTitleTextTitle" *ngIf="showFieldTitleProperties">
                             Text:

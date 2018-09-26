@@ -427,6 +427,7 @@ export interface dataSchemaInterface {
             specification['title']['angle'] = this.titleAngle;
             specification['title']['baseline'] = this.titleBaseline.toLowerCase();
             specification['title']['color'] = this.titleColor;
+            specification['title']['font'] = this.titleFont;
             
             if (this.localWidget.graphUrl != ""  &&  this.localWidget.graphUrl != null) {
                 specification['data'] = {"url": this.localWidget.graphUrl};
