@@ -347,7 +347,7 @@
 
                         <!-- Title Angle in degrees -->
                         <div class="editorTitleAngleTitle" *ngIf="showFieldTitleProperties">
-                            Text:
+                            Angle:
                         </div>    
                         <div class="editorTitleAngle" *ngIf="showFieldTitleProperties">
                             <input type="number"
@@ -412,20 +412,19 @@
                                 >
                         </div>
 
-                        
-                        <!--
-                            fontWeight	String | Number	
-                        Font weight for title text. This can be either a string (e.g "bold", "normal") or a number (100, 200, 300, …, 900 where "normal" = 400 and "bold" = 700).
-                                                <div class="editorTitleTextTitle" *ngIf="showFieldTitleProperties">
-                            Text:
+                        <!-- Font Weight in pixels for title text. Default value: 10. -->
+                        <div class="editorTitleFontWeightTitle" *ngIf="showFieldTitleProperties">
+                            Font Weight:
                         </div>    
-                        <div class="editorTitleText" *ngIf="showFieldTitleProperties">
-                            <input type="text"
-                                placeholder="Text of title"
-                                [(ngModel)]="titleText"
-                                name="titleText"
+                        <div class="editorTitleFontWeight" *ngIf="showFieldTitleProperties">
+                            <input type="number"
+                                placeholder="Font Weight of title (100, 200 ... 900)"
+                                [(ngModel)]="titleFontWeight"
+                                name="titleFontWeight"
                                 >
                         </div>
+                        <!--
+
 
 
                         limit	Number	
