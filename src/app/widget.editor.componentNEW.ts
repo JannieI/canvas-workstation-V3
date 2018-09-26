@@ -177,6 +177,8 @@ export interface dataSchemaInterface {
     containerHasContextMenus: boolean = true;
     containerHasTitle: boolean = true;
     currentData: any = [];
+    currentGraphComposition: string = 'Single';
+    currentGraphLayer: number = 1;
     dataSchema: dataSchemaInterface[] = [];
     dataFieldNames: string[] = [];
     dataFieldLengths: number[] = [];

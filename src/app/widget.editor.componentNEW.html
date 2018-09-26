@@ -144,7 +144,7 @@
                         </div>    
                         <div class="select editorCompositionType">
                             <select id="selects_3"
-                                [(ngModel)]="graphComposition"
+                                [(ngModel)]="currentGraphComposition"
                                 (change)="changeComposition()"
                                 >
                                 <option>Single</option>
@@ -160,8 +160,8 @@
                             </b>
                         </div>    
                         <div class="select editorCompositionLayer">
-                            <select id="selects_3"
-                                [(ngModel)]="xPropertiesAggregate"
+                            <select id="currentGraphLayer"
+                                [(ngModel)]="currentGraphLayer"
                                 >
                                 <option *ngFor="let row of graphLayers; let i = index">
                                     {{ row }}
