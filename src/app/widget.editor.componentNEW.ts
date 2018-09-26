@@ -9,6 +9,7 @@ import { Output }                     from '@angular/core';
 import { ViewChild }                  from '@angular/core';
 
 // Our models
+import { CSScolor }                   from './models';
 import { Datasource }                 from './models';
 import { Widget }                     from './models';
 import { WidgetLayout }               from './models';
@@ -173,6 +174,7 @@ export interface dataSchemaInterface {
             description: 'The sample variance of field values.'
         }
     ]
+    backgroundcolors: CSScolor[];    
     colField: string = 'Drag a field here ...';
     containerHasContextMenus: boolean = true;
     containerHasTitle: boolean = true;
@@ -219,7 +221,7 @@ export interface dataSchemaInterface {
     titleText: string = '';
     titleAnchor: string = 'Middle';
     titleAngle: number = 0;
-    titleBaseline: string = 'Top';
+    titleBaseline: string = 'Bottom';
     widgetGraphs: WidgetGraph[] =[];
     xPropertiesAggregate: string = '';
     xPropertiesAggregateVegaLiteName: string = '';
@@ -236,6 +238,12 @@ export interface dataSchemaInterface {
         // ngOnInit Life Cycle Hook
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
+        // Get setup info
+        this.backgroundcolors = this.globalVariableService.backgroundcolors.slice();
+        this.backgroundcolors = [
+            {id: null, name: 'Open Picker ...', cssCode: '', shortList: false}, ...this.backgroundcolors
+        ];
+        
         // Get Widget Graph Specs
         this.globalVariableService.getWidgetGraphs().then(res => {
             this.widgetGraphs = res
@@ -414,7 +422,7 @@ export interface dataSchemaInterface {
             specification['title']['text'] = this.titleText;
             specification['title']['anchor'] = this.titleAnchor.toLowerCase();
             specification['title']['angle'] = this.titleAngle;
-            specification['title']['baseline'] = this.titleBaseline;
+            specification['title']['baseline'] = this.titleBaseline.toLowerCase();
             
             if (this.localWidget.graphUrl != ""  &&  this.localWidget.graphUrl != null) {
                 specification['data'] = {"url": this.localWidget.graphUrl};

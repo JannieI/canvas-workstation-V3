@@ -356,7 +356,6 @@
                                 name="titleText"
                                 >
                         </div>
-    
 
                         <!-- Vertical text baseline for title text. -->
                       <div class="editorTitleBaselineTitle" *ngIf="showFieldTitleProperties">
@@ -372,26 +371,15 @@
                             </select>                        
                         </div> 
 
-                        <!-- color	Color	
-                        Text color for title text. 
+                        <!-- Text color for title text.  -->
 
-                            <div class="editorXPropertiesAggregateTitle" *ngIf="showFieldXProperties">
-                                Aggregate:
+                            <div class="editorTitleColourTitle" *ngIf="showFieldTitleProperties">
+                                Color:
                             </div>    
-                            <div class="select editorXPropertiesAggregate" *ngIf="showFieldXProperties">
-                                <select id="selects_3"
-                                    [(ngModel)]="xPropertiesAggregate"
-                                    >
-                                    <option *ngFor="let row of aggregations; let i = index">
-                                        {{ row.displayName }}
-                                    </option>
-                                </select>                        
-                            </div>  -->
-
-                            <!-- <div class="select gridBackgroundcolor">
+                            <div class="select editorTitleColour" *ngIf="showFieldTitleProperties">
                                 <select [(ngModel)]="localWidget.containerBackgroundcolorName"
-                                    name="containerBackgroundcolorName"
-                                    (change)="clickSelectBgColor($event)"
+                                    name="editorTitleColorName"
+                                    (change)="clickSelectTitleColor($event)"
                                     >
                                     <option *ngFor="let row of backgroundcolors"
                                         [style.background-color]="row.cssCode"
@@ -399,7 +387,7 @@
                                         {{ row.name }}
                                     </option>
                                 </select>
-                            </div> -->
+                            </div>
             
 
                         
