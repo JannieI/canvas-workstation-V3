@@ -410,6 +410,8 @@ export interface dataSchemaInterface {
             // Define Specification
             specification = this.widgetGraphs[widgetGraphIndex].specification;
             specification['title']['text'] = this.titleText;
+            specification['title']['anchor'] = this.titleAnchor.toLowerCase();
+
             if (this.localWidget.graphUrl != ""  &&  this.localWidget.graphUrl != null) {
                 specification['data'] = {"url": this.localWidget.graphUrl};
             } else {
