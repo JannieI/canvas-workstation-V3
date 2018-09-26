@@ -224,6 +224,7 @@ export interface dataSchemaInterface {
     titleBaseline: string = 'Bottom';
     titleColorName: string = 'Gray';
     titleColor: string = 'gray';
+    titleFont: string = '';
     widgetGraphs: WidgetGraph[] =[];
     xPropertiesAggregate: string = '';
     xPropertiesAggregateVegaLiteName: string = '';
