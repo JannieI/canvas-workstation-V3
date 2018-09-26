@@ -376,9 +376,13 @@ datagrid {
                 font-size: 0.5rem;
                 line-height: 0.5rem;
                 margin: 3px;
-                width: 78%;    
+                width: 68%;    
             }
 
+
+
+
+            
             /* X PROPERTIES */
             .editorXPropertiesTitle {
                 background-color: rgb(211, 209, 226);

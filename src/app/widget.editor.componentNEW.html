@@ -345,18 +345,17 @@
                             </select>                        
                         </div> 
 
-                        <!-- angle	Number	
-                        Angle in degrees of title text.
-                            <div class="editorTitleTextTitle" *ngIf="showFieldTitleProperties">
-                                Text:
-                            </div>    
-                            <div class="editorTitleText" *ngIf="showFieldTitleProperties">
-                                <input type="text"
-                                    placeholder="Text of title"
-                                    [(ngModel)]="titleText"
-                                    name="titleText"
-                                    >
-                            </div> -->
+                        <!-- Title Angle in degrees -->
+                        <div class="editorTitleAngleTitle" *ngIf="showFieldTitleProperties">
+                            Text:
+                        </div>    
+                        <div class="editorTitleAngle" *ngIf="showFieldTitleProperties">
+                            <input type="number"
+                                placeholder="Angle of title"
+                                [(ngModel)]="titleAngle"
+                                name="titleText"
+                                >
+                        </div>
     
 
                         <!-- baseline	String	
