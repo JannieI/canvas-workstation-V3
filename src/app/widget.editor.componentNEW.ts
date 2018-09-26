@@ -217,8 +217,9 @@ export interface dataSchemaInterface {
     showType: boolean = false;
     sortOrder: number = 1;
     titleText: string = '';
-    titleAnchor: string = '';
+    titleAnchor: string = 'Middle';
     titleAngle: number = 0;
+    titleBaseline: string = 'Top';
     widgetGraphs: WidgetGraph[] =[];
     xPropertiesAggregate: string = '';
     xPropertiesAggregateVegaLiteName: string = '';
@@ -413,7 +414,8 @@ export interface dataSchemaInterface {
             specification['title']['text'] = this.titleText;
             specification['title']['anchor'] = this.titleAnchor.toLowerCase();
             specification['title']['angle'] = this.titleAngle;
-
+            specification['title']['baseline'] = this.titleBaseline;
+            
             if (this.localWidget.graphUrl != ""  &&  this.localWidget.graphUrl != null) {
                 specification['data'] = {"url": this.localWidget.graphUrl};
             } else {
