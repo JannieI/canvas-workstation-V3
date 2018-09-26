@@ -228,6 +228,7 @@ export interface dataSchemaInterface {
     titleFontSize: number = 10;
     titleFontWeight: number = 400;
     titleLength: number = 0;
+    titleOrientation: string = 'Top';
     widgetGraphs: WidgetGraph[] =[];
     xPropertiesAggregate: string = '';
     xPropertiesAggregateVegaLiteName: string = '';
@@ -434,6 +435,7 @@ export interface dataSchemaInterface {
             specification['title']['fontSize'] = this.titleFontSize;
             specification['title']['fontWeight'] = this.titleFontWeight;
             specification['title']['limit'] = this.titleLength;
+            specification['title']['orient'] = this.titleOrientation.toLowerCase();
             
             if (this.localWidget.graphUrl != ""  &&  this.localWidget.graphUrl != null) {
                 specification['data'] = {"url": this.localWidget.graphUrl};
