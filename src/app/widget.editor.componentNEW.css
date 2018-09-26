@@ -203,27 +203,27 @@ datagrid {
         }
             .editorCompositionTypeTitle {
                 display: inline-block;
-                font-size: 0.5rem;
+                font-size: 0.55rem;
                 line-height: 0.8rem;
-                margin-left: 4px;
-                margin-top: 6px;
+                margin-left: 14px;
+                margin-top: 16px;
                 width: 80px;    
             }
             .editorCompositionType {
                 border: 1px solid steelblue;
                 border-radius: 5px;
                 display: inline-block;
-                font-size: 0.5rem;
+                font-size: 0.55rem;
                 line-height: 0.8rem;
-                margin-left: 4px;
-                margin-top: 6px;
-                width: 40%;    
+                margin-left: 14px;
+                margin-top: 16px;
+                width: 30%;    
             }
             .editorCompositionLayerTitle{
                 display: inline-block;
-                font-size: 0.5rem;
+                font-size: 0.55rem;
                 line-height: 0.8rem;
-                margin-left: 4px;
+                margin-left: 14px;
                 margin-top: 3px;
                 width: 80px;    
             }
@@ -231,11 +231,11 @@ datagrid {
                 border: 1px solid steelblue;
                 border-radius: 5px;
                 display: inline-block;
-                font-size: 0.5rem;
+                font-size: 0.55rem;
                 line-height: 0.8rem;
-                margin-left: 4px;
+                margin-left: 14px;
                 margin-top: 3px;
-                width: 40%;    
+                width: 30%;    
             }
 
 
@@ -468,7 +468,7 @@ datagrid {
             grid-column-start: 31;
             /* autoprefixer: off */
             grid-column-end: 50;
-            grid-row-start: 4;
+            grid-row-start: 2;
             grid-row-end: 20;
             text-align: left;
         }

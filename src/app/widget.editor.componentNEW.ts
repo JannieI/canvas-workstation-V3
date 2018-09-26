@@ -217,6 +217,7 @@ export interface dataSchemaInterface {
     showType: boolean = false;
     sortOrder: number = 1;
     titleText: string = '';
+    titleAnchor: string = '';
     widgetGraphs: WidgetGraph[] =[];
     xPropertiesAggregate: string = '';
     xPropertiesAggregateVegaLiteName: string = '';

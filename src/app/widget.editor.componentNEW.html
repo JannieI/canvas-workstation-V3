@@ -2,12 +2,14 @@
 	<div class="modal-dialog modal-xl" role="dialog" aria-hidden="true">
 		<div class="modal-content modalContent">
 
-
             <div class="gridOverall">
                 <button type="button" class="closeButton" (click)="clickClose()">
                     <b>X</b>
                 </button>
 
+
+
+                <!-- TOP FORM TITLE -->
                 <div class="gridTitle">
                     <b>Widget Editor</b>
                     <clr-signpost>
@@ -32,7 +34,9 @@
                     </clr-signpost>
                 </div>
 
-                <!-- SHOWS the DS info to select one -->
+
+
+                <!-- DATASOURCES -->
                 <div class="datasourceMain" *ngIf="showDatasourceMain">
 
                     <div class="datasourceMainHelp">
@@ -117,6 +121,9 @@
                     </div>
                 </div>
 
+
+
+
                 <!-- Widget Editor -->
                 <div class="editorMain" *ngIf="!showDatasourceMain">
 
@@ -170,6 +177,8 @@
                         </div>                        
                     </div>
 
+
+                    <!-- FIELDS -->
                     <div class="editorFieldsTitle">
                         <b>Fields</b>
                     </div>
@@ -226,6 +235,8 @@
                         </nav>
                     </div>
         
+
+                    <!-- TITLE -->
                     <div class="editorPropertiesTitle">
                         <b>
                             Properties
@@ -290,6 +301,7 @@
 
 
                         <!-- TITLE -->
+                        <!-- Title Header -->
                         <div class="editorTitleTitle"
                             (click)="clickShowTitleProperties()"
                             >
@@ -304,13 +316,9 @@
                                 size="12"
                                 >
                             </clr-icon>
-                            <!-- <clr-icon shape="info-circle" 
-                                style="color: rgb(101, 101, 196); 
-                                    float: right;
-                                    margin-top: 4px;"
-                                >
-                            </clr-icon> -->
                         </div>
+
+                        <!-- Title Text -->
                         <div class="editorTitleTextTitle" *ngIf="showFieldTitleProperties">
                             Text:
                         </div>    
@@ -319,27 +327,23 @@
                                 placeholder="Text of title"
                                 [(ngModel)]="titleText"
                                 name="titleText"
+                                style="border-radius: 5px; width: 100%;"
                                 >
                         </div>
 
-                        
-                        
-                        <!-- anchor	String	
-                        The anchor position for placing the title. One of "start", "middle", or "end". For example, with an orientation of top these anchor positions map to a left-, center-, or right-aligned title.
-                        Default value: "middle" for single and layered views. "start" for other composite views.
-                        
-                            <div class="editorXPropertiesAggregateTitle" *ngIf="showFieldXProperties">
-                                Aggregate:
-                            </div>    
-                            <div class="select editorXPropertiesAggregate" *ngIf="showFieldXProperties">
-                                <select id="selects_3"
-                                    [(ngModel)]="xPropertiesAggregate"
-                                    >
-                                    <option *ngFor="let row of aggregations; let i = index">
-                                        {{ row.displayName }}
-                                    </option>
-                                </select>                        
-                            </div> -->
+                        <!-- Title Anchor -->
+                        <div class="editorXPropertiesAggregateTitle" *ngIf="showFieldXProperties">
+                            Anchor:
+                        </div>    
+                        <div class="select editorXPropertiesAggregate" *ngIf="showFieldXProperties">
+                            <select id="selects_3"
+                                [(ngModel)]="titleAnchor"
+                                >
+                                <option>Start</option>
+                                <option>Middle</option>
+                                <option>End</option>
+                            </select>                        
+                        </div> 
 
                         <!-- angle	Number	
                         Angle in degrees of title text.
@@ -543,14 +547,11 @@
                                 </option>
                             </select>                        
                         </div>
-
-
-
-
-
-
                     </div>
 
+
+
+                    <!-- GRAPH TYPES -->
                     <div class="editorTypesTitle">
                         <b>
                             Types
@@ -573,12 +574,14 @@
                         </div>
                     </div>
 
+
+
+                    <!-- BUTTONS -->
                     <div class="editorAreaTitle">
                         <b>Graph</b>
                     </div>
                     <div class="editorArea" #dragWidget>
                     </div>
-
                     <div class="editorButtonShowData">
                         <button
                             class="btn btn-sm btn-secondary"

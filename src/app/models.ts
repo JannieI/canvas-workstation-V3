@@ -1215,6 +1215,9 @@ export class WidgetGraph {
     shortName: string;                  // Short name to display
     specification: any;                 // Grammar spec (template)
     imageUrl: string;                   // Url where image lives
+
+    // @RunTime
+    isSelected: boolean;                // True if this type is selected
 }
 
 export class WidgetCheckpoint {
