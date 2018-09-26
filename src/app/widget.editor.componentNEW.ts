@@ -227,6 +227,7 @@ export interface dataSchemaInterface {
     titleFont: string = '';
     titleFontSize: number = 10;
     titleFontWeight: number = 400;
+    titleLength: number = 0;
     widgetGraphs: WidgetGraph[] =[];
     xPropertiesAggregate: string = '';
     xPropertiesAggregateVegaLiteName: string = '';
@@ -432,6 +433,7 @@ export interface dataSchemaInterface {
             specification['title']['font'] = this.titleFont;
             specification['title']['fontSize'] = this.titleFontSize;
             specification['title']['fontWeight'] = this.titleFontWeight;
+            specification['title']['limit'] = this.titleLength;
             
             if (this.localWidget.graphUrl != ""  &&  this.localWidget.graphUrl != null) {
                 specification['data'] = {"url": this.localWidget.graphUrl};
