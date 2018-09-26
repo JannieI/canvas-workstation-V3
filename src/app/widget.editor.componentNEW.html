@@ -423,23 +423,21 @@
                                 name="titleFontWeight"
                                 >
                         </div>
-                        <!--
 
-
-
-                        limit	Number	
-                        The maximum allowed length in pixels of legend labels.
-                                                <div class="editorTitleTextTitle" *ngIf="showFieldTitleProperties">
-                            Text:
+                        <!-- limit: The maximum allowed length in pixels of legend labels.-->
+                        <div class="editorTitleLengthTitle" *ngIf="showFieldTitleProperties">
+                            Length:
                         </div>    
-                        <div class="editorTitleText" *ngIf="showFieldTitleProperties">
-                            <input type="text"
-                                placeholder="Text of title"
-                                [(ngModel)]="titleText"
-                                name="titleText"
+                        <div class="editorTitleLength" *ngIf="showFieldTitleProperties">
+                            <input type="number"
+                                placeholder="Max length of title in px"
+                                [(ngModel)]="titleLength"
+                                name="titleLength"
                                 >
                         </div>
 
+
+                        <!--
 
                         orient	String	
                         Default title orientation ("top", "bottom", "left", or "right")
@@ -557,12 +555,15 @@
 
 
 
-                    <!-- BUTTONS -->
+                    <!-- GRAPH Area -->
                     <div class="editorAreaTitle">
                         <b>Graph</b>
                     </div>
                     <div class="editorArea" #dragWidget>
                     </div>
+
+
+                    <!-- BUTTONS -->
                     <div class="editorButtonShowData">
                         <button
                             class="btn btn-sm btn-secondary"
@@ -573,7 +574,7 @@
                                 size="18"
                                 >
                             </clr-icon>
-                            Show Datas
+                            Show Data
                         </button>
                     </div>
     

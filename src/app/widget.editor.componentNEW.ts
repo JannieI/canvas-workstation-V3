@@ -226,6 +226,7 @@ export interface dataSchemaInterface {
     titleColor: string = 'gray';
     titleFont: string = '';
     titleFontSize: number = 10;
+    titleFontWeight: number = 400;
     widgetGraphs: WidgetGraph[] =[];
     xPropertiesAggregate: string = '';
     xPropertiesAggregateVegaLiteName: string = '';
@@ -430,6 +431,7 @@ export interface dataSchemaInterface {
             specification['title']['color'] = this.titleColor;
             specification['title']['font'] = this.titleFont;
             specification['title']['fontSize'] = this.titleFontSize;
+            specification['title']['fontWeight'] = this.titleFontWeight;
             
             if (this.localWidget.graphUrl != ""  &&  this.localWidget.graphUrl != null) {
                 specification['data'] = {"url": this.localWidget.graphUrl};
