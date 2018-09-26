@@ -218,6 +218,7 @@ export interface dataSchemaInterface {
     sortOrder: number = 1;
     titleText: string = '';
     titleAnchor: string = '';
+    titleAngle: number = 0;
     widgetGraphs: WidgetGraph[] =[];
     xPropertiesAggregate: string = '';
     xPropertiesAggregateVegaLiteName: string = '';
@@ -411,6 +412,7 @@ export interface dataSchemaInterface {
             specification = this.widgetGraphs[widgetGraphIndex].specification;
             specification['title']['text'] = this.titleText;
             specification['title']['anchor'] = this.titleAnchor.toLowerCase();
+            specification['title']['angle'] = this.titleAngle;
 
             if (this.localWidget.graphUrl != ""  &&  this.localWidget.graphUrl != null) {
                 specification['data'] = {"url": this.localWidget.graphUrl};
