@@ -1498,15 +1498,16 @@ this.localWidget.graphYtype);
         this.globalFunctionService.printToConsole(this.constructor.name,'changeXProperty', '@Start');
 
         this.showFieldXPropertiesInfo = false;
+console.warn('xx this.xPropertiesAggregate', this.xPropertiesAggregate);
 
         if (this.xPropertiesAggregate != ''
-            &&  this.xPropertiesBin != ''
-            &&  this.xPropertiesFormat != ''
-            &&  this.xPropertiesImpute != ''
-            &&  this.xPropertiesStack != ''
-            &&  this.xPropertiesSort != ''
-            &&  this.xPropertiesType != ''
-            &&  this.xPropertiesImpute != '') {
+            ||  this.xPropertiesBin != ''
+            ||  this.xPropertiesFormat != ''
+            ||  this.xPropertiesImpute != ''
+            ||  this.xPropertiesStack != ''
+            ||  this.xPropertiesSort != ''
+            ||  this.xPropertiesType != ''
+            ||  this.xPropertiesImpute != '') {
             this.showFieldXPropertiesInfo = true;
         };
     }
