@@ -616,6 +616,21 @@ clr-dg-cell {
                     font-size: 0.5rem;
                 }
 
+            .editorXAxisTitle {
+                background-color: rgb(211, 209, 226);
+                border: 1px solid lightgray;
+                border-radius: 3px;
+                font-size: 0.5rem;
+                margin-top: 5px;
+            }
+                .editorXAxis {
+                    font-size: 0.5rem;
+                }
+
+
+
+
+
         /* GRAPH TYPES */
         .editorTypesTitle {
             grid-column-start: 24;

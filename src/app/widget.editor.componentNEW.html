@@ -588,6 +588,29 @@
                         </div>
 
 
+                        <!-- XAxis -->
+                        <div class="editorXAxisTitle"
+                            (click)="clickShowXAxis()"
+                            >
+                            <b>
+                                X Axis
+                            </b>
+                            <clr-icon shape="angle down" *ngIf="!showFieldXAxis"
+                                size="12"
+                                >
+                            </clr-icon>
+                            <clr-icon shape="angle up" *ngIf="showFieldXAxis"
+                                size="12"
+                                >
+                            </clr-icon>
+                            <clr-icon shape="info-circle"
+                                style="color: rgb(101, 101, 196);
+                                    float: right;
+                                    margin-top: 4px;"
+                                >
+                            </clr-icon>
+                        </div>
+
 
 
                     </div>
