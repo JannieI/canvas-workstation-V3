@@ -248,7 +248,7 @@
                     </div>
 
 
-                    <!-- TITLE -->
+                    <!-- PROPERTIES -->
                     <div class="editorPropertiesTitle">
                         <b>
                             Properties
@@ -256,6 +256,7 @@
                     </div>
                     <div class="editorProperties">
 
+                        <!-- TOP 3 - 1. X field -->
                         <div class="editorColFieldTitle">
                             X axis:
                         </div>
@@ -274,6 +275,7 @@
                             {{ colField }}
                         </div>
 
+                        <!-- TOP 3 - 2. Y field -->
                         <div class="editorRowFieldTitle">
                             Y axis:
                         </div>
@@ -292,6 +294,7 @@
                             {{ rowField }}
                         </div>
 
+                        <!-- TOP 3 - 3. Color field -->
                         <div class="editorColourFieldTitle">
                             Colour:
                         </div>
@@ -464,7 +467,7 @@
                         </div>
 
 
-
+                        <!-- X Properties -->
                         <div class="editorXPropertiesTitle" *ngIf="showFieldXPropertiesTitle"
                             (click)="clickShowXProperties()"
                             >
@@ -501,6 +504,7 @@
                         </div>
 
 
+                        <!-- Y Properties -->
                         <div class="editorYPropertiesTitle" *ngIf="showFieldYPropertiesTitle"
                             (click)="clickShowYProperties()"
                             >
@@ -534,8 +538,33 @@
                                 </option>
                             </select>
                         </div>
+
+
+                        <!-- Filter -->
+                        <div class="editorFilterTitle"
+                            (click)="clickShowFilter()"
+                            >
+                            <b>
+                                Filter
+                            </b>
+                            <clr-icon shape="angle down" *ngIf="!showFieldFilter"
+                                size="12"
+                                >
+                            </clr-icon>
+                            <clr-icon shape="angle up" *ngIf="showFieldFilter"
+                                size="12"
+                                >
+                            </clr-icon>
+                            <clr-icon shape="info-circle"
+                                style="color: rgb(101, 101, 196);
+                                    float: right;
+                                    margin-top: 4px;"
+                                >
+                            </clr-icon>
+                        </div>
                     </div>
 
+                    
 
 
                     <!-- GRAPH TYPES -->
@@ -585,7 +614,6 @@
                             Show Data
                         </button>
                     </div>
-
                     <div class="editorButtonCancel">
                         <button *ngIf="showPreview"
                             class="btn btn-sm btn-secondary"
