@@ -55,7 +55,7 @@ clr-dg-cell {
 .gridOverall {
     display: grid;
     grid-template-columns: repeat(19, 1fr);
-    grid-template-rows: repeat(21, 1rem);
+    grid-template-rows: repeat(23, 1rem);
     margin-top: 2px;
 }
     .closeButton {
@@ -94,7 +94,7 @@ clr-dg-cell {
         /* autoprefixer: off */
         grid-column-end: 20;
         grid-row-start: 2;
-        grid-row-end: 22;
+        grid-row-end: 23;
 
         display: grid;
         grid-template-columns: repeat(50, 1fr);
@@ -203,11 +203,11 @@ clr-dg-cell {
         /* autoprefixer: off */
         grid-column-end: 20;
         grid-row-start: 2;
-        grid-row-end: 20;
+        grid-row-end: 23;
 
         display: grid;
         grid-template-columns: repeat(50, 1fr);
-        grid-template-rows: repeat(24, 0.8rem);
+        grid-template-rows: repeat(27, 0.8rem);
         margin: 2px;
         padding: 0px;
     }
@@ -274,7 +274,7 @@ clr-dg-cell {
             /* autoprefixer: off */
             grid-column-end: 10;
             grid-row-start: 8;
-            grid-row-end: 25;
+            grid-row-end: 27;
             margin: 0px;
             margin-left: 2px;
             text-align: left;
@@ -301,7 +301,7 @@ clr-dg-cell {
             /* autoprefixer: off */
             grid-column-end: 21;
             grid-row-start: 2;
-            grid-row-end: 25;
+            grid-row-end: 27;
             margin-left: 8px;
             text-align: left;
             overflow: hidden;
@@ -658,7 +658,7 @@ clr-dg-cell {
             /* autoprefixer: off */
             grid-column-end: 30;
             grid-row-start: 2;
-            grid-row-end: 25;
+            grid-row-end: 27;
             margin: 0px;
             margin-left: 8px;
             padding: 4px;
@@ -699,24 +699,24 @@ clr-dg-cell {
             grid-column-start: 32;
             /* autoprefixer: off */
             grid-column-end: 35;
-            grid-row-start: 23;
-            grid-row-end: 24;
+            grid-row-start: 25;
+            grid-row-end: 26;
             text-align: left;
         }
         .editorButtonCancel {
             grid-column-start: 40;
             /* autoprefixer: off */
             grid-column-end: 42;
-            grid-row-start: 23;
-            grid-row-end: 24;
+            grid-row-start: 25;
+            grid-row-end: 26;
             text-align: left;
         }
         .editorButtonSave {
             grid-column-start: 46;
             /* autoprefixer: off */
             grid-column-end: 48;
-            grid-row-start: 23;
-            grid-row-end: 24;
+            grid-row-start: 25;
+            grid-row-end: 26;
             text-align: left;
         }
 
