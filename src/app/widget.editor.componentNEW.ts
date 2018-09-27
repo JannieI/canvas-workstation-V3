@@ -236,7 +236,7 @@ export interface dataSchemaInterface {
     widgetGraphs: WidgetGraph[] =[];
     xPropertiesAggregate: string = '';
     xPropertiesAggregateVegaLiteName: string = '';
-    xPropertiesBin: string = ''
+    xPropertiesBin: string = 'False'
     xPropertiesFormat: string = ''
     xPropertiesImpute: string = ''
     xPropertiesStack: string = ''
@@ -1512,7 +1512,7 @@ this.localWidget.graphYtype);
         this.showFieldXPropertiesInfo = false;
 
         if (this.xPropertiesAggregate != ''
-            ||  this.xPropertiesBin != ''
+            ||  this.xPropertiesBin != 'False'
             ||  this.xPropertiesFormat != ''
             ||  this.xPropertiesImpute != ''
             ||  this.xPropertiesStack != ''
