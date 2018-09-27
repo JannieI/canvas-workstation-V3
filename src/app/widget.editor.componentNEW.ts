@@ -214,6 +214,7 @@ export interface dataSchemaInterface {
     showFieldXPropertiesTitle: boolean = false;
     showFieldYProperties: boolean = false;
     showFieldFilter: boolean = false;
+    showSelectionFilter: boolean = false;
     showFieldYPropertiesTitle: boolean = false;
     showPreview: boolean = false;
     showRowDeleteIcon: boolean = false;
@@ -1507,12 +1508,21 @@ this.localWidget.graphYtype);
     }
 
     clickShowFilter() {
-        // Show Y Properties Area
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowYProperties', '@Start');
+        // Show Filter Area
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowFilter', '@Start');
 
         // Toggle
         this.showFieldFilter = !this.showFieldFilter;
     }
+
+    clickShowSelection() {
+        // Show Selection Area
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowSelection', '@Start');
+
+        // Toggle
+        this.showSelectionFilter = !this.showSelectionFilter;
+    }
+
 
     clickSelectTitleColor(ev: any) {
         // Select Background Colour
