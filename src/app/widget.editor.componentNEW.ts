@@ -389,6 +389,94 @@ export interface dataSchemaInterface {
             description: 'The abbreviated names of the months (starting with January).'
         }
     ]
+    siPrefix: {displayFormat: string; d3Format: string; description: string}[] = 
+    [
+        {
+            displayFormat: 'yocto',
+            d3Format: 'y',
+            description: '10⁻²⁴'
+        },
+        {
+            displayFormat: 'zepto',
+            d3Format: 'z',
+            description: '10⁻²¹'
+        },
+        {
+            displayFormat: 'atto',
+            d3Format: 'a',
+            description: '10⁻¹⁸'
+        },
+        {
+            displayFormat: 'femto',
+            d3Format: 'f',
+            description: '10⁻¹⁵'
+        },
+        {
+            displayFormat: 'pico',
+            d3Format: 'p',
+            description: '10⁻¹²'
+        },
+        {
+            displayFormat: 'nano',
+            d3Format: 'n',
+            description: '10⁻⁹'
+        },
+        {
+            displayFormat: 'micro',
+            d3Format: 'µ',
+            description: '10⁻⁶'
+        },
+        {
+            displayFormat: 'milli',
+            d3Format: 'm',
+            description: '10⁻³'
+        },
+        {
+            displayFormat: ' (none')
+            d3Format: '​',
+            description: '10⁰'
+        },
+        {
+            displayFormat: 'kilo',
+            d3Format: 'k',
+            description: '10³'
+        },
+        {
+            displayFormat: 'mega',
+            d3Format: 'M',
+            description: '10⁶'
+        },
+        {
+            displayFormat: 'giga',
+            d3Format: 'G',
+            description: '10⁹'
+        },
+        {
+            displayFormat: 'tera',
+            d3Format: 'T',
+            description: '10¹²'
+        },
+        {
+            displayFormat: 'peta',
+            d3Format: 'P',
+            description: '10¹⁵'
+        },
+        {
+            displayFormat: 'exa',
+            d3Format: 'E',
+            description: '10¹⁸'
+        },
+        {
+            displayFormat: 'zetta',
+            d3Format: 'Z',
+            description: '10²¹'
+        },
+        {
+            displayFormat: 'yotta',
+            d3Format: 'Y',
+            description: '10²⁴'
+        }
+    ]
     constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
