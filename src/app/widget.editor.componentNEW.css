@@ -158,7 +158,7 @@ clr-dg-cell {
             /* autoprefixer: off */
             grid-column-end: 20;
             grid-row-start: 4;
-            grid-row-end: 25;
+            grid-row-end: 27;
             text-align: left;
             overflow-y: scroll;
         }
@@ -187,8 +187,8 @@ clr-dg-cell {
             grid-column-start: 44;
             /* autoprefixer: off */
             grid-column-end: 46;
-            grid-row-start: 22;
-            grid-row-end: 23;
+            grid-row-start: 26;
+            grid-row-end: 27;
         }
 
 
@@ -274,7 +274,7 @@ clr-dg-cell {
             /* autoprefixer: off */
             grid-column-end: 10;
             grid-row-start: 8;
-            grid-row-end: 27;
+            grid-row-end: 28;
             margin: 0px;
             margin-left: 2px;
             text-align: left;
@@ -301,7 +301,7 @@ clr-dg-cell {
             /* autoprefixer: off */
             grid-column-end: 21;
             grid-row-start: 2;
-            grid-row-end: 27;
+            grid-row-end: 28;
             margin-left: 8px;
             text-align: left;
             overflow: hidden;
@@ -565,6 +565,139 @@ clr-dg-cell {
                     width: 68%;    
                 }
 
+                .editorXPropertiesBinTitle {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin-left: 4px;
+                    width: 64px;    
+                }
+                .editorXPropertiesBin {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin-left: 4px;
+                    width: 64px;    
+                }
+                
+                .editorXPropertiesFormatTitle {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin-left: 4px;
+                    width: 64px;    
+                }
+                .editorXPropertiesFormat {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin-left: 4px;
+                    width: 64px;    
+                }
+                
+                .editorXPropertiesImputeTitle {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin-left: 4px;
+                    width: 64px;    
+                }
+                .editorXPropertiesImpute {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin-left: 4px;
+                    width: 64px;    
+                }
+
+                .editorXPropertiesStackTitle {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin-left: 4px;
+                    width: 64px;    
+                }
+                .editorXPropertiesStack {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin-left: 4px;
+                    width: 64px;    
+                }
+                
+                .editorXPropertiesSortTitle {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin-left: 4px;
+                    width: 64px;    
+                }
+                .editorXPropertiesSort {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin-left: 4px;
+                    width: 64px;    
+                }
+                
+                .editorXPropertiesTypeTitle {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin-left: 4px;
+                    width: 64px;    
+                }
+                .editorXPropertiesType {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin-left: 4px;
+                    width: 64px;    
+                }
+                
+                .editorXPropertiesTimeUnitTitle {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin-left: 4px;
+                    width: 64px;    
+                }
+                .editorXPropertiesTimeUnit {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin-left: 4px;
+                    width: 64px;    
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             /* Y PROPERTIES */
             .editorYPropertiesTitle {
                 background-color: rgb(211, 209, 226);
@@ -658,7 +791,7 @@ clr-dg-cell {
             /* autoprefixer: off */
             grid-column-end: 30;
             grid-row-start: 2;
-            grid-row-end: 27;
+            grid-row-end: 28;
             margin: 0px;
             margin-left: 8px;
             padding: 4px;
@@ -699,24 +832,24 @@ clr-dg-cell {
             grid-column-start: 32;
             /* autoprefixer: off */
             grid-column-end: 35;
-            grid-row-start: 25;
-            grid-row-end: 26;
+            grid-row-start: 26;
+            grid-row-end: 27;
             text-align: left;
         }
         .editorButtonCancel {
             grid-column-start: 40;
             /* autoprefixer: off */
             grid-column-end: 42;
-            grid-row-start: 25;
-            grid-row-end: 26;
+            grid-row-start: 26;
+            grid-row-end: 27;
             text-align: left;
         }
         .editorButtonSave {
             grid-column-start: 46;
             /* autoprefixer: off */
             grid-column-end: 48;
-            grid-row-start: 25;
-            grid-row-end: 26;
+            grid-row-start: 26;
+            grid-row-end: 27;
             text-align: left;
         }
 
