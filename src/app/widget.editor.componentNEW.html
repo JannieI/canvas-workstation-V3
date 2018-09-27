@@ -22,7 +22,7 @@
                                 Help
                             </h5>
                             <p style="margin-top: 0; color:gray;">
-                                <b>For new Widgets:</b> select a datasource, and click Continue 
+                                <b>For new Widgets:</b> select a datasource, and click Continue
                                 to the Widget Editor.
                                 <b>Widget Editor:</b> drag a Field onto the X and Y coloured blocks.
                                 Select a graph type.  Properties can be changed by clicking the dropdown
@@ -42,11 +42,11 @@
                     <div class="datasourceMainHelp">
                         Select a <b>Datasources</b> on which a Widget must be created.  Details
                         about the datasource is shown on the right:
-                    </div>  
+                    </div>
 
                     <div class="datasourceMainDescriptionTitle">
                         <b>Description:</b>
-                    </div>                        
+                    </div>
                     <div class="datasourceMainDescription">
                         {{ selectedDescription }}
                     </div>
@@ -59,34 +59,35 @@
                         <b>Datasources:</b>
                     </div>
                     <div class="datasourceMainList">
-                        <nav
-                            >
-                            <div>
-                                <clr-datagrid class="datagrid-compact">
-                                    <clr-dg-column clrDgField="name"  
-                                        [(clrDgSortOrder)]="sortOrder"
-                                        (click)="sortOrder=sortOrder * -1"
-                                        >
-                                        Name
-                                    </clr-dg-column>
-                                    
-                                    <clr-dg-row *clrDgItems="let row of localDatasources; let i = index"
-                                        [clrDgItem]="row"
-                                        [style.background-color]="(i == selectedRowIndex)? '#123456' : 'white'"
-                                        [style.color]="(i == selectedRowIndex)? 'white' : 'gray'"
-                                        (click)="clickDSrow(i, row.id)"
-                                        >
-                                        <clr-dg-cell>
-                                            {{ row.name }}
-                                            <span *ngIf="row.nrWidgets > 0"
-                                                class="badge badge-5">{{row.nrWidgets}}
-                                            </span>
-                                        </clr-dg-cell>
-                                    </clr-dg-row>
+                        <clr-datagrid class="datagrid-compact" id="my-datagrid">
+                            <clr-dg-column clrDgField="name"
+                                [(clrDgSortOrder)]="sortOrder"
+                                (click)="sortOrder=sortOrder * -1"
+                                [style.color]="'orange'"
+                                [style.width.px]="40"
+                                >
+                                Name
+                            </clr-dg-column>
 
-                                </clr-datagrid>
-                            </div>
-                        </nav>
+                            <clr-dg-row *clrDgItems="let row of localDatasources; let i = index"
+                                [clrDgItem]="row"
+                                [style.font-size.px]="12"
+                                [style.color]="'red'"
+
+
+                                [style.background-color]="(i == selectedRowIndex)? '#123456' : 'white'"
+                                [style.color]="(i == selectedRowIndex)? 'white' : 'gray'"
+                                (click)="clickDSrow(i, row.id)"
+                                >
+                                <clr-dg-cell>
+                                    {{ row.name }}
+                                    <span *ngIf="row.nrWidgets > 0"
+                                        class="badge badge-5">{{row.nrWidgets}}
+                                    </span>
+                                </clr-dg-cell>
+                            </clr-dg-row>
+
+                        </clr-datagrid>
                     </div>
 
                     <div class="datasourceMainPreviewTitle">
@@ -97,12 +98,16 @@
 
                             <clr-dg-placeholder>Select a datasource to preview here</clr-dg-placeholder>
 
-                            <clr-dg-column *ngFor="let row of dataFieldNames; let i = index;">
+                            <clr-dg-column *ngFor="let row of dataFieldNames; let i = index;"
+                            [style.background-color]="i==1?  'red'  :  ''">
                                 {{row}}
+                            <clr-icon shape="times" *ngIf="i==1"
+                                (click)="clickClearRowField(i)">
+                            </clr-icon>
                             </clr-dg-column>
                             <clr-dg-row *ngFor="let row of currentData">
 
-                                <clr-dg-cell *ngFor="let col of dataFieldNames; 
+                                <clr-dg-cell *ngFor="let col of dataFieldNames;
                                     let i = index"
                                     >
                                     {{ row[col] }}
@@ -137,7 +142,7 @@
                                 {{column.displayName}}
                                 </ng-container>
                             </ng-template>
-                            
+
                             <clr-dg-string-filter *ngIf="column.name === 'email'" id="emailFilter" [clrDgStringFilter]="emailFilter"  [clrFilterValue]="(column.email)"></clr-dg-string-filter>
                         </clr-dg-column> -->
 
@@ -148,7 +153,7 @@
                             <b>
                                 Composition:
                             </b>
-                        </div>    
+                        </div>
                         <div class="select editorCompositionType">
                             <select id="selects_3"
                                 [(ngModel)]="currentGraphComposition"
@@ -159,13 +164,13 @@
                                 <option>Vconcat</option>
                                 <option>Hconcat</option>
                                 <option>Repeat</option>
-                            </select>                        
+                            </select>
                         </div>
                         <div class="editorCompositionLayerTitle">
                             <b>
                                 Layer:
                             </b>
-                        </div>    
+                        </div>
                         <div class="select editorCompositionLayer">
                             <select id="currentGraphLayer"
                                 [(ngModel)]="currentGraphLayer"
@@ -173,8 +178,8 @@
                                 <option *ngFor="let row of graphLayers; let i = index">
                                     {{ row }}
                                 </option>
-                            </select>                        
-                        </div>                        
+                            </select>
+                        </div>
                     </div>
 
 
@@ -186,13 +191,13 @@
                         <nav
                             >
                             <clr-datagrid class="datagrid-compact">
-                                <clr-dg-column clrDgField="name"  
+                                <clr-dg-column clrDgField="name"
                                     [(clrDgSortOrder)]="sortOrder"
                                     (click)="sortOrder=sortOrder * -1"
                                     >
                                     Name
                                 </clr-dg-column>
-                                
+
                                 <clr-dg-row *clrDgItems="let row of dataSchema; let i = index"
                                     [clrDgItem]="row"
                                     >
@@ -223,7 +228,7 @@
                                             [style.color]="'white'"
                                             >
                                         </clr-icon>
-                
+
                                         {{ row.name }}
                                         <!-- <span class="badge badge-light-gray">
                                             {{row.length}}
@@ -234,7 +239,7 @@
                             </clr-datagrid>
                         </nav>
                     </div>
-        
+
 
                     <!-- TITLE -->
                     <div class="editorPropertiesTitle">
@@ -246,7 +251,7 @@
 
                         <div class="editorColFieldTitle">
                             X axis:
-                        </div>    
+                        </div>
                         <div class="editorColField"
                             id="target"
                             (drop)="dropColumn($event);"
@@ -264,7 +269,7 @@
 
                         <div class="editorRowFieldTitle">
                             Y axis:
-                        </div>    
+                        </div>
                         <div class="editorRowField"
                             id="target"
                             (drop)="dropRow($event);"
@@ -279,10 +284,10 @@
                             </clr-icon>
                             {{ rowField }}
                         </div>
-        
+
                         <div class="editorColourFieldTitle">
                             Colour:
-                        </div>    
+                        </div>
                         <div class="editorColourField"
                             id="target"
                             (drop)="dropColour($event);"
@@ -321,7 +326,7 @@
                         <!-- Title Text -->
                         <div class="editorTitleTextTitle" *ngIf="showFieldTitleProperties">
                             Text:
-                        </div>    
+                        </div>
                         <div class="editorTitleText" *ngIf="showFieldTitleProperties">
                             <input type="text"
                                 placeholder="Text of title"
@@ -334,7 +339,7 @@
                         <!-- Title Anchor -->
                         <div class="editorTitleAnchorTitle" *ngIf="showFieldTitleProperties">
                             Anchor:
-                        </div>    
+                        </div>
                         <div class="select editorTitleAnchor" *ngIf="showFieldTitleProperties">
                             <select id="selects_3"
                                 [(ngModel)]="titleAnchor"
@@ -342,13 +347,13 @@
                                 <option>Start</option>
                                 <option>Middle</option>
                                 <option>End</option>
-                            </select>                        
-                        </div> 
+                            </select>
+                        </div>
 
                         <!-- Title Angle in degrees -->
                         <div class="editorTitleAngleTitle" *ngIf="showFieldTitleProperties">
                             Angle:
-                        </div>    
+                        </div>
                         <div class="editorTitleAngle" *ngIf="showFieldTitleProperties">
                             <input type="number"
                                 placeholder="Angle of title"
@@ -360,7 +365,7 @@
                         <!-- Vertical text baseline for title text. -->
                         <div class="editorTitleBaselineTitle" *ngIf="showFieldTitleProperties">
                             Baseline:
-                        </div>    
+                        </div>
                         <div class="select editorTitleBaseline" *ngIf="showFieldTitleProperties">
                             <select id="selects_3"
                                 [(ngModel)]="titleBaseline"
@@ -368,13 +373,13 @@
                                 <option>Top</option>
                                 <option>Middle</option>
                                 <option>Bottom</option>
-                            </select>                        
-                        </div> 
+                            </select>
+                        </div>
 
                         <!-- Text color for title text.  -->
                         <div class="editorTitleColourTitle" *ngIf="showFieldTitleProperties">
                             Color:
-                        </div>    
+                        </div>
                         <div class="select editorTitleColour" *ngIf="showFieldTitleProperties">
                             <select [(ngModel)]="titleColorName"
                                 name="titleColorName"
@@ -387,11 +392,11 @@
                                 </option>
                             </select>
                         </div>
-            
+
                         <!-- Font name for title text. -->
                         <div class="editorTitleFontTitle" *ngIf="showFieldTitleProperties">
                             Font:
-                        </div>    
+                        </div>
                         <div class="editorTitleFont" *ngIf="showFieldTitleProperties">
                             <input type="text"
                                 placeholder="Font name"
@@ -403,7 +408,7 @@
                         <!-- Font size in pixels for title text. Default value: 10. -->
                         <div class="editorTitleFontSizeTitle" *ngIf="showFieldTitleProperties">
                             Font Size:
-                        </div>    
+                        </div>
                         <div class="editorTitleFontSize" *ngIf="showFieldTitleProperties">
                             <input type="number"
                                 placeholder="Font Size"
@@ -415,7 +420,7 @@
                         <!-- Font Weight in pixels for title text. Default value: 10. -->
                         <div class="editorTitleFontWeightTitle" *ngIf="showFieldTitleProperties">
                             Font Weight:
-                        </div>    
+                        </div>
                         <div class="editorTitleFontWeight" *ngIf="showFieldTitleProperties">
                             <input type="number"
                                 placeholder="Font Weight (100, 200..900)"
@@ -427,7 +432,7 @@
                         <!-- limit: The maximum allowed length in pixels of legend labels.-->
                         <div class="editorTitleLengthTitle" *ngIf="showFieldTitleProperties">
                             Length:
-                        </div>    
+                        </div>
                         <div class="editorTitleLength" *ngIf="showFieldTitleProperties">
                             <input type="number"
                                 placeholder="Max length in px"
@@ -439,7 +444,7 @@
                         <!-- orient: Default title orientation ("top", "bottom", "left", or "right") -->
                         <div class="editorTitleOrientationTitle" *ngIf="showFieldTitleProperties">
                             Orientation:
-                        </div>    
+                        </div>
                         <div class="select editorTitleOrientation" *ngIf="showFieldTitleProperties">
                             <select id="selects_3"
                                 [(ngModel)]="titleOrientation"
@@ -448,8 +453,8 @@
                                 <option>Bottom</option>
                                 <option>Left</option>
                                 <option>Right</option>
-                            </select>                        
-                        </div> 
+                            </select>
+                        </div>
 
 
 
@@ -467,8 +472,8 @@
                                 size="12"
                                 >
                             </clr-icon>
-                            <clr-icon shape="info-circle" *ngIf="showFieldXPropertiesInfo" 
-                                style="color: rgb(101, 101, 196); 
+                            <clr-icon shape="info-circle" *ngIf="showFieldXPropertiesInfo"
+                                style="color: rgb(101, 101, 196);
                                     float: right;
                                     margin-top: 4px;"
                                 >
@@ -476,7 +481,7 @@
                         </div>
                         <div class="editorXPropertiesAggregateTitle" *ngIf="showFieldXProperties">
                             Aggregate:
-                        </div>    
+                        </div>
                         <div class="select editorXPropertiesAggregate" *ngIf="showFieldXProperties">
                             <select id="selects_3"
                                 [(ngModel)]="xPropertiesAggregate"
@@ -485,7 +490,7 @@
                                 <option *ngFor="let row of aggregations; let i = index">
                                     {{ row.displayName }}
                                 </option>
-                            </select>                        
+                            </select>
                         </div>
 
 
@@ -503,8 +508,8 @@
                                 size="12"
                                 >
                             </clr-icon>
-                            <clr-icon shape="info-circle" 
-                                style="color: rgb(101, 101, 196); 
+                            <clr-icon shape="info-circle"
+                                style="color: rgb(101, 101, 196);
                                     float: right;
                                     margin-top: 4px;"
                                 >
@@ -512,7 +517,7 @@
                         </div>
                         <div class="editorYPropertiesAggregateTitle" *ngIf="showFieldYProperties">
                             Aggregate:
-                        </div>    
+                        </div>
                         <div class="select editorYPropertiesAggregate" *ngIf="showFieldYProperties">
                             <select id="selects_3"
                                 [(ngModel)]="yPropertiesAggregate"
@@ -520,7 +525,7 @@
                                 <option *ngFor="let row of aggregations; let i = index">
                                     {{ row.displayName }}
                                 </option>
-                            </select>                        
+                            </select>
                         </div>
                     </div>
 
@@ -534,7 +539,7 @@
                     </div>
                     <div class="editorTypes">
                         <div class="editorTypeImages" *ngFor="let row of widgetGraphs">
-                            <span 
+                            <span
                                 (click)="showGraph(row.id)"
                                 >
                                 <i>
@@ -573,7 +578,7 @@
                             Show Data
                         </button>
                     </div>
-    
+
                     <div class="editorButtonCancel">
                         <button *ngIf="showPreview"
                             class="btn btn-sm btn-secondary"
@@ -590,7 +595,7 @@
                             Save
                         </button>
                     </div>
-        
+
                 </div>
 
             </div>

@@ -6,22 +6,12 @@
     padding: 10px !important;
 }
 
-.datagrid-compact.datagrid-host {
-    margin: 0 !important;
-    padding: 0 !important;
+#my-datagrid {
+    height: 100%;
 }
 
-.datagrid-scroll-wrapper {
-    margin: 0 !important;
-    padding-top: 0px !important;
-}
-
-.datagrid {
-    margin: 0 !important;
-    padding-top: 0px !important;
-}
-
-datagrid {
+/* .datagrid {
+    line-height: 0.7rem !important;
     margin: 0 !important;
     padding-top: 0px !important;
 }
@@ -31,6 +21,37 @@ datagrid {
     padding: 0 !important;
 }
 
+.datagrid-host {
+    color: green !important;
+    line-height: 0.5rem !important;
+}
+
+.datagrid-overlay-wrapper {
+    color: green !important;
+    line-height: 0.5rem !important;
+}
+
+.datagrid-scroll-wrapper {
+    color: green !important;
+    line-height: 0.5rem !important;
+} */
+
+/* .clr-datagrid {
+}
+.datagrid {
+}
+.datagrid-table-wrapper {
+}
+.datagrid-body {
+}
+clr-dg-row {
+}
+clr-dg-cell {
+} */
+
+
+
+/* GRID */
 .gridOverall {
     display: grid;
     grid-template-columns: repeat(19, 1fr);
@@ -166,8 +187,8 @@ datagrid {
             grid-column-start: 44;
             /* autoprefixer: off */
             grid-column-end: 46;
-            grid-row-start: 20;
-            grid-row-end: 21;
+            grid-row-start: 22;
+            grid-row-end: 23;
         }
 
 
