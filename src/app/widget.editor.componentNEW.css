@@ -73,7 +73,7 @@ datagrid {
         /* autoprefixer: off */
         grid-column-end: 20;
         grid-row-start: 2;
-        grid-row-end: 20;
+        grid-row-end: 22;
 
         display: grid;
         grid-template-columns: repeat(50, 1fr);
@@ -283,6 +283,7 @@ datagrid {
             grid-row-end: 25;
             margin-left: 8px;
             text-align: left;
+            overflow: hidden;
         }
 
             .editorColFieldTitle {

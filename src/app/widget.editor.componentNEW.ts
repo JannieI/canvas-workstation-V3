@@ -83,98 +83,98 @@ export interface dataSchemaInterface {
     }
 
     aggregations: { displayName: string; vegaLiteName: string; description: string}[] = [
-        {            	
+        {
             displayName: '',
-            vegaLiteName: '', 
+            vegaLiteName: '',
             description: 'None.'
         },
-        {            	
+        {
             displayName: 'Average',
-            vegaLiteName: 'average', 
+            vegaLiteName: 'average',
             description: 'The mean (average) field value. Identical to mean.'
         },
         {
             displayName: 'Count',
-            vegaLiteName: 'count', 
+            vegaLiteName: 'count',
             description: 'The total count of data objects in the group.  Similar to SQL’s count(*), count can be specified with a field "*".'
         },
-        {            	
+        {
             displayName: 'Distinct',
-            vegaLiteName: 'distinct', 
+            vegaLiteName: 'distinct',
             description: 'The count of distinct field values.'
         },
-        {            	
+        {
             displayName: 'Max',
-            vegaLiteName: 'max', 
+            vegaLiteName: 'max',
             description: 'The maximum field value.'
         },
-        {            	
+        {
             displayName: 'Mean',
-            vegaLiteName: 'mean', 
+            vegaLiteName: 'mean',
             description: 'The mean (average) field value.'
         },
-        {            	
+        {
             displayName: 'Median',
-            vegaLiteName: 'median', 
+            vegaLiteName: 'median',
             description: 'The median field value.'
         },
-        {            	
+        {
             displayName: 'Min',
-            vegaLiteName: 'min', 
+            vegaLiteName: 'min',
             description: 'The minimum field value.'
         },
-        {            	
+        {
             displayName: 'Mising',
-            vegaLiteName: 'missing', 
+            vegaLiteName: 'missing',
             description: 'The count of null or undefined field values.'
         },
-        {            	
+        {
             displayName: 'Lower quartile boundary',
-            vegaLiteName: 'q1', 
+            vegaLiteName: 'q1',
             description: 'The lower quartile boundary of field values.'
         },
-        {            	
+        {
             displayName: 'Lower Confidence',
-            vegaLiteName: 'ci0', 
+            vegaLiteName: 'ci0',
             description: 'The lower boundary of the bootstrapped 95% confidence interval of the mean field value.'
         },
-        {            	
+        {
             displayName: 'Standard Deviation',
-            vegaLiteName: 'stdev', 
+            vegaLiteName: 'stdev',
             description: 'The sample standard deviation of field values.'
         },
-        {            	
+        {
             displayName: 'Standard Error',
-            vegaLiteName: 'stderr', 
+            vegaLiteName: 'stderr',
             description: 'The standard error of field values.'
         },
-        {            	
+        {
             displayName: 'Sum',
-            vegaLiteName: 'sum', 
+            vegaLiteName: 'sum',
             description: 'The sum of field values.'
         },
-        {            	
+        {
             displayName: 'Upper Confidence',
-            vegaLiteName: 'ci1', 
+            vegaLiteName: 'ci1',
             description: 'The upper boundary of the bootstrapped 95% confidence interval of the mean field value.'
         },
-        {            	
+        {
             displayName: 'Upper quartile boundary',
-            vegaLiteName: 'q3', 
+            vegaLiteName: 'q3',
             description: 'The upper quartile boundary of field values.'
         },
-        {            	
+        {
             displayName: 'Valid',
-            vegaLiteName: 'valid', 
+            vegaLiteName: 'valid',
             description: 'The count of field values that are not null, undefined or NaN.'
         },
-        {            	
+        {
             displayName: 'Variance',
-            vegaLiteName: 'variance', 
+            vegaLiteName: 'variance',
             description: 'The sample variance of field values.'
         }
     ]
-    backgroundcolors: CSScolor[];    
+    backgroundcolors: CSScolor[];
     colField: string = 'Drag a field here ...';
     containerHasContextMenus: boolean = true;
     containerHasTitle: boolean = true;
@@ -234,8 +234,161 @@ export interface dataSchemaInterface {
     xPropertiesAggregateVegaLiteName: string = '';
     yPropertiesAggregate: string = '';
     yPropertiesAggregateVegaLiteName: string = '';
-    
 
+
+    dateTimeFormats: {displayFormat: string; d3Format: string, description: string}[] =
+    [
+        {
+            displayFormat: 'Short Weekday Name',
+            d3Format: '%a',
+            description: 'abbreviated weekday name.*'
+        },
+        {
+            displayFormat: 'Full Weekday Name',
+            d3Format: '%A',
+            description: 'full weekday name.*'
+        },
+        {
+            displayFormat: 'Abr Month Name',
+            d3Format: '%b',
+            description: 'abbreviated month name.*'
+        },
+        {
+            displayFormat: 'Full Month Name',
+            d3Format: '%B',
+            description: 'full month name.*'
+        },
+        {
+            displayFormat: 'Locale Datetime',
+            d3Format: '%c',
+            description: 'the locale’s date and time, such as %x, %X.*'
+        },
+        {
+            displayFormat: 'Zero padded Day',
+            d3Format: '%d',
+            description: 'zero-padded day of the month as a decimal number [01,31].'
+        },
+        {
+            displayFormat: 'Space padded Day',
+            d3Format: '%e',
+            description: 'space-padded day of the month as a decimal number [ 1,31]; equivalent to %_d.'
+        },
+        {
+            displayFormat: 'Microseconds',
+            d3Format: '%f',
+            description: 'microseconds as a decimal number [000000, 999999].'
+        },
+        {
+            displayFormat: 'Hour (24h)',
+            d3Format: '%H',
+            description: 'hour (24-hour clock) as a decimal number [00,23].'
+        },
+        {
+            displayFormat: 'Hour (12h)',
+            d3Format: '%I',
+            description: 'hour (12-hour clock) as a decimal number [01,12].'
+        },
+        {
+            displayFormat: 'Day number of year',
+            d3Format: '%j',
+            description: 'day of the year as a decimal number [001,366].'
+        },
+        {
+            displayFormat: 'Month number',
+            d3Format: '%m',
+            description: 'month as a decimal number [01,12].'
+        },
+        {
+            displayFormat: 'Minutes',
+            d3Format: '%M',
+            description: 'minute as a decimal number [00,59].'
+        },
+        {
+            displayFormat: 'Millisecond',
+            d3Format: '%L',
+            description: 'milliseconds as a decimal number [000, 999].'
+        },
+        {
+            displayFormat: 'AM or PM',
+            d3Format: '%p',
+            description: 'either AM or PM.*'
+        },
+        {
+            displayFormat: 'Seconds',
+            d3Format: '%S',
+            description: 'second as a decimal number [00,61].'
+        },
+        {
+            displayFormat: 'Weekday number (Monday)',
+            d3Format: '%u',
+            description: 'Monday-based (ISO 8601) weekday as a decimal number [1,7].'
+        },
+        {
+            displayFormat: 'Week number (Sunday)',
+            d3Format: '%U',
+            description: 'Sunday-based week of the year as a decimal number [00,53].'
+        },
+        {
+            displayFormat: 'Week number (ISO)',
+            d3Format: '%V',
+            description: 'ISO 8601 week of the year as a decimal number [01, 53].'
+        },
+        {
+            displayFormat: 'Weekday (Sunday)',
+            d3Format: '%w',
+            description: 'Sunday-based weekday as a decimal number [0,6].'
+        },
+        {
+            displayFormat: 'Week number (Monday)',
+            d3Format: '%W',
+            description: 'Monday-based week of the year as a decimal number [00,53].'
+        },
+        {
+            displayFormat: 'Locale date',
+            d3Format: '%x',
+            description: 'the locale’s date, such as %-m/%-d/%Y.*'
+        },
+        {
+            displayFormat: 'Locale time',
+            d3Format: '%X',
+            description: 'the locale’s time, such as %-I:%M:%S %p.*'
+        },
+        {
+            displayFormat: 'Year as YY',
+            d3Format: '%y',
+            description: 'year without century as a decimal number [00,99].'
+        },
+        {
+            displayFormat: 'Year as YYYY',
+            d3Format: '%Y',
+            description: 'year with century as a decimal number.'
+        },
+        {
+            displayFormat: 'Date Time',
+            d3Format: 'dateTime',
+            description: 'The date and time (%c) format specifier (e.g., "%a %b %e %X %Y").'
+        },
+        {
+            displayFormat: 'Full Weekday',
+            d3Format: 'days',
+            description: 'The full names of the weekdays, starting with Sunday.'
+        },
+        {
+            displayFormat: 'Short Weekday',
+            d3Format: 'shortDays',
+            description: 'The abbreviated names of the weekdays, starting with Sunday.'
+        },
+        {
+            displayFormat: 'full Months',
+            d3Format: 'months',
+            description: 'The full names of the months (starting with January).'
+        },
+        {
+            displayFormat: 'Short Months',
+            d3Format: 'shortMonths',
+            description: 'The abbreviated names of the months (starting with January).'
+        }
+    ]
     constructor(
         private globalFunctionService: GlobalFunctionService,
         private globalVariableService: GlobalVariableService,
@@ -436,7 +589,7 @@ export interface dataSchemaInterface {
             specification['title']['fontWeight'] = this.titleFontWeight;
             specification['title']['limit'] = this.titleLength;
             specification['title']['orient'] = this.titleOrientation.toLowerCase();
-            
+
             if (this.localWidget.graphUrl != ""  &&  this.localWidget.graphUrl != null) {
                 specification['data'] = {"url": this.localWidget.graphUrl};
             } else {
@@ -447,7 +600,7 @@ export interface dataSchemaInterface {
             specification['height'] = height;
             // specification['mark']['type'] = this.localWidget.graphMark;
             // specification['mark']['color'] = this.localWidget.graphMarkColor;
-console.warn('xx this.localWidget.graphXtype this.yPropertiesAggregateVegaLiteName', 
+console.warn('xx this.localWidget.graphXtype this.yPropertiesAggregateVegaLiteName',
     this.localWidget.graphXtype, this.yPropertiesAggregate);
 
             specification['encoding']['x']['field'] = this.localWidget.graphXfield;
@@ -1199,7 +1352,7 @@ this.localWidget.graphYtype);
         // Show X Properties Area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowXProperties', '@Start');
 
-        // Toggle 
+        // Toggle
         this.showFieldXProperties = !this.showFieldXProperties;
     }
 
@@ -1218,7 +1371,7 @@ this.localWidget.graphYtype);
         // Show Title Properties Area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowTitleProperties', '@Start');
 
-        // Toggle 
+        // Toggle
         this.showFieldTitleProperties = !this.showFieldTitleProperties;
     }
 
@@ -1226,7 +1379,7 @@ this.localWidget.graphYtype);
         // Show Y Properties Area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowYProperties', '@Start');
 
-        // Toggle 
+        // Toggle
         this.showFieldYProperties = !this.showFieldYProperties;
     }
 
