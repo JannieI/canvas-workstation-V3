@@ -372,7 +372,7 @@
                                 >
                         </div>
 
-                        <!-- Vertical text baseline for title text. -->
+                        <!-- Title Vertical text baseline for title text. -->
                         <div class="editorTitleBaselineTitle" *ngIf="showFieldTitleProperties">
                             Baseline:
                         </div>
@@ -386,7 +386,7 @@
                             </select>
                         </div>
 
-                        <!-- Text color for title text.  -->
+                        <!-- Title Text color for title text.  -->
                         <div class="editorTitleColourTitle" *ngIf="showFieldTitleProperties">
                             Color:
                         </div>
@@ -403,7 +403,7 @@
                             </select>
                         </div>
 
-                        <!-- Font name for title text. -->
+                        <!-- Title Font name for title text. -->
                         <div class="editorTitleFontTitle" *ngIf="showFieldTitleProperties">
                             Font:
                         </div>
@@ -415,7 +415,7 @@
                                 >
                         </div>
 
-                        <!-- Font size in pixels for title text. Default value: 10. -->
+                        <!-- Title Font size in pixels for title text. Default value: 10. -->
                         <div class="editorTitleFontSizeTitle" *ngIf="showFieldTitleProperties">
                             Font Size:
                         </div>
@@ -427,7 +427,7 @@
                                 >
                         </div>
 
-                        <!-- Font Weight in pixels for title text. Default value: 10. -->
+                        <!-- Title Font Weight in pixels for title text. Default value: 10. -->
                         <div class="editorTitleFontWeightTitle" *ngIf="showFieldTitleProperties">
                             Font Weight:
                         </div>
@@ -439,7 +439,7 @@
                                 >
                         </div>
 
-                        <!-- limit: The maximum allowed length in pixels of legend labels.-->
+                        <!-- lTitle imit: The maximum allowed length in pixels of legend labels.-->
                         <div class="editorTitleLengthTitle" *ngIf="showFieldTitleProperties">
                             Length:
                         </div>
@@ -451,7 +451,7 @@
                                 >
                         </div>
 
-                        <!-- orient: Default title orientation ("top", "bottom", "left", or "right") -->
+                        <!-- Title orient: Default title orientation ("top", "bottom", "left", or "right") -->
                         <div class="editorTitleOrientationTitle" *ngIf="showFieldTitleProperties">
                             Orientation:
                         </div>
@@ -489,6 +489,8 @@
                                 >
                             </clr-icon>
                         </div>
+
+                        <!-- X Properties Aggregate -->
                         <div class="editorXPropertiesAggregateTitle" *ngIf="showFieldXProperties">
                             Aggregate:
                         </div>
@@ -503,7 +505,113 @@
                             </select>
                         </div>
 
+                        <!-- X Properties bin -->
+                        <div class="editorXPropertiesAggregateTitle" *ngIf="showFieldXProperties">
+                            Bin:
+                        </div>
+                        <div class="select editorXPropertiesAggregate" *ngIf="showFieldXProperties">
+                            <select id="selects_3"
+                                [(ngModel)]="xPropertiesAggregate"
+                                (change)="changeXProperty()"
+                                >
+                                <option *ngFor="let row of aggregations; let i = index">
+                                    {{ row.displayName }}
+                                </option>
+                            </select>
+                        </div>
+    
+                        <!-- X Properties Format -->
+                        <div class="editorXPropertiesAggregateTitle" *ngIf="showFieldXProperties">
+                            Format:
+                        </div>
+                        <div class="select editorXPropertiesAggregate" *ngIf="showFieldXProperties">
+                            <select id="selects_3"
+                                [(ngModel)]="xPropertiesAggregate"
+                                (change)="changeXProperty()"
+                                >
+                                <option *ngFor="let row of aggregations; let i = index">
+                                    {{ row.displayName }}
+                                </option>
+                            </select>
+                        </div>
 
+                        <!-- X Properties Impute -->
+                        <div class="editorXPropertiesAggregateTitle" *ngIf="showFieldXProperties">
+                            Impute:
+                        </div>
+                        <div class="select editorXPropertiesAggregate" *ngIf="showFieldXProperties">
+                            <select id="selects_3"
+                                [(ngModel)]="xPropertiesAggregate"
+                                (change)="changeXProperty()"
+                                >
+                                <option *ngFor="let row of aggregations; let i = index">
+                                    {{ row.displayName }}
+                                </option>
+                            </select>
+                        </div>
+
+                        <!-- X Properties stack -->
+                        <div class="editorXPropertiesAggregateTitle" *ngIf="showFieldXProperties">
+                            Stack:
+                        </div>
+                        <div class="select editorXPropertiesAggregate" *ngIf="showFieldXProperties">
+                            <select id="selects_3"
+                                [(ngModel)]="xPropertiesAggregate"
+                                (change)="changeXProperty()"
+                                >
+                                <option *ngFor="let row of aggregations; let i = index">
+                                    {{ row.displayName }}
+                                </option>
+                            </select>
+                        </div>
+
+                        <!-- X Properties Sort -->
+                        <div class="editorXPropertiesAggregateTitle" *ngIf="showFieldXProperties">
+                            Sort:
+                        </div>
+                        <div class="select editorXPropertiesAggregate" *ngIf="showFieldXProperties">
+                            <select id="selects_3"
+                                [(ngModel)]="xPropertiesAggregate"
+                                (change)="changeXProperty()"
+                                >
+                                <option *ngFor="let row of aggregations; let i = index">
+                                    {{ row.displayName }}
+                                </option>
+                            </select>
+                        </div>
+
+                        <!-- X Properties type -->
+                        <div class="editorXPropertiesAggregateTitle" *ngIf="showFieldXProperties">
+                            Type:
+                        </div>
+                        <div class="select editorXPropertiesAggregate" *ngIf="showFieldXProperties">
+                            <select id="selects_3"
+                                [(ngModel)]="xPropertiesAggregate"
+                                (change)="changeXProperty()"
+                                >
+                                <option *ngFor="let row of aggregations; let i = index">
+                                    {{ row.displayName }}
+                                </option>
+                            </select>
+                        </div>
+
+                        <!-- X Properties timeUnit -->
+                        <div class="editorXPropertiesAggregateTitle" *ngIf="showFieldXProperties">
+                            TimeUnit:
+                        </div>
+                        <div class="select editorXPropertiesAggregate" *ngIf="showFieldXProperties">
+                            <select id="selects_3"
+                                [(ngModel)]="xPropertiesAggregate"
+                                (change)="changeXProperty()"
+                                >
+                                <option *ngFor="let row of aggregations; let i = index">
+                                    {{ row.displayName }}
+                                </option>
+                            </select>
+                        </div>
+
+
+                        
                         <!-- Y Properties -->
                         <div class="editorYPropertiesTitle" *ngIf="showFieldYPropertiesTitle"
                             (click)="clickShowYProperties()"
