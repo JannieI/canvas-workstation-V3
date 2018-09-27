@@ -215,6 +215,7 @@ export interface dataSchemaInterface {
     showFieldYProperties: boolean = false;
     showFieldFilter: boolean = false;
     showSelectionFilter: boolean = false;
+    showFieldXAxis: boolean = false;
     showFieldYPropertiesTitle: boolean = false;
     showPreview: boolean = false;
     showRowDeleteIcon: boolean = false;
@@ -1521,6 +1522,14 @@ this.localWidget.graphYtype);
 
         // Toggle
         this.showSelectionFilter = !this.showSelectionFilter;
+    }
+
+    clickShowXAxis() {
+        // Show X Axis Area
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowXAxis', '@Start');
+
+        // Toggle
+        this.showFieldXAxis = !this.showFieldXAxis;
     }
 
 
