@@ -562,9 +562,35 @@
                                 >
                             </clr-icon>
                         </div>
-                    </div>
 
-                    
+
+                        <!-- Selection -->
+                        <div class="editorSelectionTitle"
+                            (click)="clickShowSelection()"
+                            >
+                            <b>
+                                Selection
+                            </b>
+                            <clr-icon shape="angle down" *ngIf="!showFieldSelection"
+                                size="12"
+                                >
+                            </clr-icon>
+                            <clr-icon shape="angle up" *ngIf="showFieldSelection"
+                                size="12"
+                                >
+                            </clr-icon>
+                            <clr-icon shape="info-circle"
+                                style="color: rgb(101, 101, 196);
+                                    float: right;
+                                    margin-top: 4px;"
+                                >
+                            </clr-icon>
+                        </div>
+
+
+
+
+                    </div>
 
 
                     <!-- GRAPH TYPES -->
