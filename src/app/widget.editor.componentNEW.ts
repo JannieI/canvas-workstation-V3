@@ -711,6 +711,11 @@ export interface dataSchemaInterface {
             this.localWidget.graphMark = 'bar';
             this.localWidget.graphTitle = this.titleText;
 
+            // Defaults
+            if (this.xPropertiesType == '') {
+                this.xPropertiesType = 'ordinal';
+            };
+
             // Define Specification
             specification = this.widgetGraphs[widgetGraphIndex].specification;
             specification['title']['text'] = this.titleText;
@@ -740,6 +745,13 @@ console.warn('xx this.localWidget.graphXtype this.yPropertiesAggregateVegaLiteNa
             specification['encoding']['x']['field'] = this.localWidget.graphXfield;
             specification['encoding']['x']['type'] = this.localWidget.graphXtype;
             specification['encoding']['x']['aggregate'] = this.xPropertiesAggregateVegaLiteName.toLowerCase();
+            if (this.xPropertiesBin == 'True') {
+                specification['encoding']['x']['bin'] = true;
+            } else {
+                specification['encoding']['x']['bin'] = false;
+            };
+
+            specification['encoding']['x']['type'] = this.xPropertiesType.toLowerCase();
             // specification['encoding']['x']['axis']['title'] = this.localWidget.graphXaxisTitle;
             // specification['encoding']['x']['timeUnit'] = this.localWidget.graphXtimeUnit;
             // specification['encoding']['x']['aggregate'] = this.localWidget.graphXaggregate;
@@ -766,7 +778,7 @@ console.warn('xx this.localWidget.graphXtype this.yPropertiesAggregateVegaLiteNa
                 specification['data'] = {"url": this.localWidget.graphUrl};
             } else {
                 specification['data'] = {"values": this.localWidget.graphData};
-            }
+            };
             specification['description'] = this.localWidget.graphDescription;
             specification['width'] = width;
             specification['height'] = height;
@@ -1498,7 +1510,6 @@ this.localWidget.graphYtype);
         this.globalFunctionService.printToConsole(this.constructor.name,'changeXProperty', '@Start');
 
         this.showFieldXPropertiesInfo = false;
-console.warn('xx this.xPropertiesAggregate', this.xPropertiesAggregate);
 
         if (this.xPropertiesAggregate != ''
             ||  this.xPropertiesBin != ''
