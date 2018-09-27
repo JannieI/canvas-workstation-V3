@@ -497,7 +497,7 @@
                         <div class="select editorXPropertiesAggregate" *ngIf="showFieldXProperties">
                             <select id="selects_3"
                                 [(ngModel)]="xPropertiesAggregate"
-                                (change)="changeXProperty()"
+                                name="xPropertiesAggregate"
                                 >
                                 <option *ngFor="let row of aggregations; let i = index">
                                     {{ row.displayName }}
@@ -512,7 +512,7 @@
                         <div class="select editorXPropertiesBin" *ngIf="showFieldXProperties">
                             <select id="selects_3"
                                 [(ngModel)]="xPropertiesBin"
-                                (change)="changeXProperty()"
+                                name="xPropertiesBin"
                                 >
                                 <option>False</option>
                                 <option>True</option>
@@ -523,7 +523,7 @@
                         <div class="editorXPropertiesFormatTitle" *ngIf="showFieldXProperties">
                             Format:
                         </div>
-                        <div class="select editorXPropertiesFormat" *ngIf="showFieldXProperties">
+                        <div class="editorXPropertiesFormat" *ngIf="showFieldXProperties">
                             <input type="text"
                                 placeholder="Format (D3)"
                                 [(ngModel)]="xPropertiesFormat"
@@ -535,7 +535,7 @@
                         <div class="editorXPropertiesImputeTitle" *ngIf="showFieldXProperties">
                             Impute:
                         </div>
-                        <div class="select editorXPropertiesImpute" *ngIf="showFieldXProperties">
+                        <div class="editorXPropertiesImpute" *ngIf="showFieldXProperties">
                             <input type="text"
                                 placeholder="Impute Method"
                                 [(ngModel)]="xPropertiesImpute"
@@ -550,7 +550,7 @@
                         <div class="select editorXPropertiesStack" *ngIf="showFieldXProperties">
                             <select id="selects_3"
                                 [(ngModel)]="xPropertiesStack"
-                                (change)="changeXProperty()"
+                                name="xPropertiesStack"
                                 >
                                 <option>Zero</option>
                                 <option>Normalise</option>
@@ -566,7 +566,7 @@
                         <div class="select editorXPropertiesSort" *ngIf="showFieldXProperties">
                             <select id="selects_3"
                                 [(ngModel)]="xPropertiesSort"
-                                (change)="changeXProperty()"
+                                name="xPropertiesSort"
                                 >
                                 <option>None</option>
                                 <option>Ascending</option>
@@ -581,7 +581,7 @@
                         <div class="select editorXPropertiesType" *ngIf="showFieldXProperties">
                             <select id="selects_3"
                                 [(ngModel)]="xPropertiesType"
-                                (change)="changeXProperty()"
+                                name="xPropertiesType"
                                 >
                                 <option>Ordinal</option>
                                 <option>Quantitative</option>
@@ -594,17 +594,12 @@
                         <div class="editorXPropertiesTimeUnitTitle" *ngIf="showFieldXProperties">
                             TimeUnit:
                         </div>
-                        <div class="select editorXPropertiesTimeUnit" *ngIf="showFieldXProperties">
-                            <select id="selects_3"
+                        <div class="editorXPropertiesTimeUnit" *ngIf="showFieldXProperties">
+                            <input type="text"
+                                placeholder="Time format (D3)"
                                 [(ngModel)]="xPropertiesTimeUnit"
-                                (change)="changeXProperty()"
+                                name="xPropertiesTimeUnit"
                                 >
-                                <input type="text"
-                                    placeholder="Time format (D3)"
-                                    [(ngModel)]="xPropertiesImpute"
-                                    name="xPropertiesImpute"
-                                    >
-                            </select>
                         </div>
 
 

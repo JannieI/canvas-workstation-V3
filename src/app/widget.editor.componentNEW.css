@@ -573,11 +573,13 @@ clr-dg-cell {
                     width: 64px;    
                 }
                 .editorXPropertiesBin {
+                    border: 1px solid steelblue;
+                    border-radius: 5px;
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
-                    margin-left: 4px;
-                    width: 64px;    
+                    margin: 3px;
+                    width: 68%;    
                 }
                 
                 .editorXPropertiesFormatTitle {
@@ -588,11 +590,13 @@ clr-dg-cell {
                     width: 64px;    
                 }
                 .editorXPropertiesFormat {
+                    border: 1px solid steelblue;
+                    border-radius: 5px;
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
-                    margin-left: 4px;
-                    width: 64px;    
+                    margin: 3px;
+                    width: 68%;    
                 }
                 
                 .editorXPropertiesImputeTitle {
@@ -603,11 +607,13 @@ clr-dg-cell {
                     width: 64px;    
                 }
                 .editorXPropertiesImpute {
+                    border: 1px solid steelblue;
+                    border-radius: 5px;
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
-                    margin-left: 4px;
-                    width: 64px;    
+                    margin: 3px;
+                    width: 68%;    
                 }
 
                 .editorXPropertiesStackTitle {
@@ -618,11 +624,13 @@ clr-dg-cell {
                     width: 64px;    
                 }
                 .editorXPropertiesStack {
+                    border: 1px solid steelblue;
+                    border-radius: 5px;
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
-                    margin-left: 4px;
-                    width: 64px;    
+                    margin: 3px;
+                    width: 68%;    
                 }
                 
                 .editorXPropertiesSortTitle {
@@ -633,11 +641,13 @@ clr-dg-cell {
                     width: 64px;    
                 }
                 .editorXPropertiesSort {
+                    border: 1px solid steelblue;
+                    border-radius: 5px;
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
-                    margin-left: 4px;
-                    width: 64px;    
+                    margin: 3px;
+                    width: 68%;    
                 }
                 
                 .editorXPropertiesTypeTitle {
@@ -648,11 +658,13 @@ clr-dg-cell {
                     width: 64px;    
                 }
                 .editorXPropertiesType {
+                    border: 1px solid steelblue;
+                    border-radius: 5px;
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
-                    margin-left: 4px;
-                    width: 64px;    
+                    margin: 3px;
+                    width: 68%;    
                 }
                 
                 .editorXPropertiesTimeUnitTitle {
@@ -663,11 +675,13 @@ clr-dg-cell {
                     width: 64px;    
                 }
                 .editorXPropertiesTimeUnit {
+                    border: 1px solid steelblue;
+                    border-radius: 5px;
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
-                    margin-left: 4px;
-                    width: 64px;    
+                    margin: 3px;
+                    width: 68%;    
                 }
 
 
