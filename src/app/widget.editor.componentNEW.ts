@@ -213,6 +213,7 @@ export interface dataSchemaInterface {
     showFieldXProperties: boolean = false;
     showFieldXPropertiesTitle: boolean = false;
     showFieldYProperties: boolean = false;
+    showFieldFilter: boolean = false;
     showFieldYPropertiesTitle: boolean = false;
     showPreview: boolean = false;
     showRowDeleteIcon: boolean = false;
@@ -1503,6 +1504,14 @@ this.localWidget.graphYtype);
 
         // Toggle
         this.showFieldYProperties = !this.showFieldYProperties;
+    }
+
+    clickShowFilter() {
+        // Show Y Properties Area
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowYProperties', '@Start');
+
+        // Toggle
+        this.showFieldFilter = !this.showFieldFilter;
     }
 
     clickSelectTitleColor(ev: any) {
