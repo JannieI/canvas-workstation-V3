@@ -98,8 +98,7 @@
 
                             <clr-dg-placeholder>Select a datasource to preview here</clr-dg-placeholder>
 
-                            <clr-dg-column *ngFor="let row of dataFieldNames; let i = index;"
-                            [style.background-color]="i==1?  'red'  :  ''">
+                            <clr-dg-column *ngFor="let row of dataFieldNames; let i = index;">
                                 {{row}}
                             <clr-icon shape="times" *ngIf="i==1"
                                 (click)="clickClearRowField(i)">
@@ -207,25 +206,33 @@
                                         (dragstart)="dragstartField($event)"
                                         >
                                         <clr-icon *ngIf="row.type=='string'"
-                                            shape="circle"
+                                            shape="text"
                                             size="14"
-                                            [style.background-color]="'darkgray'"
-                                            [style.color]="'darkgray'"
+                                            [style.background-color]="'rgb(241, 239, 239)'"
+                                            [style.color]="'black'"
                                             >
                                         </clr-icon>
                                         <clr-icon *ngIf="row.type=='number'"
-                                            shape="circle"
+                                            shape="italic"
                                             size="14"
-                                            [style.background-color]="'lightgreen'"
-                                            [style.color]="'lightgreen'"
+                                            [style.background-color]="'rgb(188, 241, 188)'"
+                                            [style.color]="'black'"
+                                            >
+                                        </clr-icon>
+                                        <clr-icon *ngIf="row.type=='date'"
+                                            shape="calendar"
+                                            size="14"
+                                            [style.border]="'white'"
+                                            [style.background-color]="'white'"
+                                            [style.color]="'black'"
                                             >
                                         </clr-icon>
                                         <clr-icon *ngIf="row.type=='boolean'"
-                                            shape="circle"
+                                            shape="minus"
                                             size="14"
-                                            [style.border]="'lightgray'"
-                                            [style.background-color]="'white'"
-                                            [style.color]="'white'"
+                                            [style.border]="'white'"
+                                            [style.background-color]="'rgb(206, 199, 245)'"
+                                            [style.color]="'black'"
                                             >
                                         </clr-icon>
 
