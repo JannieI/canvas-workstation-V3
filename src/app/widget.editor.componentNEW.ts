@@ -216,6 +216,7 @@ export interface dataSchemaInterface {
     showFieldFilter: boolean = false;
     showSelectionFilter: boolean = false;
     showFieldXAxis: boolean = false;
+    showFieldYAxis: boolean = false;
     showFieldYPropertiesTitle: boolean = false;
     showPreview: boolean = false;
     showRowDeleteIcon: boolean = false;
@@ -1532,6 +1533,13 @@ this.localWidget.graphYtype);
         this.showFieldXAxis = !this.showFieldXAxis;
     }
 
+    clickShowYAxis() {
+        // Show X Axis Area
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowYAxis', '@Start');
+
+        // Toggle
+        this.showFieldYAxis = !this.showFieldYAxis;
+    }
 
     clickSelectTitleColor(ev: any) {
         // Select Background Colour
