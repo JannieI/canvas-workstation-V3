@@ -228,7 +228,7 @@ clr-dg-cell {
                 line-height: 0.8rem;
                 margin-left: 14px;
                 margin-top: 16px;
-                width: 80px;    
+                width: 80px;
             }
             .editorCompositionType {
                 border: 1px solid steelblue;
@@ -238,7 +238,7 @@ clr-dg-cell {
                 line-height: 0.8rem;
                 margin-left: 14px;
                 margin-top: 16px;
-                width: 30%;    
+                width: 30%;
             }
             .editorCompositionLayerTitle{
                 display: inline-block;
@@ -246,7 +246,7 @@ clr-dg-cell {
                 line-height: 0.8rem;
                 margin-left: 14px;
                 margin-top: 3px;
-                width: 80px;    
+                width: 80px;
             }
             .editorCompositionLayer {
                 border: 1px solid steelblue;
@@ -256,7 +256,7 @@ clr-dg-cell {
                 line-height: 0.8rem;
                 margin-left: 14px;
                 margin-top: 3px;
-                width: 30%;    
+                width: 30%;
             }
 
 
@@ -372,7 +372,7 @@ clr-dg-cell {
                 font-size: 0.5rem;
                 line-height: 0.8rem;
                 margin-left: 4px;
-                width: 42x;    
+                width: 42x;
             }
             .editorTitleText {
                 border: 1px solid steelblue;
@@ -381,7 +381,7 @@ clr-dg-cell {
                 font-size: 0.5rem;
                 line-height: 0.5rem;
                 margin: 3px;
-                width: 78%;    
+                width: 78%;
             }
 
             .editorTitleAnchorTitle {
@@ -389,7 +389,7 @@ clr-dg-cell {
                 font-size: 0.5rem;
                 line-height: 0.8rem;
                 margin-left: 4px;
-                width: 42x;    
+                width: 42x;
             }
             .editorTitleAnchor {
                 border: 1px solid steelblue;
@@ -398,7 +398,7 @@ clr-dg-cell {
                 font-size: 0.5rem;
                 line-height: 0.5rem;
                 margin: 3px;
-                width: 68%;    
+                width: 68%;
             }
 
             .editorTitleAngleTitle {
@@ -406,7 +406,7 @@ clr-dg-cell {
                 font-size: 0.5rem;
                 line-height: 0.8rem;
                 margin-left: 4px;
-                width: 42x;    
+                width: 42x;
             }
             .editorTitleAngle {
                 border: 1px solid steelblue;
@@ -415,7 +415,7 @@ clr-dg-cell {
                 font-size: 0.5rem;
                 line-height: 0.5rem;
                 margin: 3px;
-                width: 68%;    
+                width: 68%;
             }
 
             .editorTitleBaselineTitle {
@@ -423,7 +423,7 @@ clr-dg-cell {
                 font-size: 0.5rem;
                 line-height: 0.8rem;
                 margin-left: 4px;
-                width: 42x;    
+                width: 42x;
             }
             .editorTitleBaseline {
                 border: 1px solid steelblue;
@@ -432,7 +432,7 @@ clr-dg-cell {
                 font-size: 0.5rem;
                 line-height: 0.5rem;
                 margin: 3px;
-                width: 68%;    
+                width: 68%;
             }
 
             .editorTitleColourTitle {
@@ -440,7 +440,7 @@ clr-dg-cell {
                 font-size: 0.5rem;
                 line-height: 0.8rem;
                 margin-left: 4px;
-                width: 42x;    
+                width: 42x;
             }
             .editorTitleColour {
                 border: 1px solid steelblue;
@@ -449,15 +449,15 @@ clr-dg-cell {
                 font-size: 0.5rem;
                 line-height: 0.5rem;
                 margin: 3px;
-                width: 68%;    
+                width: 68%;
             }
-            
+
             .editorTitleFontTitle {
                 display: inline-block;
                 font-size: 0.5rem;
                 line-height: 0.8rem;
                 margin-left: 4px;
-                width: 42x;    
+                width: 42x;
             }
             .editorTitleFont {
                 border: 1px solid steelblue;
@@ -466,15 +466,15 @@ clr-dg-cell {
                 font-size: 0.5rem;
                 line-height: 0.5rem;
                 margin: 3px;
-                width: 68%;    
+                width: 68%;
             }
-            
+
             .editorTitleFontSizeTitle {
                 display: inline-block;
                 font-size: 0.5rem;
                 line-height: 0.8rem;
                 margin-left: 4px;
-                width: 42x;    
+                width: 42x;
             }
             .editorTitleFontSize {
                 border: 1px solid steelblue;
@@ -483,15 +483,15 @@ clr-dg-cell {
                 font-size: 0.5rem;
                 line-height: 0.5rem;
                 margin: 3px;
-                width: 68%;    
+                width: 68%;
             }
-            
+
             .editorTitleFontWeightTitle {
                 display: inline-block;
                 font-size: 0.5rem;
                 line-height: 0.8rem;
                 margin-left: 4px;
-                width: 42x;    
+                width: 42x;
             }
             .editorTitleFontWeight {
                 border: 1px solid steelblue;
@@ -500,7 +500,7 @@ clr-dg-cell {
                 font-size: 0.5rem;
                 line-height: 0.5rem;
                 margin: 3px;
-                width: 58%;    
+                width: 58%;
             }
 
             .editorTitleLengthTitle {
@@ -508,7 +508,7 @@ clr-dg-cell {
                 font-size: 0.5rem;
                 line-height: 0.8rem;
                 margin-left: 4px;
-                width: 42x;    
+                width: 42x;
             }
             .editorTitleLength {
                 border: 1px solid steelblue;
@@ -517,7 +517,7 @@ clr-dg-cell {
                 font-size: 0.5rem;
                 line-height: 0.5rem;
                 margin: 3px;
-                width: 68%;    
+                width: 68%;
             }
 
             .editorTitleOrientationTitle {
@@ -525,7 +525,7 @@ clr-dg-cell {
                 font-size: 0.5rem;
                 line-height: 0.8rem;
                 margin-left: 4px;
-                width: 42x;    
+                width: 42x;
             }
             .editorTitleOrientation {
                 border: 1px solid steelblue;
@@ -534,7 +534,7 @@ clr-dg-cell {
                 font-size: 0.5rem;
                 line-height: 0.5rem;
                 margin: 3px;
-                width: 58%;    
+                width: 58%;
             }
 
 
@@ -553,7 +553,7 @@ clr-dg-cell {
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
-                    width: 64px;    
+                    width: 64px;
                 }
                 .editorXPropertiesAggregate {
                     border: 1px solid steelblue;
@@ -562,7 +562,7 @@ clr-dg-cell {
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin: 3px;
-                    width: 68%;    
+                    width: 68%;
                 }
 
                 .editorXPropertiesBinTitle {
@@ -570,7 +570,7 @@ clr-dg-cell {
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
-                    width: 64px;    
+                    width: 64px;
                 }
                 .editorXPropertiesBin {
                     border: 1px solid steelblue;
@@ -579,15 +579,15 @@ clr-dg-cell {
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin: 3px;
-                    width: 68%;    
+                    width: 68%;
                 }
-                
+
                 .editorXPropertiesFormatTitle {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
-                    width: 64px;    
+                    width: 64px;
                 }
                 .editorXPropertiesFormat {
                     border: 1px solid steelblue;
@@ -596,15 +596,15 @@ clr-dg-cell {
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin: 3px;
-                    width: 68%;    
+                    width: 68%;
                 }
-                
+
                 .editorXPropertiesImputeTitle {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
-                    width: 64px;    
+                    width: 64px;
                 }
                 .editorXPropertiesImpute {
                     border: 1px solid steelblue;
@@ -613,7 +613,7 @@ clr-dg-cell {
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin: 3px;
-                    width: 40%;    
+                    width: 40%;
                 }
                 .editorXPropertiesImputeValue {
                     border: 1px solid steelblue;
@@ -622,7 +622,7 @@ clr-dg-cell {
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin: 3px;
-                    width: 16%;    
+                    width: 16%;
                 }
 
                 .editorXPropertiesStackTitle {
@@ -630,7 +630,7 @@ clr-dg-cell {
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
-                    width: 64px;    
+                    width: 64px;
                 }
                 .editorXPropertiesStack {
                     border: 1px solid steelblue;
@@ -639,15 +639,15 @@ clr-dg-cell {
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin: 3px;
-                    width: 68%;    
+                    width: 68%;
                 }
-                
+
                 .editorXPropertiesSortTitle {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
-                    width: 64px;    
+                    width: 64px;
                 }
                 .editorXPropertiesSort {
                     border: 1px solid steelblue;
@@ -656,15 +656,15 @@ clr-dg-cell {
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin: 3px;
-                    width: 68%;    
+                    width: 68%;
                 }
-                
+
                 .editorXPropertiesTypeTitle {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
-                    width: 64px;    
+                    width: 64px;
                 }
                 .editorXPropertiesType {
                     border: 1px solid steelblue;
@@ -673,15 +673,15 @@ clr-dg-cell {
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin: 3px;
-                    width: 68%;    
+                    width: 68%;
                 }
-                
+
                 .editorXPropertiesTimeUnitTitle {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
-                    width: 64px;    
+                    width: 64px;
                 }
                 .editorXPropertiesTimeUnit {
                     border: 1px solid steelblue;
@@ -690,7 +690,7 @@ clr-dg-cell {
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin: 3px;
-                    width: 68%;    
+                    width: 68%;
                 }
 
             /* Y PROPERTIES */
@@ -710,7 +710,7 @@ clr-dg-cell {
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
-                    width: 64px;    
+                    width: 64px;
                 }
                 .editorYPropertiesAggregate {
                     border: 1px solid steelblue;
@@ -719,7 +719,7 @@ clr-dg-cell {
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin: 3px;
-                    width: 68%;    
+                    width: 68%;
                 }
 
                 .editorYPropertiesBinTitle {
@@ -727,7 +727,7 @@ clr-dg-cell {
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
-                    width: 64px;    
+                    width: 64px;
                 }
                 .editorYPropertiesBin {
                     border: 1px solid steelblue;
@@ -736,15 +736,15 @@ clr-dg-cell {
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin: 3px;
-                    width: 68%;    
+                    width: 68%;
                 }
-     
+
                 .editorYPropertiesFormatTitle {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
-                    width: 64px;    
+                    width: 64px;
                 }
                 .editorYPropertiesFormat {
                     border: 1px solid steelblue;
@@ -753,9 +753,35 @@ clr-dg-cell {
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin: 3px;
-                    width: 68%;    
+                    width: 68%;
                 }
-                
+
+                .editorYPropertiesImputeTitle {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin-left: 4px;
+                    width: 64px;
+                }
+                .editorYPropertiesImpute {
+                    border: 1px solid steelblue;
+                    border-radius: 5px;
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin: 3px;
+                    width: 40%;
+                }
+                .editorYPropertiesImputeValue {
+                    border: 1px solid steelblue;
+                    border-radius: 5px;
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin: 3px;
+                    width: 16%;
+                }
+
 
 
 
@@ -775,7 +801,7 @@ clr-dg-cell {
             }
                 .editorFilter {
                     font-size: 0.5rem;
-                }                
+                }
 
             .editorSelectionTitle {
                 background-color: rgb(211, 209, 226);
@@ -894,4 +920,3 @@ clr-dg-cell {
 
 
 
-        
