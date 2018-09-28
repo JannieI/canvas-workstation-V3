@@ -788,11 +788,11 @@ export interface dataSchemaInterface {
             specification['description'] = this.localWidget.graphDescription;
             specification['width'] = width;
             specification['height'] = height;
-            // specification['mark']['type'] = this.localWidget.graphMark;
-            // specification['mark']['color'] = this.localWidget.graphMarkColor;
-console.warn('xx this.localWidget.graphXtype this.xPropertiesFormat',
-    this.localWidget.graphXtype, this.xPropertiesFormat);
 
+            // Mark
+            // specification['mark']['type'] = this.localWidget.graphMark;
+
+            // X field
             specification['encoding']['x']['field'] = this.localWidget.graphXfield;
             specification['encoding']['x']['type'] = this.localWidget.graphXtype;
             specification['encoding']['x']['aggregate'] = this.xPropertiesAggregateVegaLiteName.toLowerCase();
@@ -820,13 +820,14 @@ console.warn('xx this.localWidget.graphXtype this.xPropertiesFormat',
             // specification['encoding']['x']['timeUnit'] = this.localWidget.graphXtimeUnit;
             // specification['encoding']['x']['aggregate'] = this.localWidget.graphXaggregate;
 
+            // Y field
             specification['encoding']['y']['field'] = this.localWidget.graphYfield;
             specification['encoding']['y']['type'] = this.localWidget.graphYtype;
             specification['encoding']['y']['aggregate'] = this.yPropertiesAggregateVegaLiteName.toLowerCase();
-            // specification['encoding']['y']['axis']['title'] = this.localWidget.graphYaxisTitle;
-            // specification['encoding']['y']['timeUnit'] = this.localWidget.graphYtimeUnit;
-            // specification['encoding']['y']['aggregate'] = this.localWidget.graphYaggregate;
 
+            // Color field
+            specification['encoding']['color']['field'] = this.localWidget.graphColorField;
+    
             // Tooltip setting
             // specification['mark']['tooltip']['content'] = "";
 
