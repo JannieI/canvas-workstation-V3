@@ -208,11 +208,16 @@ export interface dataSchemaInterface {
     showColourDeleteIcon: boolean = false;
     showColumnDeleteIcon: boolean = false;
     showDatasourceMain: boolean = true;
+
     showFieldTitleProperties: boolean = false;
     showFieldXPropertiesInfo: boolean = false;
     showFieldXProperties: boolean = false;
     showFieldXPropertiesTitle: boolean = false;
+
     showFieldYProperties: boolean = false;
+    showFieldYPropertiesInfo: boolean = false;
+    showFieldYPropertiesTitle: boolean = false;
+
     showFieldFilter: boolean = false;
     showSelectionFilter: boolean = false;
     showFieldXAxis: boolean = false;
@@ -236,18 +241,25 @@ export interface dataSchemaInterface {
     widgetGraphs: WidgetGraph[] =[];
     xPropertiesAggregate: string = '';
     xPropertiesAggregateVegaLiteName: string = '';
-    xPropertiesBin: string = 'False'
-    xPropertiesFormat: string = ''
-    xPropertiesImpute: string = ''
-    xPropertiesImputeValue: number = 0
-    xPropertiesStack: string = ''
-    xPropertiesSort: string = ''
-    xPropertiesType: string = ''
-    xPropertiesTimeUnit: string = ''
+    xPropertiesBin: string = 'False';
+    xPropertiesFormat: string = '';
+    xPropertiesImpute: string = '';
+    xPropertiesImputeValue: number = 0;
+    xPropertiesStack: string = '';
+    xPropertiesSort: string = '';
+    xPropertiesType: string = '';
+    xPropertiesTimeUnit: string = '';
 
     yPropertiesAggregate: string = '';
     yPropertiesAggregateVegaLiteName: string = '';
-
+    yPropertiesBin: string = 'False';
+    yPropertiesFormat: string = '';
+    yPropertiesImpute: string = '';
+    yPropertiesImputeValue: number = 0;
+    yPropertiesStack: string = '';
+    yPropertiesSort: string = '';
+    yPropertiesType: string = '';
+    yPropertiesTimeUnit: string = '';
 
     timeUnits: string[] = [
         "",
@@ -1645,6 +1657,24 @@ console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowInde
         };
     }
 
+    changYProperty() {
+        // Show info icon if any ONE of the properties are filled in
+        this.globalFunctionService.printToConsole(this.constructor.name,'changeXProperty', '@Start');
+
+        this.showFieldYPropertiesInfo = false;
+
+        if (this.yPropertiesAggregate != ''
+            ||  this.yPropertiesBin != 'False'
+            ||  this.yPropertiesFormat != ''
+            ||  this.yPropertiesImpute != ''
+            ||  this.yPropertiesStack != ''
+            ||  this.yPropertiesSort != ''
+            ||  this.yPropertiesType != ''
+            ||  this.yPropertiesImpute != '') {
+            this.showFieldYPropertiesInfo = true;
+        };
+    }
+    
     clickShowTitleProperties() {
         // Show Title Properties Area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowTitleProperties', '@Start');
