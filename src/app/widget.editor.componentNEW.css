@@ -693,34 +693,6 @@ clr-dg-cell {
                     width: 68%;    
                 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             /* Y PROPERTIES */
             .editorYPropertiesTitle {
                 background-color: rgb(211, 209, 226);
@@ -749,7 +721,35 @@ clr-dg-cell {
                     margin: 3px;
                     width: 68%;    
                 }
-    
+
+                .editorYPropertiesBinTitle {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin-left: 4px;
+                    width: 64px;    
+                }
+                .editorYPropertiesBin {
+                    border: 1px solid steelblue;
+                    border-radius: 5px;
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin: 3px;
+                    width: 68%;    
+                }
+
+                
+
+
+
+
+
+
+
+
+
+
             .editorFilterTitle {
                 background-color: rgb(211, 209, 226);
                 border: 1px solid lightgray;

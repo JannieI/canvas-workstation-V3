@@ -253,25 +253,25 @@ export interface dataSchemaInterface {
         "",
         "Date",
         "Day",
-        "Hours", 
-        "HoursMinutes", 
+        "Hours",
+        "HoursMinutes",
         "HoursMinutesSeconds",
         "Milliseconds",
-        "Minutes", 
+        "Minutes",
         "MinutesSeconds",
-        "Month", 
+        "Month",
         "MonthDate",
-        "Quarter", 
+        "Quarter",
         "QuarterMonth",
-        "Seconds", 
+        "Seconds",
         "SecondsMilliseconds",
-        "Year", 
-        "YearMonth", 
-        "YearMonthDate", 
-        "YearMonthDateHours", 
-        "YearMonthDateHoursMinutes", 
+        "Year",
+        "YearMonth",
+        "YearMonthDate",
+        "YearMonthDateHours",
+        "YearMonthDateHoursMinutes",
         "YearMonthDateHoursMinutesSeconds",
-        "YearQuarter", 
+        "YearQuarter",
         "YearQuarterMonth"
     ];
 
@@ -429,11 +429,11 @@ export interface dataSchemaInterface {
             description: 'The abbreviated names of the months (starting with January).'
         }
     ]
-    
+
     // D3 formatting 101:
     // [[fill]align][sign][symbol][0][width][,][.precision][type]
-    //  
-    // type: 
+    //
+    // type:
     //   e = scientific
     //   d = integer (IGNORES non-integer values, no change to integers)
     //   % = This multiplies the number times 100 and appends a "%" symbol at the end of the string.
@@ -448,7 +448,7 @@ export interface dataSchemaInterface {
     // , Thousands Seperator
     //   ie format(".2f")(10101);    //"10,101.00"
     //
-    // width = pads to same widht, 
+    // width = pads to same widht,
     //   ie format("8")(1);      //"       1"
     //   NOTE - this is the TOTAL length of the string, so 12.34 count as 4 digits
     //
@@ -468,9 +468,9 @@ export interface dataSchemaInterface {
     //   ie format(" ")(125);           //" 125"
     //   ie format(" ")(-125);          //"-125"
     //
-    // Alignment and Fill - You can also align the formatter output string with any 
-    //   character you want as long as it isn't { or }. You will need to tell the formatter 
-    //   how you want to align characters and what character to use as the fill. The fill 
+    // Alignment and Fill - You can also align the formatter output string with any
+    //   character you want as long as it isn't { or }. You will need to tell the formatter
+    //   how you want to align characters and what character to use as the fill. The fill
     //   character would need to preseed an alignment indicator:
     //      "<" - left alignment
     //      ">" - right alignment
@@ -478,7 +478,7 @@ export interface dataSchemaInterface {
     //   format("4>8")(1);              //"44444441"
     //   format("4^8")(1);              //"44441444"
     //   format("4<8")(1);              //"14444444"
-    //    
+    //
     numberFormats: {displayFormat: string; d3Format: string; description: string}[] =
     [
         {
@@ -637,21 +637,7 @@ export interface dataSchemaInterface {
                 return 0;
             });
 
-        // Select previously used DS, and then click it to load relevant info
-        if (this.globalVariableService.previousGraphEditDSID != -1) {
-            
-            let datasourceIndex: number = this.localDatasources.findIndex(ds => 
-                ds.id == this.globalVariableService.previousGraphEditDSID
-            );
-            if (datasourceIndex >= 0) {
-                this.selectedRowID = this.globalVariableService.previousGraphEditDSID;
-                this.selectedRowIndex = datasourceIndex;
-
-                this.clickDSrow(this.selectedRowIndex, this.selectedRowID)
-            }
-        };
-       console.warn('xx this.selectedRowID', this.selectedRowID, this.selectedRowIndex, this.globalVariableService.previousGraphEditDSID)
-        // Start afresh for new W
+            // Start afresh for new W
         if (this.newWidget) {
 
             // Count the Ws
@@ -739,6 +725,21 @@ export interface dataSchemaInterface {
 
             this.constructDataSchema();
         }
+
+        // Select previously used DS, and then click it to load relevant info
+        // NB: AFTER the localWidget has been initialised
+        if (this.globalVariableService.previousGraphEditDSID != -1) {
+
+            let datasourceIndex: number = this.localDatasources.findIndex(ds =>
+                ds.id == this.globalVariableService.previousGraphEditDSID
+            );
+            if (datasourceIndex >= 0) {
+                this.selectedRowID = this.globalVariableService.previousGraphEditDSID;
+                this.selectedRowIndex = datasourceIndex;
+
+                this.clickDSrow(this.selectedRowIndex, this.selectedRowID)
+            }
+        };
 
     }
 
@@ -858,17 +859,17 @@ export interface dataSchemaInterface {
 
             if (this.xPropertiesImpute != '') {
                 if (this.xPropertiesImpute == 'Value') {
-                    specification['encoding']['x']['impute'] = 
+                    specification['encoding']['x']['impute'] =
                         '{"value":' + this.xPropertiesImputeValue + '}';
                 } else {
-                    specification['encoding']['x']['impute'] = 
+                    specification['encoding']['x']['impute'] =
                         '{"method": "' + this.xPropertiesImpute + '"}';
                 }
             }
             specification['encoding']['x']['stack'] = this.xPropertiesStack;
             specification['encoding']['x']['sort'] = this.xPropertiesSort.toLowerCase();
             specification['encoding']['x']['timeUnit'] = this.xPropertiesTimeUnit.toLowerCase();
-            
+
             // specification['encoding']['x']['axis']['title'] = this.localWidget.graphXaxisTitle;
 
             // Y field
@@ -878,7 +879,7 @@ export interface dataSchemaInterface {
 
             // Color field
             specification['encoding']['color']['field'] = this.localWidget.graphColorField;
-    
+
             // Tooltip setting
             // specification['mark']['tooltip']['content'] = "";
 
@@ -1441,7 +1442,7 @@ this.localWidget.graphYtype);
         // Set the selected datasourceID
         // NOTE: this array can be filtered on front-end, thus DON'T use index
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDSrow', '@Start');
-        console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowIndex, this.selectedRowID); 
+        console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowIndex, this.selectedRowID);
 
         // Reset, Highlight selected row
         this.selectedRowIndex = index;
@@ -1519,7 +1520,7 @@ this.localWidget.graphYtype);
     clickContinue(){
         // Continue to design / edit the W, and close the form for the data
         this.globalFunctionService.printToConsole(this.constructor.name,'clickContinue', '@Start');
-console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowIndex, this.selectedRowID); 
+console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowIndex, this.selectedRowID);
 
         // Determine if data obtains in Glob Var
         let dataSetIndex: number = this.globalVariableService.currentDatasets.findIndex(

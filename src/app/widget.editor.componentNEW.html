@@ -661,6 +661,20 @@
                             </select>
                         </div>
 
+                        <!-- Y Properties bin -->
+                        <div class="editorYPropertiesBinTitle" *ngIf="showFieldYProperties">
+                            Bin:
+                        </div>
+                        <div class="select editorYPropertiesBin" *ngIf="showFieldYProperties">
+                            <select id="selects_3"
+                                [(ngModel)]="yPropertiesBin"
+                                name="yPropertiesBin"
+                                >
+                                <option>False</option>
+                                <option>True</option>
+                            </select>
+                        </div>
+    
 
                         <!-- Filter -->
                         <div class="editorFilterTitle"
