@@ -814,8 +814,9 @@ export interface dataSchemaInterface {
                 }
             }
             specification['encoding']['x']['stack'] = this.xPropertiesStack;
-            specification['encoding']['x']['sort'] = this.xPropertiesSort;
-
+            specification['encoding']['x']['sort'] = this.xPropertiesSort.toLowerCase();
+            specification['encoding']['x']['timeUnit'] = this.xPropertiesTimeUnit.toLowerCase();
+            
             // specification['encoding']['x']['axis']['title'] = this.localWidget.graphXaxisTitle;
             // specification['encoding']['x']['timeUnit'] = this.localWidget.graphXtimeUnit;
             // specification['encoding']['x']['aggregate'] = this.localWidget.graphXaggregate;
