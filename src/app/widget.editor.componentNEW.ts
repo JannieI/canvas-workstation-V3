@@ -622,13 +622,12 @@ export interface dataSchemaInterface {
         });
 
         // Get DS to which user has permissions
-        console.warn('xx this.globalVariableService.datasources', this.globalVariableService.datasources)
         this.localDatasources = this.globalVariableService.datasources
             .slice()
             .filter(ds =>
                 this.globalVariableService.datasourcePermissionsCheck(ds.id, 'CanView')
             )
-            this.localDatasources = this.localDatasources.sort( (obj1, obj2) => {
+            .sort( (obj1, obj2) => {
                 if (obj1.name.toLowerCase() > obj2.name.toLowerCase()) {
                     return 1;
                 };
@@ -638,8 +637,7 @@ export interface dataSchemaInterface {
                 return 0;
             });
 
-            this.localDatasources.forEach(ds => console.log('xx   ID', ds.id, ds.name))
-        // Select previously used DS
+        // Select previously used DS, and then click it to load relevant info
         if (this.globalVariableService.previousGraphEditDSID != -1) {
             
             let datasourceIndex: number = this.localDatasources.findIndex(ds => 
@@ -648,6 +646,8 @@ export interface dataSchemaInterface {
             if (datasourceIndex >= 0) {
                 this.selectedRowID = this.globalVariableService.previousGraphEditDSID;
                 this.selectedRowIndex = datasourceIndex;
+
+                this.clickDSrow(this.selectedRowIndex, this.selectedRowID)
             }
         };
        console.warn('xx this.selectedRowID', this.selectedRowID, this.selectedRowIndex, this.globalVariableService.previousGraphEditDSID)
@@ -1441,6 +1441,7 @@ this.localWidget.graphYtype);
         // Set the selected datasourceID
         // NOTE: this array can be filtered on front-end, thus DON'T use index
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDSrow', '@Start');
+        console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowIndex, this.selectedRowID); 
 
         // Reset, Highlight selected row
         this.selectedRowIndex = index;
@@ -1518,6 +1519,7 @@ this.localWidget.graphYtype);
     clickContinue(){
         // Continue to design / edit the W, and close the form for the data
         this.globalFunctionService.printToConsole(this.constructor.name,'clickContinue', '@Start');
+console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowIndex, this.selectedRowID); 
 
         // Determine if data obtains in Glob Var
         let dataSetIndex: number = this.globalVariableService.currentDatasets.findIndex(
