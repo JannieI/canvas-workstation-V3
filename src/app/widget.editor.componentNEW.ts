@@ -210,19 +210,20 @@ export interface dataSchemaInterface {
     showDatasourceMain: boolean = true;
 
     showFieldTitleProperties: boolean = false;
+
+    showFieldXAxis: boolean = false;
     showFieldXPropertiesInfo: boolean = false;
     showFieldXProperties: boolean = false;
     showFieldXPropertiesTitle: boolean = false;
-
+    
+    showFieldYAxis: boolean = false;
     showFieldYProperties: boolean = false;
     showFieldYPropertiesInfo: boolean = false;
     showFieldYPropertiesTitle: boolean = false;
 
     showFieldFilter: boolean = false;
     showSelectionFilter: boolean = false;
-    showFieldXAxis: boolean = false;
-    showFieldYAxis: boolean = false;
-    showFieldYPropertiesTitle: boolean = false;
+
     showPreview: boolean = false;
     showRowDeleteIcon: boolean = false;
     showType: boolean = false;
@@ -864,10 +865,9 @@ export interface dataSchemaInterface {
             } else {
                 specification['encoding']['x']['bin'] = false;
             };
-            specification['encoding']['x']['type'] = this.xPropertiesType.toLowerCase();
+            specification['encoding']['x']['format'] = this.xPropertiesFormat.toLowerCase();
 
             specification['encoding']['x']['type'] = this.xPropertiesType.toLowerCase();
-            specification['encoding']['x']['timeUnit'] = this.xPropertiesFormat.toLowerCase();
 
             if (this.xPropertiesImpute != '') {
                 if (this.xPropertiesImpute == 'Value') {
@@ -888,6 +888,12 @@ export interface dataSchemaInterface {
             specification['encoding']['y']['field'] = this.localWidget.graphYfield;
             specification['encoding']['y']['type'] = this.localWidget.graphYtype;
             specification['encoding']['y']['aggregate'] = this.yPropertiesAggregateVegaLiteName.toLowerCase();
+            if (this.yPropertiesBin == 'True') {
+                specification['encoding']['y']['bin'] = true;
+            } else {
+                specification['encoding']['y']['bin'] = false;
+            };
+            specification['encoding']['y']['format'] = this.yPropertiesFormat.toLowerCase();
 
             // Color field
             specification['encoding']['color']['field'] = this.localWidget.graphColorField;

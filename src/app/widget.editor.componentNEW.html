@@ -675,6 +675,21 @@
                             </select>
                         </div>
     
+                        <!-- Y Properties Format -->
+                        <div class="editorYPropertiesFormatTitle" *ngIf="showFieldYProperties">
+                            Format:
+                        </div>
+                        <div class="editorYPropertiesFormat" *ngIf="showFieldYProperties">
+                            <input type="text"
+                                placeholder="ie .2s +$,.2f"
+                                [(ngModel)]="yPropertiesFormat"
+                                name="yPropertiesFormat"
+                                >
+                        </div>
+
+
+
+
 
                         <!-- Filter -->
                         <div class="editorFilterTitle"
