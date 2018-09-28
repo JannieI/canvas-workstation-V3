@@ -804,6 +804,21 @@
                             </clr-icon>
                         </div>
 
+                        <!-- Color Properties Aggregate -->
+                        <div class="editorColorPropertiesAggregateTitle" *ngIf="showFieldColorProperties">
+                            Aggregate:
+                        </div>
+                        <div class="select editorColorPropertiesAggregate" *ngIf="showFieldColorProperties">
+                            <select id="selects_3"
+                                [(ngModel)]="colorPropertiesAggregate"
+                                name="colorPropertiesAggregate"
+                                >
+                                <option *ngFor="let row of aggregations; let i = index">
+                                    {{ row.displayName }}
+                                </option>
+                            </select>
+                        </div>
+
 
 
 
