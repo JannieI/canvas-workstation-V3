@@ -249,6 +249,31 @@ export interface dataSchemaInterface {
     yPropertiesAggregateVegaLiteName: string = '';
 
 
+    timeUnits: string[] = [
+        "date",
+        "day",
+        "hours", 
+        "hoursminutes", 
+        "hoursminutesseconds",
+        "milliseconds",
+        "minutes", 
+        "minutesseconds",
+        "month", 
+        "monthdate",
+        "quarter", 
+        "quartermonth",
+        "seconds", 
+        "secondsmilliseconds",
+        "year", 
+        "yearmonth", "yearmonthdate", 
+        "yearmonthdatehours", 
+        "yearmonthdatehoursminutes", 
+        "yearmonthdatehoursminutesseconds",
+        "yearquarter", 
+        "yearquartermonth"
+    ];
+    
+    // TODO - remove this later on when we dont use D3 time formats at all
     dateTimeFormats: {displayFormat: string; d3Format: string, description: string}[] =
     [
         {
@@ -818,8 +843,6 @@ export interface dataSchemaInterface {
             specification['encoding']['x']['timeUnit'] = this.xPropertiesTimeUnit.toLowerCase();
             
             // specification['encoding']['x']['axis']['title'] = this.localWidget.graphXaxisTitle;
-            // specification['encoding']['x']['timeUnit'] = this.localWidget.graphXtimeUnit;
-            // specification['encoding']['x']['aggregate'] = this.localWidget.graphXaggregate;
 
             // Y field
             specification['encoding']['y']['field'] = this.localWidget.graphYfield;
