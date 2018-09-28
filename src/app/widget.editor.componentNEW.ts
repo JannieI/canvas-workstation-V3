@@ -1355,6 +1355,9 @@ this.localWidget.graphYtype);
         // Show X icon
         this.showColourDeleteIcon = true;
 
+        // Show the panel with X properties
+        this.showFieldColorPropertiesTitle = true;
+
         ev.preventDefault();
         ev.dataTransfer.dropEffect = "move"
         // Get the id of the target and add the moved element to the target's DOM
@@ -1694,6 +1697,17 @@ console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowInde
 
         // Toggle
         this.showFieldXProperties = !this.showFieldXProperties;
+
+        // Show / Hide indicator
+        this.changeXProperty();
+    }
+
+    clickShowColorProperties() {
+        // Show Color Properties Area
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowColorProperties', '@Start');
+
+        // Toggle
+        this.showFieldColorProperties = !this.showFieldColorProperties;
 
         // Show / Hide indicator
         this.changeXProperty();
