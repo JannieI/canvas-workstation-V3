@@ -813,8 +813,8 @@ export interface dataSchemaInterface {
                         '{"method": "' + this.xPropertiesImpute + '"}';
                 }
             }
-            // "impute": {"value": 0}
-            // "impute": {"method": "mean"}
+            specification['encoding']['x']['stack'] = this.xPropertiesStack;
+            specification['encoding']['x']['sort'] = this.xPropertiesSort;
 
             // specification['encoding']['x']['axis']['title'] = this.localWidget.graphXaxisTitle;
             // specification['encoding']['x']['timeUnit'] = this.localWidget.graphXtimeUnit;
