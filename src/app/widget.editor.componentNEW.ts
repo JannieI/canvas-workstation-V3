@@ -239,6 +239,7 @@ export interface dataSchemaInterface {
     xPropertiesBin: string = 'False'
     xPropertiesFormat: string = ''
     xPropertiesImpute: string = ''
+    xPropertiesImputeValue: number = 0
     xPropertiesStack: string = ''
     xPropertiesSort: string = ''
     xPropertiesType: string = ''
@@ -789,8 +790,8 @@ export interface dataSchemaInterface {
             specification['height'] = height;
             // specification['mark']['type'] = this.localWidget.graphMark;
             // specification['mark']['color'] = this.localWidget.graphMarkColor;
-console.warn('xx this.localWidget.graphXtype this.yPropertiesAggregateVegaLiteName',
-    this.localWidget.graphXtype, this.yPropertiesAggregate);
+console.warn('xx this.localWidget.graphXtype this.xPropertiesFormat',
+    this.localWidget.graphXtype, this.xPropertiesFormat);
 
             specification['encoding']['x']['field'] = this.localWidget.graphXfield;
             specification['encoding']['x']['type'] = this.localWidget.graphXtype;
@@ -800,9 +801,21 @@ console.warn('xx this.localWidget.graphXtype this.yPropertiesAggregateVegaLiteNa
             } else {
                 specification['encoding']['x']['bin'] = false;
             };
+            specification['encoding']['x']['type'] = this.xPropertiesType.toLowerCase();
             specification['encoding']['x']['format'] = this.xPropertiesFormat;
 
-            specification['encoding']['x']['type'] = this.xPropertiesType.toLowerCase();
+            if (this.xPropertiesImpute != '') {
+                if (this.xPropertiesImpute == 'Value') {
+                    specification['encoding']['x']['impute'] = 
+                        '{"value":' + this.xPropertiesImputeValue + '}';
+                } else {
+                    specification['encoding']['x']['impute'] = 
+                        '{"method": "' + this.xPropertiesImputeValue + '"}';
+                }
+            }
+            // "impute": {"value": 0}
+            // "impute": {"method": "mean"}
+
             // specification['encoding']['x']['axis']['title'] = this.localWidget.graphXaxisTitle;
             // specification['encoding']['x']['timeUnit'] = this.localWidget.graphXtimeUnit;
             // specification['encoding']['x']['aggregate'] = this.localWidget.graphXaggregate;

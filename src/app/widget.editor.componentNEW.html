@@ -536,10 +536,23 @@
                             Impute:
                         </div>
                         <div class="editorXPropertiesImpute" *ngIf="showFieldXProperties">
-                            <input type="text"
-                                placeholder="Impute Method"
+                            <select id="selects_3"
                                 [(ngModel)]="xPropertiesImpute"
                                 name="xPropertiesImpute"
+                                >
+                                <option>Max</option>
+                                <option>Mean</option>
+                                <option>Medium</option>
+                                <option>Min</option>
+                                <option>Value</option>
+                            </select>
+                        </div>
+                        <div class="editorXPropertiesImputeValue" 
+                            *ngIf="showFieldXProperties  &&  (xPropertiesImpute=='Value')">
+                            <input type="number"
+                                placeholder="Value"
+                                [(ngModel)]="xPropertiesImputeValue"
+                                name="xPropertiesImputeValue"
                                 >
                         </div>
 
