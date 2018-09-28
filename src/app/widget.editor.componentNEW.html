@@ -906,6 +906,22 @@
                             </select>
                         </div>
 
+                        <!-- Color Properties type -->
+                        <div class="editorColorPropertiesTypeTitle" *ngIf="showFieldColorProperties">
+                            Type:
+                        </div>
+                        <div class="select editorColorPropertiesType" *ngIf="showFieldColorProperties">
+                            <select id="selects_3"
+                                [(ngModel)]="yPropertiesType"
+                                name="yPropertiesType"
+                                >
+                                <option>Ordinal</option>
+                                <option>Quantitative</option>
+                                <option>Temporal</option>
+                                <option>Nominal</option>
+                            </select>
+                        </div>
+
 
 
 
