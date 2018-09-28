@@ -622,12 +622,34 @@ export interface dataSchemaInterface {
         });
 
         // Get DS to which user has permissions
+        console.warn('xx this.globalVariableService.datasources', this.globalVariableService.datasources)
         this.localDatasources = this.globalVariableService.datasources
             .slice()
             .filter(ds =>
                 this.globalVariableService.datasourcePermissionsCheck(ds.id, 'CanView')
-        );
+            )
+            .sort( (obj1, obj2) => {
+                if (obj1.name > obj2.name) {
+                    return 1;
+                };
+                if (obj1.name < obj2.name) {
+                    return -1;
+                };
+                return 0;
+            });
 
+        // Select previously used DS
+        if (this.globalVariableService.previousGraphEditDSID != -1) {
+            
+            let datasourceIndex: number = this.localDatasources.findIndex(ds => 
+                ds.id == this.globalVariableService.previousGraphEditDSID
+            );
+            if (datasourceIndex >= 0) {
+                this.selectedRowID = this.globalVariableService.previousGraphEditDSID;
+                this.selectedRowIndex = datasourceIndex;
+            }
+        };
+       console.warn('xx this.selectedRowID', this.selectedRowID, this.selectedRowIndex, this.globalVariableService.previousGraphEditDSID)
         // Start afresh for new W
         if (this.newWidget) {
 
@@ -1504,6 +1526,9 @@ this.localWidget.graphYtype);
             this.errorMessage = 'Error! The Data does not exist in currentDatasets array';
             return;
         };
+
+        // Remember ID for next time
+        this.globalVariableService.previousGraphEditDSID = this.selectedRowID;
 
         // Fill in data info
         this.localWidget.datasourceID = this.selectedRowID;

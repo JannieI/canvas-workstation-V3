@@ -662,6 +662,7 @@ export class GlobalVariableService {
     getSource: string = 'Test';     // Where to read/write: File, Test (JSON Server), Eazl
     loggedIntoServer = new BehaviorSubject<boolean>(true);
     menuActionResize = new BehaviorSubject<boolean>(false);
+    previousGraphEditDSID: number = -1;
     sessionDateTimeLoggedin: string = '';
     sessionDebugging: boolean = true;      // True to log multiple messages to Console
     sessionLogging: boolean = false;
@@ -11181,7 +11182,7 @@ export class GlobalVariableService {
 
         // Return
         if (this.sessionDebugging) {
-            console.log('  Access type, result: ', dashboard.accessType, {hasAccess})
+            console.log('  Access type, result: ', {dashboardID}, {accessRequired}, dashboard.accessType, {hasAccess})
         };
 
         return hasAccess;
@@ -11280,7 +11281,7 @@ console.warn('xx ds perm', dp);
 
         // Return
         if (this.sessionDebugging) {
-            console.log('  Access type, result: ', datasource.accessType, {hasAccess})
+            console.log('  Access type, result: ', {datasourceID}, {accessRequired}, datasource.accessType, {hasAccess})
         };
 
         return hasAccess;

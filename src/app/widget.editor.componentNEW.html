@@ -80,7 +80,7 @@
                                 (click)="clickDSrow(i, row.id)"
                                 >
                                 <clr-dg-cell>
-                                    {{ row.name }}
+                                    {{ row.id }} {{ row.name }}
                                     <span *ngIf="row.nrWidgets > 0"
                                         class="badge badge-5">{{row.nrWidgets}}
                                     </span>
