@@ -250,27 +250,29 @@ export interface dataSchemaInterface {
 
 
     timeUnits: string[] = [
-        "date",
-        "day",
-        "hours", 
-        "hoursminutes", 
-        "hoursminutesseconds",
-        "milliseconds",
-        "minutes", 
-        "minutesseconds",
-        "month", 
-        "monthdate",
-        "quarter", 
-        "quartermonth",
-        "seconds", 
-        "secondsmilliseconds",
-        "year", 
-        "yearmonth", "yearmonthdate", 
-        "yearmonthdatehours", 
-        "yearmonthdatehoursminutes", 
-        "yearmonthdatehoursminutesseconds",
-        "yearquarter", 
-        "yearquartermonth"
+        "",
+        "Date",
+        "Day",
+        "Hours", 
+        "HoursMinutes", 
+        "HoursMinutesSeconds",
+        "Milliseconds",
+        "Minutes", 
+        "MinutesSeconds",
+        "Month", 
+        "MonthDate",
+        "Quarter", 
+        "QuarterMonth",
+        "Seconds", 
+        "SecondsMilliseconds",
+        "Year", 
+        "YearMonth", 
+        "YearMonthDate", 
+        "YearMonthDateHours", 
+        "YearMonthDateHoursMinutes", 
+        "YearMonthDateHoursMinutesSeconds",
+        "YearQuarter", 
+        "YearQuarterMonth"
     ];
 
     // TODO - remove this later on when we dont use D3 time formats at all
@@ -828,8 +830,8 @@ export interface dataSchemaInterface {
             };
             specification['encoding']['x']['type'] = this.xPropertiesType.toLowerCase();
 
-            specification['encoding']['x']['type'] = this.xPropertiesTimeUnit.toLowerCase();
-            specification['encoding']['x']['timeUnit'] = this.xPropertiesFormat;
+            specification['encoding']['x']['type'] = this.xPropertiesType.toLowerCase();
+            specification['encoding']['x']['timeUnit'] = this.xPropertiesFormat.toLowerCase();
 
             if (this.xPropertiesImpute != '') {
                 if (this.xPropertiesImpute == 'Value') {
