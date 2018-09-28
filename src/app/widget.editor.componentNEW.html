@@ -748,6 +748,21 @@
                             </select>
                         </div>
 
+                        <!-- Y Properties type -->
+                        <div class="editorYPropertiesTypeTitle" *ngIf="showFieldYProperties">
+                            Type:
+                        </div>
+                        <div class="select editorYPropertiesType" *ngIf="showFieldYProperties">
+                            <select id="selects_3"
+                                [(ngModel)]="yPropertiesType"
+                                name="yPropertiesType"
+                                >
+                                <option>Ordinal</option>
+                                <option>Quantitative</option>
+                                <option>Temporal</option>
+                                <option>Nominal</option>
+                            </select>
+                        </div>
 
 
 
