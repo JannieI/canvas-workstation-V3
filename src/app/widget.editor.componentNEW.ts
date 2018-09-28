@@ -215,11 +215,16 @@ export interface dataSchemaInterface {
     showFieldXPropertiesInfo: boolean = false;
     showFieldXProperties: boolean = false;
     showFieldXPropertiesTitle: boolean = false;
-    
+
     showFieldYAxis: boolean = false;
     showFieldYProperties: boolean = false;
     showFieldYPropertiesInfo: boolean = false;
     showFieldYPropertiesTitle: boolean = false;
+
+    showFieldColorAxis: boolean = false;
+    showFieldColorProperties: boolean = false;
+    showFieldColorPropertiesInfo: boolean = false;
+    showFieldColorPropertiesTitle: boolean = false;
 
     showFieldFilter: boolean = false;
     showSelectionFilter: boolean = false;
@@ -261,6 +266,17 @@ export interface dataSchemaInterface {
     yPropertiesSort: string = '';
     yPropertiesType: string = '';
     yPropertiesTimeUnit: string = '';
+
+    colorPropertiesAggregate: string = '';
+    colorPropertiesAggregateVegaLiteName: string = '';
+    colorPropertiesBin: string = 'False';
+    colorPropertiesFormat: string = '';
+    colorPropertiesImpute: string = '';
+    colorPropertiesImputeValue: number = 0;
+    colorPropertiesStack: string = '';
+    colorPropertiesSort: string = '';
+    colorPropertiesType: string = '';
+    colorPropertiesTimeUnit: string = '';
 
     timeUnits: string[] = [
         "",
@@ -905,6 +921,31 @@ export interface dataSchemaInterface {
             specification['encoding']['y']['sort'] = this.yPropertiesSort.toLowerCase();
             specification['encoding']['y']['type'] = this.yPropertiesType.toLowerCase();
             specification['encoding']['y']['timeUnit'] = this.yPropertiesTimeUnit.toLowerCase();
+
+            // Color field
+            specification['encoding']['color']['field'] = this.localWidget.graphYfield;
+            specification['encoding']['color']['type'] = this.localWidget.graphYtype;
+            specification['encoding']['color']['aggregate'] = this.colorPropertiesAggregateVegaLiteName.toLowerCase();
+            if (this.colorPropertiesBin == 'True') {
+                specification['encoding']['color']['bin'] = true;
+            } else {
+                specification['encoding']['color']['bin'] = false;
+            };
+            specification['encoding']['color']['format'] = this.colorPropertiesFormat.toLowerCase();
+            if (this.colorPropertiesImpute != '') {
+                if (this.colorPropertiesImpute == 'Value') {
+                    specification['encoding']['color']['impute'] =
+                        '{"value":' + this.colorPropertiesImputeValue + '}';
+                } else {
+                    specification['encoding']['color']['impute'] =
+                        '{"method": "' + this.colorPropertiesImpute + '"}';
+                };
+            };
+            specification['encoding']['color']['stack'] = this.colorPropertiesStack;
+            specification['encoding']['color']['sort'] = this.colorPropertiesSort.toLowerCase();
+            specification['encoding']['color']['type'] = this.colorPropertiesType.toLowerCase();
+            specification['encoding']['color']['timeUnit'] = this.colorPropertiesTimeUnit.toLowerCase();
+
 
 
 
@@ -1693,7 +1734,7 @@ console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowInde
             this.showFieldYPropertiesInfo = true;
         };
     }
-    
+
     clickShowTitleProperties() {
         // Show Title Properties Area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowTitleProperties', '@Start');
