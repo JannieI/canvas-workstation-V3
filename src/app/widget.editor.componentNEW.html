@@ -891,6 +891,21 @@
                             </select>
                         </div>
 
+                        <!-- Color Properties Sort -->
+                        <div class="editorColorPropertiesSortTitle" *ngIf="showFieldColorProperties">
+                            Sort:
+                        </div>
+                        <div class="select editorColorPropertiesSort" *ngIf="showFieldColorProperties">
+                            <select id="selects_3"
+                                [(ngModel)]="colorPropertiesSort"
+                                name="colorPropertiesSort"
+                                >
+                                <option>None</option>
+                                <option>Ascending</option>
+                                <option>Descending</option>
+                            </select>
+                        </div>
+
 
 
 
