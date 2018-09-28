@@ -628,16 +628,17 @@ export interface dataSchemaInterface {
             .filter(ds =>
                 this.globalVariableService.datasourcePermissionsCheck(ds.id, 'CanView')
             )
-            .sort( (obj1, obj2) => {
-                if (obj1.name > obj2.name) {
+            this.localDatasources = this.localDatasources.sort( (obj1, obj2) => {
+                if (obj1.name.toLowerCase() > obj2.name.toLowerCase()) {
                     return 1;
                 };
-                if (obj1.name < obj2.name) {
+                if (obj1.name.toLowerCase() < obj2.name.toLowerCase()) {
                     return -1;
                 };
                 return 0;
             });
 
+            this.localDatasources.forEach(ds => console.log('xx   ID', ds.id, ds.name))
         // Select previously used DS
         if (this.globalVariableService.previousGraphEditDSID != -1) {
             
