@@ -819,6 +819,20 @@
                             </select>
                         </div>
 
+                        <!-- Color Properties bin -->
+                        <div class="editorColorPropertiesBinTitle" *ngIf="showFieldColorProperties">
+                            Bin:
+                        </div>
+                        <div class="select editorColorPropertiesBin" *ngIf="showFieldColorProperties">
+                            <select id="selects_3"
+                                [(ngModel)]="colorPropertiesBin"
+                                name="colorPropertiesBin"
+                                >
+                                <option>False</option>
+                                <option>True</option>
+                            </select>
+                        </div>
+
 
 
 
