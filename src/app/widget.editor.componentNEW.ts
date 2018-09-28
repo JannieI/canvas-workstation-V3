@@ -810,7 +810,7 @@ console.warn('xx this.localWidget.graphXtype this.xPropertiesFormat',
                         '{"value":' + this.xPropertiesImputeValue + '}';
                 } else {
                     specification['encoding']['x']['impute'] = 
-                        '{"method": "' + this.xPropertiesImputeValue + '"}';
+                        '{"method": "' + this.xPropertiesImpute + '"}';
                 }
             }
             // "impute": {"value": 0}

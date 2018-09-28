@@ -532,7 +532,7 @@
                         </div>
 
                         <!-- X Properties Impute -->
-                        <div class="editorXPropertiesImputeTitle" *ngIf="showFieldXProperties">
+                        <div class="select editorXPropertiesImputeTitle" *ngIf="showFieldXProperties">
                             Impute:
                         </div>
                         <div class="editorXPropertiesImpute" *ngIf="showFieldXProperties">
@@ -540,6 +540,7 @@
                                 [(ngModel)]="xPropertiesImpute"
                                 name="xPropertiesImpute"
                                 >
+                                <option></option>
                                 <option>Max</option>
                                 <option>Mean</option>
                                 <option>Medium</option>
@@ -548,11 +549,13 @@
                             </select>
                         </div>
                         <div class="editorXPropertiesImputeValue" 
-                            *ngIf="showFieldXProperties  &&  (xPropertiesImpute=='Value')">
+                            *ngIf="showFieldXProperties"
+                            >
                             <input type="number"
                                 placeholder="Value"
                                 [(ngModel)]="xPropertiesImputeValue"
                                 name="xPropertiesImputeValue"
+                                [disabled]="!(xPropertiesImpute=='Value')"
                                 >
                         </div>
 
