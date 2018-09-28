@@ -866,9 +866,6 @@ export interface dataSchemaInterface {
                 specification['encoding']['x']['bin'] = false;
             };
             specification['encoding']['x']['format'] = this.xPropertiesFormat.toLowerCase();
-
-            specification['encoding']['x']['type'] = this.xPropertiesType.toLowerCase();
-
             if (this.xPropertiesImpute != '') {
                 if (this.xPropertiesImpute == 'Value') {
                     specification['encoding']['x']['impute'] =
@@ -876,10 +873,11 @@ export interface dataSchemaInterface {
                 } else {
                     specification['encoding']['x']['impute'] =
                         '{"method": "' + this.xPropertiesImpute + '"}';
-                }
-            }
+                };
+            };
             specification['encoding']['x']['stack'] = this.xPropertiesStack;
             specification['encoding']['x']['sort'] = this.xPropertiesSort.toLowerCase();
+            specification['encoding']['x']['type'] = this.xPropertiesType.toLowerCase();
             specification['encoding']['x']['timeUnit'] = this.xPropertiesTimeUnit.toLowerCase();
 
             // specification['encoding']['x']['axis']['title'] = this.localWidget.graphXaxisTitle;
@@ -894,6 +892,17 @@ export interface dataSchemaInterface {
                 specification['encoding']['y']['bin'] = false;
             };
             specification['encoding']['y']['format'] = this.yPropertiesFormat.toLowerCase();
+            if (this.yPropertiesImpute != '') {
+                if (this.yPropertiesImpute == 'Value') {
+                    specification['encoding']['y']['impute'] =
+                        '{"value":' + this.yPropertiesImputeValue + '}';
+                } else {
+                    specification['encoding']['y']['impute'] =
+                        '{"method": "' + this.yPropertiesImpute + '"}';
+                };
+            };
+
+
 
             // Color field
             specification['encoding']['color']['field'] = this.localWidget.graphColorField;
