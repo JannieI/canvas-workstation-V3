@@ -911,6 +911,49 @@ clr-dg-cell {
                     width: 68%;
                 }
 
+                .editorColorPropertiesImputeTitle {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin-left: 4px;
+                    width: 64px;
+                }
+                .editorColorPropertiesImpute {
+                    border: 1px solid steelblue;
+                    border-radius: 5px;
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin: 3px;
+                    width: 40%;
+                }
+                .editorColorPropertiesImputeValue {
+                    border: 1px solid steelblue;
+                    border-radius: 5px;
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin: 3px;
+                    width: 16%;
+                }
+
+                .editorColorPropertiesStackTitle {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin-left: 4px;
+                    width: 64px;
+                }
+                .editorColorPropertiesStack {
+                    border: 1px solid steelblue;
+                    border-radius: 5px;
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin: 3px;
+                    width: 68%;
+                }
+
 
 
 

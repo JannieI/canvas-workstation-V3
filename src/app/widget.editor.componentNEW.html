@@ -875,6 +875,22 @@
                                 >
                         </div>
 
+                        <!-- Color Properties stack -->
+                        <div class="editorColorPropertiesStackTitle" *ngIf="showFieldColorProperties">
+                            Stack:
+                        </div>
+                        <div class="select editorColorPropertiesStack" *ngIf="showFieldColorProperties">
+                            <select id="selects_3"
+                                [(ngModel)]="colorPropertiesStack"
+                                name="colorPropertiesStack"
+                                >
+                                <option>Zero</option>
+                                <option>Normalise</option>
+                                <option>Center</option>
+                                <option>Null</option>
+                            </select>
+                        </div>
+
 
 
 
