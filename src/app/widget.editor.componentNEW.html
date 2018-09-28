@@ -541,7 +541,6 @@
                                 name="xPropertiesImpute"
                                 >
                                 <option></option>
-                                <option></option>
                                 <option>Max</option>
                                 <option>Mean</option>
                                 <option>Medium</option>
@@ -698,7 +697,6 @@
                                 name="yPropertiesImpute"
                                 >
                                 <option></option>
-                                <option></option>
                                 <option>Max</option>
                                 <option>Mean</option>
                                 <option>Medium</option>
@@ -719,6 +717,21 @@
                                 >
                         </div>
 
+                        <!-- Y Properties stack -->
+                        <div class="editorYPropertiesStackTitle" *ngIf="showFieldYProperties">
+                            Stack:
+                        </div>
+                        <div class="select editorYPropertiesStack" *ngIf="showFieldYProperties">
+                            <select id="selects_3"
+                                [(ngModel)]="yPropertiesStack"
+                                name="yPropertiesStack"
+                                >
+                                <option>Zero</option>
+                                <option>Normalise</option>
+                                <option>Center</option>
+                                <option>Null</option>
+                            </select>
+                        </div>
 
 
 

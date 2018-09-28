@@ -901,6 +901,7 @@ export interface dataSchemaInterface {
                         '{"method": "' + this.yPropertiesImpute + '"}';
                 };
             };
+            specification['encoding']['y']['stack'] = this.yPropertiesStack;
 
 
 
