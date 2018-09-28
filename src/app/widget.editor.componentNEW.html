@@ -764,6 +764,22 @@
                             </select>
                         </div>
 
+                        <!-- Y Properties timeUnit -->
+                        <div class="editorYPropertiesTimeUnitTitle" *ngIf="showFieldYProperties">
+                            TimeUnit:
+                        </div>
+                        <div class="select editorYPropertiesTimeUnit" 
+                            *ngIf="showFieldYProperties"
+                            >
+                            <select id="selects_3"
+                                [(ngModel)]="yPropertiesTimeUnit"
+                                >
+                                <option *ngFor="let row of timeUnits; let i = index">
+                                    {{ row }}
+                                </option>
+                            </select>
+                        </div>
+
 
 
 
