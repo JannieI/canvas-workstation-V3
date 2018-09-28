@@ -518,7 +518,7 @@
                                 <option>True</option>
                             </select>
                         </div>
-    
+
                         <!-- X Properties Format -->
                         <div class="editorXPropertiesFormatTitle" *ngIf="showFieldXProperties">
                             Format:
@@ -548,7 +548,7 @@
                                 <option>Value</option>
                             </select>
                         </div>
-                        <div class="editorXPropertiesImputeValue" 
+                        <div class="editorXPropertiesImputeValue"
                             *ngIf="showFieldXProperties"
                             size="5"
                             >
@@ -612,7 +612,7 @@
                         <div class="editorXPropertiesTimeUnitTitle" *ngIf="showFieldXProperties">
                             TimeUnit:
                         </div>
-                        <div class="select editorXPropertiesTimeUnit" 
+                        <div class="select editorXPropertiesTimeUnit"
                             *ngIf="showFieldXProperties"
                             >
                             <select id="selects_3"
@@ -674,7 +674,7 @@
                                 <option>True</option>
                             </select>
                         </div>
-    
+
                         <!-- Y Properties Format -->
                         <div class="editorYPropertiesFormatTitle" *ngIf="showFieldYProperties">
                             Format:
@@ -704,7 +704,7 @@
                                 <option>Value</option>
                             </select>
                         </div>
-                        <div class="editorYPropertiesImputeValue" 
+                        <div class="editorYPropertiesImputeValue"
                             *ngIf="showFieldYProperties"
                             size="5"
                             >
@@ -768,7 +768,7 @@
                         <div class="editorYPropertiesTimeUnitTitle" *ngIf="showFieldYProperties">
                             TimeUnit:
                         </div>
-                        <div class="select editorYPropertiesTimeUnit" 
+                        <div class="select editorYPropertiesTimeUnit"
                             *ngIf="showFieldYProperties"
                             >
                             <select id="selects_3"
@@ -832,7 +832,7 @@
                                 <option>True</option>
                             </select>
                         </div>
-    
+
                         <!-- X Properties Format -->
                         <div class="editorColorPropertiesFormatTitle" *ngIf="showFieldColorProperties">
                             Format:
@@ -842,6 +842,36 @@
                                 placeholder="ie .2s +$,.2f"
                                 [(ngModel)]="colorPropertiesFormat"
                                 name="colorPropertiesFormat"
+                                >
+                        </div>
+
+                        <!-- Color Properties Impute -->
+                        <div class="editorColorPropertiesImputeTitle" *ngIf="showFieldColorProperties">
+                            Impute:
+                        </div>
+                        <div class="select editorColorPropertiesImpute" *ngIf="showFieldColorProperties">
+                            <select id="selects_3"
+                                [(ngModel)]="colorPropertiesImpute"
+                                name="colorPropertiesImpute"
+                                >
+                                <option></option>
+                                <option>Max</option>
+                                <option>Mean</option>
+                                <option>Medium</option>
+                                <option>Min</option>
+                                <option>Value</option>
+                            </select>
+                        </div>
+                        <div class="editorColorPropertiesImputeValue" 
+                            *ngIf="showFieldColorProperties"
+                            size="5"
+                            >
+                            <input type="number"
+                                placeholder="Value"
+                                [(ngModel)]="colorPropertiesImputeValue"
+                                name="colorPropertiesImputeValue"
+                                [disabled]="!(colorPropertiesImpute=='Value')"
+                                size="5"
                                 >
                         </div>
 
