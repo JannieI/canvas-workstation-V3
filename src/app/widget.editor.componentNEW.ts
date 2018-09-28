@@ -902,6 +902,9 @@ export interface dataSchemaInterface {
                 };
             };
             specification['encoding']['y']['stack'] = this.yPropertiesStack;
+            specification['encoding']['y']['sort'] = this.yPropertiesSort.toLowerCase();
+            specification['encoding']['y']['type'] = this.yPropertiesType.toLowerCase();
+            specification['encoding']['y']['timeUnit'] = this.yPropertiesTimeUnit.toLowerCase();
 
 
 
