@@ -988,16 +988,26 @@ clr-dg-cell {
                     width: 68%;
                 }
 
+                .editorColorPropertiesTimeUnitTitle {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin-left: 4px;
+                    width: 64px;
+                }
+                .editorColorPropertiesTimeUnit {
+                    border: 1px solid steelblue;
+                    border-radius: 5px;
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin: 3px;
+                    width: 68%;
+                }
 
 
 
-
-
-
-
-
-
-
+            /* Filter Properties */
             .editorFilterTitle {
                 background-color: rgb(211, 209, 226);
                 border: 1px solid lightgray;
