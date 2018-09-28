@@ -272,7 +272,7 @@ export interface dataSchemaInterface {
         "yearquarter", 
         "yearquartermonth"
     ];
-    
+
     // TODO - remove this later on when we dont use D3 time formats at all
     dateTimeFormats: {displayFormat: string; d3Format: string, description: string}[] =
     [
@@ -827,7 +827,9 @@ export interface dataSchemaInterface {
                 specification['encoding']['x']['bin'] = false;
             };
             specification['encoding']['x']['type'] = this.xPropertiesType.toLowerCase();
-            specification['encoding']['x']['format'] = this.xPropertiesFormat;
+
+            specification['encoding']['x']['type'] = this.xPropertiesTimeUnit.toLowerCase();
+            specification['encoding']['x']['timeUnit'] = this.xPropertiesFormat;
 
             if (this.xPropertiesImpute != '') {
                 if (this.xPropertiesImpute == 'Value') {
