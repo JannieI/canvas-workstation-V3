@@ -184,9 +184,9 @@ clr-dg-cell {
         }
 
         .datasourceMainButton {
-            grid-column-start: 44;
+            grid-column-start: 45;
             /* autoprefixer: off */
-            grid-column-end: 46;
+            grid-column-end: 47;
             grid-row-start: 26;
             grid-row-end: 27;
         }
