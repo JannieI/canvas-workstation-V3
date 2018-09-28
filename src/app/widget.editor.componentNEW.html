@@ -781,6 +781,30 @@
                         </div>
 
 
+                        <!-- Color Properties -->
+                        <div class="editorColorPropertiesTitle" *ngIf="showFieldColorPropertiesTitle"
+                            (click)="clickShowColorProperties()"
+                            >
+                            <b>
+                                Color Properties
+                            </b>
+                            <clr-icon shape="angle down" *ngIf="!showFieldColorProperties"
+                                size="12"
+                                >
+                            </clr-icon>
+                            <clr-icon shape="angle up" *ngIf="showFieldColorProperties"
+                                size="12"
+                                >
+                            </clr-icon>
+                            <clr-icon shape="info-circle" *ngIf="showFieldColorPropertiesInfo"
+                                style="color: rgb(101, 101, 196);
+                                    float: right;
+                                    margin-top: 4px;"
+                                >
+                            </clr-icon>
+                        </div>
+
+
 
 
 
