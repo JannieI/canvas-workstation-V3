@@ -891,7 +891,7 @@
                             </div>
                         </div>
 
-                        <!-- X Properties Format -->
+                        <!-- Color Properties Format -->
                         <div class="editorLineContainer">
                             <div class="editorColorPropertiesFormatTitle" *ngIf="showFieldColorProperties">
                                 Format:
@@ -1026,11 +1026,6 @@
                         </div>
 
 
-
-
-
-
-
                         <!-- Filter -->
                         <div class="editorFilterTitle"
                             (click)="clickShowFilter()"
@@ -1080,7 +1075,7 @@
 
 
                         <!-- X-Axis -->
-                        <div class="editorXAxisContainerTitle"
+                        <div class="editorXAxisContainerTitle" *ngIf="showFieldXPropertiesTitle"
                             (click)="clickShowXAxis()"
                             >
                             <b>
@@ -1182,7 +1177,7 @@
 
 
                         <!-- Y-Axis -->
-                        <div class="editorYAxisTitle"
+                        <div class="editorYAxisContainerTitle" *ngIf="showFieldYPropertiesTitle"
                             (click)="clickShowYAxis()"
                             >
                             <b>
@@ -1300,19 +1295,6 @@
                                     >
                             </div>
                         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
                     </div>
 
 

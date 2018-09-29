@@ -1232,17 +1232,8 @@ clr-dg-cell {
                 }
 
 
-
-
-
-
-
-
-
-
-
-
-            .editorYAxisTitle {
+            /* Y Axis */
+            .editorYAxisContainerTitle {
                 background-color: rgb(211, 209, 226);
                 border: 1px solid lightgray;
                 border-radius: 3px;
