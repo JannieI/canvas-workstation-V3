@@ -538,6 +538,8 @@ export interface dataSchemaInterface {
     yPropertiesType: string = '';
     yPropertiesTimeUnit: string = '';
 
+    yAxisScaleType: string = 'Default';
+
     colorPropertiesAggregate: string = '';
     colorPropertiesAggregateVegaLiteName: string = '';
     colorPropertiesBin: string = 'False';
@@ -1157,10 +1159,10 @@ export interface dataSchemaInterface {
             if (this.xPropertiesImpute != '') {
                 if (this.xPropertiesImpute == 'Value') {
                     specification['encoding']['x']['impute'] =
-                        '{"value":' + this.xPropertiesImputeValue + '}';
+                        {"value": this.xPropertiesImputeValue };
                 } else {
                     specification['encoding']['x']['impute'] =
-                        '{"method": "' + this.xPropertiesImpute + '"}';
+                        {"method": " this.xPropertiesImpute "};
                 };
             };
             specification['encoding']['x']['stack'] = this.xPropertiesStack;
@@ -1170,7 +1172,7 @@ export interface dataSchemaInterface {
 
             if (this.xAxisScaleType != 'Default') {
                 specification['encoding']['x']['scale'] =
-                '{"type": "' + this.xAxisScaleType.toLowerCase() + '"}';
+                {"type": this.xAxisScaleType.toLowerCase() };
             };
 
             // specification['encoding']['x']['axis']['title'] = this.localWidget.graphXaxisTitle;
@@ -1188,10 +1190,10 @@ export interface dataSchemaInterface {
             if (this.yPropertiesImpute != '') {
                 if (this.yPropertiesImpute == 'Value') {
                     specification['encoding']['y']['impute'] =
-                        '{"value":' + this.yPropertiesImputeValue + '}';
+                        {"value": this.yPropertiesImputeValue };
                 } else {
                     specification['encoding']['y']['impute'] =
-                        '{"method": "' + this.yPropertiesImpute + '"}';
+                        {"method": this.yPropertiesImpute };
                 };
             };
             specification['encoding']['y']['stack'] = this.yPropertiesStack;
@@ -1199,6 +1201,12 @@ export interface dataSchemaInterface {
             specification['encoding']['y']['type'] = this.yPropertiesType.toLowerCase();
             specification['encoding']['y']['timeUnit'] = this.yPropertiesTimeUnit.toLowerCase();
 
+            if (this.yAxisScaleType != 'Default') {
+                specification['encoding']['y']['scale'] =
+                {"type": this.yAxisScaleType.toLowerCase() };
+            };
+
+            
             // Color field
             specification['encoding']['color']['field'] = this.localWidget.graphYfield;
             specification['encoding']['color']['type'] = this.localWidget.graphYtype;
@@ -1212,10 +1220,10 @@ export interface dataSchemaInterface {
             if (this.colorPropertiesImpute != '') {
                 if (this.colorPropertiesImpute == 'Value') {
                     specification['encoding']['color']['impute'] =
-                        '{"value":' + this.colorPropertiesImputeValue + '}';
+                        {"value":' + this.colorPropertiesImputeValue + '};
                 } else {
                     specification['encoding']['color']['impute'] =
-                        '{"method": "' + this.colorPropertiesImpute + '"}';
+                        {"method": "' + this.colorPropertiesImpute + '"};
                 };
             };
             specification['encoding']['color']['stack'] = this.colorPropertiesStack;
