@@ -525,8 +525,6 @@ export interface dataSchemaInterface {
     xPropertiesType: string = '';
     xPropertiesTimeUnit: string = '';
 
-    xAxisScaleType: string = 'Default';
-
     yPropertiesAggregate: string = '';
     yPropertiesAggregateVegaLiteName: string = '';
     yPropertiesBin: string = 'False';
@@ -1169,11 +1167,6 @@ export interface dataSchemaInterface {
             specification['encoding']['x']['sort'] = this.xPropertiesSort.toLowerCase();
             specification['encoding']['x']['type'] = this.xPropertiesType.toLowerCase();
             specification['encoding']['x']['timeUnit'] = this.xPropertiesTimeUnit.toLowerCase();
-
-            if (this.xAxisScaleType != 'Default') {
-                specification['encoding']['x']['scale'] =
-                {"type": this.xAxisScaleType.toLowerCase() };
-            };
 
             // specification['encoding']['x']['axis']['title'] = this.localWidget.graphXaxisTitle;
 
