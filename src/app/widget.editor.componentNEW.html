@@ -1245,6 +1245,20 @@
                             </div>
                         </div>
 
+                        <!-- Y-Axis Grid -->
+                        <div class="editorLineContainer">
+                            <div class="editorYAxisGridTitle" *ngIf="showFieldYAxis">
+                                Grid:
+                            </div>
+                            <div class="editorYAxisGrid" *ngIf="showFieldYAxis">
+                                <input type="checkbox"
+                                    [(ngModel)]="yAxisGrid"
+                                    name="yAxisGrid"
+                                    title="Show Grid lines (T/F)"
+                                    >
+                            </div>
+                        </div>
+
 
 
 
