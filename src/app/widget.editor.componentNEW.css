@@ -1147,6 +1147,30 @@ clr-dg-cell {
                     width: 15px;
                 }
 
+                .editorYAxisTitleTitle {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin-left: 4px;
+                    width: 38px;
+                }
+                .editorYAxisTitleCheckbox {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin: 3px;
+                    width: 15px;
+                }
+                .editorYAxisTitle {
+                    border: 1px solid steelblue;
+                    border-radius: 5px;
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin: 3px;
+                    width: 64%;
+                }
+
 
 
 

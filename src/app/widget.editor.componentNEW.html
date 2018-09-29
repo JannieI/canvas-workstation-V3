@@ -1181,11 +1181,6 @@
                         </div>
 
 
-
-
-
-
-
                         <!-- Y-Axis -->
                         <div class="editorYAxisTitle"
                             (click)="clickShowYAxis()"
@@ -1227,6 +1222,39 @@
                                 </select>
                             </div>
                         </div>
+
+                        <!-- Y-Axis Title -->
+                        <div class="editorLineContainer">
+                            <div class="editorYAxisTitleTitle" *ngIf="showFieldYAxis">
+                                Title:
+                            </div>
+                            <div class="editorYAxisTitleCheckbox" *ngIf="showFieldYAxis">
+                                <input [(ngModel)]="yAxisTitleCheckbox"
+                                    type="checkbox"
+                                    name="yAxisTitleCheckbox"
+                                    title="Show the Axis Title (T/F)"
+                                    >
+                            </div>
+                            <div class="editorYAxisTitle" *ngIf="showFieldYAxis"
+                                >
+                                <input type="text"
+                                    placeholder="Blank = field name"
+                                    [(ngModel)]="yAxisTitle"
+                                    name="yAxisTitle"
+                                    >
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
 
 
                     </div>

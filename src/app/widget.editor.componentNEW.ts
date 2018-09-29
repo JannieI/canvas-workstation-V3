@@ -532,12 +532,6 @@ export interface dataSchemaInterface {
     xAxisLabels: boolean = true;
     xAxisLabelAngle: number = 0;
 
-    xAxisTitleAlign: string	= '';
-    xAxisTitleColor: string = '';
-    xAxisTitleFont: string = '';
-    xAxisTitleFontSize: number = 0;
-    xAxisTitleLimit: number = 0;
-
     yPropertiesAggregate: string = '';
     yPropertiesAggregateVegaLiteName: string = '';
     yPropertiesBin: string = 'False';
@@ -550,6 +544,13 @@ export interface dataSchemaInterface {
     yPropertiesTimeUnit: string = '';
 
     yAxisScaleType: string = 'Default';
+
+    yAxisTitle: string = '';
+    yAxisTitleCheckbox: boolean = true;
+    yAxisGrid: boolean = true;
+    yAxisFormat: string = '';
+    yAxisLabels: boolean = true;
+    yAxisLabelAngle: number = 0;
 
     colorPropertiesAggregate: string = '';
     colorPropertiesAggregateVegaLiteName: string = '';
@@ -1199,13 +1200,6 @@ export interface dataSchemaInterface {
                 specification['encoding']['x']['axis']['format'] =  this.xAxisFormat;
             };
             
-            
-            this.xAxisTitle
-            this.xAxisTitleAlign
-            this.xAxisTitleColor
-            this.xAxisTitleFont
-            this.xAxisTitleFontSize
-            this.xAxisTitleLimit
 
             // Y field
             specification['encoding']['y']['field'] = this.localWidget.graphYfield;
@@ -1234,6 +1228,24 @@ export interface dataSchemaInterface {
             if (this.yAxisScaleType != 'Default') {
                 specification['encoding']['y']['scale'] =
                 {"type": this.yAxisScaleType.toLowerCase() };
+            };
+
+            specification['encoding']['y']['axis'] = {"grid": this.yAxisGrid };
+            specification['encoding']['y']['axis']['labels'] = this.yAxisLabels;
+            if (this.yAxisLabelAngle != 0){
+                specification['encoding']['y']['axis']['labelAngle'] = this.yAxisLabelAngle;
+            };
+
+            if (!this.yAxisTitleCheckbox) {
+                specification['encoding']['y']['axis']['title'] = null;
+            } else {
+                if (this.yAxisTitle != ''  &&  this.yAxisTitle != undefined) {
+                    specification['encoding']['y']['axis']['title'] = this.yAxisTitle;
+                };
+            };
+
+            if (this.yAxisFormat != '') {
+                specification['encoding']['y']['axis']['format'] =  this.yAxisFormat;
             };
 
 
