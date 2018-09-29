@@ -511,137 +511,153 @@
                         </div>
 
                         <!-- X Properties Aggregate -->
-                        <div class="editorXPropertiesAggregateTitle" *ngIf="showFieldXProperties">
-                            Aggregate:
-                        </div>
-                        <div class="select editorXPropertiesAggregate" *ngIf="showFieldXProperties">
-                            <select id="selects_3"
-                                [(ngModel)]="xPropertiesAggregate"
-                                name="xPropertiesAggregate"
-                                >
-                                <option *ngFor="let row of aggregations; let i = index">
-                                    {{ row.displayName }}
-                                </option>
-                            </select>
+                        <div class="editorLineContainer">
+                            <div class="editorXPropertiesAggregateTitle" *ngIf="showFieldXProperties">
+                                Aggregate:
+                            </div>
+                            <div class="select editorXPropertiesAggregate" *ngIf="showFieldXProperties">
+                                <select id="selects_3"
+                                    [(ngModel)]="xPropertiesAggregate"
+                                    name="xPropertiesAggregate"
+                                    >
+                                    <option *ngFor="let row of aggregations; let i = index">
+                                        {{ row.displayName }}
+                                    </option>
+                                </select>
+                            </div>
                         </div>
 
                         <!-- X Properties bin -->
-                        <div class="editorXPropertiesBinTitle" *ngIf="showFieldXProperties">
-                            Bin:
-                        </div>
-                        <div class="select editorXPropertiesBin" *ngIf="showFieldXProperties">
-                            <select id="selects_3"
-                                [(ngModel)]="xPropertiesBin"
-                                name="xPropertiesBin"
-                                >
-                                <option>False</option>
-                                <option>True</option>
-                            </select>
+                        <div class="editorLineContainer">
+                            <div class="editorXPropertiesBinTitle" *ngIf="showFieldXProperties">
+                                Bin:
+                            </div>
+                            <div class="select editorXPropertiesBin" *ngIf="showFieldXProperties">
+                                <select id="selects_3"
+                                    [(ngModel)]="xPropertiesBin"
+                                    name="xPropertiesBin"
+                                    >
+                                    <option>False</option>
+                                    <option>True</option>
+                                </select>
+                            </div>
                         </div>
 
                         <!-- X Properties Format -->
-                        <div class="editorXPropertiesFormatTitle" *ngIf="showFieldXProperties">
+                        <div class="editorLineContainer">
+                            <div class="editorXPropertiesFormatTitle" *ngIf="showFieldXProperties">
                             Format:
-                        </div>
-                        <div class="editorXPropertiesFormat" *ngIf="showFieldXProperties">
-                            <input type="text"
-                                placeholder="ie .2s +$,.2f"
-                                [(ngModel)]="xPropertiesFormat"
-                                name="xPropertiesFormat"
-                                >
+                            </div>
+                            <div class="editorXPropertiesFormat" *ngIf="showFieldXProperties">
+                                <input type="text"
+                                    placeholder="ie .2s +$,.2f"
+                                    [(ngModel)]="xPropertiesFormat"
+                                    name="xPropertiesFormat"
+                                    >
+                            </div>
                         </div>
 
                         <!-- X Properties Impute -->
-                        <div class="editorXPropertiesImputeTitle" *ngIf="showFieldXProperties">
-                            Impute:
-                        </div>
-                        <div class="select editorXPropertiesImpute" *ngIf="showFieldXProperties">
-                            <select id="selects_3"
-                                [(ngModel)]="xPropertiesImpute"
-                                name="xPropertiesImpute"
-                                >
-                                <option></option>
-                                <option>Max</option>
-                                <option>Mean</option>
-                                <option>Medium</option>
-                                <option>Min</option>
-                                <option>Value</option>
-                            </select>
-                        </div>
-                        <div class="editorXPropertiesImputeValue"
-                            *ngIf="showFieldXProperties"
-                            size="5"
-                            >
-                            <input type="number"
-                                placeholder="Value"
-                                [(ngModel)]="xPropertiesImputeValue"
-                                name="xPropertiesImputeValue"
-                                [disabled]="!(xPropertiesImpute=='Value')"
+                        <div class="editorLineContainer">
+                            <div class="editorXPropertiesImputeTitle" *ngIf="showFieldXProperties">
+                                Impute:
+                            </div>
+                            <div class="select editorXPropertiesImpute" *ngIf="showFieldXProperties">
+                                <select id="selects_3"
+                                    [(ngModel)]="xPropertiesImpute"
+                                    name="xPropertiesImpute"
+                                    >
+                                    <option></option>
+                                    <option>Max</option>
+                                    <option>Mean</option>
+                                    <option>Medium</option>
+                                    <option>Min</option>
+                                    <option>Value</option>
+                                </select>
+                            </div>
+                            <div class="editorXPropertiesImputeValue"
+                                *ngIf="showFieldXProperties"
                                 size="5"
                                 >
+                                <input type="number"
+                                    placeholder="Value"
+                                    [(ngModel)]="xPropertiesImputeValue"
+                                    name="xPropertiesImputeValue"
+                                    [disabled]="!(xPropertiesImpute=='Value')"
+                                    size="5"
+                                    >
+                            </div>
                         </div>
 
                         <!-- X Properties stack -->
-                        <div class="editorXPropertiesStackTitle" *ngIf="showFieldXProperties">
-                            Stack:
-                        </div>
-                        <div class="select editorXPropertiesStack" *ngIf="showFieldXProperties">
-                            <select id="selects_3"
-                                [(ngModel)]="xPropertiesStack"
-                                name="xPropertiesStack"
-                                >
-                                <option>Zero</option>
-                                <option>Normalise</option>
-                                <option>Center</option>
-                                <option>Null</option>
-                            </select>
+                        <div class="editorLineContainer">
+                            <div class="editorXPropertiesStackTitle" *ngIf="showFieldXProperties">
+                                Stack:
+                            </div>
+                            <div class="select editorXPropertiesStack" *ngIf="showFieldXProperties">
+                                <select id="selects_3"
+                                    [(ngModel)]="xPropertiesStack"
+                                    name="xPropertiesStack"
+                                    >
+                                    <option>Zero</option>
+                                    <option>Normalise</option>
+                                    <option>Center</option>
+                                    <option>Null</option>
+                                </select>
+                            </div>
                         </div>
 
                         <!-- X Properties Sort -->
-                        <div class="editorXPropertiesSortTitle" *ngIf="showFieldXProperties">
-                            Sort:
-                        </div>
-                        <div class="select editorXPropertiesSort" *ngIf="showFieldXProperties">
-                            <select id="selects_3"
-                                [(ngModel)]="xPropertiesSort"
-                                name="xPropertiesSort"
-                                >
-                                <option>None</option>
-                                <option>Ascending</option>
-                                <option>Descending</option>
-                            </select>
+                        <div class="editorLineContainer">
+                            <div class="editorXPropertiesSortTitle" *ngIf="showFieldXProperties">
+                                Sort:
+                            </div>
+                            <div class="select editorXPropertiesSort" *ngIf="showFieldXProperties">
+                                <select id="selects_3"
+                                    [(ngModel)]="xPropertiesSort"
+                                    name="xPropertiesSort"
+                                    >
+                                    <option>None</option>
+                                    <option>Ascending</option>
+                                    <option>Descending</option>
+                                </select>
+                            </div>
                         </div>
 
                         <!-- X Properties type -->
-                        <div class="editorXPropertiesTypeTitle" *ngIf="showFieldXProperties">
-                            Type:
-                        </div>
-                        <div class="select editorXPropertiesType" *ngIf="showFieldXProperties">
-                            <select id="selects_3"
-                                [(ngModel)]="xPropertiesType"
-                                name="xPropertiesType"
-                                >
-                                <option>Ordinal</option>
-                                <option>Quantitative</option>
-                                <option>Temporal</option>
-                                <option>Nominal</option>
-                            </select>
+                        <div class="editorLineContainer">
+                            <div class="editorXPropertiesTypeTitle" *ngIf="showFieldXProperties">
+                                Type:
+                            </div>
+                            <div class="select editorXPropertiesType" *ngIf="showFieldXProperties">
+                                <select id="selects_3"
+                                    [(ngModel)]="xPropertiesType"
+                                    name="xPropertiesType"
+                                    >
+                                    <option>Ordinal</option>
+                                    <option>Quantitative</option>
+                                    <option>Temporal</option>
+                                    <option>Nominal</option>
+                                </select>
+                            </div>
                         </div>
 
                         <!-- X Properties timeUnit -->
-                        <div class="editorXPropertiesTimeUnitTitle" *ngIf="showFieldXProperties">
-                            TimeUnit:
-                        </div>
-                        <div class="select editorXPropertiesTimeUnit"
-                            *ngIf="showFieldXProperties"
-                            >
-                            <select id="selects_3"
-                                [(ngModel)]="xPropertiesTimeUnit"
+                        <div class="editorLineContainer">
+                            <div class="editorXPropertiesTimeUnitTitle" *ngIf="showFieldXProperties">
+                                TimeUnit:
+                            </div>
+                            <div class="select editorXPropertiesTimeUnit"
+                                *ngIf="showFieldXProperties"
                                 >
-                                <option *ngFor="let row of timeUnits; let i = index">
-                                    {{ row }}
-                                </option>
-                            </select>
+                                <select id="selects_3"
+                                    [(ngModel)]="xPropertiesTimeUnit"
+                                    >
+                                    <option *ngFor="let row of timeUnits; let i = index">
+                                        {{ row }}
+                                    </option>
+                                </select>
+                            </div>
                         </div>
 
 
