@@ -246,6 +246,7 @@ export interface dataSchemaInterface {
     titleOrientation: string = 'Top';
 
     vegaColorSchemes: string[] = [
+        "None",
         "accent",
         "bluegreen",
         "bluegreen-3",
@@ -1222,14 +1223,12 @@ export interface dataSchemaInterface {
             specification['encoding']['color']['type'] = this.colorPropertiesType.toLowerCase();
             specification['encoding']['color']['timeUnit'] = this.colorPropertiesTimeUnit.toLowerCase();
 
-            if (this.colorPropertiesScheme != 'Default') {
-                specification['encoding']['color']['scale'] =
-                {"scheme": this.colorPropertiesScheme.toLowerCase() };
+            if (this.colorPropertiesScheme == 'None') {
+                specification['encoding']['color']['scale'] = null;
             } else {
                 specification['encoding']['color']['scale'] =
-                '{"scheme": ""}';
+                {"scheme": this.colorPropertiesScheme.toLowerCase() };
             };
-
             
 
 
