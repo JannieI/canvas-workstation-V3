@@ -942,14 +942,14 @@ clr-dg-cell {
                     width: 16%;
                 }
 
-                .editorColorPropertiesStackTitle {
+                .editorColorPropertiesSchemeTitle {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
                     width: 64px;
                 }
-                .editorColorPropertiesStack {
+                .editorColorPropertiesScheme {
                     border: 1px solid steelblue;
                     border-radius: 5px;
                     display: inline-block;
@@ -967,6 +967,23 @@ clr-dg-cell {
                     width: 64px;
                 }
                 .editorColorPropertiesSort {
+                    border: 1px solid steelblue;
+                    border-radius: 5px;
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin: 3px;
+                    width: 68%;
+                }
+
+                .editorColorPropertiesStackTitle {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin-left: 4px;
+                    width: 64px;
+                }
+                .editorColorPropertiesStack {
                     border: 1px solid steelblue;
                     border-radius: 5px;
                     display: inline-block;
@@ -1068,7 +1085,7 @@ clr-dg-cell {
 
 
 
-                
+
 
             .editorYAxisTitle {
                 background-color: rgb(211, 209, 226);

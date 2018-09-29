@@ -937,20 +937,19 @@
                             </div>
                         </div>
 
-                        <!-- Color Properties stack -->
+                        <!-- Color Properties Scheme -->
                         <div class="editorLineContainer">
-                            <div class="editorColorPropertiesStackTitle" *ngIf="showFieldColorProperties">
-                                Stack:
+                            <div class="editorColorPropertiesSchemeTitle" *ngIf="showFieldColorProperties">
+                                Scheme:
                             </div>
-                            <div class="select editorColorPropertiesStack" *ngIf="showFieldColorProperties">
+                            <div class="select editorColorPropertiesScheme" *ngIf="showFieldColorProperties">
                                 <select id="selects_3"
-                                    [(ngModel)]="colorPropertiesStack"
-                                    name="colorPropertiesStack"
+                                    [(ngModel)]="colorPropertiesScheme"
+                                    name="colorPropertiesScheme"
                                     >
-                                    <option>Zero</option>
-                                    <option>Normalise</option>
-                                    <option>Center</option>
-                                    <option>Null</option>
+                                    <option *ngFor="let row of vegaColorSchemes; let i = index">
+                                        {{ row }}
+                                    </option>
                                 </select>
                             </div>
                         </div>
@@ -968,6 +967,24 @@
                                     <option>None</option>
                                     <option>Ascending</option>
                                     <option>Descending</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Color Properties stack -->
+                        <div class="editorLineContainer">
+                            <div class="editorColorPropertiesStackTitle" *ngIf="showFieldColorProperties">
+                                Stack:
+                            </div>
+                            <div class="select editorColorPropertiesStack" *ngIf="showFieldColorProperties">
+                                <select id="selects_3"
+                                    [(ngModel)]="colorPropertiesStack"
+                                    name="colorPropertiesStack"
+                                    >
+                                    <option>Zero</option>
+                                    <option>Normalise</option>
+                                    <option>Center</option>
+                                    <option>Null</option>
                                 </select>
                             </div>
                         </div>
@@ -1087,11 +1104,11 @@
 
                         <!-- X-Axis Scale Type -->
                         <div class="editorLineContainer">
-                            <div class="editorXAxisScaleTypeTitle" *ngIf="showFieldColorProperties">
+                            <div class="editorXAxisScaleTypeTitle" *ngIf="showFieldXAxis">
                                 Type:
                             </div>
                             <div class="select editorXAxisScaleType"
-                                *ngIf="showFieldColorProperties"
+                                *ngIf="showFieldXAxis"
                                 >
                                 <select id="selects_3"
                                     [(ngModel)]="xAxisScaleType"

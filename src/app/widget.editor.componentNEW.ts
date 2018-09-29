@@ -244,6 +244,10 @@ export interface dataSchemaInterface {
     titleFontWeight: number = 400;
     titleLength: number = 0;
     titleOrientation: string = 'Top';
+
+    vegaColorSchemes: string[] = [
+        "Default", "greens-3"
+    ];
     widgetGraphs: WidgetGraph[] =[];
     xPropertiesAggregate: string = '';
     xPropertiesAggregateVegaLiteName: string = '';
@@ -264,8 +268,8 @@ export interface dataSchemaInterface {
     yPropertiesFormat: string = '';
     yPropertiesImpute: string = '';
     yPropertiesImputeValue: number = 0;
-    yPropertiesStack: string = '';
     yPropertiesSort: string = '';
+    yPropertiesStack: string = '';
     yPropertiesType: string = '';
     yPropertiesTimeUnit: string = '';
 
@@ -275,8 +279,9 @@ export interface dataSchemaInterface {
     colorPropertiesFormat: string = '';
     colorPropertiesImpute: string = '';
     colorPropertiesImputeValue: number = 0;
+    colorPropertiesScheme: string = '';
+    colorPropertiesSort: string = 'Default';
     colorPropertiesStack: string = '';
-    colorPropertiesSort: string = '';
     colorPropertiesType: string = '';
     colorPropertiesTimeUnit: string = '';
 
@@ -900,7 +905,7 @@ export interface dataSchemaInterface {
 
             if (this.xAxisScaleType != 'Default') {
                 specification['encoding']['x']['scale'] =
-                '{"type":' + this.xAxisScaleType + '}';
+                '{"type": "' + this.xAxisScaleType.toLowerCase() + '"}';
             };
 
             // specification['encoding']['x']['axis']['title'] = this.localWidget.graphXaxisTitle;
@@ -953,6 +958,12 @@ export interface dataSchemaInterface {
             specification['encoding']['color']['type'] = this.colorPropertiesType.toLowerCase();
             specification['encoding']['color']['timeUnit'] = this.colorPropertiesTimeUnit.toLowerCase();
 
+            if (this.colorPropertiesScheme != 'Default') {
+                specification['encoding']['color']['scale'] =
+                '{"scheme": "' + this.colorPropertiesScheme.toLowerCase() + '"}';
+            };
+
+            
 
 
 
