@@ -684,136 +684,154 @@
                                 >
                             </clr-icon>
                         </div>
-                        <div class="editorYPropertiesAggregateTitle" *ngIf="showFieldYProperties">
-                            Aggregate:
-                        </div>
-                        <div class="select editorYPropertiesAggregate" *ngIf="showFieldYProperties">
-                            <select id="selects_3"
-                                [(ngModel)]="yPropertiesAggregate"
-                                >
-                                <option *ngFor="let row of aggregations; let i = index">
-                                    {{ row.displayName }}
-                                </option>
-                            </select>
+
+                        <!-- Y Properties aggregate -->
+                        <div class="editorLineContainer">
+                            <div class="editorYPropertiesAggregateTitle" *ngIf="showFieldYProperties">
+                                Aggregate:
+                            </div>
+                            <div class="select editorYPropertiesAggregate" *ngIf="showFieldYProperties">
+                                <select id="selects_3"
+                                    [(ngModel)]="yPropertiesAggregate"
+                                    >
+                                    <option *ngFor="let row of aggregations; let i = index">
+                                        {{ row.displayName }}
+                                    </option>
+                                </select>
+                            </div>
                         </div>
 
                         <!-- Y Properties bin -->
-                        <div class="editorYPropertiesBinTitle" *ngIf="showFieldYProperties">
-                            Bin:
-                        </div>
-                        <div class="select editorYPropertiesBin" *ngIf="showFieldYProperties">
-                            <select id="selects_3"
-                                [(ngModel)]="yPropertiesBin"
-                                name="yPropertiesBin"
-                                >
-                                <option>False</option>
-                                <option>True</option>
-                            </select>
+                        <div class="editorLineContainer">
+                            <div class="editorYPropertiesBinTitle" *ngIf="showFieldYProperties">
+                                Bin:
+                            </div>
+                            <div class="select editorYPropertiesBin" *ngIf="showFieldYProperties">
+                                <select id="selects_3"
+                                    [(ngModel)]="yPropertiesBin"
+                                    name="yPropertiesBin"
+                                    >
+                                    <option>False</option>
+                                    <option>True</option>
+                                </select>
+                            </div>
                         </div>
 
                         <!-- Y Properties Format -->
-                        <div class="editorYPropertiesFormatTitle" *ngIf="showFieldYProperties">
-                            Format:
-                        </div>
-                        <div class="editorYPropertiesFormat" *ngIf="showFieldYProperties">
-                            <input type="text"
-                                placeholder="ie .2s +$,.2f"
-                                [(ngModel)]="yPropertiesFormat"
-                                name="yPropertiesFormat"
-                                >
+                        <div class="editorLineContainer">
+                            <div class="editorYPropertiesFormatTitle" *ngIf="showFieldYProperties">
+                                Format:
+                            </div>
+                            <div class="editorYPropertiesFormat" *ngIf="showFieldYProperties">
+                                <input type="text"
+                                    placeholder="ie .2s +$,.2f"
+                                    [(ngModel)]="yPropertiesFormat"
+                                    name="yPropertiesFormat"
+                                    >
+                            </div>
                         </div>
 
                         <!-- Y Properties Impute -->
-                        <div class="editorYPropertiesImputeTitle" *ngIf="showFieldYProperties">
-                            Impute:
-                        </div>
-                        <div class="select editorYPropertiesImpute" *ngIf="showFieldYProperties">
-                            <select id="selects_3"
-                                [(ngModel)]="yPropertiesImpute"
-                                name="yPropertiesImpute"
-                                >
-                                <option></option>
-                                <option>Max</option>
-                                <option>Mean</option>
-                                <option>Medium</option>
-                                <option>Min</option>
-                                <option>Value</option>
-                            </select>
-                        </div>
-                        <div class="editorYPropertiesImputeValue"
-                            *ngIf="showFieldYProperties"
-                            size="5"
-                            >
-                            <input type="number"
-                                placeholder="Value"
-                                [(ngModel)]="yPropertiesImputeValue"
-                                name="yPropertiesImputeValue"
-                                [disabled]="!(yPropertiesImpute=='Value')"
+                        <div class="editorLineContainer">
+                            <div class="editorYPropertiesImputeTitle" *ngIf="showFieldYProperties">
+                                Impute:
+                            </div>
+                            <div class="select editorYPropertiesImpute" *ngIf="showFieldYProperties">
+                                <select id="selects_3"
+                                    [(ngModel)]="yPropertiesImpute"
+                                    name="yPropertiesImpute"
+                                    >
+                                    <option></option>
+                                    <option>Max</option>
+                                    <option>Mean</option>
+                                    <option>Medium</option>
+                                    <option>Min</option>
+                                    <option>Value</option>
+                                </select>
+                            </div>
+                            <div class="editorYPropertiesImputeValue"
+                                *ngIf="showFieldYProperties"
                                 size="5"
                                 >
+                                <input type="number"
+                                    placeholder="Value"
+                                    [(ngModel)]="yPropertiesImputeValue"
+                                    name="yPropertiesImputeValue"
+                                    [disabled]="!(yPropertiesImpute=='Value')"
+                                    size="5"
+                                    >
+                            </div>
                         </div>
 
                         <!-- Y Properties stack -->
-                        <div class="editorYPropertiesStackTitle" *ngIf="showFieldYProperties">
-                            Stack:
-                        </div>
-                        <div class="select editorYPropertiesStack" *ngIf="showFieldYProperties">
-                            <select id="selects_3"
-                                [(ngModel)]="yPropertiesStack"
-                                name="yPropertiesStack"
-                                >
-                                <option>Zero</option>
-                                <option>Normalise</option>
-                                <option>Center</option>
-                                <option>Null</option>
-                            </select>
+                        <div class="editorLineContainer">
+                            <div class="editorYPropertiesStackTitle" *ngIf="showFieldYProperties">
+                                Stack:
+                            </div>
+                            <div class="select editorYPropertiesStack" *ngIf="showFieldYProperties">
+                                <select id="selects_3"
+                                    [(ngModel)]="yPropertiesStack"
+                                    name="yPropertiesStack"
+                                    >
+                                    <option>Zero</option>
+                                    <option>Normalise</option>
+                                    <option>Center</option>
+                                    <option>Null</option>
+                                </select>
+                            </div>
                         </div>
 
                         <!-- Y Properties Sort -->
-                        <div class="editorYPropertiesSortTitle" *ngIf="showFieldYProperties">
-                            Sort:
-                        </div>
-                        <div class="select editorYPropertiesSort" *ngIf="showFieldYProperties">
-                            <select id="selects_3"
-                                [(ngModel)]="yPropertiesSort"
-                                name="yPropertiesSort"
-                                >
-                                <option>None</option>
-                                <option>Ascending</option>
-                                <option>Descending</option>
-                            </select>
+                        <div class="editorLineContainer">
+                            <div class="editorYPropertiesSortTitle" *ngIf="showFieldYProperties">
+                                Sort:
+                            </div>
+                            <div class="select editorYPropertiesSort" *ngIf="showFieldYProperties">
+                                <select id="selects_3"
+                                    [(ngModel)]="yPropertiesSort"
+                                    name="yPropertiesSort"
+                                    >
+                                    <option>None</option>
+                                    <option>Ascending</option>
+                                    <option>Descending</option>
+                                </select>
+                            </div>
                         </div>
 
                         <!-- Y Properties type -->
-                        <div class="editorYPropertiesTypeTitle" *ngIf="showFieldYProperties">
-                            Type:
-                        </div>
-                        <div class="select editorYPropertiesType" *ngIf="showFieldYProperties">
-                            <select id="selects_3"
-                                [(ngModel)]="yPropertiesType"
-                                name="yPropertiesType"
-                                >
-                                <option>Ordinal</option>
-                                <option>Quantitative</option>
-                                <option>Temporal</option>
-                                <option>Nominal</option>
-                            </select>
+                        <div class="editorLineContainer">
+                            <div class="editorYPropertiesTypeTitle" *ngIf="showFieldYProperties">
+                                Type:
+                            </div>
+                            <div class="select editorYPropertiesType" *ngIf="showFieldYProperties">
+                                <select id="selects_3"
+                                    [(ngModel)]="yPropertiesType"
+                                    name="yPropertiesType"
+                                    >
+                                    <option>Ordinal</option>
+                                    <option>Quantitative</option>
+                                    <option>Temporal</option>
+                                    <option>Nominal</option>
+                                </select>
+                            </div>
                         </div>
 
                         <!-- Y Properties timeUnit -->
-                        <div class="editorYPropertiesTimeUnitTitle" *ngIf="showFieldYProperties">
-                            TimeUnit:
-                        </div>
-                        <div class="select editorYPropertiesTimeUnit"
-                            *ngIf="showFieldYProperties"
-                            >
-                            <select id="selects_3"
-                                [(ngModel)]="yPropertiesTimeUnit"
+                        <div class="editorLineContainer">
+                            <div class="editorYPropertiesTimeUnitTitle" *ngIf="showFieldYProperties">
+                                TimeUnit:
+                            </div>
+                            <div class="select editorYPropertiesTimeUnit"
+                                *ngIf="showFieldYProperties"
                                 >
-                                <option *ngFor="let row of timeUnits; let i = index">
-                                    {{ row }}
-                                </option>
-                            </select>
+                                <select id="selects_3"
+                                    [(ngModel)]="yPropertiesTimeUnit"
+                                    >
+                                    <option *ngFor="let row of timeUnits; let i = index">
+                                        {{ row }}
+                                    </option>
+                                </select>
+                            </div>
                         </div>
 
 
