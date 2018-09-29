@@ -1110,7 +1110,7 @@
                             <div class="editorXAxisTitleCheckbox" *ngIf="showFieldXAxis">
                                 <input [(ngModel)]="showFieldXAxisCheckbox"
                                     type="checkbox"
-                                    name="showFieldXAxisCheckbox"
+                                    name="xAxisTitleCheckbox"
                                     title="Show the Axis Title (T/F)"
                                     >
                             </div>
@@ -1123,6 +1123,39 @@
                                     >
                             </div>
                         </div>
+
+                        <!-- X-Axis Grid -->
+                        <div class="editorLineContainer">
+                            <div class="editorXAxisGridTitle" *ngIf="showFieldXAxis">
+                                Grid:
+                            </div>
+                            <div class="editorXAxisGrid" *ngIf="showFieldXAxis">
+                                <input [(ngModel)]="xAxisGrid"
+                                    type="checkbox"
+                                    name="xAxisGrid"
+                                    title="Show Grid lines (T/F)"
+                                    >
+                            </div>
+                        </div>
+
+                        <!-- X Axis Format -->
+                        <div class="editorLineContainer">
+                            <div class="editorXAxisFormatTitle" *ngIf="showFieldXAxis">
+                            Format:
+                            </div>
+                            <div class="editorXAxisFormat" *ngIf="showFieldXAxis">
+                                <input type="text"
+                                    placeholder="ie .2s +$,.2f"
+                                    [(ngModel)]="xAxisFormat"
+                                    name="xAxisFormat"
+                                    >
+                            </div>
+                        </div>
+
+
+
+
+
 
 
 

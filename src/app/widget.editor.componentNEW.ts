@@ -526,7 +526,10 @@ export interface dataSchemaInterface {
     xPropertiesTimeUnit: string = '';
 
     xAxisTitle: string = '';
-    showFieldXAxisCheckbox: boolean = true;
+    xAxisTitleCheckbox: boolean = true;
+    xAxisGrid: boolean = true;
+    xAxisFormat: string = '';
+
     xAxisTitleAlign: string	= '';
     xAxisTitleColor: string = '';
     xAxisTitleFont: string = '';
@@ -1176,18 +1179,23 @@ export interface dataSchemaInterface {
             specification['encoding']['x']['type'] = this.xPropertiesType.toLowerCase();
             specification['encoding']['x']['timeUnit'] = this.xPropertiesTimeUnit.toLowerCase();
 
-            if (!this.showFieldXAxisCheckbox) {
+            if (!this.xAxisTitleCheckbox) {
                 specification['encoding']['x']['axis'] = {"title": null };
             } else {
                 if (this.xAxisTitle != ''  &&  this.xAxisTitle != undefined) {
                     specification['encoding']['x']['axis'] = {"title": this.xAxisTitle };
                 };
             };
+            specification['encoding']['x']['axis'] = {"grid": this.xAxisGrid };
+
+            if (this.xAxisFormat != '') {
+                specification['encoding']['x']['axis'] = {"format": this.xAxisFormat };
+            };
             
             this.xAxisTitle
-            this.xAxisTitleAlign	
+            this.xAxisTitleAlign
             this.xAxisTitleColor
-            this.xAxisTitleFont	
+            this.xAxisTitleFont
             this.xAxisTitleFontSize
             this.xAxisTitleLimit
 
@@ -1220,7 +1228,7 @@ export interface dataSchemaInterface {
                 {"type": this.yAxisScaleType.toLowerCase() };
             };
 
-            
+
             // Color field
             specification['encoding']['color']['field'] = this.localWidget.graphYfield;
             specification['encoding']['color']['type'] = this.localWidget.graphYtype;
@@ -1251,7 +1259,7 @@ export interface dataSchemaInterface {
                 specification['encoding']['color']['scale'] =
                 {"scheme": this.colorPropertiesScheme.toLowerCase() };
             };
-            
+
 
 
 
