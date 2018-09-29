@@ -1176,7 +1176,8 @@ export interface dataSchemaInterface {
             specification['encoding']['x']['timeUnit'] = this.xPropertiesTimeUnit.toLowerCase();
 
             if (this.xAxisTitle != ''  &&  this.xAxisTitle != undefined) {
-                specification['encoding']['x']['axis']['title'] = this.xAxisTitle;
+                specification['encoding']['x']['axis'] = 
+                    {"title": this.xAxisTitle };
             };
             this.xAxisTitle
             this.xAxisTitleAlign	

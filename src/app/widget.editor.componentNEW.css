@@ -1052,7 +1052,7 @@ clr-dg-cell {
                     font-size: 0.5rem;
                 }
 
-            .editorXAxisTitle {
+            .editorXAxisContainerTitle {
                 background-color: rgb(211, 209, 226);
                 border: 1px solid lightgray;
                 border-radius: 3px;
@@ -1063,14 +1063,14 @@ clr-dg-cell {
                     font-size: 0.5rem;
                 }
 
-                .editorXAxisScaleTitleTitle {
+                .editorXAxisTitleTitle {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
                     width: 64px;
                 }
-                .editorXAxisScaleTitle {
+                .editorXAxisTitle {
                     border: 1px solid steelblue;
                     border-radius: 5px;
                     display: inline-block;
