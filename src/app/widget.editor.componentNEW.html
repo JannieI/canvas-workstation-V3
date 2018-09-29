@@ -923,7 +923,7 @@
                                     <option>Value</option>
                                 </select>
                             </div>
-                            <div class="editorColorPropertiesImputeValue" 
+                            <div class="editorColorPropertiesImputeValue"
                                 *ngIf="showFieldColorProperties"
                                 size="5"
                                 >
@@ -1108,7 +1108,7 @@
                                 Title:
                             </div>
                             <div class="editorXAxisTitleCheckbox" *ngIf="showFieldXAxis">
-                                <input [(ngModel)]="showFieldXAxisCheckbox"
+                                <input [(ngModel)]="xAxisTitleCheckbox"
                                     type="checkbox"
                                     name="xAxisTitleCheckbox"
                                     title="Show the Axis Title (T/F)"
@@ -1130,8 +1130,8 @@
                                 Grid:
                             </div>
                             <div class="editorXAxisGrid" *ngIf="showFieldXAxis">
-                                <input [(ngModel)]="xAxisGrid"
-                                    type="checkbox"
+                                <input type="checkbox"
+                                    [(ngModel)]="xAxisGrid"
                                     name="xAxisGrid"
                                     title="Show Grid lines (T/F)"
                                     >
@@ -1145,13 +1145,26 @@
                             </div>
                             <div class="editorXAxisFormat" *ngIf="showFieldXAxis">
                                 <input type="text"
-                                    placeholder="ie .2s +$,.2f"
                                     [(ngModel)]="xAxisFormat"
                                     name="xAxisFormat"
+                                    placeholder="ie .2s +$,.2f"
                                     >
                             </div>
                         </div>
 
+                        <!-- X Axis Labels -->
+                        <div class="editorLineContainer">
+                            <div class="editorXAxisLabelsTitle" *ngIf="showFieldXAxis">
+                            Labels:
+                            </div>
+                            <div class="editorXAxisLabels" *ngIf="showFieldXAxis">
+                                <input type="checkbox"
+                                    [(ngModel)]="xAxisLabels"
+                                    name="xAxisLabels"
+                                    title="Show labels (T/F)"
+                                    >
+                            </div>
+                        </div>
 
 
 

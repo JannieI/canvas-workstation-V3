@@ -529,6 +529,7 @@ export interface dataSchemaInterface {
     xAxisTitleCheckbox: boolean = true;
     xAxisGrid: boolean = true;
     xAxisFormat: string = '';
+    xAxisLabels: boolean = true;
 
     xAxisTitleAlign: string	= '';
     xAxisTitleColor: string = '';
@@ -1180,6 +1181,8 @@ export interface dataSchemaInterface {
             specification['encoding']['x']['timeUnit'] = this.xPropertiesTimeUnit.toLowerCase();
 
             specification['encoding']['x']['axis'] = {"grid": this.xAxisGrid };
+            specification['encoding']['x']['axis']['labels'] = this.xAxisLabels;
+            
             if (!this.xAxisTitleCheckbox) {
                 specification['encoding']['x']['axis']['title'] = null;
             } else {
@@ -1191,6 +1194,7 @@ export interface dataSchemaInterface {
             if (this.xAxisFormat != '') {
                 specification['encoding']['x']['axis']['format'] =  this.xAxisFormat;
             };
+            
             
             this.xAxisTitle
             this.xAxisTitleAlign
