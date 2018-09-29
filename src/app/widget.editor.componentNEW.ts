@@ -564,6 +564,9 @@ export interface dataSchemaInterface {
     colorPropertiesType: string = '';
     colorPropertiesTimeUnit: string = '';
 
+    legendTitle: string = '';
+    legendFormat: string = '';
+
     timeUnits: string[] = [
         "",
         "Date",
@@ -1280,7 +1283,8 @@ export interface dataSchemaInterface {
                 {"scheme": this.colorPropertiesScheme.toLowerCase() };
             };
 
-
+            specification['encoding']['color']['legend'] = {"title": this.legendTitle };
+            specification['encoding']['color']['legend']['format'] = this.legendFormat;
 
 
             // Color field

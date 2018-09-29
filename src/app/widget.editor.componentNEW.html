@@ -1342,6 +1342,20 @@
                             </div>
                         </div>
 
+                        <!-- Legend Format -->
+                        <div class="editorLineContainer">
+                            <div class="editorLegendFormatTitle" *ngIf="showFieldLegend">
+                            Format:
+                            </div>
+                            <div class="editorLegendFormat" *ngIf="showFieldLegend">
+                                <input type="text"
+                                    [(ngModel)]="legendFormat"
+                                    name="legendFormat"
+                                    placeholder="ie .2s +$,.2f"
+                                    >
+                            </div>
+                        </div>
+
 
 
 
