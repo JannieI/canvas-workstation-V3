@@ -1259,6 +1259,20 @@
                             </div>
                         </div>
 
+                        <!-- Y Axis Format -->
+                        <div class="editorLineContainer">
+                            <div class="editorYAxisFormatTitle" *ngIf="showFieldYAxis">
+                            Format:
+                            </div>
+                            <div class="editorYAxisFormat" *ngIf="showFieldYAxis">
+                                <input type="text"
+                                    [(ngModel)]="yAxisFormat"
+                                    name="yAxisFormat"
+                                    placeholder="ie .2s +$,.2f"
+                                    >
+                            </div>
+                        </div>
+
 
 
 
