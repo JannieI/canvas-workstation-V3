@@ -1179,17 +1179,17 @@ export interface dataSchemaInterface {
             specification['encoding']['x']['type'] = this.xPropertiesType.toLowerCase();
             specification['encoding']['x']['timeUnit'] = this.xPropertiesTimeUnit.toLowerCase();
 
+            specification['encoding']['x']['axis'] = {"grid": this.xAxisGrid };
             if (!this.xAxisTitleCheckbox) {
-                specification['encoding']['x']['axis'] = {"title": null };
+                specification['encoding']['x']['axis']['title'] = null;
             } else {
                 if (this.xAxisTitle != ''  &&  this.xAxisTitle != undefined) {
-                    specification['encoding']['x']['axis'] = {"title": this.xAxisTitle };
+                    specification['encoding']['x']['axis']['title'] = this.xAxisTitle;
                 };
             };
-            specification['encoding']['x']['axis'] = {"grid": this.xAxisGrid };
 
             if (this.xAxisFormat != '') {
-                specification['encoding']['x']['axis'] = {"format": this.xAxisFormat };
+                specification['encoding']['x']['axis']['format'] =  this.xAxisFormat;
             };
             
             this.xAxisTitle
