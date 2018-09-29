@@ -334,136 +334,156 @@
                         </div>
 
                         <!-- Title Text -->
-                        <div class="editorTitleTextTitle" *ngIf="showFieldTitleProperties">
-                            Text:
-                        </div>
-                        <div class="editorTitleText" *ngIf="showFieldTitleProperties">
-                            <input type="text"
-                                placeholder="Text of title"
-                                [(ngModel)]="titleText"
-                                name="titleText"
-                                style="border-radius: 5px; width: 100%;"
-                                >
+                        <div class="editorLineContainer">
+                            <div class="editorTitleTextTitle" *ngIf="showFieldTitleProperties">
+                                Text:
+                            </div>
+                            <div class="editorTitleText" *ngIf="showFieldTitleProperties">
+                                <input type="text"
+                                    placeholder="Text of title"
+                                    [(ngModel)]="titleText"
+                                    name="titleText"
+                                    style="border-radius: 5px; width: 100%;"
+                                    >
+                            </div>
                         </div>
 
                         <!-- Title Anchor -->
-                        <div class="editorTitleAnchorTitle" *ngIf="showFieldTitleProperties">
-                            Anchor:
-                        </div>
-                        <div class="select editorTitleAnchor" *ngIf="showFieldTitleProperties">
-                            <select id="selects_3"
-                                [(ngModel)]="titleAnchor"
-                                >
-                                <option>Start</option>
-                                <option>Middle</option>
-                                <option>End</option>
-                            </select>
+                        <div class="editorLineContainer">
+                            <div class="editorTitleAnchorTitle" *ngIf="showFieldTitleProperties">
+                                Anchor:
+                            </div>
+                            <div class="select editorTitleAnchor" *ngIf="showFieldTitleProperties">
+                                <select id="selects_3"
+                                    [(ngModel)]="titleAnchor"
+                                    >
+                                    <option>Start</option>
+                                    <option>Middle</option>
+                                    <option>End</option>
+                                </select>
+                            </div>
                         </div>
 
                         <!-- Title Angle in degrees -->
-                        <div class="editorTitleAngleTitle" *ngIf="showFieldTitleProperties">
-                            Angle:
-                        </div>
-                        <div class="editorTitleAngle" *ngIf="showFieldTitleProperties">
-                            <input type="number"
-                                placeholder="Angle of title"
-                                [(ngModel)]="titleAngle"
-                                name="titleText"
-                                >
+                        <div class="editorLineContainer">
+                            <div class="editorTitleAngleTitle" *ngIf="showFieldTitleProperties">
+                                Angle:
+                            </div>
+                            <div class="editorTitleAngle" *ngIf="showFieldTitleProperties">
+                                <input type="number"
+                                    placeholder="Angle of title"
+                                    [(ngModel)]="titleAngle"
+                                    name="titleText"
+                                    >
+                            </div>
                         </div>
 
                         <!-- Title Vertical text baseline for title text. -->
-                        <div class="editorTitleBaselineTitle" *ngIf="showFieldTitleProperties">
+                        <div class="editorLineContainer">
+                            <div class="editorTitleBaselineTitle" *ngIf="showFieldTitleProperties">
                             Baseline:
-                        </div>
-                        <div class="select editorTitleBaseline" *ngIf="showFieldTitleProperties">
-                            <select id="selects_3"
-                                [(ngModel)]="titleBaseline"
-                                >
-                                <option>Top</option>
-                                <option>Middle</option>
-                                <option>Bottom</option>
-                            </select>
+                            </div>
+                            <div class="select editorTitleBaseline" *ngIf="showFieldTitleProperties">
+                                <select id="selects_3"
+                                    [(ngModel)]="titleBaseline"
+                                    >
+                                    <option>Top</option>
+                                    <option>Middle</option>
+                                    <option>Bottom</option>
+                                </select>
+                            </div>
                         </div>
 
                         <!-- Title Text color for title text.  -->
-                        <div class="editorTitleColourTitle" *ngIf="showFieldTitleProperties">
+                        <div class="editorLineContainer">
+                            <div class="editorTitleColourTitle" *ngIf="showFieldTitleProperties">
                             Color:
-                        </div>
-                        <div class="select editorTitleColour" *ngIf="showFieldTitleProperties">
-                            <select [(ngModel)]="titleColorName"
-                                name="titleColorName"
-                                (change)="clickSelectTitleColor($event)"
-                                >
-                                <option *ngFor="let row of backgroundcolors"
-                                    [style.background-color]="row.cssCode"
+                            </div>
+                            <div class="select editorTitleColour" *ngIf="showFieldTitleProperties">
+                                <select [(ngModel)]="titleColorName"
+                                    name="titleColorName"
+                                    (change)="clickSelectTitleColor($event)"
                                     >
-                                    {{ row.name }}
-                                </option>
-                            </select>
+                                    <option *ngFor="let row of backgroundcolors"
+                                        [style.background-color]="row.cssCode"
+                                        >
+                                        {{ row.name }}
+                                    </option>
+                                </select>
+                            </div>
                         </div>
 
                         <!-- Title Font name for title text. -->
-                        <div class="editorTitleFontTitle" *ngIf="showFieldTitleProperties">
+                        <div class="editorLineContainer">
+                            <div class="editorTitleFontTitle" *ngIf="showFieldTitleProperties">
                             Font:
-                        </div>
-                        <div class="editorTitleFont" *ngIf="showFieldTitleProperties">
-                            <input type="text"
-                                placeholder="Font name"
-                                [(ngModel)]="titleFont"
-                                name="titleFont"
-                                >
+                            </div>
+                            <div class="editorTitleFont" *ngIf="showFieldTitleProperties">
+                                <input type="text"
+                                    placeholder="Font name"
+                                    [(ngModel)]="titleFont"
+                                    name="titleFont"
+                                    >
+                            </div>
                         </div>
 
                         <!-- Title Font size in pixels for title text. Default value: 10. -->
-                        <div class="editorTitleFontSizeTitle" *ngIf="showFieldTitleProperties">
+                        <div class="editorLineContainer">
+                            <div class="editorTitleFontSizeTitle" *ngIf="showFieldTitleProperties">
                             Font Size:
-                        </div>
-                        <div class="editorTitleFontSize" *ngIf="showFieldTitleProperties">
-                            <input type="number"
-                                placeholder="Font Size"
-                                [(ngModel)]="titleFontSize"
-                                name="titleFontSize"
-                                >
+                            </div>
+                            <div class="editorTitleFontSize" *ngIf="showFieldTitleProperties">
+                                <input type="number"
+                                    placeholder="Font Size"
+                                    [(ngModel)]="titleFontSize"
+                                    name="titleFontSize"
+                                    >
+                            </div>
                         </div>
 
                         <!-- Title Font Weight in pixels for title text. Default value: 10. -->
-                        <div class="editorTitleFontWeightTitle" *ngIf="showFieldTitleProperties">
+                        <div class="editorLineContainer">
+                            <div class="editorTitleFontWeightTitle" *ngIf="showFieldTitleProperties">
                             Font Weight:
-                        </div>
-                        <div class="editorTitleFontWeight" *ngIf="showFieldTitleProperties">
-                            <input type="number"
-                                placeholder="Font Weight (100, 200..900)"
-                                [(ngModel)]="titleFontWeight"
-                                name="titleFontWeight"
-                                >
+                            </div>
+                            <div class="editorTitleFontWeight" *ngIf="showFieldTitleProperties">
+                                <input type="number"
+                                    placeholder="Font Weight (100, 200..900)"
+                                    [(ngModel)]="titleFontWeight"
+                                    name="titleFontWeight"
+                                    >
+                            </div>
                         </div>
 
                         <!-- lTitle imit: The maximum allowed length in pixels of legend labels.-->
-                        <div class="editorTitleLengthTitle" *ngIf="showFieldTitleProperties">
+                        <div class="editorLineContainer">
+                            <div class="editorTitleLengthTitle" *ngIf="showFieldTitleProperties">
                             Length:
-                        </div>
-                        <div class="editorTitleLength" *ngIf="showFieldTitleProperties">
-                            <input type="number"
-                                placeholder="Max length in px"
-                                [(ngModel)]="titleLength"
-                                name="titleLength"
-                                >
+                            </div>
+                            <div class="editorTitleLength" *ngIf="showFieldTitleProperties">
+                                <input type="number"
+                                    placeholder="Max length in px"
+                                    [(ngModel)]="titleLength"
+                                    name="titleLength"
+                                    >
+                            </div>
                         </div>
 
                         <!-- Title orient: Default title orientation ("top", "bottom", "left", or "right") -->
-                        <div class="editorTitleOrientationTitle" *ngIf="showFieldTitleProperties">
+                        <div class="editorLineContainer">
+                            <div class="editorTitleOrientationTitle" *ngIf="showFieldTitleProperties">
                             Orientation:
-                        </div>
-                        <div class="select editorTitleOrientation" *ngIf="showFieldTitleProperties">
-                            <select id="selects_3"
-                                [(ngModel)]="titleOrientation"
-                                >
-                                <option>Top</option>
-                                <option>Bottom</option>
-                                <option>Left</option>
-                                <option>Right</option>
-                            </select>
+                            </div>
+                            <div class="select editorTitleOrientation" *ngIf="showFieldTitleProperties">
+                                <select id="selects_3"
+                                    [(ngModel)]="titleOrientation"
+                                    >
+                                    <option>Top</option>
+                                    <option>Bottom</option>
+                                    <option>Left</option>
+                                    <option>Right</option>
+                                </select>
+                            </div>
                         </div>
 
 

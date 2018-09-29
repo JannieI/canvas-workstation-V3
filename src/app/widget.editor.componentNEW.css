@@ -198,6 +198,11 @@ clr-dg-cell {
 
     /* Widget Editor */
     /* ********************************************************************************** */
+    .editorLineContainer {
+        margin: 0;
+        padding: 0;
+    }
+    
     .editorMain {
         grid-column-start: 1;
         /* autoprefixer: off */
