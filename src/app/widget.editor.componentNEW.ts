@@ -526,6 +526,7 @@ export interface dataSchemaInterface {
     xPropertiesTimeUnit: string = '';
 
     xAxisTitle: string = '';
+    showFieldXAxisCheckbox: boolean = true;
     xAxisTitleAlign: string	= '';
     xAxisTitleColor: string = '';
     xAxisTitleFont: string = '';
@@ -1175,10 +1176,14 @@ export interface dataSchemaInterface {
             specification['encoding']['x']['type'] = this.xPropertiesType.toLowerCase();
             specification['encoding']['x']['timeUnit'] = this.xPropertiesTimeUnit.toLowerCase();
 
-            if (this.xAxisTitle != ''  &&  this.xAxisTitle != undefined) {
-                specification['encoding']['x']['axis'] = 
-                    {"title": this.xAxisTitle };
+            if (!this.showFieldXAxisCheckbox) {
+                specification['encoding']['x']['axis'] = {"title": null };
+            } else {
+                if (this.xAxisTitle != ''  &&  this.xAxisTitle != undefined) {
+                    specification['encoding']['x']['axis'] = {"title": this.xAxisTitle };
+                };
             };
+            
             this.xAxisTitle
             this.xAxisTitleAlign	
             this.xAxisTitleColor

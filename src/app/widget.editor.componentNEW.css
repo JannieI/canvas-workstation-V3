@@ -1070,6 +1070,13 @@ clr-dg-cell {
                     margin-left: 4px;
                     width: 64px;
                 }
+                .editorXAxisTitleCheckbox {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin: 3px;
+                    width: 15px;
+                }
                 .editorXAxisTitle {
                     border: 1px solid steelblue;
                     border-radius: 5px;
@@ -1077,8 +1084,11 @@ clr-dg-cell {
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin: 3px;
-                    width: 68%;
+                    width: 28%;
                 }
+
+
+
 
 
 
@@ -1098,14 +1108,14 @@ clr-dg-cell {
                     font-size: 0.5rem;
                 }
 
-                .editorXYxisScaleTypeTitle {
+                .editorYAxisScaleTypeTitle {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
                     width: 64px;
                 }
-                .editorXYxisScaleType {
+                .editorYAxisScaleType {
                     border: 1px solid steelblue;
                     border-radius: 5px;
                     display: inline-block;

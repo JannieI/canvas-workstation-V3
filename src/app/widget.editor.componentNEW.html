@@ -1107,11 +1107,17 @@
                             <div class="editorXAxisTitleTitle" *ngIf="showFieldXAxis">
                                 Title:
                             </div>
-                            <div class="editorXAxisTitle"
-                                *ngIf="showFieldXAxis"
+                            <div class="editorXAxisTitleCheckbox" *ngIf="showFieldXAxis">
+                                <input [(ngModel)]="showFieldXAxisCheckbox"
+                                    type="checkbox"
+                                    name="showFieldXAxisCheckbox"
+                                    title="Show the Axis Title (T/F)"
+                                    >
+                            </div>
+                            <div class="editorXAxisTitle" *ngIf="showFieldXAxis"
                                 >
                                 <input type="text"
-                                    placeholder="Null to remove"
+                                    placeholder="Blank = field name"
                                     [(ngModel)]="xAxisTitle"
                                     name="xAxisTitle"
                                     >
