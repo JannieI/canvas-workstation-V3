@@ -1062,7 +1062,7 @@
                         </div>
 
 
-                        <!-- XAxis -->
+                        <!-- X-Axis -->
                         <div class="editorXAxisTitle"
                             (click)="clickShowXAxis()"
                             >
@@ -1085,8 +1085,27 @@
                             </clr-icon>
                         </div>
 
+                        <!-- X-Axis Scale Type -->
+                        <div class="editorLineContainer">
+                            <div class="editorXAxisScaleTypeTitle" *ngIf="showFieldColorProperties">
+                                Type:
+                            </div>
+                            <div class="select editorXAxisScaleType"
+                                *ngIf="showFieldColorProperties"
+                                >
+                                <select id="selects_3"
+                                    [(ngModel)]="xAxisScaleType"
+                                    >
+                                    <option>Default</option>
+                                    <option>Linear</option>
+                                    <option>Log</option>
+                                </select>
+                            </div>
+                        </div>
 
-                        <!-- YAxis -->
+
+
+                        <!-- Y-Axis -->
                         <div class="editorYAxisTitle"
                             (click)="clickShowYAxis()"
                             >

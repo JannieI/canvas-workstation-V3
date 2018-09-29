@@ -1046,6 +1046,30 @@ clr-dg-cell {
                     font-size: 0.5rem;
                 }
 
+                .editorXAxisScaleTypeTitle {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin-left: 4px;
+                    width: 64px;
+                }
+                .editorXAxisScaleType {
+                    border: 1px solid steelblue;
+                    border-radius: 5px;
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin: 3px;
+                    width: 68%;
+                }
+
+
+
+
+
+
+                
+
             .editorYAxisTitle {
                 background-color: rgb(211, 209, 226);
                 border: 1px solid lightgray;
