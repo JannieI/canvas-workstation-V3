@@ -1273,6 +1273,20 @@
                             </div>
                         </div>
 
+                        <!-- Y Axis Labels -->
+                        <div class="editorLineContainer">
+                            <div class="editorYAxisLabelsTitle" *ngIf="showFieldYAxis">
+                            Labels:
+                            </div>
+                            <div class="editorYAxisLabels" *ngIf="showFieldYAxis">
+                                <input type="checkbox"
+                                    [(ngModel)]="yAxisLabels"
+                                    name="yAxisLabels"
+                                    title="Show labels (T/F)"
+                                    >
+                            </div>
+                        </div>
+
 
 
 
