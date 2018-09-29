@@ -525,6 +525,13 @@ export interface dataSchemaInterface {
     xPropertiesType: string = '';
     xPropertiesTimeUnit: string = '';
 
+    xAxisTitle: string = '';
+    xAxisTitleAlign: string	= '';
+    xAxisTitleColor: string = '';
+    xAxisTitleFont: string = '';
+    xAxisTitleFontSize: number = 0;
+    xAxisTitleLimit: number = 0;
+
     yPropertiesAggregate: string = '';
     yPropertiesAggregateVegaLiteName: string = '';
     yPropertiesBin: string = 'False';
@@ -1168,7 +1175,15 @@ export interface dataSchemaInterface {
             specification['encoding']['x']['type'] = this.xPropertiesType.toLowerCase();
             specification['encoding']['x']['timeUnit'] = this.xPropertiesTimeUnit.toLowerCase();
 
-            // specification['encoding']['x']['axis']['title'] = this.localWidget.graphXaxisTitle;
+            if (this.xAxisTitle != ''  &&  this.xAxisTitle != undefined) {
+                specification['encoding']['x']['axis']['title'] = this.xAxisTitle;
+            };
+            this.xAxisTitle
+            this.xAxisTitleAlign	
+            this.xAxisTitleColor
+            this.xAxisTitleFont	
+            this.xAxisTitleFontSize
+            this.xAxisTitleLimit
 
             // Y field
             specification['encoding']['y']['field'] = this.localWidget.graphYfield;
