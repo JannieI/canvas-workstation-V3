@@ -1287,6 +1287,20 @@
                             </div>
                         </div>
 
+                        <!-- Y Axis LabelAngle -->
+                        <div class="editorLineContainer">
+                            <div class="editorYAxisLabelAngleTitle" *ngIf="showFieldYAxis">
+                            Angle:
+                            </div>
+                            <div class="editorYAxisLabelAngle" *ngIf="showFieldYAxis">
+                                <input type="number"
+                                    [(ngModel)]="yAxisLabelAngle"
+                                    name="yAxisLabelAngle"
+                                    placeholder="Label Angle"
+                                    >
+                            </div>
+                        </div>
+
 
 
 
