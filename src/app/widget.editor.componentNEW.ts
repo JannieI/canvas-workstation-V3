@@ -221,7 +221,7 @@ export interface dataSchemaInterface {
     showFieldYPropertiesInfo: boolean = false;
     showFieldYPropertiesTitle: boolean = false;
 
-    showFieldColorAxis: boolean = false;
+    showFieldLegend: boolean = false;
     showFieldColorProperties: boolean = false;
     showFieldColorPropertiesInfo: boolean = false;
     showFieldColorPropertiesTitle: boolean = false;

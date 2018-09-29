@@ -1322,22 +1322,22 @@
 
                         <!-- Legend Title -->
                         <div class="editorLineContainer">
-                            <div class="editorLegendAxisTitleTitle" *ngIf="showFieldLegendAxis">
+                            <div class="editorLegendTitleTitle" *ngIf="showFieldLegend">
                                 Title:
                             </div>
-                            <div class="editorLegendAxisTitleCheckbox" *ngIf="showFieldLegendAxis">
-                                <input [(ngModel)]="legendAxisTitleCheckbox"
+                            <div class="editorLegendTitleCheckbox" *ngIf="showFieldLegend">
+                                <input [(ngModel)]="legendTitleCheckbox"
                                     type="checkbox"
-                                    name="legendAxisTitleCheckbox"
+                                    name="legendTitleCheckbox"
                                     title="Show the Axis Title (T/F)"
                                     >
                             </div>
-                            <div class="editorLegendAxisTitle" *ngIf="showFieldLegendAxis"
+                            <div class="editorLegendTitle" *ngIf="showFieldLegend"
                                 >
                                 <input type="text"
                                     placeholder="Blank = field name"
-                                    [(ngModel)]="legendAxisTitle"
-                                    name="legendAxisTitle"
+                                    [(ngModel)]="legendTitle"
+                                    name="legendTitle"
                                     >
                             </div>
                         </div>
