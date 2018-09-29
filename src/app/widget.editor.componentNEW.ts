@@ -565,6 +565,7 @@ export interface dataSchemaInterface {
     colorPropertiesTimeUnit: string = '';
 
     legendTitle: string = '';
+    legendTitleCheckbox: boolean = true;
     legendFormat: string = '';
 
     timeUnits: string[] = [
@@ -1283,8 +1284,17 @@ export interface dataSchemaInterface {
                 {"scheme": this.colorPropertiesScheme.toLowerCase() };
             };
 
-            specification['encoding']['color']['legend'] = {"title": this.legendTitle };
-            specification['encoding']['color']['legend']['format'] = this.legendFormat;
+
+            if (!this.legendTitleCheckbox) {
+                specification['encoding']['color']['legend']['title'] = null;
+            } else {
+                if (this.xAxisTitle != ''  &&  this.xAxisTitle != undefined) {
+                    specification['encoding']['color']['legend']['title'] = this.legendTitle;
+                };
+            };
+
+            // specification['encoding']['color']['legend'] = {"title": this.legendTitle };
+            // specification['encoding']['color']['legend']['format'] = this.legendFormat;
 
 
             // Color field
