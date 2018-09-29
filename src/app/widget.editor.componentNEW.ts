@@ -2131,6 +2131,14 @@ console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowInde
         this.showFieldYAxis = !this.showFieldYAxis;
     }
 
+    clickShowLegend() {
+        // Show Legend Area
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowLegend', '@Start');
+
+        // Toggle
+        this.showFieldLegend = !this.showFieldLegend;
+    }
+
     clickSelectTitleColor(ev: any) {
         // Select Background Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBgColor', '@Start');

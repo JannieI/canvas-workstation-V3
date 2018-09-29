@@ -1298,7 +1298,7 @@
 
 
                         <!-- Legend-Axis -->
-                        <div class="editorLegendContainerTitle" *ngIf="showFieldLegendPropertiesTitle"
+                        <div class="editorLegendContainerTitle" *ngIf="showFieldColorPropertiesTitle"
                             (click)="clickShowLegend()"
                             >
                             <b>
@@ -1318,6 +1318,28 @@
                                     margin-top: 4px;"
                                 >
                             </clr-icon>
+                        </div>
+
+                        <!-- Legend Title -->
+                        <div class="editorLineContainer">
+                            <div class="editorLegendAxisTitleTitle" *ngIf="showFieldLegendAxis">
+                                Title:
+                            </div>
+                            <div class="editorLegendAxisTitleCheckbox" *ngIf="showFieldLegendAxis">
+                                <input [(ngModel)]="legendAxisTitleCheckbox"
+                                    type="checkbox"
+                                    name="legendAxisTitleCheckbox"
+                                    title="Show the Axis Title (T/F)"
+                                    >
+                            </div>
+                            <div class="editorLegendAxisTitle" *ngIf="showFieldLegendAxis"
+                                >
+                                <input type="text"
+                                    placeholder="Blank = field name"
+                                    [(ngModel)]="legendAxisTitle"
+                                    name="legendAxisTitle"
+                                    >
+                            </div>
                         </div>
 
 
