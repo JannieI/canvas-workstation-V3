@@ -1166,6 +1166,20 @@
                             </div>
                         </div>
 
+                        <!-- X Axis LabelAngle -->
+                        <div class="editorLineContainer">
+                            <div class="editorXAxisLabelAngleTitle" *ngIf="showFieldXAxis">
+                            Angle:
+                            </div>
+                            <div class="editorXAxisLabelAngle" *ngIf="showFieldXAxis">
+                                <input type="number"
+                                    [(ngModel)]="xAxisLabelAngle"
+                                    name="xAxisLabelAngle"
+                                    placeholder="Label Angle"
+                                    >
+                            </div>
+                        </div>
+
 
 
 

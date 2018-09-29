@@ -1132,6 +1132,21 @@ clr-dg-cell {
                     width: 15px;
                 }
 
+                .editorXAxisLabelAngleTitle {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin-left: 4px;
+                    width: 38px;
+                }
+                .editorXAxisLabelAngle {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin: 3px;
+                    width: 15px;
+                }
+
 
 
 

@@ -530,6 +530,7 @@ export interface dataSchemaInterface {
     xAxisGrid: boolean = true;
     xAxisFormat: string = '';
     xAxisLabels: boolean = true;
+    xAxisLabelAngle: number = 0;
 
     xAxisTitleAlign: string	= '';
     xAxisTitleColor: string = '';
@@ -1182,7 +1183,10 @@ export interface dataSchemaInterface {
 
             specification['encoding']['x']['axis'] = {"grid": this.xAxisGrid };
             specification['encoding']['x']['axis']['labels'] = this.xAxisLabels;
-            
+            if (this.xAxisLabelAngle != 0){
+                specification['encoding']['x']['axis']['labelAngle'] = this.xAxisLabelAngle;
+            };
+
             if (!this.xAxisTitleCheckbox) {
                 specification['encoding']['x']['axis']['title'] = null;
             } else {
