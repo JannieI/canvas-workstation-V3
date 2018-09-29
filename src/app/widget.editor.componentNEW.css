@@ -1041,6 +1041,8 @@ clr-dg-cell {
                     font-size: 0.5rem;
                 }
 
+
+            /* Selection */
             .editorSelectionTitle {
                 background-color: rgb(211, 209, 226);
                 border: 1px solid lightgray;
@@ -1052,6 +1054,8 @@ clr-dg-cell {
                     font-size: 0.5rem;
                 }
 
+
+            /* X Axis */
             .editorXAxisContainerTitle {
                 background-color: rgb(211, 209, 226);
                 border: 1px solid lightgray;
@@ -1147,6 +1151,36 @@ clr-dg-cell {
                     width: 15px;
                 }
 
+
+            /* Y Axis */
+            .editorYAxisContainerTitle {
+                background-color: rgb(211, 209, 226);
+                border: 1px solid lightgray;
+                border-radius: 3px;
+                font-size: 0.5rem;
+                margin-top: 5px;
+            }
+                .editorYAxis {
+                    font-size: 0.5rem;
+                }
+
+                .editorYAxisScaleTypeTitle {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin-left: 4px;
+                    width: 64px;
+                }
+                .editorYAxisScaleType {
+                    border: 1px solid steelblue;
+                    border-radius: 5px;
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin: 3px;
+                    width: 68%;
+                }
+
                 .editorYAxisTitleTitle {
                     display: inline-block;
                     font-size: 0.5rem;
@@ -1232,34 +1266,14 @@ clr-dg-cell {
                 }
 
 
-            /* Y Axis */
-            .editorYAxisContainerTitle {
+            /* Legend */
+            .editorLegendContainerTitle {
                 background-color: rgb(211, 209, 226);
                 border: 1px solid lightgray;
                 border-radius: 3px;
                 font-size: 0.5rem;
                 margin-top: 5px;
             }
-                .editorYAxis {
-                    font-size: 0.5rem;
-                }
-
-                .editorYAxisScaleTypeTitle {
-                    display: inline-block;
-                    font-size: 0.5rem;
-                    line-height: 0.8rem;
-                    margin-left: 4px;
-                    width: 64px;
-                }
-                .editorYAxisScaleType {
-                    border: 1px solid steelblue;
-                    border-radius: 5px;
-                    display: inline-block;
-                    font-size: 0.5rem;
-                    line-height: 0.8rem;
-                    margin: 3px;
-                    width: 68%;
-                }
 
 
 
