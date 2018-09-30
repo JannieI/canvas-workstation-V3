@@ -1324,6 +1324,21 @@ clr-dg-cell {
                 margin-top: 5px;
             }
 
+            .editorSizeFieldTitle {
+                display: inline-block;
+                font-size: 0.5rem;
+                line-height: 0.8rem;
+                margin-left: 4px;
+                width: 38px;
+            }
+            .editorSizeField {
+                display: inline-block;
+                font-size: 0.5rem;
+                line-height: 0.8rem;
+                margin: 3px;
+                width: 15px;
+            }
+
 
 
 

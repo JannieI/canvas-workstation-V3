@@ -189,6 +189,7 @@ export interface dataSchemaInterface {
     dragoverCol: boolean = false;
     dragoverRow: boolean = false;
     dragoverColours: boolean = false;
+    dragoverSize: boolean = false;
     errorMessage: string = '';
     graphColorField: string = 'Drag a field here ...';
     graphSizeField: string = 'Drag a field here ...';
@@ -223,7 +224,7 @@ export interface dataSchemaInterface {
     showFieldYPropertiesInfo: boolean = false;
     showFieldYPropertiesTitle: boolean = false;
 
-    showFieldSizePropertiesTitle: boolean = false;
+    // showFieldSizePropertiesTitle: boolean = false;
     showFieldSize: boolean = false;
 
     showFieldLegend: boolean = false;
@@ -1757,8 +1758,8 @@ this.localWidget.graphYtype);
         // Show X icon
         this.showSizeDeleteIcon = true;
 
-        // Show the panel with X properties
-        this.showFieldSizePropertiesTitle = true;
+        // // Show the panel with X properties
+        // this.showFieldSizePropertiesTitle = true;
 
         ev.preventDefault();
         ev.dataTransfer.dropEffect = "move"
@@ -1883,6 +1884,16 @@ this.localWidget.graphYtype);
         this.dragoverCol = false;
         this.dragoverRow = true;
         this.dragoverColours = false;
+    }
+
+    dragenterSize(ev, actionName: string) {
+        // Event trigger when the dragged Field is enters the Size field
+        this.globalFunctionService.printToConsole(this.constructor.name,'dragenterSize', '@Start');
+
+        ev.preventDefault();
+        // this.dragoverCol = false;
+        this.dragoverSize = true;
+        // this.dragoverColours = false;
     }
 
     dragoleaveRow(ev, actionName: string) {
