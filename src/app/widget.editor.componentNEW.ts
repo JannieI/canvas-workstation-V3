@@ -1742,12 +1742,12 @@ console.warn('xx definition', definition);
         this.showFieldYPropertiesTitle = true;
 
         var data = ev.dataTransfer.getData("text");
-        this.rowField = this.draggedField;
-        this.localWidget.graphYfield = this.draggedField;
-        this.localWidget.graphYaxisTitle = this.draggedField;
+        this.rowField = fieldName;
+        this.localWidget.graphYfield = fieldName;
+        this.localWidget.graphYaxisTitle = fieldName;
 
         // Fill the default and allowed types of Vega field types
-        let fieldType:string = this.getFieldType(this.draggedField);
+        let fieldType:string = this.getFieldType(fieldName);
         this.graphTypeFieldY = this.allowedGraphTypeField(fieldType);
         this.localWidget.graphYtype = this.defaultGraphTypeField(fieldType);
 console.warn('xx big 3', fieldType,
