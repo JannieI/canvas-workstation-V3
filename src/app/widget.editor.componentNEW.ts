@@ -207,6 +207,10 @@ export interface dataSchemaInterface {
     selectedFieldIndex: number = -1;
     selectedRowIndex: number = -1;
     selectedRowID: number;
+
+    sizeType: string = '';
+    sizeAggregate: string = '';
+
     showColourDeleteIcon: boolean = false;
     showColumnDeleteIcon: boolean = false;
     showSizeDeleteIcon: boolean = false;
@@ -520,6 +524,7 @@ export interface dataSchemaInterface {
 
     ];
     widgetGraphs: WidgetGraph[] =[];
+
     xPropertiesAggregate: string = '';
     xPropertiesAggregateVegaLiteName: string = '';
     xPropertiesBin: string = 'False';
@@ -1324,6 +1329,10 @@ export interface dataSchemaInterface {
 
             // Color field
             specification['encoding']['color']['field'] = this.localWidget.graphColorField;
+
+            // Size field
+            specification['encoding']['size']['type'] = this.sizeType.toLowerCase();
+            specification['encoding']['size']['aggregate'] = this.sizeAggregate.toLowerCase();
 
             // Tooltip setting
             // specification['mark']['tooltip']['content'] = "";
