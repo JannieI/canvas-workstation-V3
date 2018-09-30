@@ -1380,10 +1380,10 @@
                             </clr-icon>
                         </div>
 
-                        <div class="editorSizeFieldTitle" *ngIf="!showFieldSize">
+                        <div class="editorSizeFieldTitle" *ngIf="showFieldSize">
                             Size:
                         </div>
-                        <div class="editorSizeFieldTitle"
+                        <div class="editorSizeField" *ngIf="showFieldSize"
                             id="target"
                             (drop)="dropSize($event);"
                             (dragenter)="dragenterSize($event);"
@@ -1392,16 +1392,7 @@
                             [style.background-color]="dragoverSizes? 'lightgray' : 'transparent'"
                             [style.font-style]="graphSizeField=='Drag a field here ...' ?  'italic'  :  'normal'"
                             >
-                        </div>
-                        <div class="editorSizeField" *ngIf="!showFieldSize"
-                            id="target"
-                            (drop)="dropSize($event);"
-                            (dragenter)="dragenterSize($event);"
-                            (dragleave)="dragleaveSize($event);"
-                            (dragover)="dragoverSize($event);"
-                            [style.background-color]="dragoverSizes? 'lightgray' : 'transparent'"
-                            [style.font-style]="graphSizeField=='Drag a field here ...' ?  'italic'  :  'normal'"
-                            >
+                            
                             <clr-icon shape="times" *ngIf="showSizeDeleteIcon"
                                 (click)="clickClearSizeField()"
                                 >

@@ -1775,9 +1775,11 @@ this.localWidget.graphYtype);
         var data = ev.dataTransfer.getData("text");
 
         // TODO Add Size field
-        // this.graphColorField = this.draggedField;
+        this.graphSizeField = this.draggedField;
         // this.localWidget.graphColorField = this.draggedField
 
+        this.dragoverSizes = false;
+        
         // Fill the default and allowed types of Vega field types
         // let fieldType:string = this.getFieldType(this.draggedField);
         // this.graphTypeFieldColor = this.allowedGraphTypeField(fieldType);
