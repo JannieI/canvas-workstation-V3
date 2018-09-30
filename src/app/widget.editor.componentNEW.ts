@@ -207,6 +207,7 @@ export interface dataSchemaInterface {
     selectedRowID: number;
     showColourDeleteIcon: boolean = false;
     showColumnDeleteIcon: boolean = false;
+    showSizeDeleteIcon: boolean = false;
     showDatasourceMain: boolean = true;
 
     showFieldTitleProperties: boolean = false;
@@ -1742,6 +1743,37 @@ this.localWidget.graphYtype);
             this.localWidget, graphHeight, graphWidth
         );
         this.renderGraph(definition);
+    }
+
+    dropSize(ev) {
+        // Event trigger when the dragged Field is dropped the Size field
+        this.globalFunctionService.printToConsole(this.constructor.name,'dropSize', '@Start');
+
+        // Show X icon
+        this.showSizeDeleteIcon = true;
+
+        // Show the panel with X properties
+        this.showFieldSizePropertiesTitle = true;
+
+        ev.preventDefault();
+        ev.dataTransfer.dropEffect = "move"
+        // Get the id of the target and add the moved element to the target's DOM
+
+        var data = ev.dataTransfer.getData("text");
+
+        // TODO Add Size field
+        // this.graphColorField = this.draggedField;
+        // this.localWidget.graphColorField = this.draggedField
+
+        // Fill the default and allowed types of Vega field types
+        // let fieldType:string = this.getFieldType(this.draggedField);
+        // this.graphTypeFieldColor = this.allowedGraphTypeField(fieldType);
+        // this.localWidget.graphColorType = this.defaultGraphTypeField(fieldType);
+
+        // let definition = this.globalVariableService.createVegaLiteSpec(
+        //     this.localWidget, graphHeight, graphWidth
+        // );
+        // this.renderGraph(definition);
     }
 
     clickClearColumnField() {
