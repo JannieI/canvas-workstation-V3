@@ -189,7 +189,7 @@ export interface dataSchemaInterface {
     dragoverCol: boolean = false;
     dragoverRow: boolean = false;
     dragoverColours: boolean = false;
-    dragoverSize: boolean = false;
+    dragoverSizes: boolean = false;
     errorMessage: string = '';
     graphColorField: string = 'Drag a field here ...';
     graphSizeField: string = 'Drag a field here ...';
@@ -1651,6 +1651,13 @@ console.warn('xx definition', definition);
         ev.preventDefault();
     }
 
+    dragoverSize(ev, actionName: string) {
+        // Event trigger when the dragged Field is over the Color field
+        this.globalFunctionService.printToConsole(this.constructor.name,'dragoverSize', '@Start');
+
+        ev.preventDefault();
+    }
+
     dropColumn(ev) {
         // Event trigger when the dragged Field is dropped the Column field
         this.globalFunctionService.printToConsole(this.constructor.name,'dropColumn', '@Start');
@@ -1918,7 +1925,7 @@ this.localWidget.graphYtype);
 
         ev.preventDefault();
         // this.dragoverCol = false;
-        this.dragoverSize = true;
+        this.dragoverSizes = true;
         // this.dragoverColours = false;
     }
 
@@ -1927,7 +1934,7 @@ this.localWidget.graphYtype);
         this.globalFunctionService.printToConsole(this.constructor.name,'dragleaveSize', '@Start');
 
         ev.preventDefault();
-        this.dragoverSize = false;
+        this.dragoverSizes = false;
     }
 
     clickDatasource(index: number, name: string) {
