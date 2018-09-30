@@ -1357,6 +1357,30 @@
                         </div>
 
 
+                        <!-- Size Channel -->
+                        <div class="editorSizeContainerTitle" *ngIf="showFieldSizePropertiesTitle"
+                            (click)="clickShowSize()"
+                            >
+                            <b>
+                                Y Axis
+                            </b>
+                            <clr-icon shape="angle down" *ngIf="!showFieldSize"
+                                size="12"
+                                >
+                            </clr-icon>
+                            <clr-icon shape="angle up" *ngIf="showFieldSize"
+                                size="12"
+                                >
+                            </clr-icon>
+                            <clr-icon shape="info-circle"
+                                style="color: rgb(101, 101, 196);
+                                    float: right;
+                                    margin-top: 4px;"
+                                >
+                            </clr-icon>
+                        </div>
+
+
 
 
 

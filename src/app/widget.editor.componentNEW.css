@@ -1315,6 +1315,15 @@ clr-dg-cell {
             }
 
 
+            /* Size */
+            .editorSizeContainerTitle {
+                background-color: rgb(211, 209, 226);
+                border: 1px solid lightgray;
+                border-radius: 3px;
+                font-size: 0.5rem;
+                margin-top: 5px;
+            }
+
 
 
 

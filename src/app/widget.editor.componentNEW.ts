@@ -221,6 +221,9 @@ export interface dataSchemaInterface {
     showFieldYPropertiesInfo: boolean = false;
     showFieldYPropertiesTitle: boolean = false;
 
+    showFieldSizePropertiesTitle: boolean = false;
+    showFieldSize: boolean = false;
+
     showFieldLegend: boolean = false;
     showFieldColorProperties: boolean = false;
     showFieldColorPropertiesInfo: boolean = false;
@@ -1767,7 +1770,7 @@ this.localWidget.graphYtype);
         // Clear the Colour Field
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClearRowField', '@Start');
 
-        // Hide the panel with X properties
+        // Hide the panel with Y properties
         this.showFieldYPropertiesTitle = false;
 
         // Show X icon
@@ -2166,6 +2169,14 @@ console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowInde
 
         // Toggle
         this.showFieldLegend = !this.showFieldLegend;
+    }
+
+    clickShowSize() {
+        // Show Size Area
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowSize', '@Start');
+
+        // Toggle
+        this.showFieldSize = !this.showFieldSize;
     }
 
     clickSelectTitleColor(ev: any) {
