@@ -1291,7 +1291,13 @@ export interface dataSchemaInterface {
                 specification['encoding']['color']['legend']['title'] = null;
             } else {
                 if (this.legendTitle != ''  &&  this.legendTitle != undefined) {
-                    specification['encoding']['color']['legend']['title'] = this.legendTitle;
+                    // specification['encoding']['color']['legend']['title'] = this.legendTitle;
+                    specification['encoding']['color'] =
+                        {"legend" : {"title": this.legendTitle} };
+                } else {
+                    specification['encoding']['color'] =
+                        {"legend" : "" };
+
                 };
             };
 
