@@ -1691,6 +1691,8 @@ console.warn('xx definition', definition);
         // Event trigger when the dragged Field is dropped the Column field
         this.globalFunctionService.printToConsole(this.constructor.name,'dropColumn', '@Start');
 
+
+
     }
 
     dropColumn(ev, fieldName: string = '') {
@@ -1736,6 +1738,10 @@ console.warn('xx definition', definition);
         // Event trigger when the dragged Field is dropped the Column field
         this.globalFunctionService.printToConsole(this.constructor.name,'dropRow', '@Start');
 
+        // Set
+        if (fieldName = '') {
+            fieldName = this.draggedField;
+        };
         ev.preventDefault();
         ev.dataTransfer.dropEffect = "move"
         // Get the id of the target and add the moved element to the target's DOM
