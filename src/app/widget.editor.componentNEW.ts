@@ -1041,7 +1041,7 @@ export interface dataSchemaInterface {
             };
 
             // TODO - load from DB
-            this.graphSizeField = 'Drag a field here ...'; 
+            this.graphSizeField = 'Drag a field here ...';
             this.showSizeDeleteIcon = false;
 
             // Get local vars - easier for ngFor
@@ -1218,7 +1218,7 @@ export interface dataSchemaInterface {
             if (this.xAxisFormat != '') {
                 specification['encoding']['x']['axis']['format'] =  this.xAxisFormat;
             };
-            
+
 
             // Y field
             specification['encoding']['y']['field'] = this.localWidget.graphYfield;
@@ -1329,14 +1329,21 @@ export interface dataSchemaInterface {
 
             // Color field
             specification['encoding']['color']['field'] = this.localWidget.graphColorField;
+console.warn('xx sizeFiled', this.graphSizeField);
 
             // Size field
-            if (this.graphSizeField != ''  &&  this.graphSizeField != undefined) {
+            if (this.graphSizeField != ''
+                &&  this.graphSizeField.toLowerCase() != 'drag a field here ...'
+                &&  this.graphSizeField != undefined) {
                 specification['encoding']['size']['field'] = this.graphSizeField.toLowerCase();
                 specification['encoding']['size']['type'] = this.sizeType.toLowerCase();
                 specification['encoding']['size']['aggregate'] = this.sizeAggregate.toLowerCase();
+            } else {
+            specification['encoding']['size'] = {
+                "field": ""
+              };
             };
-            
+
             // Tooltip setting
             // specification['mark']['tooltip']['content'] = "";
 
@@ -1791,7 +1798,7 @@ this.localWidget.graphYtype);
         // this.localWidget.graphColorField = this.draggedField
 
         this.dragoverSizes = false;
-        
+
         // Fill the default and allowed types of Vega field types
         // let fieldType:string = this.getFieldType(this.draggedField);
         // this.graphTypeFieldColor = this.allowedGraphTypeField(fieldType);
