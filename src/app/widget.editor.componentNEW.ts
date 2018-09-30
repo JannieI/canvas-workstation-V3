@@ -1836,6 +1836,22 @@ this.localWidget.graphYtype);
         this.renderGraph(definition);
     }
 
+    clickClearSizeField() {
+        // Clear the Size Field
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClearSizeField', '@Start');
+
+        // Show X icon
+        this.showSizeDeleteIcon = false;
+        this.graphColorField = 'Drag a field here ...';
+        // this.localWidget.graphColorField = null;
+        // this.localWidget.graphColorType = null;
+
+        // let definition = this.globalVariableService.createVegaLiteSpec(
+        //     this.localWidget, graphHeight, graphWidth
+        // );
+        // this.renderGraph(definition);
+    }
+
     dragenterColumn(ev, actionName: string) {
         // Event trigger when dragged field enters Column
         this.globalFunctionService.printToConsole(this.constructor.name,'dragenterColumn', '@Start');
