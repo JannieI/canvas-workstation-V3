@@ -1418,6 +1418,21 @@
                             </div>
                         </div>
 
+                        <!-- Size aggregate -->
+                        <div class="editorLineContainer">
+                            <div class="editorSizeAggregateTitle" *ngIf="showFieldSize">
+                                Aggregate:
+                            </div>
+                            <div class="select editorSizeAggregate" *ngIf="showFieldSize">
+                                <select id="selects_3"
+                                    [(ngModel)]="sizeAggregate"
+                                    >
+                                    <option *ngFor="let row of aggregations; let i = index">
+                                        {{ row.displayName }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
 
 
 
