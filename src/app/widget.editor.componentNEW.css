@@ -351,7 +351,7 @@ clr-dg-cell {
                 font-size: 0.5rem;
                 line-height: 0.8rem;
                 margin-left: 4px;
-                width: 42px;
+                width: 52px;
             }
             .editorColourField {
                 border: 1px solid steelblue;
@@ -360,7 +360,7 @@ clr-dg-cell {
                 font-size: 0.5rem;
                 line-height: 0.8rem;
                 margin: 3px;
-                width: 78%;
+                width: 73%;
             }
 
             /* TITLE */
