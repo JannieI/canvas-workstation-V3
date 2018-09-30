@@ -1324,54 +1324,54 @@ clr-dg-cell {
                 margin-top: 5px;
             }
 
-            .editorSizeFieldTitle {
-                display: inline-block;
-                font-size: 0.5rem;
-                line-height: 0.8rem;
-                margin-left: 4px;
-                width: 38px;
-            }
-            .editorSizeField {
-                border: 1px solid steelblue;
-                border-radius: 5px;
-                display: inline-block;
-                font-size: 0.5rem;
-                line-height: 0.8rem;
-                margin: 3px;
-                width: 68%;
-            }
+                .editorSizeFieldTitle {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin-left: 4px;
+                    width: 38px;
+                }
+                .editorSizeField {
+                    border: 1px solid steelblue;
+                    border-radius: 5px;
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin: 3px;
+                    width: 68%;
+                }
 
-            .editorSizeTypeTitleTitle {
-                display: inline-block;
-                font-size: 0.5rem;
-                line-height: 0.8rem;
-                margin-left: 4px;
-                width: 38px;
-            }
-            .editorSizeTypeTitle {
-                border: 1px solid steelblue;
-                border-radius: 5px;
-                display: inline-block;
-                font-size: 0.5rem;
-                line-height: 0.8rem;
-                margin: 3px;
-                width: 68%;
-            }
+                .editorSizeTypeTitle {
+                    border: 1px solid steelblue;
+                    border-radius: 5px;
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin-left: 4px;
+                    width: 64px;
+                }
+                .editorSizeType {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin: 3px;
+                    width: 68%;
+                }
 
-            .editorSizeAggregateTitle {
-                display: inline-block;
-                font-size: 0.5rem;
-                line-height: 0.8rem;
-                margin-left: 4px;
-                width: 38px;
-            }
-            .editorSizeAggregate {
-                display: inline-block;
-                font-size: 0.5rem;
-                line-height: 0.8rem;
-                margin: 3px;
-                width: 15px;
-            }
+                .editorSizeAggregateTitle {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin-left: 4px;
+                    width: 64px;
+                }
+                .editorSizeAggregate {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin: 3px;
+                    width: 15px;
+                }
 
 
 

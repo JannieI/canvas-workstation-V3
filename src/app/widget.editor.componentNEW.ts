@@ -1329,15 +1329,16 @@ export interface dataSchemaInterface {
 
             // Color field
             specification['encoding']['color']['field'] = this.localWidget.graphColorField;
-console.warn('xx sizeFiled', this.graphSizeField);
 
             // Size field
             if (this.graphSizeField != ''
                 &&  this.graphSizeField.toLowerCase() != 'drag a field here ...'
                 &&  this.graphSizeField != undefined) {
-                specification['encoding']['size']['field'] = this.graphSizeField.toLowerCase();
+                console.warn('xx sizeFiled', this.graphSizeField);
+
+                specification['encoding']['size']['field'] = this.graphSizeField;
                 specification['encoding']['size']['type'] = this.sizeType.toLowerCase();
-                specification['encoding']['size']['aggregate'] = this.sizeAggregate.toLowerCase();
+                // specification['encoding']['size']['aggregate'] = this.sizeAggregate.toLowerCase();
             } else {
             specification['encoding']['size'] = {
                 "field": ""
@@ -1346,6 +1347,7 @@ console.warn('xx sizeFiled', this.graphSizeField);
 
             // Tooltip setting
             // specification['mark']['tooltip']['content'] = "";
+            specification['mark']['type'] = "point";
 
         };
         if (graphID == 2  &&  graphShortName =='Area Chart') {
