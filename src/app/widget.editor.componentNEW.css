@@ -1342,8 +1342,6 @@ clr-dg-cell {
                 }
 
                 .editorSizeTypeTitle {
-                    border: 1px solid steelblue;
-                    border-radius: 5px;
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
@@ -1351,6 +1349,8 @@ clr-dg-cell {
                     width: 64px;
                 }
                 .editorSizeType {
+                    border: 1px solid steelblue;
+                    border-radius: 5px;
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
@@ -1366,6 +1366,8 @@ clr-dg-cell {
                     width: 64px;
                 }
                 .editorSizeAggregate {
+                    border: 1px solid steelblue;
+                    border-radius: 5px;
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
@@ -1381,6 +1383,8 @@ clr-dg-cell {
                     width: 64px;
                 }
                 .editorSizeBin {
+                    border: 1px solid steelblue;
+                    border-radius: 5px;
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
