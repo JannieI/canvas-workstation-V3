@@ -1886,19 +1886,9 @@ this.localWidget.graphYtype);
         this.dragoverColours = false;
     }
 
-    dragenterSize(ev, actionName: string) {
-        // Event trigger when the dragged Field is enters the Size field
-        this.globalFunctionService.printToConsole(this.constructor.name,'dragenterSize', '@Start');
-
-        ev.preventDefault();
-        // this.dragoverCol = false;
-        this.dragoverSize = true;
-        // this.dragoverColours = false;
-    }
-
-    dragoleaveRow(ev, actionName: string) {
+    dragleaveRow(ev, actionName: string) {
         // Event trigger when the dragged Field is leaves the Row field
-        this.globalFunctionService.printToConsole(this.constructor.name,'dragoleaveRow', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'dragleaveRow', '@Start');
 
         ev.preventDefault();
         this.dragoverRow = false;
@@ -1920,6 +1910,24 @@ this.localWidget.graphYtype);
 
         ev.preventDefault();
         this.dragoverColours = false;
+    }
+
+    dragenterSize(ev, actionName: string) {
+        // Event trigger when the dragged Field is enters the Size field
+        this.globalFunctionService.printToConsole(this.constructor.name,'dragenterSize', '@Start');
+
+        ev.preventDefault();
+        // this.dragoverCol = false;
+        this.dragoverSize = true;
+        // this.dragoverColours = false;
+    }
+
+    dragleaveSize(ev, actionName: string) {
+        // Event trigger when the dragged Field is leaves the Size field
+        this.globalFunctionService.printToConsole(this.constructor.name,'dragleaveSize', '@Start');
+
+        ev.preventDefault();
+        this.dragoverSize = false;
     }
 
     clickDatasource(index: number, name: string) {
