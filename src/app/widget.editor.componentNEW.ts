@@ -1708,12 +1708,17 @@ console.warn('xx definition', definition);
     dropColumn(ev, fieldName: string = '') {
         // Event trigger when the dragged Field is dropped the Column field
         this.globalFunctionService.printToConsole(this.constructor.name,'dropColumn', '@Start');
+console.warn('xx fieldName', fieldName, this.draggedField);
 
         // Set
-        if (fieldName = '') {
+        if (fieldName == '') {
             fieldName = this.draggedField;
         };
-        ev.preventDefault();
+        if (ev != null) {
+            ev.preventDefault();
+            ev.dataTransfer.dropEffect = "move"
+            var data = ev.dataTransfer.getData("text");
+        };
 
         let dataSchemaIndex: number = this.dataSchema.findIndex(
             dsc => dsc.name == fieldName
@@ -1725,10 +1730,8 @@ console.warn('xx definition', definition);
         // Show the panel with X properties
         this.showFieldXPropertiesTitle = true;
 
-        ev.dataTransfer.dropEffect = "move"
         // Get the id of the target and add the moved element to the target's DOM
 
-        var data = ev.dataTransfer.getData("text");
         this.colField = fieldName;
         this.localWidget.graphXfield = fieldName;
         this.localWidget.graphXaxisTitle = fieldName;
@@ -1737,6 +1740,8 @@ console.warn('xx definition', definition);
         this.graphTypeFieldX = this.allowedGraphTypeField(fieldType);
         this.localWidget.graphXtype = this.defaultGraphTypeField(fieldType);
 
+        console.warn('xx', this.colField);
+        
         // let definition = this.globalVariableService.createVegaLiteSpec(
         //     this.localWidget, graphHeight, graphWidth
         // );
@@ -1749,11 +1754,15 @@ console.warn('xx definition', definition);
         this.globalFunctionService.printToConsole(this.constructor.name,'dropRow', '@Start');
 
         // Set
-        if (fieldName = '') {
+        if (fieldName == '') {
             fieldName = this.draggedField;
         };
-        ev.preventDefault();
-        ev.dataTransfer.dropEffect = "move"
+        if (ev != null) {
+            ev.preventDefault();
+            ev.dataTransfer.dropEffect = "move"
+            var data = ev.dataTransfer.getData("text");
+        };
+
         // Get the id of the target and add the moved element to the target's DOM
 
         // Show X icon
@@ -1762,7 +1771,6 @@ console.warn('xx definition', definition);
         // Show the panel with X properties
         this.showFieldYPropertiesTitle = true;
 
-        var data = ev.dataTransfer.getData("text");
         this.rowField = fieldName;
         this.localWidget.graphYfield = fieldName;
         this.localWidget.graphYaxisTitle = fieldName;
@@ -1780,9 +1788,9 @@ this.localWidget.graphYtype);
         //     this.localWidget.graphYtype = 'ordinal';
         // };
 
-        let definition = this.globalVariableService.createVegaLiteSpec(
-            this.localWidget, graphHeight, graphWidth
-        );
+        // let definition = this.globalVariableService.createVegaLiteSpec(
+        //     this.localWidget, graphHeight, graphWidth
+        // );
         // this.renderGraph(definition);
     }
 
