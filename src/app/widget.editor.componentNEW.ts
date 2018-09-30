@@ -191,6 +191,7 @@ export interface dataSchemaInterface {
     dragoverColours: boolean = false;
     errorMessage: string = '';
     graphColorField: string = 'Drag a field here ...';
+    graphSizeField: string = 'Drag a field here ...';
     graphColor: string[];
     graphLayers: number[] = [1, 2, 3,];  // TODO - fix hardcoding
     graphTypeFieldY: string[] =[];
@@ -1033,6 +1034,10 @@ export interface dataSchemaInterface {
                 this.graphColorField = 'Drag a field here ...';
             };
 
+            // TODO - load from DB
+            this.graphSizeField = 'Drag a field here ...'; 
+            this.showSizeDeleteIcon = false;
+
             // Get local vars - easier for ngFor
             this.containerHasContextMenus = this.localWidget.containerHasContextMenus;
             this.containerHasTitle = this.localWidget.containerHasTitle;
@@ -1842,7 +1847,7 @@ this.localWidget.graphYtype);
 
         // Show X icon
         this.showSizeDeleteIcon = false;
-        this.graphColorField = 'Drag a field here ...';
+        this.graphSizeField = 'Drag a field here ...';
         // this.localWidget.graphColorField = null;
         // this.localWidget.graphColorType = null;
 
@@ -1956,6 +1961,9 @@ this.localWidget.graphYtype);
         this.graphColorField = 'Drag a field here ...';
         this.localWidget.graphColorField = ''
         this.localWidget.graphColorType = '';
+
+        this.showSizeDeleteIcon = false;
+        this.graphSizeField = 'Drag a field here ...';
 
         // Determine if data already in Glob Var
         let dataSetIndex: number = this.globalVariableService.currentDatasets.findIndex(

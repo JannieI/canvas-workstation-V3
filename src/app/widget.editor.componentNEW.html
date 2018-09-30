@@ -1380,6 +1380,25 @@
                             </clr-icon>
                         </div>
 
+                        <div class="editorSizeFieldTitle">
+                            Size:
+                        </div>
+                        <div class="editorSizeField"
+                            id="target"
+                            (drop)="dropSize($event);"
+                            (dragenter)="dragenterSize($event);"
+                            (dragleave)="dragleaveSize($event);"
+                            (dragover)="dragoverSize($event);"
+                            [style.background-color]="dragoverSizes? 'lightgray' : 'transparent'"
+                            [style.font-style]="graphColorField=='Drag a field here ...' ?  'italic'  :  'normal'"
+                            >
+                            <clr-icon shape="times" *ngIf="showSizeDeleteIcon"
+                                (click)="clickClearSizeField()"
+                                >
+                            </clr-icon>
+                            {{ graphSizeField }}
+                        </div>
+
 
 
 
