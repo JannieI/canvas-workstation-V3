@@ -1691,8 +1691,18 @@ console.warn('xx definition', definition);
         // Event trigger when the dragged Field is dropped the Column field
         this.globalFunctionService.printToConsole(this.constructor.name,'dropColumn', '@Start');
 
-
-
+        let newXField: string = this.colField;
+        let newYField: string = this.rowField;
+        if (newXField == 'Drag a field here ...') {
+            this.clickClearRowField();
+        } else {
+            this.dropRow(null, newXField);
+        };
+        if (newYField == 'Drag a field here ...') {
+            this.clickClearColumnField();
+        } else {
+            this.dropColumn(null, newYField);
+        };
     }
 
     dropColumn(ev, fieldName: string = '') {
@@ -1734,7 +1744,7 @@ console.warn('xx definition', definition);
 
     }
 
-    dropRow(ev, fieldName: string) {
+    dropRow(ev, fieldName: string = '') {
         // Event trigger when the dragged Field is dropped the Column field
         this.globalFunctionService.printToConsole(this.constructor.name,'dropRow', '@Start');
 
