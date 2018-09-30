@@ -1331,9 +1331,12 @@ export interface dataSchemaInterface {
             specification['encoding']['color']['field'] = this.localWidget.graphColorField;
 
             // Size field
-            specification['encoding']['size']['type'] = this.sizeType.toLowerCase();
-            specification['encoding']['size']['aggregate'] = this.sizeAggregate.toLowerCase();
-
+            if (this.graphSizeField != ''  &&  this.graphSizeField != undefined) {
+                specification['encoding']['size']['field'] = this.graphSizeField.toLowerCase();
+                specification['encoding']['size']['type'] = this.sizeType.toLowerCase();
+                specification['encoding']['size']['aggregate'] = this.sizeAggregate.toLowerCase();
+            };
+            
             // Tooltip setting
             // specification['mark']['tooltip']['content'] = "";
 
