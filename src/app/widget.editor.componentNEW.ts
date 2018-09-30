@@ -1687,12 +1687,20 @@ console.warn('xx definition', definition);
         ev.preventDefault();
     }
 
-    dropColumn(ev) {
+    switchXandY() {
         // Event trigger when the dragged Field is dropped the Column field
         this.globalFunctionService.printToConsole(this.constructor.name,'dropColumn', '@Start');
+    }
+
+    dropColumn(ev, fieldName: string) {
+        // Event trigger when the dragged Field is dropped the Column field
+        this.globalFunctionService.printToConsole(this.constructor.name,'dropColumn', '@Start');
+
         ev.preventDefault();
 
-        let dataSchemaIndex: number = this.dataSchema.findIndex(dsc => dsc.name == this.draggedField)
+        let dataSchemaIndex: number = this.dataSchema.findIndex(
+            dsc => dsc.name == fieldName
+        );
 
         // Show X icon
         this.showColumnDeleteIcon = true;
@@ -1704,22 +1712,22 @@ console.warn('xx definition', definition);
         // Get the id of the target and add the moved element to the target's DOM
 
         var data = ev.dataTransfer.getData("text");
-        this.colField = this.draggedField;
-        this.localWidget.graphXfield = this.draggedField;
-        this.localWidget.graphXaxisTitle = this.draggedField;
+        this.colField = fieldName;
+        this.localWidget.graphXfield = fieldName;
+        this.localWidget.graphXaxisTitle = fieldName;
 
-        let fieldType:string = this.getFieldType(this.draggedField);
+        let fieldType:string = this.getFieldType(fieldName);
         this.graphTypeFieldX = this.allowedGraphTypeField(fieldType);
         this.localWidget.graphXtype = this.defaultGraphTypeField(fieldType);
 
-        let definition = this.globalVariableService.createVegaLiteSpec(
-            this.localWidget, graphHeight, graphWidth
-        );
+        // let definition = this.globalVariableService.createVegaLiteSpec(
+        //     this.localWidget, graphHeight, graphWidth
+        // );
         // this.renderGraph(definition);
 
     }
 
-    dropRow(ev) {
+    dropRow(ev, fieldName: string) {
         // Event trigger when the dragged Field is dropped the Column field
         this.globalFunctionService.printToConsole(this.constructor.name,'dropRow', '@Start');
 
