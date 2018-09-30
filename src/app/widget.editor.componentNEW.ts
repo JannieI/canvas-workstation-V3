@@ -1345,8 +1345,8 @@ export interface dataSchemaInterface {
                 } else {
                     specification['encoding']['size']['bin'] = false;
                 };
-    
-                
+
+
             } else {
             specification['encoding']['size'] = {
                 "field": ""
@@ -1690,12 +1690,17 @@ console.warn('xx definition', definition);
     switchXandY() {
         // Event trigger when the dragged Field is dropped the Column field
         this.globalFunctionService.printToConsole(this.constructor.name,'dropColumn', '@Start');
+
     }
 
-    dropColumn(ev, fieldName: string) {
+    dropColumn(ev, fieldName: string = '') {
         // Event trigger when the dragged Field is dropped the Column field
         this.globalFunctionService.printToConsole(this.constructor.name,'dropColumn', '@Start');
 
+        // Set
+        if (fieldName = '') {
+            fieldName = this.draggedField;
+        };
         ev.preventDefault();
 
         let dataSchemaIndex: number = this.dataSchema.findIndex(
