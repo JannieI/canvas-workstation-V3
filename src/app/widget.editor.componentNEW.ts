@@ -1164,7 +1164,6 @@ export interface dataSchemaInterface {
 
             // X field
             specification['encoding']['x']['field'] = this.localWidget.graphXfield;
-            specification['encoding']['x']['type'] = this.localWidget.graphXtype;
             specification['encoding']['x']['aggregate'] = this.xPropertiesAggregateVegaLiteName.toLowerCase();
             if (this.xPropertiesBin == 'True') {
                 specification['encoding']['x']['bin'] = true;
@@ -1183,6 +1182,7 @@ export interface dataSchemaInterface {
             };
             specification['encoding']['x']['stack'] = this.xPropertiesStack;
             specification['encoding']['x']['sort'] = this.xPropertiesSort.toLowerCase();
+            // specification['encoding']['x']['type'] = this.localWidget.graphXtype;
             specification['encoding']['x']['type'] = this.xPropertiesType.toLowerCase();
             specification['encoding']['x']['timeUnit'] = this.xPropertiesTimeUnit.toLowerCase();
 
@@ -1207,7 +1207,6 @@ export interface dataSchemaInterface {
 
             // Y field
             specification['encoding']['y']['field'] = this.localWidget.graphYfield;
-            specification['encoding']['y']['type'] = this.localWidget.graphYtype;
             specification['encoding']['y']['aggregate'] = this.yPropertiesAggregateVegaLiteName.toLowerCase();
             if (this.yPropertiesBin == 'True') {
                 specification['encoding']['y']['bin'] = true;
@@ -1226,6 +1225,7 @@ export interface dataSchemaInterface {
             };
             specification['encoding']['y']['stack'] = this.yPropertiesStack;
             specification['encoding']['y']['sort'] = this.yPropertiesSort.toLowerCase();
+            // specification['encoding']['y']['type'] = this.localWidget.graphYtype;
             specification['encoding']['y']['type'] = this.yPropertiesType.toLowerCase();
             specification['encoding']['y']['timeUnit'] = this.yPropertiesTimeUnit.toLowerCase();
 
@@ -1255,7 +1255,6 @@ export interface dataSchemaInterface {
 
             // Color field
             specification['encoding']['color']['field'] = this.localWidget.graphYfield;
-            specification['encoding']['color']['type'] = this.localWidget.graphYtype;
             specification['encoding']['color']['aggregate'] = this.colorPropertiesAggregateVegaLiteName.toLowerCase();
             if (this.colorPropertiesBin == 'True') {
                 specification['encoding']['color']['bin'] = true;
@@ -1274,6 +1273,7 @@ export interface dataSchemaInterface {
             };
             specification['encoding']['color']['stack'] = this.colorPropertiesStack;
             specification['encoding']['color']['sort'] = this.colorPropertiesSort.toLowerCase();
+            // specification['encoding']['color']['type'] = this.localWidget.graphYtype;
             specification['encoding']['color']['type'] = this.colorPropertiesType.toLowerCase();
             specification['encoding']['color']['timeUnit'] = this.colorPropertiesTimeUnit.toLowerCase();
 
@@ -1288,8 +1288,15 @@ export interface dataSchemaInterface {
 
 
             if (!this.legendTitleCheckbox) {
-                specification['encoding']['color']['legend']['title'] = null;
-            } else {
+                // specification['encoding']['color']['legend']['title'] = null;
+                    // specification['encoding']['color'] = {"legend" : null };
+                    specification['encoding']['color'] = {
+                        "field": "",
+                        "type": "",
+                        "scale": "",
+                        "legend": ""
+                      };
+                } else {
                 if (this.legendTitle != ''  &&  this.legendTitle != undefined) {
                     // specification['encoding']['color']['legend']['title'] = this.legendTitle;
                     specification['encoding']['color'] =
