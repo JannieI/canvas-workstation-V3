@@ -1436,6 +1436,22 @@
                             </div>
                         </div>
 
+                        <!-- Size bin -->
+                        <div class="editorLineContainer">
+                            <div class="editorSizeBinTitle" *ngIf="showFieldSize">
+                                Bin:
+                            </div>
+                            <div class="select editorSizeBin" *ngIf="showFieldSize">
+                                <select id="selects_3"
+                                    [(ngModel)]="sizeBin"
+                                    name="sizeBin"
+                                    >
+                                    <option>False</option>
+                                    <option>True</option>
+                                </select>
+                            </div>
+                        </div>
+
 
 
 

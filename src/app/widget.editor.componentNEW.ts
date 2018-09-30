@@ -210,6 +210,7 @@ export interface dataSchemaInterface {
 
     sizeType: string = '';
     sizeAggregate: string = '';
+    sizeBin: string = 'False';
 
     showColourDeleteIcon: boolean = false;
     showColumnDeleteIcon: boolean = false;
@@ -1338,7 +1339,14 @@ export interface dataSchemaInterface {
 
                 specification['encoding']['size']['field'] = this.graphSizeField;
                 specification['encoding']['size']['type'] = this.sizeType.toLowerCase();
-                // specification['encoding']['size']['aggregate'] = this.sizeAggregate.toLowerCase();
+                specification['encoding']['size']['aggregate'] = this.sizeAggregate.toLowerCase();
+                if (this.sizeBin == 'True') {
+                    specification['encoding']['size']['bin'] = true;
+                } else {
+                    specification['encoding']['size']['bin'] = false;
+                };
+    
+                
             } else {
             specification['encoding']['size'] = {
                 "field": ""
@@ -1347,7 +1355,7 @@ export interface dataSchemaInterface {
 
             // Tooltip setting
             // specification['mark']['tooltip']['content'] = "";
-            specification['mark']['type'] = "point";
+            // specification['mark']['type'] = "point";
 
         };
         if (graphID == 2  &&  graphShortName =='Area Chart') {
