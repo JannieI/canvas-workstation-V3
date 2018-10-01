@@ -862,13 +862,13 @@
 
                         <!-- Color Properties Aggregate -->
                         <div class="editorLineContainer">
-                            <div class="editorColorPropertiesAggregateTitle" *ngIf="showFieldColorProperties">
+                            <div class="editorGraphColorAggregateTitle" *ngIf="showFieldColorProperties">
                                 Aggregate:
                             </div>
-                            <div class="select editorColorPropertiesAggregate" *ngIf="showFieldColorProperties">
+                            <div class="select editorGraphColorAggregate" *ngIf="showFieldColorProperties">
                                 <select id="selects_3"
-                                    [(ngModel)]="colorPropertiesAggregate"
-                                    name="colorPropertiesAggregate"
+                                    [(ngModel)]="localWidget.graphColorAggregate"
+                                    name="graphColorAggregate"
                                     >
                                     <option *ngFor="let row of aggregations; let i = index">
                                         {{ row.displayName }}
@@ -879,13 +879,13 @@
 
                         <!-- Color Properties bin -->
                         <div class="editorLineContainer">
-                            <div class="editorColorPropertiesBinTitle" *ngIf="showFieldColorProperties">
+                            <div class="editorGraphColorBinTitle" *ngIf="showFieldColorProperties">
                                 Bin:
                             </div>
-                            <div class="select editorColorPropertiesBin" *ngIf="showFieldColorProperties">
+                            <div class="select editorGraphColorBin" *ngIf="showFieldColorProperties">
                                 <select id="selects_3"
-                                    [(ngModel)]="colorPropertiesBin"
-                                    name="colorPropertiesBin"
+                                    [(ngModel)]="localWidget.graphColorBin"
+                                    name="graphColorBin"
                                     >
                                     <option>False</option>
                                     <option>True</option>

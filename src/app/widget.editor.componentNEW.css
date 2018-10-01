@@ -866,14 +866,14 @@ clr-dg-cell {
                 margin-top: 5px;
             }
 
-                .editorColorPropertiesAggregateTitle {
+                .editorGraphColorAggregateTitle {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
                     width: 64px;
                 }
-                .editorColorPropertiesAggregate {
+                .editorGraphColorAggregate {
                     border: 1px solid steelblue;
                     border-radius: 5px;
                     display: inline-block;
@@ -883,14 +883,14 @@ clr-dg-cell {
                     width: 68%;
                 }
 
-                .editorColorPropertiesBinTitle {
+                .editorGraphColorBinTitle {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
                     width: 64px;
                 }
-                .editorColorPropertiesBin {
+                .editorGraphColorBin {
                     border: 1px solid steelblue;
                     border-radius: 5px;
                     display: inline-block;

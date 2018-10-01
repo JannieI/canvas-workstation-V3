@@ -564,9 +564,9 @@ export interface dataSchemaInterface {
     yAxisLabels: boolean = true;
     yAxisLabelAngle: number = 0;
 
-    colorPropertiesAggregate: string = '';
-    colorPropertiesAggregateVegaLiteName: string = '';
-    colorPropertiesBin: string = 'False';
+    // colorPropertiesAggregate: string = '';
+    graphColorAggregateVegaLiteName: string = '';
+    // colorPropertiesBin: string = 'False';
     colorPropertiesFormat: string = '';
     colorPropertiesImpute: string = '';
     colorPropertiesImputeValue: number = 0;
@@ -1275,8 +1275,8 @@ export interface dataSchemaInterface {
             specification['encoding']['color'] = {
                 "field": this.localWidget.graphColorField,
                 "type": this.colorPropertiesType.toLowerCase(),
-                "aggregate": this.colorPropertiesAggregateVegaLiteName.toLowerCase(),
-                "bin": this.colorPropertiesBin == 'True'?  true  :  false,
+                "aggregate": this.graphColorAggregateVegaLiteName.toLowerCase(),
+                "bin": this.localWidget.graphColorBin,
                 "format": this.colorPropertiesFormat.toLowerCase(),
                 "legend": "",
                 "scale": "",
@@ -1285,12 +1285,15 @@ export interface dataSchemaInterface {
               console.warn('xx this.localWidget.graphColorField', this.localWidget.graphColorField)
               console.warn('xx this.graphColorField', this.graphColorField)
                                                                                                                                                                                                                 console.warn('xx [color]', this.colorPropertiesType, specification['encoding']['color']);
-            //   specification['encoding']['color']['aggregate'] = this.colorPropertiesAggregateVegaLiteName.toLowerCase();
-            // if (this.colorPropertiesBin == 'True') {
+            //   specification['encoding']['color']['aggregate'] = this.graphColorAggregateVegaLiteName.toLowerCase();
+            // if (this.localWidget.graphColorBin == 'True') {
             //     specification['encoding']['color']['bin'] = true;
             // } else {
             //     specification['encoding']['color']['bin'] = false;
             // };
+            
+            // specification['encoding']['color']['bin'] = this.localWidget.graphColorBin;
+            
             // specification['encoding']['color']['format'] = this.colorPropertiesFormat.toLowerCase();
             // if (this.colorPropertiesImpute != '') {
             //     if (this.colorPropertiesImpute == 'Value') {

@@ -267,7 +267,7 @@ const widgetTemplate: Widget =
 
         "graphColorField": "",
         "graphColorAggregate": "",
-        "graphColorBin": "",
+        "graphColorBin": false,
         "graphColorFormat": "",
         "graphColorImpute": "",
         "graphColorImputeValue": "",
