@@ -808,13 +808,13 @@
 
                         <!-- Y Properties type -->
                         <div class="editorLineContainer">
-                            <div class="editorYPropertiesTypeTitle" *ngIf="showFieldYProperties">
+                            <div class="editorGraphYtypeTitle" *ngIf="showFieldYProperties">
                                 Type:
                             </div>
-                            <div class="select editorYPropertiesType" *ngIf="showFieldYProperties">
+                            <div class="select editorGraphYtype" *ngIf="showFieldYProperties">
                                 <select id="selects_3"
-                                    [(ngModel)]="yPropertiesType"
-                                    name="yPropertiesType"
+                                    [(ngModel)]="localWidget.graphYtype"
+                                    name="graphYtype"
                                     >
                                     <option>Ordinal</option>
                                     <option>Quantitative</option>
@@ -826,14 +826,14 @@
 
                         <!-- Y Properties timeUnit -->
                         <div class="editorLineContainer">
-                            <div class="editorYPropertiesTimeUnitTitle" *ngIf="showFieldYProperties">
+                            <div class="editorGraphYtimeUnitTitle" *ngIf="showFieldYProperties">
                                 TimeUnit:
                             </div>
-                            <div class="select editorYPropertiesTimeUnit"
+                            <div class="select editorGraphYtimeUnit"
                                 *ngIf="showFieldYProperties"
                                 >
                                 <select id="selects_3"
-                                    [(ngModel)]="yPropertiesTimeUnit"
+                                    [(ngModel)]="localWidget.graphYtimeUnit"
                                     >
                                     <option *ngFor="let row of timeUnits; let i = index">
                                         {{ row }}
