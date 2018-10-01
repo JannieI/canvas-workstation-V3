@@ -416,8 +416,8 @@
                             Color:
                             </div>
                             <div class="select editorTitleColour" *ngIf="showFieldTitleProperties">
-                                <select [(ngModel)]="titleColorName"
-                                    name="titleColorName"
+                                <select [(ngModel)]="localWidget.graphTitleColorName"
+                                    name="graphTitleColorName"
                                     (change)="clickSelectTitleColor($event)"
                                     >
                                     <option *ngFor="let row of backgroundcolors"

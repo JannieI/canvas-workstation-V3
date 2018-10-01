@@ -248,7 +248,7 @@ export interface dataSchemaInterface {
     // titleAnchor: string = 'Middle';
     // titleAngle: number = 0;
     // titleBaseline: string = 'Bottom';
-    titleColorName: string = 'Gray';
+    // titleColorName: string = 'Gray';
     titleColor: string = 'gray';
     titleFont: string = '';
     titleFontSize: number = 10;
@@ -2325,10 +2325,10 @@ console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowInde
         // Select Background Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBgColor', '@Start');
 
-        this.titleColorName = ev.target.value;
-        this.titleColor = this.titleColorName;
+        this.localWidget.graphTitleColorName = ev.target.value;
+        this.titleColor = this.localWidget.graphTitleColorName;
         let localIndex: number = this.backgroundcolors.findIndex(bg =>
-            bg.name == this.titleColorName
+            bg.name == this.localWidget.graphTitleColorName
         );
         if (localIndex >= 0) {
             this.titleColor = this.backgroundcolors[localIndex].cssCode;

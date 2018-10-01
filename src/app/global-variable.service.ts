@@ -211,6 +211,7 @@ const widgetTemplate: Widget =
         "graphTitleAngle": 0,
         "graphTitleBaseline": "Bottom",
         "graphTitleColorName": "Gray",
+        "graphTitleColor": "Gray",
         "graphTitleFont": "",
         "graphTitleFontSize": 10,
         "graphTitleFontWeight": 400,

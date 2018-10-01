@@ -1117,6 +1117,7 @@ export class Widget {
     graphTitleAngle: number;
     graphTitleBaseline: string;
     graphTitleColorName: string;
+    graphTitleColor: string;
     graphTitleFont: string;
     graphTitleFontSize: number;
     graphTitleFontWeight: number;
