@@ -284,8 +284,14 @@ const widgetTemplate: Widget =
         "graphXaxisLabels": "",
         "graphXaxisLabelAngle": 0,
 
+        "graphYaxisScaleType": "",
+        "graphYaxisTitleCheckbox": true,
         "graphYaxisTitle": "",
-
+        "graphYaxisGrid": true,
+        "graphYaxisFormat": "",
+        "graphYaxisLabels": "",
+        "graphYaxisLabelAngle": 0,
+    
         "graphMark": "tick",
         "graphMarkColor": "#4682b4",
         "graphUrl": "",

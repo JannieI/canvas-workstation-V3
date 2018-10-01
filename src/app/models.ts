@@ -1167,12 +1167,18 @@ export class Widget {
     graphXaxisGrid: boolean;
     graphXaxisFormat: string;
     graphXaxisLabels: string;
-    graphXaxisLabelAngle: number;
-    
+    graphXaxisLabelAngle: number;    
 
     // Y Axis
+    // graphYaxisTitle: string;
+    graphYaxisScaleType: string;
+    graphYaxisTitleCheckbox: boolean;
     graphYaxisTitle: string;
-
+    graphYaxisGrid: boolean;
+    graphYaxisFormat: string;
+    graphYaxisLabels: string;
+    graphYaxisLabelAngle: number;
+    
     // 
     // 
 
