@@ -1131,13 +1131,13 @@
 
                         <!-- X Axis Labels -->
                         <div class="editorLineContainer">
-                            <div class="editorXAxisLabelsTitle" *ngIf="showFieldXAxis">
+                            <div class="editorGraphXaxisLabelsTitle" *ngIf="showFieldXAxis">
                             Labels:
                             </div>
-                            <div class="editorXAxisLabels" *ngIf="showFieldXAxis">
+                            <div class="editorGraphXaxisLabels" *ngIf="showFieldXAxis">
                                 <input type="checkbox"
-                                    [(ngModel)]="xAxisLabels"
-                                    name="xAxisLabels"
+                                    [(ngModel)]="localWidget.graphXaxisLabels"
+                                    name="graphXaxisLabels"
                                     title="Show labels (T/F)"
                                     >
                             </div>
@@ -1145,13 +1145,13 @@
 
                         <!-- X Axis LabelAngle -->
                         <div class="editorLineContainer">
-                            <div class="editorXAxisLabelAngleTitle" *ngIf="showFieldXAxis">
+                            <div class="editorGraphXaxisLabelAngleTitle" *ngIf="showFieldXAxis">
                             Angle:
                             </div>
-                            <div class="editorXAxisLabelAngle" *ngIf="showFieldXAxis">
+                            <div class="editorGraphXaxisLabelAngle" *ngIf="showFieldXAxis">
                                 <input type="number"
-                                    [(ngModel)]="xAxisLabelAngle"
-                                    name="xAxisLabelAngle"
+                                    [(ngModel)]="localWidget.graphXaxisLabelAngle"
+                                    name="graphXaxisLabelAngle"
                                     placeholder="Label Angle"
                                     >
                             </div>

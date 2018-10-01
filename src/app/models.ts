@@ -1166,8 +1166,8 @@ export class Widget {
     graphXaxisTitleCheckbox: boolean;
     graphXaxisGrid: boolean;
     graphXaxisFormat: string;
-    // graphXaxisLabels: string;
-    // graphXaxisLabelAngle: number;
+    graphXaxisLabels: string;
+    graphXaxisLabelAngle: number;
     
 
     // Y Axis

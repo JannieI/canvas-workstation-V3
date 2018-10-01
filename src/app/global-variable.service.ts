@@ -281,6 +281,8 @@ const widgetTemplate: Widget =
         "graphXaxisTitleCheckbox": true,
         "graphXaxisGrid": true,
         "graphXaxisFormat": "",
+        "graphXaxisLabels": "",
+        "graphXaxisLabelAngle": 0,
 
         "graphYaxisTitle": "",
 

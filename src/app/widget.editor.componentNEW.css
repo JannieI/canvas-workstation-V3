@@ -1122,14 +1122,14 @@ clr-dg-cell {
                     width: 15px;
                 }
 
-                .editorXAxisLabelsTitle {
+                .editorgraphXaxisLabelsTitle {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
                     width: 38px;
                 }
-                .editorXAxisLabels {
+                .editorgraphXaxisLabels {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
@@ -1137,14 +1137,14 @@ clr-dg-cell {
                     width: 15px;
                 }
 
-                .editorXAxisLabelAngleTitle {
+                .editorGraphXaxisLabelAngleTitle {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
                     width: 38px;
                 }
-                .editorXAxisLabelAngle {
+                .editorGraphXaxisLabelAngle {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
