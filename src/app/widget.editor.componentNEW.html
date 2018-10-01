@@ -258,74 +258,76 @@
 
                         <!-- TOP 3 - 1. X field -->
                         <div class="editorLineContainer">
-                            <div class="editorLineContainer">
-                                <div class="editorColFieldTitle">
-                                    X axis:
-                                    <clr-icon shape="switch right"
-                                        size="10"
-                                        (click)="switchXandY()"
-                                        >
-                                    </clr-icon>
-                                </div>
-                                <div class="editorColField"
-                                    id="target"
-                                    (drop)="dropColumn($event);"
-                                    (dragover)="dragoverColumn($event);"
-                                    (dragenter)="dragenterColumn($event);"
-                                    (dragleave)="dragleaveColumn($event);"
-                                    [style.background-color]="dragoverCol? 'lightgray' : 'transparent'"
-                                    [style.font-style]="colField=='Drag a field here ...' ?  'italic'  :  'normal'"
+                            <div class="editorColFieldTitle">
+                                X axis:
+                                <clr-icon shape="switch right"
+                                    size="10"
+                                    (click)="switchXandY()"
                                     >
-                                    <clr-icon shape="times" *ngIf="showColumnDeleteIcon"
-                                        (click)="clickClearColumnField()">
-                                    </clr-icon>
-                                    {{ colField }}
-                                </div>
+                                </clr-icon>
+                            </div>
+                            <div class="editorColField"
+                                id="target"
+                                (drop)="dropColumn($event);"
+                                (dragover)="dragoverColumn($event);"
+                                (dragenter)="dragenterColumn($event);"
+                                (dragleave)="dragleaveColumn($event);"
+                                [style.background-color]="dragoverCol? 'lightgray' : 'transparent'"
+                                [style.font-style]="colField=='Drag a field here ...' ?  'italic'  :  'normal'"
+                                >
+                                <clr-icon shape="times" *ngIf="showColumnDeleteIcon"
+                                    (click)="clickClearColumnField()">
+                                </clr-icon>
+                                {{ colField }}
                             </div>
                         </div>
 
                         <!-- TOP 3 - 2. Y field -->
-                        <div class="editorRowFieldTitle">
-                            Y axis:
-                            <clr-icon shape="switch right"
-                                size="10"
-                                (click)="switchXandY()"
+                        <div class="editorLineContainer">
+                            <div class="editorRowFieldTitle">
+                                Y axis:
+                                <clr-icon shape="switch right"
+                                    size="10"
+                                    (click)="switchXandY()"
+                                    >
+                                </clr-icon>
+                            </div>
+                            <div class="editorRowField"
+                                id="target"
+                                (drop)="dropRow($event);"
+                                (dragenter)="dragenterRow($event);"
+                                (dragleave)="dragleaveRow($event);"
+                                (dragover)="dragoverRows($event);"
+                                [style.background-color]="dragoverRow? 'lightgray' : 'transparent'"
+                                [style.font-style]="rowField=='Drag a field here ...' ?  'italic'  :  'normal'"
                                 >
-                            </clr-icon>
-                        </div>
-                        <div class="editorRowField"
-                            id="target"
-                            (drop)="dropRow($event);"
-                            (dragenter)="dragenterRow($event);"
-                            (dragleave)="dragleaveRow($event);"
-                            (dragover)="dragoverRows($event);"
-                            [style.background-color]="dragoverRow? 'lightgray' : 'transparent'"
-                            [style.font-style]="rowField=='Drag a field here ...' ?  'italic'  :  'normal'"
-                            >
-                            <clr-icon shape="times" *ngIf="showRowDeleteIcon"
-                                (click)="clickClearRowField()">
-                            </clr-icon>
-                            {{ rowField }}
+                                <clr-icon shape="times" *ngIf="showRowDeleteIcon"
+                                    (click)="clickClearRowField()">
+                                </clr-icon>
+                                {{ rowField }}
+                            </div>
                         </div>
 
                         <!-- TOP 3 - 3. Color field -->
-                        <div class="editorColourFieldTitle">
-                            Colour:
-                        </div>
-                        <div class="editorColourField"
-                            id="target"
-                            (drop)="dropColour($event);"
-                            (dragenter)="dragenterColour($event);"
-                            (dragleave)="dragleaveColour($event);"
-                            (dragover)="dragoverColour($event);"
-                            [style.background-color]="dragoverColours? 'lightgray' : 'transparent'"
-                            [style.font-style]="graphColorField=='Drag a field here ...' ?  'italic'  :  'normal'"
-                            >
-                            <clr-icon shape="times" *ngIf="showColourDeleteIcon"
-                                (click)="clickClearColourField()"
+                        <div class="editorLineContainer">
+                            <div class="editorColourFieldTitle">
+                                Colour:
+                            </div>
+                            <div class="editorColourField"
+                                id="target"
+                                (drop)="dropColour($event);"
+                                (dragenter)="dragenterColour($event);"
+                                (dragleave)="dragleaveColour($event);"
+                                (dragover)="dragoverColour($event);"
+                                [style.background-color]="dragoverColours? 'lightgray' : 'transparent'"
+                                [style.font-style]="graphColorField=='Drag a field here ...' ?  'italic'  :  'normal'"
                                 >
-                            </clr-icon>
-                            {{ graphColorField }}
+                                <clr-icon shape="times" *ngIf="showColourDeleteIcon"
+                                    (click)="clickClearColourField()"
+                                    >
+                                </clr-icon>
+                                {{ graphColorField }}
+                            </div>
                         </div>
 
 
