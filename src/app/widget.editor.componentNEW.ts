@@ -249,7 +249,7 @@ export interface dataSchemaInterface {
     // titleAngle: number = 0;
     // titleBaseline: string = 'Bottom';
     // titleColorName: string = 'Gray';
-    titleColor: string = 'gray';
+    // titleColor: string = 'gray';
     titleFont: string = '';
     titleFontSize: number = 10;
     titleFontWeight: number = 400;
@@ -1159,7 +1159,7 @@ export interface dataSchemaInterface {
             specification['title']['anchor'] = this.localWidget.graphTitleAnchor.toLowerCase();
             specification['title']['angle'] = this.localWidget.graphTitleAngle;
             specification['title']['baseline'] = this.localWidget.graphTitleBaseline.toLowerCase();
-            specification['title']['color'] = this.titleColor;
+            specification['title']['color'] = this.localWidget.graphTitleColor;
             specification['title']['font'] = this.titleFont;
             specification['title']['fontSize'] = this.titleFontSize;
             specification['title']['fontWeight'] = this.titleFontWeight;
@@ -2326,12 +2326,12 @@ console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowInde
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBgColor', '@Start');
 
         this.localWidget.graphTitleColorName = ev.target.value;
-        this.titleColor = this.localWidget.graphTitleColorName;
+        this.localWidget.graphTitleColor = this.localWidget.graphTitleColorName;
         let localIndex: number = this.backgroundcolors.findIndex(bg =>
             bg.name == this.localWidget.graphTitleColorName
         );
         if (localIndex >= 0) {
-            this.titleColor = this.backgroundcolors[localIndex].cssCode;
+            this.localWidget.graphTitleColor = this.backgroundcolors[localIndex].cssCode;
         };
     }
 
