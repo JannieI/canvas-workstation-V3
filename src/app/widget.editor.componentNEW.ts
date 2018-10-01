@@ -1274,10 +1274,12 @@ export interface dataSchemaInterface {
             specification['encoding']['color'] = {
                 "field": this.localWidget.graphColorField,
                 "type": this.colorPropertiesType.toLowerCase(),
-                "scale": "",
+                "aggregate": this.colorPropertiesAggregateVegaLiteName.toLowerCase(),
                 "bin": this.colorPropertiesBin == 'True'?  true  :  false,
                 "format": this.colorPropertiesFormat.toLowerCase(),
-                "legend": ""
+                "legend": "",
+                "scale": "",
+                "sort": this.colorPropertiesSort.toLowerCase()
               };
               console.warn('xx this.localWidget.graphColorField', this.localWidget.graphColorField)
               console.warn('xx this.graphColorField', this.graphColorField)

@@ -6,9 +6,10 @@
     padding: 10px !important;
 }
 
-#my-datagrid {
+/* NOTE - this causes double scroll bar with overflow: scroll in parent Div */
+/* #my-datagrid {
     height: 100%;
-}
+} */
 
 /* .datagrid {
     line-height: 0.7rem !important;
