@@ -206,7 +206,17 @@ const widgetTemplate: Widget =
         "containerTop": 80,
         "containerWidth": 410,
         "containerZindex": 50,
-        "titleText": "Title of new Widget",
+        "graphTitleText": "Title of new Widget",
+        graphTitleAnchor: string;
+        graphTitleAngle: number;
+        graphTitleBaseline: string;
+        graphTitleColorName: string;
+        graphTitleFont: string;
+        graphTitleFontSize: number;
+        graphTitleFontWeight: number;
+        graphTitleLength: number;
+        graphTitleOrientation: string;
+    
         "titleBackgroundColor": "lightgray",
         "titleBackgroundColorName": "lightgray",
         "titleBorder": "",
@@ -241,7 +251,7 @@ const widgetTemplate: Widget =
         "graphYfield": "",
         "graphYtype": "",
         "graphYaxisTitle": "",
-        "graphTitle": "",
+        "graphTitleText": "",
         "graphMark": "tick",
         "graphMarkColor": "#4682b4",
         "graphUrl": "",
@@ -10731,7 +10741,7 @@ export class GlobalVariableService {
             vlSpecsNew['width'] = widget.graphWidth;
         };
 
-        vlSpecsNew['title']['text'] = widget.graphTitle;
+        vlSpecsNew['title']['text'] = widget.graphTitleText;
 
         vlSpecsNew['encoding']['color']['field'] = widget.graphColorField;
         vlSpecsNew['encoding']['color']['type'] = widget.graphColorType;

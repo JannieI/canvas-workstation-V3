@@ -244,7 +244,7 @@ export interface dataSchemaInterface {
     showRowDeleteIcon: boolean = false;
     showType: boolean = false;
     sortOrder: number = 1;
-    titleText: string = '';
+    graphTitleText: string = '';
     titleAnchor: string = 'Middle';
     titleAngle: number = 0;
     titleBaseline: string = 'Bottom';
@@ -1146,7 +1146,7 @@ export interface dataSchemaInterface {
 
             // Enhance W properties
             this.localWidget.graphMark = 'bar';
-            this.localWidget.graphTitle = this.titleText;
+            this.localWidget.graphTitleText = this.graphTitleText;
 
             // Defaults
             if (this.xPropertiesType == '') {
@@ -1155,7 +1155,7 @@ export interface dataSchemaInterface {
 
             // Define Specification
             specification = this.widgetGraphs[widgetGraphIndex].specification;
-            specification['title']['text'] = this.titleText;
+            specification['title']['text'] = this.graphTitleText;
             specification['title']['anchor'] = this.titleAnchor.toLowerCase();
             specification['title']['angle'] = this.titleAngle;
             specification['title']['baseline'] = this.titleBaseline.toLowerCase();

@@ -1111,6 +1111,18 @@ export class Widget {
     graphSpecification: any;
     graphDescription: string;
 
+    // Title
+    graphTitleText: string;
+    graphTitleAnchor: string;
+    graphTitleAngle: number;
+    graphTitleBaseline: string;
+    graphTitleColorName: string;
+    graphTitleFont: string;
+    graphTitleFontSize: number;
+    graphTitleFontWeight: number;
+    graphTitleLength: number;
+    graphTitleOrientation: string;
+
     // X axis
     graphXaggregate: string;
     graphXtimeUnit: string;
@@ -1125,7 +1137,6 @@ export class Widget {
     graphYtype: string;
     graphYaxisTitle: string;
 
-    graphTitle: string;
     graphMark: string;
     graphMarkColor: string;
     graphUrl: string;
