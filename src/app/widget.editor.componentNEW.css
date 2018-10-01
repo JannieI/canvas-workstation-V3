@@ -585,7 +585,7 @@ clr-dg-cell {
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin: 3px;
-                    width: 22px;
+                    width: 15px;
                 }
 
                 .editorGraphXformatTitle {
@@ -628,17 +628,17 @@ clr-dg-cell {
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin: 3px;
-                    width: 16%;
+                    width: 25%;
                 }
 
-                .editorXPropertiesStackTitle {
+                .editorGraphXstackTitle {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
                     width: 64px;
                 }
-                .editorXPropertiesStack {
+                .editorGraphXstack {
                     border: 1px solid steelblue;
                     border-radius: 5px;
                     display: inline-block;
@@ -648,14 +648,14 @@ clr-dg-cell {
                     width: 68%;
                 }
 
-                .editorXPropertiesSortTitle {
+                .editorGraphXsortTitle {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
                     width: 64px;
                 }
-                .editorXPropertiesSort {
+                .editorGraphXsort {
                     border: 1px solid steelblue;
                     border-radius: 5px;
                     display: inline-block;

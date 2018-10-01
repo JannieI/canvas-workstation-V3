@@ -1133,6 +1133,8 @@ export class Widget {
     graphXformat: string;
     graphXimpute: string;
     graphXimputeValue: string;
+    graphXstack: string;
+    graphXsort: string;
     // 
     // 
     // 

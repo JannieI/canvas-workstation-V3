@@ -542,7 +542,7 @@
                             <div class="editorGraphXbinTitle" *ngIf="showFieldXProperties">
                                 Bin:
                             </div>
-                            <div class="select editorGraphXbin" *ngIf="showFieldXProperties">
+                            <div class="editorGraphXbin" *ngIf="showFieldXProperties">
                                 <input [(ngModel)]="localWidget.graphXbin"
                                     type="checkbox"
                                     name="graphXbin"
@@ -607,13 +607,13 @@
 
                         <!-- X Properties stack -->
                         <div class="editorLineContainer">
-                            <div class="editorXPropertiesStackTitle" *ngIf="showFieldXProperties">
+                            <div class="editorGraphXstackTitle" *ngIf="showFieldXProperties">
                                 Stack:
                             </div>
-                            <div class="select editorXPropertiesStack" *ngIf="showFieldXProperties">
+                            <div class="select editorGraphXstack" *ngIf="showFieldXProperties">
                                 <select id="selects_3"
-                                    [(ngModel)]="xPropertiesStack"
-                                    name="xPropertiesStack"
+                                    [(ngModel)]="localWidget.graphXstack"
+                                    name="graphXstack"
                                     >
                                     <option>Zero</option>
                                     <option>Normalise</option>
@@ -625,13 +625,13 @@
 
                         <!-- X Properties Sort -->
                         <div class="editorLineContainer">
-                            <div class="editorXPropertiesSortTitle" *ngIf="showFieldXProperties">
+                            <div class="editorGraphXsortTitle" *ngIf="showFieldXProperties">
                                 Sort:
                             </div>
-                            <div class="select editorXPropertiesSort" *ngIf="showFieldXProperties">
+                            <div class="select editorGraphXsort" *ngIf="showFieldXProperties">
                                 <select id="selects_3"
-                                    [(ngModel)]="xPropertiesSort"
-                                    name="xPropertiesSort"
+                                    [(ngModel)]="localWidget.graphXsort"
+                                    name="graphXsort"
                                     >
                                     <option>None</option>
                                     <option>Ascending</option>

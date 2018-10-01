@@ -252,6 +252,8 @@ const widgetTemplate: Widget =
         "graphXformat": "",
         "graphXimpute": "",
         "graphXimputeValue": "",
+        "graphXstack": "",
+        "graphXsort": "",
         "graphYtimeUnit": "",
         "graphYfield": "",
         "graphYtype": "",

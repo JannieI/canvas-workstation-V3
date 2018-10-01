@@ -532,8 +532,8 @@ export interface dataSchemaInterface {
     // xPropertiesFormat: string = '';
     // xPropertiesImpute: string = '';
     // xPropertiesImputeValue: number = 0;
-    xPropertiesStack: string = '';
-    xPropertiesSort: string = '';
+    // xPropertiesStack: string = '';
+    // xPropertiesSort: string = '';
     // xPropertiesType: string = '';
     // xPropertiesTimeUnit: string = '';
 
@@ -1197,8 +1197,8 @@ export interface dataSchemaInterface {
                         {"method": this.localWidget.graphXimpute};
                 };
             };
-            specification['encoding']['x']['stack'] = this.xPropertiesStack;
-            specification['encoding']['x']['sort'] = this.xPropertiesSort.toLowerCase();
+            specification['encoding']['x']['stack'] = this.localWidget.graphXstack;
+            specification['encoding']['x']['sort'] = this.localWidget.graphXsort.toLowerCase();
             specification['encoding']['x']['type'] = this.localWidget.graphXtype.toLowerCase();
             specification['encoding']['x']['timeUnit'] = this.localWidget.graphXtimeUnit.toLowerCase();
 
@@ -2232,8 +2232,8 @@ console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowInde
             ||  !this.localWidget.graphXbin
             ||  this.localWidget.graphXformat != ''
             ||  this.localWidget.graphXimpute != ''
-            ||  this.xPropertiesStack != ''
-            ||  this.xPropertiesSort != ''
+            ||  this.localWidget.graphXstack != ''
+            ||  this.localWidget.graphXsort != ''
             ||  this.localWidget.graphXtype != ''
             ||  this.localWidget.graphXimpute != '') {
             this.showFieldXPropertiesInfo = true;
