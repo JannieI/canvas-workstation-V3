@@ -882,14 +882,12 @@
                             <div class="editorGraphColorBinTitle" *ngIf="showFieldColorProperties">
                                 Bin:
                             </div>
-                            <div class="select editorGraphColorBin" *ngIf="showFieldColorProperties">
-                                <select id="selects_3"
-                                    [(ngModel)]="localWidget.graphColorBin"
-                                    name="graphColorBin"
+                            <div class="editorGraphColorBin" *ngIf="showFieldColorProperties">
+                                <input [(ngModel)]="localWidget.graphColorBin"
+                                    type="checkbox"
+                                    name="graphXbin"
+                                    title="Bin the Color field (T/F)"
                                     >
-                                    <option>False</option>
-                                    <option>True</option>
-                                </select>
                             </div>
                         </div>
 

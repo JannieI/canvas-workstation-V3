@@ -891,13 +891,13 @@ clr-dg-cell {
                     width: 64px;
                 }
                 .editorGraphColorBin {
-                    border: 1px solid steelblue;
-                    border-radius: 5px;
+                    /* border: 1px solid steelblue;
+                    border-radius: 5px; */
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin: 3px;
-                    width: 68%;
+                    width: 15px;
                 }
 
                 .editorColorPropertiesFormatTitle {
