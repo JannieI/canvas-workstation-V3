@@ -245,7 +245,7 @@ export interface dataSchemaInterface {
     showType: boolean = false;
     sortOrder: number = 1;
     // graphTitleText: string = '';
-    titleAnchor: string = 'Middle';
+    // titleAnchor: string = 'Middle';
     titleAngle: number = 0;
     titleBaseline: string = 'Bottom';
     titleColorName: string = 'Gray';
@@ -1156,7 +1156,7 @@ export interface dataSchemaInterface {
             // Define Specification
             specification = this.widgetGraphs[widgetGraphIndex].specification;
             specification['title']['text'] = this.localWidget.graphTitleText;
-            specification['title']['anchor'] = this.titleAnchor.toLowerCase();
+            specification['title']['anchor'] = this.localWidget.graphTitleAnchor.toLowerCase();
             specification['title']['angle'] = this.titleAngle;
             specification['title']['baseline'] = this.titleBaseline.toLowerCase();
             specification['title']['color'] = this.titleColor;

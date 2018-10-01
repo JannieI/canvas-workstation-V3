@@ -207,7 +207,7 @@ const widgetTemplate: Widget =
         "containerWidth": 410,
         "containerZindex": 50,
         "graphTitleText": "",
-        "graphTitleAnchor": "",
+        "graphTitleAnchor": "Middle",
         "graphTitleAngle": 0,
         "graphTitleBaseline": "",
         "graphTitleColorName": "",
