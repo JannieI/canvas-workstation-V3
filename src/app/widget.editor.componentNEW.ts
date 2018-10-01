@@ -567,9 +567,9 @@ export interface dataSchemaInterface {
     // colorPropertiesAggregate: string = '';
     graphColorAggregateVegaLiteName: string = '';
     // colorPropertiesBin: string = 'False';
-    colorPropertiesFormat: string = '';
-    colorPropertiesImpute: string = '';
-    colorPropertiesImputeValue: number = 0;
+    // colorPropertiesFormat: string = '';
+    // colorPropertiesImpute: string = '';
+    // colorPropertiesImputeValue: number = 0;
     colorPropertiesScheme: string = '';
     colorPropertiesSort: string = 'Default';
     colorPropertiesStack: string = '';
@@ -1277,7 +1277,7 @@ export interface dataSchemaInterface {
                 "type": this.colorPropertiesType.toLowerCase(),
                 "aggregate": this.graphColorAggregateVegaLiteName.toLowerCase(),
                 "bin": this.localWidget.graphColorBin,
-                "format": this.colorPropertiesFormat.toLowerCase(),
+                "format": this.localWidget.graphColorFormat.toLowerCase(),
                 "legend": "",
                 "scale": "",
                 "sort": this.colorPropertiesSort.toLowerCase()
@@ -1294,14 +1294,14 @@ export interface dataSchemaInterface {
             
             // specification['encoding']['color']['bin'] = this.localWidget.graphColorBin;
             
-            // specification['encoding']['color']['format'] = this.colorPropertiesFormat.toLowerCase();
-            // if (this.colorPropertiesImpute != '') {
-            //     if (this.colorPropertiesImpute == 'Value') {
+            // specification['encoding']['color']['format'] = this.localWidget.graphColorFormat.toLowerCase();
+            // if (this.localWidget. != '') {
+            //     if (this.localWidget. == 'Value') {
             //         specification['encoding']['color']['impute'] =
-            //             {"value":' + this.colorPropertiesImputeValue + '};
+            //             {"value":' + this.localWidget.Value + '};
             //     } else {
             //         specification['encoding']['color']['impute'] =
-            //             {"method": "' + this.colorPropertiesImpute + '"};
+            //             {"method": "' + this.localWidget. + '"};
             //     };
             // };
 

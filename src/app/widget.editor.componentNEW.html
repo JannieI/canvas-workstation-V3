@@ -893,27 +893,27 @@
 
                         <!-- Color Properties Format -->
                         <div class="editorLineContainer">
-                            <div class="editorColorPropertiesFormatTitle" *ngIf="showFieldColorProperties">
+                            <div class="editorGraphColorFormatTitle" *ngIf="showFieldColorProperties">
                                 Format:
                             </div>
-                            <div class="editorColorPropertiesFormat" *ngIf="showFieldColorProperties">
+                            <div class="editorGraphColorFormat" *ngIf="showFieldColorProperties">
                                 <input type="text"
                                     placeholder="ie .2s +$,.2f"
-                                    [(ngModel)]="colorPropertiesFormat"
-                                    name="colorPropertiesFormat"
+                                    [(ngModel)]="localWidget.graphColorFormat"
+                                    name="graphColorFormat"
                                     >
                             </div>
                         </div>
 
                         <!-- Color Properties Impute -->
                         <div class="editorLineContainer">
-                            <div class="editorColorPropertiesImputeTitle" *ngIf="showFieldColorProperties">
+                            <div class="editorGraphColorImputeTitle" *ngIf="showFieldColorProperties">
                                 Impute:
                             </div>
-                            <div class="select editorColorPropertiesImpute" *ngIf="showFieldColorProperties">
+                            <div class="select editorGraphColorImpute" *ngIf="showFieldColorProperties">
                                 <select id="selects_3"
-                                    [(ngModel)]="colorPropertiesImpute"
-                                    name="colorPropertiesImpute"
+                                    [(ngModel)]="localWidget.graphColorImpute"
+                                    name="graphColorImpute"
                                     >
                                     <option></option>
                                     <option>Max</option>
@@ -923,15 +923,15 @@
                                     <option>Value</option>
                                 </select>
                             </div>
-                            <div class="editorColorPropertiesImputeValue"
+                            <div class="editorGraphColorImputeValue"
                                 *ngIf="showFieldColorProperties"
                                 size="5"
                                 >
                                 <input type="number"
                                     placeholder="Value"
-                                    [(ngModel)]="colorPropertiesImputeValue"
-                                    name="colorPropertiesImputeValue"
-                                    [disabled]="!(colorPropertiesImpute=='Value')"
+                                    [(ngModel)]="localWidget.graphColorImputeValue"
+                                    name="graphColorImputeValue"
+                                    [disabled]="!(localWidget.graphColorImpute=='Value')"
                                     size="5"
                                     >
                             </div>
