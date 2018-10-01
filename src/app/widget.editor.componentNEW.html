@@ -991,13 +991,13 @@
 
                         <!-- Color Properties type -->
                         <div class="editorLineContainer">
-                            <div class="editorColorPropertiesTypeTitle" *ngIf="showFieldColorProperties">
+                            <div class="editorGraphColorTypeTitle" *ngIf="showFieldColorProperties">
                                 Type:
                             </div>
-                            <div class="select editorColorPropertiesType" *ngIf="showFieldColorProperties">
+                            <div class="select editorGraphColorType" *ngIf="showFieldColorProperties">
                                 <select id="selects_3"
-                                    [(ngModel)]="colorPropertiesType"
-                                    name="colorPropertiesType"
+                                    [(ngModel)]="localWidget.graphColorType"
+                                    name="graphColorType"
                                     >
                                     <option>Ordinal</option>
                                     <option>Quantitative</option>
@@ -1009,14 +1009,14 @@
 
                         <!-- Color Properties timeUnit -->
                         <div class="editorLineContainer">
-                            <div class="editorColorPropertiesTimeUnitTitle" *ngIf="showFieldColorProperties">
+                            <div class="editorGraphColorTimeUnitTitle" *ngIf="showFieldColorProperties">
                                 TimeUnit:
                             </div>
-                            <div class="select editorColorPropertiesTimeUnit"
+                            <div class="select editorGraphColorTimeUnit"
                                 *ngIf="showFieldColorProperties"
                                 >
                                 <select id="selects_3"
-                                    [(ngModel)]="colorPropertiesTimeUnit"
+                                    [(ngModel)]="localWidget.graphColorTimeUnit"
                                     >
                                     <option *ngFor="let row of timeUnits; let i = index">
                                         {{ row }}

@@ -573,8 +573,8 @@ export interface dataSchemaInterface {
     // colorPropertiesScheme: string = '';
     // colorPropertiesSort: string = 'Default';
     // colorPropertiesStack: string = '';
-    colorPropertiesType: string = '';
-    colorPropertiesTimeUnit: string = '';
+    // colorPropertiesType: string = '';
+    // colorPropertiesTimeUnit: string = '';
 
     legendTitle: string = '';
     legendTitleCheckbox: boolean = true;
@@ -1274,7 +1274,7 @@ export interface dataSchemaInterface {
             // specification['encoding']['color']['field'] = this.localWidget.graphYfield;
             specification['encoding']['color'] = {
                 "field": this.localWidget.graphColorField,
-                "type": this.colorPropertiesType.toLowerCase(),
+                "type": this.localWidget.graphColorType.toLowerCase(),
                 "aggregate": this.graphColorAggregateVegaLiteName.toLowerCase(),
                 "bin": this.localWidget.graphColorBin,
                 "format": this.localWidget.graphColorFormat.toLowerCase(),
@@ -1284,7 +1284,7 @@ export interface dataSchemaInterface {
               };
               console.warn('xx this.localWidget.graphColorField', this.localWidget.graphColorField)
               console.warn('xx this.graphColorField', this.graphColorField)
-                                                                                                                                                                                                                console.warn('xx [color]', this.colorPropertiesType, specification['encoding']['color']);
+        console.warn('xx [color]', this.localWidget.graphColorType, specification['encoding']['color']);
             //   specification['encoding']['color']['aggregate'] = this.graphColorAggregateVegaLiteName.toLowerCase();
             // if (this.localWidget.graphColorBin == 'True') {
             //     specification['encoding']['color']['bin'] = true;
@@ -1309,7 +1309,7 @@ export interface dataSchemaInterface {
 
             // specification['encoding']['color']['stack'] = this.localWidget.graphColorStack;
             // specification['encoding']['color']['sort'] = this.colorPropertiesSort.toLowerCase();
-            // specification['encoding']['color']['timeUnit'] = this.colorPropertiesTimeUnit.toLowerCase();
+            // specification['encoding']['color']['timeUnit'] = this.localWidget.graphColorTimeUnit.toLowerCase();
 
             // if (this.localWidget.graphColorScheme != '') {
             //     if (this.localWidget.graphColorScheme == 'None') {
