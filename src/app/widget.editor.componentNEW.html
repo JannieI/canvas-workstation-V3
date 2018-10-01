@@ -716,14 +716,12 @@
                             <div class="editorGraphYbinTitle" *ngIf="showFieldYProperties">
                                 Bin:
                             </div>
-                            <div class="select editorGraphYbin" *ngIf="showFieldYProperties">
-                                <select id="selects_3"
-                                    [(ngModel)]="localWidget.graphYbin"
-                                    name="graphYbin"
+                            <div class="editorGraphYbin" *ngIf="showFieldYProperties">
+                                <input [(ngModel)]="localWidget.graphYbin"
+                                    type="checkbox"
+                                    name="graphXbin"
+                                    title="Bin the Y field (T/F)"
                                     >
-                                    <option>False</option>
-                                    <option>True</option>
-                                </select>
                             </div>
                         </div>
 
