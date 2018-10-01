@@ -1082,7 +1082,7 @@ clr-dg-cell {
                     margin: 3px;
                     width: 15px;
                 }
-                .editorXAxisTitle {
+                .editorGraphXaxisTitle {
                     border: 1px solid steelblue;
                     border-radius: 5px;
                     display: inline-block;
@@ -1092,14 +1092,14 @@ clr-dg-cell {
                     width: 64%;
                 }
 
-                .editorXAxisGridTitle {
+                .editorGraphXaxisGridTitle {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
                     width: 38px;
                 }
-                .editorXAxisGrid {
+                .editorGraphXaxisGrid {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
@@ -1107,14 +1107,14 @@ clr-dg-cell {
                     width: 15px;
                 }
 
-                .editorXAxisFormatTitle {
+                .editorGraphXaxisFormatTitle {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
                     width: 38px;
                 }
-                .editorXAxisFormat {
+                .editorGraphXaxisFormat {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;

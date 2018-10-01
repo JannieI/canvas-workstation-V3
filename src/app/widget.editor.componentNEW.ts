@@ -539,8 +539,8 @@ export interface dataSchemaInterface {
 
     // xAxisTitle: string = '';
     // xAxisTitleCheckbox: boolean = true;
-    xAxisGrid: boolean = true;
-    xAxisFormat: string = '';
+    // xAxisGrid: boolean = true;
+    // xAxisFormat: string = '';
     xAxisLabels: boolean = true;
     xAxisLabelAngle: number = 0;
 
@@ -1202,7 +1202,7 @@ export interface dataSchemaInterface {
             specification['encoding']['x']['type'] = this.localWidget.graphXtype.toLowerCase();
             specification['encoding']['x']['timeUnit'] = this.localWidget.graphXtimeUnit.toLowerCase();
 
-            specification['encoding']['x']['axis'] = {"grid": this.xAxisGrid };
+            specification['encoding']['x']['axis'] = {"grid": this.localWidget.graphXaxisGrid };
             specification['encoding']['x']['axis']['labels'] = this.xAxisLabels;
             if (this.xAxisLabelAngle != 0){
                 specification['encoding']['x']['axis']['labelAngle'] = this.xAxisLabelAngle;
@@ -1216,8 +1216,8 @@ export interface dataSchemaInterface {
                 };
             };
 
-            if (this.xAxisFormat != '') {
-                specification['encoding']['x']['axis']['format'] =  this.xAxisFormat;
+            if (this.localWidget.graphXaxisFormat != '') {
+                specification['encoding']['x']['axis']['format'] =  this.localWidget.graphXaxisFormat;
             };
 
 

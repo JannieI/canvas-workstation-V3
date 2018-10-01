@@ -279,6 +279,8 @@ const widgetTemplate: Widget =
     
         "graphXaxisTitle": "",
         "graphXaxisTitleCheckbox": true,
+        "graphXaxisGrid": true,
+        "graphXaxisFormat": "",
 
         "graphYaxisTitle": "",
 

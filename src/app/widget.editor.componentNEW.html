@@ -1081,17 +1081,17 @@
 
                         <!-- X-Axis Title -->
                         <div class="editorLineContainer">
-                            <div class="editorgraphXaxisTitleTitle" *ngIf="showFieldXAxis">
+                            <div class="editorGraphXaxisTitleTitle" *ngIf="showFieldXAxis">
                                 Title:
                             </div>
-                            <div class="editorgraphXaxisTitleCheckbox" *ngIf="showFieldXAxis">
+                            <div class="editorGraphXaxisTitleCheckbox" *ngIf="showFieldXAxis">
                                 <input [(ngModel)]="localWidget.graphXaxisTitleCheckbox"
                                     type="checkbox"
                                     name="graphXaxisTitleCheckbox"
                                     title="Show the Axis Title (T/F)"
                                     >
                             </div>
-                            <div class="editorgraphXaxisTitle" *ngIf="showFieldXAxis"
+                            <div class="editorGraphXaxisTitle" *ngIf="showFieldXAxis"
                                 >
                                 <input type="text"
                                     placeholder="Blank = field name"
@@ -1103,13 +1103,13 @@
 
                         <!-- X-Axis Grid -->
                         <div class="editorLineContainer">
-                            <div class="editorXAxisGridTitle" *ngIf="showFieldXAxis">
+                            <div class="editorGraphXaxisGridTitle" *ngIf="showFieldXAxis">
                                 Grid:
                             </div>
-                            <div class="editorXAxisGrid" *ngIf="showFieldXAxis">
+                            <div class="editorGraphXaxisGrid" *ngIf="showFieldXAxis">
                                 <input type="checkbox"
-                                    [(ngModel)]="xAxisGrid"
-                                    name="xAxisGrid"
+                                    [(ngModel)]="localWidget.graphXaxisGrid"
+                                    name="graphXaxisGrid"
                                     title="Show Grid lines (T/F)"
                                     >
                             </div>
@@ -1117,13 +1117,13 @@
 
                         <!-- X Axis Format -->
                         <div class="editorLineContainer">
-                            <div class="editorXAxisFormatTitle" *ngIf="showFieldXAxis">
+                            <div class="editorGraphXaxisFormatTitle" *ngIf="showFieldXAxis">
                             Format:
                             </div>
-                            <div class="editorXAxisFormat" *ngIf="showFieldXAxis">
+                            <div class="editorGraphXaxisFormat" *ngIf="showFieldXAxis">
                                 <input type="text"
-                                    [(ngModel)]="xAxisFormat"
-                                    name="xAxisFormat"
+                                    [(ngModel)]="localWidget.graphXaxisFormat"
+                                    name="graphXaxisFormat"
                                     placeholder="ie .2s +$,.2f"
                                     >
                             </div>
