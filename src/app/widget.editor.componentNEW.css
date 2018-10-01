@@ -554,14 +554,14 @@ clr-dg-cell {
                 margin-top: 5px;
             }
 
-                .editorXPropertiesAggregateTitle {
+                .editorGraphXaggregateTitle {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
                     width: 64px;
                 }
-                .editorXPropertiesAggregate {
+                .editorGraphXaggregate {
                     border: 1px solid steelblue;
                     border-radius: 5px;
                     display: inline-block;
@@ -571,21 +571,21 @@ clr-dg-cell {
                     width: 68%;
                 }
 
-                .editorXPropertiesBinTitle {
+                .editorGraphXbinTitle {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
                     width: 64px;
                 }
-                .editorXPropertiesBin {
-                    border: 1px solid steelblue;
-                    border-radius: 5px;
+                .editorGraphXbin {
+                    /* border: 1px solid steelblue;
+                    border-radius: 5px; */
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin: 3px;
-                    width: 68%;
+                    width: 15px;
                 }
 
                 .editorXPropertiesFormatTitle {
@@ -665,14 +665,14 @@ clr-dg-cell {
                     width: 68%;
                 }
 
-                .editorXPropertiesTypeTitle {
+                .editorGraphXtypeTitle {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
                     width: 64px;
                 }
-                .editorXPropertiesType {
+                .editorGraphXtype {
                     border: 1px solid steelblue;
                     border-radius: 5px;
                     display: inline-block;
@@ -682,14 +682,14 @@ clr-dg-cell {
                     width: 68%;
                 }
 
-                .editorXPropertiesTimeUnitTitle {
+                .editorGraphXtimeUnitTitle {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
                     width: 64px;
                 }
-                .editorXPropertiesTimeUnit {
+                .editorGraphXtimeUnit {
                     border: 1px solid steelblue;
                     border-radius: 5px;
                     display: inline-block;

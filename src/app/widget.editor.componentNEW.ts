@@ -526,16 +526,16 @@ export interface dataSchemaInterface {
     ];
     widgetGraphs: WidgetGraph[] =[];
 
-    xPropertiesAggregate: string = '';
-    xPropertiesAggregateVegaLiteName: string = '';
-    xPropertiesBin: string = 'False';
+    // xPropertiesAggregate: string = '';
+    graphXaggregateVegaLiteName: string = '';
+    // xPropertiesBin: string = 'False';
     xPropertiesFormat: string = '';
     xPropertiesImpute: string = '';
     xPropertiesImputeValue: number = 0;
     xPropertiesStack: string = '';
     xPropertiesSort: string = '';
-    xPropertiesType: string = '';
-    xPropertiesTimeUnit: string = '';
+    // xPropertiesType: string = '';
+    // xPropertiesTimeUnit: string = '';
 
     xAxisTitle: string = '';
     xAxisTitleCheckbox: boolean = true;
@@ -1105,12 +1105,12 @@ export interface dataSchemaInterface {
         this.globalFunctionService.printToConsole(this.constructor.name,'showGraph', '@Start');
 
         // Get the Vega-Lite aggregation
-        this.xPropertiesAggregateVegaLiteName = '';
-        if (this.xPropertiesAggregate != '') {
+        this.graphXaggregateVegaLiteName = '';
+        if (this.localWidget.graphXaggregate != '') {
             let aggregationIndex: number = this.aggregations.findIndex(
-                agg => agg.displayName == this.xPropertiesAggregate);
+                agg => agg.displayName == this.localWidget.graphXaggregate);
             if (aggregationIndex >= 0) {
-                this.xPropertiesAggregateVegaLiteName = this.aggregations[aggregationIndex]
+                this.graphXaggregateVegaLiteName = this.aggregations[aggregationIndex]
                     .vegaLiteName;
             };
         }
@@ -1149,8 +1149,8 @@ export interface dataSchemaInterface {
             // this.localWidget.graphTitleText = this.graphTitleText;
 
             // Defaults
-            if (this.xPropertiesType == '') {
-                this.xPropertiesType = 'ordinal';
+            if (this.localWidget.graphXtype == ''  ||  this.localWidget.graphXtype == null) {
+                this.localWidget.graphXtype = 'ordinal';
             };
 
             // Define Specification
@@ -1180,12 +1180,13 @@ export interface dataSchemaInterface {
 
             // X field
             specification['encoding']['x']['field'] = this.localWidget.graphXfield;
-            specification['encoding']['x']['aggregate'] = this.xPropertiesAggregateVegaLiteName.toLowerCase();
-            if (this.xPropertiesBin == 'True') {
-                specification['encoding']['x']['bin'] = true;
-            } else {
-                specification['encoding']['x']['bin'] = false;
-            };
+            specification['encoding']['x']['aggregate'] = this.graphXaggregateVegaLiteName.toLowerCase();
+            // if (this.xPropertiesBin == 'True') {
+            //     specification['encoding']['x']['bin'] = true;
+            // } else {
+            //     specification['encoding']['x']['bin'] = false;
+            // };
+            specification['encoding']['x']['bin'] = this.localWidget.graphXbin;
             specification['encoding']['x']['format'] = this.xPropertiesFormat.toLowerCase();
             if (this.xPropertiesImpute != '') {
                 if (this.xPropertiesImpute == 'Value') {
@@ -1198,9 +1199,8 @@ export interface dataSchemaInterface {
             };
             specification['encoding']['x']['stack'] = this.xPropertiesStack;
             specification['encoding']['x']['sort'] = this.xPropertiesSort.toLowerCase();
-            // specification['encoding']['x']['type'] = this.localWidget.graphXtype;
-            specification['encoding']['x']['type'] = this.xPropertiesType.toLowerCase();
-            specification['encoding']['x']['timeUnit'] = this.xPropertiesTimeUnit.toLowerCase();
+            specification['encoding']['x']['type'] = this.localWidget.graphXtype.toLowerCase();
+            specification['encoding']['x']['timeUnit'] = this.localWidget.graphXtimeUnit.toLowerCase();
 
             specification['encoding']['x']['axis'] = {"grid": this.xAxisGrid };
             specification['encoding']['x']['axis']['labels'] = this.xAxisLabels;
@@ -1856,11 +1856,12 @@ this.localWidget.graphYtype);
         // Show X icon
         this.showColumnDeleteIcon = false;
         this.colField = 'Drag a field here ...';
-        this.localWidget.graphXfield = null;
-        this.localWidget.graphXaxisTitle = null;
-        this.localWidget.graphXaggregate = null;
-        this.localWidget.graphXtimeUnit = null;
-        this.localWidget.graphXtype = null;
+        this.localWidget.graphXfield = '';
+        this.localWidget.graphXaxisTitle = '';
+        this.localWidget.graphXaggregate = '';
+        this.localWidget.graphXtimeUnit = '';
+        this.localWidget.graphXtype = '';
+        this.localWidget.graphXbin = false;
 
         // Hide the panel with X properties
         this.showFieldXPropertiesTitle = false;
@@ -2227,13 +2228,13 @@ console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowInde
 
         this.showFieldXPropertiesInfo = false;
 
-        if (this.xPropertiesAggregate != ''
-            ||  this.xPropertiesBin != 'False'
+        if (this.localWidget.graphXaggregate != ''
+            ||  !this.localWidget.graphXbin
             ||  this.xPropertiesFormat != ''
             ||  this.xPropertiesImpute != ''
             ||  this.xPropertiesStack != ''
             ||  this.xPropertiesSort != ''
-            ||  this.xPropertiesType != ''
+            ||  this.localWidget.graphXtype != ''
             ||  this.xPropertiesImpute != '') {
             this.showFieldXPropertiesInfo = true;
         };

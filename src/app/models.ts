@@ -1124,11 +1124,21 @@ export class Widget {
     graphTitleLength: number;
     graphTitleOrientation: string;
 
-    // X axis
+    // X
+    graphXfield: string;
     graphXaggregate: string;
     graphXtimeUnit: string;
-    graphXfield: string;
     graphXtype: string;
+    graphXbin: boolean;
+
+    // xPropertiesBin
+    // xPropertiesFormat
+    // xPropertiesImpute
+    // xPropertiesImputeValue
+    // xPropertiesStack
+    // xPropertiesSort
+    // xPropertiesType
+    // 
     graphXaxisTitle: string;
 
     // Y axis

@@ -503,7 +503,7 @@
                         </div>
 
 
-                        <!-- X Properties -->
+                        <!-- X Properties Title Bar -->
                         <div class="editorXPropertiesTitle" *ngIf="showFieldXPropertiesTitle"
                             (click)="clickShowXProperties()"
                             >
@@ -522,13 +522,13 @@
 
                         <!-- X Properties Aggregate -->
                         <div class="editorLineContainer">
-                            <div class="editorXPropertiesAggregateTitle" *ngIf="showFieldXProperties">
+                            <div class="editorGraphXaggregateTitle" *ngIf="showFieldXProperties">
                                 Aggregate:
                             </div>
-                            <div class="select editorXPropertiesAggregate" *ngIf="showFieldXProperties">
+                            <div class="select editorGraphXaggregate" *ngIf="showFieldXProperties">
                                 <select id="selects_3"
-                                    [(ngModel)]="xPropertiesAggregate"
-                                    name="xPropertiesAggregate"
+                                    [(ngModel)]="localWidget.graphXaggregate"
+                                    name="graphXaggregate"
                                     >
                                     <option *ngFor="let row of aggregations; let i = index">
                                         {{ row.displayName }}
@@ -539,17 +539,23 @@
 
                         <!-- X Properties bin -->
                         <div class="editorLineContainer">
-                            <div class="editorXPropertiesBinTitle" *ngIf="showFieldXProperties">
+                            <div class="editorGraphXbinTitle" *ngIf="showFieldXProperties">
                                 Bin:
                             </div>
-                            <div class="select editorXPropertiesBin" *ngIf="showFieldXProperties">
-                                <select id="selects_3"
-                                    [(ngModel)]="xPropertiesBin"
-                                    name="xPropertiesBin"
+                            <div class="select editorGraphXbin" *ngIf="showFieldXProperties">
+                                <input [(ngModel)]="localWidget.graphXbin"
+                                    type="checkbox"
+                                    name="graphXbin"
+                                    title="Bin the X field (T/F)"
+                                    >
+
+                                <!-- <select id="selects_3"
+                                    [(ngModel)]="localWidget.graphXbin"
+                                    name="localWidget.graphXbin"
                                     >
                                     <option>False</option>
                                     <option>True</option>
-                                </select>
+                                </select> -->
                             </div>
                         </div>
 
@@ -636,13 +642,13 @@
 
                         <!-- X Properties type -->
                         <div class="editorLineContainer">
-                            <div class="editorXPropertiesTypeTitle" *ngIf="showFieldXProperties">
+                            <div class="editorGraphXtypeTitle" *ngIf="showFieldXProperties">
                                 Type:
                             </div>
-                            <div class="select editorXPropertiesType" *ngIf="showFieldXProperties">
+                            <div class="select editorGraphXtype" *ngIf="showFieldXProperties">
                                 <select id="selects_3"
-                                    [(ngModel)]="xPropertiesType"
-                                    name="xPropertiesType"
+                                    [(ngModel)]="localWidget.graphXtype"
+                                    name="graphXtype"
                                     >
                                     <option>Ordinal</option>
                                     <option>Quantitative</option>
@@ -654,14 +660,14 @@
 
                         <!-- X Properties timeUnit -->
                         <div class="editorLineContainer">
-                            <div class="editorXPropertiesTimeUnitTitle" *ngIf="showFieldXProperties">
+                            <div class="editorGraphXtimeUnitTitle" *ngIf="showFieldXProperties">
                                 TimeUnit:
                             </div>
-                            <div class="select editorXPropertiesTimeUnit"
+                            <div class="select editorGraphXtimeUnit"
                                 *ngIf="showFieldXProperties"
                                 >
                                 <select id="selects_3"
-                                    [(ngModel)]="xPropertiesTimeUnit"
+                                    [(ngModel)]="localWidget.graphXtimeUnit"
                                     >
                                     <option *ngFor="let row of timeUnits; let i = index">
                                         {{ row }}
@@ -672,7 +678,7 @@
 
 
 
-                        <!-- Y Properties -->
+                        <!-- Y Properties Title Bar -->
                         <div class="editorYPropertiesTitle" *ngIf="showFieldYPropertiesTitle"
                             (click)="clickShowYProperties()"
                             >
@@ -839,7 +845,7 @@
                         </div>
 
 
-                        <!-- Color Properties -->
+                        <!-- Color Properties Title Bar -->
                         <div class="editorColorPropertiesTitle" *ngIf="showFieldColorPropertiesTitle"
                             (click)="clickShowColorProperties()"
                             >
@@ -1024,7 +1030,7 @@
                         </div>
 
 
-                        <!-- Filter -->
+                        <!-- Filter Title Bar -->
                         <div class="editorFilterTitle"
                             (click)="clickShowFilter()"
                             >
@@ -1042,7 +1048,7 @@
                         </div>
 
 
-                        <!-- Selection -->
+                        <!-- Selection Title Bar -->
                         <div class="editorSelectionTitle"
                             (click)="clickShowSelection()"
                             >
@@ -1060,7 +1066,7 @@
                         </div>
 
 
-                        <!-- X-Axis -->
+                        <!-- X-Axis Title Bar -->
                         <div class="editorXAxisContainerTitle" *ngIf="showFieldXPropertiesTitle"
                             (click)="clickShowXAxis()"
                             >
@@ -1156,7 +1162,7 @@
                         </div>
 
 
-                        <!-- Y-Axis -->
+                        <!-- Y-Axis Title Bar -->
                         <div class="editorYAxisContainerTitle" *ngIf="showFieldYPropertiesTitle"
                             (click)="clickShowYAxis()"
                             >
@@ -1271,7 +1277,7 @@
                         </div>
 
 
-                        <!-- Legend-Axis -->
+                        <!-- Legend-Axis Title Bar -->
                         <div class="editorLegendContainerTitle" *ngIf="showFieldColorPropertiesTitle"
                             (click)="clickShowLegend()"
                             >
@@ -1325,7 +1331,7 @@
                         </div>
 
 
-                        <!-- Size Channel -->
+                        <!-- Size Channel Title Bar -->
                         <div class="editorSizeContainerTitle"
                             (click)="clickShowSize()"
                             >
