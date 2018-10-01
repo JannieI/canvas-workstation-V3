@@ -1142,16 +1142,42 @@ export interface dataSchemaInterface {
         let graphShortName: string = this.widgetGraphs[widgetGraphIndex].shortName;
 
         // Create and parameter fill each defintion
-        if (graphID == 1  &&  graphShortName =='Simple Bar Chart') {
+        // if (graphID == 1  &&  graphShortName =='Simple Bar Chart') {
+        if (graphID == 1  ||  graphID == 3  ||  graphID == 4  ||  graphID == 5) {
 
             // Enhance W properties
-            this.localWidget.graphMark = 'bar';
+            // this.localWidget.graphMark = 'bar';
             // this.localWidget.graphTitleText = this.graphTitleText;
 
             // Defaults
             if (this.localWidget.graphXtype == ''  ||  this.localWidget.graphXtype == null) {
                 this.localWidget.graphXtype = 'ordinal';
             };
+            if (this.localWidget.graphYtype == ''  ||  this.localWidget.graphYtype == null) {
+                this.localWidget.graphYtype = 'ordinal';
+            };
+            if (this.localWidget.graphColorType == ''  ||  this.localWidget.graphColorType == null) {
+                this.localWidget.graphColorType = 'ordinal';
+            };
+
+            if (this.graphColorAggregateVegaLiteName == null) {this.graphColorAggregateVegaLiteName = ""};
+            if (this.localWidget.graphColorFormat == null) {this.localWidget.graphColorFormat = ""};
+            if (this.localWidget.graphColorSort == null) {this.localWidget.graphColorSort = ""};
+            if (this.localWidget.graphColorStack == null) {this.localWidget.graphColorStack = ""};
+            if (this.localWidget.graphColorTimeUnit == null) {this.localWidget.graphColorTimeUnit = ""};
+            if (this.localWidget.graphTitleAnchor == null) {this.localWidget.graphTitleAnchor = ""}
+            if (this.localWidget.graphTitleBaseline == null) {this.localWidget.graphTitleBaseline = ""}
+            if (this.localWidget.graphTitleOrientation == null) {this.localWidget.graphTitleOrientation = ""}
+            if (this.graphXaggregateVegaLiteName == null) {this.graphXaggregateVegaLiteName = ""}
+            if (this.localWidget.graphXformat == null) {this.localWidget.graphXformat = ""}
+            if (this.localWidget.graphXsort == null) {this.localWidget.graphXsort = ""}
+            if (this.localWidget.graphXtype == null) {this.localWidget.graphXtype = ""}
+            if (this.localWidget.graphXtimeUnit == null) {this.localWidget.graphXtimeUnit = ""}
+            if (this.graphYaggregateVegaLiteName == null) {this.graphYaggregateVegaLiteName = ""}
+            if (this.localWidget.graphYformat == null) {this.localWidget.graphYformat = ""}
+            if (this.localWidget.graphYsort == null) {this.localWidget.graphYsort = ""}
+            if (this.localWidget.graphYtype == null) {this.localWidget.graphYtype = ""}
+            if (this.localWidget.graphYtimeUnit == null) {this.localWidget.graphYtimeUnit = ""}
 
             // Define Specification
             specification = this.widgetGraphs[widgetGraphIndex].specification;
@@ -1273,29 +1299,24 @@ export interface dataSchemaInterface {
             // Color field
             // specification['encoding']['color']['field'] = this.localWidget.graphYfield;
             specification['encoding']['color'] = {
-                "field": this.localWidget.graphColorField,
-                "type": this.localWidget.graphColorType.toLowerCase(),
                 "aggregate": this.graphColorAggregateVegaLiteName.toLowerCase(),
                 "bin": this.localWidget.graphColorBin,
+                "field": this.localWidget.graphColorField,
                 "format": this.localWidget.graphColorFormat.toLowerCase(),
                 "legend": "",
-                "scale": "",
-                "sort": this.localWidget.graphColorSort.toLowerCase()
+                "sort": this.localWidget.graphColorSort.toLowerCase(),
+                "stack": this.localWidget.graphColorStack.toLowerCase(),
+                "timeUnit": this.localWidget.graphColorTimeUnit.toLowerCase(),
+                "type": this.localWidget.graphColorType.toLowerCase(),
+                "scale": {"scheme": this.localWidget.graphColorScheme.toLowerCase()}
+                // "scale": this.localWidget.graphColorScheme == 'None'?  null  :  {"scheme": this.localWidget.graphColorScheme.toLowerCase() }
+
               };
               console.warn('xx this.localWidget.graphColorField', this.localWidget.graphColorField)
               console.warn('xx this.graphColorField', this.graphColorField)
         console.warn('xx [color]', this.localWidget.graphColorType, specification['encoding']['color']);
-            //   specification['encoding']['color']['aggregate'] = this.graphColorAggregateVegaLiteName.toLowerCase();
-            // if (this.localWidget.graphColorBin == 'True') {
-            //     specification['encoding']['color']['bin'] = true;
-            // } else {
-            //     specification['encoding']['color']['bin'] = false;
-            // };
-            
-            // specification['encoding']['color']['bin'] = this.localWidget.graphColorBin;
-            
-            // specification['encoding']['color']['format'] = this.localWidget.graphColorFormat.toLowerCase();
-            // if (this.localWidget. != '') {
+
+        // if (this.localWidget. != '') {
             //     if (this.localWidget. == 'Value') {
             //         specification['encoding']['color']['impute'] =
             //             {"value":' + this.localWidget.Value + '};
@@ -1307,9 +1328,6 @@ export interface dataSchemaInterface {
 
 
 
-            // specification['encoding']['color']['stack'] = this.localWidget.graphColorStack;
-            // specification['encoding']['color']['sort'] = this.colorPropertiesSort.toLowerCase();
-            // specification['encoding']['color']['timeUnit'] = this.localWidget.graphColorTimeUnit.toLowerCase();
 
             // if (this.localWidget.graphColorScheme != '') {
             //     if (this.localWidget.graphColorScheme == 'None') {
@@ -1364,7 +1382,8 @@ export interface dataSchemaInterface {
 
             // Tooltip setting
             // specification['mark']['tooltip']['content'] = "";
-            specification['mark']['type'] = "point";
+
+            // specification['mark']['type'] = "point";
 
         };
         if (graphID == 2  &&  graphShortName =='Area Chart') {
@@ -1814,10 +1833,10 @@ this.localWidget.graphYtype);
         this.graphTypeFieldColor = this.allowedGraphTypeField(fieldType);
         this.localWidget.graphColorType = this.defaultGraphTypeField(fieldType);
 
-        let definition = this.globalVariableService.createVegaLiteSpec(
-            this.localWidget, graphHeight, graphWidth
-        );
-        this.renderGraph(definition);
+        // let definition = this.globalVariableService.createVegaLiteSpec(
+        //     this.localWidget, graphHeight, graphWidth
+        // );
+        // this.renderGraph(definition);
     }
 
     dropSize(ev) {
@@ -1870,10 +1889,10 @@ this.localWidget.graphYtype);
         // Hide the panel with X properties
         this.showFieldXPropertiesTitle = false;
 
-        let definition = this.globalVariableService.createVegaLiteSpec(
-            this.localWidget, graphHeight, graphWidth
-        );
-        this.renderGraph(definition);
+        // let definition = this.globalVariableService.createVegaLiteSpec(
+        //     this.localWidget, graphHeight, graphWidth
+        // );
+        // this.renderGraph(definition);
     }
 
     clickClearRowField() {
@@ -1892,10 +1911,10 @@ this.localWidget.graphYtype);
         this.localWidget.graphYtimeUnit = null;
         this.localWidget.graphYtype = null;
 
-        let definition = this.globalVariableService.createVegaLiteSpec(
-            this.localWidget, graphHeight, graphWidth
-        );
-        this.renderGraph(definition);
+        // let definition = this.globalVariableService.createVegaLiteSpec(
+        //     this.localWidget, graphHeight, graphWidth
+        // );
+        // this.renderGraph(definition);
     }
 
     clickClearColourField() {
@@ -1908,10 +1927,10 @@ this.localWidget.graphYtype);
         this.localWidget.graphColorField = null;
         this.localWidget.graphColorType = null;
 
-        let definition = this.globalVariableService.createVegaLiteSpec(
-            this.localWidget, graphHeight, graphWidth
-        );
-        this.renderGraph(definition);
+        // let definition = this.globalVariableService.createVegaLiteSpec(
+        //     this.localWidget, graphHeight, graphWidth
+        // );
+        // this.renderGraph(definition);
     }
 
     clickClearSizeField() {

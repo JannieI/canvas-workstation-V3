@@ -1166,21 +1166,27 @@ export class Widget {
     graphXaxisTitleCheckbox: boolean;
     graphXaxisGrid: boolean;
     graphXaxisFormat: string;
-    graphXaxisLabels: string;
+    graphXaxisLabels: boolean;
     graphXaxisLabelAngle: number;    
 
     // Y Axis
-    // graphYaxisTitle: string;
     graphYaxisScaleType: string;
     graphYaxisTitleCheckbox: boolean;
     graphYaxisTitle: string;
     graphYaxisGrid: boolean;
     graphYaxisFormat: string;
-    graphYaxisLabels: string;
+    graphYaxisLabels: boolean;
     graphYaxisLabelAngle: number;
     
-    // 
-    // 
+    // Legend
+    // legendTitleCheckbox
+    // legendTitle
+    // legendFormat
+
+    // Size
+    // sizeType
+    // sizeAggregate
+    // sizeBin
 
     graphMark: string;
     graphMarkColor: string;

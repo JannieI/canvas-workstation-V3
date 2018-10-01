@@ -281,7 +281,7 @@ const widgetTemplate: Widget =
         "graphXaxisTitleCheckbox": true,
         "graphXaxisGrid": true,
         "graphXaxisFormat": "",
-        "graphXaxisLabels": "",
+        "graphXaxisLabels": true,
         "graphXaxisLabelAngle": 0,
 
         "graphYaxisScaleType": "",
@@ -289,7 +289,7 @@ const widgetTemplate: Widget =
         "graphYaxisTitle": "",
         "graphYaxisGrid": true,
         "graphYaxisFormat": "",
-        "graphYaxisLabels": "",
+        "graphYaxisLabels": true,
         "graphYaxisLabelAngle": 0,
     
         "graphMark": "tick",
