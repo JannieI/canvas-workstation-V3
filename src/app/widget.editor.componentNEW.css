@@ -943,14 +943,14 @@ clr-dg-cell {
                     width: 16%;
                 }
 
-                .editorColorPropertiesSchemeTitle {
+                .editorGraphColorSchemeTitle {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
                     width: 64px;
                 }
-                .editorColorPropertiesScheme {
+                .editorGraphColorScheme {
                     border: 1px solid steelblue;
                     border-radius: 5px;
                     display: inline-block;

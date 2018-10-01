@@ -570,7 +570,7 @@ export interface dataSchemaInterface {
     // colorPropertiesFormat: string = '';
     // colorPropertiesImpute: string = '';
     // colorPropertiesImputeValue: number = 0;
-    colorPropertiesScheme: string = '';
+    // colorPropertiesScheme: string = '';
     colorPropertiesSort: string = 'Default';
     colorPropertiesStack: string = '';
     colorPropertiesType: string = '';
@@ -1311,12 +1311,12 @@ export interface dataSchemaInterface {
             // specification['encoding']['color']['sort'] = this.colorPropertiesSort.toLowerCase();
             // specification['encoding']['color']['timeUnit'] = this.colorPropertiesTimeUnit.toLowerCase();
 
-            // if (this.colorPropertiesScheme != '') {
-            //     if (this.colorPropertiesScheme == 'None') {
+            // if (this.localWidget.graphColorScheme != '') {
+            //     if (this.localWidget.graphColorScheme == 'None') {
             //         specification['encoding']['color']['scale'] = null;
             //     } else {
             //         specification['encoding']['color']['scale'] =
-            //         {"scheme": this.colorPropertiesScheme.toLowerCase() };
+            //         {"scheme": this.localWidget.graphColorScheme.toLowerCase() };
             //     };
             // };
 

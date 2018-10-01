@@ -939,13 +939,13 @@
 
                         <!-- Color Properties Scheme -->
                         <div class="editorLineContainer">
-                            <div class="editorColorPropertiesSchemeTitle" *ngIf="showFieldColorProperties">
+                            <div class="editorGraphColorSchemeTitle" *ngIf="showFieldColorProperties">
                                 Scheme:
                             </div>
-                            <div class="select editorColorPropertiesScheme" *ngIf="showFieldColorProperties">
+                            <div class="select editorGraphColorScheme" *ngIf="showFieldColorProperties">
                                 <select id="selects_3"
-                                    [(ngModel)]="colorPropertiesScheme"
-                                    name="colorPropertiesScheme"
+                                    [(ngModel)]="localWidget.graphColorScheme"
+                                    name="graphColorScheme"
                                     >
                                     <option *ngFor="let row of vegaColorSchemes; let i = index">
                                         {{ row }}
