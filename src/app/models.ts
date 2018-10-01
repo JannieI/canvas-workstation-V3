@@ -1148,6 +1148,19 @@ export class Widget {
     graphYtimeUnit: string;
     graphYtype: string;
 
+    // Color
+    graphColorField: string;
+    graphColorAggregate: string;
+    graphColorBin: string;
+    graphColorFormat: string;
+    graphColorImpute: string;
+    graphColorImputeValue: string;
+    graphColorScheme: string;
+    graphColorSort: string;
+    graphColorStack: string;
+    graphColorType: string;
+    graphColorTimeUnit: string;
+
     // X Axis
     graphXaxisTitle: string;
 
@@ -1161,8 +1174,6 @@ export class Widget {
     graphMarkColor: string;
     graphUrl: string;
     graphData: any;
-    graphColorField: string;
-    graphColorType: string;
 
     // Table - to be determined later ...
     tableBackgroundColor: string;       // Actual colour (CSS name or HEX code)  

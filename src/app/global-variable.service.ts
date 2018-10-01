@@ -265,6 +265,18 @@ const widgetTemplate: Widget =
         "graphYtimeUnit": "",
         "graphYtype": "",
 
+        "graphColorField": "",
+        "graphColorAggregate": "",
+        "graphColorBin": "",
+        "graphColorFormat": "",
+        "graphColorImpute": "",
+        "graphColorImputeValue": "",
+        "graphColorScheme": "",
+        "graphColorSort": "",
+        "graphColorStack": "",
+        "graphColorType": "",
+        "graphColorTimeUnit": "",
+    
         "graphXaxisTitle": "",
 
         "graphYaxisTitle": "",
@@ -272,8 +284,6 @@ const widgetTemplate: Widget =
         "graphMark": "tick",
         "graphMarkColor": "#4682b4",
         "graphUrl": "",
-        "graphColorField": "",
-        "graphColorType": "",
         "graphData": "",
         "tableBackgroundColor" : "",
         "tableBackgroundColorName" : "",
