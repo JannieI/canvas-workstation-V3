@@ -711,14 +711,14 @@ clr-dg-cell {
                 font-size: 0.5rem;
             }
 
-                .editorYPropertiesAggregateTitle {
+                .editorGraphYaggregateTitle {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
                     width: 64px;
                 }
-                .editorYPropertiesAggregate {
+                .editorGraphYaggregate {
                     border: 1px solid steelblue;
                     border-radius: 5px;
                     display: inline-block;
@@ -728,14 +728,14 @@ clr-dg-cell {
                     width: 68%;
                 }
 
-                .editorYPropertiesBinTitle {
+                .editorGraphYbinTitle {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
                     width: 64px;
                 }
-                .editorYPropertiesBin {
+                .editorGraphYbin {
                     border: 1px solid steelblue;
                     border-radius: 5px;
                     display: inline-block;

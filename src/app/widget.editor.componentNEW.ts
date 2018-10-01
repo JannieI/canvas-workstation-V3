@@ -544,9 +544,9 @@ export interface dataSchemaInterface {
     xAxisLabels: boolean = true;
     xAxisLabelAngle: number = 0;
 
-    yPropertiesAggregate: string = '';
-    yPropertiesAggregateVegaLiteName: string = '';
-    yPropertiesBin: string = 'False';
+    // graphYaggregate: string = '';
+    graphYaggregateVegaLiteName: string = '';
+    // yPropertiesBin: string = 'False';
     yPropertiesFormat: string = '';
     yPropertiesImpute: string = '';
     yPropertiesImputeValue: number = 0;
@@ -1114,12 +1114,12 @@ export interface dataSchemaInterface {
                     .vegaLiteName;
             };
         }
-        this.yPropertiesAggregateVegaLiteName = '';
-        if (this.yPropertiesAggregate != '') {
+        this.graphYaggregateVegaLiteName = '';
+        if (this.localWidget.graphYaggregate != '') {
             let aggregationIndex: number = this.aggregations.findIndex(
-                agg => agg.displayName == this.yPropertiesAggregate);
+                agg => agg.displayName == this.localWidget.graphYaggregate);
             if (aggregationIndex >= 0) {
-                this.yPropertiesAggregateVegaLiteName = this.aggregations[aggregationIndex]
+                this.graphYaggregateVegaLiteName = this.aggregations[aggregationIndex]
                     .vegaLiteName;
             };
         }
@@ -1223,12 +1223,13 @@ export interface dataSchemaInterface {
 
             // Y field
             specification['encoding']['y']['field'] = this.localWidget.graphYfield;
-            specification['encoding']['y']['aggregate'] = this.yPropertiesAggregateVegaLiteName.toLowerCase();
-            if (this.yPropertiesBin == 'True') {
-                specification['encoding']['y']['bin'] = true;
-            } else {
-                specification['encoding']['y']['bin'] = false;
-            };
+            specification['encoding']['y']['aggregate'] = this.graphYaggregateVegaLiteName.toLowerCase();
+            // if (this.localWidget.graphYbin == 'True') {
+            //     specification['encoding']['y']['bin'] = true;
+            // } else {
+            //     specification['encoding']['y']['bin'] = false;
+            // };
+            specification['encoding']['y']['bin'] = this.localWidget.graphYbin;
             specification['encoding']['y']['format'] = this.yPropertiesFormat.toLowerCase();
             if (this.yPropertiesImpute != '') {
                 if (this.yPropertiesImpute == 'Value') {
@@ -2246,8 +2247,8 @@ console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowInde
 
         this.showFieldYPropertiesInfo = false;
 
-        if (this.yPropertiesAggregate != ''
-            ||  this.yPropertiesBin != 'False'
+        if (this.localWidget.graphYaggregate != ''
+            ||  !this.localWidget.graphYbin
             ||  this.yPropertiesFormat != ''
             ||  this.yPropertiesImpute != ''
             ||  this.yPropertiesStack != ''
