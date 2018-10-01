@@ -254,7 +254,7 @@ export interface dataSchemaInterface {
     // titleFontSize: number = 10;
     // titleFontWeight: number = 400;
     // titleLength: number = 0;
-    titleOrientation: string = 'Top';
+    // titleOrientation: string = 'Top';
 
     vegaColorSchemes: string[] = [
         "None",
@@ -1164,7 +1164,7 @@ export interface dataSchemaInterface {
             specification['title']['fontSize'] = this.localWidget.graphTitleFontSize;
             specification['title']['fontWeight'] = this.localWidget.graphTitleFontWeight;
             specification['title']['limit'] = this.localWidget.graphTitleLength;
-            specification['title']['orient'] = this.titleOrientation.toLowerCase();
+            specification['title']['orient'] = this.localWidget.graphTitleOrientation.toLowerCase();
 
             if (this.localWidget.graphUrl != ""  &&  this.localWidget.graphUrl != null) {
                 specification['data'] = {"url": this.localWidget.graphUrl};
