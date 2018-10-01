@@ -1130,11 +1130,13 @@ export class Widget {
     graphXtimeUnit: string;
     graphXtype: string;
     graphXbin: boolean;
-
-    // xPropertiesBin
-    // xPropertiesFormat
-    // xPropertiesImpute
-    // xPropertiesImputeValue
+    graphXformat: string;
+    graphXimpute: string;
+    graphXimputeValue: string;
+    // 
+    // 
+    // 
+    // 
     // xPropertiesStack
     // xPropertiesSort
     // xPropertiesType

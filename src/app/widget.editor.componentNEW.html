@@ -561,27 +561,27 @@
 
                         <!-- X Properties Format -->
                         <div class="editorLineContainer">
-                            <div class="editorXPropertiesFormatTitle" *ngIf="showFieldXProperties">
+                            <div class="editorGraphXformatTitle" *ngIf="showFieldXProperties">
                             Format:
                             </div>
-                            <div class="editorXPropertiesFormat" *ngIf="showFieldXProperties">
+                            <div class="editorGraphXformat" *ngIf="showFieldXProperties">
                                 <input type="text"
                                     placeholder="ie .2s +$,.2f"
-                                    [(ngModel)]="xPropertiesFormat"
-                                    name="xPropertiesFormat"
+                                    [(ngModel)]="localWidget.graphXformat"
+                                    name="graphXformat"
                                     >
                             </div>
                         </div>
 
                         <!-- X Properties Impute -->
                         <div class="editorLineContainer">
-                            <div class="editorXPropertiesImputeTitle" *ngIf="showFieldXProperties">
+                            <div class="editorGraphXimputeTitle" *ngIf="showFieldXProperties">
                                 Impute:
                             </div>
-                            <div class="select editorXPropertiesImpute" *ngIf="showFieldXProperties">
+                            <div class="select editorGraphXimpute" *ngIf="showFieldXProperties">
                                 <select id="selects_3"
-                                    [(ngModel)]="xPropertiesImpute"
-                                    name="xPropertiesImpute"
+                                    [(ngModel)]="localWidget.graphXimpute"
+                                    name="graphXimpute"
                                     >
                                     <option></option>
                                     <option>Max</option>
@@ -591,15 +591,15 @@
                                     <option>Value</option>
                                 </select>
                             </div>
-                            <div class="editorXPropertiesImputeValue"
+                            <div class="editorGraphXimputeValue"
                                 *ngIf="showFieldXProperties"
                                 size="5"
                                 >
                                 <input type="number"
                                     placeholder="Value"
-                                    [(ngModel)]="xPropertiesImputeValue"
-                                    name="xPropertiesImputeValue"
-                                    [disabled]="!(xPropertiesImpute=='Value')"
+                                    [(ngModel)]="localWidget.graphXimputeValue"
+                                    name="graphXimputeValue"
+                                    [disabled]="!(localWidget.graphXimpute=='Value')"
                                     size="5"
                                     >
                             </div>

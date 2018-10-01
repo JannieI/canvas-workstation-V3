@@ -529,9 +529,9 @@ export interface dataSchemaInterface {
     // xPropertiesAggregate: string = '';
     graphXaggregateVegaLiteName: string = '';
     // xPropertiesBin: string = 'False';
-    xPropertiesFormat: string = '';
-    xPropertiesImpute: string = '';
-    xPropertiesImputeValue: number = 0;
+    // xPropertiesFormat: string = '';
+    // xPropertiesImpute: string = '';
+    // xPropertiesImputeValue: number = 0;
     xPropertiesStack: string = '';
     xPropertiesSort: string = '';
     // xPropertiesType: string = '';
@@ -1187,14 +1187,14 @@ export interface dataSchemaInterface {
             //     specification['encoding']['x']['bin'] = false;
             // };
             specification['encoding']['x']['bin'] = this.localWidget.graphXbin;
-            specification['encoding']['x']['format'] = this.xPropertiesFormat.toLowerCase();
-            if (this.xPropertiesImpute != '') {
-                if (this.xPropertiesImpute == 'Value') {
+            specification['encoding']['x']['format'] = this.localWidget.graphXformat.toLowerCase();
+            if (this.localWidget.graphXimpute != '') {
+                if (this.localWidget.graphXimpute == 'Value') {
                     specification['encoding']['x']['impute'] =
-                        {"value": this.xPropertiesImputeValue };
+                        {"value": this.localWidget.graphXimputeValue };
                 } else {
                     specification['encoding']['x']['impute'] =
-                        {"method": " this.xPropertiesImpute "};
+                        {"method": this.localWidget.graphXimpute};
                 };
             };
             specification['encoding']['x']['stack'] = this.xPropertiesStack;
@@ -2230,12 +2230,12 @@ console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowInde
 
         if (this.localWidget.graphXaggregate != ''
             ||  !this.localWidget.graphXbin
-            ||  this.xPropertiesFormat != ''
-            ||  this.xPropertiesImpute != ''
+            ||  this.localWidget.graphXformat != ''
+            ||  this.localWidget.graphXimpute != ''
             ||  this.xPropertiesStack != ''
             ||  this.xPropertiesSort != ''
             ||  this.localWidget.graphXtype != ''
-            ||  this.xPropertiesImpute != '') {
+            ||  this.localWidget.graphXimpute != '') {
             this.showFieldXPropertiesInfo = true;
         };
     }

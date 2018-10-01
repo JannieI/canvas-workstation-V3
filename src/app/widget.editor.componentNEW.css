@@ -585,17 +585,17 @@ clr-dg-cell {
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin: 3px;
-                    width: 15px;
+                    width: 22px;
                 }
 
-                .editorXPropertiesFormatTitle {
+                .editorGraphXformatTitle {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
                     width: 64px;
                 }
-                .editorXPropertiesFormat {
+                .editorGraphXformat {
                     border: 1px solid steelblue;
                     border-radius: 5px;
                     display: inline-block;
@@ -605,14 +605,14 @@ clr-dg-cell {
                     width: 68%;
                 }
 
-                .editorXPropertiesImputeTitle {
+                .editorGraphXimputeTitle {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
                     width: 64px;
                 }
-                .editorXPropertiesImpute {
+                .editorGraphXimpute {
                     border: 1px solid steelblue;
                     border-radius: 5px;
                     display: inline-block;
@@ -621,7 +621,7 @@ clr-dg-cell {
                     margin: 3px;
                     width: 40%;
                 }
-                .editorXPropertiesImputeValue {
+                .editorGraphXimputeValue {
                     border: 1px solid steelblue;
                     border-radius: 5px;
                     display: inline-block;
