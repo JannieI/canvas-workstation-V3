@@ -250,7 +250,7 @@ export interface dataSchemaInterface {
     // titleBaseline: string = 'Bottom';
     // titleColorName: string = 'Gray';
     // titleColor: string = 'gray';
-    titleFont: string = '';
+    // titleFont: string = '';
     titleFontSize: number = 10;
     titleFontWeight: number = 400;
     titleLength: number = 0;
@@ -1160,7 +1160,7 @@ export interface dataSchemaInterface {
             specification['title']['angle'] = this.localWidget.graphTitleAngle;
             specification['title']['baseline'] = this.localWidget.graphTitleBaseline.toLowerCase();
             specification['title']['color'] = this.localWidget.graphTitleColor;
-            specification['title']['font'] = this.titleFont;
+            specification['title']['font'] = this.localWidget.graphTitleFont;
             specification['title']['fontSize'] = this.titleFontSize;
             specification['title']['fontWeight'] = this.titleFontWeight;
             specification['title']['limit'] = this.titleLength;
