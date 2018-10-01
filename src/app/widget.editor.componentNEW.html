@@ -956,13 +956,13 @@
 
                         <!-- Color Properties Sort -->
                         <div class="editorLineContainer">
-                            <div class="editorColorPropertiesSortTitle" *ngIf="showFieldColorProperties">
+                            <div class="editorGraphColorSortTitle" *ngIf="showFieldColorProperties">
                                 Sort:
                             </div>
-                            <div class="select editorColorPropertiesSort" *ngIf="showFieldColorProperties">
+                            <div class="select editorGraphColorSort" *ngIf="showFieldColorProperties">
                                 <select id="selects_3"
-                                    [(ngModel)]="colorPropertiesSort"
-                                    name="colorPropertiesSort"
+                                    [(ngModel)]="localWidget.graphColorSort"
+                                    name="graphColorSort"
                                     >
                                     <option>None</option>
                                     <option>Ascending</option>
@@ -973,13 +973,13 @@
 
                         <!-- Color Properties stack -->
                         <div class="editorLineContainer">
-                            <div class="editorColorPropertiesStackTitle" *ngIf="showFieldColorProperties">
+                            <div class="editorGraphColorStackTitle" *ngIf="showFieldColorProperties">
                                 Stack:
                             </div>
-                            <div class="select editorColorPropertiesStack" *ngIf="showFieldColorProperties">
+                            <div class="select editorGraphColorStack" *ngIf="showFieldColorProperties">
                                 <select id="selects_3"
-                                    [(ngModel)]="colorPropertiesStack"
-                                    name="colorPropertiesStack"
+                                    [(ngModel)]="localWidget.graphColorStack"
+                                    name="graphColorStack"
                                     >
                                     <option>Zero</option>
                                     <option>Normalise</option>

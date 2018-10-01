@@ -571,8 +571,8 @@ export interface dataSchemaInterface {
     // colorPropertiesImpute: string = '';
     // colorPropertiesImputeValue: number = 0;
     // colorPropertiesScheme: string = '';
-    colorPropertiesSort: string = 'Default';
-    colorPropertiesStack: string = '';
+    // colorPropertiesSort: string = 'Default';
+    // colorPropertiesStack: string = '';
     colorPropertiesType: string = '';
     colorPropertiesTimeUnit: string = '';
 
@@ -1280,7 +1280,7 @@ export interface dataSchemaInterface {
                 "format": this.localWidget.graphColorFormat.toLowerCase(),
                 "legend": "",
                 "scale": "",
-                "sort": this.colorPropertiesSort.toLowerCase()
+                "sort": this.localWidget.graphColorSort.toLowerCase()
               };
               console.warn('xx this.localWidget.graphColorField', this.localWidget.graphColorField)
               console.warn('xx this.graphColorField', this.graphColorField)
@@ -1307,7 +1307,7 @@ export interface dataSchemaInterface {
 
 
 
-            // specification['encoding']['color']['stack'] = this.colorPropertiesStack;
+            // specification['encoding']['color']['stack'] = this.localWidget.graphColorStack;
             // specification['encoding']['color']['sort'] = this.colorPropertiesSort.toLowerCase();
             // specification['encoding']['color']['timeUnit'] = this.colorPropertiesTimeUnit.toLowerCase();
 

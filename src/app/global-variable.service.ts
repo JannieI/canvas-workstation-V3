@@ -272,7 +272,7 @@ const widgetTemplate: Widget =
         "graphColorImpute": "",
         "graphColorImputeValue": "",
         "graphColorScheme": "",
-        "graphColorSort": "",
+        "graphColorSort": "Default",
         "graphColorStack": "",
         "graphColorType": "",
         "graphColorTimeUnit": "",
