@@ -252,7 +252,7 @@ export interface dataSchemaInterface {
     // titleColor: string = 'gray';
     // titleFont: string = '';
     // titleFontSize: number = 10;
-    titleFontWeight: number = 400;
+    // titleFontWeight: number = 400;
     titleLength: number = 0;
     titleOrientation: string = 'Top';
 
@@ -1162,7 +1162,7 @@ export interface dataSchemaInterface {
             specification['title']['color'] = this.localWidget.graphTitleColor;
             specification['title']['font'] = this.localWidget.graphTitleFont;
             specification['title']['fontSize'] = this.localWidget.graphTitleFontSize;
-            specification['title']['fontWeight'] = this.titleFontWeight;
+            specification['title']['fontWeight'] = this.localWidget.graphTitleFontWeight;
             specification['title']['limit'] = this.titleLength;
             specification['title']['orient'] = this.titleOrientation.toLowerCase();
 
