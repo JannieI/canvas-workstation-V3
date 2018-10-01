@@ -788,14 +788,14 @@ clr-dg-cell {
                     width: 16%;
                 }
 
-                .editorYPropertiesStackTitle {
+                .editorGraphYstackTitle {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
                     width: 64px;
                 }
-                .editorYPropertiesStack {
+                .editorGraphYstack {
                     border: 1px solid steelblue;
                     border-radius: 5px;
                     display: inline-block;
@@ -805,14 +805,14 @@ clr-dg-cell {
                     width: 68%;
                 }
 
-                .editorYPropertiesSortTitle {
+                .editorGraphYsortTitle {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
                     width: 64px;
                 }
-                .editorYPropertiesSort {
+                .editorGraphYsort {
                     border: 1px solid steelblue;
                     border-radius: 5px;
                     display: inline-block;

@@ -550,8 +550,8 @@ export interface dataSchemaInterface {
     // yPropertiesFormat: string = '';
     // yPropertiesImpute: string = '';
     // yPropertiesImputeValue: number = 0;
-    yPropertiesSort: string = '';
-    yPropertiesStack: string = '';
+    // yPropertiesSort: string = '';
+    // yPropertiesStack: string = '';
     yPropertiesType: string = '';
     yPropertiesTimeUnit: string = '';
 
@@ -1240,8 +1240,8 @@ export interface dataSchemaInterface {
                         {"method": this.localWidget.graphYimpute };
                 };
             };
-            specification['encoding']['y']['stack'] = this.yPropertiesStack;
-            specification['encoding']['y']['sort'] = this.yPropertiesSort.toLowerCase();
+            specification['encoding']['y']['stack'] = this.localWidget.graphYstack;
+            specification['encoding']['y']['sort'] = this.localWidget.graphYsort.toLowerCase();
             // specification['encoding']['y']['type'] = this.localWidget.graphYtype;
             specification['encoding']['y']['type'] = this.yPropertiesType.toLowerCase();
             specification['encoding']['y']['timeUnit'] = this.yPropertiesTimeUnit.toLowerCase();
@@ -2251,8 +2251,8 @@ console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowInde
             ||  !this.localWidget.graphYbin
             ||  this.localWidget.graphYformat != ''
             ||  this.localWidget.graphYimpute != ''
-            ||  this.yPropertiesStack != ''
-            ||  this.yPropertiesSort != ''
+            ||  this.localWidget.graphYstack != ''
+            ||  this.localWidget.graphYsort != ''
             ||  this.yPropertiesType != '') {
             this.showFieldYPropertiesInfo = true;
         };

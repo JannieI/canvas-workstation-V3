@@ -773,13 +773,13 @@
 
                         <!-- Y Properties stack -->
                         <div class="editorLineContainer">
-                            <div class="editorYPropertiesStackTitle" *ngIf="showFieldYProperties">
+                            <div class="editorGraphYstackTitle" *ngIf="showFieldYProperties">
                                 Stack:
                             </div>
-                            <div class="select editorYPropertiesStack" *ngIf="showFieldYProperties">
+                            <div class="select editorGraphYstack" *ngIf="showFieldYProperties">
                                 <select id="selects_3"
-                                    [(ngModel)]="yPropertiesStack"
-                                    name="yPropertiesStack"
+                                    [(ngModel)]="localWidget.graphYstack"
+                                    name="graphYstack"
                                     >
                                     <option>Zero</option>
                                     <option>Normalise</option>
@@ -791,13 +791,13 @@
 
                         <!-- Y Properties Sort -->
                         <div class="editorLineContainer">
-                            <div class="editorYPropertiesSortTitle" *ngIf="showFieldYProperties">
+                            <div class="editorGraphYsortTitle" *ngIf="showFieldYProperties">
                                 Sort:
                             </div>
-                            <div class="select editorYPropertiesSort" *ngIf="showFieldYProperties">
+                            <div class="select editorGraphYsort" *ngIf="showFieldYProperties">
                                 <select id="selects_3"
-                                    [(ngModel)]="yPropertiesSort"
-                                    name="yPropertiesSort"
+                                    [(ngModel)]="localWidget.graphYsort"
+                                    name="graphYsort"
                                     >
                                     <option>None</option>
                                     <option>Ascending</option>
