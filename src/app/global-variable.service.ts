@@ -206,17 +206,17 @@ const widgetTemplate: Widget =
         "containerTop": 80,
         "containerWidth": 410,
         "containerZindex": 50,
-        "graphTitleText": "Title of new Widget",
-        graphTitleAnchor: string;
-        graphTitleAngle: number;
-        graphTitleBaseline: string;
-        graphTitleColorName: string;
-        graphTitleFont: string;
-        graphTitleFontSize: number;
-        graphTitleFontWeight: number;
-        graphTitleLength: number;
-        graphTitleOrientation: string;
-    
+        "graphTitleText": "",
+        "graphTitleAnchor": "",
+        "graphTitleAngle": 0,
+        "graphTitleBaseline": "",
+        "graphTitleColorName": "",
+        "graphTitleFont": "",
+        "graphTitleFontSize": null,
+        "graphTitleFontWeight": null,
+        "graphTitleLength": null,
+        "graphTitleOrientation": "",
+        "titleText": "Title of new Widget",
         "titleBackgroundColor": "lightgray",
         "titleBackgroundColorName": "lightgray",
         "titleBorder": "",
@@ -251,7 +251,6 @@ const widgetTemplate: Widget =
         "graphYfield": "",
         "graphYtype": "",
         "graphYaxisTitle": "",
-        "graphTitleText": "",
         "graphMark": "tick",
         "graphMarkColor": "#4682b4",
         "graphUrl": "",
