@@ -745,14 +745,14 @@ clr-dg-cell {
                     width: 15px;
                 }
 
-                .editorYPropertiesFormatTitle {
+                .editorGraphYformatTitle {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
                     width: 64px;
                 }
-                .editorYPropertiesFormat {
+                .editorGraphYformat {
                     border: 1px solid steelblue;
                     border-radius: 5px;
                     display: inline-block;
@@ -762,14 +762,14 @@ clr-dg-cell {
                     width: 68%;
                 }
 
-                .editorYPropertiesImputeTitle {
+                .editorGraphYimputeTitle {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
                     width: 64px;
                 }
-                .editorYPropertiesImpute {
+                .editorGraphYimpute {
                     border: 1px solid steelblue;
                     border-radius: 5px;
                     display: inline-block;
@@ -778,7 +778,7 @@ clr-dg-cell {
                     margin: 3px;
                     width: 40%;
                 }
-                .editorYPropertiesImputeValue {
+                .editorGraphYimputeValue {
                     border: 1px solid steelblue;
                     border-radius: 5px;
                     display: inline-block;

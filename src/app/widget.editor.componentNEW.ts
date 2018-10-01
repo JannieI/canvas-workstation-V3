@@ -547,9 +547,9 @@ export interface dataSchemaInterface {
     // graphYaggregate: string = '';
     graphYaggregateVegaLiteName: string = '';
     // yPropertiesBin: string = 'False';
-    yPropertiesFormat: string = '';
-    yPropertiesImpute: string = '';
-    yPropertiesImputeValue: number = 0;
+    // yPropertiesFormat: string = '';
+    // yPropertiesImpute: string = '';
+    // yPropertiesImputeValue: number = 0;
     yPropertiesSort: string = '';
     yPropertiesStack: string = '';
     yPropertiesType: string = '';
@@ -1230,14 +1230,14 @@ export interface dataSchemaInterface {
             //     specification['encoding']['y']['bin'] = false;
             // };
             specification['encoding']['y']['bin'] = this.localWidget.graphYbin;
-            specification['encoding']['y']['format'] = this.yPropertiesFormat.toLowerCase();
-            if (this.yPropertiesImpute != '') {
-                if (this.yPropertiesImpute == 'Value') {
+            specification['encoding']['y']['format'] = this.localWidget.graphYformat.toLowerCase();
+            if (this.localWidget.graphYimpute != '') {
+                if (this.localWidget.graphYimpute == 'Value') {
                     specification['encoding']['y']['impute'] =
-                        {"value": this.yPropertiesImputeValue };
+                        {"value": this.localWidget.graphYimputeValue };
                 } else {
                     specification['encoding']['y']['impute'] =
-                        {"method": this.yPropertiesImpute };
+                        {"method": this.localWidget.graphYimpute };
                 };
             };
             specification['encoding']['y']['stack'] = this.yPropertiesStack;
@@ -2249,12 +2249,11 @@ console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowInde
 
         if (this.localWidget.graphYaggregate != ''
             ||  !this.localWidget.graphYbin
-            ||  this.yPropertiesFormat != ''
-            ||  this.yPropertiesImpute != ''
+            ||  this.localWidget.graphYformat != ''
+            ||  this.localWidget.graphYimpute != ''
             ||  this.yPropertiesStack != ''
             ||  this.yPropertiesSort != ''
-            ||  this.yPropertiesType != ''
-            ||  this.yPropertiesImpute != '') {
+            ||  this.yPropertiesType != '') {
             this.showFieldYPropertiesInfo = true;
         };
     }

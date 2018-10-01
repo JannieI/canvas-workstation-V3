@@ -727,27 +727,27 @@
 
                         <!-- Y Properties Format -->
                         <div class="editorLineContainer">
-                            <div class="editorYPropertiesFormatTitle" *ngIf="showFieldYProperties">
+                            <div class="editorGraphYformatTitle" *ngIf="showFieldYProperties">
                                 Format:
                             </div>
-                            <div class="editorYPropertiesFormat" *ngIf="showFieldYProperties">
+                            <div class="editorGraphYformat" *ngIf="showFieldYProperties">
                                 <input type="text"
                                     placeholder="ie .2s +$,.2f"
-                                    [(ngModel)]="yPropertiesFormat"
-                                    name="yPropertiesFormat"
+                                    [(ngModel)]="localWidget.graphYformat"
+                                    name="graphYformat"
                                     >
                             </div>
                         </div>
 
                         <!-- Y Properties Impute -->
                         <div class="editorLineContainer">
-                            <div class="editorYPropertiesImputeTitle" *ngIf="showFieldYProperties">
+                            <div class="editorGraphYimputeTitle" *ngIf="showFieldYProperties">
                                 Impute:
                             </div>
-                            <div class="select editorYPropertiesImpute" *ngIf="showFieldYProperties">
+                            <div class="select editorGraphYimpute" *ngIf="showFieldYProperties">
                                 <select id="selects_3"
-                                    [(ngModel)]="yPropertiesImpute"
-                                    name="yPropertiesImpute"
+                                    [(ngModel)]="localWidget.graphYimpute"
+                                    name="graphYimpute"
                                     >
                                     <option></option>
                                     <option>Max</option>
@@ -757,7 +757,7 @@
                                     <option>Value</option>
                                 </select>
                             </div>
-                            <div class="editorYPropertiesImputeValue"
+                            <div class="editorGraphYimputeValue"
                                 *ngIf="showFieldYProperties"
                                 size="5"
                                 >
