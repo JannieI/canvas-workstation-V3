@@ -537,8 +537,8 @@ export interface dataSchemaInterface {
     // xPropertiesType: string = '';
     // xPropertiesTimeUnit: string = '';
 
-    xAxisTitle: string = '';
-    xAxisTitleCheckbox: boolean = true;
+    // xAxisTitle: string = '';
+    // xAxisTitleCheckbox: boolean = true;
     xAxisGrid: boolean = true;
     xAxisFormat: string = '';
     xAxisLabels: boolean = true;
@@ -1208,11 +1208,11 @@ export interface dataSchemaInterface {
                 specification['encoding']['x']['axis']['labelAngle'] = this.xAxisLabelAngle;
             };
 
-            if (!this.xAxisTitleCheckbox) {
+            if (!this.localWidget.graphXaxisTitleCheckbox) {
                 specification['encoding']['x']['axis']['title'] = null;
             } else {
-                if (this.xAxisTitle != ''  &&  this.xAxisTitle != undefined) {
-                    specification['encoding']['x']['axis']['title'] = this.xAxisTitle;
+                if (this.localWidget.graphXaxisTitle != ''  &&  this.localWidget.graphXaxisTitle != undefined) {
+                    specification['encoding']['x']['axis']['title'] = this.localWidget.graphXaxisTitle;
                 };
             };
 

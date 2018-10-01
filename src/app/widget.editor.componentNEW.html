@@ -1081,22 +1081,22 @@
 
                         <!-- X-Axis Title -->
                         <div class="editorLineContainer">
-                            <div class="editorXAxisTitleTitle" *ngIf="showFieldXAxis">
+                            <div class="editorgraphXaxisTitleTitle" *ngIf="showFieldXAxis">
                                 Title:
                             </div>
-                            <div class="editorXAxisTitleCheckbox" *ngIf="showFieldXAxis">
-                                <input [(ngModel)]="xAxisTitleCheckbox"
+                            <div class="editorgraphXaxisTitleCheckbox" *ngIf="showFieldXAxis">
+                                <input [(ngModel)]="localWidget.graphXaxisTitleCheckbox"
                                     type="checkbox"
-                                    name="xAxisTitleCheckbox"
+                                    name="graphXaxisTitleCheckbox"
                                     title="Show the Axis Title (T/F)"
                                     >
                             </div>
-                            <div class="editorXAxisTitle" *ngIf="showFieldXAxis"
+                            <div class="editorgraphXaxisTitle" *ngIf="showFieldXAxis"
                                 >
                                 <input type="text"
                                     placeholder="Blank = field name"
-                                    [(ngModel)]="xAxisTitle"
-                                    name="xAxisTitle"
+                                    [(ngModel)]="localWidget.graphXaxisTitle"
+                                    name="graphXaxisTitle"
                                     >
                             </div>
                         </div>

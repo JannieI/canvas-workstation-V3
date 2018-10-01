@@ -278,6 +278,7 @@ const widgetTemplate: Widget =
         "graphColorTimeUnit": "",
     
         "graphXaxisTitle": "",
+        "graphXaxisTitleCheckbox": true,
 
         "graphYaxisTitle": "",
 
