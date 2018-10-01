@@ -1128,29 +1128,34 @@ export class Widget {
     graphXfield: string;
     graphXaggregate: string;
     graphXtimeUnit: string;
-    graphXtype: string;
     graphXbin: boolean;
     graphXformat: string;
     graphXimpute: string;
     graphXimputeValue: string;
     graphXstack: string;
     graphXsort: string;
-    // 
-    // 
-    // 
-    // 
-    // xPropertiesStack
-    // xPropertiesSort
-    // xPropertiesType
-    // 
+    graphXtype: string;
+
+    // Y 
+    graphYfield: string;
+    graphYaggregate: string;
+    graphYbin: boolean;
+    graphYformat: string;
+    graphYimpute: string;
+    graphYimputeValue: string;
+    graphYstack: string;
+    graphYsort: string;
+    graphYtimeUnit: string;
+    graphYtype: string;
+
+    // X Axis
     graphXaxisTitle: string;
 
-    // Y axis
-    graphYaggregate: string;
-    graphYtimeUnit: string;
-    graphYfield: string;
-    graphYtype: string;
+    // Y Axis
     graphYaxisTitle: string;
+
+    // 
+    // 
 
     graphMark: string;
     graphMarkColor: string;
