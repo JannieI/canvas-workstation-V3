@@ -559,8 +559,8 @@ export interface dataSchemaInterface {
 
     yAxisTitle: string = '';
     yAxisTitleCheckbox: boolean = true;
-    yAxisGrid: boolean = true;
-    yAxisFormat: string = '';
+    // yAxisGrid: boolean = true;
+    // yAxisFormat: string = '';
     yAxisLabels: boolean = true;
     yAxisLabelAngle: number = 0;
 
@@ -1277,7 +1277,7 @@ export interface dataSchemaInterface {
                 {"type": this.yAxisScaleType.toLowerCase() };
             };
 
-            specification['encoding']['y']['axis'] = {"grid": this.yAxisGrid };
+            specification['encoding']['y']['axis'] = {"grid": this.localWidget.graphYaxisGrid };
             specification['encoding']['y']['axis']['labels'] = this.yAxisLabels;
             if (this.yAxisLabelAngle != 0){
                 specification['encoding']['y']['axis']['labelAngle'] = this.yAxisLabelAngle;
@@ -1291,8 +1291,8 @@ export interface dataSchemaInterface {
                 };
             };
 
-            if (this.yAxisFormat != '') {
-                specification['encoding']['y']['axis']['format'] =  this.yAxisFormat;
+            if (this.graphYaxisFormat != '') {
+                specification['encoding']['y']['axis']['format'] =  this.graphYaxisFormat;
             };
 
 

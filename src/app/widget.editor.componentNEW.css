@@ -1206,14 +1206,14 @@ clr-dg-cell {
                     width: 64%;
                 }
 
-                .editorYAxisGridTitle {
+                .editorGraphYaxisGridTitle {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
                     width: 38px;
                 }
-                .editorYAxisGrid {
+                .editorGraphYaxisGrid {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
@@ -1221,14 +1221,14 @@ clr-dg-cell {
                     width: 15px;
                 }
 
-                .editorYAxisFormatTitle {
+                .editorGraphYaxisFormatTitle {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
                     width: 38px;
                 }
-                .editorYAxisFormat {
+                .editorGraphYaxisFormat {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;

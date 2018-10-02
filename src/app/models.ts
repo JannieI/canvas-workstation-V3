@@ -1162,21 +1162,21 @@ export class Widget {
     graphColorTimeUnit: string;
 
     // X Axis
+    graphXaxisFormat: string;
+    graphXaxisGrid: boolean;
+    graphXaxisLabelAngle: number;    
+    graphXaxisLabels: boolean;
     graphXaxisTitle: string;
     graphXaxisTitleCheckbox: boolean;
-    graphXaxisGrid: boolean;
-    graphXaxisFormat: string;
-    graphXaxisLabels: boolean;
-    graphXaxisLabelAngle: number;    
 
     // Y Axis
-    graphYaxisScaleType: string;
-    graphYaxisTitleCheckbox: boolean;
-    graphYaxisTitle: string;
-    graphYaxisGrid: boolean;
     graphYaxisFormat: string;
+    graphYaxisGrid: boolean;
     graphYaxisLabels: boolean;
     graphYaxisLabelAngle: number;
+    graphYaxisScaleType: string;
+    graphYaxisTitle: string;
+    graphYaxisTitleCheckbox: boolean;
     
     // Legend
     // legendTitleCheckbox

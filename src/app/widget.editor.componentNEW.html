@@ -1218,13 +1218,13 @@
 
                         <!-- Y-Axis Grid -->
                         <div class="editorLineContainer">
-                            <div class="editorYAxisGridTitle" *ngIf="showFieldYAxis">
+                            <div class="editorGraphYaxisGridTitle" *ngIf="showFieldYAxis">
                                 Grid:
                             </div>
-                            <div class="editorYAxisGrid" *ngIf="showFieldYAxis">
+                            <div class="editorGraphYaxisGrid" *ngIf="showFieldYAxis">
                                 <input type="checkbox"
-                                    [(ngModel)]="yAxisGrid"
-                                    name="yAxisGrid"
+                                    [(ngModel)]="localWidget.graphYaxisGrid"
+                                    name="graphYaxisGrid"
                                     title="Show Grid lines (T/F)"
                                     >
                             </div>
@@ -1232,13 +1232,13 @@
 
                         <!-- Y Axis Format -->
                         <div class="editorLineContainer">
-                            <div class="editorYAxisFormatTitle" *ngIf="showFieldYAxis">
+                            <div class="editorGraphYaxisFormatTitle" *ngIf="showFieldYAxis">
                             Format:
                             </div>
-                            <div class="editorYAxisFormat" *ngIf="showFieldYAxis">
+                            <div class="editorGraphYaxisFormat" *ngIf="showFieldYAxis">
                                 <input type="text"
-                                    [(ngModel)]="yAxisFormat"
-                                    name="yAxisFormat"
+                                    [(ngModel)]="graphYaxisFormat"
+                                    name="graphYaxisFormat"
                                     placeholder="ie .2s +$,.2f"
                                     >
                             </div>
