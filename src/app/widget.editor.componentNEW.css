@@ -1236,14 +1236,14 @@ clr-dg-cell {
                     width: 15px;
                 }
 
-                .editorYAxisLabelsTitle {
+                .editorGraphYaxisLabelsTitle {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
                     width: 38px;
                 }
-                .editorYAxisLabels {
+                .editorGraphYaxisLabels {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
@@ -1251,14 +1251,14 @@ clr-dg-cell {
                     width: 15px;
                 }
 
-                .editorYAxisLabelAngleTitle {
+                .editorGraphYaxisLabelAngleTitle {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
                     width: 38px;
                 }
-                .editorYAxisLabelAngle {
+                .editorGraphYaxisLabelAngle {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;

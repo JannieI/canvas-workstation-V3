@@ -561,8 +561,8 @@ export interface dataSchemaInterface {
     yAxisTitleCheckbox: boolean = true;
     // yAxisGrid: boolean = true;
     // yAxisFormat: string = '';
-    yAxisLabels: boolean = true;
-    yAxisLabelAngle: number = 0;
+    // yAxisLabels: boolean = true;
+    // yAxisLabelAngle: number = 0;
 
     // colorPropertiesAggregate: string = '';
     graphColorAggregateVegaLiteName: string = '';
@@ -1278,9 +1278,9 @@ export interface dataSchemaInterface {
             };
 
             specification['encoding']['y']['axis'] = {"grid": this.localWidget.graphYaxisGrid };
-            specification['encoding']['y']['axis']['labels'] = this.yAxisLabels;
-            if (this.yAxisLabelAngle != 0){
-                specification['encoding']['y']['axis']['labelAngle'] = this.yAxisLabelAngle;
+            specification['encoding']['y']['axis']['labels'] = this.localWidget.graphYaxisLabels;
+            if (this.localWidget.graphYaxisLabelAngle != 0){
+                specification['encoding']['y']['axis']['labelAngle'] = this.localWidget.graphYaxisLabelAngle;
             };
 
             if (!this.yAxisTitleCheckbox) {
@@ -1291,8 +1291,8 @@ export interface dataSchemaInterface {
                 };
             };
 
-            if (this.graphYaxisFormat != '') {
-                specification['encoding']['y']['axis']['format'] =  this.graphYaxisFormat;
+            if (this.localWidget.graphYaxisFormat != '') {
+                specification['encoding']['y']['axis']['format'] =  this.localWidget.graphYaxisFormat;
             };
 
 

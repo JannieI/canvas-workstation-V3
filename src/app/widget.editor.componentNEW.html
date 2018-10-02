@@ -1237,7 +1237,7 @@
                             </div>
                             <div class="editorGraphYaxisFormat" *ngIf="showFieldYAxis">
                                 <input type="text"
-                                    [(ngModel)]="graphYaxisFormat"
+                                    [(ngModel)]="localWidget.graphYaxisFormat"
                                     name="graphYaxisFormat"
                                     placeholder="ie .2s +$,.2f"
                                     >
@@ -1246,13 +1246,13 @@
 
                         <!-- Y Axis Labels -->
                         <div class="editorLineContainer">
-                            <div class="editorYAxisLabelsTitle" *ngIf="showFieldYAxis">
+                            <div class="editorGraphYaxisLabelsTitle" *ngIf="showFieldYAxis">
                             Labels:..
                             </div>
-                            <div class="editorYAxisLabels" *ngIf="showFieldYAxis">
+                            <div class="editorGraphYaxisLabels" *ngIf="showFieldYAxis">
                                 <input type="checkbox"
-                                    [(ngModel)]="yAxisLabels"
-                                    name="yAxisLabels"
+                                    [(ngModel)]="localWidget.graphYaxisLabels"
+                                    name="graphYaxisLabels"
                                     title="Show labels (T/F)"
                                     >
                             </div>
@@ -1260,13 +1260,13 @@
 
                         <!-- Y Axis LabelAngle -->
                         <div class="editorLineContainer">
-                            <div class="editorYAxisLabelAngleTitle" *ngIf="showFieldYAxis">
+                            <div class="editorGraphYaxisLabelAngleTitle" *ngIf="showFieldYAxis">
                             Angle:
                             </div>
-                            <div class="editorYAxisLabelAngle" *ngIf="showFieldYAxis">
+                            <div class="editorGraphYaxisLabelAngle" *ngIf="showFieldYAxis">
                                 <input type="number"
-                                    [(ngModel)]="yAxisLabelAngle"
-                                    name="yAxisLabelAngle"
+                                    [(ngModel)]="localWidget.graphYaxisLabelAngle"
+                                    name="graphYaxisLabelAngle"
                                     placeholder="Label Angle"
                                     >
                             </div>
