@@ -1189,7 +1189,6 @@ export class Widget {
     graphSizeBin
 
     graphMark: string;
-    graphMarkColor: string;
     graphUrl: string;
     graphData: any;
 

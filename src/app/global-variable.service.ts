@@ -301,7 +301,6 @@ const widgetTemplate: Widget =
         "graphSizeBin": true,
     
         "graphMark": "tick",
-        "graphMarkColor": "#4682b4",
         "graphUrl": "",
         "graphData": "",
         "tableBackgroundColor" : "",
@@ -10339,7 +10338,6 @@ export class GlobalVariableService {
                 {key: 'graphYaxisTitle', 			type: 'string'},
                 {key: 'graphTitle', 				type: 'string'},
                 {key: 'graphMark', 					type: 'string'},
-                {key: 'graphMarkColor', 			type: 'string'},
                 {key: 'graphUrl', 					type: 'string'},
                 {key: 'graphData', 					type: 'any'},
                 {key: 'graphColorField', 			type: 'string'},
@@ -10762,7 +10760,7 @@ export class GlobalVariableService {
         }
         vlSpecsNew['description'] = widget.graphDescription;
         vlSpecsNew['mark']['type'] = widget.graphMark;
-        vlSpecsNew['mark']['color'] = widget.graphMarkColor;
+        // vlSpecsNew['mark']['color'] = widget.graphMarkColor;
 
         vlSpecsNew['encoding']['x']['field'] = widget.graphXfield;
         vlSpecsNew['encoding']['x']['type'] = widget.graphXtype;
