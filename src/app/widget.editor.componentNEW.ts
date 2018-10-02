@@ -986,6 +986,9 @@ export interface dataSchemaInterface {
             this.localWidget.widgetType = 'Graph';
 
             // Populate predefined dimensions, considering layouts
+            if (this.localWidget.graphColorScheme == ''  ||  this.localWidget.graphColorScheme == null) {
+                this.localWidget.graphColorScheme = 'None';
+            };
             if (this.newWidgetContainerLeft > 0) {
                 this.localWidget.containerLeft = this.newWidgetContainerLeft;
             };
@@ -1010,6 +1013,10 @@ export interface dataSchemaInterface {
 
             // Deep copy Local W
             this.localWidget = JSON.parse(JSON.stringify(this.selectedWidget));
+
+            if (this.localWidget.graphColorScheme == ''  ||  this.localWidget.graphColorScheme == null) {
+                this.localWidget.graphColorScheme = 'None';
+            };
 
             // TODO - handle properly and close form
             if (this.localWidget.datasourceID == 0) {
@@ -1301,8 +1308,19 @@ export interface dataSchemaInterface {
 
 
             // Color field
-            specification['encoding']['color']['field'] = this.localWidget.graphColorField;
-
+            // specification['encoding']['color']['field'] = this.localWidget.graphColorField;
+            specification['encoding']['color'] = {
+                "aggregate": this.graphColorAggregateVegaLiteName.toLowerCase(),
+                "bin": this.localWidget.graphColorBin,
+                "field": this.localWidget.graphColorField,
+                "format": this.localWidget.graphColorFormat.toLowerCase(),
+                "legend": "",
+                "sort": this.localWidget.graphColorSort.toLowerCase(),
+                "stack": this.localWidget.graphColorStack.toLowerCase(),
+                "timeUnit": this.localWidget.graphColorTimeUnit.toLowerCase(),
+                "type": this.localWidget.graphColorType.toLowerCase(),
+                "scale": this.localWidget.graphColorScheme == 'None'?  null  :  {"scheme": this.localWidget.graphColorScheme.toLowerCase()}
+        };
 
             // specification['encoding']['color'] = {
             //     "aggregate": this.graphColorAggregateVegaLiteName.toLowerCase(),

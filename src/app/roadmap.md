@@ -35,7 +35,7 @@ This document describes items for later versions of Canvas.
         - neaten first time user for all forms: maybe more GotIt help messages that shows up only once, and disappears after GotIt was clicked.  Key example: first time EditMode is used, the user needs to understand Save and Discard.
         - Google Sheets says 'All changes saved' after each change.  Should we do the same, ie after each resize or drag-n-drop?
         - verify that we cater for casual to sophisticated user
-        - test: a new user must be able to build a D in 5 minutes, and a person must be ready with max 1hr training session.  Remember, no one reads the manual!  Final test, give it to highschool kids!!  
+        - test: a new user must be able to build a D in 5 minutes, and a person must be ready with max 1hr training session.  Remember, no one reads the manual!  Final test, give it to highschool kids!!
         - test with newBee - can they do graph on D with minimal guidance?
         - must easily spot messages on StatusBar
         - must immediately know when in EditMode.
@@ -91,7 +91,7 @@ This document describes items for later versions of Canvas.
         - FIX nrDataQualityIssues at DB level: join and fill the value, so that Canvas dont need to do any manipulation
         - in Open D we list those 'Due on' a date.  This can only be done when we calculate the due date given the schedule - remember the Omega complexity with this.
         - rename shapes for icons = angle-double, line-chart, wand.  AND look for others
-    
+
 
 
     Tributary:
@@ -144,7 +144,7 @@ This document describes items for later versions of Canvas.
         - consider Excel-like format => many users can use it already
         - data bars inside text values
         - sub totals and grand totals
-        - can add labels, once 
+        - can add labels, once
 
 
     Data types and field lengths:
@@ -154,7 +154,7 @@ This document describes items for later versions of Canvas.
         - How are dates stored in DB vs localDB vs arrays?  How do we format dates onto the form?  How  is locale used?
         - How does types tranform into Vega field types, ie on Editor?
         16.After Ws were linked to a DS: if do a Tr, then validate that W are still okay (ie a W field  may not exist any longer in DS)
-    
+
 
     Data Permisions:
     ---------------
@@ -241,7 +241,7 @@ This document describes items for later versions of Canvas.
 
     Samples: use this to demo Canvas features (brag)
     --------
-        NB: 
+        NB:
         1. Start with Jen data, budget, sales, forecasts, costs and pipeline for first demos (must be able to drill down to customers, products and roll up per group and branch)
         2. Build layouts per Industry, see AirTable
 
@@ -267,7 +267,7 @@ This document describes items for later versions of Canvas.
         - Qlik slow if to many users - Gabriella
         - Sage has no forecasting - linked data to excel then power bi
 
-        - Wikipedia via webconnector to get GDP 
+        - Wikipedia via webconnector to get GDP
         - Support desk!  Usual, ie calls per week, calls per agent, etc.  BUT, have a capturing tool ~ Canvas menu.  When a call is closed: click on menu option, add: issue + text, new dev requested + text, support needed by user + text.  This can produce powerful graphs on the three dimensions, each with nr of users per menu option.  This can be used to improve training, and new dev: the hotspots should be easily visible = area that must be fixed or enhanced or simplied to give the best bang for the next sprint.  Running the data over a timeline and marking the change as an event, one can easily see if the change has worked, and trends (ie what is getting worse / better).  I want to use this for Clarity on Canvas.
 
 
@@ -383,13 +383,14 @@ This document describes items for later versions of Canvas.
     - Save keeps all snapshots and undo actions, forever.  Thus, can see how things looked like at any point in the past.  It must be clearly marked for the user.  Must also be able to search the list, and see a list of undo actions.  Also, do we discard all undo actions when a snapshot is taken, or not.  Think clearly about it.
     - navigation menu:
         - can open menu on left with icons and colours that jumps to different pages when clicked.  Can use this menu for beginner = create D, create W, etc !
+        - something to show when hover over menu items
     - consider adding Ctrl-Z = Redo previous action (if on menu, ie open Add Widget form).  Can be tricksy - what if previous was Delete Widget ?
     - Show Grid - currently a .png -> how to make this dynamic ?  See: https://stackoverflow.com/questions/3540194/how-to-make-a-grid-like-graph-paper-grid-with-just-css
     - consider removing Datalib library, if not needed for vega template spec
 
     Layouts:
     -------
-    - consider, ala James McGillivray, standard layout grids, with some cells merged.  Then, when D opens, looks like Powerpoint that says type title here, text here.  Each block will say 'click here to add Title / Graph / Text Shape / etc'.  Can make it easy to have standard layouts! 
+    - consider, ala James McGillivray, standard layout grids, with some cells merged.  Then, when D opens, looks like Powerpoint that says type title here, text here.  Each block will say 'click here to add Title / Graph / Text Shape / etc'.  Can make it easy to have standard layouts!
     - what happens after: are Widgets fixed to block, or can one drag them (think this is better), and can one delete empty thing.
 
     Data:
@@ -406,18 +407,20 @@ This document describes items for later versions of Canvas.
     - consider COPY of DS: can then amend the second one, ie do Transformations
     - load file: add predefined filters, so that only THIS data is loaded.  Thus, less loaded into Canvas.  Consider how to define this, ie columnName='...' - can this then be done before / after preview ?  Make visual.
     - load file: add limit, max nr of lines loaded.  And warn when this has been reached.
-    - load file: where to add data types?  
+    - load file: where to add data types?
     - load file: where to add validation and action, ie Col = 'Sales Amount' is a decimal, and if not so, ignore row / fail?
     - load file: add all-or-nothing option: all good, else fail.  If false, will load what is valid and just ignore rest?
     - pre-build all DS from existing DB -> quick and easy to start
     - consider import of Excel tables
-    - consider import from Powerpoint and Word tables ... 
+    - consider import from Powerpoint and Word tables ...
     - consider integration with a ERD tool like Erwin, see:
     https://erwin.com/products/data-modeler/#
     - Filters take a lot of space => rather use clicking on graph to filter, or open filter on separate page / popup.  Then have a button on form to indicate that it is filtered and to clear the filters.
     - functionality to change DS on a W
     - give a warning of which Dashboards uses a field if a DS definition is changed.
     - getting Data from a web table: this is not so often used, thus try and read other types of grids/tables as well (ie Clarity Datagrid)
+    - security: can block print and screenshots
+    - allow for companies that have to store data in SA    cater for DB rename (name or location)
 
 
     Widget Action Menu:
@@ -433,7 +436,7 @@ This document describes items for later versions of Canvas.
     - consider a REST API for Eazl Accounts => other users can add, delete stuff ...
     - consider Guest login - can do 1 private Dashboard, access to files ?  Is this useful?
 
-    
+
     Data Confidentiallity:
     ---------------------
     - consider including this.  For example, confidential data cannot be exported outside of Canvas, cannot export graph or even make a screen snapshot of it.  Or at the very least warn that data is confidential.
@@ -445,6 +448,7 @@ This document describes items for later versions of Canvas.
     Tabs:
     ----
     - can we hide T - will show in T list with hidden tick, can uncheck?
+    - change TABS to GO TO Tab
 
     Reports:
     --------
@@ -460,7 +464,7 @@ This document describes items for later versions of Canvas.
     - Consider Table Checkpoint - not sure if it is that useful, as one can filter, etc on table, or redesign ... And the purpose of a table is to look at data for a while methinks
     - consider auto-calculated values, ie hover and show SUM of data.  Not sure how to do this, and if useful
     - make Checkpoints more visible, may o o 0 o at bottom to show how many and where we are?
-    - consider dataQual triangle, -> link icons in same spot each time? 
+    - consider dataQual triangle, -> link icons in same spot each time?
     - consider Ctrl-X = CUT = Delete current and Copy it.  Can for example use the Del Form to confirm - do we need a confirmation ?
     - consider Shift-Delete = needs no confirmation - good idea?
     - consider selection of geo data on a map using a polygon - maybe via a 3rd party package
@@ -479,7 +483,7 @@ This document describes items for later versions of Canvas.
     - Consider not increasing stuckCount in App if an item is selected/deselected. This does mean to pass event back from slicer.single component.
 
 
-    Treeview: 
+    Treeview:
     --------
     - drag and drop W onto different Tabs
     - Delete icon to delete here (name ~ title may not be clear)
@@ -545,7 +549,7 @@ This document describes items for later versions of Canvas.
     - ala Ivan
     - valid tags corresponds to html, ie H1, H2, etc normal, small, etc
     - have an optional style-tag to all text boxes: either specify the font-size, color, etc on the element, OR specify the style-tag.
-    - have a global setting AND a Dashboard setting for 
+    - have a global setting AND a Dashboard setting for
     1. style sheet (has full list of style tags and how it looks)
     2. style tag (has font-size, etc per tag)
     Note: 2 is stronger than 1, Dashboard is strong than general
@@ -562,7 +566,9 @@ This document describes items for later versions of Canvas.
     - Include code blocks - like Vscode style!!!
     - Round buttons at bottom of presentation to navigate
 
-    - Slicer: all ALL, NONE options to list of checkboxes (or the heading, or the caret dropdown menu)
+    - Slicer:
+    - all ALL, NONE options to list of checkboxes (or the heading, or the caret dropdown menu)
+    - ie checkbox for multiple select, radio button for single selection
     - make typing / changing text easier - type into box like PowerPoint
     - create a Word-like reporter (Terence uses this): Another great use would be to make a report. Not so much for display but for reading. Like a monthly report on exposures. We currently use word for that but the only difference from what you already have would beprinting in A4 format with different font and wording formats.
     - write text vertically !
@@ -593,7 +599,7 @@ This document describes items for later versions of Canvas.
         - shows red / orange / green light depending on status.
         - for SVG, see http://svgdiscovery.com/HMI/StatusStick/statusStick.htm
     - Add emojis !?  See http://unicode.org/charts/  (also pictographs!)
-        - See https://www.w3schools.com/charsets/ref_utf_misc_symbols.asp 
+        - See https://www.w3schools.com/charsets/ref_utf_misc_symbols.asp
         - try to include big, colourful icons
         - can convert unicode to SVG - see http://svgdiscovery.com/C/svg-text-symbol.htm
         and https://unicode-table.com/en/#miscellaneous-symbols
@@ -863,8 +869,8 @@ This document describes items for later versions of Canvas.
     - Bullets: move up and down arrows to arrange the points
     - Improve borders: current with 4, 1 per side so that one can have a Box with a thin gray border and one side a blue line
     - Text: add StrikeThrough to bold, italics. With Ctrl-B, etc.  SuperScript and SubScript ?
-    - TextBox (new shape): 
-        - Ideally a third party control, that writes to HTML and Canvas then puts this into the InnetHTML: <div [innerHtml]="getSymbol()"></div> 
+    - TextBox (new shape):
+        - Ideally a third party control, that writes to HTML and Canvas then puts this into the InnetHTML: <div [innerHtml]="getSymbol()"></div>
         - can edit individual strings inside the one textbox
         - can have text at top, and bullet below it
         - different font sizes
@@ -887,7 +893,7 @@ This document describes items for later versions of Canvas.
         https://www.w3schools.com/charsets/ref_utf_misc_symbols.asp
     - Arrange and size blocks inside blocks - click one, select center, click second ...?
     - Needs a big question mark
-    - Speaker notes 
+    - Speaker notes
     - when adding an image, the height and width is all over the place.  Store that in the widget definition somewhere.
     - Time keeping ...
     - consider separate menu options and forms for Shapes, might be easier for user and also gives more flexibility (and easier code).
@@ -931,8 +937,8 @@ This document describes items for later versions of Canvas.
 
     Speaker notes:
     --------------
-    - Notes that can open in separate Browser Tab.  
-    - Also, can show speaker notes on different screen!  
+    - Notes that can open in separate Browser Tab.
+    - Also, can show speaker notes on different screen!
     - Add timer.
 
 
@@ -963,7 +969,7 @@ This document describes items for later versions of Canvas.
     - can just give deadline (optional start, duration)
     - consider integration with Jira - create tasks in Canvas and add then automatically to Jira! It is more popular than Trello.  See:
     https://developer.atlassian.com/server/jira/platform/jira-rest-api-examples/
-    
+
 
     Global Variables:
     -----------------
@@ -1000,13 +1006,13 @@ This document describes items for later versions of Canvas.
     Create DS via File:
     -------------------
     - consider multiple files, in which case to loop over files Array
-    - consider drag and drop from external places - see example in 
+    - consider drag and drop from external places - see example in
         https://www.html5rocks.com/en/tutorials/file/dndfiles/
 
     Auto create of Dashboards:
     -------------------------
     - consider converting an excel spreadheet into a Dashboard, automatically.  With graphs and all.  Of kors, we need a use case for this.
-    
+
     Business Glossary:
     -----------------
     - tag Tables, Fields
@@ -1053,7 +1059,7 @@ This document describes items for later versions of Canvas.
     ------------
     - can save Dashboard as pdf - see https://github.com/MrRio/jsPDF.
     - See: https://stackoverflow.com/questions/14552112/html-to-pdf-with-node-js
-    - also, SVG-> PDF see http://svgdiscovery.com/C/svg-print-save-PDF.htm 
+    - also, SVG-> PDF see http://svgdiscovery.com/C/svg-print-save-PDF.htm
         Rather: https://stackoverflow.com/questions/38996376/generate-pdf-file-from-html-using-angular2-typescript,  or  https://stackoverflow.com/questions/42900319/how-to-convert-html-to-pdf-in-angular2  or  https://www.npmjs.com/package/jspdf
         - can send Dashboard as Email Attachment (in pdf or pic). To do this via Gmail, use its API - see https://www.sitepoint.com/sending-emails-gmail-javascript-api/
         - can copy whole D as image - can paste somewhere, or print and put on wall
@@ -1098,7 +1104,7 @@ This document describes items for later versions of Canvas.
     Alerts:
     ------
     - pulse alerts aligned to a dashboard with thresholds acceeded
-    - user wants to know when trades exceed 90% percentile, and then get 1. an alert and 2. a Dashboard attached with the relevant info 
+    - user wants to know when trades exceed 90% percentile, and then get 1. an alert and 2. a Dashboard attached with the relevant info
 
 
     Dashboard Permissions:
@@ -1109,7 +1115,7 @@ This document describes items for later versions of Canvas.
     News Events:
     -----------
     - time series graphs with annotations
-     
+
 
     Notebook: Style
     --------
@@ -1134,32 +1140,32 @@ This document describes items for later versions of Canvas.
     There is space for BOTH, and Canvas supports both. Note that we dont spread the DS distributedly, which becomes a management nightmare.
 
     They needed to find a way to:
-    - get more from data 
-    - offer more value 
-    - innovate 
-    - grow with clients 
-    - compete to attract talent 
-    - how to simplify reporting 
-    - visualize reports 
-    - share reports with all levels 
-    - join different pockets of data to get insight 
-    - growing rate of amount of data 
-    - measurement scorecard 
-    - peer scorecard 
-    - see trends real time 
-    - centralize reporting 
-    - can access reports from anywhere including mobile 
-    - more factual, visual decision making 
-    - pulse alerts aligned to a dashboard with thresholds acceded 
-    - governance in who can see what 
-    - helped by structured data strategy 
-    - want to apply AI and machine learning which is not easy as one requires a baseline over a period of time 
-    - get new insights to run business better 
-    - build a competitive advantage 
-    - see he customer behaviour is changing 
-    - better understanding of company impact 
-    - performance measurements of staff 
-    - strategic partnership with product provider like Sisense 
+    - get more from data
+    - offer more value
+    - innovate
+    - grow with clients
+    - compete to attract talent
+    - how to simplify reporting
+    - visualize reports
+    - share reports with all levels
+    - join different pockets of data to get insight
+    - growing rate of amount of data
+    - measurement scorecard
+    - peer scorecard
+    - see trends real time
+    - centralize reporting
+    - can access reports from anywhere including mobile
+    - more factual, visual decision making
+    - pulse alerts aligned to a dashboard with thresholds acceded
+    - governance in who can see what
+    - helped by structured data strategy
+    - want to apply AI and machine learning which is not easy as one requires a baseline over a period of time
+    - get new insights to run business better
+    - build a competitive advantage
+    - see he customer behaviour is changing
+    - better understanding of company impact
+    - performance measurements of staff
+    - strategic partnership with product provider like Sisense
     - all levels in company sees same reports
     - real time insights will become more important
     - all businesses are now data businesses
@@ -1174,9 +1180,9 @@ This document describes items for later versions of Canvas.
     - uses Northwind SQL db for demo
     - imports data and shows relationships from SQL DB
     - can link from different sources ie Excel and SQL  DB.  See (for node): https://www.npmjs.com/package/xlsx
-    - can also do calculated fields 
-    - change headers 
-    - can change data type 
+    - can also do calculated fields
+    - change headers
+    - can change data type
     - then build elastic cube which imports data which can also be scheduled
     - can also do live connect to get real time data
     - formatting gauge widget via a popup
@@ -1219,7 +1225,7 @@ This document describes items for later versions of Canvas.
     - Lighthouse
     - Service worker
     - AngularFire
-    
+
 
     Templates:
     ----------
@@ -1242,6 +1248,8 @@ This document describes items for later versions of Canvas.
     - page # from pages
     - custom select of elements on StatusBar: ie ViewMode/EditMode, Version, etc
     - add Ctrl-Backspace to go back to the previously opened tab, useful if jumped randomly using Tabs popup (just keep prevID, and if pressed then replace with current => toggle between two.  Think this can be useful)
+    - Statusbar needs word (make more clear what it does), 
+    - Also, the background is very dark and heavy.  Relook at this with the menu bar background.
 
     Audible sounds (on statusbar):
     -----------------------------
@@ -1264,7 +1272,7 @@ This document describes items for later versions of Canvas.
     Animation:
     ---------
     - consider this ...  This may have serious consequences for structure, or could simply be a list of object IDs in sequence, and animation disable = false them in sequence!
-    - arrow keys or enter if nothing selected could trigger animation.  
+    - arrow keys or enter if nothing selected could trigger animation.
 
 
     Container:
@@ -1277,8 +1285,8 @@ This document describes items for later versions of Canvas.
         . https://learn.shayhowe.com/advanced-html-css/css-transforms/
         . https://robots.thoughtbot.com/transitions-and-transforms
         . https://www.w3schools.com/cssref/tryit.asp?filename=trycss3_transform-origin
-    - consider MULTIPLE edit: 
-        - select more than one, open Container Form.  
+    - consider MULTIPLE edit:
+        - select more than one, open Container Form.
         - apply changes to ALL selected ...
 
     Canvas Schema Changes:
@@ -1316,10 +1324,10 @@ This document describes items for later versions of Canvas.
 
     - have TS scripts inside Canvas
     - investigate IFrames
-    - Bezier curved arrows that can connect to rectangles 
-    - Workflow via diagram 
-    - Embedding 
-    - Speech driven 
+    - Bezier curved arrows that can connect to rectangles
+    - Workflow via diagram
+    - Embedding
+    - Speech driven
     - Dragable side-panel
     - Team collaboration.... Editing the same Widget at the same time
     - Chalk font
