@@ -1292,22 +1292,22 @@
 
                         <!-- Legend Title -->
                         <div class="editorLineContainer">
-                            <div class="editorLegendTitleTitle" *ngIf="showFieldLegend">
+                            <div class="editorGraphLegendTitleTitle" *ngIf="showFieldLegend">
                                 Title:
                             </div>
-                            <div class="editorLegendTitleCheckbox" *ngIf="showFieldLegend">
-                                <input [(ngModel)]="legendTitleCheckbox"
+                            <div class="editorGraphLegendTitleCheckbox" *ngIf="showFieldLegend">
+                                <input [(ngModel)]="localWidget.graphLegendTitleCheckbox"
                                     type="checkbox"
-                                    name="legendTitleCheckbox"
+                                    name="graphLegendTitleCheckbox"
                                     title="Show the Axis Title (T/F)"
                                     >
                             </div>
-                            <div class="editorLegendTitle" *ngIf="showFieldLegend"
+                            <div class="editorGraphLegendTitle" *ngIf="showFieldLegend"
                                 >
                                 <input type="text"
                                     placeholder="Blank = field name"
-                                    [(ngModel)]="legendTitle"
-                                    name="legendTitle"
+                                    [(ngModel)]="localWidget.graphLegendTitle"
+                                    name="graphLegendTitle"
                                     >
                             </div>
                         </div>
@@ -1450,10 +1450,12 @@
 
 
                     <!-- GRAPH Area -->
-                    <div class="editorAreaTitle">
+                    <div class="editorAreaTitle" *ngIf="showGraphAreaTitle">
                         <b>Graph</b>
                     </div>
-                    <div class="editorArea" #dragWidget>
+                    <div class="editorArea" #dragWidget
+                        [style.border]="showGraphAreaTitle?  '1px solid gray'  : 'none'"    
+                        >
                     </div>
 
 

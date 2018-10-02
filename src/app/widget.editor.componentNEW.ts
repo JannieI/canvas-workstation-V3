@@ -238,6 +238,7 @@ export interface dataSchemaInterface {
     showFieldColorPropertiesTitle: boolean = false;
 
     showFieldFilter: boolean = false;
+    showGraphAreaTitle: boolean = true;
     showSelectionFilter: boolean = false;
 
     showPreview: boolean = false;
@@ -576,8 +577,8 @@ export interface dataSchemaInterface {
     // colorPropertiesType: string = '';
     // colorPropertiesTimeUnit: string = '';
 
-    legendTitle: string = '';
-    legendTitleCheckbox: boolean = true;
+    // legendTitle: string = '';
+    // legendTitleCheckbox: boolean = true;
     // legendFormat: string = '';
 
     timeUnits: string[] = [
@@ -1104,6 +1105,9 @@ export interface dataSchemaInterface {
         // rules.
         this.globalFunctionService.printToConsole(this.constructor.name,'showGraph', '@Start');
 
+        // Switch off initial display
+        this.showGraphAreaTitle = false;
+        
         // Get the Vega-Lite aggregation
         this.graphXaggregateVegaLiteName = '';
         if (this.localWidget.graphXaggregate != '') {
@@ -1143,7 +1147,7 @@ export interface dataSchemaInterface {
 
         // Create and parameter fill each defintion
         // if (graphID == 1  &&  graphShortName =='Simple Bar Chart') {
-        if (graphID == 1  ||  graphID == 3  ||  graphID == 4  ||  graphID == 5) {
+        if (graphID == 1  ||  graphID == 2  ||  graphID == 3  ||  graphID == 4  ||  graphID == 5) {
 
             // Enhance W properties
             // this.localWidget.graphMark = 'bar';
@@ -1297,21 +1301,23 @@ export interface dataSchemaInterface {
 
 
             // Color field
-            // specification['encoding']['color']['field'] = this.localWidget.graphYfield;
-            specification['encoding']['color'] = {
-                "aggregate": this.graphColorAggregateVegaLiteName.toLowerCase(),
-                "bin": this.localWidget.graphColorBin,
-                "field": this.localWidget.graphColorField,
-                "format": this.localWidget.graphColorFormat.toLowerCase(),
-                "legend": "",
-                "sort": this.localWidget.graphColorSort.toLowerCase(),
-                "stack": this.localWidget.graphColorStack.toLowerCase(),
-                "timeUnit": this.localWidget.graphColorTimeUnit.toLowerCase(),
-                "type": this.localWidget.graphColorType.toLowerCase(),
-                "scale": {"scheme": this.localWidget.graphColorScheme.toLowerCase()}
-                // "scale": this.localWidget.graphColorScheme == 'None'?  null  :  {"scheme": this.localWidget.graphColorScheme.toLowerCase() }
+            specification['encoding']['color']['field'] = this.localWidget.graphColorField;
 
-              };
+
+            // specification['encoding']['color'] = {
+            //     "aggregate": this.graphColorAggregateVegaLiteName.toLowerCase(),
+            //     "bin": this.localWidget.graphColorBin,
+            //     "field": this.localWidget.graphColorField,
+            //     "format": this.localWidget.graphColorFormat.toLowerCase(),
+            //     "legend": "",
+            //     "sort": this.localWidget.graphColorSort.toLowerCase(),
+            //     "stack": this.localWidget.graphColorStack.toLowerCase(),
+            //     "timeUnit": this.localWidget.graphColorTimeUnit.toLowerCase(),
+            //     "type": this.localWidget.graphColorType.toLowerCase(),
+            //     "scale": {"scheme": this.localWidget.graphColorScheme.toLowerCase()}
+            //     // "scale": this.localWidget.graphColorScheme == 'None'?  null  :  {"scheme": this.localWidget.graphColorScheme.toLowerCase() }
+
+            //   };
               console.warn('xx this.localWidget.graphColorField', this.localWidget.graphColorField)
               console.warn('xx this.graphColorField', this.graphColorField)
         console.warn('xx [color]', this.localWidget.graphColorType, specification['encoding']['color']);
@@ -1386,7 +1392,7 @@ export interface dataSchemaInterface {
             // specification['mark']['type'] = "point";
 
         };
-        if (graphID == 2  &&  graphShortName =='Area Chart') {
+        if (graphID == 2222  &&  graphShortName =='Area Chart') {
 
             // Enhance W properties
             this.localWidget.graphMark = 'area';
@@ -1417,7 +1423,8 @@ console.warn('xx specification', specification);
                 let view = new View(parse(vegaSpecification));
 
                 view.renderer('svg')
-                .initialize(this.dragWidget.nativeElement)
+                    .initialize(this.dragWidget.nativeElement)
+                    .width(300)
                     .hover()
                     .run()
                     .finalize();

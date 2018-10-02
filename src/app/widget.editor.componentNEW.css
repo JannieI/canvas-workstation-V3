@@ -1276,21 +1276,21 @@ clr-dg-cell {
                 margin-top: 5px;
             }
 
-            .editorLegendTitleTitle {
+            .editorGraphLegendTitleTitle {
                 display: inline-block;
                 font-size: 0.5rem;
                 line-height: 0.8rem;
                 margin-left: 4px;
                 width: 38px;
             }
-            .editorLegendTitleCheckbox {
+            .editorGraphLegendTitleCheckbox {
                 display: inline-block;
                 font-size: 0.5rem;
                 line-height: 0.8rem;
                 margin: 3px;
                 width: 15px;
             }
-            .editorLegendTitle {
+            .editorGraphLegendTitle {
                 border: 1px solid steelblue;
                 border-radius: 5px;
                 display: inline-block;
@@ -1449,6 +1449,7 @@ clr-dg-cell {
             grid-row-start: 2;
             grid-row-end: 20;
             text-align: left;
+            overflow-x: scroll;
         }
 
         /* BUTTONS */
