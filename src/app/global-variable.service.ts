@@ -10760,7 +10760,7 @@ export class GlobalVariableService {
         }
         vlSpecsNew['description'] = widget.graphDescription;
         vlSpecsNew['mark']['type'] = widget.graphMark;
-        // vlSpecsNew['mark']['color'] = widget.graphMarkColor;
+        // vlSpecsNew['mark']['color'] = "brown";
 
         vlSpecsNew['encoding']['x']['field'] = widget.graphXfield;
         vlSpecsNew['encoding']['x']['type'] = widget.graphXtype;

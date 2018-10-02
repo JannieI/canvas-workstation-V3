@@ -1190,6 +1190,7 @@ export interface dataSchemaInterface {
             // Define Specification
             specification = this.widgetGraphs[widgetGraphIndex].specification;
 
+console.warn('xx clean specification', specification);
 
             // Optional Sampling
             if (this.sampleNumberRows != 0) {
