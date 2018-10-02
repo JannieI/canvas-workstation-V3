@@ -292,13 +292,13 @@ const widgetTemplate: Widget =
         "graphYaxisLabels": true,
         "graphYaxisLabelAngle": 0,
     
-        "legendTitleCheckbox": true,
-        "legendTitle": "",
-        "legendFormat": "",
+        "graphLegendTitleCheckbox": true,
+        "graphLegendTitle": "",
+        "graphLegendFormat": "",
 
-        "sizeType": "",
-        "sizeAggregate": "",
-        "sizeBin": true,
+        "graphSizeType": "",
+        "graphSizeAggregate": "",
+        "graphSizeBin": true,
     
         "graphMark": "tick",
         "graphMarkColor": "#4682b4",

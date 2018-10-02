@@ -208,8 +208,8 @@ export interface dataSchemaInterface {
     selectedRowIndex: number = -1;
     selectedRowID: number;
 
-    sizeType: string = '';
-    sizeAggregate: string = '';
+    // sizeType: string = '';
+    // sizeAggregate: string = '';
     sizeBin: string = 'False';
 
     showColourDeleteIcon: boolean = false;
@@ -578,7 +578,7 @@ export interface dataSchemaInterface {
 
     legendTitle: string = '';
     legendTitleCheckbox: boolean = true;
-    legendFormat: string = '';
+    // legendFormat: string = '';
 
     timeUnits: string[] = [
         "",
@@ -1365,8 +1365,8 @@ export interface dataSchemaInterface {
                 console.warn('xx sizeFiled', this.graphSizeField);
 
                 specification['encoding']['size']['field'] = this.graphSizeField;
-                specification['encoding']['size']['type'] = this.sizeType.toLowerCase();
-                specification['encoding']['size']['aggregate'] = this.sizeAggregate.toLowerCase();
+                specification['encoding']['size']['type'] = this.localWidget.graphSizeType.toLowerCase();
+                specification['encoding']['size']['aggregate'] = this.localWidget.graphSizeAggregate.toLowerCase();
                 if (this.sizeBin == 'True') {
                     specification['encoding']['size']['bin'] = true;
                 } else {

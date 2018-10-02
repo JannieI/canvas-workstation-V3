@@ -1314,13 +1314,13 @@
 
                         <!-- Legend Format -->
                         <div class="editorLineContainer">
-                            <div class="editorLegendFormatTitle" *ngIf="showFieldLegend">
+                            <div class="editorGraphLegendFormatTitle" *ngIf="showFieldLegend">
                             Format:
                             </div>
-                            <div class="editorLegendFormat" *ngIf="showFieldLegend">
+                            <div class="editorGraphLegendFormat" *ngIf="showFieldLegend">
                                 <input type="text"
-                                    [(ngModel)]="legendFormat"
-                                    name="legendFormat"
+                                    [(ngModel)]="localWidget.graphLegendFormat"
+                                    name="graphLegendFormat"
                                     placeholder="ie .2s +$,.2f"
                                     >
                             </div>
@@ -1368,13 +1368,13 @@
 
                         <!-- Size type -->
                         <div class="editorLineContainer">
-                            <div class="editorSizeTypeTitle" *ngIf="showFieldSize">
+                            <div class="editorGraphSizeTypeTitle" *ngIf="showFieldSize">
                                 Type:
                             </div>
-                            <div class="select editorSizeType" *ngIf="showFieldSize">
+                            <div class="select editorGraphSizeType" *ngIf="showFieldSize">
                                 <select id="selects_3"
-                                    [(ngModel)]="sizeType"
-                                    name="sizeType"
+                                    [(ngModel)]="localWidget.graphSizeType"
+                                    name="graphSizeType"
                                     >
                                     <option>Ordinal</option>
                                     <option>Quantitative</option>
@@ -1386,12 +1386,12 @@
 
                         <!-- Size aggregate -->
                         <div class="editorLineContainer">
-                            <div class="editorSizeAggregateTitle" *ngIf="showFieldSize">
+                            <div class="editorGraphSizeAggregateTitle" *ngIf="showFieldSize">
                                 Aggregate:
                             </div>
-                            <div class="select editorSizeAggregate" *ngIf="showFieldSize">
+                            <div class="select editorGraphSizeAggregate" *ngIf="showFieldSize">
                                 <select id="selects_3"
-                                    [(ngModel)]="sizeAggregate"
+                                    [(ngModel)]="localWidget.graphSizeAggregate"
                                     >
                                     <option *ngFor="let row of aggregations; let i = index">
                                         {{ row.displayName }}
