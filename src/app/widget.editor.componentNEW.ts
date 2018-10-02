@@ -211,6 +211,7 @@ export interface dataSchemaInterface {
     // sizeType: string = '';
     // sizeAggregate: string = '';
     // sizeBin: string = 'False';
+    sampleNumberRows: number = 0;
 
     showColourDeleteIcon: boolean = false;
     showColumnDeleteIcon: boolean = false;
@@ -1156,10 +1157,6 @@ export interface dataSchemaInterface {
         // if (graphID == 1  &&  graphShortName =='Simple Bar Chart') {
         if (graphID == 1  ||  graphID == 2  ||  graphID == 3  ||  graphID == 4  ||  graphID == 5) {
 
-            // Enhance W properties
-            // this.localWidget.graphMark = 'bar';
-            // this.localWidget.graphTitleText = this.graphTitleText;
-
             // Defaults
             if (this.localWidget.graphXtype == ''  ||  this.localWidget.graphXtype == null) {
                 this.localWidget.graphXtype = 'ordinal';
@@ -1192,6 +1189,11 @@ export interface dataSchemaInterface {
 
             // Define Specification
             specification = this.widgetGraphs[widgetGraphIndex].specification;
+
+
+            // Optional Sampling
+            specification['transform'] = [{"sample" : 10}];
+
             specification['title']['text'] = this.localWidget.graphTitleText;
             specification['title']['anchor'] = this.localWidget.graphTitleAnchor.toLowerCase();
             specification['title']['angle'] = this.localWidget.graphTitleAngle;
@@ -1215,14 +1217,10 @@ export interface dataSchemaInterface {
             // Mark
             // specification['mark']['type'] = this.localWidget.graphMark;
 
+
             // X field
             specification['encoding']['x']['field'] = this.localWidget.graphXfield;
             specification['encoding']['x']['aggregate'] = this.graphXaggregateVegaLiteName.toLowerCase();
-            // if (this.xPropertiesBin == 'True') {
-            //     specification['encoding']['x']['bin'] = true;
-            // } else {
-            //     specification['encoding']['x']['bin'] = false;
-            // };
             specification['encoding']['x']['bin'] = this.localWidget.graphXbin;
             specification['encoding']['x']['format'] = this.localWidget.graphXformat.toLowerCase();
             if (this.localWidget.graphXimpute != '') {
@@ -1261,11 +1259,6 @@ export interface dataSchemaInterface {
             // Y field
             specification['encoding']['y']['field'] = this.localWidget.graphYfield;
             specification['encoding']['y']['aggregate'] = this.graphYaggregateVegaLiteName.toLowerCase();
-            // if (this.localWidget.graphYbin == 'True') {
-            //     specification['encoding']['y']['bin'] = true;
-            // } else {
-            //     specification['encoding']['y']['bin'] = false;
-            // };
             specification['encoding']['y']['bin'] = this.localWidget.graphYbin;
             specification['encoding']['y']['format'] = this.localWidget.graphYformat.toLowerCase();
             if (this.localWidget.graphYimpute != '') {
@@ -1279,7 +1272,6 @@ export interface dataSchemaInterface {
             };
             specification['encoding']['y']['stack'] = this.localWidget.graphYstack;
             specification['encoding']['y']['sort'] = this.localWidget.graphYsort.toLowerCase();
-            // specification['encoding']['y']['type'] = this.localWidget.graphYtype;
             specification['encoding']['y']['type'] = this.localWidget.graphYtype.toLowerCase();
             specification['encoding']['y']['timeUnit'] = this.localWidget.graphYtimeUnit.toLowerCase();
 
@@ -1306,9 +1298,7 @@ export interface dataSchemaInterface {
                 specification['encoding']['y']['axis']['format'] =  this.localWidget.graphYaxisFormat;
             };
 
-
             // Color field
-            // specification['encoding']['color']['field'] = this.localWidget.graphColorField;
             specification['encoding']['color'] = {
                 "aggregate": this.graphColorAggregateVegaLiteName.toLowerCase(),
                 "bin": this.localWidget.graphColorBin,
@@ -1320,25 +1310,11 @@ export interface dataSchemaInterface {
                 "timeUnit": this.localWidget.graphColorTimeUnit.toLowerCase(),
                 "type": this.localWidget.graphColorType.toLowerCase(),
                 "scale": this.localWidget.graphColorScheme == 'None'?  null  :  {"scheme": this.localWidget.graphColorScheme.toLowerCase()}
-        };
+            };
 
-            // specification['encoding']['color'] = {
-            //     "aggregate": this.graphColorAggregateVegaLiteName.toLowerCase(),
-            //     "bin": this.localWidget.graphColorBin,
-            //     "field": this.localWidget.graphColorField,
-            //     "format": this.localWidget.graphColorFormat.toLowerCase(),
-            //     "legend": "",
-            //     "sort": this.localWidget.graphColorSort.toLowerCase(),
-            //     "stack": this.localWidget.graphColorStack.toLowerCase(),
-            //     "timeUnit": this.localWidget.graphColorTimeUnit.toLowerCase(),
-            //     "type": this.localWidget.graphColorType.toLowerCase(),
-            //     "scale": {"scheme": this.localWidget.graphColorScheme.toLowerCase()}
-            //     // "scale": this.localWidget.graphColorScheme == 'None'?  null  :  {"scheme": this.localWidget.graphColorScheme.toLowerCase() }
-
-            //   };
-              console.warn('xx this.localWidget.graphColorField', this.localWidget.graphColorField)
-              console.warn('xx this.graphColorField', this.graphColorField)
-        console.warn('xx [color]', this.localWidget.graphColorType, specification['encoding']['color']);
+            console.warn('xx this.localWidget.graphColorField', this.localWidget.graphColorField)
+            console.warn('xx this.graphColorField', this.graphColorField)
+            console.warn('xx [color]', this.localWidget.graphColorType, specification['encoding']['color']);
 
         // if (this.localWidget. != '') {
             //     if (this.localWidget. == 'Value') {
@@ -1349,19 +1325,6 @@ export interface dataSchemaInterface {
             //             {"method": "' + this.localWidget. + '"};
             //     };
             // };
-
-
-
-
-            // if (this.localWidget.graphColorScheme != '') {
-            //     if (this.localWidget.graphColorScheme == 'None') {
-            //         specification['encoding']['color']['scale'] = null;
-            //     } else {
-            //         specification['encoding']['color']['scale'] =
-            //         {"scheme": this.localWidget.graphColorScheme.toLowerCase() };
-            //     };
-            // };
-
 
             // if (!this.legendTitleCheckbox) {
             //         specification['encoding']['color'] = {

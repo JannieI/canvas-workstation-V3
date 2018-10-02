@@ -184,6 +184,25 @@ clr-dg-cell {
             overflow-y: scroll;
         }
 
+        .editorSamplingTitle {
+            grid-column-start: 20;
+            /* autoprefixer: off */
+            grid-column-end: 25;
+            grid-row-start: 7;
+            grid-row-end: 8;
+            margin-left: 10px;
+            text-align: left;
+        }
+        .editorSampling {
+            grid-column-start: 25;
+            /* autoprefixer: off */
+            grid-column-end: 26;
+            grid-row-start: 22;
+            grid-row-end: 23;
+            margin-left: 10px;
+            text-align: left;
+        }
+
         .datasourceMainButton {
             grid-column-start: 45;
             /* autoprefixer: off */

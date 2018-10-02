@@ -271,7 +271,7 @@ const widgetTemplate: Widget =
         "graphColorFormat": "",
         "graphColorImpute": "",
         "graphColorImputeValue": "",
-        "graphColorScheme": "None",
+        "graphColorScheme": "blues",
         "graphColorSort": "Default",
         "graphColorStack": "",
         "graphColorType": "",

@@ -116,6 +116,19 @@
                         </clr-datagrid>
                     </div>
 
+                    <!-- Optional Sampling -->
+                    <div class="editorSamplingTitle">
+                        Sample Number:
+                    </div>
+                    <div class="editorSampling">
+                        <input type="number"
+                            placeholder="Optional Random Sample (0 = All)"
+                            [(ngModel)]="sampleNumberRows"
+                            name="sampleNumberRows"
+                            style="border-radius: 5px; width: 100%;"
+                            >
+                    </div>
+
                     <div class="datasourceMainButton">
                         <button *ngIf="showPreview"
                             class="btn btn-sm btn-secondary datasourceButton"
