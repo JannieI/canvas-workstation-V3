@@ -210,7 +210,7 @@ export interface dataSchemaInterface {
 
     // sizeType: string = '';
     // sizeAggregate: string = '';
-    sizeBin: string = 'False';
+    // sizeBin: string = 'False';
 
     showColourDeleteIcon: boolean = false;
     showColumnDeleteIcon: boolean = false;
@@ -557,8 +557,8 @@ export interface dataSchemaInterface {
 
     // yAxisScaleType: string = 'Default';
 
-    yAxisTitle: string = '';
-    yAxisTitleCheckbox: boolean = true;
+    // yAxisTitle: string = '';
+    // yAxisTitleCheckbox: boolean = true;
     // yAxisGrid: boolean = true;
     // yAxisFormat: string = '';
     // yAxisLabels: boolean = true;
@@ -1283,11 +1283,11 @@ export interface dataSchemaInterface {
                 specification['encoding']['y']['axis']['labelAngle'] = this.localWidget.graphYaxisLabelAngle;
             };
 
-            if (!this.yAxisTitleCheckbox) {
+            if (!this.localWidget.graphYaxisTitleCheckbox) {
                 specification['encoding']['y']['axis']['title'] = null;
             } else {
-                if (this.yAxisTitle != ''  &&  this.yAxisTitle != undefined) {
-                    specification['encoding']['y']['axis']['title'] = this.yAxisTitle;
+                if (this.localWidget.graphYaxisTitle != ''  &&  this.localWidget.graphYaxisTitle != undefined) {
+                    specification['encoding']['y']['axis']['title'] = this.localWidget.graphYaxisTitle;
                 };
             };
 
@@ -1367,7 +1367,7 @@ export interface dataSchemaInterface {
                 specification['encoding']['size']['field'] = this.graphSizeField;
                 specification['encoding']['size']['type'] = this.localWidget.graphSizeType.toLowerCase();
                 specification['encoding']['size']['aggregate'] = this.localWidget.graphSizeAggregate.toLowerCase();
-                if (this.sizeBin == 'True') {
+                if (this.localWidget.graphSizeBin == 'True') {
                     specification['encoding']['size']['bin'] = true;
                 } else {
                     specification['encoding']['size']['bin'] = false;

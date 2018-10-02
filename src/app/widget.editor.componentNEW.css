@@ -1122,14 +1122,14 @@ clr-dg-cell {
                     width: 15px;
                 }
 
-                .editorgraphXaxisLabelsTitle {
+                .editorGraphXaxisLabelsTitle {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
                     width: 38px;
                 }
-                .editorgraphXaxisLabels {
+                .editorGraphXaxisLabels {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
@@ -1182,21 +1182,21 @@ clr-dg-cell {
                     width: 68%;
                 }
 
-                .editorYAxisTitleTitle {
+                .editorGraphYaxisTitleTitle {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
                     width: 38px;
                 }
-                .editorYAxisTitleCheckbox {
+                .editorGraphYaxisTitleCheckbox {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin: 3px;
                     width: 15px;
                 }
-                .editorYAxisTitle {
+                .editorGraphYaxisTitle {
                     border: 1px solid steelblue;
                     border-radius: 5px;
                     display: inline-block;
@@ -1376,14 +1376,14 @@ clr-dg-cell {
                     width: 68%;
                 }
 
-                .editorSizeBinTitle {
+                .editorGraphSizeBinTitle {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
                     width: 64px;
                 }
-                .editorSizeBin {
+                .editorGraphSizeBin {
                     border: 1px solid steelblue;
                     border-radius: 5px;
                     display: inline-block;
