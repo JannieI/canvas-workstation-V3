@@ -1165,14 +1165,14 @@ clr-dg-cell {
                     font-size: 0.5rem;
                 }
 
-                .editorYAxisScaleTypeTitle {
+                .editorGraphYaxisScaleTypeTitle {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
                     width: 64px;
                 }
-                .editorYAxisScaleType {
+                .editorGraphYaxisScaleType {
                     border: 1px solid steelblue;
                     border-radius: 5px;
                     display: inline-block;

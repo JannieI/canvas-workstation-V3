@@ -1177,14 +1177,14 @@
 
                         <!-- Y-Axis Scale Type -->
                         <div class="editorLineContainer">
-                            <div class="editorYAxisScaleTypeTitle" *ngIf="showFieldYAxis">
+                            <div class="editorGraphYaxisScaleTypeTitle" *ngIf="showFieldYAxis">
                                 Type:
                             </div>
-                            <div class="select editorYAxisScaleType"
+                            <div class="select editorGraphYaxisScaleType"
                                 *ngIf="showFieldYAxis"
                                 >
                                 <select id="selects_3"
-                                    [(ngModel)]="yAxisScaleType"
+                                    [(ngModel)]="localWidget.graphYaxisScaleType"
                                     >
                                     <option>Default</option>
                                     <option>Linear</option>

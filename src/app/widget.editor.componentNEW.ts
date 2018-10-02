@@ -555,7 +555,7 @@ export interface dataSchemaInterface {
     // yPropertiesType: string = '';
     // yPropertiesTimeUnit: string = '';
 
-    yAxisScaleType: string = 'Default';
+    // yAxisScaleType: string = 'Default';
 
     yAxisTitle: string = '';
     yAxisTitleCheckbox: boolean = true;
@@ -1272,9 +1272,9 @@ export interface dataSchemaInterface {
             specification['encoding']['y']['type'] = this.localWidget.graphYtype.toLowerCase();
             specification['encoding']['y']['timeUnit'] = this.localWidget.graphYtimeUnit.toLowerCase();
 
-            if (this.yAxisScaleType != 'Default') {
+            if (this.localWidget.graphYaxisScaleType != 'Default') {
                 specification['encoding']['y']['scale'] =
-                {"type": this.yAxisScaleType.toLowerCase() };
+                {"type": this.localWidget.graphYaxisScaleType.toLowerCase() };
             };
 
             specification['encoding']['y']['axis'] = {"grid": this.localWidget.graphYaxisGrid };

@@ -1179,14 +1179,14 @@ export class Widget {
     graphYaxisTitleCheckbox: boolean;
     
     // Legend
-    // legendTitleCheckbox
-    // legendTitle
-    // legendFormat
+    legendTitleCheckbox
+    legendTitle
+    legendFormat: string;
 
     // Size
-    // sizeType
-    // sizeAggregate
-    // sizeBin
+    sizeType: string;
+    sizeAggregate
+    sizeBin
 
     graphMark: string;
     graphMarkColor: string;
