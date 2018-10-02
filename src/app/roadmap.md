@@ -254,6 +254,20 @@ This document describes items for later versions of Canvas.
         Datasources:
         - Consider where to store, tag as sample => cannot alter and delete?
         - Reserve Bank CPI
+        - Python and R brings back data sets !!!
+        - Read from PDF tables
+        - Multi currency !!!
+        - List of all tables in spreadsheet
+        - Data refresh - can schedule refresh even to excel
+        - Don't want users to define DS
+        - Can do row-level security in DS
+        - Can del DS and then graph updates !!!
+        - Table with alternating colours
+        - Powerbi - pain with duplicate data models - MUST BE CENTRAL !!!  To maintain one file is master service nirvana. But, can only publish to where DS lives .... Many tricks or needs Sharepoint ...?
+        - Qlik slow if to many users - Gabriella
+        - Sage has no forecasting - linked data to excel then power bi
+
+        - Wikipedia via webconnector to get GDP 
         - Support desk!  Usual, ie calls per week, calls per agent, etc.  BUT, have a capturing tool ~ Canvas menu.  When a call is closed: click on menu option, add: issue + text, new dev requested + text, support needed by user + text.  This can produce powerful graphs on the three dimensions, each with nr of users per menu option.  This can be used to improve training, and new dev: the hotspots should be easily visible = area that must be fixed or enhanced or simplied to give the best bang for the next sprint.  Running the data over a timeline and marking the change as an event, one can easily see if the change has worked, and trends (ie what is getting worse / better).  I want to use this for Clarity on Canvas.
 
 
@@ -335,6 +349,9 @@ This document describes items for later versions of Canvas.
 
     Dashboard:
     ----------
+    - Have DOWN arrow to go the second page on same tab ??!!!
+    - Legend and tooltips - drag field here
+    - Import Vega spec automatically
     - relook at D export: maybe export Widgets too, plus data or at least points to data.  Amend Import to: show structure and what is valid, and if user proceeds: read Widgets to, create new records in DB, similar to ADD D and ADD W
     - show rubberband when selecting with mouse on D: mouse down and up @View controls size of pre-created Div
     - have optional authorised recipients -> can only Send a Message / Email to these and no one else.
@@ -540,6 +557,11 @@ This document describes items for later versions of Canvas.
     Shapes:
     -------
     - links (to web and other D, T)
+    - Indented bullets !!!
+    - Some points un-bulleted - ie spaces ...  Maybe get a text editor !!!
+    - Include code blocks - like Vscode style!!!
+    - Round buttons at bottom of presentation to navigate
+
     - Slicer: all ALL, NONE options to list of checkboxes (or the heading, or the caret dropdown menu)
     - make typing / changing text easier - type into box like PowerPoint
     - create a Word-like reporter (Terence uses this): Another great use would be to make a report. Not so much for display but for reading. Like a monthly report on exposures. We currently use word for that but the only difference from what you already have would beprinting in A4 format with different font and wording formats.
