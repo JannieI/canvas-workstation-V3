@@ -1192,7 +1192,9 @@ export interface dataSchemaInterface {
 
 
             // Optional Sampling
-            specification['transform'] = [{"sample" : 10}];
+            if (this.sampleNumberRows != 0) {
+                specification['transform'] = [{"sample" : this.sampleNumberRows}];
+            };
 
             specification['title']['text'] = this.localWidget.graphTitleText;
             specification['title']['anchor'] = this.localWidget.graphTitleAnchor.toLowerCase();
