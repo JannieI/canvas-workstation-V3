@@ -1207,6 +1207,21 @@ export interface dataSchemaInterface {
                         .finalize();
                 };
             };
+ 
+            // Render graph for VegaLite
+            if (graphVisualGrammar == 'Vega') {
+                if (specification != undefined) {
+                    let vegaSpecification = compile(specification).spec;
+                    let view = new View(parse(vegaSpecification));
+
+                    view.renderer('svg')
+                        .initialize(this.dragWidget.nativeElement)
+                        .width(300)
+                        .hover()
+                        .run()
+                        .finalize();
+                };
+            };
                
         } else {
             specification = {
