@@ -1430,25 +1430,26 @@ clr-dg-cell {
         .editorTypes {
             border: 1px solid gray;
             border-radius: 6px;
-            grid-column-start: 21;
+            grid-column-start: 24;
             /* autoprefixer: off */
             grid-column-end: 30;
             grid-row-start: 2;
             grid-row-end: 28;
             margin: 0px;
             margin-left: 8px;
+            overflow-y: scroll;
             padding: 4px;
             text-align: center;
-            overflow-y: scroll;
         }
             .editorTypeImages {
                 border: 1px solid black;
                 color: steelblue;
                 cursor: pointer;
                 font-size: 0.5rem;
+                height: 72px;
                 margin: 4px;
                 padding: auto;
-                width: 96%;
+                width: 92px; 
             }
 
         /* GRAPH AREA */

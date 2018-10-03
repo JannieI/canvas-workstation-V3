@@ -1450,11 +1450,12 @@
                                 (click)="showGraph(row.id)"
                                 >
                                 <i>
-                                    {{ row.shortName }}:
+                                    <!-- {{ row.shortName }}: -->
                                 </i>
                             </span>
-                            <img
-                                [style.height.px]="85"
+                            <img 
+                                [style.width.px]="90"
+                                [style.height.px]="70"
                                 [src]="row.imageUrl"
                                 (click)="showGraph(row.id)"
                             >

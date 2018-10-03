@@ -1189,7 +1189,9 @@ export interface dataSchemaInterface {
 
             // Define Specification
             specification = this.widgetGraphs[widgetGraphIndex].specification;
-
+            // specification['mark']['line'] = true; 
+            // specification['mark']['point'] = true;
+            specification['mark'] = {"type": "bar", "color": "green", "point": {"color": "red"}}
 console.warn('xx clean specification', specification);
 
             // Optional Sampling
