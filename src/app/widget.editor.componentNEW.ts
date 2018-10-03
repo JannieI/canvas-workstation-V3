@@ -242,6 +242,8 @@ export interface dataSchemaInterface {
     showGraphAreaTitle: boolean = true;
     showSelectionFilter: boolean = false;
 
+    showFieldMarkProperties: boolean = false;
+
     showPreview: boolean = false;
     showRowDeleteIcon: boolean = false;
     showType: boolean = false;
@@ -2224,7 +2226,7 @@ console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowInde
         this.showFieldXProperties = !this.showFieldXProperties;
 
         // Show / Hide indicator
-        this.changeXProperty();
+        // this.changeYProperty();
     }
 
     clickShowColorProperties() {
@@ -2235,7 +2237,18 @@ console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowInde
         this.showFieldColorProperties = !this.showFieldColorProperties;
 
         // Show / Hide indicator
-        this.changeXProperty();
+        // this.changeColorProperty();
+    }
+
+    clickShowMark() {
+        // Show Mark Properties Area
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowMark', '@Start');
+
+        // Toggle
+        this.showFieldMarkProperties = !this.showFieldMarkProperties;
+
+        // Show / Hide indicator
+        // this.changeMarkProperty();
     }
 
     changeXProperty() {
