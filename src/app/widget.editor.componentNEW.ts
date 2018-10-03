@@ -1215,15 +1215,12 @@ export interface dataSchemaInterface {
 
             // Mark
             // specification['mark']['type'] = this.widgetGraphs[widgetGraphIndex].specification['mark'];
-            specification['mark']['orient'] = this.localWidget.graphMarkOrient;
+            specification['mark']['orient'] = this.localWidget.graphMarkOrient.toLowerCase();
             specification['mark']['line'] = this.localWidget.graphMarkLine;
             specification['mark']['point'] = this.localWidget.graphMarkPoint;
             specification['mark']['color'] = this.localWidget.graphMarkColour;
             specification['mark']['cornerRadius'] = this.localWidget.graphMarkCornerRadius;
             specification['mark']['binSpacing'] = this.localWidget.graphMarkBinSpacing;
-            // specification['mark']['point'] = true;
-            // specification['mark'] = {"type": "bar", "color": "green", "point": {"color": "red"}}
-console.warn('xx clean specification', this.widgetGraphs[widgetGraphIndex].specification['mark'], specification);
 
 
             // Title
