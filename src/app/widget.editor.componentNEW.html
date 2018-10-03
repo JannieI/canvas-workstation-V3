@@ -1134,6 +1134,19 @@
                             </div>
                         </div>
 
+                        <!-- Mark Properties Bin Spacing -->
+                        <div class="editorLineContainer">
+                            <div class="editorGraphMarkBinSpacingTitle" *ngIf="showFieldMarkProperties">
+                                Spacing:
+                            </div>
+                            <div class="editorGraphMarkBinSpacing" *ngIf="showFieldMarkProperties">
+                                <input type="number"
+                                    [(ngModel)]="localWidget.graphMarkBinSpacing"
+                                    name="graphMarkBinSpacing"
+                                    placeholder="Mark corner radius"
+                                    >
+                            </div>
+                        </div>
 
                         <!-- Selection Title Bar -->
                         <div class="editorSelectionTitle"

@@ -1143,23 +1143,22 @@ clr-dg-cell {
                     margin: 3px;
                     width: 15px;
                 }
+
+                .editorGraphMarkBinSpacingTitle {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin-left: 4px;
+                    width: 38px;
+                }
+                .editorGraphMarkBinSpacing {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin: 3px;
+                    width: 15px;
+                }
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             /* Selection */
             .editorSelectionTitle {

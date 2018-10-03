@@ -1117,7 +1117,7 @@ export interface dataSchemaInterface {
 
         // Switch off initial display
         this.showGraphAreaTitle = false;
-        
+
         // Get the Vega-Lite aggregation
         this.graphXaggregateVegaLiteName = '';
         if (this.localWidget.graphXaggregate != '') {
@@ -1191,10 +1191,6 @@ export interface dataSchemaInterface {
 
             // Define Specification
             specification = this.widgetGraphs[widgetGraphIndex].specification;
-            specification['mark']['type'] = this.widgetGraphs[widgetGraphIndex].specification['mark']; 
-            // specification['mark']['point'] = true;
-            // specification['mark'] = {"type": "bar", "color": "green", "point": {"color": "red"}}
-console.warn('xx clean specification', specification);
 
 
             // Optional Sampling
@@ -1218,12 +1214,16 @@ console.warn('xx clean specification', specification);
 
 
             // Mark
-            // specification['mark']['type'] = this.localWidget.graphMark;
+            specification['mark']['type'] = this.widgetGraphs[widgetGraphIndex].specification['mark'];
             specification['mark']['orient'] = this.localWidget.graphMarkOrient;
             specification['mark']['line'] = this.localWidget.graphMarkLine;
             specification['mark']['point'] = this.localWidget.graphMarkPoint;
             specification['mark']['color'] = this.localWidget.graphMarkColour;
             specification['mark']['cornerRadius'] = this.localWidget.graphMarkCornerRadius;
+            specification['mark']['binSpacing'] = this.localWidget.graphMarkBinSpacing;
+            // specification['mark']['point'] = true;
+            // specification['mark'] = {"type": "bar", "color": "green", "point": {"color": "red"}}
+console.warn('xx clean specification', this.widgetGraphs[widgetGraphIndex].specification['mark'], specification);
 
 
             // Title
@@ -1765,7 +1765,7 @@ console.warn('xx fieldName', fieldName, this.draggedField);
         this.localWidget.graphXtype = this.defaultGraphTypeField(fieldType);
 
         console.warn('xx', this.colField);
-        
+
         // let definition = this.globalVariableService.createVegaLiteSpec(
         //     this.localWidget, graphHeight, graphWidth
         // );
