@@ -1156,290 +1156,286 @@ export interface dataSchemaInterface {
         let graphVisualGrammar: string = this.widgetGraphs[widgetGraphIndex].visualGrammar;
         let graphShortName: string = this.widgetGraphs[widgetGraphIndex].shortName;
 
-        // Create and parameter fill each defintion
-        // if (graphID == 1  &&  graphShortName =='Simple Bar Chart') {
-        if (graphID == 1  ||  graphID == 2  ||  graphID == 3  ||  graphID == 4  ||  graphID == 5) {
 
-            // Defaults
-            if (this.localWidget.graphXtype == ''  ||  this.localWidget.graphXtype == null) {
-                this.localWidget.graphXtype = 'ordinal';
-            };
-            if (this.localWidget.graphYtype == ''  ||  this.localWidget.graphYtype == null) {
-                this.localWidget.graphYtype = 'ordinal';
-            };
-            if (this.localWidget.graphColorType == ''  ||  this.localWidget.graphColorType == null) {
-                this.localWidget.graphColorType = 'ordinal';
-            };
-
-            if (this.graphColorAggregateVegaLiteName == null) {this.graphColorAggregateVegaLiteName = ""};
-            if (this.localWidget.graphColorFormat == null) {this.localWidget.graphColorFormat = ""};
-            if (this.localWidget.graphColorSort == null) {this.localWidget.graphColorSort = ""};
-            if (this.localWidget.graphColorStack == null) {this.localWidget.graphColorStack = ""};
-            if (this.localWidget.graphColorTimeUnit == null) {this.localWidget.graphColorTimeUnit = ""};
-            if (this.localWidget.graphTitleAnchor == null) {this.localWidget.graphTitleAnchor = ""}
-            if (this.localWidget.graphTitleBaseline == null) {this.localWidget.graphTitleBaseline = ""}
-            if (this.localWidget.graphTitleOrientation == null) {this.localWidget.graphTitleOrientation = ""}
-            if (this.graphXaggregateVegaLiteName == null) {this.graphXaggregateVegaLiteName = ""}
-            if (this.localWidget.graphXformat == null) {this.localWidget.graphXformat = ""}
-            if (this.localWidget.graphXsort == null) {this.localWidget.graphXsort = ""}
-            if (this.localWidget.graphXtype == null) {this.localWidget.graphXtype = ""}
-            if (this.localWidget.graphXtimeUnit == null) {this.localWidget.graphXtimeUnit = ""}
-            if (this.graphYaggregateVegaLiteName == null) {this.graphYaggregateVegaLiteName = ""}
-            if (this.localWidget.graphYformat == null) {this.localWidget.graphYformat = ""}
-            if (this.localWidget.graphYsort == null) {this.localWidget.graphYsort = ""}
-            if (this.localWidget.graphYtype == null) {this.localWidget.graphYtype = ""}
-            if (this.localWidget.graphYtimeUnit == null) {this.localWidget.graphYtimeUnit = ""}
-
-            // Define Specification
-            if (this.widgetGraphs[widgetGraphIndex].specificationType.toLowerCase() ==
-                'custom') {
-                    specification = this.widgetGraphs[widgetGraphIndex].specification;
-            } else {
-                specification = {
-                    "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
-                    "description": "A simple bar chart with embedded data.",
-                    "title": {
-                    "text": "",
-                    "anchor": "start",
-                    "angle": 0,
-                    "baseline": "top",
-                    "color": "red",
-                    "font": "",
-                    "fontSize": 10,
-                    "fontWeight": 400,
-                    "limit": 0
-                    },
-                    "data": {
-                    "values": []
-                    },
-                    "mark": {
-                    "type": "bar",
-                    "tooltip": {
-                        "content": "data"
-                    }
-                    },
-                    "encoding": {
-                    "x": {
-                        "field": "",
-                        "type": "",
-                        "axis": ""
-                    },
-                    "y": {
-                        "field": "",
-                        "type": "",
-                        "axis": ""
-                    },
-                    "color": {
-                        "field": "",
-                        "type": "",
-                        "scale": "",
-                        "legend": ""
-                    },
-                    "size": {
-                        "field": ""
-                    }
-                    }
-                };
-                specification['mark']['type'] = this.widgetGraphs[widgetGraphIndex]['mark'];
-            };
-
-            // Optional Sampling
-            if (this.sampleNumberRows != 0) {
-                specification['transform'] = [{"sample" : this.sampleNumberRows}];
-            };
-
-
-            // General
-            specification['description'] = this.localWidget.graphDescription;
-            specification['width'] = width;
-            specification['height'] = height;
-
-
-            // Data
-            if (this.localWidget.graphUrl != ""  &&  this.localWidget.graphUrl != null) {
-                specification['data'] = {"url": this.localWidget.graphUrl};
-            } else {
-                specification['data'] = {"values": this.localWidget.graphData};
-            }
-
-
-            // Mark
-            specification['mark']['orient'] = this.localWidget.graphMarkOrient.toLowerCase();
-            specification['mark']['line'] = this.localWidget.graphMarkLine;
-            specification['mark']['point'] = this.localWidget.graphMarkPoint;
-            specification['mark']['color'] = this.localWidget.graphMarkColour;
-            specification['mark']['cornerRadius'] = this.localWidget.graphMarkCornerRadius;
-            specification['mark']['binSpacing'] = this.localWidget.graphMarkBinSpacing;
-
-
-            // Title
-            specification['title']['text'] = this.localWidget.graphTitleText;
-            specification['title']['anchor'] = this.localWidget.graphTitleAnchor.toLowerCase();
-            specification['title']['angle'] = this.localWidget.graphTitleAngle;
-            specification['title']['baseline'] = this.localWidget.graphTitleBaseline.toLowerCase();
-            specification['title']['color'] = this.localWidget.graphTitleColor;
-            specification['title']['font'] = this.localWidget.graphTitleFont;
-            specification['title']['fontSize'] = this.localWidget.graphTitleFontSize;
-            specification['title']['fontWeight'] = this.localWidget.graphTitleFontWeight;
-            specification['title']['limit'] = this.localWidget.graphTitleLength;
-            specification['title']['orient'] = this.localWidget.graphTitleOrientation.toLowerCase();
-
-
-            // X field
-            specification['encoding']['x']['field'] = this.localWidget.graphXfield;
-            specification['encoding']['x']['aggregate'] = this.graphXaggregateVegaLiteName.toLowerCase();
-            specification['encoding']['x']['bin'] = this.localWidget.graphXbin;
-            specification['encoding']['x']['format'] = this.localWidget.graphXformat.toLowerCase();
-            if (this.localWidget.graphXimpute != '') {
-                if (this.localWidget.graphXimpute == 'Value') {
-                    specification['encoding']['x']['impute'] =
-                        {"value": this.localWidget.graphXimputeValue };
-                } else {
-                    specification['encoding']['x']['impute'] =
-                        {"method": this.localWidget.graphXimpute};
-                };
-            };
-            specification['encoding']['x']['stack'] = this.localWidget.graphXstack;
-            specification['encoding']['x']['sort'] = this.localWidget.graphXsort.toLowerCase();
-            specification['encoding']['x']['type'] = this.localWidget.graphXtype.toLowerCase();
-            specification['encoding']['x']['timeUnit'] = this.localWidget.graphXtimeUnit.toLowerCase();
-
-            specification['encoding']['x']['axis'] = {"grid": this.localWidget.graphXaxisGrid };
-            specification['encoding']['x']['axis']['labels'] = this.localWidget.graphXaxisLabels;
-            if (this.localWidget.graphXaxisLabelAngle != 0){
-                specification['encoding']['x']['axis']['labelAngle'] = this.localWidget.graphXaxisLabelAngle;
-            };
-
-            if (!this.localWidget.graphXaxisTitleCheckbox) {
-                specification['encoding']['x']['axis']['title'] = null;
-            } else {
-                if (this.localWidget.graphXaxisTitle != ''  &&  this.localWidget.graphXaxisTitle != undefined) {
-                    specification['encoding']['x']['axis']['title'] = this.localWidget.graphXaxisTitle;
-                };
-            };
-
-            if (this.localWidget.graphXaxisFormat != '') {
-                specification['encoding']['x']['axis']['format'] =  this.localWidget.graphXaxisFormat;
-            };
-
-
-            // Y field
-            specification['encoding']['y']['field'] = this.localWidget.graphYfield;
-            specification['encoding']['y']['aggregate'] = this.graphYaggregateVegaLiteName.toLowerCase();
-            specification['encoding']['y']['bin'] = this.localWidget.graphYbin;
-            specification['encoding']['y']['format'] = this.localWidget.graphYformat.toLowerCase();
-            if (this.localWidget.graphYimpute != '') {
-                if (this.localWidget.graphYimpute == 'Value') {
-                    specification['encoding']['y']['impute'] =
-                        {"value": this.localWidget.graphYimputeValue };
-                } else {
-                    specification['encoding']['y']['impute'] =
-                        {"method": this.localWidget.graphYimpute };
-                };
-            };
-            specification['encoding']['y']['stack'] = this.localWidget.graphYstack;
-            specification['encoding']['y']['sort'] = this.localWidget.graphYsort.toLowerCase();
-            specification['encoding']['y']['type'] = this.localWidget.graphYtype.toLowerCase();
-            specification['encoding']['y']['timeUnit'] = this.localWidget.graphYtimeUnit.toLowerCase();
-
-            if (this.localWidget.graphYaxisScaleType != 'Default') {
-                specification['encoding']['y']['scale'] =
-                {"type": this.localWidget.graphYaxisScaleType.toLowerCase() };
-            };
-
-            specification['encoding']['y']['axis'] = {"grid": this.localWidget.graphYaxisGrid };
-            specification['encoding']['y']['axis']['labels'] = this.localWidget.graphYaxisLabels;
-            if (this.localWidget.graphYaxisLabelAngle != 0){
-                specification['encoding']['y']['axis']['labelAngle'] = this.localWidget.graphYaxisLabelAngle;
-            };
-
-            if (!this.localWidget.graphYaxisTitleCheckbox) {
-                specification['encoding']['y']['axis']['title'] = null;
-            } else {
-                if (this.localWidget.graphYaxisTitle != ''  &&  this.localWidget.graphYaxisTitle != undefined) {
-                    specification['encoding']['y']['axis']['title'] = this.localWidget.graphYaxisTitle;
-                };
-            };
-
-            if (this.localWidget.graphYaxisFormat != '') {
-                specification['encoding']['y']['axis']['format'] =  this.localWidget.graphYaxisFormat;
-            };
-
-            // Color field
-            specification['encoding']['color'] = {
-                "aggregate": this.graphColorAggregateVegaLiteName.toLowerCase(),
-                "bin": this.localWidget.graphColorBin,
-                "field": this.localWidget.graphColorField,
-                "format": this.localWidget.graphColorFormat.toLowerCase(),
-                "legend": "",
-                "sort": this.localWidget.graphColorSort.toLowerCase(),
-                "stack": this.localWidget.graphColorStack.toLowerCase(),
-                "timeUnit": this.localWidget.graphColorTimeUnit.toLowerCase(),
-                "type": this.localWidget.graphColorType.toLowerCase(),
-                "scale": this.localWidget.graphColorScheme == 'None'?  null  :  {"scheme": this.localWidget.graphColorScheme.toLowerCase()}
-            };
-
-            console.warn('xx this.localWidget.graphColorField', this.localWidget.graphColorField)
-            console.warn('xx this.graphColorField', this.graphColorField)
-            console.warn('xx [color]', this.localWidget.graphColorType, specification['encoding']['color']);
-
-        // if (this.localWidget. != '') {
-            //     if (this.localWidget. == 'Value') {
-            //         specification['encoding']['color']['impute'] =
-            //             {"value":' + this.localWidget.Value + '};
-            //     } else {
-            //         specification['encoding']['color']['impute'] =
-            //             {"method": "' + this.localWidget. + '"};
-            //     };
-            // };
-
-            // if (!this.legendTitleCheckbox) {
-            //         specification['encoding']['color'] = {
-            //             "field": "",
-            //             "type": "",
-            //             "scale": "",
-            //             "legend": ""
-            //           };
-            // } else {
-            //     if (this.legendTitle != ''  &&  this.legendTitle != undefined) {
-            //         specification['encoding']['color'] =
-            //             {"legend" : {"title": this.legendTitle} };
-            //     } else {
-            //         specification['encoding']['color'] =
-            //             {"legend" : "" };
-
-            //     };
-            // };
-
-
-            // Size field
-            if (this.graphSizeField != ''
-                &&  this.graphSizeField.toLowerCase() != 'drag a field here ...'
-                &&  this.graphSizeField != undefined) {
-                console.warn('xx sizeFiled', this.graphSizeField);
-
-                specification['encoding']['size']['field'] = this.graphSizeField;
-                specification['encoding']['size']['type'] = this.localWidget.graphSizeType.toLowerCase();
-                specification['encoding']['size']['aggregate'] = this.localWidget.graphSizeAggregate.toLowerCase();
-                if (this.localWidget.graphSizeBin == 'True') {
-                    specification['encoding']['size']['bin'] = true;
-                } else {
-                    specification['encoding']['size']['bin'] = false;
-                };
-
-
-            } else {
-            specification['encoding']['size'] = {
-                "field": ""
-              };
-            };
-
-            // Tooltip setting
-            // specification['mark']['tooltip']['content'] = "";
-
-            // specification['mark']['type'] = "point";
-
+        // Defaults
+        if (this.localWidget.graphXtype == ''  ||  this.localWidget.graphXtype == null) {
+            this.localWidget.graphXtype = 'ordinal';
         };
+        if (this.localWidget.graphYtype == ''  ||  this.localWidget.graphYtype == null) {
+            this.localWidget.graphYtype = 'ordinal';
+        };
+        if (this.localWidget.graphColorType == ''  ||  this.localWidget.graphColorType == null) {
+            this.localWidget.graphColorType = 'ordinal';
+        };
+
+        if (this.graphColorAggregateVegaLiteName == null) {this.graphColorAggregateVegaLiteName = ""};
+        if (this.localWidget.graphColorFormat == null) {this.localWidget.graphColorFormat = ""};
+        if (this.localWidget.graphColorSort == null) {this.localWidget.graphColorSort = ""};
+        if (this.localWidget.graphColorStack == null) {this.localWidget.graphColorStack = ""};
+        if (this.localWidget.graphColorTimeUnit == null) {this.localWidget.graphColorTimeUnit = ""};
+        if (this.localWidget.graphTitleAnchor == null) {this.localWidget.graphTitleAnchor = ""}
+        if (this.localWidget.graphTitleBaseline == null) {this.localWidget.graphTitleBaseline = ""}
+        if (this.localWidget.graphTitleOrientation == null) {this.localWidget.graphTitleOrientation = ""}
+        if (this.graphXaggregateVegaLiteName == null) {this.graphXaggregateVegaLiteName = ""}
+        if (this.localWidget.graphXformat == null) {this.localWidget.graphXformat = ""}
+        if (this.localWidget.graphXsort == null) {this.localWidget.graphXsort = ""}
+        if (this.localWidget.graphXtype == null) {this.localWidget.graphXtype = ""}
+        if (this.localWidget.graphXtimeUnit == null) {this.localWidget.graphXtimeUnit = ""}
+        if (this.graphYaggregateVegaLiteName == null) {this.graphYaggregateVegaLiteName = ""}
+        if (this.localWidget.graphYformat == null) {this.localWidget.graphYformat = ""}
+        if (this.localWidget.graphYsort == null) {this.localWidget.graphYsort = ""}
+        if (this.localWidget.graphYtype == null) {this.localWidget.graphYtype = ""}
+        if (this.localWidget.graphYtimeUnit == null) {this.localWidget.graphYtimeUnit = ""}
+
+        // Define Specification
+        if (this.widgetGraphs[widgetGraphIndex].specificationType.toLowerCase() ==
+            'custom') {
+                specification = this.widgetGraphs[widgetGraphIndex].specification;
+        } else {
+            specification = {
+                "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+                "description": "A simple bar chart with embedded data.",
+                "title": {
+                "text": "",
+                "anchor": "start",
+                "angle": 0,
+                "baseline": "top",
+                "color": "red",
+                "font": "",
+                "fontSize": 10,
+                "fontWeight": 400,
+                "limit": 0
+                },
+                "data": {
+                "values": []
+                },
+                "mark": {
+                "type": "bar",
+                "tooltip": {
+                    "content": "data"
+                }
+                },
+                "encoding": {
+                "x": {
+                    "field": "",
+                    "type": "",
+                    "axis": ""
+                },
+                "y": {
+                    "field": "",
+                    "type": "",
+                    "axis": ""
+                },
+                "color": {
+                    "field": "",
+                    "type": "",
+                    "scale": "",
+                    "legend": ""
+                },
+                "size": {
+                    "field": ""
+                }
+                }
+            };
+            specification['mark']['type'] = this.widgetGraphs[widgetGraphIndex]['mark'];
+        };
+
+        // Optional Sampling
+        if (this.sampleNumberRows != 0) {
+            specification['transform'] = [{"sample" : this.sampleNumberRows}];
+        };
+
+
+        // General
+        specification['description'] = this.localWidget.graphDescription;
+        specification['width'] = width;
+        specification['height'] = height;
+
+
+        // Data
+        if (this.localWidget.graphUrl != ""  &&  this.localWidget.graphUrl != null) {
+            specification['data'] = {"url": this.localWidget.graphUrl};
+        } else {
+            specification['data'] = {"values": this.localWidget.graphData};
+        }
+
+
+        // Mark
+        specification['mark']['orient'] = this.localWidget.graphMarkOrient.toLowerCase();
+        specification['mark']['line'] = this.localWidget.graphMarkLine;
+        specification['mark']['point'] = this.localWidget.graphMarkPoint;
+        specification['mark']['color'] = this.localWidget.graphMarkColour;
+        specification['mark']['cornerRadius'] = this.localWidget.graphMarkCornerRadius;
+        specification['mark']['binSpacing'] = this.localWidget.graphMarkBinSpacing;
+
+
+        // Title
+        specification['title']['text'] = this.localWidget.graphTitleText;
+        specification['title']['anchor'] = this.localWidget.graphTitleAnchor.toLowerCase();
+        specification['title']['angle'] = this.localWidget.graphTitleAngle;
+        specification['title']['baseline'] = this.localWidget.graphTitleBaseline.toLowerCase();
+        specification['title']['color'] = this.localWidget.graphTitleColor;
+        specification['title']['font'] = this.localWidget.graphTitleFont;
+        specification['title']['fontSize'] = this.localWidget.graphTitleFontSize;
+        specification['title']['fontWeight'] = this.localWidget.graphTitleFontWeight;
+        specification['title']['limit'] = this.localWidget.graphTitleLength;
+        specification['title']['orient'] = this.localWidget.graphTitleOrientation.toLowerCase();
+
+
+        // X field
+        specification['encoding']['x']['field'] = this.localWidget.graphXfield;
+        specification['encoding']['x']['aggregate'] = this.graphXaggregateVegaLiteName.toLowerCase();
+        specification['encoding']['x']['bin'] = this.localWidget.graphXbin;
+        specification['encoding']['x']['format'] = this.localWidget.graphXformat.toLowerCase();
+        if (this.localWidget.graphXimpute != '') {
+            if (this.localWidget.graphXimpute == 'Value') {
+                specification['encoding']['x']['impute'] =
+                    {"value": this.localWidget.graphXimputeValue };
+            } else {
+                specification['encoding']['x']['impute'] =
+                    {"method": this.localWidget.graphXimpute};
+            };
+        };
+        specification['encoding']['x']['stack'] = this.localWidget.graphXstack;
+        specification['encoding']['x']['sort'] = this.localWidget.graphXsort.toLowerCase();
+        specification['encoding']['x']['type'] = this.localWidget.graphXtype.toLowerCase();
+        specification['encoding']['x']['timeUnit'] = this.localWidget.graphXtimeUnit.toLowerCase();
+
+        specification['encoding']['x']['axis'] = {"grid": this.localWidget.graphXaxisGrid };
+        specification['encoding']['x']['axis']['labels'] = this.localWidget.graphXaxisLabels;
+        if (this.localWidget.graphXaxisLabelAngle != 0){
+            specification['encoding']['x']['axis']['labelAngle'] = this.localWidget.graphXaxisLabelAngle;
+        };
+
+        if (!this.localWidget.graphXaxisTitleCheckbox) {
+            specification['encoding']['x']['axis']['title'] = null;
+        } else {
+            if (this.localWidget.graphXaxisTitle != ''  &&  this.localWidget.graphXaxisTitle != undefined) {
+                specification['encoding']['x']['axis']['title'] = this.localWidget.graphXaxisTitle;
+            };
+        };
+
+        if (this.localWidget.graphXaxisFormat != '') {
+            specification['encoding']['x']['axis']['format'] =  this.localWidget.graphXaxisFormat;
+        };
+
+
+        // Y field
+        specification['encoding']['y']['field'] = this.localWidget.graphYfield;
+        specification['encoding']['y']['aggregate'] = this.graphYaggregateVegaLiteName.toLowerCase();
+        specification['encoding']['y']['bin'] = this.localWidget.graphYbin;
+        specification['encoding']['y']['format'] = this.localWidget.graphYformat.toLowerCase();
+        if (this.localWidget.graphYimpute != '') {
+            if (this.localWidget.graphYimpute == 'Value') {
+                specification['encoding']['y']['impute'] =
+                    {"value": this.localWidget.graphYimputeValue };
+            } else {
+                specification['encoding']['y']['impute'] =
+                    {"method": this.localWidget.graphYimpute };
+            };
+        };
+        specification['encoding']['y']['stack'] = this.localWidget.graphYstack;
+        specification['encoding']['y']['sort'] = this.localWidget.graphYsort.toLowerCase();
+        specification['encoding']['y']['type'] = this.localWidget.graphYtype.toLowerCase();
+        specification['encoding']['y']['timeUnit'] = this.localWidget.graphYtimeUnit.toLowerCase();
+
+        if (this.localWidget.graphYaxisScaleType != 'Default') {
+            specification['encoding']['y']['scale'] =
+            {"type": this.localWidget.graphYaxisScaleType.toLowerCase() };
+        };
+
+        specification['encoding']['y']['axis'] = {"grid": this.localWidget.graphYaxisGrid };
+        specification['encoding']['y']['axis']['labels'] = this.localWidget.graphYaxisLabels;
+        if (this.localWidget.graphYaxisLabelAngle != 0){
+            specification['encoding']['y']['axis']['labelAngle'] = this.localWidget.graphYaxisLabelAngle;
+        };
+
+        if (!this.localWidget.graphYaxisTitleCheckbox) {
+            specification['encoding']['y']['axis']['title'] = null;
+        } else {
+            if (this.localWidget.graphYaxisTitle != ''  &&  this.localWidget.graphYaxisTitle != undefined) {
+                specification['encoding']['y']['axis']['title'] = this.localWidget.graphYaxisTitle;
+            };
+        };
+
+        if (this.localWidget.graphYaxisFormat != '') {
+            specification['encoding']['y']['axis']['format'] =  this.localWidget.graphYaxisFormat;
+        };
+
+        // Color field
+        specification['encoding']['color'] = {
+            "aggregate": this.graphColorAggregateVegaLiteName.toLowerCase(),
+            "bin": this.localWidget.graphColorBin,
+            "field": this.localWidget.graphColorField,
+            "format": this.localWidget.graphColorFormat.toLowerCase(),
+            "legend": "",
+            "sort": this.localWidget.graphColorSort.toLowerCase(),
+            "stack": this.localWidget.graphColorStack.toLowerCase(),
+            "timeUnit": this.localWidget.graphColorTimeUnit.toLowerCase(),
+            "type": this.localWidget.graphColorType.toLowerCase(),
+            "scale": this.localWidget.graphColorScheme == 'None'?  null  :  {"scheme": this.localWidget.graphColorScheme.toLowerCase()}
+        };
+
+        console.warn('xx this.localWidget.graphColorField', this.localWidget.graphColorField)
+        console.warn('xx this.graphColorField', this.graphColorField)
+        console.warn('xx [color]', this.localWidget.graphColorType, specification['encoding']['color']);
+
+    // if (this.localWidget. != '') {
+        //     if (this.localWidget. == 'Value') {
+        //         specification['encoding']['color']['impute'] =
+        //             {"value":' + this.localWidget.Value + '};
+        //     } else {
+        //         specification['encoding']['color']['impute'] =
+        //             {"method": "' + this.localWidget. + '"};
+        //     };
+        // };
+
+        // if (!this.legendTitleCheckbox) {
+        //         specification['encoding']['color'] = {
+        //             "field": "",
+        //             "type": "",
+        //             "scale": "",
+        //             "legend": ""
+        //           };
+        // } else {
+        //     if (this.legendTitle != ''  &&  this.legendTitle != undefined) {
+        //         specification['encoding']['color'] =
+        //             {"legend" : {"title": this.legendTitle} };
+        //     } else {
+        //         specification['encoding']['color'] =
+        //             {"legend" : "" };
+
+        //     };
+        // };
+
+
+        // Size field
+        if (this.graphSizeField != ''
+            &&  this.graphSizeField.toLowerCase() != 'drag a field here ...'
+            &&  this.graphSizeField != undefined) {
+            console.warn('xx sizeFiled', this.graphSizeField);
+
+            specification['encoding']['size']['field'] = this.graphSizeField;
+            specification['encoding']['size']['type'] = this.localWidget.graphSizeType.toLowerCase();
+            specification['encoding']['size']['aggregate'] = this.localWidget.graphSizeAggregate.toLowerCase();
+            if (this.localWidget.graphSizeBin == 'True') {
+                specification['encoding']['size']['bin'] = true;
+            } else {
+                specification['encoding']['size']['bin'] = false;
+            };
+
+
+        } else {
+        specification['encoding']['size'] = {
+            "field": ""
+            };
+        };
+
+        // Tooltip setting
+        // specification['mark']['tooltip']['content'] = "";
+
+        // specification['mark']['type'] = "point";
+
 
 console.warn('xx specification', specification);
 
