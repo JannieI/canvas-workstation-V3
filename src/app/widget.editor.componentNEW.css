@@ -1128,6 +1128,21 @@ clr-dg-cell {
                     margin: 3px;
                     width: 68%;
                 }
+
+                .editorGraphMarkCornerRadiusTitle {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin-left: 4px;
+                    width: 38px;
+                }
+                .editorGraphMarkCornerRadius {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin: 3px;
+                    width: 15px;
+                }
     
 
 
