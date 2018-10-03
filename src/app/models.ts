@@ -1195,7 +1195,8 @@ export class Widget {
     graphMarkPoint: boolean;
     graphMarkColourName: string;
     graphMarkColour: string;
-    
+    graphMarkCornerRadius: number;
+
     graphUrl: string;
     graphData: any;
 
