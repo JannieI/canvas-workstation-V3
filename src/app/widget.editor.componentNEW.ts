@@ -1214,7 +1214,7 @@ export interface dataSchemaInterface {
 
 
             // Mark
-            specification['mark']['type'] = this.widgetGraphs[widgetGraphIndex].specification['mark'];
+            // specification['mark']['type'] = this.widgetGraphs[widgetGraphIndex].specification['mark'];
             specification['mark']['orient'] = this.localWidget.graphMarkOrient;
             specification['mark']['line'] = this.localWidget.graphMarkLine;
             specification['mark']['point'] = this.localWidget.graphMarkPoint;
