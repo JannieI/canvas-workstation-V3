@@ -1145,6 +1145,7 @@ export interface dataSchemaInterface {
             this.errorMessage = 'Graph type id = ' + graphID + ' does not exist in the DB';
             return;
         }
+    console.warn('xx', widgetGraphIndex,  this.widgetGraphs[widgetGraphIndex].shortName);
 
         console.warn('xx this.localWidget', this.localWidget);
 
@@ -1190,8 +1191,57 @@ export interface dataSchemaInterface {
             if (this.localWidget.graphYtimeUnit == null) {this.localWidget.graphYtimeUnit = ""}
 
             // Define Specification
-            specification = this.widgetGraphs[widgetGraphIndex].specification;
-
+            if (this.widgetGraphs[widgetGraphIndex].specificationType.toLowerCase() ==
+                'custom') {
+                    specification = this.widgetGraphs[widgetGraphIndex].specification;
+            } else {
+                specification = {
+                    "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+                    "description": "A simple bar chart with embedded data.",
+                    "title": {
+                    "text": "",
+                    "anchor": "start",
+                    "angle": 0,
+                    "baseline": "top",
+                    "color": "red",
+                    "font": "",
+                    "fontSize": 10,
+                    "fontWeight": 400,
+                    "limit": 0
+                    },
+                    "data": {
+                    "values": []
+                    },
+                    "mark": {
+                    "type": "bar",
+                    "tooltip": {
+                        "content": "data"
+                    }
+                    },
+                    "encoding": {
+                    "x": {
+                        "field": "",
+                        "type": "",
+                        "axis": ""
+                    },
+                    "y": {
+                        "field": "",
+                        "type": "",
+                        "axis": ""
+                    },
+                    "color": {
+                        "field": "",
+                        "type": "",
+                        "scale": "",
+                        "legend": ""
+                    },
+                    "size": {
+                        "field": ""
+                    }
+                    }
+                };
+                specification['mark']['type'] = this.widgetGraphs[widgetGraphIndex]['mark'];
+            };
 
             // Optional Sampling
             if (this.sampleNumberRows != 0) {
@@ -1214,7 +1264,6 @@ export interface dataSchemaInterface {
 
 
             // Mark
-            // specification['mark']['type'] = this.widgetGraphs[widgetGraphIndex].specification['mark'];
             specification['mark']['orient'] = this.localWidget.graphMarkOrient.toLowerCase();
             specification['mark']['line'] = this.localWidget.graphMarkLine;
             specification['mark']['point'] = this.localWidget.graphMarkPoint;
@@ -1389,27 +1438,6 @@ export interface dataSchemaInterface {
             // specification['mark']['tooltip']['content'] = "";
 
             // specification['mark']['type'] = "point";
-
-        };
-        if (graphID == 2222  &&  graphShortName =='Area Chart') {
-
-            // Enhance W properties
-            this.localWidget.graphMark = 'area';
-
-            // Define Specification
-            specification = this.widgetGraphs[widgetGraphIndex].specification;
-            if (this.localWidget.graphUrl != ""  &&  this.localWidget.graphUrl != null) {
-                specification['data'] = {"url": this.localWidget.graphUrl};
-            } else {
-                specification['data'] = {"values": this.localWidget.graphData};
-            };
-            specification['description'] = this.localWidget.graphDescription;
-            specification['width'] = width;
-            specification['height'] = height;
-            specification['encoding']['x']['field'] = this.localWidget.graphXfield;
-            specification['encoding']['x']['type'] = this.localWidget.graphXtype;
-            specification['encoding']['y']['field'] = this.localWidget.graphYfield;
-            specification['encoding']['y']['type'] = this.localWidget.graphYtype;
 
         };
 

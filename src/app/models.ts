@@ -1281,6 +1281,9 @@ export class WidgetGraph {
     visualGrammar: string;              // Vega-Lite, Vega, etc
     visualGrammarVersion: number;       // Version, ie 2.0
     shortName: string;                  // Short name to display
+    specificationType: string;          // Type of spec: standard (ie bar) which uses spec 
+                        // defined in code, custom (use specification specified here)
+    mark: string;                       // Vega-lite: area, bar, line, etc
     specification: any;                 // Grammar spec (template)
     imageUrl: string;                   // Url where image lives
 
