@@ -304,6 +304,8 @@ const widgetTemplate: Widget =
         "graphMarkOrient": "Verticle",
         "graphMarkLine": false,
         "graphMarkPoint": false,
+        "graphMarkColourName": "",
+        "graphMarkColour": "",
 
         "graphUrl": "",
         "graphData": "",

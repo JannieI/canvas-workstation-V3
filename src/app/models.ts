@@ -1193,6 +1193,9 @@ export class Widget {
     graphMarkOrient: string;
     graphMarkLine: boolean;
     graphMarkPoint: boolean;
+    graphMarkColourName: string;
+    graphMarkColour: string;
+    
     graphUrl: string;
     graphData: any;
 
