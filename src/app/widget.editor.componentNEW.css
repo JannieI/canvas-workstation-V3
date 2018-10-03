@@ -1049,15 +1049,15 @@ clr-dg-cell {
 
 
 
-            /* Filter Properties */
-            .editorFilterTitle {
+            /* Mark Properties */
+            .editorMarkTitle {
                 background-color: rgb(211, 209, 226);
                 border: 1px solid lightgray;
                 border-radius: 3px;
                 font-size: 0.5rem;
                 margin-top: 5px;
             }
-                .editorFilter {
+                .editorMark {
                     font-size: 0.5rem;
                 }
 
