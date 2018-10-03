@@ -1129,6 +1129,7 @@ export class Widget {
     graphXaggregate: string;
     graphXtimeUnit: string;
     graphXbin: boolean;
+    graphXMaxBins: number;
     graphXformat: string;
     graphXimpute: string;
     graphXimputeValue: string;

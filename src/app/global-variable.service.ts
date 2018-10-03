@@ -246,6 +246,7 @@ const widgetTemplate: Widget =
         "graphXfield": "",
         "graphXaggregate": "",
         "graphXbin": false,
+        "graphXMaxBins": 0,
         "graphXformat": "",
         "graphXimpute": "",
         "graphXimputeValue": "0",

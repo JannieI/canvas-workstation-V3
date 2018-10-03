@@ -562,14 +562,18 @@
                                     name="graphXbin"
                                     title="Bin the X field (T/F)"
                                     >
-
-                                <!-- <select id="selects_3"
-                                    [(ngModel)]="localWidget.graphXbin"
-                                    name="localWidget.graphXbin"
+                            </div>
+                            <div class="editorGraphXbinMaxTitle" *ngIf="showFieldXProperties">
+                                Max bins:
+                            </div>
+                            
+                            <div class="editorGraphXbinMax" *ngIf="showFieldXProperties">
+                                <input type="number"
+                                    placeholder="Max nr of bins"
+                                    size="5"
+                                    [(ngModel)]="localWidget.graphXMaxBins"
+                                    name="graphXMaxBins"
                                     >
-                                    <option>False</option>
-                                    <option>True</option>
-                                </select> -->
                             </div>
                         </div>
 

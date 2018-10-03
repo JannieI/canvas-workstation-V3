@@ -608,6 +608,22 @@ clr-dg-cell {
                     margin: 3px;
                     width: 15px;
                 }
+                .editorGraphXbinMaxTitle {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin-left: 4px;
+                    width: 64px;
+                }
+                .editorGraphXbinMax {
+                    /* border: 1px solid steelblue;
+                    border-radius: 5px; */
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin: 3px;
+                    width: 35px;
+                }
 
                 .editorGraphXformatTitle {
                     display: inline-block;
@@ -1530,9 +1546,9 @@ clr-dg-cell {
         .editorTypes {
             border: 1px solid gray;
             border-radius: 6px;
-            grid-column-start: 24;
+            grid-column-start: 23;
             /* autoprefixer: off */
-            grid-column-end: 30;
+            grid-column-end: 29;
             grid-row-start: 2;
             grid-row-end: 28;
             margin: 0px;
@@ -1563,7 +1579,8 @@ clr-dg-cell {
             text-align: left;
         }
         .editorArea {
-            grid-column-start: 31;
+            border-radius: 6px;
+            grid-column-start: 30;
             /* autoprefixer: off */
             grid-column-end: 50;
             grid-row-start: 2;

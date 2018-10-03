@@ -1320,6 +1320,9 @@ export interface dataSchemaInterface {
             specification['encoding']['x']['field'] = this.localWidget.graphXfield;
             specification['encoding']['x']['aggregate'] = this.graphXaggregateVegaLiteName.toLowerCase();
             specification['encoding']['x']['bin'] = this.localWidget.graphXbin;
+            if (this.localWidget.graphXMaxBins > 0) {
+                specification['encoding']['x']['bin']['maxbins'] = this.localWidget.graphXMaxBins;                
+            };
             specification['encoding']['x']['format'] = this.localWidget.graphXformat.toLowerCase();
             if (this.localWidget.graphXimpute != '') {
                 if (this.localWidget.graphXimpute == 'Value') {
