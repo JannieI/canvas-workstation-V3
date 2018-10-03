@@ -1472,9 +1472,17 @@ clr-dg-cell {
             overflow-x: scroll;
         }
         .editorFilter {
-            grid-column-start: 32;
+            grid-column-start: 34;
             /* autoprefixer: off */
-            grid-column-end: 35;
+            grid-column-end: 36;
+            grid-row-start: 21;
+            grid-row-end: 22;
+            text-align: left;
+        }
+        .editorSelection {
+            grid-column-start: 42;
+            /* autoprefixer: off */
+            grid-column-end: 45;
             grid-row-start: 21;
             grid-row-end: 22;
             text-align: left;
