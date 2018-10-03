@@ -1101,15 +1101,15 @@
                             </div>
                         </div>
 
-                        <!-- Mark Properties  -->
+                        <!-- Mark Properties Color -->
                         <div class="editorLineContainer">
-                            <div class="editorTitleColourTitle" *ngIf="showFieldMarkProperties">
+                            <div class="editorGraphMarkColourTitle" *ngIf="showFieldMarkProperties">
                             Color:
                             </div>
-                            <div class="select editorTitleColour" *ngIf="showFieldMarkProperties">
-                                <select [(ngModel)]="localWidget.graphTitleColorName"
-                                    name="graphTitleColorName"
-                                    (change)="clickSelectTitleColor($event)"
+                            <div class="select editorGraphMarkColour" *ngIf="showFieldMarkProperties">
+                                <select [(ngModel)]="localWidget.graphMarkColourName"
+                                    name="graphMarkColourName"
+                                    (change)="clickSelectMarkColour($event)"
                                     >
                                     <option *ngFor="let row of backgroundcolors"
                                         [style.background-color]="row.cssCode"

@@ -1112,6 +1112,23 @@ clr-dg-cell {
                     width: 15px;
                 }
 
+                .editorGraphMarkColourTitle {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin-left: 4px;
+                    width: 42x;
+                }
+                .editorGraphMarkColour {
+                    border: 1px solid steelblue;
+                    border-radius: 5px;
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.5rem;
+                    margin: 3px;
+                    width: 68%;
+                }
+    
 
 
 
