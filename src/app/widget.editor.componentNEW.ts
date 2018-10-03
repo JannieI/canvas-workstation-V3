@@ -1192,7 +1192,8 @@ export interface dataSchemaInterface {
             'custom') {
                 
             specification = this.widgetGraphs[widgetGraphIndex].specification;
- 
+                console.warn('xx vega specification', specification);
+                
             // Render graph for Vega-Lite
             if (graphVisualGrammar == 'Vega-Lite') {
                 if (specification != undefined) {
@@ -1208,11 +1209,13 @@ export interface dataSchemaInterface {
                 };
             };
  
-            // Render graph for VegaLite
+            // Render graph for Veg
             if (graphVisualGrammar == 'Vega') {
+                console.warn('xx Vega render');
+                
                 if (specification != undefined) {
-                    let vegaSpecification = compile(specification).spec;
-                    let view = new View(parse(vegaSpecification));
+                    
+                    let view = new View(parse(specification));
 
                     view.renderer('svg')
                         .initialize(this.dragWidget.nativeElement)

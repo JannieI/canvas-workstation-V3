@@ -295,6 +295,8 @@ clr-dg-cell {
             text-align: left;
         }
         .editorFields {
+            border: 1px solid gray;
+            border-radius: 6px;
             grid-column-start: 1;
             /* autoprefixer: off */
             grid-column-end: 10;
@@ -311,7 +313,7 @@ clr-dg-cell {
 
         /* PROPERTIES */
         .editorPropertiesTitle {
-            grid-column-start: 14;
+            grid-column-start: 15;
             /* autoprefixer: off */
             grid-column-end: 21;
             grid-row-start: 1;
@@ -322,9 +324,9 @@ clr-dg-cell {
         .editorProperties {
             border: 1px solid gray;
             border-radius: 6px;
-            grid-column-start: 10;
+            grid-column-start: 11;
             /* autoprefixer: off */
-            grid-column-end: 21;
+            grid-column-end: 22;
             grid-row-start: 2;
             grid-row-end: 28;
             margin-left: 8px;
