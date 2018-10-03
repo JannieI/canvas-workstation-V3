@@ -202,7 +202,7 @@ export class ContainerStyle {
     containerBackgroundcolorName: string    // Name - CSS (ie black) or Custome Name (Our company blue)
     containerBorderColour: string;          // Actual colour (CSS name or HEX code)
     containerBorderColourName: string;      // Name - CSS (ie black) or Custome Name (Our company blue)
-    containerBorderRadius: string;          // Border radius in px      
+    containerBorderRadius: string;          // Border radius in px
     containerBorderSize: string;            // Size of border in px
     containerBorderType: string;            // Type of border, dotted or solid
     containerBoxshadow: string;             // Border shadow, ie 2px 2px gray
@@ -1084,11 +1084,11 @@ export class Widget {
 
     // Title
     titleText: string;                  // Text, can include HTML & keywords (##today##)
-    titleBackgroundColor: string;       // Actual colour (CSS name or HEX code)  
+    titleBackgroundColor: string;       // Actual colour (CSS name or HEX code)
     titleBackgroundColorName: string;   // Name - CSS (ie black) or Custome Name (Our company blue)
     titleBorder: string;                // CSS SPEC, ie 1px solid black
     titleBorderName: string;            // Name - CSS (ie black) or Custome Name (Our company blue)
-    titleColor: string;                 // Actual colour (CSS name or HEX code)  
+    titleColor: string;                 // Actual colour (CSS name or HEX code)
     titleColorName: string;             // Name - CSS (ie black) or Custome Name (Our company blue)
     titleFontsize: number;              // in px (for later use)
     titleFontWeight: string;            //   (for later use)
@@ -1136,7 +1136,7 @@ export class Widget {
     graphXsort: string;
     graphXtype: string;
 
-    // Y 
+    // Y
     graphYfield: string;
     graphYaggregate: string;
     graphYbin: boolean;
@@ -1164,7 +1164,7 @@ export class Widget {
     // X Axis
     graphXaxisFormat: string;
     graphXaxisGrid: boolean;
-    graphXaxisLabelAngle: number;    
+    graphXaxisLabelAngle: number;
     graphXaxisLabels: boolean;
     graphXaxisTitle: string;
     graphXaxisTitleCheckbox: boolean;
@@ -1177,7 +1177,7 @@ export class Widget {
     graphYaxisScaleType: string;
     graphYaxisTitle: string;
     graphYaxisTitleCheckbox: boolean;
-    
+
     // Legend
     graphLegendTitleCheckbox
     graphLegendTitle
@@ -1188,14 +1188,16 @@ export class Widget {
     graphSizeAggregate
     graphSizeBin
 
+    // Mark
     graphMark: string;
+    graphMarkOrient: string;
     graphUrl: string;
     graphData: any;
 
     // Table - to be determined later ...
-    tableBackgroundColor: string;       // Actual colour (CSS name or HEX code)  
+    tableBackgroundColor: string;       // Actual colour (CSS name or HEX code)
     tableBackgroundColorName: string;   // Name - CSS (ie black) or Custome Name (Our company blue)
-    tableColor: string;                 // Actual colour (CSS name or HEX code)  
+    tableColor: string;                 // Actual colour (CSS name or HEX code)
     tableColorName: string;             // Name - CSS (ie black) or Custome Name (Our company blue)
     tableCols: number;                  // Nr of cols, 0 means all
     fontSize: number;                   // Font size of text
