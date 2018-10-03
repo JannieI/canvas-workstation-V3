@@ -302,6 +302,8 @@ const widgetTemplate: Widget =
     
         "graphMark": "tick",
         "graphMarkOrient": "Verticle",
+        "graphMarkLine": false,
+
         "graphUrl": "",
         "graphData": "",
         "tableBackgroundColor" : "",
