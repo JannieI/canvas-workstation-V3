@@ -1040,18 +1040,18 @@
                         </div>
 
 
-                        <!-- Filter Title Bar -->
-                        <div class="editorFilterTitle"
-                            (click)="clickShowFilter()"
+                        <!-- Mark Title Bar -->
+                        <div class="editorMarkTitle"
+                            (click)="clickShowMark()"
                             >
                             <b>
-                                Filter
+                                Mark
                             </b>
-                            <clr-icon shape="angle down" *ngIf="!showFieldFilter"
+                            <clr-icon shape="angle down" *ngIf="!showFieldMark"
                                 size="12"
                                 >
                             </clr-icon>
-                            <clr-icon shape="angle up" *ngIf="showFieldFilter"
+                            <clr-icon shape="angle up" *ngIf="showFieldMark"
                                 size="12"
                                 >
                             </clr-icon>
@@ -1491,30 +1491,32 @@
                     <!-- SELECTION -->
                     <div class="editorSelection">
                         <button
+                            style="border: 1px solid gray; color: gray;"            
                             class="btn btn-sm btn-secondary"
                             (click)="clickShowDatasources()"
                             >
+                            Selection
                             <clr-icon (click)="clickShowDatasources()"
                                 shape="angle up"
                                 size="12"
                                 >
                             </clr-icon>
-                            Selection
                         </button>
                     </div>
                                         
                     <!-- BUTTONS -->
                     <div class="editorButtonShowData">
                         <button
+                            style="border: 1px solid gray; color: gray;"
                             class="btn btn-sm btn-secondary"
                             (click)="clickShowDatasources()"
                             >
+                            Show Data
                             <clr-icon (click)="clickShowDatasources()"
                                 shape="angle left"
                                 size="18"
                                 >
                             </clr-icon>
-                            Show Data
                         </button>
                     </div>
                     <div class="editorButtonCancel">
