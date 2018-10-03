@@ -1061,6 +1061,39 @@ clr-dg-cell {
                     font-size: 0.5rem;
                 }
 
+                .editorGraphMarkOrientTitle {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin-left: 4px;
+                    width: 64px;
+                }
+                .editorGraphMarkOrient {
+                    border: 1px solid steelblue;
+                    border-radius: 5px;
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin: 3px;
+                    width: 68%;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             /* Selection */
             .editorSelectionTitle {

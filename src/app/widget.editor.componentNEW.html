@@ -1047,40 +1047,38 @@
                             <b>
                                 Mark
                             </b>
-                            <clr-icon shape="angle down" *ngIf="!showFieldMark"
+                            <clr-icon shape="angle down" *ngIf="!showFieldMarkProperties"
                                 size="12"
                                 >
                             </clr-icon>
-                            <clr-icon shape="angle up" *ngIf="showFieldMark"
+                            <clr-icon shape="angle up" *ngIf="showFieldMarkProperties"
                                 size="12"
                                 >
                             </clr-icon>
                         </div>
 
-                        <!-- Mark Properties type -->
+                        <!-- Mark Properties Orient -->
                         <div class="editorLineContainer">
-                            <div class="editorGraphColorTypeTitle" *ngIf="showFieldColorProperties">
-                                Type:
+                            <div class="editorGraphMarkOrientTitle" *ngIf="showFieldMarkProperties">
+                                Orient:
                             </div>
-                            <div class="select editorGraphColorType" *ngIf="showFieldColorProperties">
+                            <div class="select editorGraphMarkOrient" *ngIf="showFieldMarkProperties">
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphColorType"
                                     name="graphColorType"
                                     >
-                                    <option>Ordinal</option>
-                                    <option>Quantitative</option>
-                                    <option>Temporal</option>
-                                    <option>Nominal</option>
+                                    <option>Horisontal</option>
+                                    <option>Verticle</option>
                                 </select>
                             </div>
                         </div>
 
                         <!-- Mark Properties bin -->
                         <div class="editorLineContainer">
-                            <div class="editorGraphColorBinTitle" *ngIf="showFieldColorProperties">
+                            <div class="editorGraphColorBinTitle" *ngIf="showFieldMarkProperties">
                                 Bin:
                             </div>
-                            <div class="editorGraphColorBin" *ngIf="showFieldColorProperties">
+                            <div class="editorGraphColorBin" *ngIf="showFieldMarkProperties">
                                 <input [(ngModel)]="localWidget.graphColorBin"
                                     type="checkbox"
                                     name="graphXbin"
@@ -1091,10 +1089,10 @@
 
                         <!-- Mark Properties bin -->
                         <div class="editorLineContainer">
-                            <div class="editorGraphColorBinTitle" *ngIf="showFieldColorProperties">
+                            <div class="editorGraphColorBinTitle" *ngIf="showFieldMarkProperties">
                                 Bin:
                             </div>
-                            <div class="editorGraphColorBin" *ngIf="showFieldColorProperties">
+                            <div class="editorGraphColorBin" *ngIf="showFieldMarkProperties">
                                 <input [(ngModel)]="localWidget.graphColorBin"
                                     type="checkbox"
                                     name="graphXbin"
@@ -1105,10 +1103,10 @@
 
                         <!-- Mark Properties  -->
                         <div class="editorLineContainer">
-                            <div class="editorTitleColourTitle" *ngIf="showFieldTitleProperties">
+                            <div class="editorTitleColourTitle" *ngIf="showFieldMarkProperties">
                             Color:
                             </div>
-                            <div class="select editorTitleColour" *ngIf="showFieldTitleProperties">
+                            <div class="select editorTitleColour" *ngIf="showFieldMarkProperties">
                                 <select [(ngModel)]="localWidget.graphTitleColorName"
                                     name="graphTitleColorName"
                                     (change)="clickSelectTitleColor($event)"
@@ -1124,10 +1122,10 @@
 
                         <!-- Mark Properties -->
                         <div class="editorLineContainer">
-                            <div class="editorGraphXaxisLabelAngleTitle" *ngIf="showFieldXAxis">
+                            <div class="editorGraphXaxisLabelAngleTitle" *ngIf="showFieldMarkProperties">
                             Angle:
                             </div>
-                            <div class="editorGraphXaxisLabelAngle" *ngIf="showFieldXAxis">
+                            <div class="editorGraphXaxisLabelAngle" *ngIf="showFieldMarkProperties">
                                 <input type="number"
                                     [(ngModel)]="localWidget.graphXaxisLabelAngle"
                                     name="graphXaxisLabelAngle"
