@@ -2352,7 +2352,7 @@ console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowInde
 
     clickSelectTitleColor(ev: any) {
         // Select Background Colour
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBgColor', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectTitleColor', '@Start');
 
         this.localWidget.graphTitleColorName = ev.target.value;
         this.localWidget.graphTitleColor = this.localWidget.graphTitleColorName;
@@ -2361,6 +2361,20 @@ console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowInde
         );
         if (localIndex >= 0) {
             this.localWidget.graphTitleColor = this.backgroundcolors[localIndex].cssCode;
+        };
+    }
+
+    clickSelectMarkColour(ev: any) {
+        // Select Background Colour
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectTitleColor', '@Start');
+
+        this.localWidget.graphMarkColourName = ev.target.value;
+        this.localWidget.graphMarkColour = this.localWidget.graphMarkColourName;
+        let localIndex: number = this.backgroundcolors.findIndex(bg =>
+            bg.name == this.localWidget.graphMarkColourName
+        );
+        if (localIndex >= 0) {
+            this.localWidget.graphMarkColour = this.backgroundcolors[localIndex].cssCode;
         };
     }
 
