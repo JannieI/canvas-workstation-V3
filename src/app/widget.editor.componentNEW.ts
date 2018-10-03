@@ -1191,16 +1191,42 @@ export interface dataSchemaInterface {
 
             // Define Specification
             specification = this.widgetGraphs[widgetGraphIndex].specification;
-            // specification['mark']['line'] = true; 
+            specification['mark']['type'] = this.widgetGraphs[widgetGraphIndex].specification['mark']; 
             // specification['mark']['point'] = true;
-            specification['mark'] = {"type": "bar", "color": "green", "point": {"color": "red"}}
+            // specification['mark'] = {"type": "bar", "color": "green", "point": {"color": "red"}}
 console.warn('xx clean specification', specification);
+
 
             // Optional Sampling
             if (this.sampleNumberRows != 0) {
                 specification['transform'] = [{"sample" : this.sampleNumberRows}];
             };
 
+
+            // General
+            specification['description'] = this.localWidget.graphDescription;
+            specification['width'] = width;
+            specification['height'] = height;
+
+
+            // Data
+            if (this.localWidget.graphUrl != ""  &&  this.localWidget.graphUrl != null) {
+                specification['data'] = {"url": this.localWidget.graphUrl};
+            } else {
+                specification['data'] = {"values": this.localWidget.graphData};
+            }
+
+
+            // Mark
+            // specification['mark']['type'] = this.localWidget.graphMark;
+            specification['mark']['orient'] = this.localWidget.graphMarkOrient;
+            specification['mark']['line'] = this.localWidget.graphMarkLine;
+            specification['mark']['point'] = this.localWidget.graphMarkPoint;
+            specification['mark']['color'] = this.localWidget.graphMarkColour;
+            specification['mark']['cornerRadius'] = this.localWidget.graphMarkCornerRadius;
+
+
+            // Title
             specification['title']['text'] = this.localWidget.graphTitleText;
             specification['title']['anchor'] = this.localWidget.graphTitleAnchor.toLowerCase();
             specification['title']['angle'] = this.localWidget.graphTitleAngle;
@@ -1211,18 +1237,6 @@ console.warn('xx clean specification', specification);
             specification['title']['fontWeight'] = this.localWidget.graphTitleFontWeight;
             specification['title']['limit'] = this.localWidget.graphTitleLength;
             specification['title']['orient'] = this.localWidget.graphTitleOrientation.toLowerCase();
-
-            if (this.localWidget.graphUrl != ""  &&  this.localWidget.graphUrl != null) {
-                specification['data'] = {"url": this.localWidget.graphUrl};
-            } else {
-                specification['data'] = {"values": this.localWidget.graphData};
-            }
-            specification['description'] = this.localWidget.graphDescription;
-            specification['width'] = width;
-            specification['height'] = height;
-
-            // Mark
-            // specification['mark']['type'] = this.localWidget.graphMark;
 
 
             // X field
