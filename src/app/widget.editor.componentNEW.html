@@ -1087,16 +1087,16 @@
                             </div>
                         </div>
 
-                        <!-- Mark Properties bin -->
+                        <!-- Mark Properties Point -->
                         <div class="editorLineContainer">
-                            <div class="editorGraphColorBinTitle" *ngIf="showFieldMarkProperties">
-                                Bin:
+                            <div class="editorGraphMarkPointTitle" *ngIf="showFieldMarkProperties">
+                                Point:
                             </div>
-                            <div class="editorGraphColorBin" *ngIf="showFieldMarkProperties">
-                                <input [(ngModel)]="localWidget.graphColorBin"
+                            <div class="editorGraphMarkPoint" *ngIf="showFieldMarkProperties">
+                                <input [(ngModel)]="localWidget.graphMarkPoint"
                                     type="checkbox"
-                                    name="graphXbin"
-                                    title="Bin the Color field (T/F)"
+                                    name="graphMarkPoint"
+                                    title="Add Points to graph (T/F)"
                                     >
                             </div>
                         </div>
