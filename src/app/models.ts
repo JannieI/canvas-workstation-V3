@@ -1192,6 +1192,7 @@ export class Widget {
     graphMark: string;
     graphMarkOrient: string;
     graphMarkLine: boolean;
+    graphMarkPoint: boolean;
     graphUrl: string;
     graphData: any;
 
