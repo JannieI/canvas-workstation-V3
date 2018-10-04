@@ -2521,7 +2521,7 @@ console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowInde
         // Show the Y field properties
         this.globalFunctionService.printToConsole(this.constructor.name,'clickYfield', '@Start');
 
-        if (this.colField == ''  ||  this.colField == null) {
+        if (this.rowField == ''  ||  this.rowField == null) {
             return;
         };
 
@@ -2530,4 +2530,16 @@ console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowInde
         this.showFieldColorProperties = false;
     }
 
+    clickColorfield() {
+        // Show the Color field properties
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickColorfield', '@Start');
+
+        if (this.graphColorField == ''  ||  this.graphColorField == null) {
+            return;
+        };
+
+        this.showFieldXProperties = false;
+        this.showFieldYProperties = false;
+        this.showFieldColorProperties = true;
+    }
 }

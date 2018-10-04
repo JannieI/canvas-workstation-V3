@@ -315,7 +315,7 @@
                                 (dragover)="dragoverRows($event);"
                                 [style.background-color]="dragoverRow? 'lightgray' : 'transparent'"
                                 [style.font-style]="rowField=='Drag a field here ...' ?  'italic'  :  'normal'"
-                                (click)="showFieldYProperties=!showFieldYProperties"
+                                (click)="clickYfield()"
                                 >
                                 <clr-icon shape="times" *ngIf="showRowDeleteIcon"
                                     (click)="clickClearRowField()">
@@ -337,7 +337,7 @@
                                 (dragover)="dragoverColour($event);"
                                 [style.background-color]="dragoverColours? 'lightgray' : 'transparent'"
                                 [style.font-style]="graphColorField=='Drag a field here ...' ?  'italic'  :  'normal'"
-                                (click)="showFieldColorProperties=!showFieldColorProperties"
+                                (click)="clickColorfield"
                                 >
                                 <clr-icon shape="times" *ngIf="showColourDeleteIcon"
                                     (click)="clickClearColourField()"
