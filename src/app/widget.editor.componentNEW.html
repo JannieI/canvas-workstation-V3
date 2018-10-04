@@ -520,7 +520,7 @@
                             </div>
                         </div>
 
-                        <!-- lTitle imit: The maximum allowed length in pixels of legend labels.-->
+                        <!-- Title limit: The maximum allowed length in pixels of legend labels.-->
                         <div class="editorLineContainer">
                             <div class="editorTitleLengthTitle" 
                                 *ngIf="showFieldTitleProperties  &&  showFieldTitleProperties"
@@ -579,10 +579,14 @@
 
                         <!-- X Properties Aggregate -->
                         <div class="editorLineContainer">
-                            <div class="editorGraphXaggregateTitle" *ngIf="showFieldXProperties">
+                            <div class="editorGraphXaggregateTitle" 
+                                *ngIf="showFieldXProperties  &&  showFieldXPropertiesTitle"
+                                >
                                 Aggregate:
                             </div>
-                            <div class="select editorGraphXaggregate" *ngIf="showFieldXProperties">
+                            <div class="select editorGraphXaggregate" 
+                                *ngIf="showFieldXProperties  &&  showFieldXPropertiesTitle"
+                                >
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphXaggregate"
                                     name="graphXaggregate"
@@ -596,10 +600,14 @@
 
                         <!-- X Properties bin -->
                         <div class="editorLineContainer">
-                            <div class="editorGraphXbinTitle" *ngIf="showFieldXProperties">
+                            <div class="editorGraphXbinTitle" 
+                                *ngIf="showFieldXProperties  &&  showFieldXPropertiesTitle"
+                                >
                                 Bin:
                             </div>
-                            <div class="editorGraphXbin" *ngIf="showFieldXProperties">
+                            <div class="editorGraphXbin" 
+                                *ngIf="showFieldXProperties  &&  showFieldXPropertiesTitle"
+                                >
                                 <input [(ngModel)]="localWidget.graphXbin"
                                     type="checkbox"
                                     name="graphXbin"
@@ -607,11 +615,15 @@
                                     title="Bin the X field (T/F)"
                                     >
                             </div>
-                            <div class="editorGraphXbinMaxTitle" *ngIf="showFieldXProperties">
+                            <div class="editorGraphXbinMaxTitle" 
+                                *ngIf="showFieldXProperties  &&  showFieldXPropertiesTitle"
+                                >
                                 Est bins:
                             </div>
                             
-                            <div class="editorGraphXbinMax" *ngIf="showFieldXProperties">
+                            <div class="editorGraphXbinMax" 
+                                *ngIf="showFieldXProperties  &&  showFieldXPropertiesTitle"
+                                >
                                 <input type="number"
                                     placeholder="Est. nr of bins"
                                     size="5"
@@ -624,10 +636,14 @@
 
                         <!-- X Properties Format -->
                         <div class="editorLineContainer">
-                            <div class="editorGraphXformatTitle" *ngIf="showFieldXProperties">
+                            <div class="editorGraphXformatTitle" 
+                                *ngIf="showFieldXProperties  &&  showFieldXPropertiesTitle"
+                                >
                             Format:
                             </div>
-                            <div class="editorGraphXformat" *ngIf="showFieldXProperties">
+                            <div class="editorGraphXformat" 
+                                *ngIf="showFieldXProperties  &&  showFieldXPropertiesTitle"
+                                >
                                 <input type="text"
                                     placeholder="ie .2s +$,.2f"
                                     [(ngModel)]="localWidget.graphXformat"
@@ -638,10 +654,14 @@
 
                         <!-- X Properties Impute -->
                         <div class="editorLineContainer">
-                            <div class="editorGraphXimputeTitle" *ngIf="showFieldXProperties">
+                            <div class="editorGraphXimputeTitle" 
+                                *ngIf="showFieldXProperties  &&  showFieldXPropertiesTitle"
+                                >
                                 Impute:
                             </div>
-                            <div class="select editorGraphXimpute" *ngIf="showFieldXProperties">
+                            <div class="select editorGraphXimpute" 
+                                *ngIf="showFieldXProperties  &&  showFieldXPropertiesTitle"
+                                >
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphXimpute"
                                     name="graphXimpute"
@@ -655,7 +675,9 @@
                                 </select>
                             </div>
                             <div class="editorGraphXimputeValue"
-                                *ngIf="showFieldXProperties"
+                                
+                                *ngIf="showFieldXProperties  &&  showFieldXPropertiesTitle
+                                "
                                 size="5"
                                 >
                                 <input type="number"
@@ -670,10 +692,14 @@
 
                         <!-- X Properties stack -->
                         <div class="editorLineContainer">
-                            <div class="editorGraphXstackTitle" *ngIf="showFieldXProperties">
+                            <div class="editorGraphXstackTitle" 
+                                *ngIf="showFieldXProperties  &&  showFieldXPropertiesTitle"
+                                >
                                 Stack:
                             </div>
-                            <div class="select editorGraphXstack" *ngIf="showFieldXProperties">
+                            <div class="select editorGraphXstack" 
+                                *ngIf="showFieldXProperties  &&  showFieldXPropertiesTitle"
+                                >
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphXstack"
                                     name="graphXstack"
@@ -688,10 +714,14 @@
 
                         <!-- X Properties Sort -->
                         <div class="editorLineContainer">
-                            <div class="editorGraphXsortTitle" *ngIf="showFieldXProperties">
+                            <div class="editorGraphXsortTitle" 
+                                *ngIf="showFieldXProperties  &&  showFieldXPropertiesTitle"
+                                >
                                 Sort:
                             </div>
-                            <div class="select editorGraphXsort" *ngIf="showFieldXProperties">
+                            <div class="select editorGraphXsort" 
+                                *ngIf="showFieldXProperties  &&  showFieldXPropertiesTitle"
+                                >
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphXsort"
                                     name="graphXsort"
@@ -705,10 +735,14 @@
 
                         <!-- X Properties type -->
                         <div class="editorLineContainer">
-                            <div class="editorGraphXtypeTitle" *ngIf="showFieldXProperties">
+                            <div class="editorGraphXtypeTitle" 
+                                *ngIf="showFieldXProperties  &&  showFieldXPropertiesTitle"
+                                >
                                 Type:
                             </div>
-                            <div class="select editorGraphXtype" *ngIf="showFieldXProperties">
+                            <div class="select editorGraphXtype" 
+                                *ngIf="showFieldXProperties  &&  showFieldXPropertiesTitle"
+                                >
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphXtype"
                                     name="graphXtype"
@@ -723,7 +757,9 @@
 
                         <!-- X Properties timeUnit -->
                         <div class="editorLineContainer">
-                            <div class="editorGraphXtimeUnitTitle" *ngIf="showFieldXProperties">
+                            <div class="editorGraphXtimeUnitTitle" 
+                                *ngIf="showFieldXProperties  &&  showFieldXPropertiesTitle"
+                                >
                                 TimeUnit:
                             </div>
                             <div class="select editorGraphXtimeUnit"
