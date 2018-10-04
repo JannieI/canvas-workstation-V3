@@ -2455,6 +2455,15 @@ console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowInde
         };
     }
 
+    clickXBin() {
+        // Reset Size X Max
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickXBin', '@Start');
+
+        if (this.localWidget.graphSizeBin) {
+            this.localWidget.graphSizeMaxBins = 0;
+        };
+    }
+
     clickSizeBin() {
         // Reset Size Bin Max
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSizeBin', '@Start');
@@ -2463,5 +2472,5 @@ console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowInde
             this.localWidget.graphSizeMaxBins = 0;
         };
     }
-    
+
 }
