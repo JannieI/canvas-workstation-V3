@@ -1363,7 +1363,13 @@ export interface dataSchemaInterface {
             // Y field
             specification['encoding']['y']['field'] = this.localWidget.graphYfield;
             specification['encoding']['y']['aggregate'] = this.graphYaggregateVegaLiteName.toLowerCase();
-            specification['encoding']['y']['bin'] = this.localWidget.graphYbin;
+            // specification['encoding']['y']['bin'] = this.localWidget.graphYbin;
+            if (this.localWidget.graphYMaxBins > 0) {
+                specification['encoding']['x']['bin'] =
+                    {"maxbins": this.localWidget.graphYMaxBins};
+            } else {
+                specification['encoding']['x']['bin'] = this.localWidget.graphYbin;
+            };
             specification['encoding']['y']['format'] = this.localWidget.graphYformat.toLowerCase();
             if (this.localWidget.graphYimpute != '') {
                 if (this.localWidget.graphYimpute == 'Value') {
@@ -1403,9 +1409,16 @@ export interface dataSchemaInterface {
             };
 
             // Color field
+            let colorBinMax: any = false;
+            if (this.localWidget.graphYMaxBins > 0) {
+                colorBinMax = {"maxbins": this.localWidget.graphYMaxBins};
+            } else {
+                colorBinMax = this.localWidget.graphYbin;
+            };
+
             specification['encoding']['color'] = {
                 "aggregate": this.graphColorAggregateVegaLiteName.toLowerCase(),
-                "bin": this.localWidget.graphColorBin,
+                "bin": colorBinMax,
                 "field": this.localWidget.graphColorField,
                 "format": this.localWidget.graphColorFormat.toLowerCase(),
                 "legend": "",
