@@ -258,6 +258,7 @@ const widgetTemplate: Widget =
         "graphYfield": "",
         "graphYaggregate": "",
         "graphYbin": false,
+        "graphYMaxBins": 0,
         "graphYformat": "",
         "graphYimpute": "",
         "graphYimputeValue": "0",

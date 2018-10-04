@@ -1141,6 +1141,7 @@ export class Widget {
     graphYfield: string;
     graphYaggregate: string;
     graphYbin: boolean;
+    graphYMaxBins: number;
     graphYformat: string;
     graphYimpute: string;
     graphYimputeValue: string;
