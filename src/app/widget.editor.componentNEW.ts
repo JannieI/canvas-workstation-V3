@@ -2504,4 +2504,16 @@ console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowInde
         };
     }
 
+    clickXfield() {
+        // Show the X field properties
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickXfield', '@Start');
+
+        if (this.colField == ''  ||  this.colField == null) {
+            return;
+        };
+
+        this.showFieldXProperties = true;
+        this.showFieldYProperties = false;
+        this.showFieldColorProperties = false;
+    }
 }
