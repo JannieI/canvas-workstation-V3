@@ -288,6 +288,7 @@
                                 (dragleave)="dragleaveColumn($event);"
                                 [style.background-color]="dragoverCol? 'lightgray' : 'transparent'"
                                 [style.font-style]="colField=='Drag a field here ...' ?  'italic'  :  'normal'"
+                                (click)="showFieldXProperties=!showFieldXProperties"
                                 >
                                 <clr-icon shape="times" *ngIf="showColumnDeleteIcon"
                                     (click)="clickClearColumnField()">
@@ -314,6 +315,7 @@
                                 (dragover)="dragoverRows($event);"
                                 [style.background-color]="dragoverRow? 'lightgray' : 'transparent'"
                                 [style.font-style]="rowField=='Drag a field here ...' ?  'italic'  :  'normal'"
+                                (click)="showFieldYProperties=!showFieldYProperties"
                                 >
                                 <clr-icon shape="times" *ngIf="showRowDeleteIcon"
                                     (click)="clickClearRowField()">
@@ -335,6 +337,7 @@
                                 (dragover)="dragoverColour($event);"
                                 [style.background-color]="dragoverColours? 'lightgray' : 'transparent'"
                                 [style.font-style]="graphColorField=='Drag a field here ...' ?  'italic'  :  'normal'"
+                                (click)="showFieldColorProperties=!showFieldColorProperties"
                                 >
                                 <clr-icon shape="times" *ngIf="showColourDeleteIcon"
                                     (click)="clickClearColourField()"
@@ -1638,7 +1641,6 @@
                     <!-- BUTTONS -->
                     <div class="editorButtonShowData">
                         <button
-                            style="border: 1px solid gray; color: gray;"
                             class="btn btn-sm btn-secondary"
                             (click)="clickShowDatasources()"
                             >

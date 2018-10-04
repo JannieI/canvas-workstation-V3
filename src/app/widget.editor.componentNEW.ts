@@ -1365,10 +1365,10 @@ export interface dataSchemaInterface {
             specification['encoding']['y']['aggregate'] = this.graphYaggregateVegaLiteName.toLowerCase();
             // specification['encoding']['y']['bin'] = this.localWidget.graphYbin;
             if (this.localWidget.graphYMaxBins > 0) {
-                specification['encoding']['x']['bin'] =
+                specification['encoding']['y']['bin'] =
                     {"maxbins": this.localWidget.graphYMaxBins};
             } else {
-                specification['encoding']['x']['bin'] = this.localWidget.graphYbin;
+                specification['encoding']['y']['bin'] = this.localWidget.graphYbin;
             };
             specification['encoding']['y']['format'] = this.localWidget.graphYformat.toLowerCase();
             if (this.localWidget.graphYimpute != '') {
