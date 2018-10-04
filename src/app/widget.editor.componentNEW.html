@@ -1514,14 +1514,12 @@
                             <div class="editorGraphSizeBinTitle" *ngIf="showFieldSize">
                                 Bin:
                             </div>
-                            <div class="select editorGraphSizeBin" *ngIf="showFieldSize">
-                                <select id="selects_3"
-                                    [(ngModel)]="localWidget.graphSizeBin"
+                            <div class="editorGraphSizeBin" *ngIf="showFieldSize">
+                                <input [(ngModel)]="localWidget.graphSizeBin"
+                                    type="checkbox"
                                     name="graphSizeBin"
+                                    title="Bin the Size field (T/F)"
                                     >
-                                    <option>False</option>
-                                    <option>True</option>
-                                </select>
                             </div>
                         </div>
 
