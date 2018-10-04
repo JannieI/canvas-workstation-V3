@@ -1190,10 +1190,10 @@ export interface dataSchemaInterface {
         // Define Specification
         if (this.widgetGraphs[widgetGraphIndex].specificationType.toLowerCase() ==
             'custom') {
-                
+
             specification = this.widgetGraphs[widgetGraphIndex].specification;
                 console.warn('xx vega specification', specification);
-                
+
             // Render graph for Vega-Lite
             if (graphVisualGrammar == 'Vega-Lite') {
                 if (specification != undefined) {
@@ -1208,13 +1208,13 @@ export interface dataSchemaInterface {
                         .finalize();
                 };
             };
- 
+
             // Render graph for Veg
             if (graphVisualGrammar == 'Vega') {
                 console.warn('xx Vega render');
-                
+
                 if (specification != undefined) {
-                    
+
                     let view = new View(parse(specification));
 
                     view.renderer('svg')
@@ -1225,7 +1225,7 @@ export interface dataSchemaInterface {
                         .finalize();
                 };
             };
-               
+
         } else {
             specification = {
                 "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
@@ -1319,9 +1319,12 @@ export interface dataSchemaInterface {
             // X field
             specification['encoding']['x']['field'] = this.localWidget.graphXfield;
             specification['encoding']['x']['aggregate'] = this.graphXaggregateVegaLiteName.toLowerCase();
-            specification['encoding']['x']['bin'] = this.localWidget.graphXbin;
+            // specification['encoding']['x']['bin'] = this.localWidget.graphXbin;
             if (this.localWidget.graphXMaxBins > 0) {
-                specification['encoding']['x']['bin']['maxbins'] = this.localWidget.graphXMaxBins;                
+                specification['encoding']['x']['bin'] =
+                    {"maxbins": this.localWidget.graphXMaxBins};
+            } else {
+                specification['encoding']['x']['bin'] = this.localWidget.graphXbin;
             };
             specification['encoding']['x']['format'] = this.localWidget.graphXformat.toLowerCase();
             if (this.localWidget.graphXimpute != '') {
