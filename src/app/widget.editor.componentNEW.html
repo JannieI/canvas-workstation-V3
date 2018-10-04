@@ -796,10 +796,14 @@
 
                         <!-- Y Properties aggregate -->
                         <div class="editorLineContainer">
-                            <div class="editorGraphYaggregateTitle" *ngIf="showFieldYProperties">
+                            <div class="editorGraphYaggregateTitle" 
+                                *ngIf="showFieldYProperties  &&  showFieldYPropertiesTitle"
+                                >
                                 Aggregate:
                             </div>
-                            <div class="select editorGraphYaggregate" *ngIf="showFieldYProperties">
+                            <div class="select editorGraphYaggregate" 
+                                *ngIf="showFieldYProperties  &&  showFieldYPropertiesTitle"
+                                >
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphYaggregate"
                                     >
@@ -812,10 +816,14 @@
 
                         <!-- Y Properties bin -->
                         <div class="editorLineContainer">
-                            <div class="editorGraphYbinTitle" *ngIf="showFieldYProperties">
+                            <div class="editorGraphYbinTitle" 
+                                *ngIf="showFieldYProperties  &&  showFieldYPropertiesTitle"
+                                >
                                 Bin:
                             </div>
-                            <div class="editorGraphYbin" *ngIf="showFieldYProperties">
+                            <div class="editorGraphYbin" 
+                                *ngIf="showFieldYProperties  &&  showFieldYPropertiesTitle"
+                                >
                                 <input [(ngModel)]="localWidget.graphYbin"
                                     type="checkbox"
                                     name="graphXbin"
@@ -823,11 +831,15 @@
                                     title="Bin the Y field (T/F)"
                                     >
                             </div>
-                            <div class="editorGraphYbinMaxTitle" *ngIf="showFieldYProperties">
+                            <div class="editorGraphYbinMaxTitle" 
+                                *ngIf="showFieldYProperties  &&  showFieldYPropertiesTitle"
+                                >
                                 Est bins:
                             </div>
                             
-                            <div class="editorGraphYbinMax" *ngIf="showFieldYProperties">
+                            <div class="editorGraphYbinMax" 
+                                *ngIf="showFieldYProperties  &&  showFieldYPropertiesTitle"
+                                >
                                 <input type="number"
                                     placeholder="Est. nr of bins"
                                     size="5"
@@ -840,10 +852,14 @@
 
                         <!-- Y Properties Format -->
                         <div class="editorLineContainer">
-                            <div class="editorGraphYformatTitle" *ngIf="showFieldYProperties">
+                            <div class="editorGraphYformatTitle" 
+                                *ngIf="showFieldYProperties  &&  showFieldYPropertiesTitle"
+                                >
                                 Format:
                             </div>
-                            <div class="editorGraphYformat" *ngIf="showFieldYProperties">
+                            <div class="editorGraphYformat" 
+                                *ngIf="showFieldYProperties  &&  showFieldYPropertiesTitle"
+                                >
                                 <input type="text"
                                     placeholder="ie .2s +$,.2f"
                                     [(ngModel)]="localWidget.graphYformat"
@@ -854,10 +870,14 @@
 
                         <!-- Y Properties Impute -->
                         <div class="editorLineContainer">
-                            <div class="editorGraphYimputeTitle" *ngIf="showFieldYProperties">
+                            <div class="editorGraphYimputeTitle" 
+                                *ngIf="showFieldYProperties  &&  showFieldYPropertiesTitle"
+                                >
                                 Impute:
                             </div>
-                            <div class="select editorGraphYimpute" *ngIf="showFieldYProperties">
+                            <div class="select editorGraphYimpute" 
+                                *ngIf="showFieldYProperties  &&  showFieldYPropertiesTitle"
+                                >
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphYimpute"
                                     name="graphYimpute"
@@ -871,7 +891,9 @@
                                 </select>
                             </div>
                             <div class="editorGraphYimputeValue"
-                                *ngIf="showFieldYProperties"
+                                
+                                *ngIf="showFieldYProperties  &&  showFieldYPropertiesTitle
+                                "
                                 size="5"
                                 >
                                 <input type="number"
@@ -886,10 +908,14 @@
 
                         <!-- Y Properties stack -->
                         <div class="editorLineContainer">
-                            <div class="editorGraphYstackTitle" *ngIf="showFieldYProperties">
+                            <div class="editorGraphYstackTitle" 
+                                *ngIf="showFieldYProperties  &&  showFieldYPropertiesTitle"
+                                >
                                 Stack:
                             </div>
-                            <div class="select editorGraphYstack" *ngIf="showFieldYProperties">
+                            <div class="select editorGraphYstack" 
+                                *ngIf="showFieldYProperties  &&  showFieldYPropertiesTitle"
+                                >
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphYstack"
                                     name="graphYstack"
@@ -904,10 +930,14 @@
 
                         <!-- Y Properties Sort -->
                         <div class="editorLineContainer">
-                            <div class="editorGraphYsortTitle" *ngIf="showFieldYProperties">
+                            <div class="editorGraphYsortTitle" 
+                                *ngIf="showFieldYProperties  &&  showFieldYPropertiesTitle"
+                                >
                                 Sort:
                             </div>
-                            <div class="select editorGraphYsort" *ngIf="showFieldYProperties">
+                            <div class="select editorGraphYsort" 
+                                *ngIf="showFieldYProperties  &&  showFieldYPropertiesTitle"
+                                >
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphYsort"
                                     name="graphYsort"
@@ -921,10 +951,14 @@
 
                         <!-- Y Properties type -->
                         <div class="editorLineContainer">
-                            <div class="editorGraphYtypeTitle" *ngIf="showFieldYProperties">
+                            <div class="editorGraphYtypeTitle" 
+                                *ngIf="showFieldYProperties  &&  showFieldYPropertiesTitle"
+                                >
                                 Type:
                             </div>
-                            <div class="select editorGraphYtype" *ngIf="showFieldYProperties">
+                            <div class="select editorGraphYtype" 
+                                *ngIf="showFieldYProperties  &&  showFieldYPropertiesTitle"
+                                >
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphYtype"
                                     name="graphYtype"
@@ -939,11 +973,13 @@
 
                         <!-- Y Properties timeUnit -->
                         <div class="editorLineContainer">
-                            <div class="editorGraphYtimeUnitTitle" *ngIf="showFieldYProperties">
+                            <div class="editorGraphYtimeUnitTitle" 
+                                *ngIf="showFieldYProperties  &&  showFieldYPropertiesTitle"
+                                >
                                 TimeUnit:
                             </div>
                             <div class="select editorGraphYtimeUnit"
-                                *ngIf="showFieldYProperties"
+                                *ngIf="showFieldYProperties  &&  showFieldYPropertiesTitle"
                                 >
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphYtimeUnit"
