@@ -2514,7 +2514,7 @@ console.warn('xx colField', this.colField);
             return;
         };
 
-        this.showFieldXProperties = true;
+        this.showFieldXProperties = !this.showFieldXProperties;
         this.showFieldYProperties = false;
         this.showFieldColorProperties = false;
     }
@@ -2528,7 +2528,7 @@ console.warn('xx colField', this.colField);
         };
 
         this.showFieldXProperties = false;
-        this.showFieldYProperties = true;
+        this.showFieldYProperties = !this.showFieldYProperties;
         this.showFieldColorProperties = false;
     }
 
@@ -2542,6 +2542,6 @@ console.warn('xx colField', this.colField);
 
         this.showFieldXProperties = false;
         this.showFieldYProperties = false;
-        this.showFieldColorProperties = true;
+        this.showFieldColorProperties = !this.showFieldColorProperties;
     }
 }
