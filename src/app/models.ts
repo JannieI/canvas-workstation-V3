@@ -1187,7 +1187,8 @@ export class Widget {
     // Size
     graphSizeType: string;
     graphSizeAggregate
-    graphSizeBin
+    graphSizeBin: boolean;
+    graphSizeMaxBins: number;
 
     // Mark
     graphMark: string;
