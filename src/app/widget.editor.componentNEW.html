@@ -368,10 +368,14 @@
 
                         <!-- Title Text -->
                         <div class="editorLineContainer">
-                            <div class="editorTitleTextTitle" *ngIf="showFieldTitleProperties">
+                            <div class="editorTitleTextTitle" 
+                                *ngIf="showFieldTitleProperties  &&  showFieldTitleProperties"
+                                >
                                 Text:
                             </div>
-                            <div class="editorTitleText" *ngIf="showFieldTitleProperties">
+                            <div class="editorTitleText" 
+                                *ngIf="showFieldTitleProperties  &&  showFieldTitleProperties"
+                                >
                                 <input type="text"
                                     placeholder="Text of title"
                                     [(ngModel)]="localWidget.graphTitleText"
@@ -383,10 +387,14 @@
 
                         <!-- Title Anchor -->
                         <div class="editorLineContainer">
-                            <div class="editorTitleAnchorTitle" *ngIf="showFieldTitleProperties">
+                            <div class="editorTitleAnchorTitle" 
+                                *ngIf="showFieldTitleProperties  &&  showFieldTitleProperties"
+                                >
                                 Anchor:
                             </div>
-                            <div class="select editorTitleAnchor" *ngIf="showFieldTitleProperties">
+                            <div class="select editorTitleAnchor" 
+                                *ngIf="showFieldTitleProperties  &&  showFieldTitleProperties"
+                                >
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphTitleAnchor"
                                     >
@@ -399,10 +407,14 @@
 
                         <!-- Title Angle in degrees -->
                         <div class="editorLineContainer">
-                            <div class="editorTitleAngleTitle" *ngIf="showFieldTitleProperties">
+                            <div class="editorTitleAngleTitle" 
+                                *ngIf="showFieldTitleProperties  &&  showFieldTitleProperties"
+                                >
                                 Angle:
                             </div>
-                            <div class="editorTitleAngle" *ngIf="showFieldTitleProperties">
+                            <div class="editorTitleAngle" 
+                                *ngIf="showFieldTitleProperties  &&  showFieldTitleProperties"
+                                >
                                 <input type="number"
                                     placeholder="Angle of title"
                                     [(ngModel)]="localWidget.graphTitleAngle"
@@ -413,10 +425,14 @@
 
                         <!-- Title Vertical text baseline for title text. -->
                         <div class="editorLineContainer">
-                            <div class="editorTitleBaselineTitle" *ngIf="showFieldTitleProperties">
+                            <div class="editorTitleBaselineTitle" 
+                                *ngIf="showFieldTitleProperties  &&  showFieldTitleProperties"
+                                >
                             Baseline:
                             </div>
-                            <div class="select editorTitleBaseline" *ngIf="showFieldTitleProperties">
+                            <div class="select editorTitleBaseline" 
+                                *ngIf="showFieldTitleProperties  &&  showFieldTitleProperties"
+                                >
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphTitleBaseline"
                                     >
@@ -429,10 +445,14 @@
 
                         <!-- Title Text color for title text.  -->
                         <div class="editorLineContainer">
-                            <div class="editorTitleColourTitle" *ngIf="showFieldTitleProperties">
+                            <div class="editorTitleColourTitle" 
+                                *ngIf="showFieldTitleProperties  &&  showFieldTitleProperties"
+                                >
                             Color:
                             </div>
-                            <div class="select editorTitleColour" *ngIf="showFieldTitleProperties">
+                            <div class="select editorTitleColour" 
+                                *ngIf="showFieldTitleProperties  &&  showFieldTitleProperties"
+                                >
                                 <select [(ngModel)]="localWidget.graphTitleColorName"
                                     name="graphTitleColorName"
                                     (change)="clickSelectTitleColor($event)"
@@ -448,10 +468,14 @@
 
                         <!-- Title Font name for title text. -->
                         <div class="editorLineContainer">
-                            <div class="editorTitleFontTitle" *ngIf="showFieldTitleProperties">
+                            <div class="editorTitleFontTitle" 
+                                *ngIf="showFieldTitleProperties  &&  showFieldTitleProperties"
+                                >
                             Font:
                             </div>
-                            <div class="editorTitleFont" *ngIf="showFieldTitleProperties">
+                            <div class="editorTitleFont" 
+                                *ngIf="showFieldTitleProperties  &&  showFieldTitleProperties"
+                                >
                                 <input type="text"
                                     placeholder="Font name"
                                     [(ngModel)]="localWidget.graphTitleFont"
@@ -462,10 +486,14 @@
 
                         <!-- Title Font size in pixels for title text. Default value: 10. -->
                         <div class="editorLineContainer">
-                            <div class="editorTitleFontSizeTitle" *ngIf="showFieldTitleProperties">
+                            <div class="editorTitleFontSizeTitle" 
+                                *ngIf="showFieldTitleProperties  &&  showFieldTitleProperties"
+                                >
                             Font Size:
                             </div>
-                            <div class="editorTitleFontSize" *ngIf="showFieldTitleProperties">
+                            <div class="editorTitleFontSize" 
+                                *ngIf="showFieldTitleProperties  &&  showFieldTitleProperties"
+                                >
                                 <input type="number"
                                     placeholder="Font Size"
                                     [(ngModel)]="localWidget.graphTitleFontSize"
@@ -476,10 +504,14 @@
 
                         <!-- Title Font Weight in pixels for title text. Default value: 10. -->
                         <div class="editorLineContainer">
-                            <div class="editorTitleFontWeightTitle" *ngIf="showFieldTitleProperties">
+                            <div class="editorTitleFontWeightTitle" 
+                                *ngIf="showFieldTitleProperties  &&  showFieldTitleProperties"
+                                >
                             Font Weight:
                             </div>
-                            <div class="editorTitleFontWeight" *ngIf="showFieldTitleProperties">
+                            <div class="editorTitleFontWeight" 
+                                *ngIf="showFieldTitleProperties  &&  showFieldTitleProperties"
+                                >
                                 <input type="number"
                                     placeholder="Font Weight (100, 200..900)"
                                     [(ngModel)]="localWidget.graphTitleFontWeight"
@@ -490,10 +522,14 @@
 
                         <!-- lTitle imit: The maximum allowed length in pixels of legend labels.-->
                         <div class="editorLineContainer">
-                            <div class="editorTitleLengthTitle" *ngIf="showFieldTitleProperties">
+                            <div class="editorTitleLengthTitle" 
+                                *ngIf="showFieldTitleProperties  &&  showFieldTitleProperties"
+                                >
                             Length:
                             </div>
-                            <div class="editorTitleLength" *ngIf="showFieldTitleProperties">
+                            <div class="editorTitleLength" 
+                                *ngIf="showFieldTitleProperties  &&  showFieldTitleProperties"
+                                >
                                 <input type="number"
                                     placeholder="Max length in px"
                                     [(ngModel)]="localWidget.graphTitleLength"
@@ -504,10 +540,14 @@
 
                         <!-- Title orient: Default title orientation ("top", "bottom", "left", or "right") -->
                         <div class="editorLineContainer">
-                            <div class="editorTitleOrientationTitle" *ngIf="showFieldTitleProperties">
+                            <div class="editorTitleOrientationTitle" 
+                                *ngIf="showFieldTitleProperties  &&  showFieldTitleProperties"
+                                >
                             Orientation:
                             </div>
-                            <div class="select editorTitleOrientation" *ngIf="showFieldTitleProperties">
+                            <div class="select editorTitleOrientation" 
+                                *ngIf="showFieldTitleProperties  &&  showFieldTitleProperties"
+                                >
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphTitleOrientation"
                                     >
@@ -996,8 +1036,7 @@
                             </div>
                             <div class="editorGraphColorImputeValue"
                                 
-                                *ngIf="showFieldColorProperties  &&  showFieldColorPropertiesTitle
-                                "
+                                *ngIf="showFieldColorProperties  &&  showFieldColorPropertiesTitle"
                                 size="5"
                                 >
                                 <input type="number"
