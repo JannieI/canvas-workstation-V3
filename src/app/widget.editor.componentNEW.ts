@@ -2455,4 +2455,13 @@ console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowInde
         };
     }
 
+    clickSizeBin() {
+        // Reset Size Bin Max
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSizeBin', '@Start');
+
+        if (this.localWidget.graphSizeBin) {
+            this.localWidget.graphSizeMaxBins = 0;
+        };
+    }
+    
 }
