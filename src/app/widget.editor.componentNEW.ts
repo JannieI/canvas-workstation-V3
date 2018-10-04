@@ -27,6 +27,7 @@ import { View }                       from 'vega';
 
 const graphHeight: number = 260;
 const graphWidth: number = 420;
+const dragFieldMessage: string = 'Drag a field here ...';
 
 export interface dataSchemaInterface {
     name: string;
@@ -175,7 +176,7 @@ export interface dataSchemaInterface {
         }
     ]
     backgroundcolors: CSScolor[];
-    colField: string = 'Drag a field here ...';
+    colField: string = dragFieldMessage;
     containerHasContextMenus: boolean = true;
     containerHasTitle: boolean = true;
     currentData: any = [];
@@ -191,8 +192,8 @@ export interface dataSchemaInterface {
     dragoverColours: boolean = false;
     dragoverSizes: boolean = false;
     errorMessage: string = '';
-    graphColorField: string = 'Drag a field here ...';
-    graphSizeField: string = 'Drag a field here ...';
+    graphColorField: string = dragFieldMessage;
+    graphSizeField: string = dragFieldMessage;
     graphColor: string[];
     graphLayers: number[] = [1, 2, 3,];  // TODO - fix hardcoding
     graphTypeFieldY: string[] =[];
@@ -202,7 +203,7 @@ export interface dataSchemaInterface {
     localDatasources: Datasource[] = null;          // Current DS for the selected W
     localWidget: Widget;                            // W to modify, copied from selected
     oldWidget: Widget = null;                       // W at start
-    rowField: string = 'Drag a field here ...';
+    rowField: string = dragFieldMessage;
     selectedDescription: string = '';
     selectedFieldIndex: number = -1;
     selectedRowIndex: number = -1;
@@ -1033,7 +1034,7 @@ export interface dataSchemaInterface {
 
             } else {
                 this.showColumnDeleteIcon = false;
-                this.colField = 'Drag a field here ...';
+                this.colField = dragFieldMessage;
             };
 
             if (this.localWidget.graphYfield != ''   &&   this.localWidget.graphYfield != null) {
@@ -1041,7 +1042,7 @@ export interface dataSchemaInterface {
                 this.rowField = this.localWidget.graphYfield;
             } else {
                 this.showRowDeleteIcon = false;
-                this.rowField = 'Drag a field here ...';
+                this.rowField = dragFieldMessage;
             };
 
             if (this.localWidget.graphColorField != ''   &&   this.localWidget.graphColorField != null) {
@@ -1049,11 +1050,11 @@ export interface dataSchemaInterface {
                 this.graphColorField = this.localWidget.graphColorField;
             } else {
                 this.showColourDeleteIcon = false;
-                this.graphColorField = 'Drag a field here ...';
+                this.graphColorField = dragFieldMessage;
             };
 
             // TODO - load from DB
-            this.graphSizeField = 'Drag a field here ...';
+            this.graphSizeField = dragFieldMessage;
             this.showSizeDeleteIcon = false;
 
             // Get local vars - easier for ngFor
@@ -1464,7 +1465,7 @@ export interface dataSchemaInterface {
 
             // Size field
             if (this.graphSizeField != ''
-                &&  this.graphSizeField.toLowerCase() != 'drag a field here ...'
+                &&  this.graphSizeField.toLowerCase() != dragFieldMessage
                 &&  this.graphSizeField != undefined) {
                 console.warn('xx sizeFiled', this.graphSizeField);
 
@@ -1793,12 +1794,12 @@ console.warn('xx definition', definition);
 
         let newXField: string = this.colField;
         let newYField: string = this.rowField;
-        if (newXField == 'Drag a field here ...') {
+        if (newXField == dragFieldMessage) {
             this.clickClearRowField();
         } else {
             this.dropRow(null, newXField);
         };
-        if (newYField == 'Drag a field here ...') {
+        if (newYField == dragFieldMessage) {
             this.clickClearColumnField();
         } else {
             this.dropColumn(null, newYField);
@@ -1963,7 +1964,7 @@ this.localWidget.graphYtype);
 
         // Show X icon
         this.showColumnDeleteIcon = false;
-        this.colField = 'Drag a field here ...';
+        this.colField = dragFieldMessage;
         this.localWidget.graphXfield = '';
         this.localWidget.graphXaxisTitle = '';
         this.localWidget.graphXaggregate = '';
@@ -1989,7 +1990,7 @@ this.localWidget.graphYtype);
 
         // Show X icon
         this.showRowDeleteIcon = false;
-        this.rowField = 'Drag a field here ...';
+        this.rowField = dragFieldMessage;
         this.localWidget.graphYfield = null;
         this.localWidget.graphYaxisTitle = null;
         this.localWidget.graphYaggregate = null;
@@ -2008,7 +2009,7 @@ this.localWidget.graphYtype);
 
         // Show X icon
         this.showColourDeleteIcon = false;
-        this.graphColorField = 'Drag a field here ...';
+        this.graphColorField = dragFieldMessage;
         this.localWidget.graphColorField = null;
         this.localWidget.graphColorType = null;
 
@@ -2024,7 +2025,7 @@ this.localWidget.graphYtype);
 
         // Show X icon
         this.showSizeDeleteIcon = false;
-        this.graphSizeField = 'Drag a field here ...';
+        this.graphSizeField = dragFieldMessage;
         // this.localWidget.graphColorField = null;
         // this.localWidget.graphColorType = null;
 
@@ -2143,22 +2144,22 @@ this.localWidget.graphYtype);
 
         // Clear previous selected fields
         this.showColumnDeleteIcon = false;
-        this.colField = 'Drag a field here ...';
+        this.colField = dragFieldMessage;
         this.localWidget.graphXfield = '';
         this.localWidget.graphXaxisTitle = '';
 
         this.showRowDeleteIcon = false;
-        this.rowField = 'Drag a field here ...';
+        this.rowField = dragFieldMessage;
         this.localWidget.graphYfield = '';
         this.localWidget.graphYaxisTitle = '';
 
         this.showColourDeleteIcon = false;
-        this.graphColorField = 'Drag a field here ...';
+        this.graphColorField = dragFieldMessage;
         this.localWidget.graphColorField = ''
         this.localWidget.graphColorType = '';
 
         this.showSizeDeleteIcon = false;
-        this.graphSizeField = 'Drag a field here ...';
+        this.graphSizeField = dragFieldMessage;
 
         // Determine if data already in Glob Var
         let dataSetIndex: number = this.globalVariableService.currentDatasets.findIndex(
@@ -2507,8 +2508,9 @@ console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowInde
     clickXfield() {
         // Show the X field properties
         this.globalFunctionService.printToConsole(this.constructor.name,'clickXfield', '@Start');
+console.warn('xx colField', this.colField);
 
-        if (this.colField == ''  ||  this.colField == null) {
+        if (this.colField == dragFieldMessage  ||  this.colField == null) {
             return;
         };
 
@@ -2521,7 +2523,7 @@ console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowInde
         // Show the Y field properties
         this.globalFunctionService.printToConsole(this.constructor.name,'clickYfield', '@Start');
 
-        if (this.rowField == ''  ||  this.rowField == null) {
+        if (this.rowField == dragFieldMessage  ||  this.rowField == null) {
             return;
         };
 
@@ -2534,7 +2536,7 @@ console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowInde
         // Show the Color field properties
         this.globalFunctionService.printToConsole(this.constructor.name,'clickColorfield', '@Start');
 
-        if (this.graphColorField == ''  ||  this.graphColorField == null) {
+        if (this.graphColorField == dragFieldMessage  ||  this.graphColorField == null) {
             return;
         };
 
