@@ -2516,4 +2516,18 @@ console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowInde
         this.showFieldYProperties = false;
         this.showFieldColorProperties = false;
     }
+
+    clickYfield() {
+        // Show the Y field properties
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickYfield', '@Start');
+
+        if (this.colField == ''  ||  this.colField == null) {
+            return;
+        };
+
+        this.showFieldXProperties = false;
+        this.showFieldYProperties = true;
+        this.showFieldColorProperties = false;
+    }
+
 }
