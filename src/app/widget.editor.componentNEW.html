@@ -887,11 +887,11 @@
                             <b>
                                 Color Properties
                             </b>
-                            <clr-icon shape="angle down" *ngIf="!showFieldColorProperties"
+                            <clr-icon shape="angle down" *ngIf="!showFieldColorProperties  &&  showFieldColorPropertiesTitle"
                                 size="12"
                                 >
                             </clr-icon>
-                            <clr-icon shape="angle up" *ngIf="showFieldColorProperties"
+                            <clr-icon shape="angle up" *ngIf="showFieldColorProperties  &&  showFieldColorPropertiesTitle"
                                 size="12"
                                 >
                             </clr-icon>
@@ -899,10 +899,14 @@
 
                         <!-- Color Properties Aggregate -->
                         <div class="editorLineContainer">
-                            <div class="editorGraphColorAggregateTitle" *ngIf="showFieldColorProperties">
+                            <div class="editorGraphColorAggregateTitle" 
+                                *ngIf="showFieldColorProperties  &&  showFieldColorPropertiesTitle"
+                                >
                                 Aggregate:
                             </div>
-                            <div class="select editorGraphColorAggregate" *ngIf="showFieldColorProperties">
+                            <div class="select editorGraphColorAggregate" 
+                                *ngIf="showFieldColorProperties  &&  showFieldColorPropertiesTitle"
+                                >
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphColorAggregate"
                                     name="graphColorAggregate"
@@ -916,10 +920,14 @@
 
                         <!-- Color Properties bin -->
                         <div class="editorLineContainer">
-                            <div class="editorGraphColorBinTitle" *ngIf="showFieldColorProperties">
+                            <div class="editorGraphColorBinTitle" 
+                                *ngIf="showFieldColorProperties  &&  showFieldColorPropertiesTitle"
+                                >
                                 Bin:
                             </div>
-                            <div class="editorGraphColorBin" *ngIf="showFieldColorProperties">
+                            <div class="editorGraphColorBin" 
+                                *ngIf="showFieldColorProperties  &&  showFieldColorPropertiesTitle"
+                                >
                                 <input [(ngModel)]="localWidget.graphColorBin"
                                     type="checkbox"
                                     name="graphXbin"
@@ -927,11 +935,15 @@
                                     title="Bin the Color field (T/F)"
                                     >
                             </div>
-                            <div class="editorGraphColorbinMaxTitle" *ngIf="showFieldColorProperties">
+                            <div class="editorGraphColorbinMaxTitle" 
+                                *ngIf="showFieldColorProperties  &&  showFieldColorPropertiesTitle"
+                                >
                                 Est bins:
                             </div>
                             
-                            <div class="editorGraphColorbinMax" *ngIf="showFieldColorProperties">
+                            <div class="editorGraphColorbinMax" 
+                                *ngIf="showFieldColorProperties  &&  showFieldColorPropertiesTitle"
+                                >
                                 <input type="number"
                                     placeholder="Est. nr of bins"
                                     size="5"
@@ -944,10 +956,14 @@
 
                         <!-- Color Properties Format -->
                         <div class="editorLineContainer">
-                            <div class="editorGraphColorFormatTitle" *ngIf="showFieldColorProperties">
+                            <div class="editorGraphColorFormatTitle" 
+                                *ngIf="showFieldColorProperties  &&  showFieldColorPropertiesTitle"
+                                >
                                 Format:
                             </div>
-                            <div class="editorGraphColorFormat" *ngIf="showFieldColorProperties">
+                            <div class="editorGraphColorFormat" 
+                                *ngIf="showFieldColorProperties  &&  showFieldColorPropertiesTitle"
+                                >
                                 <input type="text"
                                     placeholder="ie .2s +$,.2f"
                                     [(ngModel)]="localWidget.graphColorFormat"
@@ -958,10 +974,14 @@
 
                         <!-- Color Properties Impute -->
                         <div class="editorLineContainer">
-                            <div class="editorGraphColorImputeTitle" *ngIf="showFieldColorProperties">
+                            <div class="editorGraphColorImputeTitle" 
+                                *ngIf="showFieldColorProperties  &&  showFieldColorPropertiesTitle"
+                                >
                                 Impute:
                             </div>
-                            <div class="select editorGraphColorImpute" *ngIf="showFieldColorProperties">
+                            <div class="select editorGraphColorImpute" 
+                                *ngIf="showFieldColorProperties  &&  showFieldColorPropertiesTitle"
+                                >
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphColorImpute"
                                     name="graphColorImpute"
@@ -975,7 +995,9 @@
                                 </select>
                             </div>
                             <div class="editorGraphColorImputeValue"
-                                *ngIf="showFieldColorProperties"
+                                
+                                *ngIf="showFieldColorProperties  &&  showFieldColorPropertiesTitle
+                                "
                                 size="5"
                                 >
                                 <input type="number"
@@ -990,10 +1012,14 @@
 
                         <!-- Color Properties Scheme -->
                         <div class="editorLineContainer">
-                            <div class="editorGraphColorSchemeTitle" *ngIf="showFieldColorProperties">
+                            <div class="editorGraphColorSchemeTitle" 
+                                *ngIf="showFieldColorProperties  &&  showFieldColorPropertiesTitle"
+                                >
                                 Scheme:
                             </div>
-                            <div class="select editorGraphColorScheme" *ngIf="showFieldColorProperties">
+                            <div class="select editorGraphColorScheme" 
+                                *ngIf="showFieldColorProperties  &&  showFieldColorPropertiesTitle"
+                                >
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphColorScheme"
                                     name="graphColorScheme"
@@ -1007,10 +1033,14 @@
 
                         <!-- Color Properties Sort -->
                         <div class="editorLineContainer">
-                            <div class="editorGraphColorSortTitle" *ngIf="showFieldColorProperties">
+                            <div class="editorGraphColorSortTitle" 
+                                *ngIf="showFieldColorProperties  &&  showFieldColorPropertiesTitle"
+                                >
                                 Sort:
                             </div>
-                            <div class="select editorGraphColorSort" *ngIf="showFieldColorProperties">
+                            <div class="select editorGraphColorSort" 
+                                *ngIf="showFieldColorProperties  &&  showFieldColorPropertiesTitle"
+                                >
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphColorSort"
                                     name="graphColorSort"
@@ -1024,10 +1054,14 @@
 
                         <!-- Color Properties stack -->
                         <div class="editorLineContainer">
-                            <div class="editorGraphColorStackTitle" *ngIf="showFieldColorProperties">
+                            <div class="editorGraphColorStackTitle" 
+                                *ngIf="showFieldColorProperties  &&  showFieldColorPropertiesTitle"
+                                >
                                 Stack:
                             </div>
-                            <div class="select editorGraphColorStack" *ngIf="showFieldColorProperties">
+                            <div class="select editorGraphColorStack" 
+                                *ngIf="showFieldColorProperties  &&  showFieldColorPropertiesTitle"
+                                >
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphColorStack"
                                     name="graphColorStack"
@@ -1042,10 +1076,14 @@
 
                         <!-- Color Properties type -->
                         <div class="editorLineContainer">
-                            <div class="editorGraphColorTypeTitle" *ngIf="showFieldColorProperties">
+                            <div class="editorGraphColorTypeTitle" 
+                                *ngIf="showFieldColorProperties  &&  showFieldColorPropertiesTitle"
+                                >
                                 Type:
                             </div>
-                            <div class="select editorGraphColorType" *ngIf="showFieldColorProperties">
+                            <div class="select editorGraphColorType" 
+                                *ngIf="showFieldColorProperties  &&  showFieldColorPropertiesTitle"
+                                >
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphColorType"
                                     name="graphColorType"
@@ -1060,7 +1098,9 @@
 
                         <!-- Color Properties timeUnit -->
                         <div class="editorLineContainer">
-                            <div class="editorGraphColorTimeUnitTitle" *ngIf="showFieldColorProperties">
+                            <div class="editorGraphColorTimeUnitTitle" 
+                                *ngIf="showFieldColorProperties  &&  showFieldColorPropertiesTitle"
+                                >
                                 TimeUnit:
                             </div>
                             <div class="select editorGraphColorTimeUnit"
