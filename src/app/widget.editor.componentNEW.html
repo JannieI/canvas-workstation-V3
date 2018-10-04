@@ -921,6 +921,19 @@
                                     title="Bin the Color field (T/F)"
                                     >
                             </div>
+                            <div class="editorGraphColorbinMaxTitle" *ngIf="showFieldColorProperties">
+                                Est bins:
+                            </div>
+                            
+                            <div class="editorGraphColorbinMax" *ngIf="showFieldColorProperties">
+                                <input type="number"
+                                    placeholder="Est. nr of bins"
+                                    size="5"
+                                    style="width: 25px;"
+                                    [(ngModel)]="localWidget.graphColorMaxBins"
+                                    name="graphColorMaxBins"
+                                    >
+                            </div>
                         </div>
 
                         <!-- Color Properties Format -->

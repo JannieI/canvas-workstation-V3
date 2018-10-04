@@ -780,14 +780,14 @@ clr-dg-cell {
                     margin: 3px;
                     width: 15px;
                 }
-                .editorGraphXbinMaxTitle {
+                .editorGraphYbinMaxTitle {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
                     width: 64px;
                 }
-                .editorGraphXbinMax {
+                .editorGraphYbinMax {
                     /* border: 1px solid steelblue;
                     border-radius: 5px; */
                     display: inline-block;
@@ -949,6 +949,21 @@ clr-dg-cell {
                     line-height: 0.8rem;
                     margin: 3px;
                     width: 15px;
+                }
+                .editorGraphColorbinMaxTitle {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin-left: 4px;
+                    width: 64px;
+                }
+                .editorGraphColorbinMax {
+                    /* border: 1px solid steelblue;
+                    border-radius: 5px; */
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin: 3px;
                 }
 
                 .editorGraphColorFormatTitle {
