@@ -2459,8 +2459,17 @@ console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowInde
         // Reset Size X Max
         this.globalFunctionService.printToConsole(this.constructor.name,'clickXBin', '@Start');
 
-        if (this.localWidget.graphSizeBin) {
-            this.localWidget.graphSizeMaxBins = 0;
+        if (this.localWidget.graphXbin) {
+            this.localWidget.graphXMaxBins = 0;
+        };
+    }
+
+    clickYBin() {
+        // Reset Size Y Max
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickYBin', '@Start');
+
+        if (this.localWidget.graphYbin) {
+            this.localWidget.graphYMaxBins = 0;
         };
     }
 

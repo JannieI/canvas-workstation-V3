@@ -740,6 +740,7 @@
                                 <input [(ngModel)]="localWidget.graphYbin"
                                     type="checkbox"
                                     name="graphXbin"
+                                    (click)="clickYBin()"
                                     title="Bin the Y field (T/F)"
                                     >
                             </div>
@@ -919,6 +920,7 @@
                                 <input [(ngModel)]="localWidget.graphColorBin"
                                     type="checkbox"
                                     name="graphXbin"
+                                    (click)="clickColorBin()"
                                     title="Bin the Color field (T/F)"
                                     >
                             </div>
