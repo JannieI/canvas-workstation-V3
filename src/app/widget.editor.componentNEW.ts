@@ -1458,12 +1458,13 @@ export interface dataSchemaInterface {
                 specification['encoding']['size']['field'] = this.graphSizeField;
                 specification['encoding']['size']['type'] = this.localWidget.graphSizeType.toLowerCase();
                 specification['encoding']['size']['aggregate'] = this.localWidget.graphSizeAggregate.toLowerCase();
-                if (this.localWidget.graphSizeBin == 'True') {
-                    specification['encoding']['size']['bin'] = true;
+                if (this.localWidget.graphSizeMaxBins > 0) {
+                    specification['encoding']['size']['bin'] =
+                        {"maxbins": this.localWidget.graphSizeMaxBins};
                 } else {
-                    specification['encoding']['size']['bin'] = false;
+                    specification['encoding']['size']['bin'] = this.localWidget.graphSizeBin;
                 };
-
+    
 
             } else {
             specification['encoding']['size'] = {

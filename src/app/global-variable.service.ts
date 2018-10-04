@@ -300,6 +300,7 @@ const widgetTemplate: Widget =
         "graphSizeType": "",
         "graphSizeAggregate": "",
         "graphSizeBin": true,
+        "graphSizeMaxBins": 0,
     
         "graphMark": "tick",
         "graphMarkOrient": "Verticle",
