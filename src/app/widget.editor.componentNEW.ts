@@ -2473,6 +2473,15 @@ console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowInde
         };
     }
 
+    clickColorBin() {
+        // Reset Size Color Max
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickColorBin', '@Start');
+
+        if (this.localWidget.graphColorBin) {
+            this.localWidget.graphColorMaxBins = 0;
+        };
+    }
+
     clickSizeBin() {
         // Reset Size Bin Max
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSizeBin', '@Start');

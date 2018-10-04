@@ -1154,7 +1154,7 @@ export class Widget {
     graphColorField: string;
     graphColorAggregate: string;
     graphColorBin: boolean;
-    graphColorYMaxBins: number;
+    graphColorMaxBins: number;
     graphColorFormat: string;
     graphColorImpute: string;
     graphColorImputeValue: string;
