@@ -692,7 +692,7 @@
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphXtimeUnit"
                                     [disabled]="localWidget.graphXtype!='Temporal'"
-                                    (change)="changeXTimeUnit()"
+                                    (change)="changeXTimeUnit($event)"
                                     >
                                     <option *ngFor="let row of timeUnits; let i = index">
                                         {{ row }}
@@ -1416,6 +1416,12 @@
                                 size="12"
                                 >
                             </clr-icon>
+                            <clr-icon shape="circle" *ngIf="sizeField!='Drag a field here ...'" 
+                                class="is-solid"
+                                size="12"
+                                style="float: right;"
+                                >
+                            </clr-icon>
                         </div>
 
                         <div class="editorLineContainer">
@@ -1571,6 +1577,12 @@
                                 size="12"
                                 >
                             </clr-icon>
+                            <clr-icon shape="circle" *ngIf="rowField!='Drag a field here ...'" 
+                                class="is-solid"
+                                size="12"
+                                style="float: right;"
+                                >
+                            </clr-icon>
                         </div>
 
                         <!-- Row Field -->
@@ -1628,6 +1640,12 @@
                             </clr-icon>
                             <clr-icon shape="angle up" *ngIf="showFieldColumnProperties"
                                 size="12"
+                                >
+                            </clr-icon>
+                            <clr-icon shape="circle" *ngIf="columnField!='Drag a field here ...'" 
+                                class="is-solid"
+                                size="12"
+                                style="float: right;"
                                 >
                             </clr-icon>
                         </div>

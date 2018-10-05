@@ -2611,8 +2611,10 @@ console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowInde
 
         if (this.localWidget.graphXtype != 'Temporal') {
             this.localWidget.graphXtimeUnit = '';
+            console.warn('xx chg');
+            
         };
     }
 
-    
+
 }
