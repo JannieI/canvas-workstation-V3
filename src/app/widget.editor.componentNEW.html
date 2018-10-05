@@ -570,7 +570,7 @@
                             <div class="editorGraphXbinMaxTitle" *ngIf="showFieldXProperties">
                                 Est bins:
                             </div>
-                            
+
                             <div class="editorGraphXbinMax" *ngIf="showFieldXProperties">
                                 <input type="number"
                                     placeholder="Est. nr of bins"
@@ -752,7 +752,7 @@
                             <div class="editorGraphYbinMaxTitle" *ngIf="showFieldYProperties">
                                 Est bins:
                             </div>
-                            
+
                             <div class="editorGraphYbinMax" *ngIf="showFieldYProperties">
                                 <input type="number"
                                     placeholder="Est. nr of bins"
@@ -933,7 +933,7 @@
                             <div class="editorGraphColorbinMaxTitle" *ngIf="showFieldColorProperties">
                                 Est bins:
                             </div>
-                            
+
                             <div class="editorGraphColorbinMax" *ngIf="showFieldColorProperties">
                                 <input type="number"
                                     placeholder="Est. nr of bins"
@@ -1416,7 +1416,7 @@
                                 size="12"
                                 >
                             </clr-icon>
-                            <clr-icon shape="circle" *ngIf="sizeField!='Drag a field here ...'" 
+                            <clr-icon shape="circle" *ngIf="sizeField!='Drag a field here ...'"
                                 class="is-solid"
                                 size="12"
                                 style="float: right;"
@@ -1437,7 +1437,7 @@
                                 [style.background-color]="dragoverSizes? 'lightgray' : 'transparent'"
                                 [style.font-style]="sizeField=='Drag a field here ...' ?  'italic'  :  'normal'"
                                 >
-                                
+
                                 <clr-icon shape="times" *ngIf="showSizeDeleteIcon"
                                     (click)="clickClearSizeField()"
                                     >
@@ -1577,7 +1577,7 @@
                                 size="12"
                                 >
                             </clr-icon>
-                            <clr-icon shape="circle" *ngIf="rowField!='Drag a field here ...'" 
+                            <clr-icon shape="circle" *ngIf="rowField!='Drag a field here ...'"
                                 class="is-solid"
                                 size="12"
                                 style="float: right;"
@@ -1599,7 +1599,7 @@
                                 [style.background-color]="isDragoverRow? 'lightgray' : 'transparent'"
                                 [style.font-style]="rowField=='Drag a field here ...' ?  'italic'  :  'normal'"
                                 >
-                                
+
                                 <clr-icon shape="times" *ngIf="showRowDeleteIcon"
                                     (click)="clickClearRowField()"
                                     >
@@ -1642,7 +1642,7 @@
                                 size="12"
                                 >
                             </clr-icon>
-                            <clr-icon shape="circle" *ngIf="columnField!='Drag a field here ...'" 
+                            <clr-icon shape="circle" *ngIf="columnField!='Drag a field here ...'"
                                 class="is-solid"
                                 size="12"
                                 style="float: right;"
@@ -1663,7 +1663,7 @@
                                 [style.background-color]="isDragoverColumn? 'lightgray' : 'transparent'"
                                 [style.font-style]="columnField=='Drag a field here ...' ?  'italic'  :  'normal'"
                                 >
-                                
+
                                 <clr-icon shape="times" *ngIf="showColumnDeleteIcon"
                                     (click)="clickClearColumnField()"
                                     >
@@ -1690,10 +1690,10 @@
                             </div>
                         </div>
 
-                        
+
                     </div>
 
-                        
+
 
                     <!-- GRAPH TYPES -->
                     <div class="editorTypesTitle">
@@ -1710,7 +1710,7 @@
                                     <!-- {{ row.shortName }}: -->
                                 </i>
                             </span>
-                            <img 
+                            <img
                                 [style.width.px]="90"
                                 [style.height.px]="70"
                                 [src]="row.imageUrl"
@@ -1726,14 +1726,14 @@
                         <b>Graph</b>
                     </div>
                     <div class="editorArea" #dragWidget
-                        [style.border]="showGraphAreaTitle?  '1px solid gray'  : 'none'"    
+                        [style.border]="showGraphAreaTitle?  '1px solid gray'  : 'none'"
                         >
                     </div>
 
                     <!-- FILTER -->
                     <div class="editorFilterTitle">
                         <button
-                            style="border: 1px solid transparent; color: gray;"            
+                            style="border: 1px solid transparent; color: gray;"
                             class="btn btn-sm btn-secondary"
                             (click)="clickShowFilterArea()"
                             >
@@ -1745,24 +1745,27 @@
                             Filter
                         </button>
                     </div>
-                    <div class="editorFilterArea" *ngIf="showFilterAreaProperties">      
-                        <div style="font-size: 0.65rem;">
+                    <div class="editorFilterArea" *ngIf="showFilterAreaProperties">
+                        <div style="font-size: 0.55rem;">
                             <b>Filter</b>
                             <br>
-                            Select the field to filter on, then the operator and type a Value.
-                            For example: Origin Equal "Europe".
+                            <i>
+                                Select the field to filter on, then the operator and type a Value.
+                                For example: Origin Equal "Europe".
+                            </i>
                             <br>
                         </div>
                         <div class="editorFilterFieldTitle">
                             Field:
                         </div>
                         <div class="select editorFilterField">
-                            <select id="selects_3"
-                                [(ngModel)]="localWidget.graphColumnType"
+                            <select id="selects_3" *ngIf="dataSchema"
+                                [(ngModel)]="filterField"
                                 name="graphColumnType"
                                 >
-                                <option *ngFor="let row of dataSchema; let i = index"></option>
-                                <option>{{ row.name  }}</option>
+                                <option *ngFor="let row of dataSchema; let i = index">
+                                    {{ row.name }}
+                                </option>
                             </select>
                         </div>
                         <div class="editorFilterOperatorTitle">
@@ -1770,7 +1773,7 @@
                         </div>
                         <div class="select editorFilterOperator">
                             <select id="selects_3"
-                                [(ngModel)]="localWidget.graphColumnType"
+                                [(ngModel)]="filterOperator"
                                 name="graphColumnType"
                                 >
                                 <option>Less Than</option>
@@ -1790,18 +1793,26 @@
                             </div>
                             <div class="editorFilterValue">
                                 <input type="text"
-                                    [(ngModel)]="localWidget.graphLegendFormat"
+                                    [(ngModel)]="filterValue"
                                     name="graphLegendFormat"
                                     placeholder="value, [0,5], [a,b,c], true"
                                     >
                             </div>
+                        </div>
+                        <div class="btn-group btn-link">
+                            <button class="btn" (click)="clickFilterClose()">
+                                Clear
+                            </button>
+                            <button class="btn" (click)="clickFilterSave()">
+                                Apply
+                            </button>
                         </div>
                     </div>
 
                     <!-- SELECTION -->
                     <div class="editorSelection">
                         <button
-                            style="border: 1px solid gray; color: gray;"            
+                            style="border: 1px solid gray; color: gray;"
                             class="btn btn-sm btn-secondary"
                             (click)="clickShowDatasources()"
                             >
@@ -1813,7 +1824,7 @@
                             </clr-icon>
                         </button>
                     </div>
-                                        
+
                     <!-- BUTTONS -->
                     <div class="editorButtonShowData">
                         <button
