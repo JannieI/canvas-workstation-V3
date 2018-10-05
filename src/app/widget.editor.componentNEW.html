@@ -1414,60 +1414,6 @@
                         </div>
 
 
-                        <!-- Legend-Axis Title Bar -->
-                        <div class="editorLegendContainerTitle" *ngIf="showFieldColorPropertiesTitle"
-                            (click)="clickShowLegend()"
-                            >
-                            <b>
-                                Legend
-                            </b>
-                            <clr-icon shape="angle down" *ngIf="!showFieldLegend"
-                                size="12"
-                                >
-                            </clr-icon>
-                            <clr-icon shape="angle up" *ngIf="showFieldLegend"
-                                size="12"
-                                >
-                            </clr-icon>
-                        </div>
-
-                        <!-- Legend Title -->
-                        <div class="editorLineContainer">
-                            <div class="editorGraphLegendTitleTitle" *ngIf="showFieldLegend">
-                                Title:
-                            </div>
-                            <div class="editorGraphLegendTitleCheckbox" *ngIf="showFieldLegend">
-                                <input [(ngModel)]="localWidget.graphLegendTitleCheckbox"
-                                    type="checkbox"
-                                    name="graphLegendTitleCheckbox"
-                                    title="Show the Axis Title (T/F)"
-                                    >
-                            </div>
-                            <div class="editorGraphLegendTitle" *ngIf="showFieldLegend"
-                                >
-                                <input type="text"
-                                    placeholder="Blank = field name"
-                                    [(ngModel)]="localWidget.graphLegendTitle"
-                                    name="graphLegendTitle"
-                                    >
-                            </div>
-                        </div>
-
-                        <!-- Legend Format -->
-                        <div class="editorLineContainer">
-                            <div class="editorGraphLegendFormatTitle" *ngIf="showFieldLegend">
-                            Format:
-                            </div>
-                            <div class="editorGraphLegendFormat" *ngIf="showFieldLegend">
-                                <input type="text"
-                                    [(ngModel)]="localWidget.graphLegendFormat"
-                                    name="graphLegendFormat"
-                                    placeholder="ie .2s +$,.2f"
-                                    >
-                            </div>
-                        </div>
-
-
                         <!-- Size Channel Title Bar -->
                         <div class="editorSizeContainerTitle"
                             (click)="clickShowSize()"
@@ -1568,8 +1514,122 @@
                             </div>
                         </div>
 
+
+                        <!-- Legend-Axis Title Bar -->
+                        <div class="editorLegendContainerTitle" *ngIf="showFieldColorPropertiesTitle"
+                            (click)="clickShowLegend()"
+                            >
+                            <b>
+                                Legend
+                            </b>
+                            <clr-icon shape="angle down" *ngIf="!showFieldLegend"
+                                size="12"
+                                >
+                            </clr-icon>
+                            <clr-icon shape="angle up" *ngIf="showFieldLegend"
+                                size="12"
+                                >
+                            </clr-icon>
+                        </div>
+
+                        <!-- Legend Title -->
+                        <div class="editorLineContainer">
+                            <div class="editorGraphLegendTitleTitle" *ngIf="showFieldLegend">
+                                Title:
+                            </div>
+                            <div class="editorGraphLegendTitleCheckbox" *ngIf="showFieldLegend">
+                                <input [(ngModel)]="localWidget.graphLegendTitleCheckbox"
+                                    type="checkbox"
+                                    name="graphLegendTitleCheckbox"
+                                    title="Show the Axis Title (T/F)"
+                                    >
+                            </div>
+                            <div class="editorGraphLegendTitle" *ngIf="showFieldLegend"
+                                >
+                                <input type="text"
+                                    placeholder="Blank = field name"
+                                    [(ngModel)]="localWidget.graphLegendTitle"
+                                    name="graphLegendTitle"
+                                    >
+                            </div>
+                        </div>
+
+                        <!-- Legend Format -->
+                        <div class="editorLineContainer">
+                            <div class="editorGraphLegendFormatTitle" *ngIf="showFieldLegend">
+                            Format:
+                            </div>
+                            <div class="editorGraphLegendFormat" *ngIf="showFieldLegend">
+                                <input type="text"
+                                    [(ngModel)]="localWidget.graphLegendFormat"
+                                    name="graphLegendFormat"
+                                    placeholder="ie .2s +$,.2f"
+                                    >
+                            </div>
+                        </div>
+
+
+                        <!-- Row Channel Title Bar -->
+                        <div class="editorRowContainerTitle"
+                            (click)="clickShowRow()"
+                            >
+                            <b>
+                                Row
+                            </b>
+                            <clr-icon shape="angle down" *ngIf="!showFieldRow"
+                                size="12"
+                                >
+                            </clr-icon>
+                            <clr-icon shape="angle up" *ngIf="showFieldRow"
+                                size="12"
+                                >
+                            </clr-icon>
+                        </div>
+
+                        <div class="editorLineContainer">
+                            <div class="editorRowFieldTitle" *ngIf="showFieldRow">
+                                Field:
+                            </div>
+                            <div class="editorRowField" *ngIf="showFieldRow"
+                                id="target"
+                                (drop)="dropRow($event);"
+                                (dragenter)="dragenterRow($event);"
+                                (dragleave)="dragleaveRow($event);"
+                                (dragover)="dragoverRow($event);"
+                                [style.background-color]="dragoverRows? 'lightgray' : 'transparent'"
+                                [style.font-style]="graphRowField=='Drag a field here ...' ?  'italic'  :  'normal'"
+                                >
+                                
+                                <clr-icon shape="times" *ngIf="showRowDeleteIcon"
+                                    (click)="clickClearRowField()"
+                                    >
+                                </clr-icon>
+                                {{ graphRowField }}
+                            </div>
+                        </div>
+
+                        <!-- Row type -->
+                        <div class="editorLineContainer">
+                            <div class="editorGraphRowTypeTitle" *ngIf="showFieldRow">
+                                Type:
+                            </div>
+                            <div class="select editorGraphRowType" *ngIf="showFieldRow">
+                                <select id="selects_3"
+                                    [(ngModel)]="localWidget.graphRowType"
+                                    name="graphRowType"
+                                    >
+                                    <option>Ordinal</option>
+                                    <option>Quantitative</option>
+                                    <option>Temporal</option>
+                                    <option>Nominal</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        
                     </div>
 
+                        
 
                     <!-- GRAPH TYPES -->
                     <div class="editorTypesTitle">
