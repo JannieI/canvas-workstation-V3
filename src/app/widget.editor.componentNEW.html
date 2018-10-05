@@ -272,7 +272,7 @@
 
                         <!-- TOP 3 - 1. X field -->
                         <div class="editorLineContainer">
-                            <div class="editorColFieldTitle">
+                            <div class="editorXFieldTitle">
                                 X axis:
                                 <clr-icon shape="switch right"
                                     size="10"
@@ -280,20 +280,20 @@
                                     >
                                 </clr-icon>
                             </div>
-                            <div class="editorColField"
+                            <div class="editorXField"
                                 id="target"
-                                (drop)="dropColumn($event);"
-                                (dragover)="dragoverColumn($event);"
-                                (dragenter)="dragenterColumn($event);"
-                                (dragleave)="dragleaveColumn($event);"
+                                (drop)="dropXField($event);"
+                                (dragover)="dragoverXField($event);"
+                                (dragenter)="dragenterXField($event);"
+                                (dragleave)="dragleaveXField($event);"
                                 [style.background-color]="dragoverCol? 'lightgray' : 'transparent'"
-                                [style.font-style]="colField=='Drag a field here ...' ?  'italic'  :  'normal'"
+                                [style.font-style]="xField=='Drag a field here ...' ?  'italic'  :  'normal'"
                                 (click)="clickXfield()"
                                 >
-                                <clr-icon shape="times" *ngIf="showColumnDeleteIcon"
-                                    (click)="clickClearColumnField()">
+                                <clr-icon shape="times" *ngIf="showXFieldDeleteIcon"
+                                    (click)="clickClearXFieldField()">
                                 </clr-icon>
-                                {{ colField }}
+                                {{ xField }}
                             </div>
                         </div>
 

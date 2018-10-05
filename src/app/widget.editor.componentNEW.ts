@@ -176,7 +176,7 @@ export interface dataSchemaInterface {
         }
     ]
     backgroundcolors: CSScolor[];
-    colField: string = dragFieldMessage;
+    xField: string = dragFieldMessage;
     containerHasContextMenus: boolean = true;
     containerHasTitle: boolean = true;
     currentData: any = [];
@@ -216,7 +216,7 @@ export interface dataSchemaInterface {
     sampleNumberRows: number = 0;
 
     showColourDeleteIcon: boolean = false;
-    showColumnDeleteIcon: boolean = false;
+    showXDeleteIcon: boolean = false;
     showSizeDeleteIcon: boolean = false;
     showDatasourceMain: boolean = true;
 
@@ -1030,12 +1030,12 @@ export interface dataSchemaInterface {
 
             // Add Fields to selection areas
             if (this.localWidget.graphXfield != ''   &&   this.localWidget.graphXfield != null) {
-                this.showColumnDeleteIcon = true;
-                this.colField = this.localWidget.graphXfield;
+                this.showXDeleteIcon = true;
+                this.xField = this.localWidget.graphXfield;
 
             } else {
-                this.showColumnDeleteIcon = false;
-                this.colField = dragFieldMessage;
+                this.showXDeleteIcon = false;
+                this.xField = dragFieldMessage;
             };
 
             if (this.localWidget.graphYfield != ''   &&   this.localWidget.graphYfield != null) {
@@ -1164,8 +1164,8 @@ export interface dataSchemaInterface {
 
         // Set fields
         this.localWidget.graphXfield = '';
-        if (this.colField != dragFieldMessage) {
-            this.localWidget.graphXfield = this.colField;
+        if (this.xField != dragFieldMessage) {
+            this.localWidget.graphXfield = this.xField;
         };
         this.localWidget.graphYfield = '';
         if (this.yField != dragFieldMessage) {
@@ -1783,9 +1783,9 @@ console.warn('xx definition', definition);
         this.draggedField = ev.srcElement.innerText.trim();
     }
 
-    dragoverColumn(ev, actionName: string) {
-        // Event trigger when a field is dragged over Column element
-        this.globalFunctionService.printToConsole(this.constructor.name,'dragoverColumn', '@Start');
+    dragoverXField(ev, actionName: string) {
+        // Event trigger when a field is dragged over X Field element
+        this.globalFunctionService.printToConsole(this.constructor.name,'dragoverXField', '@Start');
 
         ev.preventDefault();
     }
@@ -1813,9 +1813,9 @@ console.warn('xx definition', definition);
 
     switchXandY() {
         // Event trigger when the dragged Field is dropped the Column field
-        this.globalFunctionService.printToConsole(this.constructor.name,'dropColumn', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'switchXandY', '@Start');
 
-        let newXField: string = this.colField;
+        let newXField: string = this.xField;
         let newYField: string = this.yField;
         if (newXField == dragFieldMessage) {
             this.clickClearYField();
@@ -1823,15 +1823,15 @@ console.warn('xx definition', definition);
             this.dropYField(null, newXField);
         };
         if (newYField == dragFieldMessage) {
-            this.clickClearColumnField();
+            this.clickClearXFieldField();
         } else {
-            this.dropColumn(null, newYField);
+            this.dropXField(null, newYField);
         };
     }
 
-    dropColumn(ev, fieldName: string = '') {
+    dropXField(ev, fieldName: string = '') {
         // Event trigger when the dragged Field is dropped the Column field
-        this.globalFunctionService.printToConsole(this.constructor.name,'dropColumn', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'dropXField', '@Start');
 console.warn('xx fieldName', fieldName, this.draggedField);
 
         // Set
@@ -1849,14 +1849,14 @@ console.warn('xx fieldName', fieldName, this.draggedField);
         );
 
         // Show X icon
-        this.showColumnDeleteIcon = true;
+        this.showXDeleteIcon = true;
 
         // Show the panel with X properties
         this.showFieldXPropertiesTitle = true;
 
         // Get the id of the target and add the moved element to the target's DOM
 
-        this.colField = fieldName;
+        this.xField = fieldName;
         // this.localWidget.graphXfield = fieldName;
         // this.localWidget.graphXaxisTitle = fieldName;
 
@@ -1864,7 +1864,7 @@ console.warn('xx fieldName', fieldName, this.draggedField);
         this.graphTypeFieldX = this.allowedGraphTypeField(fieldType);
         this.localWidget.graphXtype = this.defaultGraphTypeField(fieldType);
 
-        console.warn('xx', this.colField);
+        console.warn('xx', this.xField);
 
         // let definition = this.globalVariableService.createVegaLiteSpec(
         //     this.localWidget, graphHeight, graphWidth
@@ -1981,12 +1981,12 @@ this.localWidget.graphYtype);
         // this.renderGraph(definition);
     }
 
-    clickClearColumnField() {
+    clickClearXFieldField() {
         // Clear the X Field and Remove X icon
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickClearColumnField', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClearXFieldField', '@Start');
         
-        this.showColumnDeleteIcon = false;
-        this.colField = dragFieldMessage;
+        this.showXDeleteIcon = false;
+        this.xField = dragFieldMessage;
 
         // Hide the panel with properties
         this.showFieldXPropertiesTitle = false;
@@ -2029,9 +2029,9 @@ this.localWidget.graphYtype);
         
     }
 
-    dragenterColumn(ev, actionName: string) {
-        // Event trigger when dragged field enters Column
-        this.globalFunctionService.printToConsole(this.constructor.name,'dragenterColumn', '@Start');
+    dragenterXField(ev, actionName: string) {
+        // Event trigger when dragged field enters XField
+        this.globalFunctionService.printToConsole(this.constructor.name,'dragenterXField', '@Start');
 
         ev.preventDefault();
         this.dragoverCol = true;
@@ -2039,9 +2039,9 @@ this.localWidget.graphYtype);
         this.dragoverColours = false;
     }
 
-    dragleaveColumn(ev, actionName: string) {
-        // Event trigger when dragged field leave Column
-        this.globalFunctionService.printToConsole(this.constructor.name,'dragleaveColumn', '@Start');
+    dragleaveXField(ev, actionName: string) {
+        // Event trigger when dragged field leave XField
+        this.globalFunctionService.printToConsole(this.constructor.name,'dragleaveXField', '@Start');
 
         ev.preventDefault();
         this.dragoverCol = false;
@@ -2137,8 +2137,8 @@ this.localWidget.graphYtype);
         this.currentData = null;
 
         // Clear previous selected fields
-        this.showColumnDeleteIcon = false;
-        this.colField = dragFieldMessage;
+        this.showXDeleteIcon = false;
+        this.xField = dragFieldMessage;
         // this.localWidget.graphXfield = '';
         this.localWidget.graphXaxisTitle = '';
 
@@ -2502,9 +2502,9 @@ console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowInde
     clickXfield() {
         // Show the X field properties
         this.globalFunctionService.printToConsole(this.constructor.name,'clickXfield', '@Start');
-console.warn('xx colField', this.colField);
+console.warn('xx colField', this.xField);
 
-        if (this.colField == dragFieldMessage  ||  this.colField == null) {
+        if (this.xField == dragFieldMessage  ||  this.xField == null) {
             return;
         };
 
