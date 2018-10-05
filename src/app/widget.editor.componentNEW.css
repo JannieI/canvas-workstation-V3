@@ -1712,7 +1712,8 @@ clr-dg-cell {
             text-align: left;
             overflow-x: scroll;
         }
-        .editorFilter {
+
+        .editorFilterTitle {
             grid-column-start: 35;
             /* autoprefixer: off */
             grid-column-end: 37;
@@ -1720,6 +1721,68 @@ clr-dg-cell {
             grid-row-end: 22;
             text-align: left;
         }
+            .editorFilterArea {
+                background-color: rgb(245, 240, 240);
+                border: 1px solid gray;
+                border-radius: 6px;                
+                grid-column-start: 30;
+                /* autoprefixer: off */
+                grid-column-end: 45;
+                grid-row-start: 11;
+                grid-row-end: 21;
+                text-align: left;
+                z-index: 101;
+            }
+                .editorFilterFieldTitle {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin-left: 4px;
+                    width: 64px;
+                }
+                .editorFilterField {
+                    border: 1px solid steelblue;
+                    border-radius: 5px;
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin: 3px;
+                    width: 68%;
+                }
+                .editorFilterOperatorTitle {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin-left: 4px;
+                    width: 64px;
+                }
+                .editorFilterOperator {
+                    border: 1px solid steelblue;
+                    border-radius: 5px;
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin: 3px;
+                    width: 68%;
+                }
+
+                .editorFilterValueTitle {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin-left: 4px;
+                    width: 64px;
+                }
+                .editorFilterValue {
+                    border: 1px solid steelblue;
+                    border-radius: 5px;
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin: 3px;
+                    width: 68%;
+                }
+
         .editorSelection {
             grid-column-start: 42;
             /* autoprefixer: off */

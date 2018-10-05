@@ -1731,19 +1731,71 @@
                     </div>
 
                     <!-- FILTER -->
-                    <div class="editorFilter">
+                    <div class="editorFilterTitle">
                         <button
-                            style="border: 1px solid gray; color: gray;"            
+                            style="border: 1px solid transparent; color: gray;"            
                             class="btn btn-sm btn-secondary"
-                            (click)="clickShowDatasources()"
+                            (click)="clickShowFilterArea()"
                             >
-                            <clr-icon (click)="clickShowDatasources()"
+                            <clr-icon (click)="clickShowFilterArea()"
                                 shape="angle up"
                                 size="12"
                                 >
                             </clr-icon>
                             Filter
                         </button>
+                    </div>
+                    <div class="editorFilterArea" *ngIf="showFilterAreaProperties">      
+                        <div style="font-size: 0.65rem;">
+                            <b>Filter</b>
+                            <br>
+                            Select the field to filter on, then the operator and type a Value.
+                            For example: Origin Equal "Europe".
+                            <br>
+                        </div>
+                        <div class="editorFilterFieldTitle">
+                            Field:
+                        </div>
+                        <div class="select editorFilterField">
+                            <select id="selects_3"
+                                [(ngModel)]="localWidget.graphColumnType"
+                                name="graphColumnType"
+                                >
+                                <option *ngFor="let row of dataSchema; let i = index"></option>
+                                <option>{{ row.name  }}</option>
+                            </select>
+                        </div>
+                        <div class="editorFilterOperatorTitle">
+                            Operator:
+                        </div>
+                        <div class="select editorFilterOperator">
+                            <select id="selects_3"
+                                [(ngModel)]="localWidget.graphColumnType"
+                                name="graphColumnType"
+                                >
+                                <option>Less Than</option>
+                                <option>Less Than Equal</option>
+                                <option>Equal</option>
+                                <option>Greater Than</option>
+                                <option>Greater Than Equal</option>
+                                <option>Range</option>
+                                <option>One Of</option>
+                                <option>Valid</option>
+                                <option>Selection</option>
+                            </select>
+                        </div>
+                        <div class="editorLineContainer">
+                            <div class="editorFilterValueTitle">
+                            Value:
+                            </div>
+                            <div class="editorFilterValue">
+                                <input type="text"
+                                    [(ngModel)]="localWidget.graphLegendFormat"
+                                    name="graphLegendFormat"
+                                    placeholder="value, [0,5], [a,b,c], true"
+                                    >
+                            </div>
+                        </div>
                     </div>
 
                     <!-- SELECTION -->

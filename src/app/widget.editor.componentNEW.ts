@@ -236,6 +236,7 @@ export interface dataSchemaInterface {
     showFieldColorPropertiesInfo: boolean = false;
     showFieldColorPropertiesTitle: boolean = false;
     showFieldFilter: boolean = false;
+    showFilterAreaProperties: boolean = false;
     showGraphAreaTitle: boolean = true;
     showSelectionFilter: boolean = false;
     showFieldMarkProperties: boolean = false;
@@ -1464,12 +1465,6 @@ export interface dataSchemaInterface {
                 };
             };
 
-            // "encoding": {
-            //     "column": {
-            //       "field": "age", "type": "ordinal"
-            //     },
-
-
             // Row field
             if (this.localWidget.graphRowField != '') {
                 console.warn('xx localWidget.graphRowField', this.localWidget.graphRowField);
@@ -1479,10 +1474,6 @@ export interface dataSchemaInterface {
                     "type": this.localWidget.graphRowType.toLowerCase()
                 };   
 
-            } else {
-            // specification['encoding']['row'] = {
-            //     "field": null
-            //     };
             };
 
 
@@ -1495,13 +1486,12 @@ export interface dataSchemaInterface {
                     "type": this.localWidget.graphColumnType.toLowerCase()
                 };   
 
-            } else {
-            // specification['encoding']['column'] = {
-            //     "field": null
-            //     };
             };
 
-
+            specification['encoding']['detail'] = {"field": "Origin","type": "nominal"}
+            specification['transform'] = [
+                {"filter": {"field": "Origin", "equal": "Europe"}}
+            ];
             // Tooltip setting
             // specification['mark']['tooltip']['content'] = "";
 
@@ -2616,5 +2606,10 @@ console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowInde
         };
     }
 
+    clickShowFilterArea() {
+        // Show Filter Area
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowFilterArea', '@Start');
 
+        this.showFilterAreaProperties = !this.showFilterAreaProperties;
+    }
 }
