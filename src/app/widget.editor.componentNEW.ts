@@ -1923,6 +1923,18 @@ console.warn('xx definition', definition);
         
     }
 
+    clickClearRowField() {
+        // Clear the Row Field and Remove X icon
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClearRowField', '@Start');
+
+        this.showRowDeleteIcon = false;
+        this.rowField = dragFieldMessage;
+
+        // Hide the panel with properties
+        this.showFieldRowProperties = false;
+        
+    }
+
     dragenterXField(ev, actionName: string) {
         // Event trigger when dragged field enters XField
         this.globalFunctionService.printToConsole(this.constructor.name,'dragenterXField', '@Start');
