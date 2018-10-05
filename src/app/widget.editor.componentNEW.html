@@ -1442,14 +1442,14 @@
                                 (dragleave)="dragleaveSize($event);"
                                 (dragover)="dragoverSize($event);"
                                 [style.background-color]="dragoverSizes? 'lightgray' : 'transparent'"
-                                [style.font-style]="graphSizeField=='Drag a field here ...' ?  'italic'  :  'normal'"
+                                [style.font-style]="sizeField=='Drag a field here ...' ?  'italic'  :  'normal'"
                                 >
                                 
                                 <clr-icon shape="times" *ngIf="showSizeDeleteIcon"
                                     (click)="clickClearSizeField()"
                                     >
                                 </clr-icon>
-                                {{ graphSizeField }}
+                                {{ sizeField }}
                             </div>
                         </div>
 

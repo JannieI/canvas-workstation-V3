@@ -192,8 +192,9 @@ export interface dataSchemaInterface {
     dragoverColours: boolean = false;
     dragoverSizes: boolean = false;
     errorMessage: string = '';
-    graphColorField: string = dragFieldMessage;
+    // graphColorField: string = dragFieldMessage;
     colorField: string = dragFieldMessage;
+    sizeField: string = dragFieldMessage;
     graphColor: string[];
     graphLayers: number[] = [1, 2, 3,];  // TODO - fix hardcoding
     graphTypeFieldY: string[] =[];
@@ -1047,15 +1048,19 @@ export interface dataSchemaInterface {
 
             if (this.localWidget.graphColorField != ''   &&   this.localWidget.graphColorField != null) {
                 this.showColourDeleteIcon = true;
-                this.graphColorField = this.localWidget.graphColorField;
+                this.colorField = this.localWidget.graphColorField;
             } else {
                 this.showColourDeleteIcon = false;
-                this.graphColorField = dragFieldMessage;
+                this.colorField = dragFieldMessage;
             };
 
-            // TODO - load from DB
-            this.colorField = dragFieldMessage;
-            this.showSizeDeleteIcon = false;
+            if (this.localWidget.graphSizeField != ''   &&   this.localWidget.graphSizeField != null) {
+                this.showColourDeleteIcon = true;
+                this.sizeField = this.localWidget.graphSizeField;
+            } else {
+                this.showColourDeleteIcon = false;
+                this.sizeField = dragFieldMessage;
+            };
 
             // Get local vars - easier for ngFor
             this.containerHasContextMenus = this.localWidget.containerHasContextMenus;
@@ -1167,13 +1172,13 @@ export interface dataSchemaInterface {
             this.localWidget.graphYfield = this.yField;
         };
         this.localWidget.graphColorField = '';
-        if (this.graphColorField != dragFieldMessage) {
-            this.localWidget.graphColorField = this.graphColorField;
+        if (this.colorField != dragFieldMessage) {
+            this.localWidget.graphColorField = this.colorField;
         };
-        // this.localWidget.graphSizeField = '';
-        // if (this.colorField != dragFieldMessage) {
-        //     this.localWidget.graphSizeField = this.colorField;
-        // };
+        this.localWidget.graphSizeField = '';
+        if (this.sizeField != dragFieldMessage) {
+            this.localWidget.graphSizeField = this.sizeField;
+        };
 
 
         // Defaults
@@ -1453,11 +1458,7 @@ export interface dataSchemaInterface {
                     "scale": this.localWidget.graphColorScheme == 'None'?  null  :  {"scheme": this.localWidget.graphColorScheme.toLowerCase()}
                 };
 
-                console.warn('xx this.localWidget.graphColorField', this.localWidget.graphColorField)
-                console.warn('xx this.graphColorField', this.graphColorField)
-                console.warn('xx [color]', this.localWidget.graphColorType, specification['encoding']['color']);
-
-            // if (this.localWidget. != '') {
+                // if (this.localWidget. != '') {
                 //     if (this.localWidget. == 'Value') {
                 //         specification['encoding']['color']['impute'] =
                 //             {"value":' + this.localWidget.Value + '};
@@ -1488,12 +1489,10 @@ export interface dataSchemaInterface {
 
 
             // Size field
-            if (this.colorField != ''
-                &&  this.colorField.toLowerCase() != dragFieldMessage
-                &&  this.colorField != undefined) {
-                console.warn('xx sizeFiled', this.colorField);
+            if (this.localWidget.graphSizeField != '') {
+                console.warn('xx localWidget.graphSizeField', this.localWidget.graphSizeField);
 
-                specification['encoding']['size']['field'] = this.colorField;
+                specification['encoding']['size']['field'] = this.localWidget.graphSizeField;
                 specification['encoding']['size']['type'] = this.localWidget.graphSizeType.toLowerCase();
                 specification['encoding']['size']['aggregate'] = this.localWidget.graphSizeAggregate.toLowerCase();
                 if (this.localWidget.graphSizeMaxBins > 0) {
@@ -1897,7 +1896,7 @@ console.warn('xx fieldName', fieldName, this.draggedField);
         this.showFieldYPropertiesTitle = true;
 
         this.yField = fieldName;
-        this.localWidget.graphYfield = fieldName;
+        // this.localWidget.graphYfield = fieldName;
         this.localWidget.graphYaxisTitle = fieldName;
 
         // Fill the default and allowed types of Vega field types
@@ -1935,8 +1934,8 @@ this.localWidget.graphYtype);
 
         var data = ev.dataTransfer.getData("text");
         // ev.target.appendChild(document.getElementById(data));
-        this.graphColorField = this.draggedField;
-        this.localWidget.graphColorField = this.draggedField
+        this.colorField = this.draggedField;
+        // this.localWidget.graphColorField = this.draggedField
 
         // Fill the default and allowed types of Vega field types
         let fieldType:string = this.getFieldType(this.draggedField);
@@ -1966,7 +1965,7 @@ this.localWidget.graphYtype);
         var data = ev.dataTransfer.getData("text");
 
         // TODO Add Size field
-        this.colorField = this.draggedField;
+        this.sizeField = this.draggedField;
         // this.localWidget.graphColorField = this.draggedField
 
         this.dragoverSizes = false;
@@ -2033,8 +2032,8 @@ this.localWidget.graphYtype);
 
         // Show X icon
         this.showColourDeleteIcon = false;
-        this.graphColorField = dragFieldMessage;
-        this.localWidget.graphColorField = null;
+        this.colorField = dragFieldMessage;
+        // this.localWidget.graphColorField = null;
         this.localWidget.graphColorType = null;
 
         // let definition = this.globalVariableService.createVegaLiteSpec(
@@ -2049,7 +2048,7 @@ this.localWidget.graphYtype);
 
         // Show X icon
         this.showSizeDeleteIcon = false;
-        this.colorField = dragFieldMessage;
+        this.sizeField = dragFieldMessage;
         // this.localWidget.graphColorField = null;
         // this.localWidget.graphColorType = null;
 
@@ -2178,7 +2177,7 @@ this.localWidget.graphYtype);
         this.localWidget.graphYaxisTitle = '';
 
         this.showColourDeleteIcon = false;
-        this.graphColorField = dragFieldMessage;
+        this.colorField = dragFieldMessage;
         this.localWidget.graphColorField = ''
         this.localWidget.graphColorType = '';
 
@@ -2560,7 +2559,7 @@ console.warn('xx colField', this.colField);
         // Show the Color field properties
         this.globalFunctionService.printToConsole(this.constructor.name,'clickColorfield', '@Start');
 
-        if (this.graphColorField == dragFieldMessage  ||  this.graphColorField == null) {
+        if (this.colorField == dragFieldMessage  ||  this.colorField == null) {
             return;
         };
 
