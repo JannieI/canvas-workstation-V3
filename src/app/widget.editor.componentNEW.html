@@ -1576,44 +1576,44 @@
                             <b>
                                 Row
                             </b>
-                            <clr-icon shape="angle down" *ngIf="!showFieldRow"
+                            <clr-icon shape="angle down" *ngIf="!showFieldRowProperties"
                                 size="12"
                                 >
                             </clr-icon>
-                            <clr-icon shape="angle up" *ngIf="showFieldRow"
+                            <clr-icon shape="angle up" *ngIf="showFieldRowProperties"
                                 size="12"
                                 >
                             </clr-icon>
                         </div>
 
                         <div class="editorLineContainer">
-                            <div class="editorRowFieldTitle" *ngIf="showFieldRow">
+                            <div class="editorRowFieldTitle" *ngIf="showFieldRowProperties">
                                 Field:
                             </div>
-                            <div class="editorRowField" *ngIf="showFieldRow"
+                            <div class="editorRowField" *ngIf="showFieldRowProperties"
                                 id="target"
                                 (drop)="dropRow($event);"
                                 (dragenter)="dragenterRow($event);"
                                 (dragleave)="dragleaveRow($event);"
                                 (dragover)="dragoverRow($event);"
                                 [style.background-color]="dragoverRows? 'lightgray' : 'transparent'"
-                                [style.font-style]="graphRowField=='Drag a field here ...' ?  'italic'  :  'normal'"
+                                [style.font-style]="rowField=='Drag a field here ...' ?  'italic'  :  'normal'"
                                 >
                                 
                                 <clr-icon shape="times" *ngIf="showRowDeleteIcon"
                                     (click)="clickClearRowField()"
                                     >
                                 </clr-icon>
-                                {{ graphRowField }}
+                                {{ rowField }}
                             </div>
                         </div>
 
                         <!-- Row type -->
                         <div class="editorLineContainer">
-                            <div class="editorGraphRowTypeTitle" *ngIf="showFieldRow">
+                            <div class="editorGraphRowTypeTitle" *ngIf="showFieldRowProperties">
                                 Type:
                             </div>
-                            <div class="select editorGraphRowType" *ngIf="showFieldRow">
+                            <div class="select editorGraphRowType" *ngIf="showFieldRowProperties">
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphRowType"
                                     name="graphRowType"

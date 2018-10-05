@@ -188,7 +188,6 @@ export interface dataSchemaInterface {
     dataFieldTypes: string[] = [];
     draggedField: string = '';
     dragoverColours: boolean = false;
-    dragoverSizes: boolean = false;
     errorMessage: string = '';
     graphColor: string[];
     graphLayers: number[] = [1, 2, 3,];  // TODO - fix hardcoding
@@ -201,9 +200,12 @@ export interface dataSchemaInterface {
     isBusyRetrievingData: boolean = false;
     isDragoverXField: boolean = false;
     isDragoverYField: boolean = false;
+    isDragoverSizes: boolean = false;
+    isDragoverRow: boolean = false;
     localDatasources: Datasource[] = null;          // Current DS for the selected W
     localWidget: Widget;                            // W to modify, copied from selected
     oldWidget: Widget = null;                       // W at start
+    rowField: string = dragFieldMessage;
     selectedDescription: string = '';
     selectedFieldIndex: number = -1;
     selectedRowIndex: number = -1;
@@ -211,6 +213,7 @@ export interface dataSchemaInterface {
     sampleNumberRows: number = 0;
     showColourDeleteIcon: boolean = false;
     showXDeleteIcon: boolean = false;
+    showRowDeleteIcon: boolean = false;
     showSizeDeleteIcon: boolean = false;
     showDatasourceMain: boolean = true;
     showFieldTitleProperties: boolean = false;
@@ -223,6 +226,7 @@ export interface dataSchemaInterface {
     showFieldYPropertiesInfo: boolean = false;
     showFieldYPropertiesTitle: boolean = false;
     showFieldSizeProperties: boolean = false;
+    showFieldRowProperties: boolean = false;
     showFieldLegend: boolean = false;
     showFieldColorProperties: boolean = false;
     showFieldColorPropertiesInfo: boolean = false;
@@ -1755,7 +1759,6 @@ console.warn('xx definition', definition);
     dropXField(ev, fieldName: string = '') {
         // Event trigger when the dragged Field is dropped the Column field
         this.globalFunctionService.printToConsole(this.constructor.name,'dropXField', '@Start');
-console.warn('xx fieldName', fieldName, this.draggedField);
 
         // Set
         if (fieldName == '') {
@@ -1777,22 +1780,11 @@ console.warn('xx fieldName', fieldName, this.draggedField);
         // Show the panel with X properties
         this.showFieldXPropertiesTitle = true;
 
-        // Get the id of the target and add the moved element to the target's DOM
-
         this.xField = fieldName;
-        // this.localWidget.graphXfield = fieldName;
-        // this.localWidget.graphXaxisTitle = fieldName;
 
         let fieldType:string = this.getFieldType(fieldName);
         this.graphTypeFieldX = this.allowedGraphTypeField(fieldType);
         this.localWidget.graphXtype = this.defaultGraphTypeField(fieldType);
-
-        console.warn('xx', this.xField);
-
-        // let definition = this.globalVariableService.createVegaLiteSpec(
-        //     this.localWidget, graphHeight, graphWidth
-        // );
-        // this.renderGraph(definition);
 
     }
 
@@ -1810,8 +1802,6 @@ console.warn('xx fieldName', fieldName, this.draggedField);
             var data = ev.dataTransfer.getData("text");
         };
 
-        // Get the id of the target and add the moved element to the target's DOM
-
         // Show X icon
         this.showYDeleteIcon = true;
 
@@ -1826,19 +1816,6 @@ console.warn('xx fieldName', fieldName, this.draggedField);
         let fieldType:string = this.getFieldType(fieldName);
         this.graphTypeFieldY = this.allowedGraphTypeField(fieldType);
         this.localWidget.graphYtype = this.defaultGraphTypeField(fieldType);
-console.warn('xx big 3', fieldType,
-this.graphTypeFieldY,
-this.localWidget.graphYtype);
-
-        // TODO - REMOVE when this is done via forms !!!
-        // if (this.localWidget.graphYtype == 'quantitative') {
-        //     this.localWidget.graphYtype = 'ordinal';
-        // };
-
-        // let definition = this.globalVariableService.createVegaLiteSpec(
-        //     this.localWidget, graphHeight, graphWidth
-        // );
-        // this.renderGraph(definition);
     }
 
     dropColour(ev) {
@@ -1856,19 +1833,12 @@ this.localWidget.graphYtype);
         // Get the id of the target and add the moved element to the target's DOM
 
         var data = ev.dataTransfer.getData("text");
-        // ev.target.appendChild(document.getElementById(data));
         this.colorField = this.draggedField;
-        // this.localWidget.graphColorField = this.draggedField
 
         // Fill the default and allowed types of Vega field types
         let fieldType:string = this.getFieldType(this.draggedField);
         this.graphTypeFieldColor = this.allowedGraphTypeField(fieldType);
         this.localWidget.graphColorType = this.defaultGraphTypeField(fieldType);
-
-        // let definition = this.globalVariableService.createVegaLiteSpec(
-        //     this.localWidget, graphHeight, graphWidth
-        // );
-        // this.renderGraph(definition);
     }
 
     dropSize(ev) {
@@ -1878,8 +1848,22 @@ this.localWidget.graphYtype);
         // Show X icon
         this.showSizeDeleteIcon = true;
 
-        // // Show the panel with X properties
-        // this.showFieldSizePropertiesTitle = true;
+        ev.preventDefault();
+        ev.dataTransfer.dropEffect = "move"
+        // Get the id of the target and add the moved element to the target's DOM
+
+        var data = ev.dataTransfer.getData("text");
+
+        this.sizeField = this.draggedField;
+        this.isDragoverSizes = false;
+    }
+
+    dropRow(ev) {
+        // Event trigger when the dragged Field is dropped the Row channel
+        this.globalFunctionService.printToConsole(this.constructor.name,'dropRow', '@Start');
+
+        // Show X icon
+        this.showRowDeleteIcon = true;
 
         ev.preventDefault();
         ev.dataTransfer.dropEffect = "move"
@@ -1887,21 +1871,8 @@ this.localWidget.graphYtype);
 
         var data = ev.dataTransfer.getData("text");
 
-        // TODO Add Size field
-        this.sizeField = this.draggedField;
-        // this.localWidget.graphColorField = this.draggedField
-
-        this.dragoverSizes = false;
-
-        // Fill the default and allowed types of Vega field types
-        // let fieldType:string = this.getFieldType(this.draggedField);
-        // this.graphTypeFieldColor = this.allowedGraphTypeField(fieldType);
-        // this.localWidget.graphColorType = this.defaultGraphTypeField(fieldType);
-
-        // let definition = this.globalVariableService.createVegaLiteSpec(
-        //     this.localWidget, graphHeight, graphWidth
-        // );
-        // this.renderGraph(definition);
+        this.rowField = this.draggedField;
+        this.isDragoverRow = false;
     }
 
     clickClearXFieldField() {
@@ -2012,7 +1983,7 @@ this.localWidget.graphYtype);
 
         ev.preventDefault();
         // this.dragoverCol = false;
-        this.dragoverSizes = true;
+        this.isDragoverSizes = true;
         // this.dragoverColours = false;
     }
 
@@ -2021,7 +1992,7 @@ this.localWidget.graphYtype);
         this.globalFunctionService.printToConsole(this.constructor.name,'dragleaveSize', '@Start');
 
         ev.preventDefault();
-        this.dragoverSizes = false;
+        this.isDragoverSizes = false;
     }
 
     clickDatasource(index: number, name: string) {
@@ -2062,21 +2033,18 @@ this.localWidget.graphYtype);
         // Clear previous selected fields
         this.showXDeleteIcon = false;
         this.xField = dragFieldMessage;
-        // this.localWidget.graphXfield = '';
-        this.localWidget.graphXaxisTitle = '';
 
         this.showYDeleteIcon = false;
         this.yField = dragFieldMessage;
-        this.localWidget.graphYfield = '';
-        this.localWidget.graphYaxisTitle = '';
 
         this.showColourDeleteIcon = false;
         this.colorField = dragFieldMessage;
-        this.localWidget.graphColorField = ''
-        this.localWidget.graphColorType = '';
 
         this.showSizeDeleteIcon = false;
-        this.colorField = dragFieldMessage;
+        this.sizeField = dragFieldMessage;
+
+        this.showRowDeleteIcon = false;
+        this.rowField = '';
 
         // Determine if data already in Glob Var
         let dataSetIndex: number = this.globalVariableService.currentDatasets.findIndex(
@@ -2425,7 +2393,6 @@ console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowInde
     clickXfield() {
         // Show the X field properties
         this.globalFunctionService.printToConsole(this.constructor.name,'clickXfield', '@Start');
-console.warn('xx colField', this.xField);
 
         if (this.xField == dragFieldMessage  ||  this.xField == null) {
             return;
