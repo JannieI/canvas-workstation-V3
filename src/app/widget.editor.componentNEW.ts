@@ -1945,14 +1945,6 @@ console.warn('xx definition', definition);
         this.dragoverColours = false;
     }
 
-    dragleaveXField(ev, actionName: string) {
-        // Event trigger when dragged field leave XField
-        this.globalFunctionService.printToConsole(this.constructor.name,'dragleaveXField', '@Start');
-
-        ev.preventDefault();
-        this.isDragoverXField = false;
-    }
-
     dragenterYField(ev, actionName: string) {
         // Event trigger when the dragged Field is enters the Row field
         this.globalFunctionService.printToConsole(this.constructor.name,'dragenterYField', '@Start');
@@ -1961,14 +1953,6 @@ console.warn('xx definition', definition);
         this.isDragoverXField = false;
         this.isDragoverYField = true;
         this.dragoverColours = false;
-    }
-
-    dragleaveYField(ev, actionName: string) {
-        // Event trigger when the dragged Field is leaves the Row field
-        this.globalFunctionService.printToConsole(this.constructor.name,'dragleaveYField', '@Start');
-
-        ev.preventDefault();
-        this.isDragoverYField = false;
     }
 
     dragenterColour(ev, actionName: string) {
@@ -1981,14 +1965,6 @@ console.warn('xx definition', definition);
         this.dragoverColours = true;
     }
 
-    dragleaveColour(ev, actionName: string) {
-        // Event trigger when the dragged Field is leaves the Colour field
-        this.globalFunctionService.printToConsole(this.constructor.name,'dragleaveColour', '@Start');
-
-        ev.preventDefault();
-        this.dragoverColours = false;
-    }
-
     dragenterSize(ev, actionName: string) {
         // Event trigger when the dragged Field is enters the Size field
         this.globalFunctionService.printToConsole(this.constructor.name,'dragenterSize', '@Start');
@@ -1997,6 +1973,40 @@ console.warn('xx definition', definition);
         // this.dragoverCol = false;
         this.isDragoverSizes = true;
         // this.dragoverColours = false;
+    }
+
+    dragenterRow(ev, actionName: string) {
+        // Event trigger when the dragged Field is enters the Row field
+        this.globalFunctionService.printToConsole(this.constructor.name,'dragenterRow', '@Start');
+
+        ev.preventDefault();
+        // this.dragoverCol = false;
+        this.isDragoverRow = true;
+        // this.dragoverColours = false;
+    }
+
+    dragleaveXField(ev, actionName: string) {
+        // Event trigger when dragged field leave XField
+        this.globalFunctionService.printToConsole(this.constructor.name,'dragleaveXField', '@Start');
+
+        ev.preventDefault();
+        this.isDragoverXField = false;
+    }
+
+    dragleaveYField(ev, actionName: string) {
+        // Event trigger when the dragged Field is leaves the Row field
+        this.globalFunctionService.printToConsole(this.constructor.name,'dragleaveYField', '@Start');
+
+        ev.preventDefault();
+        this.isDragoverYField = false;
+    }
+
+    dragleaveColour(ev, actionName: string) {
+        // Event trigger when the dragged Field is leaves the Colour field
+        this.globalFunctionService.printToConsole(this.constructor.name,'dragleaveColour', '@Start');
+
+        ev.preventDefault();
+        this.dragoverColours = false;
     }
 
     dragleaveSize(ev, actionName: string) {
