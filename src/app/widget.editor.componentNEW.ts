@@ -1732,8 +1732,15 @@ console.warn('xx definition', definition);
     }
 
     dragoverSize(ev, actionName: string) {
-        // Event trigger when the dragged Field is over the Color field
+        // Event trigger when the dragged Field is over the Size field
         this.globalFunctionService.printToConsole(this.constructor.name,'dragoverSize', '@Start');
+
+        ev.preventDefault();
+    }
+
+    dragoverRow(ev, actionName: string) {
+        // Event trigger when the dragged Field is over the Row field
+        this.globalFunctionService.printToConsole(this.constructor.name,'dragoverRow', '@Start');
 
         ev.preventDefault();
     }
@@ -2074,7 +2081,7 @@ console.warn('xx definition', definition);
         this.sizeField = dragFieldMessage;
 
         this.showRowDeleteIcon = false;
-        this.rowField = '';
+        this.rowField = dragFieldMessage;
 
         // Determine if data already in Glob Var
         let dataSetIndex: number = this.globalVariableService.currentDatasets.findIndex(
