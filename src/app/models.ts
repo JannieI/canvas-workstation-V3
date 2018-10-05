@@ -1193,6 +1193,10 @@ export class Widget {
     graphSizeBin: boolean;
     graphSizeMaxBins: number;
 
+    // Row
+    graphRowField: string;
+    graphRowType: string;
+    
     // Mark
     graphMark: string;
     graphMarkOrient: string;

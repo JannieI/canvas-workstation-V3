@@ -1436,10 +1436,10 @@ export interface dataSchemaInterface {
                 };
             };
 
-            "encoding": {
-                "column": {
-                  "field": "age", "type": "ordinal"
-                },
+            // "encoding": {
+            //     "column": {
+            //       "field": "age", "type": "ordinal"
+            //     },
 
 
             // Row field

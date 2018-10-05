@@ -304,6 +304,9 @@ const widgetTemplate: Widget =
         "graphSizeAggregate": "",
         "graphSizeBin": true,
         "graphSizeMaxBins": 0,
+
+        "graphRowField": "",
+        "graphRowType": "",
     
         "graphMark": "tick",
         "graphMarkOrient": "Verticle",
