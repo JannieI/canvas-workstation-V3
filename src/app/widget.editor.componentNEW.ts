@@ -1782,6 +1782,13 @@ console.warn('xx definition', definition);
         ev.preventDefault();
     }
 
+    dragoverColumn(ev, actionName: string) {
+        // Event trigger when the dragged Field is over the Column field
+        this.globalFunctionService.printToConsole(this.constructor.name,'dragoverColumn', '@Start');
+
+        ev.preventDefault();
+    }
+
     switchXandY() {
         // Event trigger when the dragged Field is dropped the Column field
         this.globalFunctionService.printToConsole(this.constructor.name,'switchXandY', '@Start');
@@ -2094,6 +2101,14 @@ console.warn('xx definition', definition);
 
         ev.preventDefault();
         this.isDragoverRow = false;
+    }
+
+    dragleaveColumn(ev, actionName: string) {
+        // Event trigger when the dragged Field is leaves the Column field
+        this.globalFunctionService.printToConsole(this.constructor.name,'dragleaveColumn', '@Start');
+
+        ev.preventDefault();
+        this.isDragoverColumn = false;
     }
 
     clickDatasource(index: number, name: string) {
