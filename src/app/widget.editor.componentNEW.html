@@ -286,7 +286,7 @@
                                 (dragover)="dragoverXField($event);"
                                 (dragenter)="dragenterXField($event);"
                                 (dragleave)="dragleaveXField($event);"
-                                [style.background-color]="dragoverCol? 'lightgray' : 'transparent'"
+                                [style.background-color]="isDragoverXField? 'lightgray' : 'transparent'"
                                 [style.font-style]="xField=='Drag a field here ...' ?  'italic'  :  'normal'"
                                 (click)="clickXfield()"
                                 >

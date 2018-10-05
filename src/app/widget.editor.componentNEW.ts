@@ -176,7 +176,7 @@ export interface dataSchemaInterface {
         }
     ]
     backgroundcolors: CSScolor[];
-    xField: string = dragFieldMessage;
+    colorField: string = dragFieldMessage;
     containerHasContextMenus: boolean = true;
     containerHasTitle: boolean = true;
     currentData: any = [];
@@ -187,81 +187,55 @@ export interface dataSchemaInterface {
     dataFieldLengths: number[] = [];
     dataFieldTypes: string[] = [];
     draggedField: string = '';
-    dragoverCol: boolean = false;
-    isDragoverYField: boolean = false;
     dragoverColours: boolean = false;
     dragoverSizes: boolean = false;
     errorMessage: string = '';
-    // graphColorField: string = dragFieldMessage;
-    colorField: string = dragFieldMessage;
-    sizeField: string = dragFieldMessage;
     graphColor: string[];
     graphLayers: number[] = [1, 2, 3,];  // TODO - fix hardcoding
     graphTypeFieldY: string[] =[];
     graphTypeFieldX: string[] =[];
     graphTypeFieldColor: string[] =[];
+    graphXaggregateVegaLiteName: string = '';
+    graphYaggregateVegaLiteName: string = '';
+    graphColorAggregateVegaLiteName: string = '';
     isBusyRetrievingData: boolean = false;
+    isDragoverXField: boolean = false;
+    isDragoverYField: boolean = false;
     localDatasources: Datasource[] = null;          // Current DS for the selected W
     localWidget: Widget;                            // W to modify, copied from selected
     oldWidget: Widget = null;                       // W at start
-    yField: string = dragFieldMessage;
     selectedDescription: string = '';
     selectedFieldIndex: number = -1;
     selectedRowIndex: number = -1;
     selectedRowID: number;
-
-    // sizeType: string = '';
-    // sizeAggregate: string = '';
-    // sizeBin: string = 'False';
     sampleNumberRows: number = 0;
-
     showColourDeleteIcon: boolean = false;
     showXDeleteIcon: boolean = false;
     showSizeDeleteIcon: boolean = false;
     showDatasourceMain: boolean = true;
-
     showFieldTitleProperties: boolean = false;
-
     showFieldXAxis: boolean = false;
     showFieldXPropertiesInfo: boolean = false;
     showFieldXProperties: boolean = false;
     showFieldXPropertiesTitle: boolean = false;
-
     showFieldYAxis: boolean = false;
     showFieldYProperties: boolean = false;
     showFieldYPropertiesInfo: boolean = false;
     showFieldYPropertiesTitle: boolean = false;
-
-    // showFieldSizePropertiesTitle: boolean = false;
     showFieldSizeProperties: boolean = false;
-
     showFieldLegend: boolean = false;
     showFieldColorProperties: boolean = false;
     showFieldColorPropertiesInfo: boolean = false;
     showFieldColorPropertiesTitle: boolean = false;
-
     showFieldFilter: boolean = false;
     showGraphAreaTitle: boolean = true;
     showSelectionFilter: boolean = false;
-
     showFieldMarkProperties: boolean = false;
-
     showPreview: boolean = false;
     showYDeleteIcon: boolean = false;
     showType: boolean = false;
     sortOrder: number = 1;
-    // graphTitleText: string = '';
-    // titleAnchor: string = 'Middle';
-    // titleAngle: number = 0;
-    // titleBaseline: string = 'Bottom';
-    // titleColorName: string = 'Gray';
-    // titleColor: string = 'gray';
-    // titleFont: string = '';
-    // titleFontSize: number = 10;
-    // titleFontWeight: number = 400;
-    // titleLength: number = 0;
-    // titleOrientation: string = 'Top';
-
+    sizeField: string = dragFieldMessage;
     vegaColorSchemes: string[] = [
         "None",
         "accent",
@@ -531,60 +505,9 @@ export interface dataSchemaInterface {
 
     ];
     widgetGraphs: WidgetGraph[] =[];
+    xField: string = dragFieldMessage;
+    yField: string = dragFieldMessage;
 
-    // xPropertiesAggregate: string = '';
-    graphXaggregateVegaLiteName: string = '';
-    // xPropertiesBin: string = 'False';
-    // xPropertiesFormat: string = '';
-    // xPropertiesImpute: string = '';
-    // xPropertiesImputeValue: number = 0;
-    // xPropertiesStack: string = '';
-    // xPropertiesSort: string = '';
-    // xPropertiesType: string = '';
-    // xPropertiesTimeUnit: string = '';
-
-    // xAxisTitle: string = '';
-    // xAxisTitleCheckbox: boolean = true;
-    // xAxisGrid: boolean = true;
-    // xAxisFormat: string = '';
-    // xAxisLabels: boolean = true;
-    // xAxisLabelAngle: number = 0;
-
-    // graphYaggregate: string = '';
-    graphYaggregateVegaLiteName: string = '';
-    // yPropertiesBin: string = 'False';
-    // yPropertiesFormat: string = '';
-    // yPropertiesImpute: string = '';
-    // yPropertiesImputeValue: number = 0;
-    // yPropertiesSort: string = '';
-    // yPropertiesStack: string = '';
-    // yPropertiesType: string = '';
-    // yPropertiesTimeUnit: string = '';
-
-    // yAxisScaleType: string = 'Default';
-
-    // yAxisTitle: string = '';
-    // yAxisTitleCheckbox: boolean = true;
-    // yAxisGrid: boolean = true;
-    // yAxisFormat: string = '';
-    // yAxisLabels: boolean = true;
-    // yAxisLabelAngle: number = 0;
-
-    // colorPropertiesAggregate: string = '';
-    graphColorAggregateVegaLiteName: string = '';
-    // colorPropertiesBin: string = 'False';
-    // colorPropertiesFormat: string = '';
-    // colorPropertiesImpute: string = '';
-    // colorPropertiesImputeValue: number = 0;
-    // colorPropertiesScheme: string = '';
-    // colorPropertiesSort: string = 'Default';
-    // colorPropertiesStack: string = '';
-    // colorPropertiesType: string = '';
-    // colorPropertiesTimeUnit: string = '';
-
-    // legendTitle: string = '';
-    // legendTitleCheckbox: boolean = true;
-    // legendFormat: string = '';
 
     timeUnits: string[] = [
         "",
@@ -2034,7 +1957,7 @@ this.localWidget.graphYtype);
         this.globalFunctionService.printToConsole(this.constructor.name,'dragenterXField', '@Start');
 
         ev.preventDefault();
-        this.dragoverCol = true;
+        this.isDragoverXField = true;
         this.isDragoverYField = false;
         this.dragoverColours = false;
     }
@@ -2044,7 +1967,7 @@ this.localWidget.graphYtype);
         this.globalFunctionService.printToConsole(this.constructor.name,'dragleaveXField', '@Start');
 
         ev.preventDefault();
-        this.dragoverCol = false;
+        this.isDragoverXField = false;
     }
 
     dragenterYField(ev, actionName: string) {
@@ -2052,7 +1975,7 @@ this.localWidget.graphYtype);
         this.globalFunctionService.printToConsole(this.constructor.name,'dragenterYField', '@Start');
 
         ev.preventDefault();
-        this.dragoverCol = false;
+        this.isDragoverXField = false;
         this.isDragoverYField = true;
         this.dragoverColours = false;
     }
@@ -2070,7 +1993,7 @@ this.localWidget.graphYtype);
         this.globalFunctionService.printToConsole(this.constructor.name,'dragenterColour', '@Start');
 
         ev.preventDefault();
-        this.dragoverCol = false;
+        this.isDragoverXField = false;
         this.isDragoverYField = false;
         this.dragoverColours = true;
     }
