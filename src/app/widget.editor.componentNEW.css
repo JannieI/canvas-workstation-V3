@@ -351,14 +351,14 @@ clr-dg-cell {
                 width: 73%;
             }
 
-            .editorRowFieldTitle {
+            .editorYAxisFieldTitle {
                 display: inline-block;
                 font-size: 0.5rem;
                 line-height: 0.8rem;
                 margin-left: 4px;
                 width: 52px;
             }
-            .editorRowField {
+            .editorYAxisField {
                 border: 1px solid steelblue;
                 border-radius: 5px;
                 display: inline-block;

@@ -299,7 +299,7 @@
 
                         <!-- TOP 3 - 2. Y field -->
                         <div class="editorLineContainer">
-                            <div class="editorRowFieldTitle">
+                            <div class="editorYAxisFieldTitle">
                                 Y axis:
                                 <clr-icon shape="switch right"
                                     size="10"
@@ -307,20 +307,20 @@
                                     >
                                 </clr-icon>
                             </div>
-                            <div class="editorRowField"
+                            <div class="editorYAxisField"
                                 id="target"
-                                (drop)="dropRow($event);"
-                                (dragenter)="dragenterRow($event);"
-                                (dragleave)="dragleaveRow($event);"
-                                (dragover)="dragoverRows($event);"
-                                [style.background-color]="dragoverRow? 'lightgray' : 'transparent'"
-                                [style.font-style]="rowField=='Drag a field here ...' ?  'italic'  :  'normal'"
+                                (drop)="dropYField($event);"
+                                (dragenter)="dragenterYField($event);"
+                                (dragleave)="dragleaveYField($event);"
+                                (dragover)="dragoverYField($event);"
+                                [style.background-color]="isDragoverYField? 'lightgray' : 'transparent'"
+                                [style.font-style]="yField=='Drag a field here ...' ?  'italic'  :  'normal'"
                                 (click)="clickYfield()"
                                 >
-                                <clr-icon shape="times" *ngIf="showRowDeleteIcon"
-                                    (click)="clickClearRowField()">
+                                <clr-icon shape="times" *ngIf="showYDeleteIcon"
+                                    (click)="clickClearYField()">
                                 </clr-icon>
-                                {{ rowField }}
+                                {{ yField }}
                             </div>
                         </div>
 

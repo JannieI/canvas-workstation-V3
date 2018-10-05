@@ -188,7 +188,7 @@ export interface dataSchemaInterface {
     dataFieldTypes: string[] = [];
     draggedField: string = '';
     dragoverCol: boolean = false;
-    dragoverRow: boolean = false;
+    isDragoverYField: boolean = false;
     dragoverColours: boolean = false;
     dragoverSizes: boolean = false;
     errorMessage: string = '';
@@ -203,7 +203,7 @@ export interface dataSchemaInterface {
     localDatasources: Datasource[] = null;          // Current DS for the selected W
     localWidget: Widget;                            // W to modify, copied from selected
     oldWidget: Widget = null;                       // W at start
-    rowField: string = dragFieldMessage;
+    yField: string = dragFieldMessage;
     selectedDescription: string = '';
     selectedFieldIndex: number = -1;
     selectedRowIndex: number = -1;
@@ -246,7 +246,7 @@ export interface dataSchemaInterface {
     showFieldMarkProperties: boolean = false;
 
     showPreview: boolean = false;
-    showRowDeleteIcon: boolean = false;
+    showYDeleteIcon: boolean = false;
     showType: boolean = false;
     sortOrder: number = 1;
     // graphTitleText: string = '';
@@ -1038,11 +1038,11 @@ export interface dataSchemaInterface {
             };
 
             if (this.localWidget.graphYfield != ''   &&   this.localWidget.graphYfield != null) {
-                this.showRowDeleteIcon = true;
-                this.rowField = this.localWidget.graphYfield;
+                this.showYDeleteIcon = true;
+                this.yField = this.localWidget.graphYfield;
             } else {
-                this.showRowDeleteIcon = false;
-                this.rowField = dragFieldMessage;
+                this.showYDeleteIcon = false;
+                this.yField = dragFieldMessage;
             };
 
             if (this.localWidget.graphColorField != ''   &&   this.localWidget.graphColorField != null) {
@@ -1767,9 +1767,9 @@ console.warn('xx definition', definition);
         ev.preventDefault();
     }
 
-    dragoverRows(ev, actionName: string) {
+    dragoverYField(ev, actionName: string) {
         // Event trigger when the dragged Field is over the Row field
-        this.globalFunctionService.printToConsole(this.constructor.name,'dragoverRows', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'dragoverYField', '@Start');
 
         ev.preventDefault();
     }
@@ -1793,11 +1793,11 @@ console.warn('xx definition', definition);
         this.globalFunctionService.printToConsole(this.constructor.name,'dropColumn', '@Start');
 
         let newXField: string = this.colField;
-        let newYField: string = this.rowField;
+        let newYField: string = this.yField;
         if (newXField == dragFieldMessage) {
-            this.clickClearRowField();
+            this.clickClearYField();
         } else {
-            this.dropRow(null, newXField);
+            this.dropYField(null, newXField);
         };
         if (newYField == dragFieldMessage) {
             this.clickClearColumnField();
@@ -1850,9 +1850,9 @@ console.warn('xx fieldName', fieldName, this.draggedField);
 
     }
 
-    dropRow(ev, fieldName: string = '') {
-        // Event trigger when the dragged Field is dropped the Column field
-        this.globalFunctionService.printToConsole(this.constructor.name,'dropRow', '@Start');
+    dropYField(ev, fieldName: string = '') {
+        // Event trigger when the dragged Field is dropped in Y field
+        this.globalFunctionService.printToConsole(this.constructor.name,'dropYField', '@Start');
 
         // Set
         if (fieldName == '') {
@@ -1867,12 +1867,12 @@ console.warn('xx fieldName', fieldName, this.draggedField);
         // Get the id of the target and add the moved element to the target's DOM
 
         // Show X icon
-        this.showRowDeleteIcon = true;
+        this.showYDeleteIcon = true;
 
         // Show the panel with X properties
         this.showFieldYPropertiesTitle = true;
 
-        this.rowField = fieldName;
+        this.yField = fieldName;
         this.localWidget.graphYfield = fieldName;
         this.localWidget.graphYaxisTitle = fieldName;
 
@@ -1981,16 +1981,16 @@ this.localWidget.graphYtype);
         // this.renderGraph(definition);
     }
 
-    clickClearRowField() {
+    clickClearYField() {
         // Clear the Colour Field
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickClearRowField', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClearYField', '@Start');
 
         // Hide the panel with Y properties
         this.showFieldYPropertiesTitle = false;
 
         // Show X icon
-        this.showRowDeleteIcon = false;
-        this.rowField = dragFieldMessage;
+        this.showYDeleteIcon = false;
+        this.yField = dragFieldMessage;
         this.localWidget.graphYfield = null;
         this.localWidget.graphYaxisTitle = null;
         this.localWidget.graphYaggregate = null;
@@ -2041,7 +2041,7 @@ this.localWidget.graphYtype);
 
         ev.preventDefault();
         this.dragoverCol = true;
-        this.dragoverRow = false;
+        this.isDragoverYField = false;
         this.dragoverColours = false;
     }
 
@@ -2053,22 +2053,22 @@ this.localWidget.graphYtype);
         this.dragoverCol = false;
     }
 
-    dragenterRow(ev, actionName: string) {
+    dragenterYField(ev, actionName: string) {
         // Event trigger when the dragged Field is enters the Row field
-        this.globalFunctionService.printToConsole(this.constructor.name,'dragenterRow', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'dragenterYField', '@Start');
 
         ev.preventDefault();
         this.dragoverCol = false;
-        this.dragoverRow = true;
+        this.isDragoverYField = true;
         this.dragoverColours = false;
     }
 
-    dragleaveRow(ev, actionName: string) {
+    dragleaveYField(ev, actionName: string) {
         // Event trigger when the dragged Field is leaves the Row field
-        this.globalFunctionService.printToConsole(this.constructor.name,'dragleaveRow', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'dragleaveYField', '@Start');
 
         ev.preventDefault();
-        this.dragoverRow = false;
+        this.isDragoverYField = false;
     }
 
     dragenterColour(ev, actionName: string) {
@@ -2077,7 +2077,7 @@ this.localWidget.graphYtype);
 
         ev.preventDefault();
         this.dragoverCol = false;
-        this.dragoverRow = false;
+        this.isDragoverYField = false;
         this.dragoverColours = true;
     }
 
@@ -2148,8 +2148,8 @@ this.localWidget.graphYtype);
         this.localWidget.graphXfield = '';
         this.localWidget.graphXaxisTitle = '';
 
-        this.showRowDeleteIcon = false;
-        this.rowField = dragFieldMessage;
+        this.showYDeleteIcon = false;
+        this.yField = dragFieldMessage;
         this.localWidget.graphYfield = '';
         this.localWidget.graphYaxisTitle = '';
 
@@ -2523,7 +2523,7 @@ console.warn('xx colField', this.colField);
         // Show the Y field properties
         this.globalFunctionService.printToConsole(this.constructor.name,'clickYfield', '@Start');
 
-        if (this.rowField == dragFieldMessage  ||  this.rowField == null) {
+        if (this.yField == dragFieldMessage  ||  this.yField == null) {
             return;
         };
 
