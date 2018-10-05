@@ -193,7 +193,7 @@ export interface dataSchemaInterface {
     dragoverSizes: boolean = false;
     errorMessage: string = '';
     graphColorField: string = dragFieldMessage;
-    graphSizeField: string = dragFieldMessage;
+    colorField: string = dragFieldMessage;
     graphColor: string[];
     graphLayers: number[] = [1, 2, 3,];  // TODO - fix hardcoding
     graphTypeFieldY: string[] =[];
@@ -1054,7 +1054,7 @@ export interface dataSchemaInterface {
             };
 
             // TODO - load from DB
-            this.graphSizeField = dragFieldMessage;
+            this.colorField = dragFieldMessage;
             this.showSizeDeleteIcon = false;
 
             // Get local vars - easier for ngFor
@@ -1157,6 +1157,24 @@ export interface dataSchemaInterface {
         let graphVisualGrammar: string = this.widgetGraphs[widgetGraphIndex].visualGrammar;
         let graphShortName: string = this.widgetGraphs[widgetGraphIndex].shortName;
 
+        // Set fields
+        this.localWidget.graphXfield = '';
+        if (this.colField != dragFieldMessage) {
+            this.localWidget.graphXfield = this.colField;
+        };
+        this.localWidget.graphYfield = '';
+        if (this.yField != dragFieldMessage) {
+            this.localWidget.graphYfield = this.yField;
+        };
+        this.localWidget.graphColorField = '';
+        if (this.graphColorField != dragFieldMessage) {
+            this.localWidget.graphColorField = this.graphColorField;
+        };
+        // this.localWidget.graphSizeField = '';
+        // if (this.colorField != dragFieldMessage) {
+        //     this.localWidget.graphSizeField = this.colorField;
+        // };
+
 
         // Defaults
         if (this.localWidget.graphXtype == ''  ||  this.localWidget.graphXtype == null) {
@@ -1168,16 +1186,7 @@ export interface dataSchemaInterface {
         if (this.localWidget.graphColorType == ''  ||  this.localWidget.graphColorType == null) {
             this.localWidget.graphColorType = 'ordinal';
         };
-        if (this.colField == dragFieldMessage) {
-            this.colField = '';
-        };
-        if (this.yField == dragFieldMessage) {
-            this.yField = '';
-        };
-        if (this.graphColorField == dragFieldMessage) {
-            this.graphColorField = '';
-        };
-
+        
         if (this.graphColorAggregateVegaLiteName == null) {this.graphColorAggregateVegaLiteName = ""};
         if (this.localWidget.graphColorFormat == null) {this.localWidget.graphColorFormat = ""};
         if (this.localWidget.graphColorSort == null) {this.localWidget.graphColorSort = ""};
@@ -1473,12 +1482,12 @@ export interface dataSchemaInterface {
 
 
             // Size field
-            if (this.graphSizeField != ''
-                &&  this.graphSizeField.toLowerCase() != dragFieldMessage
-                &&  this.graphSizeField != undefined) {
-                console.warn('xx sizeFiled', this.graphSizeField);
+            if (this.colorField != ''
+                &&  this.colorField.toLowerCase() != dragFieldMessage
+                &&  this.colorField != undefined) {
+                console.warn('xx sizeFiled', this.colorField);
 
-                specification['encoding']['size']['field'] = this.graphSizeField;
+                specification['encoding']['size']['field'] = this.colorField;
                 specification['encoding']['size']['type'] = this.localWidget.graphSizeType.toLowerCase();
                 specification['encoding']['size']['aggregate'] = this.localWidget.graphSizeAggregate.toLowerCase();
                 if (this.localWidget.graphSizeMaxBins > 0) {
@@ -1843,8 +1852,8 @@ console.warn('xx fieldName', fieldName, this.draggedField);
         // Get the id of the target and add the moved element to the target's DOM
 
         this.colField = fieldName;
-        this.localWidget.graphXfield = fieldName;
-        this.localWidget.graphXaxisTitle = fieldName;
+        // this.localWidget.graphXfield = fieldName;
+        // this.localWidget.graphXaxisTitle = fieldName;
 
         let fieldType:string = this.getFieldType(fieldName);
         this.graphTypeFieldX = this.allowedGraphTypeField(fieldType);
@@ -1951,7 +1960,7 @@ this.localWidget.graphYtype);
         var data = ev.dataTransfer.getData("text");
 
         // TODO Add Size field
-        this.graphSizeField = this.draggedField;
+        this.colorField = this.draggedField;
         // this.localWidget.graphColorField = this.draggedField
 
         this.dragoverSizes = false;
@@ -1974,7 +1983,7 @@ this.localWidget.graphYtype);
         // Show X icon
         this.showColumnDeleteIcon = false;
         this.colField = dragFieldMessage;
-        this.localWidget.graphXfield = '';
+        // this.localWidget.graphXfield = '';
         this.localWidget.graphXaxisTitle = '';
         this.localWidget.graphXaggregate = '';
         this.localWidget.graphXtimeUnit = '';
@@ -2034,7 +2043,7 @@ this.localWidget.graphYtype);
 
         // Show X icon
         this.showSizeDeleteIcon = false;
-        this.graphSizeField = dragFieldMessage;
+        this.colorField = dragFieldMessage;
         // this.localWidget.graphColorField = null;
         // this.localWidget.graphColorType = null;
 
@@ -2154,7 +2163,7 @@ this.localWidget.graphYtype);
         // Clear previous selected fields
         this.showColumnDeleteIcon = false;
         this.colField = dragFieldMessage;
-        this.localWidget.graphXfield = '';
+        // this.localWidget.graphXfield = '';
         this.localWidget.graphXaxisTitle = '';
 
         this.showYDeleteIcon = false;
@@ -2168,7 +2177,7 @@ this.localWidget.graphYtype);
         this.localWidget.graphColorType = '';
 
         this.showSizeDeleteIcon = false;
-        this.graphSizeField = dragFieldMessage;
+        this.colorField = dragFieldMessage;
 
         // Determine if data already in Glob Var
         let dataSetIndex: number = this.globalVariableService.currentDatasets.findIndex(
