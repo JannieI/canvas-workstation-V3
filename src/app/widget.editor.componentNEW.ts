@@ -1436,6 +1436,27 @@ export interface dataSchemaInterface {
                 };
             };
 
+            "encoding": {
+                "column": {
+                  "field": "age", "type": "ordinal"
+                },
+
+
+            // Row field
+            if (this.localWidget.graphRowField != '') {
+                console.warn('xx localWidget.graphRowField', this.localWidget.graphRowField);
+
+                specification['encoding']['row'] = {
+                    "field": this.localWidget.graphRowField,
+                    "type": this.localWidget.graphRowType.toLowerCase()
+                };   
+
+            } else {
+            specification['encoding']['row'] = {
+                "field": ""
+                };
+            };
+
             // Tooltip setting
             // specification['mark']['tooltip']['content'] = "";
 
