@@ -177,6 +177,7 @@ export interface dataSchemaInterface {
     ]
     backgroundcolors: CSScolor[];
     colorField: string = dragFieldMessage;
+    columnField: string = dragFieldMessage;
     containerHasContextMenus: boolean = true;
     containerHasTitle: boolean = true;
     currentData: any = [];
@@ -202,6 +203,7 @@ export interface dataSchemaInterface {
     isDragoverYField: boolean = false;
     isDragoverSizes: boolean = false;
     isDragoverRow: boolean = false;
+    isDragoverColumn: boolean = false;
     localDatasources: Datasource[] = null;          // Current DS for the selected W
     localWidget: Widget;                            // W to modify, copied from selected
     oldWidget: Widget = null;                       // W at start
@@ -215,6 +217,7 @@ export interface dataSchemaInterface {
     showXDeleteIcon: boolean = false;
     showRowDeleteIcon: boolean = false;
     showSizeDeleteIcon: boolean = false;
+    showColumnDeleteIcon: boolean = false;
     showDatasourceMain: boolean = true;
     showFieldTitleProperties: boolean = false;
     showFieldXAxis: boolean = false;
@@ -227,6 +230,7 @@ export interface dataSchemaInterface {
     showFieldYPropertiesTitle: boolean = false;
     showFieldSizeProperties: boolean = false;
     showFieldRowProperties: boolean = false;
+    showFieldColumnProperties: boolean = false;
     showFieldLegend: boolean = false;
     showFieldColorProperties: boolean = false;
     showFieldColorPropertiesInfo: boolean = false;
@@ -1915,6 +1919,23 @@ console.warn('xx definition', definition);
         this.isDragoverRow = false;
     }
 
+    dropColumn(ev) {
+        // Event trigger when the dragged Field is dropped the Column channel
+        this.globalFunctionService.printToConsole(this.constructor.name,'dropColumn', '@Start');
+
+        // Show X icon
+        this.showColumnDeleteIcon = true;
+
+        ev.preventDefault();
+        ev.dataTransfer.dropEffect = "move"
+        // Get the id of the target and add the moved element to the target's DOM
+
+        var data = ev.dataTransfer.getData("text");
+
+        this.columnField = this.draggedField;
+        this.isDragoverColumn = false;
+    }
+
     clickClearXFieldField() {
         // Clear the X Field and Remove X icon
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClearXFieldField', '@Start');
@@ -2022,6 +2043,16 @@ console.warn('xx definition', definition);
         ev.preventDefault();
         // this.dragoverCol = false;
         this.isDragoverRow = true;
+        // this.dragoverColours = false;
+    }
+
+    dragenterColumn(ev, actionName: string) {
+        // Event trigger when the dragged Field is enters the Column field
+        this.globalFunctionService.printToConsole(this.constructor.name,'dragenterColumn', '@Start');
+
+        ev.preventDefault();
+        // this.dragoverCol = false;
+        this.isDragoverColumn = true;
         // this.dragoverColours = false;
     }
 
