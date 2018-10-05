@@ -1336,149 +1336,155 @@ export interface dataSchemaInterface {
 
 
             // X field
-            specification['encoding']['x']['field'] = this.localWidget.graphXfield;
-            specification['encoding']['x']['aggregate'] = this.graphXaggregateVegaLiteName.toLowerCase();
-            // specification['encoding']['x']['bin'] = this.localWidget.graphXbin;
-            // if (this.localWidget.graphXMaxBins > 0) {
-            //     specification['encoding']['x']['bin'] =
-            //         {"maxbins": this.localWidget.graphXMaxBins};
-            // } else {
-            //     specification['encoding']['x']['bin'] = this.localWidget.graphXbin;
-            // };
-            specification['encoding']['x']['format'] = this.localWidget.graphXformat.toLowerCase();
-            if (this.localWidget.graphXimpute != '') {
-                if (this.localWidget.graphXimpute == 'Value') {
-                    specification['encoding']['x']['impute'] =
-                        {"value": this.localWidget.graphXimputeValue };
+            if (this.localWidget.graphXfield != dragFieldMessage) {
+                specification['encoding']['x']['field'] = this.localWidget.graphXfield;
+                specification['encoding']['x']['aggregate'] = this.graphXaggregateVegaLiteName.toLowerCase();
+                // specification['encoding']['x']['bin'] = this.localWidget.graphXbin;
+                // if (this.localWidget.graphXMaxBins > 0) {
+                //     specification['encoding']['x']['bin'] =
+                //         {"maxbins": this.localWidget.graphXMaxBins};
+                // } else {
+                //     specification['encoding']['x']['bin'] = this.localWidget.graphXbin;
+                // };
+                specification['encoding']['x']['format'] = this.localWidget.graphXformat.toLowerCase();
+                if (this.localWidget.graphXimpute != '') {
+                    if (this.localWidget.graphXimpute == 'Value') {
+                        specification['encoding']['x']['impute'] =
+                            {"value": this.localWidget.graphXimputeValue };
+                    } else {
+                        specification['encoding']['x']['impute'] =
+                            {"method": this.localWidget.graphXimpute};
+                    };
+                };
+                specification['encoding']['x']['stack'] = this.localWidget.graphXstack;
+                specification['encoding']['x']['sort'] = this.localWidget.graphXsort.toLowerCase();
+                specification['encoding']['x']['type'] = this.localWidget.graphXtype.toLowerCase();
+                specification['encoding']['x']['timeUnit'] = this.localWidget.graphXtimeUnit.toLowerCase();
+
+                specification['encoding']['x']['axis'] = {"grid": this.localWidget.graphXaxisGrid };
+                specification['encoding']['x']['axis']['labels'] = this.localWidget.graphXaxisLabels;
+                if (this.localWidget.graphXaxisLabelAngle != 0){
+                    specification['encoding']['x']['axis']['labelAngle'] = this.localWidget.graphXaxisLabelAngle;
+                };
+
+                if (!this.localWidget.graphXaxisTitleCheckbox) {
+                    specification['encoding']['x']['axis']['title'] = null;
                 } else {
-                    specification['encoding']['x']['impute'] =
-                        {"method": this.localWidget.graphXimpute};
+                    if (this.localWidget.graphXaxisTitle != ''  &&  this.localWidget.graphXaxisTitle != undefined) {
+                        specification['encoding']['x']['axis']['title'] = this.localWidget.graphXaxisTitle;
+                    };
+                };
+
+                if (this.localWidget.graphXaxisFormat != '') {
+                    specification['encoding']['x']['axis']['format'] =  this.localWidget.graphXaxisFormat;
                 };
             };
-            specification['encoding']['x']['stack'] = this.localWidget.graphXstack;
-            specification['encoding']['x']['sort'] = this.localWidget.graphXsort.toLowerCase();
-            specification['encoding']['x']['type'] = this.localWidget.graphXtype.toLowerCase();
-            specification['encoding']['x']['timeUnit'] = this.localWidget.graphXtimeUnit.toLowerCase();
-
-            specification['encoding']['x']['axis'] = {"grid": this.localWidget.graphXaxisGrid };
-            specification['encoding']['x']['axis']['labels'] = this.localWidget.graphXaxisLabels;
-            if (this.localWidget.graphXaxisLabelAngle != 0){
-                specification['encoding']['x']['axis']['labelAngle'] = this.localWidget.graphXaxisLabelAngle;
-            };
-
-            if (!this.localWidget.graphXaxisTitleCheckbox) {
-                specification['encoding']['x']['axis']['title'] = null;
-            } else {
-                if (this.localWidget.graphXaxisTitle != ''  &&  this.localWidget.graphXaxisTitle != undefined) {
-                    specification['encoding']['x']['axis']['title'] = this.localWidget.graphXaxisTitle;
-                };
-            };
-
-            if (this.localWidget.graphXaxisFormat != '') {
-                specification['encoding']['x']['axis']['format'] =  this.localWidget.graphXaxisFormat;
-            };
-
+            
 
             // Y field
-            specification['encoding']['y']['field'] = this.localWidget.graphYfield;
-            specification['encoding']['y']['aggregate'] = this.graphYaggregateVegaLiteName.toLowerCase();
-            // specification['encoding']['y']['bin'] = this.localWidget.graphYbin;
-            // if (this.localWidget.graphYMaxBins > 0) {
-            //     specification['encoding']['y']['bin'] =
-            //         {"maxbins": this.localWidget.graphYMaxBins};
-            // } else {
-            //     specification['encoding']['y']['bin'] = this.localWidget.graphYbin;
-            // };
-            specification['encoding']['y']['format'] = this.localWidget.graphYformat.toLowerCase();
-            if (this.localWidget.graphYimpute != '') {
-                if (this.localWidget.graphYimpute == 'Value') {
-                    specification['encoding']['y']['impute'] =
-                        {"value": this.localWidget.graphYimputeValue };
+            if (this.localWidget.graphYfield != dragFieldMessage) {
+                specification['encoding']['y']['field'] = this.localWidget.graphYfield;
+                specification['encoding']['y']['aggregate'] = this.graphYaggregateVegaLiteName.toLowerCase();
+                // specification['encoding']['y']['bin'] = this.localWidget.graphYbin;
+                // if (this.localWidget.graphYMaxBins > 0) {
+                //     specification['encoding']['y']['bin'] =
+                //         {"maxbins": this.localWidget.graphYMaxBins};
+                // } else {
+                //     specification['encoding']['y']['bin'] = this.localWidget.graphYbin;
+                // };
+                specification['encoding']['y']['format'] = this.localWidget.graphYformat.toLowerCase();
+                if (this.localWidget.graphYimpute != '') {
+                    if (this.localWidget.graphYimpute == 'Value') {
+                        specification['encoding']['y']['impute'] =
+                            {"value": this.localWidget.graphYimputeValue };
+                    } else {
+                        specification['encoding']['y']['impute'] =
+                            {"method": this.localWidget.graphYimpute };
+                    };
+                };
+                specification['encoding']['y']['stack'] = this.localWidget.graphYstack;
+                specification['encoding']['y']['sort'] = this.localWidget.graphYsort.toLowerCase();
+                specification['encoding']['y']['type'] = this.localWidget.graphYtype.toLowerCase();
+                specification['encoding']['y']['timeUnit'] = this.localWidget.graphYtimeUnit.toLowerCase();
+
+                if (this.localWidget.graphYaxisScaleType != 'Default') {
+                    specification['encoding']['y']['scale'] =
+                    {"type": this.localWidget.graphYaxisScaleType.toLowerCase() };
+                };
+
+                specification['encoding']['y']['axis'] = {"grid": this.localWidget.graphYaxisGrid };
+                specification['encoding']['y']['axis']['labels'] = this.localWidget.graphYaxisLabels;
+                if (this.localWidget.graphYaxisLabelAngle != 0){
+                    specification['encoding']['y']['axis']['labelAngle'] = this.localWidget.graphYaxisLabelAngle;
+                };
+
+                if (!this.localWidget.graphYaxisTitleCheckbox) {
+                    specification['encoding']['y']['axis']['title'] = null;
                 } else {
-                    specification['encoding']['y']['impute'] =
-                        {"method": this.localWidget.graphYimpute };
+                    if (this.localWidget.graphYaxisTitle != ''  &&  this.localWidget.graphYaxisTitle != undefined) {
+                        specification['encoding']['y']['axis']['title'] = this.localWidget.graphYaxisTitle;
+                    };
                 };
-            };
-            specification['encoding']['y']['stack'] = this.localWidget.graphYstack;
-            specification['encoding']['y']['sort'] = this.localWidget.graphYsort.toLowerCase();
-            specification['encoding']['y']['type'] = this.localWidget.graphYtype.toLowerCase();
-            specification['encoding']['y']['timeUnit'] = this.localWidget.graphYtimeUnit.toLowerCase();
 
-            if (this.localWidget.graphYaxisScaleType != 'Default') {
-                specification['encoding']['y']['scale'] =
-                {"type": this.localWidget.graphYaxisScaleType.toLowerCase() };
-            };
-
-            specification['encoding']['y']['axis'] = {"grid": this.localWidget.graphYaxisGrid };
-            specification['encoding']['y']['axis']['labels'] = this.localWidget.graphYaxisLabels;
-            if (this.localWidget.graphYaxisLabelAngle != 0){
-                specification['encoding']['y']['axis']['labelAngle'] = this.localWidget.graphYaxisLabelAngle;
-            };
-
-            if (!this.localWidget.graphYaxisTitleCheckbox) {
-                specification['encoding']['y']['axis']['title'] = null;
-            } else {
-                if (this.localWidget.graphYaxisTitle != ''  &&  this.localWidget.graphYaxisTitle != undefined) {
-                    specification['encoding']['y']['axis']['title'] = this.localWidget.graphYaxisTitle;
+                if (this.localWidget.graphYaxisFormat != '') {
+                    specification['encoding']['y']['axis']['format'] =  this.localWidget.graphYaxisFormat;
                 };
-            };
-
-            if (this.localWidget.graphYaxisFormat != '') {
-                specification['encoding']['y']['axis']['format'] =  this.localWidget.graphYaxisFormat;
             };
 
             // Color field
-            let colorBinMax: any = false;
-            if (this.localWidget.graphYMaxBins > 0) {
-                colorBinMax = {"maxbins": this.localWidget.graphYMaxBins};
-            } else {
-                colorBinMax = this.localWidget.graphYbin;
+            if (this.localWidget.graphColorField != dragFieldMessage) {
+                let colorBinMax: any = false;
+                if (this.localWidget.graphYMaxBins > 0) {
+                    colorBinMax = {"maxbins": this.localWidget.graphYMaxBins};
+                } else {
+                    colorBinMax = this.localWidget.graphYbin;
+                };
+
+                specification['encoding']['color'] = {
+                    "aggregate": this.graphColorAggregateVegaLiteName.toLowerCase(),
+                    "bin": colorBinMax,
+                    "field": this.localWidget.graphColorField,
+                    "format": this.localWidget.graphColorFormat.toLowerCase(),
+                    "legend": "",
+                    "sort": this.localWidget.graphColorSort.toLowerCase(),
+                    "stack": this.localWidget.graphColorStack.toLowerCase(),
+                    "timeUnit": this.localWidget.graphColorTimeUnit.toLowerCase(),
+                    "type": this.localWidget.graphColorType.toLowerCase(),
+                    "scale": this.localWidget.graphColorScheme == 'None'?  null  :  {"scheme": this.localWidget.graphColorScheme.toLowerCase()}
+                };
+
+                console.warn('xx this.localWidget.graphColorField', this.localWidget.graphColorField)
+                console.warn('xx this.graphColorField', this.graphColorField)
+                console.warn('xx [color]', this.localWidget.graphColorType, specification['encoding']['color']);
+
+            // if (this.localWidget. != '') {
+                //     if (this.localWidget. == 'Value') {
+                //         specification['encoding']['color']['impute'] =
+                //             {"value":' + this.localWidget.Value + '};
+                //     } else {
+                //         specification['encoding']['color']['impute'] =
+                //             {"method": "' + this.localWidget. + '"};
+                //     };
+                // };
+
+                // if (!this.legendTitleCheckbox) {
+                //         specification['encoding']['color'] = {
+                //             "field": "",
+                //             "type": "",
+                //             "scale": "",
+                //             "legend": ""
+                //           };
+                // } else {
+                //     if (this.legendTitle != ''  &&  this.legendTitle != undefined) {
+                //         specification['encoding']['color'] =
+                //             {"legend" : {"title": this.legendTitle} };
+                //     } else {
+                //         specification['encoding']['color'] =
+                //             {"legend" : "" };
+
+                //     };
+                // };
             };
-
-            specification['encoding']['color'] = {
-                "aggregate": this.graphColorAggregateVegaLiteName.toLowerCase(),
-                "bin": colorBinMax,
-                "field": this.localWidget.graphColorField,
-                "format": this.localWidget.graphColorFormat.toLowerCase(),
-                "legend": "",
-                "sort": this.localWidget.graphColorSort.toLowerCase(),
-                "stack": this.localWidget.graphColorStack.toLowerCase(),
-                "timeUnit": this.localWidget.graphColorTimeUnit.toLowerCase(),
-                "type": this.localWidget.graphColorType.toLowerCase(),
-                "scale": this.localWidget.graphColorScheme == 'None'?  null  :  {"scheme": this.localWidget.graphColorScheme.toLowerCase()}
-            };
-
-            console.warn('xx this.localWidget.graphColorField', this.localWidget.graphColorField)
-            console.warn('xx this.graphColorField', this.graphColorField)
-            console.warn('xx [color]', this.localWidget.graphColorType, specification['encoding']['color']);
-
-        // if (this.localWidget. != '') {
-            //     if (this.localWidget. == 'Value') {
-            //         specification['encoding']['color']['impute'] =
-            //             {"value":' + this.localWidget.Value + '};
-            //     } else {
-            //         specification['encoding']['color']['impute'] =
-            //             {"method": "' + this.localWidget. + '"};
-            //     };
-            // };
-
-            // if (!this.legendTitleCheckbox) {
-            //         specification['encoding']['color'] = {
-            //             "field": "",
-            //             "type": "",
-            //             "scale": "",
-            //             "legend": ""
-            //           };
-            // } else {
-            //     if (this.legendTitle != ''  &&  this.legendTitle != undefined) {
-            //         specification['encoding']['color'] =
-            //             {"legend" : {"title": this.legendTitle} };
-            //     } else {
-            //         specification['encoding']['color'] =
-            //             {"legend" : "" };
-
-            //     };
-            // };
 
 
             // Size field
