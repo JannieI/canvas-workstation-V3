@@ -1639,7 +1639,7 @@
                                 (dragleave)="dragleaveColumn($event);"
                                 (dragover)="dragoverColumn($event);"
                                 [style.background-color]="isDragoverColumn? 'lightgray' : 'transparent'"
-                                [style.font-style]="ColumnField=='Drag a field here ...' ?  'italic'  :  'normal'"
+                                [style.font-style]="columnField=='Drag a field here ...' ?  'italic'  :  'normal'"
                                 >
                                 
                                 <clr-icon shape="times" *ngIf="showColumnDeleteIcon"

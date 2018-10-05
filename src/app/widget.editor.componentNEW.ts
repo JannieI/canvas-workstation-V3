@@ -2003,6 +2003,18 @@ console.warn('xx definition', definition);
         
     }
 
+    clickClearColumnField() {
+        // Clear the Column Field and Remove X icon
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClearColumnField', '@Start');
+
+        this.showColumnDeleteIcon = false;
+        this.columnField = dragFieldMessage;
+
+        // Hide the panel with properties
+        this.showFieldColumnProperties = false;
+        
+    }
+
     dragenterXField(ev, actionName: string) {
         // Event trigger when dragged field enters XField
         this.globalFunctionService.printToConsole(this.constructor.name,'dragenterXField', '@Start');
