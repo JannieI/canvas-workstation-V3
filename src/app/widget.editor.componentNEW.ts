@@ -1001,6 +1001,14 @@ export interface dataSchemaInterface {
                 this.rowField = dragFieldMessage;
             };
 
+            if (this.localWidget.graphColumnField != ''   &&   this.localWidget.graphColumnField != null) {
+                this.showColourDeleteIcon = true;
+                this.columnField = this.localWidget.graphColumnField;
+            } else {
+                this.showColourDeleteIcon = false;
+                this.columnField = dragFieldMessage;
+            };
+
             // Get local vars - easier for ngFor
             this.containerHasContextMenus = this.localWidget.containerHasContextMenus;
             this.containerHasTitle = this.localWidget.containerHasTitle;
@@ -1121,6 +1129,10 @@ export interface dataSchemaInterface {
         this.localWidget.graphRowField = '';
         if (this.rowField != dragFieldMessage) {
             this.localWidget.graphRowField = this.rowField;
+        };
+        this.localWidget.graphColumnField = '';
+        if (this.columnField != dragFieldMessage) {
+            this.localWidget.graphColumnField = this.columnField;
         };
 
 
@@ -1472,6 +1484,23 @@ export interface dataSchemaInterface {
                 "field": ""
                 };
             };
+
+
+            // Column field
+            if (this.localWidget.graphColumnField != '') {
+                console.warn('xx localWidget.graphColumnField', this.localWidget.graphColumnField);
+
+                specification['encoding']['column'] = {
+                    "field": this.localWidget.graphColumnField,
+                    "type": this.localWidget.graphColumnType.toLowerCase()
+                };   
+
+            } else {
+            specification['encoding']['column'] = {
+                "field": ""
+                };
+            };
+
 
             // Tooltip setting
             // specification['mark']['tooltip']['content'] = "";
@@ -2173,6 +2202,9 @@ console.warn('xx definition', definition);
 
         this.showRowDeleteIcon = false;
         this.rowField = dragFieldMessage;
+
+        this.showColumnDeleteIcon = false;
+        this.columnField = dragFieldMessage;
 
         // Determine if data already in Glob Var
         let dataSetIndex: number = this.globalVariableService.currentDatasets.findIndex(
