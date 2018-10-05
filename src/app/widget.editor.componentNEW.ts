@@ -1096,7 +1096,7 @@ export interface dataSchemaInterface {
         let graphVisualGrammar: string = this.widgetGraphs[widgetGraphIndex].visualGrammar;
         let graphShortName: string = this.widgetGraphs[widgetGraphIndex].shortName;
 
-        
+
         // Set fields
         this.localWidget.graphXfield = '';
         if (this.xField != dragFieldMessage) {
@@ -2402,6 +2402,14 @@ console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowInde
 
         // Toggle
         this.showFieldRowProperties = !this.showFieldRowProperties;
+    }
+
+    clickShowColumnProperties() {
+        // Show Column Area
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowColumnProperties', '@Start');
+
+        // Toggle
+        this.showFieldColumnProperties = !this.showFieldColumnProperties;
     }
 
     clickSelectTitleColor(ev: any) {
