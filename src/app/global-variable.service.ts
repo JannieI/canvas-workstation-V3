@@ -299,6 +299,7 @@ const widgetTemplate: Widget =
         "graphLegendTitle": "",
         "graphLegendFormat": "",
 
+        "graphSizeField": "",
         "graphSizeType": "",
         "graphSizeAggregate": "",
         "graphSizeBin": true,

@@ -1187,6 +1187,7 @@ export class Widget {
     graphLegendFormat: string;
 
     // Size
+    graphSizeField: string;
     graphSizeType: string;
     graphSizeAggregate
     graphSizeBin: boolean;
