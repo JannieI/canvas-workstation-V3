@@ -1569,7 +1569,6 @@ clr-dg-cell {
                 }
 
 
-
             /* Row */
             .editorRowContainerTitle {
                 background-color: rgb(211, 209, 226);
@@ -1604,6 +1603,50 @@ clr-dg-cell {
                     width: 38px;
                 }
                 .editorGraphRowType {
+                    border: 1px solid steelblue;
+                    border-radius: 5px;
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin: 3px;
+                    width: 68%;
+                }
+
+
+            /* Column */
+            .editorColumnContainerTitle {
+                background-color: rgb(211, 209, 226);
+                border: 1px solid lightgray;
+                border-radius: 3px;
+                font-size: 0.5rem;
+                margin-top: 5px;
+            }
+
+                .editorColumnFieldTitle {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin-left: 4px;
+                    width: 38px;
+                }
+                .editorColumnField {
+                    border: 1px solid steelblue;
+                    border-radius: 5px;
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin: 3px;
+                    width: 68%;
+                }
+
+                .editorGraphColumnTypeTitle {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin-left: 4px;
+                    width: 38px;
+                }
+                .editorGraphColumnType {
                     border: 1px solid steelblue;
                     border-radius: 5px;
                     display: inline-block;

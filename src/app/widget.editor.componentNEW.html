@@ -1569,6 +1569,7 @@
                             </clr-icon>
                         </div>
 
+                        <!-- Row Field -->
                         <div class="editorLineContainer">
                             <div class="editorRowFieldTitle" *ngIf="showFieldRowProperties">
                                 Field:
@@ -1600,6 +1601,64 @@
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphRowType"
                                     name="graphRowType"
+                                    >
+                                    <option>Ordinal</option>
+                                    <option>Quantitative</option>
+                                    <option>Temporal</option>
+                                    <option>Nominal</option>
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <!-- Column Channel Title Bar -->
+                        <div class="editorColumnContainerTitle"
+                            (click)="clickShowColumnProperties()"
+                            >
+                            <b>
+                                Column
+                            </b>
+                            <clr-icon shape="angle down" *ngIf="!showFieldColumnProperties"
+                                size="12"
+                                >
+                            </clr-icon>
+                            <clr-icon shape="angle up" *ngIf="showFieldColumnProperties"
+                                size="12"
+                                >
+                            </clr-icon>
+                        </div>
+
+                        <div class="editorLineContainer">
+                            <div class="editorColumnFieldTitle" *ngIf="showFieldColumnProperties">
+                                Field:
+                            </div>
+                            <div class="editorColumnField" *ngIf="showFieldColumnProperties"
+                                id="target"
+                                (drop)="dropColumn($event);"
+                                (dragenter)="dragenterColumn($event);"
+                                (dragleave)="dragleaveColumn($event);"
+                                (dragover)="dragoverColumn($event);"
+                                [style.background-color]="isDragoverColumn? 'lightgray' : 'transparent'"
+                                [style.font-style]="ColumnField=='Drag a field here ...' ?  'italic'  :  'normal'"
+                                >
+                                
+                                <clr-icon shape="times" *ngIf="showColumnDeleteIcon"
+                                    (click)="clickClearColumnField()"
+                                    >
+                                </clr-icon>
+                                {{ columnField }}
+                            </div>
+                        </div>
+
+                        <!-- Column type -->
+                        <div class="editorLineContainer">
+                            <div class="editorGraphColumnTypeTitle" *ngIf="showFieldColumnProperties">
+                                Type:
+                            </div>
+                            <div class="select editorGraphColumnType" *ngIf="showFieldColumnProperties">
+                                <select id="selects_3"
+                                    [(ngModel)]="localWidget.graphColumnType"
+                                    name="graphColumnType"
                                     >
                                     <option>Ordinal</option>
                                     <option>Quantitative</option>
