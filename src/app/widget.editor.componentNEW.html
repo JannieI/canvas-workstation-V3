@@ -691,6 +691,8 @@
                                 >
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphXtimeUnit"
+                                    [disabled]="localWidget.graphXtype!='Temporal'"
+                                    (change)="changeXTimeUnit()"
                                     >
                                     <option *ngFor="let row of timeUnits; let i = index">
                                         {{ row }}
@@ -862,8 +864,7 @@
                         </div>
 
                         <!-- Y Properties timeUnit -->
-                        <div class="editorLineContainer"
-                        [disabled]="localWidget.graphYtype!='Temporal'"">
+                        <div class="editorLineContainer">
                             <div class="editorGraphYtimeUnitTitle" *ngIf="showFieldYProperties">
                                 TimeUnit:
                             </div>
@@ -872,6 +873,7 @@
                                 >
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphYtimeUnit"
+                                    [disabled]="localWidget.graphYtype!='Temporal'"
                                     >
                                     <option *ngFor="let row of timeUnits; let i = index">
                                         {{ row }}
@@ -1069,6 +1071,7 @@
                                 >
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphColorTimeUnit"
+                                    [disabled]="localWidget.graphColorType!='Temporal'"
                                     >
                                     <option *ngFor="let row of timeUnits; let i = index">
                                         {{ row }}

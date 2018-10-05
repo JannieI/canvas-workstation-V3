@@ -2604,4 +2604,15 @@ console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowInde
         this.showFieldYProperties = false;
         this.showFieldColorProperties = !this.showFieldColorProperties;
     }
+
+    changeXTimeUnit() {
+        // Remove timeUnit if Type is not Temporal
+        this.globalFunctionService.printToConsole(this.constructor.name,'changeXTimeUnit', '@Start');
+
+        if (this.localWidget.graphXtype != 'Temporal') {
+            this.localWidget.graphXtimeUnit = '';
+        };
+    }
+
+    
 }
