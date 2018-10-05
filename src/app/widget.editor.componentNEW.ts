@@ -2017,6 +2017,14 @@ console.warn('xx definition', definition);
         this.isDragoverSizes = false;
     }
 
+    dragleaveRow(ev, actionName: string) {
+        // Event trigger when the dragged Field is leaves the Row field
+        this.globalFunctionService.printToConsole(this.constructor.name,'dragleaveRow', '@Start');
+
+        ev.preventDefault();
+        this.isDragoverRow = false;
+    }
+
     clickDatasource(index: number, name: string) {
         // Show dropdown of DS
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDatasource', '@Start');
