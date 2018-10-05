@@ -989,6 +989,14 @@ export interface dataSchemaInterface {
                 this.sizeField = dragFieldMessage;
             };
 
+            if (this.localWidget.graphRowField != ''   &&   this.localWidget.graphRowField != null) {
+                this.showColourDeleteIcon = true;
+                this.rowField = this.localWidget.graphRowField;
+            } else {
+                this.showColourDeleteIcon = false;
+                this.rowField = dragFieldMessage;
+            };
+
             // Get local vars - easier for ngFor
             this.containerHasContextMenus = this.localWidget.containerHasContextMenus;
             this.containerHasTitle = this.localWidget.containerHasTitle;
@@ -1078,7 +1086,6 @@ export interface dataSchemaInterface {
             this.errorMessage = 'Graph type id = ' + graphID + ' does not exist in the DB';
             return;
         }
-    console.warn('xx', widgetGraphIndex,  this.widgetGraphs[widgetGraphIndex].shortName);
 
         console.warn('xx this.localWidget', this.localWidget);
 
@@ -1089,6 +1096,7 @@ export interface dataSchemaInterface {
         let graphVisualGrammar: string = this.widgetGraphs[widgetGraphIndex].visualGrammar;
         let graphShortName: string = this.widgetGraphs[widgetGraphIndex].shortName;
 
+        
         // Set fields
         this.localWidget.graphXfield = '';
         if (this.xField != dragFieldMessage) {
@@ -1105,6 +1113,10 @@ export interface dataSchemaInterface {
         this.localWidget.graphSizeField = '';
         if (this.sizeField != dragFieldMessage) {
             this.localWidget.graphSizeField = this.sizeField;
+        };
+        this.localWidget.graphRowField = '';
+        if (this.rowField != dragFieldMessage) {
+            this.localWidget.graphRowField = this.rowField;
         };
 
 
