@@ -1196,7 +1196,11 @@ export class Widget {
     // Row
     graphRowField: string;
     graphRowType: string;
-    
+
+    // Column
+    graphColumnField: string;
+    graphColumnType: string;
+
     // Mark
     graphMark: string;
     graphMarkOrient: string;

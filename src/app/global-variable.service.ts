@@ -307,6 +307,9 @@ const widgetTemplate: Widget =
 
         "graphRowField": "",
         "graphRowType": "",
+
+        "graphColumnField": "",
+        "graphColumnType": "",
     
         "graphMark": "tick",
         "graphMarkOrient": "Verticle",
