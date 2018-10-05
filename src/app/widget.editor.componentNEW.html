@@ -1079,7 +1079,7 @@
 
                         <!-- Mark Title Bar -->
                         <div class="editorMarkTitle"
-                            (click)="clickShowMark()"
+                            (click)="clickShowMarkProperties()"
                             >
                             <b>
                                 Mark
@@ -1205,7 +1205,7 @@
 
                         <!-- X-Axis Title Bar -->
                         <div class="editorXAxisContainerTitle" *ngIf="showFieldXPropertiesTitle"
-                            (click)="clickShowXAxis()"
+                            (click)="clickShowXAxisProperties()"
                             >
                             <b>
                                 X Axis
@@ -1301,7 +1301,7 @@
 
                         <!-- Y-Axis Title Bar -->
                         <div class="editorYAxisContainerTitle" *ngIf="showFieldYPropertiesTitle"
-                            (click)="clickShowYAxis()"
+                            (click)="clickShowYAxisProperties()"
                             >
                             <b>
                                 Y Axis
@@ -1416,7 +1416,7 @@
 
                         <!-- Size Channel Title Bar -->
                         <div class="editorSizeContainerTitle"
-                            (click)="clickShowSize()"
+                            (click)="clickShowSizeProperties()"
                             >
                             <b>
                                 Size
@@ -1517,7 +1517,7 @@
 
                         <!-- Legend-Axis Title Bar -->
                         <div class="editorLegendContainerTitle" *ngIf="showFieldColorPropertiesTitle"
-                            (click)="clickShowLegend()"
+                            (click)="clickShowLegendProperties()"
                             >
                             <b>
                                 Legend
@@ -1571,7 +1571,7 @@
 
                         <!-- Row Channel Title Bar -->
                         <div class="editorRowContainerTitle"
-                            (click)="clickShowRow()"
+                            (click)="clickShowRowProperties()"
                             >
                             <b>
                                 Row
@@ -1596,7 +1596,7 @@
                                 (dragenter)="dragenterRow($event);"
                                 (dragleave)="dragleaveRow($event);"
                                 (dragover)="dragoverRow($event);"
-                                [style.background-color]="dragoverRows? 'lightgray' : 'transparent'"
+                                [style.background-color]="isDragoverRow? 'lightgray' : 'transparent'"
                                 [style.font-style]="rowField=='Drag a field here ...' ?  'italic'  :  'normal'"
                                 >
                                 

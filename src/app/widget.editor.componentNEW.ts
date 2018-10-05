@@ -2246,9 +2246,9 @@ console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowInde
         // this.changeColorProperty();
     }
 
-    clickShowMark() {
+    clickShowMarkProperties() {
         // Show Mark Properties Area
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowMark', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowMarkProperties', '@Start');
 
         // Toggle
         this.showFieldMarkProperties = !this.showFieldMarkProperties;
@@ -2324,36 +2324,44 @@ console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowInde
         this.showSelectionFilter = !this.showSelectionFilter;
     }
 
-    clickShowXAxis() {
+    clickShowXAxisProperties() {
         // Show X Axis Area
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowXAxis', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowXAxisProperties', '@Start');
 
         // Toggle
         this.showFieldXAxis = !this.showFieldXAxis;
     }
 
-    clickShowYAxis() {
+    clickShowYAxisProperties() {
         // Show X Axis Area
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowYAxis', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowYAxisProperties', '@Start');
 
         // Toggle
         this.showFieldYAxis = !this.showFieldYAxis;
     }
 
-    clickShowLegend() {
+    clickShowLegendProperties() {
         // Show Legend Area
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowLegend', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowLegendProperties', '@Start');
 
         // Toggle
         this.showFieldLegend = !this.showFieldLegend;
     }
 
-    clickShowSize() {
+    clickShowSizeProperties() {
         // Show Size Area
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowSize', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowSizeProperties', '@Start');
 
         // Toggle
         this.showFieldSizeProperties = !this.showFieldSizeProperties;
+    }
+
+    clickShowRowProperties() {
+        // Show Row Area
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowRowProperties', '@Start');
+
+        // Toggle
+        this.showFieldRowProperties = !this.showFieldRowProperties;
     }
 
     clickSelectTitleColor(ev: any) {
