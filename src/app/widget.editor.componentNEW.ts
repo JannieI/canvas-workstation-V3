@@ -233,7 +233,7 @@ export interface dataSchemaInterface {
     showFieldYPropertiesTitle: boolean = false;
 
     // showFieldSizePropertiesTitle: boolean = false;
-    showFieldSize: boolean = false;
+    showFieldSizeProperties: boolean = false;
 
     showFieldLegend: boolean = false;
     showFieldColorProperties: boolean = false;
@@ -1982,80 +1982,51 @@ this.localWidget.graphYtype);
     }
 
     clickClearColumnField() {
-        // Clear the Colour Field
+        // Clear the X Field and Remove X icon
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClearColumnField', '@Start');
-
-        // Show X icon
+        
         this.showColumnDeleteIcon = false;
         this.colField = dragFieldMessage;
-        // this.localWidget.graphXfield = '';
-        this.localWidget.graphXaxisTitle = '';
-        this.localWidget.graphXaggregate = '';
-        this.localWidget.graphXtimeUnit = '';
-        this.localWidget.graphXtype = '';
-        this.localWidget.graphXbin = false;
 
-        // Hide the panel with X properties
+        // Hide the panel with properties
         this.showFieldXPropertiesTitle = false;
-
-        // let definition = this.globalVariableService.createVegaLiteSpec(
-        //     this.localWidget, graphHeight, graphWidth
-        // );
-        // this.renderGraph(definition);
+        this.showFieldXProperties = false;
     }
 
     clickClearYField() {
-        // Clear the Colour Field
+        // Clear the Y Field and Remove X icon
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClearYField', '@Start');
 
-        // Hide the panel with Y properties
-        this.showFieldYPropertiesTitle = false;
-
-        // Show X icon
         this.showYDeleteIcon = false;
         this.yField = dragFieldMessage;
-        this.localWidget.graphYfield = null;
-        this.localWidget.graphYaxisTitle = null;
-        this.localWidget.graphYaggregate = null;
-        this.localWidget.graphYtimeUnit = null;
-        this.localWidget.graphYtype = null;
 
-        // let definition = this.globalVariableService.createVegaLiteSpec(
-        //     this.localWidget, graphHeight, graphWidth
-        // );
-        // this.renderGraph(definition);
+        // Hide the panel with properties
+        this.showFieldYPropertiesTitle = false;
+        this.showFieldYProperties = false;
     }
 
     clickClearColourField() {
-        // Clear the Colour Field
+        // Clear the Colour Field and Remove X icon
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClearColourField', '@Start');
 
-        // Show X icon
         this.showColourDeleteIcon = false;
         this.colorField = dragFieldMessage;
-        // this.localWidget.graphColorField = null;
-        this.localWidget.graphColorType = null;
 
-        // let definition = this.globalVariableService.createVegaLiteSpec(
-        //     this.localWidget, graphHeight, graphWidth
-        // );
-        // this.renderGraph(definition);
+        // Hide the panel with properties
+        this.showFieldColorPropertiesTitle = false;
+        this.showFieldColorProperties = false;
     }
 
     clickClearSizeField() {
-        // Clear the Size Field
+        // Clear the Size Field and Remove X icon
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClearSizeField', '@Start');
 
-        // Show X icon
         this.showSizeDeleteIcon = false;
         this.sizeField = dragFieldMessage;
-        // this.localWidget.graphColorField = null;
-        // this.localWidget.graphColorType = null;
 
-        // let definition = this.globalVariableService.createVegaLiteSpec(
-        //     this.localWidget, graphHeight, graphWidth
-        // );
-        // this.renderGraph(definition);
+        // Hide the panel with properties
+        this.showFieldSizeProperties = false;
+        
     }
 
     dragenterColumn(ev, actionName: string) {
@@ -2461,7 +2432,7 @@ console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowInde
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowSize', '@Start');
 
         // Toggle
-        this.showFieldSize = !this.showFieldSize;
+        this.showFieldSizeProperties = !this.showFieldSizeProperties;
     }
 
     clickSelectTitleColor(ev: any) {
