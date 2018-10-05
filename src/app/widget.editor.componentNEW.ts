@@ -1168,6 +1168,15 @@ export interface dataSchemaInterface {
         if (this.localWidget.graphColorType == ''  ||  this.localWidget.graphColorType == null) {
             this.localWidget.graphColorType = 'ordinal';
         };
+        if (this.colField == dragFieldMessage) {
+            this.colField = '';
+        };
+        if (this.yField == dragFieldMessage) {
+            this.yField = '';
+        };
+        if (this.graphColorField == dragFieldMessage) {
+            this.graphColorField = '';
+        };
 
         if (this.graphColorAggregateVegaLiteName == null) {this.graphColorAggregateVegaLiteName = ""};
         if (this.localWidget.graphColorFormat == null) {this.localWidget.graphColorFormat = ""};
@@ -1321,12 +1330,12 @@ export interface dataSchemaInterface {
             specification['encoding']['x']['field'] = this.localWidget.graphXfield;
             specification['encoding']['x']['aggregate'] = this.graphXaggregateVegaLiteName.toLowerCase();
             // specification['encoding']['x']['bin'] = this.localWidget.graphXbin;
-            if (this.localWidget.graphXMaxBins > 0) {
-                specification['encoding']['x']['bin'] =
-                    {"maxbins": this.localWidget.graphXMaxBins};
-            } else {
-                specification['encoding']['x']['bin'] = this.localWidget.graphXbin;
-            };
+            // if (this.localWidget.graphXMaxBins > 0) {
+            //     specification['encoding']['x']['bin'] =
+            //         {"maxbins": this.localWidget.graphXMaxBins};
+            // } else {
+            //     specification['encoding']['x']['bin'] = this.localWidget.graphXbin;
+            // };
             specification['encoding']['x']['format'] = this.localWidget.graphXformat.toLowerCase();
             if (this.localWidget.graphXimpute != '') {
                 if (this.localWidget.graphXimpute == 'Value') {
@@ -1365,12 +1374,12 @@ export interface dataSchemaInterface {
             specification['encoding']['y']['field'] = this.localWidget.graphYfield;
             specification['encoding']['y']['aggregate'] = this.graphYaggregateVegaLiteName.toLowerCase();
             // specification['encoding']['y']['bin'] = this.localWidget.graphYbin;
-            if (this.localWidget.graphYMaxBins > 0) {
-                specification['encoding']['y']['bin'] =
-                    {"maxbins": this.localWidget.graphYMaxBins};
-            } else {
-                specification['encoding']['y']['bin'] = this.localWidget.graphYbin;
-            };
+            // if (this.localWidget.graphYMaxBins > 0) {
+            //     specification['encoding']['y']['bin'] =
+            //         {"maxbins": this.localWidget.graphYMaxBins};
+            // } else {
+            //     specification['encoding']['y']['bin'] = this.localWidget.graphYbin;
+            // };
             specification['encoding']['y']['format'] = this.localWidget.graphYformat.toLowerCase();
             if (this.localWidget.graphYimpute != '') {
                 if (this.localWidget.graphYimpute == 'Value') {
