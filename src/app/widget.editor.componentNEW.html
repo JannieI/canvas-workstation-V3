@@ -639,7 +639,7 @@
                                     name="graphXstack"
                                     >
                                     <option>Zero</option>
-                                    <option>Normalise</option>
+                                    <option>Normalize</option>
                                     <option>Center</option>
                                     <option>Null</option>
                                 </select>
@@ -819,7 +819,7 @@
                                     name="graphYstack"
                                     >
                                     <option>Zero</option>
-                                    <option>Normalise</option>
+                                    <option>Normalize</option>
                                     <option>Center</option>
                                     <option>Null</option>
                                 </select>
@@ -862,7 +862,8 @@
                         </div>
 
                         <!-- Y Properties timeUnit -->
-                        <div class="editorLineContainer">
+                        <div class="editorLineContainer"
+                        [disabled]="localWidget.graphYtype!='Temporal'"">
                             <div class="editorGraphYtimeUnitTitle" *ngIf="showFieldYProperties">
                                 TimeUnit:
                             </div>
@@ -1033,7 +1034,7 @@
                                     name="graphColorStack"
                                     >
                                     <option>Zero</option>
-                                    <option>Normalise</option>
+                                    <option>Normalize</option>
                                     <option>Center</option>
                                     <option>Null</option>
                                 </select>

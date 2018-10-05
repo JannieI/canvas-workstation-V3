@@ -1362,7 +1362,7 @@ export interface dataSchemaInterface {
                             {"method": this.localWidget.graphYimpute };
                     };
                 };
-                specification['encoding']['y']['stack'] = this.localWidget.graphYstack;
+                specification['encoding']['y']['stack'] = this.localWidget.graphYstack.toLowerCase();
                 specification['encoding']['y']['sort'] = this.localWidget.graphYsort.toLowerCase();
                 specification['encoding']['y']['type'] = this.localWidget.graphYtype.toLowerCase();
                 specification['encoding']['y']['timeUnit'] = this.localWidget.graphYtimeUnit.toLowerCase();
@@ -1480,9 +1480,9 @@ export interface dataSchemaInterface {
                 };   
 
             } else {
-            specification['encoding']['row'] = {
-                "field": ""
-                };
+            // specification['encoding']['row'] = {
+            //     "field": null
+            //     };
             };
 
 
@@ -1496,9 +1496,9 @@ export interface dataSchemaInterface {
                 };   
 
             } else {
-            specification['encoding']['column'] = {
-                "field": ""
-                };
+            // specification['encoding']['column'] = {
+            //     "field": null
+            //     };
             };
 
 
