@@ -1824,6 +1824,13 @@ console.warn('xx definition', definition);
         ev.preventDefault();
     }
 
+    dragoverDetail(ev, actionName: string) {
+        // Event trigger when the dragged Field is over the Detail field
+        this.globalFunctionService.printToConsole(this.constructor.name,'dragoverDetail', '@Start');
+
+        ev.preventDefault();
+    }
+
     switchXandY() {
         // Event trigger when the dragged Field is dropped the Column field
         this.globalFunctionService.printToConsole(this.constructor.name,'switchXandY', '@Start');
