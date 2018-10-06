@@ -1504,10 +1504,22 @@ export interface dataSchemaInterface {
 
             };
 
-            specification['encoding']['detail'] = {"field": "Origin","type": "nominal"}
-            specification['transform'] = [
-                {"filter": {"field": "Origin", "equal": "Europe"}}
-            ];
+
+            // Detail field
+            if (this.localWidget.graphDetailField != '') {
+                console.warn('xx localWidget.graphDetailField', this.localWidget.graphDetailField);
+
+                specification['encoding']['detail'] = {
+                    "field": this.localWidget.graphDetailField
+                };   
+
+            };
+
+            // specification['encoding']['detail'] = {"field": "Origin","type": "nominal"}
+            // specification['transform'] = [
+            //     {"filter": {"field": "Origin", "equal": "Europe"}}
+            // ];
+
             // Tooltip setting
             // specification['mark']['tooltip']['content'] = "";
 
@@ -2074,6 +2086,18 @@ console.warn('xx definition', definition);
         
     }
 
+    clickClearDetailField() {
+        // Clear the Detail Field and Remove X icon
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClearDetailField', '@Start');
+
+        this.showDetailDeleteIcon = false;
+        this.detailField = dragFieldMessage;
+
+        // Hide the panel with properties
+        this.showFieldDetailProperties = false;
+        
+    }
+
     dragenterXField(ev, actionName: string) {
         // Event trigger when dragged field enters XField
         this.globalFunctionService.printToConsole(this.constructor.name,'dragenterXField', '@Start');
@@ -2429,9 +2453,9 @@ console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowInde
         this.showFieldMarkProperties = !this.showFieldMarkProperties;
     }
 
-    clickShowcDetailProperties() {
+    clickShowDetailProperties() {
         // Show Detail Properties Area
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowcDetailProperties', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowDetailProperties', '@Start');
 
         // Toggle
         this.showFieldDetailProperties = !this.showFieldDetailProperties;

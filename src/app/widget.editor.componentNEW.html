@@ -1706,7 +1706,7 @@
                                 size="12"
                                 >
                             </clr-icon>
-                            <clr-icon shape="circle" *ngIf="DetailField!='Drag a field here ...'"
+                            <clr-icon shape="circle" *ngIf="detailField!='Drag a field here ...'"
                                 class="is-solid"
                                 size="12"
                                 style="float: right;"
@@ -1725,14 +1725,14 @@
                                 (dragleave)="dragleaveDetail($event);"
                                 (dragover)="dragoverDetail($event);"
                                 [style.background-color]="isDragoverDetail? 'lightgray' : 'transparent'"
-                                [style.font-style]="DetailField=='Drag a field here ...' ?  'italic'  :  'normal'"
+                                [style.font-style]="detailField=='Drag a field here ...' ?  'italic'  :  'normal'"
                                 >
 
                                 <clr-icon shape="times" *ngIf="showDetailDeleteIcon"
                                     (click)="clickClearDetailField()"
                                     >
                                 </clr-icon>
-                                {{ DetailField }}
+                                {{ detailField }}
                             </div>
                         </div>
 
