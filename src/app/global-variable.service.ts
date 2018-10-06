@@ -254,6 +254,7 @@ const widgetTemplate: Widget =
         "graphXsort": "",
         "graphXtimeUnit": "",
         "graphXtype": "ordinal",
+        "graphXtypeName": "Ordinal",
 
         "graphYfield": "",
         "graphYaggregate": "",

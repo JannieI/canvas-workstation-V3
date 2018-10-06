@@ -1136,6 +1136,7 @@ export class Widget {
     graphXstack: string;
     graphXsort: string;
     graphXtype: string;
+    graphXtypeName: string;
 
     // Y
     graphYfield: string;

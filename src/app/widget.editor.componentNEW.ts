@@ -522,7 +522,6 @@ export interface dataSchemaInterface {
     xField: string = dragFieldMessage;
     yField: string = dragFieldMessage;
 
-
     timeUnits: string[] = [
         "",
         "Date",
@@ -1963,9 +1962,10 @@ export interface dataSchemaInterface {
         this.xField = fieldName;
 
         let fieldType:string = this.getFieldType(fieldName);
-        this.localWidget.graphXtype = this.defaultGraphTypeField(fieldType);
+        this.localWidget.graphXtype = this.defaultGraphTypeField(fieldType, 'type');
+        this.localWidget.graphXtypeName = this.defaultGraphTypeField(fieldType, 'name');
         
-        console.warn('xx this.localWidget.graphXtype', fieldType, this.localWidget.graphXtype);
+        console.warn('xx this.localWidget.graphXtype', fieldType, this.localWidget.graphXtypeName, this.localWidget.graphXtype);
 
     }
 
@@ -1995,7 +1995,7 @@ export interface dataSchemaInterface {
 
         // Fill the default and allowed types of Vega field types
         let fieldType:string = this.getFieldType(fieldName);
-        this.localWidget.graphYtype = this.defaultGraphTypeField(fieldType);
+        this.localWidget.graphYtype = this.defaultGraphTypeField(fieldType, 'type');
     }
 
     dropColour(ev) {
@@ -2017,7 +2017,7 @@ export interface dataSchemaInterface {
 
         // Fill the default and allowed types of Vega field types
         let fieldType:string = this.getFieldType(this.draggedField);
-        this.localWidget.graphColorType = this.defaultGraphTypeField(fieldType);
+        this.localWidget.graphColorType = this.defaultGraphTypeField(fieldType, 'type');
     }
 
     dropSize(ev) {
@@ -2453,15 +2453,37 @@ console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowInde
         };
     }
 
-    defaultGraphTypeField(fieldType: string): string {
+    defaultGraphTypeField(fieldType: string, typeOrName: string): string {
         // Returns the default Vega field type depending a given field types
         this.globalFunctionService.printToConsole(this.constructor.name,'defaultGraphTypeField', '@Start');
 
         if (fieldType == 'string') {
+            if (typeOrName == 'name') {
+                return 'Ordinal';
+            } else {
             return 'ordinal';
+            };
         };
-        if (fieldType == 'number') {
-            return 'quantitative';
+        if (fieldType.toLowerCase() == 'number') {
+            if (typeOrName == 'name') {
+                return 'Quantitative';
+            } else {
+                return 'quantitative';
+            };
+        };
+        if (fieldType.toLowerCase() == 'boolean') {
+            if (typeOrName == 'name') {
+                return 'Nominal';
+            } else {
+                return 'nominal';
+            };
+        };
+        if (fieldType.toLowerCase() == 'date') {
+            if (typeOrName == 'name') {
+                return 'Temporal';
+            } else {
+                return 'temporal';
+            };
         };
     }
 
@@ -2724,8 +2746,6 @@ console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowInde
 
         if (this.localWidget.graphXtype != 'Temporal') {
             this.localWidget.graphXtimeUnit = '';
-            console.warn('xx chg');
-
         };
     }
 
