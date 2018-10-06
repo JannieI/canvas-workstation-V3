@@ -1995,6 +1995,7 @@ export interface dataSchemaInterface {
 
         // Fill the default and allowed types of Vega field types
         let fieldType:string = this.getFieldType(fieldName);
+        this.localWidget.graphYtypeName = this.defaultGraphTypeField(fieldType, 'name');
         this.localWidget.graphYtype = this.defaultGraphTypeField(fieldType, 'type');
     }
 

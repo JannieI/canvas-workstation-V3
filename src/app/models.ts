@@ -1150,6 +1150,7 @@ export class Widget {
     graphYsort: string;
     graphYtimeUnit: string;
     graphYtype: string;
+    graphYtypeName: string;
 
     // Color
     graphColorField: string;

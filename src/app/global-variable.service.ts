@@ -267,6 +267,7 @@ const widgetTemplate: Widget =
         "graphYsort": "",
         "graphYtimeUnit": "",
         "graphYtype": "",
+        "graphYtypeName": "",
 
         "graphColorField": "",
         "graphColorAggregate": "",
