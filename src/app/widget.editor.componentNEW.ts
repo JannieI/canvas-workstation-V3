@@ -2739,11 +2739,18 @@ console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowInde
         this.showFilterAreaProperties = false;
     }
 
+    filterFieldSelected(ev) {
+        // Selected a Filter Field
+        this.globalFunctionService.printToConsole(this.constructor.name,'filterFieldSelected', '@Start');
+        
+        this.filterField = ev.target.value;
+    }
+
     filterOperatorSelected(ev) {
         // Selected a Filter Operator
         this.globalFunctionService.printToConsole(this.constructor.name,'filterOperatorSelected', '@Start');
         
         this.filterOperator = ev.target.value;
     }
-    
+
 }

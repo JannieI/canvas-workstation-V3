@@ -1811,6 +1811,7 @@
                         <div class="select editorFilterField">
                             <select id="selects_3" *ngIf="dataSchema"
                                 [(ngModel)]="filterField"
+                                (change)="filterFieldSelected($event)"
                                 name="graphColumnType"
                                 >
                                 <option *ngFor="let row of dataSchema; let i = index">
