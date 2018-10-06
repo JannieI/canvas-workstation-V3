@@ -1565,9 +1565,18 @@ export interface dataSchemaInterface {
                 };
 
                 if (this.filterOperator == 'Range') {
-                    specification['transform'] = [
-                        {"filter": {"field": this.filterField, "range": this.filterValue}}
-                    ];
+                    let fromTo: string[] = this.filterValue.split(',');
+                    if (filterFieldDataType == 'number'  &&  fromTo.length == 2) {
+                        specification['transform'] = [
+                            {"filter": 
+                                {
+                                    "field": this.filterField, 
+                                    "range": [ +fromTo[0], +fromTo[1] ]
+                                }
+                            }
+                            // "range": [0, 5]}}
+                        ];
+                    };
                 };
 
                 if (this.filterOperator == 'One Of') {
