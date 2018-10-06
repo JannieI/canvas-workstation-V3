@@ -1770,14 +1770,20 @@
 
 
                     <!-- GRAPH Area -->
-                    <div class="editorAreaTitle" *ngIf="showGraphAreaTitle">
+                    <div class="editorAreaTitle" *ngIf="showGraphAreaTitle  &&  !showSpecification">
                         <b>Graph</b>
                     </div>
-                    <div class="editorArea" #dragWidget
+                    <div class="editorArea" [hidden]="showSpecification"
+                        #dragWidget
                         [style.border]="showGraphAreaTitle?  '1px solid gray'  : 'none'"
                         >
                     </div>
 
+
+                    <!-- SPECIFICATION AREA -->
+                    <div class="editorSpecification" [hidden]="!showSpecification">
+                        {{ specificationJSON }}
+                    </div>
 
                     <!-- FILTER -->
                     <div class="editorFilterTitle">

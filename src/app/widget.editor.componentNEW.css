@@ -1837,6 +1837,23 @@ clr-dg-cell {
             text-align: left;
         }
 
+
+        /* SPECIFICATION AREA */
+        .editorSpecification {
+            border: 1px solid black;
+            border-radius: 6px;
+            font-size: 0.5rem;
+            grid-column-start: 30;
+            /* autoprefixer: off */
+            grid-column-end: 50;
+            grid-row-start: 1;
+            grid-row-end: 21;
+            margin-left: 10px;
+            text-align: left;
+            overflow-y: scroll;
+            overflow: hidden;
+        }
+
         
         /* BUTTONS */
         .editorButtonShowData {

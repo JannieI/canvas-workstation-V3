@@ -182,6 +182,7 @@ export interface dataSchemaInterface {
     containerHasTitle: boolean = true;
     currentData: any = [];
     currentGraphComposition: string = 'Single';
+    currentGraphID: number = -1;
     currentGraphLayer: number = 1;
     dataSchema: dataSchemaInterface[] = [];
     dataFieldNames: string[] = [];
@@ -248,6 +249,7 @@ export interface dataSchemaInterface {
     showFieldDetailProperties: boolean = false;
     showPreview: boolean = false;
     showSpecification: boolean = false;
+    specificationJSON: string = 'Graph Specification';
     showYDeleteIcon: boolean = false;
     showType: boolean = false;
     sortOrder: number = 1;
@@ -1082,6 +1084,9 @@ export interface dataSchemaInterface {
         // Render the graph on the form.  NOTE: each graph has its own spec and rendering
         // rules.
         this.globalFunctionService.printToConsole(this.constructor.name,'showGraph', '@Start');
+
+        // Keep graphID
+        this.currentGraphID = graphID;
 
         // Switch off initial display
         this.showGraphAreaTitle = false;
@@ -2787,6 +2792,14 @@ export interface dataSchemaInterface {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowSpecificationArea', '@Start');
 
         this.showSpecification = !this.showSpecification
+        this.specificationJSON = JSON.stringify(this.specification);
+
+        // Re-show current graph
+        if (!this.showSpecification) {
+            // this.showGraph(this.currentGraphID);
+        };
+        console.warn('xx specificationJSON', this.specificationJSON);
+        
     }
 
     clickFilterClose() {
