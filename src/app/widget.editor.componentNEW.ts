@@ -1320,13 +1320,12 @@ export interface dataSchemaInterface {
             if (this.localWidget.graphXfield != dragFieldMessage) {
                 specification['encoding']['x']['field'] = this.localWidget.graphXfield;
                 specification['encoding']['x']['aggregate'] = this.graphXaggregateVegaLiteName.toLowerCase();
-                // specification['encoding']['x']['bin'] = this.localWidget.graphXbin;
-                // if (this.localWidget.graphXMaxBins > 0) {
-                //     specification['encoding']['x']['bin'] =
-                //         {"maxbins": this.localWidget.graphXMaxBins};
-                // } else {
-                //     specification['encoding']['x']['bin'] = this.localWidget.graphXbin;
-                // };
+                if (this.localWidget.graphXMaxBins > 0) {
+                    specification['encoding']['x']['bin'] =
+                        {"maxbins": this.localWidget.graphXMaxBins};
+                } else {
+                    specification['encoding']['x']['bin'] = this.localWidget.graphXbin;
+                };
                 specification['encoding']['x']['format'] = this.localWidget.graphXformat.toLowerCase();
                 if (this.localWidget.graphXimpute != '') {
                     if (this.localWidget.graphXimpute == 'Value') {
@@ -1366,13 +1365,12 @@ export interface dataSchemaInterface {
             if (this.localWidget.graphYfield != dragFieldMessage) {
                 specification['encoding']['y']['field'] = this.localWidget.graphYfield;
                 specification['encoding']['y']['aggregate'] = this.graphYaggregateVegaLiteName.toLowerCase();
-                // specification['encoding']['y']['bin'] = this.localWidget.graphYbin;
-                // if (this.localWidget.graphYMaxBins > 0) {
-                //     specification['encoding']['y']['bin'] =
-                //         {"maxbins": this.localWidget.graphYMaxBins};
-                // } else {
-                //     specification['encoding']['y']['bin'] = this.localWidget.graphYbin;
-                // };
+                if (this.localWidget.graphYMaxBins > 0) {
+                    specification['encoding']['y']['bin'] =
+                        {"maxbins": this.localWidget.graphYMaxBins};
+                } else {
+                    specification['encoding']['y']['bin'] = this.localWidget.graphYbin;
+                };
                 specification['encoding']['y']['format'] = this.localWidget.graphYformat.toLowerCase();
                 if (this.localWidget.graphYimpute != '') {
                     if (this.localWidget.graphYimpute == 'Value') {
@@ -1480,8 +1478,8 @@ export interface dataSchemaInterface {
 
 
             } else {
-            specification['encoding']['size'] = {
-                "field": ""
+                specification['encoding']['size'] = {
+                    "field": ""
                 };
             };
 
@@ -1634,7 +1632,7 @@ export interface dataSchemaInterface {
     renderGraph(definition: any) {
         // Render the graph on the form
         this.globalFunctionService.printToConsole(this.constructor.name,'renderGraph', '@Start');
-console.warn('xx definition', definition);
+        console.warn('xx definition', definition);
 
         let specification = compile(definition).spec;
         let view = new View(parse(specification));
@@ -1766,6 +1764,7 @@ console.warn('xx definition', definition);
 
         // Update new/edit
         if (this.newWidget) {
+            
             let tempChk: WidgetCheckpoint[] = this.globalVariableService.widgetCheckpoints
                 .filter(wc =>
                     wc.dashboardID == this.localWidget.dashboardID
