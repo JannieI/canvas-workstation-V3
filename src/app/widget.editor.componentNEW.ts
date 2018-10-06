@@ -2079,6 +2079,10 @@ export interface dataSchemaInterface {
 
         this.columnField = this.draggedField;
         this.isDragoverColumn = false;
+
+        let fieldType:string = this.getFieldType(this.draggedField);
+        this.localWidget.graphColumnType = this.defaultGraphTypeField(fieldType, 'type');
+        this.localWidget.graphColumnTypeName = this.defaultGraphTypeField(fieldType, 'name');
     }
 
     dropDetail(ev) {
