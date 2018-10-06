@@ -2018,6 +2018,7 @@ export interface dataSchemaInterface {
 
         // Fill the default and allowed types of Vega field types
         let fieldType:string = this.getFieldType(this.draggedField);
+        this.localWidget.graphColorTypeName = this.defaultGraphTypeField(fieldType, 'name');
         this.localWidget.graphColorType = this.defaultGraphTypeField(fieldType, 'type');
     }
 

@@ -1164,6 +1164,7 @@ export class Widget {
     graphColorSort: string;
     graphColorStack: string;
     graphColorType: string;
+    graphColorTypeName: string;
     graphColorTimeUnit: string;
 
     // X Axis
@@ -1191,6 +1192,7 @@ export class Widget {
     // Size
     graphSizeField: string;
     graphSizeType: string;
+    graphSizeTypeName: string;
     graphSizeAggregate
     graphSizeBin: boolean;
     graphSizeMaxBins: number;
@@ -1198,10 +1200,12 @@ export class Widget {
     // Row
     graphRowField: string;
     graphRowType: string;
+    graphRowTypeName: string;
 
     // Column
     graphColumnField: string;
     graphColumnType: string;
+    graphColumnTypeName: string;
 
     // Detail
     graphDetailField: string;

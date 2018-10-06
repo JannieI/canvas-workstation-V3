@@ -280,6 +280,7 @@ const widgetTemplate: Widget =
         "graphColorSort": "Default",
         "graphColorStack": "",
         "graphColorType": "",
+        "graphColorTypeName": "",
         "graphColorTimeUnit": "",
     
         "graphXaxisTitle": "",
@@ -303,15 +304,18 @@ const widgetTemplate: Widget =
 
         "graphSizeField": "",
         "graphSizeType": "",
+        "graphSizeTypeName": "",
         "graphSizeAggregate": "",
         "graphSizeBin": true,
         "graphSizeMaxBins": 0,
 
         "graphRowField": "",
         "graphRowType": "",
+        "graphRowTypeName": "",
 
         "graphColumnField": "",
         "graphColumnType": "",
+        "graphColumnTypeName": "",
 
         "graphDetailField": "",
     
