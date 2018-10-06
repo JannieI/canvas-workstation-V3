@@ -2037,6 +2037,10 @@ export interface dataSchemaInterface {
 
         this.sizeField = this.draggedField;
         this.isDragoverSizes = false;
+
+        let fieldType:string = this.getFieldType(this.draggedField);
+        this.localWidget.graphSizeType = this.defaultGraphTypeField(fieldType, 'type');
+        this.localWidget.graphSizeTypeName = this.defaultGraphTypeField(fieldType, 'name');
     }
 
     dropRow(ev) {
