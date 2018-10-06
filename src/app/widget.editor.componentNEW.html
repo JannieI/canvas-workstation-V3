@@ -1691,6 +1691,52 @@
                         </div>
 
 
+                        <!-- Detail Channel Title Bar -->
+                        <div class="editorDetailContainerTitle"
+                            (click)="clickShowDetailProperties()"
+                            >
+                            <b>
+                                Detail
+                            </b>
+                            <clr-icon shape="angle down" *ngIf="!showFieldDetailProperties"
+                                size="12"
+                                >
+                            </clr-icon>
+                            <clr-icon shape="angle up" *ngIf="showFieldDetailProperties"
+                                size="12"
+                                >
+                            </clr-icon>
+                            <clr-icon shape="circle" *ngIf="DetailField!='Drag a field here ...'"
+                                class="is-solid"
+                                size="12"
+                                style="float: right;"
+                                >
+                            </clr-icon>
+                        </div>
+
+                        <div class="editorLineContainer">
+                            <div class="editorDetailFieldTitle" *ngIf="showFieldDetailProperties">
+                                Field:
+                            </div>
+                            <div class="editorDetailField" *ngIf="showFieldDetailProperties"
+                                id="target"
+                                (drop)="dropDetail($event);"
+                                (dragenter)="dragenterDetail($event);"
+                                (dragleave)="dragleaveDetail($event);"
+                                (dragover)="dragoverDetail($event);"
+                                [style.background-color]="isDragoverDetail? 'lightgray' : 'transparent'"
+                                [style.font-style]="DetailField=='Drag a field here ...' ?  'italic'  :  'normal'"
+                                >
+
+                                <clr-icon shape="times" *ngIf="showDetailDeleteIcon"
+                                    (click)="clickClearDetailField()"
+                                    >
+                                </clr-icon>
+                                {{ DetailField }}
+                            </div>
+                        </div>
+
+
                     </div>
 
 

@@ -1655,7 +1655,32 @@ clr-dg-cell {
                     margin: 3px;
                     width: 68%;
                 }
+            
+            .editorDetailContainerTitle {
+                background-color: rgb(211, 209, 226);
+                border: 1px solid lightgray;
+                border-radius: 3px;
+                font-size: 0.5rem;
+                margin-top: 5px;
+            }
 
+                .editorDetailFieldTitle {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin-left: 4px;
+                    width: 38px;
+                }
+                .editorDetailField {
+                    border: 1px solid steelblue;
+                    border-radius: 5px;
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin: 3px;
+                    width: 68%;
+                }
+                
 
         /* GRAPH TYPES */
         .editorTypesTitle {
