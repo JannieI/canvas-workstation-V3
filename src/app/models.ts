@@ -1201,6 +1201,9 @@ export class Widget {
     graphColumnField: string;
     graphColumnType: string;
 
+    // Detail
+    graphDetailField: string;
+
     // Mark
     graphMark: string;
     graphMarkOrient: string;
