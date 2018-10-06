@@ -2127,6 +2127,16 @@ console.warn('xx definition', definition);
         // this.dragoverColours = false;
     }
 
+    dragenterDetail(ev, actionName: string) {
+        // Event trigger when the dragged Field is enters the Detail field
+        this.globalFunctionService.printToConsole(this.constructor.name,'dragenterDetail', '@Start');
+
+        ev.preventDefault();
+        // this.dragoverCol = false;
+        this.isDragoverDetail = true;
+        // this.dragoverColours = false;
+    }
+
     dragleaveXField(ev, actionName: string) {
         // Event trigger when dragged field leave XField
         this.globalFunctionService.printToConsole(this.constructor.name,'dragleaveXField', '@Start');
