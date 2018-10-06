@@ -671,6 +671,7 @@
                             <div class="select editorGraphXtype" *ngIf="showFieldXProperties">
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphXtypeName"
+                                    (change)="changeXTimeUnit($event)"
                                     name="graphXtype"
                                     >
                                     <option>Ordinal</option>
@@ -691,8 +692,7 @@
                                 >
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphXtimeUnit"
-                                    [disabled]="localWidget.graphXtype!='Temporal'"
-                                    (change)="changeXTimeUnit($event)"
+                                    [disabled]="localWidget.graphXtypeName!='Temporal'"
                                     >
                                     <option *ngFor="let row of timeUnits; let i = index">
                                         {{ row }}
@@ -853,6 +853,7 @@
                             <div class="select editorGraphYtype" *ngIf="showFieldYProperties">
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphYtypeName"
+                                    (change)="changeYTimeUnit($event)"
                                     name="graphYtype"
                                     >
                                     <option>Ordinal</option>
@@ -873,7 +874,7 @@
                                 >
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphYtimeUnit"
-                                    [disabled]="localWidget.graphYtype!='Temporal'"
+                                    [disabled]="localWidget.graphYtypeName!='Temporal'"
                                     >
                                     <option *ngFor="let row of timeUnits; let i = index">
                                         {{ row }}
@@ -1051,6 +1052,7 @@
                             <div class="select editorGraphColorType" *ngIf="showFieldColorProperties">
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphColorTypeName"
+                                    (change)="changeColorTimeUnit($event)"
                                     name="graphColorType"
                                     >
                                     <option>Ordinal</option>
@@ -1071,7 +1073,7 @@
                                 >
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphColorTimeUnit"
-                                    [disabled]="localWidget.graphColorType!='Temporal'"
+                                    [disabled]="localWidget.graphColorTypeName!='Temporal'"
                                     >
                                     <option *ngFor="let row of timeUnits; let i = index">
                                         {{ row }}

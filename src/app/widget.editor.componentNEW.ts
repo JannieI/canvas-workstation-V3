@@ -211,11 +211,12 @@ export interface dataSchemaInterface {
     localWidget: Widget;                            // W to modify, copied from selected
     oldWidget: Widget = null;                       // W at start
     rowField: string = dragFieldMessage;
+    sampleNumberRows: number = 0;
     selectedDescription: string = '';
     selectedFieldIndex: number = -1;
     selectedRowIndex: number = -1;
     selectedRowID: number;
-    sampleNumberRows: number = 0;
+    sizeField: string = dragFieldMessage;
     showColourDeleteIcon: boolean = false;
     showXDeleteIcon: boolean = false;
     showRowDeleteIcon: boolean = false;
@@ -249,7 +250,7 @@ export interface dataSchemaInterface {
     showYDeleteIcon: boolean = false;
     showType: boolean = false;
     sortOrder: number = 1;
-    sizeField: string = dragFieldMessage;
+    specification: any;              // Vega-Lite, Vega, or other grammar
     vegaColorSchemes: string[] = [
         "None",
         "accent",
@@ -1112,12 +1113,10 @@ export interface dataSchemaInterface {
             return;
         }
 
-        console.warn('xx this.localWidget', this.localWidget);
 
         // Startup
         let width: number = 400;
         let height: number = 260;
-        let specification;              // Vega-Lite, Vega, or other grammar
         let graphVisualGrammar: string = this.widgetGraphs[widgetGraphIndex].visualGrammar;
         let graphShortName: string = this.widgetGraphs[widgetGraphIndex].shortName;
 
@@ -1186,13 +1185,12 @@ export interface dataSchemaInterface {
         if (this.widgetGraphs[widgetGraphIndex].specificationType.toLowerCase() ==
             'custom') {
 
-            specification = this.widgetGraphs[widgetGraphIndex].specification;
-                console.warn('xx vega specification', specification);
+            this.specification = this.widgetGraphs[widgetGraphIndex].specification;
 
             // Render graph for Vega-Lite
             if (graphVisualGrammar == 'Vega-Lite') {
-                if (specification != undefined) {
-                    let vegaSpecification = compile(specification).spec;
+                if (this.specification != undefined) {
+                    let vegaSpecification = compile(this.specification).spec;
                     let view = new View(parse(vegaSpecification));
 
                     view.renderer('svg')
@@ -1206,11 +1204,10 @@ export interface dataSchemaInterface {
 
             // Render graph for Veg
             if (graphVisualGrammar == 'Vega') {
-                console.warn('xx Vega render');
 
-                if (specification != undefined) {
+                if (this.specification != undefined) {
 
-                    let view = new View(parse(specification));
+                    let view = new View(parse(this.specification));
 
                     view.renderer('svg')
                         .initialize(this.dragWidget.nativeElement)
@@ -1222,7 +1219,7 @@ export interface dataSchemaInterface {
             };
 
         } else {
-            specification = {
+            this.specification = {
                 "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
                 "description": "A simple bar chart with embedded data.",
                 "title": {
@@ -1267,143 +1264,143 @@ export interface dataSchemaInterface {
                 }
                 }
             };
-            specification['mark']['type'] = this.widgetGraphs[widgetGraphIndex]['mark'];
+            this.specification['mark']['type'] = this.widgetGraphs[widgetGraphIndex]['mark'];
 
             // Optional Sampling
             if (this.sampleNumberRows != 0) {
-                specification['transform'] = [{"sample" : this.sampleNumberRows}];
+                this.specification['transform'] = [{"sample" : this.sampleNumberRows}];
             };
 
 
             // General
-            specification['description'] = this.localWidget.graphDescription;
-            specification['width'] = width;
-            specification['height'] = height;
+            this.specification['description'] = this.localWidget.graphDescription;
+            this.specification['width'] = width;
+            this.specification['height'] = height;
 
 
             // Data
             if (this.localWidget.graphUrl != ""  &&  this.localWidget.graphUrl != null) {
-                specification['data'] = {"url": this.localWidget.graphUrl};
+                this.specification['data'] = {"url": this.localWidget.graphUrl};
             } else {
-                specification['data'] = {"values": this.localWidget.graphData};
+                this.specification['data'] = {"values": this.localWidget.graphData};
             }
 
 
             // Mark
-            specification['mark']['orient'] = this.localWidget.graphMarkOrient.toLowerCase();
-            specification['mark']['line'] = this.localWidget.graphMarkLine;
-            specification['mark']['point'] = this.localWidget.graphMarkPoint;
-            specification['mark']['color'] = this.localWidget.graphMarkColour;
-            specification['mark']['cornerRadius'] = this.localWidget.graphMarkCornerRadius;
-            specification['mark']['binSpacing'] = this.localWidget.graphMarkBinSpacing;
+            this.specification['mark']['orient'] = this.localWidget.graphMarkOrient.toLowerCase();
+            this.specification['mark']['line'] = this.localWidget.graphMarkLine;
+            this.specification['mark']['point'] = this.localWidget.graphMarkPoint;
+            this.specification['mark']['color'] = this.localWidget.graphMarkColour;
+            this.specification['mark']['cornerRadius'] = this.localWidget.graphMarkCornerRadius;
+            this.specification['mark']['binSpacing'] = this.localWidget.graphMarkBinSpacing;
 
 
             // Title
-            specification['title']['text'] = this.localWidget.graphTitleText;
-            specification['title']['anchor'] = this.localWidget.graphTitleAnchor.toLowerCase();
-            specification['title']['angle'] = this.localWidget.graphTitleAngle;
-            specification['title']['baseline'] = this.localWidget.graphTitleBaseline.toLowerCase();
-            specification['title']['color'] = this.localWidget.graphTitleColor;
-            specification['title']['font'] = this.localWidget.graphTitleFont;
-            specification['title']['fontSize'] = this.localWidget.graphTitleFontSize;
-            specification['title']['fontWeight'] = this.localWidget.graphTitleFontWeight;
-            specification['title']['limit'] = this.localWidget.graphTitleLength;
-            specification['title']['orient'] = this.localWidget.graphTitleOrientation.toLowerCase();
+            this.specification['title']['text'] = this.localWidget.graphTitleText;
+            this.specification['title']['anchor'] = this.localWidget.graphTitleAnchor.toLowerCase();
+            this.specification['title']['angle'] = this.localWidget.graphTitleAngle;
+            this.specification['title']['baseline'] = this.localWidget.graphTitleBaseline.toLowerCase();
+            this.specification['title']['color'] = this.localWidget.graphTitleColor;
+            this.specification['title']['font'] = this.localWidget.graphTitleFont;
+            this.specification['title']['fontSize'] = this.localWidget.graphTitleFontSize;
+            this.specification['title']['fontWeight'] = this.localWidget.graphTitleFontWeight;
+            this.specification['title']['limit'] = this.localWidget.graphTitleLength;
+            this.specification['title']['orient'] = this.localWidget.graphTitleOrientation.toLowerCase();
 
 
             // X field
             if (this.localWidget.graphXfield != dragFieldMessage) {
-                specification['encoding']['x']['field'] = this.localWidget.graphXfield;
-                specification['encoding']['x']['aggregate'] = this.graphXaggregateVegaLiteName.toLowerCase();
+                this.specification['encoding']['x']['field'] = this.localWidget.graphXfield;
+                this.specification['encoding']['x']['aggregate'] = this.graphXaggregateVegaLiteName.toLowerCase();
                 if (this.localWidget.graphXMaxBins > 0) {
-                    specification['encoding']['x']['bin'] =
+                    this.specification['encoding']['x']['bin'] =
                         {"maxbins": this.localWidget.graphXMaxBins};
                 } else {
-                    specification['encoding']['x']['bin'] = this.localWidget.graphXbin;
+                    this.specification['encoding']['x']['bin'] = this.localWidget.graphXbin;
                 };
-                specification['encoding']['x']['format'] = this.localWidget.graphXformat.toLowerCase();
+                this.specification['encoding']['x']['format'] = this.localWidget.graphXformat.toLowerCase();
                 if (this.localWidget.graphXimpute != '') {
                     if (this.localWidget.graphXimpute == 'Value') {
-                        specification['encoding']['x']['impute'] =
+                        this.specification['encoding']['x']['impute'] =
                             {"value": this.localWidget.graphXimputeValue };
                     } else {
-                        specification['encoding']['x']['impute'] =
+                        this.specification['encoding']['x']['impute'] =
                             {"method": this.localWidget.graphXimpute};
                     };
                 };
-                specification['encoding']['x']['stack'] = this.localWidget.graphXstack;
-                specification['encoding']['x']['sort'] = this.localWidget.graphXsort.toLowerCase();
-                specification['encoding']['x']['type'] = this.localWidget.graphXtype.toLowerCase();
-                specification['encoding']['x']['timeUnit'] = this.localWidget.graphXtimeUnit.toLowerCase();
+                this.specification['encoding']['x']['stack'] = this.localWidget.graphXstack;
+                this.specification['encoding']['x']['sort'] = this.localWidget.graphXsort.toLowerCase();
+                this.specification['encoding']['x']['type'] = this.localWidget.graphXtype.toLowerCase();
+                this.specification['encoding']['x']['timeUnit'] = this.localWidget.graphXtimeUnit.toLowerCase();
 
-                specification['encoding']['x']['axis'] = {"grid": this.localWidget.graphXaxisGrid };
-                specification['encoding']['x']['axis']['labels'] = this.localWidget.graphXaxisLabels;
+                this.specification['encoding']['x']['axis'] = {"grid": this.localWidget.graphXaxisGrid };
+                this.specification['encoding']['x']['axis']['labels'] = this.localWidget.graphXaxisLabels;
                 if (this.localWidget.graphXaxisLabelAngle != 0){
-                    specification['encoding']['x']['axis']['labelAngle'] = this.localWidget.graphXaxisLabelAngle;
+                    this.specification['encoding']['x']['axis']['labelAngle'] = this.localWidget.graphXaxisLabelAngle;
                 };
 
                 if (!this.localWidget.graphXaxisTitleCheckbox) {
-                    specification['encoding']['x']['axis']['title'] = null;
+                    this.specification['encoding']['x']['axis']['title'] = null;
                 } else {
                     if (this.localWidget.graphXaxisTitle != ''  &&  this.localWidget.graphXaxisTitle != undefined) {
-                        specification['encoding']['x']['axis']['title'] = this.localWidget.graphXaxisTitle;
+                        this.specification['encoding']['x']['axis']['title'] = this.localWidget.graphXaxisTitle;
                     };
                 };
 
                 if (this.localWidget.graphXaxisFormat != '') {
-                    specification['encoding']['x']['axis']['format'] =  this.localWidget.graphXaxisFormat;
+                    this.specification['encoding']['x']['axis']['format'] =  this.localWidget.graphXaxisFormat;
                 };
             };
 
 
             // Y field
             if (this.localWidget.graphYfield != dragFieldMessage) {
-                specification['encoding']['y']['field'] = this.localWidget.graphYfield;
-                specification['encoding']['y']['aggregate'] = this.graphYaggregateVegaLiteName.toLowerCase();
+                this.specification['encoding']['y']['field'] = this.localWidget.graphYfield;
+                this.specification['encoding']['y']['aggregate'] = this.graphYaggregateVegaLiteName.toLowerCase();
                 if (this.localWidget.graphYMaxBins > 0) {
-                    specification['encoding']['y']['bin'] =
+                    this.specification['encoding']['y']['bin'] =
                         {"maxbins": this.localWidget.graphYMaxBins};
                 } else {
-                    specification['encoding']['y']['bin'] = this.localWidget.graphYbin;
+                    this.specification['encoding']['y']['bin'] = this.localWidget.graphYbin;
                 };
-                specification['encoding']['y']['format'] = this.localWidget.graphYformat.toLowerCase();
+                this.specification['encoding']['y']['format'] = this.localWidget.graphYformat.toLowerCase();
                 if (this.localWidget.graphYimpute != '') {
                     if (this.localWidget.graphYimpute == 'Value') {
-                        specification['encoding']['y']['impute'] =
+                        this.specification['encoding']['y']['impute'] =
                             {"value": this.localWidget.graphYimputeValue };
                     } else {
-                        specification['encoding']['y']['impute'] =
+                        this.specification['encoding']['y']['impute'] =
                             {"method": this.localWidget.graphYimpute };
                     };
                 };
-                specification['encoding']['y']['stack'] = this.localWidget.graphYstack.toLowerCase();
-                specification['encoding']['y']['sort'] = this.localWidget.graphYsort.toLowerCase();
-                specification['encoding']['y']['type'] = this.localWidget.graphYtype.toLowerCase();
-                specification['encoding']['y']['timeUnit'] = this.localWidget.graphYtimeUnit.toLowerCase();
+                this.specification['encoding']['y']['stack'] = this.localWidget.graphYstack.toLowerCase();
+                this.specification['encoding']['y']['sort'] = this.localWidget.graphYsort.toLowerCase();
+                this.specification['encoding']['y']['type'] = this.localWidget.graphYtype.toLowerCase();
+                this.specification['encoding']['y']['timeUnit'] = this.localWidget.graphYtimeUnit.toLowerCase();
 
                 if (this.localWidget.graphYaxisScaleType != 'Default') {
-                    specification['encoding']['y']['scale'] =
+                    this.specification['encoding']['y']['scale'] =
                     {"type": this.localWidget.graphYaxisScaleType.toLowerCase() };
                 };
 
-                specification['encoding']['y']['axis'] = {"grid": this.localWidget.graphYaxisGrid };
-                specification['encoding']['y']['axis']['labels'] = this.localWidget.graphYaxisLabels;
+                this.specification['encoding']['y']['axis'] = {"grid": this.localWidget.graphYaxisGrid };
+                this.specification['encoding']['y']['axis']['labels'] = this.localWidget.graphYaxisLabels;
                 if (this.localWidget.graphYaxisLabelAngle != 0){
-                    specification['encoding']['y']['axis']['labelAngle'] = 
+                    this.specification['encoding']['y']['axis']['labelAngle'] = 
                         this.localWidget.graphYaxisLabelAngle;
                 };
 
                 if (!this.localWidget.graphYaxisTitleCheckbox) {
-                    specification['encoding']['y']['axis']['title'] = null;
+                    this.specification['encoding']['y']['axis']['title'] = null;
                 } else {
                     if (this.localWidget.graphYaxisTitle != ''  &&  this.localWidget.graphYaxisTitle != undefined) {
-                        specification['encoding']['y']['axis']['title'] = 
+                        this.specification['encoding']['y']['axis']['title'] = 
                             this.localWidget.graphYaxisTitle;
                     };
                 };
 
                 if (this.localWidget.graphYaxisFormat != '') {
-                    specification['encoding']['y']['axis']['format'] =  this.localWidget.graphYaxisFormat;
+                    this.specification['encoding']['y']['axis']['format'] =  this.localWidget.graphYaxisFormat;
                 };
             };
 
@@ -1416,7 +1413,7 @@ export interface dataSchemaInterface {
                     colorBinMax = this.localWidget.graphYbin;
                 };
 
-                specification['encoding']['color'] = {
+                this.specification['encoding']['color'] = {
                     "aggregate": this.graphColorAggregateVegaLiteName.toLowerCase(),
                     "bin": colorBinMax,
                     "field": this.localWidget.graphColorField,
@@ -1430,10 +1427,10 @@ export interface dataSchemaInterface {
                 };
 
                 if (!this.localWidget.graphLegendTitleCheckbox) {
-                    specification['encoding']['color']['legend'] = {"title": null};
+                    this.specification['encoding']['color']['legend'] = {"title": null};
                 } else {
                     if (this.localWidget.graphLegendTitle != ''  &&  this.localWidget.graphLegendTitle != undefined) {
-                        specification['encoding']['color']['legend'] = 
+                        this.specification['encoding']['color']['legend'] = 
                             {"title": this.localWidget.graphLegendTitle};
                     };
                 };
@@ -1453,21 +1450,20 @@ export interface dataSchemaInterface {
 
             // Size field
             if (this.localWidget.graphSizeField != '') {
-                console.warn('xx localWidget.graphSizeField', this.localWidget.graphSizeField);
 
-                specification['encoding']['size']['field'] = this.localWidget.graphSizeField;
-                specification['encoding']['size']['type'] = this.localWidget.graphSizeType.toLowerCase();
-                specification['encoding']['size']['aggregate'] = this.localWidget.graphSizeAggregate.toLowerCase();
+                this.specification['encoding']['size']['field'] = this.localWidget.graphSizeField;
+                this.specification['encoding']['size']['type'] = this.localWidget.graphSizeType.toLowerCase();
+                this.specification['encoding']['size']['aggregate'] = this.localWidget.graphSizeAggregate.toLowerCase();
                 if (this.localWidget.graphSizeMaxBins > 0) {
-                    specification['encoding']['size']['bin'] =
+                    this.specification['encoding']['size']['bin'] =
                         {"maxbins": this.localWidget.graphSizeMaxBins};
                 } else {
-                    specification['encoding']['size']['bin'] = this.localWidget.graphSizeBin;
+                    this.specification['encoding']['size']['bin'] = this.localWidget.graphSizeBin;
                 };
 
 
             } else {
-                specification['encoding']['size'] = {
+                this.specification['encoding']['size'] = {
                     "field": ""
                 };
             };
@@ -1475,7 +1471,7 @@ export interface dataSchemaInterface {
             // Row field
             if (this.localWidget.graphRowField != '') {
 
-                specification['encoding']['row'] = {
+                this.specification['encoding']['row'] = {
                     "field": this.localWidget.graphRowField,
                     "type": this.localWidget.graphRowType.toLowerCase()
                 };
@@ -1486,7 +1482,7 @@ export interface dataSchemaInterface {
             // Column field
             if (this.localWidget.graphColumnField != '') {
 
-                specification['encoding']['column'] = {
+                this.specification['encoding']['column'] = {
                     "field": this.localWidget.graphColumnField,
                     "type": this.localWidget.graphColumnType.toLowerCase()
                 };
@@ -1497,7 +1493,7 @@ export interface dataSchemaInterface {
             // Detail field
             if (this.localWidget.graphDetailField != '') {
 
-                specification['encoding']['detail'] = {
+                this.specification['encoding']['detail'] = {
                     "field": this.localWidget.graphDetailField,
                     "type": "nominal"
                 };
@@ -1507,7 +1503,7 @@ export interface dataSchemaInterface {
 
             // Filter
             if (this.filterField != ''  &&  this.filterField != undefined) {
-                console.warn('xx this.dataSchema', this.dataSchema);
+
                 let filterFieldDataType: string = 'string';
                 let filterFieldDataTypeIndex: number = this.dataSchema.findIndex(
                     dat => dat.name == this.filterField
@@ -1517,36 +1513,36 @@ export interface dataSchemaInterface {
                 };
                 if (this.filterOperator == 'Equal') {
                     if (filterFieldDataType == 'string') {
-                        specification['transform'] = [
+                        this.specification['transform'] = [
                             {"filter": {"field": this.filterField, "equal": this.filterValue}}
                         ];
                     } else {
-                        specification['transform'] = [
+                        this.specification['transform'] = [
                             {"filter": {"field": this.filterField, "equal": +this.filterValue}}
                         ];
                     };
                 };
 
                 if (this.filterOperator == 'Less Than') {
-                    specification['transform'] = [
+                    this.specification['transform'] = [
                         {"filter": {"field": this.filterField, "lt": this.filterValue}}
                     ];
                 };
 
                 if (this.filterOperator == 'Less Than Equal') {
-                    specification['transform'] = [
+                    this.specification['transform'] = [
                         {"filter": {"field": this.filterField, "lte": this.filterValue}}
                     ];
                 };
 
                 if (this.filterOperator == 'Greater Than') {
-                    specification['transform'] = [
+                    this.specification['transform'] = [
                         {"filter": {"field": this.filterField, "gt": this.filterValue}}
                     ];
                 };
 
                 if (this.filterOperator == 'Greater Than Equal') {
-                    specification['transform'] = [
+                    this.specification['transform'] = [
                         {"filter": {"field": this.filterField, "gte": this.filterValue}}
                     ];
                 };
@@ -1554,7 +1550,7 @@ export interface dataSchemaInterface {
                 if (this.filterOperator == 'Range') {
                     let fromTo: string[] = this.filterValue.split(',');
                     if (filterFieldDataType == 'number'  &&  fromTo.length == 2) {
-                        specification['transform'] = [
+                        this.specification['transform'] = [
                             {"filter": 
                                 {
                                     "field": this.filterField, 
@@ -1569,7 +1565,7 @@ export interface dataSchemaInterface {
                 if (this.filterOperator == 'One Of') {
                     let fromTo: string[] = this.filterValue.split(',');
                     if (filterFieldDataType == 'string'  &&  fromTo.length > 0) {
-                        specification['transform'] = [
+                        this.specification['transform'] = [
                             {"filter": 
                                 {
                                     "field": this.filterField, 
@@ -1581,13 +1577,13 @@ export interface dataSchemaInterface {
                 };
 
                 if (this.filterOperator == 'Valid') {
-                    specification['transform'] = [
+                    this.specification['transform'] = [
                         {"filter": {"field": this.filterField, "valid": this.filterValue}}
                     ];
                 };
 
                 if (this.filterOperator == 'Selection') {
-                    specification['transform'] = [
+                    this.specification['transform'] = [
                         {"filter": {"field": this.filterField, "selection": this.filterValue}}
                     ];
                 };
@@ -1598,13 +1594,12 @@ export interface dataSchemaInterface {
 
             // specification['mark']['type'] = "point";
 
-
-    console.warn('xx specification', specification);
+            console.warn('xx specification', this.specification);
 
             // Render graph for Vega-Lite
             if (graphVisualGrammar == 'Vega-Lite') {
-                if (specification != undefined) {
-                    let vegaSpecification = compile(specification).spec;
+                if (this.specification != undefined) {
+                    let vegaSpecification = compile(this.specification).spec;
                     let view = new View(parse(vegaSpecification));
 
                     view.renderer('svg')
@@ -1964,8 +1959,6 @@ export interface dataSchemaInterface {
         let fieldType:string = this.getFieldType(fieldName);
         this.localWidget.graphXtype = this.defaultGraphTypeField(fieldType, 'type');
         this.localWidget.graphXtypeName = this.defaultGraphTypeField(fieldType, 'name');
-        
-        console.warn('xx this.localWidget.graphXtype', fieldType, this.localWidget.graphXtypeName, this.localWidget.graphXtype);
 
     }
 
@@ -2337,7 +2330,6 @@ export interface dataSchemaInterface {
         // Set the selected datasourceID
         // NOTE: this array can be filtered on front-end, thus DON'T use index
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDSrow', '@Start');
-        console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowIndex, this.selectedRowID);
 
         // Reset, Highlight selected row
         this.selectedRowIndex = index;
@@ -2421,7 +2413,6 @@ export interface dataSchemaInterface {
     clickContinue(){
         // Continue to design / edit the W, and close the form for the data
         this.globalFunctionService.printToConsole(this.constructor.name,'clickContinue', '@Start');
-console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowIndex, this.selectedRowID);
 
         // Determine if data obtains in Glob Var
         let dataSetIndex: number = this.globalVariableService.currentDatasets.findIndex(
@@ -2528,7 +2519,6 @@ console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowInde
             };
             this.dataSchema.push(newDataSchema);
         };
-        console.warn('xx this.dataSchema', this.dataSchema);
 
     }
 
@@ -2763,6 +2753,24 @@ console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowInde
         };
     }
 
+    changeYTimeUnit() {
+        // Remove timeUnit if Type is not Temporal
+        this.globalFunctionService.printToConsole(this.constructor.name,'changeYTimeUnit', '@Start');
+
+        if (this.localWidget.graphYtype != 'Temporal') {
+            this.localWidget.graphYtimeUnit = '';
+        };
+    }
+
+    changeColorTimeUnit() {
+        // Remove timeUnit if Type is not Temporal
+        this.globalFunctionService.printToConsole(this.constructor.name,'changeColorTimeUnit', '@Start');
+
+        if (this.localWidget.graphColorType != 'Temporal') {
+            this.localWidget.graphColorTimeUnit = '';
+        };
+    }
+
     clickShowFilterArea() {
         // Show Filter Area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowFilterArea', '@Start');
@@ -2784,7 +2792,6 @@ console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowInde
         this.filterOperator = '';
         this.filterValue = '';
 
-        console.warn('xx fields', this.filterField, this.filterOperator, this.filterValue);
         this.showFilterAreaProperties = false;
     }
 
@@ -2809,7 +2816,6 @@ console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowInde
             return;
         };
 
-        console.warn('xx fields', this.filterField, this.filterOperator, this.filterValue);
         this.showFilterAreaProperties = false;
     }
 
