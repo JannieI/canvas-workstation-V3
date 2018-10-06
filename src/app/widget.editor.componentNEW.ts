@@ -2535,23 +2535,6 @@ console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowInde
         this.showFieldDetailProperties = !this.showFieldDetailProperties;
     }
 
-    changYProperty() {
-        // Show info icon if any ONE of the properties are filled in
-        this.globalFunctionService.printToConsole(this.constructor.name,'changeXProperty', '@Start');
-
-        this.showFieldYPropertiesInfo = false;
-
-        if (this.localWidget.graphYaggregate != ''
-            ||  !this.localWidget.graphYbin
-            ||  this.localWidget.graphYformat != ''
-            ||  this.localWidget.graphYimpute != ''
-            ||  this.localWidget.graphYstack != ''
-            ||  this.localWidget.graphYsort != ''
-            ||  this.localWidget.graphYtype != '') {
-            this.showFieldYPropertiesInfo = true;
-        };
-    }
-
     clickShowTitleProperties() {
         // Show Title Properties Area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowTitleProperties', '@Start');
