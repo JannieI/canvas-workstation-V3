@@ -191,7 +191,7 @@ export interface dataSchemaInterface {
     draggedField: string = '';
     dragoverColours: boolean = false;
     errorMessage: string = '';
-    filterErrorMessage: string = '';
+    filterErrorMessage: string = ' ';
     filterField: string = '';
     filterOperator: string = '';
     filterValue: string = '';
@@ -2696,6 +2696,9 @@ console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowInde
         // Show Filter Area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowFilterArea', '@Start');
 
+        // Reset
+        this.filterErrorMessage = '';
+
         this.showFilterAreaProperties = !this.showFilterAreaProperties;
     }
 
@@ -2704,7 +2707,7 @@ console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowInde
         this.globalFunctionService.printToConsole(this.constructor.name,'clickFilterClose', '@Start');
         
         // Reset
-        this.errorMessage = '';
+        this.filterErrorMessage = '';
 
         this.filterField = '';
         this.filterOperator = '';
@@ -2719,18 +2722,18 @@ console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowInde
         this.globalFunctionService.printToConsole(this.constructor.name,'clickFilterApply', '@Start');
         
         // Reset
-        this.errorMessage = '';
+        this.filterErrorMessage = '';
 
         // Validation
-        if (this.filterField == '') {
+        if (this.filterField == ''  ||  this.filterField == undefined) {
             this.filterErrorMessage = 'Filter field is required.';
             return;
         };
-        if (this.filterOperator = '') {
+        if (this.filterOperator == ''  ||  this.filterOperator == undefined) {
             this.filterErrorMessage = 'Filter Operator is required.';
             return;
         };
-        if (this.filterValue = '') {
+        if (this.filterValue == ''  ||  this.filterValue == undefined) {
             this.filterErrorMessage = 'Filter Value is required.';
             return;
         };
