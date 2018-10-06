@@ -247,6 +247,7 @@ export interface dataSchemaInterface {
     showFieldMarkProperties: boolean = false;
     showFieldDetailProperties: boolean = false;
     showPreview: boolean = false;
+    showSpecification: boolean = false;
     showYDeleteIcon: boolean = false;
     showType: boolean = false;
     sortOrder: number = 1;
@@ -2779,6 +2780,13 @@ export interface dataSchemaInterface {
         this.filterErrorMessage = '';
 
         this.showFilterAreaProperties = !this.showFilterAreaProperties;
+    }
+
+    clickShowSpecificationArea() {
+        // Toggle between Graph and Specification
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowSpecificationArea', '@Start');
+
+        this.showSpecification = !this.showSpecification
     }
 
     clickFilterClose() {

@@ -1739,9 +1739,9 @@ clr-dg-cell {
         }
 
         .editorFilterTitle {
-            grid-column-start: 35;
+            grid-column-start: 32;
             /* autoprefixer: off */
-            grid-column-end: 37;
+            grid-column-end: 34;
             grid-row-start: 21;
             grid-row-end: 22;
             text-align: left;
@@ -1820,14 +1820,24 @@ clr-dg-cell {
                 }
 
         .editorSelection {
-            grid-column-start: 42;
+            grid-column-start: 38;
             /* autoprefixer: off */
-            grid-column-end: 45;
+            grid-column-end: 40;
             grid-row-start: 21;
             grid-row-end: 22;
             text-align: left;
         }
 
+        .editorSpecificationTitle {
+            grid-column-start: 44;
+            /* autoprefixer: off */
+            grid-column-end: 46;
+            grid-row-start: 21;
+            grid-row-end: 22;
+            text-align: left;
+        }
+
+        
         /* BUTTONS */
         .editorButtonShowData {
             grid-column-start: 32;

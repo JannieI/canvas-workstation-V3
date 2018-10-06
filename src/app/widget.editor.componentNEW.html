@@ -1778,6 +1778,7 @@
                         >
                     </div>
 
+
                     <!-- FILTER -->
                     <div class="editorFilterTitle">
                         <button
@@ -1879,6 +1880,22 @@
                         </button>
                     </div>
 
+                    <!-- SPEC -->
+                    <div class="editorSpecificationTitle">
+                        <button
+                            style="border: 1px solid transparent; color: gray;"
+                            class="btn btn-sm btn-secondary"
+                            (click)="clickShowSpecificationArea()"
+                            >
+                            <span *ngIf="!showSpecification">
+                                Show Spec
+                            </span>
+                            <span *ngIf="showSpecification">
+                                Show Graph
+                            </span>
+                        </button>
+                    </div>
+                    
                     <!-- BUTTONS -->
                     <div class="editorButtonShowData">
                         <button
