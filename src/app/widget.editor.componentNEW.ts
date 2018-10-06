@@ -2185,6 +2185,14 @@ console.warn('xx definition', definition);
         this.isDragoverColumn = false;
     }
 
+    dragleaveDetail(ev, actionName: string) {
+        // Event trigger when the dragged Field is leaves the Detail field
+        this.globalFunctionService.printToConsole(this.constructor.name,'dragleaveDetail', '@Start');
+
+        ev.preventDefault();
+        this.isDragoverDetail = false;
+    }
+
     clickDatasource(index: number, name: string) {
         // Show dropdown of DS
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDatasource', '@Start');
