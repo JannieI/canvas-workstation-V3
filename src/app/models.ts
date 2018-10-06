@@ -1218,6 +1218,7 @@ export class Widget {
     graphMarkColourName: string;
     graphMarkColour: string;
     graphMarkCornerRadius: number;
+    graphMarkOpacity: number;
     graphMarkBinSpacing: number;
 
     graphUrl: string;

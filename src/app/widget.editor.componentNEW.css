@@ -1191,6 +1191,21 @@ clr-dg-cell {
                     width: 15px;
                 }
 
+                .editorGraphMarkOpacityTitle {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin-left: 4px;
+                    width: 38px;
+                }
+                .editorGraphMarkOpacity {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin: 3px;
+                    width: 15px;
+                }
+
                 .editorGraphMarkBinSpacingTitle {
                     display: inline-block;
                     font-size: 0.5rem;
@@ -1851,7 +1866,6 @@ clr-dg-cell {
             margin-left: 10px;
             text-align: left;
             overflow-y: scroll;
-            overflow: hidden;
         }
 
         

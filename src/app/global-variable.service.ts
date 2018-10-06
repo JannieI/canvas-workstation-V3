@@ -326,6 +326,7 @@ const widgetTemplate: Widget =
         "graphMarkColourName": "",
         "graphMarkColour": "",
         "graphMarkCornerRadius": 0,
+        "graphMarkOpacity": 1,
         "graphMarkBinSpacing": 0,
 
         "graphUrl": "",

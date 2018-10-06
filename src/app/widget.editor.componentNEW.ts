@@ -1298,6 +1298,7 @@ export interface dataSchemaInterface {
             this.specification['mark']['point'] = this.localWidget.graphMarkPoint;
             this.specification['mark']['color'] = this.localWidget.graphMarkColour;
             this.specification['mark']['cornerRadius'] = this.localWidget.graphMarkCornerRadius;
+            this.specification['mark']['opacity'] = this.localWidget.graphMarkOpacity;
             this.specification['mark']['binSpacing'] = this.localWidget.graphMarkBinSpacing;
 
 
