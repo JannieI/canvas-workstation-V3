@@ -168,36 +168,108 @@ This document describes items for later versions of Canvas.
 
     Widget Editor - Adv:
     --------------------
-        - DESIGn: Adv form
-        - user can change Vega field types on Adv form
-        - our field type -> vega types: take a best guess
         - highlight one series in graph, either click the line (bar), or click on the legend
-        - APPLY on Adv form must re-render
-        - at start, add row, col, color fields
-        - EDIT buggie - color stays, fails on T=2
-        BUG: if using a custom vega spec, the editor does not understand this.
         - set properties of new Widget as a template - user pref
-        - when open NEW and only 1 DS, then skip DS selection page?
-        - when add NEW, ensure it is accessable: always same position top left + z-index = Max(rest)+1
         - How to show comparison between current and previous period ?
-        - Bug with IE: 'IE supports only grid-row-end with span. You should add grid: false option to Autoprefixer and use some JS grid polyfill for full spec support' - looks like no solution at the moment
-        - can switch DS for a W, provided used fields are the same (name and type): is this REALLY necessary and useful as it looks complicated and not important
         - Cross hair with showing values on axis - ie crypto trading websites!
         - Look at embeding widgets -> export Vega spec + embed line, user puts it in his html ...?
-        - Serias work to be done - learning Vega and adding ALL features !!!
-        - Add other Viz to W Editor (data page) - ie Layered Graphs, Trellis, etc.  These need new templates, and a new UI. For a GAUGE, see    https://gist.github.com/anilkpatro/0cf0503b581556a14aab
-        For SVG Gauge, see http://svgdiscovery.com/HMI/AnalogGaugeObject/analogGaugeObject.htm
+        - For a GAUGE, see    https://gist.github.com/anilkpatro/0cf0503b581556a14aab
+        - For SVG Gauge, see http://svgdiscovery.com/HMI/AnalogGaugeObject/analogGaugeObject.htm
         and http://svgdiscovery.com/HMI/Button/AnalogGauge/buttonGauge.htm  !!!
-        For KPI charts, see https://www.zoho.com/reports/help/dashboard/kpi-widgets.html.  Must include target, and progress (either % with green/red arrow since last month or graph ytd) and level of achievement (ie combo graph with line as target).  Try to use Clarity CARDS for this.
+        - For KPI charts, see https://www.zoho.com/reports/help/dashboard/kpi-widgets.html.  Must include target, and progress (either % with green/red arrow since last month or graph ytd) and level of achievement (ie combo graph with line as target).  Try to use Clarity CARDS for this.
         - Give hints/advice on W as to type of graph, insights, etc.
-        - filter in W, not only via Slicer, using Vega
-        - where to store pictures for Ws - on a server??
-        - Easy to drill in and out of dates - year - month - day, etc
-        - consider filter and W: thus DS remains unchanged, but W has subset of data in graphData.  This can be =, <= etc on data, or limits (top 10). This must work in conjunction with sorting.
         - add Drill Down / Drill Through: this is critical.  Drill down is a capability that takes the user from a more general view of the data to a more specific one at the click of a mouse. For example, a report that shows sales revenue by state can allow the user to select a state, click on it and see sales revenue by county or city within that state. It is called “drill down” because it is a feature that allows the user to go deeper into more specific layers of the data or information being analyzed.  Further levels of drill down can be set up within the report–practically as many as supported by the data. In our example, the drill-down can go from country to state to city to zip code to specific location of stores or individual sales reps. Typically, the look and feel of each level of the report is similar–what changes is the granularity of the data.  Instead of taking the user to a more granular level of the data, drill through takes him to a report that is relevant to the data being analyzed, also at the click of a mouse. For example, a tabular report that shows sales revenue by state can allow the user to click on it and reveal an analysis grid of the same data, or a heat map representing the data in visual form. It is called “drill through” because it is a feature that allows the user to pass from one report to another while still analyzing the same set of data.
         - Easy way to compare data: graph shows revenue per month for this year.  What was figure for March last year, or compare all to last year ... NB
-        - Also, easy way to jump to previous period:  loaded at start with data ??
-        - has to do QA of some sorts on DS creation and definitions.  Not sure how...
+
+        Spec: add %x, %y, %color parameters where these fields must be placed, and code this.
+
+        Fix:
+            - orient on x, y, color
+            - remove format from x
+            - remove format from y
+            - load all correctly when open new spec
+            - save new spec correctly
+            - SHOW new spec in Dashboard
+            - where and how Quantile?
+            - transparent = checkbox No fill
+            - validate all input, min/max, etc
+            - make impute work
+
+        WARN:
+            - when bad combinations, ie 'size' is incompatible with 'rect'
+
+        Preview:
+            - dataQuality (nr of issues, text of last one)
+            - tooltip with field description
+            - data owneers (nr of issues, text of last one)
+            - hide and order fields here ?
+
+        Calculated fields:
+            - in this version?
+            - Tableau style?
+            - design Transform UI
+
+        Versions:
+            - test with >1 version
+
+        CONFIG:
+            - how and where used?
+
+        Add: Vega Word Cloud Example to data
+
+        Tooltip:
+            - make work Vega style
+
+        Types:
+            - projection
+            - geoshapes
+            - latitude
+            - longitude
+            
+        Pan & Zoom:
+            - how!?
+
+        Layered graphs
+            - error band
+            - error bar
+            - selection
+            - 
+
+        Text:
+            - add channel
+
+        Fields:
+            - x2
+            - y2
+            - symbol
+
+        Filter:
+            - add timeUnit & date
+            - multiple filters, see Voyager
+            - WARN if (range & type != number)  (oneOf & type != string)
+
+        Scale/Axis:
+            - rangeStep
+            - remove X and Y and Color totally (not only title) ~ null
+            - domain
+            - clip: true
+            - colour
+            - range
+            - Legend: more fields like orient, fill, color, padding
+
+        BACK/FORWARD BUTTONS:
+            - can navigate to previous specs
+
+
+        EASY EDITOR:
+            - design subset of functions that is minimalistic
+
+        SUMMARY:
+            - Summary of n charts - design UI 
+            - new Data Science tool
+            - fields: count#, any - see Voyager
+            - wildcards
+
 
 
     Table (Bradley SmartTable):
@@ -458,6 +530,8 @@ This document describes items for later versions of Canvas.
 
     Widgets:
     -------
+    - Bug with IE: 'IE supports only grid-row-end with span. You should add grid: false option to Autoprefixer and use some JS grid polyfill for full spec support' - looks like no solution at the moment
+    - can switch DS for a W, provided used fields are the same (name and type): is this REALLY necessary and useful as it looks complicated and not important
     - Decide to get a W from another D - only show those where the user has access to the DS
     - Decide if check/tick is shown on related Sl when a W is clicked.  The treeview is good enough methinks
     - consider colour in HEX code
@@ -1297,6 +1371,13 @@ This document describes items for later versions of Canvas.
     Data Quality:
     - Data Quality issues: add place to add detail values.  An overall statement can say all data  has an issue, but a specific one must identify the column(s) and row(s) affected, thus given the IDs or key values.
 
+    Widget Editor - Adv: Features to consider at a later stage
+    --------------------
+    - Spec: 
+        - allow to import and then reverse engineer what the Widget fields are.  Easy to do, but looks of work and has to be updated in parallel to any changes made to the other way.
+        - also, allow custom specs to be created, sorting out %x, %y, %color parameters where these fields must be placed.
+    - Mark:
+        - stroke, strokeWidth
 
 
 
