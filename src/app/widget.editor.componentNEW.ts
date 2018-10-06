@@ -2734,8 +2734,16 @@ console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowInde
             this.filterErrorMessage = 'Filter Value is required.';
             return;
         };
-        
+
         console.warn('xx fields', this.filterField, this.filterOperator, this.filterValue);
         this.showFilterAreaProperties = false;
     }
+
+    filterOperatorSelected(ev) {
+        // Selected a Filter Operator
+        this.globalFunctionService.printToConsole(this.constructor.name,'filterOperatorSelected', '@Start');
+        
+        this.filterOperator = ev.target.value;
+    }
+    
 }

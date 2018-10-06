@@ -1824,6 +1824,7 @@
                         <div class="select editorFilterOperator">
                             <select id="selects_3"
                                 [(ngModel)]="filterOperator"
+                                (change)="filterOperatorSelected($event)"
                                 name="graphColumnType"
                                 >
                                 <option>Less Than</option>
