@@ -187,6 +187,7 @@ export interface dataSchemaInterface {
     dataFieldNames: string[] = [];
     dataFieldLengths: number[] = [];
     dataFieldTypes: string[] = [];
+    detailField: string = dragFieldMessage;
     draggedField: string = '';
     dragoverColours: boolean = false;
     errorMessage: string = '';
@@ -204,6 +205,7 @@ export interface dataSchemaInterface {
     isDragoverSizes: boolean = false;
     isDragoverRow: boolean = false;
     isDragoverColumn: boolean = false;
+    isDragoverDetail: boolean = false;
     localDatasources: Datasource[] = null;          // Current DS for the selected W
     localWidget: Widget;                            // W to modify, copied from selected
     oldWidget: Widget = null;                       // W at start
@@ -218,6 +220,7 @@ export interface dataSchemaInterface {
     showRowDeleteIcon: boolean = false;
     showSizeDeleteIcon: boolean = false;
     showColumnDeleteIcon: boolean = false;
+    showDetailDeleteIcon: boolean = false;
     showDatasourceMain: boolean = true;
     showFieldTitleProperties: boolean = false;
     showFieldXAxis: boolean = false;
@@ -1011,6 +1014,14 @@ export interface dataSchemaInterface {
                 this.columnField = dragFieldMessage;
             };
 
+            if (this.localWidget.graphDetailField != ''   &&   this.localWidget.graphDetailField != null) {
+                this.showColourDeleteIcon = true;
+                this.detailField = this.localWidget.graphDetailField;
+            } else {
+                this.showColourDeleteIcon = false;
+                this.detailField = dragFieldMessage;
+            };
+
             // Get local vars - easier for ngFor
             this.containerHasContextMenus = this.localWidget.containerHasContextMenus;
             this.containerHasTitle = this.localWidget.containerHasTitle;
@@ -1135,6 +1146,10 @@ export interface dataSchemaInterface {
         this.localWidget.graphColumnField = '';
         if (this.columnField != dragFieldMessage) {
             this.localWidget.graphColumnField = this.columnField;
+        };
+        this.localWidget.graphDetailField = '';
+        if (this.detailField != dragFieldMessage) {
+            this.localWidget.graphDetailField = this.detailField;
         };
 
 
@@ -1963,6 +1978,23 @@ console.warn('xx definition', definition);
         this.isDragoverColumn = false;
     }
 
+    dropDetail(ev) {
+        // Event trigger when the dragged Field is dropped the Detail channel
+        this.globalFunctionService.printToConsole(this.constructor.name,'dropDetail', '@Start');
+
+        // Show X icon
+        this.showDetailDeleteIcon = true;
+
+        ev.preventDefault();
+        ev.dataTransfer.dropEffect = "move"
+        // Get the id of the target and add the moved element to the target's DOM
+
+        var data = ev.dataTransfer.getData("text");
+
+        this.detailField = this.draggedField;
+        this.isDragoverDetail = false;
+    }
+
     clickClearXFieldField() {
         // Clear the X Field and Remove X icon
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClearXFieldField', '@Start');
@@ -2196,6 +2228,9 @@ console.warn('xx definition', definition);
 
         this.showColumnDeleteIcon = false;
         this.columnField = dragFieldMessage;
+
+        this.showDetailDeleteIcon = false;
+        this.detailField = dragFieldMessage;
 
         // Determine if data already in Glob Var
         let dataSetIndex: number = this.globalVariableService.currentDatasets.findIndex(
