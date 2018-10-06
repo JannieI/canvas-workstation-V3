@@ -197,9 +197,6 @@ export interface dataSchemaInterface {
     filterValue: string = '';
     graphColor: string[];
     graphLayers: number[] = [1, 2, 3,];  // TODO - fix hardcoding
-    graphTypeFieldY: string[] =[];
-    graphTypeFieldX: string[] =[];
-    graphTypeFieldColor: string[] =[];
     graphXaggregateVegaLiteName: string = '';
     graphYaggregateVegaLiteName: string = '';
     graphColorAggregateVegaLiteName: string = '';
@@ -1179,12 +1176,10 @@ export interface dataSchemaInterface {
         if (this.graphXaggregateVegaLiteName == null) {this.graphXaggregateVegaLiteName = ""}
         if (this.localWidget.graphXformat == null) {this.localWidget.graphXformat = ""}
         if (this.localWidget.graphXsort == null) {this.localWidget.graphXsort = ""}
-        if (this.localWidget.graphXtype == null) {this.localWidget.graphXtype = ""}
         if (this.localWidget.graphXtimeUnit == null) {this.localWidget.graphXtimeUnit = ""}
         if (this.graphYaggregateVegaLiteName == null) {this.graphYaggregateVegaLiteName = ""}
         if (this.localWidget.graphYformat == null) {this.localWidget.graphYformat = ""}
         if (this.localWidget.graphYsort == null) {this.localWidget.graphYsort = ""}
-        if (this.localWidget.graphYtype == null) {this.localWidget.graphYtype = ""}
         if (this.localWidget.graphYtimeUnit == null) {this.localWidget.graphYtimeUnit = ""}
         if (this.localWidget.graphLegendTitle == null) {this.localWidget.graphLegendTitle = ""}
         
@@ -1454,23 +1449,6 @@ export interface dataSchemaInterface {
                 //     };
                 // };
 
-                // if (!this.legendTitleCheckbox) {
-                //         specification['encoding']['color'] = {
-                //             "field": "",
-                //             "type": "",
-                //             "scale": "",
-                //             "legend": ""
-                //           };
-                // } else {
-                //     if (this.legendTitle != ''  &&  this.legendTitle != undefined) {
-                //         specification['encoding']['color'] =
-                //             {"legend" : {"title": this.legendTitle} };
-                //     } else {
-                //         specification['encoding']['color'] =
-                //             {"legend" : "" };
-
-                //     };
-                // };
             };
 
 
@@ -1985,8 +1963,9 @@ export interface dataSchemaInterface {
         this.xField = fieldName;
 
         let fieldType:string = this.getFieldType(fieldName);
-        this.graphTypeFieldX = this.allowedGraphTypeField(fieldType);
         this.localWidget.graphXtype = this.defaultGraphTypeField(fieldType);
+        
+        console.warn('xx this.localWidget.graphXtype', fieldType, this.localWidget.graphXtype);
 
     }
 
@@ -2016,7 +1995,6 @@ export interface dataSchemaInterface {
 
         // Fill the default and allowed types of Vega field types
         let fieldType:string = this.getFieldType(fieldName);
-        this.graphTypeFieldY = this.allowedGraphTypeField(fieldType);
         this.localWidget.graphYtype = this.defaultGraphTypeField(fieldType);
     }
 
@@ -2039,7 +2017,6 @@ export interface dataSchemaInterface {
 
         // Fill the default and allowed types of Vega field types
         let fieldType:string = this.getFieldType(this.draggedField);
-        this.graphTypeFieldColor = this.allowedGraphTypeField(fieldType);
         this.localWidget.graphColorType = this.defaultGraphTypeField(fieldType);
     }
 
@@ -2556,24 +2533,6 @@ console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowInde
 
         // Toggle
         this.showFieldDetailProperties = !this.showFieldDetailProperties;
-    }
-
-    changeXProperty() {
-        // Show info icon if any ONE of the properties are filled in
-        this.globalFunctionService.printToConsole(this.constructor.name,'changeXProperty', '@Start');
-
-        this.showFieldXPropertiesInfo = false;
-
-        if (this.localWidget.graphXaggregate != ''
-            ||  !this.localWidget.graphXbin
-            ||  this.localWidget.graphXformat != ''
-            ||  this.localWidget.graphXimpute != ''
-            ||  this.localWidget.graphXstack != ''
-            ||  this.localWidget.graphXsort != ''
-            ||  this.localWidget.graphXtype != ''
-            ||  this.localWidget.graphXimpute != '') {
-            this.showFieldXPropertiesInfo = true;
-        };
     }
 
     changYProperty() {
