@@ -1580,9 +1580,17 @@ export interface dataSchemaInterface {
                 };
 
                 if (this.filterOperator == 'One Of') {
-                    specification['transform'] = [
-                        {"filter": {"field": this.filterField, "oneOf": this.filterValue}}
-                    ];
+                    let fromTo: string[] = this.filterValue.split(',');
+                    if (filterFieldDataType == 'string'  &&  fromTo.length > 0) {
+                        specification['transform'] = [
+                            {"filter": 
+                                {
+                                    "field": this.filterField, 
+                                    "oneOf": fromTo
+                                }
+                            }
+                        ];
+                    };
                 };
 
                 if (this.filterOperator == 'Valid') {
