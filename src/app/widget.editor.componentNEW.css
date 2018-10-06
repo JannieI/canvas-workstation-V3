@@ -1770,6 +1770,7 @@ clr-dg-cell {
                     width: 64px;
                 }
                 .editorFilterField {
+                    background-color: white;
                     border: 1px solid steelblue;
                     border-radius: 5px;
                     display: inline-block;
@@ -1786,6 +1787,7 @@ clr-dg-cell {
                     width: 64px;
                 }
                 .editorFilterOperator {
+                    background-color: white;
                     border: 1px solid steelblue;
                     border-radius: 5px;
                     display: inline-block;
@@ -1803,6 +1805,7 @@ clr-dg-cell {
                     width: 64px;
                 }
                 .editorFilterValue {
+                    background-color: white;
                     border: 1px solid steelblue;
                     border-radius: 5px;
                     display: inline-block;

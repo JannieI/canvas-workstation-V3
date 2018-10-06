@@ -191,6 +191,9 @@ export interface dataSchemaInterface {
     draggedField: string = '';
     dragoverColours: boolean = false;
     errorMessage: string = '';
+    filterField: string = '';
+    filterOperator: string = '';
+    filterValue: string = '';
     graphColor: string[];
     graphLayers: number[] = [1, 2, 3,];  // TODO - fix hardcoding
     graphTypeFieldY: string[] =[];
@@ -1483,7 +1486,6 @@ export interface dataSchemaInterface {
 
             // Row field
             if (this.localWidget.graphRowField != '') {
-                console.warn('xx localWidget.graphRowField', this.localWidget.graphRowField);
 
                 specification['encoding']['row'] = {
                     "field": this.localWidget.graphRowField,
@@ -1495,7 +1497,6 @@ export interface dataSchemaInterface {
 
             // Column field
             if (this.localWidget.graphColumnField != '') {
-                console.warn('xx localWidget.graphColumnField', this.localWidget.graphColumnField);
 
                 specification['encoding']['column'] = {
                     "field": this.localWidget.graphColumnField,
@@ -1507,10 +1508,10 @@ export interface dataSchemaInterface {
 
             // Detail field
             if (this.localWidget.graphDetailField != '') {
-                console.warn('xx localWidget.graphDetailField', this.localWidget.graphDetailField);
 
                 specification['encoding']['detail'] = {
-                    "field": this.localWidget.graphDetailField
+                    "field": this.localWidget.graphDetailField,
+                    "type": "nominal"
                 };   
 
             };
@@ -2696,4 +2697,13 @@ console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowInde
 
         this.showFilterAreaProperties = !this.showFilterAreaProperties;
     }
+
+    clickFilterClose() {
+        // Close the Filter Area
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowFilterArea', '@Start');
+
+        console.warn('xx fields', this.filterField, this.filterOperator, this.filterValue);
+        this.showFilterAreaProperties = false;
+    }
+    
 }
