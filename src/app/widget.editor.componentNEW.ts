@@ -1167,7 +1167,7 @@ export interface dataSchemaInterface {
         if (this.localWidget.graphColorType == ''  ||  this.localWidget.graphColorType == null) {
             this.localWidget.graphColorType = 'ordinal';
         };
-        
+
         if (this.graphColorAggregateVegaLiteName == null) {this.graphColorAggregateVegaLiteName = ""};
         if (this.localWidget.graphColorFormat == null) {this.localWidget.graphColorFormat = ""};
         if (this.localWidget.graphColorSort == null) {this.localWidget.graphColorSort = ""};
@@ -1360,7 +1360,7 @@ export interface dataSchemaInterface {
                     specification['encoding']['x']['axis']['format'] =  this.localWidget.graphXaxisFormat;
                 };
             };
-            
+
 
             // Y field
             if (this.localWidget.graphYfield != dragFieldMessage) {
@@ -1477,7 +1477,7 @@ export interface dataSchemaInterface {
                 } else {
                     specification['encoding']['size']['bin'] = this.localWidget.graphSizeBin;
                 };
-    
+
 
             } else {
             specification['encoding']['size'] = {
@@ -1491,7 +1491,7 @@ export interface dataSchemaInterface {
                 specification['encoding']['row'] = {
                     "field": this.localWidget.graphRowField,
                     "type": this.localWidget.graphRowType.toLowerCase()
-                };   
+                };
 
             };
 
@@ -1502,7 +1502,7 @@ export interface dataSchemaInterface {
                 specification['encoding']['column'] = {
                     "field": this.localWidget.graphColumnField,
                     "type": this.localWidget.graphColumnType.toLowerCase()
-                };   
+                };
 
             };
 
@@ -1513,61 +1513,75 @@ export interface dataSchemaInterface {
                 specification['encoding']['detail'] = {
                     "field": this.localWidget.graphDetailField,
                     "type": "nominal"
-                };   
+                };
 
             };
 
 
             // Filter
             if (this.filterField != ''  &&  this.filterField != undefined) {
-                if (this.filterOperator == 'Equal') {
-                    specification['transform'] = [
-                        {"filter": {"field": this.filterField, "equal": this.filterValue}}
-                    ];
+                console.warn('xx this.dataSchema', this.dataSchema);
+                let filterFieldDataType: string = 'string';
+                let filterFieldDataTypeIndex: number = this.dataSchema.findIndex(
+                    dat => dat.name == this.filterField
+                );
+                if (filterFieldDataTypeIndex >= 0) {
+                    filterFieldDataType = this.dataSchema[filterFieldDataTypeIndex].type;
                 };
-                
+                if (this.filterOperator == 'Equal') {
+                    if (filterFieldDataType == 'string') {
+                        specification['transform'] = [
+                            {"filter": {"field": this.filterField, "equal": this.filterValue}}
+                        ];
+                    } else {
+                        specification['transform'] = [
+                            {"filter": {"field": this.filterField, "equal": +this.filterValue}}
+                        ];
+                    };
+                };
+
                 if (this.filterOperator == 'Less Than') {
                     specification['transform'] = [
                         {"filter": {"field": this.filterField, "lt": this.filterValue}}
                     ];
                 };
-                    
+
                 if (this.filterOperator == 'Less Than Equal') {
                     specification['transform'] = [
                         {"filter": {"field": this.filterField, "lte": this.filterValue}}
                     ];
                 };
-                    
+
                 if (this.filterOperator == 'Greater Than') {
                     specification['transform'] = [
                         {"filter": {"field": this.filterField, "gt": this.filterValue}}
                     ];
                 };
-                
+
                 if (this.filterOperator == 'Greater Than Equal') {
                     specification['transform'] = [
                         {"filter": {"field": this.filterField, "gte": this.filterValue}}
                     ];
                 };
-                    
+
                 if (this.filterOperator == 'Range') {
                     specification['transform'] = [
                         {"filter": {"field": this.filterField, "range": this.filterValue}}
                     ];
                 };
-                    
+
                 if (this.filterOperator == 'One Of') {
                     specification['transform'] = [
                         {"filter": {"field": this.filterField, "oneOf": this.filterValue}}
                     ];
                 };
-                    
+
                 if (this.filterOperator == 'Valid') {
                     specification['transform'] = [
                         {"filter": {"field": this.filterField, "valid": this.filterValue}}
                     ];
                 };
-                
+
                 if (this.filterOperator == 'Selection') {
                     specification['transform'] = [
                         {"filter": {"field": this.filterField, "selection": this.filterValue}}
@@ -2072,7 +2086,7 @@ console.warn('xx definition', definition);
     clickClearXFieldField() {
         // Clear the X Field and Remove X icon
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClearXFieldField', '@Start');
-        
+
         this.showXDeleteIcon = false;
         this.xField = dragFieldMessage;
 
@@ -2114,7 +2128,7 @@ console.warn('xx definition', definition);
 
         // Hide the panel with properties
         this.showFieldSizeProperties = false;
-        
+
     }
 
     clickClearRowField() {
@@ -2126,7 +2140,7 @@ console.warn('xx definition', definition);
 
         // Hide the panel with properties
         this.showFieldRowProperties = false;
-        
+
     }
 
     clickClearColumnField() {
@@ -2138,7 +2152,7 @@ console.warn('xx definition', definition);
 
         // Hide the panel with properties
         this.showFieldColumnProperties = false;
-        
+
     }
 
     clickClearDetailField() {
@@ -2150,7 +2164,7 @@ console.warn('xx definition', definition);
 
         // Hide the panel with properties
         this.showFieldDetailProperties = false;
-        
+
     }
 
     dragenterXField(ev, actionName: string) {
@@ -2741,7 +2755,7 @@ console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowInde
         if (this.localWidget.graphXtype != 'Temporal') {
             this.localWidget.graphXtimeUnit = '';
             console.warn('xx chg');
-            
+
         };
     }
 
@@ -2758,7 +2772,7 @@ console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowInde
     clickFilterClose() {
         // Close the Filter Area, and reset filters
         this.globalFunctionService.printToConsole(this.constructor.name,'clickFilterClose', '@Start');
-        
+
         // Reset
         this.filterErrorMessage = '';
 
@@ -2773,7 +2787,7 @@ console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowInde
     clickFilterApply() {
         // Close the Filter Area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickFilterApply', '@Start');
-        
+
         // Reset
         this.filterErrorMessage = '';
 
@@ -2798,14 +2812,14 @@ console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowInde
     filterFieldSelected(ev) {
         // Selected a Filter Field
         this.globalFunctionService.printToConsole(this.constructor.name,'filterFieldSelected', '@Start');
-        
+
         this.filterField = ev.target.value;
     }
 
     filterOperatorSelected(ev) {
         // Selected a Filter Operator
         this.globalFunctionService.printToConsole(this.constructor.name,'filterOperatorSelected', '@Start');
-        
+
         this.filterOperator = ev.target.value;
     }
 
