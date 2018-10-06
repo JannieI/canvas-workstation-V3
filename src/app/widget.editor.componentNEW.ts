@@ -1517,10 +1517,63 @@ export interface dataSchemaInterface {
 
             };
 
-            // specification['encoding']['detail'] = {"field": "Origin","type": "nominal"}
-            // specification['transform'] = [
-            //     {"filter": {"field": "Origin", "equal": "Europe"}}
-            // ];
+
+            // Filter
+            if (this.filterField != ''  &&  this.filterField != undefined) {
+                if (this.filterOperator == 'Equal') {
+                    specification['transform'] = [
+                        {"filter": {"field": this.filterField, "equal": this.filterValue}}
+                    ];
+                };
+                
+                if (this.filterOperator == 'Less Than') {
+                    specification['transform'] = [
+                        {"filter": {"field": this.filterField, "lt": this.filterValue}}
+                    ];
+                };
+                    
+                if (this.filterOperator == 'Less Than Equal') {
+                    specification['transform'] = [
+                        {"filter": {"field": this.filterField, "lte": this.filterValue}}
+                    ];
+                };
+                    
+                if (this.filterOperator == 'Greater Than') {
+                    specification['transform'] = [
+                        {"filter": {"field": this.filterField, "gt": this.filterValue}}
+                    ];
+                };
+                
+                if (this.filterOperator == 'Greater Than Equal') {
+                    specification['transform'] = [
+                        {"filter": {"field": this.filterField, "gte": this.filterValue}}
+                    ];
+                };
+                    
+                if (this.filterOperator == 'Range') {
+                    specification['transform'] = [
+                        {"filter": {"field": this.filterField, "range": this.filterValue}}
+                    ];
+                };
+                    
+                if (this.filterOperator == 'One Of') {
+                    specification['transform'] = [
+                        {"filter": {"field": this.filterField, "oneOf": this.filterValue}}
+                    ];
+                };
+                    
+                if (this.filterOperator == 'Valid') {
+                    specification['transform'] = [
+                        {"filter": {"field": this.filterField, "valid": this.filterValue}}
+                    ];
+                };
+                
+                if (this.filterOperator == 'Selection') {
+                    specification['transform'] = [
+                        {"filter": {"field": this.filterField, "selection": this.filterValue}}
+                    ];
+                };
+                };
 
             // Tooltip setting
             // specification['mark']['tooltip']['content'] = "";
