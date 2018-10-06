@@ -2058,6 +2058,10 @@ export interface dataSchemaInterface {
 
         this.rowField = this.draggedField;
         this.isDragoverRow = false;
+
+        let fieldType:string = this.getFieldType(this.draggedField);
+        this.localWidget.graphRowType = this.defaultGraphTypeField(fieldType, 'type');
+        this.localWidget.graphRowTypeName = this.defaultGraphTypeField(fieldType, 'name');
     }
 
     dropColumn(ev) {
