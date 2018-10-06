@@ -191,6 +191,7 @@ export interface dataSchemaInterface {
     draggedField: string = '';
     dragoverColours: boolean = false;
     errorMessage: string = '';
+    filterErrorMessage: string = '';
     filterField: string = '';
     filterOperator: string = '';
     filterValue: string = '';
@@ -2699,11 +2700,42 @@ console.warn('xx this.selectedRowIndex this.selectedRowID', this.selectedRowInde
     }
 
     clickFilterClose() {
-        // Close the Filter Area
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowFilterArea', '@Start');
+        // Close the Filter Area, and reset filters
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickFilterClose', '@Start');
+        
+        // Reset
+        this.errorMessage = '';
+
+        this.filterField = '';
+        this.filterOperator = '';
+        this.filterValue = '';
 
         console.warn('xx fields', this.filterField, this.filterOperator, this.filterValue);
         this.showFilterAreaProperties = false;
     }
-    
+
+    clickFilterApply() {
+        // Close the Filter Area
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickFilterApply', '@Start');
+        
+        // Reset
+        this.errorMessage = '';
+
+        // Validation
+        if (this.filterField == '') {
+            this.filterErrorMessage = 'Filter field is required.';
+            return;
+        };
+        if (this.filterOperator = '') {
+            this.filterErrorMessage = 'Filter Operator is required.';
+            return;
+        };
+        if (this.filterValue = '') {
+            this.filterErrorMessage = 'Filter Value is required.';
+            return;
+        };
+        
+        console.warn('xx fields', this.filterField, this.filterOperator, this.filterValue);
+        this.showFilterAreaProperties = false;
+    }
 }

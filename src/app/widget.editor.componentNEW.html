@@ -1799,8 +1799,12 @@
                                 Select the field to filter on, then the operator and type a Value.
                                 For example: Origin Equal "Europe".
                             </i>
+                            <div class="filterErrorMessage">
+                                {{ filterErrorMessage}}
+                            </div>
                             <br>
                         </div>
+
                         <div class="editorFilterFieldTitle">
                             Field:
                         </div>
@@ -1849,7 +1853,7 @@
                             <button class="btn" (click)="clickFilterClose()">
                                 Clear
                             </button>
-                            <button class="btn" (click)="clickFilterSave()">
+                            <button class="btn" (click)="clickFilterApply()">
                                 Apply
                             </button>
                         </div>

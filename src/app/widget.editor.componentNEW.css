@@ -1762,6 +1762,10 @@ clr-dg-cell {
                 text-align: left;
                 z-index: 101;
             }
+                .filterErrorMessage {
+                    color: red;
+                    font-size: 0.54rem;
+                }
                 .editorFilterFieldTitle {
                     display: inline-block;
                     font-size: 0.5rem;
