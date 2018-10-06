@@ -1186,7 +1186,8 @@ export interface dataSchemaInterface {
         if (this.localWidget.graphYsort == null) {this.localWidget.graphYsort = ""}
         if (this.localWidget.graphYtype == null) {this.localWidget.graphYtype = ""}
         if (this.localWidget.graphYtimeUnit == null) {this.localWidget.graphYtimeUnit = ""}
-
+        if (this.localWidget.graphLegendTitle == null) {this.localWidget.graphLegendTitle = ""}
+        
         // Define Specification
         if (this.widgetGraphs[widgetGraphIndex].specificationType.toLowerCase() ==
             'custom') {
@@ -1394,14 +1395,16 @@ export interface dataSchemaInterface {
                 specification['encoding']['y']['axis'] = {"grid": this.localWidget.graphYaxisGrid };
                 specification['encoding']['y']['axis']['labels'] = this.localWidget.graphYaxisLabels;
                 if (this.localWidget.graphYaxisLabelAngle != 0){
-                    specification['encoding']['y']['axis']['labelAngle'] = this.localWidget.graphYaxisLabelAngle;
+                    specification['encoding']['y']['axis']['labelAngle'] = 
+                        this.localWidget.graphYaxisLabelAngle;
                 };
 
                 if (!this.localWidget.graphYaxisTitleCheckbox) {
                     specification['encoding']['y']['axis']['title'] = null;
                 } else {
                     if (this.localWidget.graphYaxisTitle != ''  &&  this.localWidget.graphYaxisTitle != undefined) {
-                        specification['encoding']['y']['axis']['title'] = this.localWidget.graphYaxisTitle;
+                        specification['encoding']['y']['axis']['title'] = 
+                            this.localWidget.graphYaxisTitle;
                     };
                 };
 
@@ -1430,6 +1433,15 @@ export interface dataSchemaInterface {
                     "timeUnit": this.localWidget.graphColorTimeUnit.toLowerCase(),
                     "type": this.localWidget.graphColorType.toLowerCase(),
                     "scale": this.localWidget.graphColorScheme == 'None'?  null  :  {"scheme": this.localWidget.graphColorScheme.toLowerCase()}
+                };
+
+                if (!this.localWidget.graphLegendTitleCheckbox) {
+                    specification['encoding']['color']['legend'] = {"title": null};
+                } else {
+                    if (this.localWidget.graphLegendTitle != ''  &&  this.localWidget.graphLegendTitle != undefined) {
+                        specification['encoding']['color']['legend'] = 
+                            {"title": this.localWidget.graphLegendTitle};
+                    };
                 };
 
                 // if (this.localWidget. != '') {
