@@ -1634,7 +1634,7 @@
                             </div>
                             <div class="select editorGraphRowType" *ngIf="showFieldRowProperties">
                                 <select id="selects_3"
-                                    [(ngModel)]="localWidget.graphRowType"
+                                    [(ngModel)]="localWidget.graphRowTypeName"
                                     name="graphRowType"
                                     >
                                     <option>Ordinal</option>
@@ -1698,7 +1698,7 @@
                             </div>
                             <div class="select editorGraphColumnType" *ngIf="showFieldColumnProperties">
                                 <select id="selects_3"
-                                    [(ngModel)]="localWidget.graphColumnType"
+                                    [(ngModel)]="localWidget.graphColumnTypeName"
                                     name="graphColumnType"
                                     >
                                     <option>Ordinal</option>
@@ -1762,8 +1762,72 @@
                             </div>
                             <div class="select editorGraphDetailType" *ngIf="showFieldDetailProperties">
                                 <select id="selects_3"
-                                    [(ngModel)]="localWidget.graphDetailType"
+                                    [(ngModel)]="localWidget.graphDetailTypeName"
                                     name="graphDetailType"
+                                    >
+                                    <option>Ordinal</option>
+                                    <option>Quantitative</option>
+                                    <option>Temporal</option>
+                                    <option>Nominal</option>
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <!-- X2 Channel Title Bar -->
+                        <div class="editorX2ContainerTitle"
+                            (click)="clickShowX2Properties()"
+                            >
+                            <b>
+                                X2
+                            </b>
+                            <clr-icon shape="angle down" *ngIf="!showFieldX2Properties"
+                                size="12"
+                                >
+                            </clr-icon>
+                            <clr-icon shape="angle up" *ngIf="showFieldX2Properties"
+                                size="12"
+                                >
+                            </clr-icon>
+                            <clr-icon shape="circle" *ngIf="X2Field!='Drag a field here ...'"
+                                class="is-solid"
+                                size="12"
+                                style="float: right;"
+                                >
+                            </clr-icon>
+                        </div>
+
+                        <div class="editorLineContainer">
+                            <div class="editorX2FieldTitle" *ngIf="showFieldX2Properties">
+                                Field:
+                            </div>
+                            <div class="editorX2Field" *ngIf="showFieldX2Properties"
+                                id="target"
+                                (drop)="dropX2($event);"
+                                (dragenter)="dragenterX2($event);"
+                                (dragleave)="dragleaveX2($event);"
+                                (dragover)="dragoverX2($event);"
+                                [style.background-color]="isDragoverX2? 'lightgray' : 'transparent'"
+                                [style.font-style]="X2Field=='Drag a field here ...' ?  'italic'  :  'normal'"
+                                >
+
+                                <clr-icon shape="times" *ngIf="showX2DeleteIcon"
+                                    (click)="clickClearX2Field()"
+                                    >
+                                </clr-icon>
+                                {{ X2Field }}
+                            </div>
+                        </div>
+
+                        <!-- X2 type -->
+                        <div class="editorLineContainer">
+                            <div class="editorGraphX2TypeTitle" *ngIf="showFieldX2Properties">
+                                Type:
+                            </div>
+                            <div class="select editorGraphX2Type" *ngIf="showFieldX2Properties">
+                                <select id="selects_3"
+                                    [(ngModel)]="localWidget.graphX2TypeName"
+                                    name="graphX2Type"
                                     >
                                     <option>Ordinal</option>
                                     <option>Quantitative</option>
@@ -1776,7 +1840,7 @@
 
 
 
-                        
+
                     </div>
 
 

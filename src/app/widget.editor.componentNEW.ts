@@ -1361,8 +1361,8 @@ export interface dataSchemaInterface {
 
 
             // X2 field
-            this.specification['encoding']['x2'] = {"field": "end"};
-            
+            // this.specification['encoding']['x2'] = {"field": "end"};
+
 
             // Y field
             if (this.localWidget.graphYfield != dragFieldMessage) {
@@ -1506,7 +1506,7 @@ export interface dataSchemaInterface {
 
                 this.specification['encoding']['detail'] = {
                     "field": this.localWidget.graphDetailField,
-                    "type": "nominal"
+                    "type": this.localWidget.graphDetailType
                 };
 
             };
@@ -2104,6 +2104,10 @@ export interface dataSchemaInterface {
 
         this.detailField = this.draggedField;
         this.isDragoverDetail = false;
+
+        let fieldType:string = this.getFieldType(this.draggedField);
+        this.localWidget.graphDetailType = this.defaultGraphTypeField(fieldType, 'type');
+        this.localWidget.graphDetailTypeName = this.defaultGraphTypeField(fieldType, 'name');
     }
 
     clickClearXFieldField() {

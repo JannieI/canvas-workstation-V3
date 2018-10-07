@@ -1712,7 +1712,48 @@ clr-dg-cell {
                     margin: 3px;
                     width: 68%;
                 }
-                
+        
+            .editorX2ContainerTitle {
+                background-color: rgb(211, 209, 226);
+                border: 1px solid lightgray;
+                border-radius: 3px;
+                font-size: 0.5rem;
+                margin-top: 5px;
+            }
+
+                .editorX2FieldTitle {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin-left: 4px;
+                    width: 38px;
+                }
+                .editorX2Field {
+                    border: 1px solid steelblue;
+                    border-radius: 5px;
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin: 3px;
+                    width: 68%;
+                }
+
+                .editorGraphX2TypeTitle {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin-left: 4px;
+                    width: 38px;
+                }
+                .editorGraphX2Type {
+                    border: 1px solid steelblue;
+                    border-radius: 5px;
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin: 3px;
+                    width: 68%;
+                }                
 
         /* GRAPH TYPES */
         .editorTypesTitle {
