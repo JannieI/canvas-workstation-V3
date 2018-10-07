@@ -19,10 +19,10 @@
                                     Help
                                 </h5>
                                 <p style="margin-top: 0; color:gray;">
-                                    Double click the delete icon (left in row) to delete.  A Datasources 
-                                    linked to Widgets cannot be deleted, see #Widgets column.  
-                                    The <i>Data -> Usage</i> menu option where each Datasource 
-                                    is used.  
+                                    Double click the delete icon (left in row) to delete.  A Datasources
+                                    linked to Widgets cannot be deleted, see #Widgets column.
+                                    The <i>Data -> Usage</i> menu option where each Datasource
+                                    is used.
                                     Click the X or press Escape to close this form.
                                 </p>
                             </clr-signpost-content>
@@ -33,7 +33,7 @@
                         <i>
                             Double Click the Delete icon in a row to delete the Datasource
                             and associated data.  A Datasources linked to Widgets cannot
-                            be deleted.  The <i>Data -> Usage</i> menu option shows where 
+                            be deleted.  The <i>Data -> Usage</i> menu option shows where
                             each Datasource is used.
                         </i>
                     </div>
@@ -43,13 +43,13 @@
                             <clr-dg-placeholder>
                                 No records ...
                             </clr-dg-placeholder>
-                            <clr-dg-column [clrDgField]="">Delete</clr-dg-column>
-                            <clr-dg-column [clrDgField]="nrWidgets">#Widgets</clr-dg-column>
-                            <clr-dg-column [clrDgField]="name">Name</clr-dg-column>
-                            <clr-dg-column [clrDgField]="description">Description</clr-dg-column>
+                            <clr-dg-column >Delete</clr-dg-column>
+                            <clr-dg-column >#Widgets</clr-dg-column>
+                            <clr-dg-column clrDgField="name">Name</clr-dg-column>
+                            <clr-dg-column clrDgField="description">Description</clr-dg-column>
 
                             <clr-dg-row
-                                *ngFor="let row of datasources; let i = index"
+                                *clrDgItems="let row of datasources; let i = index"
                                 [style.background-color]="(i == selectedRowIndex)? '#123456' : 'white'"
                                 [style.color]="(i == selectedRowIndex)? 'white' : 'gray'"
                                 (click)="clickSelectedDatasource(i, row.id)"
