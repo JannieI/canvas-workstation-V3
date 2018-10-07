@@ -209,6 +209,7 @@ export interface dataSchemaInterface {
     isDragoverColumn: boolean = false;
     isDragoverDetail: boolean = false;
     isDragoverX2: boolean = false;
+    isDragoverY2: boolean = false;
     localDatasources: Datasource[] = null;          // Current DS for the selected W
     localWidget: Widget;                            // W to modify, copied from selected
     oldWidget: Widget = null;                       // W at start
@@ -222,6 +223,7 @@ export interface dataSchemaInterface {
     showColourDeleteIcon: boolean = false;
     showXDeleteIcon: boolean = false;
     showX2DeleteIcon: boolean = false;
+    showY2DeleteIcon: boolean = false;
     showRowDeleteIcon: boolean = false;
     showSizeDeleteIcon: boolean = false;
     showColumnDeleteIcon: boolean = false;
@@ -250,6 +252,7 @@ export interface dataSchemaInterface {
     showFieldMarkProperties: boolean = false;
     showFieldDetailProperties: boolean = false;
     showFieldX2Properties: boolean = false;
+    showFieldY2Properties: boolean = false;
     showPreview: boolean = false;
     showSpecification: boolean = false;
     specificationJSON: string = 'Graph Specification';
@@ -529,6 +532,7 @@ export interface dataSchemaInterface {
     xField: string = dragFieldMessage;
     x2Field: string = dragFieldMessage;
     yField: string = dragFieldMessage;
+    y2Field: string = dragFieldMessage;
 
     timeUnits: string[] = [
         "",
@@ -1039,6 +1043,15 @@ export interface dataSchemaInterface {
                 this.x2Field = dragFieldMessage;
             };
 
+            if (this.localWidget.graphY2Field != ''   &&   this.localWidget.graphY2Field != null) {
+                this.showY2DeleteIcon = true;
+                this.y2Field = this.localWidget.graphY2Field;
+
+            } else {
+                this.showY2DeleteIcon = false;
+                this.y2Field = dragFieldMessage;
+            };
+
             // Get local vars - easier for ngFor
             this.containerHasContextMenus = this.localWidget.containerHasContextMenus;
             this.containerHasTitle = this.localWidget.containerHasTitle;
@@ -1172,6 +1185,10 @@ export interface dataSchemaInterface {
         this.localWidget.graphX2Field = '';
         if (this.x2Field != dragFieldMessage) {
             this.localWidget.graphX2Field = this.x2Field;
+        };
+        this.localWidget.graphY2Field = '';
+        if (this.y2Field != dragFieldMessage) {
+            this.localWidget.graphY2Field = this.y2Field;
         };
 
 
@@ -1532,6 +1549,17 @@ export interface dataSchemaInterface {
                 this.specification['encoding']['x2'] = {
                     "field": this.localWidget.graphX2Field,
                     "type": this.localWidget.graphX2Type
+                };
+
+            };
+
+
+            // Y2 field
+            if (this.localWidget.graphY2Field != '') {
+
+                this.specification['encoding']['y2'] = {
+                    "field": this.localWidget.graphY2Field,
+                    "type": this.localWidget.graphY2Type
                 };
 
             };
