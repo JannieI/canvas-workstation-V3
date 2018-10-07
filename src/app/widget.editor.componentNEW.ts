@@ -2753,6 +2753,14 @@ export interface dataSchemaInterface {
         this.showFieldX2Properties = !this.showFieldX2Properties;
     }
 
+    clickShowY2Properties() {
+        // Show Y2 Properties Area
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowY2Properties', '@Start');
+
+        // Toggle
+        this.showFieldY2Properties = !this.showFieldY2Properties;
+    }
+
     clickShowTitleProperties() {
         // Show Title Properties Area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowTitleProperties', '@Start');
