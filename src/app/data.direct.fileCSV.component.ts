@@ -89,8 +89,7 @@ export class DataDirectFileCSVComponent implements OnInit {
         };
 
         // Reset
-        // this.fileColumns = [];
-        // this.files = [];
+        this.errorMessage = '';
         this.fileData = [];
         this.fileDataFull = [];
         this.fields = [];
@@ -219,6 +218,9 @@ export class DataDirectFileCSVComponent implements OnInit {
         this.fileDataFull = arr;
         this.totalRows = arr.length;
         // console.warn('xx this.fileData', arr.length, this.fileData);
+
+        // Can Add now
+        this.canSave = true;
 
 
 
@@ -395,7 +397,7 @@ export class DataDirectFileCSVComponent implements OnInit {
                 dataFieldTypes: [],
                 dataFieldLengths: [],
                 parameters: '',
-                accessType: '',
+                accessType: 'Private',
                 cacheResultsOnServer: true,
                 unRefreshable: true,
                 nrCacheCopies: 999,
@@ -448,8 +450,8 @@ export class DataDirectFileCSVComponent implements OnInit {
                 cacheServerStorageID: null,
                 cacheLocalStorageID: null,
                 isLocalDirty: null,
-                data: this.fileDataFull,
-                dataRaw: this.fileDataFull
+                data: [],
+                dataRaw: []
             };
             let newData: any = {
                 id: null,
