@@ -181,8 +181,6 @@ This document describes items for later versions of Canvas.
         - add Drill Down / Drill Through: this is critical.  Drill down is a capability that takes the user from a more general view of the data to a more specific one at the click of a mouse. For example, a report that shows sales revenue by state can allow the user to select a state, click on it and see sales revenue by county or city within that state. It is called “drill down” because it is a feature that allows the user to go deeper into more specific layers of the data or information being analyzed.  Further levels of drill down can be set up within the report–practically as many as supported by the data. In our example, the drill-down can go from country to state to city to zip code to specific location of stores or individual sales reps. Typically, the look and feel of each level of the report is similar–what changes is the granularity of the data.  Instead of taking the user to a more granular level of the data, drill through takes him to a report that is relevant to the data being analyzed, also at the click of a mouse. For example, a tabular report that shows sales revenue by state can allow the user to click on it and reveal an analysis grid of the same data, or a heat map representing the data in visual form. It is called “drill through” because it is a feature that allows the user to pass from one report to another while still analyzing the same set of data.
         - Easy way to compare data: graph shows revenue per month for this year.  What was figure for March last year, or compare all to last year ... NB
 
-        Spec: add %x, %y, %color parameters where these fields must be placed, and code this.
-
         Fix:
             - orient on x, y, color
             - remove format from x
@@ -215,8 +213,6 @@ This document describes items for later versions of Canvas.
         CONFIG:
             - how and where used?
 
-        Add: Vega Word Cloud Example to data
-
         Tooltip:
             - make work Vega style
 
@@ -235,12 +231,7 @@ This document describes items for later versions of Canvas.
             - selection
             - 
 
-        Text:
-            - add channel
-
         Fields:
-            - x2
-            - y2
             - symbol
 
         Filter:

@@ -47,18 +47,19 @@ export class DataDirectFileCSVComponent implements OnInit {
     canSave: boolean = false;
     errorMessage: string = "";
     fields: string[] = [];
-    fileColumns: any[] = [];
+    // fileColumns: any[] = [];
     fileData: any = [];
     fileDataFull: any = [];
-    fileName: string = '';
-    files: string[] = [];
+    // files: string[] = [];
     headerRow: string = '0';
     loadedFile: any;
+    loadedFileName: string = '';
     newDescription: string = '';
     newName: string = '';
     reader = new FileReader();
     savedMessage: string = '';
-    theFile: any;
+    totalRows: number = 0;
+    // theFile: any;
 
 	constructor(
         private globalFunctionService: GlobalFunctionService,
@@ -72,7 +73,7 @@ export class DataDirectFileCSVComponent implements OnInit {
             console.warn('xx this.selectedDatasource', this.selectedDatasource)
             this.newName = this.selectedDatasource.name;
             this.newDescription = this.selectedDatasource.description;
-            this.fileName = this.selectedDatasource.fileName;
+            this.loadedFileName = this.selectedDatasource.fileName;
         };
 
     }
@@ -88,9 +89,10 @@ export class DataDirectFileCSVComponent implements OnInit {
         };
 
         // Reset
-        this.fileColumns = [];
-        this.files = [];
+        // this.fileColumns = [];
+        // this.files = [];
         this.fileData = [];
+        this.fileDataFull = [];
         this.fields = [];
         this.canSave = false;
 
@@ -102,62 +104,64 @@ export class DataDirectFileCSVComponent implements OnInit {
             return;
         };
 
-        // Access and handle the files
-        this.theFile = inp.files[0];
-        this.fileName = this.theFile.name
+        // Get the File Name
+        this.loadedFileName = inp.files[0].name
 
-        // Read file as Binary
+        // Set the Call Back routines
         this.reader.onerror = this.errorHandler;
         this.reader.onprogress = this.updateProgress;
-        this.reader.onload = (theFile) =>{ this.inspectFile(theFile) };
-
-        // Read in the image file as a data URL.
-        this.reader.readAsBinaryString(this.theFile);
-    }
-
-    inspectFile(loadedFile) {
-        console.warn('  Begin inspectFile for ', loadedFile)
-
-        // Remember for loading
-        this.loadedFile = loadedFile;
-        
-        // Set up specification for csv file type
-        let specification: any;
-        let lastFour: string = this.fileName.slice(-4);
-    
-        if (lastFour.toLowerCase() == '.csv') {
-            console.warn('xx csv')
-
-            specification = {
-                "source": {
-                    "inspector": "tributary.inspectors.csv:CsvInspector",
-                    "specification": {
-                        "content":  this.loadedFile.target.result
-                    }
-                }
-            };
-        } else {
-            this.errorMessage = 'Invalid file extension (must be .csv)';
-            return;
+        this.reader.onload = (selectedInputFile) => {
+            this.loadedFile = selectedInputFile;
+            this.loadFileContent()
         };
 
-        // Call Tributary
-        this.globalVariableService.getTributaryInspect(specification).then(res => {
-            this.files = [];
-            console.warn('xx res', res)
-            res.forEach(row => {
-                this.files.push(row.name);
-                this.fileColumns.push(row.fields);
-            });
-
-            if (this.files.length > 0) {
-                this.loadFileContent(0);
-            };
-        })
-        .catch(err => {
-            this.errorMessage = err.message;
-        });
+        // Read the file as binary
+        this.reader.readAsBinaryString(inp.files[0]);
     }
+
+    // inspectFile(loadedFile) {
+    //     console.warn('  Begin inspectFile for ', loadedFile)
+
+    //     // Remember for loading
+    //     this.loadedFile = loadedFile;
+
+    //     // Set up specification for csv file type
+    //     let specification: any;
+    //     let lastFour: string = this.loadedFileName.slice(-4);
+
+    //     if (lastFour.toLowerCase() == '.csv') {
+    //         console.warn('xx Tributary Inspect csv')
+
+    //         specification = {
+    //             "source": {
+    //                 "inspector": "tributary.inspectors.csv:CsvInspector",
+    //                 "specification": {
+    //                     "content":  this.loadedFile.target.result
+    //                 }
+    //             }
+    //         };
+    //     } else {
+    //         this.errorMessage = 'Invalid file extension (must be .csv)';
+    //         return;
+    //     };
+
+    //     // Call Tributary
+    //     this.globalVariableService.getTributaryInspect(specification).then(res => {
+    //         // this.files = [];
+    //         console.warn('xx Tributary Inspect res', res)
+    //         res.forEach(row => {
+    //             // this.files.push(row.name);
+    //             // this.fileColumns.push(row.fields);
+    //         });
+
+    //         // if (this.files.length > 0) {
+    //         //     this.loadFileContent(0);
+    //         // };
+    //     })
+    //     .catch(err => {
+    //         this.errorMessage = err.message;
+    //     });
+    // }
 
     abortRead() {
         this.reader.abort();
@@ -181,7 +185,7 @@ export class DataDirectFileCSVComponent implements OnInit {
     }
 
     updateProgress(evt) {
-        console.warn('xx progress')
+        // console.warn('xx progress')
 
         // evt is an ProgressEvent.
         if (evt.lengthComputable) {
@@ -195,60 +199,93 @@ export class DataDirectFileCSVComponent implements OnInit {
         };
     }
 
-    loadFileContent(index: number) {
+    loadFileContent() {
         // Load the File content
         this.globalFunctionService.printToConsole(this.constructor.name,'loadFileContent',           '@Start');
 
-        // Set highlighted row
-        this.fields = this.fileColumns[index].map(cols => cols.name);
+        // Read file content into an Array: split on NewLine, then Comma
+        // console.warn('xx START this.loadedFile.target.result',this.loadedFile.target.result);
+        // let arr: any = this.loadedFile.target.result.split(",")
+        let arr: any = this.loadedFile.target.result.split(/\r?\n/).map(x => x.split(","))
+        // console.warn('xx arr', arr)
 
-        // Can Add now
-        this.canSave = true;
+        // Fill the list of Fields
+        this.fields = arr[this.headerRow]
+        // console.warn('xx this.fields', this.fields)
+        console.warn('xx this.headerRow', this.headerRow, this.newDescription)
 
-        // Reset
-        this.errorMessage = '';
+        // Fill the data
+        this.fileData = arr.slice(this.headerRow + 1,10);
+        this.fileDataFull = arr;
+        this.totalRows = arr.length;
+        // console.warn('xx this.fileData', arr.length, this.fileData);
 
-        // Validation
-        if (this.fileName == ''  ||  this.fileName == null) {
-            this.errorMessage = 'Please select a file using the Browse button';
-            return;
-        };
-        // skip_rows = [number = rows to skip, string = ignore rows that starts with this]
-        // First row = 0
-        // headers = single integer to indicate the header, array of strings = use THIS text
-        if (this.headerRow == null  ||  this.headerRow == '') {
-            this.headerRow = '0';
-        };
 
-        // Set up specification according to file type
-        let specification: any;
-        let lastFour: string = this.fileName.slice(-4);
-    
-        if (lastFour.toLowerCase() == '.csv') {
-            console.warn('xx csv')
 
-            specification = {
-                "source": {
-                    "connector": "tributary.connectors.csv:CsvConnector",
-                    "specification": {
-                        "content":  this.loadedFile.target.result,
-                        "headers": +this.headerRow,
-                        "skip_rows": []
-                    }
-                }
-            };
-        } else {
-            this.errorMessage = 'Invalid file extension (must be .csv)';
-            return;
-        };
-        
-        this.globalVariableService.getTributaryData(specification).then(res => {
-            console.warn('xx res C', res)
 
-            // Fill the data
-            this.fileData = res.slice(0,10);
-            this.fileDataFull = res;
-        });
+
+        // // Set highlighted row
+        // this.fields = this.fileColumns[index].map(cols => cols.name);
+        // this.fields = ["0","1","2","3","4","5","6","7","8","9","10"]
+        // // Can Add now
+        // this.canSave = true;
+
+        // // Reset
+        // this.errorMessage = '';
+
+        // // Validation
+        // if (this.fileName == ''  ||  this.fileName == null) {
+        //     this.errorMessage = 'Please select a file using the Browse button';
+        //     return;
+        // };
+        // // skip_rows = [number = rows to skip, string = ignore rows that starts with this]
+        // // First row = 0
+        // // headers = single integer to indicate the header, array of strings = use THIS text
+        // if (this.headerRow == null  ||  this.headerRow == '') {
+        //     this.headerRow = '0';
+        // };
+
+        // // Set up specification according to file type
+        // let specification: any;
+        // let lastFour: string = this.fileName.slice(-4);
+
+        // if (lastFour.toLowerCase() == '.csv') {
+        //     console.warn('xx csv')
+
+        //     // specification = {
+        //     //     "source": {
+        //     //         "connector": "tributary.connectors.csv:CsvConnector",
+        //     //         "specification": {
+        //     //             "content":  this.loadedFile.target.result,
+        //     //             "headers": +this.headerRow,
+        //     //             "skip_rows": []
+        //     //         }
+        //     //     }
+        //     // };
+        //     console.log('xx this.loadedFile.target.result,', this.loadedFile.target.result,)
+        //     specification = {
+        //         "source": {
+        //             "connector": "tributary.connectors.csv:CsvConnector",
+        //             "specification": {
+        //                 "content":  this.loadedFile.target.result,
+        //             }
+        //         }
+        //     };
+
+        // } else {
+        //     this.errorMessage = 'Invalid file extension (must be .csv)';
+        //     return;
+        // };
+
+        // this.globalVariableService.getTributaryData(specification).then(res => {
+        //     console.warn('xx Tributary getData res C', res)
+
+        //     // Fill the data
+        //     this.fileData = res.slice(0,10);
+        //     this.fileDataFull = res;
+        //     console.warn('xx this.fileData', this.fileData);
+
+        // });
 
     }
 
@@ -277,7 +314,7 @@ export class DataDirectFileCSVComponent implements OnInit {
             this.errorMessage = 'Please enter a Description for the Datasource';
             return;
         };
-        if (this.fileName == ''  ||  this.fileName == null) {
+        if (this.loadedFileName == ''  ||  this.loadedFileName == null) {
             this.errorMessage = 'Please select a file using the Browse button';
             return;
         };
@@ -299,7 +336,7 @@ export class DataDirectFileCSVComponent implements OnInit {
             let ds: number[] = [];
             let dSetID: number = 1;
             for (var i = 0; i < this.globalVariableService.datasets.length; i++) {
-                if(this.globalVariableService.datasets[i].datasourceID == 
+                if(this.globalVariableService.datasets[i].datasourceID ==
                     this.selectedDatasource.id) {
                     ds.push(this.globalVariableService.datasets[i].id)
                 };
@@ -313,7 +350,7 @@ export class DataDirectFileCSVComponent implements OnInit {
                 };
             });
             let updatedDataset: Dataset = this.globalVariableService.datasets[datasetIndex];
-            
+
             let dataID: number = -1;
             let dataIndex: number = updatedDataset.url.indexOf('/');
             if (dataIndex >= 0) {
@@ -376,7 +413,7 @@ export class DataDirectFileCSVComponent implements OnInit {
                 refreshedBy: '',
                 refreshedServerOn: null,
                 folder: '',
-                fileName: '',
+                fileName: this.loadedFileName,
                 excelWorksheet: '',
                 transposeOnLoad: false,
                 startLineNr: 0,
@@ -386,7 +423,7 @@ export class DataDirectFileCSVComponent implements OnInit {
                 webTableIndex: '',
                 connectionID: null,
                 dataTableID: null,
-                businessGlossary: 'Obtained from CSV File' + this.fileName ,
+                businessGlossary: 'Obtained from CSV File' + this.loadedFileName ,
                 dataDictionary: '',
                 databaseName: '',
                 port: '',
@@ -407,7 +444,7 @@ export class DataDirectFileCSVComponent implements OnInit {
                 sourceLocation: 'HTTP',
                 url: 'data',
                 folderName: '',
-                fileName: '',
+                fileName: this.loadedFileName,
                 cacheServerStorageID: null,
                 cacheLocalStorageID: null,
                 isLocalDirty: null,

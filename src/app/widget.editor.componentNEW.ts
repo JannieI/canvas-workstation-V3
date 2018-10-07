@@ -1201,7 +1201,6 @@ export interface dataSchemaInterface {
             this.widgetGraphs[widgetGraphIndex]['mark'] == 'rect') {
             this.errorMessageEditor = "'size' is incompatible with Rectangle graph.";
         };
-        console.warn('xx this.errorMessageEditor', this.sizeField, this.errorMessageEditor, this.widgetGraphs[widgetGraphIndex]['mark'])
 
         // Defaults
         if (this.localWidget.graphXtype == ''  ||  this.localWidget.graphXtype == null) {
@@ -1235,9 +1234,27 @@ export interface dataSchemaInterface {
         // Define Specification
         if (this.widgetGraphs[widgetGraphIndex].specificationType.toLowerCase() ==
             'custom') {
-
+                
             this.specification = this.widgetGraphs[widgetGraphIndex].specification;
-
+           console.warn('xx this.specification', this.specification)
+            // Replace the data in the spec - each custom one is different
+            if (this.widgetGraphs[widgetGraphIndex].shortName == 'Donut with Sliders') {
+                let xDataValues: any = this.localWidget.graphData.map(x => {
+                    let obj: any = {
+                        "id": x[this.xField],
+                        "field": x[this.yField]
+                    };
+                    return obj;
+                });
+                console.warn('xx xDataValues', xDataValues);
+                
+                this.specification['data'][0]['values'] = xDataValues;
+            };
+            if (this.widgetGraphs[widgetGraphIndex].shortName == 'Word Cloud') {
+                let xColumnValues: any = this.localWidget.graphData.map(x => x[this.xField]);
+                this.specification['data'][0]['values'] = xColumnValues;
+            };
+            
             // Render graph for Vega-Lite
             if (graphVisualGrammar == 'Vega-Lite') {
                 if (this.specification != undefined) {
