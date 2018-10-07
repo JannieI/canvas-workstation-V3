@@ -2407,6 +2407,16 @@ export interface dataSchemaInterface {
         // this.dragoverColours = false;
     }
 
+    dragenterY2(ev, actionName: string) {
+        // Event trigger when the dragged Field is enters the Y2 field
+        this.globalFunctionService.printToConsole(this.constructor.name,'dragenterY2', '@Start');
+
+        ev.preventDefault();
+        // this.dragoverCol = false;
+        this.isDragoverY2 = true;
+        // this.dragoverColours = false;
+    }
+
     dragleaveXField(ev, actionName: string) {
         // Event trigger when dragged field leave XField
         this.globalFunctionService.printToConsole(this.constructor.name,'dragleaveXField', '@Start');
