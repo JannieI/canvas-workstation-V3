@@ -1360,6 +1360,10 @@ export interface dataSchemaInterface {
             };
 
 
+            // X2 field
+            this.specification['encoding']['x2'] = {"field": "end"};
+            
+
             // Y field
             if (this.localWidget.graphYfield != dragFieldMessage) {
                 this.specification['encoding']['y']['field'] = this.localWidget.graphYfield;

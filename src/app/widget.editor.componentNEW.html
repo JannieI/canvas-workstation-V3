@@ -1755,7 +1755,28 @@
                             </div>
                         </div>
 
+                        <!-- Detail type -->
+                        <div class="editorLineContainer">
+                            <div class="editorGraphDetailTypeTitle" *ngIf="showFieldDetailProperties">
+                                Type:
+                            </div>
+                            <div class="select editorGraphDetailType" *ngIf="showFieldDetailProperties">
+                                <select id="selects_3"
+                                    [(ngModel)]="localWidget.graphDetailType"
+                                    name="graphDetailType"
+                                    >
+                                    <option>Ordinal</option>
+                                    <option>Quantitative</option>
+                                    <option>Temporal</option>
+                                    <option>Nominal</option>
+                                </select>
+                            </div>
+                        </div>
 
+
+
+
+                        
                     </div>
 
 

@@ -259,7 +259,11 @@ This document describes items for later versions of Canvas.
 
         BACK/FORWARD BUTTONS:
             - can navigate to previous specs
-
+            - per layer?
+            - store all input fields in {} / store whole Widget ?
+            - show < and > arrows to navigate, if still records left to left or right
+            - click arrow: load new fields, show graph
+            - complexities: what about filtering, DS changes?
 
         EASY EDITOR:
             - design subset of functions that is minimalistic
