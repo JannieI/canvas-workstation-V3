@@ -55,7 +55,17 @@ export class DataDeleteDatasourceComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         // Load from global variables
-        this.datasources = this.globalVariableService.datasources.slice();
+        this.datasources = this.globalVariableService.datasources
+            .slice()
+            .sort( (obj1, obj2) => {
+                if (obj1.name.toLowerCase() > obj2.name.toLowerCase()) {
+                    return 1;
+                };
+                if (obj1.name.toLowerCase() < obj2.name.toLowerCase()) {
+                    return -1;
+                };
+                return 0;
+            });
 
         // Count the Ws
         let widgets: Widget[];
@@ -94,7 +104,7 @@ export class DataDeleteDatasourceComponent implements OnInit {
                         let slashPositon = url.indexOf('/');
                         if (slashPositon >= 0) {
                             dataID = +url.substring(slashPositon + 1);
-                            
+
                         };
                     };
                     if (dataID != null) {
