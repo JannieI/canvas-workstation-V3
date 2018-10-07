@@ -1209,6 +1209,7 @@ export class Widget {
 
     // Detail
     graphDetailField: string;
+    graphDetailType: string;
 
     // Mark
     graphMark: string;
