@@ -1212,10 +1212,15 @@ export class Widget {
     graphDetailType: string;
     graphDetailTypeName: string;
 
-    // Detail
+    // X2
     graphX2Field: string;
     graphX2Type: string;
     graphX2TypeName: string;
+
+    // Y2
+    graphY2Field: string;
+    graphY2Type: string;
+    graphY2TypeName: string;
 
     // Mark
     graphMark: string;
