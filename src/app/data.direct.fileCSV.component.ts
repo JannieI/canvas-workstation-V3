@@ -386,7 +386,7 @@ export class DataDirectFileCSVComponent implements OnInit {
             let newDatasource: Datasource = {
                 id: null,
                 type: 'File',
-                subType: 'xlsx',
+                subType: 'csv',
                 typeVersion:  '',
                 name: this.newName,
                 username: '',
