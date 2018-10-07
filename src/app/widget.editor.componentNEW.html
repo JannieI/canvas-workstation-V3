@@ -1838,6 +1838,70 @@
                         </div>
 
 
+                        <!-- Y2 Channel Title Bar -->
+                        <div class="editorY2ContainerTitle"
+                            (click)="clickShowY2Properties()"
+                            >
+                            <b>
+                                Y2
+                            </b>
+                            <clr-icon shape="angle down" *ngIf="!showFieldY2Properties"
+                                size="12"
+                                >
+                            </clr-icon>
+                            <clr-icon shape="angle up" *ngIf="showFieldY2Properties"
+                                size="12"
+                                >
+                            </clr-icon>
+                            <clr-icon shape="circle" *ngIf="Y2Field!='Drag a field here ...'"
+                                class="is-solid"
+                                size="12"
+                                style="float: right;"
+                                >
+                            </clr-icon>
+                        </div>
+
+                        <div class="editorLineContainer">
+                            <div class="editorY2FieldTitle" *ngIf="showFieldY2Properties">
+                                Field:
+                            </div>
+                            <div class="editorY2Field" *ngIf="showFieldY2Properties"
+                                id="target"
+                                (drop)="dropY2($event);"
+                                (dragenter)="dragenterY2($event);"
+                                (dragleave)="dragleaveY2($event);"
+                                (dragover)="dragoverY2($event);"
+                                [style.background-color]="isDragoverY2? 'lightgray' : 'transparent'"
+                                [style.font-style]="y2Field=='Drag a field here ...' ?  'italic'  :  'normal'"
+                                >
+
+                                <clr-icon shape="times" *ngIf="showY2DeleteIcon"
+                                    (click)="clickClearY2Field()"
+                                    >
+                                </clr-icon>
+                                {{ y2Field }}
+                            </div>
+                        </div>
+
+                        <!-- Y2 type -->
+                        <div class="editorLineContainer">
+                            <div class="editorGraphY2TypeTitle" *ngIf="showFieldY2Properties">
+                                Type:
+                            </div>
+                            <div class="select editorGraphY2Type" *ngIf="showFieldY2Properties">
+                                <select id="selects_3"
+                                    [(ngModel)]="localWidget.graphY2TypeName"
+                                    name="graphY2TypeName"
+                                    >
+                                    <option>Ordinal</option>
+                                    <option>Quantitative</option>
+                                    <option>Temporal</option>
+                                    <option>Nominal</option>
+                                </select>
+                            </div>
+                        </div>
+
+
 
 
 

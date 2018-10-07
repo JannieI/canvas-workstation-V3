@@ -222,7 +222,7 @@ clr-dg-cell {
         margin: 0;
         padding: 0;
     }
-    
+
     .editorMain {
         grid-column-start: 1;
         /* autoprefixer: off */
@@ -1220,7 +1220,7 @@ clr-dg-cell {
                     margin: 3px;
                     width: 15px;
                 }
-    
+
 
             /* Selection */
             .editorSelectionTitle {
@@ -1670,7 +1670,7 @@ clr-dg-cell {
                     margin: 3px;
                     width: 68%;
                 }
-            
+
             .editorDetailContainerTitle {
                 background-color: rgb(211, 209, 226);
                 border: 1px solid lightgray;
@@ -1712,7 +1712,7 @@ clr-dg-cell {
                     margin: 3px;
                     width: 68%;
                 }
-        
+
             .editorX2ContainerTitle {
                 background-color: rgb(211, 209, 226);
                 border: 1px solid lightgray;
@@ -1753,8 +1753,50 @@ clr-dg-cell {
                     line-height: 0.8rem;
                     margin: 3px;
                     width: 68%;
-                }                
+                }
 
+            .editorY2ContainerTitle {
+                background-color: rgb(211, 209, 226);
+                border: 1px solid lightgray;
+                border-radius: 3px;
+                font-size: 0.5rem;
+                margin-top: 5px;
+            }
+
+                .editorY2FieldTitle {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin-left: 4px;
+                    width: 38px;
+                }
+                .editorY2Field {
+                    border: 1px solid steelblue;
+                    border-radius: 5px;
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin: 3px;
+                    width: 68%;
+                }
+
+                .editorGraphY2TypeTitle {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin-left: 4px;
+                    width: 38px;
+                }
+                .editorGraphY2Type {
+                    border: 1px solid steelblue;
+                    border-radius: 5px;
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin: 3px;
+                    width: 68%;
+                }
+    
         /* GRAPH TYPES */
         .editorTypesTitle {
             grid-column-start: 24;
@@ -1787,7 +1829,7 @@ clr-dg-cell {
                 height: 72px;
                 margin: 4px;
                 padding: auto;
-                width: 92px; 
+                width: 92px;
             }
 
         /* GRAPH AREA */
@@ -1823,7 +1865,7 @@ clr-dg-cell {
                 background-color: rgb(245, 240, 240);
                 border: 1px solid gray;
                 border-radius: 6px;
-                box-shadow: 2px 2px gray;                
+                box-shadow: 2px 2px gray;
                 grid-column-start: 30;
                 /* autoprefixer: off */
                 grid-column-end: 45;
@@ -1926,7 +1968,7 @@ clr-dg-cell {
             overflow-y: scroll;
         }
 
-        
+
         /* BUTTONS */
         .editorButtonShowData {
             grid-column-start: 32;
