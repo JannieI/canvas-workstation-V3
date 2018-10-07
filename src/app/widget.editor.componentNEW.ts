@@ -1936,6 +1936,13 @@ export interface dataSchemaInterface {
         ev.preventDefault();
     }
 
+    dragoverX2(ev, actionName: string) {
+        // Event trigger when the dragged Field is over the X2 field
+        this.globalFunctionService.printToConsole(this.constructor.name,'dragoverX2', '@Start');
+
+        ev.preventDefault();
+    }
+
     switchXandY() {
         // Event trigger when the dragged Field is dropped the Column field
         this.globalFunctionService.printToConsole(this.constructor.name,'switchXandY', '@Start');
