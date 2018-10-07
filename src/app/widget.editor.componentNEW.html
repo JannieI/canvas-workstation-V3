@@ -1110,7 +1110,7 @@
                                     [(ngModel)]="localWidget.graphMarkOrient"
                                     name="graphMarkOrient"
                                     >
-                                    <option>Horisontal</option>
+                                    <option>Horizontal</option>
                                     <option>Verticle</option>
                                 </select>
                             </div>
@@ -1853,7 +1853,7 @@
                                 size="12"
                                 >
                             </clr-icon>
-                            <clr-icon shape="circle" *ngIf="Y2Field!='Drag a field here ...'"
+                            <clr-icon shape="circle" *ngIf="y2Field!='Drag a field here ...'"
                                 class="is-solid"
                                 size="12"
                                 style="float: right;"
@@ -2068,6 +2068,10 @@
                         </button>
                     </div>
                     
+                    <div class="errorMessageEditor">
+                        {{ errorMessageEditor }}
+                    </div>
+
                     <!-- BUTTONS -->
                     <div class="editorButtonShowData">
                         <button

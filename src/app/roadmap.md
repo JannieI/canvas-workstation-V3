@@ -1382,6 +1382,7 @@ This document describes items for later versions of Canvas.
         - also, allow custom specs to be created, sorting out %x, %y, %color parameters where these fields must be placed.
     - Mark:
         - stroke, strokeWidth
+        - text Mark, with text properties (similar to X and Y)
 
 
 

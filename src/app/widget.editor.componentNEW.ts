@@ -192,6 +192,7 @@ export interface dataSchemaInterface {
     draggedField: string = '';
     dragoverColours: boolean = false;
     errorMessage: string = '';
+    errorMessageEditor: string = '';
     filterErrorMessage: string = ' ';
     filterField: string = '';
     filterOperator: string = '';
@@ -1111,6 +1112,9 @@ export interface dataSchemaInterface {
         // rules.
         this.globalFunctionService.printToConsole(this.constructor.name,'showGraph', '@Start');
 
+        // Reset
+        this.errorMessageEditor = '';
+        
         // Keep graphID
         this.currentGraphID = graphID;
 
@@ -1141,7 +1145,7 @@ export interface dataSchemaInterface {
         let widgetGraphIndex: number = this.widgetGraphs.findIndex(
             wg => wg.id == graphID);
         if (widgetGraphIndex < 0) {
-            this.errorMessage = 'Graph type id = ' + graphID + ' does not exist in the DB';
+            this.errorMessageEditor = 'Graph type id = ' + graphID + ' does not exist in the DB';
             return;
         }
 
@@ -1191,6 +1195,13 @@ export interface dataSchemaInterface {
             this.localWidget.graphY2Field = this.y2Field;
         };
 
+        // Validation and Warnings - AFTER default settings
+        if (this.sizeField != dragFieldMessage  
+            &&  
+            this.widgetGraphs[widgetGraphIndex]['mark'] == 'rect') {
+            this.errorMessageEditor = "'size' is incompatible with Rectangle graph.";
+        };
+        console.warn('xx this.errorMessageEditor', this.sizeField, this.errorMessageEditor, this.widgetGraphs[widgetGraphIndex]['mark'])
 
         // Defaults
         if (this.localWidget.graphXtype == ''  ||  this.localWidget.graphXtype == null) {
@@ -1655,8 +1666,6 @@ export interface dataSchemaInterface {
 
             // Tooltip setting
             // specification['mark']['tooltip']['content'] = "";
-
-            // specification['mark']['type'] = "point";
 
             console.warn('xx specification', this.specification);
 

@@ -1968,6 +1968,16 @@ clr-dg-cell {
             overflow-y: scroll;
         }
 
+        .errorMessageEditor {
+            color: red;
+            grid-column-start: 30;
+            /* autoprefixer: off */
+            grid-column-end: 50;
+            grid-row-start: 24;
+            grid-row-end: 25;
+            margin-left: 33px;
+            text-align: left;
+        }
 
         /* BUTTONS */
         .editorButtonShowData {
