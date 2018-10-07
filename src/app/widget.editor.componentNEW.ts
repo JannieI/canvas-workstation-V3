@@ -247,6 +247,7 @@ export interface dataSchemaInterface {
     showSelectionFilter: boolean = false;
     showFieldMarkProperties: boolean = false;
     showFieldDetailProperties: boolean = false;
+    showFieldX2Properties: boolean = false;
     showPreview: boolean = false;
     showSpecification: boolean = false;
     specificationJSON: string = 'Graph Specification';
@@ -2574,6 +2575,14 @@ export interface dataSchemaInterface {
 
         // Toggle
         this.showFieldDetailProperties = !this.showFieldDetailProperties;
+    }
+
+    clickShowX2Properties() {
+        // Show X2 Properties Area
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowX2Properties', '@Start');
+
+        // Toggle
+        this.showFieldX2Properties = !this.showFieldX2Properties;
     }
 
     clickShowTitleProperties() {
