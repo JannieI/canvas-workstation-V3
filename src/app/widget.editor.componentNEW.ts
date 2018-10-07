@@ -2364,6 +2364,14 @@ export interface dataSchemaInterface {
         this.isDragoverDetail = false;
     }
 
+    dragleaveX2(ev, actionName: string) {
+        // Event trigger when the dragged Field is leaves the X2 field
+        this.globalFunctionService.printToConsole(this.constructor.name,'dragleaveX2', '@Start');
+
+        ev.preventDefault();
+        this.isDragoverX2 = false;
+    }
+
     clickDatasource(index: number, name: string) {
         // Show dropdown of DS
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDatasource', '@Start');
