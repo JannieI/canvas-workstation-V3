@@ -1169,6 +1169,10 @@ export interface dataSchemaInterface {
         if (this.detailField != dragFieldMessage) {
             this.localWidget.graphDetailField = this.detailField;
         };
+        this.localWidget.graphX2Field = '';
+        if (this.x2Field != dragFieldMessage) {
+            this.localWidget.graphX2Field = this.x2Field;
+        };
 
 
         // Defaults
@@ -1373,10 +1377,6 @@ export interface dataSchemaInterface {
             };
 
 
-            // X2 field
-            // this.specification['encoding']['x2'] = {"field": "end"};
-
-
             // Y field
             if (this.localWidget.graphYfield != dragFieldMessage) {
                 this.specification['encoding']['y']['field'] = this.localWidget.graphYfield;
@@ -1492,6 +1492,7 @@ export interface dataSchemaInterface {
                 };
             };
 
+
             // Row field
             if (this.localWidget.graphRowField != '') {
 
@@ -1520,6 +1521,18 @@ export interface dataSchemaInterface {
                 this.specification['encoding']['detail'] = {
                     "field": this.localWidget.graphDetailField,
                     "type": this.localWidget.graphDetailType
+                };
+
+            };
+
+
+            // X2 field
+            // this.specification['encoding']['x2'] = {"field": "end"};
+            if (this.localWidget.graphX2Field != '') {
+
+                this.specification['encoding']['X2'] = {
+                    "field": this.localWidget.graphX2Field,
+                    "type": this.localWidget.graphX2Type
                 };
 
             };
