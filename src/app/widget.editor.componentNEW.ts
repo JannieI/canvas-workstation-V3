@@ -1527,10 +1527,9 @@ export interface dataSchemaInterface {
 
 
             // X2 field
-            // this.specification['encoding']['x2'] = {"field": "end"};
             if (this.localWidget.graphX2Field != '') {
 
-                this.specification['encoding']['X2'] = {
+                this.specification['encoding']['x2'] = {
                     "field": this.localWidget.graphX2Field,
                     "type": this.localWidget.graphX2Type
                 };
