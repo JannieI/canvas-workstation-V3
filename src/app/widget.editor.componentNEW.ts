@@ -2198,6 +2198,27 @@ export interface dataSchemaInterface {
         this.localWidget.graphX2TypeName = this.defaultGraphTypeField(fieldType, 'name');
     }
 
+    dropY2(ev) {
+        // Event trigger when the dragged Field is dropped the Y2 channel
+        this.globalFunctionService.printToConsole(this.constructor.name,'dropY2', '@Start');
+
+        // Show X icon
+        this.showY2DeleteIcon = true;
+
+        ev.preventDefault();
+        ev.dataTransfer.dropEffect = "move"
+        // Get the id of the target and add the moved element to the target's DOM
+
+        var data = ev.dataTransfer.getData("text");
+
+        this.y2Field = this.draggedField;
+        this.isDragoverY2 = false;
+
+        let fieldType:string = this.getFieldType(this.draggedField);
+        this.localWidget.graphY2Type = this.defaultGraphTypeField(fieldType, 'type');
+        this.localWidget.graphY2TypeName = this.defaultGraphTypeField(fieldType, 'name');
+    }
+
     clickClearXFieldField() {
         // Clear the X Field and Remove X icon
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClearXFieldField', '@Start');
