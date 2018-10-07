@@ -220,6 +220,7 @@ export interface dataSchemaInterface {
     sizeField: string = dragFieldMessage;
     showColourDeleteIcon: boolean = false;
     showXDeleteIcon: boolean = false;
+    showX2DeleteIcon: boolean = false;
     showRowDeleteIcon: boolean = false;
     showSizeDeleteIcon: boolean = false;
     showColumnDeleteIcon: boolean = false;
@@ -525,6 +526,7 @@ export interface dataSchemaInterface {
     ];
     widgetGraphs: WidgetGraph[] =[];
     xField: string = dragFieldMessage;
+    x2Field: string = dragFieldMessage;
     yField: string = dragFieldMessage;
 
     timeUnits: string[] = [
@@ -1025,6 +1027,15 @@ export interface dataSchemaInterface {
             } else {
                 this.showColourDeleteIcon = false;
                 this.detailField = dragFieldMessage;
+            };
+
+            if (this.localWidget.graphX2Field != ''   &&   this.localWidget.graphX2Field != null) {
+                this.showX2DeleteIcon = true;
+                this.x2Field = this.localWidget.graphX2Field;
+
+            } else {
+                this.showX2DeleteIcon = false;
+                this.x2Field = dragFieldMessage;
             };
 
             // Get local vars - easier for ngFor

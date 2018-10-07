@@ -320,6 +320,10 @@ const widgetTemplate: Widget =
         "graphDetailField": "",
         "graphDetailType": "",
         "graphDetailTypeName": "",
+
+        "graphX2Field": "",
+        "graphX2Type": "",
+        "graphX2TypeName": "",
     
         "graphMark": "tick",
         "graphMarkOrient": "Verticle",

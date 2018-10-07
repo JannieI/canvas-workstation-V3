@@ -1212,6 +1212,11 @@ export class Widget {
     graphDetailType: string;
     graphDetailTypeName: string;
 
+    // Detail
+    graphX2Field: string;
+    graphX2Type: string;
+    graphX2TypeName: string;
+
     // Mark
     graphMark: string;
     graphMarkOrient: string;
