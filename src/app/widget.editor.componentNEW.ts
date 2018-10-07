@@ -208,6 +208,7 @@ export interface dataSchemaInterface {
     isDragoverRow: boolean = false;
     isDragoverColumn: boolean = false;
     isDragoverDetail: boolean = false;
+    isDragoverX2: boolean = false;
     localDatasources: Datasource[] = null;          // Current DS for the selected W
     localWidget: Widget;                            // W to modify, copied from selected
     oldWidget: Widget = null;                       // W at start
@@ -2120,6 +2121,27 @@ export interface dataSchemaInterface {
         let fieldType:string = this.getFieldType(this.draggedField);
         this.localWidget.graphDetailType = this.defaultGraphTypeField(fieldType, 'type');
         this.localWidget.graphDetailTypeName = this.defaultGraphTypeField(fieldType, 'name');
+    }
+
+    dropX2(ev) {
+        // Event trigger when the dragged Field is dropped the X2 channel
+        this.globalFunctionService.printToConsole(this.constructor.name,'dropX2', '@Start');
+
+        // Show X icon
+        this.showX2DeleteIcon = true;
+
+        ev.preventDefault();
+        ev.dataTransfer.dropEffect = "move"
+        // Get the id of the target and add the moved element to the target's DOM
+
+        var data = ev.dataTransfer.getData("text");
+
+        this.x2Field = this.draggedField;
+        this.isDragoverX2 = false;
+
+        let fieldType:string = this.getFieldType(this.draggedField);
+        this.localWidget.graphX2Type = this.defaultGraphTypeField(fieldType, 'type');
+        this.localWidget.graphX2TypeName = this.defaultGraphTypeField(fieldType, 'name');
     }
 
     clickClearXFieldField() {
