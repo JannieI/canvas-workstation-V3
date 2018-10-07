@@ -2315,6 +2315,18 @@ export interface dataSchemaInterface {
 
     }
 
+    clickClearY2Field() {
+        // Clear the Y2 Field and Remove X icon
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClearY2Field', '@Start');
+
+        this.showY2DeleteIcon = false;
+        this.y2Field = dragFieldMessage;
+
+        // Hide the panel with properties
+        this.showFieldY2Properties = false;
+
+    }
+
     dragenterXField(ev, actionName: string) {
         // Event trigger when dragged field enters XField
         this.globalFunctionService.printToConsole(this.constructor.name,'dragenterXField', '@Start');
