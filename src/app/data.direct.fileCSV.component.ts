@@ -54,6 +54,7 @@ export class DataDirectFileCSVComponent implements OnInit {
     headerRow: string = '0';
     loadedFile: any;
     loadedFileName: string = '';
+    newDataFieldTypes: string[] = [];
     newDescription: string = '';
     newName: string = '';
     reader = new FileReader();
@@ -252,7 +253,6 @@ export class DataDirectFileCSVComponent implements OnInit {
         
 
         // Guess types
-        let newDataFieldTypes: string[] = [];
         for (var i = 0; i < arr[+this.headerRow + 1].length; i++) {
             let newType: string = 'string';
             // let newString: string | number | boolean;
@@ -313,9 +313,9 @@ export class DataDirectFileCSVComponent implements OnInit {
             // if (typeof arr[+this.headerRow + 1][i] == 'boolean') {
             //     newType = "boolean";
             // };
-            newDataFieldTypes.push(newType);
+            this.newDataFieldTypes.push(newType);
         };
-        console.warn('xx', newDataFieldTypes);
+        console.warn('xx', this.newDataFieldTypes);
 
 
         // // Set highlighted row
@@ -434,6 +434,7 @@ export class DataDirectFileCSVComponent implements OnInit {
             this.selectedDatasource.editor = this.globalVariableService.currentUser.userID;
             this.selectedDatasource.dateEdited = today;
             this.selectedDatasource.dataFields = this.fields;
+            this.selectedDatasource.dataFieldTypes = this.newDataFieldTypes;
 
             // Save DS to DB, but create a new dSet and new data records.
             let ds: number[] = [];
@@ -495,7 +496,7 @@ export class DataDirectFileCSVComponent implements OnInit {
                 description: this.newDescription,
                 dataFieldIDs: [],
                 dataFields: this.fields,
-                dataFieldTypes: [],
+                dataFieldTypes: this.newDataFieldTypes,
                 dataFieldLengths: [],
                 parameters: '',
                 accessType: 'Private',
