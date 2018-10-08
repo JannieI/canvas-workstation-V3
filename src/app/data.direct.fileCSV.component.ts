@@ -242,22 +242,42 @@ console.warn('xx arr3', arr3);
         let newDataFieldTypes: string[] = [];
         for (var i = 0; i < arr[+this.headerRow + 1].length; i++) {
             let newType: string = 'string';
-            let newString: string | number | boolean;
-            if(i==1) {arr[+this.headerRow + 1][i] = true}
-            if(i==2) {arr[+this.headerRow + 1][i] = 2}
-            if(i==3) {arr[+this.headerRow + 1][i] = "2"}
-            if(i==4) {arr[+this.headerRow + 1][i] = "true"}
-            if(i==5) {arr[+this.headerRow + 1][i] = "false"}
-            if(i==6) {arr[+this.headerRow + 1][i] = "xyz"}
-            if(i==7) {arr[+this.headerRow + 1][i] = "2.02"}
-            if(i==8) {arr[+this.headerRow + 1][i] = "2.2"}
+            // let newString: string | number | boolean;
+            // if(i==1) {arr[+this.headerRow + 1][i] = true}
+            // if(i==2) {arr[+this.headerRow + 1][i] = 2}
+            // if(i==3) {arr[+this.headerRow + 1][i] = "2"}
+            // if(i==4) {arr[+this.headerRow + 1][i] = "true"}
+            // if(i==5) {arr[+this.headerRow + 1][i] = "false"}
+            // if(i==6) {arr[+this.headerRow + 1][i] = "xyz"}
+            // if(i==7) {arr[+this.headerRow + 1][i] = "2.02"}
+            // if(i==8) {arr[+this.headerRow + 1][i] = "2.2"}
             
-            newString = arr[+this.headerRow + 1][i];
+            console.warn('xx START i arr[+this.headerRow + 1][i]', i, arr[+this.headerRow + 1][i])
+
+            if (typeof arr[+this.headerRow + 1][i] == 'number') {
+               newType = 'number';
+            } else if (typeof arr[+this.headerRow + 1][i] == 'boolean') {
+                   newType = 'boolean)
+            } else if (arr[+this.headerRow + 1][i] == 'true') {
+               newType = 'boolean)
+            } else if (arr[+this.headerRow + 1][i] == 'false') {
+               newType = 'boolean)
+            } else if (arr[+this.headerRow + 1][i] == +arr[+this.headerRow + 1][i]) {
+               newType = 'number';
+            } else {
+               newType = 'String';
+            };
+            // if (newString == +newString) {
+            //     console.warn('    xx i newString == +newString)', i, newString)
+            // };
+
+            // console.warn('xx i newString == + newString', i, newString == +newString)
+            // console.warn('xx i Number(newString)', i, Number(newString))
+            // console.warn('xx i Number(newString) == NaN', i, Number(newString))
+
+            // console.warn('xx i typeof newString', i, typeof newString)
+            // console.warn('---------');
             
-            console.warn('xx i newString', i, newString)
-            console.warn('xx i Number(newString)', i, Number(newString))
-            console.warn('xx i Number(newString) == NaN', i, Number(newString) == NaN)
-            console.warn('xx i typeof newString', i, typeof newString)
 
             // console.warn('i   arr[+this.headerRow + 1][i]   typeof arr[+this.headerRow + 1][i]', i , arr[+this.headerRow + 1][i], typeof arr[+this.headerRow + 1][i])
 
