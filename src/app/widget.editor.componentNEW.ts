@@ -2591,7 +2591,7 @@ export interface dataSchemaInterface {
 
             return;
         };
-
+        console.warn('xx PRE', this.globalVariableService.currentDatasets, this.globalVariableService.currentDatasets)
         // Add DS to current DS (no action if already there)
         this.globalVariableService.addCurrentDatasource(datasourceID).then(res => {
 
@@ -2600,6 +2600,7 @@ export interface dataSchemaInterface {
             this.dataFieldLengths = this.localDatasources[arrayIndex].dataFieldLengths;
             this.dataFieldTypes = this.localDatasources[arrayIndex].dataFieldTypes;
             this.constructDataSchema();
+            console.warn('xx POST', this.globalVariableService.currentDatasets, this.globalVariableService.currentDatasets)
 
             // Determine if data obtains in Glob Var
             dataSetIndex = this.globalVariableService.currentDatasets.findIndex(

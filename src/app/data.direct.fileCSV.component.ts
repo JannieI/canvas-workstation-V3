@@ -211,39 +211,79 @@ export class DataDirectFileCSVComponent implements OnInit {
         // Fill the list of Fields
         this.fields = arr[+this.headerRow]
         // console.warn('xx this.fields', this.fields)
-        console.warn('xx this.headerRow', +this.headerRow, this.newDescription)
+        // console.warn('xx this.headerRow', +this.headerRow, this.newDescription)
 
         // Fill the data
         this.fileData = arr.slice(+this.headerRow + 1,10);
         this.fileDataFull = arr;
         this.totalRows = arr.length;
-        console.warn('xx this.fileDataFull', arr.length, this.fileDataFull);
+        // console.warn('xx this.fileDataFull', arr.length, this.fileDataFull);
 
         // Can Add now
         this.canSave = true;
 
-// let arr1:any[] = [];
-// for (var i = +this.headerRow + 1; i < arr.length; i++) {
-//     let obj: any = {};
-//     arr[i].forEach(function(value, idx) {
-//         obj[ 'position' + (idx + 1) ] = value
-//     });
-//     arr1.push(obj);
-// }
-// console.log('xx arr1', arr1)
+        // Convert Array to JSON
+        let arr2:any[] = [];
+        let fields = this.fields;
+        for (var i = +this.headerRow + 1; i < arr.length; i++) {
+            let obj: any = {};
+            arr[i].forEach(function(value, idx) {
+                obj[ fields[idx] ] = value
+            });
+            arr2.push(obj);
+        }
+        // console.log('xx arr2', arr2)
+        let arr3: any = JSON.parse(JSON.stringify(arr2))
+        console.warn('xx', +this.headerRow, arr[+this.headerRow + 1], arr[+this.headerRow + 1].length);
+console.warn('xx arr3', arr3);
 
 
-let arr2:any[] = [];
-let fields = this.fields;
-for (var i = +this.headerRow + 1; i < arr.length; i++) {
-    let obj: any = {};
-    arr[i].forEach(function(value, idx) {
-        obj[ fields[idx] ] = value
-    });
-    arr2.push(obj);
-}
-console.log('xx arr2', arr2)
-this.fileDataFull = arr2;
+        // Guess types
+        let newDataFieldTypes: string[] = [];
+        for (var i = 0; i < arr[+this.headerRow + 1].length; i++) {
+            let newType: string = 'string';
+            let newString: string | number | boolean;
+            if(i==1) {arr[+this.headerRow + 1][i] = true}
+            if(i==2) {arr[+this.headerRow + 1][i] = 2}
+            if(i==3) {arr[+this.headerRow + 1][i] = "2"}
+            if(i==4) {arr[+this.headerRow + 1][i] = "true"}
+            if(i==5) {arr[+this.headerRow + 1][i] = "false"}
+            if(i==6) {arr[+this.headerRow + 1][i] = "xyz"}
+            if(i==7) {arr[+this.headerRow + 1][i] = "2.02"}
+            if(i==8) {arr[+this.headerRow + 1][i] = "2.2"}
+            
+            newString = arr[+this.headerRow + 1][i];
+            
+            console.warn('xx i newString', i, newString)
+            console.warn('xx i Number(newString)', i, Number(newString))
+            console.warn('xx i Number(newString) == NaN', i, Number(newString) == NaN)
+            console.warn('xx i typeof newString', i, typeof newString)
+
+            // console.warn('i   arr[+this.headerRow + 1][i]   typeof arr[+this.headerRow + 1][i]', i , arr[+this.headerRow + 1][i], typeof arr[+this.headerRow + 1][i])
+
+            // if (Number(+arr[+this.headerRow + 1][i]) != NaN) {
+            //     newType = "string";
+            // } else {
+            //     if (typeof arr[+this.headerRow + 1][i] == 'number') {
+            //         newType = "number";
+            //     };
+            //     if (typeof arr[+this.headerRow + 1][i] == 'boolean') {
+            //         newType = "boolean";
+            //     };
+            // };
+            // if (typeof arr[+this.headerRow + 1][i] == 'number') {
+            //     newType = "number";
+            // };
+            // if (typeof arr[+this.headerRow + 1][i] == 'string') {
+            //     newType = "string";
+            // };
+            // if (typeof arr[+this.headerRow + 1][i] == 'boolean') {
+            //     newType = "boolean";
+            // };
+            newDataFieldTypes.push(newType);
+        };
+        console.warn('xx', newDataFieldTypes);
+
 
         // // Set highlighted row
         // this.fields = this.fileColumns[index].map(cols => cols.name);
@@ -343,7 +383,16 @@ this.fileDataFull = arr2;
         // Construct DS and add to DB
         let today: Date = new Date();
 
+        // Guess types
+        let newDataFieldTypes: string[] = [];
+        for (var i = 0; i < this.fileDataFull[+this.headerRow + 1].length; i++) {
+        this.fileDataFull[+this.headerRow + 1][i]
+
+        }
+
+
         if (this.selectedDatasource != null) {
+
             // Mark the changes
             this.selectedDatasource.name = this.newName;
             this.selectedDatasource.description = this.newDescription;
