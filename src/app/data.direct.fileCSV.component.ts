@@ -209,22 +209,41 @@ export class DataDirectFileCSVComponent implements OnInit {
         // console.warn('xx arr', arr)
 
         // Fill the list of Fields
-        this.fields = arr[this.headerRow]
+        this.fields = arr[+this.headerRow]
         // console.warn('xx this.fields', this.fields)
-        console.warn('xx this.headerRow', this.headerRow, this.newDescription)
+        console.warn('xx this.headerRow', +this.headerRow, this.newDescription)
 
         // Fill the data
-        this.fileData = arr.slice(this.headerRow + 1,10);
+        this.fileData = arr.slice(+this.headerRow + 1,10);
         this.fileDataFull = arr;
         this.totalRows = arr.length;
-        // console.warn('xx this.fileData', arr.length, this.fileData);
+        console.warn('xx this.fileDataFull', arr.length, this.fileDataFull);
 
         // Can Add now
         this.canSave = true;
 
+// let arr1:any[] = [];
+// for (var i = +this.headerRow + 1; i < arr.length; i++) {
+//     let obj: any = {};
+//     arr[i].forEach(function(value, idx) {
+//         obj[ 'position' + (idx + 1) ] = value
+//     });
+//     arr1.push(obj);
+// }
+// console.log('xx arr1', arr1)
 
 
-
+let arr2:any[] = [];
+let fields = this.fields;
+for (var i = +this.headerRow + 1; i < arr.length; i++) {
+    let obj: any = {};
+    arr[i].forEach(function(value, idx) {
+        obj[ fields[idx] ] = value
+    });
+    arr2.push(obj);
+}
+console.log('xx arr2', arr2)
+this.fileDataFull = arr2;
 
         // // Set highlighted row
         // this.fields = this.fileColumns[index].map(cols => cols.name);
