@@ -206,6 +206,11 @@ export class DataDirectFileCSVComponent implements OnInit {
         // console.warn('xx START this.loadedFile.target.result',this.loadedFile.target.result);
         // let arr: any = this.loadedFile.target.result.split(",")
         let arr: any = this.loadedFile.target.result.split(/\r?\n/).map(x => x.split(","))
+        console.warn('xx last one ', arr[arr.length - 1]);
+        // if (arr.length > 0) {
+        //     console.warn('xx last one ', arr[arr.length - 1]);
+        //     arr = arr.slice(0, arr[arr.length - 2])
+        // };
         // console.warn('xx arr', arr)
 
         // Fill the list of Fields
@@ -214,9 +219,8 @@ export class DataDirectFileCSVComponent implements OnInit {
         // console.warn('xx this.headerRow', +this.headerRow, this.newDescription)
 
         // Fill the data
-        this.fileData = arr.slice(+this.headerRow + 1,10);
-        this.fileDataFull = arr;
-        this.totalRows = arr.length;
+        this.fileData = arr.slice(+this.headerRow + 1, +this.headerRow + 10);
+        this.fileDataFull = arr.slice(+this.headerRow + 1, arr.length - 2);
         // console.warn('xx this.fileDataFull', arr.length, this.fileDataFull);
 
         // Can Add now
@@ -234,9 +238,18 @@ export class DataDirectFileCSVComponent implements OnInit {
         }
         // console.log('xx arr2', arr2)
         let arr3: any = JSON.parse(JSON.stringify(arr2))
-        console.warn('xx', +this.headerRow, arr[+this.headerRow + 1], arr[+this.headerRow + 1].length);
-console.warn('xx arr3', arr3);
+        // console.warn('xx', +this.headerRow, arr[+this.headerRow + 1], arr[+this.headerRow + 1].length);
+        console.warn('xx arr2', arr2);
+        console.warn('xx arr3', arr3);
 
+        this.fileDataFull = arr3.slice(+this.headerRow, +this.headerRow + 10);
+        console.warn('xx this.fileDataFull', this.fileDataFull);
+
+        this.fileDataFull = arr3.slice(+this.headerRow, arr3.length - 1);
+        console.warn('xx this.fileDataFull', this.fileDataFull);
+
+        this.totalRows = this.fileDataFull.length;
+        
 
         // Guess types
         let newDataFieldTypes: string[] = [];
@@ -252,16 +265,16 @@ console.warn('xx arr3', arr3);
             // if(i==7) {arr[+this.headerRow + 1][i] = "2.02"}
             // if(i==8) {arr[+this.headerRow + 1][i] = "2.2"}
             
-            console.warn('xx START i arr[+this.headerRow + 1][i]', i, arr[+this.headerRow + 1][i])
+            // console.warn('xx START i arr[+this.headerRow + 1][i]', i, arr[+this.headerRow + 1][i])
 
             if (typeof arr[+this.headerRow + 1][i] == 'number') {
                newType = 'number';
             } else if (typeof arr[+this.headerRow + 1][i] == 'boolean') {
-                   newType = 'boolean)
+                   newType = 'boolean';
             } else if (arr[+this.headerRow + 1][i] == 'true') {
-               newType = 'boolean)
+               newType = 'boolean';
             } else if (arr[+this.headerRow + 1][i] == 'false') {
-               newType = 'boolean)
+               newType = 'boolean';
             } else if (arr[+this.headerRow + 1][i] == +arr[+this.headerRow + 1][i]) {
                newType = 'number';
             } else {
