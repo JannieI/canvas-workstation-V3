@@ -25957,6 +25957,4063 @@
                     "filename": "yarn.lock"
                 }
             ]
+        },
+        {
+            "version": "0.1.7",
+            "counttime": "2018-10-09 10:07:55",
+            "filesum": 641,
+            "codesum": 1943726,
+            "commentsum": 10190,
+            "blanksum": 14665,
+            "filelist": [
+                {
+                    "blank": 0,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": ".angulardoc.json"
+                },
+                {
+                    "blank": 4,
+                    "code": 15,
+                    "comment": 3,
+                    "filename": ".editorconfig"
+                },
+                {
+                    "blank": 0,
+                    "code": 11,
+                    "comment": 1,
+                    "filename": ".gitignore"
+                },
+                {
+                    "blank": 3,
+                    "code": 16,
+                    "comment": 0,
+                    "filename": ".travis.yml"
+                },
+                {
+                    "blank": 6,
+                    "code": 132,
+                    "comment": 0,
+                    "filename": "angular.json"
+                },
+                {
+                    "blank": 2,
+                    "code": 4,
+                    "comment": 0,
+                    "filename": "CODE_OF_CONDUCT.md"
+                },
+                {
+                    "blank": 22,
+                    "code": 43,
+                    "comment": 4,
+                    "filename": "CONTRIBUTING.md"
+                },
+                {
+                    "blank": 5,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "e2e/app.e2e-spec.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "e2e/app.po.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 23,
+                    "comment": 0,
+                    "filename": "e2e/tsconfig.json"
+                },
+                {
+                    "blank": 3,
+                    "code": 40,
+                    "comment": 2,
+                    "filename": "karma.conf.js"
+                },
+                {
+                    "filename": "logo.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "out/Linecount 2017-12-31.ods",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "out/Linecount 2018-02-04.ods",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "out/Linecount 2018-03-04.ods",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "out/Linecount 2018-03-19.ods",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "out/Linecount 2018-04-13.ods",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "out/Linecount 2018-05-13.ods",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "out/Linecount 2018-06-13.ods",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "out/Linecount 2018-07-15.ods",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "out/Linecount 2018-08-17.ods",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "out/Linecount 2018-09-15.ods",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 14459,
+                    "comment": 0,
+                    "filename": "package-lock.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 70,
+                    "comment": 0,
+                    "filename": "package.json"
+                },
+                {
+                    "blank": 3,
+                    "code": 23,
+                    "comment": 2,
+                    "filename": "protractor.config.js"
+                },
+                {
+                    "blank": 33,
+                    "code": 82,
+                    "comment": 7,
+                    "filename": "README.md"
+                },
+                {
+                    "blank": 35,
+                    "code": 413,
+                    "comment": 30,
+                    "filename": "src/app/app.component.css"
+                },
+                {
+                    "blank": 422,
+                    "code": 4158,
+                    "comment": 283,
+                    "filename": "src/app/app.component.html"
+                },
+                {
+                    "blank": 2084,
+                    "code": 6564,
+                    "comment": 1270,
+                    "filename": "src/app/app.component.ts"
+                },
+                {
+                    "blank": 41,
+                    "code": 262,
+                    "comment": 12,
+                    "filename": "src/app/app.module.ts"
+                },
+                {
+                    "blank": 6,
+                    "code": 12,
+                    "comment": 5,
+                    "filename": "src/app/app.routing.ts"
+                },
+                {
+                    "blank": 15,
+                    "code": 34,
+                    "comment": 13,
+                    "filename": "src/app/authguard.service.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 18,
+                    "comment": 0,
+                    "filename": "src/app/ca.datagrid.component.css"
+                },
+                {
+                    "blank": 11,
+                    "code": 48,
+                    "comment": 17,
+                    "filename": "src/app/ca.datagrid.component.html"
+                },
+                {
+                    "blank": 24,
+                    "code": 63,
+                    "comment": 35,
+                    "filename": "src/app/ca.datagrid.component.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 37,
+                    "comment": 3,
+                    "filename": "src/app/collaborate.auditTrail.component.css"
+                },
+                {
+                    "blank": 10,
+                    "code": 72,
+                    "comment": 0,
+                    "filename": "src/app/collaborate.auditTrail.component.html"
+                },
+                {
+                    "blank": 20,
+                    "code": 48,
+                    "comment": 12,
+                    "filename": "src/app/collaborate.auditTrail.component.ts"
+                },
+                {
+                    "blank": 14,
+                    "code": 132,
+                    "comment": 15,
+                    "filename": "src/app/collaborate.messageContent.component.css"
+                },
+                {
+                    "blank": 15,
+                    "code": 119,
+                    "comment": 0,
+                    "filename": "src/app/collaborate.messageContent.component.html"
+                },
+                {
+                    "blank": 43,
+                    "code": 195,
+                    "comment": 22,
+                    "filename": "src/app/collaborate.messageContent.component.ts"
+                },
+                {
+                    "blank": 12,
+                    "code": 54,
+                    "comment": 122,
+                    "filename": "src/app/collaborate.messages.component.css"
+                },
+                {
+                    "blank": 7,
+                    "code": 210,
+                    "comment": 0,
+                    "filename": "src/app/collaborate.messages.component.html"
+                },
+                {
+                    "blank": 63,
+                    "code": 209,
+                    "comment": 25,
+                    "filename": "src/app/collaborate.messages.component.ts"
+                },
+                {
+                    "blank": 11,
+                    "code": 91,
+                    "comment": 10,
+                    "filename": "src/app/collaborate.sendemail.component.css"
+                },
+                {
+                    "blank": 11,
+                    "code": 80,
+                    "comment": 0,
+                    "filename": "src/app/collaborate.sendemail.component.html"
+                },
+                {
+                    "blank": 17,
+                    "code": 63,
+                    "comment": 11,
+                    "filename": "src/app/collaborate.sendemail.component.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "src/app/collaborate.sendmessage.component.css"
+                },
+                {
+                    "blank": 2,
+                    "code": 15,
+                    "comment": 0,
+                    "filename": "src/app/collaborate.sendmessage.component.html"
+                },
+                {
+                    "blank": 15,
+                    "code": 40,
+                    "comment": 10,
+                    "filename": "src/app/collaborate.sendmessage.component.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 37,
+                    "comment": 3,
+                    "filename": "src/app/collaborate.systemMessages.component.css"
+                },
+                {
+                    "blank": 10,
+                    "code": 63,
+                    "comment": 0,
+                    "filename": "src/app/collaborate.systemMessages.component.html"
+                },
+                {
+                    "blank": 20,
+                    "code": 47,
+                    "comment": 12,
+                    "filename": "src/app/collaborate.systemMessages.component.ts"
+                },
+                {
+                    "blank": 19,
+                    "code": 232,
+                    "comment": 27,
+                    "filename": "src/app/collaborate.taskadd.component.css"
+                },
+                {
+                    "blank": 17,
+                    "code": 184,
+                    "comment": 0,
+                    "filename": "src/app/collaborate.taskadd.component.html"
+                },
+                {
+                    "blank": 33,
+                    "code": 166,
+                    "comment": 17,
+                    "filename": "src/app/collaborate.taskadd.component.ts"
+                },
+                {
+                    "blank": 11,
+                    "code": 136,
+                    "comment": 15,
+                    "filename": "src/app/collaborate.tasks.component.css"
+                },
+                {
+                    "blank": 25,
+                    "code": 212,
+                    "comment": 8,
+                    "filename": "src/app/collaborate.tasks.component.html"
+                },
+                {
+                    "blank": 38,
+                    "code": 152,
+                    "comment": 24,
+                    "filename": "src/app/collaborate.tasks.component.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "src/app/colour.picker.component.css"
+                },
+                {
+                    "blank": 1,
+                    "code": 154,
+                    "comment": 0,
+                    "filename": "src/app/colour.picker.component.html"
+                },
+                {
+                    "blank": 19,
+                    "code": 52,
+                    "comment": 7,
+                    "filename": "src/app/colour.picker.component.ts"
+                },
+                {
+                    "blank": 5,
+                    "code": 57,
+                    "comment": 5,
+                    "filename": "src/app/dashboard.comments.component.css"
+                },
+                {
+                    "blank": 10,
+                    "code": 98,
+                    "comment": 0,
+                    "filename": "src/app/dashboard.comments.component.html"
+                },
+                {
+                    "blank": 34,
+                    "code": 134,
+                    "comment": 23,
+                    "filename": "src/app/dashboard.comments.component.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 37,
+                    "comment": 3,
+                    "filename": "src/app/dashboard.dataquality.component.css"
+                },
+                {
+                    "blank": 5,
+                    "code": 48,
+                    "comment": 27,
+                    "filename": "src/app/dashboard.dataquality.component.html"
+                },
+                {
+                    "blank": 36,
+                    "code": 126,
+                    "comment": 14,
+                    "filename": "src/app/dashboard.dataquality.component.ts"
+                },
+                {
+                    "blank": 17,
+                    "code": 171,
+                    "comment": 20,
+                    "filename": "src/app/dashboard.delete.component.css"
+                },
+                {
+                    "blank": 14,
+                    "code": 143,
+                    "comment": 0,
+                    "filename": "src/app/dashboard.delete.component.html"
+                },
+                {
+                    "blank": 26,
+                    "code": 146,
+                    "comment": 16,
+                    "filename": "src/app/dashboard.delete.component.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 44,
+                    "comment": 4,
+                    "filename": "src/app/dashboard.deleteBulk.component.css"
+                },
+                {
+                    "blank": 9,
+                    "code": 78,
+                    "comment": 0,
+                    "filename": "src/app/dashboard.deleteBulk.component.html"
+                },
+                {
+                    "blank": 26,
+                    "code": 94,
+                    "comment": 16,
+                    "filename": "src/app/dashboard.deleteBulk.component.ts"
+                },
+                {
+                    "blank": 21,
+                    "code": 283,
+                    "comment": 34,
+                    "filename": "src/app/dashboard.description.component.css"
+                },
+                {
+                    "blank": 20,
+                    "code": 260,
+                    "comment": 0,
+                    "filename": "src/app/dashboard.description.component.html"
+                },
+                {
+                    "blank": 51,
+                    "code": 234,
+                    "comment": 31,
+                    "filename": "src/app/dashboard.description.component.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 50,
+                    "comment": 5,
+                    "filename": "src/app/dashboard.discard.component.css"
+                },
+                {
+                    "blank": 6,
+                    "code": 57,
+                    "comment": 0,
+                    "filename": "src/app/dashboard.discard.component.html"
+                },
+                {
+                    "blank": 24,
+                    "code": 69,
+                    "comment": 15,
+                    "filename": "src/app/dashboard.discard.component.ts"
+                },
+                {
+                    "blank": 5,
+                    "code": 72,
+                    "comment": 8,
+                    "filename": "src/app/dashboard.export.component.css"
+                },
+                {
+                    "blank": 8,
+                    "code": 72,
+                    "comment": 0,
+                    "filename": "src/app/dashboard.export.component.html"
+                },
+                {
+                    "blank": 22,
+                    "code": 67,
+                    "comment": 13,
+                    "filename": "src/app/dashboard.export.component.ts"
+                },
+                {
+                    "blank": 7,
+                    "code": 52,
+                    "comment": 3,
+                    "filename": "src/app/dashboard.help.component.css"
+                },
+                {
+                    "blank": 13,
+                    "code": 84,
+                    "comment": 0,
+                    "filename": "src/app/dashboard.help.component.html"
+                },
+                {
+                    "blank": 14,
+                    "code": 38,
+                    "comment": 9,
+                    "filename": "src/app/dashboard.help.component.ts"
+                },
+                {
+                    "blank": 10,
+                    "code": 144,
+                    "comment": 15,
+                    "filename": "src/app/dashboard.new.component.css"
+                },
+                {
+                    "blank": 10,
+                    "code": 125,
+                    "comment": 0,
+                    "filename": "src/app/dashboard.new.component.html"
+                },
+                {
+                    "blank": 56,
+                    "code": 291,
+                    "comment": 39,
+                    "filename": "src/app/dashboard.new.component.ts"
+                },
+                {
+                    "blank": 22,
+                    "code": 452,
+                    "comment": 60,
+                    "filename": "src/app/dashboard.open.component.css"
+                },
+                {
+                    "blank": 22,
+                    "code": 340,
+                    "comment": 1,
+                    "filename": "src/app/dashboard.open.component.html"
+                },
+                {
+                    "blank": 95,
+                    "code": 465,
+                    "comment": 46,
+                    "filename": "src/app/dashboard.open.component.ts"
+                },
+                {
+                    "blank": 7,
+                    "code": 99,
+                    "comment": 12,
+                    "filename": "src/app/dashboard.print.component.css"
+                },
+                {
+                    "blank": 8,
+                    "code": 95,
+                    "comment": 0,
+                    "filename": "src/app/dashboard.print.component.html"
+                },
+                {
+                    "blank": 16,
+                    "code": 54,
+                    "comment": 8,
+                    "filename": "src/app/dashboard.print.component.ts"
+                },
+                {
+                    "blank": 14,
+                    "code": 191,
+                    "comment": 22,
+                    "filename": "src/app/dashboard.rename.component.css"
+                },
+                {
+                    "blank": 15,
+                    "code": 236,
+                    "comment": 0,
+                    "filename": "src/app/dashboard.rename.component.html"
+                },
+                {
+                    "blank": 67,
+                    "code": 290,
+                    "comment": 53,
+                    "filename": "src/app/dashboard.rename.component.ts"
+                },
+                {
+                    "blank": 8,
+                    "code": 87,
+                    "comment": 9,
+                    "filename": "src/app/dashboard.save.component.css"
+                },
+                {
+                    "blank": 5,
+                    "code": 70,
+                    "comment": 0,
+                    "filename": "src/app/dashboard.save.component.html"
+                },
+                {
+                    "blank": 21,
+                    "code": 69,
+                    "comment": 15,
+                    "filename": "src/app/dashboard.save.component.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 57,
+                    "comment": 6,
+                    "filename": "src/app/dashboard.saveas.component.css"
+                },
+                {
+                    "blank": 6,
+                    "code": 68,
+                    "comment": 0,
+                    "filename": "src/app/dashboard.saveas.component.html"
+                },
+                {
+                    "blank": 18,
+                    "code": 54,
+                    "comment": 12,
+                    "filename": "src/app/dashboard.saveas.component.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 36,
+                    "comment": 3,
+                    "filename": "src/app/dashboard.schedule.component.css"
+                },
+                {
+                    "blank": 9,
+                    "code": 100,
+                    "comment": 0,
+                    "filename": "src/app/dashboard.schedule.component.html"
+                },
+                {
+                    "blank": 18,
+                    "code": 49,
+                    "comment": 11,
+                    "filename": "src/app/dashboard.schedule.component.ts"
+                },
+                {
+                    "blank": 34,
+                    "code": 525,
+                    "comment": 64,
+                    "filename": "src/app/dashboard.scheduleEdit.component.css"
+                },
+                {
+                    "blank": 22,
+                    "code": 510,
+                    "comment": 0,
+                    "filename": "src/app/dashboard.scheduleEdit.component.html"
+                },
+                {
+                    "blank": 53,
+                    "code": 285,
+                    "comment": 34,
+                    "filename": "src/app/dashboard.scheduleEdit.component.ts"
+                },
+                {
+                    "blank": 5,
+                    "code": 120,
+                    "comment": 13,
+                    "filename": "src/app/dashboard.share.component.css"
+                },
+                {
+                    "blank": 8,
+                    "code": 206,
+                    "comment": 0,
+                    "filename": "src/app/dashboard.share.component.html"
+                },
+                {
+                    "blank": 77,
+                    "code": 298,
+                    "comment": 35,
+                    "filename": "src/app/dashboard.share.component.ts"
+                },
+                {
+                    "blank": 5,
+                    "code": 71,
+                    "comment": 7,
+                    "filename": "src/app/dashboard.snapshots.component.css"
+                },
+                {
+                    "blank": 7,
+                    "code": 113,
+                    "comment": 0,
+                    "filename": "src/app/dashboard.snapshots.component.html"
+                },
+                {
+                    "blank": 37,
+                    "code": 152,
+                    "comment": 45,
+                    "filename": "src/app/dashboard.snapshots.component.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 60,
+                    "comment": 6,
+                    "filename": "src/app/dashboard.subscribe.component.css"
+                },
+                {
+                    "blank": 14,
+                    "code": 132,
+                    "comment": 0,
+                    "filename": "src/app/dashboard.subscribe.component.html"
+                },
+                {
+                    "blank": 64,
+                    "code": 259,
+                    "comment": 36,
+                    "filename": "src/app/dashboard.subscribe.component.ts"
+                },
+                {
+                    "blank": 8,
+                    "code": 136,
+                    "comment": 15,
+                    "filename": "src/app/dashboard.tab.component.css"
+                },
+                {
+                    "blank": 14,
+                    "code": 154,
+                    "comment": 0,
+                    "filename": "src/app/dashboard.tab.component.html"
+                },
+                {
+                    "blank": 51,
+                    "code": 213,
+                    "comment": 31,
+                    "filename": "src/app/dashboard.tab.component.ts"
+                },
+                {
+                    "blank": 13,
+                    "code": 98,
+                    "comment": 11,
+                    "filename": "src/app/dashboard.tags.component.css"
+                },
+                {
+                    "blank": 8,
+                    "code": 122,
+                    "comment": 0,
+                    "filename": "src/app/dashboard.tags.component.html"
+                },
+                {
+                    "blank": 46,
+                    "code": 161,
+                    "comment": 29,
+                    "filename": "src/app/dashboard.tags.component.ts"
+                },
+                {
+                    "blank": 6,
+                    "code": 77,
+                    "comment": 8,
+                    "filename": "src/app/dashboard.template.component.css"
+                },
+                {
+                    "blank": 10,
+                    "code": 78,
+                    "comment": 0,
+                    "filename": "src/app/dashboard.template.component.html"
+                },
+                {
+                    "blank": 25,
+                    "code": 80,
+                    "comment": 17,
+                    "filename": "src/app/dashboard.template.component.ts"
+                },
+                {
+                    "blank": 6,
+                    "code": 55,
+                    "comment": 4,
+                    "filename": "src/app/dashboard.theme.component.css"
+                },
+                {
+                    "blank": 9,
+                    "code": 62,
+                    "comment": 0,
+                    "filename": "src/app/dashboard.theme.component.html"
+                },
+                {
+                    "blank": 15,
+                    "code": 41,
+                    "comment": 8,
+                    "filename": "src/app/dashboard.theme.component.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 39,
+                    "comment": 3,
+                    "filename": "src/app/dashboard.treeview.component.css"
+                },
+                {
+                    "blank": 8,
+                    "code": 60,
+                    "comment": 0,
+                    "filename": "src/app/dashboard.treeview.component.html"
+                },
+                {
+                    "blank": 31,
+                    "code": 153,
+                    "comment": 21,
+                    "filename": "src/app/dashboard.treeview.component.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 37,
+                    "comment": 3,
+                    "filename": "src/app/dashboard.usagestats.component.css"
+                },
+                {
+                    "blank": 5,
+                    "code": 45,
+                    "comment": 0,
+                    "filename": "src/app/dashboard.usagestats.component.html"
+                },
+                {
+                    "blank": 18,
+                    "code": 45,
+                    "comment": 12,
+                    "filename": "src/app/dashboard.usagestats.component.ts"
+                },
+                {
+                    "blank": 6,
+                    "code": 53,
+                    "comment": 3,
+                    "filename": "src/app/data.businessGlossary.component.css"
+                },
+                {
+                    "blank": 3,
+                    "code": 54,
+                    "comment": 0,
+                    "filename": "src/app/data.businessGlossary.component.html"
+                },
+                {
+                    "blank": 26,
+                    "code": 51,
+                    "comment": 14,
+                    "filename": "src/app/data.businessGlossary.component.ts"
+                },
+                {
+                    "blank": 8,
+                    "code": 93,
+                    "comment": 8,
+                    "filename": "src/app/data.combination.append.component.css"
+                },
+                {
+                    "blank": 10,
+                    "code": 103,
+                    "comment": 0,
+                    "filename": "src/app/data.combination.append.component.html"
+                },
+                {
+                    "blank": 43,
+                    "code": 155,
+                    "comment": 30,
+                    "filename": "src/app/data.combination.append.component.ts"
+                },
+                {
+                    "blank": 12,
+                    "code": 161,
+                    "comment": 18,
+                    "filename": "src/app/data.combination.component.css"
+                },
+                {
+                    "blank": 20,
+                    "code": 157,
+                    "comment": 0,
+                    "filename": "src/app/data.combination.component.html"
+                },
+                {
+                    "blank": 37,
+                    "code": 95,
+                    "comment": 19,
+                    "filename": "src/app/data.combination.component.ts"
+                },
+                {
+                    "blank": 63,
+                    "code": 527,
+                    "comment": 71,
+                    "filename": "src/app/data.datasourceOverview.component.css"
+                },
+                {
+                    "blank": 57,
+                    "code": 367,
+                    "comment": 5,
+                    "filename": "src/app/data.datasourceOverview.component.html"
+                },
+                {
+                    "blank": 73,
+                    "code": 196,
+                    "comment": 94,
+                    "filename": "src/app/data.datasourceOverview.component.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 36,
+                    "comment": 3,
+                    "filename": "src/app/data.datasourceSchedule.component.css"
+                },
+                {
+                    "blank": 9,
+                    "code": 98,
+                    "comment": 0,
+                    "filename": "src/app/data.datasourceSchedule.component.html"
+                },
+                {
+                    "blank": 18,
+                    "code": 48,
+                    "comment": 11,
+                    "filename": "src/app/data.datasourceSchedule.component.ts"
+                },
+                {
+                    "blank": 35,
+                    "code": 541,
+                    "comment": 66,
+                    "filename": "src/app/data.datasourceScheduleEdit.component.css"
+                },
+                {
+                    "blank": 23,
+                    "code": 522,
+                    "comment": 0,
+                    "filename": "src/app/data.datasourceScheduleEdit.component.html"
+                },
+                {
+                    "blank": 59,
+                    "code": 323,
+                    "comment": 35,
+                    "filename": "src/app/data.datasourceScheduleEdit.component.ts"
+                },
+                {
+                    "blank": 5,
+                    "code": 58,
+                    "comment": 5,
+                    "filename": "src/app/data.datasourceUsage.component.css"
+                },
+                {
+                    "blank": 11,
+                    "code": 74,
+                    "comment": 0,
+                    "filename": "src/app/data.datasourceUsage.component.html"
+                },
+                {
+                    "blank": 29,
+                    "code": 70,
+                    "comment": 16,
+                    "filename": "src/app/data.datasourceUsage.component.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 47,
+                    "comment": 4,
+                    "filename": "src/app/data.deleteDatasource.component.css"
+                },
+                {
+                    "blank": 6,
+                    "code": 72,
+                    "comment": 0,
+                    "filename": "src/app/data.deleteDatasource.component.html"
+                },
+                {
+                    "blank": 29,
+                    "code": 85,
+                    "comment": 15,
+                    "filename": "src/app/data.deleteDatasource.component.ts"
+                },
+                {
+                    "blank": 19,
+                    "code": 248,
+                    "comment": 29,
+                    "filename": "src/app/data.description.component.css"
+                },
+                {
+                    "blank": 27,
+                    "code": 251,
+                    "comment": 0,
+                    "filename": "src/app/data.description.component.html"
+                },
+                {
+                    "blank": 29,
+                    "code": 94,
+                    "comment": 18,
+                    "filename": "src/app/data.description.component.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 37,
+                    "comment": 3,
+                    "filename": "src/app/data.dictionary.component.css"
+                },
+                {
+                    "blank": 2,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "src/app/data.dictionary.component.html"
+                },
+                {
+                    "blank": 18,
+                    "code": 45,
+                    "comment": 12,
+                    "filename": "src/app/data.dictionary.component.ts"
+                },
+                {
+                    "blank": 7,
+                    "code": 83,
+                    "comment": 8,
+                    "filename": "src/app/data.direct.export.component.css"
+                },
+                {
+                    "blank": 10,
+                    "code": 80,
+                    "comment": 0,
+                    "filename": "src/app/data.direct.export.component.html"
+                },
+                {
+                    "blank": 30,
+                    "code": 68,
+                    "comment": 16,
+                    "filename": "src/app/data.direct.export.component.ts"
+                },
+                {
+                    "blank": 12,
+                    "code": 195,
+                    "comment": 21,
+                    "filename": "src/app/data.direct.fileCSV.component.css"
+                },
+                {
+                    "blank": 21,
+                    "code": 182,
+                    "comment": 0,
+                    "filename": "src/app/data.direct.fileCSV.component.html"
+                },
+                {
+                    "blank": 77,
+                    "code": 305,
+                    "comment": 81,
+                    "filename": "src/app/data.direct.fileCSV.component.ts"
+                },
+                {
+                    "blank": 12,
+                    "code": 187,
+                    "comment": 20,
+                    "filename": "src/app/data.direct.fileJSON.component.css"
+                },
+                {
+                    "blank": 20,
+                    "code": 176,
+                    "comment": 0,
+                    "filename": "src/app/data.direct.fileJSON.component.html"
+                },
+                {
+                    "blank": 67,
+                    "code": 330,
+                    "comment": 46,
+                    "filename": "src/app/data.direct.fileJSON.component.ts"
+                },
+                {
+                    "blank": 12,
+                    "code": 197,
+                    "comment": 21,
+                    "filename": "src/app/data.direct.fileSpreadsheet.component.css"
+                },
+                {
+                    "blank": 24,
+                    "code": 187,
+                    "comment": 0,
+                    "filename": "src/app/data.direct.fileSpreadsheet.component.html"
+                },
+                {
+                    "blank": 73,
+                    "code": 382,
+                    "comment": 44,
+                    "filename": "src/app/data.direct.fileSpreadsheet.component.ts"
+                },
+                {
+                    "blank": 14,
+                    "code": 133,
+                    "comment": 18,
+                    "filename": "src/app/data.direct.googleSheets.component.css"
+                },
+                {
+                    "blank": 18,
+                    "code": 147,
+                    "comment": 0,
+                    "filename": "src/app/data.direct.googleSheets.component.html"
+                },
+                {
+                    "blank": 45,
+                    "code": 257,
+                    "comment": 28,
+                    "filename": "src/app/data.direct.googleSheets.component.ts"
+                },
+                {
+                    "blank": 8,
+                    "code": 101,
+                    "comment": 10,
+                    "filename": "src/app/data.direct.import.component.css"
+                },
+                {
+                    "blank": 7,
+                    "code": 86,
+                    "comment": 0,
+                    "filename": "src/app/data.direct.import.component.html"
+                },
+                {
+                    "blank": 38,
+                    "code": 114,
+                    "comment": 25,
+                    "filename": "src/app/data.direct.import.component.ts"
+                },
+                {
+                    "blank": 19,
+                    "code": 223,
+                    "comment": 30,
+                    "filename": "src/app/data.direct.Nosql.component.css"
+                },
+                {
+                    "blank": 24,
+                    "code": 197,
+                    "comment": 0,
+                    "filename": "src/app/data.direct.Nosql.component.html"
+                },
+                {
+                    "blank": 56,
+                    "code": 278,
+                    "comment": 34,
+                    "filename": "src/app/data.direct.Nosql.component.ts"
+                },
+                {
+                    "blank": 26,
+                    "code": 265,
+                    "comment": 32,
+                    "filename": "src/app/data.direct.queryBuilder.component.css"
+                },
+                {
+                    "blank": 33,
+                    "code": 254,
+                    "comment": 0,
+                    "filename": "src/app/data.direct.queryBuilder.component.html"
+                },
+                {
+                    "blank": 76,
+                    "code": 433,
+                    "comment": 49,
+                    "filename": "src/app/data.direct.queryBuilder.component.ts"
+                },
+                {
+                    "blank": 9,
+                    "code": 111,
+                    "comment": 15,
+                    "filename": "src/app/data.direct.service.component.css"
+                },
+                {
+                    "blank": 9,
+                    "code": 109,
+                    "comment": 0,
+                    "filename": "src/app/data.direct.service.component.html"
+                },
+                {
+                    "blank": 34,
+                    "code": 61,
+                    "comment": 51,
+                    "filename": "src/app/data.direct.service.component.ts"
+                },
+                {
+                    "blank": 23,
+                    "code": 269,
+                    "comment": 36,
+                    "filename": "src/app/data.direct.sqlEditor.component.css"
+                },
+                {
+                    "blank": 28,
+                    "code": 256,
+                    "comment": 0,
+                    "filename": "src/app/data.direct.sqlEditor.component.html"
+                },
+                {
+                    "blank": 75,
+                    "code": 330,
+                    "comment": 57,
+                    "filename": "src/app/data.direct.sqlEditor.component.ts"
+                },
+                {
+                    "blank": 15,
+                    "code": 138,
+                    "comment": 19,
+                    "filename": "src/app/data.direct.web.component.css"
+                },
+                {
+                    "blank": 22,
+                    "code": 159,
+                    "comment": 0,
+                    "filename": "src/app/data.direct.web.component.html"
+                },
+                {
+                    "blank": 51,
+                    "code": 302,
+                    "comment": 31,
+                    "filename": "src/app/data.direct.web.component.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 50,
+                    "comment": 5,
+                    "filename": "src/app/data.editDatasource.component.css"
+                },
+                {
+                    "blank": 7,
+                    "code": 93,
+                    "comment": 0,
+                    "filename": "src/app/data.editDatasource.component.html"
+                },
+                {
+                    "blank": 34,
+                    "code": 106,
+                    "comment": 19,
+                    "filename": "src/app/data.editDatasource.component.ts"
+                },
+                {
+                    "blank": 8,
+                    "code": 86,
+                    "comment": 7,
+                    "filename": "src/app/data.managed.busGlossary.component.css"
+                },
+                {
+                    "blank": 6,
+                    "code": 93,
+                    "comment": 0,
+                    "filename": "src/app/data.managed.busGlossary.component.html"
+                },
+                {
+                    "blank": 39,
+                    "code": 143,
+                    "comment": 37,
+                    "filename": "src/app/data.managed.busGlossary.component.ts"
+                },
+                {
+                    "blank": 17,
+                    "code": 193,
+                    "comment": 24,
+                    "filename": "src/app/data.managed.connection.component.css"
+                },
+                {
+                    "blank": 15,
+                    "code": 216,
+                    "comment": 0,
+                    "filename": "src/app/data.managed.connection.component.html"
+                },
+                {
+                    "blank": 54,
+                    "code": 162,
+                    "comment": 36,
+                    "filename": "src/app/data.managed.connection.component.ts"
+                },
+                {
+                    "blank": 8,
+                    "code": 95,
+                    "comment": 8,
+                    "filename": "src/app/data.managed.dataDictionary.component.css"
+                },
+                {
+                    "blank": 7,
+                    "code": 99,
+                    "comment": 0,
+                    "filename": "src/app/data.managed.dataDictionary.component.html"
+                },
+                {
+                    "blank": 36,
+                    "code": 147,
+                    "comment": 37,
+                    "filename": "src/app/data.managed.dataDictionary.component.ts"
+                },
+                {
+                    "blank": 12,
+                    "code": 128,
+                    "comment": 14,
+                    "filename": "src/app/data.managed.dataOwnership.component.css"
+                },
+                {
+                    "blank": 10,
+                    "code": 169,
+                    "comment": 0,
+                    "filename": "src/app/data.managed.dataOwnership.component.html"
+                },
+                {
+                    "blank": 61,
+                    "code": 215,
+                    "comment": 40,
+                    "filename": "src/app/data.managed.dataOwnership.component.ts"
+                },
+                {
+                    "blank": 18,
+                    "code": 206,
+                    "comment": 26,
+                    "filename": "src/app/data.managed.dataQuality.component.css"
+                },
+                {
+                    "blank": 17,
+                    "code": 237,
+                    "comment": 0,
+                    "filename": "src/app/data.managed.dataQuality.component.html"
+                },
+                {
+                    "blank": 58,
+                    "code": 188,
+                    "comment": 35,
+                    "filename": "src/app/data.managed.dataQuality.component.ts"
+                },
+                {
+                    "blank": 18,
+                    "code": 191,
+                    "comment": 25,
+                    "filename": "src/app/data.managed.graphqlEditor.component.css"
+                },
+                {
+                    "blank": 22,
+                    "code": 179,
+                    "comment": 0,
+                    "filename": "src/app/data.managed.graphqlEditor.component.html"
+                },
+                {
+                    "blank": 59,
+                    "code": 317,
+                    "comment": 38,
+                    "filename": "src/app/data.managed.graphqlEditor.component.ts"
+                },
+                {
+                    "blank": 18,
+                    "code": 191,
+                    "comment": 25,
+                    "filename": "src/app/data.managed.neo4jEditor.component.css"
+                },
+                {
+                    "blank": 22,
+                    "code": 171,
+                    "comment": 0,
+                    "filename": "src/app/data.managed.neo4jEditor.component.html"
+                },
+                {
+                    "blank": 59,
+                    "code": 307,
+                    "comment": 38,
+                    "filename": "src/app/data.managed.neo4jEditor.component.ts"
+                },
+                {
+                    "blank": 18,
+                    "code": 191,
+                    "comment": 25,
+                    "filename": "src/app/data.managed.noSqlEditor.component.css"
+                },
+                {
+                    "blank": 22,
+                    "code": 171,
+                    "comment": 0,
+                    "filename": "src/app/data.managed.noSqlEditor.component.html"
+                },
+                {
+                    "blank": 54,
+                    "code": 268,
+                    "comment": 34,
+                    "filename": "src/app/data.managed.noSqlEditor.component.ts"
+                },
+                {
+                    "blank": 18,
+                    "code": 191,
+                    "comment": 25,
+                    "filename": "src/app/data.managed.overlayEditor.component.css"
+                },
+                {
+                    "blank": 25,
+                    "code": 178,
+                    "comment": 31,
+                    "filename": "src/app/data.managed.overlayEditor.component.html"
+                },
+                {
+                    "blank": 55,
+                    "code": 275,
+                    "comment": 34,
+                    "filename": "src/app/data.managed.overlayEditor.component.ts"
+                },
+                {
+                    "blank": 25,
+                    "code": 238,
+                    "comment": 27,
+                    "filename": "src/app/data.managed.queryBuilder.component.css"
+                },
+                {
+                    "blank": 32,
+                    "code": 222,
+                    "comment": 0,
+                    "filename": "src/app/data.managed.queryBuilder.component.html"
+                },
+                {
+                    "blank": 84,
+                    "code": 458,
+                    "comment": 52,
+                    "filename": "src/app/data.managed.queryBuilder.component.ts"
+                },
+                {
+                    "blank": 18,
+                    "code": 191,
+                    "comment": 25,
+                    "filename": "src/app/data.managed.sqlEditor.component.css"
+                },
+                {
+                    "blank": 22,
+                    "code": 171,
+                    "comment": 0,
+                    "filename": "src/app/data.managed.sqlEditor.component.html"
+                },
+                {
+                    "blank": 59,
+                    "code": 306,
+                    "comment": 38,
+                    "filename": "src/app/data.managed.sqlEditor.component.ts"
+                },
+                {
+                    "blank": 6,
+                    "code": 72,
+                    "comment": 7,
+                    "filename": "src/app/data.refresh.once.component.css"
+                },
+                {
+                    "blank": 13,
+                    "code": 76,
+                    "comment": 0,
+                    "filename": "src/app/data.refresh.once.component.html"
+                },
+                {
+                    "blank": 49,
+                    "code": 162,
+                    "comment": 28,
+                    "filename": "src/app/data.refresh.once.component.ts"
+                },
+                {
+                    "blank": 6,
+                    "code": 60,
+                    "comment": 7,
+                    "filename": "src/app/data.refresh.repeat.component.css"
+                },
+                {
+                    "blank": 7,
+                    "code": 63,
+                    "comment": 0,
+                    "filename": "src/app/data.refresh.repeat.component.html"
+                },
+                {
+                    "blank": 34,
+                    "code": 58,
+                    "comment": 51,
+                    "filename": "src/app/data.refresh.repeat.component.ts"
+                },
+                {
+                    "blank": 16,
+                    "code": 216,
+                    "comment": 25,
+                    "filename": "src/app/data.share.component.css"
+                },
+                {
+                    "blank": 22,
+                    "code": 246,
+                    "comment": 0,
+                    "filename": "src/app/data.share.component.html"
+                },
+                {
+                    "blank": 63,
+                    "code": 277,
+                    "comment": 39,
+                    "filename": "src/app/data.share.component.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 37,
+                    "comment": 3,
+                    "filename": "src/app/data.summary.component.css"
+                },
+                {
+                    "blank": 5,
+                    "code": 47,
+                    "comment": 0,
+                    "filename": "src/app/data.summary.component.html"
+                },
+                {
+                    "blank": 18,
+                    "code": 45,
+                    "comment": 12,
+                    "filename": "src/app/data.summary.component.ts"
+                },
+                {
+                    "blank": 12,
+                    "code": 196,
+                    "comment": 22,
+                    "filename": "src/app/data.transformation.component.css"
+                },
+                {
+                    "blank": 23,
+                    "code": 217,
+                    "comment": 0,
+                    "filename": "src/app/data.transformation.component.html"
+                },
+                {
+                    "blank": 96,
+                    "code": 502,
+                    "comment": 80,
+                    "filename": "src/app/data.transformation.component.ts"
+                },
+                {
+                    "blank": 13,
+                    "code": 38,
+                    "comment": 18,
+                    "filename": "src/app/global-function.service.ts"
+                },
+                {
+                    "blank": 1869,
+                    "code": 8610,
+                    "comment": 1416,
+                    "filename": "src/app/global-variable.service.ts"
+                },
+                {
+                    "blank": 5,
+                    "code": 47,
+                    "comment": 4,
+                    "filename": "src/app/groups.component.css"
+                },
+                {
+                    "blank": 12,
+                    "code": 80,
+                    "comment": 6,
+                    "filename": "src/app/groups.component.html"
+                },
+                {
+                    "blank": 25,
+                    "code": 70,
+                    "comment": 11,
+                    "filename": "src/app/groups.component.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "src/app/help.component.css"
+                },
+                {
+                    "blank": 6,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": "src/app/help.component.html"
+                },
+                {
+                    "blank": 10,
+                    "code": 63,
+                    "comment": 5,
+                    "filename": "src/app/help.component.ts"
+                },
+                {
+                    "blank": 0,
+                    "code": 2,
+                    "comment": 0,
+                    "filename": "src/app/index.ts"
+                },
+                {
+                    "blank": 71,
+                    "code": 268,
+                    "comment": 12,
+                    "filename": "src/app/Installation Notes.md"
+                },
+                {
+                    "blank": 9,
+                    "code": 110,
+                    "comment": 11,
+                    "filename": "src/app/landing.component.css"
+                },
+                {
+                    "blank": 7,
+                    "code": 102,
+                    "comment": 0,
+                    "filename": "src/app/landing.component.html"
+                },
+                {
+                    "blank": 63,
+                    "code": 206,
+                    "comment": 37,
+                    "filename": "src/app/landing.component.ts"
+                },
+                {
+                    "blank": 9,
+                    "code": 102,
+                    "comment": 11,
+                    "filename": "src/app/login.component.css"
+                },
+                {
+                    "blank": 9,
+                    "code": 90,
+                    "comment": 0,
+                    "filename": "src/app/login.component.html"
+                },
+                {
+                    "blank": 31,
+                    "code": 89,
+                    "comment": 20,
+                    "filename": "src/app/login.component.ts"
+                },
+                {
+                    "blank": 5,
+                    "code": 61,
+                    "comment": 6,
+                    "filename": "src/app/logout.component.css"
+                },
+                {
+                    "blank": 6,
+                    "code": 56,
+                    "comment": 0,
+                    "filename": "src/app/logout.component.html"
+                },
+                {
+                    "blank": 22,
+                    "code": 57,
+                    "comment": 27,
+                    "filename": "src/app/logout.component.ts"
+                },
+                {
+                    "blank": 12,
+                    "code": 105,
+                    "comment": 12,
+                    "filename": "src/app/manage.colours.component.css"
+                },
+                {
+                    "blank": 10,
+                    "code": 131,
+                    "comment": 0,
+                    "filename": "src/app/manage.colours.component.html"
+                },
+                {
+                    "blank": 52,
+                    "code": 176,
+                    "comment": 32,
+                    "filename": "src/app/manage.colours.component.ts"
+                },
+                {
+                    "blank": 145,
+                    "code": 1120,
+                    "comment": 849,
+                    "filename": "src/app/models.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 39,
+                    "comment": 3,
+                    "filename": "src/app/mypermissions.component.css"
+                },
+                {
+                    "blank": 12,
+                    "code": 127,
+                    "comment": 0,
+                    "filename": "src/app/mypermissions.component.html"
+                },
+                {
+                    "blank": 24,
+                    "code": 78,
+                    "comment": 14,
+                    "filename": "src/app/mypermissions.component.ts"
+                },
+                {
+                    "blank": 20,
+                    "code": 190,
+                    "comment": 22,
+                    "filename": "src/app/myprofile.component.css"
+                },
+                {
+                    "blank": 18,
+                    "code": 250,
+                    "comment": 12,
+                    "filename": "src/app/myprofile.component.html"
+                },
+                {
+                    "blank": 34,
+                    "code": 66,
+                    "comment": 81,
+                    "filename": "src/app/myprofile.component.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 13,
+                    "comment": 3,
+                    "filename": "src/app/pipe.filter.component.ts"
+                },
+                {
+                    "blank": 23,
+                    "code": 315,
+                    "comment": 38,
+                    "filename": "src/app/preferences.component.css"
+                },
+                {
+                    "blank": 25,
+                    "code": 218,
+                    "comment": 0,
+                    "filename": "src/app/preferences.component.html"
+                },
+                {
+                    "blank": 52,
+                    "code": 217,
+                    "comment": 30,
+                    "filename": "src/app/preferences.component.ts"
+                },
+                {
+                    "blank": 111,
+                    "code": 387,
+                    "comment": 15,
+                    "filename": "src/app/roadmap.md"
+                },
+                {
+                    "blank": 9,
+                    "code": 64,
+                    "comment": 7,
+                    "filename": "src/app/shape.delete.component.css"
+                },
+                {
+                    "blank": 6,
+                    "code": 59,
+                    "comment": 0,
+                    "filename": "src/app/shape.delete.component.html"
+                },
+                {
+                    "blank": 19,
+                    "code": 58,
+                    "comment": 9,
+                    "filename": "src/app/shape.delete.component.ts"
+                },
+                {
+                    "blank": 8,
+                    "code": 57,
+                    "comment": 6,
+                    "filename": "src/app/shape.deleteAll.component.css"
+                },
+                {
+                    "blank": 5,
+                    "code": 55,
+                    "comment": 0,
+                    "filename": "src/app/shape.deleteAll.component.html"
+                },
+                {
+                    "blank": 18,
+                    "code": 53,
+                    "comment": 9,
+                    "filename": "src/app/shape.deleteAll.component.ts"
+                },
+                {
+                    "blank": 44,
+                    "code": 773,
+                    "comment": 103,
+                    "filename": "src/app/shape.editor.component.css"
+                },
+                {
+                    "blank": 100,
+                    "code": 1525,
+                    "comment": 79,
+                    "filename": "src/app/shape.editor.component.html"
+                },
+                {
+                    "blank": 210,
+                    "code": 835,
+                    "comment": 142,
+                    "filename": "src/app/shape.editor.component.ts"
+                },
+                {
+                    "blank": 8,
+                    "code": 57,
+                    "comment": 6,
+                    "filename": "src/app/slicer.delete.component.css"
+                },
+                {
+                    "blank": 5,
+                    "code": 51,
+                    "comment": 0,
+                    "filename": "src/app/slicer.delete.component.html"
+                },
+                {
+                    "blank": 17,
+                    "code": 56,
+                    "comment": 9,
+                    "filename": "src/app/slicer.delete.component.ts"
+                },
+                {
+                    "blank": 12,
+                    "code": 104,
+                    "comment": 9,
+                    "filename": "src/app/slicer.editor.component.css"
+                },
+                {
+                    "blank": 27,
+                    "code": 247,
+                    "comment": 0,
+                    "filename": "src/app/slicer.editor.component.html"
+                },
+                {
+                    "blank": 91,
+                    "code": 406,
+                    "comment": 88,
+                    "filename": "src/app/slicer.editor.component.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 19,
+                    "comment": 0,
+                    "filename": "src/app/slicer.single.component.css"
+                },
+                {
+                    "blank": 3,
+                    "code": 59,
+                    "comment": 0,
+                    "filename": "src/app/slicer.single.component.html"
+                },
+                {
+                    "blank": 26,
+                    "code": 105,
+                    "comment": 21,
+                    "filename": "src/app/slicer.single.component.ts"
+                },
+                {
+                    "blank": 8,
+                    "code": 84,
+                    "comment": 2,
+                    "filename": "src/app/statusbar.component.css"
+                },
+                {
+                    "blank": 21,
+                    "code": 219,
+                    "comment": 6,
+                    "filename": "src/app/statusbar.component.html"
+                },
+                {
+                    "blank": 108,
+                    "code": 477,
+                    "comment": 67,
+                    "filename": "src/app/statusbar.component.ts"
+                },
+                {
+                    "blank": 24,
+                    "code": 212,
+                    "comment": 25,
+                    "filename": "src/app/systemsettings.component.css"
+                },
+                {
+                    "blank": 24,
+                    "code": 240,
+                    "comment": 0,
+                    "filename": "src/app/systemsettings.component.html"
+                },
+                {
+                    "blank": 20,
+                    "code": 129,
+                    "comment": 12,
+                    "filename": "src/app/systemsettings.component.ts"
+                },
+                {
+                    "blank": 8,
+                    "code": 57,
+                    "comment": 6,
+                    "filename": "src/app/table.delete.component.css"
+                },
+                {
+                    "blank": 5,
+                    "code": 51,
+                    "comment": 0,
+                    "filename": "src/app/table.delete.component.html"
+                },
+                {
+                    "blank": 17,
+                    "code": 56,
+                    "comment": 9,
+                    "filename": "src/app/table.delete.component.ts"
+                },
+                {
+                    "blank": 22,
+                    "code": 186,
+                    "comment": 15,
+                    "filename": "src/app/table.editor.component.css"
+                },
+                {
+                    "blank": 36,
+                    "code": 256,
+                    "comment": 0,
+                    "filename": "src/app/table.editor.component.html"
+                },
+                {
+                    "blank": 81,
+                    "code": 300,
+                    "comment": 79,
+                    "filename": "src/app/table.editor.component.ts"
+                },
+                {
+                    "blank": 13,
+                    "code": 46,
+                    "comment": 21,
+                    "filename": "src/app/table.single.component.css"
+                },
+                {
+                    "blank": 6,
+                    "code": 28,
+                    "comment": 0,
+                    "filename": "src/app/table.single.component.html"
+                },
+                {
+                    "blank": 19,
+                    "code": 62,
+                    "comment": 17,
+                    "filename": "src/app/table.single.component.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 18,
+                    "comment": 0,
+                    "filename": "src/app/test.delay.directive.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 14,
+                    "comment": 0,
+                    "filename": "src/app/test.ngif.directive.ts"
+                },
+                {
+                    "blank": 18,
+                    "code": 124,
+                    "comment": 16,
+                    "filename": "src/app/user.palette.buttonbar.component.css"
+                },
+                {
+                    "blank": 5,
+                    "code": 145,
+                    "comment": 9,
+                    "filename": "src/app/user.palette.buttonbar.component.html"
+                },
+                {
+                    "blank": 84,
+                    "code": 268,
+                    "comment": 89,
+                    "filename": "src/app/user.palette.buttonbar.component.ts"
+                },
+                {
+                    "blank": 8,
+                    "code": 69,
+                    "comment": 10,
+                    "filename": "src/app/users.component.css"
+                },
+                {
+                    "blank": 11,
+                    "code": 80,
+                    "comment": 3,
+                    "filename": "src/app/users.component.html"
+                },
+                {
+                    "blank": 23,
+                    "code": 64,
+                    "comment": 11,
+                    "filename": "src/app/users.component.ts"
+                },
+                {
+                    "blank": 7,
+                    "code": 62,
+                    "comment": 6,
+                    "filename": "src/app/widget.annotations.component.css"
+                },
+                {
+                    "blank": 6,
+                    "code": 60,
+                    "comment": 0,
+                    "filename": "src/app/widget.annotations.component.html"
+                },
+                {
+                    "blank": 20,
+                    "code": 59,
+                    "comment": 12,
+                    "filename": "src/app/widget.annotations.component.ts"
+                },
+                {
+                    "blank": 10,
+                    "code": 71,
+                    "comment": 7,
+                    "filename": "src/app/widget.checkpoints.component.css"
+                },
+                {
+                    "blank": 13,
+                    "code": 104,
+                    "comment": 5,
+                    "filename": "src/app/widget.checkpoints.component.html"
+                },
+                {
+                    "blank": 46,
+                    "code": 172,
+                    "comment": 24,
+                    "filename": "src/app/widget.checkpoints.component.ts"
+                },
+                {
+                    "blank": 19,
+                    "code": 286,
+                    "comment": 37,
+                    "filename": "src/app/widget.container.component.css"
+                },
+                {
+                    "blank": 23,
+                    "code": 296,
+                    "comment": 2,
+                    "filename": "src/app/widget.container.component.html"
+                },
+                {
+                    "blank": 80,
+                    "code": 308,
+                    "comment": 54,
+                    "filename": "src/app/widget.container.component.ts"
+                },
+                {
+                    "blank": 22,
+                    "code": 308,
+                    "comment": 36,
+                    "filename": "src/app/widget.containerStylesAdd.component.css"
+                },
+                {
+                    "blank": 22,
+                    "code": 276,
+                    "comment": 21,
+                    "filename": "src/app/widget.containerStylesAdd.component.html"
+                },
+                {
+                    "blank": 64,
+                    "code": 187,
+                    "comment": 80,
+                    "filename": "src/app/widget.containerStylesAdd.component.ts"
+                },
+                {
+                    "blank": 19,
+                    "code": 315,
+                    "comment": 37,
+                    "filename": "src/app/widget.containerStylesEdit.component.css"
+                },
+                {
+                    "blank": 22,
+                    "code": 285,
+                    "comment": 21,
+                    "filename": "src/app/widget.containerStylesEdit.component.html"
+                },
+                {
+                    "blank": 89,
+                    "code": 308,
+                    "comment": 100,
+                    "filename": "src/app/widget.containerStylesEdit.component.ts"
+                },
+                {
+                    "blank": 9,
+                    "code": 56,
+                    "comment": 6,
+                    "filename": "src/app/widget.delete.component.css"
+                },
+                {
+                    "blank": 8,
+                    "code": 56,
+                    "comment": 0,
+                    "filename": "src/app/widget.delete.component.html"
+                },
+                {
+                    "blank": 20,
+                    "code": 82,
+                    "comment": 11,
+                    "filename": "src/app/widget.delete.component.ts"
+                },
+                {
+                    "blank": 7,
+                    "code": 124,
+                    "comment": 14,
+                    "filename": "src/app/widget.description.component.css"
+                },
+                {
+                    "blank": 11,
+                    "code": 103,
+                    "comment": 0,
+                    "filename": "src/app/widget.description.component.html"
+                },
+                {
+                    "blank": 16,
+                    "code": 38,
+                    "comment": 10,
+                    "filename": "src/app/widget.description.component.ts"
+                },
+                {
+                    "blank": 34,
+                    "code": 268,
+                    "comment": 17,
+                    "filename": "src/app/widget.editor.component.css"
+                },
+                {
+                    "blank": 51,
+                    "code": 405,
+                    "comment": 5,
+                    "filename": "src/app/widget.editor.component.html"
+                },
+                {
+                    "blank": 181,
+                    "code": 641,
+                    "comment": 165,
+                    "filename": "src/app/widget.editor.component.ts"
+                },
+                {
+                    "blank": 145,
+                    "code": 1782,
+                    "comment": 119,
+                    "filename": "src/app/widget.editor.componentNEW.css"
+                },
+                {
+                    "blank": 166,
+                    "code": 1839,
+                    "comment": 115,
+                    "filename": "src/app/widget.editor.componentNEW.html"
+                },
+                {
+                    "blank": 456,
+                    "code": 2296,
+                    "comment": 342,
+                    "filename": "src/app/widget.editor.componentNEW.ts"
+                },
+                {
+                    "blank": 3,
+                    "code": 45,
+                    "comment": 4,
+                    "filename": "src/app/widget.expand.component.css"
+                },
+                {
+                    "blank": 4,
+                    "code": 49,
+                    "comment": 0,
+                    "filename": "src/app/widget.expand.component.html"
+                },
+                {
+                    "blank": 19,
+                    "code": 57,
+                    "comment": 10,
+                    "filename": "src/app/widget.expand.component.ts"
+                },
+                {
+                    "blank": 9,
+                    "code": 81,
+                    "comment": 8,
+                    "filename": "src/app/widget.export.component.css"
+                },
+                {
+                    "blank": 10,
+                    "code": 68,
+                    "comment": 0,
+                    "filename": "src/app/widget.export.component.html"
+                },
+                {
+                    "blank": 24,
+                    "code": 79,
+                    "comment": 12,
+                    "filename": "src/app/widget.export.component.ts"
+                },
+                {
+                    "blank": 10,
+                    "code": 106,
+                    "comment": 9,
+                    "filename": "src/app/widget.hyperlinks.component.css"
+                },
+                {
+                    "blank": 18,
+                    "code": 114,
+                    "comment": 0,
+                    "filename": "src/app/widget.hyperlinks.component.html"
+                },
+                {
+                    "blank": 45,
+                    "code": 147,
+                    "comment": 29,
+                    "filename": "src/app/widget.hyperlinks.component.ts"
+                },
+                {
+                    "blank": 2,
+                    "code": 17,
+                    "comment": 0,
+                    "filename": "src/app/widget.refresh.component.css"
+                },
+                {
+                    "blank": 1,
+                    "code": 37,
+                    "comment": 0,
+                    "filename": "src/app/widget.refresh.component.html"
+                },
+                {
+                    "blank": 17,
+                    "code": 47,
+                    "comment": 11,
+                    "filename": "src/app/widget.refresh.component.ts"
+                },
+                {
+                    "blank": 5,
+                    "code": 28,
+                    "comment": 7,
+                    "filename": "src/app/widget.single.component.css"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "src/app/widget.single.component.html"
+                },
+                {
+                    "blank": 28,
+                    "code": 137,
+                    "comment": 31,
+                    "filename": "src/app/widget.single.component.ts"
+                },
+                {
+                    "blank": 5,
+                    "code": 34,
+                    "comment": 2,
+                    "filename": "src/app/widget.tablist.component.css"
+                },
+                {
+                    "blank": 4,
+                    "code": 33,
+                    "comment": 0,
+                    "filename": "src/app/widget.tablist.component.html"
+                },
+                {
+                    "blank": 22,
+                    "code": 75,
+                    "comment": 20,
+                    "filename": "src/app/widget.tablist.component.ts"
+                },
+                {
+                    "blank": 18,
+                    "code": 236,
+                    "comment": 27,
+                    "filename": "src/app/widget.title.component.css"
+                },
+                {
+                    "blank": 16,
+                    "code": 232,
+                    "comment": 0,
+                    "filename": "src/app/widget.title.component.html"
+                },
+                {
+                    "blank": 53,
+                    "code": 213,
+                    "comment": 35,
+                    "filename": "src/app/widget.title.component.ts"
+                },
+                {
+                    "filename": "src/assets/Button_Push-Mike_Koenig-1659525069.mp3",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/assets/Click2.mp3",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/assets/Click2.wav",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 19,
+                    "comment": 0,
+                    "filename": "src/assets/data.canvasSettings.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 106,
+                    "comment": 0,
+                    "filename": "src/assets/data.canvasUsers.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 26,
+                    "comment": 0,
+                    "filename": "src/assets/data.dashboardPermissions.json"
+                },
+                {
+                    "blank": 31,
+                    "code": 258,
+                    "comment": 0,
+                    "filename": "src/assets/data.dashboards.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 77,
+                    "comment": 0,
+                    "filename": "src/assets/data.dashboardSchedules.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 14,
+                    "comment": 0,
+                    "filename": "src/assets/data.dashboardSnapshots.json"
+                },
+                {
+                    "blank": 1,
+                    "code": 40,
+                    "comment": 0,
+                    "filename": "src/assets/data.dashboardsRecent.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 35,
+                    "comment": 0,
+                    "filename": "src/assets/data.dashboardSubscriptions.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 80,
+                    "comment": 0,
+                    "filename": "src/assets/data.dashboardTabs.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 22,
+                    "comment": 0,
+                    "filename": "src/assets/data.dashboardTags.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 7,
+                    "comment": 0,
+                    "filename": "src/assets/data.dashboardThemes.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 41,
+                    "comment": 0,
+                    "filename": "src/assets/data.dataQualityIssues.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 562,
+                    "comment": 0,
+                    "filename": "src/assets/data.dataset1.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 562,
+                    "comment": 0,
+                    "filename": "src/assets/data.dataset2.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 11,
+                    "comment": 0,
+                    "filename": "src/assets/data.dataset3.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 4468,
+                    "comment": 0,
+                    "filename": "src/assets/data.dataset4.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 72,
+                    "comment": 0,
+                    "filename": "src/assets/data.dataset5.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 38,
+                    "comment": 0,
+                    "filename": "src/assets/data.dataset6.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 4468,
+                    "comment": 0,
+                    "filename": "src/assets/data.dataset7.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 22,
+                    "comment": 0,
+                    "filename": "src/assets/data.dataset8.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 561,
+                    "comment": 0,
+                    "filename": "src/assets/data.dataset9.csv"
+                },
+                {
+                    "blank": 0,
+                    "code": 312,
+                    "comment": 0,
+                    "filename": "src/assets/data.datasets.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 16,
+                    "comment": 0,
+                    "filename": "src/assets/data.datasourceFilters.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 32,
+                    "comment": 0,
+                    "filename": "src/assets/data.datasourcePermissions.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 20,
+                    "comment": 0,
+                    "filename": "src/assets/data.datasourcePivots.json"
+                },
+                {
+                    "blank": 27,
+                    "code": 870,
+                    "comment": 0,
+                    "filename": "src/assets/data.datasources.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "src/assets/data.groups.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 162,
+                    "comment": 0,
+                    "filename": "src/assets/data.luno.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 2518,
+                    "comment": 0,
+                    "filename": "src/assets/data.paletteButtonBars.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 2518,
+                    "comment": 0,
+                    "filename": "src/assets/data.paletteButtonsSelecteds.json"
+                },
+                {
+                    "blank": 16,
+                    "code": 164,
+                    "comment": 0,
+                    "filename": "src/assets/data.transformations.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 13,
+                    "comment": 0,
+                    "filename": "src/assets/data.userPreferences.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 10177,
+                    "comment": 0,
+                    "filename": "src/assets/data.widgetCheckpoint.json"
+                },
+                {
+                    "blank": 57,
+                    "code": 3690,
+                    "comment": 0,
+                    "filename": "src/assets/data.widgets.json"
+                },
+                {
+                    "blank": 2,
+                    "code": 37,
+                    "comment": 0,
+                    "filename": "src/assets/datasource.sharePrices OLD.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0,
+                    "filename": "src/assets/datasource.sharePrices.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 33,
+                    "comment": 0,
+                    "filename": "src/assets/Lemonade2016.csv"
+                },
+                {
+                    "blank": 0,
+                    "code": 747,
+                    "comment": 0,
+                    "filename": "src/assets/settings.backgroundcolors.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "src/assets/settings.canvasActivities.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 30,
+                    "comment": 0,
+                    "filename": "src/assets/settings.canvasAlerts.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 42,
+                    "comment": 0,
+                    "filename": "src/assets/settings.canvasComments.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 38,
+                    "comment": 0,
+                    "filename": "src/assets/settings.canvasMessages.json"
+                },
+                {
+                    "filename": "src/assets/test.db",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 3,
+                    "code": 46,
+                    "comment": 0,
+                    "filename": "src/assets/vega-datasets/anscombe.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 120,
+                    "comment": 0,
+                    "filename": "src/assets/vega-datasets/barley.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 4468,
+                    "comment": 0,
+                    "filename": "src/assets/vega-datasets/cars.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 1481,
+                    "comment": 0,
+                    "filename": "src/assets/vega-datasets/flare.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "src/assets/vega-datasets/flights-2k.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 956,
+                    "comment": 0,
+                    "filename": "src/assets/vega-datasets/github.csv"
+                },
+                {
+                    "blank": 0,
+                    "code": 53552,
+                    "comment": 0,
+                    "filename": "src/assets/vega-datasets/jobs.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 3203,
+                    "comment": 0,
+                    "filename": "src/assets/vega-datasets/movies.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 570,
+                    "comment": 0,
+                    "filename": "src/assets/vega-datasets/population.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 1462,
+                    "comment": 0,
+                    "filename": "src/assets/vega-datasets/seattle-weather.csv"
+                },
+                {
+                    "blank": 0,
+                    "code": 561,
+                    "comment": 0,
+                    "filename": "src/assets/vega-datasets/stocks.csv"
+                },
+                {
+                    "blank": 0,
+                    "code": 5601,
+                    "comment": 0,
+                    "filename": "src/assets/vega-datasets/stocks1.csv"
+                },
+                {
+                    "blank": 0,
+                    "code": 56001,
+                    "comment": 0,
+                    "filename": "src/assets/vega-datasets/stocks2.csv"
+                },
+                {
+                    "blank": 0,
+                    "code": 168001,
+                    "comment": 0,
+                    "filename": "src/assets/vega-datasets/stocks3.csv"
+                },
+                {
+                    "blank": 0,
+                    "code": 504001,
+                    "comment": 0,
+                    "filename": "src/assets/vega-datasets/stocks4.csv"
+                },
+                {
+                    "blank": 0,
+                    "code": 1008001,
+                    "comment": 0,
+                    "filename": "src/assets/vega-datasets/stocks5.csv"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "src/assets/vega-datasets/unemployment-across-industries.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 3219,
+                    "comment": 0,
+                    "filename": "src/assets/vega-datasets/unemployment.tsv"
+                },
+                {
+                    "blank": 0,
+                    "code": 1,
+                    "comment": 0,
+                    "filename": "src/assets/vega-datasets/us-10m.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 3,
+                    "comment": 0,
+                    "filename": "src/environments/environment.prod.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 3,
+                    "comment": 4,
+                    "filename": "src/environments/environment.ts"
+                },
+                {
+                    "filename": "src/favicon.ico",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/arrow-scroll-icon.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 12,
+                    "comment": 0,
+                    "filename": "src/images/arrow.svg"
+                },
+                {
+                    "filename": "src/images/Avatar1.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/Avatar2.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/BackgroundDots.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/BarChart.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/BoltIcon.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/BubbleChart.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/CanvasHelpMenuData.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/CanvsHelpMenuAddGraph.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/ChartBarLine.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/ChartBinnedScatter.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/ChartBoxPlot.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/ChartCandleStick.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/ChartConfidence.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/ChartDivergingStackedBar.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/ChartFalkensee.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/ChartHistogram.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/ChartRangedDot.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/ChartStackedArea.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/ChartStackedBar.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/ChartSteam.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/ChartTableBubble.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/ChartTableHeat.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/ChartTrellisBar.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/CheckIcon.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/CheckIcon2.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/CircleIcon.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/CircleIcon2.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 1,
+                    "code": 17,
+                    "comment": 1,
+                    "filename": "src/images/clarity_logo.svg"
+                },
+                {
+                    "filename": "src/images/Cloud Image.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/CodeIcon.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/Coffee 1.jpeg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/Coffee 2.jpeg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/Coffee 3.jpeg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/Coffee 4.jpeg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/colormap old.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/colormap.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/ColumnChart.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/cursor.cur",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 10,
+                    "comment": 0,
+                    "filename": "src/images/cursor.svg"
+                },
+                {
+                    "blank": 0,
+                    "code": 8,
+                    "comment": 0,
+                    "filename": "src/images/cursor1.svg"
+                },
+                {
+                    "filename": "src/images/Dashboard Layout 5 x 3.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/Dashboard Layout Blank.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/Data.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/Database Image.jpeg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/Database Image.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/Database Image.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/Eazl Image.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/Excel Image.jpeg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/Excel Image.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/ExcelImage.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/Explore.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/FileOpen.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/Frank Anscombe.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/GraphHorisontal.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/GraphIcon.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/GraphIcon2.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/gridBlock.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/Grids.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/InfoIcon.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/Intersection.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/JannieProfile.jpeg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/JSE Logo.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage1.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage10.jpeg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage10.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage11.jpeg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage11.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage12.jpeg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage12.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage13.jpeg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage13.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage14.jpeg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage14.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage15.jpeg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage15.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage16.jpeg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage16.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage17.jpeg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage17.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage18.jpeg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage18.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage19.jpeg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage19.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage2.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage20.jpeg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage20.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage21.jpeg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage21.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage22.jpeg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage22.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage23.jpeg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage23.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage24.jpeg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage24.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage25.jpeg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage25.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage26.jpeg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage26.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage27.jpeg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage27.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage28.jpeg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage28.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage29.jpeg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage29.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage3.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage30.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage31.jpeg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage31.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage32.jpeg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage32.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage33.jpeg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage33.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage34.jpeg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage34.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage35.jpeg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage35.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage36.jpeg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage36.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage37.jpeg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage37.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage38.jpeg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage39.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage4.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage40.jpeg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage41.jpeg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage42.jpeg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage43.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage44.jpeg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage45.jpeg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage46.jpeg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage47.jpeg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage48.jpeg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage49.jpeg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage5.jpeg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage5.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage6.jpeg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage6.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage7.jpeg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage7.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage8.jpeg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage8.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage9.jpeg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImage9.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImageLunarEclise.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImageLunarEclise1.jpeg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/landingPageBackgroundImageLunarEclise2.jpeg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/LineChart.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/Logo Clarity Analytics Square.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/Logo Clarity Analytics.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/Logo MIP Holdings.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/Lunar Eclise 2.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/Lunar-Eclipse-Blood-Moon-Core-Shadow-Eclipse-2428965.jpg",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/Minus.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/PaletteIcon.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/PaperClipIcon.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/PieChart.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/PlusIcon.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/PowerBIScreenshot.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/Present.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/Properties.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/QualityIcon.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/RefreshIcon.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/Sample Dashboard EU.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/ScatterChart.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/Small Business Volution.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/Tabs.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/Vega-Lite-AreaChart.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/Vega-Lite-BoxPlot.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/Vega-Lite-CircleGraph.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/Vega-Lite-Donut.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/Vega-Lite-ErrorBand.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/Vega-Lite-ErrorBar.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/Vega-Lite-GeoShape.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/Vega-Lite-HeatMap.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/Vega-Lite-LineChart.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/Vega-lite-MarginalHistograms.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/Vega-Lite-RulePlot.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/Vega-Lite-ScatterChart.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/Vega-Lite-SimpleBarChart.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/Vega-Lite-SquarePlot.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/Vega-Lite-StripChart.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/Vega-Lite-TextOverlay.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/Vega-Lite-TrailGraph.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/Vega-Lite-Waterfall.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/Vega-Lite-WordCloud.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "filename": "src/images/Widget.png",
+                    "isbinaryfile": true,
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 0
+                },
+                {
+                    "blank": 0,
+                    "code": 14,
+                    "comment": 0,
+                    "filename": "src/index.html"
+                },
+                {
+                    "blank": 3,
+                    "code": 9,
+                    "comment": 0,
+                    "filename": "src/main.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 16,
+                    "comment": 2,
+                    "filename": "src/polyfills.ts"
+                },
+                {
+                    "blank": 1,
+                    "code": 11,
+                    "comment": 1,
+                    "filename": "src/styles.css"
+                },
+                {
+                    "blank": 4,
+                    "code": 22,
+                    "comment": 6,
+                    "filename": "src/test.ts"
+                },
+                {
+                    "blank": 4,
+                    "code": 25,
+                    "comment": 6,
+                    "filename": "src/tsconfig.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 0,
+                    "comment": 2,
+                    "filename": "src/typings.d.ts"
+                },
+                {
+                    "blank": 10,
+                    "code": 90,
+                    "comment": 0,
+                    "filename": "tslint.json"
+                },
+                {
+                    "blank": 0,
+                    "code": 5,
+                    "comment": 0,
+                    "filename": "typings.json"
+                },
+                {
+                    "blank": 1037,
+                    "code": 5422,
+                    "comment": 0,
+                    "filename": "yarn.lock"
+                }
+            ]
         }
     ]
 }

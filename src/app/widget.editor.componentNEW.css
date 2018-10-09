@@ -184,25 +184,6 @@ clr-dg-cell {
             overflow-y: scroll;
         }
 
-        .datasourceMainDataQuality {
-            grid-column-start: 20;
-            /* autoprefixer: off */
-            grid-column-end: 31;
-            grid-row-start: 21;
-            grid-row-end: 22;
-            margin-left: 10px;
-            text-align: left;
-        }
-        .datasourceMainDataQuality {
-            grid-column-start: 20;
-            /* autoprefixer: off */
-            grid-column-end: 31;
-            grid-row-start: 21;
-            grid-row-end: 22;
-            margin-left: 10px;
-            text-align: left;
-        }
-
         .editorNrRowsTitle {
             grid-column-start: 20;
             /* autoprefixer: off */

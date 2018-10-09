@@ -192,11 +192,6 @@ This document describes items for later versions of Canvas.
             - validate all input, min/max, etc
             - make impute work
 
-        Preview:
-            - dataQuality (nr of issues, text of last one)
-            - tooltip with field description
-            - data ownners (nr of issues, text of last one)
-            - hide and order fields here ?
 
         Calculated fields:
             - in this version?
@@ -1371,6 +1366,11 @@ This document describes items for later versions of Canvas.
         - stroke, strokeWidth
         - text Mark, with text properties (similar to X and Y)
 
+    - Preview:
+        - dataQuality (nr of issues, text of last one)
+        - tooltip with field description
+        - data ownners (nr of issues, text of last one)
+        - hide and order fields here ?
 
 
 
