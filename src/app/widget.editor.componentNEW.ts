@@ -222,12 +222,8 @@ export interface dataSchemaInterface {
     selectedRowIndex: number = -1;
     selectedRowID: number;
     sizeField: string = dragFieldMessage;
+    showCalculatedAreaProperties: boolean = false;
     showColourDeleteIcon: boolean = false;
-    showXDeleteIcon: boolean = false;
-    showX2DeleteIcon: boolean = false;
-    showY2DeleteIcon: boolean = false;
-    showRowDeleteIcon: boolean = false;
-    showSizeDeleteIcon: boolean = false;
     showColumnDeleteIcon: boolean = false;
     showDetailDeleteIcon: boolean = false;
     showDatasourceMain: boolean = true;
@@ -256,12 +252,17 @@ export interface dataSchemaInterface {
     showFieldX2Properties: boolean = false;
     showFieldY2Properties: boolean = false;
     showPreview: boolean = false;
+    showRowDeleteIcon: boolean = false;
+    showSizeDeleteIcon: boolean = false;
     showSpecification: boolean = false;
-    specificationJSON: string = 'Graph Specification';
-    showYDeleteIcon: boolean = false;
     showType: boolean = false;
+    showXDeleteIcon: boolean = false;
+    showX2DeleteIcon: boolean = false;
+    showYDeleteIcon: boolean = false;
+    showY2DeleteIcon: boolean = false;
     sortOrder: number = 1;
     specification: any;              // Vega-Lite, Vega, or other grammar
+    specificationJSON: string = 'Graph Specification';
     vegaColorSchemes: string[] = [
         "None",
         "accent",
@@ -3036,6 +3037,16 @@ export interface dataSchemaInterface {
         this.filterErrorMessage = '';
 
         this.showFilterAreaProperties = !this.showFilterAreaProperties;
+    }
+
+    clickShowCalculatedArea() {
+        // Show Calculated Area
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowCalculatedArea', '@Start');
+
+        // Reset
+        this.filterErrorMessage = '';
+
+        this.showCalculatedAreaProperties = !this.showCalculatedAreaProperties;
     }
 
     clickShowSpecificationArea() {
