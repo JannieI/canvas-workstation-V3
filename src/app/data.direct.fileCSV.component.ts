@@ -204,25 +204,14 @@ export class DataDirectFileCSVComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'loadFileContent',           '@Start');
 
         // Read file content into an Array: split on NewLine, then Comma
-        // console.warn('xx START this.loadedFile.target.result',this.loadedFile.target.result);
-        // let arr: any = this.loadedFile.target.result.split(",")
-        let arr: any = this.loadedFile.target.result.split(/\r?\n/).map(x => x.split(","))
-        console.warn('xx last one ', arr[arr.length - 1]);
-        // if (arr.length > 0) {
-        //     console.warn('xx last one ', arr[arr.length - 1]);
-        //     arr = arr.slice(0, arr[arr.length - 2])
-        // };
-        // console.warn('xx arr', arr)
+        let arr: any = this.loadedFile.target.result.split(/\r?\n/).map(x => x.split(","));
 
         // Fill the list of Fields
         this.fields = arr[+this.headerRow]
-        // console.warn('xx this.fields', this.fields)
-        // console.warn('xx this.headerRow', +this.headerRow, this.newDescription)
 
         // Fill the data
         this.fileData = arr.slice(+this.headerRow + 1, +this.headerRow + 10);
         this.fileDataFull = arr.slice(+this.headerRow + 1, arr.length - 2);
-        // console.warn('xx this.fileDataFull', arr.length, this.fileDataFull);
 
         // Can Add now
         this.canSave = true;
@@ -237,17 +226,12 @@ export class DataDirectFileCSVComponent implements OnInit {
             });
             arr2.push(obj);
         }
-        // console.log('xx arr2', arr2)
+
         let arr3: any = JSON.parse(JSON.stringify(arr2))
-        // console.warn('xx', +this.headerRow, arr[+this.headerRow + 1], arr[+this.headerRow + 1].length);
-        console.warn('xx arr2', arr2);
-        console.warn('xx arr3', arr3);
 
         this.fileDataFull = arr3.slice(+this.headerRow, +this.headerRow + 10);
-        console.warn('xx this.fileDataFull', this.fileDataFull);
 
         this.fileDataFull = arr3.slice(+this.headerRow, arr3.length - 1);
-        console.warn('xx this.fileDataFull', this.fileDataFull);
 
         this.totalRows = this.fileDataFull.length;
 
@@ -255,17 +239,6 @@ export class DataDirectFileCSVComponent implements OnInit {
         // Guess types
         for (var i = 0; i < arr[+this.headerRow + 1].length; i++) {
             let newType: string = 'string';
-            // let newString: string | number | boolean;
-            // if(i==1) {arr[+this.headerRow + 1][i] = true}
-            // if(i==2) {arr[+this.headerRow + 1][i] = 2}
-            // if(i==3) {arr[+this.headerRow + 1][i] = "2"}
-            // if(i==4) {arr[+this.headerRow + 1][i] = "true"}
-            // if(i==5) {arr[+this.headerRow + 1][i] = "false"}
-            // if(i==6) {arr[+this.headerRow + 1][i] = "xyz"}
-            // if(i==7) {arr[+this.headerRow + 1][i] = "2.02"}
-            // if(i==8) {arr[+this.headerRow + 1][i] = "2.2"}
-
-            // console.warn('xx START i arr[+this.headerRow + 1][i]', i, arr[+this.headerRow + 1][i])
 
             if (typeof arr[+this.headerRow + 1][i] == 'number') {
                newType = 'number';
@@ -278,108 +251,12 @@ export class DataDirectFileCSVComponent implements OnInit {
             } else if (arr[+this.headerRow + 1][i] == +arr[+this.headerRow + 1][i]) {
                newType = 'number';
             } else {
-               newType = 'String';
+               newType = 'string';
             };
-            // if (newString == +newString) {
-            //     console.warn('    xx i newString == +newString)', i, newString)
-            // };
 
-            // console.warn('xx i newString == + newString', i, newString == +newString)
-            // console.warn('xx i Number(newString)', i, Number(newString))
-            // console.warn('xx i Number(newString) == NaN', i, Number(newString))
-
-            // console.warn('xx i typeof newString', i, typeof newString)
-            // console.warn('---------');
-
-
-            // console.warn('i   arr[+this.headerRow + 1][i]   typeof arr[+this.headerRow + 1][i]', i , arr[+this.headerRow + 1][i], typeof arr[+this.headerRow + 1][i])
-
-            // if (Number(+arr[+this.headerRow + 1][i]) != NaN) {
-            //     newType = "string";
-            // } else {
-            //     if (typeof arr[+this.headerRow + 1][i] == 'number') {
-            //         newType = "number";
-            //     };
-            //     if (typeof arr[+this.headerRow + 1][i] == 'boolean') {
-            //         newType = "boolean";
-            //     };
-            // };
-            // if (typeof arr[+this.headerRow + 1][i] == 'number') {
-            //     newType = "number";
-            // };
-            // if (typeof arr[+this.headerRow + 1][i] == 'string') {
-            //     newType = "string";
-            // };
-            // if (typeof arr[+this.headerRow + 1][i] == 'boolean') {
-            //     newType = "boolean";
-            // };
             this.newDataFieldTypes.push(newType);
         };
         console.warn('xx', this.newDataFieldTypes);
-
-
-        // // Set highlighted row
-        // this.fields = this.fileColumns[index].map(cols => cols.name);
-        // this.fields = ["0","1","2","3","4","5","6","7","8","9","10"]
-        // // Can Add now
-        // this.canSave = true;
-
-        // // Reset
-        // this.errorMessage = '';
-
-        // // Validation
-        // if (this.fileName == ''  ||  this.fileName == null) {
-        //     this.errorMessage = 'Please select a file using the Browse button';
-        //     return;
-        // };
-        // // skip_rows = [number = rows to skip, string = ignore rows that starts with this]
-        // // First row = 0
-        // // headers = single integer to indicate the header, array of strings = use THIS text
-        // if (this.headerRow == null  ||  this.headerRow == '') {
-        //     this.headerRow = '0';
-        // };
-
-        // // Set up specification according to file type
-        // let specification: any;
-        // let lastFour: string = this.fileName.slice(-4);
-
-        // if (lastFour.toLowerCase() == '.csv') {
-        //     console.warn('xx csv')
-
-        //     // specification = {
-        //     //     "source": {
-        //     //         "connector": "tributary.connectors.csv:CsvConnector",
-        //     //         "specification": {
-        //     //             "content":  this.loadedFile.target.result,
-        //     //             "headers": +this.headerRow,
-        //     //             "skip_rows": []
-        //     //         }
-        //     //     }
-        //     // };
-        //     console.log('xx this.loadedFile.target.result,', this.loadedFile.target.result,)
-        //     specification = {
-        //         "source": {
-        //             "connector": "tributary.connectors.csv:CsvConnector",
-        //             "specification": {
-        //                 "content":  this.loadedFile.target.result,
-        //             }
-        //         }
-        //     };
-
-        // } else {
-        //     this.errorMessage = 'Invalid file extension (must be .csv)';
-        //     return;
-        // };
-
-        // this.globalVariableService.getTributaryData(specification).then(res => {
-        //     console.warn('xx Tributary getData res C', res)
-
-        //     // Fill the data
-        //     this.fileData = res.slice(0,10);
-        //     this.fileDataFull = res;
-        //     console.warn('xx this.fileData', this.fileData);
-
-        // });
 
     }
 
