@@ -3118,4 +3118,17 @@ export interface dataSchemaInterface {
         this.filterOperator = ev.target.value;
     }
 
+    clickCalculatedClose() {
+        // Close the Calculated Area, and reset calculation
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickCalculatedClose', '@Start');
+
+        // Reset
+        this.calculatedErrorMessage = '';
+
+        this.filterField = '';
+        this.filterOperator = '';
+        this.filterValue = '';
+
+        this.showCalculatedAreaProperties = false;
+    }
 }

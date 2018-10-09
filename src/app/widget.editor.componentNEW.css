@@ -323,11 +323,11 @@ clr-dg-cell {
                 border: 1px solid gray;
                 border-radius: 6px;
                 box-shadow: 2px 2px gray;
-                grid-column-start: 30;
+                grid-column-start: 2;
                 /* autoprefixer: off */
-                grid-column-end: 45;
-                grid-row-start: 7;
-                grid-row-end: 21;
+                grid-column-end: 17;
+                grid-row-start: 6;
+                grid-row-end: 19;
                 margin-left: 6px;
                 margin-top: 6px;
                 padding-left: 12px;
@@ -373,7 +373,7 @@ clr-dg-cell {
                     width: 68%;
                 }
 
-                
+
         /* FIELDS */
         .editorFieldsTitle {
             grid-column-start: 4;

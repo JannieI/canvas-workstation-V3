@@ -223,8 +223,9 @@
                             <b>Calculated</b>
                             <br>
                             <i>
-                                Select the field to Calculated on, then the operator and type a Value.
-                                For example: Origin Equal "Europe".
+                                Enter the expression for the Calculation (using datum.field) for
+                                existing data fields, and a new Field name.
+                                For example: 2*datum.Cylinders, and CylindersDoubled
                             </i>
                             <div class="calculatedErrorMessage">
                                 {{ calculatedErrorMessage }}
@@ -254,7 +255,7 @@
                         </div>
 
                         <div class="btn-group btn-link">
-                            <button class="btn" (click)="clickFilterClose()">
+                            <button class="btn" (click)="clickCalculatedClose()">
                                 Clear
                             </button>
                             <button class="btn" (click)="clickFilterApply()">
