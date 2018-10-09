@@ -213,6 +213,7 @@ export interface dataSchemaInterface {
     isDragoverY2: boolean = false;
     localDatasources: Datasource[] = null;          // Current DS for the selected W
     localWidget: Widget;                            // W to modify, copied from selected
+    nrRows: number;
     oldWidget: Widget = null;                       // W at start
     rowField: string = dragFieldMessage;
     sampleNumberRows: number = 0;
@@ -2614,6 +2615,9 @@ export interface dataSchemaInterface {
                 return;
             };
 
+            // Nr rows
+            this.nrRows = this.globalVariableService.currentDatasets[dataSetIndex].data.length;
+            
             // Load first few rows into preview
             this.currentData = this.globalVariableService.currentDatasets[dataSetIndex]
                 .data.slice(0,5);

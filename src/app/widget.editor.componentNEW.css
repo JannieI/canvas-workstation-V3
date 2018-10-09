@@ -184,21 +184,58 @@ clr-dg-cell {
             overflow-y: scroll;
         }
 
-        .editorSamplingTitle {
+        .datasourceMainDataQuality {
             grid-column-start: 20;
             /* autoprefixer: off */
             grid-column-end: 31;
-            grid-row-start: 22;
-            grid-row-end: 23;
+            grid-row-start: 21;
+            grid-row-end: 22;
+            margin-left: 10px;
+            text-align: left;
+        }
+        .datasourceMainDataQuality {
+            grid-column-start: 20;
+            /* autoprefixer: off */
+            grid-column-end: 31;
+            grid-row-start: 21;
+            grid-row-end: 22;
+            margin-left: 10px;
+            text-align: left;
+        }
+
+        .editorNrRowsTitle {
+            grid-column-start: 20;
+            /* autoprefixer: off */
+            grid-column-end: 23;
+            grid-row-start: 23;
+            grid-row-end: 24;
+            margin-left: 10px;
+            text-align: left;
+        }
+        .editorNrRows {
+            grid-column-start: 22;
+            /* autoprefixer: off */
+            grid-column-end: 23;
+            grid-row-start: 23;
+            grid-row-end: 24;
+            margin-left: 16px;
+            text-align: left;
+        }
+        .editorSamplingTitle {
+            grid-column-start: 30;
+            /* autoprefixer: off */
+            grid-column-end: 41;
+            grid-row-start: 23;
+            grid-row-end: 24;
             margin-left: 10px;
             text-align: left;
         }
         .editorSampling {
-            grid-column-start: 30;
+            grid-column-start: 40;
             /* autoprefixer: off */
-            grid-column-end: 33;
-            grid-row-start: 22;
-            grid-row-end: 23;
+            grid-column-end: 43;
+            grid-row-start: 23;
+            grid-row-end: 24;
             margin-left: 12px;
             text-align: left;
         }

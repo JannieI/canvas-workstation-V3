@@ -192,13 +192,10 @@ This document describes items for later versions of Canvas.
             - validate all input, min/max, etc
             - make impute work
 
-        WARN:
-            - when bad combinations, ie 'size' is incompatible with 'rect'
-
         Preview:
             - dataQuality (nr of issues, text of last one)
             - tooltip with field description
-            - data owneers (nr of issues, text of last one)
+            - data ownners (nr of issues, text of last one)
             - hide and order fields here ?
 
         Calculated fields:
