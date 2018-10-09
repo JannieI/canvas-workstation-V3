@@ -1292,52 +1292,68 @@ export interface dataSchemaInterface {
                 "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
                 "description": "A simple bar chart with embedded data.",
                 "title": {
-                "text": "",
-                "anchor": "start",
-                "angle": 0,
-                "baseline": "top",
-                "color": "red",
-                "font": "",
-                "fontSize": 10,
-                "fontWeight": 400,
-                "limit": 0
+                    "text": "",
+                    "anchor": "start",
+                    "angle": 0,
+                    "baseline": "top",
+                    "color": "red",
+                    "font": "",
+                    "fontSize": 10,
+                    "fontWeight": 400,
+                    "limit": 0
                 },
                 "data": {
-                "values": []
+                    "values": []
                 },
                 "mark": {
-                "type": "bar",
-                "tooltip": {
-                    "content": "data"
+                    "type": "bar",
+                    "tooltip": {
+                        "content": "data"
                 }
                 },
                 "encoding": {
-                "x": {
-                    "field": "",
-                    "type": "",
-                    "axis": ""
+                    "x": {
+                        "field": "",
+                        "type": "",
+                        "axis": ""
+                    },
+                    "y": {
+                        "field": "",
+                        "type": "",
+                        "axis": ""
+                    },
+                    "color": {
+                        "field": "",
+                        "type": "",
+                        "scale": "",
+                        "legend": ""
+                    },
+                    "size": {
+                        "field": ""
+                    }
                 },
-                "y": {
-                    "field": "",
-                    "type": "",
-                    "axis": ""
-                },
-                "color": {
-                    "field": "",
-                    "type": "",
-                    "scale": "",
-                    "legend": ""
-                },
-                "size": {
-                    "field": ""
-                }
-                }
+                "transform": [
+                    {"calculate": "2*datum.Cylinder", "as": "b2"},
+                    {"filter": "datum.Cylinder > 60"}
+                  ]
             };
+            
+            // Add Calculated field to Field List
+            let newDataSchema: dataSchemaInterface = {
+                name: 'b2',
+                type: 'number',
+                length: 12
+            };
+            this.dataSchema.push(newDataSchema);
+
             this.specification['mark']['type'] = this.widgetGraphs[widgetGraphIndex]['mark'];
 
+            this.specification['transform'] = this.specification['transform'].slice(0,1);
+            console.warn('xx this.specification[transform]', this.specification['transform'].length, this.specification['transform']);
+            
             // Optional Sampling
             if (this.sampleNumberRows != 0) {
-                this.specification['transform'] = [{"sample" : this.sampleNumberRows}];
+                this.specification['transform']['sample'] = this.sampleNumberRows;
             };
 
 
@@ -2063,8 +2079,14 @@ export interface dataSchemaInterface {
 
         let fieldType:string = this.getFieldType(fieldName);
         this.localWidget.graphXtype = this.defaultGraphTypeField(fieldType, 'type');
+        console.warn('xx this.localWidget.graphXtype', this.localWidget.graphXtype);
+        
         this.localWidget.graphXtypeName = this.defaultGraphTypeField(fieldType, 'name');
+        console.warn('xx this.localWidget.graphXtypeName', this.localWidget.graphXtypeName);
+        
         this.localWidget.graphXtimeUnit ='';
+        console.warn('xx this.localWidget.graphXtimeUnit', this.localWidget.graphXtimeUnit);
+        
 
     }
 
@@ -2719,6 +2741,9 @@ export interface dataSchemaInterface {
                 return this.dataFieldTypes[i]
             }
         };
+
+        // Was not found, defaults
+        return 'string';
     }
 
     // TODO - do one or the other: 3 vars, or 1 combined object

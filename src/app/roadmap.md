@@ -230,7 +230,7 @@ This document describes items for later versions of Canvas.
             - multiple filters, see Voyager
             - WARN if (range & type != number)  (oneOf & type != string)
 
-        Scale/Axis:
+        Scale/Axis (later):
             - rangeStep
             - remove X and Y and Color totally (not only title) ~ null
             - domain
