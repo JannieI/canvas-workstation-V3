@@ -261,7 +261,7 @@ clr-dg-cell {
             grid-column-start: 1;
             /* autoprefixer: off */
             grid-column-end: 11;
-            grid-row-start: 2;
+            grid-row-start: 1;
             grid-row-end: 5;
             text-align: left;
         }
@@ -283,7 +283,7 @@ clr-dg-cell {
                 margin-top: 16px;
                 width: 30%;
             }
-            .editorCompositionLayerTitle{
+            .editorCompositionLayerTitle {
                 display: inline-block;
                 font-size: 0.55rem;
                 line-height: 0.8rem;
@@ -302,6 +302,22 @@ clr-dg-cell {
                 width: 30%;
             }
 
+            .editorCompositionCalculatedFieldTitle {
+                display: inline-block;
+                font-size: 0.55rem;
+                line-height: 0.8rem;
+                margin-left: 14px;
+                margin-top: 3px;
+                width: 110px;
+            }
+            .editorCompositionCalculatedField{
+                display: inline-block;
+                font-size: 0.55rem;
+                line-height: 0.8rem;
+                margin-left: 2px;
+                margin-top: 3px;
+                width: 60px;
+            }
 
         /* FIELDS */
         .editorFieldsTitle {

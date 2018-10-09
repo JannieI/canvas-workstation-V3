@@ -182,8 +182,6 @@ This document describes items for later versions of Canvas.
         - Easy way to compare data: graph shows revenue per month for this year.  What was figure for March last year, or compare all to last year ... NB
 
         Fix:
-            - remove format from x
-            - remove format from y
             - load all correctly when open new spec
             - save new spec correctly
             - SHOW new spec in Dashboard

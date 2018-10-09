@@ -1332,10 +1332,7 @@ export interface dataSchemaInterface {
                         "field": ""
                     }
                 },
-                "transform": [
-                    {"calculate": "2*datum.Cylinder", "as": "b2"},
-                    {"filter": "datum.Cylinder > 60"}
-                  ]
+                "transform": []
             };
             
             // Add Calculated field to Field List
@@ -1348,7 +1345,8 @@ export interface dataSchemaInterface {
 
             this.specification['mark']['type'] = this.widgetGraphs[widgetGraphIndex]['mark'];
 
-            this.specification['transform'] = this.specification['transform'].slice(0,1);
+            this.specification['transform'].push({"calculate": "2*datum.Cylinders", "as": "b2"});
+            this.specification['transform'].push({"calculate": "if(datum.Cylinders % 2 ==0, 0, datum.Cylinders)", "as": "b2"});
             console.warn('xx this.specification[transform]', this.specification['transform'].length, this.specification['transform']);
             
             // Optional Sampling
