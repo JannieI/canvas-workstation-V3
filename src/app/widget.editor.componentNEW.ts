@@ -3131,4 +3131,24 @@ export interface dataSchemaInterface {
 
         this.showCalculatedAreaProperties = false;
     }
+    clickCalculatedApply() {
+        // Close the Calculated Area
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickCalculatedApply', '@Start');
+
+        // Reset
+        this.calculatedErrorMessage = '';
+
+        // Validation
+        if (this.filterField == ''  ||  this.filterField == undefined) {
+            this.calculatedErrorMessage = 'Filter field is required.';
+            return;
+        };
+        if (this.filterOperator == ''  ||  this.filterOperator == undefined) {
+            this.calculatedErrorMessage = 'Filter Operator is required.';
+            return;
+        };
+
+        this.showCalculatedAreaProperties = false;
+    }
+
 }
