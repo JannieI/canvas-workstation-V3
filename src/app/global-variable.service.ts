@@ -3678,7 +3678,8 @@ export class GlobalVariableService {
     }
 
     getCurrentDataset(datasourceID: number, datasetID: number): Promise<Dataset> {
-        // Description: Gets a Dataset, and inserts it once into this.currentDatasets
+        // Description: Gets a global Dataset, and inserts it once into 
+        // this.currentDatasets.  Then add the data from respective data location.
         // Returns: dataset
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables getCurrentDataset ...',
@@ -3697,21 +3698,6 @@ export class GlobalVariableService {
         this.currentDatasets.forEach(d => dsCurrIDs.push(d.id));
         let datasetIndex: number = null;
 
-        // this.datasets.forEach(ds => {
-        //     if (ds.id == datasetID) {
-        //         dsSourceLocation = ds.sourceLocation;
-        //         url = ds.url;
-        //         if (ds.folderName == ''  ||  ds.folderName == null) {
-        //             ds.folderName = '../assets/';
-        //         };
-        //         if (ds.fileName == ''  ||  ds.fileName == null) {
-        //             ds.fileName = 'data.dataset' + ds.id.toString() + '.json';
-        //         };
-        //         folderName = ds.folderName;
-        //         fileName = ds.fileName;
-        //         this.filePath = ds.folderName + ds.fileName;
-        //     }
-        // });
         for (var i = 0; i < this.datasets.length; i++) {
             if (this.datasets[i].id == datasetID) {
                 datasetIndex = i;
@@ -3882,14 +3868,26 @@ export class GlobalVariableService {
                 res => {
 
                     // Update Global vars to make sure they remain in sync
-                    this.datasets.push(JSON.parse(JSON.stringify(res)));
-                    this.currentDatasets.push(JSON.parse(JSON.stringify(res)));
+                    let dataset: Dataset = JSON.parse(JSON.stringify(res));
+                    this.datasets.push(dataset);
+                    // this.datasets.push(JSON.parse(JSON.stringify(res)));
+                    // this.currentDatasets.push(JSON.parse(JSON.stringify(res)));
 
-                    if (this.sessionDebugging) {
-                        console.log('addDataset ADDED', {res}, this.datasets, this.currentDatasets)
-                    };
+                    // Note: currentDS contains data as well, so this.currentDatasets.push
+                    //       will result in a record with no data.  So, in the Widget
+                    //       Editor for example, the DS will show on the list, but it will 
+                    //       be empty (Preview empty, nothing to plot)
+                    console.warn('xx hier data.datasourceID, dataset.id', data.datasourceID, dataset.id);
+                    
+                    this.getCurrentDataset(data.datasourceID, dataset.id).then(dataset => {
 
-                    resolve(res);
+                        if (this.sessionDebugging) {
+                            console.log('addDataset ADDED', {res}, this.datasets, this.currentDatasets)
+                        };
+    
+                        resolve(res);
+    
+                    });
                 },
                 err => {
                     if (this.sessionDebugging) {
@@ -3994,8 +3992,8 @@ export class GlobalVariableService {
     }
 
     getData(id: number): Promise<any[]> {
-        // Description: Gets Datasets, WITHOUT data
-        // Returns: this.dataset
+        // Description: Gets Data
+        // Returns: res.data
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables getData ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
@@ -4055,7 +4053,7 @@ export class GlobalVariableService {
                 res => {
 
                     if (this.sessionDebugging) {
-                        console.log('addData ADDED', {res}, this.datasets, this.currentDatasets)
+                        console.log('addData ADDED', {res})
                     };
 
                     resolve(res);
@@ -5861,6 +5859,8 @@ export class GlobalVariableService {
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
+        console.warn('xx addCurrentDatasource currentDS DS', this.currentDatasources.slice(), this.datasources.slice() );
+        
         return new Promise<any>((resolve, reject) => {
 
             // Fill currentDS from DS, if required

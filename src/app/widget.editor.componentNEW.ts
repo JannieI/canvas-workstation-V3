@@ -3019,7 +3019,6 @@ export interface dataSchemaInterface {
         if (!this.showSpecification) {
             // this.showGraph(this.currentGraphID);
         };
-        console.warn('xx specificationJSON', this.specificationJSON);
         
     }
 

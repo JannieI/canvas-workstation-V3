@@ -250,7 +250,7 @@ export class DataDirectFileCSVComponent implements OnInit {
         console.warn('xx this.fileDataFull', this.fileDataFull);
 
         this.totalRows = this.fileDataFull.length;
-        
+
 
         // Guess types
         for (var i = 0; i < arr[+this.headerRow + 1].length; i++) {
@@ -264,7 +264,7 @@ export class DataDirectFileCSVComponent implements OnInit {
             // if(i==6) {arr[+this.headerRow + 1][i] = "xyz"}
             // if(i==7) {arr[+this.headerRow + 1][i] = "2.02"}
             // if(i==8) {arr[+this.headerRow + 1][i] = "2.2"}
-            
+
             // console.warn('xx START i arr[+this.headerRow + 1][i]', i, arr[+this.headerRow + 1][i])
 
             if (typeof arr[+this.headerRow + 1][i] == 'number') {
@@ -290,7 +290,7 @@ export class DataDirectFileCSVComponent implements OnInit {
 
             // console.warn('xx i typeof newString', i, typeof newString)
             // console.warn('---------');
-            
+
 
             // console.warn('i   arr[+this.headerRow + 1][i]   typeof arr[+this.headerRow + 1][i]', i , arr[+this.headerRow + 1][i], typeof arr[+this.headerRow + 1][i])
 
