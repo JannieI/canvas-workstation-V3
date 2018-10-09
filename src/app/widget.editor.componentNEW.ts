@@ -2095,6 +2095,7 @@ export interface dataSchemaInterface {
         let fieldType:string = this.getFieldType(fieldName);
         this.localWidget.graphYtypeName = this.defaultGraphTypeField(fieldType, 'name');
         this.localWidget.graphYtype = this.defaultGraphTypeField(fieldType, 'type');
+        this.localWidget.graphYtimeUnit ='';
     }
 
     dropColour(ev) {
