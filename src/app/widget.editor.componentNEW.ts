@@ -1119,7 +1119,7 @@ export interface dataSchemaInterface {
 
         // Reset
         this.errorMessageEditor = '';
-        
+
         // Keep graphID
         this.currentGraphID = graphID;
 
@@ -1201,8 +1201,8 @@ export interface dataSchemaInterface {
         };
 
         // Validation and Warnings - AFTER default settings
-        if (this.sizeField != dragFieldMessage  
-            &&  
+        if (this.sizeField != dragFieldMessage
+            &&
             this.widgetGraphs[widgetGraphIndex]['mark'] == 'rect') {
             this.errorMessageEditor = "'size' is incompatible with Rectangle graph.";
         };
@@ -1235,11 +1235,11 @@ export interface dataSchemaInterface {
         if (this.localWidget.graphYsort == null) {this.localWidget.graphYsort = ""}
         if (this.localWidget.graphYtimeUnit == null) {this.localWidget.graphYtimeUnit = ""}
         if (this.localWidget.graphLegendTitle == null) {this.localWidget.graphLegendTitle = ""}
-        
+
         // Define Specification
         if (this.widgetGraphs[widgetGraphIndex].specificationType.toLowerCase() ==
             'custom') {
-                
+
             this.specification = this.widgetGraphs[widgetGraphIndex].specification;
            console.warn('xx this.specification', this.specification)
             // Replace the data in the spec - each custom one is different
@@ -1252,14 +1252,14 @@ export interface dataSchemaInterface {
                     return obj;
                 });
                 console.warn('xx xDataValues', xDataValues);
-                
+
                 this.specification['data'][0]['values'] = xDataValues;
             };
             if (this.widgetGraphs[widgetGraphIndex].shortName == 'Word Cloud') {
                 let xColumnValues: any = this.localWidget.graphData.map(x => x[this.xField]);
                 this.specification['data'][0]['values'] = xColumnValues;
             };
-            
+
             // Render graph for Vega-Lite
             if (graphVisualGrammar == 'Vega-Lite') {
                 if (this.specification != undefined) {
@@ -1338,21 +1338,9 @@ export interface dataSchemaInterface {
                 },
                 "transform": []
             };
-            
-            // Add Calculated field to Field List
-            let newDataSchema: dataSchemaInterface = {
-                name: 'b2',
-                type: 'number',
-                length: 12
-            };
-            this.dataSchema.push(newDataSchema);
 
             this.specification['mark']['type'] = this.widgetGraphs[widgetGraphIndex]['mark'];
 
-            this.specification['transform'].push({"calculate": "2*datum.Cylinders", "as": "b2"});
-            this.specification['transform'].push({"calculate": "if(datum.Cylinders % 2 ==0, 0, datum.Cylinders)", "as": "b2"});
-            console.warn('xx this.specification[transform]', this.specification['transform'].length, this.specification['transform']);
-            
             // Optional Sampling
             if (this.sampleNumberRows != 0) {
                 this.specification['transform']['sample'] = this.sampleNumberRows;
@@ -1364,6 +1352,21 @@ export interface dataSchemaInterface {
             this.specification['width'] = width;
             this.specification['height'] = height;
 
+
+            // Transformation
+            if (this.calculatedExpression != ''  &&  this.calculatedAs != '') {
+
+                // Add to the transformation channel
+                this.specification['transform'].push(
+                    {
+                            "calculate": this.calculatedExpression,
+                            "as": this.calculatedAs
+                    }
+                );
+                //  this.specification['transform'].push({"calculate": "2*datum.Cylinders", "as": "b2"});
+                //  this.specification['transform'].push({"calculate": "if(datum.Cylinders % 2 ==0, 0, datum.Cylinders)", "as": "b2"});
+                console.warn('xx this.specification[transform]', this.specification['transform'].length, this.specification['transform']);
+            };
 
             // Data
             if (this.localWidget.graphUrl != ""  &&  this.localWidget.graphUrl != null) {
@@ -1474,7 +1477,7 @@ export interface dataSchemaInterface {
                 this.specification['encoding']['y']['axis'] = {"grid": this.localWidget.graphYaxisGrid };
                 this.specification['encoding']['y']['axis']['labels'] = this.localWidget.graphYaxisLabels;
                 if (this.localWidget.graphYaxisLabelAngle != 0){
-                    this.specification['encoding']['y']['axis']['labelAngle'] = 
+                    this.specification['encoding']['y']['axis']['labelAngle'] =
                         this.localWidget.graphYaxisLabelAngle;
                 };
 
@@ -1482,7 +1485,7 @@ export interface dataSchemaInterface {
                     this.specification['encoding']['y']['axis']['title'] = null;
                 } else {
                     if (this.localWidget.graphYaxisTitle != ''  &&  this.localWidget.graphYaxisTitle != undefined) {
-                        this.specification['encoding']['y']['axis']['title'] = 
+                        this.specification['encoding']['y']['axis']['title'] =
                             this.localWidget.graphYaxisTitle;
                     };
                 };
@@ -1518,7 +1521,7 @@ export interface dataSchemaInterface {
                     this.specification['encoding']['color']['legend'] = {"title": null};
                 } else {
                     if (this.localWidget.graphLegendTitle != ''  &&  this.localWidget.graphLegendTitle != undefined) {
-                        this.specification['encoding']['color']['legend'] = 
+                        this.specification['encoding']['color']['legend'] =
                             {"title": this.localWidget.graphLegendTitle};
                     };
                 };
@@ -1662,9 +1665,9 @@ export interface dataSchemaInterface {
                     let fromTo: string[] = this.filterValue.split(',');
                     if (filterFieldDataType == 'number'  &&  fromTo.length == 2) {
                         this.specification['transform'] = [
-                            {"filter": 
+                            {"filter":
                                 {
-                                    "field": this.filterField, 
+                                    "field": this.filterField,
                                     "range": [ +fromTo[0], +fromTo[1] ]
                                 }
                             }
@@ -1677,9 +1680,9 @@ export interface dataSchemaInterface {
                     let fromTo: string[] = this.filterValue.split(',');
                     if (filterFieldDataType == 'string'  &&  fromTo.length > 0) {
                         this.specification['transform'] = [
-                            {"filter": 
+                            {"filter":
                                 {
-                                    "field": this.filterField, 
+                                    "field": this.filterField,
                                     "oneOf": fromTo
                                 }
                             }
@@ -1857,7 +1860,7 @@ export interface dataSchemaInterface {
 
         // Update new/edit
         if (this.newWidget) {
-            
+
             let tempChk: WidgetCheckpoint[] = this.globalVariableService.widgetCheckpoints
                 .filter(wc =>
                     wc.dashboardID == this.localWidget.dashboardID
@@ -2082,13 +2085,13 @@ export interface dataSchemaInterface {
         let fieldType:string = this.getFieldType(fieldName);
         this.localWidget.graphXtype = this.defaultGraphTypeField(fieldType, 'type');
         console.warn('xx this.localWidget.graphXtype', this.localWidget.graphXtype);
-        
+
         this.localWidget.graphXtypeName = this.defaultGraphTypeField(fieldType, 'name');
         console.warn('xx this.localWidget.graphXtypeName', this.localWidget.graphXtypeName);
-        
+
         this.localWidget.graphXtimeUnit ='';
         console.warn('xx this.localWidget.graphXtimeUnit', this.localWidget.graphXtimeUnit);
-        
+
 
     }
 
@@ -2641,7 +2644,7 @@ export interface dataSchemaInterface {
 
             // Nr rows
             this.nrRows = this.globalVariableService.currentDatasets[dataSetIndex].data.length;
-            
+
             // Load first few rows into preview
             this.currentData = this.globalVariableService.currentDatasets[dataSetIndex]
                 .data.slice(0,5);
@@ -3063,7 +3066,7 @@ export interface dataSchemaInterface {
         if (!this.showSpecification) {
             // this.showGraph(this.currentGraphID);
         };
-        
+
     }
 
     clickFilterClose() {
@@ -3150,8 +3153,18 @@ export interface dataSchemaInterface {
 
         this.showCalculatedAreaProperties = false;
 
-        console.warn('xx this.calculatedExpression this.calculatedAs',
-         this.calculatedExpression, this.calculatedAs);
+        console.warn('xx this.calculatedExpression this.calculatedAs', this.calculatedExpression, this.calculatedAs);
+
+        // Add Calculated field to Field List
+        let newDataSchema: dataSchemaInterface = {
+            name: this.calculatedAs,
+            type: 'string',
+            length: 12
+        };
+        this.dataSchema.push(newDataSchema);
+
+        console.warn('xx this.dataSchema', this.dataSchema);
+
     }
 
 }
