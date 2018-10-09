@@ -2119,6 +2119,7 @@ export interface dataSchemaInterface {
         let fieldType:string = this.getFieldType(this.draggedField);
         this.localWidget.graphColorTypeName = this.defaultGraphTypeField(fieldType, 'name');
         this.localWidget.graphColorType = this.defaultGraphTypeField(fieldType, 'type');
+        this.localWidget.graphColorTimeUnit ='';
     }
 
     dropSize(ev) {
