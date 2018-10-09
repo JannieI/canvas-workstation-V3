@@ -2063,6 +2063,7 @@ export interface dataSchemaInterface {
         let fieldType:string = this.getFieldType(fieldName);
         this.localWidget.graphXtype = this.defaultGraphTypeField(fieldType, 'type');
         this.localWidget.graphXtypeName = this.defaultGraphTypeField(fieldType, 'name');
+        this.localWidget.graphXtimeUnit ='';
 
     }
 
