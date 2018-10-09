@@ -202,7 +202,7 @@
                                 Calculated Field:
                             </b>
                         </div>
-                        <div class="editorCompositionCalculatedField">
+                        <div class="editorCompositionCalculatedFieldButton">
                             <button
                                 style="border: 1px solid transparent; color: gray;"
                                 class="btn btn-sm btn-secondary"
@@ -218,7 +218,50 @@
 
                         </div>
                     </div>
+                    <div class="editorCalculatedArea" *ngIf="showCalculatedAreaProperties">
+                        <div style="font-size: 0.55rem;">
+                            <b>Calculated</b>
+                            <br>
+                            <i>
+                                Select the field to Calculated on, then the operator and type a Value.
+                                For example: Origin Equal "Europe".
+                            </i>
+                            <div class="calculatedErrorMessage">
+                                {{ calculatedErrorMessage }}
+                            </div>
+                            <br>
+                        </div>
 
+                        <div class="editorCalculatedExpressionTitle">
+                            Expression:
+                        </div>
+                        <div class="select editorCalculatedExpression">
+                            <input type="text"
+                                [(ngModel)]="calculatedExpression"
+                                name="calculatedExpression"
+                                placeholder="12 Japan  1,5  a,b,c  true"
+                                >
+                        </div>
+                        <div class="editorCalculatedAsTitle">
+                            As:
+                        </div>
+                        <div class="select editorCalculatedAs">
+                            <input type="text"
+                                [(ngModel)]="calculatedAs"
+                                name="calculatedAs"
+                                placeholder="New Field Name"
+                                >
+                        </div>
+
+                        <div class="btn-group btn-link">
+                            <button class="btn" (click)="clickFilterClose()">
+                                Clear
+                            </button>
+                            <button class="btn" (click)="clickFilterApply()">
+                                Apply
+                            </button>
+                        </div>
+                    </div>
 
                     <!-- FIELDS -->
                     <div class="editorFieldsTitle">
@@ -2011,7 +2054,7 @@
                             <select id="selects_3" *ngIf="dataSchema"
                                 [(ngModel)]="filterField"
                                 (change)="filterFieldSelected($event)"
-                                name="graphColumnType"
+                                name="filterField"
                                 >
                                 <option *ngFor="let row of dataSchema; let i = index">
                                     {{ row.name }}
@@ -2025,7 +2068,7 @@
                             <select id="selects_3"
                                 [(ngModel)]="filterOperator"
                                 (change)="filterOperatorSelected($event)"
-                                name="graphColumnType"
+                                name="filterOperator"
                                 >
                                 <option>Less Than</option>
                                 <option>Less Than Equal</option>
@@ -2045,7 +2088,7 @@
                             <div class="editorFilterValue">
                                 <input type="text"
                                     [(ngModel)]="filterValue"
-                                    name="graphLegendFormat"
+                                    name="filterValue"
                                     placeholder="12 Japan  1,5  a,b,c  true"
                                     >
                             </div>

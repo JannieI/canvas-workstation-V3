@@ -176,6 +176,9 @@ export interface dataSchemaInterface {
         }
     ]
     backgroundcolors: CSScolor[];
+    calculatedErrorMessage: string = '';
+    calculatedExpression: string = '';
+    calculatedAs: string = '';
     colorField: string = dragFieldMessage;
     columnField: string = dragFieldMessage;
     containerHasContextMenus: boolean = true;

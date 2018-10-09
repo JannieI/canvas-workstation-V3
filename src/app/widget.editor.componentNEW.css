@@ -310,7 +310,7 @@ clr-dg-cell {
                 margin-top: 3px;
                 width: 110px;
             }
-            .editorCompositionCalculatedField{
+            .editorCompositionCalculatedFieldButton {
                 display: inline-block;
                 font-size: 0.55rem;
                 line-height: 0.8rem;
@@ -318,7 +318,62 @@ clr-dg-cell {
                 margin-top: 3px;
                 width: 60px;
             }
+            .editorCalculatedArea {
+                background-color: rgb(245, 240, 240);
+                border: 1px solid gray;
+                border-radius: 6px;
+                box-shadow: 2px 2px gray;
+                grid-column-start: 30;
+                /* autoprefixer: off */
+                grid-column-end: 45;
+                grid-row-start: 7;
+                grid-row-end: 21;
+                margin-left: 6px;
+                margin-top: 6px;
+                padding-left: 12px;
+                text-align: left;
+                z-index: 101;
+            }
+                .calculatedErrorMessage {
+                    color: red;
+                    font-size: 0.54rem;
+                }
+                .editorCalculatedExpressionTitle {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin-left: 4px;
+                    width: 64px;
+                }
+                .editorCalculatedExpression {
+                    background-color: white;
+                    border: 1px solid steelblue;
+                    border-radius: 5px;
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin: 3px;
+                    width: 68%;
+                }
+                .editorCalculatedAsTitle {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin-left: 4px;
+                    width: 64px;
+                }
+                .editorCalculatedAs {
+                    background-color: white;
+                    border: 1px solid steelblue;
+                    border-radius: 5px;
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin: 3px;
+                    width: 68%;
+                }
 
+                
         /* FIELDS */
         .editorFieldsTitle {
             grid-column-start: 4;
