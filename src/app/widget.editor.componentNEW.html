@@ -206,7 +206,7 @@
                             <button
                                 style="border: 1px solid transparent; color: gray;"
                                 class="btn btn-sm btn-secondary"
-                                (click)="clickShowFilterArea()"
+                                (click)="clickShowCalculatedArea()"
                                 >
                                 OPEN
                                 <clr-icon (click)="clickShowCalculatedArea()"
@@ -236,7 +236,7 @@
                         <div class="editorCalculatedExpressionTitle">
                             Expression:
                         </div>
-                        <div class="select editorCalculatedExpression">
+                        <div class="editorCalculatedExpression">
                             <input type="text"
                                 [(ngModel)]="calculatedExpression"
                                 name="calculatedExpression"
@@ -246,7 +246,7 @@
                         <div class="editorCalculatedAsTitle">
                             As:
                         </div>
-                        <div class="select editorCalculatedAs">
+                        <div class="editorCalculatedAs">
                             <input type="text"
                                 [(ngModel)]="calculatedAs"
                                 name="calculatedAs"

@@ -3047,7 +3047,7 @@ export interface dataSchemaInterface {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowCalculatedArea', '@Start');
 
         // Reset
-        this.filterErrorMessage = '';
+        this.calculatedErrorMessage = '';
 
         this.showCalculatedAreaProperties = !this.showCalculatedAreaProperties;
     }
@@ -3125,12 +3125,12 @@ export interface dataSchemaInterface {
         // Reset
         this.calculatedErrorMessage = '';
 
-        this.filterField = '';
-        this.filterOperator = '';
-        this.filterValue = '';
+        this.calculatedExpression = '';
+        this.calculatedAs = '';
 
         this.showCalculatedAreaProperties = false;
     }
+
     clickCalculatedApply() {
         // Close the Calculated Area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickCalculatedApply', '@Start');
@@ -3139,16 +3139,19 @@ export interface dataSchemaInterface {
         this.calculatedErrorMessage = '';
 
         // Validation
-        if (this.filterField == ''  ||  this.filterField == undefined) {
-            this.calculatedErrorMessage = 'Filter field is required.';
+        if (this.calculatedExpression == ''  ||  this.calculatedExpression == undefined) {
+            this.calculatedErrorMessage = 'Expression is required.';
             return;
         };
-        if (this.filterOperator == ''  ||  this.filterOperator == undefined) {
-            this.calculatedErrorMessage = 'Filter Operator is required.';
+        if (this.calculatedAs == ''  ||  this.calculatedAs == undefined) {
+            this.calculatedErrorMessage = 'New field name (As) is required.';
             return;
         };
 
         this.showCalculatedAreaProperties = false;
+
+        console.warn('xx this.calculatedExpression this.calculatedAs',
+         this.calculatedExpression, this.calculatedAs);
     }
 
 }
