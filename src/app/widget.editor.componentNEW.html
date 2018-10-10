@@ -89,7 +89,7 @@
                     <div class="datasourceMainPreviewTitle">
                         <b>Preview:</b>
                     </div>
-                    <div class="datasourceMainPreview">
+                    <!-- <div class="datasourceMainPreview">
                         <clr-datagrid class="datagrid-compact">
 
                             <clr-dg-placeholder>Select a datasource to preview here</clr-dg-placeholder>
@@ -110,7 +110,42 @@
                             </clr-dg-row>
 
                         </clr-datagrid>
+                    </div> -->
+
+
+
+
+                    <div class="datasourceMainPreview">
+                        <clr-datagrid class="datagrid-compact">
+
+                            <clr-dg-placeholder>Select a datasource to preview here</clr-dg-placeholder>
+
+                            <clr-dg-column *ngFor="let col of dataSchema; let i = index;">
+                                {{ col.name }}
+                            <clr-icon shape="times" *ngIf="i==1"
+                                (click)="clickClearRowField(i)">
+                            </clr-icon>
+                            </clr-dg-column>
+                            <clr-dg-row *ngFor="let row of currentData">
+
+                                <clr-dg-cell *ngFor="let col of dataSchema;
+                                    let i = index"
+                                    >
+                                    {{ row[col.name] }}
+                                </clr-dg-cell>
+                            </clr-dg-row>
+
+                        </clr-datagrid>
                     </div>
+
+
+
+
+
+
+
+
+
 
                     <!-- Row Nr -->
                     <div class="editorNrRowsTitle">
