@@ -298,6 +298,7 @@ const widgetTemplate: Widget =
         "graphYaxisLabels": true,
         "graphYaxisLabelAngle": 0,
     
+        "graphLegendHide" = false,
         "graphLegendTitleCheckbox": true,
         "graphLegendTitle": "",
         "graphLegendFormat": "",

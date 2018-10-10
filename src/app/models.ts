@@ -1185,8 +1185,9 @@ export class Widget {
     graphYaxisTitleCheckbox: boolean;
 
     // Legend
-    graphLegendTitleCheckbox
-    graphLegendTitle
+    graphLegendHide: boolean;
+    graphLegendTitleCheckbox: boolean;
+    graphLegendTitle: string;
     graphLegendFormat: string;
 
     // Size
