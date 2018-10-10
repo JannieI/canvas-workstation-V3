@@ -3253,15 +3253,19 @@ export interface dataSchemaInterface {
             this.calculatedErrorMessage = 'New field name (As) is required.';
             return;
         };
-
+        if (this.calculatedFieldType == ''  ||  this.calculatedFieldType == undefined) {
+            this.calculatedErrorMessage = 'Field data type is required.';
+            return;
+        };
+        
         this.showCalculatedAreaProperties = false;
 
-        console.warn('xx this.calculatedExpression this.calculatedAs', this.calculatedExpression, this.calculatedAs);
+        console.warn('xx this.calculatedExpression this.calculatedAs', this.calculatedExpression, this.calculatedAs, this.calculatedFieldType);
 
         // Add Calculated field to Field List
         let newDataSchema: dataSchemaInterface = {
             name: this.calculatedAs,
-            type: 'string',
+            type: this.calculatedFieldType,
             length: 12
         };
         this.dataSchema.push(newDataSchema);
