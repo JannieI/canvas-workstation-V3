@@ -74,7 +74,8 @@ export class DashboardDeleteBulkComponent implements OnInit {
         this.dashboards = this.globalVariableService.dashboards
             .filter(d => d.state != 'Draft')
             .filter(d => d.draftID == null)
-            .slice().sort((n1,n2) => {
+            .slice()
+            .sort((n1,n2) => {
                 if (n1.name > n2.name) {
                     return 1;
                 };

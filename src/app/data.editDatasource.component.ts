@@ -97,7 +97,19 @@ export class DataEditDatasourceComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         // Load from global variables
-        this.datasources = this.globalVariableService.datasources.slice();
+        this.datasources = this.globalVariableService.datasources
+            .slice()
+            .sort((n1,n2) => {
+                if (n1.name > n2.name) {
+                    return 1;
+                };
+
+                if (n1.name < n2.name) {
+                    return -1;
+                };
+
+                return 0;
+            });
 
         // Count the Ws
         let widgets: Widget[];
