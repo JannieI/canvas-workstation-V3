@@ -1693,6 +1693,16 @@ export interface dataSchemaInterface {
                     // this.specification['transform'] = [
                     //     {"filter": {"field": this.filterField, "gt": this.filterValue}}
                     // ];
+
+                    if (filterFieldDataType == 'string') {
+                        filterSpec = [
+                            {"filter": {"field": this.filterField, "gt": this.filterValue}}
+                        ];
+                    } else {
+                        filterSpec = [
+                            {"filter": {"field": this.filterField, "gt": +this.filterValue}}
+                        ];
+                    };
                 };
 
                 if (this.filterOperator == 'Greater Than Equal') {
