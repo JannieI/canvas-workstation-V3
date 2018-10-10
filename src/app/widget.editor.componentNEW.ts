@@ -1932,6 +1932,8 @@ export interface dataSchemaInterface {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
         // Validate
+        console.warn('xx this.localWidget.graphMark', this.localWidget.graphMark);
+        
         if (this.localWidget.graphMark == ''  ||  this.localWidget.graphMark == null) {
             this.errorMessage = 'Please select a type of graph';
             return;
