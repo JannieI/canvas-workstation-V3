@@ -1623,6 +1623,9 @@ export interface dataSchemaInterface {
             // Filter
             if (this.filterField != ''  &&  this.filterField != undefined) {
 
+                // Add to the transformation channel
+                let filterSpec: any = null;
+
                 let filterFieldDataType: string = 'string';
                 let filterFieldDataTypeIndex: number = this.dataSchema.findIndex(
                     dat => dat.name == this.filterField
@@ -1631,15 +1634,27 @@ export interface dataSchemaInterface {
                     filterFieldDataType = this.dataSchema[filterFieldDataTypeIndex].type;
                 };
                 if (this.filterOperator == 'Equal') {
+                    // if (filterFieldDataType == 'string') {
+                    //     this.specification['transform'] = [
+                    //         {"filter": {"field": this.filterField, "equal": this.filterValue}}
+                    //     ];
+                    // } else {
+                    //     this.specification['transform'] = [
+                    //         {"filter": {"field": this.filterField, "equal": +this.filterValue}}
+                    //     ];
+                    // };
+
+                                        
                     if (filterFieldDataType == 'string') {
-                        this.specification['transform'] = [
+                        filterSpec = [
                             {"filter": {"field": this.filterField, "equal": this.filterValue}}
                         ];
                     } else {
-                        this.specification['transform'] = [
+                        filterSpec = [
                             {"filter": {"field": this.filterField, "equal": +this.filterValue}}
                         ];
                     };
+
                 };
 
                 if (this.filterOperator == 'Less Than') {
@@ -1706,7 +1721,12 @@ export interface dataSchemaInterface {
                         {"filter": {"field": this.filterField, "selection": this.filterValue}}
                     ];
                 };
-                };
+
+                // Add to Vega Spec
+                this.specification['transform'].push(filterSpec);
+            };
+
+            console.warn('xx this.specification[transform]', this.specification['transform'].length, this.specification['transform']);
 
             // Tooltip setting
             // specification['mark']['tooltip']['content'] = "";
