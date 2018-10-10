@@ -2237,7 +2237,7 @@
                         <clr-icon shape="info-circle"
                             clrSignpostTrigger>
                         </clr-icon>
-                            <clr-signpost-content *clrIfOpen>
+                            <clr-signpost-content style="cursor: default;" *clrIfOpen>
                             <h6 style="margin-top: 0; color:gray;">
                                 <b>Annotation</b>
                             </h6>
@@ -4140,7 +4140,7 @@
 </landing>
 
 
-<!-- Palette -->
+<!-- Palette Toggle Button -->
 <div class="paletteIcon"
     [style.left.px]="paletteLeft+2"
     [style.top.px]="paletteTop+2"
@@ -4153,12 +4153,13 @@
     </clr-icon>
 </div>
 
+<!-- Palette Body -->
 <div class="palette" *ngIf="editMode  &&  showPalette"
     [style.left.px]="paletteLeft"
     [style.top.px]="paletteTop"
     [style.height.px]="paletteHeight"
     [style.width.px]="paletteWidth"
-
+    style="z-index: 100;"
     (dragstart)="clickPaletteDragStart($event)"
     (dragend)="clickPaletteDragEnd($event)"
     draggable="true"
