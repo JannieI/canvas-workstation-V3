@@ -2299,6 +2299,7 @@ export interface dataSchemaInterface {
         // Hide the panel with properties
         this.showFieldYPropertiesTitle = false;
         this.showFieldYProperties = false;
+        this.showFieldYAxis = false;
     }
 
     clickClearColourField() {
