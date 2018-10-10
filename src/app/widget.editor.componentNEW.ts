@@ -1517,16 +1517,20 @@ export interface dataSchemaInterface {
                     "scale": this.localWidget.graphColorScheme == 'None'?  null  :  {"scheme": this.localWidget.graphColorScheme.toLowerCase()}
                 };
 
-                if (!this.localWidget.graphLegendTitleCheckbox) {
-                    this.specification['encoding']['color']['legend'] = {"title": null};
+                if (this.localWidget.graphLegendHide) {
+                    this.specification['encoding']['color']['legend'] = null;
                 } else {
-                    if (this.localWidget.graphLegendTitle != ''  &&  this.localWidget.graphLegendTitle != undefined) {
-                        this.specification['encoding']['color']['legend'] =
-                            {"title": this.localWidget.graphLegendTitle};
+                    if (!this.localWidget.graphLegendTitleCheckbox) {
+                        this.specification['encoding']['color']['legend'] = {"title": null};
+                    } else {
+                        if (this.localWidget.graphLegendTitle != ''  &&  this.localWidget.graphLegendTitle != undefined) {
+                            this.specification['encoding']['color']['legend'] =
+                                {"title": this.localWidget.graphLegendTitle};
+                        };
                     };
                 };
-                this.specification['encoding']['color']['legend'] = null;
                 
+
                 // if (this.localWidget. != '') {
                 //     if (this.localWidget. == 'Value') {
                 //         specification['encoding']['color']['impute'] =
