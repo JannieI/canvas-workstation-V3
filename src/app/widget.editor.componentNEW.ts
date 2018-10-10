@@ -1252,7 +1252,6 @@ export interface dataSchemaInterface {
                     };
                     return obj;
                 });
-                console.warn('xx xDataValues', xDataValues);
 
                 this.specification['data'][0]['values'] = xDataValues;
             };
@@ -1364,9 +1363,6 @@ export interface dataSchemaInterface {
                             "as": this.calculatedAs
                     }
                 );
-                //  this.specification['transform'].push({"calculate": "2*datum.Cylinders", "as": "b2"});
-                //  this.specification['transform'].push({"calculate": "if(datum.Cylinders % 2 ==0, 0, datum.Cylinders)", "as": "b2"});
-                console.warn('xx this.specification[transform]', this.specification['transform'].length, this.specification['transform']);
             };
 
             // Data
@@ -1763,8 +1759,6 @@ export interface dataSchemaInterface {
 
                         };
                     };
-
-                    console.warn('xx filterSpec', filterSpec)
                 };
 
                 if (this.filterOperator == 'Valid') {
@@ -1791,8 +1785,7 @@ export interface dataSchemaInterface {
                 };
             };
 
-            console.warn('xx this.specification[transform]', this.specification['transform'].length, this.specification['transform']);
-
+            
             // Tooltip setting
             // specification['mark']['tooltip']['content'] = "";
 
@@ -2182,7 +2175,6 @@ export interface dataSchemaInterface {
         this.localWidget.graphXtimeUnit ='';
         console.warn('xx this.localWidget.graphXtimeUnit', this.localWidget.graphXtimeUnit);
 
-
     }
 
     dropYField(ev, fieldName: string = '') {
@@ -2211,8 +2203,8 @@ export interface dataSchemaInterface {
 
         // Fill the default and allowed types of Vega field types
         let fieldType:string = this.getFieldType(fieldName);
-        this.localWidget.graphYtypeName = this.defaultGraphTypeField(fieldType, 'name');
         this.localWidget.graphYtype = this.defaultGraphTypeField(fieldType, 'type');
+        this.localWidget.graphYtypeName = this.defaultGraphTypeField(fieldType, 'name');
         this.localWidget.graphYtimeUnit ='';
     }
 
@@ -2235,8 +2227,8 @@ export interface dataSchemaInterface {
 
         // Fill the default and allowed types of Vega field types
         let fieldType:string = this.getFieldType(this.draggedField);
-        this.localWidget.graphColorTypeName = this.defaultGraphTypeField(fieldType, 'name');
         this.localWidget.graphColorType = this.defaultGraphTypeField(fieldType, 'type');
+        this.localWidget.graphColorTypeName = this.defaultGraphTypeField(fieldType, 'name');
         this.localWidget.graphColorTimeUnit ='';
     }
 
@@ -2715,7 +2707,7 @@ export interface dataSchemaInterface {
 
             return;
         };
-        console.warn('xx PRE', this.globalVariableService.currentDatasets, this.globalVariableService.currentDatasets)
+
         // Add DS to current DS (no action if already there)
         this.globalVariableService.addCurrentDatasource(datasourceID).then(res => {
 
@@ -2724,7 +2716,6 @@ export interface dataSchemaInterface {
             this.dataFieldLengths = this.localDatasources[arrayIndex].dataFieldLengths;
             this.dataFieldTypes = this.localDatasources[arrayIndex].dataFieldTypes;
             this.constructDataSchema();
-            console.warn('xx POST', this.globalVariableService.currentDatasets, this.globalVariableService.currentDatasets)
 
             // Determine if data obtains in Glob Var
             dataSetIndex = this.globalVariableService.currentDatasets.findIndex(
@@ -3264,8 +3255,6 @@ export interface dataSchemaInterface {
             'type'
         );
 
-        console.warn('xx this.calculatedExpression this.calculatedAs', this.calculatedExpression, this.calculatedAs, this.calculatedFieldType, calculatedFieldType);
-
         // Add Calculated field to Field List
         let newDataSchema: dataSchemaInterface = {
             name: this.calculatedAs,
@@ -3273,8 +3262,6 @@ export interface dataSchemaInterface {
             length: 12
         };
         this.dataSchema.push(newDataSchema);
-
-        console.warn('xx this.dataSchema', this.dataSchema);
 
     }
 
