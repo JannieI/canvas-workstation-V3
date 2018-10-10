@@ -3259,13 +3259,17 @@ export interface dataSchemaInterface {
         };
         
         this.showCalculatedAreaProperties = false;
+        let calculatedFieldType: string = this.defaultGraphTypeField(
+            this.calculatedFieldType.toLowerCase(), 
+            'type'
+        );
 
-        console.warn('xx this.calculatedExpression this.calculatedAs', this.calculatedExpression, this.calculatedAs, this.calculatedFieldType);
+        console.warn('xx this.calculatedExpression this.calculatedAs', this.calculatedExpression, this.calculatedAs, this.calculatedFieldType, calculatedFieldType);
 
         // Add Calculated field to Field List
         let newDataSchema: dataSchemaInterface = {
             name: this.calculatedAs,
-            type: this.calculatedFieldType,
+            type: this.calculatedFieldType.toLowerCase(),
             length: 12
         };
         this.dataSchema.push(newDataSchema);
