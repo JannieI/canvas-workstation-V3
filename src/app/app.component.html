@@ -4144,6 +4144,7 @@
 <div class="paletteIcon"
     [style.left.px]="paletteLeft+2"
     [style.top.px]="paletteTop+2"
+    style="z-index: 91;"
     >
     <clr-icon
         (click)="togglePaletteHorisontal()"
@@ -4159,7 +4160,7 @@
     [style.top.px]="paletteTop"
     [style.height.px]="paletteHeight"
     [style.width.px]="paletteWidth"
-    style="z-index: 100;"
+    style="z-index: 90;"
     (dragstart)="clickPaletteDragStart($event)"
     (dragend)="clickPaletteDragEnd($event)"
     draggable="true"
@@ -4168,7 +4169,7 @@
     <span *ngFor="let row of paletteButtons; let i = index"
         role="tooltip"
         aria-haspopup="true"
-        class="tooltip tooltip-md tooltip-top-left"
+        class="tooltip tooltip-md tooltip-bottom-right"
         >
         <clr-icon
             [attr.shape]="row.shape"
