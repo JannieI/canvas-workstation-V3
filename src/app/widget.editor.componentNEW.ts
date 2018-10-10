@@ -1706,23 +1706,45 @@ export interface dataSchemaInterface {
                 };
 
                 if (this.filterOperator == 'Greater Than Equal') {
-                    this.specification['transform'] = [
-                        {"filter": {"field": this.filterField, "gte": this.filterValue}}
-                    ];
+                    // this.specification['transform'] = [
+                    //     {"filter": {"field": this.filterField, "gte": this.filterValue}}
+                    // ];
+
+                    if (filterFieldDataType == 'string') {
+                        filterSpec = [
+                            {"filter": {"field": this.filterField, "gte": this.filterValue}}
+                        ];
+                    } else {
+                        filterSpec = [
+                            {"filter": {"field": this.filterField, "gte": +this.filterValue}}
+                        ];
+                    };
                 };
 
                 if (this.filterOperator == 'Range') {
                     let fromTo: string[] = this.filterValue.split(',');
-                    if (filterFieldDataType == 'number'  &&  fromTo.length == 2) {
-                        this.specification['transform'] = [
-                            {"filter":
-                                {
-                                    "field": this.filterField,
-                                    "range": [ +fromTo[0], +fromTo[1] ]
+                    if (fromTo.length == 2) {
+                        if (filterFieldDataType == 'number') {
+                            this.specification['transform'] = [
+                                {"filter":
+                                    {
+                                        "field": this.filterField,
+                                        "range": [ +fromTo[0], +fromTo[1] ]
+                                    }
                                 }
-                            }
-                            // "range": [0, 5]}}
-                        ];
+                                // "range": [0, 5]}}
+                            ];
+                        } else {
+                            this.specification['transform'] = [
+                                {"filter":
+                                    {
+                                        "field": this.filterField,
+                                        "range": [ fromTo[0], fromTo[1] ]
+                                    }
+                                }
+                                // "range": [0, 5]}}
+                            ];
+                        };
                     };
                 };
 
