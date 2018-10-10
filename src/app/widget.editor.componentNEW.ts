@@ -1931,6 +1931,12 @@ export interface dataSchemaInterface {
         // Closes the form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
+        // Validate
+        if (this.localWidget.graphMark == ''  ||  this.localWidget.graphMark == null) {
+            this.errorMessage = 'Please select a type of graph';
+            return;
+        };
+
         this.localWidget.containerHasContextMenus = this.containerHasContextMenus;
         this.localWidget.containerHasTitle = this.containerHasTitle;
 
