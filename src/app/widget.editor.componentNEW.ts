@@ -1643,7 +1643,6 @@ export interface dataSchemaInterface {
                     //         {"filter": {"field": this.filterField, "equal": +this.filterValue}}
                     //     ];
                     // };
-
                                         
                     if (filterFieldDataType == 'string') {
                         filterSpec = [
@@ -1658,9 +1657,20 @@ export interface dataSchemaInterface {
                 };
 
                 if (this.filterOperator == 'Less Than') {
-                    this.specification['transform'] = [
-                        {"filter": {"field": this.filterField, "lt": this.filterValue}}
-                    ];
+                    // this.specification['transform'] = [
+                    //     {"filter": {"field": this.filterField, "lt": this.filterValue}}
+                    // ];
+
+                    if (filterFieldDataType == 'string') {
+                        filterSpec = [
+                            {"filter": {"field": this.filterField, "lt": this.filterValue}}
+                        ];
+                    } else {
+                        filterSpec = [
+                            {"filter": {"field": this.filterField, "lt": +this.filterValue}}
+                        ];
+                    };
+
                 };
 
                 if (this.filterOperator == 'Less Than Equal') {
