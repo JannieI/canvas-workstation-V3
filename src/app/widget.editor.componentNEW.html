@@ -254,6 +254,21 @@
                                 >
                         </div>
 
+                        <div class="editorCalculatedValueTitle">
+                            Type:
+                        </div>
+                        <div class="select editorCalculatedValue">
+                            <select id="selects_3"
+                                [(ngModel)]="calculatedFieldType"
+                                (change)="calculatedFieldTypeSelected($event)"
+                                name="calculatedFieldType"
+                                >
+                                <option>Boolean</option>
+                                <option>Number</option>
+                                <option>String</option>
+                            </select>
+                        </div>
+
                         <div class="btn-group btn-link">
                             <button class="btn" (click)="clickCalculatedClose()">
                                 Clear
@@ -2059,7 +2074,6 @@
                             <div class="filterErrorMessage">
                                 {{ filterErrorMessage }}
                             </div>
-                            <br>
                         </div>
 
                         <div class="editorFilterFieldTitle">
@@ -2096,6 +2110,7 @@
                                 <option>Selection</option>
                             </select>
                         </div>
+
                         <div class="editorLineContainer">
                             <div class="editorFilterValueTitle">
                             Value:
@@ -2108,6 +2123,8 @@
                                     >
                             </div>
                         </div>
+
+
                         <div class="btn-group btn-link">
                             <button class="btn" (click)="clickFilterClose()">
                                 Clear

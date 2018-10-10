@@ -177,8 +177,9 @@ export interface dataSchemaInterface {
     ]
     backgroundcolors: CSScolor[];
     calculatedErrorMessage: string = '';
-    calculatedExpression: string = '';
     calculatedAs: string = '';
+    calculatedExpression: string = '';
+    calculatedFieldType: string = '';
     colorField: string = dragFieldMessage;
     columnField: string = dragFieldMessage;
     containerHasContextMenus: boolean = true;
@@ -3147,6 +3148,13 @@ export interface dataSchemaInterface {
         this.showCalculatedAreaProperties = !this.showCalculatedAreaProperties;
     }
 
+    calculatedFieldTypeSelected(ev) {
+        // Register Calculated Field Type
+        this.globalFunctionService.printToConsole(this.constructor.name,'calculatedFieldTypeSelected', '@Start');
+
+        this.calculatedFieldType = ev.target.value;
+    }
+
     clickShowSpecificationArea() {
         // Toggle between Graph and Specification
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowSpecificationArea', '@Start');
@@ -3224,6 +3232,7 @@ export interface dataSchemaInterface {
 
         this.calculatedExpression = '';
         this.calculatedAs = '';
+        this.calculatedFieldType = '';
 
         this.showCalculatedAreaProperties = false;
     }
