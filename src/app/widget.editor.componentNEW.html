@@ -1612,6 +1612,19 @@
                             </clr-icon>
                         </div>
 
+                        <div class="editorLineContainer">
+                            <div class="editorGraphLegendHideTitle" *ngIf="showFieldLegend">
+                                Hide Legend:
+                            </div>
+                            <div class="editorGraphLegendHide" *ngIf="showFieldLegend">
+                                <input [(ngModel)]="localWidget.graphLegendHide"
+                                    type="checkbox"
+                                    name="graphLegendHide"
+                                    title="Hide the whole Legend (T/F)"
+                                    >
+                            </div>
+                        </div>
+
                         <!-- Legend Title -->
                         <div class="editorLineContainer">
                             <div class="editorGraphLegendTitleTitle" *ngIf="showFieldLegend">

@@ -1525,7 +1525,8 @@ export interface dataSchemaInterface {
                             {"title": this.localWidget.graphLegendTitle};
                     };
                 };
-
+                this.specification['encoding']['color']['legend'] = null;
+                
                 // if (this.localWidget. != '') {
                 //     if (this.localWidget. == 'Value') {
                 //         specification['encoding']['color']['impute'] =
