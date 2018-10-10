@@ -190,12 +190,6 @@ This document describes items for later versions of Canvas.
             - validate all input, min/max, etc
             - make impute work
 
-
-        Calculated fields:
-            - in this version?
-            - Tableau style?
-            - design Transform UI
-
         Versions:
             - test with >1 version
 
@@ -1369,6 +1363,9 @@ This document describes items for later versions of Canvas.
         - tooltip with field description
         - data ownners (nr of issues, text of last one)
         - hide and order fields here ?
+
+    -   Calculated field
+        - add more than one, see Compass / Vega example
 
 
 

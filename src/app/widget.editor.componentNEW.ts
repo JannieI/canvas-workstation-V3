@@ -2283,9 +2283,10 @@ export interface dataSchemaInterface {
         this.showXDeleteIcon = false;
         this.xField = dragFieldMessage;
 
-        // Hide the panel with properties
+        // Hide the panel2 with properties
         this.showFieldXPropertiesTitle = false;
         this.showFieldXProperties = false;
+        this.showFieldXAxis = false;
     }
 
     clickClearYField() {
