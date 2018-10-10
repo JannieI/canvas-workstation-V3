@@ -2312,6 +2312,7 @@ export interface dataSchemaInterface {
         // Hide the panel with properties
         this.showFieldColorPropertiesTitle = false;
         this.showFieldColorProperties = false;
+        this.showFieldLegend = false;
     }
 
     clickClearSizeField() {
