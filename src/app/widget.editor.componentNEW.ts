@@ -3185,9 +3185,11 @@ export interface dataSchemaInterface {
             this.filterErrorMessage = 'Filter Operator is required.';
             return;
         };
-        if (this.filterValue == ''  ||  this.filterValue == undefined) {
-            this.filterErrorMessage = 'Filter Value is required.';
-            return;
+        if (this.filterOperator != 'Valid') {
+            if (this.filterValue == ''  ||  this.filterValue == undefined) {
+                this.filterErrorMessage = 'Filter Value is required.';
+                return;
+            };
         };
 
         this.showFilterAreaProperties = false;
