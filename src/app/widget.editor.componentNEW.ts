@@ -1674,15 +1674,25 @@ export interface dataSchemaInterface {
                 };
 
                 if (this.filterOperator == 'Less Than Equal') {
-                    this.specification['transform'] = [
-                        {"filter": {"field": this.filterField, "lte": this.filterValue}}
-                    ];
+                    // this.specification['transform'] = [
+                    //     {"filter": {"field": this.filterField, "lte": this.filterValue}}
+                    // ];
+
+                    if (filterFieldDataType == 'string') {
+                        filterSpec = [
+                            {"filter": {"field": this.filterField, "lte": this.filterValue}}
+                        ];
+                    } else {
+                        filterSpec = [
+                            {"filter": {"field": this.filterField, "lte": +this.filterValue}}
+                        ];
+                    };
                 };
 
                 if (this.filterOperator == 'Greater Than') {
-                    this.specification['transform'] = [
-                        {"filter": {"field": this.filterField, "gt": this.filterValue}}
-                    ];
+                    // this.specification['transform'] = [
+                    //     {"filter": {"field": this.filterField, "gt": this.filterValue}}
+                    // ];
                 };
 
                 if (this.filterOperator == 'Greater Than Equal') {
