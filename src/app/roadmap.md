@@ -1367,6 +1367,10 @@ This document describes items for later versions of Canvas.
     -   Calculated field
         - add more than one, see Compass / Vega example
 
+    - Filter
+        - Make Range for string too
+        - make OneOf for numbers too 
+
 
 
 

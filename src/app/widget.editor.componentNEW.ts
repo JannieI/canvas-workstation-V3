@@ -1645,13 +1645,11 @@ export interface dataSchemaInterface {
                     // };
                                         
                     if (filterFieldDataType == 'string') {
-                        filterSpec = [
-                            {"filter": {"field": this.filterField, "equal": this.filterValue}}
-                        ];
+                        filterSpec = 
+                            {"filter": {"field": this.filterField, "equal": this.filterValue}};
                     } else {
-                        filterSpec = [
-                            {"filter": {"field": this.filterField, "equal": +this.filterValue}}
-                        ];
+                        filterSpec = 
+                            {"filter": {"field": this.filterField, "equal": +this.filterValue}};
                     };
 
                 };
@@ -1662,13 +1660,11 @@ export interface dataSchemaInterface {
                     // ];
 
                     if (filterFieldDataType == 'string') {
-                        filterSpec = [
-                            {"filter": {"field": this.filterField, "lt": this.filterValue}}
-                        ];
+                        filterSpec = 
+                            {"filter": {"field": this.filterField, "lt": this.filterValue}};
                     } else {
-                        filterSpec = [
-                            {"filter": {"field": this.filterField, "lt": +this.filterValue}}
-                        ];
+                        filterSpec = 
+                            {"filter": {"field": this.filterField, "lt": +this.filterValue}};
                     };
 
                 };
@@ -1679,13 +1675,11 @@ export interface dataSchemaInterface {
                     // ];
 
                     if (filterFieldDataType == 'string') {
-                        filterSpec = [
-                            {"filter": {"field": this.filterField, "lte": this.filterValue}}
-                        ];
+                        filterSpec = 
+                            {"filter": {"field": this.filterField, "lte": this.filterValue}};
                     } else {
-                        filterSpec = [
-                            {"filter": {"field": this.filterField, "lte": +this.filterValue}}
-                        ];
+                        filterSpec = 
+                            {"filter": {"field": this.filterField, "lte": +this.filterValue}};
                     };
                 };
 
@@ -1695,13 +1689,11 @@ export interface dataSchemaInterface {
                     // ];
 
                     if (filterFieldDataType == 'string') {
-                        filterSpec = [
-                            {"filter": {"field": this.filterField, "gt": this.filterValue}}
-                        ];
+                        filterSpec = 
+                            {"filter": {"field": this.filterField, "gt": this.filterValue}};
                     } else {
-                        filterSpec = [
-                            {"filter": {"field": this.filterField, "gt": +this.filterValue}}
-                        ];
+                        filterSpec = 
+                            {"filter": {"field": this.filterField, "gt": +this.filterValue}};
                     };
                 };
 
@@ -1711,13 +1703,11 @@ export interface dataSchemaInterface {
                     // ];
 
                     if (filterFieldDataType == 'string') {
-                        filterSpec = [
-                            {"filter": {"field": this.filterField, "gte": this.filterValue}}
-                        ];
+                        filterSpec = 
+                            {"filter": {"field": this.filterField, "gte": this.filterValue}};
                     } else {
-                        filterSpec = [
-                            {"filter": {"field": this.filterField, "gte": +this.filterValue}}
-                        ];
+                        filterSpec = 
+                            {"filter": {"field": this.filterField, "gte": +this.filterValue}};
                     };
                 };
 
@@ -1725,41 +1715,55 @@ export interface dataSchemaInterface {
                     let fromTo: string[] = this.filterValue.split(',');
                     if (fromTo.length == 2) {
                         if (filterFieldDataType == 'number') {
-                            this.specification['transform'] = [
+                            filterSpec = 
                                 {"filter":
                                     {
                                         "field": this.filterField,
                                         "range": [ +fromTo[0], +fromTo[1] ]
                                     }
-                                }
-                                // "range": [0, 5]}}
-                            ];
+                                };
+                            
                         } else {
-                            this.specification['transform'] = [
+                            filterSpec = 
                                 {"filter":
                                     {
                                         "field": this.filterField,
                                         "range": [ fromTo[0], fromTo[1] ]
                                     }
-                                }
+                                };
                                 // "range": [0, 5]}}
-                            ];
+                            
                         };
                     };
                 };
 
                 if (this.filterOperator == 'One Of') {
                     let fromTo: string[] = this.filterValue.split(',');
-                    if (filterFieldDataType == 'string'  &&  fromTo.length > 0) {
-                        this.specification['transform'] = [
-                            {"filter":
-                                {
-                                    "field": this.filterField,
-                                    "oneOf": fromTo
-                                }
-                            }
-                        ];
+                    if (fromTo.length > 0) {
+                        if (filterFieldDataType == 'number') {
+                            let fromToNumber: number[] = fromTo.map(x => +x);
+                            filterSpec = 
+                                {"filter":
+                                    {
+                                        "field": this.filterField,
+                                        "oneOf": fromToNumber
+                                    }
+                                };
+                            
+                        } else {
+                            filterSpec = 
+                                {"filter":
+                                    {
+                                        "field": this.filterField,
+                                        "oneOf": fromTo
+                                    }
+                                };
+                                // "range": [0, 5]}}
+                            
+                        };
                     };
+
+                    console.warn('xx filterSpec', filterSpec)
                 };
 
                 if (this.filterOperator == 'Valid') {
@@ -1775,7 +1779,9 @@ export interface dataSchemaInterface {
                 };
 
                 // Add to Vega Spec
-                this.specification['transform'].push(filterSpec);
+                if (filterSpec != null) {
+                    this.specification['transform'].push(filterSpec);
+                };
             };
 
             console.warn('xx this.specification[transform]', this.specification['transform'].length, this.specification['transform']);
