@@ -1529,7 +1529,7 @@ export interface dataSchemaInterface {
                         };
                     };
                 };
-                
+
 
                 // if (this.localWidget. != '') {
                 //     if (this.localWidget. == 'Value') {
@@ -1643,12 +1643,12 @@ export interface dataSchemaInterface {
                     //         {"filter": {"field": this.filterField, "equal": +this.filterValue}}
                     //     ];
                     // };
-                                        
+
                     if (filterFieldDataType == 'string') {
-                        filterSpec = 
+                        filterSpec =
                             {"filter": {"field": this.filterField, "equal": this.filterValue}};
                     } else {
-                        filterSpec = 
+                        filterSpec =
                             {"filter": {"field": this.filterField, "equal": +this.filterValue}};
                     };
 
@@ -1660,10 +1660,10 @@ export interface dataSchemaInterface {
                     // ];
 
                     if (filterFieldDataType == 'string') {
-                        filterSpec = 
+                        filterSpec =
                             {"filter": {"field": this.filterField, "lt": this.filterValue}};
                     } else {
-                        filterSpec = 
+                        filterSpec =
                             {"filter": {"field": this.filterField, "lt": +this.filterValue}};
                     };
 
@@ -1675,10 +1675,10 @@ export interface dataSchemaInterface {
                     // ];
 
                     if (filterFieldDataType == 'string') {
-                        filterSpec = 
+                        filterSpec =
                             {"filter": {"field": this.filterField, "lte": this.filterValue}};
                     } else {
-                        filterSpec = 
+                        filterSpec =
                             {"filter": {"field": this.filterField, "lte": +this.filterValue}};
                     };
                 };
@@ -1689,10 +1689,10 @@ export interface dataSchemaInterface {
                     // ];
 
                     if (filterFieldDataType == 'string') {
-                        filterSpec = 
+                        filterSpec =
                             {"filter": {"field": this.filterField, "gt": this.filterValue}};
                     } else {
-                        filterSpec = 
+                        filterSpec =
                             {"filter": {"field": this.filterField, "gt": +this.filterValue}};
                     };
                 };
@@ -1703,10 +1703,10 @@ export interface dataSchemaInterface {
                     // ];
 
                     if (filterFieldDataType == 'string') {
-                        filterSpec = 
+                        filterSpec =
                             {"filter": {"field": this.filterField, "gte": this.filterValue}};
                     } else {
-                        filterSpec = 
+                        filterSpec =
                             {"filter": {"field": this.filterField, "gte": +this.filterValue}};
                     };
                 };
@@ -1715,16 +1715,16 @@ export interface dataSchemaInterface {
                     let fromTo: string[] = this.filterValue.split(',');
                     if (fromTo.length == 2) {
                         if (filterFieldDataType == 'number') {
-                            filterSpec = 
+                            filterSpec =
                                 {"filter":
                                     {
                                         "field": this.filterField,
                                         "range": [ +fromTo[0], +fromTo[1] ]
                                     }
                                 };
-                            
+
                         } else {
-                            filterSpec = 
+                            filterSpec =
                                 {"filter":
                                     {
                                         "field": this.filterField,
@@ -1732,7 +1732,7 @@ export interface dataSchemaInterface {
                                     }
                                 };
                                 // "range": [0, 5]}}
-                            
+
                         };
                     };
                 };
@@ -1742,16 +1742,16 @@ export interface dataSchemaInterface {
                     if (fromTo.length > 0) {
                         if (filterFieldDataType == 'number') {
                             let fromToNumber: number[] = fromTo.map(x => +x);
-                            filterSpec = 
+                            filterSpec =
                                 {"filter":
                                     {
                                         "field": this.filterField,
                                         "oneOf": fromToNumber
                                     }
                                 };
-                            
+
                         } else {
-                            filterSpec = 
+                            filterSpec =
                                 {"filter":
                                     {
                                         "field": this.filterField,
@@ -1759,7 +1759,7 @@ export interface dataSchemaInterface {
                                     }
                                 };
                                 // "range": [0, 5]}}
-                            
+
                         };
                     };
 
@@ -1767,9 +1767,15 @@ export interface dataSchemaInterface {
                 };
 
                 if (this.filterOperator == 'Valid') {
-                    this.specification['transform'] = [
-                        {"filter": {"field": this.filterField, "valid": this.filterValue}}
-                    ];
+                    if (filterFieldDataType == 'number') {
+                        filterSpec =
+                            {"filter": 
+                                {
+                                    "field": this.filterField, 
+                                    "valid": true
+                                }
+                            };
+                    };
                 };
 
                 if (this.filterOperator == 'Selection') {

@@ -1368,8 +1368,7 @@ This document describes items for later versions of Canvas.
         - add more than one, see Compass / Vega example
 
     - Filter
-        - Make Range for string too
-        - make OneOf for numbers too 
+        - Add Selection Predicate
 
 
 
