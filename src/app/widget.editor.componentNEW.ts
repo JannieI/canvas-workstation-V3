@@ -3270,10 +3270,27 @@ export interface dataSchemaInterface {
         // Reset
         this.calculatedErrorMessage = '';
 
-        this.calculatedExpression = '';
-        this.calculatedAs = '';
-        this.calculatedFieldType = '';
-        this.calculatedFieldTypeName = '';
+        this.showCalculatedAreaProperties = false;
+    }
+
+    clickCalculatedClear() {
+        // Close the Calculated Area, and reset calculation
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickCalculatedClear', '@Start');
+
+        // Reset
+        this.calculatedErrorMessage = '';
+
+        let schemaIndex: number = this.dataSchema.findIndex(ds => ds.name == this.calculatedAs);
+        if (schemaIndex >= 0) {
+
+            this.dataSchema.splice(schemaIndex, 1);
+            console.warn('xx this.dataSchema', this.dataSchema);
+            
+            this.calculatedExpression = '';
+            this.calculatedAs = '';
+            this.calculatedFieldType = '';
+            this.calculatedFieldTypeName = '';
+        };
 
         this.showCalculatedAreaProperties = false;
     }
@@ -3315,12 +3332,11 @@ export interface dataSchemaInterface {
 
     }
 
-    dblClickFieldRow(rowName: string) {
+    dblClickFieldRow(formCalculatedFieldName: string) {
         // Double clicked a field row: show info for calculated fields
         this.globalFunctionService.printToConsole(this.constructor.name,'dblClickFieldRow', '@Start');
 
-        console.warn('xx ev', rowName);
-        let schemaIndex: number = this.dataSchema.findIndex(ds => ds.name == rowName);
+        let schemaIndex: number = this.dataSchema.findIndex(ds => ds.name == formCalculatedFieldName);
         if (schemaIndex >= 0) {
             if (this.dataSchema[schemaIndex].isCalculated) {
                 this.calculatedExpression = this.dataSchema[schemaIndex].calculatedExpression;
