@@ -190,9 +190,9 @@ export interface dataSchemaInterface {
     currentGraphID: number = -1;
     currentGraphLayer: number = 1;
     dataSchema: dataSchemaInterface[] = [];
-    dataFieldNames: string[] = [];
-    dataFieldLengths: number[] = [];
-    dataFieldTypes: string[] = [];
+    // dataFieldNames: string[] = [];
+    // dataFieldLengths: number[] = [];
+    // dataFieldTypes: string[] = [];
     detailField: string = dragFieldMessage;
     draggedField: string = '';
     dragoverColours: boolean = false;
@@ -1070,9 +1070,9 @@ export interface dataSchemaInterface {
             if (arrayIndex < 0) {
                 alert('Datasource for current Dashboard not found in global currentDatasources')
             };
-            this.dataFieldNames = this.localDatasources[arrayIndex].dataFields;
-            this.dataFieldLengths = this.localDatasources[arrayIndex].dataFieldLengths;
-            this.dataFieldTypes = this.localDatasources[arrayIndex].dataFieldTypes;
+            // this.dataFieldNames = this.localDatasources[arrayIndex].dataFields;
+            // this.dataFieldLengths = this.localDatasources[arrayIndex].dataFieldLengths;
+            // this.dataFieldTypes = this.localDatasources[arrayIndex].dataFieldTypes;
 
             this.constructDataSchema(arrayIndex);
         }
@@ -2704,9 +2704,9 @@ export interface dataSchemaInterface {
         if (dataSetIndex >= 0) {
 
             // Load local arrays for ngFor
-            this.dataFieldNames = this.localDatasources[arrayIndex].dataFields;
-            this.dataFieldLengths = this.localDatasources[arrayIndex].dataFieldLengths;
-            this.dataFieldTypes = this.localDatasources[arrayIndex].dataFieldTypes;
+            // this.dataFieldNames = this.localDatasources[arrayIndex].dataFields;
+            // this.dataFieldLengths = this.localDatasources[arrayIndex].dataFieldLengths;
+            // this.dataFieldTypes = this.localDatasources[arrayIndex].dataFieldTypes;
             this.constructDataSchema(arrayIndex);
             // Load first few rows into preview
             this.currentData = this.globalVariableService.currentDatasets[dataSetIndex]
@@ -2722,9 +2722,9 @@ export interface dataSchemaInterface {
         this.globalVariableService.addCurrentDatasource(datasourceID).then(res => {
 
             // Load local arrays for ngFor
-            this.dataFieldNames = this.localDatasources[arrayIndex].dataFields;
-            this.dataFieldLengths = this.localDatasources[arrayIndex].dataFieldLengths;
-            this.dataFieldTypes = this.localDatasources[arrayIndex].dataFieldTypes;
+            // this.dataFieldNames = this.localDatasources[arrayIndex].dataFields;
+            // this.dataFieldLengths = this.localDatasources[arrayIndex].dataFieldLengths;
+            // this.dataFieldTypes = this.localDatasources[arrayIndex].dataFieldTypes;
             this.constructDataSchema(arrayIndex);
 
             // Determine if data obtains in Glob Var
