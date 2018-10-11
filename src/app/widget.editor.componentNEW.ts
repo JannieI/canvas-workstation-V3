@@ -3192,6 +3192,7 @@ export interface dataSchemaInterface {
 
         this.calculatedFieldTypeName = ev.target.value;
         this.calculatedFieldType = this.calculatedFieldTypeName.toLowerCase();
+        console.warn('xx', this.calculatedFieldTypeName, this.calculatedFieldTypeName)
     }
 
     clickShowSpecificationArea() {
@@ -3310,6 +3311,7 @@ export interface dataSchemaInterface {
             calculatedExpression: this.calculatedExpression
         };
         this.dataSchema.push(newDataSchema);
+        console.warn('xx', this.calculatedFieldType, this.calculatedFieldTypeName, this.dataSchema)
 
     }
 
@@ -3324,7 +3326,7 @@ export interface dataSchemaInterface {
                 this.calculatedExpression = this.dataSchema[schemaIndex].calculatedExpression;
                 this.calculatedAs = this.dataSchema[schemaIndex].name;
                 this.calculatedFieldType = this.dataSchema[schemaIndex].type;
-                this.calculatedFieldType = this.dataSchema[schemaIndex].typeName;
+                this.calculatedFieldTypeName = this.dataSchema[schemaIndex].typeName;
                 this.showCalculatedAreaProperties = true;
             };
         };
