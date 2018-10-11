@@ -145,6 +145,8 @@ This document describes items for later versions of Canvas.
         - data bars inside text values
         - sub totals and grand totals
         - can add labels, once
+        - Sybrin wants to see previous versions of the Datasources!
+        - export to Excel, pdf (Power BI can export to pdf with drill down !!)
 
 
     Data types and field lengths:
@@ -165,6 +167,7 @@ This document describes items for later versions of Canvas.
     Authentication:
     ---------------
         - add Auth0, Google, Facebook
+        - Sybrin wants their permissioning, which is complicated, bank compliant, AD included, etc
 
     Widget Editor - Adv:
     --------------------
@@ -1271,6 +1274,7 @@ This document describes items for later versions of Canvas.
     Connectors:
     - Connector to git hub !!!
     - Strata connector !!!
+    - Sybrin needs hadoop / spark support
 
     Packages:
     --------
@@ -1358,6 +1362,11 @@ This document describes items for later versions of Canvas.
     - Mark:
         - stroke, strokeWidth
         - text Mark, with text properties (similar to X and Y)
+        - drill down - click on column in bar and jump to another on fly
+        - interactivity - ie hover and show data labels
+        - trendlines
+        - color per bar
+        - more graph types, ie D3.js
 
     - Preview:
         - dataQuality (nr of issues, text of last one)
@@ -1370,6 +1379,9 @@ This document describes items for later versions of Canvas.
 
     - Filter
         - Add Selection Predicate
+
+
+
 
 
 
@@ -1398,7 +1410,7 @@ This document describes items for later versions of Canvas.
     - investigate IFrames
     - Bezier curved arrows that can connect to rectangles
     - Workflow via diagram
-    - Embedding
+    - Embedding: seems like a huge demand: companies what it all to look and feel like their app
     - Speech driven
     - Dragable side-panel
     - Team collaboration.... Editing the same Widget at the same time

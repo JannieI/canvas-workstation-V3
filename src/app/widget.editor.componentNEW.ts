@@ -3308,12 +3308,12 @@ export interface dataSchemaInterface {
 
     }
 
-    dblClickFieldRow(ev) {
+    dblClickFieldRow(rowName: string) {
         // Double clicked a field row: show info for calculated fields
         this.globalFunctionService.printToConsole(this.constructor.name,'dblClickFieldRow', '@Start');
 
-        console.warn('xx ev', ev.target.value);
-        let schemaIndex: number = this.dataSchema.findIndex(ds => ds.name == ev.target.value);
+        console.warn('xx ev', rowName);
+        let schemaIndex: number = this.dataSchema.findIndex(ds => ds.name == rowName);
         if (schemaIndex >= 0) {
             if (this.dataSchema[schemaIndex].isCalculated) {
                 this.showCalculatedAreaProperties = true;

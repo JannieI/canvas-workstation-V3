@@ -330,7 +330,7 @@
                                 </clr-dg-column>
 
                                 <clr-dg-row *clrDgItems="let row of dataSchema; let i = index"
-                                    (dblclick)="dblClickFieldRow($event)"
+                                    (dblclick)="dblClickFieldRow(row.name)"
                                     [clrDgItem]="row"
                                     [style.background-color]="row.isCalculated?  'lightgray'  :  'transparent'"
                                     >
