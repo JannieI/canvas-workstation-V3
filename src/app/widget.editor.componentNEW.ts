@@ -3280,6 +3280,32 @@ export interface dataSchemaInterface {
         // Reset
         this.calculatedErrorMessage = '';
 
+        // Remove from other places
+        if (this.xField == this.calculatedAs) {
+            this.clickClearXFieldField();
+        };
+        if (this.yField == this.calculatedAs) {
+            this.clickClearYField();
+        };
+        if (this.colorField == this.calculatedAs) {
+            this.clickClearColourField();
+        };
+        if (this.detailField == this.calculatedAs) {
+            this.clickClearDetailField;
+        };
+        if (this.rowField == this.calculatedAs) {
+            this.clickClearRowField();
+        };
+        if (this.columnField == this.calculatedAs) {
+            this.clickClearColumnField();
+        };
+        if (this.x2Field == this.calculatedAs) {
+            this.clickClearX2Field;
+        };
+        if (this.y2Field == this.calculatedAs) {
+            this.clickClearY2Field();
+        };
+
         // Find, reset values and remove
         let schemaIndex: number = this.dataSchema.findIndex(ds => ds.name == this.calculatedAs);
         if (schemaIndex >= 0) {
