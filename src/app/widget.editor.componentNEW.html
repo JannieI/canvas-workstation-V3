@@ -76,7 +76,7 @@
                                 (click)="clickDSrow(i, row.id)"
                                 >
                                 <clr-dg-cell>
-                                    {{ row.id }} {{ row.name }}
+                                    {{ row.name }}
                                     <span *ngIf="row.nrWidgets > 0"
                                         class="badge badge-5">{{row.nrWidgets}}
                                     </span>
@@ -330,7 +330,9 @@
                                 </clr-dg-column>
 
                                 <clr-dg-row *clrDgItems="let row of dataSchema; let i = index"
+                                    (dblclick)="dblClickFieldRow($event)"
                                     [clrDgItem]="row"
+                                    [style.background-color]="row.isCalculated?  'lightgray'  :  'transparent'"
                                     >
                                     <clr-dg-cell style="margin-left: 2px; padding: 0;"
                                         id="fld"
@@ -368,9 +370,7 @@
                                             >
                                         </clr-icon>
                                         
-                                        <span>
-                                            {{ row.name }}
-                                        </span>
+                                        {{ row.name }} 
 
                                         <!-- <span class="badge badge-light-gray">
                                             {{row.length}}

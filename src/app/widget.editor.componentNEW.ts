@@ -1766,9 +1766,9 @@ export interface dataSchemaInterface {
                 if (this.filterOperator == 'Valid') {
                     if (filterFieldDataType == 'number') {
                         filterSpec =
-                            {"filter": 
+                            {"filter":
                                 {
-                                    "field": this.filterField, 
+                                    "field": this.filterField,
                                     "valid": true
                                 }
                             };
@@ -1787,7 +1787,7 @@ export interface dataSchemaInterface {
                 };
             };
 
-            
+
             // Tooltip setting
             // specification['mark']['tooltip']['content'] = "";
 
@@ -1935,7 +1935,7 @@ export interface dataSchemaInterface {
 
         // Validate
         console.warn('xx this.localWidget.graphMark', this.localWidget.graphMark);
-        
+
         if (this.localWidget.graphMark == ''  ||  this.localWidget.graphMark == null) {
             this.errorMessage = 'Please select a type of graph';
             return;
@@ -2876,9 +2876,9 @@ export interface dataSchemaInterface {
         // this.dataFieldLengths = this.localDatasources[arrayIndex].dataFieldLengths;
         // this.dataFieldTypes = this.localDatasources[arrayIndex].dataFieldTypes;
 
-            
+
         console.warn('xx arrayIndex', arrayIndex, this.localWidget.datasourceID, this.localDatasources);
-            
+
         if (arrayIndex >= 0) {
             for (let i = 0; i < this.localDatasources[arrayIndex].dataFields.length; i++) {
                 let newDataSchema: dataSchemaInterface = {
@@ -3290,10 +3290,10 @@ export interface dataSchemaInterface {
             this.calculatedErrorMessage = 'Field data type is required.';
             return;
         };
-        
+
         this.showCalculatedAreaProperties = false;
         let calculatedFieldType: string = this.defaultGraphTypeField(
-            this.calculatedFieldType.toLowerCase(), 
+            this.calculatedFieldType.toLowerCase(),
             'type'
         );
 
@@ -3306,6 +3306,19 @@ export interface dataSchemaInterface {
         };
         this.dataSchema.push(newDataSchema);
 
+    }
+
+    dblClickFieldRow(ev) {
+        // Double clicked a field row: show info for calculated fields
+        this.globalFunctionService.printToConsole(this.constructor.name,'dblClickFieldRow', '@Start');
+
+        console.warn('xx ev', ev.target.value);
+        let schemaIndex: number = this.dataSchema.findIndex(ds => ds.name == ev.target.value);
+        if (schemaIndex >= 0) {
+            if (this.dataSchema[schemaIndex].isCalculated) {
+                this.showCalculatedAreaProperties = true;
+            };
+        };
     }
 
 }
