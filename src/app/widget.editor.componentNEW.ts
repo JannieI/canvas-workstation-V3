@@ -3280,11 +3280,11 @@ export interface dataSchemaInterface {
         // Reset
         this.calculatedErrorMessage = '';
 
+        // Find, reset values and remove
         let schemaIndex: number = this.dataSchema.findIndex(ds => ds.name == this.calculatedAs);
         if (schemaIndex >= 0) {
 
             this.dataSchema.splice(schemaIndex, 1);
-            console.warn('xx this.dataSchema', this.dataSchema);
             
             this.calculatedExpression = '';
             this.calculatedAs = '';
@@ -3316,19 +3316,26 @@ export interface dataSchemaInterface {
             return;
         };
 
-        this.showCalculatedAreaProperties = false;
-
         // Add Calculated field to Field List
-        let newDataSchema: dataSchemaInterface = {
-            name: this.calculatedAs,
-            type: this.calculatedFieldType.toLowerCase(),
-            typeName: this.calculatedFieldTypeName,
-            length: 12,
-            isCalculated: true,
-            calculatedExpression: this.calculatedExpression
+        let schemaIndex: number = this.dataSchema.findIndex(ds => ds.name == this.calculatedAs);
+        if (schemaIndex >= 0) {
+            this.dataSchema[schemaIndex].type = this.calculatedFieldType;
+            this.dataSchema[schemaIndex].typeName = this.calculatedFieldTypeName;
+            this.dataSchema[schemaIndex].calculatedExpression = this.calculatedExpression;
+        } else {        
+            let newDataSchema: dataSchemaInterface = {
+                name: this.calculatedAs,
+                type: this.calculatedFieldType.toLowerCase(),
+                typeName: this.calculatedFieldTypeName,
+                length: 12,
+                isCalculated: true,
+                calculatedExpression: this.calculatedExpression
+            };
+            this.dataSchema.push(newDataSchema);
         };
-        this.dataSchema.push(newDataSchema);
         console.warn('xx', this.calculatedFieldType, this.calculatedFieldTypeName, this.dataSchema)
+
+        this.showCalculatedAreaProperties = false;
 
     }
 
