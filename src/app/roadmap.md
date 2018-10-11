@@ -617,6 +617,7 @@ This document describes items for later versions of Canvas.
     - Some points un-bulleted - ie spaces ...  Maybe get a text editor !!!
     - Include code blocks - like Vscode style!!!
     - Round buttons at bottom of presentation to navigate
+    - store alignVertically, alignHorisontally on W -> after the text in bullet is changed, it will automatically align V or H
 
     - Slicer:
     - all ALL, NONE options to list of checkboxes (or the heading, or the caret dropdown menu)

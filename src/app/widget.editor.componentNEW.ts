@@ -32,7 +32,8 @@ const dragFieldMessage: string = 'Drag a field here ...';
 export interface dataSchemaInterface {
     name: string;
     type: string;
-    length: number
+    length: number;
+    isCalculated: boolean;
 }
 
 
@@ -2883,7 +2884,8 @@ export interface dataSchemaInterface {
                 let newDataSchema: dataSchemaInterface = {
                     name: this.localDatasources[arrayIndex].dataFields[i],
                     type: this.localDatasources[arrayIndex].dataFieldTypes[i],
-                    length: this.localDatasources[arrayIndex].dataFieldLengths[i]
+                    length: this.localDatasources[arrayIndex].dataFieldLengths[i],
+                    isCalculated: false
                 };
                 this.dataSchema.push(newDataSchema);
             };
@@ -3299,7 +3301,8 @@ export interface dataSchemaInterface {
         let newDataSchema: dataSchemaInterface = {
             name: this.calculatedAs,
             type: this.calculatedFieldType.toLowerCase(),
-            length: 12
+            length: 12,
+            isCalculated: true
         };
         this.dataSchema.push(newDataSchema);
 
