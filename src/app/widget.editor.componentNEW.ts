@@ -11,6 +11,7 @@ import { ViewChild }                  from '@angular/core';
 // Our models
 import { CSScolor }                   from './models';
 import { Datasource }                 from './models';
+import { GraphTransformation }        from './models';
 import { Widget }                     from './models';
 import { WidgetLayout }               from './models';
 import { WidgetCheckpoint }           from './models';
@@ -1628,17 +1629,20 @@ export interface dataSchemaInterface {
 
                 // Add to the transformation channel
                 let filterSpec: any = null;
-                let graphTransformationSpec:
-                    {
-                        type: string;                   // Type of transformation: filter, sample, calculated, etc
-                        fieldName: string;              // Underlying DB or calculated field Name (not used in calculations here)
-                        filterOperand: string;          // ie gt, equal, etc.  Can also be 'selection'
-                        filterValue: string;            // ie January or 5 (stored as text, converted in code)
-                        sampleRows: number;             // Optional nr of rows to sample, 0 means None
-                        calculatedExpression: string;   // Expression, ie sin(datum.ValueTraded)
-                        calculateAs: string;            // Name of resultant calculated field
-                        selectionName: string;          // Name of selection (defined earlier) for Operand selection
-                    };
+                let graphTransformationSpec: GraphTransformation = {
+                    transformationType: "",
+                    underlyingFieldName: "",
+                    filterOperand: "",
+                    filterValue: "",
+                    sampleRows: 0,
+                    calculatedExpression: "",
+                    calculateAs: "",
+                    selectionName: ""
+                };
+
+                graphTransformationSpec.underlyingFieldName = this.filterField;
+                graphTransformationSpec.transformationType = 'filter';
+                graphTransformationSpec.filterValue = this.filterValue;
 
                 let filterFieldDataType: string = 'string';
                 let filterFieldDataTypeIndex: number = this.dataSchema.findIndex(
@@ -1648,7 +1652,8 @@ export interface dataSchemaInterface {
                     filterFieldDataType = this.dataSchema[filterFieldDataTypeIndex].type;
                 };
                 if (this.filterOperator == 'Equal') {
-                    graphTransformationSpec.
+                    graphTransformationSpec.filterOperand = 'equal';
+
                     if (filterFieldDataType == 'string') {
                         filterSpec =
                             {"filter":
@@ -1670,6 +1675,8 @@ export interface dataSchemaInterface {
                 };
 
                 if (this.filterOperator == 'Less Than') {
+                    graphTransformationSpec.filterOperand = 'lt';
+
                     if (filterFieldDataType == 'string') {
                         filterSpec =
                             {"filter":
@@ -1691,6 +1698,8 @@ export interface dataSchemaInterface {
                 };
 
                 if (this.filterOperator == 'Less Than Equal') {
+                    graphTransformationSpec.filterOperand = 'lte';
+
                     if (filterFieldDataType == 'string') {
                         filterSpec =
                             {"filter":
@@ -1711,6 +1720,8 @@ export interface dataSchemaInterface {
                 };
 
                 if (this.filterOperator == 'Greater Than') {
+                    graphTransformationSpec.filterOperand = 'gt';
+
                     if (filterFieldDataType == 'string') {
                         filterSpec =
                             {"filter":
@@ -1731,6 +1742,8 @@ export interface dataSchemaInterface {
                 };
 
                 if (this.filterOperator == 'Greater Than Equal') {
+                    graphTransformationSpec.filterOperand = 'gte';
+
                     if (filterFieldDataType == 'string') {
                         filterSpec =
                             {"filter":
@@ -1746,6 +1759,8 @@ export interface dataSchemaInterface {
                 };
 
                 if (this.filterOperator == 'Range') {
+                    graphTransformationSpec.filterOperand = 'range';
+
                     let fromTo: string[] = this.filterValue.split(',');
                     if (fromTo.length == 2) {
                         if (filterFieldDataType == 'number') {
@@ -1770,6 +1785,8 @@ export interface dataSchemaInterface {
                 };
 
                 if (this.filterOperator == 'One Of') {
+                    graphTransformationSpec.filterOperand = 'oneOf';
+
                     let fromTo: string[] = this.filterValue.split(',');
                     if (fromTo.length > 0) {
                         if (filterFieldDataType == 'number') {
@@ -1795,6 +1812,8 @@ export interface dataSchemaInterface {
                 };
 
                 if (this.filterOperator == 'Valid') {
+                    graphTransformationSpec.filterOperand = 'valid';
+
                     if (filterFieldDataType == 'number') {
                         filterSpec =
                             {"filter":
@@ -1807,6 +1826,8 @@ export interface dataSchemaInterface {
                 };
 
                 if (this.filterOperator == 'Selection') {
+                    graphTransformationSpec.filterOperand = 'selection';
+
                     this.specification['transform'] = [
                         {"filter": {"field": this.filterField, "selection": this.filterValue}}
                     ];
@@ -1816,6 +1837,9 @@ export interface dataSchemaInterface {
                 if (filterSpec != null) {
                     this.specification['transform'].push(filterSpec);
                 };
+
+                console.warn('xx graphTransformationSpec', graphTransformationSpec);
+                
             };
 
 
