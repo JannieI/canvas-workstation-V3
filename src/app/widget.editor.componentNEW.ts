@@ -2785,18 +2785,6 @@ export interface dataSchemaInterface {
         this.localWidget.graphYtype = graphYtype;
     }
 
-    allowedGraphTypeField(fieldType: string): string[] {
-        // Returns a string array of allowed Vega types depending on a given field type
-        this.globalFunctionService.printToConsole(this.constructor.name,'allowedGraphTypeField', '@Start');
-
-        if (fieldType == 'string') {
-            return ['ordinal'];
-        };
-        if (fieldType == 'number') {
-            return ['ordinal','quantitative'];
-        };
-    }
-
     defaultGraphTypeField(fieldType: string, typeOrName: string): string {
         // Returns the default Vega field type depending a given field types
         this.globalFunctionService.printToConsole(this.constructor.name,'defaultGraphTypeField', '@Start');
@@ -3339,7 +3327,7 @@ export interface dataSchemaInterface {
     }
 
     dblClickFieldRow(formCalculatedFieldName: string) {
-        // Double clicked a field row: show info for calculated fields
+        // Double clicked a field row: show info for calculated field
         this.globalFunctionService.printToConsole(this.constructor.name,'dblClickFieldRow', '@Start');
 
         let schemaIndex: number = this.dataSchema.findIndex(ds => ds.name == formCalculatedFieldName);
