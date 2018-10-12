@@ -3241,8 +3241,18 @@ export interface dataSchemaInterface {
     }
 
     clickFilterClose() {
-        // Close the Filter Area, and reset filters
+        // Close the Filter Area, with no changes to the filters
         this.globalFunctionService.printToConsole(this.constructor.name,'clickFilterClose', '@Start');
+
+        // Reset
+        this.filterErrorMessage = '';
+
+        this.showFilterAreaProperties = false;
+    }
+
+    clickFilterClear() {
+        // Clear the Filter Area, and reset filters
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickFilterClear', '@Start');
 
         // Reset
         this.filterErrorMessage = '';
@@ -3250,6 +3260,13 @@ export interface dataSchemaInterface {
         this.filterField = '';
         this.filterOperator = '';
         this.filterValue = '';
+
+        // Remove from localWidget
+        let transformationIndex: number = this.localWidget.graphTransformations.findIndex(tr =>
+            tr.transformationType == 'filter'  &&  tr.underlyingFieldName == this.filterField);
+        if (transformationIndex >= 0) {
+            this.localWidget.graphTransformations.splice(transformationIndex, 1);
+        };
 
         this.showFilterAreaProperties = false;
     }
