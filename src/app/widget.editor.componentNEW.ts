@@ -25,6 +25,7 @@ import { GlobalVariableService }      from './global-variable.service';
 import { compile }                    from 'vega-lite';
 import { parse }                      from 'vega';
 import { View }                       from 'vega';
+import { forEach } from 'vega-lite/build/src/encoding';
 
 const graphHeight: number = 260;
 const graphWidth: number = 420;
@@ -1625,42 +1626,28 @@ export interface dataSchemaInterface {
 
 
             // Filter
-            if (this.filterField != ''  &&  this.filterField != undefined) {
+            let filterTransformation: GraphTransformation[] = this.localWidget.
+                graphTransformations.filter(ftr => ftr.transformationType == 'filter'
+            );
 
-                // Add to the transformation channel
+            for (var i = 0; i < filterTransformation.length; i++) {
+
                 let filterSpec: any = null;
-                let graphTransformationSpec: GraphTransformation = {
-                    transformationType: "",
-                    underlyingFieldName: "",
-                    filterOperator: "",
-                    filterValue: "",
-                    sampleRows: 0,
-                    calculatedExpression: "",
-                    calculateAs: "",
-                    selectionName: ""
-                };
-
-                graphTransformationSpec.underlyingFieldName = this.filterField;
-                graphTransformationSpec.transformationType = 'filter';
-                graphTransformationSpec.filterValue = this.filterValue;
-
-                console.warn('xx this.localWidget.graphTransformations',  this.localWidget.graphTransformations)
                 let filterFieldDataType: string = 'string';
                 let filterFieldDataTypeIndex: number = this.dataSchema.findIndex(
-                    dat => dat.name == this.filterField
+                    dat => dat.name == filterTransformation[i].underlyingFieldName
                 );
                 if (filterFieldDataTypeIndex >= 0) {
                     filterFieldDataType = this.dataSchema[filterFieldDataTypeIndex].type;
                 };
-                if (this.filterOperator == 'Equal') {
-                    graphTransformationSpec.filterOperator = 'equal';
 
+                if (this.localWidget.graphTransformations[i].filterOperator == 'Equal') {
                     if (filterFieldDataType == 'string') {
                         filterSpec =
                             {"filter":
                                 {
-                                    "field": this.localWidget.graphTransformations[0].underlyingFieldName,
-                                    "equal": this.localWidget.graphTransformations[0].filterValue
+                                    "field": this.localWidget.graphTransformations[i].underlyingFieldName,
+                                    "equal": this.localWidget.graphTransformations[i].filterValue
                                 }
                             };
                     } else {
@@ -1672,184 +1659,6 @@ export interface dataSchemaInterface {
                                 }
                             };
                     };
-
-                    // if (filterFieldDataType == 'string') {
-                    //     filterSpec =
-                    //         {"filter":
-                    //             {
-                    //                 "field": this.filterField,
-                    //                 "equal": this.filterValue
-                    //             }
-                    //         };
-                    // } else {
-                    //     filterSpec =
-                    //         {"filter":
-                    //             {
-                    //                 "field": this.filterField,
-                    //                 "equal": +this.filterValue
-                    //             }
-                    //         };
-                    // };
-
-                };
-
-                if (this.filterOperator == 'Less Than') {
-                    graphTransformationSpec.filterOperator = 'lt';
-
-                    if (filterFieldDataType == 'string') {
-                        filterSpec =
-                            {"filter":
-                                {
-                                    "field": this.filterField,
-                                    "lt": this.filterValue
-                                }
-                            };
-                    } else {
-                        filterSpec =
-                            {"filter":
-                                {
-                                    "field": this.filterField,
-                                    "lt": +this.filterValue
-                                }
-                            };
-                    };
-
-                };
-
-                if (this.filterOperator == 'Less Than Equal') {
-                    graphTransformationSpec.filterOperator = 'lte';
-
-                    if (filterFieldDataType == 'string') {
-                        filterSpec =
-                            {"filter":
-                                {
-                                    "field": this.filterField,
-                                    "lte": this.filterValue
-                                }
-                            };
-                    } else {
-                        filterSpec =
-                            {"filter":
-                                {
-                                    "field": this.filterField,
-                                    "lte": +this.filterValue
-                                }
-                            };
-                    };
-                };
-
-                if (this.filterOperator == 'Greater Than') {
-                    graphTransformationSpec.filterOperator = 'gt';
-
-                    if (filterFieldDataType == 'string') {
-                        filterSpec =
-                            {"filter":
-                                {
-                                    "field": this.filterField,
-                                    "gt": this.filterValue
-                                }
-                            };
-                    } else {
-                        filterSpec =
-                            {"filter":
-                                {
-                                    "field": this.filterField,
-                                    "gt": +this.filterValue
-                                }
-                            };
-                    };
-                };
-
-                if (this.filterOperator == 'Greater Than Equal') {
-                    graphTransformationSpec.filterOperator = 'gte';
-
-                    if (filterFieldDataType == 'string') {
-                        filterSpec =
-                            {"filter":
-                                {
-                                    "field": this.filterField,
-                                    "gte": this.filterValue
-                                }
-                            };
-                    } else {
-                        filterSpec =
-                            {"filter": {"field": this.filterField, "gte": +this.filterValue}};
-                    };
-                };
-
-                if (this.filterOperator == 'Range') {
-                    graphTransformationSpec.filterOperator = 'range';
-
-                    let fromTo: string[] = this.filterValue.split(',');
-                    if (fromTo.length == 2) {
-                        if (filterFieldDataType == 'number') {
-                            filterSpec =
-                                {"filter":
-                                    {
-                                        "field": this.filterField,
-                                        "range": [ +fromTo[0], +fromTo[1] ]
-                                    }
-                                };
-
-                        } else {
-                            filterSpec =
-                                {"filter":
-                                    {
-                                        "field": this.filterField,
-                                        "range": [ fromTo[0], fromTo[1] ]
-                                    }
-                                };
-                        };
-                    };
-                };
-
-                if (this.filterOperator == 'One Of') {
-                    graphTransformationSpec.filterOperator = 'oneOf';
-
-                    let fromTo: string[] = this.filterValue.split(',');
-                    if (fromTo.length > 0) {
-                        if (filterFieldDataType == 'number') {
-                            let fromToNumber: number[] = fromTo.map(x => +x);
-                            filterSpec =
-                                {"filter":
-                                    {
-                                        "field": this.filterField,
-                                        "oneOf": fromToNumber
-                                    }
-                                };
-
-                        } else {
-                            filterSpec =
-                                {"filter":
-                                    {
-                                        "field": this.filterField,
-                                        "oneOf": fromTo
-                                    }
-                                };
-                        };
-                    };
-                };
-
-                if (this.filterOperator == 'Valid') {
-                    graphTransformationSpec.filterOperator = 'valid';
-
-                    if (filterFieldDataType == 'number') {
-                        filterSpec =
-                            {"filter":
-                                {
-                                    "field": this.filterField,
-                                    "valid": true
-                                }
-                            };
-                    };
-                };
-
-                if (this.filterOperator == 'Selection') {
-                    graphTransformationSpec.filterOperator = 'selection';
-
-                    this.specification['transform'] = [
-                        {"filter": {"field": this.filterField, "selection": this.filterValue}}
-                    ];
                 };
 
                 // Add to Vega Spec
@@ -1858,9 +1667,246 @@ export interface dataSchemaInterface {
                     // this.localWidget.graphTransformations.push(graphTransformationSpec);
                 };
 
-                console.warn('xx graphTransformationSpec', graphTransformationSpec, this.localWidget);
+                console.warn('xx filterSpec', filterSpec, this.localWidget);
+            
+            }
+
+            // if (this.filterField != ''  &&  this.filterField != undefined) {
+
+            //     // Add to the transformation channel
+            //     let filterSpec: any = null;
+            //     let graphTransformationSpec: GraphTransformation = {
+            //         transformationType: "",
+            //         underlyingFieldName: "",
+            //         filterOperator: "",
+            //         filterValue: "",
+            //         sampleRows: 0,
+            //         calculatedExpression: "",
+            //         calculateAs: "",
+            //         selectionName: ""
+            //     };
+
+            //     graphTransformationSpec.underlyingFieldName = this.filterField;
+            //     graphTransformationSpec.transformationType = 'filter';
+            //     graphTransformationSpec.filterValue = this.filterValue;
+
+            //     console.warn('xx this.localWidget.graphTransformations',  this.localWidget.graphTransformations)
+            //     let filterFieldDataType: string = 'string';
+            //     let filterFieldDataTypeIndex: number = this.dataSchema.findIndex(
+            //         dat => dat.name == this.filterField
+            //     );
+            //     if (filterFieldDataTypeIndex >= 0) {
+            //         filterFieldDataType = this.dataSchema[filterFieldDataTypeIndex].type;
+            //     };
+            //     if (this.filterOperator == 'Equal') {
+            //         graphTransformationSpec.filterOperator = 'equal';
+
+            //         if (filterFieldDataType == 'string') {
+            //             filterSpec =
+            //                 {"filter":
+            //                     {
+            //                         "field": this.localWidget.graphTransformations[0].underlyingFieldName,
+            //                         "equal": this.localWidget.graphTransformations[0].filterValue
+            //                     }
+            //                 };
+            //         } else {
+            //             filterSpec =
+            //                 {"filter":
+            //                     {
+            //                         "field": this.localWidget.graphTransformations[0].underlyingFieldName,
+            //                         "equal": +this.localWidget.graphTransformations[0].filterValue
+            //                     }
+            //                 };
+            //         };
+
+            //         // if (filterFieldDataType == 'string') {
+            //         //     filterSpec =
+            //         //         {"filter":
+            //         //             {
+            //         //                 "field": this.filterField,
+            //         //                 "equal": this.filterValue
+            //         //             }
+            //         //         };
+            //         // } else {
+            //         //     filterSpec =
+            //         //         {"filter":
+            //         //             {
+            //         //                 "field": this.filterField,
+            //         //                 "equal": +this.filterValue
+            //         //             }
+            //         //         };
+            //         // };
+
+            //     };
+
+            //     if (this.filterOperator == 'Less Than') {
+            //         graphTransformationSpec.filterOperator = 'lt';
+
+            //         if (filterFieldDataType == 'string') {
+            //             filterSpec =
+            //                 {"filter":
+            //                     {
+            //                         "field": this.filterField,
+            //                         "lt": this.filterValue
+            //                     }
+            //                 };
+            //         } else {
+            //             filterSpec =
+            //                 {"filter":
+            //                     {
+            //                         "field": this.filterField,
+            //                         "lt": +this.filterValue
+            //                     }
+            //                 };
+            //         };
+
+            //     };
+
+            //     if (this.filterOperator == 'Less Than Equal') {
+            //         graphTransformationSpec.filterOperator = 'lte';
+
+            //         if (filterFieldDataType == 'string') {
+            //             filterSpec =
+            //                 {"filter":
+            //                     {
+            //                         "field": this.filterField,
+            //                         "lte": this.filterValue
+            //                     }
+            //                 };
+            //         } else {
+            //             filterSpec =
+            //                 {"filter":
+            //                     {
+            //                         "field": this.filterField,
+            //                         "lte": +this.filterValue
+            //                     }
+            //                 };
+            //         };
+            //     };
+
+            //     if (this.filterOperator == 'Greater Than') {
+            //         graphTransformationSpec.filterOperator = 'gt';
+
+            //         if (filterFieldDataType == 'string') {
+            //             filterSpec =
+            //                 {"filter":
+            //                     {
+            //                         "field": this.filterField,
+            //                         "gt": this.filterValue
+            //                     }
+            //                 };
+            //         } else {
+            //             filterSpec =
+            //                 {"filter":
+            //                     {
+            //                         "field": this.filterField,
+            //                         "gt": +this.filterValue
+            //                     }
+            //                 };
+            //         };
+            //     };
+
+            //     if (this.filterOperator == 'Greater Than Equal') {
+            //         graphTransformationSpec.filterOperator = 'gte';
+
+            //         if (filterFieldDataType == 'string') {
+            //             filterSpec =
+            //                 {"filter":
+            //                     {
+            //                         "field": this.filterField,
+            //                         "gte": this.filterValue
+            //                     }
+            //                 };
+            //         } else {
+            //             filterSpec =
+            //                 {"filter": {"field": this.filterField, "gte": +this.filterValue}};
+            //         };
+            //     };
+
+            //     if (this.filterOperator == 'Range') {
+            //         graphTransformationSpec.filterOperator = 'range';
+
+            //         let fromTo: string[] = this.filterValue.split(',');
+            //         if (fromTo.length == 2) {
+            //             if (filterFieldDataType == 'number') {
+            //                 filterSpec =
+            //                     {"filter":
+            //                         {
+            //                             "field": this.filterField,
+            //                             "range": [ +fromTo[0], +fromTo[1] ]
+            //                         }
+            //                     };
+
+            //             } else {
+            //                 filterSpec =
+            //                     {"filter":
+            //                         {
+            //                             "field": this.filterField,
+            //                             "range": [ fromTo[0], fromTo[1] ]
+            //                         }
+            //                     };
+            //             };
+            //         };
+            //     };
+
+            //     if (this.filterOperator == 'One Of') {
+            //         graphTransformationSpec.filterOperator = 'oneOf';
+
+            //         let fromTo: string[] = this.filterValue.split(',');
+            //         if (fromTo.length > 0) {
+            //             if (filterFieldDataType == 'number') {
+            //                 let fromToNumber: number[] = fromTo.map(x => +x);
+            //                 filterSpec =
+            //                     {"filter":
+            //                         {
+            //                             "field": this.filterField,
+            //                             "oneOf": fromToNumber
+            //                         }
+            //                     };
+
+            //             } else {
+            //                 filterSpec =
+            //                     {"filter":
+            //                         {
+            //                             "field": this.filterField,
+            //                             "oneOf": fromTo
+            //                         }
+            //                     };
+            //             };
+            //         };
+            //     };
+
+            //     if (this.filterOperator == 'Valid') {
+            //         graphTransformationSpec.filterOperator = 'valid';
+
+            //         if (filterFieldDataType == 'number') {
+            //             filterSpec =
+            //                 {"filter":
+            //                     {
+            //                         "field": this.filterField,
+            //                         "valid": true
+            //                     }
+            //                 };
+            //         };
+            //     };
+
+            //     if (this.filterOperator == 'Selection') {
+            //         graphTransformationSpec.filterOperator = 'selection';
+
+            //         this.specification['transform'] = [
+            //             {"filter": {"field": this.filterField, "selection": this.filterValue}}
+            //         ];
+            //     };
+
+            //     // Add to Vega Spec
+            //     if (filterSpec != null) {
+            //         this.specification['transform'].push(filterSpec);
+            //         // this.localWidget.graphTransformations.push(graphTransformationSpec);
+            //     };
+
+            //     console.warn('xx graphTransformationSpec', graphTransformationSpec, this.localWidget);
                 
-            };
+            // };
 
 
             // Tooltip setting
@@ -3262,8 +3308,8 @@ export interface dataSchemaInterface {
         this.filterValue = '';
 
         // Remove from localWidget
-        let transformationIndex: number = this.localWidget.graphTransformations.findIndex(tr =>
-            tr.transformationType == 'filter'  &&  tr.underlyingFieldName == this.filterField);
+        let transformationIndex: number = this.localWidget.graphTransformations.findIndex(ftr =>
+            ftr.transformationType == 'filter'  &&  ftr.underlyingFieldName == this.filterField);
         if (transformationIndex >= 0) {
             this.localWidget.graphTransformations.splice(transformationIndex, 1);
         };
@@ -3307,8 +3353,8 @@ export interface dataSchemaInterface {
         };
 
         // Add / Update to localWidget
-        let transformationIndex: number = this.localWidget.graphTransformations.findIndex(tr =>
-            tr.transformationType == 'filter'  &&  tr.underlyingFieldName == this.filterField);
+        let transformationIndex: number = this.localWidget.graphTransformations.findIndex(ftr =>
+            ftr.transformationType == 'filter'  &&  ftr.underlyingFieldName == this.filterField);
         if (transformationIndex >= 0) {
             this.localWidget.graphTransformations[transformationIndex].filterOperator = 
                 this.filterOperator;
@@ -3317,8 +3363,6 @@ export interface dataSchemaInterface {
         } else {
             this.localWidget.graphTransformations.push(graphTransformationSpec);
         };
-
-        console.warn('xx graphTransformationSpec', graphTransformationSpec)
 
         // Hide filter form
         this.showFilterAreaProperties = false;
