@@ -1628,6 +1628,17 @@ export interface dataSchemaInterface {
 
                 // Add to the transformation channel
                 let filterSpec: any = null;
+                let graphTransformationSpec:
+                    {
+                        type: string;                   // Type of transformation: filter, sample, calculated, etc
+                        fieldName: string;              // Underlying DB or calculated field Name (not used in calculations here)
+                        filterOperand: string;          // ie gt, equal, etc.  Can also be 'selection'
+                        filterValue: string;            // ie January or 5 (stored as text, converted in code)
+                        sampleRows: number;             // Optional nr of rows to sample, 0 means None
+                        calculatedExpression: string;   // Expression, ie sin(datum.ValueTraded)
+                        calculateAs: string;            // Name of resultant calculated field
+                        selectionName: string;          // Name of selection (defined earlier) for Operand selection
+                    };
 
                 let filterFieldDataType: string = 'string';
                 let filterFieldDataTypeIndex: number = this.dataSchema.findIndex(
@@ -1637,19 +1648,20 @@ export interface dataSchemaInterface {
                     filterFieldDataType = this.dataSchema[filterFieldDataTypeIndex].type;
                 };
                 if (this.filterOperator == 'Equal') {
+                    graphTransformationSpec.
                     if (filterFieldDataType == 'string') {
                         filterSpec =
-                            {"filter": 
+                            {"filter":
                                 {
-                                    "field": this.filterField, 
+                                    "field": this.filterField,
                                     "equal": this.filterValue
                                 }
                             };
                     } else {
                         filterSpec =
-                            {"filter": 
+                            {"filter":
                                 {
-                                    "field": this.filterField, 
+                                    "field": this.filterField,
                                     "equal": +this.filterValue
                                 }
                             };
@@ -1660,17 +1672,17 @@ export interface dataSchemaInterface {
                 if (this.filterOperator == 'Less Than') {
                     if (filterFieldDataType == 'string') {
                         filterSpec =
-                            {"filter": 
+                            {"filter":
                                 {
-                                    "field": this.filterField, 
+                                    "field": this.filterField,
                                     "lt": this.filterValue
                                 }
                             };
                     } else {
                         filterSpec =
-                            {"filter": 
+                            {"filter":
                                 {
-                                    "field": this.filterField, 
+                                    "field": this.filterField,
                                     "lt": +this.filterValue
                                 }
                             };
@@ -1681,17 +1693,17 @@ export interface dataSchemaInterface {
                 if (this.filterOperator == 'Less Than Equal') {
                     if (filterFieldDataType == 'string') {
                         filterSpec =
-                            {"filter": 
+                            {"filter":
                                 {
-                                    "field": this.filterField, 
+                                    "field": this.filterField,
                                     "lte": this.filterValue
                                 }
                             };
                     } else {
                         filterSpec =
-                            {"filter": 
+                            {"filter":
                                 {
-                                    "field": this.filterField, 
+                                    "field": this.filterField,
                                     "lte": +this.filterValue
                                 }
                             };
@@ -1701,17 +1713,17 @@ export interface dataSchemaInterface {
                 if (this.filterOperator == 'Greater Than') {
                     if (filterFieldDataType == 'string') {
                         filterSpec =
-                            {"filter": 
+                            {"filter":
                                 {
-                                    "field": this.filterField, 
+                                    "field": this.filterField,
                                     "gt": this.filterValue
                                 }
                             };
                     } else {
                         filterSpec =
-                            {"filter": 
+                            {"filter":
                                 {
-                                    "field": this.filterField, 
+                                    "field": this.filterField,
                                     "gt": +this.filterValue
                                 }
                             };
@@ -1721,9 +1733,9 @@ export interface dataSchemaInterface {
                 if (this.filterOperator == 'Greater Than Equal') {
                     if (filterFieldDataType == 'string') {
                         filterSpec =
-                            {"filter": 
+                            {"filter":
                                 {
-                                    "field": this.filterField, 
+                                    "field": this.filterField,
                                     "gte": this.filterValue
                                 }
                             };
@@ -3286,7 +3298,7 @@ export interface dataSchemaInterface {
         if (schemaIndex >= 0) {
 
             this.dataSchema.splice(schemaIndex, 1);
-            
+
             this.calculatedExpression = '';
             this.calculatedAs = '';
             this.dataFieldType = '';
@@ -3323,7 +3335,7 @@ export interface dataSchemaInterface {
             this.dataSchema[schemaIndex].type = this.dataFieldType;
             this.dataSchema[schemaIndex].typeName = this.dataFieldTypeName;
             this.dataSchema[schemaIndex].calculatedExpression = this.calculatedExpression;
-        } else {        
+        } else {
             let newDataSchema: dataSchemaInterface = {
                 name: this.calculatedAs,
                 type: this.dataFieldType.toLowerCase(),
