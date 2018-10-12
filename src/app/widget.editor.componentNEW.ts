@@ -1658,19 +1658,37 @@ export interface dataSchemaInterface {
                         filterSpec =
                             {"filter":
                                 {
-                                    "field": this.filterField,
-                                    "equal": this.filterValue
+                                    "field": graphTransformationSpec.underlyingFieldName,
+                                    "equal": graphTransformationSpec.filterValue
                                 }
                             };
                     } else {
                         filterSpec =
                             {"filter":
                                 {
-                                    "field": this.filterField,
-                                    "equal": +this.filterValue
+                                    "field": graphTransformationSpec.underlyingFieldName,
+                                    "equal": +graphTransformationSpec.filterValue
                                 }
                             };
                     };
+
+                    // if (filterFieldDataType == 'string') {
+                    //     filterSpec =
+                    //         {"filter":
+                    //             {
+                    //                 "field": this.filterField,
+                    //                 "equal": this.filterValue
+                    //             }
+                    //         };
+                    // } else {
+                    //     filterSpec =
+                    //         {"filter":
+                    //             {
+                    //                 "field": this.filterField,
+                    //                 "equal": +this.filterValue
+                    //             }
+                    //         };
+                    // };
 
                 };
 
@@ -1836,9 +1854,10 @@ export interface dataSchemaInterface {
                 // Add to Vega Spec
                 if (filterSpec != null) {
                     this.specification['transform'].push(filterSpec);
+                    this.localWidget.graphTransformations.push(graphTransformationSpec);
                 };
 
-                console.warn('xx graphTransformationSpec', graphTransformationSpec);
+                console.warn('xx graphTransformationSpec', graphTransformationSpec, this.localWidget);
                 
             };
 
@@ -3257,6 +3276,25 @@ export interface dataSchemaInterface {
             };
         };
 
+        // Update the localWidget
+        let graphTransformationSpec: GraphTransformation = {
+            transformationType: "",
+            underlyingFieldName: "",
+            filterOperand: "",
+            filterValue: "",
+            sampleRows: 0,
+            calculatedExpression: "",
+            calculateAs: "",
+            selectionName: ""
+        };
+
+        graphTransformationSpec.underlyingFieldName = this.filterField;
+        graphTransformationSpec.transformationType = 'filter';
+        graphTransformationSpec.filterValue = this.filterValue;
+        graphTransformationSpec.filterOperand = 'equal';
+        console.warn('xx graphTransformationSpec', graphTransformationSpec)
+
+        // Hide filter form
         this.showFilterAreaProperties = false;
     }
 
