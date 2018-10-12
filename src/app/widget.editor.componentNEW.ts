@@ -2439,10 +2439,22 @@ export interface dataSchemaInterface {
         // Clear the X Field and Remove X icon
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClearXFieldField', '@Start');
 
+        // Reset fields
         this.showXDeleteIcon = false;
         this.xField = dragFieldMessage;
 
-        // Hide the panel2 with properties
+        this.localWidget.graphXaggregateName = '';
+        this.localWidget.graphXbin = false;
+        this.localWidget.graphXMaxBins = 0;
+        this.localWidget.graphXformat = '';
+        this.localWidget.graphXimpute = '';
+        this.localWidget.graphXimputeValue = '';
+        this.localWidget.graphXstack = '';
+        this.localWidget.graphXsort = '';
+        this.localWidget.graphXtypeName = '';
+        this.localWidget.graphXtimeUnit = '';
+
+        // Hide the panel with properties
         this.showFieldXPropertiesTitle = false;
         this.showFieldXProperties = false;
         this.showFieldXAxis = false;
