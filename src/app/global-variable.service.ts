@@ -45,6 +45,7 @@ import { DataQualityIssue}            from './models';
 import { DataOwnership}               from './models';
 import { DatasourcePermission}        from './models';
 import { DatasourcePivot }            from './models';
+import { GraphTransformation }        from './models';
 import { PaletteButtonBar }           from './models';
 import { PaletteButtonsSelected }     from './models';
 import { StatusBarMessage }           from './models';
@@ -244,6 +245,7 @@ const widgetTemplate: Widget =
         "graphDescription": "",
 
         "graphXfield": "",
+        "graphXaggregateName": "",
         "graphXaggregate": "",
         "graphXbin": false,
         "graphXMaxBins": 0,
@@ -257,6 +259,7 @@ const widgetTemplate: Widget =
         "graphXtypeName": "Ordinal",
 
         "graphYfield": "",
+        "graphYaggregateName": "",
         "graphYaggregate": "",
         "graphYbin": false,
         "graphYMaxBins": 0,
@@ -270,6 +273,7 @@ const widgetTemplate: Widget =
         "graphYtypeName": "",
 
         "graphColorField": "",
+        "graphColorAggregateName": "",
         "graphColorAggregate": "",
         "graphColorBin": false,
         "graphColorMaxBins": 0,
@@ -308,6 +312,7 @@ const widgetTemplate: Widget =
         "graphSizeField": "",
         "graphSizeType": "",
         "graphSizeTypeName": "",
+        "graphSizeAggregateName": "",
         "graphSizeAggregate": "",
         "graphSizeBin": true,
         "graphSizeMaxBins": 0,

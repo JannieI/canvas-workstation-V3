@@ -1140,6 +1140,7 @@ export class Widget {
 
     // X
     graphXfield: string;
+    graphXaggregateName: string;
     graphXaggregate: string;
     graphXtimeUnit: string;
     graphXbin: boolean;
@@ -1154,6 +1155,7 @@ export class Widget {
 
     // Y
     graphYfield: string;
+    graphYaggregateName: string;
     graphYaggregate: string;
     graphYbin: boolean;
     graphYMaxBins: number;
@@ -1168,6 +1170,7 @@ export class Widget {
 
     // Color
     graphColorField: string;
+    graphColorAggregateName: string;
     graphColorAggregate: string;
     graphColorBin: boolean;
     graphColorMaxBins: number;
@@ -1208,7 +1211,8 @@ export class Widget {
     graphSizeField: string;
     graphSizeType: string;
     graphSizeTypeName: string;
-    graphSizeAggregate
+    graphSizeAggregateName: string;
+    graphSizeAggregate: string;    
     graphSizeBin: boolean;
     graphSizeMaxBins: number;
 
@@ -1333,7 +1337,7 @@ export class WidgetGraph {
     visualGrammar: string;              // Vega-Lite, Vega, etc
     visualGrammarVersion: number;       // Version, ie 2.0
     shortName: string;                  // Short name to display
-    specificationType: string;          // Type of spec: standard (ie bar) which uses spec 
+    specificationType: string;          // Type of spec: standard (ie bar) which uses spec
                         // defined in code, custom (use specification specified here)
     mark: string;                       // Vega-lite: area, bar, line, etc
     specification: any;                 // Grammar spec (template)
