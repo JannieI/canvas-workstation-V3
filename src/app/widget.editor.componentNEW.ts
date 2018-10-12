@@ -3573,15 +3573,9 @@ export interface dataSchemaInterface {
             this.clickClearY2Field();
         };
 
-        // Find, reset values and remove
-        this.calculatedExpression = '';
-        this.calculatedAs = '';
-        this.dataFieldType = '';
-        this.dataFieldTypeName = '';
-
         // Remove from localWidget
         let transformationIndex: number = this.localWidget.graphTransformations.findIndex(ftr =>
-            ftr.transformationType == 'filter'  &&  ftr.underlyingFieldName == this.filterField);
+            ftr.transformationType == 'calculate'  &&  ftr.calculateAs == this.calculatedAs);
         if (transformationIndex >= 0) {
             this.localWidget.graphTransformations.splice(transformationIndex, 1);
         };
@@ -3592,7 +3586,14 @@ export interface dataSchemaInterface {
             this.dataSchema.splice(schemaIndex, 1);
         };
 
+        // Reset values
+        this.calculatedExpression = '';
+        this.calculatedAs = '';
+        this.dataFieldType = '';
+        this.dataFieldTypeName = '';
+
         this.showCalculatedAreaProperties = false;
+        console.warn('xx this.localWidget.graphTransformations', this.localWidget.graphTransformations)
     }
 
     clickCalculatedApply() {
@@ -3648,7 +3649,7 @@ export interface dataSchemaInterface {
 
         // Add / Update to localWidget
         let transformationIndex: number = this.localWidget.graphTransformations.findIndex(ftr =>
-            ftr.transformationType == 'calculate'  &&  ftr.underlyingFieldName == this.filterField);
+            ftr.transformationType == 'calculate'  &&  ftr.calculateAs == this.calculatedAs);
         if (transformationIndex >= 0) {
             this.localWidget.graphTransformations[transformationIndex].calculatedExpression = 
                 this.calculatedExpression;
