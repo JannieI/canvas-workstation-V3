@@ -1171,6 +1171,9 @@ export interface dataSchemaInterface {
             };
         }
 
+        // Fields and data schema
+        this.localWidget.dataschema = this.dataSchema;
+        
         // Get the widgetGraph
         let widgetGraphIndex: number = this.widgetGraphs.findIndex(
             wg => wg.id == graphID);

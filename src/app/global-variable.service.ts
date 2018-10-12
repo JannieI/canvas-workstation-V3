@@ -181,11 +181,13 @@ const widgetTemplate: Widget =
         "hyperlinkDashboardID": null,
         "hyperlinkDashboardTabID": null,
         "containerStyleID": null,
+
         "datasourceID": null,
         "data": null,
         "dataFields": null,
         "dataFieldTypes": null,
         "dataFieldLengths": null,
+        "dataschema": null,
         "datasetID": null,
         "dataParameters": [],
         "reportID": null,
@@ -193,6 +195,7 @@ const widgetTemplate: Widget =
         "rowLimit": null,
         "addRestRow": false,
         "size": "",
+        
         "containerBackgroundcolor": "transparent",
         "containerBackgroundcolorName": "transparent",
         "containerBorder": "1px solid gray",
@@ -11127,12 +11130,12 @@ export class GlobalVariableService {
 
             let filterSpec: any = null;
             let filterFieldDataType: string = 'string';
-            let filterFieldDataTypeIndex: number = this.dataSchema.findIndex(
+            let filterFieldDataTypeIndex: number = widget.dataschema.findIndex(
                 dat => dat.name == filterTransformation[i].underlyingFieldName
             );
 
             if (filterFieldDataTypeIndex >= 0) {
-                filterFieldDataType = this.dataSchema[filterFieldDataTypeIndex].type;
+                filterFieldDataType = widget.dataschema[filterFieldDataTypeIndex].type;
             };
 
             if (filterTransformation[i].filterOperator == 'Equal') {
