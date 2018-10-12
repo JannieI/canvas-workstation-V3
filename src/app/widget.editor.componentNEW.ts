@@ -3634,6 +3634,30 @@ export interface dataSchemaInterface {
             this.dataSchema.push(newDataSchema);
         };
 
+        // Update the localWidget
+        let graphTransformationSpec: GraphTransformation = {
+            transformationType: "calculate",
+            underlyingFieldName: "",
+            filterOperator: "",
+            filterValue: "",
+            sampleRows: 0,
+            calculatedExpression: this.calculatedExpression,
+            calculateAs: this.calculatedAs,
+            selectionName: ""
+        };
+
+        // Add / Update to localWidget
+        let transformationIndex: number = this.localWidget.graphTransformations.findIndex(ftr =>
+            ftr.transformationType == 'calculate'  &&  ftr.underlyingFieldName == this.filterField);
+        if (transformationIndex >= 0) {
+            this.localWidget.graphTransformations[transformationIndex].calculatedExpression = 
+                this.calculatedExpression;
+            this.localWidget.graphTransformations[transformationIndex].calculateAs = 
+                this.calculatedAs;
+        } else {
+            this.localWidget.graphTransformations.push(graphTransformationSpec);
+        };
+
         this.showCalculatedAreaProperties = false;
 
     }
