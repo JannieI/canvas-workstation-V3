@@ -1376,7 +1376,23 @@ This document describes items for later versions of Canvas.
 
     -   Calculated field
         - add more than one, see Compass / Vega example
+        - full UI to select fields and formulae in easy way, also give proper space for params, ie some take 1 param, some take 2, validate (try catch or some clever way)
+        - Calc % of TOTAL !!  Maybe make this a checkbox (and do in background):
+          "transform": [{
+            "window": [{
+                "op": "sum",
+                "field": "Time",
+                "as": "TotalTime"
+            }],
+            "frame": [null, null]
+            },
+            {
+                "calculate": "datum.Time/datum.TotalTime * 100",
+                "as": "PercentOfTotal"
+            }]
 
+    - Window
+        - add
     - Filter
         - Add Selection Predicate
 

@@ -182,8 +182,8 @@ export interface dataSchemaInterface {
     calculatedErrorMessage: string = '';
     calculatedAs: string = '';
     calculatedExpression: string = '';
-    calculatedFieldType: string = '';
-    calculatedFieldTypeName: string = '';
+    dataFieldType: string = '';
+    dataFieldTypeName: string = '';
     colorField: string = dragFieldMessage;
     columnField: string = dragFieldMessage;
     containerHasContextMenus: boolean = true;
@@ -3190,9 +3190,9 @@ export interface dataSchemaInterface {
         // Register Calculated Field Type
         this.globalFunctionService.printToConsole(this.constructor.name,'calculatedFieldTypeSelected', '@Start');
 
-        this.calculatedFieldTypeName = ev.target.value;
-        this.calculatedFieldType = this.calculatedFieldTypeName.toLowerCase();
-        console.warn('xx', this.calculatedFieldTypeName, this.calculatedFieldTypeName)
+        this.dataFieldTypeName = ev.target.value;
+        this.dataFieldType = this.dataFieldTypeName.toLowerCase();
+        console.warn('xx', this.dataFieldTypeName, this.dataFieldTypeName)
     }
 
     clickShowSpecificationArea() {
@@ -3314,8 +3314,8 @@ export interface dataSchemaInterface {
             
             this.calculatedExpression = '';
             this.calculatedAs = '';
-            this.calculatedFieldType = '';
-            this.calculatedFieldTypeName = '';
+            this.dataFieldType = '';
+            this.dataFieldTypeName = '';
         };
 
         this.showCalculatedAreaProperties = false;
@@ -3337,7 +3337,7 @@ export interface dataSchemaInterface {
             this.calculatedErrorMessage = 'New field name (As) is required.';
             return;
         };
-        if (this.calculatedFieldType == ''  ||  this.calculatedFieldType == undefined) {
+        if (this.dataFieldType == ''  ||  this.dataFieldType == undefined) {
             this.calculatedErrorMessage = 'Field data type is required.';
             return;
         };
@@ -3345,21 +3345,21 @@ export interface dataSchemaInterface {
         // Add Calculated field to Field List
         let schemaIndex: number = this.dataSchema.findIndex(ds => ds.name == this.calculatedAs);
         if (schemaIndex >= 0) {
-            this.dataSchema[schemaIndex].type = this.calculatedFieldType;
-            this.dataSchema[schemaIndex].typeName = this.calculatedFieldTypeName;
+            this.dataSchema[schemaIndex].type = this.dataFieldType;
+            this.dataSchema[schemaIndex].typeName = this.dataFieldTypeName;
             this.dataSchema[schemaIndex].calculatedExpression = this.calculatedExpression;
         } else {        
             let newDataSchema: dataSchemaInterface = {
                 name: this.calculatedAs,
-                type: this.calculatedFieldType.toLowerCase(),
-                typeName: this.calculatedFieldTypeName,
+                type: this.dataFieldType.toLowerCase(),
+                typeName: this.dataFieldTypeName,
                 length: 12,
                 isCalculated: true,
                 calculatedExpression: this.calculatedExpression
             };
             this.dataSchema.push(newDataSchema);
         };
-        console.warn('xx', this.calculatedFieldType, this.calculatedFieldTypeName, this.dataSchema)
+        console.warn('xx', this.dataFieldType, this.dataFieldTypeName, this.dataSchema)
 
         this.showCalculatedAreaProperties = false;
 
@@ -3374,8 +3374,8 @@ export interface dataSchemaInterface {
             if (this.dataSchema[schemaIndex].isCalculated) {
                 this.calculatedExpression = this.dataSchema[schemaIndex].calculatedExpression;
                 this.calculatedAs = this.dataSchema[schemaIndex].name;
-                this.calculatedFieldType = this.dataSchema[schemaIndex].type;
-                this.calculatedFieldTypeName = this.dataSchema[schemaIndex].typeName;
+                this.dataFieldType = this.dataSchema[schemaIndex].type;
+                this.dataFieldTypeName = this.dataSchema[schemaIndex].typeName;
                 this.showCalculatedAreaProperties = true;
             };
         };

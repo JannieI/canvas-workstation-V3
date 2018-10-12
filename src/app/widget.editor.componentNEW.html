@@ -89,32 +89,6 @@
                     <div class="datasourceMainPreviewTitle">
                         <b>Preview:</b>
                     </div>
-                    <!-- <div class="datasourceMainPreview">
-                        <clr-datagrid class="datagrid-compact">
-
-                            <clr-dg-placeholder>Select a datasource to preview here</clr-dg-placeholder>
-
-                            <clr-dg-column *ngFor="let row of dataFieldNames; let i = index;">
-                                {{row}}
-                            <clr-icon shape="times" *ngIf="i==1"
-                                (click)="clickClearRowField(i)">
-                            </clr-icon>
-                            </clr-dg-column>
-                            <clr-dg-row *ngFor="let row of currentData">
-
-                                <clr-dg-cell *ngFor="let col of dataFieldNames;
-                                    let i = index"
-                                    >
-                                    {{ row[col] }}
-                                </clr-dg-cell>
-                            </clr-dg-row>
-
-                        </clr-datagrid>
-                    </div> -->
-
-
-
-
                     <div class="datasourceMainPreview">
                         <clr-datagrid class="datagrid-compact">
 
@@ -137,15 +111,6 @@
 
                         </clr-datagrid>
                     </div>
-
-
-
-
-
-
-
-
-
 
                     <!-- Row Nr -->
                     <div class="editorNrRowsTitle">
@@ -294,9 +259,9 @@
                         </div>
                         <div class="select editorCalculatedValue">
                             <select id="selects_3"
-                                [(ngModel)]="calculatedFieldTypeName"
+                                [(ngModel)]="dataFieldTypeName"
                                 (change)="calculatedFieldTypeSelected($event)"
-                                name="calculatedFieldType"
+                                name="dataFieldType"
                                 >
                                 <option>Boolean</option>
                                 <option>Number</option>
