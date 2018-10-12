@@ -2488,9 +2488,21 @@ export interface dataSchemaInterface {
         // Clear the Colour Field and Remove X icon
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClearColourField', '@Start');
 
+        this.localWidget.graphColorAggregateName = '';
+        this.localWidget.graphColorBin = false;
+        this.localWidget.graphColorMaxBins = 0;
+        this.localWidget.graphColorFormat = '';
+        this.localWidget.graphColorImpute = '';
+        this.localWidget.graphColorImputeValue = '';
+        this.localWidget.graphColorStack = '';
+        this.localWidget.graphColorSort = '';
+        this.localWidget.graphColorTypeName = '';
+        this.localWidget.graphColorTimeUnit = '';
+
         this.showColourDeleteIcon = false;
         this.colorField = dragFieldMessage;
 
+        
         // Hide the panel with properties
         this.showFieldColorPropertiesTitle = false;
         this.showFieldColorProperties = false;
