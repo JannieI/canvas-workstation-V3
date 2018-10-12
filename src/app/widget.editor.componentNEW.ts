@@ -1078,9 +1078,6 @@ export interface dataSchemaInterface {
             if (arrayIndex < 0) {
                 alert('Datasource for current Dashboard not found in global currentDatasources')
             };
-            // this.dataFieldNames = this.localDatasources[arrayIndex].dataFields;
-            // this.dataFieldLengths = this.localDatasources[arrayIndex].dataFieldLengths;
-            // this.dataFieldTypes = this.localDatasources[arrayIndex].dataFieldTypes;
 
             this.constructDataSchema(arrayIndex);
         }
@@ -2712,10 +2709,8 @@ export interface dataSchemaInterface {
         if (dataSetIndex >= 0) {
 
             // Load local arrays for ngFor
-            // this.dataFieldNames = this.localDatasources[arrayIndex].dataFields;
-            // this.dataFieldLengths = this.localDatasources[arrayIndex].dataFieldLengths;
-            // this.dataFieldTypes = this.localDatasources[arrayIndex].dataFieldTypes;
             this.constructDataSchema(arrayIndex);
+
             // Load first few rows into preview
             this.currentData = this.globalVariableService.currentDatasets[dataSetIndex]
                 .data.slice(0,5);
@@ -2730,9 +2725,6 @@ export interface dataSchemaInterface {
         this.globalVariableService.addCurrentDatasource(datasourceID).then(res => {
 
             // Load local arrays for ngFor
-            // this.dataFieldNames = this.localDatasources[arrayIndex].dataFields;
-            // this.dataFieldLengths = this.localDatasources[arrayIndex].dataFieldLengths;
-            // this.dataFieldTypes = this.localDatasources[arrayIndex].dataFieldTypes;
             this.constructDataSchema(arrayIndex);
 
             // Determine if data obtains in Glob Var
@@ -2843,20 +2835,11 @@ export interface dataSchemaInterface {
         // Returns the field type of a given field name
         this.globalFunctionService.printToConsole(this.constructor.name,'getFieldType', '@Start');
 
-        // for (var i = 0; i < this.dataFieldNames.length; i++) {
-        //     if (this.dataFieldNames[i] == fieldName) {
-        //         return this.dataFieldTypes[i]
-        //     }
-        // };
-
-
         for (var i = 0; i < this.dataSchema.length; i++) {
             if (this.dataSchema[i].name == fieldName) {
                 return this.dataSchema[i].type;
             }
         };
-
-
 
         // Was not found, defaults
         return 'string';
@@ -2867,23 +2850,8 @@ export interface dataSchemaInterface {
         // Construct combined object for fields
         this.globalFunctionService.printToConsole(this.constructor.name,'constructDataSchema', '@Start');
 
-        // TODO - do one or the other: 3 vars, or 1 combined object
         // Fill dataSchema
         this.dataSchema = [];
-        // for (let i = 0; i < this.dataFieldNames.length; i++) {
-        //     let newDataSchema: dataSchemaInterface = {
-        //         name: this.dataFieldNames[i],
-        //         type: this.dataFieldTypes[i],
-        //         length: this.dataFieldLengths[i]
-        //     };
-        //     this.dataSchema.push(newDataSchema);
-        // };
-
-
-        // this.dataFieldNames = this.localDatasources[arrayIndex].dataFields;
-        // this.dataFieldLengths = this.localDatasources[arrayIndex].dataFieldLengths;
-        // this.dataFieldTypes = this.localDatasources[arrayIndex].dataFieldTypes;
-
 
         console.warn('xx arrayIndex', arrayIndex, this.localWidget.datasourceID, this.localDatasources);
 
