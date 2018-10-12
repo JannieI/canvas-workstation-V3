@@ -1173,7 +1173,7 @@ export interface dataSchemaInterface {
 
         // Fields and data schema
         this.localWidget.dataschema = this.dataSchema;
-        
+
         // Get the widgetGraph
         let widgetGraphIndex: number = this.widgetGraphs.findIndex(
             wg => wg.id == graphID);
@@ -1860,6 +1860,10 @@ export interface dataSchemaInterface {
 
             // // Tooltip setting
             // // specification['mark']['tooltip']['content'] = "";
+
+            this.specification = this.globalVariableService.createVegaLiteSpecNEW(
+                this.localWidget, height, width
+            );
 
             console.warn('xx @END of ShowGraph specification', this.specification);
 

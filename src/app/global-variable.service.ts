@@ -10846,6 +10846,7 @@ export class GlobalVariableService {
             specification['transform']['sample'] = widget.sampleNumberRows;
         };
 
+console.warn('xx gv spec', specification);
 
         // General
         specification['description'] = widget.graphDescription;
@@ -11329,10 +11330,12 @@ export class GlobalVariableService {
         
         }
 
-
         // Tooltip setting
         // specification['mark']['tooltip']['content'] = "";
 
+        // Return
+        return specification;
+        
     }
     
     createVegaLiteSpec(
