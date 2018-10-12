@@ -3303,17 +3303,16 @@ export interface dataSchemaInterface {
         // Reset
         this.filterErrorMessage = '';
 
-        this.filterField = '';
-        this.filterOperator = '';
-        this.filterValue = '';
-
         // Remove from localWidget
         let transformationIndex: number = this.localWidget.graphTransformations.findIndex(ftr =>
             ftr.transformationType == 'filter'  &&  ftr.underlyingFieldName == this.filterField);
         if (transformationIndex >= 0) {
             this.localWidget.graphTransformations.splice(transformationIndex, 1);
         };
-        console.warn('xx this.localWidget.graphTransformations', this.localWidget.graphTransformations)
+
+        this.filterField = '';
+        this.filterOperator = '';
+        this.filterValue = '';
 
         this.showFilterAreaProperties = false;
     }
