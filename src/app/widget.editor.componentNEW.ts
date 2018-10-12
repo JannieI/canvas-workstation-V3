@@ -79,8 +79,13 @@ export interface dataSchemaInterface {
                 this.clickContinue();
                 return;
             } else {
-                this.clickSave('Saved');
-                return;
+                if (this.showCalculatedAreaProperties) {
+                    this.clickCalculatedApply();
+                    return;
+                } else {
+                    this.clickSave('Saved');
+                    return;
+                }
             }
         };
 
