@@ -1162,7 +1162,6 @@ export interface dataSchemaInterface {
             return;
         }
 
-
         // Startup
         let width: number = 400;
         let height: number = 260;
@@ -1638,77 +1637,96 @@ export interface dataSchemaInterface {
                     filterFieldDataType = this.dataSchema[filterFieldDataTypeIndex].type;
                 };
                 if (this.filterOperator == 'Equal') {
-                    // if (filterFieldDataType == 'string') {
-                    //     this.specification['transform'] = [
-                    //         {"filter": {"field": this.filterField, "equal": this.filterValue}}
-                    //     ];
-                    // } else {
-                    //     this.specification['transform'] = [
-                    //         {"filter": {"field": this.filterField, "equal": +this.filterValue}}
-                    //     ];
-                    // };
-
                     if (filterFieldDataType == 'string') {
                         filterSpec =
-                            {"filter": {"field": this.filterField, "equal": this.filterValue}};
+                            {"filter": 
+                                {
+                                    "field": this.filterField, 
+                                    "equal": this.filterValue
+                                }
+                            };
                     } else {
                         filterSpec =
-                            {"filter": {"field": this.filterField, "equal": +this.filterValue}};
+                            {"filter": 
+                                {
+                                    "field": this.filterField, 
+                                    "equal": +this.filterValue
+                                }
+                            };
                     };
 
                 };
 
                 if (this.filterOperator == 'Less Than') {
-                    // this.specification['transform'] = [
-                    //     {"filter": {"field": this.filterField, "lt": this.filterValue}}
-                    // ];
-
                     if (filterFieldDataType == 'string') {
                         filterSpec =
-                            {"filter": {"field": this.filterField, "lt": this.filterValue}};
+                            {"filter": 
+                                {
+                                    "field": this.filterField, 
+                                    "lt": this.filterValue
+                                }
+                            };
                     } else {
                         filterSpec =
-                            {"filter": {"field": this.filterField, "lt": +this.filterValue}};
+                            {"filter": 
+                                {
+                                    "field": this.filterField, 
+                                    "lt": +this.filterValue
+                                }
+                            };
                     };
 
                 };
 
                 if (this.filterOperator == 'Less Than Equal') {
-                    // this.specification['transform'] = [
-                    //     {"filter": {"field": this.filterField, "lte": this.filterValue}}
-                    // ];
-
                     if (filterFieldDataType == 'string') {
                         filterSpec =
-                            {"filter": {"field": this.filterField, "lte": this.filterValue}};
+                            {"filter": 
+                                {
+                                    "field": this.filterField, 
+                                    "lte": this.filterValue
+                                }
+                            };
                     } else {
                         filterSpec =
-                            {"filter": {"field": this.filterField, "lte": +this.filterValue}};
+                            {"filter": 
+                                {
+                                    "field": this.filterField, 
+                                    "lte": +this.filterValue
+                                }
+                            };
                     };
                 };
 
                 if (this.filterOperator == 'Greater Than') {
-                    // this.specification['transform'] = [
-                    //     {"filter": {"field": this.filterField, "gt": this.filterValue}}
-                    // ];
-
                     if (filterFieldDataType == 'string') {
                         filterSpec =
-                            {"filter": {"field": this.filterField, "gt": this.filterValue}};
+                            {"filter": 
+                                {
+                                    "field": this.filterField, 
+                                    "gt": this.filterValue
+                                }
+                            };
                     } else {
                         filterSpec =
-                            {"filter": {"field": this.filterField, "gt": +this.filterValue}};
+                            {"filter": 
+                                {
+                                    "field": this.filterField, 
+                                    "gt": +this.filterValue
+                                }
+                            };
                     };
                 };
 
                 if (this.filterOperator == 'Greater Than Equal') {
-                    // this.specification['transform'] = [
-                    //     {"filter": {"field": this.filterField, "gte": this.filterValue}}
-                    // ];
-
                     if (filterFieldDataType == 'string') {
                         filterSpec =
-                            {"filter": {"field": this.filterField, "gte": this.filterValue}};
+                            {"filter": 
+                                {
+                                    "field": this.filterField, 
+                                    "gte": this.filterValue
+                                }
+                            };
                     } else {
                         filterSpec =
                             {"filter": {"field": this.filterField, "gte": +this.filterValue}};
@@ -1735,8 +1753,6 @@ export interface dataSchemaInterface {
                                         "range": [ fromTo[0], fromTo[1] ]
                                     }
                                 };
-                                // "range": [0, 5]}}
-
                         };
                     };
                 };
@@ -1762,8 +1778,6 @@ export interface dataSchemaInterface {
                                         "oneOf": fromTo
                                     }
                                 };
-                                // "range": [0, 5]}}
-
                         };
                     };
                 };
@@ -2793,7 +2807,7 @@ export interface dataSchemaInterface {
             if (typeOrName == 'name') {
                 return 'Ordinal';
             } else {
-            return 'ordinal';
+                return 'ordinal';
             };
         };
         if (fieldType.toLowerCase() == 'number') {

@@ -1124,6 +1124,19 @@ export class Widget {
     graphTitleLength: number;
     graphTitleOrientation: string;
 
+    // Transformations
+    graphTransformations: 
+        {
+            type: string;                   // Type of transformation: filter, sample, calculated, etc
+            fieldName: string;              // Underlying DB or calculated field Name (not used in calculations here)
+            filterOperand: string;          // ie gt, equal, etc.  Can also be 'selection'
+            filterValue: string;            // ie January or 5 (stored as text, converted in code)
+            sampleRows: number;             // Optional nr of rows to sample, 0 means None
+            calculatedExpression: string;   // Expression, ie sin(datum.ValueTraded)
+            calculateAs: string;            // Name of resultant calculated field
+            selectionName: string;          // Name of selection (defined earlier) for Operand selection
+        }[];
+
     // X
     graphXfield: string;
     graphXaggregate: string;

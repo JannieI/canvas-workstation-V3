@@ -290,6 +290,8 @@ const widgetTemplate: Widget =
         "graphXaxisLabels": true,
         "graphXaxisLabelAngle": 0,
 
+        "graphTransformations": [],
+
         "graphYaxisScaleType": "Default",
         "graphYaxisTitleCheckbox": true,
         "graphYaxisTitle": "",
