@@ -10778,6 +10778,553 @@ export class GlobalVariableService {
         }
     }
 
+    createVegaLiteSpecNEW(
+        widget: Widget,
+        height: number = 0,
+        width: number = 0): dl.spec.TopLevelExtentedSpec {
+        let specification: any = {
+            "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
+            "description": "A simple bar chart with embedded data.",
+            "title": {
+                "text": "",
+                "anchor": "start",
+                "angle": 0,
+                "baseline": "top",
+                "color": "red",
+                "font": "",
+                "fontSize": 10,
+                "fontWeight": 400,
+                "limit": 0
+            },
+            "data": {
+                "values": []
+            },
+            "mark": {
+                "type": "bar",
+                "tooltip": {
+                    "content": "data"
+            }
+            },
+            "encoding": {
+                "x": {
+                    "field": "",
+                    "type": "",
+                    "axis": ""
+                },
+                "y": {
+                    "field": "",
+                    "type": "",
+                    "axis": ""
+                },
+                "color": {
+                    "field": "",
+                    "type": "",
+                    "scale": "",
+                    "legend": ""
+                },
+                "size": {
+                    "field": ""
+                }
+            },
+            "transform": []
+        };
+
+        specification['mark']['type'] = this.widgetGraphs[widgetGraphIndex]['mark'];
+
+        // Optional Sampling
+        if (this.sampleNumberRows != 0) {
+            specification['transform']['sample'] = this.sampleNumberRows;
+        };
+
+
+        // General
+        specification['description'] = widget.graphDescription;
+        specification['width'] = width;
+        specification['height'] = height;
+
+
+        // Calculated Fields
+        let filterTransformation: GraphTransformation[] = widget.
+            graphTransformations.filter(ftr => ftr.transformationType == 'calculate'
+        );
+
+        for (var i = 0; i < filterTransformation.length; i++) {
+
+            // Add to the transformation channel
+            specification['transform'].push(
+                {
+                        "calculate": filterTransformation[i].calculatedExpression,
+                        "as": filterTransformation[i].calculateAs
+                }
+            );
+        };
+
+        // Data
+        if (widget.graphUrl != ""  &&  widget.graphUrl != null) {
+            specification['data'] = {"url": widget.graphUrl};
+        } else {
+            specification['data'] = {"values": widget.graphData};
+        }
+
+
+        // Mark
+        specification['mark']['orient'] = widget.graphMarkOrient.toLowerCase();
+        specification['mark']['line'] = widget.graphMarkLine;
+        specification['mark']['point'] = widget.graphMarkPoint;
+        specification['mark']['color'] = widget.graphMarkColour;
+        specification['mark']['cornerRadius'] = widget.graphMarkCornerRadius;
+        specification['mark']['opacity'] = widget.graphMarkOpacity;
+        specification['mark']['binSpacing'] = widget.graphMarkBinSpacing;
+
+
+        // Title
+        specification['title']['text'] = widget.graphTitleText;
+        specification['title']['anchor'] = widget.graphTitleAnchor.toLowerCase();
+        specification['title']['angle'] = widget.graphTitleAngle;
+        specification['title']['baseline'] = widget.graphTitleBaseline.toLowerCase();
+        specification['title']['color'] = widget.graphTitleColor;
+        specification['title']['font'] = widget.graphTitleFont;
+        specification['title']['fontSize'] = widget.graphTitleFontSize;
+        specification['title']['fontWeight'] = widget.graphTitleFontWeight;
+        specification['title']['limit'] = widget.graphTitleLength;
+        specification['title']['orient'] = widget.graphTitleOrientation.toLowerCase();
+
+
+        // X field
+        if (widget.graphXfield != dragFieldMessage) {
+            specification['encoding']['x']['field'] = widget.graphXfield;
+            specification['encoding']['x']['aggregate'] = this.graphXaggregateVegaLiteName.toLowerCase();
+            if (widget.graphXMaxBins > 0) {
+                specification['encoding']['x']['bin'] =
+                    {"maxbins": widget.graphXMaxBins};
+            } else {
+                specification['encoding']['x']['bin'] = widget.graphXbin;
+            };
+            specification['encoding']['x']['format'] = widget.graphXformat.toLowerCase();
+            if (widget.graphXimpute != '') {
+                if (widget.graphXimpute == 'Value') {
+                    specification['encoding']['x']['impute'] =
+                        {"value": widget.graphXimputeValue };
+                } else {
+                    specification['encoding']['x']['impute'] =
+                        {"method": widget.graphXimpute};
+                };
+            };
+            specification['encoding']['x']['stack'] = widget.graphXstack;
+            specification['encoding']['x']['sort'] = widget.graphXsort.toLowerCase();
+            specification['encoding']['x']['type'] = widget.graphXtype.toLowerCase();
+            specification['encoding']['x']['timeUnit'] = widget.graphXtimeUnit.toLowerCase();
+
+            specification['encoding']['x']['axis'] = {"grid": widget.graphXaxisGrid };
+            specification['encoding']['x']['axis']['labels'] = widget.graphXaxisLabels;
+            if (widget.graphXaxisLabelAngle != 0){
+                specification['encoding']['x']['axis']['labelAngle'] = widget.graphXaxisLabelAngle;
+            };
+
+            if (!widget.graphXaxisTitleCheckbox) {
+                specification['encoding']['x']['axis']['title'] = null;
+            } else {
+                if (widget.graphXaxisTitle != ''  &&  widget.graphXaxisTitle != undefined) {
+                    specification['encoding']['x']['axis']['title'] = widget.graphXaxisTitle;
+                };
+            };
+
+            if (widget.graphXaxisFormat != '') {
+                specification['encoding']['x']['axis']['format'] =  widget.graphXaxisFormat;
+            };
+        };
+
+
+        // Y field
+        if (widget.graphYfield != dragFieldMessage) {
+            specification['encoding']['y']['field'] = widget.graphYfield;
+            specification['encoding']['y']['aggregate'] = this.graphYaggregateVegaLiteName.toLowerCase();
+            if (widget.graphYMaxBins > 0) {
+                specification['encoding']['y']['bin'] =
+                    {"maxbins": widget.graphYMaxBins};
+            } else {
+                specification['encoding']['y']['bin'] = widget.graphYbin;
+            };
+            specification['encoding']['y']['format'] = widget.graphYformat.toLowerCase();
+            if (widget.graphYimpute != '') {
+                if (widget.graphYimpute == 'Value') {
+                    specification['encoding']['y']['impute'] =
+                        {"value": widget.graphYimputeValue };
+                } else {
+                    specification['encoding']['y']['impute'] =
+                        {"method": widget.graphYimpute };
+                };
+            };
+            specification['encoding']['y']['stack'] = widget.graphYstack.toLowerCase();
+            specification['encoding']['y']['sort'] = widget.graphYsort.toLowerCase();
+            specification['encoding']['y']['type'] = widget.graphYtype.toLowerCase();
+            specification['encoding']['y']['timeUnit'] = widget.graphYtimeUnit.toLowerCase();
+
+            if (widget.graphYaxisScaleType != 'Default') {
+                specification['encoding']['y']['scale'] =
+                {"type": widget.graphYaxisScaleType.toLowerCase() };
+            };
+
+            specification['encoding']['y']['axis'] = {"grid": widget.graphYaxisGrid };
+            specification['encoding']['y']['axis']['labels'] = widget.graphYaxisLabels;
+            if (widget.graphYaxisLabelAngle != 0){
+                specification['encoding']['y']['axis']['labelAngle'] =
+                    widget.graphYaxisLabelAngle;
+            };
+
+            if (!widget.graphYaxisTitleCheckbox) {
+                specification['encoding']['y']['axis']['title'] = null;
+            } else {
+                if (widget.graphYaxisTitle != ''  &&  widget.graphYaxisTitle != undefined) {
+                    specification['encoding']['y']['axis']['title'] =
+                        widget.graphYaxisTitle;
+                };
+            };
+
+            if (widget.graphYaxisFormat != '') {
+                specification['encoding']['y']['axis']['format'] =  widget.graphYaxisFormat;
+            };
+        };
+
+        // Color field
+        if (widget.graphColorField != dragFieldMessage) {
+            let colorBinMax: any = false;
+            if (widget.graphYMaxBins > 0) {
+                colorBinMax = {"maxbins": widget.graphYMaxBins};
+            } else {
+                colorBinMax = widget.graphYbin;
+            };
+
+            specification['encoding']['color'] = {
+                "aggregate": this.graphColorAggregateVegaLiteName.toLowerCase(),
+                "bin": colorBinMax,
+                "field": widget.graphColorField,
+                "format": widget.graphColorFormat.toLowerCase(),
+                "legend": "",
+                "sort": widget.graphColorSort.toLowerCase(),
+                "stack": widget.graphColorStack.toLowerCase(),
+                "timeUnit": widget.graphColorTimeUnit.toLowerCase(),
+                "type": widget.graphColorType.toLowerCase(),
+                "scale": widget.graphColorScheme == 'None'?  null  :  {"scheme": widget.graphColorScheme.toLowerCase()}
+            };
+
+            if (widget.graphLegendHide) {
+                specification['encoding']['color']['legend'] = null;
+            } else {
+                if (!widget.graphLegendTitleCheckbox) {
+                    specification['encoding']['color']['legend'] = {"title": null};
+                } else {
+                    if (widget.graphLegendTitle != ''  &&  widget.graphLegendTitle != undefined) {
+                        specification['encoding']['color']['legend'] =
+                            {"title": widget.graphLegendTitle};
+                    };
+                };
+            };
+
+
+            // if (widget. != '') {
+            //     if (widget. == 'Value') {
+            //         specification['encoding']['color']['impute'] =
+            //             {"value":' + widget.Value + '};
+            //     } else {
+            //         specification['encoding']['color']['impute'] =
+            //             {"method": "' + widget. + '"};
+            //     };
+            // };
+
+        };
+
+
+        // Size field
+        if (widget.graphSizeField != '') {
+
+            specification['encoding']['size']['field'] = widget.graphSizeField;
+            specification['encoding']['size']['type'] = widget.graphSizeType.toLowerCase();
+            specification['encoding']['size']['aggregate'] = widget.graphSizeAggregate.toLowerCase();
+            if (widget.graphSizeMaxBins > 0) {
+                specification['encoding']['size']['bin'] =
+                    {"maxbins": widget.graphSizeMaxBins};
+            } else {
+                specification['encoding']['size']['bin'] = widget.graphSizeBin;
+            };
+
+
+        } else {
+            specification['encoding']['size'] = {
+                "field": ""
+            };
+        };
+
+
+        // Row field
+        if (widget.graphRowField != '') {
+
+            specification['encoding']['row'] = {
+                "field": widget.graphRowField,
+                "type": widget.graphRowType.toLowerCase()
+            };
+
+        };
+
+
+        // Column field
+        if (widget.graphColumnField != '') {
+
+            specification['encoding']['column'] = {
+                "field": widget.graphColumnField,
+                "type": widget.graphColumnType.toLowerCase()
+            };
+
+        };
+
+
+        // Detail field
+        if (widget.graphDetailField != '') {
+
+            specification['encoding']['detail'] = {
+                "field": widget.graphDetailField,
+                "type": widget.graphDetailType
+            };
+
+        };
+
+
+        // X2 field
+        if (widget.graphX2Field != '') {
+
+            specification['encoding']['x2'] = {
+                "field": widget.graphX2Field,
+                "type": widget.graphX2Type
+            };
+
+        };
+
+
+        // Y2 field
+        if (widget.graphY2Field != '') {
+
+            specification['encoding']['y2'] = {
+                "field": widget.graphY2Field,
+                "type": widget.graphY2Type
+            };
+
+        };
+
+
+        // Filter
+        filterTransformation = widget.graphTransformations.filter(
+            ftr => ftr.transformationType == 'filter'
+        );
+
+        for (var i = 0; i < filterTransformation.length; i++) {
+
+            let filterSpec: any = null;
+            let filterFieldDataType: string = 'string';
+            let filterFieldDataTypeIndex: number = this.dataSchema.findIndex(
+                dat => dat.name == filterTransformation[i].underlyingFieldName
+            );
+
+            if (filterFieldDataTypeIndex >= 0) {
+                filterFieldDataType = this.dataSchema[filterFieldDataTypeIndex].type;
+            };
+
+            if (filterTransformation[i].filterOperator == 'Equal') {
+                if (filterFieldDataType == 'string') {
+                    filterSpec =
+                        {"filter":
+                            {
+                                "field": filterTransformation[i].underlyingFieldName,
+                                "equal": filterTransformation[i].filterValue
+                            }
+                        };
+                } else {
+                    filterSpec =
+                        {"filter":
+                            {
+                                "field": filterTransformation[0].underlyingFieldName,
+                                "equal": +filterTransformation[0].filterValue
+                            }
+                        };
+                };
+            };
+        
+            if (filterTransformation[i].filterOperator == 'Less Than') {
+
+                if (filterFieldDataType == 'string') {
+                    filterSpec =
+                        {"filter":
+                            {
+                                "field": filterTransformation[i].underlyingFieldName,
+                                "lt": filterTransformation[i].filterValue
+                            }
+                        };
+                } else {
+                    filterSpec =
+                        {"filter":
+                            {
+                                "field": filterTransformation[i].underlyingFieldName,
+                                "lt": +filterTransformation[i].filterValue
+                            }
+                        };
+                };
+
+            };
+
+            if (filterTransformation[i].filterOperator == 'Less Than Equal') {
+
+                if (filterFieldDataType == 'string') {
+                    filterSpec =
+                        {"filter":
+                            {
+                                "field": filterTransformation[i].underlyingFieldName,
+                                "lte": filterTransformation[i].filterValue
+                            }
+                        };
+                } else {
+                    filterSpec =
+                        {"filter":
+                            {
+                                "field": filterTransformation[i].underlyingFieldName,
+                                "lte": +filterTransformation[i].filterValue
+                            }
+                        };
+                };
+            };
+
+            if (filterTransformation[i].filterOperator == 'Greater Than') {
+
+                if (filterFieldDataType == 'string') {
+                    filterSpec =
+                        {"filter":
+                            {
+                                "field": filterTransformation[i].underlyingFieldName,
+                                "gt": filterTransformation[i].filterValue
+                            }
+                        };
+                } else {
+                    filterSpec =
+                        {"filter":
+                            {
+                                "field": filterTransformation[i].underlyingFieldName,
+                                "gt": +filterTransformation[i].filterValue
+                            }
+                        };
+                };
+            };
+
+            if (filterTransformation[i].filterOperator == 'Greater Than Equal') {
+
+                if (filterFieldDataType == 'string') {
+                    filterSpec =
+                        {"filter":
+                            {
+                                "field": filterTransformation[i].underlyingFieldName,
+                                "gte": filterTransformation[i].filterValue
+                            }
+                        };
+                } else {
+                    filterSpec =
+                        {"filter": 
+                            {
+                                "field": filterTransformation[i].underlyingFieldName, 
+                                "gte": +filterTransformation[i].filterValue
+                            }
+                        };
+                };
+            };
+
+            if (filterTransformation[i].filterOperator == 'Range') {
+
+                let fromTo: string[] = filterTransformation[i].filterValue.split(',');
+                if (fromTo.length == 2) {
+                    if (filterFieldDataType == 'number') {
+                        filterSpec =
+                            {"filter":
+                                {
+                                    "field": filterTransformation[i].underlyingFieldName,
+                                    "range": [ +fromTo[0], +fromTo[1] ]
+                                }
+                            };
+
+                    } else {
+                        filterSpec =
+                            {"filter":
+                                {
+                                    "field": filterTransformation[i].underlyingFieldName,
+                                    "range": [ fromTo[0], fromTo[1] ]
+                                }
+                            };
+                    };
+                };
+            };
+
+            if (filterTransformation[i].filterOperator == 'One Of') {
+
+                let fromTo: string[] = filterTransformation[i].filterValue.split(',');
+                if (fromTo.length > 0) {
+                    if (filterFieldDataType == 'number') {
+                        let fromToNumber: number[] = fromTo.map(x => +x);
+                        filterSpec =
+                            {"filter":
+                                {
+                                    "field": filterTransformation[i].underlyingFieldName,
+                                    "oneOf": fromToNumber
+                                }
+                            };
+
+                    } else {
+                        filterSpec =
+                            {"filter":
+                                {
+                                    "field": filterTransformation[i].underlyingFieldName,
+                                    "oneOf": fromTo
+                                }
+                            };
+                    };
+                };
+            };
+
+            if (filterTransformation[i].filterOperator == 'Valid') {
+
+                if (filterFieldDataType == 'number') {
+                    filterSpec =
+                        {"filter":
+                            {
+                                "field": filterTransformation[i].underlyingFieldName,
+                                "valid": true
+                            }
+                        };
+                };
+            };
+
+            if (filterTransformation[i].filterOperator == 'Selection') {
+
+                filterSpec = [
+                    {"filter": 
+                        {
+                            "field": filterTransformation[i].underlyingFieldName, 
+                            "selection": filterTransformation[i].filterValue
+                        }
+                    }
+                ];
+            };
+
+            // Add to Vega Spec
+            if (filterSpec != null) {
+                specification['transform'].push(filterSpec);
+                // widget.graphTransformations.push(graphTransformationSpec);
+            };
+
+            console.warn('xx END FILTER filterSpec', filterSpec, widget.graphTransformations);
+        
+        }
+
+
+        // Tooltip setting
+        // specification['mark']['tooltip']['content'] = "";
+
+    }
+    
     createVegaLiteSpec(
         widget: Widget,
         height: number = 0,
