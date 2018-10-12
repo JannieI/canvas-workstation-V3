@@ -1362,13 +1362,29 @@ export interface dataSchemaInterface {
 
 
             // Transformation
-            if (this.calculatedExpression != ''  &&  this.calculatedAs != '') {
+            // if (this.calculatedExpression != ''  &&  this.calculatedAs != '') {
+
+            //     // Add to the transformation channel
+            //     this.specification['transform'].push(
+            //         {
+            //                 "calculate": this.calculatedExpression,
+            //                 "as": this.calculatedAs
+            //         }
+            //     );
+            // };
+
+            // Calculated Fields
+            let filterTransformation: GraphTransformation[] = this.localWidget.
+                graphTransformations.filter(ftr => ftr.transformationType == 'calculate'
+            );
+
+            for (var i = 0; i < filterTransformation.length; i++) {
 
                 // Add to the transformation channel
                 this.specification['transform'].push(
                     {
-                            "calculate": this.calculatedExpression,
-                            "as": this.calculatedAs
+                            "calculate": this.localWidget.graphTransformations[i].calculatedExpression,
+                            "as": this.localWidget.graphTransformations[i].calculateAs
                     }
                 );
             };
@@ -1626,8 +1642,8 @@ export interface dataSchemaInterface {
 
 
             // Filter
-            let filterTransformation: GraphTransformation[] = this.localWidget.
-                graphTransformations.filter(ftr => ftr.transformationType == 'filter'
+            filterTransformation = this.localWidget.graphTransformations.filter(
+                ftr => ftr.transformationType == 'filter'
             );
 
             for (var i = 0; i < filterTransformation.length; i++) {
