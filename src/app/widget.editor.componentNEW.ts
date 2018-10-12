@@ -2444,6 +2444,7 @@ export interface dataSchemaInterface {
         this.xField = dragFieldMessage;
 
         this.localWidget.graphXaggregateName = '';
+        this.localWidget.graphXaggregate = '';
         this.localWidget.graphXbin = false;
         this.localWidget.graphXMaxBins = 0;
         this.localWidget.graphXformat = '';
@@ -2468,6 +2469,7 @@ export interface dataSchemaInterface {
         this.yField = dragFieldMessage;
 
         this.localWidget.graphYaggregateName = '';
+        this.localWidget.graphYaggregate = '';
         this.localWidget.graphYbin = false;
         this.localWidget.graphYMaxBins = 0;
         this.localWidget.graphYformat = '';
@@ -2489,6 +2491,7 @@ export interface dataSchemaInterface {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClearColourField', '@Start');
 
         this.localWidget.graphColorAggregateName = '';
+        this.localWidget.graphColorAggregate = '';
         this.localWidget.graphColorBin = false;
         this.localWidget.graphColorMaxBins = 0;
         this.localWidget.graphColorFormat = '';
@@ -2515,6 +2518,11 @@ export interface dataSchemaInterface {
 
         this.showSizeDeleteIcon = false;
         this.sizeField = dragFieldMessage;
+
+        this.localWidget.graphSizeAggregateName = '';
+        this.localWidget.graphSizeAggregate = '';
+        this.localWidget.graphSizeBin = false;
+        this.localWidget.graphSizeMaxBins = 0;
 
         // Hide the panel with properties
         this.showFieldSizeProperties = false;
