@@ -211,8 +211,8 @@ export interface dataSchemaInterface {
     filterValue: string = '';
     graphColor: string[];
     graphLayers: number[] = [1, 2, 3,];  // TODO - fix hardcoding
-    graphXaggregateVegaLiteName: string = '';
-    graphYaggregateVegaLiteName: string = '';
+    // graphXaggregateVegaLiteName: string = '';
+    // graphYaggregateVegaLiteName: string = '';
     graphColorAggregateVegaLiteName: string = '';
     isBusyRetrievingData: boolean = false;
     isDragoverXField: boolean = false;
@@ -228,7 +228,7 @@ export interface dataSchemaInterface {
     nrRows: number;
     oldWidget: Widget = null;                       // W at start
     rowField: string = dragFieldMessage;
-    sampleNumberRows: number = 0;
+    // sampleNumberRows: number = 0;
     selectedDescription: string = '';
     selectedFieldIndex: number = -1;
     selectedRowIndex: number = -1;
@@ -1255,11 +1255,11 @@ export interface dataSchemaInterface {
         if (this.localWidget.graphTitleAnchor == null) {this.localWidget.graphTitleAnchor = ""}
         if (this.localWidget.graphTitleBaseline == null) {this.localWidget.graphTitleBaseline = ""}
         if (this.localWidget.graphTitleOrientation == null) {this.localWidget.graphTitleOrientation = ""}
-        if (this.graphXaggregateVegaLiteName == null) {this.graphXaggregateVegaLiteName = ""}
+        // if (this.graphXaggregateVegaLiteName == null) {this.graphXaggregateVegaLiteName = ""}
         if (this.localWidget.graphXformat == null) {this.localWidget.graphXformat = ""}
         if (this.localWidget.graphXsort == null) {this.localWidget.graphXsort = ""}
         if (this.localWidget.graphXtimeUnit == null) {this.localWidget.graphXtimeUnit = ""}
-        if (this.graphYaggregateVegaLiteName == null) {this.graphYaggregateVegaLiteName = ""}
+        // if (this.graphYaggregateVegaLiteName == null) {this.graphYaggregateVegaLiteName = ""}
         if (this.localWidget.graphYformat == null) {this.localWidget.graphYformat = ""}
         if (this.localWidget.graphYsort == null) {this.localWidget.graphYsort = ""}
         if (this.localWidget.graphYtimeUnit == null) {this.localWidget.graphYtimeUnit = ""}
