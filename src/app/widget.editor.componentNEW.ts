@@ -1660,6 +1660,167 @@ export interface dataSchemaInterface {
                             };
                     };
                 };
+            
+                if (this.filterOperator == 'Less Than') {
+
+                    if (filterFieldDataType == 'string') {
+                        filterSpec =
+                            {"filter":
+                                {
+                                    "field": this.localWidget.graphTransformations[i].underlyingFieldName,
+                                    "lt": this.localWidget.graphTransformations[i].filterValue
+                                }
+                            };
+                    } else {
+                        filterSpec =
+                            {"filter":
+                                {
+                                    "field": this.localWidget.graphTransformations[i].underlyingFieldName,
+                                    "lt": +this.localWidget.graphTransformations[i].filterValue
+                                }
+                            };
+                    };
+
+                };
+
+                if (this.filterOperator == 'Less Than Equal') {
+
+                    if (filterFieldDataType == 'string') {
+                        filterSpec =
+                            {"filter":
+                                {
+                                    "field": this.localWidget.graphTransformations[i].underlyingFieldName,
+                                    "lte": this.localWidget.graphTransformations[i].filterValue
+                                }
+                            };
+                    } else {
+                        filterSpec =
+                            {"filter":
+                                {
+                                    "field": this.localWidget.graphTransformations[i].underlyingFieldName,
+                                    "lte": +this.localWidget.graphTransformations[i].filterValue
+                                }
+                            };
+                    };
+                };
+
+                if (this.filterOperator == 'Greater Than') {
+
+                    if (filterFieldDataType == 'string') {
+                        filterSpec =
+                            {"filter":
+                                {
+                                    "field": this.localWidget.graphTransformations[i].underlyingFieldName,
+                                    "gt": this.localWidget.graphTransformations[i].filterValue
+                                }
+                            };
+                    } else {
+                        filterSpec =
+                            {"filter":
+                                {
+                                    "field": this.localWidget.graphTransformations[i].underlyingFieldName,
+                                    "gt": +this.localWidget.graphTransformations[i].filterValue
+                                }
+                            };
+                    };
+                };
+
+                if (this.filterOperator == 'Greater Than Equal') {
+
+                    if (filterFieldDataType == 'string') {
+                        filterSpec =
+                            {"filter":
+                                {
+                                    "field": this.localWidget.graphTransformations[i].underlyingFieldName,
+                                    "gte": this.localWidget.graphTransformations[i].filterValue
+                                }
+                            };
+                    } else {
+                        filterSpec =
+                            {"filter": 
+                                {
+                                    "field": this.localWidget.graphTransformations[i].underlyingFieldName, 
+                                    "gte": +this.localWidget.graphTransformations[i].filterValue
+                                }
+                            };
+                    };
+                };
+
+                if (this.filterOperator == 'Range') {
+
+                    let fromTo: string[] = this.localWidget.graphTransformations[i].filterValue.split(',');
+                    if (fromTo.length == 2) {
+                        if (filterFieldDataType == 'number') {
+                            filterSpec =
+                                {"filter":
+                                    {
+                                        "field": this.localWidget.graphTransformations[i].underlyingFieldName,
+                                        "range": [ +fromTo[0], +fromTo[1] ]
+                                    }
+                                };
+
+                        } else {
+                            filterSpec =
+                                {"filter":
+                                    {
+                                        "field": this.localWidget.graphTransformations[i].underlyingFieldName,
+                                        "range": [ fromTo[0], fromTo[1] ]
+                                    }
+                                };
+                        };
+                    };
+                };
+
+                if (this.filterOperator == 'One Of') {
+
+                    let fromTo: string[] = this.localWidget.graphTransformations[i].filterValue.split(',');
+                    if (fromTo.length > 0) {
+                        if (filterFieldDataType == 'number') {
+                            let fromToNumber: number[] = fromTo.map(x => +x);
+                            filterSpec =
+                                {"filter":
+                                    {
+                                        "field": this.localWidget.graphTransformations[i].underlyingFieldName,
+                                        "oneOf": fromToNumber
+                                    }
+                                };
+
+                        } else {
+                            filterSpec =
+                                {"filter":
+                                    {
+                                        "field": this.localWidget.graphTransformations[i].underlyingFieldName,
+                                        "oneOf": fromTo
+                                    }
+                                };
+                        };
+                    };
+                };
+
+                if (this.filterOperator == 'Valid') {
+
+                    if (filterFieldDataType == 'number') {
+                        filterSpec =
+                            {"filter":
+                                {
+                                    "field": this.localWidget.graphTransformations[i].underlyingFieldName,
+                                    "valid": true
+                                }
+                            };
+                    };
+                };
+
+                if (this.filterOperator == 'Selection') {
+
+                    this.specification['transform'] = [
+                        {"filter": 
+                            {
+                                "field": this.localWidget.graphTransformations[i].underlyingFieldName, 
+                                "selection": this.localWidget.graphTransformations[i].filterValue
+                            }
+                        }
+                    ];
+                };
 
                 // Add to Vega Spec
                 if (filterSpec != null) {
@@ -2055,8 +2216,6 @@ export interface dataSchemaInterface {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
 
         // Validate
-        console.warn('xx this.localWidget.graphMark', this.localWidget.graphMark);
-
         if (this.localWidget.graphMark == ''  ||  this.localWidget.graphMark == null) {
             this.errorMessage = 'Please select a type of graph';
             return;
@@ -2298,13 +2457,8 @@ export interface dataSchemaInterface {
 
         let fieldType:string = this.getFieldType(fieldName);
         this.localWidget.graphXtype = this.defaultGraphTypeField(fieldType, 'type');
-        console.warn('xx this.localWidget.graphXtype', this.localWidget.graphXtype);
-
         this.localWidget.graphXtypeName = this.defaultGraphTypeField(fieldType, 'name');
-        console.warn('xx this.localWidget.graphXtypeName', this.localWidget.graphXtypeName);
-
         this.localWidget.graphXtimeUnit ='';
-        console.warn('xx this.localWidget.graphXtimeUnit', this.localWidget.graphXtimeUnit);
 
     }
 
@@ -2957,8 +3111,6 @@ export interface dataSchemaInterface {
         // Fill dataSchema
         this.dataSchema = [];
 
-        console.warn('xx arrayIndex', arrayIndex, this.localWidget.datasourceID, this.localDatasources);
-
         if (arrayIndex >= 0) {
             for (let i = 0; i < this.localDatasources[arrayIndex].dataFields.length; i++) {
                 let newDataSchema: dataSchemaInterface = {
@@ -2972,9 +3124,6 @@ export interface dataSchemaInterface {
                 this.dataSchema.push(newDataSchema);
             };
         };
-
-        console.warn('xx this.dataSchema', this.dataSchema);
-
 
     }
 
@@ -3269,7 +3418,6 @@ export interface dataSchemaInterface {
 
         this.dataFieldTypeName = ev.target.value;
         this.dataFieldType = this.dataFieldTypeName.toLowerCase();
-        console.warn('xx', this.dataFieldTypeName, this.dataFieldTypeName)
     }
 
     clickShowSpecificationArea() {
@@ -3444,7 +3592,6 @@ export interface dataSchemaInterface {
             this.dataSchema.splice(schemaIndex, 1);
         };
 
-        console.warn('xx this.localWidget.graphTransformations', this.localWidget.graphTransformations)
         this.showCalculatedAreaProperties = false;
     }
 
@@ -3486,7 +3633,6 @@ export interface dataSchemaInterface {
             };
             this.dataSchema.push(newDataSchema);
         };
-        console.warn('xx', this.dataFieldType, this.dataFieldTypeName, this.dataSchema)
 
         this.showCalculatedAreaProperties = false;
 
