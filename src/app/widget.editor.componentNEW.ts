@@ -1137,21 +1137,39 @@ export interface dataSchemaInterface {
         this.showGraphAreaTitle = false;
 
         // Get the Vega-Lite aggregation
-        this.graphXaggregateVegaLiteName = '';
-        if (this.localWidget.graphXaggregate != '') {
+        this.localWidget.graphXaggregate = '';
+        if (this.localWidget.graphXaggregateName != '') {
             let aggregationIndex: number = this.aggregations.findIndex(
-                agg => agg.displayName == this.localWidget.graphXaggregate);
+                agg => agg.displayName == this.localWidget.graphXaggregateName);
             if (aggregationIndex >= 0) {
-                this.graphXaggregateVegaLiteName = this.aggregations[aggregationIndex]
+                this.localWidget.graphXaggregate = this.aggregations[aggregationIndex]
                     .vegaLiteName;
             };
         }
-        this.graphYaggregateVegaLiteName = '';
-        if (this.localWidget.graphYaggregate != '') {
+        this.localWidget.graphYaggregate = '';
+        if (this.localWidget.graphYaggregateName != '') {
             let aggregationIndex: number = this.aggregations.findIndex(
-                agg => agg.displayName == this.localWidget.graphYaggregate);
+                agg => agg.displayName == this.localWidget.graphYaggregateName);
             if (aggregationIndex >= 0) {
-                this.graphYaggregateVegaLiteName = this.aggregations[aggregationIndex]
+                this.localWidget.graphYaggregate = this.aggregations[aggregationIndex]
+                    .vegaLiteName;
+            };
+        }
+        this.localWidget.graphColorAggregate = '';
+        if (this.localWidget.graphColorAggregateName != '') {
+            let aggregationIndex: number = this.aggregations.findIndex(
+                agg => agg.displayName == this.localWidget.graphColorAggregateName);
+            if (aggregationIndex >= 0) {
+                this.localWidget.graphColorAggregate = this.aggregations[aggregationIndex]
+                    .vegaLiteName;
+            };
+        }
+        this.localWidget.graphSizeAggregate = '';
+        if (this.localWidget.graphSizeAggregateName != '') {
+            let aggregationIndex: number = this.aggregations.findIndex(
+                agg => agg.displayName == this.localWidget.graphSizeAggregateName);
+            if (aggregationIndex >= 0) {
+                this.localWidget.graphSizeAggregate = this.aggregations[aggregationIndex]
                     .vegaLiteName;
             };
         }

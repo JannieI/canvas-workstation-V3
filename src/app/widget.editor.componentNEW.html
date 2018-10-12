@@ -633,8 +633,8 @@
                             </div>
                             <div class="select editorGraphXaggregate" *ngIf="showFieldXProperties">
                                 <select id="selects_3"
-                                    [(ngModel)]="localWidget.graphXaggregate"
-                                    name="graphXaggregate"
+                                    [(ngModel)]="localWidget.graphXaggregateName"
+                                    name="graphXaggregateName"
                                     >
                                     <option *ngFor="let row of aggregations; let i = index">
                                         {{ row.displayName }}
@@ -816,7 +816,8 @@
                             </div>
                             <div class="select editorGraphYaggregate" *ngIf="showFieldYProperties">
                                 <select id="selects_3"
-                                    [(ngModel)]="localWidget.graphYaggregate"
+                                    [(ngModel)]="localWidget.graphYaggregateName"
+                                    name="graphYaggregateName"
                                     >
                                     <option *ngFor="let row of aggregations; let i = index">
                                         {{ row.displayName }}
@@ -997,8 +998,8 @@
                             </div>
                             <div class="select editorGraphColorAggregate" *ngIf="showFieldColorProperties">
                                 <select id="selects_3"
-                                    [(ngModel)]="localWidget.graphColorAggregate"
-                                    name="graphColorAggregate"
+                                    [(ngModel)]="localWidget.graphColorAggregateName"
+                                    name="graphColorAggregateName"
                                     >
                                     <option *ngFor="let row of aggregations; let i = index">
                                         {{ row.displayName }}
@@ -1579,7 +1580,8 @@
                             </div>
                             <div class="select editorGraphSizeAggregate" *ngIf="showFieldSizeProperties">
                                 <select id="selects_3"
-                                    [(ngModel)]="localWidget.graphSizeAggregate"
+                                    [(ngModel)]="localWidget.graphSizeAggregateName"
+                                    name="graphSizeAggregateName"
                                     >
                                     <option *ngFor="let row of aggregations; let i = index">
                                         {{ row.displayName }}
