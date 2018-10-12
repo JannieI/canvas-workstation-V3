@@ -76,11 +76,11 @@ export class DashboardDeleteBulkComponent implements OnInit {
             .filter(d => d.draftID == null)
             .slice()
             .sort((n1,n2) => {
-                if (n1.name > n2.name) {
+                if (n1.name.toLowerCase() > n2.name.toLowerCase()) {
                     return 1;
                 };
 
-                if (n1.name < n2.name) {
+                if (n1.name.toLowerCase() < n2.name.toLowerCase()) {
                     return -1;
                 };
 

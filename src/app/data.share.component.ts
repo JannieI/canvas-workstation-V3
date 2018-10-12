@@ -81,10 +81,10 @@ export class DatasourceShareComponent implements OnInit {
                     ds => ds.id == tdsp.datasourceID)[0].name;
             });
             this.datasourcePermissions = this.datasourcePermissions.sort( (obj1, obj2) => {
-                if (obj1.name > obj2.name) {
+                if (obj1.name.toLowerCase() > obj2.name.toLowerCase()) {
                     return 1;
                 };
-                if (obj1.name < obj2.name) {
+                if (obj1.name.toLowerCase() < obj2.name.toLowerCase()) {
                     return -1;
                 };
                 return 0;
@@ -92,11 +92,11 @@ export class DatasourceShareComponent implements OnInit {
 
             this.globalVariableService.getCanvasUsers().then(usr => {
                 this.userNames = usr.sort((n1,n2) => {
-                    if (n1.userID > n2.userID) {
+                    if (n1.userID.toLowerCase() > n2.userID.toLowerCase()) {
                         return 1;
                     };
 
-                    if (n1.userID < n2.userID) {
+                    if (n1.userID.toLowerCase() < n2.userID.toLowerCase()) {
                         return -1;
                     };
 
@@ -108,11 +108,11 @@ export class DatasourceShareComponent implements OnInit {
 
                 this.globalVariableService.getCanvasGroups().then(grp => {
                     this.groupNames = grp.sort((n1,n2) => {
-                        if (n1.name > n2.name) {
+                        if (n1.name.toLowerCase() > n2.name.toLowerCase()) {
                             return 1;
                         };
 
-                        if (n1.name < n2.name) {
+                        if (n1.name.toLowerCase() < n2.name.toLowerCase()) {
                             return -1;
                         };
 

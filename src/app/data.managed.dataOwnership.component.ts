@@ -72,10 +72,10 @@ export class DataManageDataOwnershipComponent implements OnInit {
             this.datasourceNames.push(ds.name + ' (' + ds.id + ')');
         });
         this.datasourceNames = this.datasourceNames.sort( (obj1,obj2) => {
-            if (obj1 > obj2) {
+            if (obj1.toLowerCase() > obj2.toLowerCase()) {
                 return 1;
             };
-            if (obj1 < obj2) {
+            if (obj1.toLowerCase() < obj2.toLowerCase()) {
                 return -1;
             };
             return 0;
@@ -86,10 +86,10 @@ export class DataManageDataOwnershipComponent implements OnInit {
             this.userIDs.push(usr.userID);
         });
         this.userIDs = this.userIDs.sort( (obj1,obj2) => {
-            if (obj1 > obj2) {
+            if (obj1.toLowerCase() > obj2.toLowerCase()) {
                 return 1;
             };
-            if (obj1 < obj2) {
+            if (obj1.toLowerCase() < obj2.toLowerCase()) {
                 return -1;
             };
             return 0;

@@ -117,10 +117,10 @@ export class CollaborateTaskAddComponent implements OnInit {
                 });
                 this.dashboardNames = ['', ...this.dashboardNames];
                 this.dashboardNames = this.dashboardNames.sort( (obj1,obj2) => {
-                    if (obj1 > obj2) {
+                    if (obj1.toLowerCase() > obj2.toLowerCase()) {
                         return 1;
                     };
-                    if (obj1 < obj2) {
+                    if (obj1.toLowerCase() < obj2.toLowerCase()) {
                         return -1;
                     };
                     return 0;

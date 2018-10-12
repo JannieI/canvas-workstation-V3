@@ -105,10 +105,10 @@ import { GlobalVariableService }      from './global-variable.service';
                     this.globalVariableService.datasourcePermissionsCheck(ds.id, 'CanView')
                 )
                 .sort( (obj1, obj2) => {
-                    if (obj1.name > obj2.name) {
+                    if (obj1.name.toLowerCase() > obj2.name.toLowerCase()) {
                         return 1;
                     };
-                    if (obj1.name < obj2.name) {
+                    if (obj1.name.toLowerCase() < obj2.name.toLowerCase()) {
                         return -1;
                     };
                     return 0;

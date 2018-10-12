@@ -114,11 +114,11 @@ export class DashboardOpenComponent implements OnInit {
         // Get Ds
         this.dashboardsOriginal = this.globalVariableService.dashboards.slice()
         this.dashboards = this.dashboardsOriginal.slice().sort((n1,n2) => {
-            if (n1.name > n2.name) {
+            if (n1.name.toLowerCase() > n2.name.toLowerCase()) {
                 return 1;
             };
 
-            if (n1.name < n2.name) {
+            if (n1.name.toLowerCase() < n2.name.toLowerCase()) {
                 return -1;
             };
 

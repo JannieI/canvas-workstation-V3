@@ -108,11 +108,11 @@ export class DashboardDescriptionComponent implements OnInit {
         this.globalVariableService.getDashboards().then(d => {
             this.dashboards = d;
             let dashboards = d.sort((n1,n2) => {
-                if (n1.name > n2.name) {
+                if (n1.name.toLowerCase() > n2.name.toLowerCase()) {
                     return 1;
                 };
 
-                if (n1.name < n2.name) {
+                if (n1.name.toLowerCase() < n2.name.toLowerCase()) {
                     return -1;
                 };
 

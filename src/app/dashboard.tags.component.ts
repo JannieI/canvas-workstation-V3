@@ -80,10 +80,10 @@ export class DashboardTagsComponent implements OnInit {
 
             // Sort the available tags
             this.availableDashboardTags.sort( (obj1,obj2) => {
-                if (obj1.tag > obj2.tag) {
+                if (obj1.tag.toLowerCase() > obj2.tag.toLowerCase()) {
                     return 1;
                 };
-                if (obj1.tag < obj2.tag) {
+                if (obj1.tag.toLowerCase() < obj2.tag.toLowerCase()) {
                     return -1;
                 };
                 return 0;

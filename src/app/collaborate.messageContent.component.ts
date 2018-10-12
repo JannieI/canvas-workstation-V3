@@ -71,11 +71,11 @@ export class CollaborateMessageContentComponent implements OnInit {
 
             this.globalVariableService.getCanvasUsers().then(usr => {
                 this.users = usr.sort((n1,n2) => {
-                    if (n1.userID > n2.userID) {
+                    if (n1.userID.toLowerCase() > n2.userID.toLowerCase()) {
                         return 1;
                     };
                 
-                    if (n1.userID < n2.userID) {
+                    if (n1.userID.toLowerCase() < n2.userID.toLowerCase()) {
                         return -1;
                     };
                 
@@ -88,11 +88,11 @@ export class CollaborateMessageContentComponent implements OnInit {
 
                 this.globalVariableService.getCanvasGroups().then(grp => {
                     grp = grp.sort((n1,n2) => {
-                        if (n1.name > n2.name) {
+                        if (n1.name.toLowerCase() > n2.name.toLowerCase()) {
                             return 1;
                         };
                     
-                        if (n1.name < n2.name) {
+                        if (n1.name.toLowerCase() < n2.name.toLowerCase()) {
                             return -1;
                         };
                     
@@ -104,11 +104,11 @@ export class CollaborateMessageContentComponent implements OnInit {
                 });
 
                 this.groupNames = this.groupNames.sort((n1,n2) => {
-                    if (n1 > n2) {
+                    if (n1.toLowerCase() > n2.toLowerCase()) {
                         return 1;
                     };
                 
-                    if (n1 < n2) {
+                    if (n1.toLowerCase() < n2.toLowerCase()) {
                         return -1;
                     };
                 

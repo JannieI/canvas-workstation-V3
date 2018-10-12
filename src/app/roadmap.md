@@ -208,6 +208,9 @@ This document describes items for later versions of Canvas.
             - latitude
             - longitude
             
+        
+        Layers - consider VERY carefully as this may be a huge amount of work
+        
         Pan & Zoom:
             - how!?
 

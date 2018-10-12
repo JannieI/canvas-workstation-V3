@@ -66,10 +66,10 @@ export class ManageColoursComponent implements OnInit {
 
             // Sort the list
             this.backgroundcolorsDefault.sort( (obj1,obj2) => {
-                if (obj1.name > obj2.name) {
+                if (obj1.name.toLowerCase() > obj2.name.toLowerCase()) {
                     return 1;
                 };
-                if (obj1.name < obj2.name) {
+                if (obj1.name.toLowerCase() < obj2.name.toLowerCase()) {
                     return -1;
                 };
                 return 0;
@@ -80,10 +80,10 @@ export class ManageColoursComponent implements OnInit {
 
             // Sort the list
             this.backgroundcolors.sort( (obj1,obj2) => {
-                if (obj1.name > obj2.name) {
+                if (obj1.name.toLowerCase() > obj2.name.toLowerCase()) {
                     return 1;
                 };
-                if (obj1.name < obj2.name) {
+                if (obj1.name.toLowerCase() < obj2.name.toLowerCase()) {
                     return -1;
                 };
                 return 0;
@@ -210,10 +210,10 @@ export class ManageColoursComponent implements OnInit {
             
             // Sort the lists
             this.backgroundcolors.sort( (obj1,obj2) => {
-                if (obj1.name > obj2.name) {
+                if (obj1.name.toLowerCase() > obj2.name.toLowerCase()) {
                     return 1;
                 };
-                if (obj1.name < obj2.name) {
+                if (obj1.name.toLowerCase() < obj2.name.toLowerCase()) {
                     return -1;
                 };
                 return 0;
@@ -237,10 +237,10 @@ console.warn('xx ..', id, index)
 
             // Sort the lists
             this.backgroundcolors.sort( (obj1,obj2) => {
-                if (obj1.name > obj2.name) {
+                if (obj1.name.toLowerCase() > obj2.name.toLowerCase()) {
                     return 1;
                 };
-                if (obj1.name < obj2.name) {
+                if (obj1.name.toLowerCase() < obj2.name.toLowerCase()) {
                     return -1;
                 };
                 return 0;
