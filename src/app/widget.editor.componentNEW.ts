@@ -2467,6 +2467,17 @@ export interface dataSchemaInterface {
         this.showYDeleteIcon = false;
         this.yField = dragFieldMessage;
 
+        this.localWidget.graphYaggregateName = '';
+        this.localWidget.graphYbin = false;
+        this.localWidget.graphYMaxBins = 0;
+        this.localWidget.graphYformat = '';
+        this.localWidget.graphYimpute = '';
+        this.localWidget.graphYimputeValue = '';
+        this.localWidget.graphYstack = '';
+        this.localWidget.graphYsort = '';
+        this.localWidget.graphYtypeName = '';
+        this.localWidget.graphYtimeUnit = '';
+
         // Hide the panel with properties
         this.showFieldYPropertiesTitle = false;
         this.showFieldYProperties = false;
