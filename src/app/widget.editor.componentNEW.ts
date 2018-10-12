@@ -32,12 +32,12 @@ const graphWidth: number = 420;
 const dragFieldMessage: string = 'Drag a field here ...';
 
 export interface dataSchemaInterface {
-    name: string;
-    type: string;                   // ie ordinal
-    typeName: string;               // ie Ordinal
-    length: number;
-    isCalculated: boolean;
-    calculatedExpression: string;
+    name: string;                   // Name of Field (DB or Calculated)
+    typeName: string;               // ie String
+    type: string;                   // ie string
+    length: number;                 // Optional field length
+    isCalculated: boolean;          // True if calculated
+    calculatedExpression: string;   // Formula for calculated fields
 }
 
 
@@ -200,9 +200,6 @@ export interface dataSchemaInterface {
     currentGraphID: number = -1;
     currentGraphLayer: number = 1;
     dataSchema: dataSchemaInterface[] = [];
-    // dataFieldNames: string[] = [];
-    // dataFieldLengths: number[] = [];
-    // dataFieldTypes: string[] = [];
     detailField: string = dragFieldMessage;
     draggedField: string = '';
     dragoverColours: boolean = false;

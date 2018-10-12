@@ -989,6 +989,15 @@ export class DashboardSubscription {
     createdOn: Date;                        // Date task was created
 }
 
+export class dataSchemaInterface {
+    name: string;                   // Name of Field (DB or Calculated)
+    typeName: string;               // ie String
+    type: string;                   // ie string
+    length: number;                 // Optional field length
+    isCalculated: boolean;          // True if calculated
+    calculatedExpression: string;   // Formula for calculated fields
+}
+
 export class GraphTransformation {
     transformationType: string;     // Type of transformation: filter, sample, calculated, etc
     underlyingFieldName: string;    // Underlying DB or calculated field Name (not used in calculations here)
@@ -1070,6 +1079,7 @@ export class Widget {
     dataFields: string[];               // Optional - can copy [fieldNames] into table
     dataFieldTypes: string[];           // Optional - can copy [fieldTypes] into table
     dataFieldLengths: number[];         // Optional - can copy [fieldLengths] into table
+    dataschema: dataSchemaInterface[];  // Array with fields info, ie name, type, etc
     dataParameters: {"field": string; "value": string;}[]
     reportID: number;                   // FK to report (query / data).  -1: dont load any report data
     reportName: string;                 // Report (query) name in Eazl (DS implied)
