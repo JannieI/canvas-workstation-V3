@@ -344,6 +344,8 @@ const widgetTemplate: Widget =
 
         "graphUrl": "",
         "graphData": "",
+        "sampleNumberRows": 0,
+        
         "tableBackgroundColor" : "",
         "tableBackgroundColorName" : "",
         "tableColor": "",

@@ -1248,8 +1248,10 @@ export class Widget {
     graphMarkOpacity: number;
     graphMarkBinSpacing: number;
 
+    // Data
     graphUrl: string;
     graphData: any;
+    sampleNumberRows: number;           // Random rows to sample EACH time, 0 means all rows
 
     // Table - to be determined later ...
     tableBackgroundColor: string;       // Actual colour (CSS name or HEX code)
