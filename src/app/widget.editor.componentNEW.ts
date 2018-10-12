@@ -1162,7 +1162,9 @@ export interface dataSchemaInterface {
         if (widgetGraphIndex < 0) {
             this.errorMessageEditor = 'Graph type id = ' + graphID + ' does not exist in the DB';
             return;
-        }
+        } else {
+            this.localWidget.graphType = this.widgetGraphs[widgetGraphIndex]['mark'];
+        };
 
         // Startup
         let width: number = 400;

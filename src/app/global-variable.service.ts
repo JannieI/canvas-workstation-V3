@@ -345,7 +345,7 @@ const widgetTemplate: Widget =
         "graphUrl": "",
         "graphData": "",
         "sampleNumberRows": 0,
-        
+
         "tableBackgroundColor" : "",
         "tableBackgroundColorName" : "",
         "tableColor": "",
@@ -10831,11 +10831,11 @@ export class GlobalVariableService {
             "transform": []
         };
 
-        specification['mark']['type'] = this.widgetGraphs[widgetGraphIndex]['mark'];
+        specification['mark']['type'] = widget.graphType;
 
         // Optional Sampling
-        if (this.sampleNumberRows != 0) {
-            specification['transform']['sample'] = this.sampleNumberRows;
+        if (widget.sampleNumberRows != 0) {
+            specification['transform']['sample'] = widget.sampleNumberRows;
         };
 
 
@@ -10893,9 +10893,9 @@ export class GlobalVariableService {
 
 
         // X field
-        if (widget.graphXfield != dragFieldMessage) {
+        if (widget.graphXfield != '') {
             specification['encoding']['x']['field'] = widget.graphXfield;
-            specification['encoding']['x']['aggregate'] = this.graphXaggregateVegaLiteName.toLowerCase();
+            specification['encoding']['x']['aggregate'] = widget.graphXaggregate;
             if (widget.graphXMaxBins > 0) {
                 specification['encoding']['x']['bin'] =
                     {"maxbins": widget.graphXMaxBins};
@@ -10938,9 +10938,9 @@ export class GlobalVariableService {
 
 
         // Y field
-        if (widget.graphYfield != dragFieldMessage) {
+        if (widget.graphYfield != '') {
             specification['encoding']['y']['field'] = widget.graphYfield;
-            specification['encoding']['y']['aggregate'] = this.graphYaggregateVegaLiteName.toLowerCase();
+            specification['encoding']['y']['aggregate'] = widget.graphYaggregate;
             if (widget.graphYMaxBins > 0) {
                 specification['encoding']['y']['bin'] =
                     {"maxbins": widget.graphYMaxBins};
@@ -10989,7 +10989,7 @@ export class GlobalVariableService {
         };
 
         // Color field
-        if (widget.graphColorField != dragFieldMessage) {
+        if (widget.graphColorField != '') {
             let colorBinMax: any = false;
             if (widget.graphYMaxBins > 0) {
                 colorBinMax = {"maxbins": widget.graphYMaxBins};
@@ -10998,7 +10998,7 @@ export class GlobalVariableService {
             };
 
             specification['encoding']['color'] = {
-                "aggregate": this.graphColorAggregateVegaLiteName.toLowerCase(),
+                "aggregate": widget.graphColorAggregate,
                 "bin": colorBinMax,
                 "field": widget.graphColorField,
                 "format": widget.graphColorFormat.toLowerCase(),
