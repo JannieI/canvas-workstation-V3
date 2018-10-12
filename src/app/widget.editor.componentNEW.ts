@@ -3313,6 +3313,7 @@ export interface dataSchemaInterface {
         if (transformationIndex >= 0) {
             this.localWidget.graphTransformations.splice(transformationIndex, 1);
         };
+        console.warn('xx this.localWidget.graphTransformations', this.localWidget.graphTransformations)
 
         this.showFilterAreaProperties = false;
     }
@@ -3426,17 +3427,25 @@ export interface dataSchemaInterface {
         };
 
         // Find, reset values and remove
-        let schemaIndex: number = this.dataSchema.findIndex(ds => ds.name == this.calculatedAs);
-        if (schemaIndex >= 0) {
+        this.calculatedExpression = '';
+        this.calculatedAs = '';
+        this.dataFieldType = '';
+        this.dataFieldTypeName = '';
 
-            this.dataSchema.splice(schemaIndex, 1);
-
-            this.calculatedExpression = '';
-            this.calculatedAs = '';
-            this.dataFieldType = '';
-            this.dataFieldTypeName = '';
+        // Remove from localWidget
+        let transformationIndex: number = this.localWidget.graphTransformations.findIndex(ftr =>
+            ftr.transformationType == 'filter'  &&  ftr.underlyingFieldName == this.filterField);
+        if (transformationIndex >= 0) {
+            this.localWidget.graphTransformations.splice(transformationIndex, 1);
         };
 
+        // Remove from local var
+        let schemaIndex: number = this.dataSchema.findIndex(ds => ds.name == this.calculatedAs);
+        if (schemaIndex >= 0) {
+            this.dataSchema.splice(schemaIndex, 1);
+        };
+
+        console.warn('xx this.localWidget.graphTransformations', this.localWidget.graphTransformations)
         this.showCalculatedAreaProperties = false;
     }
 
