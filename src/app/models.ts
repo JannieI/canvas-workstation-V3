@@ -992,7 +992,7 @@ export class DashboardSubscription {
 export class GraphTransformation {
     transformationType: string;     // Type of transformation: filter, sample, calculated, etc
     underlyingFieldName: string;    // Underlying DB or calculated field Name (not used in calculations here)
-    filterOperand: string;          // ie gt, equal, etc.  Can also be 'selection'
+    filterOperator: string;         // ie gt, equal, etc.  Can also be 'selection'
     filterValue: string;            // ie January or 5 (stored as text, converted in code)
     sampleRows: number;             // Optional nr of rows to sample, 0 means None
     calculatedExpression: string;   // Expression, ie sin(datum.ValueTraded)

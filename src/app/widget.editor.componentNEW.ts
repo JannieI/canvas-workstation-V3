@@ -1632,7 +1632,7 @@ export interface dataSchemaInterface {
                 let graphTransformationSpec: GraphTransformation = {
                     transformationType: "",
                     underlyingFieldName: "",
-                    filterOperand: "",
+                    filterOperator: "",
                     filterValue: "",
                     sampleRows: 0,
                     calculatedExpression: "",
@@ -1644,6 +1644,7 @@ export interface dataSchemaInterface {
                 graphTransformationSpec.transformationType = 'filter';
                 graphTransformationSpec.filterValue = this.filterValue;
 
+                console.warn('xx this.localWidget.graphTransformations',  this.localWidget.graphTransformations)
                 let filterFieldDataType: string = 'string';
                 let filterFieldDataTypeIndex: number = this.dataSchema.findIndex(
                     dat => dat.name == this.filterField
@@ -1652,22 +1653,22 @@ export interface dataSchemaInterface {
                     filterFieldDataType = this.dataSchema[filterFieldDataTypeIndex].type;
                 };
                 if (this.filterOperator == 'Equal') {
-                    graphTransformationSpec.filterOperand = 'equal';
+                    graphTransformationSpec.filterOperator = 'equal';
 
                     if (filterFieldDataType == 'string') {
                         filterSpec =
                             {"filter":
                                 {
-                                    "field": graphTransformationSpec.underlyingFieldName,
-                                    "equal": graphTransformationSpec.filterValue
+                                    "field": this.localWidget.graphTransformations[0].underlyingFieldName,
+                                    "equal": this.localWidget.graphTransformations[0].filterValue
                                 }
                             };
                     } else {
                         filterSpec =
                             {"filter":
                                 {
-                                    "field": graphTransformationSpec.underlyingFieldName,
-                                    "equal": +graphTransformationSpec.filterValue
+                                    "field": this.localWidget.graphTransformations[0].underlyingFieldName,
+                                    "equal": +this.localWidget.graphTransformations[0].filterValue
                                 }
                             };
                     };
@@ -1693,7 +1694,7 @@ export interface dataSchemaInterface {
                 };
 
                 if (this.filterOperator == 'Less Than') {
-                    graphTransformationSpec.filterOperand = 'lt';
+                    graphTransformationSpec.filterOperator = 'lt';
 
                     if (filterFieldDataType == 'string') {
                         filterSpec =
@@ -1716,7 +1717,7 @@ export interface dataSchemaInterface {
                 };
 
                 if (this.filterOperator == 'Less Than Equal') {
-                    graphTransformationSpec.filterOperand = 'lte';
+                    graphTransformationSpec.filterOperator = 'lte';
 
                     if (filterFieldDataType == 'string') {
                         filterSpec =
@@ -1738,7 +1739,7 @@ export interface dataSchemaInterface {
                 };
 
                 if (this.filterOperator == 'Greater Than') {
-                    graphTransformationSpec.filterOperand = 'gt';
+                    graphTransformationSpec.filterOperator = 'gt';
 
                     if (filterFieldDataType == 'string') {
                         filterSpec =
@@ -1760,7 +1761,7 @@ export interface dataSchemaInterface {
                 };
 
                 if (this.filterOperator == 'Greater Than Equal') {
-                    graphTransformationSpec.filterOperand = 'gte';
+                    graphTransformationSpec.filterOperator = 'gte';
 
                     if (filterFieldDataType == 'string') {
                         filterSpec =
@@ -1777,7 +1778,7 @@ export interface dataSchemaInterface {
                 };
 
                 if (this.filterOperator == 'Range') {
-                    graphTransformationSpec.filterOperand = 'range';
+                    graphTransformationSpec.filterOperator = 'range';
 
                     let fromTo: string[] = this.filterValue.split(',');
                     if (fromTo.length == 2) {
@@ -1803,7 +1804,7 @@ export interface dataSchemaInterface {
                 };
 
                 if (this.filterOperator == 'One Of') {
-                    graphTransformationSpec.filterOperand = 'oneOf';
+                    graphTransformationSpec.filterOperator = 'oneOf';
 
                     let fromTo: string[] = this.filterValue.split(',');
                     if (fromTo.length > 0) {
@@ -1830,7 +1831,7 @@ export interface dataSchemaInterface {
                 };
 
                 if (this.filterOperator == 'Valid') {
-                    graphTransformationSpec.filterOperand = 'valid';
+                    graphTransformationSpec.filterOperator = 'valid';
 
                     if (filterFieldDataType == 'number') {
                         filterSpec =
@@ -1844,7 +1845,7 @@ export interface dataSchemaInterface {
                 };
 
                 if (this.filterOperator == 'Selection') {
-                    graphTransformationSpec.filterOperand = 'selection';
+                    graphTransformationSpec.filterOperator = 'selection';
 
                     this.specification['transform'] = [
                         {"filter": {"field": this.filterField, "selection": this.filterValue}}
@@ -1854,7 +1855,7 @@ export interface dataSchemaInterface {
                 // Add to Vega Spec
                 if (filterSpec != null) {
                     this.specification['transform'].push(filterSpec);
-                    this.localWidget.graphTransformations.push(graphTransformationSpec);
+                    // this.localWidget.graphTransformations.push(graphTransformationSpec);
                 };
 
                 console.warn('xx graphTransformationSpec', graphTransformationSpec, this.localWidget);
@@ -3278,20 +3279,28 @@ export interface dataSchemaInterface {
 
         // Update the localWidget
         let graphTransformationSpec: GraphTransformation = {
-            transformationType: "",
-            underlyingFieldName: "",
-            filterOperand: "",
-            filterValue: "",
+            transformationType: "filter",
+            underlyingFieldName: this.filterField,
+            filterOperator: this.filterOperator,
+            filterValue: this.filterValue,
             sampleRows: 0,
             calculatedExpression: "",
             calculateAs: "",
             selectionName: ""
         };
 
-        graphTransformationSpec.underlyingFieldName = this.filterField;
-        graphTransformationSpec.transformationType = 'filter';
-        graphTransformationSpec.filterValue = this.filterValue;
-        graphTransformationSpec.filterOperand = 'equal';
+        // Add / Update to localWidget
+        let transformationIndex: number = this.localWidget.graphTransformations.findIndex(tr =>
+            tr.transformationType == 'filter'  &&  tr.underlyingFieldName == this.filterField);
+        if (transformationIndex >= 0) {
+            this.localWidget.graphTransformations[transformationIndex].filterOperator = 
+                this.filterOperator;
+            this.localWidget.graphTransformations[transformationIndex].filterValue = 
+                this.filterValue;
+        } else {
+            this.localWidget.graphTransformations.push(graphTransformationSpec);
+        };
+
         console.warn('xx graphTransformationSpec', graphTransformationSpec)
 
         // Hide filter form
