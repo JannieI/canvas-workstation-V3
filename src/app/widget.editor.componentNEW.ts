@@ -1415,11 +1415,8 @@ export interface dataSchemaInterface {
         this.localWidget.containerHasTitle = this.containerHasTitle;
 
         // Calc the graph dimensions
-        this.localWidget.graphHeight =
-        this.globalVariableService.calcGraphHeight(this.localWidget);
-
-        this.localWidget.graphWidth =
-        this.globalVariableService.calcGraphWidth(this.localWidget);
+        // this.localWidget.graphHeight = this.globalVariableService.calcGraphHeight(this.localWidget);
+        // this.localWidget.graphWidth = this.globalVariableService.calcGraphWidth(this.localWidget);
 
         // Update new/edit
         if (this.newWidget) {
@@ -1705,6 +1702,7 @@ export interface dataSchemaInterface {
         this.localWidget.graphColorType = this.defaultGraphTypeField(fieldType, 'type');
         this.localWidget.graphColorTypeName = this.defaultGraphTypeField(fieldType, 'name');
         this.localWidget.graphColorTimeUnit ='';
+        this.localWidget.graphDimensionRight = 140;
     }
 
     dropSize(ev) {
@@ -1726,6 +1724,7 @@ export interface dataSchemaInterface {
         let fieldType:string = this.getFieldType(this.draggedField);
         this.localWidget.graphSizeType = this.defaultGraphTypeField(fieldType, 'type');
         this.localWidget.graphSizeTypeName = this.defaultGraphTypeField(fieldType, 'name');
+        this.localWidget.graphDimensionRight = 140;
     }
 
     dropRow(ev) {
@@ -1908,6 +1907,11 @@ export interface dataSchemaInterface {
         this.showFieldColorPropertiesTitle = false;
         this.showFieldColorProperties = false;
         this.showFieldLegend = false;
+
+        if (this.localWidget.graphColorField == ''  &&  this.localWidget.graphSizeField == '') {
+            this.localWidget.graphDimensionRight = 0;
+        };
+
     }
 
     clickClearSizeField() {
