@@ -2100,6 +2100,56 @@ clr-dg-cell {
             text-align: left;
         }
 
+        .editorGraphTop {
+            grid-column-start: 32;
+            /* autoprefixer: off */
+            grid-column-end: 38;
+            grid-row-start: 21;
+            grid-row-end: 22;
+            text-align: left;
+        }
+        .editorGraphRight {
+            grid-column-start: 38;
+            /* autoprefixer: off */
+            grid-column-end: 44;
+            grid-row-start: 21;
+            grid-row-end: 22;
+            text-align: left;
+        }
+        .editorGraphBottom {
+            grid-column-start: 44;
+            /* autoprefixer: off */
+            grid-column-end: 50;
+            grid-row-start: 21;
+            grid-row-end: 22;
+            text-align: left;
+        }
+        .editorGraphLeft {
+            grid-column-start: 32;
+            /* autoprefixer: off */
+            grid-column-end: 38;
+            grid-row-start: 23;
+            grid-row-end: 24;
+            text-align: left;
+        }
+        .editorGraphWidth {
+            grid-column-start: 38;
+            /* autoprefixer: off */
+            grid-column-end: 44;
+            grid-row-start: 23;
+            grid-row-end: 24;
+            text-align: left;
+        }
+        .editorGraphHeight {
+            grid-column-start: 44;
+            /* autoprefixer: off */
+            grid-column-end: 50;
+            grid-row-start: 23;
+            grid-row-end: 24;
+            text-align: left;
+        }
+
+
         /* BUTTONS */
         .editorButtonShowData {
             grid-column-start: 32;
