@@ -507,6 +507,7 @@
                                     placeholder="Angle of title"
                                     [(ngModel)]="localWidget.graphTitleAngle"
                                     name="titleAngle"
+                                    title="Angle of the title in degrees"
                                     >
                             </div>
                         </div>
@@ -516,7 +517,9 @@
                             <div class="editorTitleBaselineTitle" *ngIf="showFieldTitleProperties">
                             Baseline:
                             </div>
-                            <div class="select editorTitleBaseline" *ngIf="showFieldTitleProperties">
+                            <div class="select editorTitleBaseline" *ngIf="showFieldTitleProperties"
+                                title="Baseline of title"
+                                >
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphTitleBaseline"
                                     >
@@ -536,6 +539,7 @@
                                 <select [(ngModel)]="localWidget.graphTitleColorName"
                                     name="graphTitleColorName"
                                     (change)="clickSelectTitleColor($event)"
+                                    title="Color of title text"
                                     >
                                     <option *ngFor="let row of backgroundcolors"
                                         [style.background-color]="row.cssCode"
@@ -556,6 +560,7 @@
                                     placeholder="Font name"
                                     [(ngModel)]="localWidget.graphTitleFont"
                                     name="graphTitleFont"
+                                    title="Name of the font, ie Arial"
                                     >
                             </div>
                         </div>
@@ -569,8 +574,10 @@
                                 <input type="number"
                                     placeholder="Font Size"
                                     [(ngModel)]="localWidget.graphTitleFontSize"
+                                    min="0"
+                                    max="300"
                                     name="graphTitleFontSize"
-                                    title="Number in px, ie 12 for small font size"
+                                    title="Size of font in px, ie 12 for small font size"
                                     >
                             </div>
                         </div>
@@ -584,7 +591,10 @@
                                 <input type="number"
                                     placeholder="Font Weight (100, 200..900)"
                                     [(ngModel)]="localWidget.graphTitleFontWeight"
+                                    min="0"
+                                    max="900"
                                     name="graphTitleFontWeight"
+                                    title="Font weight, 400 normal and 700 bold"
                                     >
                             </div>
                         </div>
@@ -599,6 +609,9 @@
                                     placeholder="Max length in px"
                                     [(ngModel)]="localWidget.graphTitleLength"
                                     name="graphTitleLength"
+                                    min="0"
+                                    max="500"
+                                    title="Length of the title in px"
                                     >
                             </div>
                         </div>
@@ -608,7 +621,9 @@
                             <div class="editorTitleOrientationTitle" *ngIf="showFieldTitleProperties">
                             Orientation:
                             </div>
-                            <div class="select editorTitleOrientation" *ngIf="showFieldTitleProperties">
+                            <div class="select editorTitleOrientation" *ngIf="showFieldTitleProperties"
+                                title="Position where the title must be place on Graph"
+                                >
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphTitleOrientation"
                                     >
