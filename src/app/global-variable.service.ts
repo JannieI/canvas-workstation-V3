@@ -10788,7 +10788,7 @@ export class GlobalVariableService {
         }
     }
 
-    createVegaLiteSpecNEW(
+    createVegaLiteSpec(
         widget: Widget,
         height: number = 0,
         width: number = 0): dl.spec.TopLevelExtentedSpec {
@@ -11338,69 +11338,69 @@ console.warn('xx gv spec', specification);
         
     }
     
-    createVegaLiteSpec(
-        widget: Widget,
-        height: number = 0,
-        width: number = 0): dl.spec.TopLevelExtendedSpec {
-        // Creates a Vega-Lite spec for a given Widget from a standard template
-        // - widget is the W for which the graph is created, and contains all the
-        //   required detail
-        // - height, width are optional dimensions.  If provided, it will overrule
-        //   those values in spec
-        if (this.sessionDebugging) {
-            console.log('%c    Global-Variables createVegaLiteSpec ...',
-                "color: black; background: lightgray; font-size: 10px",
-                {widget}, {height}, {width});
-        };
+    // createVegaLiteSpec(
+    //     widget: Widget,
+    //     height: number = 0,
+    //     width: number = 0): dl.spec.TopLevelExtendedSpec {
+    //     // Creates a Vega-Lite spec for a given Widget from a standard template
+    //     // - widget is the W for which the graph is created, and contains all the
+    //     //   required detail
+    //     // - height, width are optional dimensions.  If provided, it will overrule
+    //     //   those values in spec
+    //     if (this.sessionDebugging) {
+    //         console.log('%c    Global-Variables createVegaLiteSpec ...',
+    //             "color: black; background: lightgray; font-size: 10px",
+    //             {widget}, {height}, {width});
+    //     };
 
-        let vlSpecsNew: dl.spec.TopLevelExtendedSpec = this.vlTemplate;
-        if (widget.graphUrl != "") {
-            vlSpecsNew['data'] = {"url": widget.graphUrl};
-        } else {
-            vlSpecsNew['data'] = {"values": widget.graphData};
-        }
-        vlSpecsNew['description'] = widget.graphDescription;
-        vlSpecsNew['mark']['type'] = widget.graphMark;
-        // vlSpecsNew['mark']['color'] = "brown";
+    //     let vlSpecsNew: dl.spec.TopLevelExtendedSpec = this.vlTemplate;
+    //     if (widget.graphUrl != "") {
+    //         vlSpecsNew['data'] = {"url": widget.graphUrl};
+    //     } else {
+    //         vlSpecsNew['data'] = {"values": widget.graphData};
+    //     }
+    //     vlSpecsNew['description'] = widget.graphDescription;
+    //     vlSpecsNew['mark']['type'] = widget.graphMark;
+    //     // vlSpecsNew['mark']['color'] = "brown";
 
-        vlSpecsNew['encoding']['x']['field'] = widget.graphXfield;
-        vlSpecsNew['encoding']['x']['type'] = widget.graphXtype;
-        vlSpecsNew['encoding']['x']['axis']['title'] = widget.graphXaxisTitle;
-        vlSpecsNew['encoding']['x']['timeUnit'] = widget.graphXtimeUnit;
-        vlSpecsNew['encoding']['x']['aggregate'] = widget.graphXaggregate;
+    //     vlSpecsNew['encoding']['x']['field'] = widget.graphXfield;
+    //     vlSpecsNew['encoding']['x']['type'] = widget.graphXtype;
+    //     vlSpecsNew['encoding']['x']['axis']['title'] = widget.graphXaxisTitle;
+    //     vlSpecsNew['encoding']['x']['timeUnit'] = widget.graphXtimeUnit;
+    //     vlSpecsNew['encoding']['x']['aggregate'] = widget.graphXaggregate;
 
-        vlSpecsNew['encoding']['y']['field'] = widget.graphYfield;
-        vlSpecsNew['encoding']['y']['type'] = widget.graphYtype;
-        vlSpecsNew['encoding']['y']['axis']['title'] = widget.graphYaxisTitle;
-        vlSpecsNew['encoding']['y']['timeUnit'] = widget.graphYtimeUnit;
-        vlSpecsNew['encoding']['y']['aggregate'] = widget.graphYaggregate;
+    //     vlSpecsNew['encoding']['y']['field'] = widget.graphYfield;
+    //     vlSpecsNew['encoding']['y']['type'] = widget.graphYtype;
+    //     vlSpecsNew['encoding']['y']['axis']['title'] = widget.graphYaxisTitle;
+    //     vlSpecsNew['encoding']['y']['timeUnit'] = widget.graphYtimeUnit;
+    //     vlSpecsNew['encoding']['y']['aggregate'] = widget.graphYaggregate;
 
-        if (height != 0) {
-            vlSpecsNew['height'] = height;
-        } else {
-            vlSpecsNew['height'] = widget.graphHeight;
-        };
-        if (width != 0) {
-            vlSpecsNew['width'] = width;
-        } else {
-            vlSpecsNew['width'] = widget.graphWidth;
-        };
+    //     if (height != 0) {
+    //         vlSpecsNew['height'] = height;
+    //     } else {
+    //         vlSpecsNew['height'] = widget.graphHeight;
+    //     };
+    //     if (width != 0) {
+    //         vlSpecsNew['width'] = width;
+    //     } else {
+    //         vlSpecsNew['width'] = widget.graphWidth;
+    //     };
 
-        vlSpecsNew['title']['text'] = widget.graphTitleText;
+    //     vlSpecsNew['title']['text'] = widget.graphTitleText;
 
-        vlSpecsNew['encoding']['color']['field'] = widget.graphColorField;
-        vlSpecsNew['encoding']['color']['type'] = widget.graphColorType;
+    //     vlSpecsNew['encoding']['color']['field'] = widget.graphColorField;
+    //     vlSpecsNew['encoding']['color']['type'] = widget.graphColorType;
 
 
-        // if (widget.graphColorField != ''  && widget.graphColorField != null) {
-        //     vlSpecsNew['encoding']['color'] = {
-        //         "field": widget.graphColorField,
-        //         "type": widget.graphColorType
-        //       }
-        // };
+    //     // if (widget.graphColorField != ''  && widget.graphColorField != null) {
+    //     //     vlSpecsNew['encoding']['color'] = {
+    //     //         "field": widget.graphColorField,
+    //     //         "type": widget.graphColorType
+    //     //       }
+    //     // };
 
-        return vlSpecsNew;
-    }
+    //     return vlSpecsNew;
+    // }
 
     actionUpsert(
         id: number,

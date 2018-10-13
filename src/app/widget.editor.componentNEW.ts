@@ -1861,7 +1861,7 @@ export interface dataSchemaInterface {
             // // Tooltip setting
             // // specification['mark']['tooltip']['content'] = "";
 
-            this.specification = this.globalVariableService.createVegaLiteSpecNEW(
+            this.specification = this.globalVariableService.createVegaLiteSpec(
                 this.localWidget, height, width
             );
 

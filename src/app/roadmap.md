@@ -9,7 +9,7 @@ This document describes items for later versions of Canvas.
 
     Tooltips:
     ---------
-        Add Tooltips to all - decide if CSS title is okay, as it looks different to Clarity tooltip   for icons - See where and how to use tooltips on buttons (ie HTML title="" or via Clarity).  Be   consistent!!
+        Add Tooltips to all - decide if CSS title is okay, as it looks different to Clarity tooltip   for icons - See where and how to use tooltips on buttons (ie HTML title="" or via Clarity).  Be consistent!!
 
     Outstanding Forms:
     ------------
@@ -210,7 +210,11 @@ This document describes items for later versions of Canvas.
             
         
         Layers - consider VERY carefully as this may be a huge amount of work
-        
+
+        Previous period, aggregations, etc
+
+        Make ONE month red, or colour ONE legend option RED
+
         Pan & Zoom:
             - how!?
 
