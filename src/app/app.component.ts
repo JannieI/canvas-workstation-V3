@@ -4262,6 +4262,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         this.newWidgetContainerTop = 0;
         this.showDatasourcePopup = false;
         this.canSave = canSave;
+console.warn('xx this.selectedWidget', this.selectedWidget);
 
         this.showModalWidgetEditor = true;
     }

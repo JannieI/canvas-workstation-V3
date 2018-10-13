@@ -997,6 +997,7 @@ export interface dataSchemaInterface {
 
             // Deep copy Local W
             this.localWidget = JSON.parse(JSON.stringify(this.selectedWidget));
+            console.warn('xx this.localWidget.graphMark', this.localWidget.graphMark, this.localWidget);
 
             if (this.localWidget.graphColorScheme == ''  ||  this.localWidget.graphColorScheme == null) {
                 this.localWidget.graphColorScheme = 'None';
@@ -2046,6 +2047,7 @@ export interface dataSchemaInterface {
     clickSave(action: string) {
         // Closes the form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
+console.warn('xx this.localWidget.graphMark', this.localWidget.graphMark, this.localWidget);
 
         // Validate
         if (this.localWidget.graphMark == ''  ||  this.localWidget.graphMark == null) {
