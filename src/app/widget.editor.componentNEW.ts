@@ -997,7 +997,6 @@ export interface dataSchemaInterface {
 
             // Deep copy Local W
             this.localWidget = JSON.parse(JSON.stringify(this.selectedWidget));
-            console.warn('xx this.localWidget.graphMark', this.localWidget.graphMark, this.localWidget);
 
             if (this.localWidget.graphColorScheme == ''  ||  this.localWidget.graphColorScheme == null) {
                 this.localWidget.graphColorScheme = 'None';
@@ -1311,7 +1310,7 @@ export interface dataSchemaInterface {
             'custom') {
 
             this.specification = this.widgetGraphs[widgetGraphIndex].specification;
-           console.warn('xx this.specification', this.specification)
+
             // Replace the data in the spec - each custom one is different
             if (this.widgetGraphs[widgetGraphIndex].shortName == 'Donut with Sliders') {
                 let xDataValues: any = this.localWidget.graphData.map(x => {
@@ -1928,7 +1927,6 @@ export interface dataSchemaInterface {
     renderGraph(definition: any) {
         // Render the graph on the form
         this.globalFunctionService.printToConsole(this.constructor.name,'renderGraph', '@Start');
-        console.warn('xx definition', definition);
 
         let specification = compile(definition).spec;
         let view = new View(parse(specification));
@@ -2047,7 +2045,6 @@ export interface dataSchemaInterface {
     clickSave(action: string) {
         // Closes the form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
-console.warn('xx this.localWidget.graphMark', this.localWidget.graphMark, this.localWidget);
 
         // Validate
         if (this.localWidget.graphMark == ''  ||  this.localWidget.graphMark == null) {
@@ -2800,20 +2797,6 @@ console.warn('xx this.localWidget.graphMark', this.localWidget.graphMark, this.l
         // TODO - remove later if not used any longer
     }
 
-    clickGraphType(graph: string) {
-        // Click a type of graph icon
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickGraphType', '@Start');
-
-        this.showType = false;
-
-        this.localWidget.graphMark = graph;
-        let definition = this.globalVariableService.createVegaLiteSpec(
-            this.localWidget, graphHeight, graphWidth
-        );
-        this.renderGraph(definition);
-
-    }
-
     clickDSrow(index, datasourceID: number) {
         // Set the selected datasourceID
         // NOTE: this array can be filtered on front-end, thus DON'T use index
@@ -3470,7 +3453,6 @@ console.warn('xx this.localWidget.graphMark', this.localWidget.graphMark, this.l
         this.dataFieldTypeName = '';
 
         this.showCalculatedAreaProperties = false;
-        console.warn('xx this.localWidget.graphTransformations', this.localWidget.graphTransformations)
     }
 
     clickCalculatedApply() {
