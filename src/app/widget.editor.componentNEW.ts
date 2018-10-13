@@ -974,6 +974,22 @@ export interface dataSchemaInterface {
                         this.localWidget.containerWidth = this.selectedWidgetLayout.width;
                 };
             };
+
+            // Select previously used DS, and then click it to load relevant info
+            // NB: AFTER the localWidget has been initialised
+            if (this.globalVariableService.previousGraphEditDSID != -1) {
+
+                let datasourceIndex: number = this.localDatasources.findIndex(ds =>
+                    ds.id == this.globalVariableService.previousGraphEditDSID
+                );
+                if (datasourceIndex >= 0) {
+                    this.selectedRowID = this.globalVariableService.previousGraphEditDSID;
+                    this.selectedRowIndex = datasourceIndex;
+
+                    this.clickDSrow(this.selectedRowIndex, this.selectedRowID)
+                }
+            };
+
         } else {
 
             // Deep copy original W
@@ -1119,21 +1135,6 @@ export interface dataSchemaInterface {
             });
 
         }
-
-        // Select previously used DS, and then click it to load relevant info
-        // NB: AFTER the localWidget has been initialised
-        // if (this.globalVariableService.previousGraphEditDSID != -1) {
-
-        //     let datasourceIndex: number = this.localDatasources.findIndex(ds =>
-        //         ds.id == this.globalVariableService.previousGraphEditDSID
-        //     );
-        //     if (datasourceIndex >= 0) {
-        //         this.selectedRowID = this.globalVariableService.previousGraphEditDSID;
-        //         this.selectedRowIndex = datasourceIndex;
-
-        //         this.clickDSrow(this.selectedRowIndex, this.selectedRowID)
-        //     }
-        // };
 
     }
 
