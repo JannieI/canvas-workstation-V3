@@ -1034,34 +1034,34 @@ export interface dataSchemaInterface {
             };
 
             if (this.localWidget.graphSizeField != ''   &&   this.localWidget.graphSizeField != null) {
-                this.showColourDeleteIcon = true;
+                this.showSizeDeleteIcon = true;
                 this.sizeField = this.localWidget.graphSizeField;
             } else {
-                this.showColourDeleteIcon = false;
+                this.showSizeDeleteIcon = false;
                 this.sizeField = dragFieldMessage;
             };
 
             if (this.localWidget.graphRowField != ''   &&   this.localWidget.graphRowField != null) {
-                this.showColourDeleteIcon = true;
+                this.showRowDeleteIcon = true;
                 this.rowField = this.localWidget.graphRowField;
             } else {
-                this.showColourDeleteIcon = false;
+                this.showRowDeleteIcon = false;
                 this.rowField = dragFieldMessage;
             };
 
             if (this.localWidget.graphColumnField != ''   &&   this.localWidget.graphColumnField != null) {
-                this.showColourDeleteIcon = true;
+                this.showColumnDeleteIcon = true;
                 this.columnField = this.localWidget.graphColumnField;
             } else {
-                this.showColourDeleteIcon = false;
+                this.showColumnDeleteIcon = false;
                 this.columnField = dragFieldMessage;
             };
 
             if (this.localWidget.graphDetailField != ''   &&   this.localWidget.graphDetailField != null) {
-                this.showColourDeleteIcon = true;
+                this.showDetailDeleteIcon = true;
                 this.detailField = this.localWidget.graphDetailField;
             } else {
-                this.showColourDeleteIcon = false;
+                this.showDetailDeleteIcon = false;
                 this.detailField = dragFieldMessage;
             };
 
