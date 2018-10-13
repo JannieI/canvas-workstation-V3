@@ -257,7 +257,9 @@
                         <div class="editorCalculatedValueTitle">
                             Type:
                         </div>
-                        <div class="select editorCalculatedValue">
+                        <div class="select editorCalculatedValue"
+                            title="Type of the Calculated field"
+                            >
                             <select id="selects_3"
                                 [(ngModel)]="dataFieldTypeName"
                                 (change)="calculatedFieldTypeSelected($event)"
@@ -698,7 +700,7 @@
                                     size="5"
                                     style="width: 25px;"
                                     [(ngModel)]="localWidget.graphXMaxBins"
-                                    title=""
+                                    title="Estimated number of bins"
                                     >
                             </div>
                         </div>
@@ -820,11 +822,11 @@
                             </div>
                             <div class="select editorGraphXtimeUnit"
                                 *ngIf="showFieldXProperties"
+                                title="Time unit for Temporate (date) fields"
                                 >
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphXtimeUnit"
                                     [disabled]="localWidget.graphXtypeName!='Temporal'"
-                                    title="Time unit for Temporate (date) fields"
                                     >
                                     <option *ngFor="let row of timeUnits; let i = index">
                                         {{ row }}
@@ -860,6 +862,7 @@
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphYaggregateName"
                                     name="graphYaggregateName"
+                                    title="How Y values must be aggregated, ie Count"
                                     >
                                     <option *ngFor="let row of aggregations; let i = index">
                                         {{ row.displayName }}
@@ -892,6 +895,7 @@
                                     style="width: 25px;"
                                     [(ngModel)]="localWidget.graphYMaxBins"
                                     name="graphYMaxBins"
+                                    title="Estimated number of bins"
                                     >
                             </div>
                         </div>
@@ -906,6 +910,7 @@
                                     placeholder="Only for Text"
                                     [(ngModel)]="localWidget.graphYformat"
                                     name="graphYformat"
+                                    title="Format of text values"
                                     >
                             </div>
                         </div>
@@ -915,7 +920,9 @@
                             <div class="editorGraphYimputeTitle" *ngIf="showFieldYProperties">
                                 Impute:
                             </div>
-                            <div class="select editorGraphYimpute" *ngIf="showFieldYProperties">
+                            <div class="select editorGraphYimpute" *ngIf="showFieldYProperties"
+                                title="Fill in missing value, ie with the average of a column"
+                                >
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphYimpute"
                                     name="graphYimpute"
@@ -938,6 +945,7 @@
                                     name="graphYimputeImputeValue"
                                     [disabled]="!(localWidget.graphYimpute=='Value')"
                                     size="5"
+                                    title="Fixed value into missing values"
                                     >
                             </div>
                         </div>
@@ -947,7 +955,9 @@
                             <div class="editorGraphYstackTitle" *ngIf="showFieldYProperties">
                                 Stack:
                             </div>
-                            <div class="select editorGraphYstack" *ngIf="showFieldYProperties">
+                            <div class="select editorGraphYstack" *ngIf="showFieldYProperties"
+                                title="How Y values must be stacked"
+                                >
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphYstack"
                                     name="graphYstack"
@@ -965,7 +975,9 @@
                             <div class="editorGraphYsortTitle" *ngIf="showFieldYProperties">
                                 Sort:
                             </div>
-                            <div class="select editorGraphYsort" *ngIf="showFieldYProperties">
+                            <div class="select editorGraphYsort" *ngIf="showFieldYProperties"
+                                title="How Y values must be sorted"
+                                >
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphYsort"
                                     name="graphYsort"
@@ -982,7 +994,9 @@
                             <div class="editorGraphYtypeTitle" *ngIf="showFieldYProperties">
                                 Type:
                             </div>
-                            <div class="select editorGraphYtype" *ngIf="showFieldYProperties">
+                            <div class="select editorGraphYtype" *ngIf="showFieldYProperties"
+                                title="Type of the X field in the Graph (ordinal for strings)"
+                                >
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphYtypeName"
                                     (change)="changeYTimeUnit($event)"
@@ -1003,6 +1017,7 @@
                             </div>
                             <div class="select editorGraphYtimeUnit"
                                 *ngIf="showFieldYProperties"
+                                title="Time unit for Temporate (date) fields"
                                 >
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphYtimeUnit"
@@ -1038,7 +1053,9 @@
                             <div class="editorGraphColorAggregateTitle" *ngIf="showFieldColorProperties">
                                 Aggregate:
                             </div>
-                            <div class="select editorGraphColorAggregate" *ngIf="showFieldColorProperties">
+                            <div class="select editorGraphColorAggregate" *ngIf="showFieldColorProperties"
+                                title="How the Color values must be aggregated, ie Count"
+                                >
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphColorAggregateName"
                                     name="graphColorAggregateName"
@@ -1074,6 +1091,7 @@
                                     style="width: 25px;"
                                     [(ngModel)]="localWidget.graphColorMaxBins"
                                     name="graphColorMaxBins"
+                                    title="Estimated number of bins"
                                     >
                             </div>
                         </div>
@@ -1094,7 +1112,9 @@
 
                         <!-- Color Properties Impute -->
                         <div class="editorLineContainer">
-                            <div class="editorGraphColorImputeTitle" *ngIf="showFieldColorProperties">
+                            <div class="editorGraphColorImputeTitle" *ngIf="showFieldColorProperties"
+                                title="Fill in missing value, ie with the average of a column"
+                                >
                                 Impute:
                             </div>
                             <div class="select editorGraphColorImpute" *ngIf="showFieldColorProperties">
@@ -1120,6 +1140,7 @@
                                     name="graphColorImputeValue"
                                     [disabled]="!(localWidget.graphColorImpute=='Value')"
                                     size="5"
+                                    title="Fixed value into missing values"
                                     >
                             </div>
                         </div>
@@ -1181,7 +1202,9 @@
                             <div class="editorGraphColorTypeTitle" *ngIf="showFieldColorProperties">
                                 Type:
                             </div>
-                            <div class="select editorGraphColorType" *ngIf="showFieldColorProperties">
+                            <div class="select editorGraphColorType" *ngIf="showFieldColorProperties"
+                                title="Type of the Color field in the Graph (ordinal for strings)"
+                                >
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphColorTypeName"
                                     (change)="changeColorTimeUnit($event)"
@@ -1202,6 +1225,7 @@
                             </div>
                             <div class="select editorGraphColorTimeUnit"
                                 *ngIf="showFieldColorProperties"
+                                title="Time unit for Temporate (date) fields"
                                 >
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphColorTimeUnit"
@@ -1602,7 +1626,9 @@
                             <div class="editorGraphSizeTypeTitle" *ngIf="showFieldSizeProperties">
                                 Type:
                             </div>
-                            <div class="select editorGraphSizeType" *ngIf="showFieldSizeProperties">
+                            <div class="select editorGraphSizeType" *ngIf="showFieldSizeProperties"
+                                title="Type of the Size field in the Graph (ordinal for strings)"
+                                >
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphSizeTypeName"
                                     name="graphSizeTypeName"
@@ -1620,7 +1646,9 @@
                             <div class="editorGraphSizeAggregateTitle" *ngIf="showFieldSizeProperties">
                                 Aggregate:
                             </div>
-                            <div class="select editorGraphSizeAggregate" *ngIf="showFieldSizeProperties">
+                            <div class="select editorGraphSizeAggregate" *ngIf="showFieldSizeProperties"
+                                title="How the Size values must be aggregated, ie Count"
+                                >
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphSizeAggregateName"
                                     name="graphSizeAggregateName"
@@ -1778,7 +1806,9 @@
                             <div class="editorGraphRowTypeTitle" *ngIf="showFieldRowProperties">
                                 Type:
                             </div>
-                            <div class="select editorGraphRowType" *ngIf="showFieldRowProperties">
+                            <div class="select editorGraphRowType" *ngIf="showFieldRowProperties"
+                                title="Type of the Row field in the Graph (ordinal for strings)"
+                                >
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphRowTypeName"
                                     name="graphRowTypeName"
@@ -1842,7 +1872,9 @@
                             <div class="editorGraphColumnTypeTitle" *ngIf="showFieldColumnProperties">
                                 Type:
                             </div>
-                            <div class="select editorGraphColumnType" *ngIf="showFieldColumnProperties">
+                            <div class="select editorGraphColumnType" *ngIf="showFieldColumnProperties"
+                                title="Type of the Column field in the Graph (ordinal for strings)"
+                                >
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphColumnTypeName"
                                     name="graphColumnTypeName"
@@ -1906,7 +1938,9 @@
                             <div class="editorGraphDetailTypeTitle" *ngIf="showFieldDetailProperties">
                                 Type:
                             </div>
-                            <div class="select editorGraphDetailType" *ngIf="showFieldDetailProperties">
+                            <div class="select editorGraphDetailType" *ngIf="showFieldDetailProperties"
+                                title="Type of the Detail field in the Graph (ordinal for strings)"
+                                >
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphDetailTypeName"
                                     name="graphDetailTypeName"
@@ -1970,7 +2004,9 @@
                             <div class="editorGraphX2TypeTitle" *ngIf="showFieldX2Properties">
                                 Type:
                             </div>
-                            <div class="select editorGraphX2Type" *ngIf="showFieldX2Properties">
+                            <div class="select editorGraphX2Type" *ngIf="showFieldX2Properties"
+                                title="Type of the X2 field in the Graph (ordinal for strings)"
+                                >
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphX2TypeName"
                                     name="graphX2TypeName"
@@ -2034,7 +2070,9 @@
                             <div class="editorGraphY2TypeTitle" *ngIf="showFieldY2Properties">
                                 Type:
                             </div>
-                            <div class="select editorGraphY2Type" *ngIf="showFieldY2Properties">
+                            <div class="select editorGraphY2Type" *ngIf="showFieldY2Properties"
+                                title="Type of the Y2 field in the Graph (ordinal for strings)"
+                                >
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphY2TypeName"
                                     name="graphY2TypeName"
