@@ -116,7 +116,9 @@
                     <div class="editorNrRowsTitle">
                         Rows:
                     </div>
-                    <div class="editorNrRows">
+                    <div class="editorNrRows"
+                        title="Maximum number of rows to use in the Graph"
+                        >
                         {{ nrRows }}
                     </div>
                     
@@ -131,6 +133,7 @@
                             name="sampleNumberRows"
                             size="5"
                             style="border-radius: 5px; width: 100%;"
+                            title="A random sample will be selected EACH time a Graph is drawn"
                             >
                     </div>
 
@@ -284,6 +287,8 @@
                         </div>
                     </div>
 
+
+
                     <!-- FIELDS -->
                     <div class="editorFieldsTitle">
                         <b>Fields</b>
@@ -351,6 +356,7 @@
                             </clr-datagrid>
                         </nav>
                     </div>
+
 
 
                     <!-- PROPERTIES -->
@@ -1265,6 +1271,7 @@
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphMarkOrient"
                                     name="graphMarkOrient"
+                                    title="Orietation, useful when both are Quantitative fields"
                                     >
                                     <option>Horizontal</option>
                                     <option>Verticle</option>
@@ -1305,7 +1312,9 @@
                             <div class="editorGraphMarkColourTitle" *ngIf="showFieldMarkProperties">
                             Color:
                             </div>
-                            <div class="select editorGraphMarkColour" *ngIf="showFieldMarkProperties">
+                            <div class="select editorGraphMarkColour" *ngIf="showFieldMarkProperties"
+                                title="Color of the mark, ie red for a line Graph"
+                                >
                                 <select [(ngModel)]="localWidget.graphMarkColourName"
                                     name="graphMarkColourName"
                                     (change)="clickSelectMarkColour($event)"
@@ -1329,6 +1338,7 @@
                                     [(ngModel)]="localWidget.graphMarkCornerRadius"
                                     name="graphMarkCornerRadius"
                                     placeholder="Mark corner radius"
+                                    title="Radius of bar corners, in px"
                                     >
                             </div>
                         </div>
@@ -1346,6 +1356,7 @@
                                     max="1"
                                     step=".1"
                                     placeholder="Mark corner radius"
+                                    title="Opacity, 0 = invisible, 1 = opaque"
                                     >
                             </div>
                         </div>
@@ -1360,6 +1371,7 @@
                                     [(ngModel)]="localWidget.graphMarkBinSpacing"
                                     name="graphMarkBinSpacing"
                                     placeholder="Space between bars"
+                                    title="Spacing between bars"
                                     >
                             </div>
                         </div>
@@ -1611,6 +1623,7 @@
                                 (dragover)="dragoverSize($event);"
                                 [style.background-color]="dragoverSizes? 'lightgray' : 'transparent'"
                                 [style.font-style]="sizeField=='Drag a field here ...' ?  'italic'  :  'normal'"
+                                title="The Size field show the size of elements in the Graph"
                                 >
 
                                 <clr-icon shape="times" *ngIf="showSizeDeleteIcon"
@@ -2137,11 +2150,14 @@
                         >
                     </div>
 
+                    
 
                     <!-- SPECIFICATION AREA -->
                     <div class="editorSpecification" [hidden]="!showSpecification">
                         {{ specificationJSON }}
                     </div>
+
+
 
                     <!-- FILTER -->
                     <div class="editorFilterTitle">
@@ -2175,7 +2191,9 @@
                         <div class="editorFilterFieldTitle">
                             Field:
                         </div>
-                        <div class="select editorFilterField">
+                        <div class="select editorFilterField"
+                            title="Select the field to filter on"
+                            >
                             <select id="selects_3" *ngIf="dataSchema"
                                 [(ngModel)]="filterField"
                                 (change)="filterFieldSelected($event)"
@@ -2189,7 +2207,9 @@
                         <div class="editorFilterOperatorTitle">
                             Operator:
                         </div>
-                        <div class="select editorFilterOperator">
+                        <div class="select editorFilterOperator"
+                            title="Select the operator for the filter"
+                            >
                             <select id="selects_3"
                                 [(ngModel)]="filterOperator"
                                 (change)="filterOperatorSelected($event)"
@@ -2216,6 +2236,7 @@
                                     [(ngModel)]="filterValue"
                                     name="filterValue"
                                     placeholder="12 Japan  1,5  a,b,c  true"
+                                    title="Enter a value for the filter.  Ranges use x,y for from,to"
                                     >
                             </div>
                         </div>
