@@ -1930,9 +1930,11 @@
                                 (dragover)="dragoverDetail($event);"
                                 [style.background-color]="isDragoverDetail? 'lightgray' : 'transparent'"
                                 [style.font-style]="detailField=='Drag a field here ...' ?  'italic'  :  'normal'"
+                                title="Detail field, used to group by values (no legend is shown)"
                                 >
 
                                 <clr-icon shape="times" *ngIf="showDetailDeleteIcon"
+                                    title="Click to remove the Detail field from the Graph"
                                     (click)="clickClearDetailField()"
                                     >
                                 </clr-icon>
@@ -1996,9 +1998,11 @@
                                 (dragover)="dragoverX2($event);"
                                 [style.background-color]="isDragoverX2? 'lightgray' : 'transparent'"
                                 [style.font-style]="x2Field=='Drag a field here ...' ?  'italic'  :  'normal'"
+                                title="Field to place on the second X axis"
                                 >
 
                                 <clr-icon shape="times" *ngIf="showX2DeleteIcon"
+                                    title="Click to remove the X2 field from the Graph"
                                     (click)="clickClearX2Field()"
                                     >
                                 </clr-icon>
@@ -2062,9 +2066,11 @@
                                 (dragover)="dragoverY2($event);"
                                 [style.background-color]="isDragoverY2? 'lightgray' : 'transparent'"
                                 [style.font-style]="y2Field=='Drag a field here ...' ?  'italic'  :  'normal'"
+                                title="Field to place on the second Y axis"
                                 >
 
                                 <clr-icon shape="times" *ngIf="showY2DeleteIcon"
+                                    title="Click remove the Y2 field"
                                     (click)="clickClearY2Field()"
                                     >
                                 </clr-icon>
