@@ -366,6 +366,7 @@
                                 <clr-icon shape="switch right"
                                     size="10"
                                     (click)="switchXandY()"
+                                    title="Click to switch X and Y fields"
                                     >
                                 </clr-icon>
                             </div>
@@ -377,9 +378,11 @@
                                 (dragleave)="dragleaveXField($event);"
                                 [style.background-color]="isDragoverXField? 'lightgray' : 'transparent'"
                                 [style.font-style]="xField=='Drag a field here ...' ?  'italic'  :  'normal'"
+                                title="Field on X axis"
                                 (click)="clickXfield()"
                                 >
                                 <clr-icon shape="times" *ngIf="showXDeleteIcon"
+                                    title="Click to remove this field from the Graph"
                                     (click)="clickClearXFieldField()">
                                 </clr-icon>
                                 {{ xField }}
@@ -392,6 +395,7 @@
                                 Y axis:
                                 <clr-icon shape="switch right"
                                     size="10"
+                                    title="Click to switch X and Y fields"
                                     (click)="switchXandY()"
                                     >
                                 </clr-icon>
@@ -404,9 +408,11 @@
                                 (dragover)="dragoverYField($event);"
                                 [style.background-color]="isDragoverYField? 'lightgray' : 'transparent'"
                                 [style.font-style]="yField=='Drag a field here ...' ?  'italic'  :  'normal'"
+                                title="Field on the Y axis"
                                 (click)="clickYfield()"
                                 >
                                 <clr-icon shape="times" *ngIf="showYDeleteIcon"
+                                    title="Click to remove this field from the Graph"
                                     (click)="clickClearYField()">
                                 </clr-icon>
                                 {{ yField }}
@@ -426,9 +432,11 @@
                                 (dragover)="dragoverColour($event);"
                                 [style.background-color]="dragoverColours? 'lightgray' : 'transparent'"
                                 [style.font-style]="colorField=='Drag a field here ...' ?  'italic'  :  'normal'"
+                                title="Color of the graph elements"
                                 (click)="clickColorfield()"
                                 >
                                 <clr-icon shape="times" *ngIf="showColourDeleteIcon"
+                                    title="Click to remove this field from the Graph"
                                     (click)="clickClearColourField()"
                                     >
                                 </clr-icon>
@@ -466,6 +474,7 @@
                                     [(ngModel)]="localWidget.graphTitleText"
                                     name="graphTitleText"
                                     style="border-radius: 5px; width: 100%;"
+                                    title="Text of the Graph Title"
                                     >
                             </div>
                         </div>
@@ -475,7 +484,9 @@
                             <div class="editorTitleAnchorTitle" *ngIf="showFieldTitleProperties">
                                 Anchor:
                             </div>
-                            <div class="select editorTitleAnchor" *ngIf="showFieldTitleProperties">
+                            <div class="select editorTitleAnchor" *ngIf="showFieldTitleProperties"
+                                title="Title Orientation"
+                                >
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphTitleAnchor"
                                     >
@@ -559,6 +570,7 @@
                                     placeholder="Font Size"
                                     [(ngModel)]="localWidget.graphTitleFontSize"
                                     name="graphTitleFontSize"
+                                    title="Number in px, ie 12 for small font size"
                                     >
                             </div>
                         </div>
