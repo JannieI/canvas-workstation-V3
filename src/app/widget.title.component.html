@@ -194,7 +194,9 @@
                     <div class="titleFontsize">
                         Font Size:
                         <input [(ngModel)]="localWidget.titleFontsize"
-                            type="text"
+                            type="number"
+                            min="0"
+                            max="200"
                             name="titleFontsize"
                             placeholder="Size of font in px"
                             >
@@ -202,7 +204,9 @@
                     <div class="titleFontWeight">
                         Font Weight:
                         <input [(ngModel)]="localWidget.titleFontWeight"
-                            type="text"
+                            type="number"
+                            min="0"
+                            max="900"
                             name="titleFontWeight"
                             placeholder="Number 1 to 900"
                             >
@@ -221,6 +225,8 @@
                         Width (%):
                         <input [(ngModel)]="localWidget.titleWidth"
                             type="text"
+                            min="0"
+                            max="100"
                             name="titleWidth"
                             placeholder="Width as % (0-100)"
                             >

@@ -1010,94 +1010,82 @@ export interface dataSchemaInterface {
             // Add Fields to selection areas
             if (this.localWidget.graphXfield != ''   &&   this.localWidget.graphXfield != null) {
                 this.showXDeleteIcon = true;
-                this.showFieldXAxis = false;
+                this.showFieldXPropertiesTitle = true;
                 this.xField = this.localWidget.graphXfield;
 
             } else {
                 this.showXDeleteIcon = false;
-                this.showFieldXAxis = true;
+                this.showFieldXPropertiesTitle = false;
                 this.xField = dragFieldMessage;
             };
 
             if (this.localWidget.graphYfield != ''   &&   this.localWidget.graphYfield != null) {
                 this.showYDeleteIcon = true;
-                this.showFieldYAxis = false;
+                this.showFieldYPropertiesTitle = true;
                 this.yField = this.localWidget.graphYfield;
             } else {
                 this.showYDeleteIcon = false;
-                this.showFieldYAxis = true;
+                this.showFieldYPropertiesTitle = false;
                 this.yField = dragFieldMessage;
             };
 
             if (this.localWidget.graphColorField != ''   &&   this.localWidget.graphColorField != null) {
                 this.showColourDeleteIcon = true;
-                this.showFieldLegend = false;
+                this.showFieldColorPropertiesTitle = true;
                 this.colorField = this.localWidget.graphColorField;
             } else {
                 this.showColourDeleteIcon = false;
-                this.showFieldLegend = true;
+                this.showFieldColorPropertiesTitle = false;
                 this.colorField = dragFieldMessage;
             };
 
             if (this.localWidget.graphSizeField != ''   &&   this.localWidget.graphSizeField != null) {
                 this.showSizeDeleteIcon = true;
-                this.showFieldSizeProperties = false;
                 this.sizeField = this.localWidget.graphSizeField;
             } else {
                 this.showSizeDeleteIcon = false;
-                this.showFieldSizeProperties = true;
                 this.sizeField = dragFieldMessage;
             };
 
             if (this.localWidget.graphRowField != ''   &&   this.localWidget.graphRowField != null) {
                 this.showRowDeleteIcon = true;
-                this.showFieldRowProperties = false;
                 this.rowField = this.localWidget.graphRowField;
             } else {
                 this.showRowDeleteIcon = false;
-                this.showFieldRowProperties = true;
                 this.rowField = dragFieldMessage;
             };
 
             if (this.localWidget.graphColumnField != ''   &&   this.localWidget.graphColumnField != null) {
                 this.showColumnDeleteIcon = true;
-                this.showFieldColumnProperties = false;
                 this.columnField = this.localWidget.graphColumnField;
             } else {
                 this.showColumnDeleteIcon = false;
-                this.showFieldColumnProperties = true;
                 this.columnField = dragFieldMessage;
             };
 
             if (this.localWidget.graphDetailField != ''   &&   this.localWidget.graphDetailField != null) {
                 this.showDetailDeleteIcon = true;
-                this.showFieldDetailProperties = false;
                 this.detailField = this.localWidget.graphDetailField;
             } else {
                 this.showDetailDeleteIcon = false;
-                this.showFieldDetailProperties = true;
                 this.detailField = dragFieldMessage;
             };
 
             if (this.localWidget.graphX2Field != ''   &&   this.localWidget.graphX2Field != null) {
                 this.showX2DeleteIcon = true;
-                this.showFieldX2Properties = false;
                 this.x2Field = this.localWidget.graphX2Field;
 
             } else {
                 this.showX2DeleteIcon = false;
-                this.showFieldX2Properties = true;
                 this.x2Field = dragFieldMessage;
             };
 
             if (this.localWidget.graphY2Field != ''   &&   this.localWidget.graphY2Field != null) {
                 this.showY2DeleteIcon = true;
-                this.showFieldY2Properties = false;
                 this.y2Field = this.localWidget.graphY2Field;
 
             } else {
                 this.showY2DeleteIcon = false;
-                this.showFieldY2Properties = true;
                 this.y2Field = dragFieldMessage;
             };
 
