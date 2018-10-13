@@ -1125,6 +1125,10 @@ export class Widget {
     graphLeft: number;                  // in px
     graphTop: number;                   // in px
     graphWidth: number;                 // in px
+    graphDimensionTop: number;          // Space for title in px (adds to height of total area)
+    graphDimensionRight: number;        // Space for legend in px (adds to width)
+    graphDimensionLeft: number;         // Space for x axis in px
+    graphDimensionBottom: number;       // Space for y axis in px
     graphGraphPadding: number;
     graphHasSignals: boolean;
     graphFillColor: string;
