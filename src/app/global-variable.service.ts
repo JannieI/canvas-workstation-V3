@@ -235,7 +235,6 @@ const widgetTemplate: Widget =
         "titlePadding": "0 0 0 5px",
         "titleTextAlign": "center",
         "titleWidth": 100,
-        "graphType": "",
         "graphHeight": 240,
         "graphLeft": 1,
         "graphTop": 1,
@@ -10839,7 +10838,7 @@ export class GlobalVariableService {
             "transform": []
         };
 
-        specification['mark']['type'] = widget.graphType;
+        specification['mark']['type'] = widget.graphMark;
 
         // Optional Sampling
         if (widget.sampleNumberRows != 0) {

@@ -1222,7 +1222,7 @@ export interface dataSchemaInterface {
             this.errorMessageEditor = 'Graph type id = ' + graphID + ' does not exist in the DB';
             return;
         } else {
-            this.localWidget.graphType = this.widgetGraphs[widgetGraphIndex]['mark'];
+            this.localWidget.graphMark = this.widgetGraphs[widgetGraphIndex]['mark'];
         };
 
         // Startup

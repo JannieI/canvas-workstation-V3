@@ -1120,7 +1120,7 @@ export class Widget {
     titleWidth: number;                 // in %: 0 means it adapts to container
 
     // Graph
-    graphType: string;                  // bar, pie, etc
+    // graphType: string;                  // bar, pie, etc
     graphHeight: number;                // in px
     graphLeft: number;                  // in px
     graphTop: number;                   // in px
