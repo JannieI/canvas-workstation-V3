@@ -916,11 +916,6 @@ export interface dataSchemaInterface {
             {id: null, name: 'Open Picker ...', cssCode: '', shortList: false}, ...this.backgroundcolors
         ];
 
-        // Get Widget Graph Specs
-        this.globalVariableService.getWidgetGraphs().then(res => {
-            this.widgetGraphs = res
-        });
-
         // Get DS to which user has permissions
         this.localDatasources = this.globalVariableService.datasources
             .slice()
@@ -937,8 +932,13 @@ export interface dataSchemaInterface {
                 return 0;
             });
 
-            // Start afresh for new W
+        // Start afresh for new W~
         if (this.newWidget) {
+
+            // Get Widget Graph Specs
+            this.globalVariableService.getWidgetGraphs().then(res => {
+                this.widgetGraphs = res
+            });
 
             // Count the Ws
             let widgets: Widget[];
@@ -1079,22 +1079,61 @@ export interface dataSchemaInterface {
             };
 
             this.constructDataSchema(arrayIndex);
+
+            // Reset, Highlight selected row
+            this.selectedRowIndex = arrayIndex;
+            this.selectedRowID = this.localDatasources[arrayIndex].id;
+            this.selectedDescription = this.localDatasources[arrayIndex].description;
+            this.errorMessage = '';
+            this.currentData = null;
+
+            // Determine if data in Glob Var
+            let dataSetIndex: number = this.globalVariableService.currentDatasets.findIndex(
+                ds => ds.datasourceID == this.selectedRowID
+            );
+            if (dataSetIndex >= 0) {
+
+                // Load first few rows into preview
+                this.currentData = this.globalVariableService.currentDatasets[dataSetIndex]
+                    .data.slice(0,5);
+
+                // Switch on the preview after the first row was clicked
+                this.showPreview = true;
+            };
+            
+            // Remember ID for next time
+            this.globalVariableService.previousGraphEditDSID = this.selectedRowID;
+
+            // Show the Editor form
+            this.showDatasourceMain = false;
+
+            // Get Widget Graph Specs
+            this.globalVariableService.getWidgetGraphs().then(res => {
+                this.widgetGraphs = res
+
+                // Show graph
+                let graphIndex: number = this.widgetGraphs.findIndex(
+                    wgr => wgr.mark == this.localWidget.graphMark
+                );
+                this.showGraph(this.widgetGraphs[graphIndex].id);
+            });
+
         }
 
         // Select previously used DS, and then click it to load relevant info
         // NB: AFTER the localWidget has been initialised
-        if (this.globalVariableService.previousGraphEditDSID != -1) {
+        // if (this.globalVariableService.previousGraphEditDSID != -1) {
 
-            let datasourceIndex: number = this.localDatasources.findIndex(ds =>
-                ds.id == this.globalVariableService.previousGraphEditDSID
-            );
-            if (datasourceIndex >= 0) {
-                this.selectedRowID = this.globalVariableService.previousGraphEditDSID;
-                this.selectedRowIndex = datasourceIndex;
+        //     let datasourceIndex: number = this.localDatasources.findIndex(ds =>
+        //         ds.id == this.globalVariableService.previousGraphEditDSID
+        //     );
+        //     if (datasourceIndex >= 0) {
+        //         this.selectedRowID = this.globalVariableService.previousGraphEditDSID;
+        //         this.selectedRowIndex = datasourceIndex;
 
-                this.clickDSrow(this.selectedRowIndex, this.selectedRowID)
-            }
-        };
+        //         this.clickDSrow(this.selectedRowIndex, this.selectedRowID)
+        //     }
+        // };
 
     }
 
