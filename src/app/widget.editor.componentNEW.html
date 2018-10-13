@@ -1794,9 +1794,11 @@
                                 (dragover)="dragoverRow($event);"
                                 [style.background-color]="isDragoverRow? 'lightgray' : 'transparent'"
                                 [style.font-style]="rowField=='Drag a field here ...' ?  'italic'  :  'normal'"
+                                title="Field used for rows (create multiple Graphs)"
                                 >
 
                                 <clr-icon shape="times" *ngIf="showRowDeleteIcon"
+                                    title="Click to remove this field from the Graph"
                                     (click)="clickClearRowField()"
                                     >
                                 </clr-icon>
@@ -1860,9 +1862,11 @@
                                 (dragover)="dragoverColumn($event);"
                                 [style.background-color]="isDragoverColumn? 'lightgray' : 'transparent'"
                                 [style.font-style]="columnField=='Drag a field here ...' ?  'italic'  :  'normal'"
+                                title="Produce multiple Graphs based on this field"
                                 >
 
                                 <clr-icon shape="times" *ngIf="showColumnDeleteIcon"
+                                    title="Click to remove the Column field from the Graph"
                                     (click)="clickClearColumnField()"
                                     >
                                 </clr-icon>
