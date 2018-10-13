@@ -658,7 +658,9 @@
                             <div class="editorGraphXaggregateTitle" *ngIf="showFieldXProperties">
                                 Aggregate:
                             </div>
-                            <div class="select editorGraphXaggregate" *ngIf="showFieldXProperties">
+                            <div class="select editorGraphXaggregate" *ngIf="showFieldXProperties"
+                                title="How the X values must be aggregated, ie Count"
+                                >
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphXaggregateName"
                                     name="graphXaggregateName"
@@ -689,11 +691,14 @@
 
                             <div class="editorGraphXbinMax" *ngIf="showFieldXProperties">
                                 <input type="number"
+                                    name="graphXMaxBins"
                                     placeholder="Est. nr of bins"
+                                    min="1"
+                                    max="10"
                                     size="5"
                                     style="width: 25px;"
                                     [(ngModel)]="localWidget.graphXMaxBins"
-                                    name="graphXMaxBins"
+                                    title=""
                                     >
                             </div>
                         </div>
@@ -708,6 +713,7 @@
                                     placeholder="Only for Text"
                                     [(ngModel)]="localWidget.graphXformat"
                                     name="graphXformat"
+                                    title="Format of text values"
                                     >
                             </div>
                         </div>
@@ -717,7 +723,9 @@
                             <div class="editorGraphXimputeTitle" *ngIf="showFieldXProperties">
                                 Impute:
                             </div>
-                            <div class="select editorGraphXimpute" *ngIf="showFieldXProperties">
+                            <div class="select editorGraphXimpute" *ngIf="showFieldXProperties"
+                                title="Fill in missing value, ie with the average of a column"
+                                >
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphXimpute"
                                     name="graphXimpute"
@@ -740,6 +748,7 @@
                                     name="graphXimputeValue"
                                     [disabled]="!(localWidget.graphXimpute=='Value')"
                                     size="5"
+                                    title="Fixed value into missing values"
                                     >
                             </div>
                         </div>
@@ -749,7 +758,9 @@
                             <div class="editorGraphXstackTitle" *ngIf="showFieldXProperties">
                                 Stack:
                             </div>
-                            <div class="select editorGraphXstack" *ngIf="showFieldXProperties">
+                            <div class="select editorGraphXstack" *ngIf="showFieldXProperties"
+                                title="Specify how the X values must be stacked"
+                                >
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphXstack"
                                     name="graphXstack"
@@ -767,7 +778,9 @@
                             <div class="editorGraphXsortTitle" *ngIf="showFieldXProperties">
                                 Sort:
                             </div>
-                            <div class="select editorGraphXsort" *ngIf="showFieldXProperties">
+                            <div class="select editorGraphXsort" *ngIf="showFieldXProperties"
+                                title="Specify how the X values must be sorted"
+                                >
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphXsort"
                                     name="graphXsort"
@@ -784,7 +797,9 @@
                             <div class="editorGraphXtypeTitle" *ngIf="showFieldXProperties">
                                 Type:
                             </div>
-                            <div class="select editorGraphXtype" *ngIf="showFieldXProperties">
+                            <div class="select editorGraphXtype" *ngIf="showFieldXProperties"
+                                title="Type of the X field in the Graph (ordinal for strings)"
+                                >
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphXtypeName"
                                     (change)="changeXTimeUnit($event)"
@@ -809,6 +824,7 @@
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphXtimeUnit"
                                     [disabled]="localWidget.graphXtypeName!='Temporal'"
+                                    title="Time unit for Temporate (date) fields"
                                     >
                                     <option *ngFor="let row of timeUnits; let i = index">
                                         {{ row }}
@@ -816,7 +832,6 @@
                                 </select>
                             </div>
                         </div>
-
 
 
                         <!-- Y Properties Title Bar -->
