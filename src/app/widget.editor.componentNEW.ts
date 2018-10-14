@@ -1007,6 +1007,32 @@ export interface dataSchemaInterface {
                 alert('No Widget was selected, or could not find it in glob vars.  In: ngOnInit, ELSE +- line 170 inside WidgetEditor.ts')
             };
 
+            // Fill in defaults
+            if (this.localWidget.graphHeight == null) {
+                this.localWidget.graphHeight = 240;
+            };
+            if (this.localWidget.graphLeft == null) {
+                this.localWidget.graphLeft = 1;
+            };
+            if (this.localWidget.graphTop == null) {
+                this.localWidget.graphTop = 1;
+            };
+            if (this.localWidget.graphWidth == null) {
+                this.localWidget.graphWidth = 240;
+            };
+            if (this.localWidget.graphDimensionTop == null) {
+                this.localWidget.graphDimensionTop = 35;
+            };
+            if (this.localWidget.graphDimensionRight == null) {
+                this.localWidget.graphDimensionRight = 140;
+            };
+            if (this.localWidget.graphDimensionLeft == null) {
+                this.localWidget.graphDimensionLeft = 80;
+            };
+            if (this.localWidget.graphDimensionBottom == null) {
+                this.localWidget.graphDimensionBottom = 70;
+            };
+    
             // Add Fields to selection areas
             if (this.localWidget.graphXfield != ''   &&   this.localWidget.graphXfield != null) {
                 this.showXDeleteIcon = true;
