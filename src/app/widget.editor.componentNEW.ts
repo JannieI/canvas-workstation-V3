@@ -2018,6 +2018,7 @@ export interface dataSchemaInterface {
 
         this.showY2DeleteIcon = false;
         this.y2Field = dragFieldMessage;
+        this.localWidget.graphY2Field = '';
 
         // Hide the panel with properties
         this.showFieldY2Properties = false;
