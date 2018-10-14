@@ -4262,7 +4262,6 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
         this.newWidgetContainerTop = 0;
         this.showDatasourcePopup = false;
         this.canSave = canSave;
-console.warn('xx this.selectedWidget', this.selectedWidget);
 
         this.showModalWidgetEditor = true;
     }
@@ -8831,13 +8830,13 @@ console.warn('xx this.selectedWidget', this.selectedWidget);
 
         let isSelected: boolean = !this.currentWidgets[index].isSelected;
         this.currentWidgets.forEach(w => {
-            if ( (w.id == id)  ||  (this.widgetGroup.indexOf(w.id) >= 0) ) {
+            if ( (w.id == id)  ||  (this.widgetGroup.indexOf(id) >= 0) ) {
                 w.isSelected = isSelected;
             };
         });
 
         this.globalVariableService.currentWidgets.forEach(w => {
-            if ( (w.id == id)  ||  (this.widgetGroup.indexOf(w.id) >= 0) ) {
+            if ( (w.id == id)  ||  (this.widgetGroup.indexOf(id) >= 0) ) {
                 w.isSelected = isSelected;
             };
         });
