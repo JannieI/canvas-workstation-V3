@@ -1562,6 +1562,21 @@ clr-dg-cell {
                     width: 15px;
                 }
 
+                .editorGraphYaxisLabelLengthTitle {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin-left: 4px;
+                    width: 38px;
+                }
+                .editorGraphYaxisLabelLength {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin: 3px;
+                    width: 15px;
+                }
+
 
             /* Legend */
             .editorLegendContainerTitle {
@@ -1619,6 +1634,21 @@ clr-dg-cell {
                 width: 38px;
             }
             .editorGraphLegendFormat {
+                display: inline-block;
+                font-size: 0.5rem;
+                line-height: 0.8rem;
+                margin: 3px;
+                width: 15px;
+            }
+
+            .editorGraphLegendLabelLengthTitle {
+                display: inline-block;
+                font-size: 0.5rem;
+                line-height: 0.8rem;
+                margin-left: 4px;
+                width: 38px;
+            }
+            .editorGraphLegendLabelLength {
                 display: inline-block;
                 font-size: 0.5rem;
                 line-height: 0.8rem;

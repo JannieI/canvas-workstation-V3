@@ -1806,6 +1806,23 @@
                             </div>
                         </div>
 
+                        <!-- Legend: The maximum allowed length in pixels of legend labels.-->
+                        <div class="editorLineContainer">
+                            <div class="editorGraphLegendLabelLengthTitle" *ngIf="showFieldLegend">
+                            Length:
+                            </div>
+                            <div class="editorGraphLegendLabelLength" *ngIf="showFieldLegend">
+                                <input type="number"
+                                    placeholder="Max length in px"
+                                    [(ngModel)]="localWidget.graphDimensionRight"
+                                    name="graphDimensionRight"
+                                    min="0"
+                                    max="500"
+                                    title="Length of the Legend Labels in px"
+                                    >
+                            </div>
+                        </div>
+
 
                         <!-- Row Channel Title Bar -->
                         <div class="editorRowContainerTitle"
