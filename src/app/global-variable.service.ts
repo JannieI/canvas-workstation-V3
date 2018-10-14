@@ -10998,11 +10998,12 @@ console.warn('xx gv spec', specification);
             if (widget.graphYaxisFormat != '') {
                 specification['encoding']['y']['axis']['format'] =  widget.graphYaxisFormat;
             };
+            specification['encoding']['y']['axis']['maxExtent'] = widget.graphDimensionLeft;
+            specification['encoding']['y']['axis']['labelLimit'] = widget.graphDimensionLeft;
+    
         };
 
         // Color field
-        specification['encoding']['y']['axis']['maxExtent'] = 70;
-        specification['encoding']['y']['axis']['labelLimit'] = 40;
         if (widget.graphColorField != '') {
             let colorBinMax: any = false;
             if (widget.graphYMaxBins > 0) {
