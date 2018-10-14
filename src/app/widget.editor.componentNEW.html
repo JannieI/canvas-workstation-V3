@@ -514,8 +514,10 @@
                                 <input type="number"
                                     placeholder="Angle of title"
                                     [(ngModel)]="localWidget.graphTitleAngle"
+                                    min="0"
+                                    max="360"
                                     name="titleAngle"
-                                    title="Angle of the title in degrees"
+                                    title="Angle of the title in degrees 0-360"
                                     >
                             </div>
                         </div>
