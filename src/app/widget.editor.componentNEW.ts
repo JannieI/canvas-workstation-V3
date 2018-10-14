@@ -1257,7 +1257,7 @@ export interface dataSchemaInterface {
         };
 
         // Startup
-        let width: number = 400;
+        let width: number = 300;
         let height: number = 260;
         let graphVisualGrammar: string = this.widgetGraphs[widgetGraphIndex].visualGrammar;
         let graphShortName: string = this.widgetGraphs[widgetGraphIndex].shortName;
