@@ -1398,7 +1398,7 @@ export interface dataSchemaInterface {
 
             // Create Spec
             this.specification = this.globalVariableService.createVegaLiteSpec(
-                this.localWidget, height, width
+                this.localWidget, this.localWidget.graphHeight, this.localWidget.graphWidth
             );
 
             console.warn('xx @END of ShowGraph specification', this.specification);
@@ -1411,7 +1411,6 @@ export interface dataSchemaInterface {
 
                     view.renderer('svg')
                         .initialize(this.dragWidget.nativeElement)
-                        .width(300)
                         .hover()
                         .run()
                         .finalize();
