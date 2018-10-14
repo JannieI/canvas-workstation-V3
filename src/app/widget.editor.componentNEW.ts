@@ -2005,6 +2005,7 @@ export interface dataSchemaInterface {
 
         this.showX2DeleteIcon = false;
         this.x2Field = dragFieldMessage;
+        this.localWidget.graphX2Field = '';
 
         // Hide the panel with properties
         this.showFieldX2Properties = false;
