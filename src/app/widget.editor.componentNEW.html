@@ -1418,16 +1418,16 @@
                             </div>
                         </div>
 
-                        <!-- X-Axis Grid -->
+                        <!-- X Axis LabelAngle -->
                         <div class="editorLineContainer">
-                            <div class="editorGraphXaxisGridTitle" *ngIf="showFieldXAxis">
-                                Grid:
+                            <div class="editorGraphXaxisLabelAngleTitle" *ngIf="showFieldXAxis">
+                            Angle:
                             </div>
-                            <div class="editorGraphXaxisGrid" *ngIf="showFieldXAxis">
-                                <input type="checkbox"
-                                    [(ngModel)]="localWidget.graphXaxisGrid"
-                                    name="graphXaxisGrid"
-                                    title="Show Grid lines (T/F)"
+                            <div class="editorGraphXaxisLabelAngle" *ngIf="showFieldXAxis">
+                                <input type="number"
+                                    [(ngModel)]="localWidget.graphXaxisLabelAngle"
+                                    name="graphXaxisLabelAngle"
+                                    placeholder="Label Angle"
                                     >
                             </div>
                         </div>
@@ -1446,6 +1446,20 @@
                             </div>
                         </div>
 
+                        <!-- X-Axis Grid -->
+                        <div class="editorLineContainer">
+                            <div class="editorGraphXaxisGridTitle" *ngIf="showFieldXAxis">
+                                Grid:
+                            </div>
+                            <div class="editorGraphXaxisGrid" *ngIf="showFieldXAxis">
+                                <input type="checkbox"
+                                    [(ngModel)]="localWidget.graphXaxisGrid"
+                                    name="graphXaxisGrid"
+                                    title="Show Grid lines (T/F)"
+                                    >
+                            </div>
+                        </div>
+
                         <!-- X Axis Labels -->
                         <div class="editorLineContainer">
                             <div class="editorGraphXaxisLabelsTitle" *ngIf="showFieldXAxis">
@@ -1456,20 +1470,6 @@
                                     [(ngModel)]="localWidget.graphXaxisLabels"
                                     name="graphXaxisLabels"
                                     title="Show labels (T/F)"
-                                    >
-                            </div>
-                        </div>
-
-                        <!-- X Axis LabelAngle -->
-                        <div class="editorLineContainer">
-                            <div class="editorGraphXaxisLabelAngleTitle" *ngIf="showFieldXAxis">
-                            Angle:
-                            </div>
-                            <div class="editorGraphXaxisLabelAngle" *ngIf="showFieldXAxis">
-                                <input type="number"
-                                    [(ngModel)]="localWidget.graphXaxisLabelAngle"
-                                    name="graphXaxisLabelAngle"
-                                    placeholder="Label Angle"
                                     >
                             </div>
                         </div>
