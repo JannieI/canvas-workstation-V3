@@ -1967,6 +1967,7 @@ export interface dataSchemaInterface {
 
         this.showRowDeleteIcon = false;
         this.rowField = dragFieldMessage;
+        this.localWidget.graphRowField = '';
 
         // Hide the panel with properties
         this.showFieldRowProperties = false;
