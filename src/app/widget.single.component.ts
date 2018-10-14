@@ -163,8 +163,13 @@ export class WidgetSingleComponent {
 
                     console.log('definition', definition)
             } else {
-                definition = this.globalVariableService.createVegaLiteSpec(this.widget);
-            }
+                definition = this.globalVariableService.createVegaLiteSpec(
+                    this.widget,
+                    this.widget.graphHeight,
+                    this.widget.graphWidth
+                );
+            };
+            
             let specification = compile(definition).spec;
             let view = new View(parse(specification));
             // Note: not .width and .heigth here as we use W.graphWidth parsed into definition

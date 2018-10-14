@@ -106,7 +106,7 @@ export class DashboardDataQualityComponent implements OnInit {
       ]
     columnDefs1 = [
         {headerName: "id",          field: "id"},
-        {headerName: "name",        field: "name"},
+        {headerName: "name",        field: "name", checkboxSelection: true },
         {headerName: "datasourceID",field: "datasourceID"},
         {headerName: "status",      field: "status"},
         {headerName: "type",        field: "type"},

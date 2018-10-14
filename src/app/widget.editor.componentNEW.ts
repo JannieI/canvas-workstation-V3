@@ -1979,6 +1979,7 @@ export interface dataSchemaInterface {
 
         this.showColumnDeleteIcon = false;
         this.columnField = dragFieldMessage;
+        this.localWidget.graphColumnField = '';
 
         // Hide the panel with properties
         this.showFieldColumnProperties = false;
@@ -1991,7 +1992,7 @@ export interface dataSchemaInterface {
 
         this.showDetailDeleteIcon = false;
         this.detailField = dragFieldMessage;
-        this.localWidget.graphColumnField = '';
+        this.localWidget.graphDetailField = '';
 
         // Hide the panel with properties
         this.showFieldDetailProperties = false;
