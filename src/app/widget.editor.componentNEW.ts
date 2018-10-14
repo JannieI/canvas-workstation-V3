@@ -1949,6 +1949,7 @@ export interface dataSchemaInterface {
 
         this.showSizeDeleteIcon = false;
         this.sizeField = dragFieldMessage;
+        this.localWidget.graphSizeField = '';
 
         this.localWidget.graphSizeAggregateName = '';
         this.localWidget.graphSizeAggregate = '';
