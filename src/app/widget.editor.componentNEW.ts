@@ -1992,6 +1992,7 @@ export interface dataSchemaInterface {
 
         this.showDetailDeleteIcon = false;
         this.detailField = dragFieldMessage;
+        this.localWidget.graphColumnField = '';
 
         // Hide the panel with properties
         this.showFieldDetailProperties = false;
