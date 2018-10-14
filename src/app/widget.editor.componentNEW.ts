@@ -1927,6 +1927,7 @@ export interface dataSchemaInterface {
 
         this.showColourDeleteIcon = false;
         this.colorField = dragFieldMessage;
+        this.localWidget.graphColorField = '';
 
         
         // Hide the panel with properties
