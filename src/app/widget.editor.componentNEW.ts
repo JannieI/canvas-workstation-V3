@@ -1891,6 +1891,7 @@ export interface dataSchemaInterface {
 
         this.showYDeleteIcon = false;
         this.yField = dragFieldMessage;
+        this.localWidget.graphYfield = '';
 
         this.localWidget.graphYaggregateName = '';
         this.localWidget.graphYaggregate = '';
