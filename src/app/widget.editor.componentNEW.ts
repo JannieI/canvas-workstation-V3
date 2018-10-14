@@ -2745,6 +2745,13 @@ export interface dataSchemaInterface {
             };
         };
 
+        // TODO - make 2 drop down fields where 2 parameters
+        if (this.filterOperator == 'Range') {
+            this.filterValue.replace(', ', ',');
+            console.warn('xx this.filterValue', this.filterValue);
+            
+        };
+
         // Update the localWidget
         let graphTransformationSpec: GraphTransformation = {
             transformationType: "filter",
