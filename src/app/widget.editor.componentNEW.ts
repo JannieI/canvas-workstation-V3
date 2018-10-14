@@ -1411,7 +1411,7 @@ export interface dataSchemaInterface {
 
                     view.renderer('svg')
                         .initialize(this.dragWidget.nativeElement)
-                        .width(400)
+                        .width(300)
                         .hover()
                         .run()
                         .finalize();

@@ -11001,6 +11001,8 @@ console.warn('xx gv spec', specification);
         };
 
         // Color field
+        specification['encoding']['y']['axis']['maxExtent'] = 70;
+        specification['encoding']['y']['axis']['labelLimit'] = 40;
         if (widget.graphColorField != '') {
             let colorBinMax: any = false;
             if (widget.graphYMaxBins > 0) {
@@ -11026,13 +11028,17 @@ console.warn('xx gv spec', specification);
                 specification['encoding']['color']['legend'] = null;
             } else {
                 if (!widget.graphLegendTitleCheckbox) {
-                    specification['encoding']['color']['legend'] = {"title": null};
+                    specification['encoding']['color']['legend'] = {"labelLimit": widget.graphDimensionRight, "title": null};
                 } else {
                     if (widget.graphLegendTitle != ''  &&  widget.graphLegendTitle != undefined) {
                         specification['encoding']['color']['legend'] =
-                            {"title": widget.graphLegendTitle};
+                            {"labelLimit": widget.graphDimensionRight, "title": widget.graphLegendTitle};
+                    } else {
+                        specification['encoding']['color']['legend'] =
+                            {"labelLimit": widget.graphDimensionRight};
                     };
                 };
+                // specification['encoding']['color']['legend'] = {"labelLimit": 40, "maxExtent": 70};
             };
 
 

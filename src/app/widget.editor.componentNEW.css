@@ -1961,7 +1961,7 @@ clr-dg-cell {
         }
         .editorArea {
             border-radius: 6px;
-            grid-column-start: 30;
+            grid-column-start: 29;
             /* autoprefixer: off */
             grid-column-end: 50;
             grid-row-start: 2;
