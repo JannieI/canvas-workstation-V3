@@ -1606,6 +1606,23 @@
                             </div>
                         </div>
 
+                        <!-- Y Axis: The maximum allowed length in pixels of legend labels.-->
+                        <div class="editorLineContainer">
+                            <div class="editorGraphYaxisLabelLengthTitle" *ngIf="showFieldYAxis">
+                            Length:
+                            </div>
+                            <div class="editorGraphYaxisLabelLength" *ngIf="showFieldYAxis">
+                                <input type="number"
+                                    placeholder="Max length in px"
+                                    [(ngModel)]="localWidget.graphDimensionLeft"
+                                    name="graphDimensionLeft"
+                                    min="0"
+                                    max="500"
+                                    title="Length of the Y axis Labels in px"
+                                    >
+                            </div>
+                        </div>
+
 
                         <!-- Size Channel Title Bar -->
                         <div class="editorSizeContainerTitle"
