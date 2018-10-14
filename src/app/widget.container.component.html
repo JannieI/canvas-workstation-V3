@@ -83,23 +83,25 @@
 
                     <!-- Left Hand Side -->
                     <div class="gridHasTitleTitle">
-                        Container Title:
+                        C-Title:
                     </div>
-                    <div class="gridHasTitleTitle">
-                        <div class="checkbox">
-                            <input type="checkbox" id="containerHasTitle" [(ngModel)]="containerHasTitle">
-                            <label for="containerHasTitle">Title</label>
-                        </div>
+                    <div class="gridHasTitle">
+                        <input [(ngModel)]="localWidget.containerHasTitle"
+                            type="checkbox"
+                            name="containerHasTitle"
+                            title="The container has a Container Menu at the top (T/F)"
+                            >
                     </div>
                     <div class="gridHasContextMenusTitle">
-                        Context Menus:
+                        C-Menus:
                     </div>
 
                     <div class="gridHasContextMenus">
-                        <div class="checkbox">
-                            <input type="checkbox" id="containerHasContextMenus" [(ngModel)]="containerHasContextMenus">
-                            <label for="containerHasContextMenus">ContextMenu</label>
-                        </div>
+                            <input [(ngModel)]="localWidget.containerHasContextMenus"
+                                type="checkbox"
+                                name="containerHasContextMenus"
+                                title="The container has a context menus, top left and right (T/F)"
+                                >
                     </div>
 
                     <div class="gridBackgroundcolorTitle">

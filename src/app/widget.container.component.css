@@ -59,7 +59,7 @@
         padding-top: 6px;
     }
     
-    .gridHasTitleTitle {
+    .gridHasTitle {
         grid-column-start: 4;
         /* autoprefixer: off */
         grid-column-end: 6;
@@ -80,7 +80,7 @@
     .gridHasContextMenus {
         grid-column-start: 10;
         /* autoprefixer: off */
-        grid-column-end: 12;
+        grid-column-end: 20;
         grid-row-start: 2;
         grid-row-end: 3;
         padding-left: 15px;
