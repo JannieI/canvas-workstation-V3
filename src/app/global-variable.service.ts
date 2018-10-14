@@ -10947,8 +10947,8 @@ console.warn('xx gv spec', specification);
                 specification['encoding']['x']['axis']['format'] =  widget.graphXaxisFormat;
             };
 
-            specification['encoding']['x']['axis']['maxExtent'] = widget.graphDimensionLeft;
-            specification['encoding']['x']['axis']['labelLimit'] = widget.graphDimensionLeft;
+            specification['encoding']['x']['axis']['maxExtent'] = widget.graphDimensionBottom;
+            specification['encoding']['x']['axis']['labelLimit'] = widget.graphDimensionBottom;
         };
 
 

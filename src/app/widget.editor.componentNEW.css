@@ -1433,7 +1433,22 @@ clr-dg-cell {
                     width: 15px;
                 }
 
+                .editorGraphXaxisLabelLengthTitle {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin-left: 4px;
+                    width: 38px;
+                }
+                .editorGraphXaxisLabelLength {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin: 3px;
+                    width: 15px;
+                }
 
+                
             /* Y Axis */
             .editorYAxisContainerTitle {
                 background-color: rgb(211, 209, 226);
