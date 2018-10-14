@@ -1865,6 +1865,7 @@ export interface dataSchemaInterface {
         // Reset fields
         this.showXDeleteIcon = false;
         this.xField = dragFieldMessage;
+        this.localWidget.graphXfield = '';
 
         this.localWidget.graphXaggregateName = '';
         this.localWidget.graphXaggregate = '';
