@@ -299,6 +299,12 @@ This document describes items for later versions of Canvas.
         - error bubbling strategy
 
 
+    Layout:
+        - review design
+        - estimate size of graph better - depends on length of data in fields, ie Y and Color
+        - remove outline afterwards (invisible) as well as buttons
+        - when remove graph, remove layout ?  How linked?
+        
     Samples: use this to demo Canvas features (brag)
     --------
         NB:

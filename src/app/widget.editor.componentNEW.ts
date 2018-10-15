@@ -25,7 +25,7 @@ import { GlobalVariableService }      from './global-variable.service';
 import { compile }                    from 'vega-lite';
 import { parse }                      from 'vega';
 import { View }                       from 'vega';
-import { forEach } from 'vega-lite/build/src/encoding';
+// import { forEach } from 'vega-lite/build/src/encoding';
 
 const graphHeight: number = 260;
 const graphWidth: number = 420;
@@ -934,6 +934,7 @@ export interface dataSchemaInterface {
 
         // Start afresh for new W~
         if (this.newWidget) {
+console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
 
             // Get Widget Graph Specs
             this.globalVariableService.getWidgetGraphs().then(res => {
