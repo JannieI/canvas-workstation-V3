@@ -9189,11 +9189,14 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                             wc.widgetSpec.checkpointIDs = w.checkpointIDs;
                             wc.widgetSpec.currentCheckpoint = w.currentCheckpoint;
                             wc.widgetSpec.lastCheckpoint = w.lastCheckpoint;
-                            wc.widgetSpec.containerBackgroundcolor = w.containerBackgroundcolor
-                            wc.widgetSpec.containerBackgroundcolorName = w.containerBackgroundcolorName;                            
-                            wc.widgetSpec.containerBorder = w.containerBorder
-                            wc.widgetSpec.containerBorderRadius = w.containerBorderRadius
-                            wc.widgetSpec.containerBoxshadow = w.containerBoxshadow
+
+                            // TODO - decide if this must stay or go; inherit original or not ??
+                            // wc.widgetSpec.containerBackgroundcolor = w.containerBackgroundcolor
+                            // wc.widgetSpec.containerBackgroundcolorName = w.containerBackgroundcolorName;                            
+                            // wc.widgetSpec.containerBorder = w.containerBorder
+                            // wc.widgetSpec.containerBorderRadius = w.containerBorderRadius
+                            // wc.widgetSpec.containerBoxshadow = w.containerBoxshadow
+
                             wc.widgetSpec.containerFontsize = w.containerFontsize
                             wc.widgetSpec.containerHeight = w.containerHeight
                             wc.widgetSpec.containerLeft = w.containerLeft
