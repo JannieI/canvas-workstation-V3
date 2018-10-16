@@ -231,6 +231,7 @@ export interface dataSchemaInterface {
     // sampleNumberRows: number = 0;
     selectedDescription: string = '';
     selectedFieldIndex: number = -1;
+    selectedDSName: string = '';
     selectedRowIndex: number = -1;
     selectedRowID: number;
     sizeField: string = dragFieldMessage;
@@ -1132,6 +1133,8 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
             // Reset, Highlight selected row
             this.selectedRowIndex = arrayIndex;
             this.selectedRowID = this.localDatasources[arrayIndex].id;
+            this.selectedDSName = this.localDatasources[arrayIndex].name.slice(0,22) + 
+                (this.localDatasources[arrayIndex].name.length > 22?  '...'  :  '');
             this.selectedDescription = this.localDatasources[arrayIndex].description;
             this.errorMessage = '';
             this.currentData = null;
@@ -2204,6 +2207,8 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         this.selectedRowIndex = index;
         let arrayIndex: number = this.localDatasources.findIndex(ds => ds.id == datasourceID);
         this.selectedRowID = datasourceID;
+        this.selectedDSName = this.localDatasources[arrayIndex].name.slice(0,22) + 
+            (this.localDatasources[arrayIndex].name.length > 22?  '...'  :  '');
         this.selectedDescription = this.localDatasources[arrayIndex].description;
         this.errorMessage = '';
         this.currentData = null;
