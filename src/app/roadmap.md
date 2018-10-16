@@ -298,13 +298,15 @@ This document describes items for later versions of Canvas.
         - central logging and handling
         - error bubbling strategy
 
+    Trends:
+        - DATA SUMMARIES, aka CompassQL ...
 
     Layout:
         - review design
         - estimate size of graph better - depends on length of data in fields, ie Y and Color
         - remove outline afterwards (invisible) as well as buttons
         - when remove graph, remove layout ?  How linked?
-        
+
     Samples: use this to demo Canvas features (brag)
     --------
         NB:
@@ -1444,5 +1446,12 @@ This document describes items for later versions of Canvas.
     - Dragable side-panel
     - Team collaboration.... Editing the same Widget at the same time
     - Chalk font
+    - Have Cancas cheat sheet !!! Look at ggplot cheat sheet - how to build good graphs, can use colour with a hue
+    - Gray background with white grid !!
+    - Has graph title and sub title (useful?)
+    - Can we do SA largest municipalities with their names, on a map
+    - See shiny interactive form and filter on side !!! 
+    - Qlik and power bi integrates with r - use data frame or embed plot
+    - Want to make dashboard available to clients globally - how will the login and security work
 
     End of One day stuff:

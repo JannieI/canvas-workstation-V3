@@ -9181,7 +9181,7 @@ console.warn('xx APP start', this.globalVariableService.currentWidgets)
                     };
 
                     // Set the Checkpoints for this W
-                    this.currentWidgetCheckpoints.forEach( wc => {
+                    this.currentWidgetCheckpoints.forEach(wc => {
                         if (wc.widgetID == w.id
                             &&
                             wc.dashboardID == w.dashboardID) {
