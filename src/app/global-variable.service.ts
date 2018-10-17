@@ -10800,7 +10800,7 @@ export class GlobalVariableService {
         let specification: any = {
             "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
             "description": "A simple bar chart with embedded data.",
-            "background": "lightgray",
+            "background": widget.graphBackgroundColor,
             "title": {
                 "text": "",
                 "anchor": "start",
