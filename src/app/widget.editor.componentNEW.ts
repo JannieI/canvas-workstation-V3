@@ -2525,8 +2525,22 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         this.showFieldColumnProperties = !this.showFieldColumnProperties;
     }
 
-    clickSelectTitleColor(ev: any) {
+    clickSelectBackgroundColor(ev: any) {
         // Select Background Colour
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBackgroundColor', '@Start');
+
+        this.localWidget.graphBackgroundColorName = ev.target.value;
+        this.localWidget.graphBackgroundColor = this.localWidget.graphBackgroundColorName;
+        let localIndex: number = this.backgroundcolors.findIndex(bg =>
+            bg.name == this.localWidget.graphBackgroundColorName
+        );
+        if (localIndex >= 0) {
+            this.localWidget.graphBackgroundColor = this.backgroundcolors[localIndex].cssCode;
+        };
+    }
+
+    clickSelectTitleColor(ev: any) {
+        // Select Title Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectTitleColor', '@Start');
 
         this.localWidget.graphTitleColorName = ev.target.value;
