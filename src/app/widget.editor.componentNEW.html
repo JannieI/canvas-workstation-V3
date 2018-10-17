@@ -1483,7 +1483,7 @@
                                     title="Show Grid lines (T/F)"
                                     >
                             </div>
-                            <span class="select editorGraphXaxisGridColor" *ngIf="showFieldXAxis">
+                            <div class="select editorGraphXaxisGridColor" *ngIf="showFieldXAxis">
                                 <select [(ngModel)]="localWidget.graphBackgroundColorName"
                                     name="graphBackgroundColorName"
                                     (change)="clickSelectBackgroundColor($event)"
@@ -1495,7 +1495,7 @@
                                         {{ row.name }}
                                     </option>
                                 </select>
-                            </span>
+                            </div>
     
                         </div>
 
@@ -1628,6 +1628,19 @@
                                     name="graphYaxisGrid"
                                     title="Show Grid lines (T/F)"
                                     >
+                            </div>
+                            <div class="select editorGraphYaxisGridColor" *ngIf="showFieldYAxis">
+                                <select [(ngModel)]="localWidget.graphBackgroundColorName"
+                                    name="graphBackgroundColorName"
+                                    (change)="clickSelectBackgroundColor($event)"
+                                    title="Color of the Graph Background"
+                                    >
+                                    <option *ngFor="let row of backgroundcolors"
+                                        [style.background-color]="row.cssCode"
+                                        >
+                                        {{ row.name }}
+                                    </option>
+                                </select>
                             </div>
                         </div>
 
