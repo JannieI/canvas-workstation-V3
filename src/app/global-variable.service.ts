@@ -213,6 +213,8 @@ const widgetTemplate: Widget =
         "graphTitleText": "",
         "graphTitleAnchor": "Middle",
         "graphTitleAngle": 0,
+        "graphBackgroundColorName": "transparent",
+        "graphBackgroundColor": "transparent",
         "graphTitleBaseline": "Bottom",
         "graphTitleColorName": "Gray",
         "graphTitleColor": "Gray",
