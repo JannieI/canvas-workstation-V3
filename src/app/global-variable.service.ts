@@ -303,6 +303,8 @@ const widgetTemplate: Widget =
         "graphXaxisFormat": "",
         "graphXaxisLabels": true,
         "graphXaxisLabelAngle": 0,
+        "graphXaxisLabelColorName": "",
+        "graphXaxisLabelColor": "",
 
         "graphTransformations": [],
 
@@ -315,6 +317,8 @@ const widgetTemplate: Widget =
         "graphYaxisFormat": "",
         "graphYaxisLabels": true,
         "graphYaxisLabelAngle": 0,
+        "graphYaxisLabelColorName": "",
+        "graphYaxisLabelColor": "",
     
         "graphLegendHide": false,
         "graphLegendTitleCheckbox": true,

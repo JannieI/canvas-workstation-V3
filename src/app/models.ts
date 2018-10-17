@@ -1205,8 +1205,10 @@ export class Widget {
     graphXaxisGrid: boolean;                        // True if X grid lines show
     graphXaxisGridColorName: string;                // Name of color for X gridlines
     graphXaxisGridColor: string;                    // Actual color of X gridline in hex, rgb, etc
-    graphXaxisLabelAngle: number;
     graphXaxisLabels: boolean;
+    graphXaxisLabelAngle: number;
+    graphXaxisLabelColorName: string;               // Name of color for X labels
+    graphXaxisLabelColor: string;                   // Actual color of X labels in hex, rgb, etc
     graphXaxisTitle: string;
     graphXaxisTitleCheckbox: boolean;
 
@@ -1217,6 +1219,8 @@ export class Widget {
     graphYaxisGridColor: string;                    // Actual color of Y gridline in hex, rgb, etc
     graphYaxisLabels: boolean;
     graphYaxisLabelAngle: number;
+    graphYaxisLabelColorName: string;               // Name of color for Y labels
+    graphYaxisLabelColor: string;                   // Actual color of Y labels in hex, rgb, etc
     graphYaxisScaleType: string;
     graphYaxisTitle: string;
     graphYaxisTitleCheckbox: boolean;
