@@ -1512,8 +1512,8 @@
                                     >
                             </div>
                             <div class="select editorGraphXaxisLabelsColor" *ngIf="showFieldXAxis">
-                                <select [(ngModel)]="localWidget.graphXaxisGridColorName"
-                                    name="graphXaxisGridColorName"
+                                <select [(ngModel)]="localWidget.graphXaxisLabelColorName"
+                                    name="graphXaxisLabelColorName"
                                     (change)="clickSelectXLabelColor($event)"
                                     title="Color of the X labels"
                                     >
@@ -1670,9 +1670,9 @@
                                     >
                             </div>
                             <div class="select editorGraphYaxisLabelsColor" *ngIf="showFieldYAxis">
-                                <select [(ngModel)]="localWidget.graphYaxisGridColorName"
-                                    name="graphYaxisGridColorName"
-                                    (change)="clickSelectXGridColor($event)"
+                                <select [(ngModel)]="localWidget.graphYaxisLabelColorName"
+                                    name="graphYaxisLabelColorName"
+                                    (change)="clickSelectYLabelColor($event)"
                                     title="Color of the Y labels"
                                     >
                                     <option *ngFor="let row of backgroundcolors"
