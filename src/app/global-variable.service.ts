@@ -10938,7 +10938,7 @@ console.warn('xx gv spec', specification);
 
             specification['encoding']['x']['axis'] = {"grid": widget.graphXaxisGrid };
             if (widget.graphXaxisGrid) {
-                specification['encoding']['x']['axis'] = {"gridColor": "white" };
+                specification['encoding']['x']['axis'] = {"gridColor": widget.graphXaxisGridColor };
             };
 
             specification['encoding']['x']['axis']['labels'] = widget.graphXaxisLabels;
@@ -10994,6 +10994,10 @@ console.warn('xx gv spec', specification);
             };
 
             specification['encoding']['y']['axis'] = {"grid": widget.graphYaxisGrid };
+            if (widget.graphYaxisGrid) {
+                specification['encoding']['y']['axis'] = {"gridColor": widget.graphYaxisGridColor };
+            };
+
             specification['encoding']['y']['axis']['labels'] = widget.graphYaxisLabels;
             if (widget.graphYaxisLabelAngle != 0){
                 specification['encoding']['y']['axis']['labelAngle'] =

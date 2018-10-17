@@ -1484,10 +1484,10 @@
                                     >
                             </div>
                             <div class="select editorGraphXaxisGridColor" *ngIf="showFieldXAxis">
-                                <select [(ngModel)]="localWidget.graphBackgroundColorName"
-                                    name="graphBackgroundColorName"
-                                    (change)="clickSelectBackgroundColor($event)"
-                                    title="Color of the Graph Background"
+                                <select [(ngModel)]="localWidget.graphXaxisGridColorName"
+                                    name="graphXaxisGridColorName"
+                                    (change)="clickSelectXGridColor($event)"
+                                    title="Color of the X gridlines"
                                     >
                                     <option *ngFor="let row of backgroundcolors"
                                         [style.background-color]="row.cssCode"
@@ -1630,10 +1630,10 @@
                                     >
                             </div>
                             <div class="select editorGraphYaxisGridColor" *ngIf="showFieldYAxis">
-                                <select [(ngModel)]="localWidget.graphBackgroundColorName"
-                                    name="graphBackgroundColorName"
-                                    (change)="clickSelectBackgroundColor($event)"
-                                    title="Color of the Graph Background"
+                                <select [(ngModel)]="localWidget.graphYaxisGridColorName"
+                                    name="graphYaxisGridColorName"
+                                    (change)="clickSelectYGridColor($event)"
+                                    title="Color of the Y gridlines"
                                     >
                                     <option *ngFor="let row of backgroundcolors"
                                         [style.background-color]="row.cssCode"

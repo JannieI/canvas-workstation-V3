@@ -2525,6 +2525,7 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         this.showFieldColumnProperties = !this.showFieldColumnProperties;
     }
 
+    
     clickSelectBackgroundColor(ev: any) {
         // Select Background Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBackgroundColor', '@Start');
