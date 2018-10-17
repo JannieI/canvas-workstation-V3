@@ -10798,6 +10798,7 @@ export class GlobalVariableService {
         let specification: any = {
             "$schema": "https://vega.github.io/schema/vega-lite/v2.json",
             "description": "A simple bar chart with embedded data.",
+            "background": "lightgray",
             "title": {
                 "text": "",
                 "anchor": "start",
@@ -10930,6 +10931,7 @@ console.warn('xx gv spec', specification);
             specification['encoding']['x']['timeUnit'] = widget.graphXtimeUnit.toLowerCase();
 
             specification['encoding']['x']['axis'] = {"grid": widget.graphXaxisGrid };
+            specification['encoding']['x']['axis'] = {"gridColor": "white" };
             specification['encoding']['x']['axis']['labels'] = widget.graphXaxisLabels;
             if (widget.graphXaxisLabelAngle != 0){
                 specification['encoding']['x']['axis']['labelAngle'] = widget.graphXaxisLabelAngle;

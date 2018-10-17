@@ -527,6 +527,26 @@
                             </div>
                         </div>
 
+                        <!-- Title Background color for GRAPH  -->
+                        <div class="editorLineContainer">
+                            <div class="editorTitleBackgroundTitle" *ngIf="showFieldTitleProperties">
+                            Bg Color:
+                            </div>
+                            <div class="select editorTitleBackground" *ngIf="showFieldTitleProperties">
+                                <select [(ngModel)]="localWidget.graphBackgroundColorName"
+                                    name="graphBackgroundColorName"
+                                    (change)="clickSelectBackgroundColor($event)"
+                                    title="Color of the Graph Background"
+                                    >
+                                    <option *ngFor="let row of backgroundcolors"
+                                        [style.background-color]="row.cssCode"
+                                        >
+                                        {{ row.name }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+    
                         <!-- Title Vertical text baseline for title text. -->
                         <div class="editorLineContainer">
                             <div class="editorTitleBaselineTitle" *ngIf="showFieldTitleProperties">

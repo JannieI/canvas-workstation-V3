@@ -128,14 +128,23 @@ export class DataDirectFileJSONComponent implements OnInit {
         if (lastFive.toLowerCase() == '.json') {
             console.warn('xx json')
 
+            // specification = {
+            //     "source": {
+            //         "inspector": "tributary.inspectors.json:JsonInspector",
+            //         "specification": {
+            //             "content":  this.loadedFile.target.result
+            //         }
+            //     }
+            // };
+            
             specification = {
                 "source": {
                     "inspector": "tributary.inspectors.json:JsonInspector",
                     "specification": {
-                        "content":  this.loadedFile.target.result
+                        "content": this.loadedFile.target.result
                     }
                 }
-            };
+            };            
         } else {
             this.errorMessage = 'Invalid file extension (must be .json)';
             return;
@@ -231,6 +240,7 @@ export class DataDirectFileJSONComponent implements OnInit {
                 "source": {
                     "connector": "tributary.connectors.json:JsonConnector",
                     "specification": {
+                        // "usecols": this.fields,
                         "content":  this.loadedFile.target.result
                     }
                 }
