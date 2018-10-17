@@ -2525,6 +2525,19 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         this.showFieldColumnProperties = !this.showFieldColumnProperties;
     }
 
+    clickSelectXGridColor(ev: any) {
+        // Select Colour for X gridlines
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectXGridColor', '@Start');
+
+        this.localWidget.graphXaxisGridColorName = ev.target.value;
+        this.localWidget.graphXaxisGridColor = this.localWidget.graphXaxisGridColorName;
+        let localIndex: number = this.backgroundcolors.findIndex(bg =>
+            bg.name == this.localWidget.graphXaxisGridColorName
+        );
+        if (localIndex >= 0) {
+            this.localWidget.graphXaxisGridColor = this.backgroundcolors[localIndex].cssCode;
+        };
+    }
     
     clickSelectBackgroundColor(ev: any) {
         // Select Background Colour
