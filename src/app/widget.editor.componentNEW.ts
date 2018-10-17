@@ -2539,6 +2539,20 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         };
     }
     
+    clickSelectXLabelColor(ev: any) {
+        // Select Colour for X labels
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectXLabelColor', '@Start');
+
+        this.localWidget.graphXaxisLabelColorName = ev.target.value;
+        this.localWidget.graphXaxisLabelColor = this.localWidget.graphXaxisLabelColorName;
+        let localIndex: number = this.backgroundcolors.findIndex(bg =>
+            bg.name == this.localWidget.graphXaxisLabelColorName
+        );
+        if (localIndex >= 0) {
+            this.localWidget.graphXaxisLabelColor = this.backgroundcolors[localIndex].cssCode;
+        };
+    }
+    
     clickSelectYGridColor(ev: any) {
         // Select Colour for Y gridlines
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectYGridColor', '@Start');
