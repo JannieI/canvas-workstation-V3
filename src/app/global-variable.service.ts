@@ -10933,7 +10933,10 @@ console.warn('xx gv spec', specification);
             specification['encoding']['x']['timeUnit'] = widget.graphXtimeUnit.toLowerCase();
 
             specification['encoding']['x']['axis'] = {"grid": widget.graphXaxisGrid };
-            specification['encoding']['x']['axis'] = {"gridColor": "white" };
+            if (widget.graphXaxisGrid) {
+                specification['encoding']['x']['axis'] = {"gridColor": "white" };
+            };
+
             specification['encoding']['x']['axis']['labels'] = widget.graphXaxisLabels;
             if (widget.graphXaxisLabelAngle != 0){
                 specification['encoding']['x']['axis']['labelAngle'] = widget.graphXaxisLabelAngle;

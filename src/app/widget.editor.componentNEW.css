@@ -1416,6 +1416,13 @@ clr-dg-cell {
                     margin: 3px;
                     width: 15px;
                 }
+                .editorGraphXaxisGridColor {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin: 3px;
+                    width: 120px;
+                }
 
                 .editorGraphXaxisFormatTitle {
                     display: inline-block;

@@ -530,7 +530,7 @@
                         <!-- Title Background color for GRAPH  -->
                         <div class="editorLineContainer">
                             <div class="editorTitleBackgroundTitle" *ngIf="showFieldTitleProperties">
-                            Bg Color:
+                                Bg Color:
                             </div>
                             <div class="select editorTitleBackground" *ngIf="showFieldTitleProperties">
                                 <select [(ngModel)]="localWidget.graphBackgroundColorName"
@@ -1483,6 +1483,20 @@
                                     title="Show Grid lines (T/F)"
                                     >
                             </div>
+                            <span class="select editorGraphXaxisGridColor" *ngIf="showFieldXAxis">
+                                <select [(ngModel)]="localWidget.graphBackgroundColorName"
+                                    name="graphBackgroundColorName"
+                                    (change)="clickSelectBackgroundColor($event)"
+                                    title="Color of the Graph Background"
+                                    >
+                                    <option *ngFor="let row of backgroundcolors"
+                                        [style.background-color]="row.cssCode"
+                                        >
+                                        {{ row.name }}
+                                    </option>
+                                </select>
+                            </span>
+    
                         </div>
 
                         <!-- X Axis Labels -->
