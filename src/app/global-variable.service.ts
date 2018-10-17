@@ -10949,6 +10949,9 @@ console.warn('xx gv spec', specification);
             if (widget.graphXaxisLabelAngle != 0){
                 specification['encoding']['x']['axis']['labelAngle'] = widget.graphXaxisLabelAngle;
             };
+            if (widget.graphXaxisLabels) {
+                specification['encoding']['x']['axis']['labelColor'] = widget.graphXaxisLabelColor;
+            };
 
             if (!widget.graphXaxisTitleCheckbox) {
                 specification['encoding']['x']['axis']['title'] = null;
@@ -11006,6 +11009,9 @@ console.warn('xx gv spec', specification);
             if (widget.graphYaxisLabelAngle != 0){
                 specification['encoding']['y']['axis']['labelAngle'] =
                     widget.graphYaxisLabelAngle;
+            };
+            if (widget.graphYaxisLabels) {
+                specification['encoding']['y']['axis']['labelColor'] = widget.graphYaxisLabelColor;
             };
 
             if (!widget.graphYaxisTitleCheckbox) {
