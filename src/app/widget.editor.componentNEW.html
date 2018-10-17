@@ -1511,6 +1511,19 @@
                                     title="Show labels (T/F)"
                                     >
                             </div>
+                            <div class="select editorGraphXaxisLabelsColor" *ngIf="showFieldXAxis">
+                                <select [(ngModel)]="localWidget.graphXaxisGridColorName"
+                                    name="graphXaxisGridColorName"
+                                    (change)="clickSelectXGridColor($event)"
+                                    title="Color of the X gridlines"
+                                    >
+                                    <option *ngFor="let row of backgroundcolors"
+                                        [style.background-color]="row.cssCode"
+                                        >
+                                        {{ row.name }}
+                                    </option>
+                                </select>
+                            </div>
                         </div>
 
                         <!-- X Axis: The maximum allowed length in pixels of legend labels.-->
