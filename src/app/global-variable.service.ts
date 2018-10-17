@@ -195,7 +195,7 @@ const widgetTemplate: Widget =
         "rowLimit": null,
         "addRestRow": false,
         "size": "",
-        
+
         "containerBackgroundcolor": "transparent",
         "containerBackgroundcolorName": "transparent",
         "containerBorder": "1px solid gray",
@@ -294,7 +294,7 @@ const widgetTemplate: Widget =
         "graphColorType": "",
         "graphColorTypeName": "",
         "graphColorTimeUnit": "",
-    
+
         "graphXaxisTitle": "",
         "graphXaxisTitleCheckbox": true,
         "graphXaxisGrid": true,
@@ -319,7 +319,7 @@ const widgetTemplate: Widget =
         "graphYaxisLabelAngle": 0,
         "graphYaxisLabelColorName": "",
         "graphYaxisLabelColor": "",
-    
+
         "graphLegendHide": false,
         "graphLegendTitleCheckbox": true,
         "graphLegendTitle": "",
@@ -352,7 +352,7 @@ const widgetTemplate: Widget =
         "graphY2Field": "",
         "graphY2Type": "",
         "graphY2TypeName": "",
-    
+
         "graphMark": "tick",
         "graphMarkOrient": "Verticle",
         "graphMarkLine": false,
@@ -3704,7 +3704,7 @@ export class GlobalVariableService {
     }
 
     getCurrentDataset(datasourceID: number, datasetID: number): Promise<Dataset> {
-        // Description: Gets a global Dataset, and inserts it once into 
+        // Description: Gets a global Dataset, and inserts it once into
         // this.currentDatasets.  Then add the data from respective data location.
         // Returns: dataset
         if (this.sessionDebugging) {
@@ -3901,18 +3901,18 @@ export class GlobalVariableService {
 
                     // Note: currentDS contains data as well, so this.currentDatasets.push
                     //       will result in a record with no data.  So, in the Widget
-                    //       Editor for example, the DS will show on the list, but it will 
+                    //       Editor for example, the DS will show on the list, but it will
                     //       be empty (Preview empty, nothing to plot)
                     console.warn('xx hier data.datasourceID, dataset.id', data.datasourceID, dataset.id);
-                    
+
                     this.getCurrentDataset(data.datasourceID, dataset.id).then(dataset => {
 
                         if (this.sessionDebugging) {
                             console.log('addDataset ADDED', {res}, this.datasets, this.currentDatasets)
                         };
-    
+
                         resolve(res);
-    
+
                     });
                 },
                 err => {
@@ -5886,7 +5886,7 @@ export class GlobalVariableService {
         };
 
         console.warn('xx addCurrentDatasource currentDS DS', this.currentDatasources.slice(), this.datasources.slice() );
-        
+
         return new Promise<any>((resolve, reject) => {
 
             // Fill currentDS from DS, if required
@@ -10951,6 +10951,8 @@ console.warn('xx gv spec', specification);
             };
             if (widget.graphXaxisLabels) {
                 specification['encoding']['x']['axis']['labelColor'] = widget.graphXaxisLabelColor;
+                specification['encoding']['x']['axis']['tickColor'] = widget.graphXaxisLabelColor;
+                specification['encoding']['x']['axis']['titleColor'] = widget.graphXaxisLabelColor;
             };
 
             if (!widget.graphXaxisTitleCheckbox) {
@@ -11012,6 +11014,8 @@ console.warn('xx gv spec', specification);
             };
             if (widget.graphYaxisLabels) {
                 specification['encoding']['y']['axis']['labelColor'] = widget.graphYaxisLabelColor;
+                specification['encoding']['y']['axis']['tickColor'] = widget.graphYaxisLabelColor;
+                specification['encoding']['y']['axis']['titleColor'] = widget.graphYaxisLabelColor;
             };
 
             if (!widget.graphYaxisTitleCheckbox) {
@@ -11028,7 +11032,7 @@ console.warn('xx gv spec', specification);
             };
             specification['encoding']['y']['axis']['maxExtent'] = widget.graphDimensionLeft;
             specification['encoding']['y']['axis']['labelLimit'] = widget.graphDimensionLeft;
-    
+
         };
 
         // Color field
@@ -11067,6 +11071,12 @@ console.warn('xx gv spec', specification);
                             {"labelLimit": widget.graphDimensionRight};
                     };
                 };
+                specification['encoding']['color']['axis'] = {
+                    "labelColor": widget.graphXaxisLabelColor,
+                    "tickColor": widget.graphXaxisLabelColor,
+                    "titleColor": widget.graphXaxisLabelColor
+                };
+
                 // specification['encoding']['color']['legend'] = {"labelLimit": 40, "maxExtent": 70};
             };
 
@@ -11196,7 +11206,7 @@ console.warn('xx gv spec', specification);
                         };
                 };
             };
-        
+
             if (filterTransformation[i].filterOperator == 'Less Than') {
 
                 if (filterFieldDataType == 'string') {
@@ -11273,9 +11283,9 @@ console.warn('xx gv spec', specification);
                         };
                 } else {
                     filterSpec =
-                        {"filter": 
+                        {"filter":
                             {
-                                "field": filterTransformation[i].underlyingFieldName, 
+                                "field": filterTransformation[i].underlyingFieldName,
                                 "gte": +filterTransformation[i].filterValue
                             }
                         };
@@ -11349,9 +11359,9 @@ console.warn('xx gv spec', specification);
             if (filterTransformation[i].filterOperator == 'Selection') {
 
                 filterSpec = [
-                    {"filter": 
+                    {"filter":
                         {
-                            "field": filterTransformation[i].underlyingFieldName, 
+                            "field": filterTransformation[i].underlyingFieldName,
                             "selection": filterTransformation[i].filterValue
                         }
                     }
@@ -11365,7 +11375,7 @@ console.warn('xx gv spec', specification);
             };
 
             console.warn('xx END FILTER filterSpec', filterSpec, widget.graphTransformations);
-        
+
         }
 
         // Tooltip setting
@@ -11373,9 +11383,9 @@ console.warn('xx gv spec', specification);
 
         // Return
         return specification;
-        
+
     }
-    
+
     // createVegaLiteSpec(
     //     widget: Widget,
     //     height: number = 0,
