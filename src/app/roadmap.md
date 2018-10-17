@@ -258,8 +258,6 @@ This document describes items for later versions of Canvas.
             - fields: count#, any - see Voyager
             - wildcards
 
-
-
     Table (Bradley SmartTable):
     ---------------------------
         - add drag fields - to X = Add, Drag away = delete from headers
