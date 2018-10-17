@@ -2539,6 +2539,20 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         };
     }
     
+    clickSelectYGridColor(ev: any) {
+        // Select Colour for Y gridlines
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectYGridColor', '@Start');
+
+        this.localWidget.graphYaxisGridColorName = ev.target.value;
+        this.localWidget.graphYaxisGridColor = this.localWidget.graphYaxisGridColorName;
+        let localIndex: number = this.backgroundcolors.findIndex(bg =>
+            bg.name == this.localWidget.graphYaxisGridColorName
+        );
+        if (localIndex >= 0) {
+            this.localWidget.graphYaxisGridColor = this.backgroundcolors[localIndex].cssCode;
+        };
+    }
+
     clickSelectBackgroundColor(ev: any) {
         // Select Background Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBackgroundColor', '@Start');
