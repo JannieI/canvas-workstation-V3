@@ -25,6 +25,7 @@ import { GlobalVariableService }      from './global-variable.service';
 import { compile }                    from 'vega-lite';
 import { parse }                      from 'vega';
 import { View }                       from 'vega';
+import { warn } from 'vega-lite/build/src/log';
 // import { forEach } from 'vega-lite/build/src/encoding';
 
 const graphHeight: number = 260;
@@ -40,6 +41,10 @@ export interface dataSchemaInterface {
     calculatedExpression: string;   // Formula for calculated fields
 }
 
+export interface graphHistory {
+    layer: number,                  // Layer for which W specs are stored
+    widgetSpec: Widget[]            // Array of Ws previously stored
+}
 
 @Component({
     selector: 'widget-editorNEW',
@@ -215,6 +220,8 @@ export interface dataSchemaInterface {
     // graphYaggregateVegaLiteName: string = '';
     graphColorAggregateVegaLiteName: string = '';
     graphHeader: string = 'Graph';
+    graphHistory: graphHistory[] = [];
+    graphHistoryPosition: number = 0;
     isBusyRetrievingData: boolean = false;
     isDragoverXField: boolean = false;
     isDragoverYField: boolean = false;
@@ -1203,7 +1210,6 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
 
         // Reset
         this.errorMessageEditor = '';
-        this.graphHeader = "History: showing 1 of 2";
 
         // Keep graphID
         this.currentGraphID = graphID;
@@ -1423,6 +1429,40 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
                 };
             };
         };
+
+        // Append to history
+        let layerIndex: number = this.graphHistory.findIndex(gh => gh.layer == this.currentGraphLayer);
+        if (layerIndex < 0) {
+            this.graphHistory.push({
+                layer: this.currentGraphLayer,
+                widgetSpec: []
+            });
+            layerIndex = 0;
+        }; 
+        this.graphHistory[layerIndex].widgetSpec.push({
+            ...this.localWidget, ...{ graphData: [] } 
+        });
+        this.graphHistoryPosition = this.graphHistory[layerIndex].widgetSpec.length - 1;
+        console.warn('xx this.graphHistory', this.graphHistory)
+        
+        // Calc position
+        this.graphHeader = 'History: showing ' + 
+            (this.graphHistoryPosition + 1).toString() + ' of ' +
+            this.graphHistory[layerIndex].widgetSpec.length.toString();
+        
+
+        
+    }
+
+    clickBrowsePreviousGraph() {
+        // Browse to previous graph in history
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickBrowsePreviousGraph', '@Start');
+    }
+
+    clickBrowseNextGraph() {
+        // Browse to next graph in history
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickBrowseNextGraph', '@Start');
+
     }
 
   	clickClose(action: string) {

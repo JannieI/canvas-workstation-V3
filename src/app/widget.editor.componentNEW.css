@@ -2062,6 +2062,13 @@ clr-dg-cell {
             margin-left: 10px;
             text-align: center;
         }
+            .editorLeftIcon {
+                margin-right: 16px;
+            }
+            .editorRightIcon{
+                margin-left: 16px;
+            }
+            
         .editorArea {
             border-radius: 6px;
             grid-column-start: 32;

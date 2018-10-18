@@ -2274,8 +2274,8 @@
 
                     <!-- GRAPH Area -->
                     <div class="editorAreaTitle">
-                        <clr-icon *ngIf="showGraphAreaTitle  &&  !showSpecification"
-                            (click)="clickShowFilterArea()"
+                        <clr-icon class="editorLeftIcon" *ngIf="showGraphAreaTitle  &&  !showSpecification"
+                            (click)="clickBrowsePreviousGraph()"
                             shape="angle left"
                             size="16"
                             >
@@ -2289,8 +2289,8 @@
                             {{ graphHeader }}
                         </b>
 
-                        <clr-icon *ngIf="showGraphAreaTitle  &&  !showSpecification"
-                             (click)="clickShowFilterArea()"
+                        <clr-icon class="editorRightIcon"  *ngIf="showGraphAreaTitle  &&  !showSpecification"
+                             (click)="clickBrowseNextGraph()"
                             shape="angle right"
                             size="16"
                             >
