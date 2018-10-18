@@ -1462,7 +1462,7 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         if (this.graphHistoryPosition == 0) {
             return;
         };
-        this.graphHistoryPosition = this.graphHistoryPosition -1;
+        this.graphHistoryPosition = this.graphHistoryPosition - 1;
      
         // Recreate a new W spec
         let layerIndex: number = this.graphHistory.findIndex(gh => gh.layer == this.currentGraphLayer);
@@ -1493,6 +1493,35 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         // Browse to next graph in history
         this.globalFunctionService.printToConsole(this.constructor.name,'clickBrowseNextGraph', '@Start');
 
+        // Increase position, if not at beginning
+        let layerIndex: number = this.graphHistory.findIndex(gh => gh.layer == this.currentGraphLayer);
+        if (this.graphHistoryPosition >= (this.graphHistory[layerIndex].widgetSpec.length - 1) ) {
+            return;
+        };
+        this.graphHistoryPosition = this.graphHistoryPosition + 1;
+     
+        // Recreate a new W spec
+        let newWidgetSpec: Widget = {
+            ...this.graphHistory[layerIndex].widgetSpec[this.graphHistoryPosition],
+             ...{ graphData: this.localWidget.graphData } 
+        };
+        this.localWidget = { ... newWidgetSpec };
+        
+        // Get the graphID
+        let graphID: number = -1;
+        let widgetGraphIndex: number = this.widgetGraphs.findIndex(
+            wg => wg.mark == this.localWidget.graphMark);
+        if (widgetGraphIndex < 0) {
+            this.errorMessageEditor = 'Graph type mark = ' + this.localWidget.graphMark + ' does not exist in the DB';
+            return;
+        } else {
+            graphID = this.widgetGraphs[widgetGraphIndex]['id'];
+        };
+
+        console.warn('xx newWidgetSpec', newWidgetSpec, graphID)
+
+        // Show graph
+        this.showGraph(graphID);
     }
 
   	clickClose(action: string) {
