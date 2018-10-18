@@ -122,7 +122,7 @@
                         >
                         {{ nrRows }}
                     </div>
-                    
+
                     <!-- Optional Sampling -->
                     <div class="editorSamplingTitle">
                         Random Sample (Number rows):
@@ -313,7 +313,6 @@
                                 <clr-dg-row *clrDgItems="let row of dataSchema; let i = index"
                                     (dblclick)="dblClickFieldRow(row.name)"
                                     [clrDgItem]="row"
-                                    [style.background-color]="row.isCalculated?  'lightgray'  :  'transparent'"
                                     >
                                     <clr-dg-cell style="margin-left: 2px; padding: 0;"
                                         id="fld"
@@ -350,9 +349,38 @@
                                             [style.color]="'black'"
                                             >
                                         </clr-icon>
-                                        
-                                        {{ row.name }} 
 
+                                        {{ row.name }}
+
+                                        <span
+                                            style="float:right;font-size: 0.5rem; margin-right: 3px;"
+                                            >
+                                            <clr-icon *ngIf="row.isCalculated"
+                                                shape="calculator"
+                                                size="14"
+                                                >
+                                            </clr-icon>
+                                            <b>
+                                                <span
+                                                    [style.color]="row.name==xField?  'red'  :  'gray'"
+                                                    (click)="clickFillXfield(row.name)"
+                                                    >
+                                                    X
+                                                </span>
+                                                <span
+                                                    [style.color]="row.name==yField?  'red'  :  'gray'"
+                                                    (click)="clickFillYfield(row.name)"
+                                                    >
+                                                    Y
+                                                </span>
+                                                <span
+                                                    [style.color]="row.name==colorField?  'red'  :  'gray'"
+                                                    (click)="clickFillColorField(row.name)"
+                                                    >
+                                                    C
+                                                </span>
+                                            </b>
+                                        </span>
                                         <!-- <span class="badge badge-light-gray">
                                             {{row.length}}
                                         </span> -->
@@ -560,7 +588,7 @@
                                 </select>
                             </div>
                         </div>
-    
+
                         <!-- Title Vertical text baseline for title text. -->
                         <div class="editorLineContainer">
                             <div class="editorTitleBaselineTitle" *ngIf="showFieldTitleProperties">
@@ -1401,7 +1429,7 @@
                                     >
                             </div>
                         </div>
-    
+
                         <!-- Mark Properties Bin Spacing -->
                         <div class="editorLineContainer">
                             <div class="editorGraphMarkBinSpacingTitle" *ngIf="showFieldMarkProperties">
@@ -1510,7 +1538,7 @@
                                     </option>
                                 </select>
                             </div>
-    
+
                         </div>
 
                         <!-- X Axis Labels -->
@@ -2297,7 +2325,7 @@
                         <b *ngIf="!showGraphAreaTitle  &&  !showSpecification">
                             Graph
                         </b>
-    
+
                         <b *ngIf="showGraphAreaTitle  &&  !showSpecification">
                             {{ graphHeader }}
                         </b>
@@ -2316,7 +2344,7 @@
                         >
                     </div>
 
-                    
+
 
                     <!-- SPECIFICATION AREA -->
                     <div class="editorSpecification" [hidden]="!showSpecification">
@@ -2452,7 +2480,7 @@
                             </span>
                         </button>
                     </div>
-                    
+
                     <div class="errorMessageEditor">
                         {{ errorMessageEditor }}
                     </div>
