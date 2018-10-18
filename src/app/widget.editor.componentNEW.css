@@ -2068,6 +2068,7 @@ clr-dg-cell {
             grid-column-end: 50;
             grid-row-start: 2;
             grid-row-end: 21;
+            margin-left: 12px;
             text-align: left;
             overflow-x: scroll;
         }
