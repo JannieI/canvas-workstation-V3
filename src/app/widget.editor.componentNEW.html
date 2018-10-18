@@ -387,8 +387,6 @@
                             </div>
                             <div class="editorXField"
                                 id="target"
-                                draggable="true"
-                                (dragstart)="dragstartXField($event)"
                                 (drop)="dropXField($event);"
                                 (dragover)="dragoverXField($event);"
                                 (dragenter)="dragenterXField($event);"
@@ -402,7 +400,11 @@
                                     title="Click to remove this field from the Graph"
                                     (click)="clickClearXFieldField()">
                                 </clr-icon>
-                                {{ xField }}
+                                <span draggable="true"
+                                    (dragstart)="dragstartXField($event)"
+                                    >
+                                    {{ xField }}
+                                </span>
                             </div>
                         </div>
 
@@ -432,7 +434,11 @@
                                     title="Click to remove this field from the Graph"
                                     (click)="clickClearYField()">
                                 </clr-icon>
-                                {{ yField }}
+                                <span draggable="true"
+                                    (dragstart)="dragstartYField($event)"
+                                    >
+                                    {{ yField }}
+                                </span>
                             </div>
                         </div>
 

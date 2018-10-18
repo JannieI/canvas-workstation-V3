@@ -1668,6 +1668,14 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         this.draggedField = this.xField;
     }
 
+    dragstartYField(ev) {
+        // Event trigger when start Dragging a YField
+        this.globalFunctionService.printToConsole(this.constructor.name,'dragstartYField', '@Start');
+        ev.dataTransfer.setData("text/plain", ev.target.id);
+
+        this.draggedField = this.yField;
+    }
+
     dragstartField(ev) {
         // Event trigger when start Dragging a Field in the list
         this.globalFunctionService.printToConsole(this.constructor.name,'dragstartField', '@Start');
