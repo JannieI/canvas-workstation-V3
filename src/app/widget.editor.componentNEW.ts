@@ -1457,6 +1457,36 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
     clickBrowsePreviousGraph() {
         // Browse to previous graph in history
         this.globalFunctionService.printToConsole(this.constructor.name,'clickBrowsePreviousGraph', '@Start');
+
+        // Decrease position, if not at beginning
+        if (this.graphHistoryPosition == 0) {
+            return;
+        };
+        this.graphHistoryPosition = this.graphHistoryPosition -1;
+     
+        // Recreate a new W spec
+        let layerIndex: number = this.graphHistory.findIndex(gh => gh.layer == this.currentGraphLayer);
+        let newWidgetSpec: Widget = {
+            ...this.graphHistory[layerIndex].widgetSpec[this.graphHistoryPosition],
+             ...{ graphData: this.localWidget.graphData } 
+        };
+        this.localWidget = { ... newWidgetSpec };
+        
+        // Get the graphID
+        let graphID: number = -1;
+        let widgetGraphIndex: number = this.widgetGraphs.findIndex(
+            wg => wg.mark == this.localWidget.graphMark);
+        if (widgetGraphIndex < 0) {
+            this.errorMessageEditor = 'Graph type mark = ' + this.localWidget.graphMark + ' does not exist in the DB';
+            return;
+        } else {
+            graphID = this.widgetGraphs[widgetGraphIndex]['id'];
+        };
+
+        console.warn('xx newWidgetSpec', newWidgetSpec, graphID)
+
+        // Show graph
+        this.showGraph(graphID);
     }
 
     clickBrowseNextGraph() {
