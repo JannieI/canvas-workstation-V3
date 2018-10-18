@@ -2053,9 +2053,9 @@ clr-dg-cell {
 
         /* GRAPH AREA */
         .editorAreaTitle {
-            grid-column-start: 38;
+            grid-column-start: 32;
             /* autoprefixer: off */
-            grid-column-end: 50;
+            grid-column-end: 51;
             grid-row-start: 1;
             grid-row-end: 2;
             margin-left: 10px;
@@ -2063,10 +2063,10 @@ clr-dg-cell {
         }
         .editorArea {
             border-radius: 6px;
-            grid-column-start: 29;
+            grid-column-start: 32;
             /* autoprefixer: off */
-            grid-column-end: 50;
-            grid-row-start: 2;
+            grid-column-end: 51;
+            grid-row-start: 3;
             grid-row-end: 21;
             margin-left: 12px;
             text-align: left;
@@ -2163,7 +2163,7 @@ clr-dg-cell {
             text-align: left;
         }
 
-        .editorSpecificationTitle {
+        .editorShowGraphOrSpecification {
             grid-column-start: 44;
             /* autoprefixer: off */
             grid-column-end: 46;
@@ -2178,9 +2178,9 @@ clr-dg-cell {
             border: 1px solid black;
             border-radius: 6px;
             font-size: 0.5rem;
-            grid-column-start: 30;
+            grid-column-start: 32;
             /* autoprefixer: off */
-            grid-column-end: 50;
+            grid-column-end: 51;
             grid-row-start: 1;
             grid-row-end: 21;
             margin-left: 10px;

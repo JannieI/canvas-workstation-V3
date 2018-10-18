@@ -2273,8 +2273,9 @@
 
 
                     <!-- GRAPH Area -->
-                    <div class="editorAreaTitle" *ngIf="showGraphAreaTitle  &&  !showSpecification">
-                        <b>Graph</b>
+                    <!-- *ngIf="showGraphAreaTitle  &&  !showSpecification" -->
+                    <div class="editorAreaTitle">
+                        <b>{{ graphHeader }}</b>
                     </div>
                     <div class="editorArea" [hidden]="showSpecification"
                         #dragWidget
@@ -2404,7 +2405,7 @@
                     </div>
 
                     <!-- SPEC -->
-                    <div class="editorSpecificationTitle">
+                    <div class="editorShowGraphOrSpecification">
                         <button
                             style="border: 1px solid transparent; color: gray;"
                             class="btn btn-sm btn-secondary"

@@ -28,7 +28,7 @@ import { View }                       from 'vega';
 // import { forEach } from 'vega-lite/build/src/encoding';
 
 const graphHeight: number = 260;
-const graphWidth: number = 420;
+const graphWidth: number = 372;
 const dragFieldMessage: string = 'Drag a field here ...';
 
 export interface dataSchemaInterface {
@@ -214,6 +214,7 @@ export interface dataSchemaInterface {
     // graphXaggregateVegaLiteName: string = '';
     // graphYaggregateVegaLiteName: string = '';
     graphColorAggregateVegaLiteName: string = '';
+    graphHeader: string = 'Graph';
     isBusyRetrievingData: boolean = false;
     isDragoverXField: boolean = false;
     isDragoverYField: boolean = false;
@@ -1202,6 +1203,7 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
 
         // Reset
         this.errorMessageEditor = '';
+        this.graphHeader = "History";
 
         // Keep graphID
         this.currentGraphID = graphID;
@@ -1261,7 +1263,7 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         };
 
         // Startup
-        let width: number = 300;
+        let width: number = 372;
         let height: number = 260;
         let graphVisualGrammar: string = this.widgetGraphs[widgetGraphIndex].visualGrammar;
         let graphShortName: string = this.widgetGraphs[widgetGraphIndex].shortName;
@@ -1372,7 +1374,7 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
 
                     view.renderer('svg')
                         .initialize(this.dragWidget.nativeElement)
-                        .width(300)
+                        .width(372)
                         .hover()
                         .run()
                         .finalize();
@@ -1388,7 +1390,7 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
 
                     view.renderer('svg')
                         .initialize(this.dragWidget.nativeElement)
-                        .width(300)
+                        .width(372)
                         .hover()
                         .run()
                         .finalize();
