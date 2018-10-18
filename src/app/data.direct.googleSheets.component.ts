@@ -101,7 +101,7 @@ export class DataDirectGoogleSheetsComponent implements OnInit {
                 "connector": "tributary.connectors.spreadsheet:GSheetConnector",
                 "specification": {
                     "content": this.url,
-                    "headers": 0
+                    "header": 0
                 }
             }
         };

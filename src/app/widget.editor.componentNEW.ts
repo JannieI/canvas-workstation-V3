@@ -1441,7 +1441,7 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         }; 
 
         // Only append if not showing an existing one
-        if (this.graphHistoryPosition >= (this.graphHistory[layerIndex].widgetSpec.length - 1) ) {
+        if (this.graphHistoryPosition > (this.graphHistory[layerIndex].widgetSpec.length - 1) ) {
             this.graphHistory[layerIndex].widgetSpec.push({
                 ...this.localWidget, ...{ graphData: [] } 
             });

@@ -269,9 +269,9 @@ export class DataDirectFileSpreadsheetComponent implements OnInit {
                         "connector": "tributary.connectors.spreadsheet:XlsConnector",
                         "specification": {
                             "content":  btoa(this.loadedFile.target.result),
-                            "headers": +this.headerRow,
-                            "sheet": index,
-                            "skip_rows": []
+                            "header": +this.headerRow,
+                            "sheet_name": index,
+                            "skiprows": []
                         }
                     }
                 };
