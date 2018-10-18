@@ -1439,18 +1439,20 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
             });
             layerIndex = 0;
         }; 
-        this.graphHistory[layerIndex].widgetSpec.push({
-            ...this.localWidget, ...{ graphData: [] } 
-        });
-        this.graphHistoryPosition = this.graphHistory[layerIndex].widgetSpec.length - 1;
+
+        // Only append if not showing an existing one
+        if (this.graphHistoryPosition >= (this.graphHistory[layerIndex].widgetSpec.length - 1) ) {
+            this.graphHistory[layerIndex].widgetSpec.push({
+                ...this.localWidget, ...{ graphData: [] } 
+            });
+            this.graphHistoryPosition = this.graphHistory[layerIndex].widgetSpec.length - 1;
+        };
         console.warn('xx this.graphHistory', this.graphHistory)
         
         // Calc position
         this.graphHeader = 'History: showing ' + 
             (this.graphHistoryPosition + 1).toString() + ' of ' +
             this.graphHistory[layerIndex].widgetSpec.length.toString();
-        
-
         
     }
 
