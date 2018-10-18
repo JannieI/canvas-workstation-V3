@@ -1437,16 +1437,22 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
                 layer: this.currentGraphLayer,
                 widgetSpec: []
             });
-            layerIndex = 0;
-        }; 
 
-        // Only append if not showing an existing one
-        if (this.graphHistoryPosition > (this.graphHistory[layerIndex].widgetSpec.length - 1) ) {
-            this.graphHistory[layerIndex].widgetSpec.push({
+            this.graphHistory[0].widgetSpec.push({
                 ...this.localWidget, ...{ graphData: [] } 
             });
-            this.graphHistoryPosition = this.graphHistory[layerIndex].widgetSpec.length - 1;
+            this.graphHistoryPosition = 0;
+        } else {
+
+            // Only append if not showing an existing one
+            if (this.graphHistoryPosition == (this.graphHistory[layerIndex].widgetSpec.length - 1) ) {
+                this.graphHistory[layerIndex].widgetSpec.push({
+                    ...this.localWidget, ...{ graphData: [] } 
+                });
+                this.graphHistoryPosition = this.graphHistory[layerIndex].widgetSpec.length - 1;
+            };
         };
+
         console.warn('xx this.graphHistory', this.graphHistory)
         
         // Calc position
