@@ -405,12 +405,12 @@ clr-dg-cell {
             z-index: 101;
         }
         .editorFieldsTitle {
-            grid-column-start: 4;
+            grid-column-start: 1;
             /* autoprefixer: off */
-            grid-column-end: 16;
+            grid-column-end: 15;
             grid-row-start: 7;
             grid-row-end: 8;
-            text-align: left;
+            text-align: center;
         }
         .editorFields {
             border: 1px solid gray;
@@ -431,13 +431,13 @@ clr-dg-cell {
 
         /* PROPERTIES */
         .editorPropertiesTitle {
-            grid-column-start: 19;
+            grid-column-start: 15;
             /* autoprefixer: off */
-            grid-column-end: 25;
+            grid-column-end: 26;
             grid-row-start: 1;
             grid-row-end: 2;
-            margin-left: 24px;
-            text-align: left;
+            margin-left: 4px;
+            text-align: center;
         }
         .editorProperties {
             border: 1px solid gray;
@@ -2023,7 +2023,7 @@ clr-dg-cell {
             grid-column-end: 34;
             grid-row-start: 1;
             grid-row-end: 2;
-            margin-left: 0px;
+            margin-left: 8px;
             text-align: left;
         }
         .editorTypes {
@@ -2035,7 +2035,7 @@ clr-dg-cell {
             grid-row-start: 2;
             grid-row-end: 28;
             margin: 0px;
-            margin-left: 8px;
+            margin-right: 8px;
             overflow-y: scroll;
             padding: 0px;
             text-align: center;
@@ -2060,7 +2060,7 @@ clr-dg-cell {
             grid-row-start: 1;
             grid-row-end: 2;
             margin-left: 10px;
-            text-align: left;
+            text-align: center;
         }
         .editorArea {
             border-radius: 6px;
