@@ -463,7 +463,11 @@
                                     (click)="clickClearColourField()"
                                     >
                                 </clr-icon>
-                                {{ colorField }}
+                                <span draggable="true"
+                                    (dragstart)="dragstartColorField($event)"
+                                    >
+                                    {{ colorField }}
+                                </span>
                             </div>
                         </div>
 
