@@ -1663,26 +1663,35 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
     dragstartXField(ev) {
         // Event trigger when start Dragging X Field
         this.globalFunctionService.printToConsole(this.constructor.name,'dragstartXField', '@Start');
+        
         ev.dataTransfer.setData("text/plain", ev.target.id);
-
         this.draggedField = this.xField;
     }
 
     dragstartYField(ev) {
         // Event trigger when start Dragging Y Field
         this.globalFunctionService.printToConsole(this.constructor.name,'dragstartYField', '@Start');
+        
         ev.dataTransfer.setData("text/plain", ev.target.id);
-
         this.draggedField = this.yField;
     }
 
     dragstartColorField(ev) {
         // Event trigger when start Dragging Color Field
         this.globalFunctionService.printToConsole(this.constructor.name,'dragstartColorField', '@Start');
+        
         ev.dataTransfer.setData("text/plain", ev.target.id);
-
         this.draggedField = this.colorField;
     }
+
+    clickFillXfield(fieldName: string) {
+        // Click icon to fill this field into X field
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickFillXfield', '@Start');
+        
+        this.dropXField(fieldName);
+
+    }
+
 
     dragstartField(ev) {
         // Event trigger when start Dragging a Field in the list
