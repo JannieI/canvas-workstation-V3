@@ -2018,9 +2018,9 @@ clr-dg-cell {
     
         /* GRAPH TYPES */
         .editorTypesTitle {
-            grid-column-start: 24;
+            grid-column-start: 28;
             /* autoprefixer: off */
-            grid-column-end: 30;
+            grid-column-end: 34;
             grid-row-start: 1;
             grid-row-end: 2;
             margin-left: 8px;
@@ -2029,23 +2029,24 @@ clr-dg-cell {
         .editorTypes {
             border: 1px solid gray;
             border-radius: 6px;
-            grid-column-start: 23;
+            grid-column-start: 27;
             /* autoprefixer: off */
-            grid-column-end: 29;
+            grid-column-end: 32;
             grid-row-start: 2;
             grid-row-end: 28;
             margin: 0px;
             margin-left: 8px;
             overflow-y: scroll;
-            padding: 4px;
+            padding: 0px;
             text-align: center;
         }
             .editorTypeImages {
                 border: 1px solid black;
+                border-radius: 6px;
                 color: steelblue;
                 cursor: pointer;
                 font-size: 0.5rem;
-                height: 72px;
+                height: 70px;
                 margin: 4px;
                 padding: auto;
                 width: 92px;
