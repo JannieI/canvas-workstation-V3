@@ -375,7 +375,8 @@
 
                         <!-- TOP 3 - 1. X field -->
                         <div class="editorLineContainer">
-                            <div class="editorXFieldTitle">
+                            <div class="editorXFieldTitle"
+                                >
                                 X axis:
                                 <clr-icon shape="switch right"
                                     size="10"
@@ -386,6 +387,8 @@
                             </div>
                             <div class="editorXField"
                                 id="target"
+                                draggable="true"
+                                (dragstart)="dragstartXField($event)"
                                 (drop)="dropXField($event);"
                                 (dragover)="dragoverXField($event);"
                                 (dragenter)="dragenterXField($event);"
