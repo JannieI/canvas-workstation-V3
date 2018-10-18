@@ -1203,7 +1203,7 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
 
     }
 
-    showGraph(graphID: number) {
+    showGraph(graphID: number, createNewHistory: boolean = true) {
         // Render the graph on the form.  NOTE: each graph has its own spec and rendering
         // rules.
         this.globalFunctionService.printToConsole(this.constructor.name,'showGraph', '@Start');
@@ -1438,22 +1438,17 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
                 widgetSpec: []
             });
 
-            this.graphHistory[0].widgetSpec.push({
-                ...this.localWidget, ...{ graphData: [] } 
-            });
-            this.graphHistoryPosition = 0;
-        } else {
-
-            // Only append if not showing an existing one
-            if (this.graphHistoryPosition == (this.graphHistory[layerIndex].widgetSpec.length - 1) ) {
-                this.graphHistory[layerIndex].widgetSpec.push({
-                    ...this.localWidget, ...{ graphData: [] } 
-                });
-                this.graphHistoryPosition = this.graphHistory[layerIndex].widgetSpec.length - 1;
-            };
+            // Set position
+            layerIndex = 0;
         };
 
-        console.warn('xx this.graphHistory', this.graphHistory)
+        // Append if requested
+        if (createNewHistory) {
+            this.graphHistory[layerIndex].widgetSpec.push({
+                ...this.localWidget, ...{ graphData: [] } 
+            });
+            this.graphHistoryPosition = this.graphHistory[layerIndex].widgetSpec.length - 1;
+        };
         
         // Calc position
         this.graphHeader = 'History: showing ' + 
@@ -1494,7 +1489,7 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         console.warn('xx newWidgetSpec', newWidgetSpec, graphID)
 
         // Show graph
-        this.showGraph(graphID);
+        this.showGraph(graphID, false);
     }
 
     clickBrowseNextGraph() {
@@ -1529,7 +1524,7 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         console.warn('xx newWidgetSpec', newWidgetSpec, graphID)
 
         // Show graph
-        this.showGraph(graphID);
+        this.showGraph(graphID, false);
     }
 
   	clickClose(action: string) {
