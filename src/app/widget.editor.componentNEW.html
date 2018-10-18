@@ -2273,13 +2273,33 @@
 
 
                     <!-- GRAPH Area -->
-                    <!-- *ngIf="showGraphAreaTitle  &&  !showSpecification" -->
                     <div class="editorAreaTitle">
-                        <b>{{ graphHeader }}</b>
+                        <clr-icon *ngIf="showGraphAreaTitle  &&  !showSpecification"
+                            (click)="clickShowFilterArea()"
+                            shape="angle left"
+                            size="16"
+                            >
+                        </clr-icon>
+
+                        <b *ngIf="!showGraphAreaTitle  &&  !showSpecification">
+                            Graph
+                        </b>
+    
+                        <b *ngIf="showGraphAreaTitle  &&  !showSpecification">
+                            {{ graphHeader }}
+                        </b>
+
+                        <clr-icon *ngIf="showGraphAreaTitle  &&  !showSpecification"
+                             (click)="clickShowFilterArea()"
+                            shape="angle right"
+                            size="16"
+                            >
+                        </clr-icon>
+
                     </div>
                     <div class="editorArea" [hidden]="showSpecification"
                         #dragWidget
-                        [style.border]="showGraphAreaTitle?  '1px solid gray'  : 'none'"
+                        [style.border]="!showGraphAreaTitle?  '1px solid gray'  : 'none'"
                         >
                     </div>
 

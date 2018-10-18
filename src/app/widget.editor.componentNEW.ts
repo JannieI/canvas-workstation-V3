@@ -259,7 +259,7 @@ export interface dataSchemaInterface {
     showFieldColorPropertiesTitle: boolean = false;
     showFieldFilter: boolean = false;
     showFilterAreaProperties: boolean = false;
-    showGraphAreaTitle: boolean = true;
+    showGraphAreaTitle: boolean = false;
     showSelectionFilter: boolean = false;
     showFieldMarkProperties: boolean = false;
     showFieldDetailProperties: boolean = false;
@@ -1203,13 +1203,13 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
 
         // Reset
         this.errorMessageEditor = '';
-        this.graphHeader = "History";
+        this.graphHeader = "History: showing 1 of 2";
 
         // Keep graphID
         this.currentGraphID = graphID;
 
         // Switch off initial display
-        this.showGraphAreaTitle = false;
+        this.showGraphAreaTitle = true;
 
         // Get the Vega-Lite aggregation
         this.localWidget.graphXaggregate = '';

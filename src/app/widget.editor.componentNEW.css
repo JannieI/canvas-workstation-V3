@@ -2240,9 +2240,9 @@ clr-dg-cell {
             text-align: left;
         }
         .editorButtonCancel {
-            grid-column-start: 40;
+            grid-column-start: 41;
             /* autoprefixer: off */
-            grid-column-end: 42;
+            grid-column-end: 43;
             grid-row-start: 26;
             grid-row-end: 27;
             text-align: left;
