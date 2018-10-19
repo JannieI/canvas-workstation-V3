@@ -1924,6 +1924,10 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         this.rowField = this.draggedField;
         this.isDragoverRow = false;
 
+        // Replace letter-buttons.  NB: this must sync with HTML code
+        let postion: number = this.rowField.indexOf(' X Y C');
+        this.rowField = this.rowField.substring(0, postion != -1 ? postion : this.rowField.length)
+
         let fieldType:string = this.getFieldType(this.draggedField);
         this.localWidget.graphRowType = this.defaultGraphTypeField(fieldType, 'type');
         this.localWidget.graphRowTypeName = this.defaultGraphTypeField(fieldType, 'name');
