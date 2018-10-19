@@ -201,7 +201,7 @@
                                 </option>
                             </select>
                         </div>
-                        <div class="editorCompositionCalculatedFieldTitle">
+                        <!-- <div class="editorCompositionCalculatedFieldTitle">
                             <b>
                                 Calculated Field:
                             </b>
@@ -219,8 +219,7 @@
                                     >
                                 </clr-icon>
                             </button>
-
-                        </div>
+                        </div> -->
                     </div>
                     <div class="editorCalculatedArea" *ngIf="showCalculatedAreaProperties">
                         <div style="font-size: 0.55rem;">
@@ -308,6 +307,13 @@
                                     (click)="sortOrder=sortOrder * -1"
                                     >
                                     Name
+                                    <clr-icon style="margin-left: 6px; padding: 0;"
+                                        shape="plus-circle"
+                                        size="18"
+                                        [style.color]="'black'"
+                                        (click)="clickShowCalculatedArea()"
+                                        >
+                                    </clr-icon>
                                 </clr-dg-column>
 
                                 <clr-dg-row *clrDgItems="let row of dataSchema; let i = index"
@@ -360,6 +366,7 @@
                                                 size="14"
                                                 >
                                             </clr-icon>
+                                            <!-- NB: this has to be in sync with TS code -->
                                             <b>
                                                 <span
                                                     [style.color]="row.name==xField?  'red'  :  'gray'"
