@@ -1024,6 +1024,18 @@ export class WidgetLayout {
     createdOn: Date;                        // Date task was created
 }
 
+export class GraphHistory {
+    layer: number;                          // Layer for which W specs are stored
+    widgetSpec: Widget[]                    // Array of Ws previously stored
+}
+
+export class GraphFilters {
+    id: number;
+    filterFieldName: string;
+    filterOperator: string;
+    filterValue: string;
+}
+
 export class Widget {
 
     // Type

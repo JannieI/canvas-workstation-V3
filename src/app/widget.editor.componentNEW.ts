@@ -11,11 +11,14 @@ import { ViewChild }                  from '@angular/core';
 // Our models
 import { CSScolor }                   from './models';
 import { Datasource }                 from './models';
+import { GraphFilters }               from './models';
+import { GraphHistory }               from './models';
 import { GraphTransformation }        from './models';
 import { Widget }                     from './models';
 import { WidgetLayout }               from './models';
 import { WidgetCheckpoint }           from './models';
 import { WidgetGraph }                from './models';
+
 
 // Our Services
 import { GlobalFunctionService } 		  from './global-function.service';
@@ -23,10 +26,8 @@ import { GlobalVariableService }      from './global-variable.service';
 
 // Functions
 import { compile }                    from 'vega-lite';
-import { parse, field }                      from 'vega';
+import { parse }                      from 'vega';
 import { View }                       from 'vega';
-import { warn } from 'vega-lite/build/src/log';
-// import { forEach } from 'vega-lite/build/src/encoding';
 
 const graphHeight: number = 260;
 const graphWidth: number = 372;
@@ -39,11 +40,6 @@ export interface dataSchemaInterface {
     length: number;                 // Optional field length
     isCalculated: boolean;          // True if calculated
     calculatedExpression: string;   // Formula for calculated fields
-}
-
-export interface graphHistory {
-    layer: number,                  // Layer for which W specs are stored
-    widgetSpec: Widget[]            // Array of Ws previously stored
 }
 
 @Component({
@@ -211,7 +207,7 @@ export interface graphHistory {
     errorMessage: string = '';
     errorMessageEditor: string = '';
     filterErrorMessage: string = ' ';
-    filterField: string = '';
+    filterFieldName: string = '';
     filterOperator: string = '';
     filterValue: string = '';
     graphColor: string[];
@@ -220,7 +216,7 @@ export interface graphHistory {
     // graphYaggregateVegaLiteName: string = '';
     graphColorAggregateVegaLiteName: string = '';
     graphHeader: string = 'Graph';
-    graphHistory: graphHistory[] = [];
+    graphHistory: GraphHistory[] = [];
     graphHistoryPosition: number = 0;
     isBusyRetrievingData: boolean = false;
     isDragoverXField: boolean = false;
@@ -2983,12 +2979,12 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
 
         // Remove from localWidget
         let transformationIndex: number = this.localWidget.graphTransformations.findIndex(ftr =>
-            ftr.transformationType == 'filter'  &&  ftr.underlyingFieldName == this.filterField);
+            ftr.transformationType == 'filter'  &&  ftr.underlyingFieldName == this.filterFieldName);
         if (transformationIndex >= 0) {
             this.localWidget.graphTransformations.splice(transformationIndex, 1);
         };
 
-        this.filterField = '';
+        this.filterFieldName = '';
         this.filterOperator = '';
         this.filterValue = '';
 
@@ -3003,7 +2999,7 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         this.filterErrorMessage = '';
 
         // Validation
-        if (this.filterField == ''  ||  this.filterField == undefined) {
+        if (this.filterFieldName == ''  ||  this.filterFieldName == undefined) {
             this.filterErrorMessage = 'Filter field is required.';
             return;
         };
@@ -3028,7 +3024,7 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         // Update the localWidget
         let graphTransformationSpec: GraphTransformation = {
             transformationType: "filter",
-            underlyingFieldName: this.filterField,
+            underlyingFieldName: this.filterFieldName,
             filterOperator: this.filterOperator,
             filterValue: this.filterValue,
             sampleRows: 0,
@@ -3039,7 +3035,7 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
 
         // Add / Update to localWidget
         let transformationIndex: number = this.localWidget.graphTransformations.findIndex(ftr =>
-            ftr.transformationType == 'filter'  &&  ftr.underlyingFieldName == this.filterField);
+            ftr.transformationType == 'filter'  &&  ftr.underlyingFieldName == this.filterFieldName);
         if (transformationIndex >= 0) {
             this.localWidget.graphTransformations[transformationIndex].filterOperator = 
                 this.filterOperator;
@@ -3057,7 +3053,7 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         // Selected a Filter Field
         this.globalFunctionService.printToConsole(this.constructor.name,'filterFieldSelected', '@Start');
 
-        this.filterField = ev.target.value;
+        this.filterFieldName = ev.target.value;
     }
 
     filterOperatorSelected(ev) {

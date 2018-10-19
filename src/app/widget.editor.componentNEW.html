@@ -2396,9 +2396,9 @@
                             title="Select the field to filter on"
                             >
                             <select id="selects_3" *ngIf="dataSchema"
-                                [(ngModel)]="filterField"
+                                [(ngModel)]="filterFieldName"
                                 (change)="filterFieldSelected($event)"
-                                name="filterField"
+                                name="filterFieldName"
                                 >
                                 <option *ngFor="let row of dataSchema; let i = index">
                                     {{ row.name }}
