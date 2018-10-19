@@ -1898,6 +1898,10 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         this.sizeField = this.draggedField;
         this.isDragoverSizes = false;
 
+        // Replace letter-buttons.  NB: this must sync with HTML code
+        let postion: number = this.sizeField.indexOf(' X Y C');
+        this.sizeField = this.sizeField.substring(0, postion != -1 ? postion : this.sizeField.length)
+
         let fieldType:string = this.getFieldType(this.draggedField);
         this.localWidget.graphSizeType = this.defaultGraphTypeField(fieldType, 'type');
         this.localWidget.graphSizeTypeName = this.defaultGraphTypeField(fieldType, 'name');
