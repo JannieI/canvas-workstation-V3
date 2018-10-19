@@ -1692,6 +1692,14 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
 
     }
 
+    clickFillYfield(fieldName: string) {
+        // Click icon to fill this field into X field
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickFillYfield', '@Start');
+        
+        this.dropYField(null, fieldName);
+
+    }
+
     dragstartField(ev) {
         // Event trigger when start Dragging a Field in the list
         this.globalFunctionService.printToConsole(this.constructor.name,'dragstartField', '@Start');
