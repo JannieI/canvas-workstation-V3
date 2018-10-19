@@ -11038,10 +11038,10 @@ console.warn('xx gv spec', specification);
         // Color field
         if (widget.graphColorField != '') {
             let colorBinMax: any = false;
-            if (widget.graphYMaxBins > 0) {
-                colorBinMax = {"maxbins": widget.graphYMaxBins};
+            if (widget.graphColorMaxBins > 0) {
+                colorBinMax = {"maxbins": widget.graphColorMaxBins};
             } else {
-                colorBinMax = widget.graphYbin;
+                colorBinMax = widget.graphColorMaxBins;
             };
 
             specification['encoding']['color'] = {
