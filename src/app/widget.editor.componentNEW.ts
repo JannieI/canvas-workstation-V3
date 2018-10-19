@@ -23,7 +23,7 @@ import { GlobalVariableService }      from './global-variable.service';
 
 // Functions
 import { compile }                    from 'vega-lite';
-import { parse }                      from 'vega';
+import { parse, field }                      from 'vega';
 import { View }                       from 'vega';
 import { warn } from 'vega-lite/build/src/log';
 // import { forEach } from 'vega-lite/build/src/encoding';
@@ -1688,10 +1688,9 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         // Click icon to fill this field into X field
         this.globalFunctionService.printToConsole(this.constructor.name,'clickFillXfield', '@Start');
         
-        this.dropXField(fieldName);
+        this.dropXField(null, fieldName);
 
     }
-
 
     dragstartField(ev) {
         // Event trigger when start Dragging a Field in the list
@@ -1795,6 +1794,10 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
             ev.dataTransfer.dropEffect = "move"
             var data = ev.dataTransfer.getData("text");
         };
+
+        // Replace letter-buttons.  NB: this must sync with HTML code
+        let postion: number = fieldName.indexOf(' X Y C');
+        fieldName = fieldName.substring(0, postion != -1 ? postion : fieldName.length)
 
         let dataSchemaIndex: number = this.dataSchema.findIndex(
             dsc => dsc.name == fieldName
