@@ -1832,6 +1832,10 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
             var data = ev.dataTransfer.getData("text");
         };
 
+        // Replace letter-buttons.  NB: this must sync with HTML code
+        let postion: number = fieldName.indexOf(' X Y C');
+        fieldName = fieldName.substring(0, postion != -1 ? postion : fieldName.length)
+
         // Show X icon
         this.showYDeleteIcon = true;
 
