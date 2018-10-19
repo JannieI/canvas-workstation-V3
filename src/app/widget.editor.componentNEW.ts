@@ -1974,6 +1974,10 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         this.detailField = this.draggedField;
         this.isDragoverDetail = false;
 
+        // Replace letter-buttons.  NB: this must sync with HTML code
+        let postion: number = this.detailField.indexOf(' X Y C');
+        this.detailField = this.detailField.substring(0, postion != -1 ? postion : this.detailField.length)
+
         let fieldType:string = this.getFieldType(this.draggedField);
         this.localWidget.graphDetailType = this.defaultGraphTypeField(fieldType, 'type');
         this.localWidget.graphDetailTypeName = this.defaultGraphTypeField(fieldType, 'name');
