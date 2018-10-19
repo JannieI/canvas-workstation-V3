@@ -1700,6 +1700,14 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
 
     }
 
+    clickFillColorField(fieldName: string) {
+        // Click icon to fill this field into X field
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickFillColorField', '@Start');
+        
+        this.dropColour(null, fieldName);
+
+    }
+
     dragstartField(ev) {
         // Event trigger when start Dragging a Field in the list
         this.globalFunctionService.printToConsole(this.constructor.name,'dragstartField', '@Start');
