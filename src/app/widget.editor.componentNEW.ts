@@ -1949,6 +1949,10 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         this.columnField = this.draggedField;
         this.isDragoverColumn = false;
 
+        // Replace letter-buttons.  NB: this must sync with HTML code
+        let postion: number = this.columnField.indexOf(' X Y C');
+        this.columnField = this.columnField.substring(0, postion != -1 ? postion : this.columnField.length)
+
         let fieldType:string = this.getFieldType(this.draggedField);
         this.localWidget.graphColumnType = this.defaultGraphTypeField(fieldType, 'type');
         this.localWidget.graphColumnTypeName = this.defaultGraphTypeField(fieldType, 'name');
