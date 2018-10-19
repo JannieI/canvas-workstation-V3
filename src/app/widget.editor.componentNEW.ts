@@ -1870,6 +1870,10 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         var data = ev.dataTransfer.getData("text");
         this.colorField = this.draggedField;
 
+        // Replace letter-buttons.  NB: this must sync with HTML code
+        let postion: number = this.colorField.indexOf(' X Y C');
+        this.colorField = this.colorField.substring(0, postion != -1 ? postion : this.colorField.length)
+
         // Fill the default and allowed types of Vega field types
         let fieldType:string = this.getFieldType(this.draggedField);
         this.localWidget.graphColorType = this.defaultGraphTypeField(fieldType, 'type');
