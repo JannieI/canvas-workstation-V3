@@ -1855,7 +1855,7 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         // Show X icon
         this.showYDeleteIcon = true;
 
-        // Show the panel with X properties
+        // Show the panel with Y properties
         this.showFieldYPropertiesTitle = true;
 
         this.yField = fieldName;
@@ -1869,9 +1869,23 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         this.localWidget.graphYtimeUnit ='';
     }
 
-    dropColour(ev) {
+    dropColour(ev, fieldName: string = '') {
         // Event trigger when the dragged Field is dropped the Colour field
         this.globalFunctionService.printToConsole(this.constructor.name,'dropColour', '@Start');
+
+        // Set
+        if (fieldName == '') {
+            fieldName = this.draggedField;
+        };
+        if (ev != null) {
+            ev.preventDefault();
+            ev.dataTransfer.dropEffect = "move"
+            var data = ev.dataTransfer.getData("text");
+        };
+
+        // Replace letter-buttons.  NB: this must sync with HTML code
+        let postion: number = fieldName.indexOf(' X Y C');
+        fieldName = fieldName.substring(0, postion != -1 ? postion : fieldName.length)
 
         // Show X icon
         this.showColourDeleteIcon = true;
@@ -1879,19 +1893,14 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         // Show the panel with X properties
         this.showFieldColorPropertiesTitle = true;
 
-        ev.preventDefault();
-        ev.dataTransfer.dropEffect = "move"
+        // ev.preventDefault();
+        // ev.dataTransfer.dropEffect = "move"
         // Get the id of the target and add the moved element to the target's DOM
-
-        var data = ev.dataTransfer.getData("text");
-        this.colorField = this.draggedField;
-
-        // Replace letter-buttons.  NB: this must sync with HTML code
-        let postion: number = this.colorField.indexOf(' X Y C');
-        this.colorField = this.colorField.substring(0, postion != -1 ? postion : this.colorField.length)
+        // var data = ev.dataTransfer.getData("text");
+        this.colorField = fieldName;
 
         // Fill the default and allowed types of Vega field types
-        let fieldType:string = this.getFieldType(this.draggedField);
+        let fieldType:string = this.getFieldType(fieldName);
         this.localWidget.graphColorType = this.defaultGraphTypeField(fieldType, 'type');
         this.localWidget.graphColorTypeName = this.defaultGraphTypeField(fieldType, 'name');
         this.localWidget.graphColorTimeUnit ='';
