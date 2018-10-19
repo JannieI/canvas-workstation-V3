@@ -2024,6 +2024,10 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         this.y2Field = this.draggedField;
         this.isDragoverY2 = false;
 
+        // Replace letter-buttons.  NB: this must sync with HTML code
+        let postion: number = this.y2Field.indexOf(' X Y C');
+        this.y2Field = this.y2Field.substring(0, postion != -1 ? postion : this.y2Field.length)
+
         let fieldType:string = this.getFieldType(this.draggedField);
         this.localWidget.graphY2Type = this.defaultGraphTypeField(fieldType, 'type');
         this.localWidget.graphY2TypeName = this.defaultGraphTypeField(fieldType, 'name');
