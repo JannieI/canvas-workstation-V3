@@ -229,7 +229,7 @@ const widgetTemplate: Widget =
             "sequence": 0,
             "transformationType": ""
         }],
-        "graphCalculation": [],
+        "graphCalculations": [],
         "graphFilters": [],
         "sampleNumberRows": 0,
 
@@ -10876,16 +10876,16 @@ console.warn('xx gv spec', specification);
 
 
         // Calculated Fields
-        if (widget.graphCalculation == null) {        
-            widget.graphCalculation = [];
+        if (widget.graphCalculations == null) {        
+            widget.graphCalculations = [];
         };
-        for (var i = 0; i < widget.graphCalculation.length; i++) {
+        for (var i = 0; i < widget.graphCalculations.length; i++) {
 
             // Add to the transformation channel
             specification['transform'].push(
                 {
-                        "calculate": widget.graphCalculation[i].calculatedExpression,
-                        "as": widget.graphCalculation[i].calculateAs
+                        "calculate": widget.graphCalculations[i].calculatedExpression,
+                        "as": widget.graphCalculations[i].calculateAs
                 }
             );
         };

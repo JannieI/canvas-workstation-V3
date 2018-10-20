@@ -2506,6 +2506,10 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         this.localWidget.graphData = this.globalVariableService
             .currentDatasets[dataSetIndex].data;
 
+        // Reset
+        this.localWidget.graphFilters = [];
+        this.localWidget.graphCalculations = [];
+
         // Show the Editor form
         this.showDatasourceMain = false;
 
@@ -3184,13 +3188,13 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         };
 
         // Remove from localWidget
-        if (this.localWidget.graphCalculation == null) {        
-            this.localWidget.graphCalculation = [];
+        if (this.localWidget.graphCalculations == null) {        
+            this.localWidget.graphCalculations = [];
         };
-        let graphCalculationIndex: number = this.localWidget.graphCalculation.findIndex(gcal =>
+        let graphCalculationIndex: number = this.localWidget.graphCalculations.findIndex(gcal =>
             gcal.calculateAs == this.calculatedAs);
         if (graphCalculationIndex >= 0) {
-            this.localWidget.graphCalculation.splice(graphCalculationIndex, 1);
+            this.localWidget.graphCalculations.splice(graphCalculationIndex, 1);
         };
 
         // Remove from local var
@@ -3230,8 +3234,8 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         };
 
         // Add Calculated field to Field List
-        if (this.localWidget.graphCalculation == null) {        
-            this.localWidget.graphCalculation = [];
+        if (this.localWidget.graphCalculations == null) {        
+            this.localWidget.graphCalculations = [];
         };
         let schemaIndex: number = this.dataSchema.findIndex(ds => ds.name == this.calculatedAs);
         if (schemaIndex >= 0) {
@@ -3260,15 +3264,15 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         };
 
         // Add / Update to localWidget
-        let transformationIndex: number = this.localWidget.graphCalculation.findIndex(gcal =>
+        let transformationIndex: number = this.localWidget.graphCalculations.findIndex(gcal =>
             gcal.calculateAs == this.calculatedAs);
         if (transformationIndex >= 0) {
-            this.localWidget.graphCalculation[transformationIndex].calculatedExpression =
+            this.localWidget.graphCalculations[transformationIndex].calculatedExpression =
                 this.calculatedExpression;
-            this.localWidget.graphCalculation[transformationIndex].calculateAs =
+            this.localWidget.graphCalculations[transformationIndex].calculateAs =
                 this.calculatedAs;
         } else {
-            this.localWidget.graphCalculation.push(graphCalculation);
+            this.localWidget.graphCalculations.push(graphCalculation);
         };
 
     }

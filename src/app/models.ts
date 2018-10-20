@@ -1178,7 +1178,7 @@ export class Widget {
     // Transformations: Bin
 
     // Transformations: Calculate
-    graphCalculation: GraphCalculation[];   // Array of calculations
+    graphCalculations: GraphCalculation[];   // Array of calculations
 
     // Transformations: Filter
     graphFilters: GraphFilter[];            // Array of filters
