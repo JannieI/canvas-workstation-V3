@@ -3224,27 +3224,24 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         };
 
         // Update the localWidget
-        let graphTransformationSpec: GraphCalculation = {
-            transformationType: "calculate",
+        let graphCalculation: GraphCalculation = {
+            id: 0,
+            sequence: 0,               // Sequence Nr - for LATER user
             underlyingFieldName: "",
-            filterOperator: "",
-            filterValue: "",
-            sampleRows: 0,
             calculatedExpression: this.calculatedExpression,
-            calculateAs: this.calculatedAs,
-            selectionName: ""
+            calculateAs: this.calculatedAs
         };
 
         // Add / Update to localWidget
-        let transformationIndex: number = this.localWidget.graphTransformations.findIndex(ftr =>
-            ftr.transformationType == 'calculate'  &&  ftr.calculateAs == this.calculatedAs);
+        let transformationIndex: number = this.localWidget.graphCalculation.findIndex(gcal =>
+            gcal.calculateAs == this.calculatedAs);
         if (transformationIndex >= 0) {
-            this.localWidget.graphTransformations[transformationIndex].calculatedExpression =
+            this.localWidget.graphCalculation[transformationIndex].calculatedExpression =
                 this.calculatedExpression;
-            this.localWidget.graphTransformations[transformationIndex].calculateAs =
+            this.localWidget.graphCalculation[transformationIndex].calculateAs =
                 this.calculatedAs;
         } else {
-            this.localWidget.graphTransformations.push(graphTransformationSpec);
+            this.localWidget.graphCalculation.push(graphCalculation);
         };
 
         this.showCalculatedAreaProperties = false;

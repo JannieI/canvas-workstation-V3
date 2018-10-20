@@ -11178,136 +11178,134 @@ console.warn('xx gv spec', specification);
 
 
         // Filter
-        filterTransformation = widget.graphTransformations.filter(
-            ftr => ftr.transformationType == 'filter'
-        );
+        let graphFilters = widget.graphFilters.slice();
 
-        for (var i = 0; i < filterTransformation.length; i++) {
+        for (var i = 0; i < graphFilters.length; i++) {
 
             let filterSpec: any = null;
             let filterFieldDataType: string = 'string';
             let filterFieldDataTypeIndex: number = widget.dataschema.findIndex(
-                dat => dat.name == filterTransformation[i].underlyingFieldName
+                dat => dat.name == graphFilters[i].underlyingFieldName
             );
 
             if (filterFieldDataTypeIndex >= 0) {
                 filterFieldDataType = widget.dataschema[filterFieldDataTypeIndex].type;
             };
 
-            if (filterTransformation[i].filterOperator == 'Equal') {
+            if (graphFilters[i].filterOperator == 'Equal') {
                 if (filterFieldDataType == 'string') {
                     filterSpec =
                         {"filter":
                             {
-                                "field": filterTransformation[i].underlyingFieldName,
-                                "equal": filterTransformation[i].filterValue
+                                "field": graphFilters[i].underlyingFieldName,
+                                "equal": graphFilters[i].filterValue
                             }
                         };
                 } else {
                     filterSpec =
                         {"filter":
                             {
-                                "field": filterTransformation[0].underlyingFieldName,
-                                "equal": +filterTransformation[0].filterValue
+                                "field": graphFilters[0].underlyingFieldName,
+                                "equal": +graphFilters[0].filterValue
                             }
                         };
                 };
             };
 
-            if (filterTransformation[i].filterOperator == 'Less Than') {
+            if (graphFilters[i].filterOperator == 'Less Than') {
 
                 if (filterFieldDataType == 'string') {
                     filterSpec =
                         {"filter":
                             {
-                                "field": filterTransformation[i].underlyingFieldName,
-                                "lt": filterTransformation[i].filterValue
+                                "field": graphFilters[i].underlyingFieldName,
+                                "lt": graphFilters[i].filterValue
                             }
                         };
                 } else {
                     filterSpec =
                         {"filter":
                             {
-                                "field": filterTransformation[i].underlyingFieldName,
-                                "lt": +filterTransformation[i].filterValue
+                                "field": graphFilters[i].underlyingFieldName,
+                                "lt": +graphFilters[i].filterValue
                             }
                         };
                 };
 
             };
 
-            if (filterTransformation[i].filterOperator == 'Less Than Equal') {
+            if (graphFilters[i].filterOperator == 'Less Than Equal') {
 
                 if (filterFieldDataType == 'string') {
                     filterSpec =
                         {"filter":
                             {
-                                "field": filterTransformation[i].underlyingFieldName,
-                                "lte": filterTransformation[i].filterValue
+                                "field": graphFilters[i].underlyingFieldName,
+                                "lte": graphFilters[i].filterValue
                             }
                         };
                 } else {
                     filterSpec =
                         {"filter":
                             {
-                                "field": filterTransformation[i].underlyingFieldName,
-                                "lte": +filterTransformation[i].filterValue
+                                "field": graphFilters[i].underlyingFieldName,
+                                "lte": +graphFilters[i].filterValue
                             }
                         };
                 };
             };
 
-            if (filterTransformation[i].filterOperator == 'Greater Than') {
+            if (graphFilters[i].filterOperator == 'Greater Than') {
 
                 if (filterFieldDataType == 'string') {
                     filterSpec =
                         {"filter":
                             {
-                                "field": filterTransformation[i].underlyingFieldName,
-                                "gt": filterTransformation[i].filterValue
+                                "field": graphFilters[i].underlyingFieldName,
+                                "gt": graphFilters[i].filterValue
                             }
                         };
                 } else {
                     filterSpec =
                         {"filter":
                             {
-                                "field": filterTransformation[i].underlyingFieldName,
-                                "gt": +filterTransformation[i].filterValue
+                                "field": graphFilters[i].underlyingFieldName,
+                                "gt": +graphFilters[i].filterValue
                             }
                         };
                 };
             };
 
-            if (filterTransformation[i].filterOperator == 'Greater Than Equal') {
+            if (graphFilters[i].filterOperator == 'Greater Than Equal') {
 
                 if (filterFieldDataType == 'string') {
                     filterSpec =
                         {"filter":
                             {
-                                "field": filterTransformation[i].underlyingFieldName,
-                                "gte": filterTransformation[i].filterValue
+                                "field": graphFilters[i].underlyingFieldName,
+                                "gte": graphFilters[i].filterValue
                             }
                         };
                 } else {
                     filterSpec =
                         {"filter":
                             {
-                                "field": filterTransformation[i].underlyingFieldName,
-                                "gte": +filterTransformation[i].filterValue
+                                "field": graphFilters[i].underlyingFieldName,
+                                "gte": +graphFilters[i].filterValue
                             }
                         };
                 };
             };
 
-            if (filterTransformation[i].filterOperator == 'Range') {
+            if (graphFilters[i].filterOperator == 'Range') {
 
-                let fromTo: string[] = filterTransformation[i].filterValue.split(',');
+                let fromTo: string[] = graphFilters[i].filterValue.split(',');
                 if (fromTo.length == 2) {
                     if (filterFieldDataType == 'number') {
                         filterSpec =
                             {"filter":
                                 {
-                                    "field": filterTransformation[i].underlyingFieldName,
+                                    "field": graphFilters[i].underlyingFieldName,
                                     "range": [ +fromTo[0], +fromTo[1] ]
                                 }
                             };
@@ -11316,7 +11314,7 @@ console.warn('xx gv spec', specification);
                         filterSpec =
                             {"filter":
                                 {
-                                    "field": filterTransformation[i].underlyingFieldName,
+                                    "field": graphFilters[i].underlyingFieldName,
                                     "range": [ fromTo[0], fromTo[1] ]
                                 }
                             };
@@ -11324,16 +11322,16 @@ console.warn('xx gv spec', specification);
                 };
             };
 
-            if (filterTransformation[i].filterOperator == 'One Of') {
+            if (graphFilters[i].filterOperator == 'One Of') {
 
-                let fromTo: string[] = filterTransformation[i].filterValue.split(',');
+                let fromTo: string[] = graphFilters[i].filterValue.split(',');
                 if (fromTo.length > 0) {
                     if (filterFieldDataType == 'number') {
                         let fromToNumber: number[] = fromTo.map(x => +x);
                         filterSpec =
                             {"filter":
                                 {
-                                    "field": filterTransformation[i].underlyingFieldName,
+                                    "field": graphFilters[i].underlyingFieldName,
                                     "oneOf": fromToNumber
                                 }
                             };
@@ -11342,7 +11340,7 @@ console.warn('xx gv spec', specification);
                         filterSpec =
                             {"filter":
                                 {
-                                    "field": filterTransformation[i].underlyingFieldName,
+                                    "field": graphFilters[i].underlyingFieldName,
                                     "oneOf": fromTo
                                 }
                             };
@@ -11350,26 +11348,26 @@ console.warn('xx gv spec', specification);
                 };
             };
 
-            if (filterTransformation[i].filterOperator == 'Valid') {
+            if (graphFilters[i].filterOperator == 'Valid') {
 
                 if (filterFieldDataType == 'number') {
                     filterSpec =
                         {"filter":
                             {
-                                "field": filterTransformation[i].underlyingFieldName,
+                                "field": graphFilters[i].underlyingFieldName,
                                 "valid": true
                             }
                         };
                 };
             };
 
-            if (filterTransformation[i].filterOperator == 'Selection') {
+            if (graphFilters[i].filterOperator == 'Selection') {
 
                 filterSpec = [
                     {"filter":
                         {
-                            "field": filterTransformation[i].underlyingFieldName,
-                            "selection": filterTransformation[i].filterValue
+                            "field": graphFilters[i].filterValue,
+                            "selection": graphFilters[i].filterValue
                         }
                     }
                 ];
