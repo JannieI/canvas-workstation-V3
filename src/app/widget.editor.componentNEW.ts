@@ -85,10 +85,13 @@ export interface dataSchemaInterface {
                 if (this.showCalculatedAreaProperties) {
                     this.clickCalculatedApply();
                     return;
-                } else {
-                    this.clickSave('Saved');
+                };
+                if (this.showFilterAreaProperties) {
+                    this.clickFilterAdd();
                     return;
-                }
+                };
+                this.clickSave('Saved');
+                return;
             }
         };
 
