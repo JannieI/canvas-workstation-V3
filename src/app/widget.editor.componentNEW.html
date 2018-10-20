@@ -2361,7 +2361,7 @@
 
 
                     <!-- FILTER -->
-                    <div class="editorFilterTitle">
+                    <div class="editorFilterButton">
                         <button
                             style="border: 1px solid transparent; color: gray;"
                             class="btn btn-sm btn-secondary"
@@ -2442,7 +2442,6 @@
                             </div>
                         </div>
 
-
                         <div class="btn-group btn-link">
                             <button class="btn" (click)="clickFilterClose()">
                                 Close
@@ -2453,7 +2452,9 @@
                             <button class="btn" (click)="clickFilterApply()">
                                 Apply
                             </button>
-            
+                        </div>
+
+                        <div class="editorFilterGrid">
                             <clr-datagrid class="datagrid-compact">
                                 <clr-dg-column>FieldName</clr-dg-column>
                                 <clr-dg-column>Operator</clr-dg-column>
@@ -2485,13 +2486,8 @@
                                 </clr-dg-row>
 
                             </clr-datagrid>
-
-
-
-
-
-
                         </div>
+
                     </div>
 
                     <!-- SELECTION -->

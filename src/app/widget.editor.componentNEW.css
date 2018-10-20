@@ -2081,7 +2081,7 @@ clr-dg-cell {
             overflow-x: scroll;
         }
 
-        .editorFilterTitle {
+        .editorFilterButton {
             grid-column-start: 34;
             /* autoprefixer: off */
             grid-column-end: 36;
@@ -2094,10 +2094,10 @@ clr-dg-cell {
                 border: 1px solid gray;
                 border-radius: 6px;
                 box-shadow: 2px 2px gray;
-                grid-column-start: 30;
+                grid-column-start: 20;
                 /* autoprefixer: off */
                 grid-column-end: 45;
-                grid-row-start: 7;
+                grid-row-start: 2;
                 grid-row-end: 21;
                 margin-left: 6px;
                 margin-top: 6px;
@@ -2160,6 +2160,11 @@ clr-dg-cell {
                     line-height: 0.8rem;
                     margin: 3px;
                     width: 68%;
+                }
+                .editorFilterGrid {
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin: 3px;
                 }
 
         .editorSelection {
