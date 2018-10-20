@@ -1371,6 +1371,11 @@ This document describes items for later versions of Canvas.
 
     Widget Editor - Adv: Features to consider at a later stage
     --------------------
+    - Types:
+        - suggest graph types based on fields selected (ie 1 quantitative field means could do a
+        tick or pie chart)
+        - consider reset button ?  Not sure what use case will be
+        
     - Spec: 
         - allow to import and then reverse engineer what the Widget fields are.  Easy to do, but looks of work and has to be updated in parallel to any changes made to the other way.
         - also, allow custom specs to be created, sorting out %x, %y, %color parameters where these fields must be placed.

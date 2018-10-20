@@ -287,7 +287,7 @@ export interface dataSchemaInterface {
     showY2DeleteIcon: boolean = false;
     sortOrder: number = 1;
     specification: any;              // Vega-Lite, Vega, or other grammar
-    specificationJSON: string = 'Graph Specification';
+    specificationJSON: any = 'Graph Specification';
     vegaColorSchemes: string[] = [
         "None",
         "accent",
@@ -2979,13 +2979,14 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         // Toggle between Graph and Specification
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowSpecificationArea', '@Start');
 
-        this.showSpecification = !this.showSpecification
-        this.specificationJSON = JSON.stringify(this.specification);
-
-        // Re-show current graph
+        // Show spec
         if (!this.showSpecification) {
-            // this.showGraph(this.currentGraphID);
+            this.specificationJSON = JSON.parse(JSON.stringify(this.specification));
+            this.specificationJSON['data'] = null;
+            this.specificationJSON = JSON.stringify(this.specificationJSON);
         };
+
+        this.showSpecification =!this.showSpecification;
 
     }
 
@@ -3126,7 +3127,7 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         };
 
         // Create the filter spec with Max ID
-        if (this.localWidget.graphFilters == null) {        
+        if (this.localWidget.graphFilters == null) {
             this.localWidget.graphFilters = [];
         };
         if (this.filterID == -1) {
@@ -3150,7 +3151,7 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
                 filterValueTo: this.filterValueTo,
                 isActive: true
             };
-    
+
             // Update the localWidget
             this.localWidget.graphFilters.push(graphFilter);
         } else {
@@ -3166,7 +3167,7 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
                 this.localWidget.graphFilters[gridFilterIndex].filterValueTo =
                     this.filterValueTo;
             };
-    
+
         };
 
         // Clear out form
@@ -3231,7 +3232,7 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         };
 
         // Remove from localWidget
-        if (this.localWidget.graphCalculations == null) {        
+        if (this.localWidget.graphCalculations == null) {
             this.localWidget.graphCalculations = [];
         };
         let graphCalculationIndex: number = this.localWidget.graphCalculations.findIndex(gcal =>
@@ -3277,7 +3278,7 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         };
 
         // Add Calculated field to Field List
-        if (this.localWidget.graphCalculations == null) {        
+        if (this.localWidget.graphCalculations == null) {
             this.localWidget.graphCalculations = [];
         };
         let schemaIndex: number = this.dataSchema.findIndex(ds => ds.name == this.calculatedAs);
