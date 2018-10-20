@@ -2453,6 +2453,41 @@
                             <button class="btn" (click)="clickFilterApply()">
                                 Apply
                             </button>
+            
+                            <clr-datagrid class="datagrid-compact">
+                                <clr-dg-column>FieldName</clr-dg-column>
+                                <clr-dg-column>Operator</clr-dg-column>
+                                <clr-dg-column>Value</clr-dg-column>
+                                <clr-dg-column>From</clr-dg-column>
+                                <clr-dg-column>To</clr-dg-column>
+                                <clr-dg-column>Active?</clr-dg-column>
+                                <clr-dg-column>Delete?</clr-dg-column>
+
+                                <clr-dg-row *clrDgItems="let row of localWidget.graphFilters; let i = index"
+                                    (click)="clickGraphFilterRowSelect(row.name)"
+                                    >
+                                    <clr-dg-cell>{{ row.filterFieldName }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.filterOperator }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.filterValue }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.filterValueFrom }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.filterValueTo }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.isActive }}</clr-dg-cell>
+                                    <clr-dg-cell>
+                                        <clr-icon *ngIf="row.isCalculated"
+                                            shape="trash"
+                                            size="10"
+                                            >
+                                        </clr-icon>
+                                    </clr-dg-cell>
+                                </clr-dg-row>
+
+                            </clr-datagrid>
+
+
+
+
+
+
                         </div>
                     </div>
 

@@ -2974,7 +2974,7 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
     }
 
     clickFilterDelete() {
-        // Delete the selected
+        // Delete the selected Filter
         this.globalFunctionService.printToConsole(this.constructor.name,'clickFilterDelete', '@Start');
 
         // Reset
@@ -2985,12 +2985,6 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         if (gridFilterIndex >= 0) {
             this.localWidget.graphFilters.splice(gridFilterIndex, 1);
         };
-
-        this.filterFieldName = '';
-        this.filterOperator = '';
-        this.filterValue = '';
-        this.filterValueFrom = '';
-        this.filterValueTo = '';
 
         this.showFilterAreaProperties = false;
     }
@@ -3046,8 +3040,8 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
                 filterFieldName: this.filterFieldName,
                 filterOperator: this.filterOperator,
                 filterValue: this.filterValue,
-                filterValueFrom: this.filterValue,
-                filterValueTo: this.filterValue,
+                filterValueFrom: this.filterValueFrom,
+                filterValueTo: this.filterValueTo,
                 isActive: true
             };
     
