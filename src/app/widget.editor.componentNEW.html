@@ -683,7 +683,7 @@
                             </div>
                         </div>
 
-                        <!-- Title limit: The maximum allowed length in pixels of legend labels.-->
+                        <!-- Title limit: The maximum allowed length in pixels of the labels.-->
                         <div class="editorLineContainer">
                             <div class="editorTitleLengthTitle" *ngIf="showFieldTitleProperties">
                             Length:
@@ -1575,7 +1575,7 @@
                             </div>
                         </div>
 
-                        <!-- X Axis: The maximum allowed length in pixels of legend labels.-->
+                        <!-- X Axis: The maximum allowed length in pixels of the labels.-->
                         <div class="editorLineContainer">
                             <div class="editorGraphXaxisLabelLengthTitle" *ngIf="showFieldXAxis">
                             Length:
@@ -1733,7 +1733,7 @@
                             </div>
                         </div>
 
-                        <!-- Y Axis: The maximum allowed length in pixels of legend labels.-->
+                        <!-- Y Axis: The maximum allowed length in pixels of the labels.-->
                         <div class="editorLineContainer">
                             <div class="editorGraphYaxisLabelLengthTitle" *ngIf="showFieldYAxis">
                             Length:
@@ -1751,7 +1751,7 @@
                         </div>
 
 
-                        <!-- Size Channel Title Bar -->
+                        <!-- Size: Channel Title Bar -->
                         <div class="editorSizeContainerTitle"
                             (click)="clickShowSizeProperties()"
                             >
@@ -1774,6 +1774,7 @@
                             </clr-icon>
                         </div>
 
+                        <!-- Size: Field -->
                         <div class="editorLineContainer">
                             <div class="editorSizeFieldTitle" *ngIf="showFieldSizeProperties">
                                 Field:
@@ -1797,7 +1798,7 @@
                             </div>
                         </div>
 
-                        <!-- Size type -->
+                        <!-- Size: type -->
                         <div class="editorLineContainer">
                             <div class="editorGraphSizeTypeTitle" *ngIf="showFieldSizeProperties">
                                 Type:
@@ -1817,7 +1818,7 @@
                             </div>
                         </div>
 
-                        <!-- Size aggregate -->
+                        <!-- Size: aggregate -->
                         <div class="editorLineContainer">
                             <div class="editorGraphSizeAggregateTitle" *ngIf="showFieldSizeProperties">
                                 Aggregate:
@@ -1836,7 +1837,7 @@
                             </div>
                         </div>
 
-                        <!-- Size bin -->
+                        <!-- Size: bin -->
                         <div class="editorLineContainer">
                             <div class="editorGraphSizeBinTitle" *ngIf="showFieldSizeProperties">
                                 Bin:
@@ -1865,7 +1866,7 @@
                         </div>
 
 
-                        <!-- Legend-Axis Title Bar -->
+                        <!-- Legend-Axis: Title Bar -->
                         <div class="editorLegendContainerTitle" *ngIf="showFieldColorPropertiesTitle"
                             (click)="clickShowLegendProperties()"
                             >
@@ -1882,6 +1883,7 @@
                             </clr-icon>
                         </div>
 
+                        <!-- Legend-Axis: Hide -->
                         <div class="editorLineContainer">
                             <div class="editorGraphLegendHideTitle" *ngIf="showFieldLegend">
                                 Hide:
@@ -1895,7 +1897,7 @@
                             </div>
                         </div>
 
-                        <!-- Legend Title -->
+                        <!-- Legend-Axis: Title -->
                         <div class="editorLineContainer">
                             <div class="editorGraphLegendTitleTitle" *ngIf="showFieldLegend">
                                 Title:
@@ -1918,7 +1920,7 @@
                             </div>
                         </div>
 
-                        <!-- Legend Format -->
+                        <!-- Legend-Axis: Format -->
                         <div class="editorLineContainer">
                             <div class="editorGraphLegendFormatTitle" *ngIf="showFieldLegend">
                             Format:
@@ -1933,7 +1935,34 @@
                             </div>
                         </div>
 
-                        <!-- Legend: The maximum allowed length in pixels of legend labels.-->
+                        <!-- Legend-Axis: Labels -->
+                        <div class="editorLineContainer">
+                            <div class="editorGraphLegendLabelsTitle" *ngIf="showFieldLegend">
+                            Labels:
+                            </div>
+                            <div class="editorGraphLegendLabels" *ngIf="showFieldLegend">
+                                <input type="checkbox"
+                                    [(ngModel)]="localWidget.graphLegendLabels"
+                                    name="graphLegendLabels"
+                                    title="Show labels (T/F)"
+                                    >
+                            </div>
+                            <div class="select editorGraphLegendLabelsColor" *ngIf="showFieldLegend">
+                                <select [(ngModel)]="localWidget.graphLegendLabelColorName"
+                                    name="graphLegendLabelColorName"
+                                    (change)="clickSelectXLabelColor($event)"
+                                    title="Color of the X labels"
+                                    >
+                                    <option *ngFor="let row of backgroundcolors"
+                                        [style.background-color]="row.cssCode"
+                                        >
+                                        {{ row.name }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+    
+                        <!-- Legend-Axis:: The maximum allowed length in pixels of legend labels.-->
                         <div class="editorLineContainer">
                             <div class="editorGraphLegendLabelLengthTitle" *ngIf="showFieldLegend">
                             Length:
@@ -1951,7 +1980,7 @@
                         </div>
 
 
-                        <!-- Row Channel Title Bar -->
+                        <!-- Row: Channel Title Bar -->
                         <div class="editorRowContainerTitle"
                             (click)="clickShowRowProperties()"
                             >
@@ -1974,7 +2003,7 @@
                             </clr-icon>
                         </div>
 
-                        <!-- Row Field -->
+                        <!-- Row: Field -->
                         <div class="editorLineContainer">
                             <div class="editorRowFieldTitle" *ngIf="showFieldRowProperties">
                                 Field:
@@ -1999,7 +2028,7 @@
                             </div>
                         </div>
 
-                        <!-- Row type -->
+                        <!-- Row: type -->
                         <div class="editorLineContainer">
                             <div class="editorGraphRowTypeTitle" *ngIf="showFieldRowProperties">
                                 Type:
@@ -2020,7 +2049,7 @@
                         </div>
 
 
-                        <!-- Column Channel Title Bar -->
+                        <!-- Column: Channel Title Bar -->
                         <div class="editorColumnContainerTitle"
                             (click)="clickShowColumnProperties()"
                             >
@@ -2043,6 +2072,7 @@
                             </clr-icon>
                         </div>
 
+                        <!-- Column: Field -->
                         <div class="editorLineContainer">
                             <div class="editorColumnFieldTitle" *ngIf="showFieldColumnProperties">
                                 Field:
@@ -2067,7 +2097,7 @@
                             </div>
                         </div>
 
-                        <!-- Column type -->
+                        <!-- Column: type -->
                         <div class="editorLineContainer">
                             <div class="editorGraphColumnTypeTitle" *ngIf="showFieldColumnProperties">
                                 Type:
@@ -2088,7 +2118,7 @@
                         </div>
 
 
-                        <!-- Detail Channel Title Bar -->
+                        <!-- Detail: Channel Title Bar -->
                         <div class="editorDetailContainerTitle"
                             (click)="clickShowDetailProperties()"
                             >
@@ -2111,6 +2141,7 @@
                             </clr-icon>
                         </div>
 
+                        <!-- Detail: Field -->
                         <div class="editorLineContainer">
                             <div class="editorDetailFieldTitle" *ngIf="showFieldDetailProperties">
                                 Field:
@@ -2135,7 +2166,7 @@
                             </div>
                         </div>
 
-                        <!-- Detail type -->
+                        <!-- Detail: type -->
                         <div class="editorLineContainer">
                             <div class="editorGraphDetailTypeTitle" *ngIf="showFieldDetailProperties">
                                 Type:
@@ -2156,7 +2187,7 @@
                         </div>
 
 
-                        <!-- X2 Channel Title Bar -->
+                        <!-- X2: Channel Title Bar -->
                         <div class="editorX2ContainerTitle"
                             (click)="clickShowX2Properties()"
                             >
@@ -2179,6 +2210,7 @@
                             </clr-icon>
                         </div>
 
+                        <!-- X2: Field -->
                         <div class="editorLineContainer">
                             <div class="editorX2FieldTitle" *ngIf="showFieldX2Properties">
                                 Field:
@@ -2203,7 +2235,7 @@
                             </div>
                         </div>
 
-                        <!-- X2 type -->
+                        <!-- X2: type -->
                         <div class="editorLineContainer">
                             <div class="editorGraphX2TypeTitle" *ngIf="showFieldX2Properties">
                                 Type:
@@ -2224,7 +2256,7 @@
                         </div>
 
 
-                        <!-- Y2 Channel Title Bar -->
+                        <!-- Y2: Channel Title Bar -->
                         <div class="editorY2ContainerTitle"
                             (click)="clickShowY2Properties()"
                             >
@@ -2247,6 +2279,7 @@
                             </clr-icon>
                         </div>
 
+                        <!-- Y2: Field -->
                         <div class="editorLineContainer">
                             <div class="editorY2FieldTitle" *ngIf="showFieldY2Properties">
                                 Field:
@@ -2271,7 +2304,7 @@
                             </div>
                         </div>
 
-                        <!-- Y2 type -->
+                        <!-- Y2: type -->
                         <div class="editorLineContainer">
                             <div class="editorGraphY2TypeTitle" *ngIf="showFieldY2Properties">
                                 Type:

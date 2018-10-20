@@ -1698,6 +1698,28 @@ clr-dg-cell {
                 width: 15px;
             }
 
+            .editorGraphLegendLabelsTitle {
+                display: inline-block;
+                font-size: 0.5rem;
+                line-height: 0.8rem;
+                margin-left: 4px;
+                width: 38px;
+            }
+            .editorGraphLegendLabels {
+                display: inline-block;
+                font-size: 0.5rem;
+                line-height: 0.8rem;
+                margin: 3px;
+                width: 15px;
+            }
+            .editorGraphLegendLabelsColor {
+                display: inline-block;
+                font-size: 0.5rem;
+                line-height: 0.8rem;
+                margin: 3px;
+                width: 135px;
+            }
+
             .editorGraphLegendLabelLengthTitle {
                 display: inline-block;
                 font-size: 0.5rem;

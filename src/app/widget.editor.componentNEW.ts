@@ -1132,6 +1132,7 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
             // Get local vars - easier for ngFor
             this.containerHasContextMenus = this.localWidget.containerHasContextMenus;
             this.containerHasTitle = this.localWidget.containerHasTitle;
+            this.filterNrActive = this.localWidget.graphFilters.filter(gflt => gflt.isActive).length;
 
             let arrayIndex: number = this.localDatasources.findIndex(
                 ds => ds.id == this.localWidget.datasourceID
