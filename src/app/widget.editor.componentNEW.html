@@ -2483,7 +2483,12 @@
                                     Clear
                                 </button>
                                 <button class="btn" (click)="clickFilterAdd()">
-                                    Add
+                                    <span *ngIf="filterID==-1">
+                                        Add
+                                    </span> 
+                                    <span *ngIf="filterID!=-1">
+                                        Save
+                                    </span> 
                                 </button>
                             </div>
                         </div>

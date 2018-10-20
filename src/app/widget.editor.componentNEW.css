@@ -2096,7 +2096,7 @@ clr-dg-cell {
                 box-shadow: 2px 2px gray;
                 grid-column-start: 20;
                 /* autoprefixer: off */
-                grid-column-end: 51;
+                grid-column-end: 49;
                 grid-row-start: 2;
                 grid-row-end: 21;
                 margin-left: 6px;
@@ -2203,7 +2203,7 @@ clr-dg-cell {
                     height: 154px;
                     line-height: 0.8rem;
                     margin: 3px;
-                    width: 90%;
+                    width: 95%;
                 }
 
         .editorSelection {

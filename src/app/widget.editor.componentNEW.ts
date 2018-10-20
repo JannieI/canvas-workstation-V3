@@ -2975,7 +2975,7 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         this.showFilterAreaProperties = false;
     }
 
-    clickGraphFilterRowSelect(index: number, filterID : number) {
+    clickGraphFilterRowSelect(index: number, selectedFilterID : number) {
         // Delete the selected Filter
         this.globalFunctionService.printToConsole(this.constructor.name,'clickGraphFilterRowSelect', '@Start');
 
@@ -2984,7 +2984,7 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
 
         // Store vars
         let gridFilterIndex: number = this.localWidget.graphFilters.findIndex(gflt =>
-            gflt.id == this.filterID);
+            gflt.id == selectedFilterID);
         if (gridFilterIndex >= 0) {
             this.filterID = this.localWidget.graphFilters[gridFilterIndex].id;
             this.filterFieldName = this.localWidget.graphFilters[gridFilterIndex].filterFieldName;
@@ -2993,14 +2993,6 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
             this.filterValueFrom = this.localWidget.graphFilters[gridFilterIndex].filterValueFrom;
             this.filterValueTo = this.localWidget.graphFilters[gridFilterIndex].filterValueTo;
 
-            this.localWidget.graphFilters[gridFilterIndex].filterOperator =
-                this.filterOperator;
-            this.localWidget.graphFilters[gridFilterIndex].filterValue =
-                this.filterValue;
-            this.localWidget.graphFilters[gridFilterIndex].filterValueFrom =
-                this.filterValue;
-            this.localWidget.graphFilters[gridFilterIndex].filterValueTo =
-                this.filterValue;
         } else {
             this.filterID = -1;
             this.filterFieldName = '';
@@ -3014,6 +3006,8 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
     clickFilterClear() {
         // Clear the Filter fields
         this.globalFunctionService.printToConsole(this.constructor.name,'clickFilterClear', '@Start');
+
+        this.filterID = -1;
         this.filterFieldName = '';
         this.filterOperator = '';
         this.filterValue = '';
@@ -3104,12 +3098,15 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
                 this.localWidget.graphFilters[gridFilterIndex].filterValue =
                     this.filterValue;
                 this.localWidget.graphFilters[gridFilterIndex].filterValueFrom =
-                    this.filterValue;
+                    this.filterValueFrom;
                 this.localWidget.graphFilters[gridFilterIndex].filterValueTo =
-                    this.filterValue;
+                    this.filterValueTo;
             };
     
         };
+
+        // Clear out form
+        this.clickFilterClear()
     }
 
     filterFieldSelected(ev) {
