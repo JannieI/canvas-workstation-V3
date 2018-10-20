@@ -237,8 +237,9 @@ export interface dataSchemaInterface {
     rowField: string = dragFieldMessage;
     // sampleNumberRows: number = 0;
     selectedDescription: string = '';
-    selectedFieldIndex: number = -1;
     selectedDSName: string = '';
+    selectedFieldIndex: number = -1;
+    selectedGraphFilterRowIndex: number = -1;
     selectedRowIndex: number = -1;
     selectedRowID: number;
     sizeField: string = dragFieldMessage;
@@ -2973,6 +2974,43 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         this.showFilterAreaProperties = false;
     }
 
+    clickGraphFilterRowSelect(index: number, filterID : number) {
+        // Delete the selected Filter
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickGraphFilterRowSelect', '@Start');
+
+        // Set highlighted row
+        this.selectedGraphFilterRowIndex = index;
+
+        // Store vars
+        let gridFilterIndex: number = this.localWidget.graphFilters.findIndex(gflt =>
+            gflt.id == this.filterID);
+        if (gridFilterIndex >= 0) {
+            this.filterID = this.localWidget.graphFilters[gridFilterIndex].id;
+            this.filterFieldName = this.localWidget.graphFilters[gridFilterIndex].filterFieldName;
+            this.filterOperator = this.localWidget.graphFilters[gridFilterIndex].filterOperator;
+            this.filterValue = this.localWidget.graphFilters[gridFilterIndex].filterValue;
+            this.filterValueFrom = this.localWidget.graphFilters[gridFilterIndex].filterValueFrom;
+            this.filterValueTo = this.localWidget.graphFilters[gridFilterIndex].filterValueTo;
+
+            this.localWidget.graphFilters[gridFilterIndex].filterOperator =
+                this.filterOperator;
+            this.localWidget.graphFilters[gridFilterIndex].filterValue =
+                this.filterValue;
+            this.localWidget.graphFilters[gridFilterIndex].filterValueFrom =
+                this.filterValue;
+            this.localWidget.graphFilters[gridFilterIndex].filterValueTo =
+                this.filterValue;
+        } else {
+            this.filterID = -1;
+            this.filterFieldName = '';
+            this.filterOperator = '';
+            this.filterValue = '';
+            this.filterValueFrom = '';
+            this.filterValueTo = '';
+        };
+
+
+    }
     clickFilterDelete() {
         // Delete the selected Filter
         this.globalFunctionService.printToConsole(this.constructor.name,'clickFilterDelete', '@Start');

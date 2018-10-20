@@ -2464,7 +2464,9 @@
                                 <clr-dg-column>Delete?</clr-dg-column>
 
                                 <clr-dg-row *clrDgItems="let row of localWidget.graphFilters; let i = index"
-                                    (click)="clickGraphFilterRowSelect(row.name)"
+                                    [style.background-color]="(i == selectedGraphFilterRowIndex)? '#123456' : 'white'"
+                                    [style.color]="(i == selectedGraphFilterRowIndex)? 'white' : 'gray'"
+                                    (click)="clickGraphFilterRowSelect(i, row.id)"
                                     >
                                     <clr-dg-cell>{{ row.filterFieldName }}</clr-dg-cell>
                                     <clr-dg-cell>{{ row.filterOperator }}</clr-dg-cell>
@@ -2476,6 +2478,7 @@
                                         <clr-icon *ngIf="row.isCalculated"
                                             shape="trash"
                                             size="10"
+                                            (click)="clickFilterDelete()"
                                             >
                                         </clr-icon>
                                     </clr-dg-cell>
