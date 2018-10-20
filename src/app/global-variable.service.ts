@@ -10876,17 +10876,13 @@ console.warn('xx gv spec', specification);
 
 
         // Calculated Fields
-        let filterTransformation: GraphCalculation[] = widget.
-            graphTransformations.filter(ftr => ftr.transformationType == 'calculate'
-        );
-
-        for (var i = 0; i < filterTransformation.length; i++) {
+        for (var i = 0; i < widget.graphCalculation.length; i++) {
 
             // Add to the transformation channel
             specification['transform'].push(
                 {
-                        "calculate": filterTransformation[i].calculatedExpression,
-                        "as": filterTransformation[i].calculateAs
+                        "calculate": widget.graphCalculation[i].calculatedExpression,
+                        "as": widget.graphCalculation[i].calculateAs
                 }
             );
         };
@@ -11185,7 +11181,7 @@ console.warn('xx gv spec', specification);
             let filterSpec: any = null;
             let filterFieldDataType: string = 'string';
             let filterFieldDataTypeIndex: number = widget.dataschema.findIndex(
-                dat => dat.name == graphFilters[i].underlyingFieldName
+                dat => dat.name == graphFilters[i].filterFieldName
             );
 
             if (filterFieldDataTypeIndex >= 0) {
@@ -11197,7 +11193,7 @@ console.warn('xx gv spec', specification);
                     filterSpec =
                         {"filter":
                             {
-                                "field": graphFilters[i].underlyingFieldName,
+                                "field": graphFilters[i].filterFieldName,
                                 "equal": graphFilters[i].filterValue
                             }
                         };
@@ -11205,7 +11201,7 @@ console.warn('xx gv spec', specification);
                     filterSpec =
                         {"filter":
                             {
-                                "field": graphFilters[0].underlyingFieldName,
+                                "field": graphFilters[0].filterFieldName,
                                 "equal": +graphFilters[0].filterValue
                             }
                         };
@@ -11218,7 +11214,7 @@ console.warn('xx gv spec', specification);
                     filterSpec =
                         {"filter":
                             {
-                                "field": graphFilters[i].underlyingFieldName,
+                                "field": graphFilters[i].filterFieldName,
                                 "lt": graphFilters[i].filterValue
                             }
                         };
@@ -11226,7 +11222,7 @@ console.warn('xx gv spec', specification);
                     filterSpec =
                         {"filter":
                             {
-                                "field": graphFilters[i].underlyingFieldName,
+                                "field": graphFilters[i].filterFieldName,
                                 "lt": +graphFilters[i].filterValue
                             }
                         };
@@ -11240,7 +11236,7 @@ console.warn('xx gv spec', specification);
                     filterSpec =
                         {"filter":
                             {
-                                "field": graphFilters[i].underlyingFieldName,
+                                "field": graphFilters[i].filterFieldName,
                                 "lte": graphFilters[i].filterValue
                             }
                         };
@@ -11248,7 +11244,7 @@ console.warn('xx gv spec', specification);
                     filterSpec =
                         {"filter":
                             {
-                                "field": graphFilters[i].underlyingFieldName,
+                                "field": graphFilters[i].filterFieldName,
                                 "lte": +graphFilters[i].filterValue
                             }
                         };
@@ -11261,7 +11257,7 @@ console.warn('xx gv spec', specification);
                     filterSpec =
                         {"filter":
                             {
-                                "field": graphFilters[i].underlyingFieldName,
+                                "field": graphFilters[i].filterFieldName,
                                 "gt": graphFilters[i].filterValue
                             }
                         };
@@ -11269,7 +11265,7 @@ console.warn('xx gv spec', specification);
                     filterSpec =
                         {"filter":
                             {
-                                "field": graphFilters[i].underlyingFieldName,
+                                "field": graphFilters[i].filterFieldName,
                                 "gt": +graphFilters[i].filterValue
                             }
                         };
@@ -11282,7 +11278,7 @@ console.warn('xx gv spec', specification);
                     filterSpec =
                         {"filter":
                             {
-                                "field": graphFilters[i].underlyingFieldName,
+                                "field": graphFilters[i].filterFieldName,
                                 "gte": graphFilters[i].filterValue
                             }
                         };
@@ -11290,7 +11286,7 @@ console.warn('xx gv spec', specification);
                     filterSpec =
                         {"filter":
                             {
-                                "field": graphFilters[i].underlyingFieldName,
+                                "field": graphFilters[i].filterFieldName,
                                 "gte": +graphFilters[i].filterValue
                             }
                         };
@@ -11305,7 +11301,7 @@ console.warn('xx gv spec', specification);
                         filterSpec =
                             {"filter":
                                 {
-                                    "field": graphFilters[i].underlyingFieldName,
+                                    "field": graphFilters[i].filterFieldName,
                                     "range": [ +fromTo[0], +fromTo[1] ]
                                 }
                             };
@@ -11314,7 +11310,7 @@ console.warn('xx gv spec', specification);
                         filterSpec =
                             {"filter":
                                 {
-                                    "field": graphFilters[i].underlyingFieldName,
+                                    "field": graphFilters[i].filterFieldName,
                                     "range": [ fromTo[0], fromTo[1] ]
                                 }
                             };
@@ -11331,7 +11327,7 @@ console.warn('xx gv spec', specification);
                         filterSpec =
                             {"filter":
                                 {
-                                    "field": graphFilters[i].underlyingFieldName,
+                                    "field": graphFilters[i].filterFieldName,
                                     "oneOf": fromToNumber
                                 }
                             };
@@ -11340,7 +11336,7 @@ console.warn('xx gv spec', specification);
                         filterSpec =
                             {"filter":
                                 {
-                                    "field": graphFilters[i].underlyingFieldName,
+                                    "field": graphFilters[i].filterFieldName,
                                     "oneOf": fromTo
                                 }
                             };
@@ -11354,7 +11350,7 @@ console.warn('xx gv spec', specification);
                     filterSpec =
                         {"filter":
                             {
-                                "field": graphFilters[i].underlyingFieldName,
+                                "field": graphFilters[i].filterFieldName,
                                 "valid": true
                             }
                         };
