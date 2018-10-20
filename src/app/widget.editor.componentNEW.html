@@ -2551,12 +2551,25 @@
                                     <clr-dg-cell>{{ row.filterValue }}</clr-dg-cell>
                                     <clr-dg-cell>{{ row.filterValueFrom }}</clr-dg-cell>
                                     <clr-dg-cell>{{ row.filterValueTo }}</clr-dg-cell>
-                                    <clr-dg-cell>{{ row.isActive }}</clr-dg-cell>
+                                    <clr-dg-cell>
+                                        <clr-icon *ngIf="row.isActive"
+                                            shape="check"
+                                            size="10"
+                                            (dblclick)="dblClickFilterMakeInActive()"
+                                            >
+                                        </clr-icon>
+                                        <clr-icon *ngIf="!row.isActive"
+                                            shape="times"
+                                            size="10"
+                                            (dblclick)="dblClickFilterMakeActive(row.id)"
+                                            >
+                                        </clr-icon>
+                                    </clr-dg-cell>
                                     <clr-dg-cell>
                                         <clr-icon
                                             shape="trash"
                                             size="10"
-                                            (dblclick)="dblClickFilterDelete()"
+                                            (dblclick)="dblClickFilterDelete(row.id)"
                                             >
                                         </clr-icon>
                                     </clr-dg-cell>

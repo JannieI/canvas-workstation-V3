@@ -3040,6 +3040,20 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         this.filterValueTo = '';
     }
 
+    dblClickFilterMakeInActive(filterID: number) {
+        // Delete the selected Filter
+        this.globalFunctionService.printToConsole(this.constructor.name,'dblClickFilterDelete', '@Start');
+
+        // Reset
+        this.filterErrorMessage = '';
+
+        let gridFilterIndex: number = this.localWidget.graphFilters.findIndex(gflt =>
+            gflt.id == this.filterID);
+        if (gridFilterIndex >= 0) {
+            this.localWidget.graphFilters[gridFilterIndex].isActive = false;
+        };
+    }
+    
     dblClickFilterDelete() {
         // Delete the selected Filter
         this.globalFunctionService.printToConsole(this.constructor.name,'dblClickFilterDelete', '@Start');
