@@ -11072,25 +11072,8 @@ console.warn('xx gv spec', specification);
                 if (!widget.graphLegendTitleCheckbox) {
                     specification['encoding']['color']['legend'] = 
                         {
-                            "labelLimit": widget.graphDimensionRight, 
                             "title": null
                         };
-
-            // specification['encoding']['x']['axis']['labels'] = widget.graphXaxisLabels;
-            // if (widget.graphXaxisLabelAngle != 0){
-            //     specification['encoding']['x']['axis']['labelAngle'] = widget.graphXaxisLabelAngle;
-            // };
-            // if (widget.graphXaxisLabels) {
-            //     specification['encoding']['x']['axis']['labelColor'] = widget.graphXaxisLabelColor;
-            //     specification['encoding']['x']['axis']['tickColor'] = widget.graphXaxisLabelColor;
-            //     specification['encoding']['x']['axis']['titleColor'] = widget.graphXaxisLabelColor;
-            // };
-
-                    if (widget.graphLegendLabels) {
-                        specification['encoding']['color']['legend'].labelColor = widget.graphLegendLabelColor,
-                        specification['encoding']['color']['legend'].tickColor = widget.graphLegendLabelColor,
-                        specification['encoding']['color']['legend'].titleColor = widget.graphLegendLabelColor
-                    };
                 } else {
                     if (widget.graphLegendTitle != ''  &&  widget.graphLegendTitle != undefined) {
                         specification['encoding']['color']['legend'] =
@@ -11104,26 +11087,8 @@ console.warn('xx gv spec', specification);
                             specification['encoding']['color']['legend'].titleColor = widget.graphLegendLabelColor
                         };
         
-                    } else {
-                        specification['encoding']['color']['legend'] =
-                            {
-                                "labelLimit": widget.graphDimensionRight
-                            };
-                        if (widget.graphLegendLabels) {
-                            specification['encoding']['color']['legend'].labelColor = widget.graphLegendLabelColor,
-                            specification['encoding']['color']['legend'].tickColor = widget.graphLegendLabelColor,
-                            specification['encoding']['color']['legend'].titleColor = widget.graphLegendLabelColor
-                        };
                     };
                 };
-
-                specification['encoding']['color']['axis'] = {
-                    "labelColor": widget.graphXaxisLabelColor,
-                    "tickColor": widget.graphXaxisLabelColor,
-                    "titleColor": widget.graphXaxisLabelColor
-                };
-
-                // specification['encoding']['color']['legend'] = {"labelLimit": 40, "maxExtent": 70};
             };
 
 
