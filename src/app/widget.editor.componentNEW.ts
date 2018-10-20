@@ -211,6 +211,8 @@ export interface dataSchemaInterface {
     filterFieldName: string = '';
     filterOperator: string = '';
     filterValue: string = '';
+    filterValueFrom: string = '';
+    filterValueTo: string = '';
     graphColor: string[];
     graphLayers: number[] = [1, 2, 3,];  // TODO - fix hardcoding
     // graphXaggregateVegaLiteName: string = '';
@@ -2971,23 +2973,24 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         this.showFilterAreaProperties = false;
     }
 
-    clickFilterClear() {
-        // Clear the Filter Area, and reset filters
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickFilterClear', '@Start');
+    clickFilterDelete() {
+        // Delete the selected
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickFilterDelete', '@Start');
 
         // Reset
         this.filterErrorMessage = '';
 
-        // Remove from localWidget
-        // let transformationIndex: number = this.localWidget.graphTransformations.findIndex(ftr =>
-        //     ftr.transformationType == 'filter'  &&  ftr.underlyingFieldName == this.filterFieldName);
-        // if (transformationIndex >= 0) {
-        //     this.localWidget.graphTransformations.splice(transformationIndex, 1);
-        // };
+        let gridFilterIndex: number = this.localWidget.graphFilters.findIndex(gflt =>
+            gflt.id == this.filterID);
+        if (gridFilterIndex >= 0) {
+            this.localWidget.graphFilters.splice(gridFilterIndex, 1);
+        };
 
         this.filterFieldName = '';
         this.filterOperator = '';
         this.filterValue = '';
+        this.filterValueFrom = '';
+        this.filterValueTo = '';
 
         this.showFilterAreaProperties = false;
     }
