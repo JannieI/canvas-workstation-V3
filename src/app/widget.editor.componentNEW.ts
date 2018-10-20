@@ -2773,6 +2773,20 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         };
     }
 
+    clickSelectLegendLabelColor(ev: any) {
+        // Select Colour for Legend gridlines
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectLegendLabelColor', '@Start');
+
+        this.localWidget.graphLegendLabelColorName = ev.target.value;
+        this.localWidget.graphLegendLabelColor = this.localWidget.graphLegendLabelColorName;
+        let localIndex: number = this.backgroundcolors.findIndex(bg =>
+            bg.name == this.localWidget.graphLegendLabelColorName
+        );
+        if (localIndex >= 0) {
+            this.localWidget.graphLegendLabelColor = this.backgroundcolors[localIndex].cssCode;
+        };
+    }
+
     clickSelectYLabelColor(ev: any) {
         // Select Colour for Y labels
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectYLabelColor', '@Start');

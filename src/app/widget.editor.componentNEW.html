@@ -1950,7 +1950,7 @@
                             <div class="select editorGraphLegendLabelsColor" *ngIf="showFieldLegend">
                                 <select [(ngModel)]="localWidget.graphLegendLabelColorName"
                                     name="graphLegendLabelColorName"
-                                    (change)="clickSelectXLabelColor($event)"
+                                    (change)="clickSelectLegendLabelColor($event)"
                                     title="Color of the X labels"
                                     >
                                     <option *ngFor="let row of backgroundcolors"
