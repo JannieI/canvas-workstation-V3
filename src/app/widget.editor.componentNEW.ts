@@ -3009,9 +3009,18 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
             this.filterValueFrom = '';
             this.filterValueTo = '';
         };
-
-
     }
+
+    clickFilterClear() {
+        // Clear the Filter fields
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickFilterClear', '@Start');
+        this.filterFieldName = '';
+        this.filterOperator = '';
+        this.filterValue = '';
+        this.filterValueFrom = '';
+        this.filterValueTo = '';
+    }
+
     clickFilterDelete() {
         // Delete the selected Filter
         this.globalFunctionService.printToConsole(this.constructor.name,'clickFilterDelete', '@Start');

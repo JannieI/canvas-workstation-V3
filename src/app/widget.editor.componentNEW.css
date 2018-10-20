@@ -2113,7 +2113,7 @@ clr-dg-cell {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
-                    margin-left: 4px;
+                    margin-left: 14px;
                     width: 64px;
                 }
                 .editorFilterField {
@@ -2130,7 +2130,7 @@ clr-dg-cell {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
-                    margin-left: 4px;
+                    margin-left: 24px;
                     width: 64px;
                 }
                 .editorFilterOperator {
@@ -2141,14 +2141,14 @@ clr-dg-cell {
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin: 3px;
-                    width: 60px;
+                    width: 200px;
                 }
 
                 .editorFilterValueTitle {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
-                    margin-left: 4px;
+                    margin-left: 14px;
                     width: 64px;
                 }
                 .editorFilterValue {
@@ -2159,14 +2159,14 @@ clr-dg-cell {
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin: 3px;
-                    width: 90px;
+                    width: 200px;
                 }
 
                 .editorFilterValueFromTitle {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
-                    margin-left: 4px;
+                    margin-left: 14px;
                     width: 64px;
                 }
                 .editorFilterValueFrom {
@@ -2177,14 +2177,14 @@ clr-dg-cell {
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin: 3px;
-                    width: 90px;
+                    width: 200px;
                 }
 
                 .editorFilterValueToTitle {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
-                    margin-left: 4px;
+                    margin-left: 24px;
                     width: 64px;
                 }
                 .editorFilterValueTo {
@@ -2195,7 +2195,7 @@ clr-dg-cell {
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin: 3px;
-                    width: 90px;
+                    width: 200px;
                 }
 
                 .editorFilterGrid {
@@ -2203,6 +2203,7 @@ clr-dg-cell {
                     height: 154px;
                     line-height: 0.8rem;
                     margin: 3px;
+                    width: 90%;
                 }
 
         .editorSelection {
