@@ -45,7 +45,7 @@ import { DataQualityIssue}            from './models';
 import { DataOwnership}               from './models';
 import { DatasourcePermission}        from './models';
 import { DatasourcePivot }            from './models';
-import { GraphTransformation }        from './models';
+import { GraphCalculation }        from './models';
 import { PaletteButtonBar }           from './models';
 import { PaletteButtonsSelected }     from './models';
 import { StatusBarMessage }           from './models';
@@ -10871,7 +10871,7 @@ console.warn('xx gv spec', specification);
 
 
         // Calculated Fields
-        let filterTransformation: GraphTransformation[] = widget.
+        let filterTransformation: GraphCalculation[] = widget.
             graphTransformations.filter(ftr => ftr.transformationType == 'calculate'
         );
 

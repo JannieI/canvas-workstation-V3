@@ -1389,6 +1389,11 @@ This document describes items for later versions of Canvas.
         - data ownners (nr of issues, text of last one)
         - hide and order fields here ?
 
+    - Transformations:
+        - this is a BIG opportunity
+        - allow for Sorted array of transformations, any type in any order
+        - add Window, Rank, etc
+        
     -   Calculated field
         - add more than one, see Compass / Vega example
         - full UI to select fields and formulae in easy way, also give proper space for params, ie some take 1 param, some take 2, validate (try catch or some clever way)

@@ -998,15 +998,11 @@ export class dataSchemaInterface {
     calculatedExpression: string;   // Formula for calculated fields
 }
 
-export class GraphTransformation {
+export class GraphCalculation {
     transformationType: string;     // Type of transformation: filter, sample, calculated, etc
     underlyingFieldName: string;    // Underlying DB or calculated field Name (not used in calculations here)
-    filterOperator: string;         // ie gt, equal, etc.  Can also be 'selection'
-    filterValue: string;            // ie January or 5 (stored as text, converted in code)
-    sampleRows: number;             // Optional nr of rows to sample, 0 means None
     calculatedExpression: string;   // Expression, ie sin(datum.ValueTraded)
     calculateAs: string;            // Name of resultant calculated field
-    selectionName: string;          // Name of selection (defined earlier) for Operand selection
 }
 
 export class WidgetLayout {
@@ -1167,7 +1163,23 @@ export class Widget {
     graphTitleOrientation: string;
 
     // Transformations
-    graphTransformations: GraphTransformation[];
+    // Transformations: Aggregate
+    // Transformations: Bin
+    // Transformations: Calculate
+    // Transformations: Filter
+    // Transformations: Flatten
+    // Transformations: Fold
+    // Transformations: Impute
+    // Transformations: Lookup
+
+    // Transformations: Sample
+    sampleNumberRows: number;           // Random rows to sample EACH time, 0 means all rows
+
+    // Transformations: Stack
+    // Transformations: Time Unit
+    // Transformations: Window
+
+    graphTransformations: GraphCalculation[];
 
     // Filters
     graphFilters: GraphFilter[];
@@ -1297,7 +1309,6 @@ export class Widget {
     // Data
     graphUrl: string;
     graphData: any;
-    sampleNumberRows: number;           // Random rows to sample EACH time, 0 means all rows
 
     // Table - to be determined later ...
     tableBackgroundColor: string;       // Actual colour (CSS name or HEX code)

@@ -13,7 +13,7 @@ import { CSScolor }                   from './models';
 import { Datasource }                 from './models';
 import { GraphFilter }               from './models';
 import { GraphHistory }               from './models';
-import { GraphTransformation }        from './models';
+import { GraphCalculation }        from './models';
 import { Widget }                     from './models';
 import { WidgetLayout }               from './models';
 import { WidgetCheckpoint }           from './models';
@@ -3046,7 +3046,7 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         this.localWidget.graphFilters.push(graphFilter);
 
         // Update the localWidget
-        let graphTransformationSpec: GraphTransformation = {
+        let graphTransformationSpec: GraphCalculation = {
             transformationType: "filter",
             underlyingFieldName: this.filterFieldName,
             filterOperator: this.filterOperator,
@@ -3192,7 +3192,7 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         };
 
         // Update the localWidget
-        let graphTransformationSpec: GraphTransformation = {
+        let graphTransformationSpec: GraphCalculation = {
             transformationType: "calculate",
             underlyingFieldName: "",
             filterOperator: "",
