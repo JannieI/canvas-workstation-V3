@@ -209,6 +209,7 @@ export interface dataSchemaInterface {
     filterErrorMessage: string = ' ';
     filterID: number = -1;
     filterFieldName: string = '';
+    filterNrActive: number = 0;
     filterOperator: string = '';
     filterValue: string = '';
     filterValueFrom: string = '';
@@ -3027,9 +3028,9 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         this.showFilterAreaProperties = false;
     }
 
-    clickFilterApply() {
-        // Close the Filter Area
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickFilterApply', '@Start');
+    clickFilterAdd() {
+        // Add a Filter
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickFilterAdd', '@Start');
 
         // Reset
         this.filterErrorMessage = '';
@@ -3100,9 +3101,6 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
             };
     
         };
-
-        // Hide filter form
-        this.showFilterAreaProperties = false;
     }
 
     filterFieldSelected(ev) {

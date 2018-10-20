@@ -2373,6 +2373,11 @@
                                 >
                             </clr-icon>
                             Filter
+                            
+                            <span *ngIf="filterNrActive > 0"
+                                class="badge badge-5">{{ filterNrActive }}
+                            </span>
+
                         </button>
                     </div>
                     <div class="editorFilterArea" *ngIf="showFilterAreaProperties">
@@ -2449,8 +2454,8 @@
                             <button class="btn" (click)="clickFilterClear()">
                                 Clear
                             </button>
-                            <button class="btn" (click)="clickFilterApply()">
-                                Apply
+                            <button class="btn" (click)="clickFilterAdd()">
+                                Add
                             </button>
                         </div>
 
