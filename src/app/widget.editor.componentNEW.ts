@@ -2977,6 +2977,7 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         // Reset
         this.filterErrorMessage = '';
 
+        this.filterNrActive = this.localWidget.graphFilters.filter(gflt => gflt.isActive).length;
         this.showFilterAreaProperties = false;
     }
 
