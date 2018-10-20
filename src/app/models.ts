@@ -999,7 +999,8 @@ export class dataSchemaInterface {
 }
 
 export class GraphCalculation {
-    transformationType: string;     // Type of transformation: filter, sample, calculated, etc
+    id: number;                     // Unique ID
+    sequence: number;               // Sequence Nr
     underlyingFieldName: string;    // Underlying DB or calculated field Name (not used in calculations here)
     calculatedExpression: string;   // Expression, ie sin(datum.ValueTraded)
     calculateAs: string;            // Name of resultant calculated field
