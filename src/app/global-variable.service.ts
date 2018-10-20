@@ -332,7 +332,10 @@ const widgetTemplate: Widget =
         "graphLegendTitleCheckbox": true,
         "graphLegendTitle": "",
         "graphLegendFormat": "",
-
+        "graphLegendLabels": true,
+        "graphLegendLabelColorName": '',
+        "graphLegendLabelColor": '',
+    
         "graphSizeField": "",
         "graphSizeType": "",
         "graphSizeTypeName": "",

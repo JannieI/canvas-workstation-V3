@@ -1271,6 +1271,9 @@ export class Widget {
     graphLegendTitleCheckbox: boolean;
     graphLegendTitle: string;
     graphLegendFormat: string;
+    graphLegendLabels: boolean;
+    graphLegendLabelColorName: string;               // Name of color for Y labels
+    graphLegendLabelColor: string;                   // Actual color of Y labels in hex, rgb, etc
 
     // Size
     graphSizeField: string;
