@@ -11220,7 +11220,7 @@ console.warn('xx gv spec', specification);
         if (widget.graphFilters == null) {        
             widget.graphFilters = [];
         };
-        let graphFilters = widget.graphFilters.slice();
+        let graphFilters = widget.graphFilters.filter(gflt => gflt.isActive).slice();
 
         for (var i = 0; i < graphFilters.length; i++) {
 
