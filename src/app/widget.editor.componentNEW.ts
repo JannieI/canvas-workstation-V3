@@ -3015,9 +3015,9 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         this.filterValueTo = '';
     }
 
-    clickFilterDelete() {
+    dblClickFilterDelete() {
         // Delete the selected Filter
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickFilterDelete', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'dblClickFilterDelete', '@Start');
 
         // Reset
         this.filterErrorMessage = '';
@@ -3028,7 +3028,8 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
             this.localWidget.graphFilters.splice(gridFilterIndex, 1);
         };
 
-        this.showFilterAreaProperties = false;
+        // Reset
+        this.clickFilterClear();
     }
 
     clickFilterAdd() {

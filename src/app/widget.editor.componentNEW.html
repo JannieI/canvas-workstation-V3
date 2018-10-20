@@ -2515,10 +2515,10 @@
                                     <clr-dg-cell>{{ row.filterValueTo }}</clr-dg-cell>
                                     <clr-dg-cell>{{ row.isActive }}</clr-dg-cell>
                                     <clr-dg-cell>
-                                        <clr-icon *ngIf="row.isCalculated"
+                                        <clr-icon
                                             shape="trash"
                                             size="10"
-                                            (click)="clickFilterDelete()"
+                                            (dblclick)="dblClickFilterDelete()"
                                             >
                                         </clr-icon>
                                     </clr-dg-cell>
