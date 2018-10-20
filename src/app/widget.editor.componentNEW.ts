@@ -3041,8 +3041,8 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
     }
 
     dblClickFilterMakeInActive(filterID: number) {
-        // Delete the selected Filter
-        this.globalFunctionService.printToConsole(this.constructor.name,'dblClickFilterDelete', '@Start');
+        // Make selected Filter inActive
+        this.globalFunctionService.printToConsole(this.constructor.name,'dblClickFilterMakeInActive', '@Start');
 
         // Reset
         this.filterErrorMessage = '';
@@ -3053,7 +3053,21 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
             this.localWidget.graphFilters[gridFilterIndex].isActive = false;
         };
     }
-    
+
+    dblClickFilterMakeActive(filterID: number) {
+        // Make selected Filter Active
+        this.globalFunctionService.printToConsole(this.constructor.name,'dblClickFilterMakeActive', '@Start');
+
+        // Reset
+        this.filterErrorMessage = '';
+
+        let gridFilterIndex: number = this.localWidget.graphFilters.findIndex(gflt =>
+            gflt.id == this.filterID);
+        if (gridFilterIndex >= 0) {
+            this.localWidget.graphFilters[gridFilterIndex].isActive = true;
+        };
+    }
+
     dblClickFilterDelete() {
         // Delete the selected Filter
         this.globalFunctionService.printToConsole(this.constructor.name,'dblClickFilterDelete', '@Start');
