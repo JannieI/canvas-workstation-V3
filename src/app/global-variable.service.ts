@@ -308,6 +308,8 @@ const widgetTemplate: Widget =
 
         "graphTransformations": [],
 
+        "graphFilters": [],
+
         "graphYaxisScaleType": "Default",
         "graphYaxisTitleCheckbox": true,
         "graphYaxisTitle": "",

@@ -1029,7 +1029,7 @@ export class GraphHistory {
     widgetSpec: Widget[]                    // Array of Ws previously stored
 }
 
-export class GraphFilters {
+export class GraphFilter {
     id: number;                             // Unique ID
     filterFieldName: string;                // Name (text) of field
     filterOperator: string;                 // ie Equal, Less Than, etc
@@ -1170,7 +1170,7 @@ export class Widget {
     graphTransformations: GraphTransformation[];
 
     // Filters
-    graphFilters: GraphFilters[];
+    graphFilters: GraphFilter[];
 
     // X
     graphXfield: string;

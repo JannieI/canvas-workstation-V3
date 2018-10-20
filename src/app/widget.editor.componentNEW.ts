@@ -11,7 +11,7 @@ import { ViewChild }                  from '@angular/core';
 // Our models
 import { CSScolor }                   from './models';
 import { Datasource }                 from './models';
-import { GraphFilters }               from './models';
+import { GraphFilter }               from './models';
 import { GraphHistory }               from './models';
 import { GraphTransformation }        from './models';
 import { Widget }                     from './models';
@@ -216,17 +216,6 @@ export interface dataSchemaInterface {
     // graphYaggregateVegaLiteName: string = '';
     graphColorAggregateVegaLiteName: string = '';
     graphHeader: string = 'Graph';
-    graphFilters: GraphFilters[] = [
-        {
-        id: 1,
-        filterFieldName: string;                // Name (text) of field
-        filterOperator: string;                 // ie Equal, Less Than, etc
-        filterValue: string;                    // ie. 12 Japan  1,5  a,b,c  true
-        filterValueFrom: string;                // From value for Range
-        filterValueTo: string;                  // To value for Range
-        isActive: boolean;                      // True if activated, else not used
-    }    
-    ];
     graphHistory: GraphHistory[] = [];
     graphHistoryPosition: number = 0;
     isBusyRetrievingData: boolean = false;
@@ -1049,7 +1038,7 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
             if (this.localWidget.graphDimensionBottom == null) {
                 this.localWidget.graphDimensionBottom = 70;
             };
-    
+
             // Add Fields to selection areas
             if (this.localWidget.graphXfield != ''   &&   this.localWidget.graphXfield != null) {
                 this.showXDeleteIcon = true;
@@ -1148,7 +1137,7 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
             // Reset, Highlight selected row
             this.selectedRowIndex = arrayIndex;
             this.selectedRowID = this.localDatasources[arrayIndex].id;
-            this.selectedDSName = this.localDatasources[arrayIndex].name.slice(0,22) + 
+            this.selectedDSName = this.localDatasources[arrayIndex].name.slice(0,22) +
                 (this.localDatasources[arrayIndex].name.length > 22?  '...'  :  '');
             this.selectedDescription = this.localDatasources[arrayIndex].description;
             this.errorMessage = '';
@@ -1167,7 +1156,7 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
                 // Switch on the preview after the first row was clicked
                 this.showPreview = true;
             };
-            
+
             // Remember ID for next time
             this.globalVariableService.previousGraphEditDSID = this.selectedRowID;
 
@@ -1452,16 +1441,16 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         // Append if requested
         if (createNewHistory) {
             this.graphHistory[layerIndex].widgetSpec.push({
-                ...this.localWidget, ...{ graphData: [] } 
+                ...this.localWidget, ...{ graphData: [] }
             });
             this.graphHistoryPosition = this.graphHistory[layerIndex].widgetSpec.length - 1;
         };
-        
+
         // Calc position
-        this.graphHeader = 'History: showing ' + 
+        this.graphHeader = 'History: showing ' +
             (this.graphHistoryPosition + 1).toString() + ' of ' +
             this.graphHistory[layerIndex].widgetSpec.length.toString();
-        
+
     }
 
     clickBrowsePreviousGraph() {
@@ -1473,15 +1462,15 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
             return;
         };
         this.graphHistoryPosition = this.graphHistoryPosition - 1;
-     
+
         // Recreate a new W spec
         let layerIndex: number = this.graphHistory.findIndex(gh => gh.layer == this.currentGraphLayer);
         let newWidgetSpec: Widget = {
             ...this.graphHistory[layerIndex].widgetSpec[this.graphHistoryPosition],
-             ...{ graphData: this.localWidget.graphData } 
+             ...{ graphData: this.localWidget.graphData }
         };
         this.localWidget = { ... newWidgetSpec };
-        
+
         // Get the graphID
         let graphID: number = -1;
         let widgetGraphIndex: number = this.widgetGraphs.findIndex(
@@ -1509,14 +1498,14 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
             return;
         };
         this.graphHistoryPosition = this.graphHistoryPosition + 1;
-     
+
         // Recreate a new W spec
         let newWidgetSpec: Widget = {
             ...this.graphHistory[layerIndex].widgetSpec[this.graphHistoryPosition],
-             ...{ graphData: this.localWidget.graphData } 
+             ...{ graphData: this.localWidget.graphData }
         };
         this.localWidget = { ... newWidgetSpec };
-        
+
         // Get the graphID
         let graphID: number = -1;
         let widgetGraphIndex: number = this.widgetGraphs.findIndex(
@@ -1670,7 +1659,7 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
     dragstartXField(ev) {
         // Event trigger when start Dragging X Field
         this.globalFunctionService.printToConsole(this.constructor.name,'dragstartXField', '@Start');
-        
+
         ev.dataTransfer.setData("text/plain", ev.target.id);
         this.draggedField = this.xField;
     }
@@ -1678,7 +1667,7 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
     dragstartYField(ev) {
         // Event trigger when start Dragging Y Field
         this.globalFunctionService.printToConsole(this.constructor.name,'dragstartYField', '@Start');
-        
+
         ev.dataTransfer.setData("text/plain", ev.target.id);
         this.draggedField = this.yField;
     }
@@ -1686,7 +1675,7 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
     dragstartColorField(ev) {
         // Event trigger when start Dragging Color Field
         this.globalFunctionService.printToConsole(this.constructor.name,'dragstartColorField', '@Start');
-        
+
         ev.dataTransfer.setData("text/plain", ev.target.id);
         this.draggedField = this.colorField;
     }
@@ -1694,7 +1683,7 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
     clickFillXfield(fieldName: string) {
         // Click icon to fill this field into X field
         this.globalFunctionService.printToConsole(this.constructor.name,'clickFillXfield', '@Start');
-        
+
         this.dropXField(null, fieldName);
 
     }
@@ -1702,7 +1691,7 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
     clickFillYfield(fieldName: string) {
         // Click icon to fill this field into X field
         this.globalFunctionService.printToConsole(this.constructor.name,'clickFillYfield', '@Start');
-        
+
         this.dropYField(null, fieldName);
 
     }
@@ -1710,7 +1699,7 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
     clickFillColorField(fieldName: string) {
         // Click icon to fill this field into X field
         this.globalFunctionService.printToConsole(this.constructor.name,'clickFillColorField', '@Start');
-        
+
         this.dropColour(null, fieldName);
 
     }
@@ -2138,7 +2127,7 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         this.colorField = dragFieldMessage;
         this.localWidget.graphColorField = '';
 
-        
+
         // Hide the panel with properties
         this.showFieldColorPropertiesTitle = false;
         this.showFieldColorProperties = false;
@@ -2411,7 +2400,7 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         this.selectedRowIndex = index;
         let arrayIndex: number = this.localDatasources.findIndex(ds => ds.id == datasourceID);
         this.selectedRowID = datasourceID;
-        this.selectedDSName = this.localDatasources[arrayIndex].name.slice(0,22) + 
+        this.selectedDSName = this.localDatasources[arrayIndex].name.slice(0,22) +
             (this.localDatasources[arrayIndex].name.length > 22?  '...'  :  '');
         this.selectedDescription = this.localDatasources[arrayIndex].description;
         this.errorMessage = '';
@@ -2742,7 +2731,7 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
             this.localWidget.graphXaxisGridColor = this.backgroundcolors[localIndex].cssCode;
         };
     }
-    
+
     clickSelectXLabelColor(ev: any) {
         // Select Colour for X labels
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectXLabelColor', '@Start');
@@ -2756,7 +2745,7 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
             this.localWidget.graphXaxisLabelColor = this.backgroundcolors[localIndex].cssCode;
         };
     }
-    
+
     clickSelectYGridColor(ev: any) {
         // Select Colour for Y gridlines
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectYGridColor', '@Start');
@@ -3029,8 +3018,27 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         if (this.filterOperator == 'Range') {
             this.filterValue.replace(', ', ',');
             console.warn('xx this.filterValue', this.filterValue);
-            
+
         };
+
+        // Update the filter spec
+        let graphFilterID: number = 0;
+        if (this.localWidget.graphFilters.length > 0) {
+            graphFilterID = this.localWidget.graphFilters[this.localWidget.graphFilters.length - 1].id;
+            graphFilterID = graphFilterID + 1;
+        };
+        let graphFilter: GraphFilter = {
+            id: graphFilterID,
+            filterFieldName: this.filterFieldName,
+            filterOperator: this.filterOperator,
+            filterValue: this.filterValue,
+            filterValueFrom: this.filterValue,
+            filterValueTo: this.filterValue,
+            isActive: true
+        };
+
+        // Update the localWidget
+        this.localWidget.graphFilters.push(graphFilter);
 
         // Update the localWidget
         let graphTransformationSpec: GraphTransformation = {
@@ -3048,9 +3056,9 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         let transformationIndex: number = this.localWidget.graphTransformations.findIndex(ftr =>
             ftr.transformationType == 'filter'  &&  ftr.underlyingFieldName == this.filterFieldName);
         if (transformationIndex >= 0) {
-            this.localWidget.graphTransformations[transformationIndex].filterOperator = 
+            this.localWidget.graphTransformations[transformationIndex].filterOperator =
                 this.filterOperator;
-            this.localWidget.graphTransformations[transformationIndex].filterValue = 
+            this.localWidget.graphTransformations[transformationIndex].filterValue =
                 this.filterValue;
         } else {
             this.localWidget.graphTransformations.push(graphTransformationSpec);
@@ -3194,9 +3202,9 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         let transformationIndex: number = this.localWidget.graphTransformations.findIndex(ftr =>
             ftr.transformationType == 'calculate'  &&  ftr.calculateAs == this.calculatedAs);
         if (transformationIndex >= 0) {
-            this.localWidget.graphTransformations[transformationIndex].calculatedExpression = 
+            this.localWidget.graphTransformations[transformationIndex].calculatedExpression =
                 this.calculatedExpression;
-            this.localWidget.graphTransformations[transformationIndex].calculateAs = 
+            this.localWidget.graphTransformations[transformationIndex].calculateAs =
                 this.calculatedAs;
         } else {
             this.localWidget.graphTransformations.push(graphTransformationSpec);
