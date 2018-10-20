@@ -10876,6 +10876,9 @@ console.warn('xx gv spec', specification);
 
 
         // Calculated Fields
+        if (widget.graphCalculation == null) {        
+            widget.graphCalculation = [];
+        };
         for (var i = 0; i < widget.graphCalculation.length; i++) {
 
             // Add to the transformation channel
@@ -11174,6 +11177,9 @@ console.warn('xx gv spec', specification);
 
 
         // Filter
+        if (widget.graphFilters == null) {        
+            widget.graphFilters = [];
+        };
         let graphFilters = widget.graphFilters.slice();
 
         for (var i = 0; i < graphFilters.length; i++) {

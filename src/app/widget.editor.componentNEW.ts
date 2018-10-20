@@ -3163,6 +3163,9 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         };
 
         // Remove from localWidget
+        if (this.localWidget.graphCalculation == null) {        
+            this.localWidget.graphCalculation = [];
+        };
         let graphCalculationIndex: number = this.localWidget.graphCalculation.findIndex(gcal =>
             gcal.calculateAs == this.calculatedAs);
         if (graphCalculationIndex >= 0) {
@@ -3206,6 +3209,9 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         };
 
         // Add Calculated field to Field List
+        if (this.localWidget.graphCalculation == null) {        
+            this.localWidget.graphCalculation = [];
+        };
         let schemaIndex: number = this.dataSchema.findIndex(ds => ds.name == this.calculatedAs);
         if (schemaIndex >= 0) {
             this.dataSchema[schemaIndex].type = this.dataFieldType;
