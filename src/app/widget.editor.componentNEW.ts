@@ -3047,9 +3047,19 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
             this.filterErrorMessage = 'Filter Operator is required.';
             return;
         };
-        if (this.filterOperator != 'Valid') {
+        if (this.filterOperator != 'Valid'  &&  this.filterOperator != 'Range') {
             if (this.filterValue == ''  ||  this.filterValue == undefined) {
                 this.filterErrorMessage = 'Filter Value is required.';
+                return;
+            };
+        };
+        if (this.filterOperator == 'Range') {
+            if (this.filterValueFrom == ''  ||  this.filterValueFrom == undefined) {
+                this.filterErrorMessage = 'Filter From Value is required.';
+                return;
+            };
+            if (this.filterValueTo == ''  ||  this.filterValueTo == undefined) {
+                this.filterErrorMessage = 'Filter To Value is required.';
                 return;
             };
         };
