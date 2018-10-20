@@ -2438,21 +2438,22 @@
                             <div class="editorFilterValueTitle">
                                 Value:
                             </div>
-                            <div class="editorFilterValue">
-                                <input type="text"
-                                    [(ngModel)]="filterValue"
-                                    name="filterValue"
-                                    placeholder="12 Japan  1,5  a,b,c  true"
-                                    title="Enter a value for the filter.  Ranges use x,y for from,to"
-                                    >
-                            </div>
+                        </div>
+
+                        <div class="editorFilterValue" *ngIf="filterOperator!='Range'">
+                            <input type="text"
+                                [(ngModel)]="filterValue"
+                                name="filterValue"
+                                placeholder="12 Japan  1,5  a,b,c  true"
+                                title="Enter a value for the filter.  Ranges use x,y for from,to"
+                                >
                         </div>
 
                         <div *ngIf="filterOperator=='Range'">
-                            <div class="editorFilterValueTitle">
+                            <div class="editorFilterValueFromTitle">
                                 From:
                             </div>
-                            <div class="editorFilterValue">
+                            <div class="editorFilterValueFrom">
                                 <input type="text"
                                     [(ngModel)]="filterValueFrom"
                                     name="filterValueFrom"
@@ -2460,10 +2461,10 @@
                                     title="Enter a From value for the filter for the Range"
                                     >
                             </div>
-                            <div class="editorFilterValueTitle">
+                            <div class="editorFilterValueToTitle">
                                 To:
                             </div>
-                            <div class="editorFilterValue">
+                            <div class="editorFilterValueTo">
                                 <input type="text"
                                     [(ngModel)]="filterValueTo"
                                     name="filterValueTo"
