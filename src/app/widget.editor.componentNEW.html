@@ -2394,48 +2394,49 @@
                             </div>
                         </div>
 
-                        <div class="editorFilterFieldTitle">
-                            Field:
-                        </div>
-                        <div class="select editorFilterField"
-                            title="Select the field to filter on"
-                            >
-                            <select id="selects_3" *ngIf="dataSchema"
-                                [(ngModel)]="filterFieldName"
-                                (change)="filterFieldSelected($event)"
-                                name="filterFieldName"
+                        <div>
+                            <div class="editorFilterFieldTitle">
+                                Field:
+                            </div>
+                            <div class="select editorFilterField"
+                                title="Select the field to filter on"
                                 >
-                                <option *ngFor="let row of dataSchema; let i = index">
-                                    {{ row.name }}
-                                </option>
-                            </select>
-                        </div>
-                        <div class="editorFilterOperatorTitle">
-                            Operator:
-                        </div>
-                        <div class="select editorFilterOperator"
-                            title="Select the operator for the filter"
-                            >
-                            <select id="selects_3"
-                                [(ngModel)]="filterOperator"
-                                (change)="filterOperatorSelected($event)"
-                                name="filterOperator"
-                                >
-                                <option>Less Than</option>
-                                <option>Less Than Equal</option>
-                                <option>Equal</option>
-                                <option>Greater Than</option>
-                                <option>Greater Than Equal</option>
-                                <option>Range</option>
-                                <option>One Of</option>
-                                <option>Valid</option>
-                                <option>Selection</option>
-                            </select>
-                        </div>
+                                <select id="selects_3" *ngIf="dataSchema"
+                                    [(ngModel)]="filterFieldName"
+                                    (change)="filterFieldSelected($event)"
+                                    name="filterFieldName"
+                                    >
+                                    <option *ngFor="let row of dataSchema; let i = index">
+                                        {{ row.name }}
+                                    </option>
+                                </select>
+                            </div>
 
-                        <div class="editorLineContainer">
+                            <div class="editorFilterOperatorTitle">
+                                Operator:
+                            </div>
+                            <div class="select editorFilterOperator"
+                                title="Select the operator for the filter"
+                                >
+                                <select id="selects_3"
+                                    [(ngModel)]="filterOperator"
+                                    (change)="filterOperatorSelected($event)"
+                                    name="filterOperator"
+                                    >
+                                    <option>Less Than</option>
+                                    <option>Less Than Equal</option>
+                                    <option>Equal</option>
+                                    <option>Greater Than</option>
+                                    <option>Greater Than Equal</option>
+                                    <option>Range</option>
+                                    <option>One Of</option>
+                                    <option>Valid</option>
+                                    <option>Selection</option>
+                                </select>
+                            </div>
+
                             <div class="editorFilterValueTitle">
-                            Value:
+                                Value:
                             </div>
                             <div class="editorFilterValue">
                                 <input type="text"
@@ -2443,6 +2444,31 @@
                                     name="filterValue"
                                     placeholder="12 Japan  1,5  a,b,c  true"
                                     title="Enter a value for the filter.  Ranges use x,y for from,to"
+                                    >
+                            </div>
+                        </div>
+
+                        <div *ngIf="filterOperator=='Range'">
+                            <div class="editorFilterValueTitle">
+                                From:
+                            </div>
+                            <div class="editorFilterValue">
+                                <input type="text"
+                                    [(ngModel)]="filterValueFrom"
+                                    name="filterValueFrom"
+                                    placeholder="12 Japan  1,5  a,b,c  true"
+                                    title="Enter a From value for the filter for the Range"
+                                    >
+                            </div>
+                            <div class="editorFilterValueTitle">
+                                To:
+                            </div>
+                            <div class="editorFilterValue">
+                                <input type="text"
+                                    [(ngModel)]="filterValueTo"
+                                    name="filterValueTo"
+                                    placeholder="12 Japan  1,5  a,b,c  true"
+                                    title="Enter a To value for the filter for the Range"
                                     >
                             </div>
                         </div>
