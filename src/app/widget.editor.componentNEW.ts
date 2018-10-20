@@ -207,6 +207,7 @@ export interface dataSchemaInterface {
     errorMessage: string = '';
     errorMessageEditor: string = '';
     filterErrorMessage: string = ' ';
+    filterID: number = -1;
     filterFieldName: string = '';
     filterOperator: string = '';
     filterValue: string = '';
@@ -2978,11 +2979,11 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         this.filterErrorMessage = '';
 
         // Remove from localWidget
-        let transformationIndex: number = this.localWidget.graphTransformations.findIndex(ftr =>
-            ftr.transformationType == 'filter'  &&  ftr.underlyingFieldName == this.filterFieldName);
-        if (transformationIndex >= 0) {
-            this.localWidget.graphTransformations.splice(transformationIndex, 1);
-        };
+        // let transformationIndex: number = this.localWidget.graphTransformations.findIndex(ftr =>
+        //     ftr.transformationType == 'filter'  &&  ftr.underlyingFieldName == this.filterFieldName);
+        // if (transformationIndex >= 0) {
+        //     this.localWidget.graphTransformations.splice(transformationIndex, 1);
+        // };
 
         this.filterFieldName = '';
         this.filterOperator = '';
@@ -3022,51 +3023,47 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         };
 
         // Create the filter spec with Max ID
-        let graphFilterID: number = 0;
         if (this.localWidget.graphFilters == null) {        
             this.localWidget.graphFilters = [];
         };
-        this.localWidget.graphFilters.forEach(gflt => {
-            if(gflt.id > graphFilterID) {
-                graphFilterID = gflt.id;
+        if (this.filterID == -1) {
+
+            let graphFilterID: number = 0;
+            this.localWidget.graphFilters.forEach(gflt => {
+                if(gflt.id > graphFilterID) {
+                    graphFilterID = gflt.id;
+                };
+                graphFilterID = graphFilterID + 1;
+            });
+            this.filterID = graphFilterID;
+
+            let graphFilter: GraphFilter = {
+                id: this.filterID,
+                sequence: 0,        // For LATER use
+                filterFieldName: this.filterFieldName,
+                filterOperator: this.filterOperator,
+                filterValue: this.filterValue,
+                filterValueFrom: this.filterValue,
+                filterValueTo: this.filterValue,
+                isActive: true
             };
-            graphFilterID = graphFilterID + 1;
-        });
-        let graphFilter: GraphFilter = {
-            id: graphFilterID,
-            filterFieldName: this.filterFieldName,
-            filterOperator: this.filterOperator,
-            filterValue: this.filterValue,
-            filterValueFrom: this.filterValue,
-            filterValueTo: this.filterValue,
-            isActive: true
-        };
-
-        // Update the localWidget
-        this.localWidget.graphFilters.push(graphFilter);
-
-        // Update the localWidget
-        let graphTransformationSpec: GraphCalculation = {
-            transformationType: "filter",
-            underlyingFieldName: this.filterFieldName,
-            filterOperator: this.filterOperator,
-            filterValue: this.filterValue,
-            sampleRows: 0,
-            calculatedExpression: "",
-            calculateAs: "",
-            selectionName: ""
-        };
-
-        // Add / Update to localWidget
-        let transformationIndex: number = this.localWidget.graphTransformations.findIndex(ftr =>
-            ftr.transformationType == 'filter'  &&  ftr.underlyingFieldName == this.filterFieldName);
-        if (transformationIndex >= 0) {
-            this.localWidget.graphTransformations[transformationIndex].filterOperator =
-                this.filterOperator;
-            this.localWidget.graphTransformations[transformationIndex].filterValue =
-                this.filterValue;
+    
+            // Update the localWidget
+            this.localWidget.graphFilters.push(graphFilter);
         } else {
-            this.localWidget.graphTransformations.push(graphTransformationSpec);
+            let gridFilterIndex: number = this.localWidget.graphFilters.findIndex(gflt =>
+                gflt.id == this.filterID);
+            if (gridFilterIndex >= 0) {
+                this.localWidget.graphFilters[gridFilterIndex].filterOperator =
+                    this.filterOperator;
+                this.localWidget.graphFilters[gridFilterIndex].filterValue =
+                    this.filterValue;
+                this.localWidget.graphFilters[gridFilterIndex].filterValueFrom =
+                    this.filterValue;
+                this.localWidget.graphFilters[gridFilterIndex].filterValueTo =
+                    this.filterValue;
+            };
+    
         };
 
         // Hide filter form
