@@ -2097,8 +2097,8 @@ clr-dg-cell {
                 grid-column-start: 20;
                 /* autoprefixer: off */
                 grid-column-end: 49;
-                grid-row-start: 2;
-                grid-row-end: 21;
+                grid-row-start: 4;
+                grid-row-end: 23;
                 margin-left: 6px;
                 margin-top: 6px;
                 padding-left: 12px;

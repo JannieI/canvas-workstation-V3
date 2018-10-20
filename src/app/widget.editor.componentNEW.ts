@@ -2933,7 +2933,8 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         // Reset
         this.filterErrorMessage = '';
 
-        this.showFilterAreaProperties = !this.showFilterAreaProperties;
+        this.showFilterAreaProperties = true;
+        this.showCalculatedAreaProperties = false;
     }
 
     clickShowCalculatedArea() {
@@ -2943,7 +2944,8 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         // Reset
         this.calculatedErrorMessage = '';
 
-        this.showCalculatedAreaProperties = !this.showCalculatedAreaProperties;
+        this.showCalculatedAreaProperties = true;
+        this.showFilterAreaProperties = false;
     }
 
     calculatedFieldTypeSelected(ev) {
