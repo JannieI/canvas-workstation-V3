@@ -2109,11 +2109,15 @@ clr-dg-cell {
                     color: red;
                     font-size: 0.54rem;
                 }
+                .editorFilterHeader {
+                    font-size: 0.65rem;
+                }
                 .editorFilterFieldTitle {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 14px;
+                    text-align: center;
                     width: 64px;
                 }
                 .editorFilterField {
@@ -2203,7 +2207,8 @@ clr-dg-cell {
                     height: 154px;
                     line-height: 0.8rem;
                     margin: 3px;
-                    width: 95%;
+                    margin-top: -20px;
+                    width: 97%;
                 }
 
         .editorSelection {

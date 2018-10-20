@@ -2381,13 +2381,19 @@
                         </button>
                     </div>
                     <div class="editorFilterArea" *ngIf="showFilterAreaProperties">
-                        <div style="font-size: 0.55rem;">
-                            <b>Filter</b>
+                        <div class="editorFilterHeader">
+                            <b>Filters</b>
+                        </div>
+                        <div>
                             <br>
                             <i>
-                                Select the field to filter on, then the operator and type a Value.
-                                Note: it is case-sensitive.
-                                For example: Origin Equal "Europe".
+                                Filters are applied to the data before calculations, and before the
+                                graph is constructed.  Select the field to filter on, then the operator 
+                                and type a Value(s).  Note: the values are case-sensitive, ie, Origin 
+                                Equal "Europe".  Click Add to append the filter.  Filters can be 
+                                de-activated (definition remains here, but the data is not filtered 
+                                with it).  Click a filter to edit it.  Double click the Delete icon 
+                                to delete a filter.                                
                             </i>
                             <div class="filterErrorMessage">
                                 {{ filterErrorMessage }}
@@ -2476,7 +2482,7 @@
 
                         <div>
                             <div class="btn-group btn-link">
-                                <button class="btn" (click)="clickFilterClose()">
+                                <button class="btn btn-secondary" (click)="clickFilterClose()">
                                     Close
                                 </button>
                                 <button class="btn" (click)="clickFilterClear()">

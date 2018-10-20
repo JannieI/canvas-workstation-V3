@@ -1393,7 +1393,7 @@ This document describes items for later versions of Canvas.
         - this is a BIG opportunity
         - allow for Sorted array of transformations, any type in any order
         - add Window, Rank, etc
-        
+
     -   Calculated field
         - add more than one, see Compass / Vega example
         - full UI to select fields and formulae in easy way, also give proper space for params, ie some take 1 param, some take 2, validate (try catch or some clever way)
@@ -1413,8 +1413,10 @@ This document describes items for later versions of Canvas.
 
     - Window
         - add
-    - Filter
+
+    - Filters
         - Add Selection Predicate
+        - Add Pre and Post filter indicator: Pre is at start, then other transformations like Windows, and then Post.  Serious power
 
 
 
