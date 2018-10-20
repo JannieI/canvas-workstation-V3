@@ -3268,8 +3268,6 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
             this.localWidget.graphCalculation.push(graphCalculation);
         };
 
-        this.showCalculatedAreaProperties = false;
-
     }
 
     dblClickFieldRow(formCalculatedFieldName: string) {
