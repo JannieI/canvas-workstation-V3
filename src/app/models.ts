@@ -998,14 +998,6 @@ export class dataSchemaInterface {
     calculatedExpression: string;   // Formula for calculated fields
 }
 
-export class GraphCalculation {
-    id: number;                     // Unique ID
-    sequence: number;               // Sequence Nr
-    underlyingFieldName: string;    // Underlying DB or calculated field Name (not used in calculations here)
-    calculatedExpression: string;   // Expression, ie sin(datum.ValueTraded)
-    calculateAs: string;            // Name of resultant calculated field
-}
-
 export class WidgetLayout {
     id: number;                             // Unique ID
     dashboardLayoutID: number;              // FK of the D Layout to which it belongs
@@ -1026,8 +1018,17 @@ export class GraphHistory {
     widgetSpec: Widget[]                    // Array of Ws previously stored
 }
 
+export class GraphCalculation {
+    id: number;                     // Unique ID
+    sequence: number;               // Sequence Nr
+    underlyingFieldName: string;    // Underlying DB or calculated field Name (not used in calculations here)
+    calculatedExpression: string;   // Expression, ie sin(datum.ValueTraded)
+    calculateAs: string;            // Name of resultant calculated field
+}
+
 export class GraphFilter {
     id: number;                             // Unique ID
+    sequence: number;               // Sequence Nr
     filterFieldName: string;                // Name (text) of field
     filterOperator: string;                 // ie Equal, Less Than, etc
     filterValue: string;                    // ie. 12 Japan  1,5  a,b,c  true
