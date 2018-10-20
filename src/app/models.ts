@@ -1164,6 +1164,15 @@ export class Widget {
     graphTitleLength: number;
     graphTitleOrientation: string;
 
+    // Transformation: Overall Array for later user when many different types and sequences
+    graphTransformations: [
+        {
+            id: number;                             // Unique ID
+            sequence: number;                       // Sequence Nr
+            transformationType: "";                 // ie Calculat, Filter aka Vega-Lite spec 
+        }
+    ];
+
     // Transformations: is an Array of different types of transformation, each shown below
     // Transformations: Aggregate
     // Transformations: Bin
@@ -1185,15 +1194,6 @@ export class Widget {
     // Transformations: Stack
     // Transformations: Time Unit
     // Transformations: Window
-
-    // Overall Transformation: for later user when many different types and sequences
-    graphTransformations: [
-        {
-            id: number;                             // Unique ID
-            sequence: number;                       // Sequence Nr
-            transformationType: "";                 // ie Calculat, Filter aka Vega-Lite spec 
-        }
-    ];
 
     // X
     graphXfield: string;

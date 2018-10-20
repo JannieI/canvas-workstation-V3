@@ -223,6 +223,16 @@ const widgetTemplate: Widget =
         "graphTitleFontWeight": 400,
         "graphTitleLength": 0,
         "graphTitleOrientation": "Top",
+
+        "graphTransformations": [{
+            "id": 0,
+            "sequence": 0,
+            "transformationType": ""
+        }],
+        "graphCalculation": [],
+        "graphFilters": [],
+        "sampleNumberRows": 0,
+
         "titleText": "Title of new Widget",
         "titleBackgroundColor": "lightgray",
         "titleBackgroundColorName": "lightgray",
@@ -306,10 +316,6 @@ const widgetTemplate: Widget =
         "graphXaxisLabelColorName": "",
         "graphXaxisLabelColor": "",
 
-        "graphTransformations": [],
-
-        "graphFilters": [],
-
         "graphYaxisScaleType": "Default",
         "graphYaxisTitleCheckbox": true,
         "graphYaxisTitle": "",
@@ -367,7 +373,6 @@ const widgetTemplate: Widget =
 
         "graphUrl": "",
         "graphData": "",
-        "sampleNumberRows": 0,
 
         "tableBackgroundColor" : "",
         "tableBackgroundColorName" : "",
