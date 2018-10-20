@@ -3163,10 +3163,10 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         };
 
         // Remove from localWidget
-        let transformationIndex: number = this.localWidget.graphTransformations.findIndex(ftr =>
-            ftr.transformationType == 'calculate'  &&  ftr.calculateAs == this.calculatedAs);
-        if (transformationIndex >= 0) {
-            this.localWidget.graphTransformations.splice(transformationIndex, 1);
+        let graphCalculationIndex: number = this.localWidget.graphCalculation.findIndex(gcal =>
+            gcal.calculateAs == this.calculatedAs);
+        if (graphCalculationIndex >= 0) {
+            this.localWidget.graphCalculation.splice(graphCalculationIndex, 1);
         };
 
         // Remove from local var
