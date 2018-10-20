@@ -3021,12 +3021,17 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
 
         };
 
-        // Update the filter spec
+        // Create the filter spec with Max ID
         let graphFilterID: number = 0;
-        if (this.localWidget.graphFilters.length > 0) {
-            graphFilterID = this.localWidget.graphFilters[this.localWidget.graphFilters.length - 1].id;
-            graphFilterID = graphFilterID + 1;
+        if (this.localWidget.graphFilters == null) {        
+            this.localWidget.graphFilters = [];
         };
+        this.localWidget.graphFilters.forEach(gflt => {
+            if(gflt.id > graphFilterID) {
+                graphFilterID = gflt.id;
+            };
+            graphFilterID = graphFilterID + 1;
+        });
         let graphFilter: GraphFilter = {
             id: graphFilterID,
             filterFieldName: this.filterFieldName,
