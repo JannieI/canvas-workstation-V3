@@ -1030,10 +1030,13 @@ export class GraphHistory {
 }
 
 export class GraphFilters {
-    id: number;
-    filterFieldName: string;
-    filterOperator: string;
-    filterValue: string;
+    id: number;                             // Unique ID
+    filterFieldName: string;                // Name (text) of field
+    filterOperator: string;                 // ie Equal, Less Than, etc
+    filterValue: string;                    // ie. 12 Japan  1,5  a,b,c  true
+    filterValueFrom: string;                // From value for Range
+    filterValueTo: string;                  // To value for Range
+    isActive: boolean;                      // True if activated, else not used
 }
 
 export class Widget {
@@ -1165,6 +1168,9 @@ export class Widget {
 
     // Transformations
     graphTransformations: GraphTransformation[];
+
+    // Filters
+    graphFilters: GraphFilters[];
 
     // X
     graphXfield: string;

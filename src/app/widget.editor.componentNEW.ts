@@ -216,6 +216,17 @@ export interface dataSchemaInterface {
     // graphYaggregateVegaLiteName: string = '';
     graphColorAggregateVegaLiteName: string = '';
     graphHeader: string = 'Graph';
+    graphFilters: GraphFilters[] = [
+        {
+        id: 1,
+        filterFieldName: string;                // Name (text) of field
+        filterOperator: string;                 // ie Equal, Less Than, etc
+        filterValue: string;                    // ie. 12 Japan  1,5  a,b,c  true
+        filterValueFrom: string;                // From value for Range
+        filterValueTo: string;                  // To value for Range
+        isActive: boolean;                      // True if activated, else not used
+    }    
+    ];
     graphHistory: GraphHistory[] = [];
     graphHistoryPosition: number = 0;
     isBusyRetrievingData: boolean = false;
