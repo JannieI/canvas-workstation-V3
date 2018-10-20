@@ -1164,27 +1164,36 @@ export class Widget {
     graphTitleLength: number;
     graphTitleOrientation: string;
 
-    // Transformations
+    // Transformations: is an Array of different types of transformation, each shown below
     // Transformations: Aggregate
     // Transformations: Bin
+
     // Transformations: Calculate
+    graphCalculation: GraphCalculation[];   // Array of calculations
+
     // Transformations: Filter
+    graphFilters: GraphFilter[];            // Array of filters
+
     // Transformations: Flatten
     // Transformations: Fold
     // Transformations: Impute
     // Transformations: Lookup
 
     // Transformations: Sample
-    sampleNumberRows: number;           // Random rows to sample EACH time, 0 means all rows
+    sampleNumberRows: number;               // Random rows to sample EACH time, 0 means all rows
 
     // Transformations: Stack
     // Transformations: Time Unit
     // Transformations: Window
 
-    graphTransformations: GraphCalculation[];
-
-    // Filters
-    graphFilters: GraphFilter[];
+    // Overall Transformation: for later user when many different types and sequences
+    graphTransformations: [
+        {
+            id: number;                             // Unique ID
+            sequence: number;                       // Sequence Nr
+            transformationType: "";                 // ie Calculat, Filter aka Vega-Lite spec 
+        }
+    ];
 
     // X
     graphXfield: string;
