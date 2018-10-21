@@ -191,6 +191,7 @@ export interface dataSchemaInterface {
     ]
     backgroundcolors: CSScolor[];
     calculatedErrorMessage: string = '';
+    calculatedID: number = -1;
     calculatedAs: string = '';
     calculatedExpression: string = '';
     dataFieldType: string = '';
@@ -217,14 +218,15 @@ export interface dataSchemaInterface {
     filterValue: string = '';
     filterValueFrom: string = '';
     filterValueTo: string = '';
+    graphCalculations: GraphCalculation[] = [];
     graphColor: string[];
-    graphLayers: number[] = [1, 2, 3,];  // TODO - fix hardcoding
     // graphXaggregateVegaLiteName: string = '';
     // graphYaggregateVegaLiteName: string = '';
     graphColorAggregateVegaLiteName: string = '';
     graphHeader: string = 'Graph';
     graphHistory: GraphHistory[] = [];
     graphHistoryPosition: number = 0;
+    graphLayers: number[] = [1, 2, 3,];  // TODO - fix hardcoding
     isBusyRetrievingData: boolean = false;
     isDragoverXField: boolean = false;
     isDragoverYField: boolean = false;
@@ -3223,6 +3225,30 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         this.calculatedErrorMessage = '';
 
         this.showCalculatedAreaProperties = false;
+    }
+
+    clickGraphCalculatedRowSelect(index: number, selectedCalculatedID : number) {
+        // Delete the selected Calculated
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickGraphCalculatedRowSelect', '@Start');
+
+        // Set highlighted row
+        this.selectedGraphCalculationRowIndex = index;
+
+        // Store vars
+        let gridCalculatedIndex: number = this.localWidget.graphCalculations.findIndex(gflt =>
+            gflt.id == selectedCalculatedID);
+        if (gridCalculatedIndex >= 0) {
+            this.calculatedID = this.localWidget.graphFilters[gridCalculatedIndex].id;
+            this.calculatedExpression = this.localWidget.graphCalculations[gridCalculatedIndex].calculateExpression;
+            this.calculatedAs = this.localWidget.graphFilters[gridCalculatedIndex].filterFieldName;
+            this.dataFieldTypeName = this.localWidget.graphFilters[gridCalculatedIndex].filterOperator;
+
+        } else {
+            this.calculatedID = -1;
+            this.calculatedExpression = '';
+            this.calculatedAs = '';
+            this.dataFieldTypeName = '';
+        };
     }
 
     clickCalculatedClear() {

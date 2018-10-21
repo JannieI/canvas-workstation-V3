@@ -1021,9 +1021,9 @@ export class GraphHistory {
 export class GraphCalculation {
     id: number;                     // Unique ID
     sequence: number;               // Sequence Nr - for LATER user
-    calculateDataType: string;      // Data type of newly calculated field
     calculateExpression: string;    // Expression, ie sin(datum.ValueTraded)
     calculateAs: string;            // Name of resultant calculated field
+    calculateDataType: string;      // Data type of newly calculated field
     isActive: boolean;                      // True if activated, else not used
 }
 

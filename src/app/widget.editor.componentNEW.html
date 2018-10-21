@@ -281,30 +281,25 @@
                                 {{ calculatedErrorMessage }}
                             </span>
                         </div>
-
                         
                         <div class="editorCalculatedGrid">
                             <clr-datagrid class="datagrid-compact" 
                                 style="height: 160px !important;"
                                 >
-                                <clr-dg-column>FieldName</clr-dg-column>
-                                <clr-dg-column>Operator</clr-dg-column>
-                                <clr-dg-column>Value</clr-dg-column>
-                                <clr-dg-column>From</clr-dg-column>
-                                <clr-dg-column>To</clr-dg-column>
+                                <clr-dg-column>Expression</clr-dg-column>
+                                <clr-dg-column>New Name</clr-dg-column>
+                                <clr-dg-column>DataType</clr-dg-column>
                                 <clr-dg-column>Active?</clr-dg-column>
                                 <clr-dg-column>Delete?</clr-dg-column>
 
-                                <clr-dg-row *clrDgItems="let row of localWidget.graphFilters; let i = index"
-                                    [style.background-color]="(i == selectedGraphFilterRowIndex)? '#123456' : 'white'"
-                                    [style.color]="(i == selectedGraphFilterRowIndex)? 'white' : 'gray'"
+                                <clr-dg-row *clrDgItems="let row of localWidget.graphCalculations; let i = index"
+                                    [style.background-color]="(i == selectedGraphCalculationRowIndex)? '#123456' : 'white'"
+                                    [style.color]="(i == selectedGraphCalculationRowIndex)? 'white' : 'gray'"
                                     (click)="clickGraphFilterRowSelect(i, row.id)"
                                     >
-                                    <clr-dg-cell>{{ row.filterFieldName }}</clr-dg-cell>
-                                    <clr-dg-cell>{{ row.filterOperator }}</clr-dg-cell>
-                                    <clr-dg-cell>{{ row.filterValue }}</clr-dg-cell>
-                                    <clr-dg-cell>{{ row.filterValueFrom }}</clr-dg-cell>
-                                    <clr-dg-cell>{{ row.filterValueTo }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.calculateExpression }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.calculateAs }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.calculateDataType }}</clr-dg-cell>
                                     <clr-dg-cell>
                                         <clr-icon *ngIf="row.isActive"
                                             shape="check"
