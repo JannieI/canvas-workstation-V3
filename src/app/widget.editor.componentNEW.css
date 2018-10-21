@@ -437,6 +437,7 @@ clr-dg-cell {
                 }
                 .editorCalculatedHelpButton {
                     float: right;
+                    margin-top: -12px;
                 }
 
                 .editorCalculatedHelpTitle {
