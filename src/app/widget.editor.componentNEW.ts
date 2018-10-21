@@ -950,7 +950,7 @@ export interface dataSchemaInterface {
 
         // Start afresh for new W~
         if (this.newWidget) {
-console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
+            console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
 
             // Get Widget Graph Specs
             this.globalVariableService.getWidgetGraphs().then(res => {
@@ -2616,6 +2616,19 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
                 this.dataSchema.push(newDataSchema);
             };
         };
+
+        // Append calculated Fields
+        this.localWidget.graphCalculations.forEach(gcal => {
+            let newDataSchema: dataSchemaInterface = {
+                name: gcal.calculatedAs,
+                type: gcal.calculatedDataType,
+                typeName: gcal.calculatedDataType,
+                length: 12,
+                isCalculated: true,
+                calculatedExpression: gcal.calculatedExpression
+            };
+            this.dataSchema.push(newDataSchema);
+        });
 
     }
 
