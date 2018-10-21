@@ -2658,6 +2658,14 @@ export interface dataSchemaInterface {
         this.showFieldXPropertiesField = !this.showFieldXPropertiesField;
     }
 
+    clickShowXPropertiesAxis() {
+        // Show X Properties Axis Area
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowXPropertiesAxis', '@Start');
+
+        // Toggle
+        this.showFieldXPropertiesAxis = !this.showFieldXPropertiesAxis;
+    }
+
     clickShowColorProperties() {
         // Show Color Properties Area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowColorProperties', '@Start');
