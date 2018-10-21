@@ -3239,9 +3239,12 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
             gflt.id == selectedCalculatedID);
         if (gridCalculatedIndex >= 0) {
             this.calculatedID = this.localWidget.graphCalculations[gridCalculatedIndex].id;
-            this.calculatedExpression = this.localWidget.graphCalculations[gridCalculatedIndex].calculatedExpression;
-            this.calculatedAs = this.localWidget.graphCalculations[gridCalculatedIndex].calculatedAs;
-            this.calculatedDataTypeName = this.localWidget.graphCalculations[gridCalculatedIndex].calculatedDataType;
+            this.calculatedExpression = this.localWidget.graphCalculations
+                [gridCalculatedIndex].calculatedExpression;
+            this.calculatedAs = this.localWidget.graphCalculations
+                [gridCalculatedIndex].calculatedAs;
+            this.calculatedDataTypeName = this.localWidget.graphCalculations
+                [gridCalculatedIndex].calculatedDataType;
 
         } else {
             this.calculatedID = -1;
@@ -3254,23 +3257,6 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
     dblClickCalculatedDelete() {
         // Delete the selected Calculated
         this.globalFunctionService.printToConsole(this.constructor.name,'dblClickCalculatedDelete', '@Start');
-
-        // Reset
-        this.calculatedErrorMessage = '';
-
-        let gridCalculatedIndex: number = this.localWidget.graphCalculations.findIndex(gflt =>
-            gflt.id == this.calculatedID);
-        if (gridCalculatedIndex >= 0) {
-            this.localWidget.graphCalculations.splice(gridCalculatedIndex, 1);
-        };
-
-        // Reset
-        this.clickCalculatedClear();
-    }
-
-    clickCalculatedClear() {
-        // Close the Calculated Area, and reset calculation
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickCalculatedClear', '@Start');
 
         // Reset
         this.calculatedErrorMessage = '';
@@ -3305,10 +3291,10 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         if (this.localWidget.graphCalculations == null) {
             this.localWidget.graphCalculations = [];
         };
-        let graphCalculationIndex: number = this.localWidget.graphCalculations.findIndex(gcal =>
-            gcal.calculatedAs == this.calculatedAs);
-        if (graphCalculationIndex >= 0) {
-            this.localWidget.graphCalculations.splice(graphCalculationIndex, 1);
+        let graphCalculatedIndex: number = this.localWidget.graphCalculations.findIndex(gcal =>
+            gcal.id == this.calculatedID);
+        if (graphCalculatedIndex >= 0) {
+            this.localWidget.graphCalculations.splice(graphCalculatedIndex, 1);
         };
 
         // Remove from local var
@@ -3317,7 +3303,19 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
             this.dataSchema.splice(schemaIndex, 1);
         };
 
+        // Reset
+        this.clickCalculatedClear();
+    }
+
+    clickCalculatedClear() {
+        // Close the Calculated Area, and reset calculation
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickCalculatedClear', '@Start');
+
+        // Reset
+        this.calculatedErrorMessage = '';
+
         // Reset values
+        this.calculatedID = -1;
         this.calculatedExpression = '';
         this.calculatedAs = '';
         this.calculatedDataType = '';
