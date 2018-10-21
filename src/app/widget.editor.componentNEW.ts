@@ -3406,28 +3406,27 @@ export interface dataSchemaInterface {
         // Double clicked a field row: show info for calculated field
         this.globalFunctionService.printToConsole(this.constructor.name,'dblClickFieldRow', '@Start');
 
-        let schemaIndex: number = this.dataSchema.findIndex(ds => ds.name == formCalculatedFieldName);
-        if (schemaIndex >= 0) {
-            if (this.dataSchema[schemaIndex].isCalculated) {
-                this.calculatedExpression = this.dataSchema[schemaIndex].calculatedExpression;
-                this.calculatedAs = this.dataSchema[schemaIndex].name;
-                this.calculatedDataType = this.dataSchema[schemaIndex].type;
-                this.calculatedDataTypeName = this.dataSchema[schemaIndex].typeName;
-                this.showCalculatedAreaProperties = true;
-
-
-                let gridCalculatedIndex: number = this.localWidget.graphCalculations.findIndex(gflt =>
-                    gflt.calculatedAs == formCalculatedFieldName);
-                if (gridCalculatedIndex >= 0) {
-                    this.calculatedID = this.localWidget.graphCalculations[gridCalculatedIndex].id;
-                } else {
-                    this.calculatedID = -1;
-                    this.calculatedExpression = '';
-                    this.calculatedAs = '';
-                    this.calculatedDataTypeName = '';
-                };
-            };
+        let gridCalculatedIndex: number = this.localWidget.graphCalculations.findIndex(gflt =>
+            gflt.calculatedAs == formCalculatedFieldName);
+        if (gridCalculatedIndex >= 0) {
+            this.calculatedID = this.localWidget.graphCalculations[gridCalculatedIndex].id;
+            this.calculatedExpression = this.localWidget.graphCalculations
+                [gridCalculatedIndex].calculatedExpression;
+            this.calculatedAs = this.localWidget.graphCalculations
+                [gridCalculatedIndex].calculatedAs;
+            this.calculatedDataType = this.localWidget.graphCalculations
+                [gridCalculatedIndex].calculatedDataType;
+            this.calculatedDataTypeName = this.localWidget.graphCalculations
+                [gridCalculatedIndex].calculatedDataType;
+            this.showCalculatedAreaProperties = true;
+        } else {
+            this.calculatedID = -1;
+            this.calculatedExpression = '';
+            this.calculatedAs = '';
+            this.calculatedDataTypeName = '';
         };
     }
+
+    convertToCalculatedDataTypeName
 
 }
