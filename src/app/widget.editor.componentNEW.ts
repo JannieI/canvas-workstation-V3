@@ -251,6 +251,7 @@ export interface dataSchemaInterface {
     selectedRowID: number;
     sizeField: string = dragFieldMessage;
     showCalculatedAreaProperties: boolean = false;
+    showCalculatedHelp: boolean = false;
     showColourDeleteIcon: boolean = false;
     showColumnDeleteIcon: boolean = false;
     showDetailDeleteIcon: boolean = false;

@@ -206,6 +206,12 @@
                     <div class="editorCalculatedArea" *ngIf="showCalculatedAreaProperties">
                         <div class="editorCalculatedHeader">
                             <b>Calculated</b>
+                            <clr-icon style="margin-left: 6px; padding: 0;"
+                                shape="info-circle"
+                                (click)="showCalculatedHelp=true"
+                                >
+                            </clr-icon>
+
                         </div>
                         <div style="padding: 8px;">
                             <i>
@@ -240,10 +246,10 @@
                                     >
                             </div>
 
-                            <div class="editorCalculatedValueTitle">
+                            <div class="editorCalculatedTypeTitle">
                                 Type:
                             </div>
-                            <div class="select editorCalculatedValue"
+                            <div class="select editorCalculatedType"
                                 title="Type of the Calculated field"
                                 >
                                 <select id="selects_3"
@@ -314,7 +320,15 @@
     
                     </div>
 
+                    <div class="editorCalculatedHelp" *ngIf="showCalculatedHelp">
+                        Calculation Formulae
+                        <clr-icon style="margin-left: 6px; padding: 0;"
+                            shape="minuw"
+                            (click)="showCalculatedHelp=false"
+                            >
+                        </clr-icon>
 
+                    </div>
 
                     <!-- FIELDS -->
                     <div class="editorFieldsDSname">
