@@ -1716,9 +1716,11 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         // Click icon to fill this field into X field
         this.globalFunctionService.printToConsole(this.constructor.name,'clickFillColorField', '@Start');
 
-        this.dropColour(null, fieldName);
-
-
+        if (this.colorField != dragFieldMessage) {
+            this.clickClearColourField();
+        } else {
+            this.dropColour(null, fieldName);
+        };
     }
 
     dragstartField(ev) {
