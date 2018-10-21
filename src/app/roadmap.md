@@ -1375,7 +1375,7 @@ This document describes items for later versions of Canvas.
         - suggest graph types based on fields selected (ie 1 quantitative field means could do a
         tick or pie chart)
         - consider reset button ?  Not sure what use case will be
-        
+
     - Spec: 
         - allow to import and then reverse engineer what the Widget fields are.  Easy to do, but looks of work and has to be updated in parallel to any changes made to the other way.
         - also, allow custom specs to be created, sorting out %x, %y, %color parameters where these fields must be placed.
@@ -1420,8 +1420,9 @@ This document describes items for later versions of Canvas.
         - add
 
     - Filters
+        - Show value range in fields: Select Total field in dropdown, then it shows that Total values ranges from say 0 to 100, and maybe even some stats like average...  Only if usecase.
         - Add Selection Predicate
-        - Add Pre and Post filter indicator: Pre is at start, then other transformations like Windows, and then Post.  Serious power
+        - Add Pre and Post filter indicator: Pre is at start, then other transformations like Windows, and then Post.  Serious power.
 
 
 

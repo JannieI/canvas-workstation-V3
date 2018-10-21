@@ -2154,7 +2154,7 @@ clr-dg-cell {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
-                    margin-left: 24px;
+                    margin-left: 44px;
                     width: 64px;
                 }
                 .editorFilterOperator {
@@ -2208,7 +2208,7 @@ clr-dg-cell {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
-                    margin-left: 24px;
+                    margin-left: 44px;
                     width: 64px;
                 }
                 .editorFilterValueTo {
@@ -2230,7 +2230,6 @@ clr-dg-cell {
                     width: 40%;
                 }
                 .filterCloseButton {
-                    margin-top: -4px;
                     margin-left: 60px;
                     right: 12px;
                 }
