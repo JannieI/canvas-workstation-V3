@@ -194,8 +194,8 @@ export interface dataSchemaInterface {
     calculatedID: number = -1;
     calculatedAs: string = '';
     calculatedExpression: string = '';
-    dataFieldType: string = '';
-    dataFieldTypeName: string = '';
+    calculatedDataType: string = '';
+    calculatedDataTypeName: string = '';
     colorField: string = dragFieldMessage;
     columnField: string = dragFieldMessage;
     containerHasContextMenus: boolean = true;
@@ -2994,8 +2994,8 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         // Register Calculated Field Type
         this.globalFunctionService.printToConsole(this.constructor.name,'calculatedFieldTypeSelected', '@Start');
 
-        this.dataFieldTypeName = ev.target.value;
-        this.dataFieldType = this.dataFieldTypeName.toLowerCase();
+        this.calculatedDataTypeName = ev.target.value;
+        this.calculatedDataType = this.calculatedDataTypeName.toLowerCase();
     }
 
     clickShowSpecificationArea() {
@@ -3241,13 +3241,13 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
             this.calculatedID = this.localWidget.graphCalculations[gridCalculatedIndex].id;
             this.calculatedExpression = this.localWidget.graphCalculations[gridCalculatedIndex].calculatedExpression;
             this.calculatedAs = this.localWidget.graphCalculations[gridCalculatedIndex].calculatedAs;
-            this.dataFieldTypeName = this.localWidget.graphCalculations[gridCalculatedIndex].calculatedDataType;
+            this.calculatedDataTypeName = this.localWidget.graphCalculations[gridCalculatedIndex].calculatedDataType;
 
         } else {
             this.calculatedID = -1;
             this.calculatedExpression = '';
             this.calculatedAs = '';
-            this.dataFieldTypeName = '';
+            this.calculatedDataTypeName = '';
         };
     }
 
@@ -3320,8 +3320,8 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         // Reset values
         this.calculatedExpression = '';
         this.calculatedAs = '';
-        this.dataFieldType = '';
-        this.dataFieldTypeName = '';
+        this.calculatedDataType = '';
+        this.calculatedDataTypeName = '';
     }
 
     clickCalculatedApply() {
@@ -3340,7 +3340,7 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
             this.calculatedErrorMessage = 'New field name (As) is required.';
             return;
         };
-        if (this.dataFieldType == ''  ||  this.dataFieldType == undefined) {
+        if (this.calculatedDataType == ''  ||  this.calculatedDataType == undefined) {
             this.calculatedErrorMessage = 'Field data type is required.';
             return;
         };
@@ -3351,14 +3351,14 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         };
         let schemaIndex: number = this.dataSchema.findIndex(ds => ds.name == this.calculatedAs);
         if (schemaIndex >= 0) {
-            this.dataSchema[schemaIndex].type = this.dataFieldType;
-            this.dataSchema[schemaIndex].typeName = this.dataFieldTypeName;
+            this.dataSchema[schemaIndex].type = this.calculatedDataType;
+            this.dataSchema[schemaIndex].typeName = this.calculatedDataTypeName;
             this.dataSchema[schemaIndex].calculatedExpression = this.calculatedExpression;
         } else {
             let newDataSchema: dataSchemaInterface = {
                 name: this.calculatedAs,
-                type: this.dataFieldType.toLowerCase(),
-                typeName: this.dataFieldTypeName,
+                type: this.calculatedDataType.toLowerCase(),
+                typeName: this.calculatedDataTypeName,
                 length: 12,
                 isCalculated: true,
                 calculatedExpression: this.calculatedExpression
@@ -3398,8 +3398,8 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
             if (this.dataSchema[schemaIndex].isCalculated) {
                 this.calculatedExpression = this.dataSchema[schemaIndex].calculatedExpression;
                 this.calculatedAs = this.dataSchema[schemaIndex].name;
-                this.dataFieldType = this.dataSchema[schemaIndex].type;
-                this.dataFieldTypeName = this.dataSchema[schemaIndex].typeName;
+                this.calculatedDataType = this.dataSchema[schemaIndex].type;
+                this.calculatedDataTypeName = this.dataSchema[schemaIndex].typeName;
                 this.showCalculatedAreaProperties = true;
             };
         };
