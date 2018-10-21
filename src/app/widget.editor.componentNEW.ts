@@ -3368,7 +3368,7 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         let graphCalculation: GraphCalculation = {
             id: 0,
             sequence: 0,               // Sequence Nr - for LATER user
-            calculatedDataType: this.calculatedDataType,
+            calculatedDataType: this.calculatedDataTypeName,
             calculatedExpression: this.calculatedExpression,
             calculatedAs: this.calculatedAs,
         };
@@ -3401,6 +3401,18 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
                 this.calculatedDataType = this.dataSchema[schemaIndex].type;
                 this.calculatedDataTypeName = this.dataSchema[schemaIndex].typeName;
                 this.showCalculatedAreaProperties = true;
+
+
+                let gridCalculatedIndex: number = this.localWidget.graphCalculations.findIndex(gflt =>
+                    gflt.calculatedAs == formCalculatedFieldName);
+                if (gridCalculatedIndex >= 0) {
+                    this.calculatedID = this.localWidget.graphCalculations[gridCalculatedIndex].id;
+                } else {
+                    this.calculatedID = -1;
+                    this.calculatedExpression = '';
+                    this.calculatedAs = '';
+                    this.calculatedDataTypeName = '';
+                };
             };
         };
     }

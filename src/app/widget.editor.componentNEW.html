@@ -391,6 +391,7 @@
                                             <clr-icon *ngIf="row.isCalculated"
                                                 shape="calculator"
                                                 size="14"
+                                                (click)="dblClickFieldRow(row.name)"
                                                 >
                                             </clr-icon>
                                             <!-- NB: this has to be in sync with TS code -->
