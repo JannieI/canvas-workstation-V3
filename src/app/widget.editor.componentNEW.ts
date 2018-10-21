@@ -2509,7 +2509,17 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
 
         // Reset
         this.localWidget.graphFilters = [];
+        this.filterNrActive = 0;
         this.localWidget.graphCalculations = [];
+        this.clickClearXFieldField();
+        this.clickClearYField();
+        this.clickClearColourField();
+        this.clickClearSizeField();
+        this.clickClearDetailField();
+        this.clickClearColumnField();
+        this.clickClearRowField();
+        this.clickClearX2Field();
+        this.clickClearY2Field();
 
         // Show the Editor form
         this.showDatasourceMain = false;
@@ -3129,6 +3139,7 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         // Create the filter spec with Max ID
         if (this.localWidget.graphFilters == null) {
             this.localWidget.graphFilters = [];
+            this.filterNrActive = 0;
         };
         if (this.filterID == -1) {
 

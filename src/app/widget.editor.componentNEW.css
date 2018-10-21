@@ -2139,7 +2139,7 @@ clr-dg-cell {
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 14px;
-                    text-align: center;
+                    text-align: left;
                     width: 64px;
                 }
                 .editorFilterField {
