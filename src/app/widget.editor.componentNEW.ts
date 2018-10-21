@@ -925,7 +925,6 @@ export interface dataSchemaInterface {
     ngOnInit() {
         // ngOnInit Life Cycle Hook
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
-        let test = this.convertToCalculatedDataTypeName('number');
 
         // Get setup info
         this.backgroundcolors = this.globalVariableService.backgroundcolors.slice();
@@ -3009,7 +3008,7 @@ export interface dataSchemaInterface {
         this.globalFunctionService.printToConsole(this.constructor.name,'calculatedFieldTypeSelected', '@Start');
 
         this.calculatedDataTypeName = ev.target.value;
-        this.calculatedDataType = this.calculatedDataTypeName.toLowerCase();
+        this.calculatedDataType = this.convertToCalculatedDataType(this.calculatedDataTypeName);
         
     }
 
@@ -3258,8 +3257,9 @@ export interface dataSchemaInterface {
                 [gridCalculatedIndex].calculatedExpression;
             this.calculatedAs = this.localWidget.graphCalculations
                 [gridCalculatedIndex].calculatedAs;
-            this.calculatedDataTypeName = this.localWidget.graphCalculations
-                [gridCalculatedIndex].calculatedDataType;
+            this.calculatedDataTypeName = this.convertToCalculatedDataTypeName(
+                this.localWidget.graphCalculations[gridCalculatedIndex].calculatedDataType
+            );
 
         } else {
             this.calculatedID = -1;
@@ -3330,6 +3330,7 @@ export interface dataSchemaInterface {
         this.calculatedErrorMessage = '';
 
         // Reset values
+        this.selectedGraphCalculatedRowIndex = -1;
         this.calculatedID = -1;
         this.calculatedExpression = '';
         this.calculatedAs = '';
@@ -3410,6 +3411,7 @@ export interface dataSchemaInterface {
 
         let gridCalculatedIndex: number = this.localWidget.graphCalculations.findIndex(gflt =>
             gflt.calculatedAs == formCalculatedFieldName);
+        this.selectedGraphCalculatedRowIndex = gridCalculatedIndex;
         if (gridCalculatedIndex >= 0) {
             this.calculatedID = this.localWidget.graphCalculations[gridCalculatedIndex].id;
             this.calculatedExpression = this.localWidget.graphCalculations
@@ -3418,8 +3420,9 @@ export interface dataSchemaInterface {
                 [gridCalculatedIndex].calculatedAs;
             this.calculatedDataType = this.localWidget.graphCalculations
                 [gridCalculatedIndex].calculatedDataType;
-            this.calculatedDataTypeName = this.localWidget.graphCalculations
-                [gridCalculatedIndex].calculatedDataType;
+            this.calculatedDataTypeName = this.convertToCalculatedDataTypeName(
+                this.localWidget.graphCalculations[gridCalculatedIndex].calculatedDataType
+            );
             this.showCalculatedAreaProperties = true;
         } else {
             this.calculatedID = -1;
@@ -3430,17 +3433,30 @@ export interface dataSchemaInterface {
     }
 
     convertToCalculatedDataTypeName(calculatedDataType: string): string {
-        // Converts calculatedDataTypeName to calculatedDataType
-        this.globalFunctionService.printToConsole(this.constructor.name,'dblClickFieldRow', '@Start');
+        // Converts calculatedDataType to calculatedDataTypeName
+        this.globalFunctionService.printToConsole(this.constructor.name,'convertToCalculatedDataTypeName', '@Start');
 
         if (calculatedDataType == null  ||  calculatedDataType == '') {
             return '';
         };
 
         let calculatedDataTypeName: string = '';
-        calculatedDataType = calculatedDataType.substring(0, 1).toUpperCase() + 
+        calculatedDataTypeName = calculatedDataType.substring(0, 1).toUpperCase() + 
             calculatedDataType.substring(1);
         return calculatedDataTypeName;
+    }
+
+    convertToCalculatedDataType(calculatedDataTypeName: string): string {
+        // Converts calculatedDataTypeName to calculatedDataType
+        this.globalFunctionService.printToConsole(this.constructor.name,'dblClickFieldRow', '@Start');
+
+        if (calculatedDataTypeName == null  ||  calculatedDataTypeName == '') {
+            return '';
+        };
+
+        let calculatedDataType: string = '';
+        calculatedDataType = calculatedDataTypeName.toLowerCase();
+        return calculatedDataType;
     }
 
 }
