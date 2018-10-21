@@ -289,7 +289,6 @@
                                 <clr-dg-column>Expression</clr-dg-column>
                                 <clr-dg-column>New Name</clr-dg-column>
                                 <clr-dg-column>DataType</clr-dg-column>
-                                <clr-dg-column>Active?</clr-dg-column>
                                 <clr-dg-column>Delete?</clr-dg-column>
 
                                 <clr-dg-row *clrDgItems="let row of localWidget.graphCalculations; let i = index"
@@ -297,23 +296,9 @@
                                     [style.color]="(i == selectedGraphCalculationRowIndex)? 'white' : 'gray'"
                                     (click)="clickGraphCalculatedRowSelect(i, row.id)"
                                     >
-                                    <clr-dg-cell>{{ row.calculateExpression }}</clr-dg-cell>
-                                    <clr-dg-cell>{{ row.calculateAs }}</clr-dg-cell>
-                                    <clr-dg-cell>{{ row.calculateDataType }}</clr-dg-cell>
-                                    <clr-dg-cell>
-                                        <clr-icon *ngIf="row.isActive"
-                                            shape="check"
-                                            size="10"
-                                            (dblclick)="dblClickCalculatedMakeInActive()"
-                                            >
-                                        </clr-icon>
-                                        <clr-icon *ngIf="!row.isActive"
-                                            shape="times"
-                                            size="10"
-                                            (dblclick)="dblClickCalculatedMakeActive(row.id)"
-                                            >
-                                        </clr-icon>
-                                    </clr-dg-cell>
+                                    <clr-dg-cell>{{ row.calculatedExpression }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.calculatedAs }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.calculatedDataType }}</clr-dg-cell>
                                     <clr-dg-cell>
                                         <clr-icon
                                             shape="trash"

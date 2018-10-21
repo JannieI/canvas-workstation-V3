@@ -1024,7 +1024,6 @@ export class GraphCalculation {
     calculatedExpression: string;           // Expression, ie sin(datum.ValueTraded)
     calculatedAs: string;                   // Name of resultant calculated field
     calculatedDataType: string;             // Data type of newly calculated field
-    isActive: boolean;                      // True if activated, else not used
 }
 
 export class GraphFilter {
