@@ -925,6 +925,7 @@ export interface dataSchemaInterface {
     ngOnInit() {
         // ngOnInit Life Cycle Hook
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
+        let test = this.convertToCalculatedDataTypeName('number');
 
         // Get setup info
         this.backgroundcolors = this.globalVariableService.backgroundcolors.slice();
@@ -3009,6 +3010,7 @@ export interface dataSchemaInterface {
 
         this.calculatedDataTypeName = ev.target.value;
         this.calculatedDataType = this.calculatedDataTypeName.toLowerCase();
+        
     }
 
     clickShowSpecificationArea() {
@@ -3427,6 +3429,18 @@ export interface dataSchemaInterface {
         };
     }
 
-    convertToCalculatedDataTypeName
+    convertToCalculatedDataTypeName(calculatedDataType: string): string {
+        // Converts calculatedDataTypeName to calculatedDataType
+        this.globalFunctionService.printToConsole(this.constructor.name,'dblClickFieldRow', '@Start');
+
+        if (calculatedDataType == null  ||  calculatedDataType == '') {
+            return '';
+        };
+
+        let calculatedDataTypeName: string = '';
+        calculatedDataType = calculatedDataType.substring(0, 1).toUpperCase() + 
+            calculatedDataType.substring(1);
+        return calculatedDataTypeName;
+    }
 
 }
