@@ -275,9 +275,6 @@
                         </div>
 
                         <div class="btn-group btn-link">
-                            <button class="btn" (click)="clickCalculatedClose()">
-                                Close
-                            </button>
                             <button class="btn" (click)="clickCalculatedClear()">
                                 Clear
                             </button>
@@ -285,6 +282,11 @@
                                 Apply
                             </button>
                         </div>
+                        <button class="btn btn-secondary" style="float: right;"
+                            (click)="clickCalculatedClose()"
+                            >
+                            Close
+                        </button>
                     </div>
 
 
@@ -2514,9 +2516,6 @@
 
                         <div>
                             <div class="btn-group btn-link">
-                                <button class="btn btn-secondary" (click)="clickFilterClose()">
-                                    Close
-                                </button>
                                 <button class="btn" (click)="clickFilterClear()">
                                     Clear
                                 </button>
@@ -2529,6 +2528,10 @@
                                     </span> 
                                 </button>
                             </div>
+                            <button class="btn btn-secondary"  style="float: right;"
+                                (click)="clickFilterClose()">
+                                Close
+                            </button>
                         </div>
 
                         <div class="editorFilterGrid">

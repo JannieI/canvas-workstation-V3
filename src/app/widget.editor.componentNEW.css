@@ -2133,6 +2133,8 @@ clr-dg-cell {
                 }
                 .editorFilterHeader {
                     font-size: 0.65rem;
+                    margin: 6px;
+                    text-align: center;
                 }
                 .editorFilterFieldTitle {
                     display: inline-block;
@@ -2230,6 +2232,7 @@ clr-dg-cell {
                     line-height: 0.8rem;
                     margin: 3px;
                     margin-top: -20px;
+                    overflow-y: scroll;
                     width: 97%;
                 }
 
