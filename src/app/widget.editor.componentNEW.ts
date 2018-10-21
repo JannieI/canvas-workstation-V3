@@ -3279,6 +3279,23 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         };
     }
 
+    dblClickCalculatedDelete() {
+        // Delete the selected Calculated
+        this.globalFunctionService.printToConsole(this.constructor.name,'dblClickCalculatedDelete', '@Start');
+
+        // Reset
+        this.calculatedErrorMessage = '';
+
+        let gridCalculatedIndex: number = this.localWidget.graphCalculations.findIndex(gflt =>
+            gflt.id == this.calculatedID);
+        if (gridCalculatedIndex >= 0) {
+            this.localWidget.graphCalculations.splice(gridCalculatedIndex, 1);
+        };
+
+        // Reset
+        this.clickCalculatedClear();
+    }
+
     clickCalculatedClear() {
         // Close the Calculated Area, and reset calculation
         this.globalFunctionService.printToConsole(this.constructor.name,'clickCalculatedClear', '@Start');
