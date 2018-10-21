@@ -2528,18 +2528,20 @@
                                     </span> 
                                 </button>
                             </div>
-                            <span class="filterErrorMessage">
-                                {{ filterErrorMessage }}
-                            </span>
             
                             <button class="btn btn-secondary filterCloseButton"
                                 (click)="clickFilterClose()">
                                 Close
                             </button>
-                        </div>
+                            <span class="filterErrorMessage">
+                                    {{ filterErrorMessage }}
+                                </span>
+                            </div>
 
                         <div class="editorFilterGrid">
-                            <clr-datagrid class="datagrid-compact">
+                            <clr-datagrid class="datagrid-compact" 
+                                style="height: 180px !important;"
+                                >
                                 <clr-dg-column>FieldName</clr-dg-column>
                                 <clr-dg-column>Operator</clr-dg-column>
                                 <clr-dg-column>Value</clr-dg-column>
