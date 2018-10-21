@@ -1497,7 +1497,7 @@ export interface dataSchemaInterface {
             graphID = this.widgetGraphs[widgetGraphIndex]['id'];
         };
 
-        console.warn('xx newWidgetSpec', newWidgetSpec, graphID)
+        console.warn('xx newWidgetSpec', newWidgetSpec, graphID, this.localWidget)
 
         // Show graph
         this.showGraph(graphID, false);
