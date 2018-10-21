@@ -3368,7 +3368,7 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         let graphCalculation: GraphCalculation = {
             id: 0,
             sequence: 0,               // Sequence Nr - for LATER user
-            calculatedDataType: "",
+            calculatedDataType: this.calculatedDataType,
             calculatedExpression: this.calculatedExpression,
             calculatedAs: this.calculatedAs,
         };
@@ -3377,6 +3377,8 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         let transformationIndex: number = this.localWidget.graphCalculations.findIndex(gcal =>
             gcal.calculatedAs == this.calculatedAs);
         if (transformationIndex >= 0) {
+            this.localWidget.graphCalculations[transformationIndex].calculatedDataType =
+                this.calculatedDataType;
             this.localWidget.graphCalculations[transformationIndex].calculatedExpression =
                 this.calculatedExpression;
             this.localWidget.graphCalculations[transformationIndex].calculatedAs =
