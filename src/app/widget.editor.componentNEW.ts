@@ -3059,6 +3059,9 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         this.filterValue = '';
         this.filterValueFrom = '';
         this.filterValueTo = '';
+
+        // Unselect the highlighted row
+        this.selectedGraphFilterRowIndex = -1;
     }
 
     dblClickFilterMakeInActive(filterID: number) {
