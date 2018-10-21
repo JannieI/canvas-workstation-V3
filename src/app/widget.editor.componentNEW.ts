@@ -2648,6 +2648,7 @@ export interface dataSchemaInterface {
 
         // Toggle
         this.showFieldXProperties = !this.showFieldXProperties;
+
     }
 
     clickShowXPropertiesField() {

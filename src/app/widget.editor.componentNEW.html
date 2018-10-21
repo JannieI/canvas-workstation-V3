@@ -1150,7 +1150,7 @@
 
 
                         <div class="editorXPropertiesTitleField" *ngIf="showFieldXProperties"
-                            (click)="clickShowXProperties()"
+                            (click)="clickShowXPropertiesField()"
                             >
                             <b>
                                 Field
@@ -1165,35 +1165,212 @@
                             </clr-icon>
                         </div>
 
-                        <div class="editorGraphXaggregateTitle" *ngIf="showFieldXPropertiesField">
-                            field ...
+
+                        <!-- X Properties Aggregate -->
+                        <div class="editorLineContainer">
+                            <div class="editorGraphXaggregateTitle" *ngIf="showFieldXPropertiesField">
+                                Aggregate:
+                            </div>
+                            <div class="select editorGraphXaggregate" *ngIf="showFieldXPropertiesField"
+                                title="How the X values must be aggregated, ie Count"
+                                >
+                                <select id="selects_3"
+                                    [(ngModel)]="localWidget.graphXaggregateName"
+                                    name="graphXaggregateName"
+                                    >
+                                    <option *ngFor="let row of aggregations; let i = index">
+                                        {{ row.displayName }}
+                                    </option>
+                                </select>
+                            </div>
                         </div>
 
+                        <!-- X Properties bin -->
+                        <div class="editorLineContainer">
+                            <div class="editorGraphXbinTitle" *ngIf="showFieldXPropertiesField">
+                                Bin:
+                            </div>
+                            <div class="editorGraphXbin" *ngIf="showFieldXPropertiesField">
+                                <input [(ngModel)]="localWidget.graphXbin"
+                                    type="checkbox"
+                                    name="graphXbin"
+                                    (click)="clickXBin()"
+                                    title="Bin the X field (T/F)"
+                                    >
+                            </div>
+                            <div class="editorGraphXbinMaxTitle" *ngIf="showFieldXPropertiesField">
+                                Est bins:
+                            </div>
+
+                            <div class="editorGraphXbinMax" *ngIf="showFieldXPropertiesField">
+                                <input type="number"
+                                    name="graphXMaxBins"
+                                    placeholder="Est. nr of bins"
+                                    min="1"
+                                    max="10"
+                                    size="5"
+                                    style="width: 25px;"
+                                    [(ngModel)]="localWidget.graphXMaxBins"
+                                    title="Estimated number of bins"
+                                    >
+                            </div>
+                        </div>
+
+                        <!-- X Properties Format -->
+                        <div class="editorLineContainer">
+                            <div class="editorGraphXformatTitle" *ngIf="showFieldXPropertiesField">
+                            Format:
+                            </div>
+                            <div class="editorGraphXformat" *ngIf="showFieldXPropertiesField">
+                                <input type="text"
+                                    placeholder="Only for Text"
+                                    [(ngModel)]="localWidget.graphXformat"
+                                    name="graphXformat"
+                                    title="Format of text values"
+                                    >
+                            </div>
+                        </div>
+
+                        <!-- X Properties Impute -->
+                        <div class="editorLineContainer">
+                            <div class="editorGraphXimputeTitle" *ngIf="showFieldXPropertiesField">
+                                Impute:
+                            </div>
+                            <div class="select editorGraphXimpute" *ngIf="showFieldXPropertiesField"
+                                title="Fill in missing value, ie with the average of a column"
+                                >
+                                <select id="selects_3"
+                                    [(ngModel)]="localWidget.graphXimpute"
+                                    name="graphXimpute"
+                                    >
+                                    <option></option>
+                                    <option>Max</option>
+                                    <option>Mean</option>
+                                    <option>Medium</option>
+                                    <option>Min</option>
+                                    <option>Value</option>
+                                </select>
+                            </div>
+                            <div class="editorGraphXimputeValue"
+                                *ngIf="showFieldXPropertiesField"
+                                size="5"
+                                >
+                                <input type="number"
+                                    placeholder="Value"
+                                    [(ngModel)]="localWidget.graphXimputeValue"
+                                    name="graphXimputeValue"
+                                    [disabled]="!(localWidget.graphXimpute=='Value')"
+                                    size="5"
+                                    title="Fixed value into missing values"
+                                    >
+                            </div>
+                        </div>
+
+                        <!-- X Properties stack -->
+                        <div class="editorLineContainer">
+                            <div class="editorGraphXstackTitle" *ngIf="showFieldXPropertiesField">
+                                Stack:
+                            </div>
+                            <div class="select editorGraphXstack" *ngIf="showFieldXPropertiesField"
+                                title="Specify how the X values must be stacked"
+                                >
+                                <select id="selects_3"
+                                    [(ngModel)]="localWidget.graphXstack"
+                                    name="graphXstack"
+                                    >
+                                    <option>Zero</option>
+                                    <option>Normalize</option>
+                                    <option>Center</option>
+                                    <option>Null</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- X Properties Sort -->
+                        <div class="editorLineContainer">
+                            <div class="editorGraphXsortTitle" *ngIf="showFieldXPropertiesField">
+                                Sort:
+                            </div>
+                            <div class="select editorGraphXsort" *ngIf="showFieldXPropertiesField"
+                                title="Specify how the X values must be sorted"
+                                >
+                                <select id="selects_3"
+                                    [(ngModel)]="localWidget.graphXsort"
+                                    name="graphXsort"
+                                    >
+                                    <option>None</option>
+                                    <option>Ascending</option>
+                                    <option>Descending</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- X Properties type -->
+                        <div class="editorLineContainer">
+                            <div class="editorGraphXtypeTitle" *ngIf="showFieldXPropertiesField">
+                                Type:
+                            </div>
+                            <div class="select editorGraphXtype" *ngIf="showFieldXPropertiesField"
+                                title="Type of the X field in the Graph (ordinal for strings)"
+                                >
+                                <select id="selects_3"
+                                    [(ngModel)]="localWidget.graphXtypeName"
+                                    (change)="changeXTimeUnit($event)"
+                                    name="graphXtypeName"
+                                    >
+                                    <option>Ordinal</option>
+                                    <option>Quantitative</option>
+                                    <option>Temporal</option>
+                                    <option>Nominal</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- X Properties timeUnit -->
+                        <div class="editorLineContainer">
+                            <div class="editorGraphXtimeUnitTitle" *ngIf="showFieldXPropertiesField">
+                                TimeUnit:
+                            </div>
+                            <div class="select editorGraphXtimeUnit"
+                                *ngIf="showFieldXPropertiesField"
+                                title="Time unit for Temporate (date) fields"
+                                >
+                                <select id="selects_3"
+                                    [(ngModel)]="localWidget.graphXtimeUnit"
+                                    [disabled]="localWidget.graphXtypeName!='Temporal'"
+                                    >
+                                    <option *ngFor="let row of timeUnits; let i = index">
+                                        {{ row }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+    
 
                         <div class="editorXPropertiesTitleAxis" *ngIf="showFieldXProperties"
-                            (click)="clickShowXProperties()"
+                            (click)="clickShowXPropertiesAxis()"
                             >
                             <b>
                                 Axis
                             </b>
-                            <clr-icon shape="angle down" *ngIf="!showFieldXProperties"
+                            <clr-icon shape="angle down" *ngIf="!showFieldXPropertiesAxis"
                                 size="12"
                                 >
                             </clr-icon>
-                            <clr-icon shape="angle up" *ngIf="showFieldXProperties"
+                            <clr-icon shape="angle up" *ngIf="showFieldXPropertiesAxis"
                                 size="12"
                                 >
                             </clr-icon>
                         </div>
 
-                        <div class="editorGraphXaggregateTitle" *ngIf="showFieldXProperties  &&  showFieldXPropertiesAxis">
+                        <div class="editorGraphXaggregateTitle" *ngIf="showFieldXPropertiesAxis  &&  showFieldXPropertiesAxis">
                             axis...
                         </div>
 
 
 
 
-
+<!-- 
                         <!-- X Properties Aggregate -->
                         <div class="editorLineContainer">
                             <div class="editorGraphXaggregateTitle" *ngIf="showFieldXProperties">
@@ -1372,7 +1549,7 @@
                                     </option>
                                 </select>
                             </div>
-                        </div>
+                        </div> -->
 
 
                         <!-- Y Properties Title Bar -->

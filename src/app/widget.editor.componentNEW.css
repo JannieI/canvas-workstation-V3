@@ -765,14 +765,14 @@ clr-dg-cell {
             }
 
             .editorXPropertiesTitleField {
-                background-color: lightgray;
+                background-color: rgb(236, 236, 236);
                 border: 1px solid lightgray;
                 border-radius: 3px;
                 font-size: 0.5rem;
                 margin-top: 5px;
             }
             .editorXPropertiesTitleAxis {
-                background-color: lightgray;
+                background-color: rgb(236, 236, 236);
                 border: 1px solid lightgray;
                 border-radius: 3px;
                 font-size: 0.5rem;
