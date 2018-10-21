@@ -304,13 +304,13 @@
                                         <clr-icon *ngIf="row.isActive"
                                             shape="check"
                                             size="10"
-                                            (dblclick)="dblClickFilterMakeInActive()"
+                                            (dblclick)="dblClickCalculatedMakeInActive()"
                                             >
                                         </clr-icon>
                                         <clr-icon *ngIf="!row.isActive"
                                             shape="times"
                                             size="10"
-                                            (dblclick)="dblClickFilterMakeActive(row.id)"
+                                            (dblclick)="dblClickCalculatedMakeActive(row.id)"
                                             >
                                         </clr-icon>
                                     </clr-dg-cell>

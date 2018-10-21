@@ -3251,6 +3251,20 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         };
     }
 
+    dblClickCalculatedMakeInActive(calculatedID: number) {
+        // Make selected Calculated inActive
+        this.globalFunctionService.printToConsole(this.constructor.name,'dblClickCalculatedMakeInActive', '@Start');
+
+        // Reset
+        this.calculatedErrorMessage = '';
+
+        let gridCalculatedIndex: number = this.localWidget.graphCalculations.findIndex(gflt =>
+            gflt.id == this.calculatedID);
+        if (gridCalculatedIndex >= 0) {
+            this.localWidget.graphCalculations[gridCalculatedIndex].isActive = false;
+        };
+    }
+
     clickCalculatedClear() {
         // Close the Calculated Area, and reset calculation
         this.globalFunctionService.printToConsole(this.constructor.name,'clickCalculatedClear', '@Start');
