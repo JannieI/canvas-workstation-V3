@@ -2121,16 +2121,12 @@ clr-dg-cell {
                 /* autoprefixer: off */
                 grid-column-end: 49;
                 grid-row-start: 4;
-                grid-row-end: 23;
+                grid-row-end: 25;
                 margin: 6px;
                 padding-left: 12px;
                 text-align: left;
                 z-index: 101;
             }
-                .filterErrorMessage {
-                    color: red;
-                    font-size: 0.54rem;
-                }
                 .editorFilterHeader {
                     font-size: 0.65rem;
                     margin: 6px;
@@ -2226,14 +2222,28 @@ clr-dg-cell {
                     width: 200px;
                 }
 
+                .filterErrorMessage {
+                    color: red;
+                    font-size: 0.54rem;
+                    margin: 0px;
+                    padding: 0px;
+                    width: 50%;
+                }
+                .filterCloseButton {
+                    float: right;
+                    margin-top: -12px;
+                }
+
                 .editorFilterGrid {
                     font-size: 0.5rem;
                     height: 154px;
                     line-height: 0.8rem;
                     margin: 3px;
                     margin-top: -20px;
-                    overflow-y: scroll;
-                    width: 97%;
+                    width: 98%;
+                }
+                .editorFilterGrid .datagrid-scroll-wrapper {
+                    background-color: brown;
                 }
 
         .editorSelection {

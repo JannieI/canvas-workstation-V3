@@ -1693,7 +1693,11 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         // Click icon to fill this field into X field
         this.globalFunctionService.printToConsole(this.constructor.name,'clickFillXfield', '@Start');
 
-        this.dropXField(null, fieldName);
+        if (this.xField != dragFieldMessage) {
+            this.clickClearXField();
+        } else {
+            this.dropXField(null, fieldName);
+        };
 
     }
 
@@ -1796,7 +1800,7 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
             this.dropYField(null, newXField);
         };
         if (newYField == dragFieldMessage) {
-            this.clickClearXFieldField();
+            this.clickClearXField();
         } else {
             this.dropXField(null, newYField);
         };
@@ -2063,9 +2067,9 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         this.localWidget.graphY2TypeName = this.defaultGraphTypeField(fieldType, 'name');
     }
 
-    clickClearXFieldField() {
+    clickClearXField() {
         // Clear the X Field and Remove X icon
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickClearXFieldField', '@Start');
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClearXField', '@Start');
 
         // Reset fields
         this.showXDeleteIcon = false;
@@ -2511,7 +2515,7 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         this.localWidget.graphFilters = [];
         this.filterNrActive = 0;
         this.localWidget.graphCalculations = [];
-        this.clickClearXFieldField();
+        this.clickClearXField();
         this.clickClearYField();
         this.clickClearColourField();
         this.clickClearSizeField();
@@ -3220,7 +3224,7 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
 
         // Remove from other places
         if (this.xField == this.calculatedAs) {
-            this.clickClearXFieldField();
+            this.clickClearXField();
         };
         if (this.yField == this.calculatedAs) {
             this.clickClearYField();

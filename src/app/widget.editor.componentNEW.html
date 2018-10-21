@@ -435,7 +435,7 @@
                                 >
                                 <clr-icon shape="times" *ngIf="showXDeleteIcon"
                                     title="Click to remove this field from the Graph"
-                                    (click)="clickClearXFieldField()">
+                                    (click)="clickClearXField()">
                                 </clr-icon>
                                 <span draggable="true"
                                     (dragstart)="dragstartXField($event)"
@@ -2429,9 +2429,9 @@
                                 with it).  Click a filter to edit it.  Double click the Delete icon 
                                 to delete a filter.                                
                             </i>
-                            <div class="filterErrorMessage">
+                            <!-- <div class="filterErrorMessage">
                                 {{ filterErrorMessage }}
-                            </div>
+                            </div> -->
                         </div>
 
                         <div>
@@ -2528,7 +2528,11 @@
                                     </span> 
                                 </button>
                             </div>
-                            <button class="btn btn-secondary"  style="float: right;"
+                            <span class="filterErrorMessage">
+                                {{ filterErrorMessage }}
+                            </span>
+            
+                            <button class="btn btn-secondary filterCloseButton"
                                 (click)="clickFilterClose()">
                                 Close
                             </button>
