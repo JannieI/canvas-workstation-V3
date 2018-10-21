@@ -10887,8 +10887,8 @@ console.warn('xx gv spec', specification);
             // Add to the transformation channel
             specification['transform'].push(
                 {
-                        "calculate": widget.graphCalculations[i].calculateExpression,
-                        "as": widget.graphCalculations[i].calculateAs
+                        "calculate": widget.graphCalculations[i].calculatedExpression,
+                        "as": widget.graphCalculations[i].calculatedAs
                 }
             );
         };

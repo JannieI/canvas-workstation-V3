@@ -3238,10 +3238,10 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         let gridCalculatedIndex: number = this.localWidget.graphCalculations.findIndex(gflt =>
             gflt.id == selectedCalculatedID);
         if (gridCalculatedIndex >= 0) {
-            this.calculatedID = this.localWidget.graphFilters[gridCalculatedIndex].id;
-            this.calculatedExpression = this.localWidget.graphCalculations[gridCalculatedIndex].calculateExpression;
-            this.calculatedAs = this.localWidget.graphFilters[gridCalculatedIndex].filterFieldName;
-            this.dataFieldTypeName = this.localWidget.graphFilters[gridCalculatedIndex].filterOperator;
+            this.calculatedID = this.localWidget.graphCalculations[gridCalculatedIndex].id;
+            this.calculatedExpression = this.localWidget.graphCalculations[gridCalculatedIndex].calculatedExpression;
+            this.calculatedAs = this.localWidget.graphCalculations[gridCalculatedIndex].calculatedAs;
+            this.dataFieldTypeName = this.localWidget.graphCalculations[gridCalculatedIndex].calculatedDataType;
 
         } else {
             this.calculatedID = -1;
@@ -3289,7 +3289,7 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
             this.localWidget.graphCalculations = [];
         };
         let graphCalculationIndex: number = this.localWidget.graphCalculations.findIndex(gcal =>
-            gcal.calculateAs == this.calculatedAs);
+            gcal.calculatedAs == this.calculatedAs);
         if (graphCalculationIndex >= 0) {
             this.localWidget.graphCalculations.splice(graphCalculationIndex, 1);
         };
@@ -3355,19 +3355,19 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         let graphCalculation: GraphCalculation = {
             id: 0,
             sequence: 0,               // Sequence Nr - for LATER user
-            calculateDataType: "",
-            calculateExpression: this.calculatedExpression,
-            calculateAs: this.calculatedAs,
+            calculatedDataType: "",
+            calculatedExpression: this.calculatedExpression,
+            calculatedAs: this.calculatedAs,
             isActive: true
         };
 
         // Add / Update to localWidget
         let transformationIndex: number = this.localWidget.graphCalculations.findIndex(gcal =>
-            gcal.calculateAs == this.calculatedAs);
+            gcal.calculatedAs == this.calculatedAs);
         if (transformationIndex >= 0) {
-            this.localWidget.graphCalculations[transformationIndex].calculateExpression =
+            this.localWidget.graphCalculations[transformationIndex].calculatedExpression =
                 this.calculatedExpression;
-            this.localWidget.graphCalculations[transformationIndex].calculateAs =
+            this.localWidget.graphCalculations[transformationIndex].calculatedAs =
                 this.calculatedAs;
         } else {
             this.localWidget.graphCalculations.push(graphCalculation);

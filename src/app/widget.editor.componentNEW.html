@@ -295,7 +295,7 @@
                                 <clr-dg-row *clrDgItems="let row of localWidget.graphCalculations; let i = index"
                                     [style.background-color]="(i == selectedGraphCalculationRowIndex)? '#123456' : 'white'"
                                     [style.color]="(i == selectedGraphCalculationRowIndex)? 'white' : 'gray'"
-                                    (click)="clickGraphFilterRowSelect(i, row.id)"
+                                    (click)="clickGraphCalculatedRowSelect(i, row.id)"
                                     >
                                     <clr-dg-cell>{{ row.calculateExpression }}</clr-dg-cell>
                                     <clr-dg-cell>{{ row.calculateAs }}</clr-dg-cell>
