@@ -3169,6 +3169,8 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
             let gridFilterIndex: number = this.localWidget.graphFilters.findIndex(gflt =>
                 gflt.id == this.filterID);
             if (gridFilterIndex >= 0) {
+                this.localWidget.graphFilters[gridFilterIndex].filterFieldName =
+                    this.filterFieldName;
                 this.localWidget.graphFilters[gridFilterIndex].filterOperator =
                     this.filterOperator;
                 this.localWidget.graphFilters[gridFilterIndex].filterValue =
