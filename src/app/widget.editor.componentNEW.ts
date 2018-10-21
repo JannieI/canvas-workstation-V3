@@ -259,6 +259,8 @@ export interface dataSchemaInterface {
     showFieldTitleProperties: boolean = false;
     showFieldXAxis: boolean = false;
     showFieldXPropertiesInfo: boolean = false;
+    showFieldXPropertiesField: boolean = false;
+    showFieldXPropertiesAxis: boolean = false;
     showFieldXProperties: boolean = false;
     showFieldXPropertiesTitle: boolean = false;
     showFieldYAxis: boolean = false;
@@ -2648,6 +2650,14 @@ export interface dataSchemaInterface {
         this.showFieldXProperties = !this.showFieldXProperties;
     }
 
+    clickShowXPropertiesField() {
+        // Show X Properties Field Area
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowXPropertiesField', '@Start');
+
+        // Toggle
+        this.showFieldXPropertiesField = !this.showFieldXPropertiesField;
+    }
+
     clickShowColorProperties() {
         // Show Color Properties Area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowColorProperties', '@Start');
@@ -3239,7 +3249,9 @@ export interface dataSchemaInterface {
         // Reset
         this.calculatedErrorMessage = '';
 
+        // Close Calc and its help form
         this.showCalculatedAreaProperties = false;
+        this.showCalculatedHelp=false
     }
 
     clickGraphCalculatedRowSelect(index: number, selectedCalculatedID : number) {

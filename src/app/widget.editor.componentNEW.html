@@ -1144,6 +1144,56 @@
                             </clr-icon>
                         </div>
 
+
+
+
+
+
+                        <div class="editorXPropertiesTitleField" *ngIf="showFieldXProperties"
+                            (click)="clickShowXProperties()"
+                            >
+                            <b>
+                                Field
+                            </b>
+                            <clr-icon shape="angle down" *ngIf="!showFieldXPropertiesField"
+                                size="12"
+                                >
+                            </clr-icon>
+                            <clr-icon shape="angle up" *ngIf="showFieldXPropertiesField"
+                                size="12"
+                                >
+                            </clr-icon>
+                        </div>
+
+                        <div class="editorGraphXaggregateTitle" *ngIf="showFieldXPropertiesField">
+                            field ...
+                        </div>
+
+
+                        <div class="editorXPropertiesTitleAxis" *ngIf="showFieldXProperties"
+                            (click)="clickShowXProperties()"
+                            >
+                            <b>
+                                Axis
+                            </b>
+                            <clr-icon shape="angle down" *ngIf="!showFieldXProperties"
+                                size="12"
+                                >
+                            </clr-icon>
+                            <clr-icon shape="angle up" *ngIf="showFieldXProperties"
+                                size="12"
+                                >
+                            </clr-icon>
+                        </div>
+
+                        <div class="editorGraphXaggregateTitle" *ngIf="showFieldXProperties  &&  showFieldXPropertiesAxis">
+                            axis...
+                        </div>
+
+
+
+
+
                         <!-- X Properties Aggregate -->
                         <div class="editorLineContainer">
                             <div class="editorGraphXaggregateTitle" *ngIf="showFieldXProperties">

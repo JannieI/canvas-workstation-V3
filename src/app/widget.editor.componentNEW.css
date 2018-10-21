@@ -764,6 +764,21 @@ clr-dg-cell {
                 margin-top: 5px;
             }
 
+            .editorXPropertiesTitleField {
+                background-color: lightgray;
+                border: 1px solid lightgray;
+                border-radius: 3px;
+                font-size: 0.5rem;
+                margin-top: 5px;
+            }
+            .editorXPropertiesTitleAxis {
+                background-color: lightgray;
+                border: 1px solid lightgray;
+                border-radius: 3px;
+                font-size: 0.5rem;
+                margin-top: 5px;
+            }
+
                 .editorGraphXaggregateTitle {
                     display: inline-block;
                     font-size: 0.5rem;
