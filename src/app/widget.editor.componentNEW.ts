@@ -11,9 +11,9 @@ import { ViewChild }                  from '@angular/core';
 // Our models
 import { CSScolor }                   from './models';
 import { Datasource }                 from './models';
-import { GraphFilter }               from './models';
+import { GraphFilter }                from './models';
 import { GraphHistory }               from './models';
-import { GraphCalculation }        from './models';
+import { GraphCalculation }           from './models';
 import { Widget }                     from './models';
 import { WidgetLayout }               from './models';
 import { WidgetCheckpoint }           from './models';
@@ -243,6 +243,7 @@ export interface dataSchemaInterface {
     selectedDescription: string = '';
     selectedDSName: string = '';
     selectedFieldIndex: number = -1;
+    selectedGraphCalculationRowIndex: number = -1;
     selectedGraphFilterRowIndex: number = -1;
     selectedRowIndex: number = -1;
     selectedRowID: number;
@@ -2518,9 +2519,9 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
             .currentDatasets[dataSetIndex].data;
 
         // Reset
+        this.localWidget.graphCalculations = [];
         this.localWidget.graphFilters = [];
         this.filterNrActive = 0;
-        this.localWidget.graphCalculations = [];
         this.clickClearXField();
         this.clickClearYField();
         this.clickClearColourField();

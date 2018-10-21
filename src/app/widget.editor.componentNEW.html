@@ -206,69 +206,132 @@
                     <div class="editorCalculatedArea" *ngIf="showCalculatedAreaProperties">
                         <div style="font-size: 0.55rem;">
                             <b>Calculated</b>
-                            <br>
+                        </div>
+                        <div style="padding: 8px;">
                             <i>
                                 Enter the expression for the Calculation (using datum.field) for
-                                existing data fields, and a new Field name.
+                                existing data fields, and a new Field name.  The data type will 
+                                determine how it is treated in the graph.
                                 For example: 2*datum.Cylinders, and CylindersDoubled
                             </i>
-                            <div class="calculatedErrorMessage">
-                                {{ calculatedErrorMessage }}
+                        </div>
+
+                        <div>
+                            <div class="editorCalculatedExpressionTitle">
+                                Expression:
                             </div>
-                            <br>
+                            <div class="editorCalculatedExpression">
+                                <input type="text"
+                                    [(ngModel)]="calculatedExpression"
+                                    name="calculatedExpression"
+                                    placeholder="12 Japan  1,5  a,b,c  true"
+                                    >
+                            </div>
+                        </div>
+                        <div>
+                            <div class="editorCalculatedAsTitle">
+                                As:
+                            </div>
+                            <div class="editorCalculatedAs">
+                                <input type="text"
+                                    [(ngModel)]="calculatedAs"
+                                    name="calculatedAs"
+                                    placeholder="New Field Name"
+                                    >
+                            </div>
+
+                            <div class="editorCalculatedValueTitle">
+                                Type:
+                            </div>
+                            <div class="select editorCalculatedValue"
+                                title="Type of the Calculated field"
+                                >
+                                <select id="selects_3"
+                                    [(ngModel)]="dataFieldTypeName"
+                                    (change)="calculatedFieldTypeSelected($event)"
+                                    name="dataFieldType"
+                                    >
+                                    <option>Boolean</option>
+                                    <option>Number</option>
+                                    <option>String</option>
+                                </select>
+                            </div>
                         </div>
 
-                        <div class="editorCalculatedExpressionTitle">
-                            Expression:
-                        </div>
-                        <div class="editorCalculatedExpression">
-                            <input type="text"
-                                [(ngModel)]="calculatedExpression"
-                                name="calculatedExpression"
-                                placeholder="12 Japan  1,5  a,b,c  true"
+                        <div>
+                            <div class="btn-group btn-link">
+                                <button class="btn" (click)="clickCalculatedClear()">
+                                    Clear
+                                </button>
+                                <button class="btn" (click)="clickCalculatedApply()">
+                                    <span *ngIf="calculationID==-1">
+                                        Add
+                                    </span> 
+                                    <span *ngIf="calculationID!=-1">
+                                        Save
+                                    </span> 
+                                </button>
+                            </div>
+                            <button class="btn btn-secondary calculatedCloseButton"
+                                (click)="clickCalculatedClose()"
                                 >
-                        </div>
-                        <div class="editorCalculatedAsTitle">
-                            As:
-                        </div>
-                        <div class="editorCalculatedAs">
-                            <input type="text"
-                                [(ngModel)]="calculatedAs"
-                                name="calculatedAs"
-                                placeholder="New Field Name"
-                                >
-                        </div>
-
-                        <div class="editorCalculatedValueTitle">
-                            Type:
-                        </div>
-                        <div class="select editorCalculatedValue"
-                            title="Type of the Calculated field"
-                            >
-                            <select id="selects_3"
-                                [(ngModel)]="dataFieldTypeName"
-                                (change)="calculatedFieldTypeSelected($event)"
-                                name="dataFieldType"
-                                >
-                                <option>Boolean</option>
-                                <option>Number</option>
-                                <option>String</option>
-                            </select>
-                        </div>
-
-                        <div class="btn-group btn-link">
-                            <button class="btn" (click)="clickCalculatedClear()">
-                                Clear
+                                Close
                             </button>
-                            <button class="btn" (click)="clickCalculatedApply()">
-                                Apply
-                            </button>
+                            <span class="calculatedErrorMessage">
+                                {{ calculatedErrorMessage }}
+                            </span>
                         </div>
-                        <button class="btn btn-secondary" style="float: right;"
-                            (click)="clickCalculatedClose()"
-                            >
-                            Close
-                        </button>
+
+                        
+                        <div class="editorCalculatedGrid">
+                            <clr-datagrid class="datagrid-compact" 
+                                style="height: 160px !important;"
+                                >
+                                <clr-dg-column>FieldName</clr-dg-column>
+                                <clr-dg-column>Operator</clr-dg-column>
+                                <clr-dg-column>Value</clr-dg-column>
+                                <clr-dg-column>From</clr-dg-column>
+                                <clr-dg-column>To</clr-dg-column>
+                                <clr-dg-column>Active?</clr-dg-column>
+                                <clr-dg-column>Delete?</clr-dg-column>
+
+                                <clr-dg-row *clrDgItems="let row of localWidget.graphFilters; let i = index"
+                                    [style.background-color]="(i == selectedGraphFilterRowIndex)? '#123456' : 'white'"
+                                    [style.color]="(i == selectedGraphFilterRowIndex)? 'white' : 'gray'"
+                                    (click)="clickGraphFilterRowSelect(i, row.id)"
+                                    >
+                                    <clr-dg-cell>{{ row.filterFieldName }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.filterOperator }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.filterValue }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.filterValueFrom }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.filterValueTo }}</clr-dg-cell>
+                                    <clr-dg-cell>
+                                        <clr-icon *ngIf="row.isActive"
+                                            shape="check"
+                                            size="10"
+                                            (dblclick)="dblClickFilterMakeInActive()"
+                                            >
+                                        </clr-icon>
+                                        <clr-icon *ngIf="!row.isActive"
+                                            shape="times"
+                                            size="10"
+                                            (dblclick)="dblClickFilterMakeActive(row.id)"
+                                            >
+                                        </clr-icon>
+                                    </clr-dg-cell>
+                                    <clr-dg-cell>
+                                        <clr-icon
+                                            shape="trash"
+                                            size="10"
+                                            (dblclick)="dblClickFilterDelete(row.id)"
+                                            >
+                                        </clr-icon>
+                                    </clr-dg-cell>
+                                </clr-dg-row>
+
+                            </clr-datagrid>
+                        </div>
+    
                     </div>
 
 
@@ -2514,9 +2577,9 @@
                                 Close
                             </button>
                             <span class="filterErrorMessage">
-                                    {{ filterErrorMessage }}
-                                </span>
-                            </div>
+                                {{ filterErrorMessage }}
+                            </span>
+                        </div>
 
                         <div class="editorFilterGrid">
                             <clr-datagrid class="datagrid-compact" 

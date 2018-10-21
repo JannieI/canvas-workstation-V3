@@ -391,6 +391,27 @@ clr-dg-cell {
                     width: 68%;
                 }
 
+                .calculatedErrorMessage {
+                    color: red;
+                    font-size: 0.54rem;
+                    margin: 0px;
+                    padding: 0px;
+                    width: 40%;
+                }
+                .calculatedCloseButton {
+                    margin-left: 60px;
+                    right: 12px;
+                }
+
+                .editorCalculatedGrid {
+                    font-size: 0.5rem;
+                    height: 60px !important;
+                    line-height: 0.8rem;
+                    margin: 3px;
+                    margin-top: -20px;
+                    width: 98%;
+                }
+
         /* FIELDS */
         .editorFieldsDSname {
             font-size: 0.5rem;
