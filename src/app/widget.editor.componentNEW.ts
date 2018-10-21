@@ -3328,16 +3328,17 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         let graphCalculation: GraphCalculation = {
             id: 0,
             sequence: 0,               // Sequence Nr - for LATER user
-            underlyingFieldName: "",
-            calculatedExpression: this.calculatedExpression,
-            calculateAs: this.calculatedAs
+            calculateDataType: "",
+            calculateExpression: this.calculatedExpression,
+            calculateAs: this.calculatedAs,
+            isActive: true
         };
 
         // Add / Update to localWidget
         let transformationIndex: number = this.localWidget.graphCalculations.findIndex(gcal =>
             gcal.calculateAs == this.calculatedAs);
         if (transformationIndex >= 0) {
-            this.localWidget.graphCalculations[transformationIndex].calculatedExpression =
+            this.localWidget.graphCalculations[transformationIndex].calculateExpression =
                 this.calculatedExpression;
             this.localWidget.graphCalculations[transformationIndex].calculateAs =
                 this.calculatedAs;

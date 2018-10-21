@@ -201,26 +201,8 @@
                                 </option>
                             </select>
                         </div>
-                        <!-- <div class="editorCompositionCalculatedFieldTitle">
-                            <b>
-                                Calculated Field:
-                            </b>
-                        </div>
-                        <div class="editorCompositionCalculatedFieldButton">
-                            <button
-                                style="border: 1px solid transparent; color: gray;"
-                                class="btn btn-sm btn-secondary"
-                                (click)="clickShowCalculatedArea()"
-                                >
-                                OPEN
-                                <clr-icon
-                                    shape="angle down"
-                                    size="12"
-                                    >
-                                </clr-icon>
-                            </button>
-                        </div> -->
                     </div>
+
                     <div class="editorCalculatedArea" *ngIf="showCalculatedAreaProperties">
                         <div style="font-size: 0.55rem;">
                             <b>Calculated</b>
@@ -2415,11 +2397,12 @@
 
                         </button>
                     </div>
+                    
                     <div class="editorFilterArea" *ngIf="showFilterAreaProperties">
                         <div class="editorFilterHeader">
                             <b>Filters</b>
                         </div>
-                        <div>
+                        <div style="padding: 8px;">
                             <i>
                                 Filters are applied to the data before calculations, and before the
                                 graph is constructed.  Select the field to filter on, then the operator 
@@ -2429,9 +2412,6 @@
                                 with it).  Click a filter to edit it.  Double click the Delete icon 
                                 to delete a filter.                                
                             </i>
-                            <!-- <div class="filterErrorMessage">
-                                {{ filterErrorMessage }}
-                            </div> -->
                         </div>
 
                         <div>
