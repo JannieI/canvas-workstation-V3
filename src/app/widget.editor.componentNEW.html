@@ -216,7 +216,7 @@
                         <div style="padding: 8px;">
                             <i>
                                 Enter the expression for the Calculation (using datum.field) for
-                                existing data fields, and a new Field name.  The data type will 
+                                existing data fields, and a new Field name.  The data type will
                                 determine how it is treated in the graph.
                                 For example: 2*datum.Cylinders, and CylindersDoubled
                             </i>
@@ -272,10 +272,10 @@
                                 <button class="btn" (click)="clickCalculatedApply()">
                                     <span *ngIf="calculatedID==-1">
                                         Add
-                                    </span> 
+                                    </span>
                                     <span *ngIf="calculatedID!=-1">
                                         Save
-                                    </span> 
+                                    </span>
                                 </button>
                             </div>
                             <button class="btn btn-secondary calculatedCloseButton"
@@ -287,9 +287,9 @@
                                 {{ calculatedErrorMessage }}
                             </span>
                         </div>
-                        
+
                         <div class="editorCalculatedGrid">
-                            <clr-datagrid class="datagrid-compact" 
+                            <clr-datagrid class="datagrid-compact"
                                 style="height: 160px !important;"
                                 >
                                 <clr-dg-column>Expression</clr-dg-column>
@@ -317,106 +317,141 @@
 
                             </clr-datagrid>
                         </div>
-    
+
                     </div>
 
                     <div class="editorCalculatedHelpArea" *ngIf="showCalculatedHelp">
                         <div class="editorCalculatedHelpHeader">
-                            <button type="button" class="btn editorCalculatedHelpButton" (click)="showCalculatedHelp=false()">
+                            <button type="button" class="btn btn-link editorCalculatedHelpButton"
+                                (click)="showCalculatedHelp=false">
                                 <b>X</b>
                             </button>
                             Calculation Formulae
                         </div>
 
+
                         <div class="editorCalculatedHelpTitle">
-                            Mathematical Functions
+                            <b>Control Flow Functions:</b>
+                        </div>
+                        <div class="editorCalculatedHelpBody">
+                            <b>if</b>(<i>test, thenValue, elseValue</i>)
+                            If test is truthy, returns thenValue. Otherwise, returns elseValue. The <b>if</b> function is equivalent to the ternary operator a ? b : c
+                        </div>
+
+
+                        <div class="editorCalculatedHelpTitle">
+                            <b>Mathematical Functions:</b>
                         </div>
                         <div class="editorCalculatedHelpBody">
                             <b>isNaN</b>(<i>value</i>)
                             Returns true if value is not a number. Same as JavaScript’s <u>isNaN</u>
                             <br>
-                            
+
                             <b>isFinite</b>(<i>value</i>)
                             Returns true if value is a finite number. Same as JavaScript’s <u>isFinite</u>
                             <br>
-                            
+
                             <b>abs</b>(<i>value</i>)
                             Returns the absolute value of value. Same as JavaScript’s <u>Math.abs</u>
                             <br>
-                            
+
                             <b>acos</b>(<i>value</i>)
                             Trigonometric arccosine. Same as JavaScript’s <u>Math.acos</u>
                             <br>
-                            
+
                             <b>asin</b>(<i>value</i>)
                             Trigonometric arcsine. Same as JavaScript’s <u>Math.asin</u>
                             <br>
-                            
+
                             <b>atan</b>(<i>value</i>)
                             Trigonometric arctangent. Same as JavaScript’s <u>Math.atan</u>
                             <br>
-                            
+
                             <b>atan2</b>(<i>dy, dx</i>)
                             Returns the arctangent of dy / dx. Same as JavaScript’s <u>Math.atan2</u>
                             <br>
-                            
+
                             <b>ceil</b>(<i>value</i>)
                             Rounds value to the nearest integer of equal or greater value. Same as JavaScript’s <u>Math.ceil</u>
                             <br>
-                                                            
+
                             <b>clamp</b>(<i>value, min, max</i>)
-                            Restricts value to be between the specified min and max.                        
+                            Restricts value to be between the specified min and max.
                             <br>
 
                             <b>cos</b>(<i>value</i>)
                             Trigonometric cosine. Same as JavaScript’s <u>Math.cos</u>
                             <br>
-                            
+
                             <b>exp</b>(<i>exponent</i>)
                             Returns the value of e raised to the provided exponent. Same as JavaScript’s <u>Math.exp</u>
                             <br>
-                            
+
                             <b>floor</b>(<i>value</i>)
                             Rounds value to the nearest integer of equal or lower value. Same as JavaScript’s <u>Math.floor</u>
                             <br>
-                            
+
                             <b>log</b>(<i>value</i>)
                             Returns the natural logarithm of value. Same as JavaScript’s <u>Math.log</u>
                             <br>
-                            
+
                             <b>max</b>(<i>value1, value2, …</i>)
                             Returns the maximum argument value. Same as JavaScript’s <u>Math.max</u>
                             <br>
-                            
+
                             <b>min</b>(<i>value1, value2, …</i>)
                             Returns the minimum argument value. Same as JavaScript’s <u>Math.min</u>
                             <br>
-                            
+
                             <b>pow</b>(<i>value, exponent</i>)
                             Returns value raised to the given exponent. Same as JavaScript’s <u>Math.pow</u>
                             <br>
-                            
+
                             <b>random</b>(<i></i>)
                             Returns a pseudo-random number in the range [0,1). Same as JavaScript’s <u>Math.random</u>
                             <br>
-                            
+
                             <b>round</b>(<i>value</i>)
                             Rounds value to the nearest integer. Same as JavaScript’s <u>Math.round</u>
                             <br>
-                            
+
                             <b>sin</b>(<i>value</i>)
                             Trigonometric sine. Same as JavaScript’s <u>Math.sin</u>
                             <br>
-                            
+
                             <b>sqrt</b>(<i>value</i>)
                             Square root function. Same as JavaScript’s <u>Math.sqrt</u>
                             <br>
-                            
+
                             <b>tan</b>(<i>value</i>)
                             Trigonometric tangent. Same as JavaScript’s <u>Math.tan</u>
                             <br>
 
                         </div>
+
+
+
+                        <div class="editorCalculatedHelpTitle">
+                            <b>Type Coercion Functions:</b>
+                        </div>
+                        <div class="editorCalculatedHelpBody">
+                            <b>toBoolean</b>(<i>value</i>)
+                            Coerces the input value to a string. Null values and empty strings are mapped to null.
+
+                            <b>toDate</b>(<i>value</i>)
+                            Coerces the input value to a Date instance. Null values and empty strings are mapped to null. If an optional parser function is provided, it is used to perform date parsing, otherwise Date.parse is used. Be aware that Date.parse has different implementations across browsers!
+
+                            <b>toNumber</b>(<i>value</i>)
+                            Coerces the input value to a number. Null values and empty strings are mapped to null.
+
+                            <b>toString</b>(<i>value</i>)
+                            Coerces the input value to a string. Null values and empty strings are mapped to null.                        
+                        </div>
+
+
+
+
+
                     </div>
 
                     <!-- FIELDS -->
@@ -2092,7 +2127,7 @@
                                 </select>
                             </div>
                         </div>
-    
+
                         <!-- Legend-Axis:: The maximum allowed length in pixels of legend labels.-->
                         <div class="editorLineContainer">
                             <div class="editorGraphLegendLabelLengthTitle" *ngIf="showFieldLegend">
@@ -2537,14 +2572,14 @@
                                 >
                             </clr-icon>
                             Filter
-                            
+
                             <span *ngIf="filterNrActive > 0"
                                 class="badge badge-5">{{ filterNrActive }}
                             </span>
 
                         </button>
                     </div>
-                    
+
                     <div class="editorFilterArea" *ngIf="showFilterAreaProperties">
                         <div class="editorFilterHeader">
                             <b>Filters</b>
@@ -2552,12 +2587,12 @@
                         <div style="padding: 8px;">
                             <i>
                                 Filters are applied to the data before calculations, and before the
-                                graph is constructed.  Select the field to filter on, then the operator 
-                                and type a Value(s).  Note: the values are case-sensitive, ie, Origin 
-                                Equal "Europe".  Click <b>Add</b> to append the filter.  Filters can be 
-                                de-activated (definition remains here, but the data is not filtered 
-                                with it).  Click a filter to edit it.  Double click the Delete icon 
-                                to delete a filter.                                
+                                graph is constructed.  Select the field to filter on, then the operator
+                                and type a Value(s).  Note: the values are case-sensitive, ie, Origin
+                                Equal "Europe".  Click <b>Add</b> to append the filter.  Filters can be
+                                de-activated (definition remains here, but the data is not filtered
+                                with it).  Click a filter to edit it.  Double click the Delete icon
+                                to delete a filter.
                             </i>
                         </div>
 
@@ -2606,7 +2641,7 @@
                         <div class="editorFilterValueTitle" *ngIf="filterOperator!='Range'">
                             Value:
                         </div>
-                            
+
                         <div class="editorFilterValue" *ngIf="filterOperator!='Range'">
                             <input type="text"
                                 [(ngModel)]="filterValue"
@@ -2649,13 +2684,13 @@
                                 <button class="btn" (click)="clickFilterAdd()">
                                     <span *ngIf="filterID==-1">
                                         Add
-                                    </span> 
+                                    </span>
                                     <span *ngIf="filterID!=-1">
                                         Save
-                                    </span> 
+                                    </span>
                                 </button>
                             </div>
-            
+
                             <button class="btn btn-secondary filterCloseButton"
                                 (click)="clickFilterClose()">
                                 Close
@@ -2666,7 +2701,7 @@
                         </div>
 
                         <div class="editorFilterGrid">
-                            <clr-datagrid class="datagrid-compact" 
+                            <clr-datagrid class="datagrid-compact"
                                 style="height: 160px !important;"
                                 >
                                 <clr-dg-column>FieldName</clr-dg-column>
