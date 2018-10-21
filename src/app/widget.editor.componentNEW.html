@@ -264,10 +264,10 @@
                                     Clear
                                 </button>
                                 <button class="btn" (click)="clickCalculatedApply()">
-                                    <span *ngIf="calculationID==-1">
+                                    <span *ngIf="calculatedID==-1">
                                         Add
                                     </span> 
-                                    <span *ngIf="calculationID!=-1">
+                                    <span *ngIf="calculatedID!=-1">
                                         Save
                                     </span> 
                                 </button>
@@ -292,8 +292,8 @@
                                 <clr-dg-column>Delete?</clr-dg-column>
 
                                 <clr-dg-row *clrDgItems="let row of localWidget.graphCalculations; let i = index"
-                                    [style.background-color]="(i == selectedGraphCalculationRowIndex)? '#123456' : 'white'"
-                                    [style.color]="(i == selectedGraphCalculationRowIndex)? 'white' : 'gray'"
+                                    [style.background-color]="(i == selectedGraphCalculatedRowIndex)? '#123456' : 'white'"
+                                    [style.color]="(i == selectedGraphCalculatedRowIndex)? 'white' : 'gray'"
                                     (click)="clickGraphCalculatedRowSelect(i, row.id)"
                                     >
                                     <clr-dg-cell>{{ row.calculatedExpression }}</clr-dg-cell>

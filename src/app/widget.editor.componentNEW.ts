@@ -245,7 +245,7 @@ export interface dataSchemaInterface {
     selectedDescription: string = '';
     selectedDSName: string = '';
     selectedFieldIndex: number = -1;
-    selectedGraphCalculationRowIndex: number = -1;
+    selectedGraphCalculatedRowIndex: number = -1;
     selectedGraphFilterRowIndex: number = -1;
     selectedRowIndex: number = -1;
     selectedRowID: number;
@@ -3232,7 +3232,7 @@ console.warn('xx this.selectedWidgetLayout', this.selectedWidgetLayout);
         this.globalFunctionService.printToConsole(this.constructor.name,'clickGraphCalculatedRowSelect', '@Start');
 
         // Set highlighted row
-        this.selectedGraphCalculationRowIndex = index;
+        this.selectedGraphCalculatedRowIndex = index;
 
         // Store vars
         let gridCalculatedIndex: number = this.localWidget.graphCalculations.findIndex(gflt =>
