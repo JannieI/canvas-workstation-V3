@@ -414,7 +414,7 @@ clr-dg-cell {
                     width: 98%;
                 }
 
-            .editorCalculatedHelp {
+            .editorCalculatedHelpArea {
                 background-color: white;
                 border: 1px solid gray;
                 border-radius: 6px;
@@ -426,9 +426,27 @@ clr-dg-cell {
                 grid-row-start: 4;
                 grid-row-end: 26;
                 margin: 2px;
+                overflow-y: scroll;
                 text-align: left;
                 z-index: 101;
             }
+                .editorCalculatedHelpHeader {
+                    font-size: 0.65rem;
+                    margin: 6px;
+                    text-align: center;
+                }
+                .editorCalculatedHelpButton {
+                    float: right;
+                }
+
+                .editorCalculatedHelpTitle {
+                    font-size: 0.60rem;
+                    margin: 6px;
+                }
+                .editorCalculatedHelpBody {
+                    font-size: 0.55rem;
+                    margin: 6px 6px 6px 12px;
+                }
 
         /* FIELDS */
         .editorFieldsDSname {

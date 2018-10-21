@@ -320,14 +320,103 @@
     
                     </div>
 
-                    <div class="editorCalculatedHelp" *ngIf="showCalculatedHelp">
-                        Calculation Formulae
-                        <clr-icon style="margin-left: 6px; padding: 0;"
-                            shape="minuw"
-                            (click)="showCalculatedHelp=false"
-                            >
-                        </clr-icon>
+                    <div class="editorCalculatedHelpArea" *ngIf="showCalculatedHelp">
+                        <div class="editorCalculatedHelpHeader">
+                            <button type="button" class="btn editorCalculatedHelpButton" (click)="showCalculatedHelp=false()">
+                                <b>X</b>
+                            </button>
+                            Calculation Formulae
+                        </div>
 
+                        <div class="editorCalculatedHelpTitle">
+                            Mathematical Functions
+                        </div>
+                        <div class="editorCalculatedHelpBody">
+                            <b>isNaN</b>(<i>value</i>)
+                            Returns true if value is not a number. Same as JavaScript’s <u>isNaN</u>
+                            <br>
+                            
+                            <b>isFinite</b>(<i>value</i>)
+                            Returns true if value is a finite number. Same as JavaScript’s <u>isFinite</u>
+                            <br>
+                            
+                            <b>abs</b>(<i>value</i>)
+                            Returns the absolute value of value. Same as JavaScript’s <u>Math.abs</u>
+                            <br>
+                            
+                            <b>acos</b>(<i>value</i>)
+                            Trigonometric arccosine. Same as JavaScript’s <u>Math.acos</u>
+                            <br>
+                            
+                            <b>asin</b>(<i>value</i>)
+                            Trigonometric arcsine. Same as JavaScript’s <u>Math.asin</u>
+                            <br>
+                            
+                            <b>atan</b>(<i>value</i>)
+                            Trigonometric arctangent. Same as JavaScript’s <u>Math.atan</u>
+                            <br>
+                            
+                            <b>atan2</b>(<i>dy, dx</i>)
+                            Returns the arctangent of dy / dx. Same as JavaScript’s <u>Math.atan2</u>
+                            <br>
+                            
+                            <b>ceil</b>(<i>value</i>)
+                            Rounds value to the nearest integer of equal or greater value. Same as JavaScript’s <u>Math.ceil</u>
+                            <br>
+                                                            
+                            <b>clamp</b>(<i>value, min, max</i>)
+                            Restricts value to be between the specified min and max.                        
+                            <br>
+
+                            <b>cos</b>(<i>value</i>)
+                            Trigonometric cosine. Same as JavaScript’s <u>Math.cos</u>
+                            <br>
+                            
+                            <b>exp</b>(<i>exponent</i>)
+                            Returns the value of e raised to the provided exponent. Same as JavaScript’s <u>Math.exp</u>
+                            <br>
+                            
+                            <b>floor</b>(<i>value</i>)
+                            Rounds value to the nearest integer of equal or lower value. Same as JavaScript’s <u>Math.floor</u>
+                            <br>
+                            
+                            <b>log</b>(<i>value</i>)
+                            Returns the natural logarithm of value. Same as JavaScript’s <u>Math.log</u>
+                            <br>
+                            
+                            <b>max</b>(<i>value1, value2, …</i>)
+                            Returns the maximum argument value. Same as JavaScript’s <u>Math.max</u>
+                            <br>
+                            
+                            <b>min</b>(<i>value1, value2, …</i>)
+                            Returns the minimum argument value. Same as JavaScript’s <u>Math.min</u>
+                            <br>
+                            
+                            <b>pow</b>(<i>value, exponent</i>)
+                            Returns value raised to the given exponent. Same as JavaScript’s <u>Math.pow</u>
+                            <br>
+                            
+                            <b>random</b>(<i></i>)
+                            Returns a pseudo-random number in the range [0,1). Same as JavaScript’s <u>Math.random</u>
+                            <br>
+                            
+                            <b>round</b>(<i>value</i>)
+                            Rounds value to the nearest integer. Same as JavaScript’s <u>Math.round</u>
+                            <br>
+                            
+                            <b>sin</b>(<i>value</i>)
+                            Trigonometric sine. Same as JavaScript’s <u>Math.sin</u>
+                            <br>
+                            
+                            <b>sqrt</b>(<i>value</i>)
+                            Square root function. Same as JavaScript’s <u>Math.sqrt</u>
+                            <br>
+                            
+                            <b>tan</b>(<i>value</i>)
+                            Trigonometric tangent. Same as JavaScript’s <u>Math.tan</u>
+                            <br>
+
+                        </div>
                     </div>
 
                     <!-- FIELDS -->
@@ -2738,3 +2827,24 @@
         </div>
     </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
