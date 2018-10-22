@@ -1146,6 +1146,7 @@
                             </clr-icon>
                         </div>
 
+                        <!-- X Axis sub Header -->
                         <div class="editorXPropertiesTitleField" *ngIf="showFieldXProperties"
                             (click)="clickShowXPropertiesField()"
                             >
@@ -1342,7 +1343,6 @@
                             </div>
                         </div>
 
-
                         <div class="editorXPropertiesTitleAxis" *ngIf="showFieldXProperties"
                             (click)="clickShowXPropertiesAxis()"
                             >
@@ -1357,10 +1357,6 @@
                                 size="12"
                                 >
                             </clr-icon>
-                        </div>
-
-                        <div class="editorGraphXaggregateTitle" *ngIf="showFieldXPropertiesAxis  &&  showFieldXPropertiesAxis">
-                            axis...
                         </div>
 
                         <!-- X-Axis Title -->
@@ -1504,8 +1500,9 @@
                             </clr-icon>
                         </div>
 
+                        <!-- Y Field sub Header -->
                         <div class="editorYPropertiesTitleField" *ngIf="showFieldYProperties"
-                            (click)="clickShowXPropertiesField()"
+                            (click)="clickShowYPropertiesField()"
                             >
                             <b>
                                 Field
@@ -1697,6 +1694,163 @@
                             </div>
                         </div>
 
+                        <!-- Y Axis Subheader -->
+                        <div class="editorYPropertiesTitleAxis" *ngIf="showFieldYProperties"
+                            (click)="clickShowYPropertiesAxis()"
+                            >
+                            <b>
+                                Axis
+                            </b>
+                            <clr-icon shape="angle down" *ngIf="!showFieldYPropertiesAxis"
+                                size="12"
+                                >
+                            </clr-icon>
+                            <clr-icon shape="angle up" *ngIf="showFieldYPropertiesAxis"
+                                size="12"
+                                >
+                            </clr-icon>
+                        </div>
+
+                        <!-- Y-Axis Scale Type -->
+                        <div class="editorLineContainer">
+                            <div class="editorGraphYaxisScaleTypeTitle" *ngIf="showFieldYPropertiesAxis">
+                                Type:
+                            </div>
+                            <div class="select editorGraphYaxisScaleType"
+                                *ngIf="showFieldYPropertiesAxis"
+                                >
+                                <select id="selects_3"
+                                    [(ngModel)]="localWidget.graphYaxisScaleType"
+                                    >
+                                    <option>Default</option>
+                                    <option>Linear</option>
+                                    <option>Log</option>
+                                    <option>Quantile</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Y-Axis Title -->
+                        <div class="editorLineContainer">
+                            <div class="editorGraphYaxisTitleTitle" *ngIf="showFieldYPropertiesAxis">
+                                Title:
+                            </div>
+                            <div class="editorGraphYaxisTitleCheckbox" *ngIf="showFieldYPropertiesAxis">
+                                <input [(ngModel)]="localWidget.graphYaxisTitleCheckbox"
+                                    type="checkbox"
+                                    name="graphYaxisTitleCheckbox"
+                                    title="Show the Axis Title (T/F)"
+                                    >
+                            </div>
+                            <div class="editorGraphYaxisTitle" *ngIf="showFieldYPropertiesAxis"
+                                >
+                                <input type="text"
+                                    placeholder="Blank = field name"
+                                    [(ngModel)]="localWidget.graphYaxisTitle"
+                                    name="graphYaxisTitle"
+                                    >
+                            </div>
+                        </div>
+
+                        <!-- Y Axis LabelAngle -->
+                        <div class="editorLineContainer">
+                            <div class="editorGraphYaxisLabelAngleTitle" *ngIf="showFieldYPropertiesAxis">
+                            Angle:
+                            </div>
+                            <div class="editorGraphYaxisLabelAngle" *ngIf="showFieldYPropertiesAxis">
+                                <input type="number"
+                                    [(ngModel)]="localWidget.graphYaxisLabelAngle"
+                                    name="graphYaxisLabelAngle"
+                                    placeholder="Label Angle"
+                                    >
+                            </div>
+                        </div>
+
+                        <!-- Y Axis Format -->
+                        <div class="editorLineContainer">
+                            <div class="editorGraphYaxisFormatTitle" *ngIf="showFieldYPropertiesAxis">
+                            Format:
+                            </div>
+                            <div class="editorGraphYaxisFormat" *ngIf="showFieldYPropertiesAxis">
+                                <input type="text"
+                                    [(ngModel)]="localWidget.graphYaxisFormat"
+                                    name="graphYaxisFormat"
+                                    placeholder="ie .2s +$,.2f"
+                                    >
+                            </div>
+                        </div>
+
+                        <!-- Y-Axis Grid -->
+                        <div class="editorLineContainer">
+                            <div class="editorGraphYaxisGridTitle" *ngIf="showFieldYPropertiesAxis">
+                                Grid:
+                            </div>
+                            <div class="editorGraphYaxisGrid" *ngIf="showFieldYPropertiesAxis">
+                                <input type="checkbox"
+                                    [(ngModel)]="localWidget.graphYaxisGrid"
+                                    name="graphYaxisGrid"
+                                    title="Show Grid lines (T/F)"
+                                    >
+                            </div>
+                            <div class="select editorGraphYaxisGridColor" *ngIf="showFieldYPropertiesAxis">
+                                <select [(ngModel)]="localWidget.graphYaxisGridColorName"
+                                    name="graphYaxisGridColorName"
+                                    (change)="clickSelectYGridColor($event)"
+                                    title="Color of the Y gridlines"
+                                    >
+                                    <option *ngFor="let row of backgroundcolors"
+                                        [style.background-color]="row.cssCode"
+                                        >
+                                        {{ row.name }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Y Axis Labels -->
+                        <div class="editorLineContainer">
+                            <div class="editorGraphYaxisLabelsTitle" *ngIf="showFieldYPropertiesAxis">
+                            Labels:
+                            </div>
+                            <div class="editorGraphYaxisLabels" *ngIf="showFieldYPropertiesAxis">
+                                <input type="checkbox"
+                                    [(ngModel)]="localWidget.graphYaxisLabels"
+                                    name="graphYaxisLabels"
+                                    title="Show labels (T/F)"
+                                    >
+                            </div>
+                            <div class="select editorGraphYaxisLabelsColor" *ngIf="showFieldYPropertiesAxis">
+                                <select [(ngModel)]="localWidget.graphYaxisLabelColorName"
+                                    name="graphYaxisLabelColorName"
+                                    (change)="clickSelectYLabelColor($event)"
+                                    title="Color of the Y labels"
+                                    >
+                                    <option *ngFor="let row of backgroundcolors"
+                                        [style.background-color]="row.cssCode"
+                                        >
+                                        {{ row.name }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Y Axis: The maximum allowed length in pixels of the labels.-->
+                        <div class="editorLineContainer">
+                            <div class="editorGraphYaxisLabelLengthTitle" *ngIf="showFieldYPropertiesAxis">
+                            Length:
+                            </div>
+                            <div class="editorGraphYaxisLabelLength" *ngIf="showFieldYPropertiesAxis">
+                                <input type="number"
+                                    placeholder="Max length in px"
+                                    [(ngModel)]="localWidget.graphDimensionLeft"
+                                    name="graphDimensionLeft"
+                                    min="0"
+                                    max="500"
+                                    title="Length of the Y axis Labels in px"
+                                    >
+                            </div>
+                        </div>
+    
 
                         <!-- Color Properties Title Bar -->
                         <div class="editorColorPropertiesTitle" *ngIf="showFieldColorPropertiesTitle"
@@ -2057,7 +2211,7 @@
 
 
                         <!-- Y-Axis Title Bar -->
-                        <div class="editorYAxisContainerTitle" *ngIf="showFieldYPropertiesTitle"
+                        <!-- <div class="editorYAxisContainerTitle" *ngIf="showFieldYPropertiesTitle"
                             (click)="clickShowYAxisProperties()"
                             >
                             <b>
@@ -2071,147 +2225,7 @@
                                 size="12"
                                 >
                             </clr-icon>
-                        </div>
-
-                        <!-- Y-Axis Scale Type -->
-                        <div class="editorLineContainer">
-                            <div class="editorGraphYaxisScaleTypeTitle" *ngIf="showFieldYAxis">
-                                Type:
-                            </div>
-                            <div class="select editorGraphYaxisScaleType"
-                                *ngIf="showFieldYAxis"
-                                >
-                                <select id="selects_3"
-                                    [(ngModel)]="localWidget.graphYaxisScaleType"
-                                    >
-                                    <option>Default</option>
-                                    <option>Linear</option>
-                                    <option>Log</option>
-                                    <option>Quantile</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <!-- Y-Axis Title -->
-                        <div class="editorLineContainer">
-                            <div class="editorGraphYaxisTitleTitle" *ngIf="showFieldYAxis">
-                                Title:
-                            </div>
-                            <div class="editorGraphYaxisTitleCheckbox" *ngIf="showFieldYAxis">
-                                <input [(ngModel)]="localWidget.graphYaxisTitleCheckbox"
-                                    type="checkbox"
-                                    name="graphYaxisTitleCheckbox"
-                                    title="Show the Axis Title (T/F)"
-                                    >
-                            </div>
-                            <div class="editorGraphYaxisTitle" *ngIf="showFieldYAxis"
-                                >
-                                <input type="text"
-                                    placeholder="Blank = field name"
-                                    [(ngModel)]="localWidget.graphYaxisTitle"
-                                    name="graphYaxisTitle"
-                                    >
-                            </div>
-                        </div>
-
-                        <!-- Y Axis LabelAngle -->
-                        <div class="editorLineContainer">
-                            <div class="editorGraphYaxisLabelAngleTitle" *ngIf="showFieldYAxis">
-                            Angle:
-                            </div>
-                            <div class="editorGraphYaxisLabelAngle" *ngIf="showFieldYAxis">
-                                <input type="number"
-                                    [(ngModel)]="localWidget.graphYaxisLabelAngle"
-                                    name="graphYaxisLabelAngle"
-                                    placeholder="Label Angle"
-                                    >
-                            </div>
-                        </div>
-
-                        <!-- Y Axis Format -->
-                        <div class="editorLineContainer">
-                            <div class="editorGraphYaxisFormatTitle" *ngIf="showFieldYAxis">
-                            Format:
-                            </div>
-                            <div class="editorGraphYaxisFormat" *ngIf="showFieldYAxis">
-                                <input type="text"
-                                    [(ngModel)]="localWidget.graphYaxisFormat"
-                                    name="graphYaxisFormat"
-                                    placeholder="ie .2s +$,.2f"
-                                    >
-                            </div>
-                        </div>
-
-                        <!-- Y-Axis Grid -->
-                        <div class="editorLineContainer">
-                            <div class="editorGraphYaxisGridTitle" *ngIf="showFieldYAxis">
-                                Grid:
-                            </div>
-                            <div class="editorGraphYaxisGrid" *ngIf="showFieldYAxis">
-                                <input type="checkbox"
-                                    [(ngModel)]="localWidget.graphYaxisGrid"
-                                    name="graphYaxisGrid"
-                                    title="Show Grid lines (T/F)"
-                                    >
-                            </div>
-                            <div class="select editorGraphYaxisGridColor" *ngIf="showFieldYAxis">
-                                <select [(ngModel)]="localWidget.graphYaxisGridColorName"
-                                    name="graphYaxisGridColorName"
-                                    (change)="clickSelectYGridColor($event)"
-                                    title="Color of the Y gridlines"
-                                    >
-                                    <option *ngFor="let row of backgroundcolors"
-                                        [style.background-color]="row.cssCode"
-                                        >
-                                        {{ row.name }}
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <!-- Y Axis Labels -->
-                        <div class="editorLineContainer">
-                            <div class="editorGraphYaxisLabelsTitle" *ngIf="showFieldYAxis">
-                            Labels:
-                            </div>
-                            <div class="editorGraphYaxisLabels" *ngIf="showFieldYAxis">
-                                <input type="checkbox"
-                                    [(ngModel)]="localWidget.graphYaxisLabels"
-                                    name="graphYaxisLabels"
-                                    title="Show labels (T/F)"
-                                    >
-                            </div>
-                            <div class="select editorGraphYaxisLabelsColor" *ngIf="showFieldYAxis">
-                                <select [(ngModel)]="localWidget.graphYaxisLabelColorName"
-                                    name="graphYaxisLabelColorName"
-                                    (change)="clickSelectYLabelColor($event)"
-                                    title="Color of the Y labels"
-                                    >
-                                    <option *ngFor="let row of backgroundcolors"
-                                        [style.background-color]="row.cssCode"
-                                        >
-                                        {{ row.name }}
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <!-- Y Axis: The maximum allowed length in pixels of the labels.-->
-                        <div class="editorLineContainer">
-                            <div class="editorGraphYaxisLabelLengthTitle" *ngIf="showFieldYAxis">
-                            Length:
-                            </div>
-                            <div class="editorGraphYaxisLabelLength" *ngIf="showFieldYAxis">
-                                <input type="number"
-                                    placeholder="Max length in px"
-                                    [(ngModel)]="localWidget.graphDimensionLeft"
-                                    name="graphDimensionLeft"
-                                    min="0"
-                                    max="500"
-                                    title="Length of the Y axis Labels in px"
-                                    >
-                            </div>
-                        </div>
+                        </div> -->
 
 
                         <!-- Size: Channel Title Bar -->

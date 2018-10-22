@@ -2105,7 +2105,9 @@ export interface dataSchemaInterface {
         // Hide the panel with properties
         this.showFieldXPropertiesTitle = false;
         this.showFieldXProperties = false;
-        this.showFieldXAxis = false;
+        this.showFieldXPropertiesField = false;
+        this.showFieldXPropertiesAxis = false;
+        this.showFieldXAxis = false;  /xx
     }
 
     clickClearYField() {
@@ -2131,7 +2133,8 @@ export interface dataSchemaInterface {
         // Hide the panel with properties
         this.showFieldYPropertiesTitle = false;
         this.showFieldYProperties = false;
-        this.showFieldYAxis = false;
+        this.showFieldYPropertiesField = false;
+        this.showFieldYPropertiesAxis = false;
     }
 
     clickClearColourField() {
@@ -2675,6 +2678,14 @@ export interface dataSchemaInterface {
 
         // Toggle
         this.showFieldYPropertiesField = !this.showFieldYPropertiesField;
+    }
+
+    clickShowYPropertiesAxis() {
+        // Show Y Properties Axis Area
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowYPropertiesAxis', '@Start');
+
+        // Toggle
+        this.showFieldYPropertiesAxis = !this.showFieldYPropertiesAxis;
     }
 
     clickShowColorProperties() {
