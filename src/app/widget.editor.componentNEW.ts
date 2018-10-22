@@ -1155,7 +1155,6 @@ export interface dataSchemaInterface {
         // Render the graph on the form.  NOTE: each graph has its own spec and rendering
         // rules.
         this.globalFunctionService.printToConsole(this.constructor.name,'showGraph', '@Start');
-        console.warn('xx x this.localWidget.graphCalculations', this.localWidget.graphCalculations);
         
         // Reset
         this.errorMessageEditor = '';
@@ -3530,8 +3529,6 @@ export interface dataSchemaInterface {
             this.showY2DeleteIcon = false;
             this.y2Field = dragFieldMessage;
         };
-        
-        console.warn('xx xlocalWidget.graphFilters', this.localWidget.graphFilters);
         
     }
 

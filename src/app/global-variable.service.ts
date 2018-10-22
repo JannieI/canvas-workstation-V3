@@ -71,6 +71,9 @@ import * as dl                        from 'datalib';
 // Functions
 import { nSQL } from "nano-sql";
 
+// Environment
+import { environment } from '../environments/environment';
+
 // Vega template
 const vlTemplate: dl.spec.TopLevelExtendedSpec =
     {
@@ -771,6 +774,14 @@ export class GlobalVariableService {
     selectedWidgetIDs: number[] = [];
 
     // Session
+    ENVCanvasEZALServerUrl: string = environment.ENVCanvasEZALServerUrl;
+    ENVCanvasDatabaseUseLocal: boolean = environment.ENVCanvasDatabaseUseLocal;
+    ENVCanvasDatabaseServerUrl: string = environment.ENVCanvasDatabaseServerUrl;
+    ENVCanvasDatabaseLocalUrlS1: string = environment.ENVCanvasDatabaseLocalUrlS1;
+    ENVCanvasDatabaseLocalUrlS2: string = environment.ENVCanvasDatabaseLocalUrlS2;
+    ENVCanvasDatabaseLocalUrlS3: string = environment.ENVCanvasDatabaseLocalUrlS3;
+    ENVCanvasDatabaseLocalUrlS4: string = environment.ENVCanvasDatabaseLocalUrlS4;
+    ENVCanvasDatabaseLocalUrlS5: string = environment.ENVCanvasDatabaseLocalUrlS5;
     colourPickerClosed = new BehaviorSubject<
         {
             callingRoutine: string;
@@ -2468,6 +2479,7 @@ export class GlobalVariableService {
             console.log('%c    Global-Variables getCurrentDashboards ...',
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {dashboardID});
         };
+console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseUseLocal, this.ENVCanvasDatabaseLocalUrlS1);
 
         // Refresh from source at start, or if dirty
         if (

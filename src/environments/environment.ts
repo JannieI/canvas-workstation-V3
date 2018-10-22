@@ -4,5 +4,14 @@
 // The list of which env maps to which file can be found in `angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  
+  ENVCanvasEZALServerUrl: "eazl",
+  ENVCanvasDatabaseUseLocal: true,
+  ENVCanvasDatabaseServerUrl: "canvas",
+  ENVCanvasDatabaseLocalUrlS1: "http://localhost:3001/",
+  ENVCanvasDatabaseLocalUrlS2: "http://localhost:3000/",
+  ENVCanvasDatabaseLocalUrlS3: "http://localhost:3002/",
+  ENVCanvasDatabaseLocalUrlS4: "http://localhost:3005/",
+  ENVCanvasDatabaseLocalUrlS5: "http://localhost:3006/"
 };
