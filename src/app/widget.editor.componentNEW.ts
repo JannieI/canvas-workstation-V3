@@ -1137,7 +1137,8 @@ export interface dataSchemaInterface {
         // Render the graph on the form.  NOTE: each graph has its own spec and rendering
         // rules.
         this.globalFunctionService.printToConsole(this.constructor.name,'showGraph', '@Start');
-
+        console.warn('xx x this.localWidget.graphCalculations', this.localWidget.graphCalculations);
+        
         // Reset
         this.errorMessageEditor = '';
 
@@ -1374,9 +1375,12 @@ export interface dataSchemaInterface {
 
         // Append if requested
         if (createNewHistory) {
-            this.graphHistory[layerIndex].widgetSpec.push({
+            let newGraphSpec: Widget = {
                 ...this.localWidget, ...{ graphData: [] }
-            });
+            };
+            this.graphHistory[layerIndex].widgetSpec.push(
+                JSON.parse(JSON.stringify(newGraphSpec))
+            );
             this.graphHistoryPosition = this.graphHistory[layerIndex].widgetSpec.length - 1;
         };
 
@@ -1403,7 +1407,7 @@ export interface dataSchemaInterface {
             ...this.graphHistory[layerIndex].widgetSpec[this.graphHistoryPosition],
              ...{ graphData: this.localWidget.graphData }
         };
-        this.localWidget = { ... newWidgetSpec };
+        this.localWidget = JSON.parse(JSON.stringify(newWidgetSpec));
 
         // Get the graphID
         let graphID: number = -1;
@@ -1439,7 +1443,7 @@ export interface dataSchemaInterface {
             ...this.graphHistory[layerIndex].widgetSpec[this.graphHistoryPosition],
              ...{ graphData: this.localWidget.graphData }
         };
-        this.localWidget = { ... newWidgetSpec };
+        this.localWidget = JSON.parse(JSON.stringify(newWidgetSpec));
 
         // Get the graphID
         let graphID: number = -1;
@@ -3509,7 +3513,7 @@ export interface dataSchemaInterface {
             this.y2Field = dragFieldMessage;
         };
         
-        console.warn('xx localWidget.graphFilters', this.localWidget.graphFilters);
+        console.warn('xx xlocalWidget.graphFilters', this.localWidget.graphFilters);
         
     }
 }
