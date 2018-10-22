@@ -10033,11 +10033,11 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         });
     }
 
-    get<T>(url: string, options?: any, dashboardID?: number, datasourceID?: number): Promise<any> {
+    get<T>(pahtUrl: string, options?: any, dashboardID?: number, datasourceID?: number): Promise<any> {
         // Generic GET data, later to be replaced with http
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables get (url, filePath) ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {url},
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {pahtUrl},
                 this.filePath);
         };
 
@@ -10108,66 +10108,68 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             return new Promise((resolve, reject) => {
                 // this.http.get(this.filePath).subscribe(res => resolve(res));
 
+                let finalUrl: string = this.setBaseUrl(pahtUrl) + pahtUrl;
+
                 // CanvasDatabase: Local or Server
-                let finalUrl: string = '';
-                if (this.ENVCanvasDatabaseUseLocal) {
+                // let finalUrl: string = '';
+                // if (this.ENVCanvasDatabaseUseLocal) {
 
-                    // Cater for different Servers
-                    if (url == 'dashboardsRecent') {
-                        finalUrl = 'http://localhost:3001/' + url;
-                    } else if (url == 'dataCachingTable') {
-                        finalUrl = 'http://localhost:3001/' + url;
-                    } else if (url == 'canvasUsers') {
-                        finalUrl = 'http://localhost:3001/' + url;
-                    } else if (url == 'canvasGroups') {
-                        finalUrl = 'http://localhost:3001/' + url;
-                    } else if (url == 'dataConnections') {
-                        finalUrl = 'http://localhost:3001/' + url;
-                    } else if (url == 'dataTables') {
-                        finalUrl = 'http://localhost:3001/' + url;
-                    } else if (url == 'datasourceSchedules') {
-                        finalUrl = 'http://localhost:3001/' + url;
-                    } else if (url == 'datasourceScheduleLog') {
-                        finalUrl = 'http://localhost:3001/' + url;
-                    } else if (url == 'dataFields') {
-                        finalUrl = 'http://localhost:3001/' + url;
-                    } else if (url == 'widgetGraphs') {
-                        finalUrl = 'http://localhost:3001/' + url;
-                    } else if (url == 'dashboardSnapshots') {
-                        finalUrl = 'http://localhost:3000/' + url;
-                    } else if (url == 'widgetCheckpoints') {
-                        finalUrl = 'http://localhost:3000/' + url;
-                    } else if (url == 'datasets') {
-                        finalUrl = 'http://localhost:3000/' + url;
-                    } else if (url == 'statusBarMessageLogs') {
-                        finalUrl = 'http://localhost:3002/' + url;
-                    } else if (url == 'canvasAuditTrails') {
-                        finalUrl = 'http://localhost:3002/' + url;
-                    } else if (url == 'paletteButtonBars') {
-                        finalUrl = 'http://localhost:3001/' + url;
-                    } else if (url == 'containerStyles') {
-                        finalUrl = 'http://localhost:3001/' + url;
-                    } else if (url == 'dashboardLayouts') {
-                        finalUrl = 'http://localhost:3001/' + url;
-                    } else if (url == 'widgetLayouts') {
-                        finalUrl = 'http://localhost:3001/' + url;
-                    } else if (url == 'canvasBackgroundcolorsDefault') {
-                        finalUrl = 'http://localhost:3001/' + url;
-                    } else if (url == 'canvasBackgroundcolors') {
-                        finalUrl = 'http://localhost:3001/' + url;
-                    } else if (url == 'paletteButtonsSelecteds') {
-                        finalUrl = 'http://localhost:3001/' + url;
-                    } else if (url == 'widgets') {
-                        finalUrl = 'http://localhost:3005/' + url;
-                    } else if (url.substring(0, 5) == 'data/') {
-                        finalUrl = 'http://localhost:3006/' + url;
+                //     // Cater for different Servers
+                //     if (pahtUrl == 'dashboardsRecent') {
+                //         finalUrl = 'http://localhost:3001/' + pahtUrl;
+                //     } else if (pahtUrl == 'dataCachingTable') {
+                //         finalUrl = 'http://localhost:3001/' + pahtUrl;
+                //     } else if (pahtUrl == 'canvasUsers') {
+                //         finalUrl = 'http://localhost:3001/' + pahtUrl;
+                //     } else if (pahtUrl == 'canvasGroups') {
+                //         finalUrl = 'http://localhost:3001/' + pahtUrl;
+                //     } else if (pahtUrl == 'dataConnections') {
+                //         finalUrl = 'http://localhost:3001/' + pahtUrl;
+                //     } else if (pahtUrl == 'dataTables') {
+                //         finalUrl = 'http://localhost:3001/' + pahtUrl;
+                //     } else if (pahtUrl == 'datasourceSchedules') {
+                //         finalUrl = 'http://localhost:3001/' + pahtUrl;
+                //     } else if (pahtUrl == 'datasourceScheduleLog') {
+                //         finalUrl = 'http://localhost:3001/' + pahtUrl;
+                //     } else if (pahtUrl == 'dataFields') {
+                //         finalUrl = 'http://localhost:3001/' + pahtUrl;
+                //     } else if (pahtUrl == 'widgetGraphs') {
+                //         finalUrl = 'http://localhost:3001/' + pahtUrl;
+                //     } else if (pahtUrl == 'dashboardSnapshots') {
+                //         finalUrl = 'http://localhost:3000/' + pahtUrl;
+                //     } else if (pahtUrl == 'widgetCheckpoints') {
+                //         finalUrl = 'http://localhost:3000/' + pahtUrl;
+                //     } else if (pahtUrl == 'datasets') {
+                //         finalUrl = 'http://localhost:3000/' + pahtUrl;
+                //     } else if (pahtUrl == 'statusBarMessageLogs') {
+                //         finalUrl = 'http://localhost:3002/' + pahtUrl;
+                //     } else if (pahtUrl == 'canvasAuditTrails') {
+                //         finalUrl = 'http://localhost:3002/' + pahtUrl;
+                //     } else if (pahtUrl == 'paletteButtonBars') {
+                //         finalUrl = 'http://localhost:3001/' + pahtUrl;
+                //     } else if (pahtUrl == 'containerStyles') {
+                //         finalUrl = 'http://localhost:3001/' + pahtUrl;
+                //     } else if (pahtUrl == 'dashboardLayouts') {
+                //         finalUrl = 'http://localhost:3001/' + pahtUrl;
+                //     } else if (pahtUrl == 'widgetLayouts') {
+                //         finalUrl = 'http://localhost:3001/' + pahtUrl;
+                //     } else if (pahtUrl == 'canvasBackgroundcolorsDefault') {
+                //         finalUrl = 'http://localhost:3001/' + pahtUrl;
+                //     } else if (pahtUrl == 'canvasBackgroundcolors') {
+                //         finalUrl = 'http://localhost:3001/' + pahtUrl;
+                //     } else if (pahtUrl == 'paletteButtonsSelecteds') {
+                //         finalUrl = 'http://localhost:3001/' + pahtUrl;
+                //     } else if (pahtUrl == 'widgets') {
+                //         finalUrl = 'http://localhost:3005/' + pahtUrl;
+                //     } else if (pahtUrl.substring(0, 5) == 'data/') {
+                //         finalUrl = 'http://localhost:3006/' + pahtUrl;
 
-                    } else {
-                        finalUrl = 'http://localhost:3000/' + url;
-                    };
-                } else {
-                    finalUrl = this.ENVCanvasDatabaseServerUrl;
-                };
+                //     } else {
+                //         finalUrl = 'http://localhost:3000/' + pahtUrl;
+                //     };
+                // } else {
+                //     finalUrl = this.ENVCanvasDatabaseServerUrl;
+                // };
 
 
                 this.http.get(finalUrl).subscribe(
@@ -10221,56 +10223,56 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
 
             // Cater for different Servers
             if (pathUrl == 'dashboardsRecent') {
-                baseUrl = 'http://localhost:3001/' + pathUrl;
+                baseUrl = 'http://localhost:3001/';
             } else if (pathUrl == 'dataCachingTable') {
-                baseUrl = 'http://localhost:3001/' + pathUrl;
+                baseUrl = 'http://localhost:3001/';
             } else if (pathUrl == 'canvasUsers') {
-                baseUrl = 'http://localhost:3001/' + pathUrl;
+                baseUrl = 'http://localhost:3001/';
             } else if (pathUrl == 'canvasGroups') {
-                baseUrl = 'http://localhost:3001/' + pathUrl;
+                baseUrl = 'http://localhost:3001/';
             } else if (pathUrl == 'dataConnections') {
-                baseUrl = 'http://localhost:3001/' + pathUrl;
+                baseUrl = 'http://localhost:3001/';
             } else if (pathUrl == 'dataTables') {
-                baseUrl = 'http://localhost:3001/' + pathUrl;
+                baseUrl = 'http://localhost:3001/';
             } else if (pathUrl == 'datasourceSchedules') {
-                baseUrl = 'http://localhost:3001/' + pathUrl;
+                baseUrl = 'http://localhost:3001/';
             } else if (pathUrl == 'datasourceScheduleLog') {
-                baseUrl = 'http://localhost:3001/' + pathUrl;
+                baseUrl = 'http://localhost:3001/';
             } else if (pathUrl == 'dataFields') {
-                baseUrl = 'http://localhost:3001/' + pathUrl;
+                baseUrl = 'http://localhost:3001/';
             } else if (pathUrl == 'widgetGraphs') {
-                baseUrl = 'http://localhost:3001/' + pathUrl;
+                baseUrl = 'http://localhost:3001/';
             } else if (pathUrl == 'dashboardSnapshots') {
-                baseUrl = 'http://localhost:3000/' + pathUrl;
+                baseUrl = 'http://localhost:3000/';
             } else if (pathUrl == 'widgetCheckpoints') {
-                baseUrl = 'http://localhost:3000/' + pathUrl;
+                baseUrl = 'http://localhost:3000/';
             } else if (pathUrl == 'datasets') {
-                baseUrl = 'http://localhost:3000/' + pathUrl;
+                baseUrl = 'http://localhost:3000/';
             } else if (pathUrl == 'statusBarMessageLogs') {
-                baseUrl = 'http://localhost:3002/' + pathUrl;
+                baseUrl = 'http://localhost:3002/';
             } else if (pathUrl == 'canvasAuditTrails') {
-                baseUrl = 'http://localhost:3002/' + pathUrl;
+                baseUrl = 'http://localhost:3002/';
             } else if (pathUrl == 'paletteButtonBars') {
-                baseUrl = 'http://localhost:3001/' + pathUrl;
+                baseUrl = 'http://localhost:3001/';
             } else if (pathUrl == 'containerStyles') {
-                baseUrl = 'http://localhost:3001/' + pathUrl;
+                baseUrl = 'http://localhost:3001/';
             } else if (pathUrl == 'dashboardLayouts') {
-                baseUrl = 'http://localhost:3001/' + pathUrl;
+                baseUrl = 'http://localhost:3001/';
             } else if (pathUrl == 'widgetLayouts') {
-                baseUrl = 'http://localhost:3001/' + pathUrl;
+                baseUrl = 'http://localhost:3001/';
             } else if (pathUrl == 'canvasBackgroundcolorsDefault') {
-                baseUrl = 'http://localhost:3001/' + pathUrl;
+                baseUrl = 'http://localhost:3001/';
             } else if (pathUrl == 'canvasBackgroundcolors') {
-                baseUrl = 'http://localhost:3001/' + pathUrl;
+                baseUrl = 'http://localhost:3001/';
             } else if (pathUrl == 'paletteButtonsSelecteds') {
-                baseUrl = 'http://localhost:3001/' + pathUrl;
+                baseUrl = 'http://localhost:3001/';
             } else if (pathUrl == 'widgets') {
-                baseUrl = 'http://localhost:3005/' + pathUrl;
+                baseUrl = 'http://localhost:3005/';
             } else if (pathUrl.substring(0, 5) == 'data/') {
-                baseUrl = 'http://localhost:3006/' + pathUrl;
+                baseUrl = 'http://localhost:3006/';
 
             } else {
-                baseUrl = 'http://localhost:3000/' + pathUrl;
+                baseUrl = 'http://localhost:3000/';
             };
         } else {
             baseUrl = this.ENVCanvasDatabaseServerUrl;
