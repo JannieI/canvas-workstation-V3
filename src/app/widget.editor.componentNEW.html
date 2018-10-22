@@ -2905,7 +2905,22 @@
                         <b *ngIf="!showGraphAreaTitle  &&  !showSpecification">
                             Graph
                         </b>
-
+                        <clr-signpost>
+                            <clr-icon shape="info-circle" style="margin-top: -4px;"
+                                clrSignpostTrigger>
+                            </clr-icon>
+                            <clr-signpost-content *clrIfOpen
+                                [clrPosition]="'bottom-middle'">
+                                <h5 style="margin-top: 0; color:gray;">
+                                    Help
+                                </h5>
+                                <p style="margin-top: 0; color:gray; text-align: left;">
+                                    First select the fields (for example the X and Y fields), and
+                                    then click the graph icon (under Types) to draw the graph below.
+                                </p>
+                            </clr-signpost-content>
+                        </clr-signpost>
+    
                         <b *ngIf="showGraphAreaTitle  &&  !showSpecification">
                             {{ graphHeader }}
                         </b>
