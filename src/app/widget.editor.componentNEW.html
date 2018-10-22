@@ -1889,16 +1889,12 @@
                         </div>
 
 
-
-
-
-
                         <!-- Color Properties Aggregate -->
                         <div class="editorLineContainer">
-                            <div class="editorGraphColorAggregateTitle" *ngIf="showFieldColorProperties">
+                            <div class="editorGraphColorAggregateTitle" *ngIf="showFieldColorPropertiesField">
                                 Aggregate:
                             </div>
-                            <div class="select editorGraphColorAggregate" *ngIf="showFieldColorProperties"
+                            <div class="select editorGraphColorAggregate" *ngIf="showFieldColorPropertiesField"
                                 title="How the Color values must be aggregated, ie Count"
                                 >
                                 <select id="selects_3"
@@ -1914,10 +1910,10 @@
 
                         <!-- Color Properties bin -->
                         <div class="editorLineContainer">
-                            <div class="editorGraphColorBinTitle" *ngIf="showFieldColorProperties">
+                            <div class="editorGraphColorBinTitle" *ngIf="showFieldColorPropertiesField">
                                 Bin:
                             </div>
-                            <div class="editorGraphColorBin" *ngIf="showFieldColorProperties">
+                            <div class="editorGraphColorBin" *ngIf="showFieldColorPropertiesField">
                                 <input [(ngModel)]="localWidget.graphColorBin"
                                     type="checkbox"
                                     name="graphXbin"
@@ -1925,11 +1921,11 @@
                                     title="Bin the Color field (T/F)"
                                     >
                             </div>
-                            <div class="editorGraphColorbinMaxTitle" *ngIf="showFieldColorProperties">
+                            <div class="editorGraphColorbinMaxTitle" *ngIf="showFieldColorPropertiesField">
                                 Est bins:
                             </div>
 
-                            <div class="editorGraphColorbinMax" *ngIf="showFieldColorProperties">
+                            <div class="editorGraphColorbinMax" *ngIf="showFieldColorPropertiesField">
                                 <input type="number"
                                     placeholder="Est. nr of bins"
                                     size="5"
@@ -1943,10 +1939,10 @@
 
                         <!-- Color Properties Format -->
                         <div class="editorLineContainer">
-                            <div class="editorGraphColorFormatTitle" *ngIf="showFieldColorProperties">
+                            <div class="editorGraphColorFormatTitle" *ngIf="showFieldColorPropertiesField">
                                 Format:
                             </div>
-                            <div class="editorGraphColorFormat" *ngIf="showFieldColorProperties">
+                            <div class="editorGraphColorFormat" *ngIf="showFieldColorPropertiesField">
                                 <input type="text"
                                     placeholder="ie .2s +$,.2f"
                                     [(ngModel)]="localWidget.graphColorFormat"
@@ -1957,12 +1953,12 @@
 
                         <!-- Color Properties Impute -->
                         <div class="editorLineContainer">
-                            <div class="editorGraphColorImputeTitle" *ngIf="showFieldColorProperties"
+                            <div class="editorGraphColorImputeTitle" *ngIf="showFieldColorPropertiesField"
                                 title="Fill in missing value, ie with the average of a column"
                                 >
                                 Impute:
                             </div>
-                            <div class="select editorGraphColorImpute" *ngIf="showFieldColorProperties">
+                            <div class="select editorGraphColorImpute" *ngIf="showFieldColorPropertiesField">
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphColorImpute"
                                     name="graphColorImpute"
@@ -1976,7 +1972,7 @@
                                 </select>
                             </div>
                             <div class="editorGraphColorImputeValue"
-                                *ngIf="showFieldColorProperties"
+                                *ngIf="showFieldColorPropertiesField"
                                 size="5"
                                 >
                                 <input type="number"
@@ -1992,10 +1988,10 @@
 
                         <!-- Color Properties Scheme -->
                         <div class="editorLineContainer">
-                            <div class="editorGraphColorSchemeTitle" *ngIf="showFieldColorProperties">
+                            <div class="editorGraphColorSchemeTitle" *ngIf="showFieldColorPropertiesField">
                                 Scheme:
                             </div>
-                            <div class="select editorGraphColorScheme" *ngIf="showFieldColorProperties">
+                            <div class="select editorGraphColorScheme" *ngIf="showFieldColorPropertiesField">
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphColorScheme"
                                     name="graphColorScheme"
@@ -2009,10 +2005,10 @@
 
                         <!-- Color Properties Sort -->
                         <div class="editorLineContainer">
-                            <div class="editorGraphColorSortTitle" *ngIf="showFieldColorProperties">
+                            <div class="editorGraphColorSortTitle" *ngIf="showFieldColorPropertiesField">
                                 Sort:
                             </div>
-                            <div class="select editorGraphColorSort" *ngIf="showFieldColorProperties">
+                            <div class="select editorGraphColorSort" *ngIf="showFieldColorPropertiesField">
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphColorSort"
                                     name="graphColorSort"
@@ -2026,10 +2022,10 @@
 
                         <!-- Color Properties stack -->
                         <div class="editorLineContainer">
-                            <div class="editorGraphColorStackTitle" *ngIf="showFieldColorProperties">
+                            <div class="editorGraphColorStackTitle" *ngIf="showFieldColorPropertiesField">
                                 Stack:
                             </div>
-                            <div class="select editorGraphColorStack" *ngIf="showFieldColorProperties">
+                            <div class="select editorGraphColorStack" *ngIf="showFieldColorPropertiesField">
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphColorStack"
                                     name="graphColorStack"
@@ -2044,10 +2040,10 @@
 
                         <!-- Color Properties type -->
                         <div class="editorLineContainer">
-                            <div class="editorGraphColorTypeTitle" *ngIf="showFieldColorProperties">
+                            <div class="editorGraphColorTypeTitle" *ngIf="showFieldColorPropertiesField">
                                 Type:
                             </div>
-                            <div class="select editorGraphColorType" *ngIf="showFieldColorProperties"
+                            <div class="select editorGraphColorType" *ngIf="showFieldColorPropertiesField"
                                 title="Type of the Color field in the Graph (ordinal for strings)"
                                 >
                                 <select id="selects_3"
@@ -2065,11 +2061,11 @@
 
                         <!-- Color Properties timeUnit -->
                         <div class="editorLineContainer">
-                            <div class="editorGraphColorTimeUnitTitle" *ngIf="showFieldColorProperties">
+                            <div class="editorGraphColorTimeUnitTitle" *ngIf="showFieldColorPropertiesField">
                                 TimeUnit:
                             </div>
                             <div class="select editorGraphColorTimeUnit"
-                                *ngIf="showFieldColorProperties"
+                                *ngIf="showFieldColorPropertiesField"
                                 title="Time unit for Temporate (date) fields"
                                 >
                                 <select id="selects_3"
@@ -2084,26 +2080,119 @@
                         </div>
 
 
-
-
-                        <!-- Color Axis Subheader -->
+                        <!-- Color Legend Subheader -->
                         <div class="editorColorPropertiesTitleAxis" *ngIf="showFieldColorProperties"
                             (click)="clickShowColorPropertiesAxis()"
                             >
                             <b>
                                 Axis
                             </b>
-                            <clr-icon shape="angle down" *ngIf="!showFieldColorPropertiesAxis"
+                            <clr-icon shape="angle down" *ngIf="!showFieldColorPropertiesLegend"
                                 size="12"
                                 >
                             </clr-icon>
-                            <clr-icon shape="angle up" *ngIf="showFieldColorPropertiesAxis"
+                            <clr-icon shape="angle up" *ngIf="showFieldColorPropertiesLegend"
                                 size="12"
                                 >
                             </clr-icon>
                         </div>
 
+                        <!-- Legend-Axis: Hide -->
+                        <div class="editorLineContainer">
+                            <div class="editorGraphLegendHideTitle" *ngIf="showFieldColorPropertiesLegend">
+                                Hide:
+                            </div>
+                            <div class="editorGraphLegendHide" *ngIf="showFieldColorPropertiesLegend">
+                                <input [(ngModel)]="localWidget.graphLegendHide"
+                                    type="checkbox"
+                                    name="graphLegendHide"
+                                    title="Hide the whole Legend (T/F)"
+                                    >
+                            </div>
+                        </div>
 
+                        <!-- Legend-Axis: Title -->
+                        <div class="editorLineContainer">
+                            <div class="editorGraphLegendTitleTitle" *ngIf="showFieldColorPropertiesLegend">
+                                Title:
+                            </div>
+                            <div class="editorGraphLegendTitleCheckbox" *ngIf="showFieldColorPropertiesLegend">
+                                <input [(ngModel)]="localWidget.graphLegendTitleCheckbox"
+                                    type="checkbox"
+                                    name="graphLegendTitleCheckbox"
+                                    title="Show the Axis Title (T/F)"
+                                    >
+                            </div>
+                            <div class="editorGraphLegendTitle" *ngIf="showFieldColorPropertiesLegend"
+                                >
+                                <input type="text"
+                                    placeholder="Blank = field name"
+                                    [(ngModel)]="localWidget.graphLegendTitle"
+                                    name="graphLegendTitle"
+                                    title="Text of the Legend Title"
+                                    >
+                            </div>
+                        </div>
+
+                        <!-- Legend-Axis: Format -->
+                        <div class="editorLineContainer">
+                            <div class="editorGraphLegendFormatTitle" *ngIf="showFieldColorPropertiesLegend">
+                            Format:
+                            </div>
+                            <div class="editorGraphLegendFormat" *ngIf="showFieldColorPropertiesLegend">
+                                <input type="text"
+                                    [(ngModel)]="localWidget.graphLegendFormat"
+                                    name="graphLegendFormat"
+                                    placeholder="ie .2s +$,.2f"
+                                    title="Format (D3) of the legend, ie .1f for one decimal"
+                                    >
+                            </div>
+                        </div>
+
+                        <!-- Legend-Axis: Labels -->
+                        <div class="editorLineContainer">
+                            <div class="editorGraphLegendLabelsTitle" *ngIf="showFieldColorPropertiesLegend">
+                            Labels:
+                            </div>
+                            <div class="editorGraphLegendLabels" *ngIf="showFieldColorPropertiesLegend">
+                                <input type="checkbox"
+                                    [(ngModel)]="localWidget.graphLegendLabels"
+                                    name="graphLegendLabels"
+                                    title="Show labels (T/F)"
+                                    >
+                            </div>
+                            <div class="select editorGraphLegendLabelsColor" *ngIf="showFieldColorPropertiesLegend">
+                                <select [(ngModel)]="localWidget.graphLegendLabelColorName"
+                                    name="graphLegendLabelColorName"
+                                    (change)="clickSelectLegendLabelColor($event)"
+                                    title="Color of the X labels"
+                                    >
+                                    <option *ngFor="let row of backgroundcolors"
+                                        [style.background-color]="row.cssCode"
+                                        >
+                                        {{ row.name }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Legend-Axis:: The maximum allowed length in pixels of legend labels.-->
+                        <div class="editorLineContainer">
+                            <div class="editorGraphLegendLabelLengthTitle" *ngIf="showFieldColorPropertiesLegend">
+                            Length:
+                            </div>
+                            <div class="editorGraphLegendLabelLength" *ngIf="showFieldColorPropertiesLegend">
+                                <input type="number"
+                                    placeholder="Max length in px"
+                                    [(ngModel)]="localWidget.graphDimensionRight"
+                                    name="graphDimensionRight"
+                                    min="0"
+                                    max="500"
+                                    title="Length of the Legend Labels in px"
+                                    >
+                            </div>
+                        </div>
+    
 
 
                         <!-- Mark Title Bar -->
@@ -2354,7 +2443,7 @@
 
 
                         <!-- Legend-Axis: Title Bar -->
-                        <div class="editorLegendContainerTitle" *ngIf="showFieldColorPropertiesTitle"
+                        <!-- <div class="editorLegendContainerTitle" *ngIf="showFieldColorPropertiesTitle"
                             (click)="clickShowLegendProperties()"
                             >
                             <b>
@@ -2368,103 +2457,7 @@
                                 size="12"
                                 >
                             </clr-icon>
-                        </div>
-
-                        <!-- Legend-Axis: Hide -->
-                        <div class="editorLineContainer">
-                            <div class="editorGraphLegendHideTitle" *ngIf="showFieldLegend">
-                                Hide:
-                            </div>
-                            <div class="editorGraphLegendHide" *ngIf="showFieldLegend">
-                                <input [(ngModel)]="localWidget.graphLegendHide"
-                                    type="checkbox"
-                                    name="graphLegendHide"
-                                    title="Hide the whole Legend (T/F)"
-                                    >
-                            </div>
-                        </div>
-
-                        <!-- Legend-Axis: Title -->
-                        <div class="editorLineContainer">
-                            <div class="editorGraphLegendTitleTitle" *ngIf="showFieldLegend">
-                                Title:
-                            </div>
-                            <div class="editorGraphLegendTitleCheckbox" *ngIf="showFieldLegend">
-                                <input [(ngModel)]="localWidget.graphLegendTitleCheckbox"
-                                    type="checkbox"
-                                    name="graphLegendTitleCheckbox"
-                                    title="Show the Axis Title (T/F)"
-                                    >
-                            </div>
-                            <div class="editorGraphLegendTitle" *ngIf="showFieldLegend"
-                                >
-                                <input type="text"
-                                    placeholder="Blank = field name"
-                                    [(ngModel)]="localWidget.graphLegendTitle"
-                                    name="graphLegendTitle"
-                                    title="Text of the Legend Title"
-                                    >
-                            </div>
-                        </div>
-
-                        <!-- Legend-Axis: Format -->
-                        <div class="editorLineContainer">
-                            <div class="editorGraphLegendFormatTitle" *ngIf="showFieldLegend">
-                            Format:
-                            </div>
-                            <div class="editorGraphLegendFormat" *ngIf="showFieldLegend">
-                                <input type="text"
-                                    [(ngModel)]="localWidget.graphLegendFormat"
-                                    name="graphLegendFormat"
-                                    placeholder="ie .2s +$,.2f"
-                                    title="Format (D3) of the legend, ie .1f for one decimal"
-                                    >
-                            </div>
-                        </div>
-
-                        <!-- Legend-Axis: Labels -->
-                        <div class="editorLineContainer">
-                            <div class="editorGraphLegendLabelsTitle" *ngIf="showFieldLegend">
-                            Labels:
-                            </div>
-                            <div class="editorGraphLegendLabels" *ngIf="showFieldLegend">
-                                <input type="checkbox"
-                                    [(ngModel)]="localWidget.graphLegendLabels"
-                                    name="graphLegendLabels"
-                                    title="Show labels (T/F)"
-                                    >
-                            </div>
-                            <div class="select editorGraphLegendLabelsColor" *ngIf="showFieldLegend">
-                                <select [(ngModel)]="localWidget.graphLegendLabelColorName"
-                                    name="graphLegendLabelColorName"
-                                    (change)="clickSelectLegendLabelColor($event)"
-                                    title="Color of the X labels"
-                                    >
-                                    <option *ngFor="let row of backgroundcolors"
-                                        [style.background-color]="row.cssCode"
-                                        >
-                                        {{ row.name }}
-                                    </option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <!-- Legend-Axis:: The maximum allowed length in pixels of legend labels.-->
-                        <div class="editorLineContainer">
-                            <div class="editorGraphLegendLabelLengthTitle" *ngIf="showFieldLegend">
-                            Length:
-                            </div>
-                            <div class="editorGraphLegendLabelLength" *ngIf="showFieldLegend">
-                                <input type="number"
-                                    placeholder="Max length in px"
-                                    [(ngModel)]="localWidget.graphDimensionRight"
-                                    name="graphDimensionRight"
-                                    min="0"
-                                    max="500"
-                                    title="Length of the Legend Labels in px"
-                                    >
-                            </div>
-                        </div>
+                        </div> -->
 
 
                         <!-- Row: Channel Title Bar -->
