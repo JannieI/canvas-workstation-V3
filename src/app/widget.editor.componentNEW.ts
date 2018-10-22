@@ -272,6 +272,8 @@ export interface dataSchemaInterface {
     showFieldColumnProperties: boolean = false;
     showFieldLegend: boolean = false;
     showFieldColorProperties: boolean = false;
+    showFieldColorPropertiesField: boolean = false;
+    showFieldColorPropertiesLegend: boolean = false;
     showFieldColorPropertiesInfo: boolean = false;
     showFieldColorPropertiesTitle: boolean = false;
     showFieldFilter: boolean = false;
@@ -2684,6 +2686,7 @@ export interface dataSchemaInterface {
 
         // Toggle
         this.showFieldYPropertiesAxis = !this.showFieldYPropertiesAxis;
+        
     }
 
     clickShowColorProperties() {
@@ -2692,6 +2695,8 @@ export interface dataSchemaInterface {
 
         // Toggle
         this.showFieldColorProperties = !this.showFieldColorProperties;
+        this.showFieldColorPropertiesField = false;
+        this.showFieldColorPropertiesLegend = false;
     }
 
     clickShowMarkProperties() {

@@ -1136,6 +1136,21 @@ clr-dg-cell {
                 margin-top: 5px;
             }
 
+                .editorColorPropertiesTitleField {
+                    background-color: rgb(244, 244, 244);
+                    border: 1px solid lightgray;
+                    border-radius: 3px;
+                    font-size: 0.5rem;
+                    margin-top: 5px;
+                }
+                .editorColorPropertiesTitleAxis {
+                    background-color: rgb(244, 244, 244);
+                    border: 1px solid lightgray;
+                    border-radius: 3px;
+                    font-size: 0.5rem;
+                    margin-top: 5px;
+                }
+
                 .editorGraphColorAggregateTitle {
                     display: inline-block;
                     font-size: 0.5rem;

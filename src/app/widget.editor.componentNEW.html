@@ -1869,6 +1869,30 @@
                             </clr-icon>
                         </div>
 
+
+
+                        <!-- Color Field sub Header -->
+                        <div class="editorColorPropertiesTitleField" *ngIf="showFieldColorProperties"
+                            (click)="clickShowColorPropertiesField()"
+                            >
+                            <b>
+                                Field
+                            </b>
+                            <clr-icon shape="angle down" *ngIf="!showFieldColorPropertiesField"
+                                size="12"
+                                >
+                            </clr-icon>
+                            <clr-icon shape="angle up" *ngIf="showFieldColorPropertiesField"
+                                size="12"
+                                >
+                            </clr-icon>
+                        </div>
+
+
+
+
+
+
                         <!-- Color Properties Aggregate -->
                         <div class="editorLineContainer">
                             <div class="editorGraphColorAggregateTitle" *ngIf="showFieldColorProperties">
@@ -2058,6 +2082,28 @@
                                 </select>
                             </div>
                         </div>
+
+
+
+
+                        <!-- Color Axis Subheader -->
+                        <div class="editorColorPropertiesTitleAxis" *ngIf="showFieldColorProperties"
+                            (click)="clickShowColorPropertiesAxis()"
+                            >
+                            <b>
+                                Axis
+                            </b>
+                            <clr-icon shape="angle down" *ngIf="!showFieldColorPropertiesAxis"
+                                size="12"
+                                >
+                            </clr-icon>
+                            <clr-icon shape="angle up" *ngIf="showFieldColorPropertiesAxis"
+                                size="12"
+                                >
+                            </clr-icon>
+                        </div>
+
+
 
 
                         <!-- Mark Title Bar -->
