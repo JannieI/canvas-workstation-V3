@@ -833,6 +833,26 @@
                         <b>
                             Properties
                         </b>
+                        <clr-signpost>
+                            <clr-icon shape="info-circle" style="margin-top: -4px;"
+                                clrSignpostTrigger>
+                            </clr-icon>
+                            <clr-signpost-content *clrIfOpen
+                                [clrPosition]="'bottom-middle'">
+                                <h5 style="margin-top: 0; color:gray;">
+                                    Help
+                                </h5>
+                                <p style="margin-top: 0; color:gray; text-align: left;">
+                                    A list of properties per Field.  Click the headers below to
+                                    reveal more detail.  Some are only available once the field
+                                    has been selected: for example, select the X field.  Then 
+                                    the X Properties area will be visible.  Click the Field 
+                                    header inside to reveal properties that can be changed for
+                                    this field like Aggregation.  Click the Axis header to change
+                                    the properties of the axis like the colour.
+                                </p>
+                            </clr-signpost-content>
+                        </clr-signpost>
                     </div>
                     <div class="editorProperties">
 
