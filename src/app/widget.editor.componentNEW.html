@@ -705,6 +705,25 @@
                     </div>
                     <div class="editorFieldsTitle">
                         <b>Fields</b>
+                        <clr-signpost>
+                            <clr-icon shape="info-circle" style="margin-top: -4px;"
+                                clrSignpostTrigger>
+                            </clr-icon>
+                            <clr-signpost-content *clrIfOpen
+                                [clrPosition]="'bottom-middle'">
+                                <h5 style="margin-top: 0; color:gray;">
+                                    Help
+                                </h5>
+                                <p style="margin-top: 0; color:gray; text-align: left;">
+                                    A list of Fields from the previously selected Datasource that
+                                    can be graphed.  The icon left of the field name indicates the 
+                                    datatype of the field (ie Number).  
+                                    Click the X, Y, C to add to the respective 
+                                    channels, or drag to the containers for these fields.
+                                    New fields can be added by clicking the plus sign.  
+                                </p>
+                            </clr-signpost-content>
+                        </clr-signpost>
                     </div>
                     <div class="editorFields">
                         <nav
@@ -2085,7 +2104,7 @@
                             (click)="clickShowColorPropertiesLegend()"
                             >
                             <b>
-                                Axis
+                                Legend
                             </b>
                             <clr-icon shape="angle down" *ngIf="!showFieldColorPropertiesLegend"
                                 size="12"
