@@ -8,7 +8,7 @@ export const environment = {
   
   ENVCanvasEZALServerUrl: "eazl",
   ENVCanvasDatabaseUseLocal: true,
-  ENVCanvasDatabaseServerUrl: "canvas",
+  ENVCanvasDatabaseServerUrl: "canvasServer",
   ENVCanvasDatabaseLocalUrlS1: "http://localhost:3001/",
   ENVCanvasDatabaseLocalUrlS2: "http://localhost:3000/",
   ENVCanvasDatabaseLocalUrlS3: "http://localhost:3002/",
