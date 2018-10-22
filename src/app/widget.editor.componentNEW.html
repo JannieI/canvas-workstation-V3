@@ -306,12 +306,15 @@
                                     <clr-dg-cell>{{ row.calculatedAs }}</clr-dg-cell>
                                     <clr-dg-cell>{{ row.calculatedDataType }}</clr-dg-cell>
                                     <clr-dg-cell>
-                                        <clr-icon
-                                            shape="trash"
-                                            size="10"
-                                            (dblclick)="dblClickCalculatedDelete(row.id)"
+                                        <span style="text-align: center;"
                                             >
-                                        </clr-icon>
+                                            <clr-icon
+                                                shape="trash"
+                                                size="12"
+                                                (dblclick)="dblClickCalculatedDelete(row.id)"
+                                                >
+                                            </clr-icon>
+                                        </span>
                                     </clr-dg-cell>
                                 </clr-dg-row>
 
@@ -3012,26 +3015,33 @@
                                     <clr-dg-cell>{{ row.filterValueFrom }}</clr-dg-cell>
                                     <clr-dg-cell>{{ row.filterValueTo }}</clr-dg-cell>
                                     <clr-dg-cell>
-                                        <clr-icon *ngIf="row.isActive"
-                                            shape="check"
-                                            size="10"
-                                            (dblclick)="dblClickFilterMakeInActive()"
+                                        <span style="text-align: center;"
+                                            [style.color]="row.isactive?  'gray'  :  'red'"
                                             >
-                                        </clr-icon>
-                                        <clr-icon *ngIf="!row.isActive"
-                                            shape="times"
-                                            size="10"
-                                            (dblclick)="dblClickFilterMakeActive(row.id)"
-                                            >
-                                        </clr-icon>
+                                            <clr-icon *ngIf="row.isActive"
+                                                shape="check"
+                                                size="12"
+                                                (dblclick)="dblClickFilterMakeInActive()"
+                                                >
+                                            </clr-icon>
+                                            <clr-icon *ngIf="!row.isActive"
+                                                shape="times"
+                                                size="12"
+                                                (dblclick)="dblClickFilterMakeActive(row.id)"
+                                                >
+                                            </clr-icon>
+                                        </span> 
                                     </clr-dg-cell>
-                                    <clr-dg-cell>
-                                        <clr-icon
-                                            shape="trash"
-                                            size="10"
-                                            (dblclick)="dblClickFilterDelete(row.id)"
+                                    <clr-dg-cell style="text-align: center !important;">
+                                        <span style="text-align: center;"
                                             >
-                                        </clr-icon>
+                                            <clr-icon
+                                                shape="trash"
+                                                size="12"
+                                                (dblclick)="dblClickFilterDelete(row.id)"
+                                                >
+                                            </clr-icon>
+                                        </span>
                                     </clr-dg-cell>
                                 </clr-dg-row>
 
