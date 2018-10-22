@@ -2697,6 +2697,15 @@ export interface dataSchemaInterface {
         this.showFieldColorPropertiesField = !this.showFieldColorPropertiesField;
     }
 
+    clickShowColorPropertiesLegend() {
+        // Show Color Properties Legend Area
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowColorPropertiesLegend', '@Start');
+
+        // Toggle
+        this.showFieldColorPropertiesLegend = !this.showFieldColorPropertiesLegend;
+        
+    }
+
     clickShowColorProperties() {
         // Show Color Properties Area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowColorProperties', '@Start');
