@@ -2995,7 +2995,7 @@
 
 
                     <!-- FILTER -->
-                    <div class="editorFilterButton" *ngIf="showWidgetEditorLite">
+                    <div class="editorFilterButton" *ngIf="!showWidgetEditorLite">
                         <button
                             style="border: 1px solid transparent; color: gray;"
                             class="btn btn-sm btn-secondary"
@@ -3191,7 +3191,7 @@
                     </div>
 
                     <!-- SELECTION -->
-                    <div class="editorSelection" *ngIf="showWidgetEditorLite">
+                    <div class="editorSelection" *ngIf="!showWidgetEditorLite">
                         <button
                             style="border: 1px solid gray; color: gray;"
                             class="btn btn-sm btn-secondary"
@@ -3207,7 +3207,7 @@
                     </div>
 
                     <!-- SPEC -->
-                    <div class="editorShowGraphOrSpecification" *ngIf="showWidgetEditorLite">
+                    <div class="editorShowGraphOrSpecification" *ngIf="!showWidgetEditorLite">
                         <button
                             style="border: 1px solid transparent; color: gray;"
                             class="btn btn-sm btn-secondary"
@@ -3228,7 +3228,7 @@
 
 
                     <!-- GRAPH DIMENSIONS -->
-                    <div class="editorGraphTop" *ngIf="showWidgetEditorLite">
+                    <div class="editorGraphTop" *ngIf="!showWidgetEditorLite">
                         Top:
                         <input type="number"
                             placeholder=""
@@ -3239,7 +3239,7 @@
                             title="Space at top of Graph in px"
                             >
                     </div>
-                    <div class="editorGraphWidth" *ngIf="showWidgetEditorLite">
+                    <div class="editorGraphWidth" *ngIf="!showWidgetEditorLite">
                         Width:
                         <input type="number"
                             placeholder=""
@@ -3250,7 +3250,7 @@
                             title="Width of Graph in px"
                             >
                     </div>
-                    <div class="editorGraphHeight" *ngIf="showWidgetEditorLite">
+                    <div class="editorGraphHeight" *ngIf="!showWidgetEditorLite">
                         Height:
                         <input type="number"
                             placeholder=""

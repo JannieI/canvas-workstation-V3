@@ -564,6 +564,7 @@ export interface dataSchemaInterface {
 
     ];
     widgetGraphs: WidgetGraph[] =[];
+    widgetGraphsFull: WidgetGraph[] =[];
     xField: string = dragFieldMessage;
     x2Field: string = dragFieldMessage;
     yField: string = dragFieldMessage;
@@ -958,6 +959,7 @@ export interface dataSchemaInterface {
 
             // Get Widget Graph Specs
             this.globalVariableService.getWidgetGraphs().then(res => {
+                this.widgetGraphsFull = res
                 this.widgetGraphs = res
 
                 if (this.showWidgetEditorLite) {
@@ -1108,6 +1110,7 @@ export interface dataSchemaInterface {
 
             // Get Widget Graph Specs
             this.globalVariableService.getWidgetGraphs().then(res => {
+                this.widgetGraphsFull = res
                 this.widgetGraphs = res
 
                 if (this.showWidgetEditorLite) {
@@ -3536,10 +3539,11 @@ export interface dataSchemaInterface {
         // Show the full editor (not W Ed-Lite any more)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowFullEditor', '@Start');
 
-        this.showWidgetEditorLite = false;
+        // Update the user, reset the list of Graphs to show and remove helper form
         this.globalVariableService.updateCurrentUserProperties(
             { preferenceShowWidgetEditorLite: false }
         );
-
+        this.widgetGraphs = this.widgetGraphsFull.slice();
+        this.showWidgetEditorLite = false;
     }
 }
