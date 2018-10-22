@@ -305,9 +305,8 @@
                                     <clr-dg-cell>{{ row.calculatedExpression }}</clr-dg-cell>
                                     <clr-dg-cell>{{ row.calculatedAs }}</clr-dg-cell>
                                     <clr-dg-cell>{{ row.calculatedDataType }}</clr-dg-cell>
-                                    <clr-dg-cell>
-                                        <span style="text-align: center;"
-                                            >
+                                    <clr-dg-cell style="text-align: center !important;">
+                                        <span>
                                             <clr-icon
                                                 shape="trash"
                                                 size="12"
@@ -399,96 +398,96 @@
                             <b>now</b>()
                             Returns the timestamp for the current time.
                             <br>
-                            
+
                             <b>datetime</b>(<i>year, month[, day, hour, min, sec, millisec]</i>)
                             Returns a new Date instance. The month is 0-based, such that 1 represents February.
                             <br>
-                            
+
                             <b>date</b>(<i>datetime</i>)
                             Returns the day of the month for the given datetime value, in local time.
                             <br>
-                            
+
                             <b>day</b>(<i>datetime</i>)
                             Returns the day of the week for the given datetime value, in local time.
                             <br>
-                            
+
                             <b>year</b>(<i>datetime</i>)
                             Returns the year for the given datetime value, in local time.
                             <br>
-                            
+
                             <b>quarter</b>(<i>datetime</i>)
                             Returns the quarter of the year (0-3) for the given datetime value, in local time.
                             <br>
-                            
+
                             <b>month</b>(<i>datetime</i>)
                             Returns the (zero-based) month for the given datetime value, in local time.
                             <br>
-                            
+
                             <b>hours</b>(<i>datetime</i>)
                             Returns the hours component for the given datetime value, in local time.
                             <br>
-                            
+
                             <b>minutes</b>(<i>datetime</i>)
                             Returns the minutes component for the given datetime value, in local time.
                             <br>
-                            
+
                             <b>seconds</b>(<i>datetime</i>)
                             Returns the seconds component for the given datetime value, in local time.
                             <br>
-                            
+
                             <b>milliseconds</b>(<i>datetime</i>)
                             Returns the milliseconds component for the given datetime value, in local time.
                             <br>
-                            
+
                             <b>time</b>(<i>datetime</i>)
                             Returns the epoch-based timestamp for the given datetime value.
                             <br>
-                            
+
                             <b>timezoneoffset</b>(<i>datetime</i>)
                             Returns the timezone offset from the local timezone to UTC for the given datetime value.
                             <br>
-                            
+
                             <b>utc</b>(<i>year, month[, day, hour, min, sec, millisec]</i>)
                             Returns a timestamp for the given UTC date. The month is 0-based, such that 1 represents February.
                             <br>
-                            
+
                             <b>utcdate</b>(<i>datetime</i>)
                             Returns the day of the month for the given datetime value, in UTC time.
                             <br>
-                            
+
                             <b>utcday</b>(<i>datetime</i>)
                             Returns the day of the week for the given datetime value, in UTC time.
                             <br>
-                            
+
                             <b>utcyear</b>(<i>datetime</i>)
                             Returns the year for the given datetime value, in UTC time.
                             <br>
-                            
+
                             <b>utcquarter</b>(<i>datetime</i>)
                             Returns the quarter of the year (0-3) for the given datetime value, in UTC time.
                             <br>
-                            
+
                             <b>utcmonth</b>(<i>datetime</i>)
                             Returns the (zero-based) month for the given datetime value, in UTC time.
                             <br>
-                            
+
                             <b>utchours</b>(<i>datetime</i>)
                             Returns the hours component for the given datetime value, in UTC time.
                             <br>
-                            
+
                             <b>utcminutes</b>(<i>datetime</i>)
                             Returns the minutes component for the given datetime value, in UTC time.
                             <br>
-                            
+
                             <b>utcseconds</b>(<i>datetime</i>)
                             Returns the seconds component for the given datetime value, in UTC time.
                             <br>
-                            
+
                             <b>utcmilliseconds</b>(<i>datetime</i>)
                             Returns the milliseconds component for the given datetime value, in UTC time.
                             <br>
                         </div>
-    
+
 
                         <div class="editorCalculatedHelpTitle">
                             <b>Mathematical Functions:</b>
@@ -588,57 +587,57 @@
                             <b>indexof</b>(<i>string, substring</i>)
                             Returns the first index of substring in the input string.
                             <br>
-                            
+
                             <b>lastindexof</b>(<i>string, substring</i>)
                             Returns the last index of substring in the input string.
                             <br>
-                            
+
                             <b>length</b>(<i>string</i>)
                             Returns the length of the input string.
                             <br>
-                            
+
                             <b>lower</b>(<i>string</i>)
                             Transforms string to lower-case letters.
                             <br>
-                            
+
                             <b>pad</b>(<i>string, length[, character, align]</i>)
                             Pads a string value with repeated instances of a character up to a specified length. If character is not specified, a space (‘ ‘) is used. By default, padding is added to the end of a string. An optional align parameter specifies if padding should be added to the 'left' (beginning), 'center', or 'right' (end) of the input string.
                             <br>
-                            
+
                             <b>parseFloat</b>(<i>string</i>)
                             Parses the input string to a floating-point value. Same as JavaScript’s <u>parseFloat</u>
                             <br>
-                            
+
                             <b>parseInt</b>(<i>string</i>)
                             Parses the input string to an integer value. Same as JavaScript’s <u>parseInt</u>
                             <br>
-                            
+
                             <b>replace</b>(<i>string, pattern, replacement</i>)
                             Returns a new string with some or all matches of pattern replaced by a replacement string. The pattern can be a string or a regular expression. If pattern is a string, only the first instance will be replaced. Same as JavaScript’s <u>String.replace</u>
                             <br>
-                            
+
                             <b>slice</b>(<i>string, start[, end]</i>)
                             Returns a section of string between the start and end indices. If the end argument is negative, it is treated as an offset from the end of the string (length(string) + end).
                             <br>
-                            
+
                             <b>split</b>(<i>string, separator[, limit]</i>)
                             Returns an array of tokens created by splitting the input string according to a provided separator pattern. The result can optionally be constrained to return at most limit tokens.
                             <br>
-                            
+
                             <b>substring</b>(<i>string, start[, end]</i>)
                             Returns a section of string between the start and end indices.
                             <br>
-                            
+
                             <b>truncate</b>(<i>string, length[, align, ellipsis]</i>)
                             Truncates an input string to a target length. The optional align argument indicates what part of the string should be truncated: 'left' (the beginning), 'center', or 'right' (the end). By default, the 'right' end of the string is truncated. The optional ellipsis argument indicates the string to use to indicate truncated content; by default the ellipsis character … (\u2026) is used.
                             <br>
-                            
+
                             <b>upper</b>(<i>string</i>)
                             Transforms string to upper-case letters.
                             <br>
-                                
+
                         </div>
-    
+
 
                         <div class="editorCalculatedHelpTitle">
                             <b>Type Checking Functions:</b>
@@ -1147,11 +1146,6 @@
                             </clr-icon>
                         </div>
 
-
-
-
-
-
                         <div class="editorXPropertiesTitleField" *ngIf="showFieldXProperties"
                             (click)="clickShowXPropertiesField()"
                             >
@@ -1167,7 +1161,6 @@
                                 >
                             </clr-icon>
                         </div>
-
 
                         <!-- X Properties Aggregate -->
                         <div class="editorLineContainer">
@@ -1348,7 +1341,7 @@
                                 </select>
                             </div>
                         </div>
-    
+
 
                         <div class="editorXPropertiesTitleAxis" *ngIf="showFieldXProperties"
                             (click)="clickShowXPropertiesAxis()"
@@ -1491,10 +1484,6 @@
                                     >
                             </div>
                         </div>
-    
-
-
-
 
 
 
@@ -1515,12 +1504,28 @@
                             </clr-icon>
                         </div>
 
+                        <div class="editorYPropertiesTitleField" *ngIf="showFieldYProperties"
+                            (click)="clickShowXPropertiesField()"
+                            >
+                            <b>
+                                Field
+                            </b>
+                            <clr-icon shape="angle down" *ngIf="!showFieldYPropertiesField"
+                                size="12"
+                                >
+                            </clr-icon>
+                            <clr-icon shape="angle up" *ngIf="showFieldYPropertiesField"
+                                size="12"
+                                >
+                            </clr-icon>
+                        </div>
+
                         <!-- Y Properties aggregate -->
                         <div class="editorLineContainer">
-                            <div class="editorGraphYaggregateTitle" *ngIf="showFieldYProperties">
+                            <div class="editorGraphYaggregateTitle" *ngIf="showFieldYPropertiesField">
                                 Aggregate:
                             </div>
-                            <div class="select editorGraphYaggregate" *ngIf="showFieldYProperties">
+                            <div class="select editorGraphYaggregate" *ngIf="showFieldYPropertiesField">
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphYaggregateName"
                                     name="graphYaggregateName"
@@ -1535,10 +1540,10 @@
 
                         <!-- Y Properties bin -->
                         <div class="editorLineContainer">
-                            <div class="editorGraphYbinTitle" *ngIf="showFieldYProperties">
+                            <div class="editorGraphYbinTitle" *ngIf="showFieldYPropertiesField">
                                 Bin:
                             </div>
-                            <div class="editorGraphYbin" *ngIf="showFieldYProperties">
+                            <div class="editorGraphYbin" *ngIf="showFieldYPropertiesField">
                                 <input [(ngModel)]="localWidget.graphYbin"
                                     type="checkbox"
                                     name="graphXbin"
@@ -1546,11 +1551,11 @@
                                     title="Bin the Y field (T/F)"
                                     >
                             </div>
-                            <div class="editorGraphYbinMaxTitle" *ngIf="showFieldYProperties">
+                            <div class="editorGraphYbinMaxTitle" *ngIf="showFieldYPropertiesField">
                                 Est bins:
                             </div>
 
-                            <div class="editorGraphYbinMax" *ngIf="showFieldYProperties">
+                            <div class="editorGraphYbinMax" *ngIf="showFieldYPropertiesField">
                                 <input type="number"
                                     placeholder="Est. nr of bins"
                                     size="5"
@@ -1564,10 +1569,10 @@
 
                         <!-- Y Properties Format -->
                         <div class="editorLineContainer">
-                            <div class="editorGraphYformatTitle" *ngIf="showFieldYProperties">
+                            <div class="editorGraphYformatTitle" *ngIf="showFieldYPropertiesField">
                                 Format:
                             </div>
-                            <div class="editorGraphYformat" *ngIf="showFieldYProperties">
+                            <div class="editorGraphYformat" *ngIf="showFieldYPropertiesField">
                                 <input type="text"
                                     placeholder="Only for Text"
                                     [(ngModel)]="localWidget.graphYformat"
@@ -1579,10 +1584,10 @@
 
                         <!-- Y Properties Impute -->
                         <div class="editorLineContainer">
-                            <div class="editorGraphYimputeTitle" *ngIf="showFieldYProperties">
+                            <div class="editorGraphYimputeTitle" *ngIf="showFieldYPropertiesField">
                                 Impute:
                             </div>
-                            <div class="select editorGraphYimpute" *ngIf="showFieldYProperties"
+                            <div class="select editorGraphYimpute" *ngIf="showFieldYPropertiesField"
                                 title="Fill in missing value, ie with the average of a column"
                                 >
                                 <select id="selects_3"
@@ -1598,7 +1603,7 @@
                                 </select>
                             </div>
                             <div class="editorGraphYimputeValue"
-                                *ngIf="showFieldYProperties"
+                                *ngIf="showFieldYPropertiesField"
                                 size="5"
                                 >
                                 <input type="number"
@@ -1614,10 +1619,10 @@
 
                         <!-- Y Properties stack -->
                         <div class="editorLineContainer">
-                            <div class="editorGraphYstackTitle" *ngIf="showFieldYProperties">
+                            <div class="editorGraphYstackTitle" *ngIf="showFieldYPropertiesField">
                                 Stack:
                             </div>
-                            <div class="select editorGraphYstack" *ngIf="showFieldYProperties"
+                            <div class="select editorGraphYstack" *ngIf="showFieldYPropertiesField"
                                 title="How Y values must be stacked"
                                 >
                                 <select id="selects_3"
@@ -1634,10 +1639,10 @@
 
                         <!-- Y Properties Sort -->
                         <div class="editorLineContainer">
-                            <div class="editorGraphYsortTitle" *ngIf="showFieldYProperties">
+                            <div class="editorGraphYsortTitle" *ngIf="showFieldYPropertiesField">
                                 Sort:
                             </div>
-                            <div class="select editorGraphYsort" *ngIf="showFieldYProperties"
+                            <div class="select editorGraphYsort" *ngIf="showFieldYPropertiesField"
                                 title="How Y values must be sorted"
                                 >
                                 <select id="selects_3"
@@ -1653,10 +1658,10 @@
 
                         <!-- Y Properties type -->
                         <div class="editorLineContainer">
-                            <div class="editorGraphYtypeTitle" *ngIf="showFieldYProperties">
+                            <div class="editorGraphYtypeTitle" *ngIf="showFieldYPropertiesField">
                                 Type:
                             </div>
-                            <div class="select editorGraphYtype" *ngIf="showFieldYProperties"
+                            <div class="select editorGraphYtype" *ngIf="showFieldYPropertiesField"
                                 title="Type of the X field in the Graph (ordinal for strings)"
                                 >
                                 <select id="selects_3"
@@ -1674,11 +1679,11 @@
 
                         <!-- Y Properties timeUnit -->
                         <div class="editorLineContainer">
-                            <div class="editorGraphYtimeUnitTitle" *ngIf="showFieldYProperties">
+                            <div class="editorGraphYtimeUnitTitle" *ngIf="showFieldYPropertiesField">
                                 TimeUnit:
                             </div>
                             <div class="select editorGraphYtimeUnit"
-                                *ngIf="showFieldYProperties"
+                                *ngIf="showFieldYPropertiesField"
                                 title="Time unit for Temporate (date) fields"
                                 >
                                 <select id="selects_3"
@@ -3014,10 +3019,8 @@
                                     <clr-dg-cell>{{ row.filterValue }}</clr-dg-cell>
                                     <clr-dg-cell>{{ row.filterValueFrom }}</clr-dg-cell>
                                     <clr-dg-cell>{{ row.filterValueTo }}</clr-dg-cell>
-                                    <clr-dg-cell>
-                                        <span style="text-align: center;"
-                                            [style.color]="row.isactive?  'gray'  :  'red'"
-                                            >
+                                    <clr-dg-cell style="text-align: center !important;">
+                                        <span>
                                             <clr-icon *ngIf="row.isActive"
                                                 shape="check"
                                                 size="12"
@@ -3030,11 +3033,10 @@
                                                 (dblclick)="dblClickFilterMakeActive(row.id)"
                                                 >
                                             </clr-icon>
-                                        </span> 
+                                        </span>
                                     </clr-dg-cell>
                                     <clr-dg-cell style="text-align: center !important;">
-                                        <span style="text-align: center;"
-                                            >
+                                        <span>
                                             <clr-icon
                                                 shape="trash"
                                                 size="12"

@@ -951,6 +951,21 @@ clr-dg-cell {
                 font-size: 0.5rem;
             }
 
+                .editorYPropertiesTitleField {
+                    background-color: rgb(244, 244, 244);
+                    border: 1px solid lightgray;
+                    border-radius: 3px;
+                    font-size: 0.5rem;
+                    margin-top: 5px;
+                }
+                .editorYPropertiesTitleAxis {
+                    background-color: rgb(244, 244, 244);
+                    border: 1px solid lightgray;
+                    border-radius: 3px;
+                    font-size: 0.5rem;
+                    margin-top: 5px;
+                }
+
                 .editorGraphYaggregateTitle {
                     display: inline-block;
                     font-size: 0.5rem;

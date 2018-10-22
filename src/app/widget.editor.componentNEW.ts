@@ -266,9 +266,11 @@ export interface dataSchemaInterface {
     showFieldYAxis: boolean = false;
     showFieldYProperties: boolean = false;
     showFieldYPropertiesInfo: boolean = false;
+    showFieldYPropertiesField: boolean = false;
+    showFieldYPropertiesAxis: boolean = false;
     showFieldYPropertiesTitle: boolean = false;
-    showFieldSizeProperties: boolean = false;
     showFieldRowProperties: boolean = false;
+    showFieldSizeProperties: boolean = false;
     showFieldColumnProperties: boolean = false;
     showFieldLegend: boolean = false;
     showFieldColorProperties: boolean = false;
@@ -2665,6 +2667,14 @@ export interface dataSchemaInterface {
 
         // Toggle
         this.showFieldXPropertiesAxis = !this.showFieldXPropertiesAxis;
+    }
+
+    clickShowYPropertiesField() {
+        // Show Y Properties Field Area
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowYPropertiesField', '@Start');
+
+        // Toggle
+        this.showFieldYPropertiesField = !this.showFieldYPropertiesField;
     }
 
     clickShowColorProperties() {
