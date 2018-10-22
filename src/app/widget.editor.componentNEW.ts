@@ -198,8 +198,6 @@ export interface dataSchemaInterface {
     calculatedDataTypeName: string = '';
     colorField: string = dragFieldMessage;
     columnField: string = dragFieldMessage;
-    containerHasContextMenus: boolean = true;
-    containerHasTitle: boolean = true;
     currentData: any = [];
     currentGraphComposition: string = 'Single';
     currentGraphID: number = -1;
@@ -1138,8 +1136,6 @@ export interface dataSchemaInterface {
             };
 
             // Get local vars - easier for ngFor
-            this.containerHasContextMenus = this.localWidget.containerHasContextMenus;
-            this.containerHasTitle = this.localWidget.containerHasTitle;
             this.filterNrActive = this.localWidget.graphFilters.filter(gflt => gflt.isActive).length;
 
             let arrayIndex: number = this.localDatasources.findIndex(
@@ -1556,9 +1552,6 @@ export interface dataSchemaInterface {
             this.errorMessage = 'Please select a type of graph';
             return;
         };
-
-        this.localWidget.containerHasContextMenus = this.containerHasContextMenus;
-        this.localWidget.containerHasTitle = this.containerHasTitle;
 
         // Calc the graph dimensions
         // this.localWidget.graphHeight = this.globalVariableService.calcGraphHeight(this.localWidget);
