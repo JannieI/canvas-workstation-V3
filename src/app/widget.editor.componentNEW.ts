@@ -2767,14 +2767,6 @@ export interface dataSchemaInterface {
         this.showFieldXAxis = !this.showFieldXAxis;
     }
 
-    clickShowYAxisProperties() {
-        // Show X Axis Area
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowYAxisProperties', '@Start');
-
-        // Toggle
-        this.showFieldYAxis = !this.showFieldYAxis;
-    }
-
     clickShowLegendProperties() {
         // Show Legend Area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowLegendProperties', '@Start');
