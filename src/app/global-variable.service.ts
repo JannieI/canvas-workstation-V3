@@ -1383,9 +1383,9 @@ export class GlobalVariableService {
                 console.warn('xx return from HTTP')
 
                 // Get from HTTP server
-                let url: string = tableName + params;
+                let pathUrl: string = tableName + params;
 
-                this.get(url)
+                this.get(pathUrl)
                     .then(res => {
 
                         console.warn('xx vars', dataCachingTableIndex, localCacheable, localVariableName);
@@ -6364,7 +6364,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
         };
 
-        let url: string = 'dataQualityIssues';
+        let pathUrl: string = 'dataQualityIssues';
         this.filePath = './assets/data.dataQualityIssues.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -6372,7 +6372,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
+            this.http.delete('http://localhost:3000/' + pathUrl + '/' + id, {headers})
             .subscribe(
                 res => {
 
@@ -6408,7 +6408,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
-        let url: string = 'dataOwnerships';
+        let pathUrl: string = 'dataOwnerships';
         this.filePath = './assets/data.dataOwnerships.json';
 
         return new Promise<DataOwnership[]>((resolve, reject) => {
@@ -6416,7 +6416,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             // Refresh from source at start, or if dirty
             if ( (this.dataOwnerships.length == 0)  ||  (this.isDirtyDataOwnership) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-                this.get(url)
+                this.get(pathUrl)
                     .then(res => {
                         this.dataOwnerships = res;
                         this.isDirtyDataOwnership = false;
@@ -6452,7 +6452,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 {datasourceID});
         };
 
-        let url: string = 'dataOwnerships';
+        let pathUrl: string = 'dataOwnerships';
         this.filePath = './assets/data.dataOwnerships.json';
 
         if ( (this.currentDataOwnerships.length == 0)  ||  (this.isDirtyDataOwnership) ) {
@@ -6500,7 +6500,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
-        let url: string = 'dataOwnerships';
+        let pathUrl: string = 'dataOwnerships';
         this.filePath = './assets/data.dataOwnerships.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -6508,7 +6508,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post('http://localhost:3000/' + url, data, {headers})
+            this.http.post('http://localhost:3000/' + pathUrl, data, {headers})
             .subscribe(
                 res => {
 
@@ -6547,7 +6547,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
-        let url: string = 'dataOwnerships';
+        let pathUrl: string = 'dataOwnerships';
         this.filePath = './assets/data.dataOwnerships.json';
 
         return new Promise<string>((resolve, reject) => {
@@ -6555,7 +6555,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.put('http://localhost:3000/' + url + '/' + data.id, data, {headers})
+            this.http.put('http://localhost:3000/' + pathUrl + '/' + data.id, data, {headers})
             .subscribe(
                 res => {
 
@@ -6590,7 +6590,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
         };
 
-        let url: string = 'dataOwnerships';
+        let pathUrl: string = 'dataOwnerships';
         this.filePath = './assets/data.dataOwnerships.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -6598,7 +6598,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
+            this.http.delete('http://localhost:3000/' + pathUrl + '/' + id, {headers})
             .subscribe(
                 res => {
 
@@ -6635,7 +6635,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
-        let url: string = 'datasourcePermissions';
+        let pathUrl: string = 'datasourcePermissions';
         this.filePath = './assets/data.datasourcePermissions.json';
 
         return new Promise<DatasourcePermission[]>((resolve, reject) => {
@@ -6643,7 +6643,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             // Refresh from source at start, or if dirty
             if ( (this.datasourcePermissions.length == 0)  ||  (this.isDirtyDatasourcePermissions) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-                this.get(url)
+                this.get(pathUrl)
                     .then(res => {
 
                         // Fill in @RunTime info
@@ -6693,7 +6693,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 {datasourceID});
         };
 
-        let url: string = 'datasourcePermissions';
+        let pathUrl: string = 'datasourcePermissions';
         this.filePath = './assets/data..datasourcePermissions.json';
 
         if ( (this.currentDatasourcePermissions.length == 0)  ||  (this.isDirtyDatasourcePermissions) ) {
@@ -6742,7 +6742,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
-        let url: string = 'datasourcePermissions';
+        let pathUrl: string = 'datasourcePermissions';
         this.filePath = './assets/data.datasourcePermissions.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -6750,7 +6750,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post('http://localhost:3000/' + url, data, {headers})
+            this.http.post('http://localhost:3000/' + pathUrl, data, {headers})
             .subscribe(
                 res => {
 
@@ -6789,7 +6789,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
-        let url: string = 'datasourcePermissions';
+        let pathUrl: string = 'datasourcePermissions';
         this.filePath = './assets/data.datasourcePermissions.json';
 
         return new Promise<string>((resolve, reject) => {
@@ -6797,7 +6797,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.put('http://localhost:3000/' + url + '/' + data.id, data, {headers})
+            this.http.put('http://localhost:3000/' + pathUrl + '/' + data.id, data, {headers})
             .subscribe(
                 res => {
 
@@ -6857,7 +6857,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
-        let url: string = 'datasourcePivots';
+        let pathUrl: string = 'datasourcePivots';
         this.filePath = './assets/data.datasourcePivots.json';
 
         return new Promise<DatasourcePivot[]>((resolve, reject) => {
@@ -6865,7 +6865,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             // Refresh from source at start, or if dirty
             if ( (this.datasourcePivots.length == 0)  ||  (this.isDirtyDatasourcePivots) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-                this.get(url)
+                this.get(pathUrl)
                     .then(res => {
                         this.datasourcePivots = res;
                         this.isDirtyDatasourcePivots = false;
@@ -6901,7 +6901,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 {datasourceID});
         };
 
-        let url: string = 'datasourcePivots';
+        let pathUrl: string = 'datasourcePivots';
         this.filePath = './assets/data..datasourcePivots.json';
 
         if ( (this.currentDatasourcePivots.length == 0)  ||  (this.isDirtyDatasourcePivots) ) {
@@ -6951,7 +6951,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
-        let url: string = 'canvasSettings';
+        let pathUrl: string = 'canvasSettings';
         this.filePath = './assets/data.canvasSettings.json';
 
         return new Promise<CanvasSettings>((resolve, reject) => {
@@ -6959,7 +6959,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             // Refresh from source at start, or if dirty
             if (this.isDirtyCanvasSettings) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-                this.get(url)
+                this.get(pathUrl)
                     .then(res => {
                         this.canvasSettings = res;
 
@@ -7018,7 +7018,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
-        let url: string = 'canvasSettings';
+        let pathUrl: string = 'canvasSettings';
         this.filePath = './assets/data.canvasSettings.json';
 
         return new Promise<string>((resolve, reject) => {
@@ -7026,7 +7026,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.put('http://localhost:3000/' + url, data, {headers})
+            this.http.put('http://localhost:3000/' + pathUrl, data, {headers})
             .subscribe(
                 res => {
 
@@ -7058,7 +7058,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
-        let url: string = 'dashboardSubscriptions';
+        let pathUrl: string = 'dashboardSubscriptions';
         this.filePath = './assets/data.dashboardSubscriptions.json';
 
         return new Promise<DashboardSubscription[]>((resolve, reject) => {
@@ -7066,7 +7066,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             // Refresh from source at start, or if dirty
             if (this.isDirtyDashboardSubscription) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-                this.get(url)
+                this.get(pathUrl)
                     .then(res => {
                         this.dashboardSubscriptions = res;
 
@@ -7104,7 +7104,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 {dashboardID});
         };
 
-        let url: string = 'dashboardSubscriptions';
+        let pathUrl: string = 'dashboardSubscriptions';
         this.filePath = './assets/data.dashboardSubscriptions.json';
 
         return new Promise<DashboardSubscription[]>((resolve, reject) => {
@@ -7152,7 +7152,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
-        let url: string = 'dashboardSubscriptions';
+        let pathUrl: string = 'dashboardSubscriptions';
         this.filePath = './assets/data.dashboardSubscriptions.json';
 
         return new Promise<string>((resolve, reject) => {
@@ -7160,7 +7160,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.put('http://localhost:3000/' + url + '/' + data.id, data, {headers})
+            this.http.put('http://localhost:3000/' + pathUrl + '/' + data.id, data, {headers})
             .subscribe(
                 res => {
 
@@ -7195,7 +7195,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
-        let url: string = 'dashboardSubscriptions';
+        let pathUrl: string = 'dashboardSubscriptions';
         this.filePath = './assets/data.dashboardSubscriptions.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -7203,7 +7203,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post('http://localhost:3000/' + url, data, {headers})
+            this.http.post('http://localhost:3000/' + pathUrl, data, {headers})
             .subscribe(
                 res => {
                     this.dashboardSubscriptions.push(JSON.parse(JSON.stringify(res)));
@@ -7234,7 +7234,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
         };
 
-        let url: string = 'dashboardSubscriptions';
+        let pathUrl: string = 'dashboardSubscriptions';
         this.filePath = './assets/data.dashboardSubscriptions.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -7242,7 +7242,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
+            this.http.delete('http://localhost:3000/' + pathUrl + '/' + id, {headers})
             .subscribe(
                 res => {
 
@@ -7277,7 +7277,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
-        let url: string = 'paletteButtonBars';
+        let pathUrl: string = 'paletteButtonBars';
         this.filePath = './assets/data.paletteButtonBars.json';
 
         return new Promise<PaletteButtonBar[]>((resolve, reject) => {
@@ -7285,7 +7285,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             // Refresh from source at start, or if dirty
             if (this.isDirtyPaletteButtonBar) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-                this.get(url)
+                this.get(pathUrl)
                     .then(res => {
                         this.currentPaletteButtonBar = res;
 
@@ -7321,7 +7321,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
-        let url: string = 'paletteButtonBars';
+        let pathUrl: string = 'paletteButtonBars';
         this.filePath = './assets/data.paletteButtonBars.json';
 
         return new Promise<string>((resolve, reject) => {
@@ -7329,7 +7329,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.put('http://localhost:3001/' + url + '/' + data.id, data, {headers})
+            this.http.put('http://localhost:3001/' + pathUrl + '/' + data.id, data, {headers})
             .subscribe(
                 res => {
 
@@ -7365,7 +7365,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
-        let url: string = 'paletteButtonsSelecteds';
+        let pathUrl: string = 'paletteButtonsSelecteds';
         this.filePath = './assets/data.paletteButtonsSelecteds.json';
 
         return new Promise<PaletteButtonsSelected[]>((resolve, reject) => {
@@ -7373,7 +7373,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             // Refresh from source at start, or if dirty
             if (this.isDirtyPaletteButtonsSelected) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-                this.get(url)
+                this.get(pathUrl)
                     .then(res => {
                         res = res.sort( (obj1,obj2) => {
                             if (obj1.sortOrderSelected > obj2.sortOrderSelected) {
@@ -7418,7 +7418,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
-        let url: string = 'paletteButtonsSelecteds';
+        let pathUrl: string = 'paletteButtonsSelecteds';
         this.filePath = './assets/data.paletteButtonsSelecteds.json';
 
         return new Promise<string>((resolve, reject) => {
@@ -7426,7 +7426,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.put('http://localhost:3001/' + url + '/' + data.id, data, {headers})
+            this.http.put('http://localhost:3001/' + pathUrl + '/' + data.id, data, {headers})
             .subscribe(
                 res => {
 
@@ -7461,7 +7461,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
         };
 
-        let url: string = 'paletteButtonsSelecteds';
+        let pathUrl: string = 'paletteButtonsSelecteds';
         this.filePath = './assets/data.paletteButtonsSelecteds.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -7469,7 +7469,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.delete('http://localhost:3001/' + url + '/' + id, {headers})
+            this.http.delete('http://localhost:3001/' + pathUrl + '/' + id, {headers})
             .subscribe(
                 res => {
 
@@ -7518,7 +7518,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
-        let url: string = 'paletteButtonsSelecteds';
+        let pathUrl: string = 'paletteButtonsSelecteds';
         this.filePath = './assets/data.paletteButtonsSelecteds.json';
 
 
@@ -7527,7 +7527,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post('http://localhost:3001/' + url, data, {headers})
+            this.http.post('http://localhost:3001/' + pathUrl, data, {headers})
                 .subscribe(
                     res => {
 
@@ -7566,7 +7566,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 this.widgets.length);
         };
 
-        let url: string = 'widgets';
+        let pathUrl: string = 'widgets';
         this.filePath = './assets/data.widgets.json';
 
         return new Promise<Widget[]>((resolve, reject) => {
@@ -7574,7 +7574,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             // Refresh from source at start, or if dirty
             if ( (this.widgets.length == 0)  ||  (this.isDirtyWidgets) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-                this.get(url)
+                this.get(pathUrl)
                     .then(res => {
 
                         this.widgets = res;
@@ -7820,7 +7820,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
-        let url: string = 'widgets';
+        let pathUrl: string = 'widgets';
         this.filePath = './assets/data.widgets.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -7828,7 +7828,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post('http://localhost:3005/' + url, data, {headers})
+            this.http.post('http://localhost:3005/' + pathUrl, data, {headers})
             .subscribe(
                 res => {
 
@@ -7862,7 +7862,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
         };
 
-        let url: string = 'widgets';
+        let pathUrl: string = 'widgets';
         this.filePath = './assets/data.widgets.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -7870,7 +7870,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.delete('http://localhost:3005/' + url + '/' + id, {headers})
+            this.http.delete('http://localhost:3005/' + pathUrl + '/' + id, {headers})
             .subscribe(
                 res => {
 
@@ -8173,7 +8173,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
-        let url: string = 'canvasBackgroundcolorsDefault';
+        let pathUrl: string = 'canvasBackgroundcolorsDefault';
         this.filePath = './assets/settings.backgroundcolors.json';
 
         return new Promise<CSScolor[]>((resolve, reject) => {
@@ -8181,7 +8181,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             // Refresh from source at start, or if dirty
             if ( (this.backgroundcolorsDefault.length == 0)  ||  (this.isDirtyBackgroundColorsDefault) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-                this.get(url)
+                this.get(pathUrl)
                     .then(res => {
                         this.backgroundcolorsDefault = res;
 
@@ -8218,7 +8218,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
-        let url: string = 'canvasBackgroundcolors';
+        let pathUrl: string = 'canvasBackgroundcolors';
         this.filePath = './assets/settings.backgroundcolors.json';
 
         return new Promise<CSScolor[]>((resolve, reject) => {
@@ -8226,7 +8226,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             // Refresh from source at start, or if dirty
             if ( (this.backgroundcolors.length == 0)  ||  (this.isDirtyBackgroundColors) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-                this.get(url)
+                this.get(pathUrl)
                     .then(res => {
                         this.backgroundcolors = res;
 
@@ -8284,7 +8284,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
-        let url: string = 'canvasBackgroundcolors';
+        let pathUrl: string = 'canvasBackgroundcolors';
         this.filePath = './assets/data.backgroundColors.json';
 
 
@@ -8293,7 +8293,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post('http://localhost:3001/' + url, data, {headers})
+            this.http.post('http://localhost:3001/' + pathUrl, data, {headers})
                 .subscribe(
                     res => {
 
@@ -8326,7 +8326,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
-        let url: string = 'canvasBackgroundcolors';
+        let pathUrl: string = 'canvasBackgroundcolors';
         this.filePath = './assets/data.BackgroundColor.json';
 
         return new Promise<string>((resolve, reject) => {
@@ -8334,7 +8334,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.put('http://localhost:3001/' + url + '/' + data.id, data, {headers})
+            this.http.put('http://localhost:3001/' + pathUrl + '/' + data.id, data, {headers})
             .subscribe(
                 res => {
 
@@ -8371,7 +8371,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
         };
 
-        let url: string = 'canvasBackgroundcolors';
+        let pathUrl: string = 'canvasBackgroundcolors';
         this.filePath = './assets/data.BackgroundColor.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -8379,7 +8379,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.delete('http://localhost:3001/' + url + '/' + id, {headers})
+            this.http.delete('http://localhost:3001/' + pathUrl + '/' + id, {headers})
             .subscribe(
                 res => {
 
@@ -8425,7 +8425,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 this.canvasTasks.length);
         };
 
-        let url: string = 'canvasTasks';
+        let pathUrl: string = 'canvasTasks';
         this.filePath = './assets/settings.canvasTasks.json';
 
         return new Promise<CanvasTask[]>((resolve, reject) => {
@@ -8433,7 +8433,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             // Refresh from source at start, or if dirty
             if ( (this.canvasTasks.length == 0)  ||  (this.isDirtyCanvasTasks) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-                this.get(url)
+                this.get(pathUrl)
                     .then(res => {
                         this.canvasTasks = res;
 
@@ -8469,7 +8469,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
-        let url: string = 'canvasTasks';
+        let pathUrl: string = 'canvasTasks';
         this.filePath = './assets/data.CanvasTasks.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -8477,7 +8477,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post('http://localhost:3000/' + url, data, {headers})
+            this.http.post('http://localhost:3000/' + pathUrl, data, {headers})
             .subscribe(
                 res => {
 
@@ -8510,7 +8510,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
-        let url: string = 'canvasTasks';
+        let pathUrl: string = 'canvasTasks';
         this.filePath = './assets/data.canvasTasks.json';
 
         return new Promise<string>((resolve, reject) => {
@@ -8518,7 +8518,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.put('http://localhost:3000/' + url + '/' + data.id, data, {headers})
+            this.http.put('http://localhost:3000/' + pathUrl + '/' + data.id, data, {headers})
             .subscribe(
                 res => {
 
@@ -8555,7 +8555,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 this.canvasComments.length);
         };
 
-        let url: string = 'canvasComments';
+        let pathUrl: string = 'canvasComments';
         this.filePath = './assets/settings.canvasComments.json';
 
         return new Promise<CanvasComment[]>((resolve, reject) => {
@@ -8563,7 +8563,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             // Refresh from source at start, or if dirty
             if ( (this.canvasComments.length == 0)  ||  (this.isDirtyCanvasComments) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-                this.get(url)
+                this.get(pathUrl)
                     .then(res => {
                         this.canvasComments = res;
 
@@ -8599,7 +8599,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
-        let url: string = 'canvasComments';
+        let pathUrl: string = 'canvasComments';
         this.filePath = './assets/data.CanvasComments.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -8607,7 +8607,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post('http://localhost:3000/' + url, data, {headers})
+            this.http.post('http://localhost:3000/' + pathUrl, data, {headers})
             .subscribe(
                 res => {
 
@@ -8649,7 +8649,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
-        let url: string = 'canvasComments';
+        let pathUrl: string = 'canvasComments';
         this.filePath = './assets/data.canvasComments.json';
 
         return new Promise<string>((resolve, reject) => {
@@ -8657,7 +8657,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.put('http://localhost:3000/' + url + '/' + data.id, data, {headers})
+            this.http.put('http://localhost:3000/' + pathUrl + '/' + data.id, data, {headers})
             .subscribe(
                 res => {
 
@@ -8691,7 +8691,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
         };
 
-        let url: string = 'canvasComments';
+        let pathUrl: string = 'canvasComments';
         this.filePath = './assets/data.CanvasComments.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -8699,7 +8699,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
+            this.http.delete('http://localhost:3000/' + pathUrl + '/' + id, {headers})
             .subscribe(
                 res => {
 
@@ -8743,7 +8743,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 this.canvasMessages.length);
         };
 
-        let url: string = 'canvasMessages';
+        let pathUrl: string = 'canvasMessages';
         this.filePath = './assets/settings.canvasMessages.json';
 
         return new Promise<CanvasMessage[]>((resolve, reject) => {
@@ -8751,7 +8751,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             // Refresh from source at start, or if dirty
             if ( (this.canvasMessages.length == 0)  ||  (this.isDirtyCanvasMessages) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-                this.get(url)
+                this.get(pathUrl)
                     .then(res => {
                         this.canvasMessages = res;
 
@@ -8787,7 +8787,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
-        let url: string = 'canvasMessages';
+        let pathUrl: string = 'canvasMessages';
         this.filePath = './assets/data.canvasMessages.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -8795,7 +8795,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post('http://localhost:3000/' + url, data, {headers})
+            this.http.post('http://localhost:3000/' + pathUrl, data, {headers})
             .subscribe(
                 res => {
 
@@ -8827,7 +8827,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
-        let url: string = 'canvasMessages';
+        let pathUrl: string = 'canvasMessages';
         this.filePath = './assets/data.canvasMessages.json';
 
         return new Promise<string>((resolve, reject) => {
@@ -8835,7 +8835,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.put('http://localhost:3000/' + url + '/' + data.id, data, {headers})
+            this.http.put('http://localhost:3000/' + pathUrl + '/' + data.id, data, {headers})
             .subscribe(
                 res => {
 
@@ -8889,7 +8889,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
         };
 
-        let url: string = 'canvasMessages';
+        let pathUrl: string = 'canvasMessages';
         this.filePath = './assets/data.CanvasMessages.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -8897,7 +8897,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
+            this.http.delete('http://localhost:3000/' + pathUrl + '/' + id, {headers})
             .subscribe(
                 res => {
 
@@ -8931,7 +8931,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 this.widgetCheckpoints.length);
         };
 
-        let url: string = 'widgetCheckpoints';
+        let pathUrl: string = 'widgetCheckpoints';
         this.filePath = './assets/settings.widgetCheckpoints.json';
 
         return new Promise<WidgetCheckpoint[]>((resolve, reject) => {
@@ -8939,7 +8939,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             // Refresh from source at start, or if dirty
             if ( (this.widgetCheckpoints.length == 0)  ||  (this.isDirtyWidgetCheckpoints) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-                this.get(url)
+                this.get(pathUrl)
                     .then(res => {
                         this.widgetCheckpoints = res.filter(d => (!d.parentWidgetIsDeleted) );
 
@@ -9025,7 +9025,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
-        let url: string = 'widgetCheckpoints';
+        let pathUrl: string = 'widgetCheckpoints';
         this.filePath = './assets/data.widgetCheckpoints.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -9033,7 +9033,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post('http://localhost:3000/' + url, data, {headers})
+            this.http.post('http://localhost:3000/' + pathUrl, data, {headers})
             .subscribe(
                 res => {
 
@@ -9067,7 +9067,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
         };
 
-        let url: string = 'widgetCheckpoints';
+        let pathUrl: string = 'widgetCheckpoints';
         this.filePath = './assets/data.widgetCheckpoints.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -9075,7 +9075,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.delete('http://localhost:3000/' + url + '/' + id, {headers})
+            this.http.delete('http://localhost:3000/' + pathUrl + '/' + id, {headers})
             .subscribe(
                 res => {
 
@@ -9111,7 +9111,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
-        let url: string = 'widgetCheckpoints';
+        let pathUrl: string = 'widgetCheckpoints';
         this.filePath = './assets/data.widgetCheckpoints.json';
 
         return new Promise<string>((resolve, reject) => {
@@ -9119,7 +9119,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.put('http://localhost:3000/' + url + '/' + data.id, data, {headers})
+            this.http.put('http://localhost:3000/' + pathUrl + '/' + data.id, data, {headers})
             .subscribe(
                 res => {
 
@@ -9155,7 +9155,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
-        let url: string = 'canvasUsers';
+        let pathUrl: string = 'canvasUsers';
         this.filePath = './assets/data.canvasUsers.json';
 
         return new Promise<CanvasUser[]>((resolve, reject) => {
@@ -9163,7 +9163,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             // Refresh from source at start, or if dirty
             if ( (this.canvasUsers.length == 0)  ||  (this.isDirtyUsers) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-                this.get(url)
+                this.get(pathUrl)
                     .then(res => {
                         this.canvasUsers = res;
                         this.isDirtyUsers = false;
@@ -9394,7 +9394,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
-        let url: string = 'canvasUsers';
+        let pathUrl: string = 'canvasUsers';
         this.filePath = './assets/data.canvasUsers.json';
 
         return new Promise<string>((resolve, reject) => {
@@ -9402,7 +9402,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.put('http://localhost:3001/' + url + '/' + data.id, data, {headers})
+            this.http.put('http://localhost:3001/' + pathUrl + '/' + data.id, data, {headers})
             .subscribe(
                 res => {
 
@@ -9439,7 +9439,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 this.canvasAuditTrails.length);
         };
 
-        let url: string = 'canvasAuditTrails';
+        let pathUrl: string = 'canvasAuditTrails';
         this.filePath = './assets/settings.canvasAuditTrails.json';
 
         return new Promise<CanvasAuditTrail[]>((resolve, reject) => {
@@ -9447,7 +9447,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             // Refresh from source at start, or if dirty
             if ( (this.canvasAuditTrails.length == 0)  ||  (this.isDirtyCanvasAuditTrails) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-                this.get(url)
+                this.get(pathUrl)
                     .then(res => {
                         this.canvasAuditTrails = res;
 
@@ -9483,7 +9483,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
-        let url: string = 'canvasAuditTrails';
+        let pathUrl: string = 'canvasAuditTrails';
         this.filePath = './assets/data.CanvasAuditTrails.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -9491,7 +9491,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post('http://localhost:3002/' + url, data, {headers})
+            this.http.post('http://localhost:3002/' + pathUrl, data, {headers})
             .subscribe(
                 res => {
 
@@ -9525,7 +9525,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 this.statusBarMessageLogs.length);
         };
 
-        let url: string = 'statusBarMessageLogs';
+        let pathUrl: string = 'statusBarMessageLogs';
         this.filePath = './assets/statusBarMessageLogs.json';
 
         return new Promise<StatusBarMessageLog[]>((resolve, reject) => {
@@ -9533,7 +9533,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             // Refresh from source at start, or if dirty
             if ( (this.statusBarMessageLogs.length == 0)  ||  (this.isDirtystatusBarMessageLogs) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-                this.get(url)
+                this.get(pathUrl)
                     .then(res => {
                         this.statusBarMessageLogs = res;
 
@@ -9569,7 +9569,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
-        let url: string = 'statusBarMessageLogs';
+        let pathUrl: string = 'statusBarMessageLogs';
         this.filePath = './assets/data.statusBarMessageLogs.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -9577,7 +9577,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post('http://localhost:3002/' + url, data, {headers})
+            this.http.post('http://localhost:3002/' + pathUrl, data, {headers})
             .subscribe(
                 res => {
 
@@ -9611,7 +9611,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
-        let url: string = 'containerStyles';
+        let pathUrl: string = 'containerStyles';
         this.filePath = './assets/data.containerStyles.json';
 
         return new Promise<ContainerStyle[]>((resolve, reject) => {
@@ -9619,7 +9619,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             // Refresh from source at start, or if dirty
             if (this.isDirtyContainerStyles) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-                this.get(url)
+                this.get(pathUrl)
                     .then(res => {
 
                         this.isDirtyContainerStyles = false;
@@ -9655,7 +9655,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
-        let url: string = 'containerStyles';
+        let pathUrl: string = 'containerStyles';
         this.filePath = './assets/data.ContainerStyles.json';
 
 
@@ -9664,7 +9664,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post('http://localhost:3001/' + url, data, {headers})
+            this.http.post('http://localhost:3001/' + pathUrl, data, {headers})
                 .subscribe(
                     res => {
 
@@ -9696,7 +9696,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
-        let url: string = 'containerStyles';
+        let pathUrl: string = 'containerStyles';
         this.filePath = './assets/data.containerStyle.json';
 
         return new Promise<string>((resolve, reject) => {
@@ -9704,7 +9704,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.put('http://localhost:3001/' + url + '/' + data.id, data, {headers})
+            this.http.put('http://localhost:3001/' + pathUrl + '/' + data.id, data, {headers})
             .subscribe(
                 res => {
 
@@ -9741,7 +9741,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
         };
 
-        let url: string = 'containerStyles';
+        let pathUrl: string = 'containerStyles';
         this.filePath = './assets/data.containerStyle.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -9749,7 +9749,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.delete('http://localhost:3001/' + url + '/' + id, {headers})
+            this.http.delete('http://localhost:3001/' + pathUrl + '/' + id, {headers})
             .subscribe(
                 res => {
 
@@ -9794,14 +9794,14 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
-        let url: string = 'dashboardLayouts';
+        let pathUrl: string = 'dashboardLayouts';
         this.filePath = './assets/data.DashboardLayouts.json';
 
         return new Promise<DashboardLayout[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
             this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-            this.get(url)
+            this.get(pathUrl)
                 .then(res => {
 
                     this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
@@ -9833,7 +9833,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
-        let url: string = 'dashboardLayouts';
+        let pathUrl: string = 'dashboardLayouts';
         this.filePath = './assets/data.DashboardLayouts.json';
 
 
@@ -9842,7 +9842,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post('http://localhost:3001/' + url, data, {headers})
+            this.http.post('http://localhost:3001/' + pathUrl, data, {headers})
                 .subscribe(
                     res => {
 
@@ -9874,7 +9874,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
         };
 
-        let url: string = 'DashboardLayouts';
+        let pathUrl: string = 'DashboardLayouts';
         this.filePath = './assets/data.DashboardLayout.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -9882,7 +9882,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.delete('http://localhost:3001/' + url + '/' + id, {headers})
+            this.http.delete('http://localhost:3001/' + pathUrl + '/' + id, {headers})
             .subscribe(
                 res => {
                     this.dashboardLayouts = this.dashboardLayouts.filter(wl => wl.id != id);
@@ -9913,14 +9913,14 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px");
         };
 
-        let url: string = 'widgetLayouts';
+        let pathUrl: string = 'widgetLayouts';
         this.filePath = './assets/data.WidgetLayouts.json';
 
         return new Promise<WidgetLayout[]>((resolve, reject) => {
 
             // Refresh from source at start, or if dirty
             this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-            this.get(url)
+            this.get(pathUrl)
                 .then(res => {
 
                     this.statusBarRunning.next(this.canvasSettings.noQueryRunningMessage);
@@ -9953,7 +9953,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
-        let url: string = 'widgetLayouts';
+        let pathUrl: string = 'widgetLayouts';
         this.filePath = './assets/data.WidgetLayouts.json';
 
 
@@ -9962,7 +9962,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post('http://localhost:3001/' + url, data, {headers})
+            this.http.post('http://localhost:3001/' + pathUrl, data, {headers})
                 .subscribe(
                     res => {
 
@@ -9994,7 +9994,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {id});
         };
 
-        let url: string = 'widgetLayouts';
+        let pathUrl: string = 'widgetLayouts';
         this.filePath = './assets/data.WidgetLayout.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -10002,7 +10002,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.delete('http://localhost:3001/' + url + '/' + id, {headers})
+            this.http.delete('http://localhost:3001/' + pathUrl + '/' + id, {headers})
             .subscribe(
                 res => {
                     this.widgetLayouts = this.widgetLayouts.filter(wl => wl.id != id);
@@ -10289,12 +10289,12 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 this.statusBarMessageLogs.length);
         };
 
-        let url: string = 'dataCachingTable';
+        let pathUrl: string = 'dataCachingTable';
         this.filePath = './assets/dataCachingTable.json';
 
         return new Promise<DataCachingTable[]>((resolve, reject) => {
 
-            this.get(url)
+            this.get(pathUrl)
                 .then(res => {
                     this.dataCachingTable = res;
                         // [
@@ -12272,7 +12272,7 @@ console.warn('xx ds perm', dp);
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {source});
         };
 
-        let url: string = 'https://eazl-rest.xyz/eazl/canvas/enqueue/';
+        let pathUrl: string = 'https://eazl-rest.xyz/eazl/canvas/enqueue/';
         this.filePath = './assets/data.dashboards.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -12283,7 +12283,7 @@ console.warn('xx ds perm', dp);
                 .set("Content-Type", "application/json")
                 .set("Authorization", "JWT " + localToken.token);
 
-            this.http.post(url, source, {headers})
+            this.http.post(pathUrl, source, {headers})
             .subscribe(
                 res => {
 
@@ -12313,7 +12313,7 @@ console.warn('xx ds perm', dp);
                 {graphQLquery});
         };
 
-        let url: string = 'https://eazl-rest.xyz/eazl/accounts/graphql/';
+        let pathUrl: string = 'https://eazl-rest.xyz/eazl/accounts/graphql/';
         this.filePath = './assets/data.dashboards.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -12324,7 +12324,7 @@ console.warn('xx ds perm', dp);
                 .set("Content-Type", "application/json")
                 .set("Authorization", "JWT " + localToken.token);
 
-            this.http.post(url, {query: graphQLquery}, {headers})
+            this.http.post(pathUrl, {query: graphQLquery}, {headers})
             .subscribe(
                 res => {
 
@@ -12353,7 +12353,7 @@ console.warn('xx ds perm', dp);
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {source});
         };
 
-        let url: string = 'https://eazl-rest.xyz/eazl/canvas/inspect/';
+        let pathUrl: string = 'https://eazl-rest.xyz/eazl/canvas/inspect/';
         this.filePath = './assets/data.dashboards.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -12364,7 +12364,7 @@ console.warn('xx ds perm', dp);
                 .set("Content-Type", "application/json")
                 .set("Authorization", "JWT " + localToken.token);
 
-            this.http.post(url, source, {headers})
+            this.http.post(pathUrl, source, {headers})
             .subscribe(
                 res => {
 
