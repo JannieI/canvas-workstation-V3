@@ -1453,6 +1453,7 @@ export class GlobalVariableService {
         };
 
         let pathUrl: string = 'dashboards' + params;
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.dashboards.json';
 
         return new Promise<Dashboard[]>((resolve, reject) => {
@@ -2338,6 +2339,7 @@ export class GlobalVariableService {
         };
 
         let pathUrl: string = 'dashboards';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.dashboards.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -2382,6 +2384,7 @@ export class GlobalVariableService {
         };
 
         let pathUrl: string = 'dashboards';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.dashboards.json';
 
         return new Promise<string>((resolve, reject) => {
@@ -2434,6 +2437,7 @@ export class GlobalVariableService {
         };
 
         let pathUrl: string = 'dashboards';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.dashboards.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -2599,6 +2603,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'dashboardTabs';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.dashboardTabs.json';
 
         return new Promise<DashboardTab[]>((resolve, reject) => {
@@ -2706,6 +2711,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'dashboardTabs';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.dashboardTabs.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -2746,6 +2752,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'dashboardTabs';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.dashboardTabs.json';
 
         return new Promise<string>((resolve, reject) => {
@@ -2797,6 +2804,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'dashboardTabs';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.dashboardTabs.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -2935,6 +2943,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'dashboardsRecent';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.dashboardsRecent.json';
 
         return new Promise<DashboardRecent[]>((resolve, reject) => {
@@ -3119,6 +3128,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'dashboardsRecent';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.dashboardsRecent.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -3172,6 +3182,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'dashboardsRecent';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.dashboardsRecent.json';
 
         return new Promise<string>((resolve, reject) => {
@@ -3230,6 +3241,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'dashboardsRecent';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.dashboardsRecent.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -3272,6 +3284,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'dataConnections';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './asConnections/data.dataConnections.json';
 
         return new Promise<DataConnection[]>((resolve, reject) => {
@@ -3314,6 +3327,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'DataConnections';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.DataConnections.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -3354,6 +3368,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'DataConnections';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.DataConnections.json';
 
         return new Promise<string>((resolve, reject) => {
@@ -3397,6 +3412,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'DataConnections';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.DataConnections.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -3438,6 +3454,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'datasourceTransformations';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './asConnections/data.datasourceTransformations.json';
 
         return new Promise<DatasourceTransformation[]>((resolve, reject) => {
@@ -3481,6 +3498,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'datasourceTransformations';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.datasourceTransformations.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -3521,6 +3539,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'datasourceTransformations';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.datasourceTransformations.json';
 
         return new Promise<string>((resolve, reject) => {
@@ -3564,6 +3583,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'datasourceTransformations';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.datasourceTransformations.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -3605,6 +3625,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'dataTables';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './asTables/data.dataTables.json';
 
         return new Promise<DataTable[]>((resolve, reject) => {
@@ -3648,6 +3669,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'dataFields';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './asFields/data.dataFields.json';
 
         return new Promise<DataField[]>((resolve, reject) => {
@@ -3691,6 +3713,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'datasets';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.datasets.json';
 
         return new Promise<Dataset[]>((resolve, reject) => {
@@ -3736,6 +3759,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'dataset';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.datasets.json';
 
         // Get list of dSet-ids to make array work easier
@@ -3902,6 +3926,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'datasets';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.datasets.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -3954,6 +3979,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'datasets';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.Datasets.json';
 
         return new Promise<string>((resolve, reject) => {
@@ -4002,6 +4028,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'datasets';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.Datasets.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -4046,6 +4073,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'data/' + id.toString();
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.datasets.json';
 
         return new Promise<Dataset[]>((resolve, reject) => {
@@ -4085,6 +4113,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'data';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.dataset' + data.id + '.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -4121,6 +4150,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'data';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.Datas.json';
 
         return new Promise<string>((resolve, reject) => {
@@ -4159,6 +4189,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'data';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.data.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -4306,6 +4337,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'dashboardSchedules';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.dashboardSchedules.json';
 
         return new Promise<DashboardSchedule[]>((resolve, reject) => {
@@ -4398,6 +4430,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'dashboardSchedules';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.dashboardSchedules.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -4439,6 +4472,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'dashboardSchedules';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.dashboardSchedules.json';
 
         return new Promise<string>((resolve, reject) => {
@@ -4482,6 +4516,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'dashboardSchedules';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.dashboardSchedules.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -4531,6 +4566,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'dashboardScheduleLog';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.dashboardScheduleLog.json';
 
         return new Promise<DashboardScheduleLog[]>((resolve, reject) => {
@@ -4574,6 +4610,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'datasourceSchedules';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.datasourceSchedules.json';
 
         return new Promise<DatasourceSchedule[]>((resolve, reject) => {
@@ -4670,6 +4707,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'datasourceSchedules';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.datasourceSchedules.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -4711,6 +4749,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'datasourceSchedules';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.datasourceSchedules.json';
 
         return new Promise<string>((resolve, reject) => {
@@ -4754,6 +4793,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'datasourceSchedules';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.datasourceSchedules.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -4803,6 +4843,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'datasourceScheduleLog';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.datasourceScheduleLog.json';
 
         return new Promise<DatasourceScheduleLog[]>((resolve, reject) => {
@@ -4845,6 +4886,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'dashboardTags';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.dashboardTags.json';
 
         return new Promise<DashboardTag[]>((resolve, reject) => {
@@ -4937,6 +4979,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'dashboardTags';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.dashboardTags.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -4977,6 +5020,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'dashboardTags';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.dashboardTags.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -5022,6 +5066,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'dashboardPermissions';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.dashboardPermissions.json';
 
         return new Promise<DashboardPermission[]>((resolve, reject) => {
@@ -5114,6 +5159,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'dashboardPermissions';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.dashboardPermissions.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -5156,6 +5202,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'dashboardPermissions';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.dashboardPermissions.json';
 
         return new Promise<string>((resolve, reject) => {
@@ -5199,6 +5246,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'dashboardPermissions';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.dashboardPermissions.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -5244,6 +5292,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'canvasGroups';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.canvasGroups.json';
 
         return new Promise<CanvasGroup[]>((resolve, reject) => {
@@ -5288,6 +5337,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'widgetGraphs';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.widgetGraphs.json';
 
         return new Promise<WidgetGraph[]>((resolve, reject) => {
@@ -5332,6 +5382,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'dashboardSnapshots';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.dashboardSnapshots.json';
 
         return new Promise<DashboardSnapshot[]>((resolve, reject) => {
@@ -5521,6 +5572,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'dashboardSnapshots';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.dashboardSnapshots.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -5563,6 +5615,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'dashboardSnapshots';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.dashboardSnapshots.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -5608,6 +5661,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'dashboardThemes';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.dashboardThemes.json';
 
         return new Promise<DashboardTheme[]>((resolve, reject) => {
@@ -5720,6 +5774,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'datasources';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.datasources.json';
 
         return new Promise<Datasource[]>((resolve, reject) => {
@@ -5766,6 +5821,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'datasources';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.datasources.json';
 
         return new Promise<Datasource[]>((resolve, reject) => {
@@ -5855,6 +5911,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'datasources';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.datasources.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -5967,6 +6024,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'Datasources';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.Datasources.json';
 
         return new Promise<string>((resolve, reject) => {
@@ -6018,6 +6076,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'datasources';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.datasources.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -6089,6 +6148,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'transformations';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.transformations.json';
 
         return new Promise<Transformation[]>((resolve, reject) => {
@@ -6132,6 +6192,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'transformations';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.transformations.json';
 
         if ( (this.currentTransformations.length == 0)  ||  (this.isDirtyTransformations) ) {
@@ -6182,6 +6243,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'dataQualityIssues';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.dataQualityIssues.json';
 
         return new Promise<DataQualityIssue[]>((resolve, reject) => {
@@ -6226,6 +6288,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'dataQualityIssues';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.dataQualityIssues.json';
 
         if ( (this.currentDataQualityIssues.length == 0)  ||  (this.isDirtyDataQualityIssues) ) {
@@ -6275,6 +6338,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'dataQualityIssues';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.dataQualityIssues.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -6322,6 +6386,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'dataQualityIssues';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.dataQualityIssues.json';
 
         return new Promise<string>((resolve, reject) => {
@@ -6365,6 +6430,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'dataQualityIssues';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.dataQualityIssues.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -6409,6 +6475,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'dataOwnerships';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.dataOwnerships.json';
 
         return new Promise<DataOwnership[]>((resolve, reject) => {
@@ -6453,6 +6520,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'dataOwnerships';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.dataOwnerships.json';
 
         if ( (this.currentDataOwnerships.length == 0)  ||  (this.isDirtyDataOwnership) ) {
@@ -6501,6 +6569,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'dataOwnerships';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.dataOwnerships.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -6548,6 +6617,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'dataOwnerships';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.dataOwnerships.json';
 
         return new Promise<string>((resolve, reject) => {
@@ -6591,6 +6661,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'dataOwnerships';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.dataOwnerships.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -6636,6 +6707,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'datasourcePermissions';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.datasourcePermissions.json';
 
         return new Promise<DatasourcePermission[]>((resolve, reject) => {
@@ -6694,6 +6766,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'datasourcePermissions';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data..datasourcePermissions.json';
 
         if ( (this.currentDatasourcePermissions.length == 0)  ||  (this.isDirtyDatasourcePermissions) ) {
@@ -6743,6 +6816,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'datasourcePermissions';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.datasourcePermissions.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -6790,6 +6864,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'datasourcePermissions';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.datasourcePermissions.json';
 
         return new Promise<string>((resolve, reject) => {
@@ -6858,6 +6933,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'datasourcePivots';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.datasourcePivots.json';
 
         return new Promise<DatasourcePivot[]>((resolve, reject) => {
@@ -6902,6 +6978,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'datasourcePivots';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data..datasourcePivots.json';
 
         if ( (this.currentDatasourcePivots.length == 0)  ||  (this.isDirtyDatasourcePivots) ) {
@@ -6952,6 +7029,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'canvasSettings';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.canvasSettings.json';
 
         return new Promise<CanvasSettings>((resolve, reject) => {
@@ -7019,6 +7097,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'canvasSettings';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.canvasSettings.json';
 
         return new Promise<string>((resolve, reject) => {
@@ -7059,6 +7138,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'dashboardSubscriptions';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.dashboardSubscriptions.json';
 
         return new Promise<DashboardSubscription[]>((resolve, reject) => {
@@ -7105,6 +7185,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'dashboardSubscriptions';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.dashboardSubscriptions.json';
 
         return new Promise<DashboardSubscription[]>((resolve, reject) => {
@@ -7153,6 +7234,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'dashboardSubscriptions';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.dashboardSubscriptions.json';
 
         return new Promise<string>((resolve, reject) => {
@@ -7196,6 +7278,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'dashboardSubscriptions';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.dashboardSubscriptions.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -7235,6 +7318,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'dashboardSubscriptions';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.dashboardSubscriptions.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -7278,6 +7362,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'paletteButtonBars';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.paletteButtonBars.json';
 
         return new Promise<PaletteButtonBar[]>((resolve, reject) => {
@@ -7322,6 +7407,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'paletteButtonBars';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.paletteButtonBars.json';
 
         return new Promise<string>((resolve, reject) => {
@@ -7366,6 +7452,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'paletteButtonsSelecteds';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.paletteButtonsSelecteds.json';
 
         return new Promise<PaletteButtonsSelected[]>((resolve, reject) => {
@@ -7419,6 +7506,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'paletteButtonsSelecteds';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.paletteButtonsSelecteds.json';
 
         return new Promise<string>((resolve, reject) => {
@@ -7462,6 +7550,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'paletteButtonsSelecteds';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.paletteButtonsSelecteds.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -7519,6 +7608,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'paletteButtonsSelecteds';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.paletteButtonsSelecteds.json';
 
 
@@ -7567,6 +7657,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'widgets';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.widgets.json';
 
         return new Promise<Widget[]>((resolve, reject) => {
@@ -7821,6 +7912,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'widgets';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.widgets.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -7863,6 +7955,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'widgets';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.widgets.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -7912,6 +8005,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'widgets';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
 
         this.filePath = './assets/data.widgets.json';
@@ -8174,6 +8268,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'canvasBackgroundcolorsDefault';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/settings.backgroundcolors.json';
 
         return new Promise<CSScolor[]>((resolve, reject) => {
@@ -8219,6 +8314,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'canvasBackgroundcolors';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/settings.backgroundcolors.json';
 
         return new Promise<CSScolor[]>((resolve, reject) => {
@@ -8285,6 +8381,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'canvasBackgroundcolors';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.backgroundColors.json';
 
 
@@ -8327,6 +8424,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'canvasBackgroundcolors';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.BackgroundColor.json';
 
         return new Promise<string>((resolve, reject) => {
@@ -8372,6 +8470,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'canvasBackgroundcolors';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.BackgroundColor.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -8426,6 +8525,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'canvasTasks';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/settings.canvasTasks.json';
 
         return new Promise<CanvasTask[]>((resolve, reject) => {
@@ -8470,6 +8570,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'canvasTasks';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.CanvasTasks.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -8511,6 +8612,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'canvasTasks';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.canvasTasks.json';
 
         return new Promise<string>((resolve, reject) => {
@@ -8556,6 +8658,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'canvasComments';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/settings.canvasComments.json';
 
         return new Promise<CanvasComment[]>((resolve, reject) => {
@@ -8600,6 +8703,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'canvasComments';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.CanvasComments.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -8650,6 +8754,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'canvasComments';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.canvasComments.json';
 
         return new Promise<string>((resolve, reject) => {
@@ -8692,6 +8797,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'canvasComments';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.CanvasComments.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -8744,6 +8850,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'canvasMessages';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/settings.canvasMessages.json';
 
         return new Promise<CanvasMessage[]>((resolve, reject) => {
@@ -8788,6 +8895,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'canvasMessages';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.canvasMessages.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -8828,6 +8936,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'canvasMessages';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.canvasMessages.json';
 
         return new Promise<string>((resolve, reject) => {
@@ -8890,6 +8999,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'canvasMessages';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.CanvasMessages.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -8932,6 +9042,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'widgetCheckpoints';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/settings.widgetCheckpoints.json';
 
         return new Promise<WidgetCheckpoint[]>((resolve, reject) => {
@@ -9026,6 +9137,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'widgetCheckpoints';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.widgetCheckpoints.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -9068,6 +9180,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'widgetCheckpoints';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.widgetCheckpoints.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -9112,6 +9225,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'widgetCheckpoints';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.widgetCheckpoints.json';
 
         return new Promise<string>((resolve, reject) => {
@@ -9156,6 +9270,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'canvasUsers';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.canvasUsers.json';
 
         return new Promise<CanvasUser[]>((resolve, reject) => {
@@ -9395,6 +9510,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'canvasUsers';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.canvasUsers.json';
 
         return new Promise<string>((resolve, reject) => {
@@ -9440,6 +9556,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'canvasAuditTrails';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/settings.canvasAuditTrails.json';
 
         return new Promise<CanvasAuditTrail[]>((resolve, reject) => {
@@ -9484,6 +9601,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'canvasAuditTrails';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.CanvasAuditTrails.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -9526,6 +9644,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'statusBarMessageLogs';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/statusBarMessageLogs.json';
 
         return new Promise<StatusBarMessageLog[]>((resolve, reject) => {
@@ -9570,6 +9689,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'statusBarMessageLogs';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.statusBarMessageLogs.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -9612,6 +9732,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'containerStyles';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.containerStyles.json';
 
         return new Promise<ContainerStyle[]>((resolve, reject) => {
@@ -9656,6 +9777,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'containerStyles';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.ContainerStyles.json';
 
 
@@ -9697,6 +9819,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'containerStyles';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.containerStyle.json';
 
         return new Promise<string>((resolve, reject) => {
@@ -9742,6 +9865,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'containerStyles';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.containerStyle.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -9795,6 +9919,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'dashboardLayouts';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.DashboardLayouts.json';
 
         return new Promise<DashboardLayout[]>((resolve, reject) => {
@@ -9834,6 +9959,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'dashboardLayouts';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.DashboardLayouts.json';
 
 
@@ -9875,6 +10001,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'DashboardLayouts';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.DashboardLayout.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -9914,6 +10041,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'widgetLayouts';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.WidgetLayouts.json';
 
         return new Promise<WidgetLayout[]>((resolve, reject) => {
@@ -9954,6 +10082,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'widgetLayouts';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.WidgetLayouts.json';
 
 
@@ -9995,6 +10124,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'widgetLayouts';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.WidgetLayout.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -10290,6 +10420,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'dataCachingTable';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/dataCachingTable.json';
 
         return new Promise<DataCachingTable[]>((resolve, reject) => {
@@ -12273,6 +12404,7 @@ console.warn('xx ds perm', dp);
         };
 
         let pathUrl: string = 'https://eazl-rest.xyz/eazl/canvas/enqueue/';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.dashboards.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -12314,6 +12446,7 @@ console.warn('xx ds perm', dp);
         };
 
         let pathUrl: string = 'https://eazl-rest.xyz/eazl/accounts/graphql/';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.dashboards.json';
 
         return new Promise<any>((resolve, reject) => {
@@ -12354,6 +12487,7 @@ console.warn('xx ds perm', dp);
         };
 
         let pathUrl: string = 'https://eazl-rest.xyz/eazl/canvas/inspect/';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         this.filePath = './assets/data.dashboards.json';
 
         return new Promise<any>((resolve, reject) => {
