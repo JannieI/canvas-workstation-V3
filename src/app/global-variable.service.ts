@@ -2347,7 +2347,7 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post('http://localhost:3000/' + pathUrl, data, {headers})
+            this.http.post(finalUrl, data, {headers})
             .subscribe(
                 res => {
 
@@ -2392,7 +2392,7 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.put('http://localhost:3000/' + pathUrl + '/' + data.id, data, {headers})
+            this.http.put(finalUrl + '/' + data.id, data, {headers})
             .subscribe(
                 res => {
 
@@ -2445,7 +2445,7 @@ export class GlobalVariableService {
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.delete('http://localhost:3000/' + pathUrl + '/' + id, {headers})
+            this.http.delete(finalUrl + '/' + id, {headers})
             .subscribe(
                 res => {
 
@@ -2719,7 +2719,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post('http://localhost:3000/' + pathUrl, data, {headers})
+            this.http.post(finalUrl, data, {headers})
             .subscribe(
                 res => {
 
@@ -2760,7 +2760,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.put('http://localhost:3000/' + pathUrl + '/' + data.id, data, {headers})
+            this.http.put(finalUrl + '/' + data.id, data, {headers})
             .subscribe(
                 res => {
 
@@ -2812,7 +2812,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.delete('http://localhost:3000/' + pathUrl + '/' + id, {headers})
+            this.http.delete(finalUrl + '/' + id, {headers})
             .subscribe(
                 res => {
 
@@ -3136,7 +3136,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post('http://localhost:3001/' + pathUrl, data, {headers})
+            this.http.post(finalUrl, data, {headers})
             .subscribe(
                 res => {
 
@@ -3190,7 +3190,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.put('http://localhost:3001/' + pathUrl + '/' + data.id, data, {headers})
+            this.http.put(finalUrl + '/' + data.id, data, {headers})
             .subscribe(
                 res => {
 
@@ -3249,7 +3249,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.delete('http://localhost:3001/' + pathUrl + '/' + id, {headers})
+            this.http.delete(finalUrl + '/' + id, {headers})
             .subscribe(
                 res => {
 
@@ -3335,7 +3335,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post('http://localhost:3001/' + pathUrl, data, {headers})
+            this.http.post(finalUrl, data, {headers})
             .subscribe(
                 res => {
 
@@ -3376,7 +3376,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.put('http://localhost:3001/' + pathUrl + '/' + data.id, data, {headers})
+            this.http.put(finalUrl + '/' + data.id, data, {headers})
             .subscribe(
                 res => {
 
@@ -3420,7 +3420,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.delete('http://localhost:3001/' + pathUrl + '/' + id, {headers})
+            this.http.delete(finalUrl + '/' + id, {headers})
             .subscribe(
                 res => {
 
@@ -3506,7 +3506,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post('http://localhost:3000/' + pathUrl, data, {headers})
+            this.http.post(finalUrl, data, {headers})
             .subscribe(
                 res => {
 
@@ -3547,7 +3547,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.put('http://localhost:3000/' + pathUrl + '/' + data.id, data, {headers})
+            this.http.put(finalUrl + '/' + data.id, data, {headers})
             .subscribe(
                 res => {
 
@@ -3591,7 +3591,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.delete('http://localhost:3000/' + pathUrl + '/' + id, {headers})
+            this.http.delete(finalUrl + '/' + id, {headers})
             .subscribe(
                 res => {
 
@@ -3934,7 +3934,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post('http://localhost:3000/' + pathUrl, data, {headers})
+            this.http.post(finalUrl, data, {headers})
             .subscribe(
                 res => {
 
@@ -3987,7 +3987,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.put('http://localhost:3000/' + pathUrl + '/' + data.id, data, {headers})
+            this.http.put(finalUrl + '/' + data.id, data, {headers})
             .subscribe(
                 res => {
 
@@ -4036,7 +4036,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.delete('http://localhost:3000/' + pathUrl + '/' + id, {headers})
+            this.http.delete(finalUrl + '/' + id, {headers})
             .subscribe(
                 res => {
 
@@ -4121,7 +4121,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post('http://localhost:3006/' + pathUrl, data, {headers})
+            this.http.post(finalUrl, data, {headers})
             .subscribe(
                 res => {
 
@@ -4158,7 +4158,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.put('http://localhost:3006/' + pathUrl + '/' + data.id, data, {headers})
+            this.http.put(finalUrl + '/' + data.id, data, {headers})
             .subscribe(
                 res => {
 
@@ -4197,7 +4197,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.delete('http://localhost:3006/' + pathUrl + '/' + id, {headers})
+            this.http.delete(finalUrl + '/' + id, {headers})
             .subscribe(
                 res => {
 
@@ -4438,7 +4438,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post('http://localhost:3000/' + pathUrl, data, {headers})
+            this.http.post(finalUrl, data, {headers})
             .subscribe(
                 res => {
 
@@ -4480,7 +4480,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.put('http://localhost:3000/' + pathUrl + '/' + data.id, data, {headers})
+            this.http.put(finalUrl + '/' + data.id, data, {headers})
             .subscribe(
                 res => {
 
@@ -4524,7 +4524,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.delete('http://localhost:3000/' + pathUrl + '/' + id, {headers})
+            this.http.delete(finalUrl + '/' + id, {headers})
             .subscribe(
                 res => {
 
@@ -4715,7 +4715,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post('http://localhost:3001/' + pathUrl, data, {headers})
+            this.http.post(finalUrl, data, {headers})
             .subscribe(
                 res => {
 
@@ -4757,7 +4757,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.put('http://localhost:3001/' + pathUrl + '/' + data.id, data, {headers})
+            this.http.put(finalUrl + '/' + data.id, data, {headers})
             .subscribe(
                 res => {
 
@@ -4801,7 +4801,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.delete('http://localhost:3001/' + pathUrl + '/' + id, {headers})
+            this.http.delete(finalUrl + '/' + id, {headers})
             .subscribe(
                 res => {
 
@@ -4987,7 +4987,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post('http://localhost:3000/' + pathUrl, data, {headers})
+            this.http.post(finalUrl, data, {headers})
             .subscribe(
                 res => {
 
@@ -5028,7 +5028,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.delete('http://localhost:3000/' + pathUrl + '/' + id, {headers})
+            this.http.delete(finalUrl + '/' + id, {headers})
             .subscribe(
                 res => {
 
@@ -5167,7 +5167,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post('http://localhost:3000/' + pathUrl, data, {headers})
+            this.http.post(finalUrl, data, {headers})
             .subscribe(
                 res => {
 
@@ -5210,7 +5210,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.put('http://localhost:3000/' + pathUrl + '/' + data.id, data, {headers})
+            this.http.put(finalUrl + '/' + data.id, data, {headers})
             .subscribe(
                 res => {
 
@@ -5254,7 +5254,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.delete('http://localhost:3000/' + pathUrl + '/' + id, {headers})
+            this.http.delete(finalUrl + '/' + id, {headers})
             .subscribe(
                 res => {
 
@@ -5580,7 +5580,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post('http://localhost:3000/' + pathUrl, data, {headers})
+            this.http.post(finalUrl, data, {headers})
             .subscribe(
                 res => {
 
@@ -5623,7 +5623,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.delete('http://localhost:3000/' + pathUrl + '/' + id, {headers})
+            this.http.delete(finalUrl + '/' + id, {headers})
             .subscribe(
                 res => {
 
@@ -5919,7 +5919,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post('http://localhost:3000/' + pathUrl, data, {headers})
+            this.http.post(finalUrl, data, {headers})
             .subscribe(
                 res => {
 
@@ -6032,7 +6032,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.put('http://localhost:3000/' + pathUrl + '/' + data.id, data, {headers})
+            this.http.put(finalUrl + '/' + data.id, data, {headers})
             .subscribe(
                 res => {
 
@@ -6084,7 +6084,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.delete('http://localhost:3000/' + pathUrl + '/' + id, {headers})
+            this.http.delete(finalUrl + '/' + id, {headers})
             .subscribe(
                 res => {
 
@@ -6346,7 +6346,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post('http://localhost:3000/' + pathUrl, data, {headers})
+            this.http.post(finalUrl, data, {headers})
             .subscribe(
                 res => {
 
@@ -6394,7 +6394,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.put('http://localhost:3000/' + pathUrl + '/' + data.id, data, {headers})
+            this.http.put(finalUrl + '/' + data.id, data, {headers})
             .subscribe(
                 res => {
 
@@ -6438,7 +6438,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.delete('http://localhost:3000/' + pathUrl + '/' + id, {headers})
+            this.http.delete(finalUrl + '/' + id, {headers})
             .subscribe(
                 res => {
 
@@ -6577,7 +6577,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post('http://localhost:3000/' + pathUrl, data, {headers})
+            this.http.post(finalUrl, data, {headers})
             .subscribe(
                 res => {
 
@@ -6625,7 +6625,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.put('http://localhost:3000/' + pathUrl + '/' + data.id, data, {headers})
+            this.http.put(finalUrl + '/' + data.id, data, {headers})
             .subscribe(
                 res => {
 
@@ -6669,7 +6669,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.delete('http://localhost:3000/' + pathUrl + '/' + id, {headers})
+            this.http.delete(finalUrl + '/' + id, {headers})
             .subscribe(
                 res => {
 
@@ -6824,7 +6824,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post('http://localhost:3000/' + pathUrl, data, {headers})
+            this.http.post(finalUrl, data, {headers})
             .subscribe(
                 res => {
 
@@ -6872,7 +6872,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.put('http://localhost:3000/' + pathUrl + '/' + data.id, data, {headers})
+            this.http.put(finalUrl + '/' + data.id, data, {headers})
             .subscribe(
                 res => {
 
@@ -7105,7 +7105,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.put('http://localhost:3000/' + pathUrl, data, {headers})
+            this.http.put(finalUrl, data, {headers})
             .subscribe(
                 res => {
 
@@ -7242,7 +7242,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.put('http://localhost:3000/' + pathUrl + '/' + data.id, data, {headers})
+            this.http.put(finalUrl + '/' + data.id, data, {headers})
             .subscribe(
                 res => {
 
@@ -7286,7 +7286,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post('http://localhost:3000/' + pathUrl, data, {headers})
+            this.http.post(finalUrl, data, {headers})
             .subscribe(
                 res => {
                     this.dashboardSubscriptions.push(JSON.parse(JSON.stringify(res)));
@@ -7326,7 +7326,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.delete('http://localhost:3000/' + pathUrl + '/' + id, {headers})
+            this.http.delete(finalUrl + '/' + id, {headers})
             .subscribe(
                 res => {
 
@@ -7415,7 +7415,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.put('http://localhost:3001/' + pathUrl + '/' + data.id, data, {headers})
+            this.http.put(finalUrl + '/' + data.id, data, {headers})
             .subscribe(
                 res => {
 
@@ -7514,7 +7514,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.put('http://localhost:3001/' + pathUrl + '/' + data.id, data, {headers})
+            this.http.put(finalUrl + '/' + data.id, data, {headers})
             .subscribe(
                 res => {
 
@@ -7558,7 +7558,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.delete('http://localhost:3001/' + pathUrl + '/' + id, {headers})
+            this.http.delete(finalUrl + '/' + id, {headers})
             .subscribe(
                 res => {
 
@@ -7617,7 +7617,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post('http://localhost:3001/' + pathUrl, data, {headers})
+            this.http.post(finalUrl, data, {headers})
                 .subscribe(
                     res => {
 
@@ -7920,7 +7920,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post('http://localhost:3005/' + pathUrl, data, {headers})
+            this.http.post(finalUrl, data, {headers})
             .subscribe(
                 res => {
 
@@ -7963,7 +7963,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.delete('http://localhost:3005/' + pathUrl + '/' + id, {headers})
+            this.http.delete(finalUrl + '/' + id, {headers})
             .subscribe(
                 res => {
 
@@ -8005,7 +8005,6 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         };
 
         let pathUrl: string = 'widgets';
-        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
         let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
 
         this.filePath = './assets/data.widgets.json';
@@ -8390,7 +8389,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post('http://localhost:3001/' + pathUrl, data, {headers})
+            this.http.post(finalUrl, data, {headers})
                 .subscribe(
                     res => {
 
@@ -8432,7 +8431,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.put('http://localhost:3001/' + pathUrl + '/' + data.id, data, {headers})
+            this.http.put(finalUrl + '/' + data.id, data, {headers})
             .subscribe(
                 res => {
 
@@ -8478,7 +8477,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.delete('http://localhost:3001/' + pathUrl + '/' + id, {headers})
+            this.http.delete(finalUrl + '/' + id, {headers})
             .subscribe(
                 res => {
 
@@ -8578,7 +8577,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post('http://localhost:3000/' + pathUrl, data, {headers})
+            this.http.post(finalUrl, data, {headers})
             .subscribe(
                 res => {
 
@@ -8620,7 +8619,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.put('http://localhost:3000/' + pathUrl + '/' + data.id, data, {headers})
+            this.http.put(finalUrl + '/' + data.id, data, {headers})
             .subscribe(
                 res => {
 
@@ -8711,7 +8710,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post('http://localhost:3000/' + pathUrl, data, {headers})
+            this.http.post(finalUrl, data, {headers})
             .subscribe(
                 res => {
 
@@ -8762,7 +8761,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.put('http://localhost:3000/' + pathUrl + '/' + data.id, data, {headers})
+            this.http.put(finalUrl + '/' + data.id, data, {headers})
             .subscribe(
                 res => {
 
@@ -8805,7 +8804,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.delete('http://localhost:3000/' + pathUrl + '/' + id, {headers})
+            this.http.delete(finalUrl + '/' + id, {headers})
             .subscribe(
                 res => {
 
@@ -8903,7 +8902,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post('http://localhost:3000/' + pathUrl, data, {headers})
+            this.http.post(finalUrl, data, {headers})
             .subscribe(
                 res => {
 
@@ -8944,7 +8943,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.put('http://localhost:3000/' + pathUrl + '/' + data.id, data, {headers})
+            this.http.put(finalUrl + '/' + data.id, data, {headers})
             .subscribe(
                 res => {
 
@@ -9007,7 +9006,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.delete('http://localhost:3000/' + pathUrl + '/' + id, {headers})
+            this.http.delete(finalUrl + '/' + id, {headers})
             .subscribe(
                 res => {
 
@@ -9145,7 +9144,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post('http://localhost:3000/' + pathUrl, data, {headers})
+            this.http.post(finalUrl, data, {headers})
             .subscribe(
                 res => {
 
@@ -9188,7 +9187,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.delete('http://localhost:3000/' + pathUrl + '/' + id, {headers})
+            this.http.delete(finalUrl + '/' + id, {headers})
             .subscribe(
                 res => {
 
@@ -9233,7 +9232,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.put('http://localhost:3000/' + pathUrl + '/' + data.id, data, {headers})
+            this.http.put(finalUrl + '/' + data.id, data, {headers})
             .subscribe(
                 res => {
 
@@ -9518,7 +9517,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.put('http://localhost:3001/' + pathUrl + '/' + data.id, data, {headers})
+            this.http.put(finalUrl + '/' + data.id, data, {headers})
             .subscribe(
                 res => {
 
@@ -9609,7 +9608,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post('http://localhost:3002/' + pathUrl, data, {headers})
+            this.http.post(finalUrl, data, {headers})
             .subscribe(
                 res => {
 
@@ -9697,7 +9696,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post('http://localhost:3002/' + pathUrl, data, {headers})
+            this.http.post(finalUrl, data, {headers})
             .subscribe(
                 res => {
 
@@ -9786,7 +9785,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post('http://localhost:3001/' + pathUrl, data, {headers})
+            this.http.post(finalUrl, data, {headers})
                 .subscribe(
                     res => {
 
@@ -9827,7 +9826,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.put('http://localhost:3001/' + pathUrl + '/' + data.id, data, {headers})
+            this.http.put(finalUrl + '/' + data.id, data, {headers})
             .subscribe(
                 res => {
 
@@ -9873,7 +9872,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.delete('http://localhost:3001/' + pathUrl + '/' + id, {headers})
+            this.http.delete(finalUrl + '/' + id, {headers})
             .subscribe(
                 res => {
 
@@ -9968,7 +9967,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post('http://localhost:3001/' + pathUrl, data, {headers})
+            this.http.post(finalUrl, data, {headers})
                 .subscribe(
                     res => {
 
@@ -10009,7 +10008,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.delete('http://localhost:3001/' + pathUrl + '/' + id, {headers})
+            this.http.delete(finalUrl + '/' + id, {headers})
             .subscribe(
                 res => {
                     this.dashboardLayouts = this.dashboardLayouts.filter(wl => wl.id != id);
@@ -10091,7 +10090,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.post('http://localhost:3001/' + pathUrl, data, {headers})
+            this.http.post(finalUrl, data, {headers})
                 .subscribe(
                     res => {
 
@@ -10132,7 +10131,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.delete('http://localhost:3001/' + pathUrl + '/' + id, {headers})
+            this.http.delete(finalUrl + '/' + id, {headers})
             .subscribe(
                 res => {
                     this.widgetLayouts = this.widgetLayouts.filter(wl => wl.id != id);
@@ -10237,68 +10236,6 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 // this.http.get(this.filePath).subscribe(res => resolve(res));
 
                 let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
-
-                // CanvasDatabase: Local or Server
-                // let finalUrl: string = '';
-                // if (this.ENVCanvasDatabaseUseLocal) {
-
-                //     // Cater for different Servers
-                //     if (pahtUrl == 'dashboardsRecent') {
-                //         finalUrl = 'http://localhost:3001/' + pahtUrl;
-                //     } else if (pahtUrl == 'dataCachingTable') {
-                //         finalUrl = 'http://localhost:3001/' + pahtUrl;
-                //     } else if (pahtUrl == 'canvasUsers') {
-                //         finalUrl = 'http://localhost:3001/' + pahtUrl;
-                //     } else if (pahtUrl == 'canvasGroups') {
-                //         finalUrl = 'http://localhost:3001/' + pahtUrl;
-                //     } else if (pahtUrl == 'dataConnections') {
-                //         finalUrl = 'http://localhost:3001/' + pahtUrl;
-                //     } else if (pahtUrl == 'dataTables') {
-                //         finalUrl = 'http://localhost:3001/' + pahtUrl;
-                //     } else if (pahtUrl == 'datasourceSchedules') {
-                //         finalUrl = 'http://localhost:3001/' + pahtUrl;
-                //     } else if (pahtUrl == 'datasourceScheduleLog') {
-                //         finalUrl = 'http://localhost:3001/' + pahtUrl;
-                //     } else if (pahtUrl == 'dataFields') {
-                //         finalUrl = 'http://localhost:3001/' + pahtUrl;
-                //     } else if (pahtUrl == 'widgetGraphs') {
-                //         finalUrl = 'http://localhost:3001/' + pahtUrl;
-                //     } else if (pahtUrl == 'dashboardSnapshots') {
-                //         finalUrl = 'http://localhost:3000/' + pahtUrl;
-                //     } else if (pahtUrl == 'widgetCheckpoints') {
-                //         finalUrl = 'http://localhost:3000/' + pahtUrl;
-                //     } else if (pahtUrl == 'datasets') {
-                //         finalUrl = 'http://localhost:3000/' + pahtUrl;
-                //     } else if (pahtUrl == 'statusBarMessageLogs') {
-                //         finalUrl = 'http://localhost:3002/' + pahtUrl;
-                //     } else if (pahtUrl == 'canvasAuditTrails') {
-                //         finalUrl = 'http://localhost:3002/' + pahtUrl;
-                //     } else if (pahtUrl == 'paletteButtonBars') {
-                //         finalUrl = 'http://localhost:3001/' + pahtUrl;
-                //     } else if (pahtUrl == 'containerStyles') {
-                //         finalUrl = 'http://localhost:3001/' + pahtUrl;
-                //     } else if (pahtUrl == 'dashboardLayouts') {
-                //         finalUrl = 'http://localhost:3001/' + pahtUrl;
-                //     } else if (pahtUrl == 'widgetLayouts') {
-                //         finalUrl = 'http://localhost:3001/' + pahtUrl;
-                //     } else if (pahtUrl == 'canvasBackgroundcolorsDefault') {
-                //         finalUrl = 'http://localhost:3001/' + pahtUrl;
-                //     } else if (pahtUrl == 'canvasBackgroundcolors') {
-                //         finalUrl = 'http://localhost:3001/' + pahtUrl;
-                //     } else if (pahtUrl == 'paletteButtonsSelecteds') {
-                //         finalUrl = 'http://localhost:3001/' + pahtUrl;
-                //     } else if (pahtUrl == 'widgets') {
-                //         finalUrl = 'http://localhost:3005/' + pahtUrl;
-                //     } else if (pahtUrl.substring(0, 5) == 'data/') {
-                //         finalUrl = 'http://localhost:3006/' + pahtUrl;
-
-                //     } else {
-                //         finalUrl = 'http://localhost:3000/' + pahtUrl;
-                //     };
-                // } else {
-                //     finalUrl = this.ENVCanvasDatabaseServerUrl;
-                // };
-
 
                 this.http.get(finalUrl).subscribe(
                     res =>
@@ -11624,70 +11561,6 @@ console.warn('xx gv spec', specification);
         return specification;
 
     }
-
-    // createVegaLiteSpec(
-    //     widget: Widget,
-    //     height: number = 0,
-    //     width: number = 0): dl.spec.TopLevelExtendedSpec {
-    //     // Creates a Vega-Lite spec for a given Widget from a standard template
-    //     // - widget is the W for which the graph is created, and contains all the
-    //     //   required detail
-    //     // - height, width are optional dimensions.  If provided, it will overrule
-    //     //   those values in spec
-    //     if (this.sessionDebugging) {
-    //         console.log('%c    Global-Variables createVegaLiteSpec ...',
-    //             "color: black; background: lightgray; font-size: 10px",
-    //             {widget}, {height}, {width});
-    //     };
-
-    //     let vlSpecsNew: dl.spec.TopLevelExtendedSpec = this.vlTemplate;
-    //     if (widget.graphUrl != "") {
-    //         vlSpecsNew['data'] = {"url": widget.graphUrl};
-    //     } else {
-    //         vlSpecsNew['data'] = {"values": widget.graphData};
-    //     }
-    //     vlSpecsNew['description'] = widget.graphDescription;
-    //     vlSpecsNew['mark']['type'] = widget.graphMark;
-    //     // vlSpecsNew['mark']['color'] = "brown";
-
-    //     vlSpecsNew['encoding']['x']['field'] = widget.graphXfield;
-    //     vlSpecsNew['encoding']['x']['type'] = widget.graphXtype;
-    //     vlSpecsNew['encoding']['x']['axis']['title'] = widget.graphXaxisTitle;
-    //     vlSpecsNew['encoding']['x']['timeUnit'] = widget.graphXtimeUnit;
-    //     vlSpecsNew['encoding']['x']['aggregate'] = widget.graphXaggregate;
-
-    //     vlSpecsNew['encoding']['y']['field'] = widget.graphYfield;
-    //     vlSpecsNew['encoding']['y']['type'] = widget.graphYtype;
-    //     vlSpecsNew['encoding']['y']['axis']['title'] = widget.graphYaxisTitle;
-    //     vlSpecsNew['encoding']['y']['timeUnit'] = widget.graphYtimeUnit;
-    //     vlSpecsNew['encoding']['y']['aggregate'] = widget.graphYaggregate;
-
-    //     if (height != 0) {
-    //         vlSpecsNew['height'] = height;
-    //     } else {
-    //         vlSpecsNew['height'] = widget.graphHeight;
-    //     };
-    //     if (width != 0) {
-    //         vlSpecsNew['width'] = width;
-    //     } else {
-    //         vlSpecsNew['width'] = widget.graphWidth;
-    //     };
-
-    //     vlSpecsNew['title']['text'] = widget.graphTitleText;
-
-    //     vlSpecsNew['encoding']['color']['field'] = widget.graphColorField;
-    //     vlSpecsNew['encoding']['color']['type'] = widget.graphColorType;
-
-
-    //     // if (widget.graphColorField != ''  && widget.graphColorField != null) {
-    //     //     vlSpecsNew['encoding']['color'] = {
-    //     //         "field": widget.graphColorField,
-    //     //         "type": widget.graphColorType
-    //     //       }
-    //     // };
-
-    //     return vlSpecsNew;
-    // }
 
     actionUpsert(
         id: number,
