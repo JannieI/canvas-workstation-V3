@@ -2650,7 +2650,8 @@ export interface dataSchemaInterface {
 
         // Toggle
         this.showFieldXProperties = !this.showFieldXProperties;
-
+        this.showFieldXPropertiesField = false;
+        this.showFieldXPropertiesAxis = false;
     }
 
     clickShowXPropertiesField() {
@@ -2739,6 +2740,8 @@ export interface dataSchemaInterface {
 
         // Toggle
         this.showFieldYProperties = !this.showFieldYProperties;
+        this.showFieldYPropertiesField = false;
+        this.showFieldYPropertiesAxis = false;
     }
 
     clickShowFilter() {
