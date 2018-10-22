@@ -1452,7 +1452,7 @@ export class GlobalVariableService {
             params = '?' + params;
         };
 
-        let url: string = 'dashboards' + params;
+        let pathUrl: string = 'dashboards' + params;
         this.filePath = './assets/data.dashboards.json';
 
         return new Promise<Dashboard[]>((resolve, reject) => {
@@ -1460,7 +1460,7 @@ export class GlobalVariableService {
             // Refresh from source at start, or if dirty
             if ( (this.dashboards.length == 0)  ||  (this.isDirtyDashboards) ) {
                 this.statusBarRunning.next(this.canvasSettings.queryRunningMessage);
-                this.get(url)
+                this.get(pathUrl)
                     .then(res => {
                         this.dashboards = res;
                         this.isDirtyDashboards = false;
@@ -7915,7 +7915,9 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {data});
         };
 
-        let url: string = 'widgets';
+        let pathUrl: string = 'widgets';
+        let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
+
         this.filePath = './assets/data.widgets.json';
 
         return new Promise<string>((resolve, reject) => {
@@ -7923,7 +7925,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             const headers = new HttpHeaders()
                 .set("Content-Type", "application/json");
 
-            this.http.put('http://localhost:3005/' + url + '/' + data.id, data, {headers})
+            this.http.put(finalUrl + '/' + data.id, data, {headers})
             .subscribe(
                 res => {
                     // Update widgets and currentWidgets
@@ -10033,11 +10035,11 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         });
     }
 
-    get<T>(pahtUrl: string, options?: any, dashboardID?: number, datasourceID?: number): Promise<any> {
+    get<T>(pathUrl: string, options?: any, dashboardID?: number, datasourceID?: number): Promise<any> {
         // Generic GET data, later to be replaced with http
         if (this.sessionDebugging) {
             console.log('%c    Global-Variables get (url, filePath) ...',
-                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {pahtUrl},
+                "color: black; background: rgba(104, 25, 25, 0.4); font-size: 10px", {pathUrl},
                 this.filePath);
         };
 
@@ -10108,7 +10110,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             return new Promise((resolve, reject) => {
                 // this.http.get(this.filePath).subscribe(res => resolve(res));
 
-                let finalUrl: string = this.setBaseUrl(pahtUrl) + pahtUrl;
+                let finalUrl: string = this.setBaseUrl(pathUrl) + pathUrl;
 
                 // CanvasDatabase: Local or Server
                 // let finalUrl: string = '';
