@@ -1419,6 +1419,7 @@ export interface dataSchemaInterface {
         console.warn('xx newWidgetSpec', newWidgetSpec, graphID, this.localWidget)
 
         // Show graph
+        this.loadLocalVarsFromWidget();
         this.showGraph(graphID, false);
     }
 
@@ -1454,6 +1455,7 @@ export interface dataSchemaInterface {
         console.warn('xx newWidgetSpec', newWidgetSpec, graphID)
 
         // Show graph
+        this.loadLocalVarsFromWidget();
         this.showGraph(graphID, false);
     }
 
@@ -3506,6 +3508,8 @@ export interface dataSchemaInterface {
             this.showY2DeleteIcon = false;
             this.y2Field = dragFieldMessage;
         };
+        
+        console.warn('xx localWidget.graphFilters', this.localWidget.graphFilters);
         
     }
 }
