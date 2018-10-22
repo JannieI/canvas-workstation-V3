@@ -2851,6 +2851,27 @@
                         <b>
                             Types
                         </b>
+                        <clr-signpost>
+                            <clr-icon shape="info-circle" style="margin-top: -4px;"
+                                clrSignpostTrigger>
+                            </clr-icon>
+                            <clr-signpost-content *clrIfOpen
+                                [clrPosition]="'bottom-middle'">
+                                <h5 style="margin-top: 0; color:gray;">
+                                    Help
+                                </h5>
+                                <p style="margin-top: 0; color:gray; text-align: left;">
+                                    Once the fields have been selected (for example the X and 
+                                    Y fields), click the graph icon below to draw the graph on
+                                    the far right hand side.  
+                                </p>
+                                <p>
+                                    <b>Note:</b> the graph is only refreshed when a graph icon
+                                    is clicked.  Also, when it is refreshed, it is added to the
+                                    temporary history shown above the graph.
+                                </p>
+                            </clr-signpost-content>
+                        </clr-signpost>
                     </div>
                     <div class="editorTypes">
                         <div class="editorTypeImages" *ngFor="let row of widgetGraphs">
