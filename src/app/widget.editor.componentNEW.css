@@ -572,7 +572,7 @@ clr-dg-cell {
             }
                 .editorWidgetEditorLiteHeader {
                     color: steelblue;
-                    margin: 12px 6px 6px 6px;
+                    margin: 32px 6px 6px 6px;
                     text-align: center;
                 }
                 .editorWidgetEditorLiteStep1 {
@@ -584,7 +584,7 @@ clr-dg-cell {
                     text-align: left;
                 }
                 .editorWidgetEditorLiteCheckbox {
-                    margin: 16px 6px 6px 6px;
+                    margin: 28px 6px 6px 6px;
                     text-align: left;                    
                 }
 

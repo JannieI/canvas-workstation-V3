@@ -9279,7 +9279,8 @@ export class GlobalVariableService {
             preferenceDefaultPageLayout?: string,
             preferenceDefaultSnapshotMins?: number,
             preferenceStartupDashboardID?: number,
-            preferenceStartupDashboardTabID?: number
+            preferenceStartupDashboardTabID?: number,
+            preferenceShowWidgetEditorLite?: boolean
         }
         ) {
         // Description: update properties in the the Global currentUser variable
@@ -9339,7 +9340,10 @@ export class GlobalVariableService {
         if (parameters.preferenceStartupDashboardTabID != null) {
             this.currentUser.preferenceStartupDashboardTabID = parameters.preferenceStartupDashboardTabID;
         };
-
+        if (parameters.preferenceShowWidgetEditorLite != null) {
+            this.currentUser.preferenceShowWidgetEditorLite = parameters.preferenceShowWidgetEditorLite;
+        };
+        
     }
 
     validateUser(userID: string): Promise<boolean> {

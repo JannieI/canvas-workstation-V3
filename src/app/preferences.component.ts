@@ -68,6 +68,7 @@ export class PreferencesComponent implements OnInit {
     preferenceShowDiscardStartupMessage: boolean;
     preferenceStartupDashboardID: number;
     preferenceStartupDashboardTabID: number;
+    preferenceShowWidgetEditorLite: number;
     selectedTemplateDashboard: string;
     selectedStartupDashboard: string;
     selectedStartupDashboardTab: string;
@@ -266,7 +267,8 @@ console.warn('xx this.preferenceStartupDashboardTabID', this.preferenceStartupDa
                 preferenceDefaultPageLayout: this.preferenceDefaultPageLayout,
                 preferenceDefaultSnapshotMins: this.preferenceDefaultSnapshotMins,
                 preferenceStartupDashboardID: this.preferenceStartupDashboardID,
-                preferenceStartupDashboardTabID: this.preferenceStartupDashboardTabID
+                preferenceStartupDashboardTabID: this.preferenceStartupDashboardTabID,
+                preferenceShowWidgetEditorLite: this.preferenceShowWidgetEditorLite
             }
         );
 

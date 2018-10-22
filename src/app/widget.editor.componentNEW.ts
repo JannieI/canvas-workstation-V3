@@ -1065,7 +1065,8 @@ export interface dataSchemaInterface {
 
             // Get local vars - easier for ngFor
             this.filterNrActive = this.localWidget.graphFilters.filter(gflt => gflt.isActive).length;
-            // this.showWidgetEditorLite = this.globalVariableService.showWidgetEditorLite;
+            this.showWidgetEditorLite = this.globalVariableService.currentUser
+                .preferenceShowWidgetEditorLite;
 
             let arrayIndex: number = this.localDatasources.findIndex(
                 ds => ds.id == this.localWidget.datasourceID
@@ -3536,5 +3537,9 @@ export interface dataSchemaInterface {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowFullEditor', '@Start');
 
         this.showWidgetEditorLite = false;
+        this.globalVariableService.updateCurrentUserProperties(
+            { preferenceShowWidgetEditorLite: false }
+        );
+
     }
 }
