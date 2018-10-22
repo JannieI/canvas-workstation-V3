@@ -796,19 +796,19 @@
                                             </clr-icon>
                                             <!-- NB: this has to be in sync with TS code -->
                                             <b>
-                                                <span
+                                                <span style="cursor: pointer"
                                                     [style.color]="row.name==xField?  'red'  :  'gray'"
                                                     (click)="clickFillXfield(row.name)"
                                                     >
                                                     X
                                                 </span>
-                                                <span
+                                                <span style="cursor: pointer"
                                                     [style.color]="row.name==yField?  'red'  :  'gray'"
                                                     (click)="clickFillYfield(row.name)"
                                                     >
                                                     Y
                                                 </span>
-                                                <span
+                                                <span style="cursor: pointer"
                                                     [style.color]="row.name==colorField?  'red'  :  'gray'"
                                                     (click)="clickFillColorField(row.name)"
                                                     >
@@ -861,10 +861,10 @@
                             <div class="editorXFieldTitle"
                                 >
                                 X axis:
-                                <clr-icon shape="switch right"
+                                <clr-icon shape="switch right" style="cursor: pointer"
                                     size="10"
-                                    (click)="switchXandY()"
                                     title="Click to switch X and Y fields"
+                                    (click)="switchXandY()"
                                     >
                                 </clr-icon>
                             </div>
@@ -880,6 +880,7 @@
                                 (click)="clickXfield()"
                                 >
                                 <clr-icon shape="times" *ngIf="showXDeleteIcon"
+                                    style="cursor: pointer"
                                     title="Click to remove this field from the Graph"
                                     (click)="clickClearXField()">
                                 </clr-icon>
@@ -895,7 +896,7 @@
                         <div class="editorLineContainer">
                             <div class="editorYAxisFieldTitle">
                                 Y axis:
-                                <clr-icon shape="switch right"
+                                <clr-icon shape="switch right" style="cursor: pointer"
                                     size="10"
                                     title="Click to switch X and Y fields"
                                     (click)="switchXandY()"
@@ -914,6 +915,7 @@
                                 (click)="clickYfield()"
                                 >
                                 <clr-icon shape="times" *ngIf="showYDeleteIcon"
+                                    style="cursor: pointer"
                                     title="Click to remove this field from the Graph"
                                     (click)="clickClearYField()">
                                 </clr-icon>
@@ -942,6 +944,7 @@
                                 (click)="clickColorfield()"
                                 >
                                 <clr-icon shape="times" *ngIf="showColourDeleteIcon"
+                                    style="cursor: pointer"
                                     title="Click to remove this field from the Graph"
                                     (click)="clickClearColourField()"
                                     >
