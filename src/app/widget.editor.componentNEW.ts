@@ -287,6 +287,7 @@ export interface dataSchemaInterface {
     showSizeDeleteIcon: boolean = false;
     showSpecification: boolean = false;
     showType: boolean = false;
+    showWidgetEditorLite: boolean = true;
     showXDeleteIcon: boolean = false;
     showX2DeleteIcon: boolean = false;
     showYDeleteIcon: boolean = false;
@@ -958,6 +959,12 @@ export interface dataSchemaInterface {
             // Get Widget Graph Specs
             this.globalVariableService.getWidgetGraphs().then(res => {
                 this.widgetGraphs = res
+
+                if (this.showWidgetEditorLite) {
+                    let widgetGraphsLite: string[] = ['area', 'bar', 'line'];
+                    this.widgetGraphs = this.widgetGraphs
+                        .filter(wgr => widgetGraphsLite.indexOf(wgr.mark) >= 0 );
+                };
             });
 
             // Count the Ws
@@ -1058,6 +1065,7 @@ export interface dataSchemaInterface {
 
             // Get local vars - easier for ngFor
             this.filterNrActive = this.localWidget.graphFilters.filter(gflt => gflt.isActive).length;
+            // this.showWidgetEditorLite = this.globalVariableService.showWidgetEditorLite;
 
             let arrayIndex: number = this.localDatasources.findIndex(
                 ds => ds.id == this.localWidget.datasourceID
@@ -1100,6 +1108,12 @@ export interface dataSchemaInterface {
             // Get Widget Graph Specs
             this.globalVariableService.getWidgetGraphs().then(res => {
                 this.widgetGraphs = res
+
+                if (this.showWidgetEditorLite) {
+                    let widgetGraphsLite: string[] = ['area', 'bar', 'line'];
+                    this.widgetGraphs = this.widgetGraphs
+                        .filter(wgr => widgetGraphsLite.indexOf(wgr.mark) >= 0 );
+                };
 
                 // Show graph
                 let graphIndex: number = this.widgetGraphs.findIndex(
@@ -3515,5 +3529,12 @@ export interface dataSchemaInterface {
         
         console.warn('xx xlocalWidget.graphFilters', this.localWidget.graphFilters);
         
+    }
+
+    clickShowFullEditor() {
+        // Show the full editor (not W Ed-Lite any more)
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowFullEditor', '@Start');
+
+        this.showWidgetEditorLite = false;
     }
 }
