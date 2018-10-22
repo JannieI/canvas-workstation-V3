@@ -68,7 +68,7 @@ export class PreferencesComponent implements OnInit {
     preferenceShowDiscardStartupMessage: boolean;
     preferenceStartupDashboardID: number;
     preferenceStartupDashboardTabID: number;
-    preferenceShowWidgetEditorLite: number;
+    preferenceShowWidgetEditorLite: boolean;
     selectedTemplateDashboard: string;
     selectedStartupDashboard: string;
     selectedStartupDashboardTab: string;
