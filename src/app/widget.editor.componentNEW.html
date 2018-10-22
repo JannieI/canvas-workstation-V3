@@ -957,7 +957,53 @@
 
                         <!-- HELP for Widget Editor Lite -->
                         <div class="editorWidgetEditorLite">
-                            Help
+
+                            <div class="editorWidgetEditorLiteHeader">
+                                <h3>
+                                    Steps
+                                </h3>
+                                <p>
+                                    Create a new graph in just a few clicks!
+                                </p>
+                            </div>
+
+                            <div class="editorWidgetEditorLiteStep1">
+                                <b>Step 1:</b>
+                                <p>
+                                    First select the fields to graph.  Click the X Y C buttons
+                                    at the end of the fields on the left.  Once selected, the
+                                    button will show in red:    
+                                </p>
+                                <img
+                                    [style.width.px]="85"
+                                    [style.height.px]="65"
+                                    [src]="../images/Widget-Editor-Lite-Field.png"
+                                >
+
+                            </div>
+
+                            <div class="editorWidgetEditorLiteStep2">
+                                <b>Step 2:</b>
+                                <p>
+                                    Then click the type of graph on the right:    
+                                </p>
+                                <img
+                                    [style.width.px]="85"
+                                    [style.height.px]="65"
+                                    [src]="../images/Widget-Editor-Lite-Graph.png"
+                                >
+                            </div>
+
+                            <div class="editorWidgetEditorLiteCheckbox">
+                                I know what I am doing, show the full Editor:
+                                <input [(ngModel)]="localWidget.graphXbin"
+                                    type="checkbox"
+                                    name="graphXbin"
+                                    (click)="clickShowFullEditor()"
+                                    title="Show the full Editor (T/F)"
+                                    >
+
+                            </div>
                         </div>
 
                         <!-- TITLE -->

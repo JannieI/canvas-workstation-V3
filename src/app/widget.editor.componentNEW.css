@@ -570,7 +570,20 @@ clr-dg-cell {
                 margin-top: 5px;
                 z-index: 200;
             }
-                        /* TITLE */
+                .editorWidgetEditorLiteHeader {
+                    text-align: center;
+                }
+                .editorWidgetEditorLiteStep1 {
+                    text-align: left;
+                }
+                .editorWidgetEditorLiteStep2 {
+                    text-align: left;
+                }
+                .editorWidgetEditorLiteCheckbox {
+                    text-align: left;                    
+                }
+
+            /* TITLE */
             .editorTitleTitle {
                 background-color: rgb(211, 209, 226);
                 border: 1px solid lightgray;
