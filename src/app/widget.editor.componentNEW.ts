@@ -257,7 +257,6 @@ export interface dataSchemaInterface {
     showDetailDeleteIcon: boolean = false;
     showDatasourceMain: boolean = true;
     showFieldTitleProperties: boolean = false;
-    showFieldXAxis: boolean = false;
     showFieldXPropertiesInfo: boolean = false;
     showFieldXPropertiesField: boolean = false;
     showFieldXPropertiesAxis: boolean = false;
@@ -2106,7 +2105,6 @@ export interface dataSchemaInterface {
         this.showFieldXProperties = false;
         this.showFieldXPropertiesField = false;
         this.showFieldXPropertiesAxis = false;
-        this.showFieldXAxis = false;  /xx
     }
 
     clickClearYField() {
@@ -2757,14 +2755,6 @@ export interface dataSchemaInterface {
 
         // Toggle
         this.showSelectionFilter = !this.showSelectionFilter;
-    }
-
-    clickShowXAxisProperties() {
-        // Show X Axis Area
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowXAxisProperties', '@Start');
-
-        // Toggle
-        this.showFieldXAxis = !this.showFieldXAxis;
     }
 
     clickShowLegendProperties() {
