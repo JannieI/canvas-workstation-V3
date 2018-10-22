@@ -561,7 +561,16 @@ clr-dg-cell {
                 width: 73%;
             }
 
-            /* TITLE */
+            /* Help for Widget Editor Lite */
+            .editorWidgetEditorLite {
+                background-color: white;
+                border-radius: 3px;
+                font-size: 0.5rem;
+                height: 100%;
+                margin-top: 5px;
+                z-index: 200;
+            }
+                        /* TITLE */
             .editorTitleTitle {
                 background-color: rgb(211, 209, 226);
                 border: 1px solid lightgray;
