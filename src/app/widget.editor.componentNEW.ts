@@ -263,7 +263,6 @@ export interface dataSchemaInterface {
     showFieldXPropertiesAxis: boolean = false;
     showFieldXProperties: boolean = false;
     showFieldXPropertiesTitle: boolean = false;
-    showFieldYAxis: boolean = false;
     showFieldYProperties: boolean = false;
     showFieldYPropertiesInfo: boolean = false;
     showFieldYPropertiesField: boolean = false;
