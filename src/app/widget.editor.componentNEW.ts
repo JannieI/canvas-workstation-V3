@@ -2462,7 +2462,7 @@ export interface dataSchemaInterface {
         });
     }
 
-    clickContinue(){
+    clickContinue() {
         // Continue to design / edit the W, and close the form for the data
         this.globalFunctionService.printToConsole(this.constructor.name,'clickContinue', '@Start');
 
@@ -2504,6 +2504,7 @@ export interface dataSchemaInterface {
         this.graphHistory = [];
         this.graphHistoryPosition = 0;
         this.graphHeader = '';
+        this.showGraphAreaTitle = false;
 
         // Show the Editor form
         this.showDatasourceMain = false;
