@@ -1678,9 +1678,11 @@ export interface dataSchemaInterface {
         // Click icon to fill this field into X field
         this.globalFunctionService.printToConsole(this.constructor.name,'clickFillYfield', '@Start');
 
+        let oldYfield: string = this.yField;
         if (this.yField != dragFieldMessage) {
             this.clickClearYField();
-        } else {
+        };
+        if (oldYfield != fieldName) {
             this.dropYField(null, fieldName);
         };
     }
@@ -1689,6 +1691,7 @@ export interface dataSchemaInterface {
         // Click icon to fill this field into X field
         this.globalFunctionService.printToConsole(this.constructor.name,'clickFillColorField', '@Start');
 
+        let oldColorXfield: string = this.colorField;
         if (this.colorField != dragFieldMessage) {
             this.clickClearColourField();
         } else {
