@@ -268,7 +268,6 @@ export interface dataSchemaInterface {
     showFieldRowProperties: boolean = false;
     showFieldSizeProperties: boolean = false;
     showFieldColumnProperties: boolean = false;
-    showFieldLegend: boolean = false;
     showFieldColorProperties: boolean = false;
     showFieldColorPropertiesField: boolean = false;
     showFieldColorPropertiesLegend: boolean = false;
@@ -2766,13 +2765,6 @@ export interface dataSchemaInterface {
         this.showSelectionFilter = !this.showSelectionFilter;
     }
 
-    clickShowLegendProperties() {
-        // Show Legend Area
-        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowLegendProperties', '@Start');
-
-        // Toggle
-        this.showFieldLegend = !this.showFieldLegend;
-    }
 
     clickShowSizeProperties() {
         // Show Size Area
