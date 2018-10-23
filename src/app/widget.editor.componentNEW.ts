@@ -2947,9 +2947,11 @@ export interface dataSchemaInterface {
         this.showFieldColorProperties = !this.showFieldColorProperties;
     }
 
-    changeXTimeUnit() {
-        // Remove timeUnit if Type is not Temporal
-        this.globalFunctionService.printToConsole(this.constructor.name,'changeXTimeUnit', '@Start');
+    changeXType(ev: any) {
+        // Set Type and Remove timeUnit if Type is not Temporal
+        this.globalFunctionService.printToConsole(this.constructor.name,'changeXType', '@Start');
+
+        this.localWidget.graphXtype =  ev.target.value.toLowerCase();
 
         if (this.localWidget.graphXtype != 'Temporal') {
             this.localWidget.graphXtimeUnit = '';
