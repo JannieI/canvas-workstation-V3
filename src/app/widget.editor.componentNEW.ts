@@ -2128,7 +2128,8 @@ export interface dataSchemaInterface {
         // Hide the panel with properties
         this.showFieldColorPropertiesTitle = false;
         this.showFieldColorProperties = false;
-        this.showFieldLegend = false;
+        this.showFieldColorPropertiesField = false;
+        this.showFieldColorPropertiesLegend = false;
 
         if (this.localWidget.graphColorField == ''  &&  this.localWidget.graphSizeField == '') {
             this.localWidget.graphDimensionRight = 0;
