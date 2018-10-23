@@ -1694,7 +1694,8 @@ export interface dataSchemaInterface {
         let oldColorXfield: string = this.colorField;
         if (this.colorField != dragFieldMessage) {
             this.clickClearColourField();
-        } else {
+        };
+        if (oldColorXfield != fieldName) {
             this.dropColour(null, fieldName);
         };
     }
