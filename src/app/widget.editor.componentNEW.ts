@@ -1691,11 +1691,11 @@ export interface dataSchemaInterface {
         // Click icon to fill this field into X field
         this.globalFunctionService.printToConsole(this.constructor.name,'clickFillColorField', '@Start');
 
-        let oldColorXfield: string = this.colorField;
+        let oldColorField: string = this.colorField;
         if (this.colorField != dragFieldMessage) {
             this.clickClearColourField();
         };
-        if (oldColorXfield != fieldName) {
+        if (oldColorField != fieldName) {
             this.dropColour(null, fieldName);
         };
     }

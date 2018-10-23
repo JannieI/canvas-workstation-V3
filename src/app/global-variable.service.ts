@@ -11236,7 +11236,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             if (widget.graphColorMaxBins > 0) {
                 colorBinMax = {"maxbins": widget.graphColorMaxBins};
             } else {
-                colorBinMax = widget.graphColorMaxBins;
+                colorBinMax = widget.graphColorBin;
             };
 
             specification['encoding']['color'] = {
