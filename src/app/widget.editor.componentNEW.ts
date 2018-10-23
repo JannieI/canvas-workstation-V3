@@ -1155,10 +1155,31 @@ export interface dataSchemaInterface {
         // Render the graph on the form.  NOTE: each graph has its own spec and rendering
         // rules.
         this.globalFunctionService.printToConsole(this.constructor.name,'showGraph', '@Start');
-        
+
         // Reset
         this.errorMessageEditor = '';
- 
+
+        // Validation
+        if ( (this.xField == dragFieldMessage  ||  this.xField == null)
+            &&
+            (this.yField == dragFieldMessage  ||  this.yField == null)
+            &&
+            (this.colorField == dragFieldMessage  ||  this.colorField == null)
+            &&
+            (this.rowField == dragFieldMessage  ||  this.rowField == null)
+            &&
+            (this.columnField == dragFieldMessage  ||  this.columnField == null)
+            &&
+            (this.sizeField == dragFieldMessage  ||  this.sizeField == null)
+            &&
+            (this.x2Field == dragFieldMessage  ||  this.x2Field == null)
+            &&
+            (this.y2Field == dragFieldMessage  ||  this.y2Field == null)
+            ) {
+                this.errorMessageEditor = 'Select at least one field.';
+                return;
+        };
+
         // Keep graphID
         this.currentGraphID = graphID;
 
@@ -1371,9 +1392,9 @@ export interface dataSchemaInterface {
 
                     // Catch events
                     view.addEventListener('click', (event, item) => {
-                        console.warn('xx Click !!', event, item) 
+                        console.warn('xx Click !!', event, item)
                      })
-                     
+
                     view.renderer('svg')
                         .initialize(this.dragWidget.nativeElement)
                         .hover()
@@ -2643,7 +2664,7 @@ export interface dataSchemaInterface {
 
         // Toggle
         this.showFieldYPropertiesAxis = !this.showFieldYPropertiesAxis;
-        
+
     }
 
     clickShowColorPropertiesField() {
@@ -2660,7 +2681,7 @@ export interface dataSchemaInterface {
 
         // Toggle
         this.showFieldColorPropertiesLegend = !this.showFieldColorPropertiesLegend;
-        
+
     }
 
     clickShowColorProperties() {
@@ -3019,7 +3040,7 @@ export interface dataSchemaInterface {
 
         this.calculatedDataTypeName = ev.target.value;
         this.calculatedDataType = this.convertToCalculatedDataType(this.calculatedDataTypeName);
-        
+
     }
 
     clickShowSpecificationArea() {
@@ -3168,8 +3189,8 @@ export interface dataSchemaInterface {
                 return;
             };
         };
-        if (this.filterOperator == 'Valid'  
-            &&  
+        if (this.filterOperator == 'Valid'
+            &&
             this.getFieldType(this.filterFieldName).toLowerCase() != 'number') {
             this.filterErrorMessage = 'Valid only applies to Numbers.';
             return;
@@ -3452,7 +3473,7 @@ export interface dataSchemaInterface {
         };
 
         let calculatedDataTypeName: string = '';
-        calculatedDataTypeName = calculatedDataType.substring(0, 1).toUpperCase() + 
+        calculatedDataTypeName = calculatedDataType.substring(0, 1).toUpperCase() +
             calculatedDataType.substring(1);
         return calculatedDataTypeName;
     }
@@ -3554,7 +3575,7 @@ export interface dataSchemaInterface {
             this.showY2DeleteIcon = false;
             this.y2Field = dragFieldMessage;
         };
-        
+
     }
 
     clickShowFullEditor() {
