@@ -185,16 +185,13 @@ This document describes items for later versions of Canvas.
         - Easy way to compare data: graph shows revenue per month for this year.  What was figure for March last year, or compare all to last year ... NB
 
         Fix:
-            - load all correctly when open new spec
-            - save new spec correctly
-            - SHOW new spec in Dashboard
             - where and how Quantile?
             - transparent = checkbox No fill
-            - validate all input, min/max, etc
             - make impute work
+            - test all Calc Formulae
 
         Versions:
-            - test with >1 version
+            - test with >1 version of Vega
 
         CONFIG:
             - how and where used?

@@ -60,7 +60,19 @@ export class DataDatasourceUsageComponent implements OnInit {
         this.globalFunctionService.printToConsole(this.constructor.name,'ngOnInit', '@Start');
 
         // Load from global variables
-        this.datasources = this.globalVariableService.datasources.slice();
+        this.datasources = this.globalVariableService.datasources
+            .slice()
+            .sort((n1,n2) => {
+                if (n1.name.toLowerCase() > n2.name.toLowerCase()) {
+                    return 1;
+                };
+
+                if (n1.name.toLowerCase() < n2.name.toLowerCase()) {
+                    return -1;
+                };
+
+                return 0;
+            });
 
         // Show D for DS
         if (this.datasources.length > 0) {
