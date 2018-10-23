@@ -2969,9 +2969,11 @@ export interface dataSchemaInterface {
         };
     }
 
-    changeColorTimeUnit() {
-        // Remove timeUnit if Type is not Temporal
-        this.globalFunctionService.printToConsole(this.constructor.name,'changeColorTimeUnit', '@Start');
+    changeColorType(ev: any) {
+        // Set Type and Remove timeUnit if Type is not Temporal
+        this.globalFunctionService.printToConsole(this.constructor.name,'changeColorType', '@Start');
+
+        this.localWidget.graphColorType =  ev.target.value.toLowerCase();
 
         if (this.localWidget.graphColorType != 'Temporal') {
             this.localWidget.graphColorTimeUnit = '';
