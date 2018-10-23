@@ -295,8 +295,8 @@ This document describes items for later versions of Canvas.
     Error Handling:
     --------------
         - nice message at all points, ie when DB not available on landing page
-        - central logging and handling
-        - error bubbling strategy
+        - central logging and handling: server will do server stuff, add frontend stuff
+        - error bubbling strategy - show each one on a form
 
     Trends:
         - DATA SUMMARIES, aka CompassQL ...

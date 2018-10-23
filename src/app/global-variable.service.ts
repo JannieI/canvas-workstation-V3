@@ -11470,26 +11470,29 @@ console.warn('xx gv spec', specification);
 
             if (graphFilters[i].filterOperator == 'Range') {
 
-                let fromTo: string[] = graphFilters[i].filterValue.split(',');
-                if (fromTo.length == 2) {
-                    if (filterFieldDataType == 'number') {
-                        filterSpec =
-                            {"filter":
-                                {
-                                    "field": graphFilters[i].filterFieldName,
-                                    "range": [ +fromTo[0], +fromTo[1] ]
-                                }
-                            };
+                if (filterFieldDataType == 'number') {
+                    filterSpec =
+                        {"filter":
+                            {
+                                "field": graphFilters[i].filterFieldName,
+                                "range": [ 
+                                    +graphFilters[i].filterValueFrom, 
+                                    +graphFilters[i].filterValueTo 
+                                ]
+                            }
+                        };
 
-                    } else {
-                        filterSpec =
-                            {"filter":
-                                {
-                                    "field": graphFilters[i].filterFieldName,
-                                    "range": [ fromTo[0], fromTo[1] ]
-                                }
-                            };
-                    };
+                } else {
+                    filterSpec =
+                        {"filter":
+                            {
+                                "field": graphFilters[i].filterFieldName,
+                                "range": [ 
+                                    graphFilters[i].filterValueFrom, 
+                                    graphFilters[i].filterValueTo  
+                                ]
+                            }
+                        };
                 };
             };
 
