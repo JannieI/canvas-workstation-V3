@@ -193,9 +193,6 @@ This document describes items for later versions of Canvas.
         Versions:
             - test with >1 version of Vega
 
-        CONFIG:
-            - how and where used?
-
         Tooltip:
             - make work Vega style
 
@@ -206,8 +203,6 @@ This document describes items for later versions of Canvas.
             - longitude
             
         
-        Layers - consider VERY carefully as this may be a huge amount of work
-
         Previous period, aggregations, etc
 
         Make ONE month red, or colour ONE legend option RED
@@ -215,7 +210,7 @@ This document describes items for later versions of Canvas.
         Pan & Zoom:
             - how!?
 
-        Layered graphs
+        Layered graphs - consider VERY carefully as this may be a huge amount of work
             - error band
             - error bar
             - selection
@@ -226,24 +221,10 @@ This document describes items for later versions of Canvas.
 
         Filter:
             - add timeUnit & date
-            - multiple filters, see Voyager
             - WARN if (range & type != number)  (oneOf & type != string)
 
-        Scale/Axis (later):
-            - rangeStep
-            - remove X and Y and Color totally (not only title) ~ null
-            - domain
-            - clip: true
-            - colour
-            - range
-            - Legend: more fields like orient, fill, color, padding
 
         BACK/FORWARD BUTTONS:
-            - can navigate to previous specs
-            - per layer?
-            - store all input fields in {} / store whole Widget ?
-            - show < and > arrows to navigate, if still records left to left or right
-            - click arrow: load new fields, show graph
             - complexities: what about filtering, DS changes?
 
         EASY EDITOR:
@@ -1396,7 +1377,7 @@ This document describes items for later versions of Canvas.
         - allow for Sorted array of transformations, any type in any order
         - add Window, Rank, etc
 
-    -   Calculated field
+    - Calculated field
         - add more than one, see Compass / Vega example
         - full UI to select fields and formulae in easy way, also give proper space for params, ie some take 1 param, some take 2, validate (try catch or some clever way)
         - Calc % of TOTAL !!  Maybe make this a checkbox (and do in background):
@@ -1421,6 +1402,16 @@ This document describes items for later versions of Canvas.
         - Add Selection Predicate
         - Add Pre and Post filter indicator: Pre is at start, then other transformations like Windows, and then Post.  Serious power.
 
+        CONFIG:
+            - how and where used?
+
+    -   Scale/Axis (later):
+            - rangeStep
+            - domain
+            - clip: true
+            - colour
+            - range
+            - Legend: more fields like orient, fill, color, padding
 
 
 

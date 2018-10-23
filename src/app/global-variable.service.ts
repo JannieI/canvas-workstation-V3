@@ -11034,7 +11034,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             specification['transform']['sample'] = widget.sampleNumberRows;
         };
 
-console.warn('xx gv spec', specification);
+        console.warn('xx gv spec', specification);
 
         // General
         specification['description'] = widget.graphDescription;
