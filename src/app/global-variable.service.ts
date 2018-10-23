@@ -11074,10 +11074,23 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         specification['mark']['opacity'] = widget.graphMarkOpacity;
         specification['mark']['binSpacing'] = widget.graphMarkBinSpacing;
 
-        if (widget.graphMark == 'errorband'  ||  widget.graphMark == 'errorband') {
-            specification['mark'] = widget.graphMarkExtent;
+        let vegaGraphMarkExtent: string = 'stderr';
+        if (widget.graphMarkExtent == 'Confidence Interval') {
+            vegaGraphMarkExtent = 'ci';
+        };
+        if (widget.graphMarkExtent == 'Std Error') {
+            vegaGraphMarkExtent = 'stderr';
+        };
+        if (widget.graphMarkExtent == 'Std Deviation') {
+            vegaGraphMarkExtent = 'stdev';
+        };
+        if (widget.graphMarkExtent == 'Q1 and Q3') {
+            vegaGraphMarkExtent = 'iqr';
+        };
+        if (widget.graphMark == 'errorband'  ||  widget.graphMark == 'errorbar') {
+            specification['mark']['extent'] = vegaGraphMarkExtent;
         } else {
-            specification['mark'] = "";
+            specification['mark']['extent'] = "";
         };
 
         // Title
