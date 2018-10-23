@@ -2425,12 +2425,12 @@ clr-dg-cell {
 
         .errorMessageEditor {
             color: red;
-            grid-column-start: 30;
+            grid-column-start: 32;
             /* autoprefixer: off */
             grid-column-end: 50;
             grid-row-start: 22;
             grid-row-end: 23;
-            margin-left: 33px;
+            margin-left: 12px;
             text-align: left;
         }
 

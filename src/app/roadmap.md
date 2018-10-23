@@ -1398,17 +1398,19 @@ This document describes items for later versions of Canvas.
         - Add Selection Predicate
         - Add Pre and Post filter indicator: Pre is at start, then other transformations like Windows, and then Post.  Serious power.
 
-        CONFIG:
-            - how and where used?
+    - CONFIG:
+        - how and where used?
 
     -   Scale/Axis (later):
-            - rangeStep
-            - domain
-            - clip: true
-            - colour
-            - range
-            - Legend: more fields like orient, fill, color, padding
+        - rangeStep
+        - domain
+        - clip: true
+        - colour
+        - range
+        - Legend: more fields like orient, fill, color, padding
 
+    - Data
+        - Consider showing Spec with data as well - first determine if use case for it.
 
 
 

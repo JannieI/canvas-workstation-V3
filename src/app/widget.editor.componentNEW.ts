@@ -1664,9 +1664,11 @@ export interface dataSchemaInterface {
         // Click icon to fill this field into X field
         this.globalFunctionService.printToConsole(this.constructor.name,'clickFillXfield', '@Start');
 
+        let oldXfield: string = this.xField;
         if (this.xField != dragFieldMessage) {
             this.clickClearXField();
-        } else {
+        };
+        if (oldXfield != fieldName) {
             this.dropXField(null, fieldName);
         };
 
