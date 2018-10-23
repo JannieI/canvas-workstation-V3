@@ -1158,7 +1158,7 @@ export interface dataSchemaInterface {
         
         // Reset
         this.errorMessageEditor = '';
-
+ 
         // Keep graphID
         this.currentGraphID = graphID;
 
@@ -2188,6 +2188,22 @@ export interface dataSchemaInterface {
 
     }
 
+    clickClearMark() {
+        // Clear the Mark properties
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClearMark', '@Start');
+
+        this.localWidget.graphMarkLine = false;
+        this.localWidget.graphMarkPoint = false;
+        this.localWidget.graphMarkCornerRadius = 0;
+        this.localWidget.graphMarkOpacity = 1;
+        this.localWidget.graphMarkBinSpacing = 0;
+        this.localWidget.graphMarkOrient = 'Horizontal';
+
+        // Hide the panel with properties
+        this.showFieldMarkProperties = false;
+
+    }
+
     dragenterXField(ev, actionName: string) {
         // Event trigger when dragged field enters XField
         this.globalFunctionService.printToConsole(this.constructor.name,'dragenterXField', '@Start');
@@ -2477,6 +2493,7 @@ export interface dataSchemaInterface {
         this.clickClearRowField();
         this.clickClearX2Field();
         this.clickClearY2Field();
+        this.clickClearMark();
 
         // Show the Editor form
         this.showDatasourceMain = false;
@@ -3141,6 +3158,12 @@ export interface dataSchemaInterface {
                 this.filterErrorMessage = 'Filter To Value is required.';
                 return;
             };
+        };
+        if (this.filterOperator == 'Valid'  
+            &&  
+            this.getFieldType(this.filterFieldName).toLowerCase() != 'number') {
+            this.filterErrorMessage = 'Valid only applies to Numbers.';
+            return;
         };
 
         // Create the filter spec with Max ID
