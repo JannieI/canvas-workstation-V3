@@ -186,7 +186,6 @@ This document describes items for later versions of Canvas.
 
         Fix:
             - where and how Quantile?
-            - transparent = checkbox No fill
             - make impute work
             - test all Calc Formulae
 
@@ -236,7 +235,6 @@ This document describes items for later versions of Canvas.
             - fields: count#, any - see Voyager
             - wildcards
 
-            Focussed on the W Ed (Widget Editor): must clear properties (like bin) when selecting a new DS, like clean / logical layout, must have reset properties button, must have actual use cases / play with it, make whole screen, suggest graph types based on selected columns.  W Ed -lite: have few graph types, no or little properties, pre-defined styles / formats (maybe even saved from the big W Ed).  Calc: auto-complete with Tab like VS Code, maybe a fixed line with + sign in fields table (at top) -> saves space and easy to understand, icon @ end to show its a calced field (else shade looks selected).  Add X, Y, color icons at end of field row -> click to add to channels as this will be easier, have a 5px left margin for graph area, indicate that graph has to be refreshed (when?), have paging through (save spec after each refresh so can scroll through it - maybe slider at top of graph), add icon to properties row (ie title with some image to make it easier to recognise), more work on DS used: can easily see data, metadata for each field, descriptive stats for each field, graph type (ordinal, nominal, quantitative) should be visible, what transformations was done to clean the data, skip outliers easily, annotations on fields defined earlier, flag field as categorical as this will help on how to graph it, differentiate - what does the other vendors not do.  Try to have less property rows, maybe one called data for all.  Filters: show a grid of all filters (yes, more than one), which ones deactivated (keep definition) and active, delete with X, show visible clue that filters are in use, 
 
     Table (Bradley SmartTable):
     ---------------------------

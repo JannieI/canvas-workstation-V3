@@ -934,7 +934,7 @@ export interface dataSchemaInterface {
         // Get setup info
         this.backgroundcolors = this.globalVariableService.backgroundcolors.slice();
         this.backgroundcolors = [
-            {id: null, name: 'Open Picker ...', cssCode: '', shortList: false}, ...this.backgroundcolors
+            {id: null, name: 'No Fill', cssCode: 'transparent', shortList: false}, ...this.backgroundcolors
         ];
 
         // Get DS to which user has permissions
@@ -1369,6 +1369,11 @@ export interface dataSchemaInterface {
                     let vegaSpecification = compile(this.specification).spec;
                     let view = new View(parse(vegaSpecification));
 
+                    // Catch events
+                    view.addEventListener('click', (event, item) => {
+                        console.warn('xx Click !!', event, item) 
+                     })
+                     
                     view.renderer('svg')
                         .initialize(this.dragWidget.nativeElement)
                         .hover()
