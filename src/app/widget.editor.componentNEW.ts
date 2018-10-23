@@ -2956,11 +2956,11 @@ export interface dataSchemaInterface {
         };
     }
 
-    changeYTimeUnit() {
-        // Remove timeUnit if Type is not Temporal
-        this.globalFunctionService.printToConsole(this.constructor.name,'changeYTimeUnit', '@Start');
+    changeYType(ev: any) {
+        // Set Type and Remove timeUnit if Type is not Temporal
+        this.globalFunctionService.printToConsole(this.constructor.name,'changeYType', '@Start');
 
-        this.localWidget.graphYtypeName = this.localWidget.graphYtypeName.toLowerCase();
+        this.localWidget.graphYtype =  ev.target.value.toLowerCase();
 
         if (this.localWidget.graphYtype != 'Temporal') {
             this.localWidget.graphYtimeUnit = '';
