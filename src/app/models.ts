@@ -1318,7 +1318,7 @@ export class Widget {
     graphMarkColourName: string;
     graphMarkColour: string;
     graphMarkCornerRadius: number;
-    editorGraphMarkExtent: string;      // Extent: ci, stderr, stdev, irq for Error Band & -Bar
+    graphMarkExtent: string;            // Extent: ci, stderr, stdev, irq for Error Band & -Bar
     graphMarkOpacity: number;
     graphMarkBinSpacing: number;
 

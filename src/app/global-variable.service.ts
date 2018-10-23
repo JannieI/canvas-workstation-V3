@@ -374,7 +374,7 @@ const widgetTemplate: Widget =
         "graphMarkColourName": "",
         "graphMarkColour": "",
         "graphMarkCornerRadius": 0,
-        "editorGraphMarkExtent": "",
+        "graphMarkExtent": "",
         "graphMarkOpacity": 1,
         "graphMarkBinSpacing": 0,
 
@@ -11028,8 +11028,6 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             "transform": []
         };
 
-        specification['mark']['type'] = widget.graphMark;
-
         // Optional Sampling
         if (widget.sampleNumberRows != 0) {
             specification['transform']['sample'] = widget.sampleNumberRows;
@@ -11067,6 +11065,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
 
 
         // Mark
+        specification['mark']['type'] = widget.graphMark;
         specification['mark']['orient'] = widget.graphMarkOrient.toLowerCase();
         specification['mark']['line'] = widget.graphMarkLine;
         specification['mark']['point'] = widget.graphMarkPoint;
@@ -11075,6 +11074,11 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         specification['mark']['opacity'] = widget.graphMarkOpacity;
         specification['mark']['binSpacing'] = widget.graphMarkBinSpacing;
 
+        if (widget.graphMark == 'errorband'  ||  widget.graphMark == 'errorband') {
+            specification['mark'] = widget.graphMarkExtent;
+        } else {
+            specification['mark'] = "";
+        };
 
         // Title
         specification['title']['text'] = widget.graphTitleText;
