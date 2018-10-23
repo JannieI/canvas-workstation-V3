@@ -2500,14 +2500,6 @@ export interface dataSchemaInterface {
 
     }
 
-    setGraphTypeFieldY(graphYtype: string) {
-        // Set the Vega field type of the Y axis
-        // TODO - fix event in HTML so that it is triggered here
-        this.globalFunctionService.printToConsole(this.constructor.name,'setGraphTypeFieldY', '@Start');
-
-        this.localWidget.graphYtype = graphYtype;
-    }
-
     defaultGraphTypeField(fieldType: string, typeOrName: string): string {
         // Returns the default Vega field type depending a given field types
         this.globalFunctionService.printToConsole(this.constructor.name,'defaultGraphTypeField', '@Start');
@@ -2967,6 +2959,8 @@ export interface dataSchemaInterface {
     changeYTimeUnit() {
         // Remove timeUnit if Type is not Temporal
         this.globalFunctionService.printToConsole(this.constructor.name,'changeYTimeUnit', '@Start');
+
+        this.localWidget.graphYtypeName = this.defaultGraphTypeField(fieldType, 'name');
 
         if (this.localWidget.graphYtype != 'Temporal') {
             this.localWidget.graphYtimeUnit = '';
