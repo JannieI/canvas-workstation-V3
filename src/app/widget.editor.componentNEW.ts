@@ -2960,7 +2960,7 @@ export interface dataSchemaInterface {
         // Remove timeUnit if Type is not Temporal
         this.globalFunctionService.printToConsole(this.constructor.name,'changeYTimeUnit', '@Start');
 
-        this.localWidget.graphYtypeName = this.defaultGraphTypeField(fieldType, 'name');
+        this.localWidget.graphYtypeName = this.localWidget.graphYtypeName.toLowerCase();
 
         if (this.localWidget.graphYtype != 'Temporal') {
             this.localWidget.graphYtimeUnit = '';
