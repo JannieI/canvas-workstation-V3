@@ -2500,6 +2500,11 @@ export interface dataSchemaInterface {
         this.clickClearY2Field();
         this.clickClearMark();
 
+        // Clear History
+        this.graphHistory = [];
+        this.graphHistoryPosition = 0;
+        this.graphHeader = '';
+
         // Show the Editor form
         this.showDatasourceMain = false;
 

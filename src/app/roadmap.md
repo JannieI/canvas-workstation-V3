@@ -173,7 +173,6 @@ This document describes items for later versions of Canvas.
     --------------------
         - highlight one series in graph, either click the line (bar), or click on the legend
         - set properties of new Widget as a template - user pref
-        - How to show comparison between current and previous period ?
         - Cross hair with showing values on axis - ie crypto trading websites!
         - Look at embeding widgets -> export Vega spec + embed line, user puts it in his html ...?
         - For a GAUGE, see    https://gist.github.com/anilkpatro/0cf0503b581556a14aab
@@ -202,7 +201,7 @@ This document describes items for later versions of Canvas.
             - longitude
             
         
-        Previous period, aggregations, etc
+        
 
         Make ONE month red, or colour ONE legend option RED
 
@@ -210,13 +209,7 @@ This document describes items for later versions of Canvas.
             - how!?
 
         Layered graphs - consider VERY carefully as this may be a huge amount of work
-            - error band
-            - error bar
-            - selection
-            - 
 
-        Fields:
-            - symbol
 
         Filter:
             - add timeUnit & date
@@ -1355,6 +1348,7 @@ This document describes items for later versions of Canvas.
     - Spec: 
         - allow to import and then reverse engineer what the Widget fields are.  Easy to do, but looks of work and has to be updated in parallel to any changes made to the other way.
         - also, allow custom specs to be created, sorting out %x, %y, %color parameters where these fields must be placed.
+
     - Mark:
         - stroke, strokeWidth
         - text Mark, with text properties (similar to X and Y)
@@ -1363,6 +1357,9 @@ This document describes items for later versions of Canvas.
         - trendlines
         - color per bar
         - more graph types, ie D3.js
+
+    - Fields:
+        - symbol
 
     - Preview:
         - dataQuality (nr of issues, text of last one)
@@ -1376,7 +1373,7 @@ This document describes items for later versions of Canvas.
         - add Window, Rank, etc
 
     - Calculated field
-        - add more than one, see Compass / Vega example
+        - make easier: either show boxes for fields with correct type, or auto complete, VSCode style !
         - full UI to select fields and formulae in easy way, also give proper space for params, ie some take 1 param, some take 2, validate (try catch or some clever way)
         - Calc % of TOTAL !!  Maybe make this a checkbox (and do in background):
           "transform": [{
@@ -1393,7 +1390,8 @@ This document describes items for later versions of Canvas.
             }]
 
     - Window
-        - add
+        - add this!
+        - How to show comparison between current and previous period ?
 
     - Filters
         - Show value range in fields: Select Total field in dropdown, then it shows that Total values ranges from say 0 to 100, and maybe even some stats like average...  Only if usecase.

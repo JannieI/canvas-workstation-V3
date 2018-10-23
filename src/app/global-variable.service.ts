@@ -11087,10 +11087,14 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         if (widget.graphMarkExtent == 'Q1 and Q3') {
             vegaGraphMarkExtent = 'iqr';
         };
-        if (widget.graphMark == 'errorband'  ||  widget.graphMark == 'errorbar') {
+        
+        specification['mark']['extent'] = "";
+        if (widget.graphMark == 'errorband') {
             specification['mark']['extent'] = vegaGraphMarkExtent;
-        } else {
-            specification['mark']['extent'] = "";
+        };
+        if (widget.graphMark == 'errorbar') {
+            specification['mark']['extent'] = vegaGraphMarkExtent;
+            specification['mark']['ticks'] = true;
         };
 
         // Title
