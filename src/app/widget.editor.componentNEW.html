@@ -2299,51 +2299,6 @@
                             </clr-icon>
                         </div>
 
-                        <!-- Mark Properties Orient -->
-                        <div class="editorLineContainer">
-                            <div class="editorGraphMarkOrientTitle" *ngIf="showFieldMarkProperties">
-                                Orient:
-                            </div>
-                            <div class="select editorGraphMarkOrient" *ngIf="showFieldMarkProperties">
-                                <select id="selects_3"
-                                    [(ngModel)]="localWidget.graphMarkOrient"
-                                    name="graphMarkOrient"
-                                    title="Orietation, useful when both are Quantitative fields"
-                                    >
-                                    <option>Horizontal</option>
-                                    <option>Verticle</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <!-- Mark Properties Line -->
-                        <div class="editorLineContainer">
-                            <div class="editorGraphMarkLineTitle" *ngIf="showFieldMarkProperties">
-                                Line:
-                            </div>
-                            <div class="editorGraphMarkLine" *ngIf="showFieldMarkProperties">
-                                <input [(ngModel)]="localWidget.graphMarkLine"
-                                    type="checkbox"
-                                    name="graphMarkLine"
-                                    title="Add line to graph (T/F)"
-                                    >
-                            </div>
-                        </div>
-
-                        <!-- Mark Properties Point -->
-                        <div class="editorLineContainer">
-                            <div class="editorGraphMarkPointTitle" *ngIf="showFieldMarkProperties">
-                                Point:
-                            </div>
-                            <div class="editorGraphMarkPoint" *ngIf="showFieldMarkProperties">
-                                <input [(ngModel)]="localWidget.graphMarkPoint"
-                                    type="checkbox"
-                                    name="graphMarkPoint"
-                                    title="Add Points to graph (T/F)"
-                                    >
-                            </div>
-                        </div>
-
                         <!-- Mark Properties Color -->
                         <div class="editorLineContainer">
                             <div class="editorGraphMarkColourTitle" *ngIf="showFieldMarkProperties">
@@ -2380,6 +2335,39 @@
                             </div>
                         </div>
 
+                        <!-- Mark Properties Extent -->
+                        <div class="editorLineContainer">
+                            <div class="editorGraphMarkExtentTitle" *ngIf="showFieldMarkProperties">
+                                Extent:
+                            </div>
+                            <div class="select editorGraphMarkExtent" *ngIf="showFieldMarkProperties">
+                                <select id="selects_3"
+                                    [(ngModel)]="localWidget.graphMarkExtent"
+                                    name="graphMarkExtent"
+                                    title="Extent of the Extent Band / Bar"
+                                    >
+                                    <option>Confidence Interval</option>
+                                    <option>Std Error</option>
+                                    <option>Std Deviation</option>
+                                    <option>Q1 and Q3</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Mark Properties Line -->
+                        <div class="editorLineContainer">
+                            <div class="editorGraphMarkLineTitle" *ngIf="showFieldMarkProperties">
+                                Line:
+                            </div>
+                            <div class="editorGraphMarkLine" *ngIf="showFieldMarkProperties">
+                                <input [(ngModel)]="localWidget.graphMarkLine"
+                                    type="checkbox"
+                                    name="graphMarkLine"
+                                    title="Add line to graph (T/F)"
+                                    >
+                            </div>
+                        </div>
+
                         <!-- Mark Properties Opacity -->
                         <div class="editorLineContainer">
                             <div class="editorGraphMarkOpacityTitle" *ngIf="showFieldMarkProperties">
@@ -2394,6 +2382,37 @@
                                     step=".1"
                                     placeholder="Mark corner radius"
                                     title="Opacity, 0 = invisible, 1 = opaque"
+                                    >
+                            </div>
+                        </div>
+
+                        <!-- Mark Properties Orient -->
+                        <div class="editorLineContainer">
+                            <div class="editorGraphMarkOrientTitle" *ngIf="showFieldMarkProperties">
+                                Orient:
+                            </div>
+                            <div class="select editorGraphMarkOrient" *ngIf="showFieldMarkProperties">
+                                <select id="selects_3"
+                                    [(ngModel)]="localWidget.graphMarkOrient"
+                                    name="graphMarkOrient"
+                                    title="Orientation, useful when both are Quantitative fields"
+                                    >
+                                    <option>Horizontal</option>
+                                    <option>Verticle</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Mark Properties Point -->
+                        <div class="editorLineContainer">
+                            <div class="editorGraphMarkPointTitle" *ngIf="showFieldMarkProperties">
+                                Point:
+                            </div>
+                            <div class="editorGraphMarkPoint" *ngIf="showFieldMarkProperties">
+                                <input [(ngModel)]="localWidget.graphMarkPoint"
+                                    type="checkbox"
+                                    name="graphMarkPoint"
+                                    title="Add Points to graph (T/F)"
                                     >
                             </div>
                         </div>
