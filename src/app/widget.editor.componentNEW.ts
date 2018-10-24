@@ -2079,7 +2079,7 @@ export interface dataSchemaInterface {
         this.showXDeleteIcon = false;
         this.xField = dragFieldMessage;
         this.localWidget.graphXfield = '';
-
+        this.localWidget.graphXaxisTitle = '';
         this.localWidget.graphXaggregateName = '';
         this.localWidget.graphXaggregate = '';
         this.localWidget.graphXbin = false;
@@ -2105,11 +2105,11 @@ export interface dataSchemaInterface {
 
         // Reset
         this.errorMessageEditor = '';
-
+        
         this.showYDeleteIcon = false;
         this.yField = dragFieldMessage;
         this.localWidget.graphYfield = '';
-
+        this.localWidget.graphYaxisTitle = '';        
         this.localWidget.graphYaggregateName = '';
         this.localWidget.graphYaggregate = '';
         this.localWidget.graphYbin = false;
@@ -2147,7 +2147,7 @@ export interface dataSchemaInterface {
         this.localWidget.graphColorSort = '';
         this.localWidget.graphColorTypeName = '';
         this.localWidget.graphColorTimeUnit = '';
-
+        this.localWidget.graphLegendTitle = '';
         this.showColourDeleteIcon = false;
         this.colorField = dragFieldMessage;
         this.localWidget.graphColorField = '';
