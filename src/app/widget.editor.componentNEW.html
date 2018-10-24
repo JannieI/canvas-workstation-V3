@@ -2911,6 +2911,25 @@
                             </div>
                         </div>
 
+                        <!-- Y2 Properties Aggregate -->
+                        <div class="editorLineContainer">
+                            <div class="editorGraphY2aggregateTitle" *ngIf="showFieldY2Properties">
+                                Aggregate:
+                            </div>
+                            <div class="select editorGraphY2aggregate" *ngIf="showFieldY2Properties"
+                                title="How the Y2 values must be aggregated, ie Count"
+                                >
+                                <select id="selects_3"
+                                    [(ngModel)]="localWidget.graphY2AggregateName"
+                                    name="graphXaggregateName"
+                                    >
+                                    <option *ngFor="let row of aggregations; let i = index">
+                                        {{ row.displayName }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
                         <!-- Y2: type -->
                         <div class="editorLineContainer">
                             <div class="editorGraphY2TypeTitle" *ngIf="showFieldY2Properties">

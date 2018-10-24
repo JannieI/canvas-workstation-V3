@@ -1310,7 +1310,7 @@ export class Widget {
     graphY2Field: string;
     graphY2Type: string;
     graphY2TypeName: string;
-    graphX2AggregateName: string;
+    graphY2AggregateName: string;
 
     // Mark
     graphMark: string;

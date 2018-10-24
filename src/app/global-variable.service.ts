@@ -367,7 +367,7 @@ const widgetTemplate: Widget =
         "graphY2Field": "",
         "graphY2Type": "",
         "graphY2TypeName": "",
-        "graphX2AggregateName": "",
+        "graphY2AggregateName": "",
 
         "graphMark": "tick",
         "graphMarkOrient": "Verticle",
