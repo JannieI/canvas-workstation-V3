@@ -10338,6 +10338,8 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 baseUrl = 'http://localhost:3005/';
             } else if (pathUrl.substring(0, 5) == 'data/') {
                 baseUrl = 'http://localhost:3006/';
+            } else if (pathUrl == 'data') {
+                baseUrl = 'http://localhost:3006/';
 
             } else {
                 baseUrl = 'http://localhost:3000/';

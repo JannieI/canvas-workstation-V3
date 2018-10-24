@@ -718,11 +718,11 @@
                                 </h5>
                                 <p style="margin-top: 0; color:gray; text-align: left;">
                                     A list of Fields from the previously selected Datasource that
-                                    can be graphed.  The icon left of the field name indicates the 
-                                    datatype of the field (ie Number).  
-                                    Click the X, Y, C to add to the respective 
+                                    can be graphed.  The icon left of the field name indicates the
+                                    datatype of the field (ie Number).
+                                    Click the X, Y, C to add to the respective
                                     channels, or drag to the containers for these fields.
-                                    New fields can be added by clicking the plus sign.  
+                                    New fields can be added by clicking the plus sign.
                                 </p>
                             </clr-signpost-content>
                         </clr-signpost>
@@ -847,8 +847,8 @@
                                 <p style="margin-top: 0; color:gray; text-align: left;">
                                     A list of properties per Field.  Click the headers below to
                                     reveal more detail.  Some are only available once the field
-                                    has been selected: for example, select the X field.  Then 
-                                    the X Properties area will be visible.  Click the Field 
+                                    has been selected: for example, select the X field.  Then
+                                    the X Properties area will be visible.  Click the Field
                                     header inside to reveal properties that can be changed for
                                     this field like Aggregation.  Click the Axis header to change
                                     the properties of the axis like the colour.
@@ -970,8 +970,8 @@
                             <div class="editorWidgetEditorLiteStep1">
                                 <b>Step 1:</b>
                                 Select the fields to graph.  Click the X Y C buttons
-                                at the end of the fields on the <i>left</i>.  Once selected, 
-                                the button will show in red:    
+                                at the end of the fields on the <i>left</i>.  Once selected,
+                                the button will show in red:
                                 <img
                                     [style.border]="'1px solid gray'"
                                     [style.width.%]="100"
@@ -984,7 +984,7 @@
 
                             <div class="editorWidgetEditorLiteStep2">
                                 <b>Step 2:</b>
-                                Then click the type of graph on the <i>right</i>:    
+                                Then click the type of graph on the <i>right</i>:
                                 <img
                                     [style.width.px]="85"
                                     [style.height.px]="65"
@@ -1939,7 +1939,7 @@
                                     >
                             </div>
                         </div>
-    
+
 
                         <!-- Color Properties Title Bar -->
                         <div class="editorColorPropertiesTitle" *ngIf="showFieldColorPropertiesTitle"
@@ -2281,7 +2281,7 @@
                                     >
                             </div>
                         </div>
-    
+
 
 
                         <!-- Mark Title Bar -->
@@ -2968,9 +2968,9 @@
                                     Help
                                 </h5>
                                 <p style="margin-top: 0; color:gray; text-align: left;">
-                                    Once the fields have been selected (for example the X and 
+                                    Once the fields have been selected (for example the X and
                                     Y fields), click the graph icon below to draw the graph on
-                                    the far right hand side.  
+                                    the far right hand side.
                                 </p>
                                 <p>
                                     <b>Note:</b> the graph is only refreshed when a graph icon
@@ -3012,7 +3012,7 @@
                         <b *ngIf="!showGraphAreaTitle  &&  !showSpecification">
                             Graph
                         </b>
-    
+
                         <b *ngIf="showGraphAreaTitle  &&  !showSpecification">
                             {{ graphHeader }}
                         </b>
@@ -3034,14 +3034,14 @@
                                 </h5>
                                 <p style="margin-top: 0; color:gray; text-align: left;">
                                     First select the fields (for example the X and Y fields), and
-                                    then click the graph icon (under Types) to draw the graph 
+                                    then click the graph icon (under Types) to draw the graph
                                     below.  Each time you refresh, the complete graph is stored
                                     in the temporary history.  Use the left and right arrows to
-                                    navigate the history.  
+                                    navigate the history.
                                 </p>
                             </clr-signpost-content>
                         </clr-signpost>
-    
+
                     </div>
                     <div class="editorArea" [hidden]="showSpecification"
                         #dragWidget

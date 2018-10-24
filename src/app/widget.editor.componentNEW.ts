@@ -190,12 +190,12 @@ export interface dataSchemaInterface {
         }
     ]
     backgroundcolors: CSScolor[];
-    calculatedErrorMessage: string = '';
     calculatedID: number = -1;
     calculatedAs: string = '';
-    calculatedExpression: string = '';
     calculatedDataType: string = '';
     calculatedDataTypeName: string = '';
+    calculatedErrorMessage: string = '';
+    calculatedExpression: string = '';
     colorField: string = dragFieldMessage;
     columnField: string = dragFieldMessage;
     currentData: any = [];
@@ -3582,6 +3582,12 @@ export interface dataSchemaInterface {
         };
         if (this.calculatedDataType == ''  ||  this.calculatedDataType == undefined) {
             this.calculatedErrorMessage = 'Field data type is required.';
+            return;
+        };
+        if ( (this.calculatedExpression.match(new RegExp(/\(/g)) || []).length !=
+             (this.calculatedExpression.match(new RegExp(/\)/g)) || []).length
+             ) {
+            this.calculatedErrorMessage = 'Unequal number of ( and ) brackets';
             return;
         };
 
