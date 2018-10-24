@@ -11140,7 +11140,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             specification['encoding']['x']['type'] = widget.graphXtype.toLowerCase();
             specification['encoding']['x']['timeUnit'] = widget.graphXtimeUnit.toLowerCase();
 
-            if (widget.graphXaxisScaleType != 'Default') {
+            if (widget.graphXaxisScaleType != 'Default'  &&  widget.graphXaxisScaleType != undefined) {
                 specification['encoding']['x']['scale'] =
                 {"type": widget.graphXaxisScaleType.toLowerCase() };
             };
@@ -11202,7 +11202,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             specification['encoding']['y']['type'] = widget.graphYtype.toLowerCase();
             specification['encoding']['y']['timeUnit'] = widget.graphYtimeUnit.toLowerCase();
 
-            if (widget.graphYaxisScaleType != 'Default') {
+            if (widget.graphYaxisScaleType != 'Default'  &&  widget.graphYaxisScaleType != undefined) {
                 specification['encoding']['y']['scale'] =
                 {"type": widget.graphYaxisScaleType.toLowerCase() };
             };

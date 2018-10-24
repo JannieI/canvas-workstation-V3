@@ -1423,7 +1423,8 @@
                                 >
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphXtimeUnit"
-                                    [disabled]="localWidget.graphXtypeName!='Temporal'"
+                                    [disabled]="localWidget.graphXtypeName!='Temporal'
+                                             && localWidget.graphXtypeName!='Ordinal'"
                                     >
                                     <option *ngFor="let row of timeUnits; let i = index">
                                         {{ row }}
@@ -1794,7 +1795,8 @@
                                 >
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphYtimeUnit"
-                                    [disabled]="localWidget.graphYtypeName!='Temporal'"
+                                    [disabled]="localWidget.graphYtypeName!='Temporal' 
+                                             && localWidget.graphYtypeName!='Ordinal'"
                                     >
                                     <option *ngFor="let row of timeUnits; let i = index">
                                         {{ row }}
@@ -2179,7 +2181,8 @@
                                 >
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphColorTimeUnit"
-                                    [disabled]="localWidget.graphColorTypeName!='Temporal'"
+                                    [disabled]="localWidget.graphColorTypeName!='Temporal'
+                                             && localWidget.graphColorTypeName!='Ordinal'"
                                     >
                                     <option *ngFor="let row of timeUnits; let i = index">
                                         {{ row }}
