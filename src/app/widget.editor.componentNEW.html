@@ -2469,7 +2469,7 @@
                                 (dragenter)="dragenterSize($event);"
                                 (dragleave)="dragleaveSize($event);"
                                 (dragover)="dragoverSize($event);"
-                                [style.background-color]="dragoverSizes? 'lightgray' : 'transparent'"
+                                [style.background-color]="isDragoverSizes? 'lightgray' : 'transparent'"
                                 [style.font-style]="sizeField=='Drag a field here ...' ?  'italic'  :  'normal'"
                                 title="The Size field show the size of elements in the Graph"
                                 >
