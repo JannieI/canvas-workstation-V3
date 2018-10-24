@@ -1437,6 +1437,9 @@ export interface dataSchemaInterface {
         // Browse to previous graph in history
         this.globalFunctionService.printToConsole(this.constructor.name,'clickBrowsePreviousGraph', '@Start');
 
+        // Reset
+        this.errorMessageEditor = '';
+
         // Decrease position, if not at beginning
         if (this.graphHistoryPosition == 0) {
             return;
@@ -1472,6 +1475,9 @@ export interface dataSchemaInterface {
     clickBrowseNextGraph() {
         // Browse to next graph in history
         this.globalFunctionService.printToConsole(this.constructor.name,'clickBrowseNextGraph', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
 
         // Increase position, if not at beginning
         let layerIndex: number = this.graphHistory.findIndex(gh => gh.layer == this.currentGraphLayer);
@@ -1515,6 +1521,9 @@ export interface dataSchemaInterface {
     clickSave(action: string) {
         // Closes the form
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSave', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
 
         // Validate
         if (this.localWidget.graphMark == ''  ||  this.localWidget.graphMark == null) {
@@ -1663,6 +1672,9 @@ export interface dataSchemaInterface {
         // Click icon to fill this field into X field
         this.globalFunctionService.printToConsole(this.constructor.name,'clickFillXfield', '@Start');
 
+        // Reset
+        this.errorMessageEditor = '';
+
         let oldXfield: string = this.xField;
         if (this.xField != dragFieldMessage) {
             this.clickClearXField();
@@ -1677,6 +1689,9 @@ export interface dataSchemaInterface {
         // Click icon to fill this field into X field
         this.globalFunctionService.printToConsole(this.constructor.name,'clickFillYfield', '@Start');
 
+        // Reset
+        this.errorMessageEditor = '';
+
         let oldYfield: string = this.yField;
         if (this.yField != dragFieldMessage) {
             this.clickClearYField();
@@ -1689,6 +1704,9 @@ export interface dataSchemaInterface {
     clickFillColorField(fieldName: string) {
         // Click icon to fill this field into X field
         this.globalFunctionService.printToConsole(this.constructor.name,'clickFillColorField', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
 
         let oldColorField: string = this.colorField;
         if (this.colorField != dragFieldMessage) {
@@ -1773,6 +1791,9 @@ export interface dataSchemaInterface {
     switchXandY() {
         // Event trigger when the dragged Field is dropped the Column field
         this.globalFunctionService.printToConsole(this.constructor.name,'switchXandY', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
 
         let newXField: string = this.xField;
         let newYField: string = this.yField;
@@ -2052,8 +2073,9 @@ export interface dataSchemaInterface {
     clickClearXField() {
         // Clear the X Field and Remove X icon
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClearXField', '@Start');
-
+        
         // Reset fields
+        this.errorMessageEditor = '';
         this.showXDeleteIcon = false;
         this.xField = dragFieldMessage;
         this.localWidget.graphXfield = '';
@@ -2081,6 +2103,9 @@ export interface dataSchemaInterface {
         // Clear the Y Field and Remove X icon
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClearYField', '@Start');
 
+        // Reset
+        this.errorMessageEditor = '';
+
         this.showYDeleteIcon = false;
         this.yField = dragFieldMessage;
         this.localWidget.graphYfield = '';
@@ -2107,6 +2132,9 @@ export interface dataSchemaInterface {
     clickClearColourField() {
         // Clear the Colour Field and Remove X icon
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClearColourField', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
 
         this.localWidget.graphColorAggregateName = '';
         this.localWidget.graphColorAggregate = '';
@@ -2141,6 +2169,9 @@ export interface dataSchemaInterface {
         // Clear the Size Field and Remove X icon
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClearSizeField', '@Start');
 
+        // Reset
+        this.errorMessageEditor = '';
+
         this.showSizeDeleteIcon = false;
         this.sizeField = dragFieldMessage;
         this.localWidget.graphSizeField = '';
@@ -2159,6 +2190,9 @@ export interface dataSchemaInterface {
         // Clear the Row Field and Remove X icon
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClearRowField', '@Start');
 
+        // Reset
+        this.errorMessageEditor = '';
+
         this.showRowDeleteIcon = false;
         this.rowField = dragFieldMessage;
         this.localWidget.graphRowField = '';
@@ -2171,6 +2205,9 @@ export interface dataSchemaInterface {
     clickClearColumnField() {
         // Clear the Column Field and Remove X icon
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClearColumnField', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
 
         this.showColumnDeleteIcon = false;
         this.columnField = dragFieldMessage;
@@ -2185,6 +2222,9 @@ export interface dataSchemaInterface {
         // Clear the Detail Field and Remove X icon
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClearDetailField', '@Start');
 
+        // Reset
+        this.errorMessageEditor = '';
+
         this.showDetailDeleteIcon = false;
         this.detailField = dragFieldMessage;
         this.localWidget.graphDetailField = '';
@@ -2197,6 +2237,9 @@ export interface dataSchemaInterface {
     clickClearX2Field() {
         // Clear the X2 Field and Remove X icon
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClearX2Field', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
 
         this.showX2DeleteIcon = false;
         this.x2Field = dragFieldMessage;
@@ -2211,6 +2254,9 @@ export interface dataSchemaInterface {
         // Clear the Y2 Field and Remove X icon
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClearY2Field', '@Start');
 
+        // Reset
+        this.errorMessageEditor = '';
+
         this.showY2DeleteIcon = false;
         this.y2Field = dragFieldMessage;
         this.localWidget.graphY2Field = '';
@@ -2223,6 +2269,9 @@ export interface dataSchemaInterface {
     clickClearMark() {
         // Clear the Mark properties
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClearMark', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
 
         this.localWidget.graphMarkLine = false;
         this.localWidget.graphMarkPoint = false;
@@ -2627,12 +2676,18 @@ export interface dataSchemaInterface {
         // Show Datasources
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowDatasources', '@Start');
 
+        // Reset
+        this.errorMessageEditor = '';
+
         this.showDatasourceMain = true;
     }
 
     clickShowXProperties() {
         // Show X Properties Area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowXProperties', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
 
         // Toggle
         this.showFieldXProperties = !this.showFieldXProperties;
@@ -2644,6 +2699,9 @@ export interface dataSchemaInterface {
         // Show X Properties Field Area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowXPropertiesField', '@Start');
 
+        // Reset
+        this.errorMessageEditor = '';
+
         // Toggle
         this.showFieldXPropertiesField = !this.showFieldXPropertiesField;
     }
@@ -2651,6 +2709,9 @@ export interface dataSchemaInterface {
     clickShowXPropertiesAxis() {
         // Show X Properties Axis Area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowXPropertiesAxis', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
 
         // Toggle
         this.showFieldXPropertiesAxis = !this.showFieldXPropertiesAxis;
@@ -2660,6 +2721,9 @@ export interface dataSchemaInterface {
         // Show Y Properties Field Area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowYPropertiesField', '@Start');
 
+        // Reset
+        this.errorMessageEditor = '';
+
         // Toggle
         this.showFieldYPropertiesField = !this.showFieldYPropertiesField;
     }
@@ -2667,6 +2731,9 @@ export interface dataSchemaInterface {
     clickShowYPropertiesAxis() {
         // Show Y Properties Axis Area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowYPropertiesAxis', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
 
         // Toggle
         this.showFieldYPropertiesAxis = !this.showFieldYPropertiesAxis;
@@ -2677,6 +2744,9 @@ export interface dataSchemaInterface {
         // Show Color Properties Field Area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowColorPropertiesField', '@Start');
 
+        // Reset
+        this.errorMessageEditor = '';
+
         // Toggle
         this.showFieldColorPropertiesField = !this.showFieldColorPropertiesField;
     }
@@ -2684,6 +2754,9 @@ export interface dataSchemaInterface {
     clickShowColorPropertiesLegend() {
         // Show Color Properties Legend Area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowColorPropertiesLegend', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
 
         // Toggle
         this.showFieldColorPropertiesLegend = !this.showFieldColorPropertiesLegend;
@@ -2693,6 +2766,9 @@ export interface dataSchemaInterface {
     clickShowColorProperties() {
         // Show Color Properties Area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowColorProperties', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
 
         // Toggle
         this.showFieldColorProperties = !this.showFieldColorProperties;
@@ -2704,6 +2780,9 @@ export interface dataSchemaInterface {
         // Show Mark Properties Area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowMarkProperties', '@Start');
 
+        // Reset
+        this.errorMessageEditor = '';
+
         // Toggle
         this.showFieldMarkProperties = !this.showFieldMarkProperties;
     }
@@ -2711,6 +2790,9 @@ export interface dataSchemaInterface {
     clickShowDetailProperties() {
         // Show Detail Properties Area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowDetailProperties', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
 
         // Toggle
         this.showFieldDetailProperties = !this.showFieldDetailProperties;
@@ -2720,6 +2802,9 @@ export interface dataSchemaInterface {
         // Show X2 Properties Area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowX2Properties', '@Start');
 
+        // Reset
+        this.errorMessageEditor = '';
+
         // Toggle
         this.showFieldX2Properties = !this.showFieldX2Properties;
     }
@@ -2727,6 +2812,9 @@ export interface dataSchemaInterface {
     clickShowY2Properties() {
         // Show Y2 Properties Area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowY2Properties', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
 
         // Toggle
         this.showFieldY2Properties = !this.showFieldY2Properties;
@@ -2736,6 +2824,9 @@ export interface dataSchemaInterface {
         // Show Title Properties Area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowTitleProperties', '@Start');
 
+        // Reset
+        this.errorMessageEditor = '';
+
         // Toggle
         this.showFieldTitleProperties = !this.showFieldTitleProperties;
     }
@@ -2743,6 +2834,9 @@ export interface dataSchemaInterface {
     clickShowYProperties() {
         // Show Y Properties Area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowYProperties', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
 
         // Toggle
         this.showFieldYProperties = !this.showFieldYProperties;
@@ -2754,6 +2848,9 @@ export interface dataSchemaInterface {
         // Show Filter Area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowFilter', '@Start');
 
+        // Reset
+        this.errorMessageEditor = '';
+
         // Toggle
         this.showFieldFilter = !this.showFieldFilter;
     }
@@ -2761,6 +2858,9 @@ export interface dataSchemaInterface {
     clickShowSelection() {
         // Show Selection Area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowSelection', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
 
         // Toggle
         this.showSelectionFilter = !this.showSelectionFilter;
@@ -2771,6 +2871,9 @@ export interface dataSchemaInterface {
         // Show Size Area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowSizeProperties', '@Start');
 
+        // Reset
+        this.errorMessageEditor = '';
+
         // Toggle
         this.showFieldSizeProperties = !this.showFieldSizeProperties;
     }
@@ -2778,6 +2881,9 @@ export interface dataSchemaInterface {
     clickShowRowProperties() {
         // Show Row Area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowRowProperties', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
 
         // Toggle
         this.showFieldRowProperties = !this.showFieldRowProperties;
@@ -2787,6 +2893,9 @@ export interface dataSchemaInterface {
         // Show Column Area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowColumnProperties', '@Start');
 
+        // Reset
+        this.errorMessageEditor = '';
+
         // Toggle
         this.showFieldColumnProperties = !this.showFieldColumnProperties;
     }
@@ -2794,6 +2903,9 @@ export interface dataSchemaInterface {
     clickSelectXGridColor(ev: any) {
         // Select Colour for X gridlines
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectXGridColor', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
 
         this.localWidget.graphXaxisGridColorName = ev.target.value;
         this.localWidget.graphXaxisGridColor = this.localWidget.graphXaxisGridColorName;
@@ -2809,6 +2921,9 @@ export interface dataSchemaInterface {
         // Select Colour for X labels
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectXLabelColor', '@Start');
 
+        // Reset
+        this.errorMessageEditor = '';
+
         this.localWidget.graphXaxisLabelColorName = ev.target.value;
         this.localWidget.graphXaxisLabelColor = this.localWidget.graphXaxisLabelColorName;
         let localIndex: number = this.backgroundcolors.findIndex(bg =>
@@ -2822,6 +2937,9 @@ export interface dataSchemaInterface {
     clickSelectYGridColor(ev: any) {
         // Select Colour for Y gridlines
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectYGridColor', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
 
         this.localWidget.graphYaxisGridColorName = ev.target.value;
         this.localWidget.graphYaxisGridColor = this.localWidget.graphYaxisGridColorName;
@@ -2837,6 +2955,9 @@ export interface dataSchemaInterface {
         // Select Colour for Legend gridlines
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectLegendLabelColor', '@Start');
 
+        // Reset
+        this.errorMessageEditor = '';
+
         this.localWidget.graphLegendLabelColorName = ev.target.value;
         this.localWidget.graphLegendLabelColor = this.localWidget.graphLegendLabelColorName;
         let localIndex: number = this.backgroundcolors.findIndex(bg =>
@@ -2850,6 +2971,9 @@ export interface dataSchemaInterface {
     clickSelectYLabelColor(ev: any) {
         // Select Colour for Y labels
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectYLabelColor', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
 
         this.localWidget.graphYaxisLabelColorName = ev.target.value;
         this.localWidget.graphYaxisLabelColor = this.localWidget.graphYaxisLabelColorName;
@@ -2865,6 +2989,9 @@ export interface dataSchemaInterface {
         // Select Background Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectBackgroundColor', '@Start');
 
+        // Reset
+        this.errorMessageEditor = '';
+
         this.localWidget.graphBackgroundColorName = ev.target.value;
         this.localWidget.graphBackgroundColor = this.localWidget.graphBackgroundColorName;
         let localIndex: number = this.backgroundcolors.findIndex(bg =>
@@ -2878,6 +3005,9 @@ export interface dataSchemaInterface {
     clickSelectTitleColor(ev: any) {
         // Select Title Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectTitleColor', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
 
         this.localWidget.graphTitleColorName = ev.target.value;
         this.localWidget.graphTitleColor = this.localWidget.graphTitleColorName;
@@ -2893,6 +3023,9 @@ export interface dataSchemaInterface {
         // Select Background Colour
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectTitleColor', '@Start');
 
+        // Reset
+        this.errorMessageEditor = '';
+
         this.localWidget.graphMarkColourName = ev.target.value;
         this.localWidget.graphMarkColour = this.localWidget.graphMarkColourName;
         let localIndex: number = this.backgroundcolors.findIndex(bg =>
@@ -2907,6 +3040,9 @@ export interface dataSchemaInterface {
         // Reset Size X Max
         this.globalFunctionService.printToConsole(this.constructor.name,'clickXBin', '@Start');
 
+        // Reset
+        this.errorMessageEditor = '';
+
         if (this.localWidget.graphXbin) {
             this.localWidget.graphXMaxBins = 0;
         };
@@ -2915,6 +3051,9 @@ export interface dataSchemaInterface {
     clickYBin() {
         // Reset Size Y Max
         this.globalFunctionService.printToConsole(this.constructor.name,'clickYBin', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
 
         if (this.localWidget.graphYbin) {
             this.localWidget.graphYMaxBins = 0;
@@ -2925,6 +3064,9 @@ export interface dataSchemaInterface {
         // Reset Size Color Max
         this.globalFunctionService.printToConsole(this.constructor.name,'clickColorBin', '@Start');
 
+        // Reset
+        this.errorMessageEditor = '';
+
         if (this.localWidget.graphColorBin) {
             this.localWidget.graphColorMaxBins = 0;
         };
@@ -2934,6 +3076,9 @@ export interface dataSchemaInterface {
         // Reset Size Bin Max
         this.globalFunctionService.printToConsole(this.constructor.name,'clickSizeBin', '@Start');
 
+        // Reset
+        this.errorMessageEditor = '';
+
         if (this.localWidget.graphSizeBin) {
             this.localWidget.graphSizeMaxBins = 0;
         };
@@ -2942,6 +3087,9 @@ export interface dataSchemaInterface {
     clickXfield() {
         // Show the X field properties
         this.globalFunctionService.printToConsole(this.constructor.name,'clickXfield', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
 
         if (this.xField == dragFieldMessage  ||  this.xField == null) {
             return;
@@ -2956,6 +3104,9 @@ export interface dataSchemaInterface {
         // Show the Y field properties
         this.globalFunctionService.printToConsole(this.constructor.name,'clickYfield', '@Start');
 
+        // Reset
+        this.errorMessageEditor = '';
+
         if (this.yField == dragFieldMessage  ||  this.yField == null) {
             return;
         };
@@ -2968,6 +3119,9 @@ export interface dataSchemaInterface {
     clickColorfield() {
         // Show the Color field properties
         this.globalFunctionService.printToConsole(this.constructor.name,'clickColorfield', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
 
         if (this.colorField == dragFieldMessage  ||  this.colorField == null) {
             return;
@@ -2982,6 +3136,9 @@ export interface dataSchemaInterface {
         // Set Type and Remove timeUnit if Type is not Temporal
         this.globalFunctionService.printToConsole(this.constructor.name,'changeXType', '@Start');
 
+        // Reset
+        this.errorMessageEditor = '';
+
         this.localWidget.graphXtype =  ev.target.value.toLowerCase();
 
         if (this.localWidget.graphXtype != 'Temporal') {
@@ -2993,6 +3150,9 @@ export interface dataSchemaInterface {
         // Set Type and Remove timeUnit if Type is not Temporal
         this.globalFunctionService.printToConsole(this.constructor.name,'changeYType', '@Start');
 
+        // Reset
+        this.errorMessageEditor = '';
+
         this.localWidget.graphYtype =  ev.target.value.toLowerCase();
 
         if (this.localWidget.graphYtype != 'Temporal') {
@@ -3003,6 +3163,9 @@ export interface dataSchemaInterface {
     changeColorType(ev: any) {
         // Set Type and Remove timeUnit if Type is not Temporal
         this.globalFunctionService.printToConsole(this.constructor.name,'changeColorType', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
 
         this.localWidget.graphColorType =  ev.target.value.toLowerCase();
 
@@ -3016,6 +3179,9 @@ export interface dataSchemaInterface {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowFilterArea', '@Start');
 
         // Reset
+        this.errorMessageEditor = '';
+
+        // Reset
         this.filterErrorMessage = '';
 
         this.showFilterAreaProperties = true;
@@ -3025,6 +3191,9 @@ export interface dataSchemaInterface {
     clickShowCalculatedArea() {
         // Show Calculated Area
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowCalculatedArea', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
 
         // Reset
         this.calculatedErrorMessage = '';
@@ -3037,6 +3206,9 @@ export interface dataSchemaInterface {
         // Register Calculated Field Type
         this.globalFunctionService.printToConsole(this.constructor.name,'calculatedFieldTypeSelected', '@Start');
 
+        // Reset
+        this.errorMessageEditor = '';
+
         this.calculatedDataTypeName = ev.target.value;
         this.calculatedDataType = this.convertToCalculatedDataType(this.calculatedDataTypeName);
 
@@ -3045,6 +3217,9 @@ export interface dataSchemaInterface {
     clickShowSpecificationArea() {
         // Toggle between Graph and Specification
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowSpecificationArea', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
 
         // Show spec
         if (!this.showSpecification) {
@@ -3062,6 +3237,9 @@ export interface dataSchemaInterface {
         this.globalFunctionService.printToConsole(this.constructor.name,'clickFilterClose', '@Start');
 
         // Reset
+        this.errorMessageEditor = '';
+
+        // Reset
         this.filterErrorMessage = '';
 
         this.filterNrActive = this.localWidget.graphFilters.filter(gflt => gflt.isActive).length;
@@ -3071,6 +3249,9 @@ export interface dataSchemaInterface {
     clickGraphFilterRowSelect(index: number, selectedFilterID : number) {
         // Delete the selected Filter
         this.globalFunctionService.printToConsole(this.constructor.name,'clickGraphFilterRowSelect', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
 
         // Set highlighted row
         this.selectedGraphFilterRowIndex = index;
@@ -3099,6 +3280,9 @@ export interface dataSchemaInterface {
     clickFilterClear() {
         // Clear the Filter fields
         this.globalFunctionService.printToConsole(this.constructor.name,'clickFilterClear', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
 
         this.filterID = -1;
         this.filterFieldName = '';
@@ -3250,12 +3434,18 @@ export interface dataSchemaInterface {
         // Selected a Filter Field
         this.globalFunctionService.printToConsole(this.constructor.name,'filterFieldSelected', '@Start');
 
+        // Reset
+        this.errorMessageEditor = '';
+
         this.filterFieldName = ev.target.value;
     }
 
     filterOperatorSelected(ev) {
         // Selected a Filter Operator
         this.globalFunctionService.printToConsole(this.constructor.name,'filterOperatorSelected', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
 
         this.filterOperator = ev.target.value;
     }
@@ -3275,6 +3465,9 @@ export interface dataSchemaInterface {
     clickGraphCalculatedRowSelect(index: number, selectedCalculatedID : number) {
         // Delete the selected Calculated
         this.globalFunctionService.printToConsole(this.constructor.name,'clickGraphCalculatedRowSelect', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
 
         // Set highlighted row
         this.selectedGraphCalculatedRowIndex = index;
@@ -3440,6 +3633,9 @@ export interface dataSchemaInterface {
         // Double clicked a field row: show info for calculated field
         this.globalFunctionService.printToConsole(this.constructor.name,'dblClickFieldRow', '@Start');
 
+        // Reset
+        this.errorMessageEditor = '';
+
         let gridCalculatedIndex: number = this.localWidget.graphCalculations.findIndex(gflt =>
             gflt.calculatedAs == formCalculatedFieldName);
         this.selectedGraphCalculatedRowIndex = gridCalculatedIndex;
@@ -3481,6 +3677,9 @@ export interface dataSchemaInterface {
         // Converts calculatedDataTypeName to calculatedDataType
         this.globalFunctionService.printToConsole(this.constructor.name,'dblClickFieldRow', '@Start');
 
+        // Reset
+        this.errorMessageEditor = '';
+
         if (calculatedDataTypeName == null  ||  calculatedDataTypeName == '') {
             return '';
         };
@@ -3493,6 +3692,9 @@ export interface dataSchemaInterface {
     loadLocalVarsFromWidget() {
         // Add Fields to selection areas
         this.globalFunctionService.printToConsole(this.constructor.name,'loadLocalVarsFromWidget', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
 
         if (this.localWidget.graphXfield != ''   &&   this.localWidget.graphXfield != null) {
             this.showXDeleteIcon = true;
@@ -3580,6 +3782,9 @@ export interface dataSchemaInterface {
     clickShowFullEditor() {
         // Show the full editor (not W Ed-Lite any more)
         this.globalFunctionService.printToConsole(this.constructor.name,'clickShowFullEditor', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
 
         // Update the user, reset the list of Graphs to show and remove helper form
         this.globalVariableService.updateCurrentUserProperties(
