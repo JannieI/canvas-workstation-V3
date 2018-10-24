@@ -1010,6 +1010,7 @@
                         <!-- TITLE -->
                         <!-- Title Header -->
                         <div class="editorTitleTitle"
+                            title="Click to amend properties of the Graph Title"
                             (click)="clickShowTitleProperties()"
                             >
                             <b>
@@ -1222,6 +1223,7 @@
 
                         <!-- X Properties Title Bar -->
                         <div class="editorXPropertiesTitle" *ngIf="showFieldXPropertiesTitle"
+                            title="Click to amend properties of the X field and axis"
                             (click)="clickShowXProperties()"
                             >
                             <b>
@@ -1239,6 +1241,7 @@
 
                         <!-- X Axis sub Header -->
                         <div class="editorXPropertiesTitleField" *ngIf="showFieldXProperties"
+                            title="Click to amend properties of the X field"
                             (click)="clickShowXPropertiesField()"
                             >
                             <b>
@@ -1437,6 +1440,7 @@
 
                         <!-- X Axis Sub Header -->
                         <div class="editorXPropertiesTitleAxis" *ngIf="showFieldXProperties"
+                            title="Click to amend properties of the X axis"
                             (click)="clickShowXPropertiesAxis()"
                             >
                             <b>
@@ -1597,6 +1601,7 @@
 
                         <!-- Y Properties Title Bar -->
                         <div class="editorYPropertiesTitle" *ngIf="showFieldYPropertiesTitle"
+                            title="Click to amend properties of the Y field and axis"
                             (click)="clickShowYProperties()"
                             >
                             <b>
@@ -1614,6 +1619,7 @@
 
                         <!-- Y Field sub Header -->
                         <div class="editorYPropertiesTitleField" *ngIf="showFieldYProperties"
+                            title="Click to amend properties of the Y field"
                             (click)="clickShowYPropertiesField()"
                             >
                             <b>
@@ -1809,6 +1815,7 @@
 
                         <!-- Y Axis Subheader -->
                         <div class="editorYPropertiesTitleAxis" *ngIf="showFieldYProperties"
+                            title="Click to amend properties of the Y axis"
                             (click)="clickShowYPropertiesAxis()"
                             >
                             <b>
@@ -1967,6 +1974,7 @@
 
                         <!-- Color Properties Title Bar -->
                         <div class="editorColorPropertiesTitle" *ngIf="showFieldColorPropertiesTitle"
+                            title="Click to amend properties of the Colour field and legend"
                             (click)="clickShowColorProperties()"
                             >
                             <b>
@@ -1986,6 +1994,7 @@
 
                         <!-- Color Field sub Header -->
                         <div class="editorColorPropertiesTitleField" *ngIf="showFieldColorProperties"
+                            title="Click to amend properties of the Colour field"
                             (click)="clickShowColorPropertiesField()"
                             >
                             <b>
@@ -2196,7 +2205,8 @@
 
                         <!-- Color Legend Subheader -->
                         <div class="editorColorPropertiesTitleAxis" *ngIf="showFieldColorProperties"
-                            (click)="clickShowColorPropertiesLegend()"
+                        title="Click to amend properties of the legend"
+                        (click)="clickShowColorPropertiesLegend()"
                             >
                             <b>
                                 Legend
@@ -2329,6 +2339,7 @@
 
                         <!-- Mark Title Bar -->
                         <div class="editorMarkTitle"
+                            title="Click to amend properties of the Mark / Type of graph"
                             (click)="clickShowMarkProperties()"
                             >
                             <b>
@@ -2480,6 +2491,7 @@
 
                         <!-- Size: Channel Title Bar -->
                         <div class="editorSizeContainerTitle"
+                            title="Click to amend properties of the Size field"
                             (click)="clickShowSizeProperties()"
                             >
                             <b>
@@ -2613,6 +2625,7 @@
 
                         <!-- Row: Channel Title Bar -->
                         <div class="editorRowContainerTitle"
+                            title="Click to amend properties of the Row field (to create multiple graphs)"
                             (click)="clickShowRowProperties()"
                             >
                             <b>
@@ -2682,6 +2695,7 @@
 
                         <!-- Column: Channel Title Bar -->
                         <div class="editorColumnContainerTitle"
+                            title="Click to amend properties of the Column field (to create multiple graphs)"
                             (click)="clickShowColumnProperties()"
                             >
                             <b>
@@ -2751,6 +2765,7 @@
 
                         <!-- Detail: Channel Title Bar -->
                         <div class="editorDetailContainerTitle"
+                            title="Click to amend properties of the Detail field (to create groupBy)"
                             (click)="clickShowDetailProperties()"
                             >
                             <b>
@@ -2820,6 +2835,7 @@
 
                         <!-- X2: Channel Title Bar -->
                         <div class="editorX2ContainerTitle"
+                            title="Click to amend properties of the X2 field"
                             (click)="clickShowX2Properties()"
                             >
                             <b>
@@ -2908,6 +2924,7 @@
 
                         <!-- Y2: Channel Title Bar -->
                         <div class="editorY2ContainerTitle"
+                            title="Click to amend properties of the Y2 field"
                             (click)="clickShowY2Properties()"
                             >
                             <b>
@@ -3025,7 +3042,7 @@
                     </div>
                     <div class="editorTypes">
                         <div class="editorTypeImages" *ngFor="let row of widgetGraphs"
-                            [style.border]="currentGraphID==row.id?  '2px solid black'  :  '1px solid gray'"
+                            [style.border]="currentGraphID==row.id?  '2px solid red'  :  '1px solid gray'"
                             >
                             <span
                                 (click)="showGraph(row.id)"
