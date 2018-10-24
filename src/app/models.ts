@@ -1269,6 +1269,7 @@ export class Widget {
     graphYaxisTitleCheckbox: boolean;
 
     // Legend
+    graphLegendAxisScaleType: string;               // Type of Axis, ie Linear, Log, etc
     graphLegendHide: boolean;
     graphLegendTitleCheckbox: boolean;
     graphLegendTitle: string;

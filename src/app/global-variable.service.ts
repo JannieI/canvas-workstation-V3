@@ -332,6 +332,7 @@ const widgetTemplate: Widget =
         "graphYaxisLabelColorName": "",
         "graphYaxisLabelColor": "",
 
+        "graphLegendAxisScaleType": "",
         "graphLegendHide": false,
         "graphLegendTitleCheckbox": true,
         "graphLegendTitle": "",
