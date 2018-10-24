@@ -1341,6 +1341,8 @@ This document describes items for later versions of Canvas.
 
     Widget Editor - Adv: Features to consider at a later stage
     --------------------
+    - General
+        - look at use case: do we need a little pic / icon next to each bar (title, x, etc) to make it easier to recognise?
     - Types:
         - suggest graph types based on fields selected (ie 1 quantitative field means could do a
         tick or pie chart)
