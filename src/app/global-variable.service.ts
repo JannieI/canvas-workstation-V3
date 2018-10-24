@@ -11288,6 +11288,11 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 };
             };
 
+            if (widget.graphLegendAxisScaleType != 'Default'  &&  widget.graphLegendAxisScaleType != undefined) {
+                specification['encoding']['color']['scale'] =
+                {"type": widget.graphLegendAxisScaleType.toLowerCase() };
+            };
+
 
             // if (widget. != '') {
             //     if (widget. == 'Value') {
