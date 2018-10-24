@@ -3588,4 +3588,11 @@ export interface dataSchemaInterface {
         this.widgetGraphs = this.widgetGraphsFull.slice();
         this.showWidgetEditorLite = false;
     }
+
+    clickHelpMessage() {
+        // User clicked the Help icons -> give more help
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickHelpMessage', '@Start');
+
+        this.errorMessageEditor = 'This is only help text.'
+    }
 }

@@ -969,13 +969,14 @@
 
                             <div class="editorWidgetEditorLiteStep1">
                                 <b>Step 1:</b>
-                                First select the fields to graph.  Click the X Y C buttons
+                                Select the fields to graph.  Click the X Y C buttons
                                 at the end of the fields on the <i>left</i>.  Once selected, 
                                 the button will show in red:    
                                 <img
                                     [style.border]="'1px solid gray'"
                                     [style.width.%]="100"
                                     [style.height.px]="22"
+                                    (click)="clickHelpMessage()"
                                     src="../images/Widget-Editor-Lite-Field.png"
                                 >
 
@@ -987,6 +988,7 @@
                                 <img
                                     [style.width.px]="85"
                                     [style.height.px]="65"
+                                    (click)="clickHelpMessage()"
                                     src="../images/Widget-Editor-Lite-Graph.png"
                                 >
                             </div>
