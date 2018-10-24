@@ -3024,7 +3024,9 @@
                         </clr-signpost>
                     </div>
                     <div class="editorTypes">
-                        <div class="editorTypeImages" *ngFor="let row of widgetGraphs">
+                        <div class="editorTypeImages" *ngFor="let row of widgetGraphs"
+                            [style.border]="currentGraphID==row.id?  '2px solid black'  :  '1px solid gray'"
+                            >
                             <span
                                 (click)="showGraph(row.id)"
                                 >
