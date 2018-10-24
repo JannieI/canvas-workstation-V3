@@ -308,6 +308,7 @@ const widgetTemplate: Widget =
         "graphColorTypeName": "",
         "graphColorTimeUnit": "",
 
+        "graphXaxisScaleType": "",
         "graphXaxisTitle": "",
         "graphXaxisTitleCheckbox": true,
         "graphXaxisGrid": true,

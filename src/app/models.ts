@@ -1253,6 +1253,7 @@ export class Widget {
     graphXaxisLabelColor: string;                   // Actual color of X labels in hex, rgb, etc
     graphXaxisTitle: string;
     graphXaxisTitleCheckbox: boolean;
+    graphXaxisScaleType: string;                    // Type of axis, ie linear, log, etc
 
     // Y Axis
     graphYaxisFormat: string;
