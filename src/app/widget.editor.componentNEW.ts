@@ -2247,6 +2247,7 @@ export interface dataSchemaInterface {
 
         // Hide the panel with properties
         this.showFieldX2Properties = false;
+        this.localWidget.graphX2AggregateName = '';
 
     }
 
