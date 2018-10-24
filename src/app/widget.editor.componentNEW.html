@@ -791,6 +791,7 @@
                                             style="float:right;font-size: 0.5rem; margin-right: 3px;"
                                             >
                                             <clr-icon *ngIf="row.isCalculated"
+                                                style="cursor: pointer"
                                                 shape="calculator"
                                                 size="14"
                                                 (click)="dblClickFieldRow(row.name)"
@@ -3016,6 +3017,7 @@
                                 [style.width.px]="85"
                                 [style.height.px]="65"
                                 [src]="row.imageUrl"
+                                [title]="row.shortName"
                                 (click)="showGraph(row.id)"
                             >
                         </div>
