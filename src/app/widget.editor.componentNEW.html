@@ -1432,6 +1432,7 @@
                             </div>
                         </div>
 
+                        <!-- X Axis Sub Header -->
                         <div class="editorXPropertiesTitleAxis" *ngIf="showFieldXProperties"
                             (click)="clickShowXPropertiesAxis()"
                             >
@@ -1446,6 +1447,25 @@
                                 size="12"
                                 >
                             </clr-icon>
+                        </div>
+
+                        <!-- X-Axis Scale Type -->
+                        <div class="editorLineContainer">
+                            <div class="editorGraphXaxisScaleTypeTitle" *ngIf="showFieldXPropertiesAxis">
+                                Type:
+                            </div>
+                            <div class="select editorGraphXaxisScaleType"
+                                *ngIf="showFieldXPropertiesAxis"
+                                >
+                                <select id="selects_3"
+                                    [(ngModel)]="localWidget.graphXaxisScaleType"
+                                    >
+                                    <option>Default</option>
+                                    <option>Linear</option>
+                                    <option>Log</option>
+                                    <option>Quantile</option>
+                                </select>
+                            </div>
                         </div>
 
                         <!-- X-Axis Title -->
