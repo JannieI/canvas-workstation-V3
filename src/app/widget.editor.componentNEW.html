@@ -75,6 +75,7 @@
                                 [style.background-color]="(i == selectedRowIndex)? '#123456' : 'white'"
                                 [style.color]="(i == selectedRowIndex)? 'white' : 'gray'"
                                 (click)="clickDSrow(i, row.id)"
+                                (dblclick)="clickContinue()"
                                 >
                                 <clr-dg-cell>
                                     {{ row.name }}
@@ -2208,6 +2209,24 @@
                                 size="12"
                                 >
                             </clr-icon>
+                        </div>
+
+                        <!-- Legand-Axis Scale Type -->
+                        <div class="editorLineContainer">
+                            <div class="editorGraphLegendAxisScaleTypeTitle" *ngIf="showFieldColorPropertiesLegend">
+                                Type:
+                            </div>
+                            <div class="select editorGraphLegendAxisScaleType" *ngIf="showFieldColorPropertiesLegend"
+                                >
+                                <select id="selects_3"
+                                    [(ngModel)]="localWidget.graphLegendAxisScaleType"
+                                    >
+                                    <option>Default</option>
+                                    <option>Linear</option>
+                                    <option>Log</option>
+                                    <option>Quantile</option>
+                                </select>
+                            </div>
                         </div>
 
                         <!-- Legend-Axis: Hide -->

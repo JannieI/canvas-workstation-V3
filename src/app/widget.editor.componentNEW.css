@@ -1803,6 +1803,21 @@ clr-dg-cell {
                 font-size: 0.5rem;
                 margin-top: 5px;
             }
+            
+            .editorGraphLegendAxisScaleTypeTitle {
+                display: inline-block;
+                font-size: 0.5rem;
+                line-height: 0.8rem;
+                margin-left: 4px;
+                width: 38px;
+            }
+            .editorGraphLegendAxisScaleType {
+                display: inline-block;
+                font-size: 0.5rem;
+                line-height: 0.8rem;
+                margin: 3px;
+                width: 15px;
+            }
 
             .editorGraphLegendHideTitle {
                 display: inline-block;
