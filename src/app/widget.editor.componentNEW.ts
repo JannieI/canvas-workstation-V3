@@ -3352,6 +3352,9 @@ export interface dataSchemaInterface {
         // Reset
         this.filterErrorMessage = '';
 
+        // Get field type.tolower()
+        let fieldTypeLower: string = this.getFieldType(this.filterFieldName).toLowerCase();
+
         // Validation
         if (this.filterFieldName == ''  ||  this.filterFieldName == undefined) {
             this.filterErrorMessage = 'Filter field is required.';
@@ -3377,10 +3380,22 @@ export interface dataSchemaInterface {
                 return;
             };
         };
+        if (this.filterOperator == 'Range'
+            &&
+            fieldTypeLower != 'number') {
+            this.filterErrorMessage = 'Range only applies to Numbers.';
+            return;
+        };
         if (this.filterOperator == 'Valid'
             &&
-            this.getFieldType(this.filterFieldName).toLowerCase() != 'number') {
+            fieldTypeLower != 'number') {
             this.filterErrorMessage = 'Valid only applies to Numbers.';
+            return;
+        };
+        if (this.filterOperator == 'One Of'
+            &&
+            fieldTypeLower != 'string') {
+            this.filterErrorMessage = 'Range only applies to Numbers.';
             return;
         };
 
