@@ -1984,7 +1984,7 @@ clr-dg-cell {
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
-                    width: 38px;
+                    width: 64px;
                 }
                 .editorRowField {
                     border: 1px solid steelblue;
@@ -2001,7 +2001,7 @@ clr-dg-cell {
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
-                    width: 38px;
+                    width: 64px;
                 }
                 .editorGraphRowType {
                     border: 1px solid steelblue;
@@ -2028,7 +2028,7 @@ clr-dg-cell {
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
-                    width: 38px;
+                    width: 64px;
                 }
                 .editorColumnField {
                     border: 1px solid steelblue;
@@ -2045,7 +2045,7 @@ clr-dg-cell {
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
-                    width: 38px;
+                    width: 64px;
                 }
                 .editorGraphColumnType {
                     border: 1px solid steelblue;
@@ -2070,7 +2070,7 @@ clr-dg-cell {
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
-                    width: 38px;
+                    width: 64px;
                 }
                 .editorDetailField {
                     border: 1px solid steelblue;
@@ -2087,7 +2087,7 @@ clr-dg-cell {
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
-                    width: 38px;
+                    width: 64px;
                 }
                 .editorGraphDetailType {
                     border: 1px solid steelblue;
@@ -2112,7 +2112,7 @@ clr-dg-cell {
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
-                    width: 38px;
+                    width: 64px;
                 }
                 .editorX2Field {
                     border: 1px solid steelblue;
@@ -2129,7 +2129,7 @@ clr-dg-cell {
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
-                    width: 38px;
+                    width: 64px;
                 }
                 .editorGraphX2aggregate {
                     border: 1px solid steelblue;
@@ -2146,7 +2146,7 @@ clr-dg-cell {
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
-                    width: 38px;
+                    width: 64px;
                 }
                 .editorGraphX2Type {
                     border: 1px solid steelblue;
@@ -2171,7 +2171,7 @@ clr-dg-cell {
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
-                    width: 38px;
+                    width: 64px;
                 }
                 .editorY2Field {
                     border: 1px solid steelblue;
@@ -2188,7 +2188,7 @@ clr-dg-cell {
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
-                    width: 38px;
+                    width: 64px;
                 }
                 .editorGraphY2aggregate {
                     border: 1px solid steelblue;
@@ -2205,7 +2205,7 @@ clr-dg-cell {
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
-                    width: 38px;
+                    width: 64px;
                 }
                 .editorGraphY2Type {
                     border: 1px solid steelblue;
