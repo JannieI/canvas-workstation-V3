@@ -11140,6 +11140,11 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             specification['encoding']['x']['type'] = widget.graphXtype.toLowerCase();
             specification['encoding']['x']['timeUnit'] = widget.graphXtimeUnit.toLowerCase();
 
+            if (widget.graphXaxisScaleType != 'Default') {
+                specification['encoding']['x']['scale'] =
+                {"type": widget.graphXaxisScaleType.toLowerCase() };
+            };
+
             specification['encoding']['x']['axis'] = {"grid": widget.graphXaxisGrid };
             if (widget.graphXaxisGrid) {
                 specification['encoding']['x']['axis'] = {"gridColor": widget.graphXaxisGridColor };
