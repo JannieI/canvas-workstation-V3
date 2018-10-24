@@ -3395,7 +3395,7 @@ export interface dataSchemaInterface {
         if (this.filterOperator == 'One Of'
             &&
             fieldTypeLower != 'string') {
-            this.filterErrorMessage = 'Range only applies to Numbers.';
+            this.filterErrorMessage = 'One Of only applies to Strings.';
             return;
         };
 

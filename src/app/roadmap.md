@@ -1338,6 +1338,7 @@ This document describes items for later versions of Canvas.
     Data Quality:
     - Data Quality issues: add place to add detail values.  An overall statement can say all data  has an issue, but a specific one must identify the column(s) and row(s) affected, thus given the IDs or key values.
 
+
     Widget Editor - Adv: Features to consider at a later stage
     --------------------
     - Types:
@@ -1357,6 +1358,7 @@ This document describes items for later versions of Canvas.
         - trendlines
         - color per bar
         - more graph types, ie D3.js
+        - suggest graph types based on fields and their types selected?
 
     - Fields:
         - symbol
@@ -1397,6 +1399,8 @@ This document describes items for later versions of Canvas.
         - Show value range in fields: Select Total field in dropdown, then it shows that Total values ranges from say 0 to 100, and maybe even some stats like average...  Only if usecase.
         - Add Selection Predicate
         - Add Pre and Post filter indicator: Pre is at start, then other transformations like Windows, and then Post.  Serious power.
+        - for string fields: show top 10 distinct values ?
+        - for numbers: show range min to max ?
 
     - CONFIG:
         - how and where used?
