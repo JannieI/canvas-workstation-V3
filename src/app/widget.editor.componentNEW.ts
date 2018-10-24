@@ -2085,6 +2085,7 @@ export interface dataSchemaInterface {
         this.localWidget.graphXbin = false;
         this.localWidget.graphXMaxBins = 0;
         this.localWidget.graphXformat = '';
+        this.localWidget.graphXaxisFormat = '';
         this.localWidget.graphXimpute = '';
         this.localWidget.graphXimputeValue = '';
         this.localWidget.graphXstack = '';
@@ -2115,6 +2116,7 @@ export interface dataSchemaInterface {
         this.localWidget.graphYbin = false;
         this.localWidget.graphYMaxBins = 0;
         this.localWidget.graphYformat = '';
+        this.localWidget.graphYaxisFormat = '';
         this.localWidget.graphYimpute = '';
         this.localWidget.graphYimputeValue = '';
         this.localWidget.graphYstack = '';
@@ -2141,6 +2143,7 @@ export interface dataSchemaInterface {
         this.localWidget.graphColorBin = false;
         this.localWidget.graphColorMaxBins = 0;
         this.localWidget.graphColorFormat = '';
+        this.localWidget.graphLegendFormat = '';
         this.localWidget.graphColorImpute = '';
         this.localWidget.graphColorImputeValue = '';
         this.localWidget.graphColorStack = '';
