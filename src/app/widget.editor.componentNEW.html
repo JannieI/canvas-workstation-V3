@@ -2823,6 +2823,25 @@
                             </div>
                         </div>
 
+                        <!-- X2 Properties Aggregate -->
+                        <div class="editorLineContainer">
+                            <div class="editorGraphX2aggregateTitle" *ngIf="showFieldX2Properties">
+                                Aggregate:
+                            </div>
+                            <div class="select editorGraphX2aggregate" *ngIf="showFieldX2Properties"
+                                title="How the X2 values must be aggregated, ie Count"
+                                >
+                                <select id="selects_3"
+                                    [(ngModel)]="localWidget.graphX2AggregateName"
+                                    name="graphXaggregateName"
+                                    >
+                                    <option *ngFor="let row of aggregations; let i = index">
+                                        {{ row.displayName }}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
                         <!-- X2: type -->
                         <div class="editorLineContainer">
                             <div class="editorGraphX2TypeTitle" *ngIf="showFieldX2Properties">
