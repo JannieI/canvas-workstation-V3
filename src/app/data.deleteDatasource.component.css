@@ -41,13 +41,25 @@
         text-align: left;
     }
 
+    .gridDeleteMessage {
+        color: red;
+        grid-column-start: 1;
+        /* autoprefixer: off */
+        grid-column-end: 41;
+        grid-row-start: 5;
+        grid-row-end: 6;
+        margin: -6px 2px 2px 2px;
+        text-align: left;
+    }
+
+
     .gridDatasources {
         border: 1px solid gray;
         border-radius: 4px;
         grid-column-start: 1;
         /* autoprefixer: off */
         grid-column-end: 21;
-        grid-row-start: 5;
+        grid-row-start: 6;
         grid-row-end: 21;
         overflow-y: scroll;
         width: 100%;

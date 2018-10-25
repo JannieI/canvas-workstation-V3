@@ -41,6 +41,7 @@ export class DataDeleteDatasourceComponent implements OnInit {
     }
 
     datasources: Datasource[];
+    deleteMessage: string = '';
     errorMessage: string = "";
     selectedRowIndex: number = 0;
 
@@ -94,10 +95,9 @@ export class DataDeleteDatasourceComponent implements OnInit {
         this.globalVariableService.deleteDatasource(id).then(res => {
             this.datasources = this.datasources.filter(ds => ds.id != id);
 
-            console.warn('xx this.globalVariableService.datasets', this.globalVariableService.datasets)
             this.globalVariableService.datasets.forEach(dSet => {
                 if (dSet.datasourceID == id) {
-                    console.warn ('xx dataID',dSet)
+
                     let url: string = dSet.url;
                     let dataID: number = null;
                     if (url != null  &&  url != '') {
@@ -112,8 +112,17 @@ export class DataDeleteDatasourceComponent implements OnInit {
                     };
                     this.globalVariableService.deleteDataset(dSet.id).then();
                 };
-            })
+            });
+
+            // Let user know
+            let datasourceIndex: number = this.datasources.findIndex(ds => ds.id == id);
+            let datasourceName = '';
+            if (datasourceIndex >= 0) {
+                datasourceName = this.datasources[datasourceIndex].name;
+            };
+            this.deleteMessage = 'Datasource ' + datasourceName + ' deleted';
         });
+
     }
 
     clickClose(action: string) {
