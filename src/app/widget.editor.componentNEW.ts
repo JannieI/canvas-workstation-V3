@@ -2286,7 +2286,7 @@ export interface dataSchemaInterface {
 
         this.showProjectionDeleteIcon = false;
         this.projectionField = dragFieldMessage;
-        this.localWidget.graphProjectionField = '';
+        this.localWidget.graphProjectionType = '';
 
         // Hide the panel with properties
         this.showFieldProjectionProperties = false;
@@ -2845,6 +2845,17 @@ export interface dataSchemaInterface {
 
         // Toggle
         this.showFieldY2Properties = !this.showFieldY2Properties;
+    }
+
+    clickShowProjectionProperties() {
+        // Show Projection Properties Area
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickShowProjectionProperties', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
+
+        // Toggle
+        this.showFieldProjectionProperties = !this.showFieldProjectionProperties;
     }
 
     clickShowTitleProperties() {

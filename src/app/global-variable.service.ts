@@ -389,6 +389,8 @@ const widgetTemplate: Widget =
         "graphY2TypeName": "",
         "graphY2AggregateName": "",
 
+        "graphProjectionType": "",
+
         "tableBackgroundColor" : "",
         "tableBackgroundColorName" : "",
         "tableColor": "",
