@@ -284,6 +284,7 @@ export interface dataSchemaInterface {
     showFieldY2Properties: boolean = false;
     showFieldProjectionProperties: boolean = false;
     showPreview: boolean = false;
+    showProjectionDeleteIcon: boolean = false;
     showRowDeleteIcon: boolean = false;
     showSizeDeleteIcon: boolean = false;
     showSpecification: boolean = false;
@@ -2289,7 +2290,6 @@ export interface dataSchemaInterface {
 
         // Hide the panel with properties
         this.showFieldProjectionProperties = false;
-        this.localWidget.graphProjectionAggregateName = '';
 
     }
 

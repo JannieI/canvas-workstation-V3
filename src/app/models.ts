@@ -1334,6 +1334,9 @@ export class Widget {
     graphY2TypeName: string;
     graphY2AggregateName: string;
 
+    // Projection
+    graphProjectionField: string;       // Type of geo projection
+    
     // Table - to be determined later ...
     tableBackgroundColor: string;       // Actual colour (CSS name or HEX code)
     tableBackgroundColorName: string;   // Name - CSS (ie black) or Custome Name (Our company blue)
