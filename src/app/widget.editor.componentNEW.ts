@@ -3469,6 +3469,7 @@ export interface dataSchemaInterface {
             };
 
         };
+console.warn('xx this.localWidget.graphFilters', this.localWidget.graphFilters);
 
         // Clear out form
         this.clickFilterClear()

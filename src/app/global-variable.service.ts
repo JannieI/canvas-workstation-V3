@@ -11424,8 +11424,8 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                     filterSpec =
                         {"filter":
                             {
-                                "field": graphFilters[0].filterFieldName,
-                                "equal": +graphFilters[0].filterValue
+                                "field": graphFilters[i].filterFieldName,
+                                "equal": +graphFilters[i].filterValue
                             }
                         };
                 };
@@ -11598,14 +11598,14 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             // Add to Vega Spec
             if (filterSpec != null) {
                 if (graphFilters[i].filterTimeUnit != '') {
-                    filterSpec['filter']['timeUnit'] = graphFilters[i].filterTimeUnit;
+                    filterSpec['filter']['timeUnit'] = graphFilters[i].filterTimeUnit.toLowerCase();
                 };
 
                 specification['transform'].push(filterSpec);
                 // widget.graphTransformations.push(graphTransformationSpec);
             };
 
-            console.warn('xx END FILTER filterSpec', filterSpec, widget.graphTransformations);
+            console.warn('xx END FILTER widget.graphFilters', widget.graphFilters);
 
         }
 

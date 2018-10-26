@@ -3319,6 +3319,7 @@
                                 style="height: 160px !important;"
                                 >
                                 <clr-dg-column>FieldName</clr-dg-column>
+                                <clr-dg-column>TimeUnit</clr-dg-column>
                                 <clr-dg-column>Operator</clr-dg-column>
                                 <clr-dg-column>Value</clr-dg-column>
                                 <clr-dg-column>From</clr-dg-column>
@@ -3332,6 +3333,7 @@
                                     (click)="clickGraphFilterRowSelect(i, row.id)"
                                     >
                                     <clr-dg-cell>{{ row.filterFieldName }}</clr-dg-cell>
+                                    <clr-dg-cell>{{ row.filterTimeUnit }}</clr-dg-cell>
                                     <clr-dg-cell>{{ row.filterOperator }}</clr-dg-cell>
                                     <clr-dg-cell>{{ row.filterValue }}</clr-dg-cell>
                                     <clr-dg-cell>{{ row.filterValueFrom }}</clr-dg-cell>
