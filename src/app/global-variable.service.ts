@@ -358,7 +358,7 @@ const widgetTemplate: Widget =
         "graphLegendLabels": true,
         "graphLegendLabelColorName": '',
         "graphLegendLabelColor": '',
-    
+
         "graphSizeField": "",
         "graphSizeType": "",
         "graphSizeTypeName": "",
@@ -9476,7 +9476,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         if (parameters.preferenceShowWidgetEditorLite != null) {
             this.currentUser.preferenceShowWidgetEditorLite = parameters.preferenceShowWidgetEditorLite;
         };
-        
+
     }
 
     validateUser(userID: string): Promise<boolean> {
@@ -11052,7 +11052,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
 
 
         // Calculated Fields
-        if (widget.graphCalculations == null) {        
+        if (widget.graphCalculations == null) {
             widget.graphCalculations = [];
         };
         for (var i = 0; i < widget.graphCalculations.length; i++) {
@@ -11102,7 +11102,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         if (widget.graphMarkExtent == 'Q1 and Q3') {
             vegaGraphMarkExtent = 'iqr';
         };
-        
+
         specification['mark']['extent'] = "";
         if (widget.graphMark == 'errorband') {
             specification['mark']['extent'] = vegaGraphMarkExtent;
@@ -11277,7 +11277,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 specification['encoding']['color']['legend'] = null;
             } else {
                 if (!widget.graphLegendTitleCheckbox) {
-                    specification['encoding']['color']['legend'] = 
+                    specification['encoding']['color']['legend'] =
                         {
                             "title": null
                         };
@@ -11285,7 +11285,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                     if (widget.graphLegendTitle != ''  &&  widget.graphLegendTitle != undefined) {
                         specification['encoding']['color']['legend'] =
                             {
-                                "labelLimit": widget.graphDimensionRight, 
+                                "labelLimit": widget.graphDimensionRight,
                                 "title": widget.graphLegendTitle
                             };
                         if (widget.graphLegendLabels) {
@@ -11293,7 +11293,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                             specification['encoding']['color']['legend'].tickColor = widget.graphLegendLabelColor,
                             specification['encoding']['color']['legend'].titleColor = widget.graphLegendLabelColor
                         };
-        
+
                     };
                 };
             };
@@ -11394,7 +11394,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
 
 
         // Filter
-        if (widget.graphFilters == null) {        
+        if (widget.graphFilters == null) {
             widget.graphFilters = [];
         };
         let graphFilters = widget.graphFilters.filter(gflt => gflt.isActive).slice();
@@ -11523,9 +11523,9 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                         {"filter":
                             {
                                 "field": graphFilters[i].filterFieldName,
-                                "range": [ 
-                                    +graphFilters[i].filterValueFrom, 
-                                    +graphFilters[i].filterValueTo 
+                                "range": [
+                                    +graphFilters[i].filterValueFrom,
+                                    +graphFilters[i].filterValueTo
                                 ]
                             }
                         };
@@ -11535,9 +11535,9 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                         {"filter":
                             {
                                 "field": graphFilters[i].filterFieldName,
-                                "range": [ 
-                                    graphFilters[i].filterValueFrom, 
-                                    graphFilters[i].filterValueTo  
+                                "range": [
+                                    graphFilters[i].filterValueFrom,
+                                    graphFilters[i].filterValueTo
                                 ]
                             }
                         };
@@ -11597,6 +11597,8 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
 
             // Add to Vega Spec
             if (filterSpec != null) {
+                filterSpec['filter']['timeUnit'] = "year";
+
                 specification['transform'].push(filterSpec);
                 // widget.graphTransformations.push(graphTransformationSpec);
             };

@@ -1356,7 +1356,7 @@
                                     >
                             </div>
                         </div>
-    
+
                         <!-- X Properties stack -->
                         <div class="editorLineContainer">
                             <div class="editorGraphXstackTitle" *ngIf="showFieldXPropertiesField">
@@ -1731,7 +1731,7 @@
                                     >
                             </div>
                         </div>
-    
+
                         <!-- Y Properties stack -->
                         <div class="editorLineContainer">
                             <div class="editorGraphYstackTitle" *ngIf="showFieldYPropertiesField">
@@ -1803,7 +1803,7 @@
                                 >
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphYtimeUnit"
-                                    [disabled]="localWidget.graphYtypeName!='Temporal' 
+                                    [disabled]="localWidget.graphYtypeName!='Temporal'
                                              && localWidget.graphYtypeName!='Ordinal'"
                                     >
                                     <option *ngFor="let row of timeUnits; let i = index">
@@ -2421,7 +2421,7 @@
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphMarkInterpolate"
                                     name="graphMarkInterpolate"
-                                    [disabled]="localWidget.graphMark!='line' 
+                                    [disabled]="localWidget.graphMark!='line'
                                                 && localWidget.graphMark!='area'"
                                     >
                                     <option></option>
@@ -2429,7 +2429,7 @@
                                 </select>
                             </div>
                         </div>
-    
+
                         <!-- Mark Properties Line -->
                         <div class="editorLineContainer">
                             <div class="editorGraphMarkLineTitle" *ngIf="showFieldMarkProperties">
@@ -3208,6 +3208,23 @@
                                     <option *ngFor="let row of dataSchema; let i = index">
                                         {{ row.name }}
                                     </option>
+                                </select>
+                            </div>
+
+                            <div class="editorFilterTimeUnitTitle">
+                                TimeUnit:
+                            </div>
+                            <div class="select editorFilterTimeUnit"
+                                title="Select the operator for the filter"
+                                >
+                                <select id="selects_3"
+                                    [(ngModel)]="filterOperator"
+                                    (change)="filterTimeUnitSelected($event)"
+                                    name="filterTimeUnit"
+                                    >
+                                    <option>Year</option>
+                                    <option>Month</option>
+                                    <option>Day</option>
                                 </select>
                             </div>
 

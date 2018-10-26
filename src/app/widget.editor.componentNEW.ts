@@ -213,6 +213,7 @@ export interface dataSchemaInterface {
     filterFieldName: string = '';
     filterNrActive: number = 0;
     filterOperator: string = '';
+    filterTimeUnit: string = '';
     filterValue: string = '';
     filterValueFrom: string = '';
     filterValueTo: string = '';

@@ -2386,12 +2386,30 @@ clr-dg-cell {
                     margin: 3px;
                     width: 200px;
                 }
+                .editorFilterTimeUnitTitle {
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin-left: 44px;
+                    width: 60px;
+                }
+                .editorFilterTimeUnit {
+                    background-color: white;
+                    border: 1px solid steelblue;
+                    border-radius: 5px;
+                    display: inline-block;
+                    font-size: 0.5rem;
+                    line-height: 0.8rem;
+                    margin: 3px;
+                    width: 70px;
+                }
+
                 .editorFilterOperatorTitle {
                     display: inline-block;
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 44px;
-                    width: 64px;
+                    width: 60px;
                 }
                 .editorFilterOperator {
                     background-color: white;
@@ -2401,7 +2419,7 @@ clr-dg-cell {
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin: 3px;
-                    width: 200px;
+                    width: 140px;
                 }
 
                 .editorFilterValueTitle {
