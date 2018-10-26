@@ -11076,7 +11076,9 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         specification['mark']['type'] = widget.graphMark;
         specification['mark']['orient'] = widget.graphMarkOrient.toLowerCase();
         specification['mark']['line'] = widget.graphMarkLine;
-        specification['mark']['point'] = widget.graphMarkPoint;
+        if (widget.graphMarkPoint) {
+            specification['mark']['point'] = { "color": widget.graphMarkColour};
+        };
         specification['mark']['color'] = widget.graphMarkColour;
         specification['mark']['cornerRadius'] = widget.graphMarkCornerRadius;
         specification['mark']['opacity'] = widget.graphMarkOpacity;
