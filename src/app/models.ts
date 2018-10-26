@@ -1210,6 +1210,7 @@ export class Widget {
     graphXsort: string;
     graphXtype: string;
     graphXtypeName: string;
+    graphXinterpolate: string;
 
     // Y
     graphYfield: string;
@@ -1225,6 +1226,7 @@ export class Widget {
     graphYtimeUnit: string;
     graphYtype: string;
     graphYtypeName: string;
+    graphYinterpolate: string;
 
     // Color
     graphColorField: string;

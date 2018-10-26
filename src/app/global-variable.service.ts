@@ -278,6 +278,7 @@ const widgetTemplate: Widget =
         "graphXtimeUnit": "",
         "graphXtype": "ordinal",
         "graphXtypeName": "Ordinal",
+        "graphXinterpolate": "",
 
         "graphYfield": "",
         "graphYaggregateName": "",
@@ -292,6 +293,7 @@ const widgetTemplate: Widget =
         "graphYtimeUnit": "",
         "graphYtype": "",
         "graphYtypeName": "",
+        "graphYinterpolate": "",
 
         "graphColorField": "",
         "graphColorAggregateName": "",
@@ -11079,6 +11081,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         specification['mark']['cornerRadius'] = widget.graphMarkCornerRadius;
         specification['mark']['opacity'] = widget.graphMarkOpacity;
         specification['mark']['binSpacing'] = widget.graphMarkBinSpacing;
+        specification['mark']['interpolate'] = "step-after";
 
         let vegaGraphMarkExtent: string = 'stderr';
         if (widget.graphMarkExtent == 'Confidence Interval') {
@@ -11240,6 +11243,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             specification['encoding']['y']['axis']['labelLimit'] = widget.graphDimensionLeft;
 
         };
+
 
         // Color field
         if (widget.graphColorField != '') {
