@@ -3112,12 +3112,12 @@
                             </div>
                             <div class="editorGraphLatitude" *ngIf="showFieldProjectionProperties"
                                 id="target"
-                                (drop)="dropProjection($event);"
+                                (drop)="dropProjectionLatitude($event);"
                                 (dragenter)="dragenterProjection($event);"
                                 (dragleave)="dragleaveProjection($event);"
                                 (dragover)="dragoverProjection($event);"
                                 [style.background-color]="isDragoverProjections? 'lightgray' : 'transparent'"
-                                [style.font-style]="ProjectionField=='Drag a field here ...' ?  'italic'  :  'normal'"
+                                [style.font-style]="projectionField=='Drag a field here ...' ?  'italic'  :  'normal'"
                                 title="The Latitude of points in the Graph"
                                 >
 
@@ -3136,7 +3136,7 @@
                             </div>
                             <div class="editorGraphLongitude" *ngIf="showFieldProjectionProperties"
                                 id="target"
-                                (drop)="dropProjection($event);"
+                                (drop)="dropProjectionLongitude($event);"
                                 (dragenter)="dragenterProjection($event);"
                                 (dragleave)="dragleaveProjection($event);"
                                 (dragover)="dragoverProjection($event);"
