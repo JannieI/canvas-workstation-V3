@@ -11081,7 +11081,9 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
         specification['mark']['cornerRadius'] = widget.graphMarkCornerRadius;
         specification['mark']['opacity'] = widget.graphMarkOpacity;
         specification['mark']['binSpacing'] = widget.graphMarkBinSpacing;
-        specification['mark']['interpolate'] = "step-after";
+        if (widget.graphMarkInterpolate == "Step") {
+            specification['mark']['interpolate'] = "step-after";
+        };
 
         let vegaGraphMarkExtent: string = 'stderr';
         if (widget.graphMarkExtent == 'Confidence Interval') {
