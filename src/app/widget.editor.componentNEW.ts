@@ -3058,7 +3058,6 @@ export interface dataSchemaInterface {
         };
     }
 
-
     clickXBin() {
         // Reset Size X Max
         this.globalFunctionService.printToConsole(this.constructor.name,'clickXBin', '@Start');
