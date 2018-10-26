@@ -282,6 +282,7 @@ export interface dataSchemaInterface {
     showFieldDetailProperties: boolean = false;
     showFieldX2Properties: boolean = false;
     showFieldY2Properties: boolean = false;
+    showFieldProjectionProperties: boolean = false;
     showPreview: boolean = false;
     showRowDeleteIcon: boolean = false;
     showSizeDeleteIcon: boolean = false;
@@ -2272,6 +2273,23 @@ export interface dataSchemaInterface {
         // Hide the panel with properties
         this.showFieldY2Properties = false;
         this.localWidget.graphY2AggregateName = '';
+
+    }
+
+    clickClearProjectionField() {
+        // Clear the Projection Field and Remove X icon
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClearProjectionField', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
+
+        this.showProjectionDeleteIcon = false;
+        this.projectionField = dragFieldMessage;
+        this.localWidget.graphProjectionField = '';
+
+        // Hide the panel with properties
+        this.showFieldProjectionProperties = false;
+        this.localWidget.graphProjectionAggregateName = '';
 
     }
 
