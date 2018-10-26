@@ -235,6 +235,7 @@ export interface dataSchemaInterface {
     isDragoverDetail: boolean = false;
     isDragoverX2: boolean = false;
     isDragoverY2: boolean = false;
+    isDragoverProjection: boolean = false;
     localDatasources: Datasource[] = null;          // Current DS for the selected W
     localWidget: Widget;                            // W to modify, copied from selected
     nrRows: number;
@@ -2074,6 +2075,30 @@ export interface dataSchemaInterface {
         let fieldType:string = this.getFieldType(this.draggedField);
         this.localWidget.graphY2Type = this.defaultGraphTypeField(fieldType, 'type');
         this.localWidget.graphY2TypeName = this.defaultGraphTypeField(fieldType, 'name');
+    }
+
+    dropProjection(ev) {
+        // Event trigger when the dragged Field is dropped the Y2 channel
+        this.globalFunctionService.printToConsole(this.constructor.name,'dropProjection', '@Start');
+
+        // Show X icon
+        this.showProjectionDeleteIcon = true;
+
+        ev.preventDefault();
+        ev.dataTransfer.dropEffect = "move"
+        // Get the id of the target and add the moved element to the target's DOM
+
+        var data = ev.dataTransfer.getData("text");
+
+        this.projectionField = this.draggedField;
+        this.isDragoverProjection = false;
+
+        // Replace letter-buttons.  NB: this must sync with HTML code
+        let postion: number = this.projectionField.indexOf(' X Y C');
+        this.projectionField = this.projectionField.substring(0, postion != -1 ? postion : this.projectionField.length)
+
+        let fieldType:string = this.getFieldType(this.draggedField);
+        this.localWidget.graphProjectionType = this.defaultGraphTypeField(fieldType, 'type');
     }
 
     clickClearXField() {
