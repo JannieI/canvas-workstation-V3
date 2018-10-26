@@ -1408,7 +1408,7 @@ clr-dg-cell {
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
-                    width: 64px;
+                    width: 38px;
                 }
                 .editorGraphMarkLine {
                     /* border: 1px solid steelblue;
@@ -1425,7 +1425,7 @@ clr-dg-cell {
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
-                    width: 64px;
+                    width: 38px;
                 }
                 .editorGraphMarkPoint {
                     /* border: 1px solid steelblue;
@@ -1442,7 +1442,7 @@ clr-dg-cell {
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
-                    width: 42x;
+                    width: 38px;
                 }
                 .editorGraphMarkColour {
                     border: 1px solid steelblue;
@@ -1489,7 +1489,7 @@ clr-dg-cell {
                     font-size: 0.5rem;
                     line-height: 0.8rem;
                     margin-left: 4px;
-                    width: 38px;
+                    width: 64px;
                 }
                 .editorGraphMarkOpacity {
                     display: inline-block;

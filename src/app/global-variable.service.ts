@@ -218,6 +218,8 @@ const widgetTemplate: Widget =
         "graphMarkOrient": "Verticle",
         "graphMarkLine": false,
         "graphMarkPoint": false,
+        "graphMarkPointColorName": "",
+        "graphMarkPointColor": "",
         "graphMarkColourName": "",
         "graphMarkColour": "",
         "graphMarkCornerRadius": 0,
