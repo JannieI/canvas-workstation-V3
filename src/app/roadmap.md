@@ -1405,6 +1405,8 @@ This document describes items for later versions of Canvas.
         - Add Pre and Post filter indicator: Pre is at start, then other transformations like Windows, and then Post.  Serious power.
         - for string fields: show top 10 distinct values ?
         - for numbers: show range min to max ?
+        - add dates: maybe add calendar drop down, with {"filter": {"field": "date", "range": [{"year": 2006, "month": "jan", "date": 1}, {"year": 2008, "month": "feb", "date": 20}] }} checks if the date’s value is between Jan 1, 2006 and Feb 20, 2008
+        - add PRE and POST filter, like WHERE and HAVING, at start and end of Transformation[]
 
     - CONFIG:
         - how and where used?

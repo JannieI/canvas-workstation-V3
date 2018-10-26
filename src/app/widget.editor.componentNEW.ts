@@ -569,6 +569,9 @@ export interface dataSchemaInterface {
     x2Field: string = dragFieldMessage;
     yField: string = dragFieldMessage;
     y2Field: string = dragFieldMessage;
+    projectionField: string = '';
+    projectionFieldLatitude: string = dragFieldMessage;
+    projectionFieldLongitude: string = dragFieldMessage;
 
     timeUnits: string[] = [
         "",

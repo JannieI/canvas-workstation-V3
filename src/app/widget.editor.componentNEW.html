@@ -3044,6 +3044,111 @@
                                 </select>
                             </div>
                         </div>
+
+
+
+
+
+
+
+                        <!-- Projection: Channel Title Bar -->
+                        <div class="editorProjectionContainerTitle"
+                            title="Click to amend properties of the Projection field"
+                            (click)="clickShowProjectionProperties()"
+                            >
+                            <b>
+                                Projection
+                            </b>
+                            <clr-icon shape="angle down" *ngIf="!showFieldProjectionProperties"
+                                size="12"
+                                >
+                            </clr-icon>
+                            <clr-icon shape="angle up" *ngIf="showFieldProjectionProperties"
+                                size="12"
+                                >
+                            </clr-icon>
+                            <clr-icon shape="circle" *ngIf="projectionFieldLatitude!='Drag a field here ...'
+                                ||  projectionFieldLongitude!='Drag a field here ...'"
+                                class="is-solid"
+                                size="12"
+                                style="float: right;"
+                                >
+                            </clr-icon>
+                        </div>
+
+                        <!-- Projection: type -->
+                        <div class="editorLineContainer">
+                            <div class="editorGraphProjectionTypeTitle" *ngIf="showFieldProjectionProperties">
+                                Projection:
+                            </div>
+                            <div class="select editorGraphProjectionType" *ngIf="showFieldProjectionProperties"
+                                title="Type of the type of geo Projection for the Graph"
+                                >
+                                <select id="selects_3"
+                                    [(ngModel)]="localWidget.graphProjection"
+                                    name="graphProjectionTypeName"
+                                    >
+                                    <option>Ordinal</option>
+                                    <option>Quantitative</option>
+                                    <option>Temporal</option>
+                                    <option>Nominal</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Projection: Latitude Field -->
+                        <div class="editorLineContainer">
+                            <div class="editorProjectionFieldTitle" *ngIf="showFieldProjectionProperties">
+                                Latitude:
+                            </div>
+                            <div class="editorProjectionField" *ngIf="showFieldProjectionProperties"
+                                id="target"
+                                (drop)="dropProjection($event);"
+                                (dragenter)="dragenterProjection($event);"
+                                (dragleave)="dragleaveProjection($event);"
+                                (dragover)="dragoverProjection($event);"
+                                [style.background-color]="isDragoverProjections? 'lightgray' : 'transparent'"
+                                [style.font-style]="ProjectionField=='Drag a field here ...' ?  'italic'  :  'normal'"
+                                title="The Projection field show the Projection of elements in the Graph"
+                                >
+
+                                <clr-icon shape="times" *ngIf="showProjectionDeleteIcon"
+                                    (click)="clickClearProjectionField()"
+                                    >
+                                </clr-icon>
+                                {{ projectionFieldLatitude }}
+                            </div>
+                        </div>
+
+                        <!-- Projection: Longitude Field -->
+                        <div class="editorLineContainer">
+                            <div class="editorProjectionFieldTitle" *ngIf="showFieldProjectionProperties">
+                                Longitude:
+                            </div>
+                            <div class="editorProjectionField" *ngIf="showFieldProjectionProperties"
+                                id="target"
+                                (drop)="dropProjection($event);"
+                                (dragenter)="dragenterProjection($event);"
+                                (dragleave)="dragleaveProjection($event);"
+                                (dragover)="dragoverProjection($event);"
+                                [style.background-color]="isDragoverProjections? 'lightgray' : 'transparent'"
+                                [style.font-style]="ProjectionField=='Drag a field here ...' ?  'italic'  :  'normal'"
+                                title="The Projection field show the Projection of elements in the Graph"
+                                >
+
+                                <clr-icon shape="times" *ngIf="showProjectionDeleteIcon"
+                                    (click)="clickClearProjectionField()"
+                                    >
+                                </clr-icon>
+                                {{ projectionFieldLongitude }}
+                            </div>
+                        </div>
+
+
+
+
+
+
                     </div>
 
 
@@ -3260,7 +3365,7 @@
                             <input type="text"
                                 [(ngModel)]="filterValue"
                                 name="filterValue"
-                                placeholder="12 Japan  1,5  a,b,c  true"
+                                placeholder="12 Japan  1,5  a,b,c  true feb"
                                 title="Enter a value for the filter.  Ranges use x,y for from,to"
                                 >
                         </div>
