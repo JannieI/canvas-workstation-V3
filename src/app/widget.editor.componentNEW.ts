@@ -2118,7 +2118,7 @@ export interface dataSchemaInterface {
         this.localWidget.graphYformat = '';
         this.localWidget.graphYaxisFormat = '';
         this.localWidget.graphYimpute = '';
-        this.localWidget.graphYimputeValue = '';
+        this.localWidget.graphYimputeValue = 0;
         this.localWidget.graphYstack = '';
         this.localWidget.graphYsort = '';
         this.localWidget.graphYtypeName = '';

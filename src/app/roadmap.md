@@ -205,9 +205,6 @@ This document describes items for later versions of Canvas.
 
         Make ONE month red, or colour ONE legend option RED
 
-        Pan & Zoom:
-            - how!?
-
         Layered graphs - consider VERY carefully as this may be a huge amount of work
 
 
@@ -1343,6 +1340,11 @@ This document describes items for later versions of Canvas.
     --------------------
     - General
         - look at use case: do we need a little pic / icon next to each bar (title, x, etc) to make it easier to recognise?
+
+
+    - Pan & Zoom:
+        - how!?
+
     - Types:
         - suggest graph types based on fields selected (ie 1 quantitative field means could do a
         tick or pie chart)

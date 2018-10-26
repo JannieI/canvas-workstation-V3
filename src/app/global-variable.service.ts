@@ -304,7 +304,7 @@ const widgetTemplate: Widget =
         "graphYMaxBins": 0,
         "graphYformat": "",
         "graphYimpute": "",
-        "graphYimputeValue": "0",
+        "graphYimputeValue": 0,
         "graphYstack": "",
         "graphYsort": "",
         "graphYtimeUnit": "",
@@ -11201,7 +11201,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             if (widget.graphYimpute != '') {
                 if (widget.graphYimpute == 'Value') {
                     specification['encoding']['y']['impute'] =
-                        {"value": widget.graphYimputeValue };
+                        {"value": +widget.graphYimputeValue };
                 } else {
                     specification['encoding']['y']['impute'] =
                         {"method": widget.graphYimpute };

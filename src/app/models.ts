@@ -1238,7 +1238,7 @@ export class Widget {
     graphYMaxBins: number;
     graphYformat: string;
     graphYimpute: string;
-    graphYimputeValue: string;
+    graphYimputeValue: number;
     graphYstack: string;
     graphYsort: string;
     graphYtimeUnit: string;
