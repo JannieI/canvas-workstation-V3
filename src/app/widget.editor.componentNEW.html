@@ -3107,10 +3107,10 @@
 
                         <!-- Projection: Latitude Field -->
                         <div class="editorLineContainer">
-                            <div class="editorProjectionFieldTitle" *ngIf="showFieldProjectionProperties">
+                            <div class="editorProjectionLatitudeTitle" *ngIf="showFieldProjectionProperties">
                                 Latitude:
                             </div>
-                            <div class="editorProjectionField" *ngIf="showFieldProjectionProperties"
+                            <div class="editorProjectionLatitude" *ngIf="showFieldProjectionProperties"
                                 id="target"
                                 (drop)="dropProjection($event);"
                                 (dragenter)="dragenterProjection($event);"
@@ -3118,7 +3118,7 @@
                                 (dragover)="dragoverProjection($event);"
                                 [style.background-color]="isDragoverProjections? 'lightgray' : 'transparent'"
                                 [style.font-style]="ProjectionField=='Drag a field here ...' ?  'italic'  :  'normal'"
-                                title="The Projection field show the Projection of elements in the Graph"
+                                title="The Latitude of points in the Graph"
                                 >
 
                                 <clr-icon shape="times" *ngIf="showProjectionDeleteIcon"
