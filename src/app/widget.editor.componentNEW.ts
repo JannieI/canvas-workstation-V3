@@ -2561,6 +2561,14 @@ export interface dataSchemaInterface {
         this.isDragoverProjection = false;
     }
 
+    dragleaveProjectionLatitude(ev, actionName: string) {
+        // Event trigger when the dragged Field is leaves the ProjectionLatitude field
+        this.globalFunctionService.printToConsole(this.constructor.name,'dragleaveProjectionLatitude', '@Start');
+
+        ev.preventDefault();
+        this.isDragoverProjectionLatitude = false;
+    }
+
     clickDatasource(index: number, name: string) {
         // Show dropdown of DS
         this.globalFunctionService.printToConsole(this.constructor.name,'clickDatasource', '@Start');
