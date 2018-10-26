@@ -213,6 +213,22 @@ const widgetTemplate: Widget =
         "containerTop": 80,
         "containerWidth": 410,
         "containerZindex": 50,
+
+        "graphMark": "tick",
+        "graphMarkOrient": "Verticle",
+        "graphMarkLine": false,
+        "graphMarkPoint": false,
+        "graphMarkColourName": "",
+        "graphMarkColour": "",
+        "graphMarkCornerRadius": 0,
+        "graphMarkExtent": "",
+        "graphMarkOpacity": 1,
+        "graphMarkBinSpacing": 0,
+        "graphMarkInterpolate": "",
+
+        "graphUrl": "",
+        "graphData": "",
+
         "graphTitleText": "",
         "graphTitleAnchor": "Middle",
         "graphTitleAngle": 0,
@@ -278,7 +294,6 @@ const widgetTemplate: Widget =
         "graphXtimeUnit": "",
         "graphXtype": "ordinal",
         "graphXtypeName": "Ordinal",
-        "graphXinterpolate": "",
 
         "graphYfield": "",
         "graphYaggregateName": "",
@@ -293,7 +308,6 @@ const widgetTemplate: Widget =
         "graphYtimeUnit": "",
         "graphYtype": "",
         "graphYtypeName": "",
-        "graphYinterpolate": "",
 
         "graphColorField": "",
         "graphColorAggregateName": "",
@@ -372,20 +386,6 @@ const widgetTemplate: Widget =
         "graphY2Type": "",
         "graphY2TypeName": "",
         "graphY2AggregateName": "",
-
-        "graphMark": "tick",
-        "graphMarkOrient": "Verticle",
-        "graphMarkLine": false,
-        "graphMarkPoint": false,
-        "graphMarkColourName": "",
-        "graphMarkColour": "",
-        "graphMarkCornerRadius": 0,
-        "graphMarkExtent": "",
-        "graphMarkOpacity": 1,
-        "graphMarkBinSpacing": 0,
-
-        "graphUrl": "",
-        "graphData": "",
 
         "tableBackgroundColor" : "",
         "tableBackgroundColorName" : "",

@@ -1152,6 +1152,23 @@ export class Widget {
     graphSpecification: any;
     graphDescription: string;
 
+    // Mark
+    graphMark: string;
+    graphMarkOrient: string;
+    graphMarkLine: boolean;
+    graphMarkPoint: boolean;
+    graphMarkColourName: string;
+    graphMarkColour: string;
+    graphMarkCornerRadius: number;
+    graphMarkExtent: string;            // Extent: ci, stderr, stdev, irq for Error Band & -Bar
+    graphMarkOpacity: number;
+    graphMarkBinSpacing: number;
+    graphMarkInterpolate: string;
+
+    // Data
+    graphUrl: string;
+    graphData: any;
+
     // Title
     graphTitleText: string;
     graphTitleAnchor: string;
@@ -1210,7 +1227,6 @@ export class Widget {
     graphXsort: string;
     graphXtype: string;
     graphXtypeName: string;
-    graphXinterpolate: string;
 
     // Y
     graphYfield: string;
@@ -1226,7 +1242,6 @@ export class Widget {
     graphYtimeUnit: string;
     graphYtype: string;
     graphYtypeName: string;
-    graphYinterpolate: string;
 
     // Color
     graphColorField: string;
@@ -1315,22 +1330,6 @@ export class Widget {
     graphY2Type: string;
     graphY2TypeName: string;
     graphY2AggregateName: string;
-
-    // Mark
-    graphMark: string;
-    graphMarkOrient: string;
-    graphMarkLine: boolean;
-    graphMarkPoint: boolean;
-    graphMarkColourName: string;
-    graphMarkColour: string;
-    graphMarkCornerRadius: number;
-    graphMarkExtent: string;            // Extent: ci, stderr, stdev, irq for Error Band & -Bar
-    graphMarkOpacity: number;
-    graphMarkBinSpacing: number;
-
-    // Data
-    graphUrl: string;
-    graphData: any;
 
     // Table - to be determined later ...
     tableBackgroundColor: string;       // Actual colour (CSS name or HEX code)

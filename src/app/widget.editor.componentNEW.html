@@ -1356,24 +1356,6 @@
                                     >
                             </div>
                         </div>
-
-                        <!-- X Properties interpolate -->
-                        <div class="editorLineContainer">
-                            <div class="editorGraphXinterpolateTitle" *ngIf="showFieldXPropertiesField">
-                                interpolate:
-                            </div>
-                            <div class="select editorGraphXinterpolate" *ngIf="showFieldXPropertiesField"
-                                title="Specify how the X values must be interpolated"
-                                >
-                                <select id="selects_3"
-                                    [(ngModel)]="localWidget.graphXinterpolate"
-                                    name="graphXinterpolate"
-                                    >
-                                    <option></option>
-                                    <option>Step</option>
-                                </select>
-                            </div>
-                        </div>
     
                         <!-- X Properties stack -->
                         <div class="editorLineContainer">
@@ -1761,6 +1743,8 @@
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphYinterpolate"
                                     name="graphYinterpolate"
+                                    [disabled]="localWidget.graphMark!='line' 
+                                             && localWidget.graphMark!='bar'"
                                     >
                                     <option></option>
                                     <option>Step</option>
@@ -2446,6 +2430,26 @@
                             </div>
                         </div>
 
+                        <!-- Mark Properties interpolate -->
+                        <div class="editorLineContainer">
+                            <div class="editorGraphMarkInterpolateTitle" *ngIf="showFieldMarkProperties">
+                                interpolate:
+                            </div>
+                            <div class="select editorGraphMarkInterpolate" *ngIf="showFieldMarkProperties"
+                                title="Specify how the values must be interpolated"
+                                >
+                                <select id="selects_3"
+                                    [(ngModel)]="localWidget.graphMarkInterpolate"
+                                    name="graphMarkInterpolate"
+                                    [disabled]="localWidget.graphMark!='line' 
+                                                && localWidget.graphMark!='bar'"
+                                    >
+                                    <option></option>
+                                    <option>Step</option>
+                                </select>
+                            </div>
+                        </div>
+    
                         <!-- Mark Properties Line -->
                         <div class="editorLineContainer">
                             <div class="editorGraphMarkLineTitle" *ngIf="showFieldMarkProperties">
