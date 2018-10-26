@@ -11204,7 +11204,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                         {"value": +widget.graphYimputeValue };
                 } else {
                     specification['encoding']['y']['impute'] =
-                        {"method": widget.graphYimpute };
+                        {"method": widget.graphYimpute.toLowerCase() };
                 };
             };
             specification['encoding']['y']['stack'] = widget.graphYstack.toLowerCase();
