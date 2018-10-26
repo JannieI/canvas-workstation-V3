@@ -11597,7 +11597,9 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
 
             // Add to Vega Spec
             if (filterSpec != null) {
-                filterSpec['filter']['timeUnit'] = "year";
+                if (graphFilters[i].filterTimeUnit != '') {
+                    filterSpec['filter']['timeUnit'] = graphFilters[i].filterTimeUnit;
+                };
 
                 specification['transform'].push(filterSpec);
                 // widget.graphTransformations.push(graphTransformationSpec);
