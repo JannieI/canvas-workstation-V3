@@ -1357,6 +1357,24 @@
                             </div>
                         </div>
 
+                        <!-- X Properties interpolate -->
+                        <div class="editorLineContainer">
+                            <div class="editorGraphXinterpolateTitle" *ngIf="showFieldXPropertiesField">
+                                interpolate:
+                            </div>
+                            <div class="select editorGraphXinterpolate" *ngIf="showFieldXPropertiesField"
+                                title="Specify how the X values must be interpolated"
+                                >
+                                <select id="selects_3"
+                                    [(ngModel)]="localWidget.graphXinterpolate"
+                                    name="graphXinterpolate"
+                                    >
+                                    <option></option>
+                                    <option>Step</option>
+                                </select>
+                            </div>
+                        </div>
+    
                         <!-- X Properties stack -->
                         <div class="editorLineContainer">
                             <div class="editorGraphXstackTitle" *ngIf="showFieldXPropertiesField">
@@ -1738,7 +1756,7 @@
                                 Interpolate:
                             </div>
                             <div class="select editorGraphYinterpolate" *ngIf="showFieldYPropertiesField"
-                                title="How Y values must be interpolateed"
+                                title="How Y values must be interpolated"
                                 >
                                 <select id="selects_3"
                                     [(ngModel)]="localWidget.graphYinterpolate"
