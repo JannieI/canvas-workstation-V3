@@ -11412,7 +11412,9 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
             };
 
             if (graphFilters[i].filterOperator == 'Equal') {
-                if (filterFieldDataType == 'string') {
+                if (filterFieldDataType == 'string'  
+                    ||  
+                    graphFilters[i].filterTimeUnit.toLowerCase() == 'month') {
                     filterSpec =
                         {"filter":
                             {
