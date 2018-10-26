@@ -236,12 +236,16 @@ export interface dataSchemaInterface {
     isDragoverX2: boolean = false;
     isDragoverY2: boolean = false;
     isDragoverProjection: boolean = false;
+    isDragoverProjectionLatitude: boolean = false;
+    isDragoverProjectionLongitude: boolean = false;
     localDatasources: Datasource[] = null;          // Current DS for the selected W
     localWidget: Widget;                            // W to modify, copied from selected
     nrRows: number;
     oldWidget: Widget = null;                       // W at start
     rowField: string = dragFieldMessage;
-    // sampleNumberRows: number = 0;
+    projectionField: string = '';
+    projectionFieldLatitude: string = dragFieldMessage;
+    projectionFieldLongitude: string = dragFieldMessage;
     selectedDescription: string = '';
     selectedDSName: string = '';
     selectedFieldIndex: number = -1;
@@ -285,6 +289,7 @@ export interface dataSchemaInterface {
     showFieldY2Properties: boolean = false;
     showFieldProjectionProperties: boolean = false;
     showPreview: boolean = false;
+    showProjectionDeleteIcon: boolean = false;
     showProjectionLatitudeDeleteIcon: boolean = false;
     showProjectionLongitudeDeleteIcon: boolean = false;
     showRowDeleteIcon: boolean = false;
@@ -573,9 +578,6 @@ export interface dataSchemaInterface {
     x2Field: string = dragFieldMessage;
     yField: string = dragFieldMessage;
     y2Field: string = dragFieldMessage;
-    projectionField: string = '';
-    projectionFieldLatitude: string = dragFieldMessage;
-    projectionFieldLongitude: string = dragFieldMessage;
 
     timeUnits: string[] = [
         "",
@@ -2085,6 +2087,30 @@ export interface dataSchemaInterface {
         this.localWidget.graphY2TypeName = this.defaultGraphTypeField(fieldType, 'name');
     }
 
+    dropProjection(ev) {
+        // Event trigger when the dragged Field is dropped the Y2 channel
+        this.globalFunctionService.printToConsole(this.constructor.name,'dropProjection', '@Start');
+
+        // Show X icon
+        this.showProjectionDeleteIcon = true;
+
+        ev.preventDefault();
+        ev.dataTransfer.dropEffect = "move"
+        // Get the id of the target and add the moved element to the target's DOM
+
+        var data = ev.dataTransfer.getData("text");
+
+        this.projectionField = this.draggedField;
+        this.isDragoverProjection = false;
+
+        // Replace letter-buttons.  NB: this must sync with HTML code
+        let postion: number = this.projectionField.indexOf(' X Y C');
+        this.projectionField = this.projectionField.substring(0, postion != -1 ? postion : this.projectionField.length)
+
+        let fieldType:string = this.getFieldType(this.draggedField);
+        this.localWidget.graphProjectionType = this.defaultGraphTypeField(fieldType, 'type');
+    }
+
     dropProjectionLatitude(ev) {
         // Event trigger when the dragged Field is dropped the Y2 channel
         this.globalFunctionService.printToConsole(this.constructor.name,'dropProjectionLatitude', '@Start');
@@ -2098,39 +2124,15 @@ export interface dataSchemaInterface {
 
         var data = ev.dataTransfer.getData("text");
 
-        this.projectionLatitudeField = this.draggedField;
+        this.projectionFieldLatitude = this.draggedField;
         this.isDragoverProjectionLatitude = false;
 
         // Replace letter-buttons.  NB: this must sync with HTML code
-        let postion: number = this.projectionLatitudeField.indexOf(' X Y C');
-        this.projectionLatitudeField = this.projectionLatitudeField.substring(0, postion != -1 ? postion : this.projectionLatitudeField.length)
+        let postion: number = this.projectionFieldLatitude.indexOf(' X Y C');
+        this.projectionFieldLatitude = this.projectionFieldLatitude.substring(0, postion != -1 ? postion : this.projectionFieldLatitude.length)
 
         let fieldType:string = this.getFieldType(this.draggedField);
-        this.localWidget.graphProjectionLatitudeType = this.defaultGraphTypeField(fieldType, 'type');
-    }
-
-    dropProjectionLongitude(ev) {
-        // Event trigger when the dragged Field is dropped the Y2 channel
-        this.globalFunctionService.printToConsole(this.constructor.name,'dropProjectionLongitude', '@Start');
-
-        // Show X icon
-        this.showProjectionLongitudeDeleteIcon = true;
-
-        ev.preventDefault();
-        ev.dataTransfer.dropEffect = "move"
-        // Get the id of the target and add the moved element to the target's DOM
-
-        var data = ev.dataTransfer.getData("text");
-
-        this.projectionLongitudeField = this.draggedField;
-        this.isDragoverProjectionLongitude = false;
-
-        // Replace letter-buttons.  NB: this must sync with HTML code
-        let postion: number = this.projectionLongitudeField.indexOf(' X Y C');
-        this.projectionLongitudeField = this.projectionLongitudeField.substring(0, postion != -1 ? postion : this.projectionLongitudeField.length)
-
-        let fieldType:string = this.getFieldType(this.draggedField);
-        this.localWidget.graphProjectionLongitudeType = this.defaultGraphTypeField(fieldType, 'type');
+        this.localWidget.projectionFieldLatitude = this.defaultGraphTypeField(fieldType, 'type');
     }
 
     clickClearXField() {
