@@ -2101,30 +2101,6 @@ export interface dataSchemaInterface {
         this.localWidget.graphY2TypeName = this.defaultGraphTypeField(fieldType, 'name');
     }
 
-    dropProjection(ev) {
-        // Event trigger when the dragged Field is dropped the Y2 channel
-        this.globalFunctionService.printToConsole(this.constructor.name,'dropProjection', '@Start');
-
-        // Show X icon
-        this.showProjectionDeleteIcon = true;
-
-        ev.preventDefault();
-        ev.dataTransfer.dropEffect = "move"
-        // Get the id of the target and add the moved element to the target's DOM
-
-        var data = ev.dataTransfer.getData("text");
-
-        this.projectionField = this.draggedField;
-        this.isDragoverProjection = false;
-
-        // Replace letter-buttons.  NB: this must sync with HTML code
-        let postion: number = this.projectionField.indexOf(' X Y C');
-        this.projectionField = this.projectionField.substring(0, postion != -1 ? postion : this.projectionField.length)
-
-        let fieldType:string = this.getFieldType(this.draggedField);
-        this.localWidget.graphProjectionType = this.defaultGraphTypeField(fieldType, 'type');
-    }
-
     dropProjectionLatitude(ev) {
         // Event trigger when the dragged Field is dropped the Y2 channel
         this.globalFunctionService.printToConsole(this.constructor.name,'dropProjectionLatitude', '@Start');
@@ -2142,8 +2118,8 @@ export interface dataSchemaInterface {
         this.isDragoverProjectionLatitude = false;
 
         // Replace letter-buttons.  NB: this must sync with HTML code
-        let postion: number = this.projectionFieldLatitude.indexOf(' X Y C');
-        this.projectionFieldLatitude = this.projectionFieldLatitude.substring(0, postion != -1 ? postion : this.projectionFieldLatitude.length)
+        let position: number = this.projectionFieldLatitude.indexOf(' X Y C');
+        this.projectionFieldLatitude = this.projectionFieldLatitude.substring(0, position != -1 ? position : this.projectionFieldLatitude.length)
 
         let fieldType:string = this.getFieldType(this.draggedField);
         this.localWidget.projectionFieldLatitude = this.defaultGraphTypeField(fieldType, 'type');
@@ -2166,8 +2142,8 @@ export interface dataSchemaInterface {
         this.isDragoverProjectionLongitude = false;
 
         // Replace letter-buttons.  NB: this must sync with HTML code
-        let postion: number = this.projectionFieldLongitude.indexOf(' X Y C');
-        this.projectionFieldLongitude = this.projectionFieldLongitude.substring(0, postion != -1 ? postion : this.projectionFieldLongitude.length)
+        let position: number = this.projectionFieldLongitude.indexOf(' X Y C');
+        this.projectionFieldLongitude = this.projectionFieldLongitude.substring(0, position != -1 ? position : this.projectionFieldLongitude.length)
 
         let fieldType:string = this.getFieldType(this.draggedField);
         this.localWidget.projectionFieldLongitude = this.defaultGraphTypeField(fieldType, 'type');
@@ -2384,6 +2360,38 @@ export interface dataSchemaInterface {
         this.showProjectionDeleteIcon = false;
         this.projectionField = dragFieldMessage;
         this.localWidget.graphProjectionType = '';
+
+        // Hide the panel with properties
+        this.showFieldProjectionProperties = false;
+
+    }
+
+    clickClearProjectionFieldLatitude() {
+        // Clear the Projection Latitude Field and Remove X icon
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClearProjectionFieldLatitude', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
+
+        this.showProjectionLatitudeDeleteIcon = false;
+        this.projectionFieldLatitude = dragFieldMessage;
+        this.localWidget.projectionFieldLatitude = '';
+
+        // Hide the panel with properties
+        this.showFieldProjectionProperties = false;
+
+    }
+
+    clickClearProjectionFieldLongitude() {
+        // Clear the Projection Longitude Field and Remove X icon
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickClearProjectionFieldLongitude', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
+
+        this.showProjectionLongitudeDeleteIcon = false;
+        this.projectionFieldLongitude = dragFieldMessage;
+        this.localWidget.projectionFieldLongitude = '';
 
         // Hide the panel with properties
         this.showFieldProjectionProperties = false;
