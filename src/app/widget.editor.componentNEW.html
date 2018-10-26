@@ -1732,6 +1732,24 @@
                             </div>
                         </div>
 
+                        <!-- Y Properties Interpolate -->
+                        <div class="editorLineContainer">
+                            <div class="editorGraphYinterpolateTitle" *ngIf="showFieldYPropertiesField">
+                                Interpolate:
+                            </div>
+                            <div class="select editorGraphYinterpolate" *ngIf="showFieldYPropertiesField"
+                                title="How Y values must be interpolateed"
+                                >
+                                <select id="selects_3"
+                                    [(ngModel)]="localWidget.graphYinterpolate"
+                                    name="graphYinterpolate"
+                                    >
+                                    <option></option>
+                                    <option>Step</option>
+                                </select>
+                            </div>
+                        </div>
+    
                         <!-- Y Properties stack -->
                         <div class="editorLineContainer">
                             <div class="editorGraphYstackTitle" *ngIf="showFieldYPropertiesField">
