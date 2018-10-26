@@ -3286,6 +3286,7 @@ export interface dataSchemaInterface {
             this.filterID = this.localWidget.graphFilters[gridFilterIndex].id;
             this.filterFieldName = this.localWidget.graphFilters[gridFilterIndex].filterFieldName;
             this.filterOperator = this.localWidget.graphFilters[gridFilterIndex].filterOperator;
+            this.filterTimeUnit = this.localWidget.graphFilters[gridFilterIndex].filterTimeUnit;
             this.filterValue = this.localWidget.graphFilters[gridFilterIndex].filterValue;
             this.filterValueFrom = this.localWidget.graphFilters[gridFilterIndex].filterValueFrom;
             this.filterValueTo = this.localWidget.graphFilters[gridFilterIndex].filterValueTo;
@@ -3294,6 +3295,7 @@ export interface dataSchemaInterface {
             this.filterID = -1;
             this.filterFieldName = '';
             this.filterOperator = '';
+            this.filterTimeUnit = '';
             this.filterValue = '';
             this.filterValueFrom = '';
             this.filterValueTo = '';
@@ -3310,6 +3312,7 @@ export interface dataSchemaInterface {
         this.filterID = -1;
         this.filterFieldName = '';
         this.filterOperator = '';
+        this.filterTimeUnit = '';
         this.filterValue = '';
         this.filterValueFrom = '';
         this.filterValueTo = '';
@@ -3438,6 +3441,7 @@ export interface dataSchemaInterface {
                 sequence: 0,        // For LATER use
                 filterFieldName: this.filterFieldName,
                 filterOperator: this.filterOperator,
+                filterTimeUnit: this.filterTimeUnit,
                 filterValue: this.filterValue,
                 filterValueFrom: this.filterValueFrom,
                 filterValueTo: this.filterValueTo,
@@ -3454,6 +3458,8 @@ export interface dataSchemaInterface {
                     this.filterFieldName;
                 this.localWidget.graphFilters[gridFilterIndex].filterOperator =
                     this.filterOperator;
+                this.localWidget.graphFilters[gridFilterIndex].filterTimeUnit =
+                    this.filterTimeUnit;
                 this.localWidget.graphFilters[gridFilterIndex].filterValue =
                     this.filterValue;
                 this.localWidget.graphFilters[gridFilterIndex].filterValueFrom =
@@ -3486,6 +3492,16 @@ export interface dataSchemaInterface {
         this.errorMessageEditor = '';
 
         this.filterOperator = ev.target.value;
+    }
+
+    filterTimeUnitSelected(ev) {
+        // Selected a Filter TimeUnit
+        this.globalFunctionService.printToConsole(this.constructor.name,'filterTimeUnitSelected', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
+
+        this.filterTimeUnit = ev.target.value;
     }
 
     clickCalculatedClose() {

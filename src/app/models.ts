@@ -1032,6 +1032,7 @@ export class GraphFilter {
     sequence: number;                       // Sequence Nr - for LATER user
     filterFieldName: string;                // Name (text) of field
     filterOperator: string;                 // ie Equal, Less Than, etc
+    filterTimeUnit: string;                 // ie Year, Month, Day
     filterValue: string;                    // ie. 12 Japan  1,5  a,b,c  true
     filterValueFrom: string;                // From value for Range
     filterValueTo: string;                  // To value for Range
