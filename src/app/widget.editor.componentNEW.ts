@@ -2437,7 +2437,6 @@ export interface dataSchemaInterface {
         // this.dragoverColours = false;
     }
 
-
     dragleaveXField(ev, actionName: string) {
         // Event trigger when dragged field leave XField
         this.globalFunctionService.printToConsole(this.constructor.name,'dragleaveXField', '@Start');
@@ -2508,6 +2507,14 @@ export interface dataSchemaInterface {
 
         ev.preventDefault();
         this.isDragoverY2 = false;
+    }
+
+    dragleaveProjection(ev, actionName: string) {
+        // Event trigger when the dragged Field is leaves the Projection field
+        this.globalFunctionService.printToConsole(this.constructor.name,'dragleaveProjection', '@Start');
+
+        ev.preventDefault();
+        this.isDragoverProjection = false;
     }
 
     clickDatasource(index: number, name: string) {
