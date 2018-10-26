@@ -2471,6 +2471,16 @@ export interface dataSchemaInterface {
         // this.dragoverColours = false;
     }
 
+    dragenterProjectionLatitude(ev, actionName: string) {
+        // Event trigger when the dragged Field is enters the ProjectionLatitude field
+        this.globalFunctionService.printToConsole(this.constructor.name,'dragenterProjectionLatitude', '@Start');
+
+        ev.preventDefault();
+        // this.dragoverCol = false;
+        this.isDragoverProjectionLatitude = true;
+        // this.dragoverColours = false;
+    }
+
     dragleaveXField(ev, actionName: string) {
         // Event trigger when dragged field leave XField
         this.globalFunctionService.printToConsole(this.constructor.name,'dragleaveXField', '@Start');
