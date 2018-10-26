@@ -1795,6 +1795,13 @@ export interface dataSchemaInterface {
         ev.preventDefault();
     }
 
+    dragoverProjection(ev, actionName: string) {
+        // Event trigger when the dragged Field is over the Projection field
+        this.globalFunctionService.printToConsole(this.constructor.name,'dragoverProjection', '@Start');
+
+        ev.preventDefault();
+    }
+
     switchXandY() {
         // Event trigger when the dragged Field is dropped the Column field
         this.globalFunctionService.printToConsole(this.constructor.name,'switchXandY', '@Start');
