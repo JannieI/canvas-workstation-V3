@@ -1812,6 +1812,13 @@ export interface dataSchemaInterface {
         ev.preventDefault();
     }
 
+    dragoverProjectionLongitude(ev, actionName: string) {
+        // Event trigger when the dragged Field is over the ProjectionLongitude field
+        this.globalFunctionService.printToConsole(this.constructor.name,'dragoverProjectionLongitude', '@Start');
+
+        ev.preventDefault();
+    }
+
     switchXandY() {
         // Event trigger when the dragged Field is dropped the Column field
         this.globalFunctionService.printToConsole(this.constructor.name,'switchXandY', '@Start');
@@ -2140,6 +2147,30 @@ export interface dataSchemaInterface {
 
         let fieldType:string = this.getFieldType(this.draggedField);
         this.localWidget.projectionFieldLatitude = this.defaultGraphTypeField(fieldType, 'type');
+    }
+
+    dropProjectionLongitude(ev) {
+        // Event trigger when the dragged Field is dropped the Y2 channel
+        this.globalFunctionService.printToConsole(this.constructor.name,'dropProjectionLongitude', '@Start');
+
+        // Show X icon
+        this.showProjectionLongitudeDeleteIcon = true;
+
+        ev.preventDefault();
+        ev.dataTransfer.dropEffect = "move"
+        // Get the id of the target and add the moved element to the target's DOM
+
+        var data = ev.dataTransfer.getData("text");
+
+        this.projectionFieldLongitude = this.draggedField;
+        this.isDragoverProjectionLongitude = false;
+
+        // Replace letter-buttons.  NB: this must sync with HTML code
+        let postion: number = this.projectionFieldLongitude.indexOf(' X Y C');
+        this.projectionFieldLongitude = this.projectionFieldLongitude.substring(0, postion != -1 ? postion : this.projectionFieldLongitude.length)
+
+        let fieldType:string = this.getFieldType(this.draggedField);
+        this.localWidget.projectionFieldLongitude = this.defaultGraphTypeField(fieldType, 'type');
     }
 
     clickClearXField() {
@@ -2488,6 +2519,16 @@ export interface dataSchemaInterface {
         // this.dragoverColours = false;
     }
 
+    dragenterProjectionLongitude(ev, actionName: string) {
+        // Event trigger when the dragged Field is enters the ProjectionLongitude field
+        this.globalFunctionService.printToConsole(this.constructor.name,'dragenterProjectionLongitude', '@Start');
+
+        ev.preventDefault();
+        // this.dragoverCol = false;
+        this.isDragoverProjectionLongitude = true;
+        // this.dragoverColours = false;
+    }
+
     dragleaveXField(ev, actionName: string) {
         // Event trigger when dragged field leave XField
         this.globalFunctionService.printToConsole(this.constructor.name,'dragleaveXField', '@Start');
@@ -2574,6 +2615,14 @@ export interface dataSchemaInterface {
 
         ev.preventDefault();
         this.isDragoverProjectionLatitude = false;
+    }
+
+    dragleaveProjectionLongitude(ev, actionName: string) {
+        // Event trigger when the dragged Field is leaves the ProjectionLongitude field
+        this.globalFunctionService.printToConsole(this.constructor.name,'dragleaveProjectionLongitude', '@Start');
+
+        ev.preventDefault();
+        this.isDragoverProjectionLongitude = false;
     }
 
     clickDatasource(index: number, name: string) {
