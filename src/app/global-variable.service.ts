@@ -390,6 +390,8 @@ const widgetTemplate: Widget =
         "graphY2AggregateName": "",
 
         "graphProjectionType": "",
+        "projectionFieldLatitude": "",
+        "projectionFieldLongitude": "",
 
         "tableBackgroundColor" : "",
         "tableBackgroundColorName" : "",

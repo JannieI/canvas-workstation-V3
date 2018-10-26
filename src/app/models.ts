@@ -1336,6 +1336,8 @@ export class Widget {
 
     // Projection
     graphProjectionType: string;       // Type of geo projection
+    projectionFieldLatitude: string;   // Lat of geo projection
+    projectionFieldLongitude: string;  // Long of geo projection
 
     // Table - to be determined later ...
     tableBackgroundColor: string;       // Actual colour (CSS name or HEX code)
