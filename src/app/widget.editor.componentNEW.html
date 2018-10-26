@@ -2491,6 +2491,20 @@
                                     title="Add Points to graph (T/F)"
                                     >
                             </div>
+                            <div class="select editorGraphMarkPointColour" *ngIf="showFieldMarkProperties"
+                                title="Color of the point on the line or area Graph"
+                                >
+                                <select [(ngModel)]="localWidget.graphMarkPointColorName"
+                                    name="graphMarkPointColorName"
+                                    (change)="clickSelectMarkPointColour($event)"
+                                    >
+                                    <option *ngFor="let row of backgroundcolors"
+                                        [style.background-color]="row.cssCode"
+                                        >
+                                        {{ row.name }}
+                                    </option>
+                                </select>
+                            </div>
                         </div>
 
                         <!-- Mark Properties Bin Spacing -->
@@ -2509,7 +2523,7 @@
                         </div>
 
 
-                        
+
                         <!-- Size: Channel Title Bar -->
                         <div class="editorSizeContainerTitle"
                             title="Click to amend properties of the Size field"
