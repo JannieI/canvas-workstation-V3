@@ -3041,6 +3041,24 @@ export interface dataSchemaInterface {
         };
     }
 
+    clickSelectMarkPointColour(ev: any) {
+        // Select point Colour (line and area)
+        this.globalFunctionService.printToConsole(this.constructor.name,'clickSelectMarkPointColour', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
+
+        this.localWidget.graphMarkPointColorName = ev.target.value;
+        this.localWidget.graphMarkPointColor = this.localWidget.graphMarkPointColorName;
+        let localIndex: number = this.backgroundcolors.findIndex(bg =>
+            bg.name == this.localWidget.graphMarkPointColorName
+        );
+        if (localIndex >= 0) {
+            this.localWidget.graphMarkPointColor = this.backgroundcolors[localIndex].cssCode;
+        };
+    }
+
+
     clickXBin() {
         // Reset Size X Max
         this.globalFunctionService.printToConsole(this.constructor.name,'clickXBin', '@Start');
