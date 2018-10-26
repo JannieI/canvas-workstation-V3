@@ -2302,14 +2302,31 @@ clr-dg-cell {
                         width: 68%;
                     }
     
-                    .editorGraphY2aggregateTitle {
+                    .editorGraphLatitudeTitle {
                         display: inline-block;
                         font-size: 0.5rem;
                         line-height: 0.8rem;
                         margin-left: 4px;
                         width: 64px;
                     }
-                    .editorGraphY2aggregate {
+                    .editorGraphLatitude {
+                        border: 1px solid steelblue;
+                        border-radius: 5px;
+                        display: inline-block;
+                        font-size: 0.5rem;
+                        line-height: 0.8rem;
+                        margin: 3px;
+                        width: 68%;
+                    }
+    
+                    .editorGraphLongitudeTitle {
+                        display: inline-block;
+                        font-size: 0.5rem;
+                        line-height: 0.8rem;
+                        margin-left: 4px;
+                        width: 64px;
+                    }
+                    .editorGraphLongitude {
                         border: 1px solid steelblue;
                         border-radius: 5px;
                         display: inline-block;
