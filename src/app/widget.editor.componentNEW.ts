@@ -2164,7 +2164,8 @@ console.warn('xx -' + this.draggedField + '-' + fieldName + '-', this.dataSchema
 
         // Replace letter-buttons.  NB: this must sync with HTML code
         let position: number = this.projectionFieldLatitude.indexOf(' X Y C');
-        this.projectionFieldLatitude = this.projectionFieldLatitude.substring(0, position != -1 ? position : this.projectionFieldLatitude.length)
+        this.projectionFieldLatitude = this.projectionFieldLatitude.substring(
+            0, position != -1 ? position : this.projectionFieldLatitude.length);
 
         let fieldType:string = this.getFieldType(this.draggedField);
         this.localWidget.graphProjectionFieldLatitude = this.projectionFieldLatitude;
@@ -2191,10 +2192,11 @@ console.warn('xx -' + this.draggedField + '-' + fieldName + '-', this.dataSchema
 
         // Replace letter-buttons.  NB: this must sync with HTML code
         let position: number = this.projectionFieldLongitude.indexOf(' X Y C');
-        this.projectionFieldLongitude = this.projectionFieldLongitude.substring(0, position != -1 ? position : this.projectionFieldLongitude.length)
+        this.projectionFieldLongitude = this.projectionFieldLongitude.substring(
+            0, position != -1 ? position : this.projectionFieldLongitude.length);
 
         let fieldType:string = this.getFieldType(this.draggedField);
-        this.localWidget.graphProjectionFieldLatitude = this.projectionFieldLongitude;
+        this.localWidget.graphProjectionFieldLongitude = this.projectionFieldLongitude;
     }
 
     clickClearXField() {

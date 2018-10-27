@@ -11412,7 +11412,7 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 "type": "quantitative"
                 },
                 "latitude": {
-                "field": widget.graphProjectionFieldLatitude,
+                "field": widget.graphProjectionFieldLongitude,
                 "type": "quantitative"
                 },
                 "size": {"value": 10}
