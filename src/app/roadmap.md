@@ -194,13 +194,6 @@ This document describes items for later versions of Canvas.
         Tooltip:
             - make work Vega style
 
-        Types:
-            - projection
-            - geoshapes
-            - latitude
-            - longitude
-            
-        
         
 
         Make ONE month red, or colour ONE legend option RED
@@ -1349,6 +1342,7 @@ This document describes items for later versions of Canvas.
         - suggest graph types based on fields selected (ie 1 quantitative field means could do a
         tick or pie chart)
         - consider reset button ?  Not sure what use case will be
+        - geoShapes: enhance so that one can customise the inputs, layouts, etc.  Then use with layers (ie names or Mark_size=circles with colours to show related info to a spot)
 
     - Spec: 
         - allow to import and then reverse engineer what the Widget fields are.  Easy to do, but looks of work and has to be updated in parallel to any changes made to the other way.
