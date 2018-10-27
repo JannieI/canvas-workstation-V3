@@ -2410,6 +2410,8 @@ console.warn('xx -' + this.draggedField + '-' + fieldName + '-', this.dataSchema
         this.showProjectionDeleteIcon = false;
         this.projectionField = dragFieldMessage;
         this.localWidget.graphProjectionType = '';
+        this.localWidget.graphProjectionFieldLatitude = '';
+        this.localWidget.graphProjectionFieldLongitude = '';
 
         // Hide the panel with properties
         this.showFieldProjectionProperties = false;
@@ -2814,6 +2816,7 @@ console.warn('xx -' + this.draggedField + '-' + fieldName + '-', this.dataSchema
         this.clickClearX2Field();
         this.clickClearY2Field();
         this.clickClearMark();
+        this.clickClearProjectionField();
 
         // Clear History
         this.graphHistory = [];

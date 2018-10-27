@@ -264,7 +264,7 @@ This document describes items for later versions of Canvas.
         Datasources:
         - Consider where to store, tag as sample => cannot alter and delete?
         - Reserve Bank CPI
-        - Python and R brings back data sets !!!
+        - Python brings back data sets !!!
         - Read from PDF tables
         - Multi currency !!!
         - List of all tables in spreadsheet
@@ -1333,6 +1333,10 @@ This document describes items for later versions of Canvas.
         - For SVG Gauge, see http://svgdiscovery.com/HMI/AnalogGaugeObject/analogGaugeObject.htm
         and http://svgdiscovery.com/HMI/Button/AnalogGauge/buttonGauge.htm  !!!
         - For KPI charts, see https://www.zoho.com/reports/help/dashboard/kpi-widgets.html.  Must include target, and progress (either % with green/red arrow since last month or graph ytd) and level of achievement (ie combo graph with line as target).  Try to use Clarity CARDS for this.
+        - embed graphs created in Python and R - ie. Seaborn
+
+    - Local Names
+        - Investigate if this make sense: user can name a field (per DS or even per Widget?) over and above what is done at DS level - use case?
 
     - Spec: 
         - allow to import and then reverse engineer what the Widget fields are.  Easy to do, but looks of work and has to be updated in parallel to any changes made to the other way.
@@ -1405,6 +1409,7 @@ This document describes items for later versions of Canvas.
 
     - Data
         - Consider showing Spec with data as well - first determine if use case for it.
+        - Python and R brings back data sets !!!
 
 
 
