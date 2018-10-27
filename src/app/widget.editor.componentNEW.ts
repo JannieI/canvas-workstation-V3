@@ -1192,7 +1192,7 @@ export interface dataSchemaInterface {
                 this.errorMessageEditor = 'Select at least one field.';
                 return;
         };
-        if (this.projectionField != ''
+        if (this.projectionField != dragFieldMessage
             &&
             (this.projectionFieldLatitude == dragFieldMessage  ||  this.projectionFieldLatitude == null)
             &&
@@ -1404,7 +1404,7 @@ export interface dataSchemaInterface {
                 this.localWidget, this.localWidget.graphHeight, this.localWidget.graphWidth
             );
 
-            console.warn('xx @END of ShowGraph specification', this.specification);
+            console.warn('xx @END of ShowGraph specification', this.specification, JSON.stringify(this.specification));
 
             // Render graph for Vega-Lite
             if (graphVisualGrammar == 'Vega-Lite') {
@@ -1857,7 +1857,6 @@ export interface dataSchemaInterface {
     dropXField(ev, fieldName: string = '') {
         // Event trigger when the dragged Field is dropped the Column field
         this.globalFunctionService.printToConsole(this.constructor.name,'dropXField', '@Start');
-console.warn('xx -' + this.draggedField + '-' + fieldName + '-', this.dataSchema)
 
         // Reset
         this.errorMessageEditor = '';
@@ -2202,7 +2201,7 @@ console.warn('xx -' + this.draggedField + '-' + fieldName + '-', this.dataSchema
     clickClearXField() {
         // Clear the X Field and Remove X icon
         this.globalFunctionService.printToConsole(this.constructor.name,'clickClearXField', '@Start');
-        
+
         // Reset fields
         this.errorMessageEditor = '';
         this.showXDeleteIcon = false;
@@ -2235,11 +2234,11 @@ console.warn('xx -' + this.draggedField + '-' + fieldName + '-', this.dataSchema
 
         // Reset
         this.errorMessageEditor = '';
-        
+
         this.showYDeleteIcon = false;
         this.yField = dragFieldMessage;
         this.localWidget.graphYfield = '';
-        this.localWidget.graphYaxisTitle = '';        
+        this.localWidget.graphYaxisTitle = '';
         this.localWidget.graphYaggregateName = '';
         this.localWidget.graphYaggregate = '';
         this.localWidget.graphYbin = false;
@@ -2408,7 +2407,9 @@ console.warn('xx -' + this.draggedField + '-' + fieldName + '-', this.dataSchema
         this.errorMessageEditor = '';
 
         this.showProjectionDeleteIcon = false;
-        this.projectionField = dragFieldMessage;
+        this.projectionField = '';
+        this.projectionFieldLatitude = dragFieldMessage;
+        this.projectionFieldLongitude = dragFieldMessage;
         this.localWidget.graphProjectionType = '';
         this.localWidget.graphProjectionFieldLatitude = '';
         this.localWidget.graphProjectionFieldLongitude = '';
@@ -3716,7 +3717,6 @@ console.warn('xx -' + this.draggedField + '-' + fieldName + '-', this.dataSchema
             };
 
         };
-console.warn('xx this.localWidget.graphFilters', this.localWidget.graphFilters);
 
         // Clear out form
         this.clickFilterClear()
