@@ -11407,11 +11407,11 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 "type":  widget.graphProjectionType
             };
             specification['encoding'] = {
-                "longitude": {
+                "latitude": {
                 "field": widget.graphProjectionFieldLatitude,
                 "type": "quantitative"
                 },
-                "latitude": {
+                "longitude": {
                 "field": widget.graphProjectionFieldLongitude,
                 "type": "quantitative"
                 },
