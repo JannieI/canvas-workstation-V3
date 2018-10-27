@@ -2741,7 +2741,7 @@ console.warn('xx -' + this.draggedField + '-' + fieldName + '-', this.dataSchema
                 .data.slice(0,5);
 
             // Nr rows
-            this.nrRows = this.currentData.length;
+            this.nrRows = this.globalVariableService.currentDatasets[dataSetIndex].data.length;
 
             // Switch on the preview after the first row was clicked
             this.showPreview = true;

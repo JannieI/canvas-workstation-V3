@@ -173,23 +173,12 @@ This document describes items for later versions of Canvas.
     --------------------
         - highlight one series in graph, either click the line (bar), or click on the legend
         - set properties of new Widget as a template - user pref
-        - Cross hair with showing values on axis - ie crypto trading websites!
-        - Look at embeding widgets -> export Vega spec + embed line, user puts it in his html ...?
-        - For a GAUGE, see    https://gist.github.com/anilkpatro/0cf0503b581556a14aab
-        - For SVG Gauge, see http://svgdiscovery.com/HMI/AnalogGaugeObject/analogGaugeObject.htm
-        and http://svgdiscovery.com/HMI/Button/AnalogGauge/buttonGauge.htm  !!!
-        - For KPI charts, see https://www.zoho.com/reports/help/dashboard/kpi-widgets.html.  Must include target, and progress (either % with green/red arrow since last month or graph ytd) and level of achievement (ie combo graph with line as target).  Try to use Clarity CARDS for this.
         - Give hints/advice on W as to type of graph, insights, etc.
         - add Drill Down / Drill Through: this is critical.  Drill down is a capability that takes the user from a more general view of the data to a more specific one at the click of a mouse. For example, a report that shows sales revenue by state can allow the user to select a state, click on it and see sales revenue by county or city within that state. It is called “drill down” because it is a feature that allows the user to go deeper into more specific layers of the data or information being analyzed.  Further levels of drill down can be set up within the report–practically as many as supported by the data. In our example, the drill-down can go from country to state to city to zip code to specific location of stores or individual sales reps. Typically, the look and feel of each level of the report is similar–what changes is the granularity of the data.  Instead of taking the user to a more granular level of the data, drill through takes him to a report that is relevant to the data being analyzed, also at the click of a mouse. For example, a tabular report that shows sales revenue by state can allow the user to click on it and reveal an analysis grid of the same data, or a heat map representing the data in visual form. It is called “drill through” because it is a feature that allows the user to pass from one report to another while still analyzing the same set of data.
         - Easy way to compare data: graph shows revenue per month for this year.  What was figure for March last year, or compare all to last year ... NB
 
         Fix:
-            - where and how Quantile?
-            - make impute work
             - test all Calc Formulae
-
-        Versions:
-            - test with >1 version of Vega
 
         Tooltip:
             - make work Vega style
@@ -203,14 +192,8 @@ This document describes items for later versions of Canvas.
 
         Filter:
             - add timeUnit & date
-            - WARN if (range & type != number)  (oneOf & type != string)
 
 
-        BACK/FORWARD BUTTONS:
-            - complexities: what about filtering, DS changes?
-
-        EASY EDITOR:
-            - design subset of functions that is minimalistic
 
         SUMMARY:
             - Summary of n charts - design UI 
@@ -980,6 +963,7 @@ This document describes items for later versions of Canvas.
     - generalise this: user can record task/actions!!  For example, add arrow, gray with black border at 45 degrees = recorded and add as a button !!!
     - make icons draggable - like Ubuntu palette on left !
     - relook at toolbar colour
+    - add input elements, ie checkboxes and dropdowns (see MS Ribbon)
     - consider palette per Widget (Jaco)
     - group related things together, see Google
     - if more than 1 widget type has same function, make ONE on palette menu (thus icon is used once), and figure out inside what fn to call depending on type
@@ -1343,6 +1327,12 @@ This document describes items for later versions of Canvas.
         tick or pie chart)
         - consider reset button ?  Not sure what use case will be
         - geoShapes: enhance so that one can customise the inputs, layouts, etc.  Then use with layers (ie names or Mark_size=circles with colours to show related info to a spot)
+        - Cross hair with showing values on axis - ie crypto trading websites!
+        - Look at embeding widgets -> export Vega spec + embed line, user puts it in his html ...?
+        - For a GAUGE, see    https://gist.github.com/anilkpatro/0cf0503b581556a14aab
+        - For SVG Gauge, see http://svgdiscovery.com/HMI/AnalogGaugeObject/analogGaugeObject.htm
+        and http://svgdiscovery.com/HMI/Button/AnalogGauge/buttonGauge.htm  !!!
+        - For KPI charts, see https://www.zoho.com/reports/help/dashboard/kpi-widgets.html.  Must include target, and progress (either % with green/red arrow since last month or graph ytd) and level of achievement (ie combo graph with line as target).  Try to use Clarity CARDS for this.
 
     - Spec: 
         - allow to import and then reverse engineer what the Widget fields are.  Easy to do, but looks of work and has to be updated in parallel to any changes made to the other way.
