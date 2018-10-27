@@ -1733,6 +1733,7 @@ export interface dataSchemaInterface {
 
         ev.dataTransfer.setData("text/plain", ev.target.id);
         this.draggedField = ev.srcElement.innerText.trim();
+        this.draggedField = this.draggedField.replace(/\n/g, " ");
     }
 
     dragoverXField(ev, actionName: string) {
@@ -1843,6 +1844,10 @@ export interface dataSchemaInterface {
     dropXField(ev, fieldName: string = '') {
         // Event trigger when the dragged Field is dropped the Column field
         this.globalFunctionService.printToConsole(this.constructor.name,'dropXField', '@Start');
+console.warn('xx -' + this.draggedField + '-' + fieldName + '-', this.dataSchema)
+
+        // Reset
+        this.errorMessageEditor = '';
 
         // Set
         if (fieldName == '') {
@@ -1855,8 +1860,8 @@ export interface dataSchemaInterface {
         };
 
         // Replace letter-buttons.  NB: this must sync with HTML code
-        let postion: number = fieldName.indexOf(' X Y C');
-        fieldName = fieldName.substring(0, postion != -1 ? postion : fieldName.length)
+        let position: number = fieldName.indexOf(' X Y C');
+        fieldName = fieldName.substring(0, position != -1 ? position : fieldName.length)
 
         let dataSchemaIndex: number = this.dataSchema.findIndex(
             dsc => dsc.name == fieldName
@@ -1881,6 +1886,9 @@ export interface dataSchemaInterface {
         // Event trigger when the dragged Field is dropped in Y field
         this.globalFunctionService.printToConsole(this.constructor.name,'dropYField', '@Start');
 
+        // Reset
+        this.errorMessageEditor = '';
+
         // Set
         if (fieldName == '') {
             fieldName = this.draggedField;
@@ -1892,8 +1900,8 @@ export interface dataSchemaInterface {
         };
 
         // Replace letter-buttons.  NB: this must sync with HTML code
-        let postion: number = fieldName.indexOf(' X Y C');
-        fieldName = fieldName.substring(0, postion != -1 ? postion : fieldName.length)
+        let position: number = fieldName.indexOf(' X Y C');
+        fieldName = fieldName.substring(0, position != -1 ? position : fieldName.length)
 
         // Show X icon
         this.showYDeleteIcon = true;
@@ -1916,6 +1924,9 @@ export interface dataSchemaInterface {
         // Event trigger when the dragged Field is dropped the Colour field
         this.globalFunctionService.printToConsole(this.constructor.name,'dropColour', '@Start');
 
+        // Reset
+        this.errorMessageEditor = '';
+
         // Set
         if (fieldName == '') {
             fieldName = this.draggedField;
@@ -1927,8 +1938,8 @@ export interface dataSchemaInterface {
         };
 
         // Replace letter-buttons.  NB: this must sync with HTML code
-        let postion: number = fieldName.indexOf(' X Y C');
-        fieldName = fieldName.substring(0, postion != -1 ? postion : fieldName.length)
+        let position: number = fieldName.indexOf(' X Y C');
+        fieldName = fieldName.substring(0, position != -1 ? position : fieldName.length)
 
         // Show X icon
         this.showColourDeleteIcon = true;
@@ -1954,6 +1965,9 @@ export interface dataSchemaInterface {
         // Event trigger when the dragged Field is dropped the Size field
         this.globalFunctionService.printToConsole(this.constructor.name,'dropSize', '@Start');
 
+        // Reset
+        this.errorMessageEditor = '';
+
         // Show X icon
         this.showSizeDeleteIcon = true;
 
@@ -1967,8 +1981,8 @@ export interface dataSchemaInterface {
         this.isDragoverSizes = false;
 
         // Replace letter-buttons.  NB: this must sync with HTML code
-        let postion: number = this.sizeField.indexOf(' X Y C');
-        this.sizeField = this.sizeField.substring(0, postion != -1 ? postion : this.sizeField.length)
+        let position: number = this.sizeField.indexOf(' X Y C');
+        this.sizeField = this.sizeField.substring(0, position != -1 ? position : this.sizeField.length)
 
         let fieldType:string = this.getFieldType(this.draggedField);
         this.localWidget.graphSizeType = this.defaultGraphTypeField(fieldType, 'type');
@@ -1979,6 +1993,9 @@ export interface dataSchemaInterface {
     dropRow(ev) {
         // Event trigger when the dragged Field is dropped the Row channel
         this.globalFunctionService.printToConsole(this.constructor.name,'dropRow', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
 
         // Show X icon
         this.showRowDeleteIcon = true;
@@ -1993,8 +2010,8 @@ export interface dataSchemaInterface {
         this.isDragoverRow = false;
 
         // Replace letter-buttons.  NB: this must sync with HTML code
-        let postion: number = this.rowField.indexOf(' X Y C');
-        this.rowField = this.rowField.substring(0, postion != -1 ? postion : this.rowField.length)
+        let position: number = this.rowField.indexOf(' X Y C');
+        this.rowField = this.rowField.substring(0, position != -1 ? position : this.rowField.length)
 
         let fieldType:string = this.getFieldType(this.draggedField);
         this.localWidget.graphRowType = this.defaultGraphTypeField(fieldType, 'type');
@@ -2004,6 +2021,9 @@ export interface dataSchemaInterface {
     dropColumn(ev) {
         // Event trigger when the dragged Field is dropped the Column channel
         this.globalFunctionService.printToConsole(this.constructor.name,'dropColumn', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
 
         // Show X icon
         this.showColumnDeleteIcon = true;
@@ -2018,8 +2038,8 @@ export interface dataSchemaInterface {
         this.isDragoverColumn = false;
 
         // Replace letter-buttons.  NB: this must sync with HTML code
-        let postion: number = this.columnField.indexOf(' X Y C');
-        this.columnField = this.columnField.substring(0, postion != -1 ? postion : this.columnField.length)
+        let position: number = this.columnField.indexOf(' X Y C');
+        this.columnField = this.columnField.substring(0, position != -1 ? position : this.columnField.length)
 
         let fieldType:string = this.getFieldType(this.draggedField);
         this.localWidget.graphColumnType = this.defaultGraphTypeField(fieldType, 'type');
@@ -2029,6 +2049,9 @@ export interface dataSchemaInterface {
     dropDetail(ev) {
         // Event trigger when the dragged Field is dropped the Detail channel
         this.globalFunctionService.printToConsole(this.constructor.name,'dropDetail', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
 
         // Show X icon
         this.showDetailDeleteIcon = true;
@@ -2043,8 +2066,8 @@ export interface dataSchemaInterface {
         this.isDragoverDetail = false;
 
         // Replace letter-buttons.  NB: this must sync with HTML code
-        let postion: number = this.detailField.indexOf(' X Y C');
-        this.detailField = this.detailField.substring(0, postion != -1 ? postion : this.detailField.length)
+        let position: number = this.detailField.indexOf(' X Y C');
+        this.detailField = this.detailField.substring(0, position != -1 ? position : this.detailField.length)
 
         let fieldType:string = this.getFieldType(this.draggedField);
         this.localWidget.graphDetailType = this.defaultGraphTypeField(fieldType, 'type');
@@ -2054,6 +2077,9 @@ export interface dataSchemaInterface {
     dropX2(ev) {
         // Event trigger when the dragged Field is dropped the X2 channel
         this.globalFunctionService.printToConsole(this.constructor.name,'dropX2', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
 
         // Show X icon
         this.showX2DeleteIcon = true;
@@ -2068,8 +2094,8 @@ export interface dataSchemaInterface {
         this.isDragoverX2 = false;
 
         // Replace letter-buttons.  NB: this must sync with HTML code
-        let postion: number = this.x2Field.indexOf(' X Y C');
-        this.x2Field = this.x2Field.substring(0, postion != -1 ? postion : this.x2Field.length)
+        let position: number = this.x2Field.indexOf(' X Y C');
+        this.x2Field = this.x2Field.substring(0, position != -1 ? position : this.x2Field.length)
 
         let fieldType:string = this.getFieldType(this.draggedField);
         this.localWidget.graphX2Type = this.defaultGraphTypeField(fieldType, 'type');
@@ -2079,6 +2105,9 @@ export interface dataSchemaInterface {
     dropY2(ev) {
         // Event trigger when the dragged Field is dropped the Y2 channel
         this.globalFunctionService.printToConsole(this.constructor.name,'dropY2', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
 
         // Show X icon
         this.showY2DeleteIcon = true;
@@ -2093,8 +2122,8 @@ export interface dataSchemaInterface {
         this.isDragoverY2 = false;
 
         // Replace letter-buttons.  NB: this must sync with HTML code
-        let postion: number = this.y2Field.indexOf(' X Y C');
-        this.y2Field = this.y2Field.substring(0, postion != -1 ? postion : this.y2Field.length)
+        let position: number = this.y2Field.indexOf(' X Y C');
+        this.y2Field = this.y2Field.substring(0, position != -1 ? position : this.y2Field.length)
 
         let fieldType:string = this.getFieldType(this.draggedField);
         this.localWidget.graphY2Type = this.defaultGraphTypeField(fieldType, 'type');
@@ -2104,6 +2133,9 @@ export interface dataSchemaInterface {
     dropProjectionLatitude(ev) {
         // Event trigger when the dragged Field is dropped the Y2 channel
         this.globalFunctionService.printToConsole(this.constructor.name,'dropProjectionLatitude', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
 
         // Show X icon
         this.showProjectionLatitudeDeleteIcon = true;
@@ -2128,6 +2160,9 @@ export interface dataSchemaInterface {
     dropProjectionLongitude(ev) {
         // Event trigger when the dragged Field is dropped the Y2 channel
         this.globalFunctionService.printToConsole(this.constructor.name,'dropProjectionLongitude', '@Start');
+
+        // Reset
+        this.errorMessageEditor = '';
 
         // Show X icon
         this.showProjectionLongitudeDeleteIcon = true;
