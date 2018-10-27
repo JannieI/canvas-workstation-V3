@@ -1184,6 +1184,10 @@ export interface dataSchemaInterface {
             (this.x2Field == dragFieldMessage  ||  this.x2Field == null)
             &&
             (this.y2Field == dragFieldMessage  ||  this.y2Field == null)
+            &&
+            (this.projectionFieldLatitude == dragFieldMessage  ||  this.projectionFieldLatitude == null)
+            &&
+            (this.projectionFieldLongitude == dragFieldMessage  ||  this.projectionFieldLongitude == null)
             ) {
                 this.errorMessageEditor = 'Select at least one field.';
                 return;
