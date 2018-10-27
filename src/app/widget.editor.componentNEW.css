@@ -2606,7 +2606,7 @@ clr-dg-cell {
             /* autoprefixer: off */
             grid-column-end: 50;
             grid-row-start: 25;
-            grid-row-end: 23;
+            grid-row-end: 26;
             margin-left: 12px;
             text-align: left;
         }

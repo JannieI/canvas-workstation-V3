@@ -390,8 +390,8 @@ const widgetTemplate: Widget =
         "graphY2AggregateName": "",
 
         "graphProjectionType": "",
-        "projectionFieldLatitude": "",
-        "projectionFieldLongitude": "",
+        "graphProjectionFieldLatitude": "",
+        "graphProjectionFieldLongitude": "",
 
         "tableBackgroundColor" : "",
         "tableBackgroundColorName" : "",
@@ -11394,6 +11394,29 @@ console.warn('xx getCurrentDashboard canvasDatabaseUrl', this.ENVCanvasDatabaseU
                 "type": widget.graphY2Type
             };
 
+        };
+
+
+        // Projection
+        if (widget.graphProjectionType != ''  &&  widget.graphProjectionType != null) {
+            let projection: string = 'albersUsa';
+            if (widget.graphProjectionType != ''  &&  widget.graphProjectionType != null) {
+                projection = widget.graphProjectionType;
+            };
+            specification['projection'] = {
+                "type":  widget.graphProjectionType
+            };
+            specification['encoding'] = {
+                "longitude": {
+                "field": widget.graphProjectionFieldLatitude,
+                "type": "quantitative"
+                },
+                "latitude": {
+                "field": widget.graphProjectionFieldLatitude,
+                "type": "quantitative"
+                },
+                "size": {"value": 10}
+            };
         };
 
 

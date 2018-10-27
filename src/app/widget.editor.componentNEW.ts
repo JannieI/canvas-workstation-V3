@@ -1192,6 +1192,15 @@ export interface dataSchemaInterface {
                 this.errorMessageEditor = 'Select at least one field.';
                 return;
         };
+        if (this.projectionField != ''
+            &&
+            (this.projectionFieldLatitude == dragFieldMessage  ||  this.projectionFieldLatitude == null)
+            &&
+            (this.projectionFieldLongitude == dragFieldMessage  ||  this.projectionFieldLongitude == null)
+            ) {
+                this.errorMessageEditor = 'Select lat and long with Projection.';
+                return;
+        };
 
         // Keep graphID
         this.currentGraphID = graphID;
@@ -2158,7 +2167,7 @@ console.warn('xx -' + this.draggedField + '-' + fieldName + '-', this.dataSchema
         this.projectionFieldLatitude = this.projectionFieldLatitude.substring(0, position != -1 ? position : this.projectionFieldLatitude.length)
 
         let fieldType:string = this.getFieldType(this.draggedField);
-        this.localWidget.projectionFieldLatitude = this.defaultGraphTypeField(fieldType, 'type');
+        this.localWidget.graphProjectionFieldLatitude = this.projectionFieldLatitude;
     }
 
     dropProjectionLongitude(ev) {
@@ -2185,7 +2194,7 @@ console.warn('xx -' + this.draggedField + '-' + fieldName + '-', this.dataSchema
         this.projectionFieldLongitude = this.projectionFieldLongitude.substring(0, position != -1 ? position : this.projectionFieldLongitude.length)
 
         let fieldType:string = this.getFieldType(this.draggedField);
-        this.localWidget.projectionFieldLongitude = this.defaultGraphTypeField(fieldType, 'type');
+        this.localWidget.graphProjectionFieldLatitude = this.projectionFieldLongitude;
     }
 
     clickClearXField() {
@@ -2414,7 +2423,7 @@ console.warn('xx -' + this.draggedField + '-' + fieldName + '-', this.dataSchema
 
         this.showProjectionLatitudeDeleteIcon = false;
         this.projectionFieldLatitude = dragFieldMessage;
-        this.localWidget.projectionFieldLatitude = '';
+        this.localWidget.graphProjectionFieldLatitude = '';
 
         // Hide the panel with properties
         this.showFieldProjectionProperties = false;
@@ -2430,7 +2439,7 @@ console.warn('xx -' + this.draggedField + '-' + fieldName + '-', this.dataSchema
 
         this.showProjectionLongitudeDeleteIcon = false;
         this.projectionFieldLongitude = dragFieldMessage;
-        this.localWidget.projectionFieldLongitude = '';
+        this.localWidget.graphProjectionFieldLatitude = '';
 
         // Hide the panel with properties
         this.showFieldProjectionProperties = false;
